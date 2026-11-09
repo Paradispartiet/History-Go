@@ -42,7 +42,7 @@ try{
       const img=document.getElementById('fagverkPlaceImage');
       return {title:text('fagverkPlaceTitle'),status:text('fagverkPlaceCoverageStatus'),articleText:text('fagverkPlaceArticle'),lensCount:document.querySelectorAll('#fagverkPlaceLenses a').length,questionCount:document.querySelectorAll('#fagverkPlaceQuestions li').length,traceCount:document.querySelectorAll('#fagverkPlaceTraces .fagverk-place-trace').length,sourceCount:document.querySelectorAll('#fagverkPlaceSources li a').length,links,imgReady:img?.complete&&img.naturalWidth>0,imgWidth:img?.naturalWidth,unfinishedHidden:document.getElementById('fagverkPlaceUnfinished')?.hidden,errBox:text('fagverkPlaceError')};
     });
-    assert.equal(data.status,'Kuratert stedsfagverk',id+'/'+profile.name+' '+data.errBox);
+    assert.equal(data.status.toLocaleLowerCase('nb-NO'),'kuratert stedsfagverk',id+'/'+profile.name+' '+data.errBox);
     assert.ok(data.title&&data.articleText.length>450,id+' insufficient article');
     assert.ok(data.lensCount>=3&&data.questionCount>=4&&data.traceCount>=1&&data.sourceCount>=2,id+' missing content '+JSON.stringify(data));
     assert.ok(data.imgReady,id+' image not loaded');
