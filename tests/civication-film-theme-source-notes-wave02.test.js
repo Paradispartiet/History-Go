@@ -31,7 +31,7 @@ for(const note of notes.entries){
  const body=read(original.runtime_path);
  if(note.type_id==='C04'){
    assert.equal(body.role_scope,note.role_id);
-   assert.ok(body.scenes.some(s=>s.id==='c04_tekstforesporsel'&&s.valg.length===3));
+   assert.ok(body.scenes.some(s=>s.id==='c04_tekstforesporsel'&&s.valg.length===4));
    assert.equal(body.scenes.filter(s=>s.id.startsWith('c04_tekstoppfolging_')).length,3);
  }else{
    assert.ok(body.threads.some(t=>t.id==='wave_a_'+note.type_id.toLowerCase()));

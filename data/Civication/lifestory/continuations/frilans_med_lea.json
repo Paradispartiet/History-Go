@@ -260,12 +260,12 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Torsdag i e-posten, fredag på skjemaet",
-      "tekst": "«Har du ti minutter?» skriver Lea. «Det er invitasjonen til vårsamlingen. Jeg får den ikke under to hundre ord.» Du åpner utkastet. Der står torsdag. Påmeldingsskjemaet sier fredag. «Hva har dere booket?» spør du. «Fredag. Søren, torsdag står i e-posten jeg sendte til styret også.» Lea kan rette styremeldingen, men styrelederen må bestille selve tekstjobben. Du har lovet en annen kunde en rettelse i morgen.",
+      "tekst": "«Har du ti minutter?» skriver Lea. «Det er invitasjonen til vårsamlingen. Jeg får den ikke under to hundre ord.» Hun videresender e-posten hun sendte styret i går. Både der og i utkastet står det torsdag. Påmeldingsskjemaet sier fredag. Lea kan rette styremeldingen, men styrelederen må bestille selve tekstjobben. Du har lovet en annen kunde en rettelse i morgen.",
       "valg": [
         {
           "id": "avgrens",
-          "tekst": "Skriv om åpningen med fredag og send Lea et avgrenset tilbud",
-          "konsekvensTekst": "Du flytter datoen til første linje: «Fredag møtes vi til vårsamling.» Du sender Lea den linja som prøve og tilbyr å ferdigstille invitasjonen med én korrekturrunde for 1 200 kr. Lea tar den gamle styremeldingen.",
+          "tekst": "Sjekk bookingen med Lea og send et avgrenset tilbud",
+          "konsekvensTekst": "Lea finner bookingen. «Fredag. Søren, jeg må rette e-posten til styret også.» Du sender henne en prøveåpning med riktig dato og tilbyr å ferdigstille invitasjonen med én korrekturrunde for 1 200 kr.",
           "effekter": {
             "flagg": {
               "c04_tekststatus": "tilbud_sendt"
@@ -274,8 +274,8 @@
         },
         {
           "id": "avklar",
-          "tekst": "Be Lea rette styremeldingen og få en bekreftet bestilling først",
-          "konsekvensTekst": "«Jeg retter torsdagen nå,» svarer Lea. Du ber henne avklare hvem som bestiller og når teksten skal være klar. Du holder av morgendagen til rettelsen du allerede har lovet.",
+          "tekst": "Be Lea sjekke datoen og få en bestilling før du skriver",
+          "konsekvensTekst": "«Jeg fant bookingen. Fredag er riktig. Jeg retter styremeldingen,» skriver Lea. Du ber henne komme tilbake når styrelederen har bestilt og dere har en frist. Du holder av morgendagen til rettelsen du allerede har lovet.",
           "effekter": {
             "flagg": {
               "c04_tekststatus": "venter_pa_svar"
@@ -284,11 +284,24 @@
         },
         {
           "id": "avsla",
-          "tekst": "Si fra om datoen og takk nei til å skrive invitasjonen",
-          "konsekvensTekst": "«Da retter jeg datoen og skriver resten selv,» sier Lea. Du sender henne lenka til skjemaet der fredag står, så hun har riktig versjon foran seg.",
+          "tekst": "Si fra at datoene spriker, og takk nei til å skrive invitasjonen",
+          "konsekvensTekst": "Du viser Lea hvor datoene spriker. Hun sjekker bookingen. «Fredag. Da retter jeg styremeldingen og skriver resten selv.»",
           "effekter": {
             "flagg": {
               "c04_tekststatus": "avslatt"
+            }
+          }
+        },
+        {
+          "id": "bruk_styredato",
+          "tekst": "Bruk datoen fra styremeldingen i en prøveåpning til Lea",
+          "konsekvensTekst": "Lea leser prøven. «Vent. Jeg fant bookingen nå. Vi har lokalet fredag. Jeg kopierte torsdagen fra det gamle utkastet.» Du bruker noen minutter på å rette prøven og ber henne få en bestilling før du skriver mer. Lea tar styremeldingen.",
+          "effekter": {
+            "flagg": {
+              "c04_tekststatus": "venter_pa_svar"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         }
