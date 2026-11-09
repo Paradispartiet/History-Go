@@ -2958,6 +2958,53 @@
     return html + '</details>';
   }
 
+
+  function lillebekkElinSvarmoteHtml() {
+    const model = lillebekkElinSvarmoteModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-elin3-mote="1">' +
+      '<summary>Elins oppfølgingsmøte – prøv anbefalingen mot dokumentene</summary>' +
+      '<p>Fiktivt internt arbeidsmøte. Elin utfordrer begrunnelsen for skolevei, overvann og § 4.1. En gjennomgang er ikke et vedtak eller en faktisk fagkontroll.</p>';
+    if (!model.memo.current) {
+      html += '<p><strong>Sperret:</strong> Du må først ha et gjeldende, faglig holdbart internt oppfølgingsnotat fra den fiktive svarrunden.</p>';
+    } else {
+      html += '<p><strong>Dokumentert faglig svar:</strong> ' +
+        model.questions.filter(function (q) { return q.safe; }).length + ' av 3.</p>';
+      html += model.questions.map(function (q) {
+        return '<section class="civi-inbox-body" data-civi-elin3-question="' + escapeHtml(q.id) + '">' +
+          '<h4>' + escapeHtml(q.title) + '</h4><p>' + escapeHtml(q.question) + '</p>' +
+          '<p><strong>Grunnlag:</strong> ' + escapeHtml(q.ref) + '</p>' +
+          (q.latestNote ? '<p><strong>Siste journalvurdering' +
+            (q.current ? '' : ' (utdatert)') + ':</strong> ' + escapeHtml(q.latestNote) + '</p>' : '') +
+          '<label>Hva svarer du Elin? <select data-civi-elin3-choice>' +
+            '<option value="' + escapeHtml(q.safeId) + '"' + (q.latestOutcome === q.safeId ? ' selected' : '') +
+              '>' + escapeHtml(q.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(q.unsafeId) + '"' + (q.latestOutcome === q.unsafeId ? ' selected' : '') +
+              '>' + escapeHtml(q.unsafeLabel) + '</option></select></label>' +
+          '<label>Faglig begrunnelse <textarea rows="3" maxlength="700" data-civi-elin3-reason ' +
+            'placeholder="Hva viser dokumentet, hva er usikkert, og hvem har ansvar for kontroll?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-elin3-save="1" data-question-id="' +
+            escapeHtml(q.id) + '">Journalfør svar i simulert ledermøte</button>' +
+          '<p class="muted" role="status" data-civi-elin3-error></p></section>';
+      }).join("");
+      if (model.complete) {
+        html += '<section class="civi-inbox-body" data-civi-elin3-report-editor="1">' +
+          '<h4>Oppsummer Elins arbeidsbeskjed</h4>' +
+          '<p>Elin returnerer saken til konkret trafikkfaglig, VA-faglig og intern planjuridisk kontroll. Ingen fagrapporter er mottatt, og saken er ikke klar til vedtak.</p>' +
+          '<label>Plan for oppfølging <textarea rows="4" maxlength="1000" data-civi-elin3-report-reason ' +
+          'placeholder="Fordel trafikk, VA og juridiske avklaringer; angi dokumentkrav før ny intern vurdering."></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-elin3-report-save="1">Journalfør simulert internt møtereferat</button>' +
+          '<p class="muted" role="status" data-civi-elin3-report-error></p></section>';
+      }
+    }
+    if (model.latestReport) {
+      html += '<h4>' + (model.current ? 'Gjeldende internt møtereferat' : 'Tidligere eller utdatert møtereferat') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestReport.note) + '</pre>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -2984,6 +3031,7 @@
         ${lillebekkUtkastHtml()}
         ${lillebekkSvarrundeHtml()}
         ${lillebekkSvarnotatHtml()}
+        ${lillebekkElinSvarmoteHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -3444,6 +3492,32 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-elin3-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-elin3-question]");
+        const result = recordLillebekkElinSvarmoteSvar(
+          String(button.getAttribute("data-question-id") || ""),
+          card?.querySelector("[data-civi-elin3-choice]")?.value || "",
+          card?.querySelector("[data-civi-elin3-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-elin3-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-elin3-report-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-elin3-report-editor]");
+        const result = recordLillebekkElinSvarmoteReferat(
+          card?.querySelector("[data-civi-elin3-report-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-elin3-report-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-svarnotat-save]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-svarnotat-editor]");
@@ -3955,6 +4029,9 @@
     recordLillebekkSvarrundeStart,
     recordLillebekkSvarvurdering,
     getLillebekkSvarnotatModel: lillebekkSvarnotatModel,
-    recordLillebekkSvarnotat
+    recordLillebekkSvarnotat,
+    getLillebekkElinSvarmoteModel: lillebekkElinSvarmoteModel,
+    recordLillebekkElinSvarmoteSvar,
+    recordLillebekkElinSvarmoteReferat
   };
 })();
