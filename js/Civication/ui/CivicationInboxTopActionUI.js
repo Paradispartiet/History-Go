@@ -2766,6 +2766,44 @@
     return html + '</details>';
   }
 
+
+  function lillebekkSvarnotatHtml() {
+    const model = lillebekkSvarnotatModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-svarnotat="1">' +
+      '<summary>Samlet faglig oppfølgingsnotat – etter svarrunden</summary>' +
+      '<p>Forbered intern ledergjennomgang av fiktive saksbilag. Notatet er en intern vurdering og kan ikke sende brev, godkjenne rapporter, lukke avvik eller fremme saken til planvedtak.</p>';
+    if (model.latestReport) {
+      html += '<h4>' + (model.current ? 'Gjeldende faglig oppfølgingsnotat' : 'Tidligere eller ikke faglig holdbart notat') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestReport.note) + '</pre>';
+    }
+    if (!model.ready) {
+      html += '<p><strong>Sperret:</strong> Begge svarbilag må være vurdert faglig forsvarlig i en gjeldende fiktiv dokumentrunde. Kontroller eventuelle endrede kildeversjoner.</p>';
+    } else {
+      html += '<section class="civi-inbox-body" data-civi-svarnotat-editor="1">' +
+        '<h4>Tre konkrete restanser før ny intern vurdering</h4>' +
+        '<p><strong>Skolevei:</strong> Fri bredde 1,25 meter i skisse, 0,90 meter ved varelevering; trafikkfag må kontrollere målsatt plan, sikt og driftsopplegg.</p>' +
+        '<p><strong>Overvann:</strong> Oppgitt 42 m³ tilrenning og 26 m³ fordrøyning; VA må kontrollere vestre utløp, ekstremnedbør og nabovirkning.</p>' +
+        '<p><strong>Planjuss:</strong> Intern kontroll av § 4.1, gangtrasé i plankart, tidspunkt, hjemmel og gjennomføringsansvar før videre saksbehandling.</p>' +
+        '<label>Intern anbefaling <select data-civi-svarnotat-choice>' +
+          model.choices.map(function (choice) {
+            return '<option value="' + escapeHtml(choice.id) + '"' +
+              (model.latestReport?.outcome === choice.id ? ' selected' : '') + '>' +
+              escapeHtml(choice.label) + '</option>';
+          }).join("") +
+        '</select></label>' +
+        '<label>Faglig begrunnelse <textarea rows="4" maxlength="1050" data-civi-svarnotat-reason ' +
+          'placeholder="Hvem skal kontrollere skolevei, overvann og rekkefølgekrav? Hva er fortsatt uavklart og hvorfor?"></textarea></label>' +
+        '<button class="civi-btn secondary" type="button" data-civi-svarnotat-save="1">Journalfør samlet internt notat – ikke vedtak</button>' +
+        '<p class="muted" role="status" data-civi-svarnotat-error></p></section>';
+      if (model.current) {
+        html += '<p>Notatet er oppdatert mot siste øvingsbilag. Neste steg kan være en separat simulert ledergjennomgang når faktiske fagkontroller er dokumentert i spillforløpet.</p>';
+      }
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -2791,6 +2829,7 @@
         ${lillebekkSuppleringssvarHtml()}
         ${lillebekkUtkastHtml()}
         ${lillebekkSvarrundeHtml()}
+        ${lillebekkSvarnotatHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -3251,6 +3290,19 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-svarnotat-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-svarnotat-editor]");
+        const result = recordLillebekkSvarnotat(
+          card?.querySelector("[data-civi-svarnotat-choice]")?.value || "",
+          card?.querySelector("[data-civi-svarnotat-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-svarnotat-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-svarrunde-open]").forEach(function (button) {
       button.addEventListener("click", function () {
         const result = recordLillebekkSvarrundeStart();
@@ -3747,6 +3799,8 @@
     recordLillebekkUtkast,
     getLillebekkSvarrundeModel: lillebekkSvarrundeModel,
     recordLillebekkSvarrundeStart,
-    recordLillebekkSvarvurdering
+    recordLillebekkSvarvurdering,
+    getLillebekkSvarnotatModel: lillebekkSvarnotatModel,
+    recordLillebekkSvarnotat
   };
 })();
