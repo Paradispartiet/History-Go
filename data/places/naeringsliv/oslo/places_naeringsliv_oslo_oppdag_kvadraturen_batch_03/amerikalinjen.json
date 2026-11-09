@@ -155,5 +155,93 @@
     "portraitRatio": "2:3",
     "heroBehavior": "cover_with_subject_focal_point",
     "quizCardBehavior": "contain_never_crop"
+  },
+  "fagverk": {
+    "schema": "history_go_place_fagverk_v2",
+    "level": "standard",
+    "status": "in_production",
+    "intro": "Den gamle rederibygningen på Jernbanetorget viser hvordan kontor, jernbane og havn hang sammen da passasjerer reiste med Amerikabåtene. Fagverket undersøker reisekjeden og den fysiske arbeidsdelingen – og skiller havneaktivitet fra det som faktisk skjedde inne i hovedkontoret.",
+    "article": [
+      "Den Norske Amerikalinje ble etablert i 1910 og satte passasjerskip i trafikk over Atlanteren i 1913. Administrasjonsbygningen på Jernbanetorget ble først tatt i bruk i 1919. De to årstallene må skilles: et rederi kan drive fartøy og rutetrafikk før det får sitt senere hovedkontor.",
+      "Andreas Bjercke og Georg Eliassen tegnet kontorbygningen. Den monumentale portalen, figurene Triton og nereiden, ventehallen og kontorene viser at rederiet trengte både en offentlig skranke og et sted for administrasjon. Gustav Henriksen hadde kontor over publikumsarealene. Passasjerene kunne levere bagasje ved Jernbanetorget, men gikk om bord på skipene ved havnekaiene.",
+      "Fra 1915 brukte rederiet Vippetangkaia, og fra 1925 var Utstikker 1 en del av ekspedisjonen. Jernbanetorget, kontoret og kaia utgjorde derfor ulike deler av samme transportkjede: togankomst, kjøp av billett og ekspedisjon av bagasje, videre ferd til skipet. En historisk plan, fotografi eller skipsliste må brukes for å fastslå hvilken kai som var i drift på en bestemt dato.",
+      "Den transatlantiske passasjertrafikken ble etter hvert påvirket av flytrafikken, og selskapets siste transatlantiske rundtursreise fant sted i 1971. I nyere tid er hovedkontoret tatt i bruk som hotell. Portalen kan fortsatt observeres, men dagens gjesterom og servering viser ikke uten videre hvordan ventehallen eller billettkontoret fungerte i 1919."
+    ],
+    "subject_ids": [
+      "naeringsliv"
+    ],
+    "emne_ids": [
+      "em_naering_havn_transport",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_geografi_infrastruktur"
+    ],
+    "chapter_ids": [],
+    "lenses": [
+      {
+        "id": "amerikalinjen-kontor-kaia",
+        "title": "Rederikontoret er ikke kaia",
+        "prompt": "Hva gjorde passasjerene i bygningen, og hvilke deler av reisen foregikk andre steder?",
+        "subject_id": "naeringsliv",
+        "emne_id": "em_naering_havn_transport",
+        "evidence": "Oslo kommunes stedshistorie beskriver ventehall og bagasjelevering på Jernbanetorget; Oslo byleksikon beskriver anløpskaiene."
+      },
+      {
+        "id": "amerikalinjen-reisekjeden",
+        "title": "Fra tog til transatlantisk skip",
+        "prompt": "Hvilke forskjellige oppgaver måtte utføres mellom ankomst på Østbanen og avgang fra havnen?",
+        "subject_id": "naeringsliv",
+        "emne_id": "em_naering_logistikk_verdikjeder",
+        "evidence": "Hovedkontoret hadde billett- og bagasjeekspedisjon, mens skipene brukte Vippetangkaia og senere Utstikker 1; transportleddene må tidsfestes hver for seg."
+      },
+      {
+        "id": "amerikalinjen-ombruk",
+        "title": "Fra sjøfartsarbeid til hotell",
+        "prompt": "Hvilke fysiske spor av sjøfartsfunksjonen er synlige etter at bygningen ble tatt i bruk som hotell?",
+        "subject_id": "naeringsliv",
+        "emne_id": "em_naering_geografi_infrastruktur",
+        "evidence": "Den bevarte fasaden og maritime portalen er dokumentert av Oppdag Kvadraturen; hotellets historikk dokumenterer senere ombruk."
+      }
+    ],
+    "guiding_questions": [
+      "Hvorfor kan ikke Amerikalinjens etableringsår brukes som byggeår for hovedkontoret?",
+      "Hvor begynte passasjerenes dokumenterte ekspedisjon, og hvor gikk de faktisk om bord?",
+      "Hvordan endret anløpsstedene seg mellom Vippetangkaia og Utstikker 1?",
+      "Hvilke oppgaver lå hos billett- og bagasjeekspedisjonen, og hvilke lå i skipstrafikken?",
+      "Hva kan fasaden og sjøfartsskulpturene fortelle om den tidligere virksomheten, og hva må dokumenteres med andre kilder?"
+    ],
+    "concepts": [
+      "passasjerrederi",
+      "transatlantisk rutetrafikk",
+      "transportkjede",
+      "reiseekspedisjon",
+      "billettkontor",
+      "bagasjehåndtering",
+      "ombruk"
+    ],
+    "observable_traces": [
+      {
+        "title": "Maritimt inngangsparti",
+        "observation": "Se granittportalen og skulpturene av Triton og en nereide ved hovedinngangen på Jernbanetorget.",
+        "interpretation_boundary": "Skulpturene forteller om valgt sjøfartssymbolikk, ikke om skipenes faktiske rutetider eller passasjertall.",
+        "source_urls": [
+          "https://www.oppdagkvadraturen.no/stoppesteder/amerikalinjen-og-dfds"
+        ]
+      },
+      {
+        "title": "Bygningens plassering ved Østbanen",
+        "observation": "Undersøk gangavstanden og orienteringen mellom rederifasaden og jernbanestasjonsområdet.",
+        "interpretation_boundary": "Plasseringen viser muligheten for en forbindelse, men sier ikke hvor hver avgangskai lå i ulike år; det krever havnekilder.",
+        "source_urls": [
+          "https://oslobyleksikon.no/side/Den_Norske_Amerikalinje",
+          "https://www.oppdagkvadraturen.no/stoppesteder/amerikalinjen-og-dfds"
+        ]
+      }
+    ],
+    "source_urls": [
+      "https://oslobyleksikon.no/side/Den_Norske_Amerikalinje",
+      "https://www.oppdagkvadraturen.no/stoppesteder/amerikalinjen-og-dfds",
+      "https://amerikalinjen.com/no/var-historie/"
+    ],
+    "verified_at": "2026-11-09"
   }
 }
