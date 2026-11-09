@@ -1069,6 +1069,8 @@ assert.equal(api.recordLillebekkKontrollpakke('ukjent','be_om_trafikkfaglig_kont
 assert.equal(api.recordLillebekkKontrollpakke('trafikk','ukjent',packageReason).ok,false);
 assert.equal(api.recordLillebekkKontrollpakke('trafikk','be_om_trafikkfaglig_kontrollpakke','kort').ok,false);
 assert.equal(api.recordLillebekkKontrollplan(planReason).ok,false);
+assert.equal(api.getLillebekkKontrollovelseModel(),null);
+assert.equal(api.recordLillebekkKontrollovelseStart().ok,false);
 assert.equal(api.recordLillebekkKontrollpakke('trafikk','marker_skolevei_som_kontrollert',packageReason).ok,true);
 assert.equal(api.getLillebekkKontrollplanModel().packages[0].safe,false);
 assert.ok(api.getLillebekkKontrollplanModel().packages[0].latestNote.includes('FAGLIG FEIL'));
@@ -1106,6 +1108,72 @@ assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
 saved=JSON.parse(JSON.stringify(saved));
 assert.equal(api.getLillebekkKontrollplanModel().current,true);
 
+
+// The preceding control packages were NOT sent. Author-controlled excerpts
+// are only available after the player deliberately opens a new fictional case exercise.
+let exercise=api.getLillebekkKontrollovelseModel();
+assert.equal(exercise.canOpen,true);
+assert.equal(exercise.opened,false);
+assert.equal(exercise.ready,false);
+assert.equal(exercise.summaryCount,0);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-kontrollovelse-open="1"'));
+assert.ok(!host.innerHTML.includes('data-civi-kontrollovelse-save="1"'));
+const exerciseReason='Dette er bare et fiktivt faglig øvingsutdrag, ikke verifisert kontroll. Fagansvarlig må kontrollere bredde og sikt, flomvei og nabo, samt § 4.1 og plankart før behandling.';
+const exerciseFollowup='Trafikkfag må dokumentere framkommelighet under levering og signert driftsplan. VA må forklare 4 m³ og beregne vestre utløp og nabovirkning. Planjurist må avstemme § 4.1 med kart, ansvar og trafikkpremisser.';
+assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','returner_trafikkbilag_til_kontroll',exerciseReason).ok,false);
+assert.equal(api.recordLillebekkKontrollovelseStart().ok,true);
+assert.equal(api.recordLillebekkKontrollovelseStart().alreadyLogged,true);
+exercise=api.getLillebekkKontrollovelseModel();
+assert.equal(exercise.opened,true);
+assert.equal(exercise.roundsCount,1);
+assert.deepEqual(Array.from(exercise.docs.map(d=>d.ref)),['LBK-KR-21','LBK-KR-22','LBK-KR-23']);
+assert.equal(api.renderSections(),true);
+for(const token of ['LBK-KR-21','LBK-KR-22','LBK-KR-23','1,25 meter','0,90 meter',
+ '42 m³','26 m³','12 m³','4 m³','§ 4.1','ikke faktisk mottatte fagrapporter']) {
+ assert.ok(host.innerHTML.includes(token),'authored independent fictional control excerpt '+token);
+}
+assert.equal((host.innerHTML.match(/data-civi-kontrollovelse-save="1"/g)||[]).length,3);
+assert.ok(!host.innerHTML.includes('data-civi-kontrollovelse-summary-save="1"'));
+assert.equal(api.recordLillebekkKontrollovelseVurdering('ukjent','returner_trafikkbilag_til_kontroll',exerciseReason).ok,false);
+assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','ukjent',exerciseReason).ok,false);
+assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','returner_trafikkbilag_til_kontroll','kort').ok,false);
+assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,false);
+assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','lukk_skolevei_etter_ovingsutdrag',exerciseReason).ok,true);
+assert.equal(api.getLillebekkKontrollovelseModel().docs[0].safe,false);
+assert.ok(api.getLillebekkKontrollovelseModel().docs[0].latestNote.includes('Prematur godkjenning avvises'));
+assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','returner_trafikkbilag_til_kontroll',exerciseReason).ok,true);
+assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','returner_trafikkbilag_til_kontroll',' '+exerciseReason+' ').alreadyLogged,true);
+assert.equal(api.recordLillebekkKontrollovelseVurdering('overvann','returner_va_bilag_med_beregningskrav',exerciseReason).ok,true);
+assert.equal(api.recordLillebekkKontrollovelseVurdering('planjuss','behold_paragraf_under_juridisk_kontroll',exerciseReason).ok,true);
+exercise=api.getLillebekkKontrollovelseModel();
+assert.equal(exercise.ready,true);
+assert.equal(exercise.current,false);
+assert.equal(exercise.docs.filter(d=>d.safe).length,3);
+assert.ok(exercise.docs.every(d=>d.latestNote.includes('IKKE reelt dokumentmottak')));
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-kontrollovelse-summary-save="1"'));
+assert.equal(api.recordLillebekkKontrollovelseOppsummering('kort').ok,false);
+assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,true);
+assert.equal(api.recordLillebekkKontrollovelseOppsummering(' '+exerciseFollowup+' ').alreadyLogged,true);
+exercise=api.getLillebekkKontrollovelseModel();
+assert.equal(exercise.current,true);
+assert.equal(exercise.summaryCount,1);
+for(const token of ['LBK-KP-18','LBK-KP-19','LBK-KP-20','LBK-KR-21','LBK-KR-22',
+ 'LBK-KR-23','42 m³','26 m³','12 m³','4 m³','§ 4.1','grøntdrag','medvirkning',
+ 'IKKE GODKJENNING','Kildeversjoner:']) {
+ assert.ok(exercise.latestSummary.note.includes(token),'source-traced critical review '+token);
+}
+assert.equal(world.getWorkObject(caseId).status,'open');
+assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+const exerciseInjection='<img src=x onerror=alert(1)> Fiktive kontrollbilag kan ikke brukes som faktiske rapporter. Trafikk, VA og planjuss må dokumentere sine faglige vurderinger før ny intern lederbehandling.';
+assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseInjection).ok,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('&lt;img'));
+assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
+saved=JSON.parse(JSON.stringify(saved));
+assert.equal(api.getLillebekkKontrollovelseModel().current,true);
+
 assert.equal(world.getWorkObject(caseId).status,'open');
 assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
 for(const flag of ['skolevei_ikke_dokumentert','early_green_corridor_unsecured','participation_record_missing']) {
@@ -1131,6 +1199,12 @@ assert.equal(api.getLillebekkSvarnotatModel().current,false);
 assert.equal(api.getLillebekkElinSvarmoteModel().current,false);
 assert.equal(api.getLillebekkKontrollplanModel().ready,false);
 assert.equal(api.getLillebekkKontrollplanModel().current,false);
+assert.equal(api.getLillebekkKontrollovelseModel().canOpen,false);
+assert.equal(api.getLillebekkKontrollovelseModel().opened,false);
+assert.equal(api.getLillebekkKontrollovelseModel().current,false);
+assert.equal(api.recordLillebekkKontrollovelseStart().ok,false);
+assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','returner_trafikkbilag_til_kontroll',exerciseReason).ok,false);
+assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,false);
 assert.equal(api.recordLillebekkKontrollpakke('trafikk','be_om_trafikkfaglig_kontrollpakke',packageReason).ok,false);
 assert.equal(api.recordLillebekkKontrollplan(planReason).ok,false);
 assert.equal(api.getLillebekkElinSvarmoteModel().complete,false);
@@ -1203,6 +1277,21 @@ assert.equal(api.getLillebekkKontrollplanModel().ready,true);
 assert.equal(api.recordLillebekkKontrollplan(planReason).ok,true);
 assert.equal(api.getLillebekkKontrollplanModel().planCount,3);
 assert.equal(api.getLillebekkKontrollplanModel().current,true);
+assert.equal(api.getLillebekkKontrollovelseModel().opened,false);
+assert.equal(api.getLillebekkKontrollovelseModel().current,false);
+assert.equal(api.recordLillebekkKontrollovelseStart().ok,true);
+assert.equal(api.getLillebekkKontrollovelseModel().roundsCount,2);
+assert.equal(api.getLillebekkKontrollovelseModel().docs.every(d=>!d.safe),true);
+assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,false);
+for(const [id,choice] of [['trafikk','returner_trafikkbilag_til_kontroll'],
+ ['overvann','returner_va_bilag_med_beregningskrav'],
+ ['planjuss','behold_paragraf_under_juridisk_kontroll']]) {
+ assert.equal(api.recordLillebekkKontrollovelseVurdering(id,choice,exerciseReason).ok,true);
+}
+assert.equal(api.getLillebekkKontrollovelseModel().ready,true);
+assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,true);
+assert.equal(api.getLillebekkKontrollovelseModel().summaryCount,3);
+assert.equal(api.getLillebekkKontrollovelseModel().current,true);
 
 // The latest documented assessment, rather than player text with an embedded
 // old note ID, decides whether a source is current.
@@ -1247,6 +1336,10 @@ assert.equal(api.getLillebekkSvarrundeModel(),null);
 assert.equal(api.getLillebekkSvarnotatModel(),null);
 assert.equal(api.getLillebekkElinSvarmoteModel(),null);
 assert.equal(api.getLillebekkKontrollplanModel(),null);
+assert.equal(api.getLillebekkKontrollovelseModel(),null);
+assert.equal(api.recordLillebekkKontrollovelseStart().ok,false);
+assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','returner_trafikkbilag_til_kontroll',exerciseReason).ok,false);
+assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,false);
 assert.equal(api.recordLillebekkKontrollpakke('trafikk','be_om_trafikkfaglig_kontrollpakke',packageReason).ok,false);
 assert.equal(api.recordLillebekkKontrollplan(planReason).ok,false);
 assert.equal(api.recordLillebekkElinSvarmoteSvar('skolevei','krever_trafikkfaglig_dokumentasjon',manager3Reason).ok,false);
@@ -1287,6 +1380,10 @@ assert.equal(api.getLillebekkSvarrundeModel(),null);
 assert.equal(api.getLillebekkSvarnotatModel(),null);
 assert.equal(api.getLillebekkElinSvarmoteModel(),null);
 assert.equal(api.getLillebekkKontrollplanModel(),null);
+assert.equal(api.getLillebekkKontrollovelseModel(),null);
+assert.equal(api.recordLillebekkKontrollovelseStart().ok,false);
+assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','returner_trafikkbilag_til_kontroll',exerciseReason).ok,false);
+assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,false);
 assert.equal(api.recordLillebekkKontrollpakke('trafikk','be_om_trafikkfaglig_kontrollpakke',packageReason).ok,false);
 assert.equal(api.recordLillebekkKontrollplan(planReason).ok,false);
 assert.equal(api.recordLillebekkElinSvarmoteSvar('skolevei','krever_trafikkfaglig_dokumentasjon',manager3Reason).ok,false);
