@@ -1,0 +1,93 @@
+name: Oslo havnefront 06 — fullquiz, QuizCard, Knowledge (one-shot)
+on:
+  push:
+    branches:
+      - research/oslo-havnefront-bolk06-tekst-20261109
+    paths:
+      - .github/workflows/oslo-havnefront06-quiz-once.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oslo-havnefront06-quiz-production
+  cancel-in-progress: false
+
+jobs:
+  quiz:
+    name: Produce 3 x 3x7 source-bound fullquizzes and 3 ten-question cards
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/oslo-havnefront-bolk06-tekst-20261109
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build source-first canonical quiz contexts for Kunst and Næringsliv
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run quiz:context -- --category kunst --target astrup_fearnley --output data/quiz/production_context/kunst/astrup_fearnley.json
+          npm run quiz:context -- --category naeringsliv --target amerikalinjen --output data/quiz/production_context/naeringsliv/amerikalinjen.json
+          npm run quiz:context -- --category kunst --target astrup_fearnley --output data/quiz/production_context/kunst/astrup_fearnley.json --check
+          npm run quiz:context -- --category naeringsliv --target amerikalinjen --output data/quiz/production_context/naeringsliv/amerikalinjen.json --check
+      - name: Materialize 63 fact/source/claim-bound questions plus three ten-question QuizCards
+        run: node scripts/build-oslo-havnefront06-quizzes.mjs
+      - name: Build canonical Knowledge IDs and indexed knowledge units
+        run: npm run knowledge:canonical:write
+      - name: Sync QuizCards from final Knowledge-linked fullquiz questions
+        run: node scripts/build-oslo-havnefront06-quizzes.mjs --cards-only
+      - name: Knowledge consistency check
+        run: npm run knowledge:canonical:check
+      - name: Scoped quiz, question, card and Knowledge acceptance
+        run: node --test tests/oslo-havnefront06-quiz-qa.mjs
+      - name: Source-brief context and quiz claim parity
+        run: npm run audit:quiz-production-context
+      - name: Check manifest and quiz delivery wiring
+        run: |
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-wiring
+      - name: Commit only new Oslo 06 quiz data and generated Knowledge registries
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/quiz/manifest.json
+          git add data/quiz/kunst/astrup_fearnley_sets.json
+          git add data/quiz/naeringsliv/amerikalinjen_sets.json
+          git add data/quiz/natur/akerselva_utlop_bjorvika_sets.json
+          git add data/quiz/production_context/kunst/astrup_fearnley.json
+          git add data/quiz/production_context/naeringsliv/amerikalinjen.json
+          git add data/quizcards/kunst/manifest.json
+          git add data/quizcards/naeringsliv/manifest.json
+          git add data/quizcards/natur/manifest.json
+          git add data/quizcards/kunst/astrup_fearnley_quizcard_v1.json
+          git add data/quizcards/naeringsliv/amerikalinjen_quizcard_v1.json
+          git add data/quizcards/natur/akerselva_utlop_bjorvika_quizcard_v1.json
+          git add data/knowledge/*.generated.json
+          git add -u data/knowledge/subjects/
+          git add reports/knowledge-id-backfill.json
+          git add reports/knowledge-contract-audit.json
+          git add reports/knowledge-universe-readers.json
+          git rm -- .github/workflows/oslo-havnefront06-quiz-once.yml
+          git diff --cached --name-only | while IFS= read -r f; do
+            case "$f" in
+              data/quiz/manifest.json|data/quiz/kunst/astrup_fearnley_sets.json|data/quiz/naeringsliv/amerikalinjen_sets.json|data/quiz/natur/akerselva_utlop_bjorvika_sets.json|data/quiz/production_context/kunst/astrup_fearnley.json|data/quiz/production_context/naeringsliv/amerikalinjen.json|data/quizcards/kunst/manifest.json|data/quizcards/naeringsliv/manifest.json|data/quizcards/natur/manifest.json|data/quizcards/kunst/astrup_fearnley_quizcard_v1.json|data/quizcards/naeringsliv/amerikalinjen_quizcard_v1.json|data/quizcards/natur/akerselva_utlop_bjorvika_quizcard_v1.json|data/knowledge/*.generated.json|data/knowledge/subjects/*/*.generated.json|reports/knowledge-id-backfill.json|reports/knowledge-contract-audit.json|reports/knowledge-universe-readers.json|.github/workflows/oslo-havnefront06-quiz-once.yml) ;;
+              *) echo "UNEXPECTED_STAGED_FILE: $f" >&2; exit 1;;
+            esac
+          done
+          git diff --name-only | while IFS= read -r f; do
+            echo "UNSTAGED_GENERATED_FILE: $f" >&2; exit 1
+          done
+          git diff --cached --stat
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Materialize 63 Oslo havnefront fullquiz questions, 30 QuizCards and Knowledge"
+          git push origin HEAD:research/oslo-havnefront-bolk06-tekst-20261109
