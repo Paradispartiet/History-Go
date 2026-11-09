@@ -178,6 +178,7 @@ for (const arc of arcs) for (const variant of arc.variants) {
   }
 }
 let deliveryBaseline;
+let clarificationEnergy;
 for (const [choice, status, response, delivery, settlement, reply] of [
   ['avgrens', 'tilbud_sendt', 'bestilt', 'send'],
   ['avgrens', 'tilbud_sendt', 'bestilt', 'send_med_forsidetekst'],
@@ -185,6 +186,7 @@ for (const [choice, status, response, delivery, settlement, reply] of [
   ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle', 'send'],
   ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle', 'avslutt', 'send_faktaark'],
   ['avklar', 'venter_pa_svar', 'apen', null],
+  ['bruk_styredato', 'venter_pa_svar', 'apen', null],
   ['avsla', 'avslatt', undefined, null]
 ]) {
   const opening = progress(S.createInitialState(base), base, 7, {d2_en_retning: 'prosjekt'});
@@ -193,9 +195,20 @@ for (const [choice, status, response, delivery, settlement, reply] of [
   const money = saved.meters.penger;
   ({saved, content} = progress(saved, content, 8, {c04_tekstforesporsel: choice}));
   assert.equal(saved.tidligereValg.c04_tekststatus, status);
+  if (choice === 'avklar') clarificationEnergy = saved.meters.energi;
+  if (choice === 'bruk_styredato') {
+    assert.equal(saved.meters.energi, clarificationEnergy - 1);
+    const history = R.getSymposium(saved, content).tidslinje;
+    const entries = history.filter(entry => entry.sceneId === 'c04_tekstforesporsel');
+    assert.deepEqual(entries.map(entry => entry.valgId), ['bruk_styredato']);
+  }
   R.startNextDay(saved, content);
   ({saved, content} = progress(saved, restore(clone(saved)), 9));
   assert.equal(saved.tidligereValg.c04_tekstoppfolging, status);
+  if (choice === 'bruk_styredato') {
+    assert.ok(saved.spilteScener.includes('c04_tekstoppfolging_venter_pa_svar'));
+    assert.ok(!saved.spilteScener.includes('c04_tekstoppfolging_tilbud_sendt'));
+  }
   R.startNextDay(saved, content);
   ({saved, content} = progress(saved, content, 10));
   content = startChapter(saved, content, 'frilans_neste_steg');

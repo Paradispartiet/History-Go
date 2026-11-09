@@ -114,9 +114,9 @@ Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer
 | --- | --- | --- |
 | Samme neste hendelse, ulik poengvirkning | Dag 12. Send ferdig invitasjon og la Lea ta forsida, eller skriv i tillegg to linjer hun kan lime inn før hun bytter knappene. Begge kommer til samme kundesvar på dag 13. | Den ekstra hjelpen gir −1 energi og +1 på relasjonen til Lea. Symposium viser svaret spilleren valgte og det som faktisk ble sendt. |
 | Reell følge | Varsle at det samlede arbeidet ikke kan bli klart. Lea sender en kortversjon, og styrelederen trekker bestillingen. | Hvem leverte, hva ble sendt, og at oppgjøret kan stå til avklaring. Dette endrer hvilke oppfølgingsscener som gir mening. |
-| Feil eller avsporing | Stol på den gamle styremeldingen uten å sjekke skjemaet, eller begynn å rydde hele forsida mens den avtalte teksten venter. | Første valg lar en feil dato stå til den blir fanget opp. Andre valg bruker tid på et sideproblem. Når det er tid til å rette opp, kan begge komme tilbake til hovedforløpet. |
+| Feil som kan rettes | Dag 8. Bruk torsdagen fra styremeldingen i en prøveåpning. Lea sjekker bookingen og bekrefter at fredag er riktig. | Frilanseren retter prøven før noe sendes til deltakerne og bruker −1 energi på omarbeidet. Dag 9 fortsetter i samme scene som når du avklarer datoen først. En ekstra gjennomgang av forsida mens avtalt arbeid venter, er et mulig framtidig avsporingsvalg. |
 
-De to leveringsvalgene og avbestillingsgrenen er implementert. Feilsporet og det felles holdepunktet på tvers av alle ruter er forslag til videre produksjon.
+De to leveringsvalgene, avbestillingsgrenen og feilsporet på dag 8 er implementert. Det felles holdepunktet på tvers av alle ruter er forslag til videre produksjon.
 
 ### C05 – Byråkratiet og personen
 **Rolle/person:** arbeidsledig / NAV. **Bokreferanse (foreløpig):** Kafka – Prosessen. **Film:** [Brazil](https://www.imdb.com/title/tt0088846/) / Film Producer `scenario_brazil_1985`.
