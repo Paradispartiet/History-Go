@@ -2070,6 +2070,160 @@
     }
   }
 
+
+  // Simulated meeting with Elin following the internal response memo.
+  // Questions challenge documented uncertainty and never supply real approvals.
+  const LILLEBEKK_ELIN_SVARMOTE = [
+    {
+      id: "skolevei", title: "Elin: Hva kan du faktisk si om skoleveien?",
+      question: "Skissen oppgir 1,25 meter fri bredde, men bare 0,90 meter ved varelevering. Kan jeg skrive at skoleveien er trygg før innflytting?",
+      safeId: "krever_trafikkfaglig_dokumentasjon",
+      safeLabel: "Nei – trafikkfag må kontrollere bredde, sikt og leveringsrutiner",
+      unsafeId: "godkjenn_skolevei_ut_fra_skisse",
+      unsafeLabel: "Ja – 1,25 meter i tegningen er tilstrekkelig",
+      feedback: "Elin: Før vi kan gå videre, må trafikkfag avklare framkommelighet i faktisk drift, også ved uforutsett levering. Vi kan ikke likestille en skisse med en trafikksikkerhetskontroll.",
+      task: "Trafikkfag: kontroller målsatt ganglinje, sikttrekanter, leveringsvindu, avvikshåndtering og ansvar før første innflytting.",
+      ref: "LBK-SVAR-16"
+    },
+    {
+      id: "overvann", title: "Elin: Hvor blir vannet av?",
+      question: "Vi har fått tallene 42 m³ tilrenning og 26 m³ fordrøyning, men ingen kapasitet for vestre utløp. Kan tallene brukes som kontroll av overvannsrisiko?",
+      safeId: "krever_va_kapasitet_og_nabovirkning",
+      safeLabel: "Nei – VA må beregne utløp, flomvei og nabovirkning",
+      unsafeId: "aksepter_tabell_som_hydraulisk_kontroll",
+      unsafeLabel: "Ja – tallene er nok til å lukke overvannsspørsmålet",
+      feedback: "Elin: En volumbalanse uten utløpsberegning og nabovurdering er ikke tilstrekkelig. Bestill en etterprøvbar VA-kontroll, og hold overvannspunktet åpent.",
+      task: "VA: beregn vestre utløp, ekstremnedbør, terreng- og flomveier samt konsekvens for nabo i vest.",
+      ref: "LBK-SVAR-16"
+    },
+    {
+      id: "planjuss", title: "Elin: Hvem har myndighet til å avklare § 4.1?",
+      question: "Planjuristen har skrevet et foreløpig internt notat. Utbygger foreslår ferdigattest for hele prosjektet. Er rekkefølgekravet nå ferdig juridisk kvalitetssikret?",
+      safeId: "krever_intern_juridisk_sluttkontroll",
+      safeLabel: "Nei – intern planjuss må avstemme plankart, hjemmel og ansvar",
+      unsafeId: "utbygger_kan_godkjenne_rekkefolgekrav",
+      unsafeLabel: "Ja – utbyggers forslag kan legges til grunn som vedtatt",
+      feedback: "Elin: Kommunal planjuridisk sluttkontroll må avklare trasé, tidspunkt, hjemmel og gjennomføringsansvar. Utbygger kan ikke vedta bestemmelsen.",
+      task: "Kommunal planjurist: kontroller § 4.1 mot plankart, tidspunkt før første innflytting, ansvar, hjemmel og videre myndighetsbehandling.",
+      ref: "LBK-SVAR-17"
+    }
+  ];
+
+  function lillebekkElinSvarmoteModel() {
+    const memo = lillebekkSvarnotatModel();
+    if (!memo?.latestReport) return null;
+    const world = window.CivicationWorkWorld;
+    const formal = world?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const source = memo.signature + "|" + memo.latestReport.id;
+    const questions = LILLEBEKK_ELIN_SVARMOTE.map(function (question) {
+      const events = history.filter(function (event) {
+        return String(event.id || "").startsWith("lillebekk_elin3_svar_" + question.id + "_v");
+      });
+      const latest = events[events.length - 1] || null;
+      const belongs = !!memo.current && String(latest?.note || "").startsWith(
+        "Møtegrunnlag: " + memo.latestReport.id + ";");
+      return { ...question, count: events.length, latestId: latest?.id || "",
+        latestNote: latest?.note || "", latestOutcome: latest?.outcome || "",
+        current: !!belongs, safe: !!belongs && latest?.outcome === question.safeId };
+    });
+    const complete = !!memo.current && questions.every(function (q) { return q.safe; });
+    const signature = [source].concat(questions.map(function (q) { return q.latestId; })).join("|");
+    const reports = history.filter(function (event) {
+      return String(event.id || "").startsWith("lillebekk_elin3_motereferat_v");
+    });
+    const latestReport = reports[reports.length - 1] || null;
+    const current = complete && !!latestReport &&
+      String(latestReport.note || "").endsWith("Kildeversjoner: " + signature);
+    return { memo, source, questions, complete, signature,
+      reportsCount: reports.length, latestReport, current };
+  }
+
+  function recordLillebekkElinSvarmoteSvar(id, actionId, reasoning) {
+    const model = lillebekkElinSvarmoteModel();
+    const question = model?.questions.find(function (item) { return item.id === id; });
+    if (!model?.memo.current || !question || ![question.safeId, question.unsafeId].includes(actionId)) {
+      return { ok: false, reason: "Et gjeldende internt oppfølgingsnotat og et gyldig svar kreves." };
+    }
+    const reason = String(reasoning || "").replace(/\s+/g, " ").trim().slice(0, 700);
+    if (reason.length < 55) {
+      return { ok: false, reason: "Forklar hvilket bilag som finnes, hva som mangler, og hvem som må kontrollere (minst 55 tegn)." };
+    }
+    const safe = actionId === question.safeId;
+    const note = [
+      "Møtegrunnlag: " + model.memo.latestReport.id + "; SIMULERT LEDERSPØRSMÅL – " + question.title,
+      "Elins spørsmål: " + question.question,
+      "Rådgiverens svar: " + (safe ? question.safeLabel : question.unsafeLabel),
+      "Rådgiverens begrunnelse: " + reason,
+      "SIMULERT ELIN-RESPONS: " + (safe ? question.feedback :
+        "Elin avviser den premature konklusjonen. " + question.feedback),
+      "Konkrete gjenstående arbeidsoppgaver: " + question.task,
+      "Ingen faktisk fagkontroll, utsendelse, saksgodkjenning eller planvedtak."
+    ].join("\n");
+    if (question.latestNote === note && question.latestOutcome === actionId) {
+      return { ok: true, alreadyLogged: true };
+    }
+    const sameSource = String(question.latestNote || "").startsWith(
+      "Møtegrunnlag: " + model.memo.latestReport.id + ";");
+    if (question.count >= 10 && sameSource &&
+        !(question.latestOutcome !== question.safeId && safe)) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd. En avsluttende faglig korrigering er tillatt." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_elin3_svar_" + question.id + "_v" + (question.count + 1),
+        scene_id: "lillebekk_elin3_svarmote", choice_id: actionId, outcome: actionId,
+        at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk Elin svarmøte", error);
+      return { ok: false, reason: "Svaret kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkElinSvarmoteReferat(recommendation) {
+    const model = lillebekkElinSvarmoteModel();
+    if (!model?.complete) return { ok: false, reason: "Alle tre lederutfordringene må besvares faglig forsvarlig først." };
+    const reason = String(recommendation || "").replace(/\s+/g, " ").trim().slice(0, 1000);
+    if (reason.length < 85) return { ok: false, reason: "Beskriv ansvar, dokumentkrav og forslag til neste internmøte (minst 85 tegn)." };
+    const note = [
+      "LILLEBEKK – SIMULERT REFERAT FRA ELINS OPPFØLGINGSMØTE (INGEN GODKJENNING)",
+      "Gjennomgått internt oppfølgingsnotat: " + model.memo.latestReport.id,
+      "Tre faglige spørsmål og konkret arbeidsfordeling:",
+      ...model.questions.map(function (q) { return "- " + q.title + ": " + q.feedback + " " + q.task; }),
+      "Rådgiverens oppfølgingsplan: " + reason,
+      "Simulert lederbeskjed: Saken blir i intern bearbeiding. Fremskaff eller bestill kontrollert dokumentasjon før en ny vurdering av når saken eventuelt kan sendes til videre kommunal behandling.",
+      "Uavklarte forhold gjelder skolevei, overvann, § 4.1 og tidligere registrerte fagtema. Ingen fagavvik er automatisk lukket.",
+      "Dette er ikke en faktisk utsendelse, kontrollrapport, ledergodkjenning, administrativ godkjenning eller politisk planvedtak.",
+      "Kildeversjoner: " + model.signature
+    ].join("\n");
+    if (model.latestReport?.note === note) return { ok: true, alreadyLogged: true };
+    const sameSource = String(model.latestReport?.note || "").endsWith("Kildeversjoner: " + model.signature);
+    if (model.reportsCount >= 10 && sameSource) return { ok: false, reason: "Revisjonsgrensen er nådd for uendret møtegrunnlag." };
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_elin3_motereferat_v" + (model.reportsCount + 1),
+        scene_id: "lillebekk_elin3_svarmote",
+        choice_id: "journalfor_intern_lederoppfolging", outcome: "intern_opparbeiding_ikke_godkjent",
+        at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk Elin referat", error);
+      return { ok: false, reason: "Møtereferatet kunne ikke journalføres." };
+    }
+  }
+
   function lillebekkReviewModel() {
     const active = window.CivicationState?.getActivePosition?.();
     // MailPlan uses by_radgiver_plan, while accepted job offers store the
