@@ -90,8 +90,9 @@ let browser;
 try{
   browser = await chromium.launch({headless:true});
   const {port} = server.address();
-  for(const [width,height] of [[320,700],[390,844],[768,1024],[1024,900],[1440,900]]){
-    const page = await browser.newPage({viewport:{width,height}});
+  // On iPad, use real touch events and confirm the People circle stays distinct from Merker.
+  for(const [width,height,hasTouch] of [[320,700,false],[390,844,false],[768,1024,false],[1024,900,false],[1440,900,false],[820,1180,true],[1180,820,true]]){
+    const page = await browser.newPage({viewport:{width,height},hasTouch});
     await page.goto(`http://127.0.0.1:${port}/__audit__/people-hero.html`,{waitUntil:"load"});
     await page.waitForFunction(() => window.__auditReady || window.__auditError);
     assert.equal(await page.evaluate(() => window.__auditError || null), null);
@@ -136,7 +137,8 @@ try{
     assert.ok(Math.abs(state.people.width-state.people.height)<=1
       && Math.abs(state.badge.width-state.badge.height)<=1,"both round previews stay circular at "+width);
     assert.ok(!state.overflow,"no horizontal page overflow at "+width);
-    await page.locator("#pcPeopleIcon").click();
+    if(hasTouch) await page.locator("#pcPeopleIcon").tap();
+    else await page.locator("#pcPeopleIcon").click();
     assert.equal(await page.evaluate(() => window.__peopleClicks),1,"moving the node preserves click listener");
     await page.evaluate(() => window.__linkedPeople=[]);
     await page.evaluate(() => window.HGPlaceCardCollections.apply(window.PLACES[0]));
