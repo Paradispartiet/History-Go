@@ -1,0 +1,68 @@
+name: Oslo havnefront 06 — temporary derived-data sync
+
+on:
+  push:
+    branches:
+      - research/oslo-havnefront-bolk06-tekst-20261109
+    paths:
+      - .github/workflows/oslo-havnefront06-derived-sync.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oslo-havnefront06-derived-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Generate targeted derived data, verify, and remove this one-shot workflow
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout scoped PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/oslo-havnefront-bolk06-tekst-20261109
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical Place index
+        run: npm run places:index:build
+      - name: Regenerate Place-open payloads
+        run: npm run place-open:build
+      - name: Regenerate source-backed epoch index
+        run: npm run epoker:places:build
+      - name: Verify generated indexes and payloads
+        run: |
+          npm run places:index:check
+          npm run place-open:check
+          npm run epoker:places:check
+      - name: Commit only the four Place-derived payloads and canonical indexes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/places/places_index.json
+          git add data/epoker/epoke-place-index.json
+          git add data/runtime/place-open/astrup_fearnley.json
+          git add data/runtime/place-open/amerikalinjen.json
+          git add data/runtime/place-open/akrobaten_gangbro.json
+          git add data/runtime/place-open/akerselva_utlop_bjorvika.json
+          git rm -- .github/workflows/oslo-havnefront06-derived-sync.yml
+          git diff --cached --stat
+          git diff --cached --name-only | while IFS= read -r f; do
+            case "$f" in
+              data/places/places_index.json|data/epoker/epoke-place-index.json|data/runtime/place-open/astrup_fearnley.json|data/runtime/place-open/amerikalinjen.json|data/runtime/place-open/akrobaten_gangbro.json|data/runtime/place-open/akerselva_utlop_bjorvika.json|.github/workflows/oslo-havnefront06-derived-sync.yml) ;;
+              *) echo "Unexpected staged file: $f" >&2; exit 1 ;;
+            esac
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Sync Oslo havnefront 06 derived Place and epoch data"
+          git push origin HEAD:research/oslo-havnefront-bolk06-tekst-20261109
