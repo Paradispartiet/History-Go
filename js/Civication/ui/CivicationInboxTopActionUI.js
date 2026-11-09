@@ -2224,6 +2224,163 @@
     }
   }
 
+
+  // The professional control plan follows Elin's simulated meeting. Work
+  // packages are internal drafts, not issued requests or completed reports.
+  const LILLEBEKK_KONTROLLPAKKER = [
+    {
+      id: "trafikk", ref: "LBK-KP-18", title: "Kontrolloppdrag: skolevei ved punkt B",
+      owner: "Kommunens trafikkfaglige saksbehandler",
+      issue: "Skissen oppgir 1,25 m normal gangbredde, men 0,90 m under varelevering.",
+      required: "Målsatt ganglinje i normal og avvikende leveringssituasjon, sikt og risiko, signert driftsopplegg med ansvar, og kontroll før første innflytting.",
+      dependency: "Må vurderes opp mot plankartets gangtrasé og rekkefølgekravet i § 4.1.",
+      safeId: "be_om_trafikkfaglig_kontrollpakke",
+      safeLabel: "Registrer intern trafikkfaglig kontrollbestilling som utkast",
+      unsafeId: "marker_skolevei_som_kontrollert",
+      unsafeLabel: "Lukk skoleveiavviket på grunnlag av skissetallene"
+    },
+    {
+      id: "overvann", ref: "LBK-KP-19", title: "Kontrolloppdrag: vann til vestre naboeiendom",
+      owner: "Kommunens VA-/overvannsfaglige saksbehandler",
+      issue: "Oppgitte 42 m³ tilrenning og 26 m³ fordrøyning gir ikke dokumentert utløpskapasitet.",
+      required: "Daterte beregningspremisser, kapasitet i vestre utløp, ekstremnedbørscenario, flomvei, terrengsnitt og dokumentert virkning for nabo i vest.",
+      dependency: "Kontrollresultatene må legges til grunn før planvilkår og avbøtende tiltak utformes.",
+      safeId: "be_om_hydraulisk_kontrollpakke",
+      safeLabel: "Registrer intern VA-faglig kontrollbestilling som utkast",
+      unsafeId: "marker_overvann_som_kontrollert",
+      unsafeLabel: "Lukk overvannsavviket med de to volumtallene"
+    },
+    {
+      id: "planjuss", ref: "LBK-KP-20", title: "Kontrolloppdrag: bestemmelse § 4.1",
+      owner: "Kommunal planjurist",
+      issue: "Fiktivt internt notat gir ingen endelig konklusjon om hjemmel, kartfesting og ansvar.",
+      required: "Skriftlig kartavstemming av gangtrasé, hjemmel og formulering, tidspunkt før første innflytting og gjennomføringsansvar; vurder også hvorfor ferdigattest for hele prosjektet ikke kan erstatte kontrollen.",
+      dependency: "Planjuss må bygge på oppdatert trafikkfaglig kontroll, ikke bare utbyggers løfter.",
+      safeId: "be_om_planjuridisk_sluttkontroll",
+      safeLabel: "Registrer intern juridisk sluttkontroll som utkast",
+      unsafeId: "bekreft_bestemmelse_som_vedtatt",
+      unsafeLabel: "Marker § 4.1 som allerede vedtatt"
+    }
+  ];
+
+  function lillebekkKontrollplanModel() {
+    const meeting = lillebekkElinSvarmoteModel();
+    if (!meeting?.latestReport) return null;
+    const world = window.CivicationWorkWorld;
+    const formal = world?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const source = meeting.signature + "|" + meeting.latestReport.id;
+    const packages = LILLEBEKK_KONTROLLPAKKER.map(function (item) {
+      const events = history.filter(function (event) {
+        return String(event.id || "").startsWith("lillebekk_kontrollpakke_" + item.id + "_v");
+      });
+      const latest = events[events.length - 1] || null;
+      const belongs = !!meeting.current && String(latest?.note || "").startsWith(
+        "Lederreferat: " + meeting.latestReport.id + ";");
+      return { ...item, count: events.length, latestId: latest?.id || "",
+        latestNote: latest?.note || "", latestOutcome: latest?.outcome || "",
+        current: !!belongs, safe: !!belongs && latest?.outcome === item.safeId };
+    });
+    const ready = !!meeting.current && packages.every(function (item) { return item.safe; });
+    const signature = [source].concat(packages.map(function (item) { return item.latestId; })).join("|");
+    const reports = history.filter(function (event) {
+      return String(event.id || "").startsWith("lillebekk_kontrollplan_v");
+    });
+    const latestPlan = reports[reports.length - 1] || null;
+    const current = ready && !!latestPlan &&
+      String(latestPlan.note || "").endsWith("Kildeversjoner: " + signature);
+    return { meeting, packages, source, ready, signature,
+      planCount: reports.length, latestPlan, current };
+  }
+
+  function recordLillebekkKontrollpakke(id, choiceId, justification) {
+    const model = lillebekkKontrollplanModel();
+    const item = model?.packages.find(function (row) { return row.id === id; });
+    if (!model?.meeting.current || !item || ![item.safeId, item.unsafeId].includes(choiceId)) {
+      return { ok: false, reason: "Et gjeldende internt lederreferat og en gyldig kontrolloppgave kreves." };
+    }
+    const text = String(justification || "").replace(/\s+/g, " ").trim().slice(0, 750);
+    if (text.length < 65) {
+      return { ok: false, reason: "Angi fagansvar, dokumentkrav og kontrollgrense (minst 65 tegn)." };
+    }
+    const safe = choiceId === item.safeId;
+    const note = [
+      "Lederreferat: " + model.meeting.latestReport.id + "; INTERN KONTROLLPAKKE " + item.ref,
+      "Kontrolloppgave: " + item.title,
+      "Fagansvarlig: " + item.owner,
+      "Kildens mangel: " + item.issue,
+      "Forventet leveranse: " + item.required,
+      "Avhengighet: " + item.dependency,
+      "Rådgiverens valg: " + (safe ? item.safeLabel : item.unsafeLabel),
+      "Begrunnelse: " + text,
+      safe ? "Utkast – IKKE SENDT. Ingen dokumentasjon mottatt eller faglig verifisert."
+        : "FAGLIG FEIL: Ingen avvik lukkes. Utkastet kan ikke brukes som verifikasjon eller godkjenning.",
+      "Ikke et planvedtak, en godkjent bestilling eller et mottatt kontrollresultat."
+    ].join("\n");
+    if (item.latestNote === note && item.latestOutcome === choiceId) return { ok: true, alreadyLogged: true };
+    const sameSource = String(item.latestNote || "").startsWith("Lederreferat: " + model.meeting.latestReport.id + ";");
+    if (item.count >= 10 && sameSource &&
+        !(item.latestOutcome !== item.safeId && safe)) {
+      return { ok: false, reason: "Grensen er nådd. Bare korrigering av en uforsvarlig konklusjon er tillatt." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_kontrollpakke_" + item.id + "_v" + (item.count + 1),
+        scene_id: "lillebekk_kontrollplan", choice_id: choiceId, outcome: choiceId,
+        at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk kontrollpakke", error);
+      return { ok: false, reason: "Kontrolloppgaven kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkKontrollplan(justification) {
+    const model = lillebekkKontrollplanModel();
+    if (!model?.ready) {
+      return { ok: false, reason: "Tre faglig forsvarlige interne kontrolloppgaver må journalføres først." };
+    }
+    const text = String(justification || "").replace(/\s+/g, " ").trim().slice(0, 1050);
+    if (text.length < 90) return { ok: false, reason: "Beskriv oppfølgingsrekkefølge og stoppunkter før vedtaksbehandling (minst 90 tegn)." };
+    const note = [
+      "LILLEBEKK – INTERN KONTROLLPLAN ETTER ELINS OPPFØLGINGSMØTE (IKKE SENDT)",
+      "Fiktivt lederreferat: " + model.meeting.latestReport.id,
+      "Krav per fagdisiplin:",
+      ...model.packages.map(function (item) {
+        return "- " + item.ref + " / " + item.owner + ". Åpent forhold: " + item.issue + " Krav: " + item.required + " Avhengighet: " + item.dependency;
+      }),
+      "Stoppunkt A: Før faglig vurdering – innhent daterte kontrollgrunnlag fra trafikkfag og VA; skissetall alene er utilstrekkelige.",
+      "Stoppunkt B: Før bestemmelsesrevisjon – intern planjurist må avstemme § 4.1 mot kontrollerte trafikkpremisser og plankart.",
+      "Stoppunkt C: Før eventuell ny ledergjennomgang – kontroller at rapportene faktisk er mottatt og vurdert; sjekk også øvrige åpne fagtema. Ingen automatisk klarsignal til planvedtak.",
+      "Rådgiverens plan: " + text,
+      "Status: Journalført intern plan med utkast til oppdrag. Ingen bestilling er sendt, ingen rapporter er mottatt, ingen tekniske forhold er erklært verifisert, og ingen avvik er lukket.",
+      "Kildeversjoner: " + model.signature
+    ].join("\n");
+    if (model.latestPlan?.note === note) return { ok: true, alreadyLogged: true };
+    if (model.planCount >= 10 && model.current) return { ok: false, reason: "Revisjonsgrensen for uendrede kilder er nådd." };
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_kontrollplan_v" + (model.planCount + 1),
+        scene_id: "lillebekk_kontrollplan", choice_id: "journalfor_intern_kontrollplan",
+        outcome: "intern_arbeidsplan_uten_utsendelse", at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk kontrollplan", error);
+      return { ok: false, reason: "Kontrollplanen kunne ikke journalføres." };
+    }
+  }
+
   function lillebekkReviewModel() {
     const active = window.CivicationState?.getActivePosition?.();
     // MailPlan uses by_radgiver_plan, while accepted job offers store the
@@ -3005,6 +3162,56 @@
     return html + '</details>';
   }
 
+
+  function lillebekkKontrollplanHtml() {
+    const model = lillebekkKontrollplanModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-kontrollplan="1">' +
+      '<summary>Intern kontrollplan – fordel tre faglige oppdrag</summary>' +
+      '<p>Arbeidsutkast etter Elins fiktive ledermøte. Ingen oppdrag sendes, dokumenter mottas eller godkjenninger skapes.</p>';
+    if (!model.meeting.current) {
+      html += '<p><strong>Sperret:</strong> Elins siste møtereferat er ikke gjeldende. Oppdater dokumentgrunnlaget og den interne gjennomgangen.</p>';
+    } else {
+      html += '<p><strong>Forsvarlige oppgaveutkast:</strong> ' +
+        model.packages.filter(function (p) { return p.safe; }).length + ' av 3.</p>';
+      html += model.packages.map(function (p) {
+        return '<section class="civi-inbox-body" data-civi-kontrollpakke="' + escapeHtml(p.id) + '">' +
+          '<h4>' + escapeHtml(p.ref) + ' – ' + escapeHtml(p.title) + '</h4>' +
+          '<p><strong>Fagansvar:</strong> ' + escapeHtml(p.owner) + '</p>' +
+          '<p><strong>Åpent forhold:</strong> ' + escapeHtml(p.issue) + '</p>' +
+          '<p><strong>Påkrevd kontrollgrunnlag:</strong> ' + escapeHtml(p.required) + '</p>' +
+          '<p><strong>Avhengighet:</strong> ' + escapeHtml(p.dependency) + '</p>' +
+          (p.latestNote ? '<p><strong>Tidligere notat' + (p.current ? '' : ' (utdatert)') +
+            ':</strong> ' + escapeHtml(p.latestNote) + '</p>' : '') +
+          '<label>Faglig behandling <select data-civi-kontrollpakke-choice>' +
+            '<option value="' + escapeHtml(p.safeId) + '"' + (p.latestOutcome === p.safeId ? ' selected' : '') +
+              '>' + escapeHtml(p.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(p.unsafeId) + '"' + (p.latestOutcome === p.unsafeId ? ' selected' : '') +
+              '>' + escapeHtml(p.unsafeLabel) + '</option></select></label>' +
+          '<label>Begrunnelse <textarea rows="3" maxlength="750" data-civi-kontrollpakke-reason ' +
+            'placeholder="Hvilket bevis må leveres, av hvem, før hvilken videre handling?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-kontrollpakke-save="1" data-package-id="' +
+            escapeHtml(p.id) + '">Journalfør internt oppgaveutkast</button>' +
+          '<p class="muted" role="status" data-civi-kontrollpakke-error></p></section>';
+      }).join("");
+      if (model.ready) {
+        html += '<section class="civi-inbox-body" data-civi-kontrollplan-editor="1">' +
+          '<h4>Samlet intern oppfølgingsrekkefølge</h4>' +
+          '<p>1. Trafikkfag og VA leverer hver sin kontrollerte vurdering. 2. Planjuss avstemmer § 4.1 mot det oppdaterte faggrunnlaget. 3. Rådgiver vurderer om sakens øvrige avvik fortsatt krever tiltak. Først da kan nytt ledermøte forberedes.</p>' +
+          '<label>Begrunn gjennomføring og stoppunkter <textarea rows="4" maxlength="1050" data-civi-kontrollplan-reason ' +
+            'placeholder="Fordel oppgaver og beskriv dokumentasjonskrav før videre saksbehandling."></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-kontrollplan-save="1">Journalfør intern kontrollplan – ikke send</button>' +
+          '<p class="muted" role="status" data-civi-kontrollplan-error></p></section>';
+      }
+    }
+    if (model.latestPlan) {
+      html += '<h4>' + (model.current ? 'Gjeldende kontrollplan' : 'Tidligere eller utdatert kontrollplan') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+          escapeHtml(model.latestPlan.note) + '</pre>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -3032,6 +3239,7 @@
         ${lillebekkSvarrundeHtml()}
         ${lillebekkSvarnotatHtml()}
         ${lillebekkElinSvarmoteHtml()}
+        ${lillebekkKontrollplanHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -3492,6 +3700,32 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-kontrollpakke-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-kontrollpakke]");
+        const result = recordLillebekkKontrollpakke(
+          String(button.getAttribute("data-package-id") || ""),
+          card?.querySelector("[data-civi-kontrollpakke-choice]")?.value || "",
+          card?.querySelector("[data-civi-kontrollpakke-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-kontrollpakke-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-kontrollplan-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-kontrollplan-editor]");
+        const result = recordLillebekkKontrollplan(
+          card?.querySelector("[data-civi-kontrollplan-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-kontrollplan-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-elin3-save]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-elin3-question]");
@@ -4032,6 +4266,9 @@
     recordLillebekkSvarnotat,
     getLillebekkElinSvarmoteModel: lillebekkElinSvarmoteModel,
     recordLillebekkElinSvarmoteSvar,
-    recordLillebekkElinSvarmoteReferat
+    recordLillebekkElinSvarmoteReferat,
+    getLillebekkKontrollplanModel: lillebekkKontrollplanModel,
+    recordLillebekkKontrollpakke,
+    recordLillebekkKontrollplan
   };
 })();

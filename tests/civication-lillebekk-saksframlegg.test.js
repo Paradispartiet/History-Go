@@ -1047,6 +1047,65 @@ assert.equal(api.getLillebekkElinSvarmoteModel().current,true);
 saved=JSON.parse(JSON.stringify(saved));
 assert.equal(api.getLillebekkElinSvarmoteModel().current,true);
 
+
+// Elin's record enables three internal work packages, not a confirmation that
+// any request has been sent or that the underlying reports exist.
+let controlPlan=api.getLillebekkKontrollplanModel();
+assert.equal(controlPlan.meeting.current,true);
+assert.equal(controlPlan.ready,false);
+assert.equal(controlPlan.current,false);
+assert.equal(controlPlan.packages.length,3);
+assert.deepEqual(Array.from(controlPlan.packages.map(p=>p.ref)),['LBK-KP-18','LBK-KP-19','LBK-KP-20']);
+assert.equal(api.renderSections(),true);
+assert.equal((host.innerHTML.match(/data-civi-kontrollpakke-save="1"/g)||[]).length,3);
+assert.ok(!host.innerHTML.includes('data-civi-kontrollplan-save="1"'));
+for(const t of ['LBK-KP-18','LBK-KP-19','LBK-KP-20','1,25 m','0,90 m','42 m³','26 m³',
+ '§ 4.1','Kommunens trafikkfaglige','Kommunal planjurist']) {
+ assert.ok(host.innerHTML.includes(t),'render specific work package '+t);
+}
+const packageReason='Fagansvarlig må dokumentere beregninger, risiko og ansvar med kontrollerbare bilag. Uten skriftlig kontrollgrunnlag kan saken ikke gå videre til vedtak.';
+const planReason='Trafikkfag og VA skal kontrollere bredde, sikt, vannets kapasitet og nabovirkning. Planjurist avstemmer deretter § 4.1 og plankart. Rådgiver må kontrollere at alle tre rapportene er vurdert før en ny lederbehandling.';
+assert.equal(api.recordLillebekkKontrollpakke('ukjent','be_om_trafikkfaglig_kontrollpakke',packageReason).ok,false);
+assert.equal(api.recordLillebekkKontrollpakke('trafikk','ukjent',packageReason).ok,false);
+assert.equal(api.recordLillebekkKontrollpakke('trafikk','be_om_trafikkfaglig_kontrollpakke','kort').ok,false);
+assert.equal(api.recordLillebekkKontrollplan(planReason).ok,false);
+assert.equal(api.recordLillebekkKontrollpakke('trafikk','marker_skolevei_som_kontrollert',packageReason).ok,true);
+assert.equal(api.getLillebekkKontrollplanModel().packages[0].safe,false);
+assert.ok(api.getLillebekkKontrollplanModel().packages[0].latestNote.includes('FAGLIG FEIL'));
+assert.equal(api.recordLillebekkKontrollpakke('trafikk','be_om_trafikkfaglig_kontrollpakke',packageReason).ok,true);
+assert.equal(api.recordLillebekkKontrollpakke('trafikk','be_om_trafikkfaglig_kontrollpakke',' '+packageReason+' ').alreadyLogged,true);
+assert.equal(api.recordLillebekkKontrollpakke('overvann','be_om_hydraulisk_kontrollpakke',packageReason).ok,true);
+assert.equal(api.recordLillebekkKontrollpakke('planjuss','be_om_planjuridisk_sluttkontroll',packageReason).ok,true);
+controlPlan=api.getLillebekkKontrollplanModel();
+assert.equal(controlPlan.ready,true);
+assert.equal(controlPlan.current,false);
+assert.equal(controlPlan.packages.filter(p=>p.safe).length,3);
+assert.ok(controlPlan.packages.every(p=>p.latestNote.includes('IKKE SENDT')));
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-kontrollplan-save="1"'));
+assert.equal(api.recordLillebekkKontrollplan('kort').ok,false);
+assert.equal(api.recordLillebekkKontrollplan(planReason).ok,true);
+assert.equal(api.recordLillebekkKontrollplan('  '+planReason+'  ').alreadyLogged,true);
+controlPlan=api.getLillebekkKontrollplanModel();
+assert.equal(controlPlan.current,true);
+assert.equal(controlPlan.planCount,1);
+for(const t of ['LBK-KP-18','LBK-KP-19','LBK-KP-20','0,90 m','42 m³',
+ '26 m³','§ 4.1','Stoppunkt A','Stoppunkt B','Stoppunkt C','Kildeversjoner:','Ingen bestilling er sendt']) {
+ assert.ok(controlPlan.latestPlan.note.includes(t),'source-traced internal control plan '+t);
+}
+assert.equal(world.getWorkObject(caseId).status,'open');
+assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+for(const flag of ['skolevei_ikke_dokumentert','early_green_corridor_unsecured','participation_record_missing']) {
+ assert.ok(world.getWorkObject(caseId).flags.includes(flag),'preserved open case issue '+flag);
+}
+const planInjection='<img src=x onerror=alert(1)> Fagansvarlige må levere kontrollgrunnlag for skolevei, overvann og § 4.1 før rådgiveren kan utarbeide et nytt forslag til Elin.';
+assert.equal(api.recordLillebekkKontrollplan(planInjection).ok,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('&lt;img'));
+assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
+saved=JSON.parse(JSON.stringify(saved));
+assert.equal(api.getLillebekkKontrollplanModel().current,true);
+
 assert.equal(world.getWorkObject(caseId).status,'open');
 assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
 for(const flag of ['skolevei_ikke_dokumentert','early_green_corridor_unsecured','participation_record_missing']) {
@@ -1070,6 +1129,10 @@ assert.equal(api.getLillebekkSvarrundeModel().ready,false);
 assert.equal(api.getLillebekkSvarnotatModel().ready,false);
 assert.equal(api.getLillebekkSvarnotatModel().current,false);
 assert.equal(api.getLillebekkElinSvarmoteModel().current,false);
+assert.equal(api.getLillebekkKontrollplanModel().ready,false);
+assert.equal(api.getLillebekkKontrollplanModel().current,false);
+assert.equal(api.recordLillebekkKontrollpakke('trafikk','be_om_trafikkfaglig_kontrollpakke',packageReason).ok,false);
+assert.equal(api.recordLillebekkKontrollplan(planReason).ok,false);
 assert.equal(api.getLillebekkElinSvarmoteModel().complete,false);
 assert.equal(api.recordLillebekkElinSvarmoteSvar('skolevei','krever_trafikkfaglig_dokumentasjon',manager3Reason).ok,false);
 assert.equal(api.recordLillebekkElinSvarmoteReferat(manager3Plan).ok,false);
@@ -1128,6 +1191,18 @@ assert.equal(api.getLillebekkElinSvarmoteModel().complete,true);
 assert.equal(api.recordLillebekkElinSvarmoteReferat(manager3Plan).ok,true);
 assert.equal(api.getLillebekkElinSvarmoteModel().current,true);
 assert.equal(api.getLillebekkElinSvarmoteModel().reportsCount,3);
+assert.equal(api.getLillebekkKontrollplanModel().ready,false);
+assert.equal(api.getLillebekkKontrollplanModel().current,false);
+assert.equal(api.recordLillebekkKontrollplan(planReason).ok,false);
+for(const [id,choice] of [['trafikk','be_om_trafikkfaglig_kontrollpakke'],
+ ['overvann','be_om_hydraulisk_kontrollpakke'],
+ ['planjuss','be_om_planjuridisk_sluttkontroll']]) {
+ assert.equal(api.recordLillebekkKontrollpakke(id,choice,packageReason).ok,true);
+}
+assert.equal(api.getLillebekkKontrollplanModel().ready,true);
+assert.equal(api.recordLillebekkKontrollplan(planReason).ok,true);
+assert.equal(api.getLillebekkKontrollplanModel().planCount,3);
+assert.equal(api.getLillebekkKontrollplanModel().current,true);
 
 // The latest documented assessment, rather than player text with an embedded
 // old note ID, decides whether a source is current.
@@ -1171,6 +1246,9 @@ assert.equal(api.getLillebekkUtkastModel(),null);
 assert.equal(api.getLillebekkSvarrundeModel(),null);
 assert.equal(api.getLillebekkSvarnotatModel(),null);
 assert.equal(api.getLillebekkElinSvarmoteModel(),null);
+assert.equal(api.getLillebekkKontrollplanModel(),null);
+assert.equal(api.recordLillebekkKontrollpakke('trafikk','be_om_trafikkfaglig_kontrollpakke',packageReason).ok,false);
+assert.equal(api.recordLillebekkKontrollplan(planReason).ok,false);
 assert.equal(api.recordLillebekkElinSvarmoteSvar('skolevei','krever_trafikkfaglig_dokumentasjon',manager3Reason).ok,false);
 assert.equal(api.recordLillebekkElinSvarmoteReferat(manager3Plan).ok,false);
 assert.equal(api.recordLillebekkSvarnotat('avvent_supplering_og_ny_ledervurdering',responseMemoReason).ok,false);
@@ -1208,6 +1286,9 @@ assert.equal(api.getLillebekkUtkastModel(),null);
 assert.equal(api.getLillebekkSvarrundeModel(),null);
 assert.equal(api.getLillebekkSvarnotatModel(),null);
 assert.equal(api.getLillebekkElinSvarmoteModel(),null);
+assert.equal(api.getLillebekkKontrollplanModel(),null);
+assert.equal(api.recordLillebekkKontrollpakke('trafikk','be_om_trafikkfaglig_kontrollpakke',packageReason).ok,false);
+assert.equal(api.recordLillebekkKontrollplan(planReason).ok,false);
 assert.equal(api.recordLillebekkElinSvarmoteSvar('skolevei','krever_trafikkfaglig_dokumentasjon',manager3Reason).ok,false);
 assert.equal(api.recordLillebekkElinSvarmoteReferat(manager3Plan).ok,false);
 assert.equal(api.recordLillebekkSvarnotat('avvent_supplering_og_ny_ledervurdering',responseMemoReason).ok,false);
