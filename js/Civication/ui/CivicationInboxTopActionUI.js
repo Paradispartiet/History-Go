@@ -2353,7 +2353,7 @@
       "Fiktivt lederreferat: " + model.meeting.latestReport.id,
       "Krav per fagdisiplin:",
       ...model.packages.map(function (item) {
-        return "- " + item.ref + " / " + item.owner + ": " + item.required + " Avhengighet: " + item.dependency;
+        return "- " + item.ref + " / " + item.owner + ". Åpent forhold: " + item.issue + " Krav: " + item.required + " Avhengighet: " + item.dependency;
       }),
       "Stoppunkt A: Før faglig vurdering – innhent daterte kontrollgrunnlag fra trafikkfag og VA; skissetall alene er utilstrekkelige.",
       "Stoppunkt B: Før bestemmelsesrevisjon – intern planjurist må avstemme § 4.1 mot kontrollerte trafikkpremisser og plankart.",
