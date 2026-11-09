@@ -110,13 +110,13 @@ Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer
 
 **Fast holdepunkt for videre produksjon:** Foreningen må få ut korrekt dato, frist og lenke. Spilleren får se hva foreningen sender, også når Lea gjør arbeidet selv. Konflikten med den andre kunden oppstår bare der spilleren har en kolliderende frist. Det faste holdepunktet avgjør ikke om frilanseren får bestillingen eller blir betalt.
 
-| Valgtype | Eksempel i den videre utformingen av C04 | Hva spillet skal registrere |
+| Valgtype | Eksempel i C04 | Hva spillet registrerer eller skal registrere |
 | --- | --- | --- |
-| Samme neste hendelse, ulik poengvirkning | Send ferdig invitasjon og si tydelig at Lea tar forsida, eller bruk noen minutter på å sende henne den nøyaktige teksten og lenka hun trenger. Begge kommer til samme kundesvar. | Første svar sparer tid. Andre svar kan styrke relasjonen til Lea, men koster energi. Bruk eksisterende målere og relasjon. |
+| Samme neste hendelse, ulik poengvirkning | Dag 12. Send ferdig invitasjon og la Lea ta forsida, eller skriv i tillegg to linjer hun kan lime inn før hun bytter knappene. Begge kommer til samme kundesvar på dag 13. | Den ekstra hjelpen gir −1 energi og +1 på relasjonen til Lea. Symposium viser svaret spilleren valgte og det som faktisk ble sendt. |
 | Reell følge | Varsle at det samlede arbeidet ikke kan bli klart. Lea sender en kortversjon, og styrelederen trekker bestillingen. | Hvem leverte, hva ble sendt, og at oppgjøret kan stå til avklaring. Dette endrer hvilke oppfølgingsscener som gir mening. |
 | Feil eller avsporing | Stol på den gamle styremeldingen uten å sjekke skjemaet, eller begynn å rydde hele forsida mens den avtalte teksten venter. | Første valg lar en feil dato stå til den blir fanget opp. Andre valg bruker tid på et sideproblem. Når det er tid til å rette opp, kan begge komme tilbake til hovedforløpet. |
 
-Dette er en redaksjonell spesifikasjon for nye og reviderte tråder. De foreslåtte poengutslagene og felles holdepunktene er ennå ikke implementert.
+De to leveringsvalgene og avbestillingsgrenen er implementert. Feilsporet og det felles holdepunktet på tvers av alle ruter er forslag til videre produksjon.
 
 ### C05 – Byråkratiet og personen
 **Rolle/person:** arbeidsledig / NAV. **Bokreferanse (foreløpig):** Kafka – Prosessen. **Film:** [Brazil](https://www.imdb.com/title/tt0088846/) / Film Producer `scenario_brazil_1985`.

@@ -177,8 +177,10 @@ for (const arc of arcs) for (const variant of arc.variants) {
     paths++;
   }
 }
+let deliveryBaseline;
 for (const [choice, status, response, delivery, settlement, reply] of [
   ['avgrens', 'tilbud_sendt', 'bestilt', 'send'],
+  ['avgrens', 'tilbud_sendt', 'bestilt', 'send_med_forsidetekst'],
   ['avgrens', 'tilbud_sendt', 'bestilt', 'send', undefined, 'avklar_neste_gang'],
   ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle', 'send'],
   ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle', 'avslutt', 'send_faktaark'],
@@ -202,14 +204,36 @@ for (const [choice, status, response, delivery, settlement, reply] of [
   assert.equal(saved.tidligereValg.c04_frist, delivery ? 12 : undefined);
   R.startNextDay(saved, content);
   ({saved, content} = progress(saved, restore(clone(saved)), 12, {c04_invitasjon_leveranse: delivery}));
-  assert.equal(saved.tidligereValg.c04_leveranse, {send:'levert', varsle:'fristproblem_varslet'}[delivery]);
+  assert.equal(saved.tidligereValg.c04_leveranse, {
+    send: 'levert',
+    send_med_forsidetekst: 'levert',
+    varsle: 'fristproblem_varslet'
+  }[delivery]);
+  if (delivery === 'send' && !reply) {
+    deliveryBaseline = {energy: saved.meters.energi, relation: saved.relasjoner.lea};
+  }
+  if (delivery === 'send_med_forsidetekst') {
+    assert.equal(saved.meters.energi, deliveryBaseline.energy - 1);
+    assert.equal(saved.relasjoner.lea, deliveryBaseline.relation + 1);
+    const history = R.getSymposium(saved, content).tidslinje;
+    const entries = history.filter(entry => entry.sceneId === 'c04_invitasjon_leveranse');
+    assert.deepEqual(entries.map(entry => entry.valgId), ['send_med_forsidetekst']);
+  }
   R.startNextDay(saved, content);
   ({saved, content} = progress(saved, restore(clone(saved)), 13, {
     c04_kundesvar_godkjent: reply,
     c04_kundesvar_avbestilt: reply
   }));
   assert.equal(saved.tidligereValg.c04_kundesvar_oppfolging, reply);
-  assert.equal(saved.tidligereValg.c04_sluttstatus, {send:'godkjent', varsle:'avbestilt'}[delivery]);
+  assert.equal(saved.tidligereValg.c04_sluttstatus, {
+    send: 'godkjent',
+    send_med_forsidetekst: 'godkjent',
+    varsle: 'avbestilt'
+  }[delivery]);
+  if (delivery === 'send' || delivery === 'send_med_forsidetekst') {
+    assert.ok(saved.spilteScener.includes('c04_kundesvar_godkjent'));
+    assert.ok(!saved.spilteScener.includes('c04_kundesvar_avbestilt'));
+  }
   content = startChapter(saved, content, 'frilans_etter_neste_steg');
   ({saved} = progress(saved, restore(clone(saved)), 14, {c04_oppgjor_avbestilt: settlement}));
   assert.equal(saved.tidligereValg.c04_oppgjor, {send:'honorar_til_avklaring', avslutt:'avsluttet_uten_krav'}[settlement]);
