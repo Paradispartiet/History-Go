@@ -2617,6 +2617,50 @@
     return html + '</details>';
   }
 
+
+  function lillebekkSvarrundeHtml() {
+    const model = lillebekkSvarrundeModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-svarrunde="1">' +
+      '<summary>Ny dokumentrunde – faglige svar (fiktiv øvelse)</summary>' +
+      '<p>Et avgrenset treningsforløp med to forhåndsskrevne dokumentutdrag, ikke svar på faktisk utsendte brev. De tidligere utkastene er ikke sendt. Tall og juridiske formuleringer er øvingsmateriale.</p>';
+    if (!model.canOpen) {
+      html += '<p><strong>Ikke klar:</strong> Begge utkastene til utbygger og intern planjurist må være gjeldende før øvelsen åpnes.</p>';
+    } else if (!model.opened) {
+      html += '<p>Åpne dokumentrunden som en egen fiktiv saksøvelse. Dette innebærer ikke at dokumentene er sendt, at noen har svart i virkeligheten, eller at rapporter er godkjent.</p>' +
+        '<button class="civi-btn secondary" type="button" data-civi-svarrunde-open="1">Åpne fiktiv dokumentrunde</button>' +
+        '<p class="muted" role="status" data-civi-svarrunde-open-error></p>';
+    } else {
+      html += '<p><strong>Faglig holdbare vurderinger:</strong> ' +
+        model.docs.filter(function (doc) { return doc.safe; }).length + ' av 2.</p>';
+      html += model.docs.map(function (doc) {
+        return '<section class="civi-inbox-body" data-civi-svarrunde-doc="' + escapeHtml(doc.id) + '">' +
+          '<h4>' + escapeHtml(doc.ref) + ' – ' + escapeHtml(doc.title) + '</h4>' +
+          '<p><strong>Fiktiv avsender:</strong> ' + escapeHtml(doc.sender) + '</p>' +
+          doc.paragraphs.map(function (paragraph) { return '<p>' + escapeHtml(paragraph) + '</p>'; }).join("") +
+          '<p><strong>Hva svarutdraget faktisk dokumenterer:</strong> ' + escapeHtml(doc.evidence) + '</p>' +
+          '<p><strong>Neste faglige arbeidsoppgave:</strong> ' + escapeHtml(doc.task) + '</p>' +
+          (doc.latestNote ? '<p><strong>Sist journalført (' + (doc.current ? 'gjeldende' : 'tidligere') +
+            '):</strong> ' + escapeHtml(doc.latestNote) + '</p>' : '') +
+          '<label>Vurdering <select data-civi-svarrunde-choice>' +
+            '<option value="' + escapeHtml(doc.safeId) + '"' +
+              (doc.latestOutcome === doc.safeId ? ' selected' : '') + '>' + escapeHtml(doc.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(doc.unsafeId) + '"' +
+              (doc.latestOutcome === doc.unsafeId ? ' selected' : '') + '>' + escapeHtml(doc.unsafeLabel) + '</option>' +
+          '</select></label>' +
+          '<label>Faglig begrunnelse <textarea rows="3" maxlength="700" data-civi-svarrunde-reason ' +
+            'placeholder="Hva kan du fastslå, hva mangler fortsatt, og hvem må kontrollere det?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-svarrunde-save="1" data-doc-id="' +
+            escapeHtml(doc.id) + '">Journalfør vurdering av øvingssvar</button>' +
+          '<p class="muted" role="status" data-civi-svarrunde-error></p></section>';
+      }).join("");
+      if (model.ready) {
+        html += '<p><strong>Dokumentrunden er faglig gjennomgått.</strong> Skolevei, flomvei og planjuridiske spørsmål står fortsatt åpne. Ingen utsendelse, teknisk kontroll eller godkjenning er gjennomført.</p>';
+      }
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -2641,6 +2685,7 @@
         ${lillebekkNyLedervurderingHtml()}
         ${lillebekkSuppleringssvarHtml()}
         ${lillebekkUtkastHtml()}
+        ${lillebekkSvarrundeHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -3101,6 +3146,30 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-svarrunde-open]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const result = recordLillebekkSvarrundeStart();
+        if (result.ok) renderInboxSections();
+        else {
+          const message = button.closest("[data-civi-lillebekk-svarrunde]")?.querySelector("[data-civi-svarrunde-open-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-svarrunde-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-svarrunde-doc]");
+        const result = recordLillebekkSvarvurdering(
+          String(button.getAttribute("data-doc-id") || ""),
+          card?.querySelector("[data-civi-svarrunde-choice]")?.value || "",
+          card?.querySelector("[data-civi-svarrunde-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-svarrunde-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-utkast-save]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-utkast-kind]");
@@ -3570,6 +3639,9 @@
     recordLillebekkSuppleringsgjennomgang,
     recordLillebekkSuppleringsmatrise,
     getLillebekkUtkastModel: lillebekkUtkastModel,
-    recordLillebekkUtkast
+    recordLillebekkUtkast,
+    getLillebekkSvarrundeModel: lillebekkSvarrundeModel,
+    recordLillebekkSvarrundeStart,
+    recordLillebekkSvarvurdering
   };
 })();
