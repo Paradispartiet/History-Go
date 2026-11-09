@@ -67,7 +67,8 @@
       "data/quiz/manifest.json",
       "data/quizcards/kunst/manifest.json",
       "data/quiz/quiz_kunst.json",
-      "data/quiz/quiz_kunst_plus_from_by.json"
+      "data/quiz/quiz_kunst_plus_from_by.json",
+      "data/quiz/kunst/astrup_fearnley_sets.json"
     ],
     "active_before": {
       "set_count": 0,
@@ -76,9 +77,18 @@
     "decisions": [
       "No active direct target in quiz manifest and no QuizCard with target astrup_fearnley.",
       "Use existing canonical placeId, do not create museum duplicate.",
-      "Preserve historical location vs present Tjuvholmen address."
+      "Preserve historical location vs present Tjuvholmen address.",
+      "Found unregistered legacy 6×7=42 question file, lacking all 42 question IDs, Knowledge explanations, source citations and claim_basis. Mostly generic conceptual prompts, repetitive terminology and answerIndex=0. Keep file unchanged as legacy reference; replace with source-first, independently justified 3×7 named *_oslo06_sets.json in manifest."
     ],
-    "knowledge_migration": "New quiz IDs only. Add canonical Knowledge generated from verified question text; do not alter existing items."
+    "knowledge_migration": "New quiz IDs only. Add canonical Knowledge generated from verified question text; do not alter existing items.",
+    "legacy_nonmanifest": {
+      "file": "data/quiz/kunst/astrup_fearnley_sets.json",
+      "set_count": 6,
+      "question_count": 42,
+      "active": false,
+      "handling": "preserved_untouched_separately",
+      "review_note": "Found unregistered legacy 6×7=42 question file, lacking all 42 question IDs, Knowledge explanations, source citations and claim_basis. Mostly generic conceptual prompts, repetitive terminology and answerIndex=0. Keep file unchanged as legacy reference; replace with source-first, independently justified 3×7 named *_oslo06_sets.json in manifest."
+    }
   },
   "profile_decision": {
     "profile": "narrow",
