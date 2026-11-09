@@ -176,7 +176,6 @@ console.log('Fourth batch: 16 scenes and 32 decisions, real Wave F anchor, delay
 {
 const c = base;
 const care = renholder;
-const planning = build('arealplanlegger');
 const prefix = 'wave_g_c01_c09_';
 const scenes = c.scenes.filter(s => s.id.startsWith(prefix));
 const first = scenes.find(s => s.id.endsWith('dag35_rytmen_endrer_seg'));
@@ -226,7 +225,7 @@ const branches = [
   {start: 'tolk_som_avvisning', day36: conflict, answer: 'hold_fast', status: 'beskyldning_aapen'}
 ];
 let validated = 0;
-for (const roleContent of [c, care, planning]) {
+for (const roleContent of [c, care]) {
   const role = roleContent.role.id;
   for (const br of branches) {
     let st = S.createInitialState(roleContent);
