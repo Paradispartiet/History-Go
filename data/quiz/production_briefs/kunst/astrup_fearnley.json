@@ -1,0 +1,687 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "kunst",
+  "targetId": "astrup_fearnley",
+  "reviewed_at": "2026-11-09",
+  "source_review_basis": "Read Oslo byleksikon, Astrup Fearnley official building, collection, sculpture park and opening exhibition, and Royal House report; separate building address from museum entrance and historic collection from today's display.",
+  "sources": {
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Astrup_Fearnley_Museet_for_Moderne_Kunst",
+      "source_type": "oslo_local_encyclopedia",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-09",
+      "review_note": "Museet åpnet 1993 i Grev Wedels plass 9 med inngang Dronningens gate 4; 2012 Tjuvholmen; stiftelsesbidrag, to bygg og park."
+    },
+    "building": {
+      "url": "https://www.afmuseet.no/museumsbygget/",
+      "source_type": "museum_first_party_building_history",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-09",
+      "review_note": "Renzo Piano + Narud-Stokke-Wiig, glasskurve, sailboat inspiration, room division, public opening 29.09.2012."
+    },
+    "about": {
+      "url": "https://www.afmuseet.no/en/about-the-astrup-fearnley-museet/",
+      "source_type": "museum_first_party_collection_history",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-09",
+      "review_note": "Founded 1993, collection originates in 1960s, artists, two buildings and canal, address."
+    },
+    "park": {
+      "url": "https://www.afmuseet.no/tjuvholmen-skulpturpark/",
+      "source_type": "museum_first_party_park_collection",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-09",
+      "review_note": "Site-specific sculpture park, Renzo Piano landscape, named works/artists and works distinct from museum collection; ownership Selvaag/Tjuvholmen."
+    },
+    "royal": {
+      "url": "https://www.kongehuset.no/nyheter/astrup-fearnley-museet-apnet",
+      "source_type": "norwegian_royal_house_coverage",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-09",
+      "review_note": "Queen Sonja, previous storage limitations in Kvadraturen, new 4200m2 museum, historic inauguration."
+    },
+    "opening": {
+      "url": "https://www.afmuseet.no/en/exhibitions/to-be-with-art-is-all-we-ask/",
+      "source_type": "museum_first_party_exhibition_archive",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-09",
+      "review_note": "Inaugural exhibition To Be With Art Is All We Ask Sept 2012–Apr 2013; architecture/display interplay."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_kunst_institusjoner_kanon",
+      "em_kunst_okonomi_og_finansiering"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [
+      "met_kunst_institusjonsanalyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/kunst/manifest.json",
+      "data/quiz/quiz_kunst.json",
+      "data/quiz/quiz_kunst_plus_from_by.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "No active direct target in quiz manifest and no QuizCard with target astrup_fearnley.",
+      "Use existing canonical placeId, do not create museum duplicate.",
+      "Preserve historical location vs present Tjuvholmen address."
+    ],
+    "knowledge_migration": "New quiz IDs only. Add canonical Knowledge generated from verified question text; do not alter existing items."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Three factually different learning jobs: origin in Kvadraturen and architects; two-building display and collection; sculpture park and limits of exhibits as evidence."
+  },
+  "held_back_candidates": [
+    "Exact number of visitors, ticket prices or 2026 opening times.",
+    "Conflating building Grev Wedels plass 9 with museum entrance Dronningens gate 4.",
+    "Claiming all named artists' works hang in the galleries at a given time.",
+    "Claiming park sculptures are owned by museum."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museet åpnet i Astrup Fearnley-gården ved Grev Wedels plass 9 i 1993.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den første museumsinngangen var i Dronningens gate 4, selv om bygningen hadde adresse Grev Wedels plass 9.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museet forvalter en stor samling av internasjonal samtidskunst.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museet flyttet fra Kvadraturen til Tjuvholmen i 2012.",
+      "source_ids": [
+        "building",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Museet har adresse Strandpromenaden 2 på Tjuvholmen.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Det nye museet ble tegnet av Renzo Piano Building Workshop i samarbeid med norske arkitekter.",
+      "source_ids": [
+        "building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Narud-Stokke-Wiig var norsk samarbeidspartner for Renzo Piano Building Workshop.",
+      "source_ids": [
+        "building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Renzo Piano hentet inspirasjon fra seilbåter og det maritime landskapet ved Tjuvholmen.",
+      "source_ids": [
+        "building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Det nye museumsanlegget består av to bygg som er atskilt av en kanal.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Museet beskriver at verk fra samlingen stilles ut i ett av byggene.",
+      "source_ids": [
+        "building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Det andre hovedbygget brukes til skiftende utstillinger.",
+      "source_ids": [
+        "building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Astrup Fearnley-samlingen har røtter i kunstinnkjøp fra 1960-årene.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Museet oppgir Ida Ekblad blant kunstnerne som er representert i samlingen.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Cindy Sherman er blant kunstnerne museet selv oppgir som representert i samlingen.",
+      "source_ids": [
+        "about"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Skulpturparken ligger mellom museet og fjorden på Tjuvholmen.",
+      "source_ids": [
+        "byleksikon",
+        "park"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Museet oppgir Renzo Piano som designer av Tjuvholmen skulpturpark.",
+      "source_ids": [
+        "park"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Skulpturparken har verket Eyes (1992) av Louise Bourgeois.",
+      "source_ids": [
+        "park"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Museet opplyser at skulpturparken ikke inngår i museets samling; de fleste verkene eies av Selvaags kunstsamling.",
+      "source_ids": [
+        "park"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "To Be With Art Is All We Ask var en åpningsutstilling i det nye museet i 2012.",
+      "source_ids": [
+        "opening"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Kongehuset beskrev at plassmangel i Kvadraturen gjorde det vanskelig å stille ut store verk fra samlingen.",
+      "source_ids": [
+        "royal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon"
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En samling omfatter flere verk enn dem som henger i salene på et gitt tidspunkt; den aktuelle utstillingsoversikten er nødvendig.",
+      "source_ids": [
+        "about",
+        "building"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_kunst_institusjoner_kanon",
+      "method_id": "met_kunst_institusjonsanalyse"
+    }
+  ],
+  "candidate_questions": [
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_01",
+      "question": "Hvor lå bygningen der museet åpnet i 1993?",
+      "answer": "Ved Grev Wedels plass 9",
+      "distractors": [
+        "Ved Karl Johans gate 31",
+        "Ved Youngstorget 2"
+      ],
+      "knowledge": "Museet åpnet i Astrup Fearnley-gården ved Grev Wedels plass 9 i 1993.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_02",
+      "question": "Hvilken gate hadde det første museet inngang fra?",
+      "answer": "Dronningens gate 4",
+      "distractors": [
+        "Strandpromenaden 2",
+        "Tordenskiolds gate 3"
+      ],
+      "knowledge": "Den første museumsinngangen var i Dronningens gate 4, selv om bygningen hadde adresse Grev Wedels plass 9.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_03",
+      "question": "Hvilken type kunst er Astrup Fearnley særlig kjent for?",
+      "answer": "Internasjonal samtidskunst",
+      "distractors": [
+        "Kun vikingtidens gjenstander",
+        "Hovedsakelig naturhistoriske preparater"
+      ],
+      "knowledge": "Museet forvalter en stor samling av internasjonal samtidskunst.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "about"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_04",
+      "question": "Til hvilken del av Oslo flyttet museet i 2012?",
+      "answer": "Tjuvholmen",
+      "distractors": [
+        "Grønland",
+        "Vaterland"
+      ],
+      "knowledge": "Museet flyttet fra Kvadraturen til Tjuvholmen i 2012.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "building",
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_05",
+      "question": "Hva er adressen til det nye museumsanlegget?",
+      "answer": "Strandpromenaden 2",
+      "distractors": [
+        "Grev Wedels plass 9",
+        "Akersgata 13"
+      ],
+      "knowledge": "Museet har adresse Strandpromenaden 2 på Tjuvholmen.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "about"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_06",
+      "question": "Hvem står bak hoveddesignet av museet på Tjuvholmen?",
+      "answer": "Renzo Piano Building Workshop",
+      "distractors": [
+        "Snøhetta alene",
+        "LPO Arkitekter alene"
+      ],
+      "knowledge": "Det nye museet ble tegnet av Renzo Piano Building Workshop i samarbeid med norske arkitekter.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "building"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_07",
+      "question": "Hvilket norsk arkitektkontor samarbeidet om museet?",
+      "answer": "Narud-Stokke-Wiig",
+      "distractors": [
+        "Blakstad og Munthe-Kaas",
+        "Telje-Torp-Aasen"
+      ],
+      "knowledge": "Narud-Stokke-Wiig var norsk samarbeidspartner for Renzo Piano Building Workshop.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "building"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_08",
+      "question": "Hva var en viktig inspirasjon for det buede museetaket?",
+      "answer": "Seilbåtene og havnelandskapet",
+      "distractors": [
+        "Fjelltopper i Jotunheimen",
+        "Kirkevinduer fra middelalderen"
+      ],
+      "knowledge": "Renzo Piano hentet inspirasjon fra seilbåter og det maritime landskapet ved Tjuvholmen.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "building"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_09",
+      "question": "Hva ligger mellom de to museumsbygningene?",
+      "answer": "En kanal",
+      "distractors": [
+        "Et jernbanespor",
+        "En gjennomgående bilvei"
+      ],
+      "knowledge": "Det nye museumsanlegget består av to bygg som er atskilt av en kanal.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "about"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_10",
+      "question": "Hva brukes ett av museets to hovedbygg til?",
+      "answer": "Verk fra samlingen",
+      "distractors": [
+        "Bare varelevering",
+        "Kun restaurantkjøkken"
+      ],
+      "knowledge": "Museet beskriver at verk fra samlingen stilles ut i ett av byggene.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "building"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_11",
+      "question": "Hva kjennetegner programmet i det andre hovedbygget?",
+      "answer": "Skiftende utstillinger",
+      "distractors": [
+        "Permanente offentlige kontorer",
+        "En jernbanestasjon"
+      ],
+      "knowledge": "Det andre hovedbygget brukes til skiftende utstillinger.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "building"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_12",
+      "question": "Hvilket tiår går den private kunstsamlingens historie tilbake til?",
+      "answer": "1960-årene",
+      "distractors": [
+        "1890-årene",
+        "2020-årene"
+      ],
+      "knowledge": "Astrup Fearnley-samlingen har røtter i kunstinnkjøp fra 1960-årene.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "about"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_13",
+      "question": "Hvilken norsk kunstner er dokumentert i Astrup Fearnley-samlingen?",
+      "answer": "Ida Ekblad",
+      "distractors": [
+        "Harriet Backer alene",
+        "Adolph Tidemand alene"
+      ],
+      "knowledge": "Museet oppgir Ida Ekblad blant kunstnerne som er representert i samlingen.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "about"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_14",
+      "question": "Hvilken internasjonal fotografisk kunstner inngår i samlingen?",
+      "answer": "Cindy Sherman",
+      "distractors": [
+        "Ansel Adams alene",
+        "Julia Margaret Cameron alene"
+      ],
+      "knowledge": "Cindy Sherman er blant kunstnerne museet selv oppgir som representert i samlingen.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "about"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_15",
+      "question": "Hvor ligger skulpturparken i forhold til museet?",
+      "answer": "Mot fjorden utenfor museumsbyggene",
+      "distractors": [
+        "Inne i det gamle museet i Kvadraturen",
+        "På toppen av Oslo S"
+      ],
+      "knowledge": "Skulpturparken ligger mellom museet og fjorden på Tjuvholmen.",
+      "question_type": "fact",
+      "difficulty": 3,
+      "source_ids": [
+        "byleksikon",
+        "park"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_16",
+      "question": "Hvem tegnet selve skulpturparken på Tjuvholmen?",
+      "answer": "Renzo Piano",
+      "distractors": [
+        "Arne Korsmo",
+        "Sverre Fehn"
+      ],
+      "knowledge": "Museet oppgir Renzo Piano som designer av Tjuvholmen skulpturpark.",
+      "question_type": "fact",
+      "difficulty": 3,
+      "source_ids": [
+        "park"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_17",
+      "question": "Hvilken kunstners verk «Eyes» finnes i skulpturparken?",
+      "answer": "Louise Bourgeois",
+      "distractors": [
+        "Edvard Munch",
+        "Gustav Vigeland"
+      ],
+      "knowledge": "Skulpturparken har verket Eyes (1992) av Louise Bourgeois.",
+      "question_type": "fact",
+      "difficulty": 3,
+      "source_ids": [
+        "park"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_18",
+      "question": "Er skulpturene i Tjuvholmen skulpturpark del av museets egen samling?",
+      "answer": "Nei, de har andre eiere",
+      "distractors": [
+        "Ja, alle eies av museet",
+        "Ja, de er statens samling"
+      ],
+      "knowledge": "Museet opplyser at skulpturparken ikke inngår i museets samling; de fleste verkene eies av Selvaags kunstsamling.",
+      "question_type": "context",
+      "difficulty": 3,
+      "source_ids": [
+        "park"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_19",
+      "question": "Hvilken utstilling åpnet museets nye bygg i 2012?",
+      "answer": "To Be With Art Is All We Ask",
+      "distractors": [
+        "Skrik og Madonna",
+        "Mellom fjell og fjord"
+      ],
+      "knowledge": "To Be With Art Is All We Ask var en åpningsutstilling i det nye museet i 2012.",
+      "question_type": "fact",
+      "difficulty": 3,
+      "source_ids": [
+        "opening"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_20",
+      "question": "Hva var en praktisk utfordring i de gamle lokalene?",
+      "answer": "Mange store samlingsverk måtte lagres",
+      "distractors": [
+        "Museet hadde ingen kunstsamling",
+        "Det gamle bygget lå for langt fra sentrum"
+      ],
+      "knowledge": "Kongehuset beskrev at plassmangel i Kvadraturen gjorde det vanskelig å stille ut store verk fra samlingen.",
+      "question_type": "context",
+      "difficulty": 3,
+      "source_ids": [
+        "royal"
+      ]
+    },
+    {
+      "claim_id": "claim_astrup_fearnley_quiz_21",
+      "question": "Hva må du undersøke for å vite hvilke samlingsverk som vises i dag?",
+      "answer": "Museets aktuelle utstillingsinformasjon",
+      "distractors": [
+        "Bare en gammel liste over eierskap",
+        "Hvem som tegnet kanalen"
+      ],
+      "knowledge": "En samling omfatter flere verk enn dem som henger i salene på et gitt tidspunkt; den aktuelle utstillingsoversikten er nødvendig.",
+      "question_type": "observation",
+      "difficulty": 3,
+      "source_ids": [
+        "about",
+        "building"
+      ]
+    }
+  ],
+  "quizCard_candidate_source_question_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    15,
+    18
+  ],
+  "note": "Candidate questions are source-based and require canonical runtime + Knowledge and QuizCard acceptance before v1."
+}
