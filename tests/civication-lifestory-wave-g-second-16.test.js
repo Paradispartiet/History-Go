@@ -28,7 +28,8 @@ const nextStatuses = {
   c17: ['hindring_beskrevet', 'drift_skal_avklare'],
   c23: ['versjoner_bevart', 'lesere_ukjente']
 };
-const all = base.scenes.filter(s => s.id.startsWith('wave_g_'));
+// This historical batch keeps its fixed 64-scene baseline; C09 is a later extension.
+const all = base.scenes.filter(s => s.id.startsWith('wave_g_') && !s.id.startsWith('wave_g_c01_c09_'));
 assert.equal(all.length, 64, 'Wave G first four batches: 64 scenes');
 assert.equal(all.reduce((sum,s) => sum+s.valg.length,0),128,'128 authored choices');
 const second = all.filter(s => {
