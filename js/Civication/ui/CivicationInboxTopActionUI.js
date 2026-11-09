@@ -3162,6 +3162,56 @@
     return html + '</details>';
   }
 
+
+  function lillebekkKontrollplanHtml() {
+    const model = lillebekkKontrollplanModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-kontrollplan="1">' +
+      '<summary>Intern kontrollplan – fordel tre faglige oppdrag</summary>' +
+      '<p>Arbeidsutkast etter Elins fiktive ledermøte. Ingen oppdrag sendes, dokumenter mottas eller godkjenninger skapes.</p>';
+    if (!model.meeting.current) {
+      html += '<p><strong>Sperret:</strong> Elins siste møtereferat er ikke gjeldende. Oppdater dokumentgrunnlaget og den interne gjennomgangen.</p>';
+    } else {
+      html += '<p><strong>Forsvarlige oppgaveutkast:</strong> ' +
+        model.packages.filter(function (p) { return p.safe; }).length + ' av 3.</p>';
+      html += model.packages.map(function (p) {
+        return '<section class="civi-inbox-body" data-civi-kontrollpakke="' + escapeHtml(p.id) + '">' +
+          '<h4>' + escapeHtml(p.ref) + ' – ' + escapeHtml(p.title) + '</h4>' +
+          '<p><strong>Fagansvar:</strong> ' + escapeHtml(p.owner) + '</p>' +
+          '<p><strong>Åpent forhold:</strong> ' + escapeHtml(p.issue) + '</p>' +
+          '<p><strong>Påkrevd kontrollgrunnlag:</strong> ' + escapeHtml(p.required) + '</p>' +
+          '<p><strong>Avhengighet:</strong> ' + escapeHtml(p.dependency) + '</p>' +
+          (p.latestNote ? '<p><strong>Tidligere notat' + (p.current ? '' : ' (utdatert)') +
+            ':</strong> ' + escapeHtml(p.latestNote) + '</p>' : '') +
+          '<label>Faglig behandling <select data-civi-kontrollpakke-choice>' +
+            '<option value="' + escapeHtml(p.safeId) + '"' + (p.latestOutcome === p.safeId ? ' selected' : '') +
+              '>' + escapeHtml(p.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(p.unsafeId) + '"' + (p.latestOutcome === p.unsafeId ? ' selected' : '') +
+              '>' + escapeHtml(p.unsafeLabel) + '</option></select></label>' +
+          '<label>Begrunnelse <textarea rows="3" maxlength="750" data-civi-kontrollpakke-reason ' +
+            'placeholder="Hvilket bevis må leveres, av hvem, før hvilken videre handling?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-kontrollpakke-save="1" data-package-id="' +
+            escapeHtml(p.id) + '">Journalfør internt oppgaveutkast</button>' +
+          '<p class="muted" role="status" data-civi-kontrollpakke-error></p></section>';
+      }).join("");
+      if (model.ready) {
+        html += '<section class="civi-inbox-body" data-civi-kontrollplan-editor="1">' +
+          '<h4>Samlet intern oppfølgingsrekkefølge</h4>' +
+          '<p>1. Trafikkfag og VA leverer hver sin kontrollerte vurdering. 2. Planjuss avstemmer § 4.1 mot det oppdaterte faggrunnlaget. 3. Rådgiver vurderer om sakens øvrige avvik fortsatt krever tiltak. Først da kan nytt ledermøte forberedes.</p>' +
+          '<label>Begrunn gjennomføring og stoppunkter <textarea rows="4" maxlength="1050" data-civi-kontrollplan-reason ' +
+            'placeholder="Fordel oppgaver og beskriv dokumentasjonskrav før videre saksbehandling."></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-kontrollplan-save="1">Journalfør intern kontrollplan – ikke send</button>' +
+          '<p class="muted" role="status" data-civi-kontrollplan-error></p></section>';
+      }
+    }
+    if (model.latestPlan) {
+      html += '<h4>' + (model.current ? 'Gjeldende kontrollplan' : 'Tidligere eller utdatert kontrollplan') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+          escapeHtml(model.latestPlan.note) + '</pre>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -3189,6 +3239,7 @@
         ${lillebekkSvarrundeHtml()}
         ${lillebekkSvarnotatHtml()}
         ${lillebekkElinSvarmoteHtml()}
+        ${lillebekkKontrollplanHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -3649,6 +3700,32 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-kontrollpakke-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-kontrollpakke]");
+        const result = recordLillebekkKontrollpakke(
+          String(button.getAttribute("data-package-id") || ""),
+          card?.querySelector("[data-civi-kontrollpakke-choice]")?.value || "",
+          card?.querySelector("[data-civi-kontrollpakke-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-kontrollpakke-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-kontrollplan-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-kontrollplan-editor]");
+        const result = recordLillebekkKontrollplan(
+          card?.querySelector("[data-civi-kontrollplan-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-kontrollplan-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-elin3-save]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-elin3-question]");
@@ -4189,6 +4266,9 @@
     recordLillebekkSvarnotat,
     getLillebekkElinSvarmoteModel: lillebekkElinSvarmoteModel,
     recordLillebekkElinSvarmoteSvar,
-    recordLillebekkElinSvarmoteReferat
+    recordLillebekkElinSvarmoteReferat,
+    getLillebekkKontrollplanModel: lillebekkKontrollplanModel,
+    recordLillebekkKontrollpakke,
+    recordLillebekkKontrollplan
   };
 })();
