@@ -58,7 +58,8 @@
     "searched_paths": [
       "data/quiz/manifest.json",
       "data/quizcards/natur/manifest.json",
-      "data/quiz/quiz_natur.json"
+      "data/quiz/quiz_natur.json",
+      "data/quiz/natur/akerselva_utlop_bjorvika_sets.json"
     ],
     "active_before": {
       "set_count": 0,
@@ -67,9 +68,18 @@
     "decisions": [
       "No direct target in active quiz manifest or Natur QuizCard manifest.",
       "Do not conflate Akerselva as an entire river or Alnaelvas earlier outlet with the modern Akerselva mouth.",
-      "Do not treat a future projected allmenning completion as observed reality."
+      "Do not treat a future projected allmenning completion as observed reality.",
+      "Found unregistered legacy 6×7=42 question file. 42 IDs exist but no quiz_id or Knowledge text; 13 local species answers / field safety instructions include unrelated and undated inferred conditions. Retain legacy file and IDs completely unchanged, use only source-proven physical river and clean-water questions in a distinct 3×7 active quiz file."
     ],
-    "knowledge_migration": "Add new quiz and Knowledge IDs only; do not alter existing Akerselva user progress."
+    "knowledge_migration": "Add new quiz and Knowledge IDs only; do not alter existing Akerselva user progress.",
+    "legacy_nonmanifest": {
+      "file": "data/quiz/natur/akerselva_utlop_bjorvika_sets.json",
+      "set_count": 6,
+      "question_count": 42,
+      "active": false,
+      "handling": "preserved_untouched_separately",
+      "review_note": "Found unregistered legacy 6×7=42 question file. 42 IDs exist but no quiz_id or Knowledge text; 13 local species answers / field safety instructions include unrelated and undated inferred conditions. Retain legacy file and IDs completely unchanged, use only source-proven physical river and clean-water questions in a distinct 3×7 active quiz file."
+    }
   },
   "profile_decision": {
     "profile": "narrow",
