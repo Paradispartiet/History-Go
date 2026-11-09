@@ -1130,7 +1130,7 @@ assert.equal(exercise.roundsCount,1);
 assert.deepEqual(Array.from(exercise.docs.map(d=>d.ref)),['LBK-KR-21','LBK-KR-22','LBK-KR-23']);
 assert.equal(api.renderSections(),true);
 for(const token of ['LBK-KR-21','LBK-KR-22','LBK-KR-23','1,25 meter','0,90 meter',
- '42 m³','26 m³','12 m³','4 m³','§ 4.1','IKKE reelt dokumentmottak']) {
+ '42 m³','26 m³','12 m³','4 m³','§ 4.1','ikke faktisk mottatte fagrapporter']) {
  assert.ok(host.innerHTML.includes(token),'authored independent fictional control excerpt '+token);
 }
 assert.equal((host.innerHTML.match(/data-civi-kontrollovelse-save="1"/g)||[]).length,3);
