@@ -16,7 +16,7 @@ const quizManifest=read(quizManifestPath);
 for(const plan of plans){
  const {category,id,label,subtitle,pilot}=plan;
  const briefPath='data/quiz/production_briefs/'+category+'/'+id+'.json';
- const quizPath='data/quiz/'+category+'/'+id+'_sets.json';
+ const quizPath='data/quiz/'+category+'/'+id+'_oslo06_sets.json';
  const cardPath='data/quizcards/'+category+'/'+id+'_quizcard_v1.json';
  const cardManifestPath='data/quizcards/'+category+'/manifest.json';
  const brief=read(briefPath);
