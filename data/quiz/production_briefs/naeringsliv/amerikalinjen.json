@@ -1,0 +1,675 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "naeringsliv",
+  "targetId": "amerikalinjen",
+  "reviewed_at": "2026-11-09",
+  "source_review_basis": "Read Oslo byleksikon's Den Norske Amerikalinje company and Utstikker 1 histories and Oslo kommune's Jernbanetorget heritage interpretation. Explicitly distinguish office, waiting hall, quay, ship, DFDS neighbor, later hotel and company timelines.",
+  "sources": {
+    "byleksikon": {
+      "url": "https://oslobyleksikon.no/side/Den_Norske_Amerikalinje",
+      "source_type": "oslo_local_encyclopedia",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-09",
+      "review_note": "Company founded 1910; transatlantic sailings 1913; wharf moves and aviation/cruise history. Differentiates company vs building."
+    },
+    "municipal": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/amerikalinjen-og-dfds",
+      "source_type": "oslo_municipal_heritage_walk",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-09",
+      "review_note": "Jernbanetorget 2, 1916–19 building, Bjercke/Eliassen, Iddefjord granite entrance, Triton and Nereid, former luggage hall and CEO office; not DFDS."
+    },
+    "utstikker": {
+      "url": "https://oslobyleksikon.no/side/Utstikker_I",
+      "source_type": "oslo_local_port_encyclopedia",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-09",
+      "review_note": "Utstikker 1, Skur 44 Amerikaskuret, leased to NAL in 1925 and later removed; no quay at office building."
+    },
+    "hotel": {
+      "url": "https://amerikalinjen.com/no/var-historie/",
+      "source_type": "present_occupant_history",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-09",
+      "review_note": "Building later reused as Amerikalinjen Hotel; not proof of original hotel use."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [],
+    "emne_ids": [
+      "em_naering_havn_transport",
+      "em_naering_logistikk_verdikjeder",
+      "em_naering_byens_okonomiske_rom"
+    ],
+    "topic_hook_ids": [],
+    "method_ids": [
+      "met_naering_romlig_okonomisk_analyse"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quizcards/naeringsliv/manifest.json",
+      "data/quiz/quiz_naeringsliv.json"
+    ],
+    "active_before": {
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "No active direct Amerikalinjen target set or QuizCard in current manifests.",
+      "Do not duplicate Oslo S, DFDS building, Revierkaia or Utstikker 1 place identity.",
+      "Separate building (1919), company (1910), first sailings (1913), wharf (1925)."
+    ],
+    "knowledge_migration": "Create new canonical Knowledge IDs only at activation; preserve all prior IDs."
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "confirmed": true,
+    "justification": "Three nonduplicating source-rich progressions: maritime office and architecture; passenger route and quay logistics; immigration markets, cruise transition and surviving facade."
+  },
+  "held_back_candidates": [
+    "Exact contemporary ferry departure times.",
+    "Equating DFDS facade with NAL building.",
+    "Invented passenger feelings or numbers at the waiting hall.",
+    "Present-day hotel rooms treated as 1919 evidence."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_amerikalinjen_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Amerikalinjens administrasjonsbygg står på Jernbanetorget 2; DFDS-bygget ligger i Karl Johans gate 1.",
+      "source_ids": [
+        "municipal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rederiet ble stiftet for å drive frakt- og passasjerfart mellom Norge og USA.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "DS Kristianiafjord begynte transatlantisk rutefart i juni 1913.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "DS Bergensfjord begynte å gå over Atlanteren noen måneder etter Kristianiafjord i 1913.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Andreas Hesselberg Bjercke og Georg Eliassen tegnet kontorbygget på Jernbanetorget.",
+      "source_ids": [
+        "byleksikon",
+        "municipal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "I hallen kunne Amerikabåt-passasjerer vente og levere skipssekker eller amerikakofferter; ombordstigning skjedde ved kaia.",
+      "source_ids": [
+        "municipal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Portalen i Iddefjordgranitt har skulpturer av Triton og en havnymfe, en nereide.",
+      "source_ids": [
+        "municipal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Før flyttingen til Vippetangkaia benyttet NALs passasjerskip Revierkaia i Bjørvika.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Fra 1915 brukte NAL Vippetangkaia, et annet sted enn kontoret på Jernbanetorget.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Skur 38 sto ferdig ved Vippetangkaia som ekspedisjonsskur da Amerikalinjen tok kaia i bruk.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "I 1925 flyttet rederiets havneekspedisjon til Utstikker 1.",
+      "source_ids": [
+        "byleksikon",
+        "utstikker"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Skur 44 var ekspedisjons- og lagerbygningen på Utstikker 1, også kalt Amerikaskuret.",
+      "source_ids": [
+        "utstikker"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kontorbygget hadde ekspedisjon og ventehall; skipsombordstigning fant sted ved havnens anløpskaier.",
+      "source_ids": [
+        "municipal",
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_logistikk_verdikjeder"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Administrerende direktør Gustav Henriksen hadde hjørnekontor i andre etasje.",
+      "source_ids": [
+        "municipal"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Amerikanske innvandringskvoter fra 1921 bidro til færre europeiske emigranter på NALs skip.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Etter børskrakket i 1929 falt antallet reisende ytterligere på rederiets passasjerskip.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "NAL la inn Halifax som anløp da Canada fortsatt tok imot emigranter mens USA strammet inn innreisen.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Rederiet utvidet med turisme og cruisefart, blant annet Nordkappscruise fra 1925.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "I 1958 reiste flere med fly enn skip over Atlanteren, og passasjerskipsmarkedet ble kraftig endret.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "NALs siste transatlantiske rundtur ble gjennomført i september 1971 med Bergensfjord.",
+      "source_ids": [
+        "byleksikon"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_havn_transport"
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Den maritime portalen er bevart ved Jernbanetorget, mens Skur 44 og selve havnekaia lå et annet sted.",
+      "source_ids": [
+        "municipal",
+        "utstikker"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_naering_byens_okonomiske_rom",
+      "method_id": "met_naering_romlig_okonomisk_analyse"
+    }
+  ],
+  "candidate_questions": [
+    {
+      "claim_id": "claim_amerikalinjen_quiz_01",
+      "question": "Hvor står Amerikalinjens gamle administrasjonsbygg?",
+      "answer": "Jernbanetorget 2",
+      "distractors": [
+        "Karl Johans gate 1",
+        "Akershusstranda 13"
+      ],
+      "knowledge": "Amerikalinjens administrasjonsbygg står på Jernbanetorget 2; DFDS-bygget ligger i Karl Johans gate 1.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "municipal"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_02",
+      "question": "Hvilken oppgave skulle Den Norske Amerikalinje drive?",
+      "answer": "Passasjer- og godstrafikk mellom Norge og USA",
+      "distractors": [
+        "Bare havneferger på Oslofjorden",
+        "Kun togtrafikk gjennom Nordmarka"
+      ],
+      "knowledge": "Rederiet ble stiftet for å drive frakt- og passasjerfart mellom Norge og USA.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_03",
+      "question": "Hva het det første passasjerskipet NAL satte i rutefart til New York?",
+      "answer": "Kristianiafjord",
+      "distractors": [
+        "Christian Radich",
+        "M/S Kong Harald"
+      ],
+      "knowledge": "DS Kristianiafjord begynte transatlantisk rutefart i juni 1913.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_04",
+      "question": "Hvilket annet passasjerskip kom i ruten det første året?",
+      "answer": "Bergensfjord",
+      "distractors": [
+        "Dronning Maud",
+        "Polarlys"
+      ],
+      "knowledge": "DS Bergensfjord begynte å gå over Atlanteren noen måneder etter Kristianiafjord i 1913.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_05",
+      "question": "Hvilke arkitekter tegnet Amerikalinjens kontorbygg?",
+      "answer": "Andreas Bjercke og Georg Eliassen",
+      "distractors": [
+        "Magnus Poulsson alene",
+        "Arnstein Arneberg og Magnus Poulsson"
+      ],
+      "knowledge": "Andreas Hesselberg Bjercke og Georg Eliassen tegnet kontorbygget på Jernbanetorget.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "byleksikon",
+        "municipal"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_06",
+      "question": "Hva brukte reisende den store ventehallen til?",
+      "answer": "Å vente og levere bagasje før avreise",
+      "distractors": [
+        "Å borde skipet direkte fra huset",
+        "Å gå om bord i tog til Bergen"
+      ],
+      "knowledge": "I hallen kunne Amerikabåt-passasjerer vente og levere skipssekker eller amerikakofferter; ombordstigning skjedde ved kaia.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "municipal"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_07",
+      "question": "Hvilke mytologiske figurer står ved hovedportalen?",
+      "answer": "Triton og en nereide",
+      "distractors": [
+        "Tor og Odin",
+        "Sankt Hallvard og St. Olav"
+      ],
+      "knowledge": "Portalen i Iddefjordgranitt har skulpturer av Triton og en havnymfe, en nereide.",
+      "question_type": "fact",
+      "difficulty": 1,
+      "source_ids": [
+        "municipal"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_08",
+      "question": "Hvilken kai brukte Amerikalinjens passasjerskip før Vippetangkaia?",
+      "answer": "Revierkaia",
+      "distractors": [
+        "Sørengutstikkeren",
+        "Honnørbrygga"
+      ],
+      "knowledge": "Før flyttingen til Vippetangkaia benyttet NALs passasjerskip Revierkaia i Bjørvika.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_09",
+      "question": "Hva het kaia Amerikalinjen tok i bruk i 1915?",
+      "answer": "Vippetangkaia",
+      "distractors": [
+        "Aker Brygge",
+        "Langkaia ved Operaen"
+      ],
+      "knowledge": "Fra 1915 brukte NAL Vippetangkaia, et annet sted enn kontoret på Jernbanetorget.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_10",
+      "question": "Hva var Skur 38 ved Vippetangkaia?",
+      "answer": "Et ekspedisjonsskur for skipsfarten",
+      "distractors": [
+        "Et kunstmuseum",
+        "Hovedinngangen i kontorbygningen"
+      ],
+      "knowledge": "Skur 38 sto ferdig ved Vippetangkaia som ekspedisjonsskur da Amerikalinjen tok kaia i bruk.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_11",
+      "question": "Hvilket kaianlegg tok NAL i bruk i 1925?",
+      "answer": "Utstikker 1",
+      "distractors": [
+        "Utstikker 3",
+        "Havnepromenaden ved Tjuvholmen"
+      ],
+      "knowledge": "I 1925 flyttet rederiets havneekspedisjon til Utstikker 1.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "byleksikon",
+        "utstikker"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_12",
+      "question": "Hva var «Amerikaskuret» ved Utstikker 1?",
+      "answer": "Skur 44 for gods og passasjerer",
+      "distractors": [
+        "Skur 38 på Vippetangen",
+        "En ventesal på Oslo S"
+      ],
+      "knowledge": "Skur 44 var ekspedisjons- og lagerbygningen på Utstikker 1, også kalt Amerikaskuret.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "utstikker"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_13",
+      "question": "Hvor gikk passasjerene om bord i Amerikabåten?",
+      "answer": "Ved havnekaia",
+      "distractors": [
+        "I ventesalen på Jernbanetorget",
+        "I det nye MUNCH-museet"
+      ],
+      "knowledge": "Kontorbygget hadde ekspedisjon og ventehall; skipsombordstigning fant sted ved havnens anløpskaier.",
+      "question_type": "context",
+      "difficulty": 2,
+      "source_ids": [
+        "municipal",
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_14",
+      "question": "Hvem hadde hjørnekontor i Amerikalinjen-byggets andre etasje?",
+      "answer": "Gustav Henriksen",
+      "distractors": [
+        "Magnus Poulsson",
+        "Thomas Fearnley"
+      ],
+      "knowledge": "Administrerende direktør Gustav Henriksen hadde hjørnekontor i andre etasje.",
+      "question_type": "fact",
+      "difficulty": 2,
+      "source_ids": [
+        "municipal"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_15",
+      "question": "Hva endret amerikanske myndigheter for innvandring fra Europa fra 1921?",
+      "answer": "De innførte kvoter",
+      "distractors": [
+        "De avskaffet alle passkontroller",
+        "De åpnet alle grenser uten begrensning"
+      ],
+      "knowledge": "Amerikanske innvandringskvoter fra 1921 bidro til færre europeiske emigranter på NALs skip.",
+      "question_type": "context",
+      "difficulty": 3,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_16",
+      "question": "Hva rammet rederiets passasjermarked ytterligere etter 1929?",
+      "answer": "Børskrakket og økonomisk krise",
+      "distractors": [
+        "Åpningen av Oslo lufthavn Gardermoen",
+        "Nedleggelsen av Oslo rådhus"
+      ],
+      "knowledge": "Etter børskrakket i 1929 falt antallet reisende ytterligere på rederiets passasjerskip.",
+      "question_type": "context",
+      "difficulty": 3,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_17",
+      "question": "Hvorfor ble Halifax lagt inn som havn i reiseruten?",
+      "answer": "Canada tok fortsatt imot europeiske emigranter",
+      "distractors": [
+        "Halifax var den gamle Oslo-havnen",
+        "For å frakte passasjerer til Grønland"
+      ],
+      "knowledge": "NAL la inn Halifax som anløp da Canada fortsatt tok imot emigranter mens USA strammet inn innreisen.",
+      "question_type": "context",
+      "difficulty": 3,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_18",
+      "question": "Hvilken annen type reiser satset NAL på da emigrasjonen avtok?",
+      "answer": "Turist- og cruisereiser",
+      "distractors": [
+        "Kun trikketransport i Oslo",
+        "Bare innenlands bussruter"
+      ],
+      "knowledge": "Rederiet utvidet med turisme og cruisefart, blant annet Nordkappscruise fra 1925.",
+      "question_type": "fact",
+      "difficulty": 3,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_19",
+      "question": "Hva forandret reisen over Atlanteren mest i etterkrigstiden?",
+      "answer": "Stadig flere valgte fly",
+      "distractors": [
+        "Ingen kunne lenger reise utenlands",
+        "Skipene sluttet å kunne frakte gods"
+      ],
+      "knowledge": "I 1958 reiste flere med fly enn skip over Atlanteren, og passasjerskipsmarkedet ble kraftig endret.",
+      "question_type": "context",
+      "difficulty": 3,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_20",
+      "question": "Når fant NALs siste transatlantiske rundtur sted?",
+      "answer": "I 1971",
+      "distractors": [
+        "I 1910",
+        "I 2008"
+      ],
+      "knowledge": "NALs siste transatlantiske rundtur ble gjennomført i september 1971 med Bergensfjord.",
+      "question_type": "fact",
+      "difficulty": 3,
+      "source_ids": [
+        "byleksikon"
+      ]
+    },
+    {
+      "claim_id": "claim_amerikalinjen_quiz_21",
+      "question": "Hva kan man se ved kontoret i dag som forteller om den gamle sjøfarten?",
+      "answer": "Den maritime portalen med havfigurer",
+      "distractors": [
+        "Skur 44 inne i hotellresepsjonen",
+        "Selve passasjerskipet i inngangen"
+      ],
+      "knowledge": "Den maritime portalen er bevart ved Jernbanetorget, mens Skur 44 og selve havnekaia lå et annet sted.",
+      "question_type": "observation",
+      "difficulty": 3,
+      "source_ids": [
+        "municipal",
+        "utstikker"
+      ]
+    }
+  ],
+  "quizCard_candidate_source_question_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    11,
+    19
+  ],
+  "note": "21 distinct verified source claims; candidate MCQ payload not active before canonical quiz & Knowledge/QuizCard validation."
+}
