@@ -12184,6 +12184,357 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_g_c01_c09_dag35_rytmen_endrer_seg",
+      "threadId": "wave_g_c01",
+      "dag": 1,
+      "livsdagFra": 35,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Når den faste kvelden ikke lenger passer",
+      "tekst": "Jonas sender en melding etter at dere har hatt kontakt litt av og på: «Jeg vil gjerne se deg. Jeg får bare ikke til en fast kveld nå. Jeg burde sagt det tydeligere.» Du savner hvor enkelt det pleide å være å møtes. Samtidig vil du ikke holde av kveldene dine på ubestemt tid. Jonas har ikke foreslått en ny dato, og du vet ikke mer om grunnen enn det han selv har skrevet.",
+      "valg": [
+        {
+          "id": "si_det_direkte",
+          "tekst": "«Jeg savner å se deg. Det er bare kjipt å holde av tid uten at vi har en avtale.»",
+          "konsekvensTekst": "Du sier hva usikkerheten gjør med deg, men legger ingen skjult hensikt i Jonas' svar. Det koster litt å ta samtalen.",
+          "effekter": {
+            "meters": {
+              "energi": -2,
+              "integritet": 2
+            },
+            "relasjoner": {
+              "venn": 2
+            },
+            "flagg": {
+              "c09_jonas_inngang": "rolig",
+              "c09_jonas_foerste_svar": "direkte"
+            }
+          }
+        },
+        {
+          "id": "gi_rom",
+          "tekst": "«Greit. Send en melding når du vet hvilken kveld du har fri.»",
+          "konsekvensTekst": "Du lar Jonas ta neste initiativ. Kalenderen er din igjen, og du har ikke inngått noen ny avtale.",
+          "effekter": {
+            "meters": {
+              "handlingsrom": 2,
+              "energi": 1
+            },
+            "relasjoner": {
+              "venn": 1
+            },
+            "flagg": {
+              "c09_jonas_inngang": "rolig",
+              "c09_jonas_foerste_svar": "rom"
+            }
+          }
+        },
+        {
+          "id": "foreslaa_kort_tur",
+          "tekst": "«Kunne vi gått en kort tur om tre dager, hvis det passer?»",
+          "konsekvensTekst": "Du tilbyr et konkret alternativ til en fast kveld. Forslaget må fortsatt få et svar før dere kan avtale noe.",
+          "effekter": {
+            "meters": {
+              "energi": -1,
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "venn": 2
+            },
+            "flagg": {
+              "c09_jonas_inngang": "tur",
+              "c09_jonas_foerste_svar": "forslag"
+            }
+          }
+        },
+        {
+          "id": "tolk_som_avvisning",
+          "tekst": "«Du kunne bare sagt at du ikke gidder å se meg mer.»",
+          "konsekvensTekst": "Du gjør en usikkerhet til en anklage. Jonas har ikke sagt at han vil avslutte vennskapet.",
+          "effekter": {
+            "meters": {
+              "psyke": -2,
+              "integritet": -2
+            },
+            "relasjoner": {
+              "venn": -5
+            },
+            "flagg": {
+              "c09_jonas_inngang": "beskyldning",
+              "c09_jonas_foerste_svar": "antakelse"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c01_c09_dag36_svar_uten_lovnad",
+      "threadId": "wave_g_c01",
+      "dag": 1,
+      "livsdagFra": 36,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": {
+        "flagg": {
+          "c09_jonas_inngang": "rolig"
+        }
+      },
+      "tittel": "Jonas er tydelig om det han kan love",
+      "tekst": "Jonas svarer: «Jeg vil gjerne ha kontakt. Men jeg kan ikke ha en fast kveld nå, og jeg vet ikke når det går opp. Det er bedre at jeg sier fra når jeg faktisk kan.» Det er et svar på situasjonen mellom dere, ikke en bekreftet invitasjon.",
+      "valg": [
+        {
+          "id": "takk_og_lev_videre",
+          "tekst": "«Takk for at du er tydelig. Da holder jeg ikke av en bestemt kveld.»",
+          "konsekvensTekst": "Du anerkjenner svaret og planlegger selv. Jonas har ikke lovet et treff.",
+          "effekter": {
+            "meters": {
+              "handlingsrom": 2,
+              "psyke": 1
+            },
+            "relasjoner": {
+              "venn": 2
+            },
+            "flagg": {
+              "c09_jonas_svar_mottatt": true,
+              "c09_jonas_svar_etterspill": "avklart"
+            }
+          }
+        },
+        {
+          "id": "kort_svar",
+          "tekst": "«Skjønner. Vi høres.»",
+          "konsekvensTekst": "Du lar samtalen være kort, uten å gjøre en vennlig melding om til en avtale.",
+          "effekter": {
+            "meters": {
+              "energi": 2
+            },
+            "relasjoner": {
+              "venn": 1
+            },
+            "flagg": {
+              "c09_jonas_svar_mottatt": true,
+              "c09_jonas_svar_etterspill": "kort"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c01_c09_dag36_svar_pa_tur",
+      "threadId": "wave_g_c01",
+      "dag": 1,
+      "livsdagFra": 36,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": {
+        "flagg": {
+          "c09_jonas_inngang": "tur"
+        }
+      },
+      "tittel": "Et tidspunkt, men ennå ingen avtale",
+      "tekst": "Jonas svarer: «Om tre dager kan jeg klokka seks, en liten runde etter jobb. Kan du da?» Nå finnes det et konkret forslag fra ham også. Det er fremdeles ikke en avtale før du har svart.",
+      "valg": [
+        {
+          "id": "bekreft_turen",
+          "tekst": "«Ja, klokka seks passer. Skal vi møtes ved den gamle kafeen?»",
+          "konsekvensTekst": "Du bekrefter både tiden og møtestedet. Siden Jonas foreslo tidspunktet og du har takket ja, finnes nå en avtale om en kort tur.",
+          "effekter": {
+            "meters": {
+              "energi": -1
+            },
+            "relasjoner": {
+              "venn": 3
+            },
+            "flagg": {
+              "c09_jonas_svar_mottatt": true,
+              "c09_jonas_svar_etterspill": "tur_avtalt",
+              "c09_jonas_tur_status": "bekreftet"
+            }
+          }
+        },
+        {
+          "id": "avslaa_turen",
+          "tekst": "«Jeg kan ikke da likevel, men takk for forslaget. Vi tar det senere.»",
+          "konsekvensTekst": "Du avslår tidspunktet. Et foreslått møte blir ikke ført som gjennomført eller avtalt.",
+          "effekter": {
+            "meters": {
+              "handlingsrom": 2
+            },
+            "relasjoner": {
+              "venn": 1
+            },
+            "flagg": {
+              "c09_jonas_svar_mottatt": true,
+              "c09_jonas_svar_etterspill": "tur_ikke_avtalt",
+              "c09_jonas_tur_status": "ikke_avtalt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c01_c09_dag36_rett_opp_antakelsen",
+      "threadId": "wave_g_c01",
+      "dag": 1,
+      "livsdagFra": 36,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": {
+        "flagg": {
+          "c09_jonas_inngang": "beskyldning"
+        }
+      },
+      "tittel": "Det var ikke det Jonas sa",
+      "tekst": "Jonas skriver: «Det er ikke det jeg mener. Jeg vil se deg, men jeg kan ikke love en fast kveld. Det gjør vondt når du sier at jeg ikke gidder.» Han avviser tolkningen din, ikke vennskapet. Du kan ta ansvar for ordene dine uten at det gjør all usikkerhet borte.",
+      "valg": [
+        {
+          "id": "rett_opp",
+          "tekst": "«Unnskyld. Jeg var skuffet, men jeg skulle ikke ha sagt at du ikke gidder.»",
+          "konsekvensTekst": "Du tar tilbake en ubegrunnet påstand. Jonas svarer «Takk for at du sier det.» Det er en mulighet for å reparere tillit, ikke et løfte om et møte.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": -1
+            },
+            "relasjoner": {
+              "venn": 3
+            },
+            "flagg": {
+              "c09_jonas_svar_mottatt": true,
+              "c09_jonas_svar_etterspill": "beskyldning_rettet"
+            }
+          }
+        },
+        {
+          "id": "hold_fast",
+          "tekst": "«Det er sånn det føles for meg.»",
+          "konsekvensTekst": "Du sier hva du føler, men korrigerer ikke beskyldningen. Jonas svarer ikke med en ny invitasjon. Misforståelsen står fortsatt mellom dere.",
+          "effekter": {
+            "meters": {
+              "psyke": -2,
+              "integritet": -1
+            },
+            "relasjoner": {
+              "venn": -3
+            },
+            "flagg": {
+              "c09_jonas_svar_mottatt": true,
+              "c09_jonas_svar_etterspill": "beskyldning_aapen"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c01_c09_dag37_en_ny_rytme",
+      "threadId": "wave_g_c01",
+      "dag": 1,
+      "livsdagFra": 37,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": {
+        "flagg": {
+          "c09_jonas_svar_mottatt": true
+        }
+      },
+      "tittel": "Vennskap uten en ferdig fasit",
+      "tekst": "Du leser gjennom samtalen med Jonas. Der står både det du skrev og det han faktisk svarte. Det gjør en forskjell om dere bare har sendt meldinger, om noen har foreslått å treffes, eller om begge faktisk har bekreftet et tidspunkt. Vennskapet trenger ikke bli som før for å ha verdi, men det krever heller ikke at du setter livet ditt på vent.",
+      "valg": [
+        {
+          "id": "bruke_egen_tid",
+          "tekst": "La dagene være åpne for dine egne planer, uten å tolke stillhet som avvisning.",
+          "konsekvensTekst": "Du bestemmer over kalenderen. Du har ikke strøket en avtale som aldri ble gjort.",
+          "effekter": {
+            "meters": {
+              "handlingsrom": 2
+            },
+            "flagg": {
+              "c09_jonas_refleksjon": "egen_tid"
+            }
+          }
+        },
+        {
+          "id": "skille_fakta_og_frykt",
+          "tekst": "Skriv for deg selv hva Jonas har sagt, og hva du bare frykter.",
+          "konsekvensTekst": "Du får klarere skille mellom en konkret melding og dine egne antakelser. Ingen nye utsagn blir tillagt Jonas.",
+          "effekter": {
+            "meters": {
+              "integritet": 2,
+              "psyke": 1
+            },
+            "flagg": {
+              "c09_jonas_refleksjon": "fakta_og_frykt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_g_c01_c09_dag38_den_avtalte_turen",
+      "threadId": "wave_g_c01",
+      "dag": 1,
+      "livsdagFra": 38,
+      "fase": "kveld",
+      "visningstype": "samtale",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "conditions": {
+        "flagg": {
+          "c09_jonas_tur_status": "bekreftet"
+        }
+      },
+      "tittel": "Den korte turen dere avtalte",
+      "tekst": "Tre dager etter forslaget møtes du og Jonas ved den gamle kafeen klokka seks. Det blir en kort tur i nabolaget. Ingen av dere har lovet å gjeninnføre en fast ukentlig kveld. Akkurat nå er dere to venner som faktisk møtte opp til det dere avtalte.",
+      "valg": [
+        {
+          "id": "sporr_hvordan_han_har_det",
+          "tekst": "Spør hvordan Jonas har hatt det i det siste, uten å kreve en forklaring.",
+          "konsekvensTekst": "Jonas forteller litt om uka si. Dere fullfører den avtalte turen. Ingen ny kveld blir automatisk booket.",
+          "effekter": {
+            "meters": {
+              "energi": -2,
+              "psyke": 2
+            },
+            "relasjoner": {
+              "venn": 3
+            },
+            "flagg": {
+              "c09_jonas_tur_status": "gjennomfort",
+              "c09_jonas_tur_etterspill": "lyttet"
+            }
+          }
+        },
+        {
+          "id": "hold_det_hverdagslig",
+          "tekst": "Snakk om småting og avslutt turen når dere hadde tenkt.",
+          "konsekvensTekst": "Det blir en kort, hyggelig tur uten nye løfter. At dere møttes i dag, betyr ikke at en ny fast ordning er avtalt.",
+          "effekter": {
+            "meters": {
+              "energi": -1,
+              "psyke": 2
+            },
+            "relasjoner": {
+              "venn": 2
+            },
+            "flagg": {
+              "c09_jonas_tur_status": "gjennomfort",
+              "c09_jonas_tur_etterspill": "rolig"
+            }
+          }
+        }
+      ]
     }
   ]
 }
