@@ -1,0 +1,82 @@
+name: Oslo havnefront 06 — source-locked WebP production (one-shot)
+on:
+  push:
+    branches:
+      - research/oslo-havnefront-bolk06-tekst-20261109
+    paths:
+      - .github/workflows/oslo-havnefront06-image-production-once.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oslo-havnefront06-media-once
+  cancel-in-progress: false
+
+jobs:
+  images:
+    name: Fetch licensed originals, compose two images each, verify and push
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out scoped PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/oslo-havnefront-bolk06-tekst-20261109
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Fetch and validate Wikimedia source metadata and licenses, create WebP assets
+        run: node scripts/build-oslo-havnefront06-images.mjs
+      - name: Verify real WebP dimensions and source hashes
+        run: node scripts/build-oslo-havnefront06-images.mjs --check
+      - name: Create visual contact sheet for follow-up editorial QA
+        run: node scripts/review-oslo-havnefront06-images.mjs
+      - name: Regenerate Place indexes and Place-open payloads
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run places:index:check
+          npm run place-open:check
+      - name: Upload visual preview
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-havnefront06-image-contact-sheet
+          path: artifacts/oslo-havnefront06-media-review/contact-sheet.jpg
+          retention-days: 14
+      - name: Commit only six known Place image records, source-provenance and generated files, then self-delete
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/places/kunst/oslo/places_kunst/astrup_fearnley.json
+          git add data/places/by/oslo/places/akrobaten_gangbro.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_03/amerikalinjen.json
+          git add data/places/by/oslo/places/aker_brygge.json
+          git add data/places/natur/oslo/places_oslo_natur_akerselvarute/akerselva_utlop_bjorvika.json
+          git add bilder/places/oslo-havnefront06-20261109/
+          git add reports/place-production/oslo-havnefront06-media-provenance.json
+          git add data/places/places_index.json
+          git add data/runtime/place-open/astrup_fearnley.json
+          git add data/runtime/place-open/akrobaten_gangbro.json
+          git add data/runtime/place-open/amerikalinjen.json
+          git add data/runtime/place-open/aker_brygge.json
+          git add data/runtime/place-open/akerselva_utlop_bjorvika.json
+          git rm -- .github/workflows/oslo-havnefront06-image-production-once.yml
+          git diff --cached --name-only | while IFS= read -r f; do
+            case "$f" in
+              data/places/kunst/oslo/places_kunst/astrup_fearnley.json|data/places/by/oslo/places/akrobaten_gangbro.json|data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_03/amerikalinjen.json|data/places/by/oslo/places/aker_brygge.json|data/places/natur/oslo/places_oslo_natur_akerselvarute/akerselva_utlop_bjorvika.json|bilder/places/oslo-havnefront06-20261109/*|reports/place-production/oslo-havnefront06-media-provenance.json|data/places/places_index.json|data/runtime/place-open/astrup_fearnley.json|data/runtime/place-open/akrobaten_gangbro.json|data/runtime/place-open/amerikalinjen.json|data/runtime/place-open/aker_brygge.json|data/runtime/place-open/akerselva_utlop_bjorvika.json|.github/workflows/oslo-havnefront06-image-production-once.yml) ;;
+              *) echo "UNEXPECTED_STAGED_FILE: $f" >&2; exit 1;;
+            esac
+          done
+          git diff --cached --stat
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Materialize five licensed Oslo havnefront Place image pairs"
+          git push origin HEAD:research/oslo-havnefront-bolk06-tekst-20261109
