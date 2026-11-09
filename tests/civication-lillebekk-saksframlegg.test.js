@@ -1060,7 +1060,7 @@ assert.equal(api.renderSections(),true);
 assert.equal((host.innerHTML.match(/data-civi-kontrollpakke-save="1"/g)||[]).length,3);
 assert.ok(!host.innerHTML.includes('data-civi-kontrollplan-save="1"'));
 for(const t of ['LBK-KP-18','LBK-KP-19','LBK-KP-20','1,25 m','0,90 m','42 m³','26 m³',
- '§ 4.1','kommunens trafikkfaglige','Kommunal planjurist']) {
+ '§ 4.1','Kommunens trafikkfaglige','Kommunal planjurist']) {
  assert.ok(host.innerHTML.includes(t),'render specific work package '+t);
 }
 const packageReason='Fagansvarlig må dokumentere beregninger, risiko og ansvar med kontrollerbare bilag. Uten skriftlig kontrollgrunnlag kan saken ikke gå videre til vedtak.';
