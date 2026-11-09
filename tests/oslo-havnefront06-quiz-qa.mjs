@@ -58,7 +58,14 @@ for(const [category,id] of plans){
    assert.equal(cardManifest.collections.filter(x=>x===id+'_quizcard_v1.json').length,1);
  });
 }
-test('all original harborfront quiz sets are retained unchanged',()=>{
- const counts={aker_brygge:8,akershus_kaier:5,akrobaten_gangbro:1};
- for(const [id,count] of Object.entries(counts))assert.equal(manifest.sets.filter(e=>e.targetId===id).length,count,id);
+test('all original harborfront playable quiz sets and original IDs are retained',()=>{
+ const expected={aker_brygge:{sets:8,questions:56},akershus_kaier:{sets:5,questions:30},akrobaten_gangbro:{sets:1,questions:10}};
+ for(const [id,exp] of Object.entries(expected)){
+   const entries=manifest.sets.filter(e=>e.targetId===id);
+   assert.ok(entries.length>=1,id+' missing manifest reference');
+   const files=[...new Set(entries.map(e=>e.file))];
+   const sets=files.flatMap(file=>read(file).sets||[]);
+   assert.equal(sets.length,exp.sets,id+' original set count');
+   assert.equal(sets.flatMap(set=>set.questions||[]).length,exp.questions,id+' original question count');
+ }
 });
