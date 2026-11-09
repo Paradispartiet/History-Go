@@ -185,7 +185,32 @@ const conflict = scenes.find(s => s.id.endsWith('dag36_rett_opp_antakelsen'));
 const reflection = scenes.find(s => s.id.endsWith('dag37_en_ny_rytme'));
 const walk = scenes.find(s => s.id.endsWith('dag38_den_avtalte_turen'));
 const clone = state => JSON.parse(JSON.stringify(state));
+const previousWaveG = c.scenes.find(s => s.id === 'wave_g_c01_hverdagsrytmen');
+const sourceFlag = 'wa_f_c01_status';
+assert.ok(previousWaveG, 'new C09 must follow an existing Wave G Jonas decision');
+assert.ok(c.scenes.some(s => s.id.startsWith('wave_f_c01_') &&
+  s.valg.some(v => v.effekter?.flagg?.[sourceFlag] === 'vennskap_pa_egne_vilkar')),
+  'Wave G predecessor has real author-created Wave F provenance');
+function playPriorJonas(roleContent, st) {
+  st.tidligereValg[sourceFlag] = 'vennskap_pa_egne_vilkar';
+  st.privatHistorie ||= {flagg: {}, flaggDager: {}, spilteScener: [], arkiv: [], relasjoner: {}};
+  st.privatHistorie.flagg[sourceFlag] = 'vennskap_pa_egne_vilkar';
+  st.privatHistorie.flaggDager[sourceFlag] = 18;
+  st.livsdag = 26;
+  st.dag = 26;
+  st.fase = 'kveld';
+  st.dagFerdig = false;
+  assert.ok(R.getCandidateScenes(st, roleContent).some(s => s.id === previousWaveG.id),
+    'Wave G must really be playable from an earlier Jonas response');
+  R.applyChoice(st, roleContent, previousWaveG.id, 'behold');
+  assert.equal(st.tidligereValg.wa_g_c01_status, 'hilsen_uten_krav');
+  assert.ok(st.privatHistorie.arkiv.some(e => e.sceneId === previousWaveG.id),
+    'Wave G prior decision is archived');
+  return clone(st);
+}
 assert.equal(scenes.length, 6, 'exactly six new Jonas scenes');
+assert.ok(scenes.every(s => s.etterValgDager?.flagg === sourceFlag &&
+  s.etterValgDager.dager === 4), 'all six C09 scenes have a prior-choice time anchor');
 assert.ok([first, shared, proposed, conflict, reflection, walk].every(Boolean));
 assert.ok(scenes.every(s => s.threadId === 'wave_g_c01' && s.fase === 'kveld'));
 assert.deepEqual(scenes.map(s => s.livsdagFra), [35, 36, 36, 36, 37, 38]);
@@ -229,8 +254,15 @@ for (const roleContent of [c, care]) {
   const role = roleContent.role.id;
   for (const br of branches) {
     let st = S.createInitialState(roleContent);
+    assert.deepEqual(due(roleContent, st, 35), [],
+      'Jonas C09 must not start without prior choices');
+    st = playPriorJonas(roleContent, st);
     assert.equal(due(roleContent, st, 34).length, 0,
       role + ': no C09 scene before day 35');
+    st.privatHistorie.flaggDager[sourceFlag] = 33;
+    assert.deepEqual(due(roleContent, st, 35), [],
+      'C09 cannot skip a minimum four-day interval');
+    st.privatHistorie.flaggDager[sourceFlag] = 18;
     let got = due(roleContent, st, 35);
     assert.deepEqual(got.map(s => s.id), [first.id], 'only new C09 opening on day 35');
     st = play(roleContent, st, first, br.start);
