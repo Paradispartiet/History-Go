@@ -268,9 +268,21 @@ for (const [choice, status, response, delivery, settlement, reply] of [
     assert.ok(!saved.spilteScener.includes('c04_kundesvar_avbestilt'));
   }
   content = startChapter(saved, content, 'frilans_etter_neste_steg');
-  ({saved} = progress(saved, restore(clone(saved)), 14, {c04_oppgjor_avbestilt: settlement}));
+  ({saved, content} = progress(saved, restore(clone(saved)), 14, {c04_oppgjor_avbestilt: settlement}));
   assert.equal(saved.tidligereValg.c04_oppgjor, {send:'honorar_til_avklaring', avslutt:'avsluttet_uten_krav'}[settlement]);
-  assert.equal(saved.meters.penger, money, 'no payment has been agreed or received');
+  assert.equal(saved.tidligereValg.c04_honorar_avtalt, undefined);
+  R.startNextDay(saved, content);
+  ({saved, content} = progress(saved, restore(clone(saved)), 15));
+  const replyEntries = R.getSymposium(saved, content).tidslinje.filter(entry => entry.sceneId === 'c04_styret_svarer_om_honorar');
+  assert.equal(replyEntries.length, settlement === 'send' ? 1 : 0);
+  assert.equal(saved.tidligereValg.c04_honorar_avtalt, settlement === 'send' ? 300 : undefined);
+  assert.equal(saved.tidligereValg.c04_oppgjor, {send:'honorar_avtalt_ubetalt', avslutt:'avsluttet_uten_krav'}[settlement]);
+  assert.equal(saved.tidligereValg.c04_sluttstatus, {
+    send: 'godkjent',
+    send_med_forsidetekst: 'godkjent',
+    varsle: 'avbestilt'
+  }[delivery], 'agreement about the fee does not reopen the order');
+  assert.equal(saved.meters.penger, money, 'no payment has been received');
 }
 
 delete globalThis.CivicationLifePositions;

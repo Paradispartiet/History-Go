@@ -108,7 +108,7 @@ Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer
 
 #### Fast hovedforløp og valg i C04
 
-**Fast holdepunkt på dag 13.** Lea videresender e-posten som faktisk gikk ut til deltakerne. Spilleren ser fredag, påmeldingsfristen onsdag og lenka til årets skjema i alle rutene som begynte med tekstforespørselen på dag 8. Tidligere scener viser hvem som gjorde arbeidet, om styrelederen bestilte og om honoraret står til avklaring.
+**Fast holdepunkt på dag 13.** Lea videresender e-posten som faktisk gikk ut til deltakerne. Spilleren ser fredag, påmeldingsfristen onsdag og lenka til årets skjema i alle rutene som begynte med tekstforespørselen på dag 8. Tidligere scener viser hvem som gjorde arbeidet og om styrelederen bestilte. Ved avbestilling og forespurt honorar kommer styrelederens svar på dag 15. Spilleren kan bekrefte 300 kroner for halvtimen. Beløpet registreres som avtalt og ubetalt.
 
 | Valgtype | Eksempel i C04 | Hva spillet registrerer eller skal registrere |
 | --- | --- | --- |
