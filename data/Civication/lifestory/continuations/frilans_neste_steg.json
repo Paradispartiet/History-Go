@@ -536,6 +536,38 @@
       }
     },
     {
+      "id": "c04_invitasjonen_som_gikk_ut",
+      "threadId": "frilans_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Invitasjonen som gikk ut",
+      "tekst": "Lea videresender e-posten som gikk ut til deltakerne. «Her er den de fikk,» skriver hun. Emnefeltet sier «Vårsamling – fredag».",
+      "valg": [
+        {
+          "id": "les",
+          "tekst": "Les hva som står om påmelding",
+          "konsekvensTekst": "I e-posten står det: «Vårsamlingen er fredag. Meld deg på innen onsdag.» Under linja ligger lenka til årets påmeldingsskjema.",
+          "effekter": {
+            "flagg": {
+              "c04_invitasjon_lest": true
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_tekststatus": {
+            "finnes": true
+          }
+        }
+      },
+      "avsender": "lea"
+    },
+    {
       "id": "d13_frilans_kapittel_slutt",
       "threadId": "frilans_etter_forste_kapittel",
       "dag": 13,
