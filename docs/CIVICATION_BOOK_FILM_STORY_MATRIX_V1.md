@@ -108,7 +108,7 @@ Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer
 
 #### Fast hovedforløp og valg i C04
 
-**Fast holdepunkt for videre produksjon:** Foreningen må få ut korrekt dato, frist og lenke. Spilleren får se hva foreningen sender, også når Lea gjør arbeidet selv. Konflikten med den andre kunden oppstår bare der spilleren har en kolliderende frist. Det faste holdepunktet avgjør ikke om frilanseren får bestillingen eller blir betalt.
+**Fast holdepunkt på dag 13.** Lea videresender e-posten som faktisk gikk ut til deltakerne. Spilleren ser fredag, påmeldingsfristen onsdag og lenka til årets skjema i alle rutene som begynte med tekstforespørselen på dag 8. Tidligere scener viser hvem som gjorde arbeidet, om styrelederen bestilte og om honoraret står til avklaring.
 
 | Valgtype | Eksempel i C04 | Hva spillet registrerer eller skal registrere |
 | --- | --- | --- |
@@ -116,7 +116,7 @@ Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer
 | Reell følge | Varsle at det samlede arbeidet ikke kan bli klart. Lea sender en kortversjon, og styrelederen trekker bestillingen. | Hvem leverte, hva ble sendt, og at oppgjøret kan stå til avklaring. Dette endrer hvilke oppfølgingsscener som gir mening. |
 | Feil som kan rettes | Dag 8. Bruk torsdagen fra styremeldingen i en prøveåpning. Lea sjekker bookingen og bekrefter at fredag er riktig. | Frilanseren retter prøven før noe sendes til deltakerne og bruker −1 energi på omarbeidet. Dag 9 fortsetter i samme scene som når du avklarer datoen først. En ekstra gjennomgang av forsida mens avtalt arbeid venter, er et mulig framtidig avsporingsvalg. |
 
-De to leveringsvalgene, avbestillingsgrenen og feilsporet på dag 8 er implementert. Det felles holdepunktet på tvers av alle ruter er forslag til videre produksjon.
+De to leveringsvalgene, avbestillingsgrenen, feilsporet på dag 8 og den felles e-posten på dag 13 er implementert. Symposium lagrer hva deltakerne fikk, sammen med de valgene og konsekvensene spilleren faktisk opplevde.
 
 ### C05 – Byråkratiet og personen
 **Rolle/person:** arbeidsledig / NAV. **Bokreferanse (foreløpig):** Kafka – Prosessen. **Film:** [Brazil](https://www.imdb.com/title/tt0088846/) / Film Producer `scenario_brazil_1985`.

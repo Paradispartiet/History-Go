@@ -232,12 +232,32 @@ for (const [choice, status, response, delivery, settlement, reply] of [
     const entries = history.filter(entry => entry.sceneId === 'c04_invitasjon_leveranse');
     assert.deepEqual(entries.map(entry => entry.valgId), ['send_med_forsidetekst']);
   }
+  if (choice === 'avsla') {
+    // Older saves may reach this evening without having played the C04 request.
+    const legacy = clone(saved);
+    delete legacy.tidligereValg.c04_tekststatus;
+    delete legacy.tidligereValg.c04_tekstoppfolging;
+    legacy.arkiv = legacy.arkiv.filter(entry => !entry.sceneId.startsWith('c04_'));
+    legacy.spilteScener = legacy.spilteScener.filter(id => !id.startsWith('c04_'));
+    const legacyContent = restore(legacy);
+    R.startNextDay(legacy, legacyContent);
+    const {saved: legacyFinished} = progress(legacy, legacyContent, 13);
+    assert.ok(!legacyFinished.spilteScener.includes('c04_invitasjonen_som_gikk_ut'));
+    assert.equal(legacyFinished.tidligereValg.c04_invitasjon_lest, undefined);
+    assert.ok(legacyFinished.spilteScener.includes('d13_frilans_kapittel_slutt'));
+  }
   R.startNextDay(saved, content);
   ({saved, content} = progress(saved, restore(clone(saved)), 13, {
     c04_kundesvar_godkjent: reply,
     c04_kundesvar_avbestilt: reply
   }));
   assert.equal(saved.tidligereValg.c04_kundesvar_oppfolging, reply);
+  const history = R.getSymposium(saved, restore(saved)).tidslinje;
+  const closing = history.filter(entry => entry.sceneId === 'c04_invitasjonen_som_gikk_ut');
+  assert.equal(closing.length, 1, 'every C04 route archives the same sent invitation once');
+  assert.equal(saved.tidligereValg.c04_invitasjon_lest, true);
+  assert.match(closing[0].konsekvensTekst, /fredag.*onsdag.*påmeldingsskjema/);
+  assert.ok(history.indexOf(closing[0]) < history.findIndex(entry => entry.sceneId === 'd13_frilans_kapittel_slutt'));
   assert.equal(saved.tidligereValg.c04_sluttstatus, {
     send: 'godkjent',
     send_med_forsidetekst: 'godkjent',
