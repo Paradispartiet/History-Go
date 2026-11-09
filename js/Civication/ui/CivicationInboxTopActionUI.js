@@ -3648,6 +3648,57 @@
     return html + '</details>';
   }
 
+
+  function lillebekkRestanseprioritetHtml() {
+    const model = lillebekkRestanseprioritetModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-restanselogg="1">' +
+      '<summary>Prioriter avvik og dokumentasjonskrav – intern saksstyring</summary>' +
+      '<p>Arbeid videre med åpen risikologg etter en fiktiv kontrolløvelse. Dette oppretter ikke kontrollrapporter, utsendelser eller planvedtak.</p>';
+    if (!model.exercise.current) {
+      html += '<p><strong>Sperret:</strong> En gjeldende intern mangelvurdering av de tre fiktive øvingsbilagene må journalføres først.</p>';
+    } else {
+      html += '<p><strong>Faglig forsvarlig prioritert:</strong> ' +
+        model.items.filter(function (r) { return r.safe; }).length + ' av 3.</p>';
+      html += model.items.map(function (item) {
+        return '<section class="civi-inbox-body" data-civi-restansestatus="' + escapeHtml(item.id) + '">' +
+          '<h4>' + escapeHtml(item.ref) + ' – ' + escapeHtml(item.title) + '</h4>' +
+          '<p><strong>Bevisstatus:</strong> ' + escapeHtml(item.status) + '</p>' +
+          '<p><strong>Grunnlag:</strong> ' + escapeHtml(item.basis) + '</p>' +
+          '<p><strong>Kontrollansvar:</strong> ' + escapeHtml(item.owner) + '</p>' +
+          '<p><strong>Arbeidsoppgave:</strong> ' + escapeHtml(item.next) + '</p>' +
+          '<p><strong>Avhengighet:</strong> ' + escapeHtml(item.dependency) + '</p>' +
+          (item.latestNote ? '<p><strong>Journalført vurdering' + (item.current ? '' : ' (utdatert)') +
+            ':</strong> ' + escapeHtml(item.latestNote) + '</p>' : '') +
+          '<label>Hva gjør du med avviket? <select data-civi-restansestatus-choice>' +
+            '<option value="' + escapeHtml(item.safeId) + '"' +
+              (item.latestOutcome === item.safeId ? ' selected' : '') + '>' + escapeHtml(item.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(item.unsafeId) + '"' +
+              (item.latestOutcome === item.unsafeId ? ' selected' : '') + '>' + escapeHtml(item.unsafeLabel) + '</option></select></label>' +
+          '<label>Faglig begrunnelse <textarea rows="3" maxlength="800" data-civi-restansestatus-reason ' +
+            'placeholder="Hvem har kontrollansvaret, hva må dokumenteres, og hvilke avhengigheter gjelder?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-restansestatus-save="1" data-restanse-id="' +
+            escapeHtml(item.id) + '">Journalfør prioritert avvik</button>' +
+          '<p class="muted" role="status" data-civi-restansestatus-error></p></section>';
+      }).join("");
+      if (model.ready) {
+        html += '<section class="civi-inbox-body" data-civi-restanselogg-editor="1">' +
+          '<h4>Samlet prioritering og stoppunkter</h4>' +
+          '<p>Trafikkfag og VA må dokumentere sine forhold før sluttvurdering av § 4.1. Øvrige åpne temaer består, og ingen sak er klarert for vedtak.</p>' +
+          '<label>Begrunn risikorekkefølgen <textarea rows="4" maxlength="1150" data-civi-restanselogg-reason ' +
+            'placeholder="Beskriv dokumentasjonsbehov, fagansvar, rekkefølge og hva som må kontrolleres før ny intern lederbehandling."></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-restanselogg-save="1">Journalfør prioritert intern restanselogg</button>' +
+          '<p class="muted" role="status" data-civi-restanselogg-error></p></section>';
+      }
+    }
+    if (model.latestLog) {
+      html += '<h4>' + (model.current ? 'Gjeldende restanselogg' : 'Tidligere eller utdatert restanselogg') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHtml(model.latestLog.note) + '</pre>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -3677,6 +3728,7 @@
         ${lillebekkElinSvarmoteHtml()}
         ${lillebekkKontrollplanHtml()}
         ${lillebekkKontrollovelseHtml()}
+        ${lillebekkRestanseprioritetHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -4137,6 +4189,32 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-restansestatus-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-restansestatus]");
+        const result = recordLillebekkRestansestatus(
+          String(button.getAttribute("data-restanse-id") || ""),
+          card?.querySelector("[data-civi-restansestatus-choice]")?.value || "",
+          card?.querySelector("[data-civi-restansestatus-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-restansestatus-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-restanselogg-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-restanselogg-editor]");
+        const result = recordLillebekkRestanselogg(
+          card?.querySelector("[data-civi-restanselogg-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-restanselogg-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-kontrollovelse-open]").forEach(function (button) {
       button.addEventListener("click", function () {
         const result = recordLillebekkKontrollovelseStart();
@@ -4746,6 +4824,9 @@
     getLillebekkKontrollovelseModel: lillebekkKontrollovelseModel,
     recordLillebekkKontrollovelseStart,
     recordLillebekkKontrollovelseVurdering,
-    recordLillebekkKontrollovelseOppsummering
+    recordLillebekkKontrollovelseOppsummering,
+    getLillebekkRestanseprioritetModel: lillebekkRestanseprioritetModel,
+    recordLillebekkRestansestatus,
+    recordLillebekkRestanselogg
   };
 })();
