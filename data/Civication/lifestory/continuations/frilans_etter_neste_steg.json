@@ -24,13 +24,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 8,
-      "tittel": "Det du valgte å beholde",
-      "tekst": "Du beholdt utkastet til mulig frilansarbeid i forrige kapittel. Nå skriver Lea: Lea vil vite hvilke deler av arbeidet som eventuelt hører til en forespørsel, men har ikke bestilt noe. Du trenger ikke fortsette bare fordi du har notater.",
+      "tittel": "«Et ark til eska?»",
+      "tekst": "Lea skriver om pappdelene sine: «Jeg roter dem sammen hver gang jeg pakker ned. Kunne jeg hatt et ark i eska som viser hvilken del som er hvilken?» Du finner fram notatene du beholdt.",
       "valg": [
         {
           "id": "del",
-          "tekst": "Del ett avgrenset spørsmål med Lea",
-          "konsekvensTekst": "Du sender ett spørsmål, uten å love mer arbeid. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "tekst": "«Holder det med ett bilde av hver del og et nummer under?»",
+          "konsekvensTekst": "Du sender spørsmålet. Notatene blir liggende hos deg.",
           "effekter": {
             "flagg": {
               "frilans_14_spor": "vis"
@@ -42,8 +42,8 @@
         },
         {
           "id": "privat",
-          "tekst": "Behold materialet hjemme",
-          "konsekvensTekst": "Du svarer at du beholder utkastet til mulig frilansarbeid for deg selv. Lea venter ingen leveranse.",
+          "tekst": "«Det var bare en idé foreløpig. Jeg lar arket ligge.»",
+          "konsekvensTekst": "Du svarer Lea og legger notatene bort.",
           "effekter": {
             "flagg": {
               "frilans_14_spor": "privat"
@@ -69,13 +69,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 8,
-      "tittel": "Et valg som fortsatt gjelder",
-      "tekst": "Du la utkastet til mulig frilansarbeid bort i forrige kapittel. Lea har ikke bestilt noe. Du kan stille et avgrenset spørsmål uten å gjenåpne prosjektet.",
+      "tittel": "Hva skal oversikten brukes til?",
+      "tekst": "Du la arbeidet med oversikten bort. Før du lukker prosjektarket, ser du et spørsmål du aldri stilte Lea: Hvem skal egentlig bruke oversikten over pappdelene?",
       "valg": [
         {
           "id": "sporr",
-          "tekst": "Spør Lea hva hun faktisk trenger å få avklart før en pris kan diskuteres",
-          "konsekvensTekst": "Du spør om én ting. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "tekst": "«Et kjapt spørsmål om pappdelene: Skal du bruke oversikten selv, eller skal andre også skjønne den?»",
+          "konsekvensTekst": "Du sender spørsmålet til Lea og lukker prosjektarket.",
           "effekter": {
             "flagg": {
               "frilans_14_spor": "sporr"
@@ -88,7 +88,7 @@
         {
           "id": "privat",
           "tekst": "La prosjektet hvile",
-          "konsekvensTekst": "Du lar den gamle beslutningen stå. Lea får ingen ny forpliktelse.",
+          "konsekvensTekst": "Du lukker prosjektarket. Spørsmålet blir stående der.",
           "effekter": {
             "flagg": {
               "frilans_14_spor": "privat"
@@ -114,13 +114,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 8,
-      "tittel": "Skal du følge opp honoraret?",
-      "tekst": "Foreningen sendte Leas kortversjon. Styrelederen spør hvor mye du rakk før de avbestilte. Du har notert en halvtime på utkastet og lenkesjekken. En annen kunde venter på en rettelse i ettermiddag.",
+      "tittel": "«Hvor mye tid gikk det med?»",
+      "tekst": "Styrelederen skriver om invitasjonen: «Vi sendte Leas versjon. Jeg har styremøte i kveld. Hvor mye tid gikk det med før vi ba deg stoppe?» Du har skrevet «utkast og lenkesjekk, 30 min» i tidsnotatet. En annen kunde venter på en rettelse i ettermiddag.",
       "valg": [
         {
           "id": "send",
-          "tekst": "Send tidsnotatet og spør om de kan dekke halvtimen",
-          "konsekvensTekst": "Styrelederen får oversikten og tar spørsmålet med til styret. Dere har ennå ikke avtalt et beløp.",
+          "tekst": "«En halvtime. Jeg skrev om åpningen og prøvde lenka. Kan dere dekke den halvtimen?»",
+          "konsekvensTekst": "Du legger ved tidsnotatet. Styrelederen svarer: «Jeg tar det opp i kveld. Jeg kan ikke si hva vi lander på ennå.»",
           "effekter": {
             "flagg": {
               "c04_oppgjor": "honorar_til_avklaring"
@@ -129,8 +129,8 @@
         },
         {
           "id": "avslutt",
-          "tekst": "Svar at du lar honoraret ligge, og gjør den andre rettelsen",
-          "konsekvensTekst": "Du sier fra at du avslutter saken og sender rettelsen til den andre kunden i ettermiddag.",
+          "tekst": "«Det ble en halvtime. Jeg lar det ligge denne gangen.»",
+          "konsekvensTekst": "Styrelederen svarer: «Greit, takk for at du sa fra.» Du åpner korrekturen til den andre kunden.",
           "effekter": {
             "flagg": {
               "c04_oppgjor": "avsluttet_uten_krav"
@@ -153,13 +153,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 8,
-      "tittel": "Svaret er mindre enn drømmen",
-      "tekst": "Lea har lest spørsmålet. Hun sier at hun kan beskrive behovet, men verken bestille arbeidet eller oppgi en prisavtale nå. Det er et nyttig svar, ikke en avtale.",
+      "tittel": "«Så lenge jeg ser forskjell»",
+      "tekst": "Lea skriver: «Ja, så lenge jeg ser forskjell på de to flate delene. På bildet ovenfra ser de helt like ut. Jeg kan vise deg hvor hakket sitter hvis vi gjør det. Men jeg må se hva jeg har råd til først.»",
       "valg": [
         {
           "id": "avgrens",
-          "tekst": "Noter svaret uten å love arbeid",
-          "konsekvensTekst": "Du tar med deg svaret og avgrenser arbeidet. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "tekst": "«Skjønner. Da må hakket synes på bildet. Vi lar det ligge til du vet hva du har å bruke.»",
+          "konsekvensTekst": "Du noterer hva bildet må vise. Lea svarer: «Ja, ellers kommer jeg til å ta feil del igjen.»",
           "effekter": {
             "flagg": {
               "frilans_15_retning": "avgrens"
@@ -174,8 +174,8 @@
         },
         {
           "id": "pause",
-          "tekst": "Takk for svaret og legg materialet bort",
-          "konsekvensTekst": "Du takker Lea og holder resten av dagen fri. Ingen frist følger med.",
+          "tekst": "«Takk. Jeg har ikke tid til å gå videre med arket nå.»",
+          "konsekvensTekst": "Lea svarer: «Greit. Jeg merker de to delene med tape så lenge.» Du lukker prosjektarket.",
           "effekter": {
             "flagg": {
               "frilans_15_retning": "pause"
@@ -201,13 +201,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 8,
-      "tittel": "Ikke et oppdrag",
-      "tekst": "Lea svarer på spørsmålet ditt: hun kan beskrive behovet, men verken bestille arbeidet eller oppgi en prisavtale nå. Hun har ikke bedt deg levere noe.",
+      "tittel": "«Bare jeg, tror jeg»",
+      "tekst": "«Bare jeg, tror jeg,» svarer Lea. «Sist la jeg alt i den samme eska. Det tok et kvarter å finne de tre delene jeg skulle ha.» Hun sender en melding til: «Jeg tenkte mest på et ark jeg kan ha oppi eska.»",
       "valg": [
         {
           "id": "avgrens",
-          "tekst": "Skriv ned hva svaret faktisk dokumenterer",
-          "konsekvensTekst": "Du beholder informasjonen uten å opprette en ny bestilling. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "tekst": "«Skjønner. Ett ark til eska, så du finner delene igjen.»",
+          "konsekvensTekst": "Du skriver «oversikt til eska» i notatet. Nå vet du hva arket skal brukes til.",
           "effekter": {
             "flagg": {
               "frilans_15_retning": "avgrens"
@@ -219,8 +219,8 @@
         },
         {
           "id": "stopp",
-          "tekst": "La samtalen slutte her",
-          "konsekvensTekst": "Du sier takk og lar det uavklarte være uavklart.",
+          "tekst": "«Takk, det var det jeg lurte på.»",
+          "konsekvensTekst": "Du lar prosjektarket ligge og går videre med dagen.",
           "effekter": {
             "flagg": {
               "frilans_15_retning": "pause"
@@ -246,13 +246,13 @@
       "stedId": "hjem",
       "tilgjengelighet": "start",
       "prioritet": 8,
-      "tittel": "Et arbeid som ikke er lovet bort",
-      "tekst": "Du har ikke sendt noe til Lea. Du kan bruke ti minutter på en liste over hva som ikke inngår i et tilbud, eller la det ligge.",
+      "tittel": "Ei linje i margen",
+      "tekst": "Prosjektarket ligger fortsatt på bordet. Under «oversikt over pappdelene» er det plass til ei linje om hva du kan tilby. Du har ingen melding fra Lea å svare på.",
       "valg": [
         {
           "id": "skrive",
-          "tekst": "Lag en begrenset, privat merknad",
-          "konsekvensTekst": "Du har en merknad for deg selv. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "tekst": "Skriv «Oversikt over delene. Nye tegninger avtales for seg.»",
+          "konsekvensTekst": "Du skriver linja i margen på ditt eget ark.",
           "effekter": {
             "flagg": {
               "frilans_15_retning": "egen"
@@ -386,12 +386,12 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Tiden du fikk tilbake",
-      "tekst": "Du valgte å ikke ta på deg mer arbeid. To dager etter det første spørsmålet finnes det fortsatt ingen bestilling eller avtale med Lea. Du har beholdt noe av dagen din til annet liv.",
+      "tekst": "Prosjektarket ligger der du la det. Du har ingen bestilling fra Lea og trenger ingen arbeidstid til pappdelene i dag.",
       "valg": [
         {
           "id": "ro",
           "tekst": "La pausen fortsette",
-          "konsekvensTekst": "Du lar samtalen ligge og står ved grensen du satte.",
+          "konsekvensTekst": "Du lar prosjektarket ligge og bruker tida på noe annet.",
           "effekter": {
             "flagg": {
               "frilans_16_ending": "pause",
