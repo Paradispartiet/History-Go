@@ -2586,6 +2586,181 @@
     }
   }
 
+
+  // Prioritise actual administrative follow-up, not invented resolutions.
+  // The preceding technical documents exist solely in a fictional exercise.
+  const LILLEBEKK_RESTANSEPRIORITET = [
+    {
+      id: "ganglinje", ref: "LBK-REST-24", title: "Skolevei og varelevering",
+      source: "LBK-KR-21", owner: "Trafikkfaglig saksbehandler",
+      status: "ÅPEN – ikke dokumentert trygg ferdsel",
+      basis: "Øvingsutdraget viser 1,25 m i skissen, men 0,90 m ved varelevering. Befaring, siktlinjer og signert driftsplan er ikke dokumentert.",
+      next: "Prioriter målsatt sikkerhetskontroll av ganglinje, sikt, overlappende vareleveringer og drift før første innflytting.",
+      dependency: "Planjuridisk avstemming av § 4.1 bygger på kontrollerte trafikkpremisser.",
+      safeId: "prioriter_sikkerhet_og_dokumentkrav",
+      safeLabel: "Prioriter trafikksikkerhet og krev kontrollerte leveranser",
+      unsafeId: "lukk_avvik_pa_skisse",
+      unsafeLabel: "Lukk skoleveiavviket fordi det finnes en skisse"
+    },
+    {
+      id: "avrenning", ref: "LBK-REST-25", title: "Utløpskapasitet og nabo",
+      source: "LBK-KR-22", owner: "VA-/overvannsfaglig saksbehandler",
+      status: "ÅPEN – utilstrekkelig vannbalanse",
+      basis: "Et fiktivt eksempel med 42 m³ tilrenning, 26 m³ fordrøyning og 12 m³ antatt avledning har 4 m³ uforklart differanse. Ingen kontrollert kapasitet eller nabovurdering.",
+      next: "Prioriter full vannbalanse, vestre utløpsprofil, nedbørpremisser, flomvei og dokumentert virkning for naboeiendommen.",
+      dependency: "Faglig VA-kontroll må foreligge før eventuelle avbøtende planvilkår utformes.",
+      safeId: "prioriter_full_va_kontroll",
+      safeLabel: "Hold VA-avviket åpent og krev etterprøvbar hydraulikk",
+      unsafeId: "lukk_avvik_med_volumtall",
+      unsafeLabel: "Lukk overvannsavviket fordi tre volumtall er oppgitt"
+    },
+    {
+      id: "rekkefolge", ref: "LBK-REST-26", title: "Rekkefølgekrav, kart og ansvar",
+      source: "LBK-KR-23", owner: "Kommunal planjurist",
+      status: "ÅPEN – bestemmelse ikke sluttkontrollert",
+      basis: "Fiktivt forslag om § 4.1 før første innflytting mangler kontrollert kartrevisjon, dokumentert hjemmel og gjennomføringsansvar.",
+      next: "Prioriter planjuridisk kontroll av trasé, kartversjon, hjemmel, tidfesting, ansvar og sammenheng med trafikksikkerhetskrav.",
+      dependency: "Sluttkontroll av bestemmelsesordlyd må avvente relevant trafikkfaglig dokumentasjon. Utbygger kan ikke godkjenne planbestemmelsen.",
+      safeId: "prioriter_juridisk_avstemming",
+      safeLabel: "Behold § 4.1 åpen til kommunal sluttkontroll",
+      unsafeId: "lukk_paragraf_som_vedtatt",
+      unsafeLabel: "Regn den foreløpige bestemmelsen som vedtatt"
+    }
+  ];
+
+  function lillebekkRestanseprioritetModel() {
+    const exercise = lillebekkKontrollovelseModel();
+    if (!exercise?.latestSummary) return null;
+    const world = window.CivicationWorkWorld;
+    const formal = world?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const source = exercise.signature + "|" + exercise.latestSummary.id;
+    const items = LILLEBEKK_RESTANSEPRIORITET.map(function (row) {
+      const records = history.filter(function (event) {
+        return String(event.id || "").startsWith("lillebekk_restansestatus_" + row.id + "_v");
+      });
+      const latest = records[records.length - 1] || null;
+      const belongs = !!exercise.current && String(latest?.note || "").startsWith(
+        "Mangelvurdering: " + exercise.latestSummary.id + ";");
+      return { ...row, count: records.length, latestId: latest?.id || "",
+        latestNote: latest?.note || "", latestOutcome: latest?.outcome || "",
+        current: !!belongs, safe: !!belongs && latest?.outcome === row.safeId };
+    });
+    const ready = !!exercise.current && items.every(function (row) { return row.safe; });
+    const signature = [source].concat(items.map(function (row) { return row.latestId; })).join("|");
+    const reports = history.filter(function (event) {
+      return String(event.id || "").startsWith("lillebekk_restanselogg_v");
+    });
+    const latestLog = reports[reports.length - 1] || null;
+    const current = ready && !!latestLog &&
+      String(latestLog.note || "").endsWith("Kildeversjoner: " + signature);
+    return { exercise, items, ready, source, signature,
+      logCount: reports.length, latestLog, current };
+  }
+
+  function recordLillebekkRestansestatus(id, choiceId, explanation) {
+    const model = lillebekkRestanseprioritetModel();
+    const item = model?.items.find(function (row) { return row.id === id; });
+    if (!model?.exercise.current || !item || ![item.safeId, item.unsafeId].includes(choiceId)) {
+      return { ok: false, reason: "Gjeldende intern mangelvurdering og et gyldig faglig valg kreves." };
+    }
+    const reason = String(explanation || "").replace(/\s+/g, " ").trim().slice(0, 800);
+    if (reason.length < 75) return { ok: false, reason: "Beskriv kontrollbehov, ansvar og faglig avhengighet (minst 75 tegn)." };
+    const safe = choiceId === item.safeId;
+    const note = [
+      "Mangelvurdering: " + model.exercise.latestSummary.id + "; PRIORITERT INTERN RESTANSE " + item.ref,
+      "Tema: " + item.title + ". Kilde fra separat fiktiv øvelse: " + item.source,
+      "Bevisstatus: " + item.status + ". Dokumentgrunnlag: " + item.basis,
+      "Fagansvar: " + item.owner + ". Neste oppgave: " + item.next,
+      "Avhengighet: " + item.dependency,
+      "Rådgiverens prioritering: " + (safe ? item.safeLabel : item.unsafeLabel),
+      "Begrunnelse: " + reason,
+      safe ? "Restansen er fortsatt åpen. Dette er kun intern prioritering."
+        : "FAGLIG AVVIK: Spillerens premature lukking er avvist; restansen forblir åpen.",
+      "Ingen faktiske rapporter mottatt, ingen bestillinger sendt, ingen vedtak eller godkjenninger."
+    ].join("\n");
+    if (item.latestNote === note && item.latestOutcome === choiceId) return { ok: true, alreadyLogged: true };
+    const sameSource = String(item.latestNote || "").startsWith(
+      "Mangelvurdering: " + model.exercise.latestSummary.id + ";");
+    if (item.count >= 10 && sameSource && !(item.latestOutcome !== item.safeId && safe)) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd; en siste faglig korrigering tillates." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_restansestatus_" + item.id + "_v" + (item.count + 1),
+        scene_id: "lillebekk_restanseloggen", choice_id: choiceId,
+        outcome: choiceId, at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk restansestatus", error);
+      return { ok: false, reason: "Restanseprioriteringen kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkRestanselogg(recommendation) {
+    const model = lillebekkRestanseprioritetModel();
+    if (!model?.ready) {
+      return { ok: false, reason: "Tre åpne kontrollavvik må være faglig vurdert og riktig prioritert først." };
+    }
+    const reason = String(recommendation || "").replace(/\s+/g, " ").trim().slice(0, 1150);
+    if (reason.length < 100) {
+      return { ok: false, reason: "Beskriv ansvar, bevisstatus, innbyrdes rekkefølge og stoppunkt før ny lederbehandling (minst 100 tegn)." };
+    }
+    const dossier = lillebekkReviewModel();
+    const other = (dossier?.topics || []).filter(function (topic) {
+      return !["skolevei", "overvann"].some(function (name) {
+        return String(topic.id || "").toLowerCase().includes(name);
+      });
+    });
+    const note = [
+      "LILLEBEKK – PRIORITERT INTERN RESTANSELOGG ETTER FIKTIV KONTROLLØVELSE (IKKE VEDTAK)",
+      "Gjeldende simulert mangelvurdering: " + model.exercise.latestSummary.id,
+      "A. Tre prioriterte faglige kontrollavvik, alle fortsatt ÅPNE:",
+      ...model.items.map(function (item) {
+        return "- " + item.ref + " / " + item.title + ". " + item.status + ". " +
+          item.basis + " Fagansvar: " + item.owner + ". Arbeidskrav: " + item.next +
+          " Avhengighet: " + item.dependency;
+      }),
+      "B. Øvrige temaer i den eksisterende plansaken (ingen automatisk lukking):",
+      ...(other.length ? other.map(function (topic) {
+        return "- " + topic.title + ": " + topic.status + ". Neste oppgave: " + topic.next;
+      }) : ["- Andre dokumentasjons- og medvirkningsbehov skal kontrolleres mot den gjeldende saksoversikten."]),
+      "C. Sikker saksbehandlingsrekkefølge:",
+      "1. Kontroller trafikkfaglige leveranser for skolevei ved varelevering og VA-grunnlag for vestre utløp og nabo.",
+      "2. La kommunal planjurist vurdere § 4.1 mot korrekt plankart og dokumenterte trafikksikkerhetsforutsetninger.",
+      "3. Vurder øvrige åpne fagtemaer og journalfør faktisk kontrollerte kilder før ny intern ledergjennomgang.",
+      "Rådgiverens risikobegrunnelse: " + reason,
+      "D. Myndighetsgrense: Dette er en intern, prioritert restanselogg. Alle tre kontrollbilag er fiktive øvingsdokumenter; ingen bestilling er sendt, ingen faktisk kontrollrapport mottatt, ingen fagavvik lukket og ingen planbehandling eller godkjenning gjennomført.",
+      "Kildeversjoner: " + model.signature
+    ].join("\n");
+    if (model.latestLog?.note === note) return { ok: true, alreadyLogged: true };
+    const sameSource = String(model.latestLog?.note || "").endsWith("Kildeversjoner: " + model.signature);
+    if (model.logCount >= 10 && sameSource) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd for uendret dokumentgrunnlag." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_restanselogg_v" + (model.logCount + 1),
+        scene_id: "lillebekk_restanseloggen", choice_id: "journalfor_prioritert_intern_restanselogg",
+        outcome: "prioritert_arbeidslogg_ikke_godkjent", at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk restanselogg", error);
+      return { ok: false, reason: "Restanseloggen kunne ikke journalføres." };
+    }
+  }
+
   function lillebekkReviewModel() {
     const active = window.CivicationState?.getActivePosition?.();
     // MailPlan uses by_radgiver_plan, while accepted job offers store the
