@@ -218,7 +218,7 @@ assert.ok(scenes.every(s => !/lost in translation|bob|charlotte|bruno|pietro/i.t
   'no copyrighted film character, copied film story or film-as-canon claim');
 const normal = first.valg.find(v => v.id === 'si_det_direkte');
 const room = first.valg.find(v => v.id === 'gi_rom');
-assert.equal(normal.effekter.flagg.c09_jonas_inngang, room.effekter.flagg.c09_jonas_inngang,
+assert.equal(normal.effekter.flagg.wa_g_c01_c09_jonas_inngang, room.effekter.flagg.wa_g_c01_c09_jonas_inngang,
   'direct answer and space share the next scene');
 assert.notDeepEqual(normal.effekter.meters, room.effekter.meters,
   'shared scene does not mean identical meter consequences');
@@ -271,7 +271,7 @@ for (const roleContent of [c, care]) {
     assert.deepEqual(got.map(s => s.id), [br.day36.id],
       role + ': wrong day-36 branch must not appear');
     st = play(roleContent, st, br.day36, br.answer);
-    assert.equal(st.tidligereValg.c09_jonas_svar_etterspill, br.status);
+    assert.equal(st.tidligereValg.wa_g_c01_c09_jonas_svar_etterspill, br.status);
     assert.equal(due(roleContent, st, 36).length, 0, 'reply may not replay');
     assert.deepEqual(due(roleContent, st, 37).map(s => s.id), [reflection.id]);
     st = play(roleContent, st, reflection, 'skille_fakta_og_frykt');
@@ -279,21 +279,30 @@ for (const roleContent of [c, care]) {
     assert.deepEqual(walkCandidates.map(s => s.id), br.walk ? [walk.id] : [],
       'a proposed or declined walk is never an appointment');
     if (br.walk) {
-      assert.equal(st.tidligereValg.c09_jonas_tur_status, 'bekreftet');
+      assert.equal(st.tidligereValg.wa_g_c01_c09_jonas_tur_status, 'bekreftet');
       st = play(roleContent, st, walk, 'hold_det_hverdagslig');
-      assert.equal(st.tidligereValg.c09_jonas_tur_status, 'gjennomfort');
+      assert.equal(st.tidligereValg.wa_g_c01_c09_jonas_tur_status, 'gjennomfort');
       assert.equal(due(roleContent, st, 39).length, 0);
     } else {
-      assert.notEqual(st.tidligereValg.c09_jonas_tur_status, 'gjennomfort');
+      assert.notEqual(st.tidligereValg.wa_g_c01_c09_jonas_tur_status, 'gjennomfort');
     }
     const other = roleContent === care ? c : care;
     const switched = S.selectRole(clone(st), other);
+    assert.equal(switched.tidligereValg.wa_g_c01_c09_jonas_svar_etterspill, br.status,
+      'C09 ending must survive entry into the other role');
+    assert.equal(switched.privatHistorie.flagg.wa_g_c01_c09_jonas_svar_etterspill, br.status,
+      'C09 flags must remain in the shared private snapshot');
+    assert.ok(switched.privatHistorie.arkiv.some(e => e.sceneId === first.id),
+      'C09 scene remains in Symposium while playing another role');
+    if (br.walk) {
+      assert.equal(switched.tidligereValg.wa_g_c01_c09_jonas_tur_status, 'gjennomfort');
+    }
     const back = S.selectRole(switched, roleContent);
     for (const e of st.arkiv.filter(e => e.sceneId.startsWith(prefix))) {
       assert.ok(back.arkiv.some(x => x.sceneId === e.sceneId && x.valgId === e.valgId),
         'C09 Symposium entries survive work role switches');
     }
-    assert.equal(back.tidligereValg.c09_jonas_svar_etterspill, br.status);
+    assert.equal(back.tidligereValg.wa_g_c01_c09_jonas_svar_etterspill, br.status);
     validated++;
   }
 }
