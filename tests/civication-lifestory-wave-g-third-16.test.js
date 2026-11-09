@@ -28,7 +28,8 @@ const thirdStatuses = {
   c17: ['drift_venter', 'ferdigkrav_notert'],
   c23: ['stillhet_respektert', 'internt_rettet']
 };
-const all = base.scenes.filter(s => s.id.startsWith('wave_g_'));
+// This historical batch keeps its fixed 64-scene baseline; C09 is a later extension.
+const all = base.scenes.filter(s => s.id.startsWith('wave_g_') && !s.id.startsWith('wave_g_c01_c09_'));
 assert.equal(all.length, 64, 'Wave G first four batches: 64 scenes');
 assert.equal(all.reduce((sum,s) => sum+s.valg.length,0),128,'128 authored choices');
 const third = all.filter(s => {
