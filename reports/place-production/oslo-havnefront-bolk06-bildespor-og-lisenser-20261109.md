@@ -13,7 +13,7 @@
 
 | Sted | Rolle/kandidat | Motivet | Fotograf/dato | Eksakt lisens | Kildeside |
 | --- | --- | --- | --- | --- | --- |
-| `astrup_fearnley` | hero | Astrup Fearnley Museumsbygningen på Tjuvholmen | Chell Hill / 2. juni 2013 | **CC BY-SA 3.0 Unported** | https://commons.wikimedia.org/wiki/File:2013-06_Astrup_Fearnley_Tjuvholmen.jpg |
+| `astrup_fearnley` | historisk oversikt **ikke godkjent dagens hero** | Museumsbygningen på Tjuvholmen mens nærområdet fremdeles ble utbygd (kraner synlige) | Chell Hill / 2. juni 2013 | **CC BY-SA 3.0 Unported** | https://commons.wikimedia.org/wiki/File:2013-06_Astrup_Fearnley_Tjuvholmen.jpg |
 | `astrup_fearnley` | portrettkandidat / utsnitt krever kontroll | Astrup Fearnley Museet, annet fotografi | Mentalmelt / 13. aug. 2013 | **CC BY-SA 3.0 Unported** | https://commons.wikimedia.org/wiki/File:Astrup_Fearnley_Oslo_2013.jpg |
 | `akrobaten_gangbro` | hero | Gangbro over Oslo S | Øyvind Holmstad / 29. okt. 2015 | **CC BY-SA 4.0 International** | https://commons.wikimedia.org/wiki/File:The_pedestrian_bridge_across_Oslo_Central_Station.JPG |
 | `akrobaten_gangbro` | portrett | Akrobaten gangbro / Barcode | Binobose / 26. juni 2018 | **CC BY-SA 4.0 International** | https://commons.wikimedia.org/wiki/File:Akrobaten_Pedestrian_Bridge.jpg |
@@ -27,8 +27,8 @@
 
 - **Akerselvas utløp, dagens bilde:** `Akerselvas utløp Munchs brygge og Munchmuset sett fra Dronning Eufemias gate.jpg` i Wikimedia Commons' `Category:Akerselvallmenningen, Oslo`. Store norske leksikon omtaler det som Helge Høifødts foto (2020), **CC BY-SA 4.0**. Den eksakte Commons-filpostens rettighetsside må leses ved materialisering, og bildenavnets stavemåte `Munchmuset` må brukes korrekt for oppslag. Ikke marker dette som ferdig originalkontroll.
 - **Akershuskaiene:** Har allerede lokale, dokumenterte hero- og portrettvarianter i canonical Place. **Bevar dem** og gjør kun kildesjekk, bildefilkontroll og faktisk browser-QA.
-- **Akrobaten:** Den fritt lisensierte portrettkildens GPS/EXIF virker å vise et punkt et stykke fra Place-ankeret. Bildet omtales eksplisitt som Akrobaten, men motivet må inspiseres visuelt før bruk, ellers velges et annet egnet foto av broen.
-- **Astrup:** Begge kandidatene er liggende originaler; ved stående `frontImage` må et særskilt fysisk utsnitt av museumsbygningen lages og faktisk kontrolleres, ikke bare beskjæres av appens CSS.
+- **Akrobaten:** Binobose-portrettet er nå **visuelt inspisert og motivet er korrekt**: det viser fagverket og gangbanen på Akrobaten i stående format. EXIF-/GPS-punktet avviker fra canonical Place-ankeret, men bildet identifiserer broen konkret; GPS-avvik dokumenteres, ikke brukes til å flytte stedspunktet. Lisensen CC BY-SA 4.0 er inspisert.
+- **Astrup:** Chell Hill-fotoet er visuelt inspisert: flere dominerende byggekraner i bakgrunnen gjør det uegnet som udaterert **nåtidig hero**. Det kan merkes som 2013-historisk bilde. Mentalmelt-fotoets eksakte motiv og to passende utsnitt må forhåndsvises før godkjenning. Begge originaler er liggende; stående `frontImage` krever egen bildefil med faktisk stående utsnitt.
 - **Amerikalinjen:** Bildenes originalopphav og lisens er synlig, men portrettutsnitt skal kontrolleres for hovedportal/fasade og ikke bare tilstøtende Jernbanetorget.
 - **Aker Brygge:** Det eksisterende `image` bruker Commons-redirect. Lokale lisensførte varianter kan erstatte runtime-avhengighet, men god historietekst/Fagverk skal ikke skrives om.
 
