@@ -1784,7 +1784,7 @@
         return String(event.id || "").startsWith("lillebekk_utkast_" + draft.id + "_v");
       });
       const latest = records[records.length - 1] || null;
-      return { ...draft, count: records.length, latestNote: latest?.note || "",
+      return { ...draft, count: records.length, latestId: latest?.id || "", latestNote: latest?.note || "",
         current: !!sup.current && !!latest &&
           String(latest.note || "").endsWith("Kildeversjoner: " + source) };
     });
@@ -1827,6 +1827,141 @@
     } catch (error) {
       if (window.DEBUG) console.warn("[Civication] Lillebekk utkast", error);
       return { ok: false, reason: "Utkastet kunne ikke journalføres." };
+    }
+  }
+
+
+  // A separate, explicitly fictional document exercise following the two unsent
+  // drafts. Opening this exercise does not mean the drafts were dispatched.
+  const LILLEBEKK_SVARBILAG = [
+    {
+      id: "utbygger", ref: "LBK-SVAR-16",
+      title: "Svarutdrag fra prosjekteringsgruppen – gangareal og flomvei",
+      sender: "Prosjekteringsgruppen (fiktivt øvingsdokument)",
+      paragraphs: [
+        "«Vi har tegnet inn 1,25 meter gangbredde ved punkt B. Under varelevering kan bredden bli 0,90 meter. Vi mener den nye løsningen kan aksepteres uten flere undersøkelser.»",
+        "«Vi legger til grunn tabellen med 42 m³ tilrenning og 26 m³ fordrøyning. Kapasiteten i vestre utløp og påvirkning på naboeiendommen er ikke beregnet i denne revisjonen.»"
+      ],
+      evidence: "Tallene er opplysninger i en fiktiv skisse, ikke oppmålinger eller dokumentasjon av sikker skolevei. Sikt, leveringsrutiner, utløp, ekstremnedbør og nabovirkning er fortsatt åpne.",
+      safeId: "returner_for_trafikk_og_va_kontroll",
+      safeLabel: "Registrer delvis svar og returner konkrete mangler til trafikk og VA",
+      unsafeId: "godkjenn_teknisk_grunnlag",
+      unsafeLabel: "Godkjenn skolevei og flomvei på grunnlag av skissen",
+      task: "Innhent kontrollert, målsatt plan for normal- og avvikslevering, faglig trafikksikkerhetsvurdering og beregnet overvannsløsning med nabokonsekvens."
+    },
+    {
+      id: "planjuss", ref: "LBK-SVAR-17",
+      title: "Internt notat fra planjurist – kontroll av § 4.1",
+      sender: "Kommunal planjurist (fiktivt internt øvingsdokument)",
+      paragraphs: [
+        "«Bestemmelsen kan arbeides videre med som rekkefølgekrav før første innflytting, men gangforbindelsens plassering og tekniske opparbeidelse må være presist forankret i plankartet.»",
+        "«Det er ikke grunnlag for å erstatte dette med utbyggers forslag om ferdigattest for hele prosjektet. Endelig hjemmelskontroll, gjennomføringsansvar og politisk behandling gjenstår.»"
+      ],
+      evidence: "Juristen beskriver et avgrenset utkast og åpne rettslige spørsmål, ikke et godkjent rekkefølgekrav eller kommunalt tilsagn.",
+      safeId: "behold_utkast_og_krev_sluttkontroll",
+      safeLabel: "Journalfør intern juristmerknad og krev kartavstemming og sluttkontroll",
+      unsafeId: "erklaer_vedtatt_planbestemmelse",
+      unsafeLabel: "Marker § 4.1 som vedtatt og informer utbygger",
+      task: "Avklar kartkobling, tidspunkt, hjemmel og ansvar i intern planjuridisk kvalitetssikring før videre behandling."
+    }
+  ];
+
+  function lillebekkSvarrundeModel() {
+    const utkast = lillebekkUtkastModel();
+    if (!utkast || !utkast.drafts.some(function (row) { return row.latestId; })) return null;
+    const world = window.CivicationWorkWorld;
+    const formal = world?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const source = [utkast.source].concat(utkast.drafts.map(function (row) { return row.latestId; })).join("|");
+    const rounds = history.filter(function (event) {
+      return String(event.id || "").startsWith("lillebekk_svarrunde_v");
+    });
+    const latestRound = rounds[rounds.length - 1] || null;
+    const opened = !!utkast.complete && !!latestRound &&
+      String(latestRound.note || "").endsWith("Kildeversjoner: " + source);
+    const docs = LILLEBEKK_SVARBILAG.map(function (doc) {
+      const records = history.filter(function (event) {
+        return String(event.id || "").startsWith("lillebekk_svarvurdering_" + doc.id + "_v");
+      });
+      const latest = records[records.length - 1] || null;
+      const belongs = opened && String(latest?.note || "").startsWith(
+        "Øvingsrunde: " + latestRound.id + ";");
+      return { ...doc, count: records.length, latestNote: latest?.note || "",
+        latestOutcome: latest?.outcome || "", current: !!belongs,
+        safe: !!belongs && latest?.outcome === doc.safeId };
+    });
+    return { utkast, source, rounds: rounds.length, latestRound,
+      canOpen: !!utkast.complete, opened, docs,
+      ready: !!opened && docs.every(function (doc) { return doc.safe; }) };
+  }
+
+  function recordLillebekkSvarrundeStart() {
+    const model = lillebekkSvarrundeModel();
+    if (!model?.canOpen) return { ok: false, reason: "Journalfør to gjeldende, separate dokumentutkast før neste øvingsrunde." };
+    if (model.opened) return { ok: true, alreadyLogged: true };
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    const note = [
+      "FIKTIV LILLEBEKK-ØVELSE – NY DOKUMENTRUNDE",
+      "Spilleren åpnet en ny, forhåndsskrevet saksøvelse. De to tidligere utkastene er IKKE SENDT.",
+      "Dokumentene LBK-SVAR-16 og LBK-SVAR-17 er kun treningsmateriale, ikke faktisk mottatte svar.",
+      "Ingen undersøkelser, avklaringer, offentlige vedtak eller godkjenninger er gjennomført.",
+      "Kildeversjoner: " + model.source
+    ].join("\n");
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_svarrunde_v" + (model.rounds + 1),
+        scene_id: "lillebekk_svarrunde", choice_id: "apen_fiktiv_dokumentrunde",
+        outcome: "fiktiv_ovingsrunde_apnet", at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk svarrunde", error);
+      return { ok: false, reason: "Øvingsrunden kunne ikke journalføres." };
+    }
+  }
+
+  function recordLillebekkSvarvurdering(docId, actionId, explanation) {
+    const model = lillebekkSvarrundeModel();
+    const doc = model?.docs.find(function (row) { return row.id === docId; });
+    if (!model?.opened || !doc || ![doc.safeId, doc.unsafeId].includes(actionId)) {
+      return { ok: false, reason: "Åpne gjeldende fiktiv dokumentrunde, og velg en gyldig vurdering." };
+    }
+    const reason = String(explanation || "").replace(/\s+/g, " ").trim().slice(0, 700);
+    if (reason.length < 55) return { ok: false, reason: "Begrunn hva dokumentet viser og hva fagansvarlig fortsatt må kontrollere (minst 55 tegn)." };
+    const label = actionId === doc.safeId ? doc.safeLabel : doc.unsafeLabel;
+    const note = [
+      "Øvingsrunde: " + model.latestRound.id + "; FIKTIV DOKUMENTVURDERING " + doc.ref,
+      "Påstander i øvingsbilaget: " + doc.paragraphs.join(" "),
+      "Faglig avgrensning: " + doc.evidence,
+      "Rådgiverens valg: " + label,
+      "Begrunnelse: " + reason,
+      "Åpent arbeidsbehov: " + doc.task,
+      "Dette er ikke dokumentmottak, kontrollrapport, utsendelse eller godkjenning."
+    ].join(" ");
+    if (doc.latestOutcome === actionId && doc.latestNote === note) return { ok: true, alreadyLogged: true };
+    const sameRound = String(doc.latestNote || "").startsWith("Øvingsrunde: " + model.latestRound.id + ";");
+    if (doc.count >= 10 && sameRound &&
+        !(doc.latestOutcome !== doc.safeId && actionId === doc.safeId)) {
+      return { ok: false, reason: "Revisjonsgrensen er nådd; en siste faglig korrigering tillates." };
+    }
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_svarvurdering_" + doc.id + "_v" + (doc.count + 1),
+        scene_id: "lillebekk_svarrunde", choice_id: actionId, outcome: actionId,
+        at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Vurdering av Lillebekk-svar", error);
+      return { ok: false, reason: "Vurderingen kunne ikke journalføres." };
     }
   }
 
@@ -2482,6 +2617,50 @@
     return html + '</details>';
   }
 
+
+  function lillebekkSvarrundeHtml() {
+    const model = lillebekkSvarrundeModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-svarrunde="1">' +
+      '<summary>Ny dokumentrunde – faglige svar (fiktiv øvelse)</summary>' +
+      '<p>Et avgrenset treningsforløp med to forhåndsskrevne dokumentutdrag, ikke svar på faktisk utsendte brev. De tidligere utkastene er ikke sendt. Tall og juridiske formuleringer er øvingsmateriale.</p>';
+    if (!model.canOpen) {
+      html += '<p><strong>Ikke klar:</strong> Begge utkastene til utbygger og intern planjurist må være gjeldende før øvelsen åpnes.</p>';
+    } else if (!model.opened) {
+      html += '<p>Åpne dokumentrunden som en egen fiktiv saksøvelse. Dette innebærer ikke at dokumentene er sendt, at noen har svart i virkeligheten, eller at rapporter er godkjent.</p>' +
+        '<button class="civi-btn secondary" type="button" data-civi-svarrunde-open="1">Åpne fiktiv dokumentrunde</button>' +
+        '<p class="muted" role="status" data-civi-svarrunde-open-error></p>';
+    } else {
+      html += '<p><strong>Faglig holdbare vurderinger:</strong> ' +
+        model.docs.filter(function (doc) { return doc.safe; }).length + ' av 2.</p>';
+      html += model.docs.map(function (doc) {
+        return '<section class="civi-inbox-body" data-civi-svarrunde-doc="' + escapeHtml(doc.id) + '">' +
+          '<h4>' + escapeHtml(doc.ref) + ' – ' + escapeHtml(doc.title) + '</h4>' +
+          '<p><strong>Fiktiv avsender:</strong> ' + escapeHtml(doc.sender) + '</p>' +
+          doc.paragraphs.map(function (paragraph) { return '<p>' + escapeHtml(paragraph) + '</p>'; }).join("") +
+          '<p><strong>Hva svarutdraget faktisk dokumenterer:</strong> ' + escapeHtml(doc.evidence) + '</p>' +
+          '<p><strong>Neste faglige arbeidsoppgave:</strong> ' + escapeHtml(doc.task) + '</p>' +
+          (doc.latestNote ? '<p><strong>Sist journalført (' + (doc.current ? 'gjeldende' : 'tidligere') +
+            '):</strong> ' + escapeHtml(doc.latestNote) + '</p>' : '') +
+          '<label>Vurdering <select data-civi-svarrunde-choice>' +
+            '<option value="' + escapeHtml(doc.safeId) + '"' +
+              (doc.latestOutcome === doc.safeId ? ' selected' : '') + '>' + escapeHtml(doc.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(doc.unsafeId) + '"' +
+              (doc.latestOutcome === doc.unsafeId ? ' selected' : '') + '>' + escapeHtml(doc.unsafeLabel) + '</option>' +
+          '</select></label>' +
+          '<label>Faglig begrunnelse <textarea rows="3" maxlength="700" data-civi-svarrunde-reason ' +
+            'placeholder="Hva kan du fastslå, hva mangler fortsatt, og hvem må kontrollere det?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-svarrunde-save="1" data-doc-id="' +
+            escapeHtml(doc.id) + '">Journalfør vurdering av øvingssvar</button>' +
+          '<p class="muted" role="status" data-civi-svarrunde-error></p></section>';
+      }).join("");
+      if (model.ready) {
+        html += '<p><strong>Dokumentrunden er faglig gjennomgått.</strong> Skolevei, flomvei og planjuridiske spørsmål står fortsatt åpne. Ingen utsendelse, teknisk kontroll eller godkjenning er gjennomført.</p>';
+      }
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -2506,6 +2685,7 @@
         ${lillebekkNyLedervurderingHtml()}
         ${lillebekkSuppleringssvarHtml()}
         ${lillebekkUtkastHtml()}
+        ${lillebekkSvarrundeHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -2966,6 +3146,30 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-svarrunde-open]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const result = recordLillebekkSvarrundeStart();
+        if (result.ok) renderInboxSections();
+        else {
+          const message = button.closest("[data-civi-lillebekk-svarrunde]")?.querySelector("[data-civi-svarrunde-open-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-svarrunde-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-svarrunde-doc]");
+        const result = recordLillebekkSvarvurdering(
+          String(button.getAttribute("data-doc-id") || ""),
+          card?.querySelector("[data-civi-svarrunde-choice]")?.value || "",
+          card?.querySelector("[data-civi-svarrunde-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-svarrunde-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-utkast-save]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-utkast-kind]");
@@ -3435,6 +3639,9 @@
     recordLillebekkSuppleringsgjennomgang,
     recordLillebekkSuppleringsmatrise,
     getLillebekkUtkastModel: lillebekkUtkastModel,
-    recordLillebekkUtkast
+    recordLillebekkUtkast,
+    getLillebekkSvarrundeModel: lillebekkSvarrundeModel,
+    recordLillebekkSvarrundeStart,
+    recordLillebekkSvarvurdering
   };
 })();
