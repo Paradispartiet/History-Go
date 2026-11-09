@@ -60,9 +60,9 @@ jobs:
         run: |
           set -euo pipefail
           git add data/quiz/manifest.json
-          git add data/quiz/kunst/astrup_fearnley_sets.json
-          git add data/quiz/naeringsliv/amerikalinjen_sets.json
-          git add data/quiz/natur/akerselva_utlop_bjorvika_sets.json
+          git add data/quiz/kunst/astrup_fearnley_oslo06_sets.json
+          git add data/quiz/naeringsliv/amerikalinjen_oslo06_sets.json
+          git add data/quiz/natur/akerselva_utlop_bjorvika_oslo06_sets.json
           git add data/quiz/production_context/kunst/astrup_fearnley.json
           git add data/quiz/production_context/naeringsliv/amerikalinjen.json
           git add data/quizcards/kunst/manifest.json
@@ -79,7 +79,7 @@ jobs:
           git rm -- .github/workflows/oslo-havnefront06-quiz-once.yml
           git diff --cached --name-only | while IFS= read -r f; do
             case "$f" in
-              data/quiz/manifest.json|data/quiz/kunst/astrup_fearnley_sets.json|data/quiz/naeringsliv/amerikalinjen_sets.json|data/quiz/natur/akerselva_utlop_bjorvika_sets.json|data/quiz/production_context/kunst/astrup_fearnley.json|data/quiz/production_context/naeringsliv/amerikalinjen.json|data/quizcards/kunst/manifest.json|data/quizcards/naeringsliv/manifest.json|data/quizcards/natur/manifest.json|data/quizcards/kunst/astrup_fearnley_quizcard_v1.json|data/quizcards/naeringsliv/amerikalinjen_quizcard_v1.json|data/quizcards/natur/akerselva_utlop_bjorvika_quizcard_v1.json|data/knowledge/*.generated.json|data/knowledge/subjects/*/*.generated.json|reports/knowledge-id-backfill.json|reports/knowledge-contract-audit.json|reports/knowledge-universe-readers.json|.github/workflows/oslo-havnefront06-quiz-once.yml) ;;
+              data/quiz/manifest.json|data/quiz/kunst/astrup_fearnley_oslo06_sets.json|data/quiz/naeringsliv/amerikalinjen_oslo06_sets.json|data/quiz/natur/akerselva_utlop_bjorvika_oslo06_sets.json|data/quiz/production_context/kunst/astrup_fearnley.json|data/quiz/production_context/naeringsliv/amerikalinjen.json|data/quizcards/kunst/manifest.json|data/quizcards/naeringsliv/manifest.json|data/quizcards/natur/manifest.json|data/quizcards/kunst/astrup_fearnley_quizcard_v1.json|data/quizcards/naeringsliv/amerikalinjen_quizcard_v1.json|data/quizcards/natur/akerselva_utlop_bjorvika_quizcard_v1.json|data/knowledge/*.generated.json|data/knowledge/subjects/*/*.generated.json|reports/knowledge-id-backfill.json|reports/knowledge-contract-audit.json|reports/knowledge-universe-readers.json|.github/workflows/oslo-havnefront06-quiz-once.yml) ;;
               *) echo "UNEXPECTED_STAGED_FILE: $f" >&2; exit 1;;
             esac
           done
