@@ -2447,6 +2447,41 @@
     return html + '</details>';
   }
 
+
+  function lillebekkUtkastHtml() {
+    const model = lillebekkUtkastModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-lillebekk-utkast="1">' +
+      '<summary>Dokumentutkast – utbygger og intern planjuss</summary>' +
+      '<p>Teknisk dokumentasjon etterspørres fra utbygger. Juridisk kvalitetssikring bestilles internt. Her journalføres bare fiktive, usendte utkast; ingen svar, rapporter eller godkjenninger oppstår.</p>';
+    if (!model.ready) {
+      html += '<p><strong>Sperret:</strong> Restansematrisen er utdatert og må oppdateres før nye utkast.</p>';
+    } else {
+      html += '<p><strong>Gjeldende utkast:</strong> ' +
+        model.drafts.filter(function (draft) { return draft.current; }).length + ' av 2.</p>';
+    }
+    html += model.drafts.map(function (draft) {
+      return '<section class="civi-inbox-body" data-civi-utkast-kind="' + escapeHtml(draft.id) + '">' +
+        '<h4>' + escapeHtml(draft.title) + '</h4>' +
+        '<p><strong>Fiktiv mottaker:</strong> ' + escapeHtml(draft.recipient) + '</p>' +
+        '<p><strong>Bilag:</strong> ' + escapeHtml(draft.refs.join(", ")) + '</p>' +
+        draft.requirements.map(function (requirement) { return '<p>' + escapeHtml(requirement) + '</p>'; }).join("") +
+        '<p><strong>Myndighetsgrense:</strong> ' + escapeHtml(draft.boundary) + '</p>' +
+        (draft.latestNote ? '<details><summary>' + (draft.current ? 'Gjeldende' : 'Tidligere, utdatert') +
+          ' utkast</summary><pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+          escapeHtml(draft.latestNote) + '</pre></details>' : '') +
+        (model.ready ?
+          '<label>Begrunn dokumentbehov <textarea rows="3" maxlength="850" data-civi-utkast-reason ' +
+          'placeholder="Hva mangler, hvem skal levere eller kontrollere det, og hvorfor?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-utkast-save="1" data-kind="' +
+          escapeHtml(draft.id) + '">Journalfør utkast – ikke send</button>' +
+          '<p class="muted" role="status" data-civi-utkast-error></p>'
+          : '') +
+        '</section>';
+    }).join("");
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -2470,6 +2505,7 @@
         ${lillebekkKontrollresultatHtml()}
         ${lillebekkNyLedervurderingHtml()}
         ${lillebekkSuppleringssvarHtml()}
+        ${lillebekkUtkastHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -2930,6 +2966,19 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-utkast-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-utkast-kind]");
+        const result = recordLillebekkUtkast(
+          String(button.getAttribute("data-kind") || ""),
+          card?.querySelector("[data-civi-utkast-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-utkast-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-supplering-save]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-supplering-id]");
@@ -3384,6 +3433,8 @@
     recordLillebekkLeder2Oppfolgingsnotat,
     getLillebekkSuppleringssvarModel: lillebekkSuppleringssvarModel,
     recordLillebekkSuppleringsgjennomgang,
-    recordLillebekkSuppleringsmatrise
+    recordLillebekkSuppleringsmatrise,
+    getLillebekkUtkastModel: lillebekkUtkastModel,
+    recordLillebekkUtkast
   };
 })();
