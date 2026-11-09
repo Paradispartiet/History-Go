@@ -889,6 +889,8 @@ const requestReason='Den nye skissen og overvannstabellen dokumenterer ikke sikk
 assert.equal(api.recordLillebekkUtkast('ukjent',requestReason).ok,false);
 assert.equal(api.recordLillebekkUtkast('utbygger','kort').ok,false);
 assert.equal(api.recordLillebekkUtkast('utbygger',requestReason).ok,true);
+assert.equal(api.getLillebekkSvarrundeModel().canOpen,false);
+assert.equal(api.recordLillebekkSvarrundeStart().ok,false);
 assert.equal(api.recordLillebekkUtkast('utbygger',' '+requestReason+' ').alreadyLogged,true);
 assert.equal(api.recordLillebekkUtkast('planjuss',requestReason).ok,true);
 drafts=api.getLillebekkUtkastModel();
@@ -904,6 +906,46 @@ assert.ok(drafts.drafts.every(d=>d.latestNote.includes('IKKE SENDT')));
 assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
 saved=JSON.parse(JSON.stringify(saved));
 assert.equal(api.getLillebekkUtkastModel().complete,true);
+
+// The previous drafts were NOT sent. A fresh exercise only opens through an
+// explicit player action, with two authored and explicitly fictional responses.
+let answers=api.getLillebekkSvarrundeModel();
+assert.equal(answers.canOpen,true);
+assert.equal(answers.opened,false);
+assert.equal(answers.ready,false);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-svarrunde-open="1"'));
+assert.ok(!host.innerHTML.includes('data-civi-svarrunde-save="1"'));
+assert.equal(api.recordLillebekkSvarvurdering('utbygger','returner_for_trafikk_og_va_kontroll',requestReason).ok,false);
+assert.equal(api.recordLillebekkSvarrundeStart().ok,true);
+assert.equal(api.recordLillebekkSvarrundeStart().alreadyLogged,true);
+answers=api.getLillebekkSvarrundeModel();
+assert.equal(answers.opened,true);
+assert.equal(answers.docs.length,2);
+assert.deepEqual(Array.from(answers.docs.map(d=>d.ref)),['LBK-SVAR-16','LBK-SVAR-17']);
+assert.equal(api.renderSections(),true);
+for(const token of ['LBK-SVAR-16','LBK-SVAR-17','1,25 meter','0,90 meter','42 m³','26 m³','§ 4.1','fiktiv']) {
+ assert.ok(host.innerHTML.includes(token),'authored exercise response '+token);
+}
+assert.equal((host.innerHTML.match(/data-civi-svarrunde-save="1"/g)||[]).length,2);
+const svarReason='De fiktive dokumentene gir bare delvise opplysninger. Trafikkfag må kontrollere bredde og sikt, VA må beregne utløp og planjuss må avklare kart, hjemmel og ansvar før saken går videre.';
+assert.equal(api.recordLillebekkSvarvurdering('ukjent','returner_for_trafikk_og_va_kontroll',svarReason).ok,false);
+assert.equal(api.recordLillebekkSvarvurdering('utbygger','ukjent',svarReason).ok,false);
+assert.equal(api.recordLillebekkSvarvurdering('utbygger','returner_for_trafikk_og_va_kontroll','for kort').ok,false);
+assert.equal(api.recordLillebekkSvarvurdering('utbygger','godkjenn_teknisk_grunnlag',svarReason).ok,true);
+assert.equal(api.getLillebekkSvarrundeModel().docs[0].safe,false);
+assert.equal(api.recordLillebekkSvarvurdering('utbygger','returner_for_trafikk_og_va_kontroll',svarReason).ok,true);
+assert.equal(api.recordLillebekkSvarvurdering('utbygger','returner_for_trafikk_og_va_kontroll','  '+svarReason+' ').alreadyLogged,true);
+assert.equal(api.recordLillebekkSvarvurdering('planjuss','behold_utkast_og_krev_sluttkontroll',svarReason).ok,true);
+answers=api.getLillebekkSvarrundeModel();
+assert.equal(answers.ready,true);
+assert.ok(answers.docs[0].latestNote.includes('Øvingsrunde: lillebekk_svarrunde_v1;'));
+assert.ok(answers.docs[1].latestNote.includes('LBK-SVAR-17'));
+assert.ok(answers.docs.every(d=>d.latestNote.includes('ikke dokumentmottak')));
+assert.equal(world.getWorkObject(caseId).status,'open');
+assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+saved=JSON.parse(JSON.stringify(saved));
+assert.equal(api.getLillebekkSvarrundeModel().ready,true);
 
 assert.equal(world.getWorkObject(caseId).status,'open');
 assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
@@ -922,6 +964,11 @@ assert.equal(supplements.sourceCurrent,false);
 assert.equal(supplements.current,false);
 assert.equal(api.getLillebekkUtkastModel().ready,false);
 assert.equal(api.getLillebekkUtkastModel().complete,false);
+assert.equal(api.getLillebekkSvarrundeModel().canOpen,false);
+assert.equal(api.getLillebekkSvarrundeModel().opened,false);
+assert.equal(api.getLillebekkSvarrundeModel().ready,false);
+assert.equal(api.recordLillebekkSvarrundeStart().ok,false);
+assert.equal(api.recordLillebekkSvarvurdering('utbygger','returner_for_trafikk_og_va_kontroll',svarReason).ok,false);
 assert.equal(api.recordLillebekkUtkast('utbygger',requestReason).ok,false);
 assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,false);
 assert.equal(api.recordLillebekkSuppleringsgjennomgang('overvann','registrer_delvis_retting_og_krev_hydraulikk',supReason).ok,false);
@@ -949,6 +996,14 @@ assert.equal(api.recordLillebekkUtkast('utbygger',requestReason).ok,true);
 assert.equal(api.getLillebekkUtkastModel().drafts[0].count,2);
 assert.equal(api.recordLillebekkUtkast('planjuss',requestReason).ok,true);
 assert.equal(api.getLillebekkUtkastModel().complete,true);
+assert.equal(api.getLillebekkSvarrundeModel().canOpen,true);
+assert.equal(api.getLillebekkSvarrundeModel().opened,false);
+assert.equal(api.recordLillebekkSvarrundeStart().ok,true);
+assert.equal(api.getLillebekkSvarrundeModel().rounds,2);
+assert.equal(api.getLillebekkSvarrundeModel().docs.every(d=>!d.safe),true);
+assert.equal(api.recordLillebekkSvarvurdering('utbygger','returner_for_trafikk_og_va_kontroll',svarReason).ok,true);
+assert.equal(api.recordLillebekkSvarvurdering('planjuss','behold_utkast_og_krev_sluttkontroll',svarReason).ok,true);
+assert.equal(api.getLillebekkSvarrundeModel().ready,true);
 
 // The latest documented assessment, rather than player text with an embedded
 // old note ID, decides whether a source is current.
@@ -958,6 +1013,11 @@ assert.equal(api.recordLillebekkSuppleringsgjennomgang('planjuss','journalfor_ut
 assert.equal(api.getLillebekkSuppleringssvarModel().ready,true);
 assert.equal(api.getLillebekkSuppleringssvarModel().current,false);
 assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,true);
+const responseInjection='<img src=x onerror=alert(1)> Øvingssvarene må kontrolleres av trafikk og VA, og planjuristen må kontrollere bestemmelsens hjemmel og kartforankring før videre intern behandling.';
+assert.equal(api.recordLillebekkSvarvurdering('planjuss','behold_utkast_og_krev_sluttkontroll',responseInjection).ok,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('&lt;img'));
+assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
 const letterInjection='<img src=x onerror=alert(1)> Utbygger må dokumentere målsatt fri gangbredde og hydraulisk utløpskapasitet før kommunen vurderer det tekniske materialet.';
 assert.equal(api.recordLillebekkUtkast('utbygger',letterInjection).ok,true);
 assert.equal(api.renderSections(),true);
@@ -989,6 +1049,9 @@ assert.equal(api.getLillebekkSuppleringssvarModel().current,true);
 activeRole={role_key:'butikkmedarbeider'};
 assert.equal(api.getLillebekkSuppleringssvarModel(),null);
 assert.equal(api.getLillebekkUtkastModel(),null);
+assert.equal(api.getLillebekkSvarrundeModel(),null);
+assert.equal(api.recordLillebekkSvarrundeStart().ok,false);
+assert.equal(api.recordLillebekkSvarvurdering('utbygger','returner_for_trafikk_og_va_kontroll',svarReason).ok,false);
 assert.equal(api.recordLillebekkUtkast('utbygger',requestReason).ok,false);
 assert.equal(api.recordLillebekkSuppleringsgjennomgang('trafikk','returner_trafikk_med_konkret_mangelliste',supReason).ok,false);
 assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,false);
@@ -1018,6 +1081,9 @@ activeRole={role_key:'arealplanlegger'};
 world.closeWorkObject(caseId,{event_id:'lillebekk_memo_test_close',at:'2026-11-07T10:00:00Z',outcome:'closed_for_test'});
 assert.equal(api.getLillebekkSuppleringssvarModel(),null);
 assert.equal(api.getLillebekkUtkastModel(),null);
+assert.equal(api.getLillebekkSvarrundeModel(),null);
+assert.equal(api.recordLillebekkSvarrundeStart().ok,false);
+assert.equal(api.recordLillebekkSvarvurdering('utbygger','returner_for_trafikk_og_va_kontroll',svarReason).ok,false);
 assert.equal(api.recordLillebekkUtkast('utbygger',requestReason).ok,false);
 assert.equal(api.recordLillebekkSuppleringsgjennomgang('trafikk','returner_trafikk_med_konkret_mangelliste',supReason).ok,false);
 assert.equal(api.recordLillebekkSuppleringsmatrise(supPlan).ok,false);
