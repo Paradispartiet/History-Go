@@ -37,3 +37,21 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   color:#fff !important;
   text-shadow:0 2px 7px #000,0 0 13px rgba(0,0,0,.82);
 }
+
+/* The sticky hero changes height with .pc-body scrollTop. Disable scroll
+   anchoring for this Place Sheet scroller throughout its pinned/unpinned
+   transition: otherwise Chrome may restore its previous offset after an
+   explicit scroll back to the top. Other PlaceCard variants are untouched.
+   This does not weaken visibility, pointer handling or the QuizCard itself. */
+body.hg-app #placeCard.is-place-sheet-direct > .pc-body {
+  overflow-anchor: none;
+}
+
+/* The heading slides up when the original photo is cropped. Preserve the
+   dated historical-photo caption at its original screen position instead
+   of letting it disappear above the clipped sticky hero. The original
+   title, badges and photograph still use their existing crop geometry. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned
+  .pc-heading-hero.has-photo-source .pc-heading-content .pc-photo-caption {
+  transform: translateY(var(--pc-hero-collapse-offset, 0px));
+}
