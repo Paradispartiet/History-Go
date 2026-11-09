@@ -2196,7 +2196,7 @@
       "LILLEBEKK – SIMULERT REFERAT FRA ELINS OPPFØLGINGSMØTE (INGEN GODKJENNING)",
       "Gjennomgått internt oppfølgingsnotat: " + model.memo.latestReport.id,
       "Tre faglige spørsmål og konkret arbeidsfordeling:",
-      ...model.questions.map(function (q) { return "- " + q.title + ": " + q.feedback + " " + q.task; }),
+      ...model.questions.map(function (q) { return "- " + q.ref + " / " + q.title + ": " + q.feedback + " " + q.task; }),
       "Rådgiverens oppfølgingsplan: " + reason,
       "Simulert lederbeskjed: Saken blir i intern bearbeiding. Fremskaff eller bestill kontrollert dokumentasjon før en ny vurdering av når saken eventuelt kan sendes til videre kommunal behandling.",
       "Uavklarte forhold gjelder skolevei, overvann, § 4.1 og tidligere registrerte fagtema. Ingen fagavvik er automatisk lukket.",
