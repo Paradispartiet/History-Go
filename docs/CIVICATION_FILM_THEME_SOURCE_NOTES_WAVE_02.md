@@ -36,12 +36,12 @@ Maskinlesbare kildehenvisninger og kontroll mot faktisk runtime ligger i [filmTh
 
 **Kinoversjonen og First Cut:** En sammenligning av de to klippene dokumenterer at kinoversjonen går tilbake til hockeyspillet etter bildet av kunden ved den stengte døra. First Cut gir kampen mer plass og har flere innstillinger, blant annet av spillerne på vei opp stigen. Det gir dekning for perspektivskiftet mellom kunde og spillere, mens den nøyaktige rytmen varierer mellom versjonene. Observasjonen bygger på versjonssammenligningen. [Movie-Censorship, taksekvensen](https://www.movie-censorship.com/report.php?ID=2422593)
 
-**Overført til spillet:** På dag 12 konkurrerer invitasjonen og den andre kundens leveranse om samme ettermiddag. Den gamle lenka gjør konflikten konkret. Å rette og sende bruker av tida frilanseren har lovet bort. Å varsle gir Lea tid til å skrive kortversjonen. I begge tilfeller får vi se hvem som gjør arbeidet og hva foreningen faktisk sender ut.
+**Overført til spillet:** På dag 12 konkurrerer invitasjonen og den andre kundens leveranse om samme ettermiddag. Leas ønske om en gjennomgang av hele forsida kommer like før fristen. Spilleren kan sende den avtalte invitasjonen og overlate forsida til Lea, eller varsle at samlet levering vil ta lenger tid. Da kan Lea sende en kortversjon. I begge tilfeller får vi se hvem som gjør arbeidet og hva foreningen faktisk sender ut.
 
 **Arbeidet og ansvaret:** Invitasjonen sier torsdag, påmeldingsskjemaet sier fredag, og Lea har sendt torsdag til styret. Lea kan rette styremeldingen og forsida. Styrelederen bestiller og godkjenner teksten. Frilanseren redigerer invitasjonen, sjekker lenka og må samtidig holde en frist for en annen kunde.
 
 - **Dag 8–9:** Spilleren kan skrive en prøveåpning og sende et avgrenset tilbud, vente på en bekreftet bestilling eller takke nei og gjøre ferdig den andre kundens rettelse. Oppfølgingen følger det lagrede valget.
-- **Dag 11–13:** Når styrelederen bestiller, får spilleren dato og påmeldingsfrist og finner lenka til årets skjema. Ved levering godkjenner styrelederen teksten etter å ha testet lenka på mobilen. Ved varslet forsinkelse sender Lea en kortversjon, og styrelederen trekker bestillingen. En ubesvart forespørsel gir ingen leveransefrist.
+- **Dag 11–13:** Når styrelederen bestiller, får spilleren dato og påmeldingsfrist og finner lenka til årets skjema. Ved levering godkjenner styrelederen teksten etter å ha testet lenka på mobilen. Spilleren kan også avklare hvem som skal ta forsida ved en eventuell senere bestilling. Ved varslet forsinkelse sender Lea en kortversjon, og styrelederen trekker bestillingen. En ubesvart forespørsel gir ingen leveransefrist.
 
 **Dag 14 ved avbestilling:** Spilleren kan be om honorar for tiden som er brukt, eller avslutte saken og gjøre ferdig den andre kundens rettelse. En forespørsel om honorar står åpen til foreningen svarer. Ved godkjent levering avsluttes invitasjonsoppdraget på dag 13.
 
