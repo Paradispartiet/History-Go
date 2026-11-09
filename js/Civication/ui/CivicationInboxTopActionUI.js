@@ -1749,6 +1749,87 @@
     }
   }
 
+
+  // Distinguish external technical documentation requests from municipal legal review.
+  // These are unsent drafts, tied to the latest source-verified restanse matrix.
+  const LILLEBEKK_UTKAST = [
+    { id: "utbygger", title: "Presiseringsbrev til utbygger – utkast",
+      recipient: "Utbyggers prosjektleder (fiktiv)",
+      refs: ["LBK-SUP-13", "LBK-SUP-14"],
+      requirements: [
+        "Trafikk: målsatt fri gangbredde ved normal og avvikende varelevering, dokumentert sikt, risiko og ansvarlig driftsplan før første innflytting.",
+        "Overvann: daterte beregningspremisser, kapasitet for utløpet, analyse av 42 m³ tilrenning og 26 m³ fordrøyning, ekstremnedbør og virkning for nabo i vest."
+      ],
+      boundary: "Utbyggers tilleggsopplysninger er ikke kommunal teknisk verifikasjon eller planvedtak." },
+    { id: "planjuss", title: "Intern bestilling til planjurist – utkast",
+      recipient: "Kommunal planjurist (fiktiv)",
+      refs: ["LBK-SUP-15", "LBK-SUP-13"],
+      requirements: [
+        "Kvalitetssikre § 4.1 mot plankart, presis gangtrasé, tidspunkt før innflytting, gjennomføringsansvar og dokumentasjon for trafikk.",
+        "Vurder hjemmel og utbyggers forslag om ferdigattest for hele prosjektet uten å gi forhåndstilsagn om planvedtak."
+      ],
+      boundary: "Juridisk sluttkontroll er kommunens oppgave, ikke noe utbygger kan attestere eller godkjenne." }
+  ];
+
+  function lillebekkUtkastModel() {
+    const sup = lillebekkSuppleringssvarModel();
+    if (!sup?.latestMatrix) return null;
+    const world = window.CivicationWorkWorld;
+    const formal = world?.getWorkObject?.("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return null;
+    const history = Array.isArray(formal.history) ? formal.history : [];
+    const source = sup.signature + "|" + sup.latestMatrix.id;
+    const drafts = LILLEBEKK_UTKAST.map(function (draft) {
+      const records = history.filter(function (event) {
+        return String(event.id || "").startsWith("lillebekk_utkast_" + draft.id + "_v");
+      });
+      const latest = records[records.length - 1] || null;
+      return { ...draft, count: records.length, latestNote: latest?.note || "",
+        current: !!sup.current && !!latest &&
+          String(latest.note || "").endsWith("Kildeversjoner: " + source) };
+    });
+    return { sup, source, ready: !!sup.current, drafts,
+      complete: !!sup.current && drafts.every(function (draft) { return draft.current; }) };
+  }
+
+  function recordLillebekkUtkast(kind, justification) {
+    const model = lillebekkUtkastModel();
+    if (!model?.ready) return { ok: false, reason: "En gjeldende restansematrise må journalføres først." };
+    const draft = model.drafts.find(function (row) { return row.id === kind; });
+    if (!draft) return { ok: false, reason: "Ukjent mottaker. Utbygger og intern planjurist må holdes adskilt." };
+    const reason = String(justification || "").replace(/\s+/g, " ").trim().slice(0, 850);
+    if (reason.length < 70) return { ok: false, reason: "Skriv en konkret begrunnelse på minst 70 tegn." };
+    const note = [
+      "LILLEBEKK – " + draft.title.toUpperCase() + " (IKKE SENDT)",
+      "Fiktivt internt utkast. Ingen faktisk utsendelse, dokumentmottak eller kontroll er gjennomført.",
+      "Mottaker: " + draft.recipient,
+      "Kilde: " + model.sup.latestMatrix.id + ", " + draft.refs.join(", "),
+      "Dokumentkrav:",
+      ...draft.requirements.map(function (requirement) { return "- " + requirement; }),
+      "Rådgiverens begrunnelse: " + reason,
+      "Myndighetsgrense: " + draft.boundary,
+      "Alle åpne saksavvik beholdes; dette er ikke et vedtak.",
+      "Kildeversjoner: " + model.source
+    ].join("\n");
+    if (draft.latestNote === note) return { ok: true, alreadyLogged: true };
+    if (draft.count >= 10 && draft.current) return { ok: false, reason: "Revisjonsgrense for uendrede kilder. Oppdater grunnlaget først." };
+    const world = window.CivicationWorkWorld;
+    if (typeof world?.appendWorkObjectHistory !== "function") return { ok: false, reason: "Saksloggen er utilgjengelig." };
+    const formal = world.getWorkObject("by_radgiver_lillebekk_plan_case_001");
+    if (!formal || formal.status === "closed" || formal.closed_at) return { ok: false, reason: "Saken er avsluttet." };
+    try {
+      world.appendWorkObjectHistory(formal.work_object_id, {
+        event_id: "lillebekk_utkast_" + draft.id + "_v" + (draft.count + 1),
+        scene_id: "lillebekk_suppleringssvar", choice_id: "journalfor_" + draft.id + "_utkast",
+        outcome: "intern_utkast_ikke_sendt", at: new Date().toISOString(), note
+      });
+      return { ok: true, alreadyLogged: false };
+    } catch (error) {
+      if (window.DEBUG) console.warn("[Civication] Lillebekk utkast", error);
+      return { ok: false, reason: "Utkastet kunne ikke journalføres." };
+    }
+  }
+
   function lillebekkReviewModel() {
     const active = window.CivicationState?.getActivePosition?.();
     // MailPlan uses by_radgiver_plan, while accepted job offers store the
