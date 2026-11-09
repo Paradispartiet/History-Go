@@ -9,7 +9,7 @@ const actualQuizIds=new Set();
 const unitIndex=read('data/knowledge/knowledge_units.generated.json');
 const knowledgeUnits=new Set((unitIndex.units||[]).map(x=>x.knowledge_unit_id));
 for(const [category,id] of plans){
- const quizPath='data/quiz/'+category+'/'+id+'_sets.json';
+ const quizPath='data/quiz/'+category+'/'+id+'_oslo06_sets.json';
  const cardPath='data/quizcards/'+category+'/'+id+'_quizcard_v1.json';
  test(id+' has exactly 3x7 active question sets, 21 unique sourced claims and correct phases',()=>{
    const doc=read(quizPath),brief=read('data/quiz/production_briefs/'+category+'/'+id+'.json');
