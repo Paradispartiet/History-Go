@@ -3417,6 +3417,62 @@
     return html + '</details>';
   }
 
+
+  function lillebekkKontrollovelseHtml() {
+    const model = lillebekkKontrollovelseModel();
+    if (!model) return "";
+    let html = '<details class="civi-inbox-history" data-civi-kontrollovelse="1">' +
+      '<summary>Faglige kontrollbilag – separat fiktiv øvelse</summary>' +
+      '<p>Alle utdragene her er oppdiktet treningsmateriale, ikke faktisk mottatte fagrapporter. De tre interne kontrollbestillingene er fortsatt usendte.</p>';
+    if (!model.canOpen) {
+      html += '<p><strong>Sperret:</strong> Journalfør en gjeldende intern kontrollplan før du kan åpne denne separate øvelsen.</p>';
+    } else if (!model.opened) {
+      html += '<p>Du kan åpne tre forhåndsskrevne kontrollutdrag for å øve på kildekritikk og faglig vurdering. Åpning innebærer ikke reelt dokumentmottak eller godkjenning.</p>' +
+        '<button class="civi-btn secondary" type="button" data-civi-kontrollovelse-open="1">Åpne fiktiv kontrollbilag-øvelse</button>' +
+        '<p class="muted" role="status" data-civi-kontrollovelse-open-error></p>';
+    } else {
+      html += '<p><strong>Forsvarlig faglig vurdert:</strong> ' +
+        model.docs.filter(function (doc) { return doc.safe; }).length + ' av 3.</p>';
+      html += model.docs.map(function (doc) {
+        return '<section class="civi-inbox-body" data-civi-kontrollovelse-doc="' + escapeHtml(doc.id) + '">' +
+          '<h4>' + escapeHtml(doc.ref) + ' – ' + escapeHtml(doc.title) + '</h4>' +
+          '<p><strong>Fiktiv fagrolle:</strong> ' + escapeHtml(doc.author) +
+          ' · Arbeidsoppgave: ' + escapeHtml(doc.source) + '</p>' +
+          doc.paragraphs.map(function (p) { return '<p>' + escapeHtml(p) + '</p>'; }).join("") +
+          '<p><strong>Bevisgrense:</strong> ' + escapeHtml(doc.limitation) + '</p>' +
+          '<p><strong>Nødvendig videre arbeid:</strong> ' + escapeHtml(doc.requirement) + '</p>' +
+          (doc.latestNote ? '<p><strong>Sist journalført' + (doc.current ? '' : ' (utdatert)') +
+            ':</strong> ' + escapeHtml(doc.latestNote) + '</p>' : '') +
+          '<label>Faglig beslutning <select data-civi-kontrollovelse-choice>' +
+            '<option value="' + escapeHtml(doc.safeId) + '"' +
+              (doc.latestOutcome === doc.safeId ? ' selected' : '') + '>' + escapeHtml(doc.safeLabel) + '</option>' +
+            '<option value="' + escapeHtml(doc.unsafeId) + '"' +
+              (doc.latestOutcome === doc.unsafeId ? ' selected' : '') + '>' + escapeHtml(doc.unsafeLabel) + '</option>' +
+          '</select></label>' +
+          '<label>Din begrunnelse <textarea rows="3" maxlength="800" data-civi-kontrollovelse-reason ' +
+            'placeholder="Hva bekrefter og bekrefter ikke dokumentet? Hvem må levere neste kontroll?"></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-kontrollovelse-save="1" data-doc-id="' +
+            escapeHtml(doc.id) + '">Journalfør vurdering av fiktivt kontrollbilag</button>' +
+          '<p class="muted" role="status" data-civi-kontrollovelse-error></p></section>';
+      }).join("");
+      if (model.ready) {
+        html += '<section class="civi-inbox-body" data-civi-kontrollovelse-summary-editor="1">' +
+          '<h4>Samlet vurdering av gjenværende dokumentasjonsmangler</h4>' +
+          '<p>Ranger hva trafikkfag, VA og planjurist må kontrollere før en eventuell ny intern ledervurdering. Dokumentene er fortsatt bare fiktive øvingsutdrag.</p>' +
+          '<label>Konkrete restanser og rekkefølge <textarea rows="4" maxlength="1150" data-civi-kontrollovelse-summary-reason ' +
+            'placeholder="Beskriv trafikksikkerhet, utløpskapasitet, nabovirkning og planjuridisk kontroll – og hvem som er ansvarlig."></textarea></label>' +
+          '<button class="civi-btn secondary" type="button" data-civi-kontrollovelse-summary-save="1">Journalfør intern mangelvurdering (øvelse)</button>' +
+          '<p class="muted" role="status" data-civi-kontrollovelse-summary-error></p></section>';
+      }
+    }
+    if (model.latestSummary) {
+      html += '<h4>' + (model.current ? 'Gjeldende faglig mangelvurdering' : 'Tidligere eller utdatert mangelvurdering') + '</h4>' +
+        '<pre class="civi-inbox-body" style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+          escapeHtml(model.latestSummary.note) + '</pre>';
+    }
+    return html + '</details>';
+  }
+
   function lillebekkReviewHtml() {
     const dossier = lillebekkReviewModel();
     if (!dossier) return "";
@@ -3445,6 +3501,7 @@
         ${lillebekkSvarnotatHtml()}
         ${lillebekkElinSvarmoteHtml()}
         ${lillebekkKontrollplanHtml()}
+        ${lillebekkKontrollovelseHtml()}
         <details class="civi-inbox-history">
           <summary>Se faglige vurderinger og åpne avvik</summary>
           <div class="civi-inbox-history-list">
@@ -3905,6 +3962,42 @@
 
 
   function wireInboxResponses(host) {
+    host.querySelectorAll("[data-civi-kontrollovelse-open]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const result = recordLillebekkKontrollovelseStart();
+        if (result.ok) renderInboxSections();
+        else {
+          const message = button.parentElement?.querySelector("[data-civi-kontrollovelse-open-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-kontrollovelse-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-kontrollovelse-doc]");
+        const result = recordLillebekkKontrollovelseVurdering(
+          String(button.getAttribute("data-doc-id") || ""),
+          card?.querySelector("[data-civi-kontrollovelse-choice]")?.value || "",
+          card?.querySelector("[data-civi-kontrollovelse-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-kontrollovelse-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
+    host.querySelectorAll("[data-civi-kontrollovelse-summary-save]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const card = button.closest("[data-civi-kontrollovelse-summary-editor]");
+        const result = recordLillebekkKontrollovelseOppsummering(
+          card?.querySelector("[data-civi-kontrollovelse-summary-reason]")?.value || "");
+        if (result.ok) renderInboxSections();
+        else {
+          const message = card?.querySelector("[data-civi-kontrollovelse-summary-error]");
+          if (message) message.textContent = result.reason;
+        }
+      });
+    });
     host.querySelectorAll("[data-civi-kontrollpakke-save]").forEach(function (button) {
       button.addEventListener("click", function () {
         const card = button.closest("[data-civi-kontrollpakke]");
@@ -4474,6 +4567,10 @@
     recordLillebekkElinSvarmoteReferat,
     getLillebekkKontrollplanModel: lillebekkKontrollplanModel,
     recordLillebekkKontrollpakke,
-    recordLillebekkKontrollplan
+    recordLillebekkKontrollplan,
+    getLillebekkKontrollovelseModel: lillebekkKontrollovelseModel,
+    recordLillebekkKontrollovelseStart,
+    recordLillebekkKontrollovelseVurdering,
+    recordLillebekkKontrollovelseOppsummering
   };
 })();
