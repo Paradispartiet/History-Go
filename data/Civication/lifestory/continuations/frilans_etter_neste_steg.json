@@ -283,6 +283,37 @@
       }
     },
     {
+      "id": "c04_styret_svarer_om_honorar",
+      "threadId": "frilans_etter_valget",
+      "dag": 15,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Vi kan dekke halvtimen»",
+      "tekst": "Det kommer en e-post fra styrelederen. «Jeg viste dem tidsnotatet på møtet. Vi kan betale 300 kroner for halvtimen. Merk fakturaen ‘Vårsamling – avbestilt utkast’, så finner kassereren den.»",
+      "valg": [
+        {
+          "id": "bekreft",
+          "tekst": "«Fint. Da noterer jeg 300 for utkastet og lenkesjekken.»",
+          "konsekvensTekst": "Dere har avtalt 300 kroner for arbeidet du rakk før avbestillingen. Du noterer fakturamerkingen. Fakturaen er ennå ikke sendt, og beløpet er ikke betalt.",
+          "effekter": {
+            "flagg": {
+              "c04_oppgjor": "honorar_avtalt_ubetalt",
+              "c04_honorar_avtalt": 300
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "c04_sluttstatus": "avbestilt",
+          "c04_oppgjor": "honorar_til_avklaring"
+        }
+      }
+    },
+    {
       "id": "d16_frilans_avgrenset",
       "threadId": "frilans_etter_valget",
       "dag": 16,
