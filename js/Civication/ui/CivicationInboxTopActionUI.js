@@ -2723,7 +2723,7 @@
       "Gjeldende simulert mangelvurdering: " + model.exercise.latestSummary.id,
       "A. Tre prioriterte faglige kontrollavvik, alle fortsatt ÅPNE:",
       ...model.items.map(function (item) {
-        return "- " + item.ref + " / " + item.title + ". " + item.status + ". " +
+        return "- " + item.ref + " / " + item.source + " / " + item.title + ". " + item.status + ". " +
           item.basis + " Fagansvar: " + item.owner + ". Arbeidskrav: " + item.next +
           " Avhengighet: " + item.dependency;
       }),
