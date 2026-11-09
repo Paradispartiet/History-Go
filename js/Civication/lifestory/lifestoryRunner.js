@@ -114,7 +114,12 @@
       && !content.fortsettelse
       && !state.spilteScener.includes(scene.id)
       && (!scene.etterValgDager || Number.isInteger(state.privatHistorie?.flaggDager?.[scene.etterValgDager.flagg]))
-      && Object.entries(scene.conditions?.flagg || {}).every(([key, value]) => state.tidligereValg[key] === value));
+      && Object.entries(scene.conditions?.flagg || {}).every(([key, value]) => {
+        const present = Object.prototype.hasOwnProperty.call(state.tidligereValg, key);
+        return value && typeof value === 'object' && !Array.isArray(value)
+          ? value.finnes === present
+          : present && state.tidligereValg[key] === value;
+      }));
   }
 
   /**

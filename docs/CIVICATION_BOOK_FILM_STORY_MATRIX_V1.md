@@ -151,12 +151,33 @@ En bekjent hjelper spilleren med å få låne et rom til en øvelse. Uken etter 
 **Valg B:** Tilby en avgrenset praktisk tjeneste og presisere at den avslutter saken.
 
 ### C09 – Vennskapet som glir fra
-**Rolle/person:** Jonas / vennskap. **Bokreferanse (foreløpig):** Fosse – Septologien. **Film:** [Lost in Translation](https://www.imdb.com/title/tt0335266/) / Film Producer `scenario_lost_in_translation_2003`.
 
-Jonas og spilleren pleide å møtes på søndager. Nå har to avtaler blitt flyttet, og Jonas skriver «vi tar det senere» uten nytt forslag. Spilleren vet ikke om Jonas trenger avstand eller bare har det travelt.
+**Spillbar, allerede eksisterende person:** Jonas i delt privatliv på tvers av jobbroller. Canonical: `data/Civication/lifestory/life/scenes.json` (tidlige Jonas-valg, Wave E/F/G). Nytt C09-etterspill bygger på denne historikken og skal aldri introdusere en konkurrerende Jonas eller påstå at en avtale er gjort uten to bekreftelser.
 
-**Valg A:** Spørre om Jonas fortsatt ønsker å møtes, uten å kreve en forklaring.
-**Valg B:** Si at døren er åpen og la Jonas foreslå neste treff.
+**Filmkontroll, 9. november 2026:** Den tidligere koblingen til [*Lost in Translation* (2003)](https://www.focusfeatures.com/article/lost-in-translation_15-anniversary) var tematisk misvisende for **denne** fortellingen. Coppolas film handler om to fremmede som finner uventet fortrolighet under en kortvarig reise, mens de samtidig kjenner på ensomhet, identitet og eksisterende forpliktelser. Den handler ikke om to gamle venner som gjentatte ganger flytter en fast avtale. Filmen kan inspirere en **egen, ennå ikke registrert** historie om ny fortrolighet, men skal ikke brukes som belegg for Jonas-plottet. [Focus Features](https://www.focusfeatures.com/article/lost-in-translation_15-anniversary) · [Roger Ebert](https://www.rogerebert.com/reviews/great-movie-lost-in-translation-2003).
+
+**Mer treffende filmkandidat, ikke verifisert Film Producer-kobling:** [*The Eight Mountains* (2022)](https://www.festival-cannes.com/en/f/le-otto-montagne/) følger barndomsvennene Pietro og Bruno når livene deres utvikler seg forskjellig, og de gjentatte ganger møtes igjen. Her finnes faktisk den **langsiktige vennskapskonflikten** om nærhet, avstand og ulike livsløp. Dette er en kildeunderbygget tematisk parallell – **ikke** en påstand om at filmen viser gjentatte avlysninger, søndagsavtaler eller Jonas' replikker. [Festival de Cannes](https://www.festival-cannes.com/en/f/le-otto-montagne/) · [Film at Lincoln Center](https://www.filmlinc.org/films/the-eight-mountains/).
+
+**Litteraturstatus:** «Septologien» i den opprinnelige synopsis-teksten og «Sunset Park» i den separate Goodreads-koblingen er **ulike registreringer**. Ingen av dem er dokumentert som nærlesning av Jonas-hendelsene. Ikke avgjør litteraturmatchen ved gjetning.
+
+**Hva som faktisk finnes i spillet fra før:** Jonas sender tidligere invitasjoner, spilleren kan stille grenser, og Wave E/F/G følger samtalene videre. En ubekreftet dato skal fremdeles være ubekreftet, uansett hvilken jobb spilleren har. Synopsisens tidligere utsagn om to flyttede søndagsavtaler er **ikke** etablert som kanonisk hendelse i disse scenene; ikke skriv det som spillerens opplevde fortid.
+
+#### C09 – original fortelling, hendelser før poeng
+
+**Felles situasjon:** Etter en tid med ulik kontakt sier Jonas at han gjerne vil treffes, men ikke kan love en fast kveld. Spilleren savner ham, men ønsker heller ikke å reservere kalenderen på ubestemt tid. Dette er ikke en opplysning om skjulte motiver, sykdom eller en avvisning av vennskapet.
+
+**Faste hendelser:** (1) Jonas sier tydelig at han ikke kan love en fast rytme. (2) Spilleren velger hvordan hen vil svare. (3) Jonas svarer innenfor det han faktisk vet og kan love. (4) Spillerens senere refleksjon skiller en hilsen, et forslag og en bekreftet avtale.
+
+| Spillerhandling | Forventet virkning | Virkelig gren |
+| --- | --- | --- |
+| Si direkte at uvissheten har vært vanskelig | Bruker energi, men uttrykker et behov uten å tillegge Jonas motiver | Samme videre hendelse som å gi rom; forskjell i energi, relasjon og handlingsrom |
+| Overlate neste initiativ til Jonas | Frigjør egen kalender, lar forholdet stå åpent | Samme videre hendelse som direkte svar; ingen avtale registreres |
+| Foreslå en kort tur **om tre dager** | Forespørselen er ikke en avtale; Jonas må kunne svare, og spilleren må bekrefte tidspunktet | Egen turgren bare ved to bekreftelser; møtet spilles faktisk i etterspillet |
+| Påstå at Jonas ikke gidder å treffes | Gjør en tolkning til et faktum, og kan svekke tilliten | Reell misforståelse; spilleren kan senere rette påstanden eller la konflikten stå |
+
+**Symposium og spilltilstand:** Logg ordrette spillerhandlinger, Jonas' faktiske svar og bekreftelsesstatus. Ikke skriv et fremtidig møte som gjennomført før scenen er spilt. Bruk kun eksisterende `venn`-relasjon, målere og `wave_g_c01`-tråd. Ingen nye jobboppgaver eller påståtte fakta om Jonas' privatliv. Nye C09-scener skal få egne stabile scene- og valg-ID-er, og testes mot lagring og jobbskifte.
+
+**Produksjonsstatus:** Opprinnelig `C09` i synopsiskatalogen er en redaksjonell kildekandidat; den kan ikke heves til kildeverifisert filmadaptasjon bare fordi den underliggende Jonas-relasjonen er spillbar. *The Eight Mountains* er fortsatt en tematisk kandidat, og *Lost in Translation* skal ikke markeres som tematisk treff for C09.
 
 ### C10 – Kjærlighet på feil tidspunkt
 **Rolle/person:** ny privatlivstråd / gjensidig interesse. **Bokreferanse (foreløpig):** Austen – Stolthet og fordom. **Film:** [Before Sunrise](https://www.imdb.com/title/tt0112471/) / Film Producer `scenario_before_sunrise_1995`.
