@@ -61,6 +61,9 @@
 ## Synopsis og valgdilemma for hver historietype
 
 ### C01 – Jobbtap og verdighet
+
+[Symposium-profil for arbeidsledig og jobbsøker](civication-symposium/arbeidsledig.md)
+
 **Rolle/person:** arbeidsledig. **Bokreferanse (foreløpig):** Ellison – Invisible Man. **Film:** [I, Daniel Blake](https://www.imdb.com/title/tt5168192/) / Film Producer `scenario_i_daniel_blake_2016`.
 
 Etter at arbeidsforholdet opphører, får spilleren en invitasjon til en gammel kollegasamling samme dag som et økonomisk krav må besvares. Jonas spør om spilleren vil bli med; svaret handler like mye om selvrespekt som om penger.
@@ -85,6 +88,8 @@ Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer
 **Valg B:** Anbefale henne å legge demonstrasjonen i skuffen til økonomien er mer stabil.
 
 ### C04 – Forespørselen som ikke er en kontrakt
+
+[Frilanserens Symposium-profil](civication-symposium/frilanser.md) · [Ekspeditørprofilen for butikkarbeid](civication-symposium/ekspeditor.md)
 
 **Rolle:** Frilanseren er spilleren. Lea samordner invitasjonen og kan rette styremeldingen og forsida. Styrelederen kan bestille og godkjenne teksten. Den andre kunden har allerede fått løfte om en korrektur. [Spillbar åpning](../data/Civication/lifestory/continuations/frilans_med_lea.json) · [Leveranse og kundesvar](../data/Civication/lifestory/continuations/frilans_neste_steg.json)
 
@@ -119,6 +124,9 @@ Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer
 De to leveringsvalgene, avbestillingsgrenen, feilsporet på dag 8 og den felles e-posten på dag 13 er implementert. Symposium lagrer hva deltakerne fikk, sammen med de valgene og konsekvensene spilleren faktisk opplevde.
 
 ### C05 – Byråkratiet og personen
+
+[Symposium-profil for arbeidsledig og jobbsøker](civication-symposium/arbeidsledig.md)
+
 **Rolle/person:** arbeidsledig / NAV. **Bokreferanse (foreløpig):** Kafka – Prosessen. **Film:** [Brazil](https://www.imdb.com/title/tt0088846/) / Film Producer `scenario_brazil_1985`.
 
 En digital søknad ber om et vedlegg spilleren allerede har levert. Fristen går ut i morgen, og veilederen kan ikke se dokumentet i sitt system. Spilleren må velge hvordan dette dokumenteres uten å anta at saken er avgjort.
@@ -127,6 +135,9 @@ En digital søknad ber om et vedlegg spilleren allerede har levert. Fristen går
 **Valg B:** Ringe veilederen for å avklare hva som faktisk mangler før noe sendes igjen.
 
 ### C06 – Faglig integritet under press
+
+[Arealplanleggerens Symposium-profil](civication-symposium/arealplanlegger.md)
+
 **Rolle/person:** arealplanlegger. **Bokreferanse (foreløpig):** Camus – Pesten. **Film:** [12 Angry Men](https://www.imdb.com/title/tt0050083/) / Film Producer `scenario_12_angry_men_1957`.
 
 Et saksnotat om en skolevei skal legges frem samme ettermiddag. Plansjefen ønsker en kort konklusjon, men trafikkmålingen fra morgenrushet mangler. Spilleren må svare på hva notatet kan hevde før en beslutning tas.
@@ -151,6 +162,8 @@ En bekjent hjelper spilleren med å få låne et rom til en øvelse. Uken etter 
 **Valg B:** Tilby en avgrenset praktisk tjeneste og presisere at den avslutter saken.
 
 ### C09 – Vennskapet som glir fra
+
+[Venn av Jonas i Symposium](civication-symposium/venn-av-jonas.md)
 **Rolle/person:** Jonas / vennskap. **Bokreferanse (foreløpig):** Fosse – Septologien. **Film:** [Lost in Translation](https://www.imdb.com/title/tt0335266/) / Film Producer `scenario_lost_in_translation_2003`.
 
 Jonas og spilleren pleide å møtes på søndager. Nå har to avtaler blitt flyttet, og Jonas skriver «vi tar det senere» uten nytt forslag. Spilleren vet ikke om Jonas trenger avstand eller bare har det travelt.

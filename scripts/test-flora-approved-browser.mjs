@@ -25,6 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"syrin",label:"Syrin",term:"Syrin",path:"b09/75_syrin_v1.webp"},
     {name:"mispel",label:"Mispel",term:"Mispel",path:"b09/74_mispel_v1.webp"},
     {name:"spirea",label:"Spirea",term:"Spirea",path:"b09/73_spirea_v1.webp"},
     {name:"berberis",label:"Berberis",term:"Berberis",path:"b09/72_berberis_v1.webp"},
