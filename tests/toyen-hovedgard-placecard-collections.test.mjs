@@ -23,7 +23,14 @@ test("Tøyen hovedgård: source-reviewed adaptive PlaceCard profile",()=>{
  assert.deepEqual(runtime.place.historical_events,place.historical_events);
  assert.deepEqual(runtime.place.related_people_ids,place.related_people_ids);
  assert.ok(runtime.people.some(x=>x.id==="jens_bjelke"&&/ikke et portrett/i.test(x.imageCaption||"")));
- assert.ok(runtime.people.some(x=>x.id==="henrik_bjelke"));
+ const henrik=runtime.people.find(x=>x.id==="henrik_bjelke");
+ assert.ok(henrik);
+ assert.equal(henrik.image,"bilder/illustrasjoner/people/henrik_bjelke_historygo_monogram.svg");
+ assert.equal(henrik.cardImage,henrik.image);
+ assert.equal(henrik.imageMeta.mediaType,"editorial_illustration");
+ assert.match(henrik.imageCaption,/ikke et portrett/i);
+ assert.ok(existsSync(new URL("../"+henrik.image,import.meta.url)));
+ assert.match(raw(henrik.image),/IKKE PORTRETT ELLER HISTORISK VÅPENSKJOLD/);
  assert.deepEqual(Object.keys(place.collection_audit.candidates).sort(),["brands","historical_events","objects","people"].sort());
  assert.equal(place.collection_audit.candidates.people.status,"PASS");
  assert.equal(place.collection_audit.candidates.historical_events.status,"PASS");
