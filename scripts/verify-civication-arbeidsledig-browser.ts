@@ -212,7 +212,29 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
     } else {
       const popupClose = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
       if (await popupClose.isVisible().catch(() => false)) await popupClose.click({ timeout: 12000 });
-      await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
+      // A real mail may be queued between the initial gate check and this
+      // click. Follow the new player-visible action, not a force-click.
+      try {
+        await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
+      } catch (error) {
+        const changed = await page.evaluate(() => {
+          const app = globalThis as any;
+          return {
+            day: Number(app.CivicationCalendar?.getClock?.().dayIndex),
+            next: app.CivicationNextActionSelector?.getCurrent?.(),
+            blocking: app.CivicationDayProgression?.inspect?.()?.blockingReason,
+            disabled: !!app.document.querySelector('[data-lifestory-next-day]:disabled')
+          };
+        });
+        if (changed.day === day + 1 || (changed.day === day && changed.disabled &&
+            changed.next && changed.next.canStartNewDay !== true)) {
+          console.warn('Civication newly queued mail during day advance', JSON.stringify({
+            scenarioId, day, actionId: changed.next?.id || null, blocking: changed.blocking
+          }));
+          continue;
+        }
+        throw error;
+      }
     }
     await page.waitForTimeout(180);
     const after = await page.evaluate(() => ({
