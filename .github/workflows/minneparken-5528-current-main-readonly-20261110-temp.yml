@@ -88,7 +88,9 @@ jobs:
           git show '0cf27e218be7b614e0b894e40f9fa5e7cc3408f6':tests/badge-by-byplanlegging-v1-production.test.mjs > tests/badge-by-byplanlegging-v1-production.test.mjs
           git cat-file -e 'f97975ce07256c35d2919da28941f8049ff394ce^{commit}'
           git show 'f97975ce07256c35d2919da28941f8049ff394ce':scripts/verify-grini-collections-browser.mjs > scripts/verify-grini-collections-browser.mjs
-          git add -- tests/badge-by-samtidsarkitektur-v1-production.test.mjs tests/badge-by-byplanlegging-v1-production.test.mjs scripts/verify-grini-collections-browser.mjs
+          git cat-file -e '08f4b0a190ee0caae688adbce51d01f2827fea91^{commit}'
+          git show '08f4b0a190ee0caae688adbce51d01f2827fea91':data/stories/stories_toyen_hovedgard.json > data/stories/stories_toyen_hovedgard.json
+          git add -- tests/badge-by-samtidsarkitektur-v1-production.test.mjs tests/badge-by-byplanlegging-v1-production.test.mjs scripts/verify-grini-collections-browser.mjs data/stories/stories_toyen_hovedgard.json
           git diff --cached --check
           echo 'PASS exact proposed upstream docs-only whitespace fix included in isolated preview'
           echo 'PASS known generated merge conflicts only; no branch mutated'
