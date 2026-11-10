@@ -102,12 +102,19 @@ export async function verifySummaryInboxFocus(page: any) {
       const app = globalThis as any;
       app.CivicationMiniSectionsUI.openPopup(app.document.getElementById('civiQaPopupSection'),
         { label: 'Dialogfokus QA', category: 'personlig' });
+    });
+    await page.locator('#civiSectionPopup > .civi-section-popup-backdrop').click({ position: { x: 5, y: 5 } });
+    assert.ok(await isFocused('#civiQaPopupReturn'), 'backdrop close returns focus to the Min dag trigger');
+    await page.evaluate(() => {
+      const app = globalThis as any;
+      app.CivicationMiniSectionsUI.openPopup(app.document.getElementById('civiQaPopupSection'),
+        { label: 'Dialogfokus QA', category: 'personlig' });
       app.document.getElementById('civiQaPopupReturn').remove();
     });
     await page.keyboard.press('Escape');
     assert.ok(await isFocused('#civiLifestorySection h2'), 'a removed trigger falls back to the current Min dag heading');
     result.popupFocus = { fixture: 'controlled content in real shared dialog', entry: true,
-      forwardWrap: true, backwardWrap: true, escapeReturn: true, removedTriggerFallback: true };
+      forwardWrap: true, backwardWrap: true, escapeReturn: true, backdropReturn: true, removedTriggerFallback: true };
   } finally {
     await page.evaluate(() => {
       const app = globalThis as any;

@@ -63,6 +63,12 @@ close.click();
 assert.equal(document.activeElement, opener, "close button also returns focus to the opener");
 
 api.openPopup(inbox, config);
+title.blur();
+assert.equal(document.activeElement, document.body);
+api.closePopup();
+assert.equal(document.activeElement, opener, "backdrop or removed dialog control does not leave focus on body");
+
+api.openPopup(inbox, config);
 api.openPopup(document.getElementById("otherSection"), { label: "Annen seksjon" });
 api.closePopup();
 assert.equal(document.activeElement, opener, "replacing a dialog retains the original external return point");

@@ -1008,7 +1008,8 @@
 
   function closePopup() {
     const modal = document.getElementById("civiSectionPopup");
-    const restoreFocus = modal?.classList.contains("is-open") && modal.contains(document.activeElement);
+    const active = document.activeElement;
+    const restoreFocus = modal?.classList.contains("is-open") && (modal.contains(active) || active === document.body);
     const trigger = activeModalTrigger;
     const returnSectionId = activeModalReturnSectionId;
     activeModalTrigger = null;
