@@ -13,6 +13,8 @@ Dette er inngangen til den redaksjonelle dokumentasjonen om hvordan folk arbeide
 | [Kommunal arealplanlegger](civication-symposium/arealplanlegger.md) | `by/arealplanlegger` | [C06-synopsis](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c06--faglig-integritet-under-press) · [Spillscener](../data/Civication/lifestory/roles/arealplanlegger/scenes.json) |
 | [Kommunal plan- og byggesaksbehandler](civication-symposium/by-saksbehandler.md) | `by/by_saksbehandler` | [Arbeidsgrammatikk](../data/Civication/workGrammars/by/by_saksbehandler.json) · [Rolleverden](../data/Civication/roleWorlds/by/by_saksbehandler.json) · [Plan- og byggesaksflyt](../data/Civication/mailPlans/by/by_saksbehandler_plan.json) |
 | [Arbeidsledig og på jobbjakt](civication-symposium/arbeidsledig.md) | Life Story `arbeidsledig` | [C01-synopsis](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c01--jobbtap-og-verdighet) · [C05-synopsis](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c05--byråkratiet-og-personen) |
+| [Controller](civication-symposium/controller.md) | `naeringsliv/controller` | [Rolleverden](../data/Civication/roleWorlds/naeringsliv/controller.json) · [Life Story](../data/Civication/lifestory/roles/controller/role.json) |
+| [Idrettsutøver](civication-symposium/idrettsutover.md) | `sport/sport_utover` | [Arbeidsgrammatikk](../data/Civication/workGrammars/sport/sport_utover.json) · [Life Story](../data/Civication/lifestory/roles/sport_utover/role.json) |
 
 ## Dekning
 
