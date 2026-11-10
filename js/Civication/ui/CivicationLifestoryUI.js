@@ -448,7 +448,7 @@
           || refreshed.querySelector("h3");
         if (target) {
           if (target.tagName === "H3") target.setAttribute("tabindex", "-1");
-          target.focus({ preventScroll: true });
+          /** @type {HTMLElement} */ (target).focus({ preventScroll: true });
         }
       }
     }
