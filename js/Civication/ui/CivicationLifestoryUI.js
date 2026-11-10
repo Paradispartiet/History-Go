@@ -578,6 +578,7 @@
       }
     } catch (error) {
       console.error("[CivicationLifestoryUI] neste dag feilet", error);
+      continuationError = "Dagskiftet kunne ikke fullføres. Kontroller dagens oppgaver og prøv igjen.";
     } finally {
       dayAdvancePending = false;
       render();
@@ -589,9 +590,9 @@
       const dayAdvanced = nextStoryDay > previousStoryDay
         || (previousCalendarDay !== null && nextCalendarDay !== null
           && nextCalendarDay > previousCalendarDay);
-      if (state === previousState && dayAdvanced
-        && !document.body.classList.contains("civi-mapmode")) {
-        revealNextDay(getPanel(), keyboardActivated);
+      if (state === previousState && !document.body.classList.contains("civi-mapmode")) {
+        if (dayAdvanced) revealNextDay(getPanel(), keyboardActivated);
+        else if (continuationError) revealBlockedDay(getPanel(), keyboardActivated);
       }
     }
   }
@@ -964,7 +965,7 @@
       + (traadHtml ? "<h4>Tråder som endret status</h4><ul>" + traadHtml + "</ul>" : "")
       + "<h4>Viktige valg i dag</h4><ul>" + valgHtml + "</ul></details>"
       + endingHtml
-      + (continuationError ? '<p role="alert">' + escapeHtml(continuationError) + '</p>' : "")
+      + (continuationError ? '<p class="civi-lifestory-day-blocker" data-lifestory-day-blocker role="alert" tabindex="-1">' + escapeHtml(continuationError) + '</p>' : "")
       + handlingsHtml
       + "</section>";
   }
@@ -1350,6 +1351,17 @@
       heading.focus({ preventScroll: true });
     }
     destination.scrollIntoView?.({ block: "start", behavior: "auto" });
+    return true;
+  }
+
+  function revealBlockedDay(panel, keyboardActivated) {
+    // A refused day transition keeps the current summary and scroll position.
+    // The old next-day button is replaced by render(), so keyboard activation
+    // must have an accessible landing point. role=alert announces the reason
+    // for touch users without moving focus or altering the calendar.
+    const warning = panel?.querySelector("[data-lifestory-day-blocker]");
+    if (!warning) return false;
+    if (keyboardActivated) warning.focus({ preventScroll: true });
     return true;
   }
 
