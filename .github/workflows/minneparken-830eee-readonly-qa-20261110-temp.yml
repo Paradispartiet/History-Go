@@ -59,6 +59,11 @@ jobs:
           git cat-file -e '8b31a463497d1084ad64be21cc9ce6dcd62278ca^{commit}'
           git show '8b31a463497d1084ad64be21cc9ce6dcd62278ca':docs/CIVICATION_LOST_IN_TRANSLATION_KILDEPRODUKSJON_V1.md > docs/CIVICATION_LOST_IN_TRANSLATION_KILDEPRODUKSJON_V1.md
           git add -- docs/CIVICATION_LOST_IN_TRANSLATION_KILDEPRODUKSJON_V1.md
+          git cat-file -e 'dffa1c43b084c608e55ed7372ef4354ab4798340^{commit}'
+          git cat-file -e '0cf27e218be7b614e0b894e40f9fa5e7cc3408f6^{commit}'
+          git show 'dffa1c43b084c608e55ed7372ef4354ab4798340':tests/badge-by-samtidsarkitektur-v1-production.test.mjs > tests/badge-by-samtidsarkitektur-v1-production.test.mjs
+          git show '0cf27e218be7b614e0b894e40f9fa5e7cc3408f6':tests/badge-by-byplanlegging-v1-production.test.mjs > tests/badge-by-byplanlegging-v1-production.test.mjs
+          git add -- tests/badge-by-samtidsarkitektur-v1-production.test.mjs tests/badge-by-byplanlegging-v1-production.test.mjs
           git diff --cached --check
           echo 'PASS exact proposed upstream docs-only whitespace fix included in isolated preview'
           echo 'PASS known generated merge conflicts only; no branch mutated'
