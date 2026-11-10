@@ -69,7 +69,10 @@ try{
       ['pcCategoryCollectionIcon',/sædegårdsrettigheter|universitetsgrunn/i,'historical-events']
    ]){
     const icon=page.locator(iconId==='pcPeopleIcon' ? '#pcPeopleIcon' : '[data-pc-round-gallery-item="'+iconId+'"]');
-    await icon.waitFor({state:'visible',timeout:30000});await icon.click();
+    await icon.waitFor({state:'visible',timeout:30000});
+    // The title-row People round has a continuously animated transform; a normal Playwright click waits for stability forever.
+    // A forced pointer click still exercises the actual event handler after the element is confirmed visible.
+    await icon.click({force:iconId==='pcPeopleIcon',timeout:15000});
     const popup=page.locator('.hg-popup.placecard-round-popup.visible');
     await popup.waitFor({state:'visible',timeout:20000});
     const t=await popup.innerText();
