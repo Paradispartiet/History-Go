@@ -207,7 +207,7 @@
       sortButton.style.display = mode === "nearby" ? "inline-flex" : "none";
     }
     if (favoritesButton) {
-      favoritesButton.style.display = mode === "nearby" ? "inline-flex" : "none";
+      favoritesButton.style.display = mode === "nature" ? "none" : "inline-flex";
     }
   }
   function renderNow() {

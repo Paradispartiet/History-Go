@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { validateDistinctPhotoPair, photoFieldsChanged, placeRows } from '../scripts/check-distinct-place-photos.mjs';
 
 const a = 'a'.repeat(64);
@@ -47,4 +48,11 @@ test('grouped and array place files retain per-place original-photo checks', () 
   assert.equal(photoFieldsChanged(old[0],updated[0]),false);
   assert.equal(photoFieldsChanged(old[1],updated[1]),true);
   assert.match(validateDistinctPhotoPair(updated[1]).join(' '),/same original sourceSha256/);
+});
+
+test('original illustrated Tøyen torg pair is independent and visibly disclosed, not a fake photo-source claim', () => {
+  const p=JSON.parse(fs.readFileSync('data/places/by/oslo/places/toyen_torg.json','utf8'));
+  assert.deepEqual(validateDistinctPhotoPair(p,{requireBoth:true}),[]);
+  assert.match(validateDistinctPhotoPair({...p,frontImage:p.image}).join(' '),/same asset path|same original illustration bytes/);
+  assert.match(validateDistinctPhotoPair({...p,frontImage:'bilder/illustrasjoner/places/not-a-real-front.svg'}).join(' '),/missing from the repository/);
 });

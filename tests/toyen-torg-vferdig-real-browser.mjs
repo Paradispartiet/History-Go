@@ -35,7 +35,7 @@ try{
      const front=await page.locator('#pcFrontImage').evaluate(img=>({
        src:img.currentSrc||img.src,width:img.naturalWidth,height:img.naturalHeight,alt:img.alt
      }));
-     assert.ok(front.src.includes('toyen_torg_front_portrait.webp'),label+' missing dedicated standing front image');
+     assert.ok(front.src.includes('toyen_torg_front_portrait.svg'),label+' missing dedicated standing front image');
      assert.equal(front.width,900);assert.equal(front.height,1200);
      await page.waitForFunction(()=>{
        const card=document.querySelector('#pcFrontCardFlip'),content=document.querySelector('#pcQuizCardContent');
@@ -90,6 +90,9 @@ try{
      const objectsText=await objectsPopup.innerText();
      assert.match(objectsText,/Tøyenteppene/i,label+' objects popup must contain site-specific Tøyenteppene');
      assert.match(objectsText,/lysmast/i,label+' objects popup must contain the site-specific lighting objects');
+     assert.match(objectsText,/Illustrasjon – ikke fotografi/i,label+' Objects must be labeled illustrations');
+     const imageKindLabels=await objectsPopup.locator('.pc-object-disclosure').allTextContents();
+     assert.deepEqual(imageKindLabels.map(x=>x.trim()),['Illustrasjon – ikke fotografi','Illustrasjon – ikke fotografi'],label+' every Object illustration must have the correct explicit media label');
      await page.screenshot({path:'artifacts/toyen-torg-vferdig/'+label+'-objects.png',fullPage:false});
      await page.keyboard.press('Escape');
      await page.waitForTimeout(250);
@@ -102,7 +105,7 @@ try{
      await page.screenshot({path:'artifacts/toyen-torg-vferdig/'+label+'-structures.png',fullPage:false});
      assert.equal(errors.length,0,label+' runtime page errors: '+errors.join(' / '));
      await page.screenshot({path:'artifacts/toyen-torg-vferdig/'+label+'.png',fullPage:false});
-     console.log(label+': upright authentic front 900x1200, QuizCard click/touch/expand/Escape/return, four populated collections and no JS errors PASS');
+     console.log(label+': upright illustrated front 900x1200, QuizCard click/touch/expand/Escape/return, four populated collections and no JS errors PASS');
    }finally{await context.close();}
  }
 }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}

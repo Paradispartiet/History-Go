@@ -1174,6 +1174,54 @@ assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
 saved=JSON.parse(JSON.stringify(saved));
 assert.equal(api.getLillebekkKontrollovelseModel().current,true);
 
+
+let reg=api.getLillebekkRestanseprioritetModel();
+assert.equal(reg.exercise.current,true);
+assert.equal(reg.ready,false);
+assert.equal(reg.current,false);
+assert.deepEqual(Array.from(reg.items.map(x=>x.ref)),['LBK-REST-24','LBK-REST-25','LBK-REST-26']);
+assert.equal(api.renderSections(),true);
+assert.equal((host.innerHTML.match(/data-civi-restansestatus-save="1"/g)||[]).length,3);
+assert.ok(!host.innerHTML.includes('data-civi-restanselogg-save="1"'));
+const regReason='Trafikkfag må kontrollere gangbredde og sikt ved levering, VA må dokumentere flomvei og nabovirkning, og kommunal planjurist må avklare hjemmel og plankart før ny lederbehandling.';
+const regPlan='Trafikkfag og VA skal dokumentere skolevei, kapasitetsforhold og nabovirkning først. Planjurist kontrollerer deretter § 4.1 mot riktig plankart. Ingen avvik lukkes på fiktive øvingsbilag.';
+assert.equal(api.recordLillebekkRestansestatus('ganglinje','prioriter_sikkerhet_og_dokumentkrav','kort').ok,false);
+assert.equal(api.recordLillebekkRestansestatus('ukjent','prioriter_sikkerhet_og_dokumentkrav',regReason).ok,false);
+assert.equal(api.recordLillebekkRestansestatus('ganglinje','ukjent',regReason).ok,false);
+assert.equal(api.recordLillebekkRestanselogg(regPlan).ok,false);
+assert.equal(api.recordLillebekkRestansestatus('ganglinje','lukk_avvik_pa_skisse',regReason).ok,true);
+assert.equal(api.getLillebekkRestanseprioritetModel().items[0].safe,false);
+assert.ok(api.getLillebekkRestanseprioritetModel().items[0].latestNote.includes('FAGLIG AVVIK'));
+assert.equal(api.recordLillebekkRestansestatus('ganglinje','prioriter_sikkerhet_og_dokumentkrav',regReason).ok,true);
+assert.equal(api.recordLillebekkRestansestatus('ganglinje','prioriter_sikkerhet_og_dokumentkrav','  '+regReason+'  ').alreadyLogged,true);
+assert.equal(api.recordLillebekkRestansestatus('avrenning','prioriter_full_va_kontroll',regReason).ok,true);
+assert.equal(api.recordLillebekkRestansestatus('rekkefolge','prioriter_juridisk_avstemming',regReason).ok,true);
+reg=api.getLillebekkRestanseprioritetModel();
+assert.equal(reg.ready,true);
+assert.equal(reg.current,false);
+assert.equal(reg.items.filter(x=>x.safe).length,3);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('data-civi-restanselogg-save="1"'));
+assert.equal(api.recordLillebekkRestanselogg('kort').ok,false);
+assert.equal(api.recordLillebekkRestanselogg(regPlan).ok,true);
+assert.equal(api.recordLillebekkRestanselogg(' '+regPlan+' ').alreadyLogged,true);
+reg=api.getLillebekkRestanseprioritetModel();
+assert.equal(reg.current,true);
+assert.equal(reg.logCount,1);
+for(const v of ['LBK-REST-24','LBK-REST-25','LBK-REST-26','LBK-KR-21','LBK-KR-22','LBK-KR-23',
+ '1,25 m','0,90 m','42 m³','26 m³','12 m³','4 m³','§ 4.1','Kildeversjoner:']) {
+ assert.ok(reg.latestLog.note.includes(v),'source trace '+v);
+}
+assert.equal(world.getWorkObject(caseId).status,'open');
+assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
+const regInjection='<img src=x onerror=alert(1)> Trafikkfag må etterprøve skoleveien, VA må kontrollere vestre utløp og planjurist må avstemme § 4.1 før intern lederbehandling.';
+assert.equal(api.recordLillebekkRestanselogg(regInjection).ok,true);
+assert.equal(api.renderSections(),true);
+assert.ok(host.innerHTML.includes('&lt;img'));
+assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
+saved=JSON.parse(JSON.stringify(saved));
+assert.equal(api.getLillebekkRestanseprioritetModel().current,true);
+
 assert.equal(world.getWorkObject(caseId).status,'open');
 assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
 for(const flag of ['skolevei_ikke_dokumentert','early_green_corridor_unsecured','participation_record_missing']) {
@@ -1202,6 +1250,10 @@ assert.equal(api.getLillebekkKontrollplanModel().current,false);
 assert.equal(api.getLillebekkKontrollovelseModel().canOpen,false);
 assert.equal(api.getLillebekkKontrollovelseModel().opened,false);
 assert.equal(api.getLillebekkKontrollovelseModel().current,false);
+assert.equal(api.getLillebekkRestanseprioritetModel().ready,false);
+assert.equal(api.getLillebekkRestanseprioritetModel().current,false);
+assert.equal(api.recordLillebekkRestansestatus('ganglinje','prioriter_sikkerhet_og_dokumentkrav',regReason).ok,false);
+assert.equal(api.recordLillebekkRestanselogg(regPlan).ok,false);
 assert.equal(api.recordLillebekkKontrollovelseStart().ok,false);
 assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','returner_trafikkbilag_til_kontroll',exerciseReason).ok,false);
 assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,false);
@@ -1292,6 +1344,16 @@ assert.equal(api.getLillebekkKontrollovelseModel().ready,true);
 assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,true);
 assert.equal(api.getLillebekkKontrollovelseModel().summaryCount,3);
 assert.equal(api.getLillebekkKontrollovelseModel().current,true);
+assert.equal(api.getLillebekkRestanseprioritetModel().ready,false);
+for(const [id,choice] of [['ganglinje','prioriter_sikkerhet_og_dokumentkrav'],
+ ['avrenning','prioriter_full_va_kontroll'],
+ ['rekkefolge','prioriter_juridisk_avstemming']]) {
+ assert.equal(api.recordLillebekkRestansestatus(id,choice,regReason).ok,true);
+}
+assert.equal(api.getLillebekkRestanseprioritetModel().ready,true);
+assert.equal(api.recordLillebekkRestanselogg(regPlan).ok,true);
+assert.equal(api.getLillebekkRestanseprioritetModel().logCount,3);
+assert.equal(api.getLillebekkRestanseprioritetModel().current,true);
 
 // The latest documented assessment, rather than player text with an embedded
 // old note ID, decides whether a source is current.
@@ -1337,6 +1399,9 @@ assert.equal(api.getLillebekkSvarnotatModel(),null);
 assert.equal(api.getLillebekkElinSvarmoteModel(),null);
 assert.equal(api.getLillebekkKontrollplanModel(),null);
 assert.equal(api.getLillebekkKontrollovelseModel(),null);
+assert.equal(api.getLillebekkRestanseprioritetModel(),null);
+assert.equal(api.recordLillebekkRestansestatus('ganglinje','prioriter_sikkerhet_og_dokumentkrav',regReason).ok,false);
+assert.equal(api.recordLillebekkRestanselogg(regPlan).ok,false);
 assert.equal(api.recordLillebekkKontrollovelseStart().ok,false);
 assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','returner_trafikkbilag_til_kontroll',exerciseReason).ok,false);
 assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,false);
@@ -1381,6 +1446,9 @@ assert.equal(api.getLillebekkSvarnotatModel(),null);
 assert.equal(api.getLillebekkElinSvarmoteModel(),null);
 assert.equal(api.getLillebekkKontrollplanModel(),null);
 assert.equal(api.getLillebekkKontrollovelseModel(),null);
+assert.equal(api.getLillebekkRestanseprioritetModel(),null);
+assert.equal(api.recordLillebekkRestansestatus('ganglinje','prioriter_sikkerhet_og_dokumentkrav',regReason).ok,false);
+assert.equal(api.recordLillebekkRestanselogg(regPlan).ok,false);
 assert.equal(api.recordLillebekkKontrollovelseStart().ok,false);
 assert.equal(api.recordLillebekkKontrollovelseVurdering('trafikk','returner_trafikkbilag_til_kontroll',exerciseReason).ok,false);
 assert.equal(api.recordLillebekkKontrollovelseOppsummering(exerciseFollowup).ok,false);
