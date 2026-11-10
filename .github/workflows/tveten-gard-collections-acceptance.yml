@@ -1,0 +1,42 @@
+name: Tveten gård – PlaceCard-samlinger
+on:
+  pull_request:
+    paths:
+      - 'data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/tveten_gard.json'
+      - 'data/runtime/place-open/tveten_gard.json'
+      - 'bilder/illustrasjoner/historical_events/tveten_gard_*.svg'
+      - 'bilder/illustrasjoner/people/*stenersen*.svg'
+      - 'bilder/illustrasjoner/people/mogens_lauritsson_*.svg'
+      - 'tests/tveten-gard-placecard-collections.test.mjs'
+      - 'tests/tveten-gard-collections-real-browser.mjs'
+      - '.github/workflows/tveten-gard-collections-acceptance.yml'
+  workflow_dispatch:
+concurrency:
+  group: tveten-gard-collections-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Source, collection and retained-content contract
+        run: node --test tests/tveten-gard-vferdig-content.test.mjs tests/tveten-gard-vferdig-modules.test.mjs tests/tveten-gard-placecard-collections.test.mjs
+      - name: Real mobile and desktop PlaceCard acceptance
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/tveten-gard-collections-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tveten-gard-collections-screenshots
+          path: artifacts/tveten-gard-collections/
+          if-no-files-found: ignore
