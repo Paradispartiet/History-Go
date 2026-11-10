@@ -112,6 +112,21 @@ body.civi-app #civiLifestoryPanel .civi-lifestory-choice:disabled::before {
   background: rgba(143, 169, 151, .18);
 }
 
+/* A refused "Start neste dag" remains next to the summary actions.
+   Readable at mobile width and focusable programmatically, without triggering
+   scrolling or implying the canonical day was advanced. */
+body.civi-app #civiLifestoryPanel .civi-lifestory-day-blocker {
+  padding: 10px 12px;
+  border-left: 3px solid #c7b393;
+  background: rgba(154, 125, 85, .10);
+  color: #f0e1cc;
+  line-height: 1.5;
+}
+body.civi-app #civiLifestoryPanel .civi-lifestory-day-blocker:focus-visible {
+  outline: 2px solid #e6d4b3;
+  outline-offset: 3px;
+}
+
 /* After selecting a story decision, its consequence becomes the next
    reading location. Account for the fixed app header while scrolling there. */
 body.civi-app #civiLifestoryPanel .civi-lifestory-konsekvens,
