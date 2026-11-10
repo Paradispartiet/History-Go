@@ -29,6 +29,10 @@
       close();
       return;
     }
+    // Keep the existing category badge dropdown from overlapping the favorites menu.
+    const badgeOptions = document.getElementById("hgMapCategoryOptions");
+    if (badgeOptions) badgeOptions.hidden = true;
+    document.querySelector(".hg-map-category-trigger")?.setAttribute("aria-expanded", "false");
     render();
     panel.hidden = false;
     button?.setAttribute("aria-expanded", "true");
@@ -87,32 +91,49 @@
       ? "Velg visning og hvordan favorittstedene merkes på forsidekartet."
       : "Marker steder med ☆ i stedskortet for å legge dem til her.";
     if (button) {
-      button.textContent = favoritesOnly ? "★" : "☆";
+      const icon = button.querySelector("[data-favorite-trigger-icon]");
+      if (icon) icon.textContent = favoritesOnly ? "★" : "☆";
       button.classList.toggle("is-active", favoritesOnly);
       button.setAttribute("aria-pressed", String(favoritesOnly));
-      button.setAttribute("aria-label", "Favorittvelger for kartet");
+      button.setAttribute("aria-label", favoritesOnly ? "Favorittkart aktivt. Velg kartvisning" : "Åpne favorittvelger for kartet");
       button.title = "Velg favoritter på kartet";
     }
   }
 
   function init() {
-    if (panel && button?.isConnected) return true;
-    const target = document.getElementById("nearbyFavoritesFilterBtn");
-    const host = document.querySelector("#nearbyListContainer .leftpanel-head");
-    if (!(target instanceof HTMLButtonElement) || !(host instanceof HTMLElement)) return false;
-    button = target;
+    // The actual homepage badge selector belongs to the fixed map dock.
+    // The old nearbyFavoritesFilterBtn is inside the hidden Explore drawer in map mode.
+    const dock = document.querySelector(".map-controls");
+    const badgeFilter = dock?.querySelector(".hg-map-category-filter");
+    if (!(dock instanceof HTMLElement) || !(badgeFilter instanceof HTMLElement)) return false;
+    if (panel && button?.isConnected && button.closest(".map-controls") === dock) return true;
+
+    let host = dock.querySelector(".hg-map-favorite-filter");
+    if (!(host instanceof HTMLElement)) {
+      host = document.createElement("div");
+      host.className = "hg-map-favorite-filter";
+      dock.insertBefore(host, badgeFilter);
+    }
+
+    const existing = document.getElementById("hgMapFavoriteTrigger");
+    button = existing instanceof HTMLButtonElement ? existing : document.createElement("button");
+    if (!existing) {
+      button.id = "hgMapFavoriteTrigger";
+      button.type = "button";
+      button.className = "hg-map-favorite-trigger";
+      button.innerHTML = '<span data-favorite-trigger-icon aria-hidden="true">☆</span><span class="hg-map-favorite-label">Favoritter</span>';
+    }
+    if (button.parentElement !== host) host.appendChild(button);
     button.setAttribute("aria-haspopup", "dialog");
     button.setAttribute("aria-expanded", "false");
     button.setAttribute("aria-controls", "hgHomeFavoriteMapPicker");
-    // The old button immediately toggles only the nearby list. Intercept it so
-    // this same control instead opens the map-and-icons selector.
     if (button.dataset.hgFavoritePickerBound !== "1") {
       button.dataset.hgFavoritePickerBound = "1";
       button.addEventListener("click", (event) => {
         event.preventDefault();
-        event.stopImmediatePropagation();
+        event.stopPropagation();
         toggle();
-      }, true);
+      });
     }
     panel = document.getElementById("hgHomeFavoriteMapPicker");
     if (!panel) {
@@ -188,5 +209,27 @@
     render();
     return true;
   }
-  window.HGHomeFavoriteMapPicker = { init, render, toggle, close };
+  // The map dock may be injected after bootCritical; attach as soon as it exists.
+  // Do not depend on opening Utforsk, and do not create a second map.
+  let dockObserver = null;
+  function ensureVisible() {
+    if (init()) {
+      dockObserver?.disconnect();
+      dockObserver = null;
+      return true;
+    }
+    if (!dockObserver && document.body && typeof MutationObserver === "function") {
+      dockObserver = new MutationObserver(() => {
+        if (document.querySelector(".map-controls .hg-map-category-filter")) {
+          if (init()) {
+            dockObserver.disconnect();
+            dockObserver = null;
+          }
+        }
+      });
+      dockObserver.observe(document.body, { childList: true, subtree: true });
+    }
+    return false;
+  }
+  window.HGHomeFavoriteMapPicker = { init: ensureVisible, render, toggle, close };
 })();

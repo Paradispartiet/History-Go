@@ -51,6 +51,10 @@ Utlysningene for Skiptvet og Ålesund beskriver fagarbeid med kart, planer og di
 | Morgenobservasjonen mangler når saken skal opp. | Plansjefen trenger et brukbart notat. Ubekreftet bruk av veien kan påvirke vurderingen. | Lever et notat med tydelig forbehold og foreslå ny observasjon, eller be om at akkurat dette punktet behandles senere. En forespørsel om utsettelse er ikke en vedtatt utsettelse. |
 | En nabo skriver om både byggehøyde og skolevei. | Naboen trenger at begge forhold blir lest. Hvert forhold må kobles til riktig fag og versjon av planen. | Skill punktene, noter hva som kan besvares og hva som må undersøkes, og la neste saksbehandler se hvilken respons som faktisk ble gitt. |
 
+## Nabofag: plan- og byggesaksbehandler
+
+[Kommunal plan- og byggesaksbehandler](by-saksbehandler.md) har egen stillingsgrammatikk for søknadsinntak, dokumentasjonsmangler, nabomerknader, planstatus og rettslig vurdering av et konkret tiltak. Arealplanleggeren kan gi planfaglige innspill, men ingen av rollene får automatisk den andres myndighet eller tilgang til den andres arbeidsobjekter. Lillebekks kanoniske plansak forblir i planrådgiversporet.
+
 ## Kilder, synopsis og kontinuitet
 
 Kildene er kontrollert 10. november 2026. C06 og Lillebekk er Civication-fortellinger. De deler planfaglig praksis. Life Story-scenene og jobbinnboksen er ulike innganger til planarbeidet. En dokumentert faglig vurdering kan følge saken videre, mens intern godkjenning, høring og vedtak bare registreres når de faktisk har skjedd.

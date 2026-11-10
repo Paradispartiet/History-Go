@@ -56,6 +56,10 @@ Dette er rolleforfatterens mulige forløp, bygget på dokumenterte arbeidsoppgav
 | En kunde sier at prisen ved hylla var lavere. | Kunden vil vite hva handelen koster. Ekspeditøren ser bare prisen i kassa. Den samme merkingen kan påvirke neste kunde. | Be en kollega sjekke varen og etiketten, eller sjekk selv hvis noen kan ta kassa. Ved behov avgjør skiftansvarlig hvordan salget håndteres. Hold det synlig om hyllemerket fortsatt må undersøkes. |
 | Avløsningen er forsinket. | Den ansatte har en avtale etter vakta. Åpningstid og bemanning angår butikken, og noen må eie neste beslutning. | Kontakt skiftansvarlig og si når man må gå, eller tilby en kort forlengelse med et klart tidspunkt. En ny vakt må bekreftes før den regnes som dekket. |
 
+## Nabofag – lagerets ansvar
+
+[Lager- og driftsmedarbeideren](lager-og-driftsmedarbeider.md) kontrollerer mottak, lagerlokasjon, plukk og sporbarhet før varen går videre til butikken. Ekspeditøren må kunne melde feil variant eller manglende vare, men overtar ikke lagerets system- eller HMS-godkjenning. Begge rollene har separate arbeidsforløp og registrerer bare faktisk utførte overleveringer.
+
 ## Kilder, synopsis og kontinuitet
 
 [Rollemodell](../../data/Civication/roleModels/naeringsliv/ekspeditor.json) · [Rolleverden](../../data/Civication/roleWorlds/naeringsliv/ekspeditor.json) · [Spillscener](../../data/Civication/lifestory/roles/ekspeditor/scenes.json) · [Clerks-kildenotat](../CIVICATION_FILM_THEME_SOURCE_NOTES_WAVE_02.md#c04--forespørselen-som-ikke-er-en-kontrakt-clerks-1994)

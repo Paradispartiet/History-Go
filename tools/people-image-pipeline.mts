@@ -521,11 +521,18 @@ export async function auditEditorialIllustrations(): Promise<number> {
   let invalidMetadata = 0;
   let invalidFiles = 0;
   for (const e of entries) {
-    if (validateEditorialIllustrationMeta(e.person.imageMeta).length) invalidMetadata++;
+    const metaIssues = validateEditorialIllustrationMeta(e.person.imageMeta);
+    if (metaIssues.length) {
+      invalidMetadata++;
+      console.error(`Invalid People editorial metadata: ${reqStr(e.person.id)} (${e.file}): ${metaIssues.join(', ')}`);
+    }
     for (const rel of new Set([reqStr(e.person.image), reqStr(e.person.cardImage)])) {
-      if (!rel || /^https?:/.test(rel)) { invalidFiles++; continue; }
-      const abs = path.join(ROOT(), rel);
-      if (!(await exists(abs)) || (await validateEditorialIllustrationFile(abs)).length) invalidFiles++;
+      const abs = rel && !/^https?:/.test(rel) ? path.join(ROOT(), rel) : '';
+      const fileIssues = !abs ? ['missingLocalPath'] : !(await exists(abs)) ? ['missingFile'] : await validateEditorialIllustrationFile(abs);
+      if (fileIssues.length) {
+        invalidFiles++;
+        console.error(`Invalid People editorial image: ${reqStr(e.person.id)} (${rel || 'no path'}): ${fileIssues.join(', ')}`);
+      }
     }
   }
   console.log(JSON.stringify({ editorialIllustrations: entries.length, invalidEditorialIllustrationMetadata: invalidMetadata, invalidEditorialIllustrationFiles: invalidFiles }, null, 2));
