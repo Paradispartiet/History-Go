@@ -6,7 +6,7 @@
   "use strict";
   const images = Object.freeze({
     emne_flora_prydkirsebaer: Object.freeze({
-      scientificName: "Prunus spp.",
+      scientificName: "Prunus serrulata (m.fl.)",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/81_prydkirsebaer_v1.webp",
       gitBlobSha: "92789dac09f9a915b190774aa4e4fd87727e9781",
       reviewedAt: "2026-11-10",

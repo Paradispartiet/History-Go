@@ -104,7 +104,7 @@ const env = {window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved = env.window.HG_NATURE_FLORA_APPROVED;
 const expected = [
-  ["emne_flora_prydkirsebaer","Prunus spp."],
+  ["emne_flora_prydkirsebaer","Prunus serrulata (m.fl.)"],
   ["emne_flora_platanlonn","Acer pseudoplatanus"],
   ["emne_flora_sibirsk_ertebusk","Caragana arborescens"],
   ["emne_flora_russekaal","Bunias orientalis"],

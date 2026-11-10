@@ -5,7 +5,7 @@ import vm from "node:vm";
 const root=new URL("../",import.meta.url);
 const read=p=>fs.readFileSync(new URL(p,root),"utf8");
 const q=JSON.parse(read("data/natur/flora/illustration-quality-prydkirsebaer-20261110.json")),a=q.items[0];
-const id="emne_flora_prydkirsebaer",latin="Prunus spp.",quiz="quiz_nature_flora_prydkirsebaer";
+const id="emne_flora_prydkirsebaer",latin="Prunus serrulata (m.fl.)",quiz="quiz_nature_flora_prydkirsebaer";
 assert.equal(q.baselineApproved,102);
 assert.equal(q.approvedCountAfterRelease,103);
 assert.equal(q.items.length,1);
@@ -23,13 +23,13 @@ for(const x of [src,flora]){
  assert(x,"Prydkirsebær source/runtime record missing");
  assert.equal(x.title,"Prydkirsebær");
  assert.equal(x.latin,"Prunus serrulata (m.fl.)");
- assert.equal(x.taxonomy?.latin_navn,latin);
+ assert.equal(x.taxonomy?.latin_navn,"Prunus spp.");
  assert.equal(x.taxonomy?.familie,"Rosaceae");
  assert.equal(x.related_flora_id,"flora_prydkirsebaer");
  assert(x.quiz_ids?.includes(quiz));
 }
 assert(ved && ved.quiz_ids?.includes("quiz_ved_prydkirsebaer"));
-assert.equal(ved.latin,latin);
+assert.equal(ved.latin,"Prunus spp.");
 const b=fs.readFileSync(new URL(a.src,root));
 assert.equal(b.length,664922);
 assert.equal(b.length,a.sizeBytes);
