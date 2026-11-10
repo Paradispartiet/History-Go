@@ -177,10 +177,16 @@ for (const arc of arcs) for (const variant of arc.variants) {
     paths++;
   }
 }
-for (const [choice, status, response, delivery] of [
+let deliveryBaseline;
+let clarificationEnergy;
+for (const [choice, status, response, delivery, settlement, reply] of [
   ['avgrens', 'tilbud_sendt', 'bestilt', 'send'],
-  ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle'],
+  ['avgrens', 'tilbud_sendt', 'bestilt', 'send_med_forsidetekst'],
+  ['avgrens', 'tilbud_sendt', 'bestilt', 'send', undefined, 'avklar_neste_gang'],
+  ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle', 'send'],
+  ['avgrens', 'tilbud_sendt', 'bestilt', 'varsle', 'avslutt', 'send_faktaark'],
   ['avklar', 'venter_pa_svar', 'apen', null],
+  ['bruk_styredato', 'venter_pa_svar', 'apen', null],
   ['avsla', 'avslatt', undefined, null]
 ]) {
   const opening = progress(S.createInitialState(base), base, 7, {d2_en_retning: 'prosjekt'});
@@ -189,9 +195,20 @@ for (const [choice, status, response, delivery] of [
   const money = saved.meters.penger;
   ({saved, content} = progress(saved, content, 8, {c04_tekstforesporsel: choice}));
   assert.equal(saved.tidligereValg.c04_tekststatus, status);
+  if (choice === 'avklar') clarificationEnergy = saved.meters.energi;
+  if (choice === 'bruk_styredato') {
+    assert.equal(saved.meters.energi, clarificationEnergy - 1);
+    const history = R.getSymposium(saved, content).tidslinje;
+    const entries = history.filter(entry => entry.sceneId === 'c04_tekstforesporsel');
+    assert.deepEqual(entries.map(entry => entry.valgId), ['bruk_styredato']);
+  }
   R.startNextDay(saved, content);
   ({saved, content} = progress(saved, restore(clone(saved)), 9));
   assert.equal(saved.tidligereValg.c04_tekstoppfolging, status);
+  if (choice === 'bruk_styredato') {
+    assert.ok(saved.spilteScener.includes('c04_tekstoppfolging_venter_pa_svar'));
+    assert.ok(!saved.spilteScener.includes('c04_tekstoppfolging_tilbud_sendt'));
+  }
   R.startNextDay(saved, content);
   ({saved, content} = progress(saved, content, 10));
   content = startChapter(saved, content, 'frilans_neste_steg');
@@ -200,11 +217,72 @@ for (const [choice, status, response, delivery] of [
   assert.equal(saved.tidligereValg.c04_frist, delivery ? 12 : undefined);
   R.startNextDay(saved, content);
   ({saved, content} = progress(saved, restore(clone(saved)), 12, {c04_invitasjon_leveranse: delivery}));
-  assert.equal(saved.tidligereValg.c04_leveranse, {send:'levert', varsle:'fristproblem_varslet'}[delivery]);
+  assert.equal(saved.tidligereValg.c04_leveranse, {
+    send: 'levert',
+    send_med_forsidetekst: 'levert',
+    varsle: 'fristproblem_varslet'
+  }[delivery]);
+  if (delivery === 'send' && !reply) {
+    deliveryBaseline = {energy: saved.meters.energi, relation: saved.relasjoner.lea};
+  }
+  if (delivery === 'send_med_forsidetekst') {
+    assert.equal(saved.meters.energi, deliveryBaseline.energy - 1);
+    assert.equal(saved.relasjoner.lea, deliveryBaseline.relation + 1);
+    const history = R.getSymposium(saved, content).tidslinje;
+    const entries = history.filter(entry => entry.sceneId === 'c04_invitasjon_leveranse');
+    assert.deepEqual(entries.map(entry => entry.valgId), ['send_med_forsidetekst']);
+  }
+  if (choice === 'avsla') {
+    // Older saves may reach this evening without having played the C04 request.
+    const legacy = clone(saved);
+    delete legacy.tidligereValg.c04_tekststatus;
+    delete legacy.tidligereValg.c04_tekstoppfolging;
+    legacy.arkiv = legacy.arkiv.filter(entry => !entry.sceneId.startsWith('c04_'));
+    legacy.spilteScener = legacy.spilteScener.filter(id => !id.startsWith('c04_'));
+    const legacyContent = restore(legacy);
+    R.startNextDay(legacy, legacyContent);
+    const {saved: legacyFinished} = progress(legacy, legacyContent, 13);
+    assert.ok(!legacyFinished.spilteScener.includes('c04_invitasjonen_som_gikk_ut'));
+    assert.equal(legacyFinished.tidligereValg.c04_invitasjon_lest, undefined);
+    assert.ok(legacyFinished.spilteScener.includes('d13_frilans_kapittel_slutt'));
+  }
   R.startNextDay(saved, content);
-  ({saved} = progress(saved, restore(clone(saved)), 13));
-  assert.equal(saved.tidligereValg.c04_sluttstatus, {send:'godkjent', varsle:'avbestilt'}[delivery]);
-  assert.equal(saved.meters.penger, money, 'approval or cancellation is not a payment');
+  ({saved, content} = progress(saved, restore(clone(saved)), 13, {
+    c04_kundesvar_godkjent: reply,
+    c04_kundesvar_avbestilt: reply
+  }));
+  assert.equal(saved.tidligereValg.c04_kundesvar_oppfolging, reply);
+  const history = R.getSymposium(saved, restore(saved)).tidslinje;
+  const closing = history.filter(entry => entry.sceneId === 'c04_invitasjonen_som_gikk_ut');
+  assert.equal(closing.length, 1, 'every C04 route archives the same sent invitation once');
+  assert.equal(saved.tidligereValg.c04_invitasjon_lest, true);
+  assert.match(closing[0].konsekvensTekst, /fredag.*onsdag.*påmeldingsskjema/);
+  assert.ok(history.indexOf(closing[0]) < history.findIndex(entry => entry.sceneId === 'd13_frilans_kapittel_slutt'));
+  assert.equal(saved.tidligereValg.c04_sluttstatus, {
+    send: 'godkjent',
+    send_med_forsidetekst: 'godkjent',
+    varsle: 'avbestilt'
+  }[delivery]);
+  if (delivery === 'send' || delivery === 'send_med_forsidetekst') {
+    assert.ok(saved.spilteScener.includes('c04_kundesvar_godkjent'));
+    assert.ok(!saved.spilteScener.includes('c04_kundesvar_avbestilt'));
+  }
+  content = startChapter(saved, content, 'frilans_etter_neste_steg');
+  ({saved, content} = progress(saved, restore(clone(saved)), 14, {c04_oppgjor_avbestilt: settlement}));
+  assert.equal(saved.tidligereValg.c04_oppgjor, {send:'honorar_til_avklaring', avslutt:'avsluttet_uten_krav'}[settlement]);
+  assert.equal(saved.tidligereValg.c04_honorar_avtalt, undefined);
+  R.startNextDay(saved, content);
+  ({saved, content} = progress(saved, restore(clone(saved)), 15));
+  const replyEntries = R.getSymposium(saved, content).tidslinje.filter(entry => entry.sceneId === 'c04_styret_svarer_om_honorar');
+  assert.equal(replyEntries.length, settlement === 'send' ? 1 : 0);
+  assert.equal(saved.tidligereValg.c04_honorar_avtalt, settlement === 'send' ? 300 : undefined);
+  assert.equal(saved.tidligereValg.c04_oppgjor, {send:'honorar_avtalt_ubetalt', avslutt:'avsluttet_uten_krav'}[settlement]);
+  assert.equal(saved.tidligereValg.c04_sluttstatus, {
+    send: 'godkjent',
+    send_med_forsidetekst: 'godkjent',
+    varsle: 'avbestilt'
+  }[delivery], 'agreement about the fee does not reopen the order');
+  assert.equal(saved.meters.penger, money, 'no payment has been received');
 }
 
 delete globalThis.CivicationLifePositions;
