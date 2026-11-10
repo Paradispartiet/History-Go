@@ -81,6 +81,8 @@ const result = Runner.applyChoice(state, content, "rommet_01_melding", "beroerin
 assert.deepStrictEqual(result.laasteOpp, ["rommet_02_standard"]);
 assert.strictEqual(state.meters.integritet, integritetFoer + 5);
 assert.strictEqual(state.tidligereValg.tok_hygienisk_rent, true);
+assert.match(result.konsekvensTekst, /Romlista:.*håndtak.*Lukten.*drift/i,
+  "renholderen skal registrere utført arbeid og gi luktproblemet videre");
 
 // --- Spill resten av dag 1 deterministisk (alltid første valg) ---
 // Første valg i soel_01_krise er meld_avvik => flagget meldte_avvik settes,
@@ -102,6 +104,11 @@ for (const kjerne of ["rommet_01_melding", "rommet_02_standard", "tidsvindu_01_t
 }
 assert.strictEqual(state.tidligereValg.meldte_avvik, true, "første valg i sølet var å melde avvik");
 assert.strictEqual(state.threadState.soelet_i_fellesarealet.status, "escalated");
+const meetingRoomHistory = Runner.getSymposium(JSON.parse(JSON.stringify(state)), content).tidslinje
+  .filter((entry) => entry.sceneId === "rommet_01_melding");
+assert.strictEqual(meetingRoomHistory.length, 1);
+assert.strictEqual(meetingRoomHistory[0].valgId, "beroeringspunkter");
+assert.strictEqual(meetingRoomHistory[0].konsekvensTekst, result.konsekvensTekst);
 
 // --- Dag 2 leser dag 1: avviket ble meldt => vernerunden, ikke etterspillet ---
 State: {
@@ -142,6 +149,20 @@ assert.ok(gren2Kandidater.includes("d2_glatt_gulv_etterspill"),
   "ikke meldt avvik => Kari spør om det glatte gulvet");
 assert.ok(!gren2Kandidater.includes("d2_avvik_fulgt_opp"),
   "vernerunde-scenen skal ikke være kandidat uten meldt avvik");
+
+for (const [choiceId, expectedLog] of [
+  ["synlig_runde", /håndtak og brytere gjenstår/],
+  ["spor_amina", /Amina tar håndtak og brytere/]
+]) {
+  const roomState = State.createInitialState(content);
+  const morning = Runner.getView(roomState, content).scene;
+  Runner.applyChoice(roomState, content, morning.id, morning.valg[0].id);
+  const roomScene = Runner.getView(roomState, content).scene;
+  assert.strictEqual(roomScene.id, "rommet_01_melding");
+  const roomResult = Runner.applyChoice(roomState, content, roomScene.id, choiceId);
+  assert.deepStrictEqual(roomResult.laasteOpp, ["rommet_02_standard"]);
+  assert.match(roomResult.konsekvensTekst, expectedLog);
+}
 
 // --- Min dag-UI: dev-parameteren finnes, startkontrakten står ---
 const uiSource = fs.readFileSync(path.join(ROOT, "js/Civication/ui/CivicationLifestoryUI.js"), "utf8");

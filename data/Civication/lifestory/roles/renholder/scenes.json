@@ -11,11 +11,11 @@
       "tilgjengelighet": "start",
       "prioritet": 10,
       "tittel": "Møterommet må være klart til 09 — og det kom en klage",
-      "tekst": "Kari skriver: «Møterom 2 må være klart til 09. Og i går kom det klage på lukt der — det så jo rent ut? Rekker du en runde før møtet?» Du vet at flatene skinner. Det er berøringspunktene og avløpet som lukter.",
+      "tekst": "Kari skriver: «Møterom 2 er ledig nå. De skal bruke det klokka ni. Kan du ta den daglige runden? Det kom også en klage på lukt i går.» På romlista står bord, avfall og berøringspunkter. Ved serveringsbenken kjenner du lukten, men du ser ikke hvor den kommer fra.",
       "valg": [
         {
           "id": "beroeringspunkter",
-          "tekst": "Ta berøringspunktene og avløpet først — hygienisk rent før synlig rent",
+          "tekst": "Ta den planlagte runden, sjekk området rundt vasken og meld fra hvis lukten fortsatt er der.",
           "tone": "faglig",
           "effekter": {
             "relasjoner": {
@@ -34,14 +34,14 @@
               }
             }
           },
-          "konsekvensTekst": "Lukten forsvinner når avløpet er skylt og håndtakene desinfisert. Ingen kommer til å se hva du gjorde — men ingen kommer til å lukte det heller.",
+          "konsekvensTekst": "Romlista: bord, avfall, håndtak og brytere er tatt. Lukten sitter fortsatt ved serveringsbenken. Kari sender observasjonen videre til drift.",
           "laaserOpp": [
             "rommet_02_standard"
           ]
         },
         {
           "id": "synlig_runde",
-          "tekst": "Rask synlig runde — bord, tavle, søppel — så rekker du resten av sonen",
+          "tekst": "Prioriter bordet og avfallet før møtet. Før håndtak og brytere som gjenstående, og si fra om lukten.",
           "tone": "effektiv",
           "effekter": {
             "relasjoner": {
@@ -60,14 +60,14 @@
               }
             }
           },
-          "konsekvensTekst": "Rommet ser perfekt ut da møtet starter. Du vet at lukten kommer tilbake i morgen.",
+          "konsekvensTekst": "Bordet er klart til møtet og avfallet er tømt. Romlista viser at håndtak og brytere gjenstår. Kari får beskjed om lukten og kan avtale når du kommer tilbake.",
           "laaserOpp": [
             "rommet_02_standard"
           ]
         },
         {
           "id": "spor_amina",
-          "tekst": "Spør Amina hvor lukt i «rene» rom pleier å sitte",
+          "tekst": "Spør Amina hva hun ville sjekket først. Bruk romlista til å fordele det dere rekker før møtet.",
           "tone": "lærende",
           "effekter": {
             "relasjoner": {
@@ -86,7 +86,7 @@
               }
             }
           },
-          "konsekvensTekst": "Amina svarer på tjue sekunder: «Avløp, håndtak, stolarmer. Synlig rent er ikke rent.» Du rekker både lukten og møtet.",
+          "konsekvensTekst": "Amina peker på serveringsbenken. «Jeg kan ta håndtakene, så får du sjekket vasken.» Du tar bordet og avfallet, Amina tar håndtak og brytere. Dere fører opp det dere gjorde og melder at det fortsatt lukter ved vasken.",
           "laaserOpp": [
             "rommet_02_standard"
           ]
@@ -103,11 +103,11 @@
       "tilgjengelighet": "laast",
       "prioritet": 8,
       "tittel": "Kari vil vite hva klagen egentlig handlet om",
-      "tekst": "Kari stikker innom: «Klagen fra i går — var det slurv, eller er det noe med rommet? Jeg må svare noe oppover.»",
+      "tekst": "Kari stikker innom etter møtet. «Jeg skal svare på klagen fra i går. Hva vet vi om lukten, og hva ble gjort i dag?»",
       "valg": [
         {
           "id": "forklar_forskjellen",
-          "tekst": "Forklar forskjellen på synlig rent og hygienisk rent",
+          "tekst": "Vis hva som står på romlista, og skill det fra det du vet om lukten.",
           "tone": "faglig",
           "effekter": {
             "relasjoner": {
@@ -126,7 +126,7 @@
               }
             }
           },
-          "konsekvensTekst": "Kari noterer. «Så det kan se rent ut og fortsatt lukte. Det visste jeg faktisk ikke.» Det er første gang hun har spurt om faget ditt."
+          "konsekvensTekst": "Kari leser romlista. «Da kan jeg si hva som ble gjort før møtet, og be drift undersøke lukten.» Hun lar årsaken stå åpen."
         },
         {
           "id": "ta_paa_deg",
@@ -149,7 +149,7 @@
               }
             }
           },
-          "konsekvensTekst": "Kari nikker og går. Det var enklest. Men nå står det «slurv» i et svar oppover — om arbeid som ikke var slurv."
+          "konsekvensTekst": "Kari fører opp slurv som forklaring i svaret sitt. Lukten er fortsatt ikke undersøkt av drift."
         },
         {
           "id": "foreslaa_sjekkliste",
@@ -453,7 +453,7 @@
       "tilgjengelighet": "start",
       "prioritet": 7,
       "tittel": "«Det rommet blir jo aldri vasket»",
-      "tekst": "Kari videresender en klage fra Sindre: «Møterom 2 blir jo aldri vasket.» Du vasket det i morges. Du har gjort det hver morgen i tre uker.",
+      "tekst": "Kari videresender en klage fra Sindre: «Møterom 2 blir jo aldri vasket.» Du var inne før møtet i morges. På romlista kan Kari se hvilke oppgaver som faktisk ble gjort.",
       "valg": [
         {
           "id": "dokumenter",
@@ -500,7 +500,7 @@
         },
         {
           "id": "si_fra_tydelig",
-          "tekst": "Svar Sindre direkte: rommet vaskes 06:45 hver dag — før han kommer",
+          "tekst": "Svar Sindre direkte at dere var inne før møtet, og vis til det som står på romlista.",
           "tone": "tydelig",
           "effekter": {
             "relasjoner": {
@@ -519,7 +519,7 @@
               }
             }
           },
-          "konsekvensTekst": "Det blir stille i tråden. Du vet ikke om det var lurt. Men for første gang står det svart på hvitt når arbeidet faktisk gjøres."
+          "konsekvensTekst": "Det blir stille i tråden. Du vet ikke om det var lurt, men Sindre kan nå se hva som faktisk ble gjort før møtet."
         }
       ]
     },
@@ -881,7 +881,7 @@
         }
       },
       "tittel": "Svaret fra Sindre",
-      "tekst": "Sent på kvelden tikker det inn en melding fra Sindre: «Visste ikke at rommet tas 06:45. Beklager utspillet. Kan du si fra hvis vi roter det til for dere?» Du leser den to ganger.",
+      "tekst": "Sent på kvelden tikker det inn en melding fra Sindre: «Visste ikke at dere var innom før møtet. Beklager utspillet. Kan du si fra hvis vi roter det til for dere?» Du leser den to ganger.",
       "valg": [
         {
           "id": "ta_imot",
