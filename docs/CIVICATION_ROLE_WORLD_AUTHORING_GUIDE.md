@@ -26,7 +26,7 @@ Prinsippet er **reuse before rewrite**. Role World skal samle, skjerpe og fylle 
 
 Hvis canonical resolver allerede eier en scope, skal Role World bruke den. Gamle badge-slugs eller historiske filnavn skal reconciles mot canonical scope i stedet for å bli nye parallelle identiteter.
 
-Før jobbscener planlegges, dokumenter stillingstitler, arbeidsoppgaver og ansvarsgrenser etter [Kildegrunnlag for jobbene i Civication](CIVICATION_JOBBGRUNNLAG.md). Bruk en vanlig arbeidsdag som grunnlag. La kildene bære oppgavene og bruk fortellingen til å vise hvordan folk håndterer dem.
+Før scener planlegges, opprett eller oppdater rollen i [Symposiums rolleoversikt](CIVICATION_JOBBGRUNNLAG.md). Profilen skal dokumentere oppgaver, fagspråk, materiell, vilkår, vanlige forløp og handlingsrom. Lenke videre til arbeidsgrammatikk og synopser der de finnes.
 
 ## 2. Skill tre statuser fra hverandre
 

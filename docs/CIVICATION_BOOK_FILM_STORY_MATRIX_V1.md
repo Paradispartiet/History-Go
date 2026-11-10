@@ -86,6 +86,8 @@ Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer
 
 ### C04 – Forespørselen som ikke er en kontrakt
 
+[Frilanserens Symposium-profil](civication-symposium/frilanser.md) · [Ekspeditørprofilen for butikkarbeid](civication-symposium/ekspeditor.md)
+
 **Rolle:** Frilanseren er spilleren. Lea samordner invitasjonen og kan rette styremeldingen og forsida. Styrelederen kan bestille og godkjenne teksten. Den andre kunden har allerede fått løfte om en korrektur. [Spillbar åpning](../data/Civication/lifestory/continuations/frilans_med_lea.json) · [Leveranse og kundesvar](../data/Civication/lifestory/continuations/frilans_neste_steg.json)
 
 **Filmgrunnlag:** *Clerks* (1994) / Film Producer `scenario_clerks_1994`. Filmen følger en arbeidsdag der avbrytelser og plikter hoper seg opp. Tabellen skiller observerte situasjoner fra vår tolkning og våre mulige tråder. Takscenen er allerede koblet til et spillbart valg. De øvrige radene er produksjonsgrunnlag. [Miramax](https://www.miramax.com/movie/Clerks/) · [Semaine de la Critique](https://www.semainedelacritique.com/en/edition/1994/movie/clerks) · [Kildenotat med takscenen](CIVICATION_FILM_THEME_SOURCE_NOTES_WAVE_02.md#c04--forespørselen-som-ikke-er-en-kontrakt-clerks-1994)
@@ -151,6 +153,8 @@ En bekjent hjelper spilleren med å få låne et rom til en øvelse. Uken etter 
 **Valg B:** Tilby en avgrenset praktisk tjeneste og presisere at den avslutter saken.
 
 ### C09 – Vennskapet som glir fra
+
+[Venn av Jonas i Symposium](civication-symposium/venn-av-jonas.md)
 **Rolle/person:** Jonas / vennskap. **Bokreferanse (foreløpig):** Fosse – Septologien. **Film:** [Lost in Translation](https://www.imdb.com/title/tt0335266/) / Film Producer `scenario_lost_in_translation_2003`.
 
 Jonas og spilleren pleide å møtes på søndager. Nå har to avtaler blitt flyttet, og Jonas skriver «vi tar det senere» uten nytt forslag. Spilleren vet ikke om Jonas trenger avstand eller bare har det travelt.
