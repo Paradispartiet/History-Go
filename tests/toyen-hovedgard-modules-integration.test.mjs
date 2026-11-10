@@ -1,0 +1,53 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+const read=(path)=>JSON.parse(readFileSync(new URL("../"+path,import.meta.url),"utf8"));
+const placeId="toyen_hovedgard";
+const story=read("data/stories/stories_toyen_hovedgard.json");
+const lex=read("data/leksikon/places/oslo/historie/leksikon_toyen_hovedgard.json");
+const language=read("data/leksikon/sprak/places/europe/norway/oslo/toyen_hovedgard.json");
+const lesespor=read("data/lesespor/oslo/lesespor_oslo_historie_toyen_hovedgard.json");
+const storyManifest=read("data/stories/stories_manifest.json");
+const lexManifest=read("data/leksikon/manifest.json");
+const langManifest=read("data/leksikon/sprak/manifest.json");
+const leseManifest=read("data/lesespor/manifest.json");
+const payload=read("data/runtime/place-open/toyen_hovedgard.json");
+const fullQuiz=read("data/quiz/historie/toyen_hovedgard_sets.json");
+const quizCard=read("data/quizcards/historie/toyen_hovedgard_quizcard_v1.json");
+
+test("Tøyen hovedgård: Story, chronology and source tracks are distinct and registered",()=>{
+ assert.equal(story.length,1);
+ assert.equal(story[0].place_id,placeId);
+ assert.equal(story[0].quality_profile,"episode_v1");
+ assert.equal(story[0].year,1812);
+ assert.ok(story[0].story.split("\n\n").length>=3);
+ assert.ok(story[0].sources.length>=2);
+ assert.ok(storyManifest.files.some(x=>x.entity_id===placeId&&x.path==="data/stories/stories_toyen_hovedgard.json"));
+ assert.equal(lex.length,2);
+ assert.ok(lex.every(x=>x.place_id===placeId&&x.sources.length>=2));
+ const years=lex[0].chronology.map(x=>x.year);
+ assert.deepEqual(years,[1640,1670,1721,1779,1812,1814]);
+ assert.ok(lex[0].chronology.every(x=>x.sources.length>=1&&x.confidence==="high"));
+ assert.ok(lexManifest.files.includes("data/leksikon/places/oslo/historie/leksikon_toyen_hovedgard.json"));
+ assert.equal(language.place_id,placeId);
+ assert.equal(language.entries.length,5);
+ assert.ok(language.entries.every(x=>x.linked_to.id===placeId&&x.sources.length>0));
+ assert.equal(langManifest.place_files[placeId],"data/leksikon/sprak/places/europe/norway/oslo/toyen_hovedgard.json");
+ assert.equal(lesespor.items.length,4);
+ assert.ok(lesespor.items.every(x=>x.place_ids.includes(placeId)&&x.access==="open"&&x.rights==="link_only"));
+ assert.ok(leseManifest.files.includes("oslo/lesespor_oslo_historie_toyen_hovedgard.json"));
+});
+
+test("Tøyen hovedgård: all four modules are linked into place-open without quiz changes",()=>{
+ assert.deepEqual(payload.stories.filter(x=>x.place_id===placeId),story);
+ assert.deepEqual(payload.leksikon.filter(x=>x.place_id===placeId),lex);
+ assert.deepEqual(payload.lesespor.filter(x=>x.place_ids.includes(placeId)),lesespor.items);
+ assert.deepEqual(payload.language,language);
+ assert.equal(fullQuiz.sets.reduce((sum,x)=>sum+x.questions.length,0),21);
+ assert.equal(quizCard.cards[0].questions.length,10);
+ assert.equal(payload.people.length,2);
+ assert.equal(payload.place.id,placeId);
+ assert.equal(payload.place.coordStatus,"verified");
+ assert.equal(payload.place.fagverk.status,"curated");
+ assert.equal(payload.place.frontImage,"bilder/illustrasjoner/places/toyen_hovedgard_front_editorial.svg");
+});
