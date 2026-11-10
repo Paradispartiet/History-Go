@@ -45,8 +45,8 @@ jobs:
           git merge --no-ff --no-commit '830eee234f0bcc6e30823b814bf0b8178fb9cd19' || true
           test -f .git/MERGE_HEAD
           mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
-          printf 'Observed conflicts: %s\n' "\${conflicts[*]:-none}"
-          for p in "\${conflicts[@]}"; do
+          printf 'Observed conflicts: %s\n' "${conflicts[*]:-none}"
+          for p in "${conflicts[@]}"; do
             case "$p" in
               data/places/places_index.json|data/places/place_image_backlog_summary.json)
                 git show '830eee234f0bcc6e30823b814bf0b8178fb9cd19':"$p" > "$p"
