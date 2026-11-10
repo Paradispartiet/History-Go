@@ -17,7 +17,7 @@ test("Tveten has independent labelled front but preserves its documentary hero",
   assert.notEqual(place.frontImage,place.image);
   assert.equal("cardImage" in place,false);
   const svg=fs.readFileSync(path.join(root,place.frontImage),"utf8");
-  assert.match(svg,/<svg\\b/);
+  assert.match(svg,/<svg\b/);
   assert.match(svg,/width="900" height="1200"/);
   assert.match(svg,/REDAKSJONELL ILLUSTRASJON · IKKE FOTOGRAFI/);
   assert.equal(place.frontImageMeta.mediaType,"editorial_illustration");
