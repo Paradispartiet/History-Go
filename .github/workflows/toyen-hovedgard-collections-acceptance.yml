@@ -12,9 +12,6 @@ on:
 concurrency:
   group: toyen-hovedgard-collections-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-concurrency:
-  group: toyen-hovedgard-collections-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
