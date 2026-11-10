@@ -42,7 +42,7 @@ const protectedFiles={
   "bilder/merker/historie/undermerker/nittenhundre_1900_1945-brodert-v1.webp": "8e3efbd0699364d6139990799b82159a42d9dee9",
   "bilder/merker/historie/undermerker/etterkrigstid-brodert-v1.webp": "1415330db451469b02869664fc578ec47281593c",
   "bilder/merker/historie/undermerker/samtidshistorie-brodert-v1.webp": "5a790c33a22ce5ab1507b813c8829f43dbdecb17",
-  "bilder/merker/historie/undermerker/byhistorie-brodert-v1.webp": "b2b15c409db9eaf631d06a37e5ea720734adf783",
+  "bilder/merker/historie/undermerker/byhistorie-brodert-v1.webp": "2ba0f83c8e7cd120312f88e97ba03bc295d2a63c",
   "bilder/merker/historie/undermerker/industrihistorie-brodert-v1.webp": "8b70ae9e76eb790ac0352dd18b911017ef9e665e"
 };
 test('Historie hovedmerke og ni godkjente undermerker har identiske Git SHA-1',()=>{
