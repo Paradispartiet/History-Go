@@ -70,7 +70,7 @@ function setup({ shell = false, blocked = false, alreadyAdvanced = false, mapMod
     ${realFunctions}
     return { runNextDay: onNextDay, revealNextDay };
   })()`, scope);
-  return { api, state, actions, scope, keyboard };
+  return { api, state, actions, scope };
 }
 
 test("local Min dag advances, saves and scrolls to the new scene on touch", async () => {
@@ -85,7 +85,7 @@ test("local Min dag advances, saves and scrolls to the new scene on touch", asyn
 });
 
 test("keyboard next-day focus moves from replaced button to new heading", async () => {
-  const { api, actions } = setup({ keyboard: true });
+  const { api, actions } = setup();
   await api.runNextDay(true);
   assert.equal(actions.scroll, 1);
   assert.equal(actions.focus, 1);
