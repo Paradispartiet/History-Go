@@ -25,6 +25,11 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"berberis",label:"Berberis",term:"Berberis",path:"b09/72_berberis_v1.webp"},
+    {name:"mahonia",label:"Mahonia",term:"Mahonia",path:"b09/71_mahonia_v1.webp"},
+    {name:"snobaer",label:"Snøbær",term:"Snøbær",path:"b09/70_snobaer_v1.webp"},
+    {name:"gravbergknapp",label:"Gravbergknapp",term:"Gravbergknapp",path:"b09/69_gravbergknapp_v1.webp"},
+    {name:"kjempespringfro",label:"Kjempespringfrø",term:"Kjempespringfrø",path:"b09/68_kjempespringfro_v1.webp"},
     {name:"parkslirekne",label:"Parkslirekne",term:"Parkslirekne",path:"b09/67_parkslirekne_v1.webp"},
     {name:"kanadagullris",label:"Kanadagullris",term:"Kanadagullris",path:"b09/66_kanadagullris_v1.webp"},
     {name:"kjempebjornkjeks",label:"Kjempebjørnekjeks",term:"Kjempebjørnekjeks",path:"b09/65_kjempebjornkjeks_v1.webp"},
@@ -128,6 +133,18 @@ try{
     const title=species.label||species.term||species.name;
     const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
     await card.waitFor();
+    if(species.name==="berberis"){
+      const both=page.locator("#natureGrid").getByRole("button",{name:/^Berberis,/i});
+      assert.equal(await both.count(),2,"Berberis must have separate flora and kratt cards");
+      for(const entry of await both.all())
+        assert((await entry.locator("img").getAttribute("src")).endsWith(species.path),"Both Berberis entries must use the one genus original");
+    }
+    if(species.name==="mahonia"){
+      const both=page.locator("#natureGrid").getByRole("button",{name:/^Mahonia,/i});
+      assert.equal(await both.count(),2,"Mahonia must have separate flora and kratt cards");
+      for(const entry of await both.all())
+        assert((await entry.locator("img").getAttribute("src")).endsWith(species.path),"Both Mahonia entries must use the one approved original");
+    }
     await card.locator("img").evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
     assert((await card.locator("img").getAttribute("src")).endsWith(species.path));
     assert.equal((await card.locator(".ne-image-label").innerText()).trim(),"Illustrasjon");

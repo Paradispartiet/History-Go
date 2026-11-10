@@ -8,6 +8,7 @@
  * --all: diagnose the existing catalogue without changing it.
  */
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -31,6 +32,30 @@ export const normalizedOrigin = value => {
   }
 };
 
+const isOriginalEditorialIllustration = meta =>
+  meta?.mediaType === 'editorial_illustration'
+  && meta?.source === 'history_go_original_editorial_illustration'
+  && meta?.rightsBasis === 'original_editorial_vector_art_no_third_party_photo';
+
+function originalIllustrationHash(name, imagePath, problems) {
+  // An original, in-repository illustration is the source itself. It must not
+  // pretend to be an externally licensed photograph or a renamed photo crop.
+  if (!/^bilder\/illustrasjoner\/.+\.svg$/iu.test(imagePath)) {
+    problems.push(name + ' must use a clearly identified local original SVG illustration');
+    return '';
+  }
+  const full = path.resolve(root, imagePath);
+  if (!full.startsWith(root + path.sep) || !fs.existsSync(full)) {
+    problems.push(name + ' original illustration is missing from the repository');
+    return '';
+  }
+  const bytes = fs.readFileSync(full);
+  if (!bytes.toString('utf8').includes('ILLUSTRASJON')) {
+    problems.push(name + ' original illustration lacks a visible illustration disclosure');
+  }
+  return createHash('sha256').update(bytes).digest('hex');
+}
+
 export function validateDistinctPhotoPair(place, { requireBoth = false } = {}) {
   const problems = [];
   const hero = String(place.image ?? '').trim();
@@ -42,7 +67,17 @@ export function validateDistinctPhotoPair(place, { requireBoth = false } = {}) {
   if (hero === front) problems.push('image and frontImage use the same asset path');
   const hm = place.imageMeta && typeof place.imageMeta === 'object' ? place.imageMeta : {};
   const fm = place.frontImageMeta && typeof place.frontImageMeta === 'object' ? place.frontImageMeta : {};
-  for (const [name, meta] of [['image', hm], ['frontImage', fm]]) {
+  const heroArt = isOriginalEditorialIllustration(hm);
+  const frontArt = isOriginalEditorialIllustration(fm);
+  const hashes = {};
+  for (const [name, meta, illustrated, imagePath] of [
+    ['image', hm, heroArt, hero],
+    ['frontImage', fm, frontArt, front]
+  ]) {
+    if (illustrated) {
+      hashes[name] = originalIllustrationHash(name, imagePath, problems);
+      continue;
+    }
     if (!/^[a-f0-9]{64}$/iu.test(String(meta.sourceSha256 ?? ''))) {
       problems.push(name + ' needs a SHA256 of its original source photograph');
     }
@@ -50,14 +85,21 @@ export function validateDistinctPhotoPair(place, { requireBoth = false } = {}) {
       problems.push(name + ' needs a documented original source URL');
     }
   }
-  for (const field of ['sourceSha256', 'sourcePage', 'originalUrl', 'originalId', 'sourceObjectId']) {
-    const a = field === 'sourceSha256' ? String(hm[field] ?? '').toLowerCase() : normalizedOrigin(hm[field]);
-    const b = field === 'sourceSha256' ? String(fm[field] ?? '').toLowerCase() : normalizedOrigin(fm[field]);
-    if (a && b && a === b) problems.push('image and frontImage share the same original ' + field);
+  if (heroArt && frontArt && hashes.image && hashes.frontImage && hashes.image === hashes.frontImage) {
+    problems.push('image and frontImage share the same original illustration bytes');
   }
-  const heroUrl = normalizedOrigin(place.imageSourceUrl || hm.sourcePage || hm.originalUrl);
-  const frontUrl = normalizedOrigin(place.frontImageSourceUrl || fm.sourcePage || fm.originalUrl);
-  if (heroUrl && frontUrl && heroUrl === frontUrl) problems.push('image and frontImage have the same credited source URL');
+  // Only photographic pairs need distinct external photo origins; artwork
+  // can cite the same historical fact sources while being visually original.
+  if (!heroArt && !frontArt) {
+    for (const field of ['sourceSha256', 'sourcePage', 'originalUrl', 'originalId', 'sourceObjectId']) {
+      const a = field === 'sourceSha256' ? String(hm[field] ?? '').toLowerCase() : normalizedOrigin(hm[field]);
+      const b = field === 'sourceSha256' ? String(fm[field] ?? '').toLowerCase() : normalizedOrigin(fm[field]);
+      if (a && b && a === b) problems.push('image and frontImage share the same original ' + field);
+    }
+    const heroUrl = normalizedOrigin(place.imageSourceUrl || hm.sourcePage || hm.originalUrl);
+    const frontUrl = normalizedOrigin(place.frontImageSourceUrl || fm.sourcePage || fm.originalUrl);
+    if (heroUrl && frontUrl && heroUrl === frontUrl) problems.push('image and frontImage have the same credited source URL');
+  }
   return [...new Set(problems)];
 }
 

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { chromium } from "playwright";
+import { chromium, webkit } from "playwright";
 
 const root = process.cwd();
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
@@ -28,6 +28,7 @@ const fixture = [
   '<link rel="stylesheet" href="/css/base.css">',
   '<link rel="stylesheet" href="/css/layout.css">',
   '<link rel="stylesheet" href="/css/nearby.css">',
+  '<link rel="stylesheet" href="/css/nearby-explore-guide.css">',
   '<link rel="stylesheet" href="/css/miniProfile.css">',
   '<link rel="stylesheet" href="/css/people.css">',
   '<link rel="stylesheet" href="/css/nature.css">',
@@ -39,6 +40,7 @@ const fixture = [
   nearbyMarkup,
   '<footer class="app-footer"></footer>',
   '<script src="/js/ui/nearby-drawer.js"></script>',
+  '<script src="/js/ui/nearby-explore-guide.js"></script>',
   '<script>',
   'document.body.classList.toggle("hg-phone", innerWidth <= 520);',
   'document.documentElement.style.setProperty("--hg-visual-footer-height", innerWidth <= 520 ? "60px" : "72px");',
@@ -66,6 +68,7 @@ const server = http.createServer((request, response) => {
     return;
   }
   if (!["/css/theme.css", "/css/base.css", "/css/layout.css", "/css/nearby.css",
+    "/css/nearby-explore-guide.css", "/js/ui/nearby-explore-guide.js",
     "/css/miniProfile.css", "/css/people.css", "/css/nature.css",
     "/js/ui/nearby-drawer.js"].includes(pathname)) {
     response.writeHead(404); response.end("not found"); return;
@@ -78,6 +81,7 @@ const server = http.createServer((request, response) => {
 await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
 const { port } = server.address();
 let browser;
+let safariBrowser;
 try {
   browser = await chromium.launch({ headless: true });
   for (const [width, height] of [[320, 700], [390, 844], [768, 1024], [1024, 900], [1440, 900]]) {
@@ -124,6 +128,28 @@ try {
       "Explore must start closed");
     await page.locator("#nearbyExploreToggle").click();
     assert.equal(await page.locator("#nearbyExploreToggle").getAttribute("aria-expanded"), "true");
+    // New toolbar must not push the classic drawer out of the map frame.
+    const categoryTabs = page.locator("#nearbyListContainer .nearby-tab");
+    assert.equal(await categoryTabs.count(), 5, "Keep the five original tabs at " + width);
+    const tabMetrics = await categoryTabs.first().evaluate(el => ({
+      height: el.getBoundingClientRect().height,
+      fontSize: Number.parseFloat(getComputedStyle(el).fontSize)
+    }));
+    assert.ok(tabMetrics.height <= (width <= 520 ? 35 : 37),
+      "Compact category tabs fit at " + width + ": " + JSON.stringify(tabMetrics));
+    assert.ok(tabMetrics.fontSize <= (width <= 520 ? 12.5 : 13.5),
+      "Compact category text at " + width);
+    await page.locator("#nearbyQuickSearch").fill("sted 3");
+    await page.waitForFunction(() => document.querySelector("#nearbySearchCount")?.textContent === "1 av 24 treff");
+    assert.equal(await page.locator("#nearbyList > .nearby-item:visible").count(), 1,
+      "Search filters the actual existing cards at " + width);
+    assert.match(await page.locator("#nearbySearchCount").textContent(), /1 av 24 treff/);
+    await page.locator("#nearbyQuickSearch").fill("");
+    await page.waitForFunction(() => [...document.querySelectorAll("#nearbyList > .nearby-item")].every(el => !el.hidden));
+    await page.locator("#nearbyGuideToggle").click();
+    assert.equal(await page.locator("#nearbyGuideToggle").getAttribute("aria-expanded"), "true");
+    assert.equal(await page.locator("#nearbyGuidePanel").isVisible(), true);
+    await page.locator("#nearbyGuideToggle").click();
     const state = await page.evaluate(() => {
       const rect = element => {
         const { x, y, right, bottom, width, height } = element.getBoundingClientRect();
@@ -179,7 +205,34 @@ try {
     await page.close();
     console.log("Nearby layout OK at " + width + "x" + height);
   }
+
+  // WebKit is the rendering engine used by Safari on iPad/iPhone.
+  // Keep this focused on the changed Utforsk surfaces, not unrelated map behavior.
+  safariBrowser = await webkit.launch({ headless: true });
+  for (const [width, height] of [[390, 844], [768, 1024]]) {
+    const page = await safariBrowser.newPage({ viewport: { width, height } });
+    await page.goto("http://127.0.0.1:" + port + "/__audit__/nearby.html", { waitUntil: "load" });
+    await page.locator("#nearbyExploreToggle").click();
+    assert.equal(await page.locator("#nearbyListContainer .nearby-tab").count(), 5);
+    const sizes = await page.locator("#nearbyListContainer .nearby-tab").first().evaluate(el => ({
+      height: el.getBoundingClientRect().height,
+      fontSize: parseFloat(getComputedStyle(el).fontSize)
+    }));
+    assert.ok(sizes.height <= (width <= 520 ? 35 : 37), "Safari compact tabs at " + width);
+    assert.ok(sizes.fontSize <= (width <= 520 ? 12.5 : 13.5), "Safari compact text at " + width);
+    await page.locator("#nearbyQuickSearch").fill("sted 4");
+    await page.waitForFunction(() => document.querySelector("#nearbySearchCount")?.textContent === "1 av 24 treff");
+    assert.equal(await page.locator("#nearbyList > .nearby-item:visible").count(), 1,
+      "Safari visible search results at " + width);
+    await page.locator("#nearbyGuideToggle").click();
+    assert.equal(await page.locator("#nearbyGuidePanel").isVisible(), true);
+    const listHeight = await page.locator("#nearbyList").evaluate(el => el.getBoundingClientRect().height);
+    assert.ok(listHeight > 90, "Safari retains scrollable cards at " + width);
+    await page.close();
+    console.log("Utforsk Safari/WebKit OK at " + width + "x" + height);
+  }
 } finally {
+  await safariBrowser?.close();
   await browser?.close();
   await new Promise(resolve => server.close(resolve));
 }

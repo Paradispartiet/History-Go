@@ -5,6 +5,46 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_berberis: Object.freeze({
+      scientificName: "Berberis spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/72_berberis_v1.webp",
+      gitBlobSha: "57d1070b052ec5b1f6c30650f47a688a93d14039",
+      reviewedAt: "2026-11-10",
+      stage: "pedagogisk_kombinert_varblomstring_hostbaer",
+      evidence: "data/natur/flora/illustration-quality-berberis-20261110.json"
+    }),
+    emne_flora_mahonia: Object.freeze({
+      scientificName: "Mahonia aquifolium",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/71_mahonia_v1.webp",
+      gitBlobSha: "0fe084f5ddb1a57dc80c6306ca589d0cc5139417",
+      reviewedAt: "2026-11-10",
+      stage: "varblomstring_og_sensommerbaer",
+      evidence: "data/natur/flora/illustration-quality-mahonia-20261110.json"
+    }),
+    emne_flora_snobaer: Object.freeze({
+      scientificName: "Symphoricarpos albus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/70_snobaer_v1.webp",
+      gitBlobSha: "499f861817273ca96a04bdab37ac368247867136",
+      reviewedAt: "2026-11-10",
+      stage: "sensommer_hvite_baer_og_rosa_blomster",
+      evidence: "data/natur/flora/illustration-quality-snobaer-20261110.json"
+    }),
+    emne_flora_gravbergknapp: Object.freeze({
+      scientificName: "Phedimus spurius",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/69_gravbergknapp_v1.webp",
+      gitBlobSha: "4e25f6210f4932d379a735d5c0d0601db376f91c",
+      reviewedAt: "2026-11-10",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-gravbergknapp-20261110.json"
+    }),
+    emne_flora_kjempespringfro: Object.freeze({
+      scientificName: "Impatiens glandulifera",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/68_kjempespringfro_v1.webp",
+      gitBlobSha: "e0ea9015f83e599d9fa8810f28bd67b16dfdd570",
+      reviewedAt: "2026-11-10",
+      stage: "sensommerblomstring_med_frokapsler",
+      evidence: "data/natur/flora/illustration-quality-kjempespringfro-20261110.json"
+    }),
     emne_flora_parkslirekne: Object.freeze({
       scientificName: "Reynoutria japonica",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/67_parkslirekne_v1.webp",
@@ -730,7 +770,7 @@
 
   });
   // One scientific species appears twice in the public catalog; reuse the same approved artwork.
-  const aliases = Object.freeze({ emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
+  const aliases = Object.freeze({ emne_kratt_berberis: "emne_flora_berberis", emne_kratt_mahonia: "emne_flora_mahonia", emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
   const get = id => images[aliases[String(id)] || String(id)] || null;
   window.HG_NATURE_FLORA_APPROVED = Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
 })();

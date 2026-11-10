@@ -123,6 +123,7 @@ type MapLibreMap = {
   addLayer: (layer: unknown) => void;
   moveLayer: (id: string) => void;
   setPaintProperty: (layerId: string, property: string, value: unknown) => void;
+  setLayoutProperty: (layerId: string, property: string, value: unknown) => void;
   getStyle: () => { layers?: any[] };
   getCanvas: () => HTMLCanvasElement;
   queryRenderedFeatures: (geometry?: unknown, options?: { layers?: string[] }) => MapLibreFeature[];
@@ -177,6 +178,13 @@ declare global {
       getCoordinateTrust?: (place: unknown) => "verified" | "review" | "unknown" | "invalid";
       maybeDrawMarkers?: () => void;
       refreshMarkers?: () => void;
+      setFavoriteViewOnly?: (enabled: boolean) => boolean;
+      getFavoriteViewOnly?: () => boolean;
+      setFavoriteMarkerStyle?: (style: string) => string;
+      getFavoriteMarkerStyle?: () => string;
+      setFavoritePlaceIcon?: (placeId: string, icon: string) => void;
+      getFavoritePlaceIcon?: (placeId: string) => string;
+      favoriteIconOptions?: () => string[];
       [key: string]: unknown;
     };
     renderNearbyPlaces?: () => void;

@@ -16,6 +16,9 @@ on:
       - 'tests/mobile-footer-layout.test.mjs'
       - 'tests/mobile-footer-browser.test.mjs'
       - 'css/nearby.css'
+      - 'css/nearby-explore-guide.css'
+      - 'js/ui/nearby-explore-guide.js'
+      - 'tests/nearby-explore-guide.test.mjs'
       - 'css/map.css'
       - 'css/placeCard.css'
       - 'tests/map-mode-controls-browser.test.mjs'
@@ -52,6 +55,8 @@ jobs:
         run: npm ci
       - name: Verify all footer action runtimes and real save flows
         run: node --test tests/footer-actions-runtime.test.mjs
+      - name: Verify Utforsk compact tabs, category search and Veiviser
+        run: node --test tests/nearby-explore-guide.test.mjs
       - name: Install Chromium
         run: npx playwright install --with-deps chromium webkit
       - name: Verify footer geometry contract

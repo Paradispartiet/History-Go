@@ -37,6 +37,9 @@
     try {
       localStorage.setItem(key, JSON.stringify(cache));
     } catch {}
+    if (typeof window.dispatchEvent === "function" && typeof CustomEvent === "function") {
+      window.dispatchEvent(new CustomEvent("hg:favorites-changed", { detail: { ids: cache.slice() } }));
+    }
     return cache.slice();
   }
 
