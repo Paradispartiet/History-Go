@@ -20,6 +20,7 @@ jobs:
           node-version: '22'
       - name: Verify focused Tveten contracts
         run: node --test tests/tveten-gard-vferdig-modules.test.mjs tests/tveten-gard-vferdig-content.test.mjs
+      # Synchronize solely the generated timeline, with no unrelated rebuilds.
       - name: Regenerate derived epoch history
         run: node scripts/build-epoke-place-index.mjs
       - name: Commit only epoch index
