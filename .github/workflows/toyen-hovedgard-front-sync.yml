@@ -1,0 +1,46 @@
+name: Tøyen hovedgård – portrait generation checkpoint
+on:
+  push:
+    branches: [work/toyen-hovedgard-front-og-produksjonsgrunnlag-20261110]
+    paths:
+      - '.github/workflows/toyen-hovedgard-front-sync.yml'
+      - 'data/places/historie/oslo/places_historie/toyen_hovedgard.json'
+      - 'bilder/illustrasjoner/places/toyen_hovedgard_front_editorial.svg'
+      - 'tests/toyen-hovedgard-portrait-qa.test.mjs'
+permissions:
+  contents: write
+concurrency:
+  group: toyen-hovedgard-front-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  sync:
+    name: Generate Places index and place-open, then targeted test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/toyen-hovedgard-front-og-produksjonsgrunnlag-20261110
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical derived Place entries
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+      - name: Targeted portrait and content parity tests
+        run: |
+          node --test tests/toyen-hovedgard-portrait-qa.test.mjs tests/oslo-ts-toyen-hovedgard-parity.test.mjs
+      - name: Commit only generated index and this place-open payload
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/places_index.json data/runtime/place-open/toyen_hovedgard.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Tøyen hovedgård: synchronize independent PlaceCard front into derived data"
+            git push origin HEAD:work/toyen-hovedgard-front-og-produksjonsgrunnlag-20261110
+          fi
