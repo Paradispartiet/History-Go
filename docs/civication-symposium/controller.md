@@ -58,6 +58,8 @@ Disse er undervisningsscenarioer bygget på de dokumenterte oppgavene. Rekkeføl
 
 K2 krever masterutdanning og relevant erfaring; K3 krever bachelor og åpner i enkelte tilfeller for relevant realkompetanse. Kvalifikasjoner er dermed lokale krav. [K2–K3] Vis makt gjennom tilgang til underlag, retten til å fastsette fristen og muligheten til å utfordre premissene. Yrket bestemmer ikke personens personlighet eller private klassebakgrunn.
 
+NTNU utlyser fast heltid, med oppgitt årslønn 650 000–850 000 kroner og pensjonsordning. Delvis hjemmearbeid krever avtale. Telemark Kildevann beskriver en hybrid ordning med to–tre kontordager i uka. Dette er lokale vilkår i de leste utlysningene. Spillvirksomhetens ansettelsesform, lønn og tilgjengelighet må fastsettes før økonomisk trygghet eller fritid brukes i et dilemma. [K2–K3]
+
 ## Kilder og kobling til eksisterende spill
 
 | ID | Kilde og dekningsområde |
