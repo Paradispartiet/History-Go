@@ -121,7 +121,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badges-readable-close5"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20\d{6}-[a-z0-9-]+"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
@@ -282,7 +282,9 @@ test("områdemarkører bruker faktisk Badge-kurven ved utzooming", () => {
 test("kartet henter nye JS- og CSS-ressurser etter Badge-oppdatering", () => {
   const app = read("js/app.js");
   const html = read("index.html");
-  assert.ok(app.includes("js/map.js?v=20261028-badges-readable-close5"), "kartmodulen må få ny cacheversjon");
+  const currentMapVersion = app.match(/js\/map\.js\?v=(20\d{6})-[a-z0-9-]+/);
+  assert.ok(currentMapVersion && Number(currentMapVersion[1]) >= 20261028,
+    "kartmodulen må få en cacheversjon fra eller etter badge-oppdateringen");
   // Startmodulen kan få en nyere cacheversjon når andre funksjoner publiseres etter Badge-oppdateringen.
   const appVersion = html.match(/js\/app\.js\?v=(20\d{6})-[a-z0-9-]+/);
   assert.ok(appVersion && Number(appVersion[1]) >= 20261028, "startmodulen må få en oppdatert cacheversjon");
