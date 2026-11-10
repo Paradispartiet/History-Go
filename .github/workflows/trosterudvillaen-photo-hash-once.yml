@@ -1,0 +1,56 @@
+name: Trosterudvillaen original documentary photo provenance (temporary)
+on:
+  push:
+    branches:
+      - content/trosterudvillaen-visual-story-20261110
+    paths:
+      - '.github/workflows/trosterudvillaen-photo-hash-once.yml'
+permissions:
+  contents: write
+jobs:
+  provenance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/trosterudvillaen-visual-story-20261110
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Retrieve actual original Wikimedia photograph, not a thumbnail
+        run: |
+          curl --fail --location --retry 6 --retry-delay 7 --retry-all-errors --user-agent "HistoryGo editorial provenance audit (https://github.com/Paradispartiet/History-Go)" --output /tmp/trosterudvillaen-original.jpg "https://upload.wikimedia.org/wikipedia/commons/1/18/Trosterudvillaen.jpg"
+          test "$(head -c 2 /tmp/trosterudvillaen-original.jpg | od -An -t x1 | tr -d ' \n')" = "ffd8"
+          test "$(wc -c < /tmp/trosterudvillaen-original.jpg)" -gt 200000
+      - name: Record actual SHA256 and original Commons URL
+        run: |
+          node <<'JS'
+          const fs=require('node:fs'),crypto=require('node:crypto');
+          const path='data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_08/trosterudvillaen.json';
+          const bytes=fs.readFileSync('/tmp/trosterudvillaen-original.jpg');
+          if(bytes[0]!==0xff||bytes[1]!==0xd8)throw Error('Not JPEG');
+          const photo=JSON.parse(fs.readFileSync(path,'utf8'));
+          if(photo.id!=='trosterudvillaen'||photo.imageMeta?.sourcePage!=='https://commons.wikimedia.org/wiki/File:Trosterudvillaen.jpg')throw Error('Wrong photo source');
+          photo.imageMeta.sourceSha256=crypto.createHash('sha256').update(bytes).digest('hex');
+          photo.imageMeta.originalUrl='https://upload.wikimedia.org/wikipedia/commons/1/18/Trosterudvillaen.jpg';
+          photo.imageMeta.originalDimensions='2102x1702';
+          fs.writeFileSync(path,JSON.stringify(photo,null,2)+'\n');
+          console.log('Original Jan-Tore Egge photo SHA256:',photo.imageMeta.sourceSha256,'bytes:',bytes.length);
+          JS
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run places:index:build
+      - run: npm run place-open:build
+      - name: Commit exact photo provenance and synchronized index
+        run: |
+          git add data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_08/trosterudvillaen.json
+          git add data/places/places_index.json data/runtime/place-open/trosterudvillaen.json
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name="HistoryGo CI" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Document original Commons photo SHA256 for Trosterudvillaen"
+          git push origin HEAD:content/trosterudvillaen-visual-story-20261110
