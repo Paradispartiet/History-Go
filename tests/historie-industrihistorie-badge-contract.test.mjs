@@ -68,7 +68,7 @@ test('Industrihistorie har riktig Historie-farge, tekster og norsk aktivering',(
  assert.equal(m.localesActive,false);
  assert.equal(c.image,'bilder/merker/historie.PNG');
  assert.equal(c.subBadgeImages.industrihistorie,m.sourceImage);
- assert.equal(Object.keys(c.subBadgeImages).length,9);
+ assert.ok(Object.keys(c.subBadgeImages).length>=9,'Industrihistorie og de 8 tidligere merkene må beholdes når nye merker legges til');
  assert.equal(m.quality.integrated,true);
  assert.equal(m.quality.visualApproved,true);
  assert.equal(m.quality.binaryVerified,true);
