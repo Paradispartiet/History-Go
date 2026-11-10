@@ -8,6 +8,9 @@ Dette er inngangen til den redaksjonelle dokumentasjonen om hvordan folk arbeide
 | [Renholder](civication-symposium/renholder.md) | `naeringsliv/renholder` | [Arbeidsgrammatikk](../data/Civication/workGrammars/naeringsliv/renholder.json) · [Rolleverden](../data/Civication/roleWorlds/naeringsliv/renholder.json) |
 | [Frilanser med tekst- og designoppdrag](civication-symposium/frilanser.md) | `naeringsliv/naeringsliv_frilanser` | [Rolleverden](../data/Civication/roleWorlds/naeringsliv/naeringsliv_frilanser.json) · [C04-synopsis](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c04--forespørselen-som-ikke-er-en-kontrakt) |
 | [Venn av Jonas](civication-symposium/venn-av-jonas.md) | C09, en relasjon som kan fortsette på tvers av jobber | [C09-synopsis](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c09--vennskapet-som-glir-fra) |
+| [Barnehageassistent](civication-symposium/barnehageassistent.md) | `sosial_laering/barnehageassistent` | [Arbeidsgrammatikk](../data/Civication/workGrammars/sosial_laering/barnehageassistent.json) · [Spillscener](../data/Civication/lifestory/roles/barnehageassistent/scenes.json) |
+| [Kommunal arealplanlegger](civication-symposium/arealplanlegger.md) | `by/arealplanlegger` | [C06-synopsis](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c06--faglig-integritet-under-press) · [Spillscener](../data/Civication/lifestory/roles/arealplanlegger/scenes.json) |
+| [Arbeidsledig og på jobbjakt](civication-symposium/arbeidsledig.md) | Life Story `arbeidsledig` | [C01-synopsis](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c01--jobbtap-og-verdighet) · [C05-synopsis](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c05--byråkratiet-og-personen) |
 
 ## Dekning
 
