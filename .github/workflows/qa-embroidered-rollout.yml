@@ -13,6 +13,9 @@ on:
       - 'tests/forhistorie-candidate.test.mjs'
       - 'tests/middelalder-candidate.test.mjs'
       - 'tests/tidlig-modernetid-candidate.test.mjs'
+      - 'tests/historie-1800-badge-contract.test.mjs'
+      - 'bilder/merker/historie/undermerker/attenhundretallet-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/attenhundretallet.webp'
       - 'bilder/merker/historie/undermerker/tidlig_modernetid-brodert-v1.webp'
       - 'bilder/merker/historie/locales/*/tidlig_modernetid.webp'
       - 'bilder/merker/historie/undermerker/middelalder-brodert-v1.webp'
@@ -49,6 +52,7 @@ jobs:
           node --test tests/forhistorie-candidate.test.mjs
           node --test tests/middelalder-candidate.test.mjs
           node --test tests/tidlig-modernetid-candidate.test.mjs
+          node --test tests/historie-1800-badge-contract.test.mjs
       - name: Generate four-badge preview
         run: |
           python -m pip install -q pillow
