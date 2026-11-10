@@ -428,10 +428,13 @@
       // If the focused action disappears, prefer the other enabled action,
       // then the summary heading as a safe reading position.
       const active = document.activeElement;
-      const focusedAction = summary.contains(active) && !document.body.classList.contains("civi-mapmode")
+      const hasSummaryFocus = summary.contains(active) && !document.body.classList.contains("civi-mapmode");
+      const focusedAction = hasSummaryFocus
         ? (active?.matches?.("[data-lifestory-next-action]") ? "[data-lifestory-next-action]"
           : active?.matches?.("[data-lifestory-next-day]") ? "[data-lifestory-next-day]" : null)
         : null;
+      const focusedRecap = hasSummaryFocus
+        && active?.matches?.('details[data-lifestory-disclosure="day-recap"] > summary');
       const expandedRecap = !!summary.querySelector?.('details[data-lifestory-disclosure="day-recap"][open]');
       summary.outerHTML = html;
       const refreshed = getPanel()?.querySelector?.(".civi-lifestory-summary");
@@ -450,6 +453,11 @@
           if (target.tagName === "H3") target.setAttribute("tabindex", "-1");
           /** @type {HTMLElement} */ (target).focus({ preventScroll: true });
         }
+      } else if (focusedRecap && refreshed) {
+        // Opening the day recap is a keyboard reading task, too. Keep its
+        // disclosure and focus when an unrelated inbox update refreshes data.
+        const recapSummary = refreshed.querySelector('details[data-lifestory-disclosure="day-recap"] > summary');
+        if (recapSummary) /** @type {HTMLElement} */ (recapSummary).focus({ preventScroll: true });
       }
     }
   }

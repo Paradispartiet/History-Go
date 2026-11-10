@@ -145,6 +145,18 @@ async function main() {
   window.dispatchEvent(new window.Event("civi:inboxChanged"));
   assert.equal(window.document.activeElement, panel.querySelector("[data-lifestory-next-action]"),
     "focus follows the restored inbox route, rather than falling to body");
+  // A player reading the expanded recap must not lose their keyboard position
+  // when the shell refreshes the inbox during the finished-day summary.
+  const dayRecap = panel.querySelector('details[data-lifestory-disclosure="day-recap"]');
+  dayRecap.open = true;
+  dayRecap.querySelector("summary").focus();
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  const refreshedRecap = panel.querySelector('details[data-lifestory-disclosure="day-recap"]');
+  assert.equal(refreshedRecap.open, true, "expanded recap survives a live inbox refresh");
+  assert.equal(window.document.activeElement, refreshedRecap.querySelector("summary"),
+    "keyboard focus remains on the refreshed recap disclosure");
+  assert.equal(calendar.getClock().dayIndex, 1, "reading recap does not advance the shell day");
+  refreshedRecap.open = false;
   assert.ok(panel.querySelector("[data-lifestory-next-action]"), "pending mail reachable from Min dag");
   assert.equal(panel.querySelector("[data-lifestory-next-day]")?.disabled, true,
     "Start neste dag is disabled while a current mail needs an answer");
