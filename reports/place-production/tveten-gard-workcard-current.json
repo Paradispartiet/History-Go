@@ -2,8 +2,8 @@
   "schema": "history_go_place_workcard_v2",
   "place_id": "tveten_gard",
   "category": "historie",
-  "status": "ready_for_merge",
-  "active_phase": "final_ci",
+  "status": "complete",
+  "active_phase": "complete",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Kildebasert historisk gårdssted med selvstendige bygnings- og eiendomsspor, to bildeklare samlinger, kuratert Fagverk og intakt fullquiz.",
@@ -55,18 +55,14 @@
     "manual_visual_review": "PASS – separat manuell gjennomgang 10.11.2026 av seks ekte Chromium-skjermbilder (390 og 1440 px): stående stedsillustrasjon synlig, 3 People med bilder, 2 historiske hendelser med illustrasjoner, popupene synlige og ingen åpenbar tekstklipping.",
     "physical_device_qa": false
   },
-  "remaining_before_vferdig": [
-    "Final GitHub Actions CI on PR head after Civication index synchronization",
-    "Merge PR into main and verify deployment/publication",
-    "Separate editorial vFerdig closeout after merge"
-  ],
-  "editorial_vferdig": false,
+  "remaining_before_vferdig": [],
+  "editorial_vferdig": true,
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
     "status": "PASS",
     "place_id": "tveten_gard",
     "category": "historie",
-    "recorded_at": "2026-11-10T22:03:26.144Z",
+    "recorded_at": "2026-11-10T22:16:07.034Z",
     "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
     "files": [
       {
@@ -107,7 +103,7 @@
       },
       {
         "path": "data/badges/historie.json",
-        "sha256": "cbf0d37481c69ecd66c6fdd4b727d70f4d8385e5d28b056fcd5f1267ec6a204e"
+        "sha256": "273b5d870aa9f45e6f8174da16ba390b33ffee6a970175a4fc053cdac88bbdde"
       }
     ],
     "contract_snapshot": {
@@ -139,5 +135,16 @@
     "detail": "Civication history People index regenerated and --check passed; temporary one-shot workflow removed in same commit.",
     "recorded_on": "2026-11-10"
   },
-  "rule_preflight_refresh": "Historie badge content refreshed on main while this PR was open; current main rules reviewed and hash recorded. This PR does not modify the badge."
+  "rule_preflight_refresh": "Attestation based on current History Go main rule files at vFerdig closeout; no badge files changed.",
+  "branch_status": "merged",
+  "live_status": "published",
+  "formal_attestation": "reports/place-production/tveten-gard-vferdig-20261110.json",
+  "release_verification": {
+    "content_pr": "https://github.com/Paradispartiet/History-Go/pull/7168",
+    "merge_sha": "c956c6d17d5e7de9a1ef0cafaa04c4b5da445338",
+    "browser_url": "https://github.com/Paradispartiet/History-Go/actions/runs/42910959119",
+    "pages_url": "https://github.com/Paradispartiet/History-Go/actions/runs/42911925386",
+    "pages_status": "success on descendant 9894718906c9699b1d5f6f901198896f94b7f01a",
+    "formally_editorially_attested": "2026-11-10"
+  }
 }
