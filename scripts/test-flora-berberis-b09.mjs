@@ -50,7 +50,7 @@ assert(a.sourceReferences.length>=2);
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,94);
+assert(approved.count>=94,"The 94 previously approved entries must remain available");
 assert.equal(approved.get(id)?.scientificName,latin);
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
@@ -59,4 +59,4 @@ assert.equal(approved.get("emne_kratt_berberis")?.src,a.src,"Both Berberis cards
 assert(!approved.get("emne_flora_hostberberis")||approved.get("emne_flora_hostberberis")?.src!==a.src,"Høstberberis must not be incorrectly identified with Berberis genus representative");
 assert.equal(approved.get("emne_flora_mahonia")?.scientificName,"Mahonia aquifolium");
 assert.notEqual(approved.get(id)?.src,approved.get("emne_flora_mahonia")?.src);
-console.log("Berberis #94: genus illustration, original WebP, both card IDs, hashes, separate Høstberberis and 94 approved entries verified.");
+console.log("Berberis #94: genus illustration, original WebP, both card IDs, hashes, separate Høstberberis and at least 94 previously approved entries preserved.");

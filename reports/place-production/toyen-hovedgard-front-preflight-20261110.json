@@ -1,0 +1,73 @@
+{
+  "schema": "history_go_place_front_visual_preflight_v1",
+  "place_id": "toyen_hovedgard",
+  "category": "historie",
+  "status": "front_integrated_pending_browser_and_remaining_core",
+  "date": "2026-11-10",
+  "production_profile": "standard",
+  "profile_status": "provisional_pending_collection_review",
+  "badge_routing": {
+    "primary_badge": "historie",
+    "candidate_collections": [
+      "people",
+      "objects",
+      "brands",
+      "historical_events"
+    ],
+    "source": "data/badges/place_production_routing_v1.json",
+    "decision": "Neither Objects nor Brands nor historical_events are presented as a finished collection without actual canonical members and verified previews; no filler."
+  },
+  "existing_completed_content": {
+    "identity": "PASS; canonical Trondheimsveien 23B Geonorge address point retained, separate from Botanisk hage and museum",
+    "place_text": "Existing source-supported historical ingress and six-paragraph popup preserved",
+    "quiz": "PASS 3x7=21 verified questions",
+    "quizcard": "PASS 10/10 parity with source questions",
+    "fagverk": "PASS curated Fagverk v2 with three history paragraphs and three inquiry lenses",
+    "photograph": "PASS Vidar Iversen 27 May 2009, Wikimedia Commons CC BY-SA 3.0; hero preserved and credited",
+    "people_links": [
+      "jens_bjelke",
+      "henrik_bjelke"
+    ]
+  },
+  "this_delivery": {
+    "illustrated_front": "bilder/illustrasjoner/places/toyen_hovedgard_front_editorial.svg",
+    "dimensions": "900x1200",
+    "description": "Original schematic editorial vector of historic main house, mansard roof, wings and courtyard; visibly marked illustration not photo.",
+    "original_photo_separation": "The documentary 2009 hero remains unchanged. A distinct upright PlaceCard front image replaces the old identical hero/front URL.",
+    "legacy_fields": "Removes obsolete cardImage from canonical Place without creating a duplicate QuizCard image. Existing QuizCard remains its own flip surface.",
+    "generated_index": "PASS: generated Places index updated via targeted GitHub runner",
+    "generated_place_open": "PASS: data/runtime/place-open/toyen_hovedgard.json reflects new front and removes cardImage",
+    "browser_review": "PENDING: visual acceptance in real mobile/desktop browser after this isolated delivery",
+    "targeted_tests": "PASS: tests/toyen-hovedgard-portrait-qa.test.mjs and tests/oslo-ts-toyen-hovedgard-parity.test.mjs completed before GitHub runner committed derived outputs",
+    "generated_commit": "0e7fb0dc90df6d740d215e930e621d0e14d983e5"
+  },
+  "collection_audit": {
+    "people": {
+      "state": "CANDIDATE",
+      "evidence": "Jens Bjelke and Henrik Bjelke exist in canonical runtime; one visual is a family crest, not a portrait. Do not represent it as a likeness."
+    },
+    "objects": {
+      "state": "UNDECIDED_SOURCE_REVIEW",
+      "evidence": "Mansard roof, cellar and side wings are parts of the building, not automatically standalone Objects."
+    },
+    "brands": {
+      "state": "UNDECIDED_SOURCE_REVIEW",
+      "evidence": "University affiliation is documented, but organizational identity/brand must be assessed as an entity rather than padding a collection."
+    },
+    "historical_events": {
+      "state": "UNDECIDED_SOURCE_REVIEW",
+      "evidence": "Estate rights and 1812 university transfer have sourced historical claims but still require real canonical event identities and images."
+    }
+  },
+  "remaining_core": {
+    "story": "Not found in place-open",
+    "leksikon_chronology": "Not found in place-open",
+    "language_entries": "Not found in place-open",
+    "lesespor": "Not found in place-open",
+    "placecard_collections": "Not yet qualified as populated canonical collection previews",
+    "frontImage_live_browser": "Pending QA of new separately illustrated front and QuizCard flip",
+    "before_after": "Assess historical comparison by source relevance; never force unmatched documentary images."
+  },
+  "quality_boundary": "The old site is substantially content-rich, but current main is not vFerdig. No fabricated gallery items, no exterior contacting, no invented archive photos.",
+  "next_phase": "Complete historical Story, chronology/leksikon, language, four open Lesespor, and source-qualified collection(s), then targeted visual acceptance and formal vFerdig."
+}
