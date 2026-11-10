@@ -35,14 +35,14 @@ const raw = {
 // --- Pakken består de fire lovene (buildContent kaster ellers) ---
 const content = Content.buildContent(raw);
 assert.strictEqual(content.role.id, "ekspeditor");
-assert.strictEqual(raw.roleThreads.threads.length, 6, "fem opprinnelige arbeidstråder og én oppfølgingstråd");
+assert.strictEqual(raw.roleThreads.threads.length, 7, "fem opprinnelige arbeidstråder og to oppfølgingstråder");
 assert.ok(raw.roleThreads.threads.every((t) => t.type === "arbeidsliv"), "rolletrådene er arbeidsliv");
 
-// De fem opprinnelige mail-familiene og en ekstra forfattet tråd om belastning og støtte.
+// De opprinnelige mail-familiene, arbeidstempo og avviket i skiftloggen.
 const threadIds = raw.roleThreads.threads.map((t) => t.id);
 assert.deepStrictEqual(threadIds.sort(), [
   "kunden_som_tror_du_bestemmer", "lukkingen", "ny_kollega_og_tillit",
-  "prisfeilen_i_koen", "varen_som_ikke_finnes", "arbeidsrytme_og_overskudd"
+  "prisfeilen_i_koen", "varen_som_ikke_finnes", "arbeidsrytme_og_overskudd", "returavvik_i_skiftloggen"
 ].sort());
 
 // Personene er mail-familienes faste cast og finnes i startState.
@@ -146,4 +146,43 @@ while (!state2.dagFerdig) {
 assert.ok(state2.arkiv.some((e) => e.sceneId === "d2_kveld_kassadifferansen"),
   "bøyd regel => kassadifferansen følger deg hjem på dag 2");
 
-console.log("civication lifestory ekspeditor ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");
+for (const [choice, energy, integrity, amir] of [
+  ["forklar_hva_du_vet", 0, 1, 0],
+  ["la_amir_forklare", -1, 0, 1],
+  ["ta_skylda", -1, -2, 0]
+]) {
+  // The separate return must play both after a clean day and after a till discrepancy.
+  for (const previous of [state, state2]) {
+    let current = JSON.parse(JSON.stringify(previous));
+    Runner.startNextDay(current, content);
+    let sawOpening = false;
+    const money = current.meters.penger;
+    for (let step = 0; !current.dagFerdig; step++) {
+      assert.ok(step < 50, "dag 3 må terminere");
+      const scene = Runner.selectNextScene(current, content);
+      assert.ok(scene);
+      if (scene.id !== "d3_returavvik_i_skiftloggen") {
+        Runner.applyChoice(current, content, scene.id, scene.valg[0].id);
+        continue;
+      }
+      sawOpening = true;
+      const before = { energy: current.meters.energi, integrity: current.meters.integritet, amir: current.relasjoner.erfaren_kollega };
+      Runner.applyChoice(current, content, scene.id, choice);
+      assert.strictEqual(current.meters.energi, before.energy + energy);
+      assert.strictEqual(current.meters.integritet, before.integrity + integrity);
+      assert.strictEqual(current.relasjoner.erfaren_kollega, before.amir + amir);
+      current = JSON.parse(JSON.stringify(current));
+      State.reconcileContent(current, content);
+    }
+    assert.ok(sawOpening, "returavviket skal spilles på dag 3");
+    const archive = Runner.getSymposium(current, content).tidslinje;
+    assert.deepStrictEqual(archive.filter(e => e.sceneId === "d3_returavvik_i_skiftloggen").map(e => e.valgId), [choice]);
+    const receipt = archive.filter(e => e.sceneId === "d3_lene_retter_returloggen");
+    assert.strictEqual(receipt.length, 1);
+    assert.match(receipt[0].konsekvensTekst, /Lene.*kvitteringsnummer/);
+    assert.strictEqual(current.threadState.returavvik_i_skiftloggen.status, "completed");
+    assert.strictEqual(current.meters.penger, money);
+  }
+}
+
+console.log("civication lifestory ekspeditor ok (begge dag-2-grener og seks gjennomspillinger av returavviket på dag 3)");
