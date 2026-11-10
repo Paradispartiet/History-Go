@@ -10,7 +10,7 @@ const runtime=read("data/runtime/place-open/tveten_gard.json");
 const story=read("data/stories/stories_tveten_gard.json");
 const lex=read("data/leksikon/places/oslo/historie/leksikon_tveten_gard.json");
 const language=read("data/leksikon/sprak/places/europe/norway/oslo/tveten_gard.json");
-const lesespor=read("data/lesespor/oslo/lesespor_oslo_historie_tveten_gard.json");
+const lesespor={items:read("data/lesespor/oslo/lesespor_oslo_historie.json").items.filter(x=>x.place_ids.includes("tveten_gard"))};
 const people=[
  read("data/people/historie/oslo/tveten_gard/even_bernhard_stenersen.json")[0],
  read("data/people/historie/oslo/tveten_gard/mogens_lauritsson.json")[0]
@@ -69,7 +69,7 @@ test("Tveten: Story, two articles, five language concepts and four open source t
  assert.equal(lesespor.items.length,4);
  assert.ok(lesespor.items.every(x=>x.place_ids.includes(id)&&x.access==="open"&&x.rights==="link_only"));
  assert.deepEqual(runtime.lesespor.filter(x=>x.place_ids.includes(id)),lesespor.items);
- assert.ok(read("data/lesespor/manifest.json").files.includes("oslo/lesespor_oslo_historie_tveten_gard.json"));
+ assert.ok(read("data/lesespor/manifest.json").files.includes("oslo/lesespor_oslo_historie.json"));
 });
 
 test("Tveten: previously published 21-question fullquiz and 10-question QuizCard remain untouched",()=>{
