@@ -46,6 +46,16 @@ export default async function verifyCivicationWebkitMobile(browser: any, origin:
       };
     });
     assert.match(initial.phase, /^Fase: \S/, 'WebKit uses the canonical phase label');
+    const phasePosition = await page.evaluate(() => {
+      const app = globalThis as any;
+      const phase = app.CivicationCalendar?.getPhase?.();
+      const phases = app.CivicationCalendar?.DAY_PHASES;
+      return { index: Array.isArray(phases) ? phases.indexOf(phase) + 1 : 0,
+        total: Array.isArray(phases) ? phases.length : 0 };
+    });
+    assert.ok(phasePosition.index > 0 && phasePosition.total === 8
+      && initial.phase.endsWith(' · ' + phasePosition.index + ' av ' + phasePosition.total),
+      'WebKit Min dag phase index matches the canonical eight-phase calendar');
     assert.ok(initial.headerFits && initial.artWidth >= 80, 'Min dag illustration fits in WebKit');
     assert.ok(initial.sectionFits, 'Min dag fits the 390px WebKit mobile width');
     assert.ok(initial.choiceCount > 0 && initial.choiceSizes.every((c: any) =>
