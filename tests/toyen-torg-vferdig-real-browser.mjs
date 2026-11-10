@@ -90,6 +90,8 @@ try{
      const objectsText=await objectsPopup.innerText();
      assert.match(objectsText,/Tøyenteppene/i,label+' objects popup must contain site-specific Tøyenteppene');
      assert.match(objectsText,/lysmast/i,label+' objects popup must contain the site-specific lighting objects');
+     assert.match(objectsText,/Illustrasjon – ikke fotografi/i,label+' Objects must be labeled illustrations');
+     assert.doesNotMatch(objectsText,/Dokumentarfotografi/i,label+' No photo label may remain on editorial illustrations');
      await page.screenshot({path:'artifacts/toyen-torg-vferdig/'+label+'-objects.png',fullPage:false});
      await page.keyboard.press('Escape');
      await page.waitForTimeout(250);
