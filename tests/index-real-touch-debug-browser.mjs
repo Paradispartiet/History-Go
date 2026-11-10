@@ -35,6 +35,13 @@ const description = async page => page.evaluate(()=>{
     map:!!window.HGMap?.getMap?.(),mapUnavailable:el("#map")?.dataset.mapUnavailable,initLeftPanel:typeof window.initLeftPanel,
     markerCount:document.querySelectorAll(".hg-place-detail-marker,.hg-place-area-marker").length,
     nearby:hit("#nearbyExploreToggle"),dock:hit(".hg-map-category-trigger"),
+    mapCenter:(()=>{
+      const x=Math.round(innerWidth/2),y=Math.round(innerHeight*0.55);
+      const target=document.elementFromPoint(x,y);
+      return {point:[x,y],mapReceivesTap:!!el("#map")?.contains(target),
+        target:{tag:target?.tagName,id:target?.id,class:String(target?.className).slice(0,100)},
+        stack:document.elementsFromPoint(x,y).slice(0,8).map(n=>({tag:n.tagName,id:n.id,class:String(n.className).slice(0,100),pe:getComputedStyle(n).pointerEvents}))};
+    })(),
     overlays:[...document.querySelectorAll("[role=dialog],.modal,#badgeModal,.hg-popup")].slice(0,12).map(n=>({id:n.id,display:getComputedStyle(n).display,rect:n.getBoundingClientRect().toJSON?.(),hidden:n.hidden,aria:n.getAttribute("aria-hidden")}))};
 });
 let failures = [];
@@ -70,8 +77,8 @@ try {
        force=await page.evaluate(()=>{const b=document.getElementById("nearbyExploreToggle");if(!b)return "missing";b.click();return b.getAttribute("aria-expanded");});
      }catch(e){force=String(e);}
      console.log("FULL INDEX DOMCLICK "+name+" "+JSON.stringify(force));
-     if(!before.ready || clickResult.physical!=="ok" || clickResult.expanded!=="true")
-       failures.push({name,ready:before.ready,error:before.load_error,click:clickResult,dom:force});
+     if(!before.ready || clickResult.physical!=="ok" || clickResult.expanded!=="true" || !before.mapCenter.mapReceivesTap)
+       failures.push({name,ready:before.ready,error:before.load_error,mapCenter:before.mapCenter,click:clickResult,dom:force});
      await ctx.close();
    }catch(e){failures.push({name,error:String(e)});console.log("BROWSER "+name+" ERROR "+String(e));}
    finally{await browser?.close();}
