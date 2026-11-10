@@ -78,10 +78,15 @@ declare global {
     };
     renderLeftBadges?: () => void;
     HGFavoritePlaces?: {
+      key?: string;
+      load?: () => string[];
+      save?: (ids: unknown) => string[];
       getIds?: () => string[];
-      has?: (placeId: string) => boolean;
+      has?: (placeId: unknown) => boolean;
+      add?: (placeId: unknown) => string[];
+      remove?: (placeId: unknown) => string[];
       count?: () => number;
-      toggle?: (placeId: string) => boolean;
+      toggle?: (placeId: unknown) => boolean;
     };
     HGHomeFavoriteMapPicker?: {
       init?: () => boolean;
