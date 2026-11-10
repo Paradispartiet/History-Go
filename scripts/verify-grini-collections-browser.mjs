@@ -204,23 +204,9 @@ try {
       console.error('Grini collections preflight diagnostics:',JSON.stringify(full));
       throw error;
     }
-    // The editorial Brands logo can be outside the lazy-load distance on
-    // desktop; scrolling the real button is necessary before checking pixels.
-    const brandsButton = page.locator('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button');
-    await brandsButton.scrollIntoViewIfNeeded();
-    await page.waitForFunction(
-      () => {
-        const button = document.querySelector('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button');
-        const image = button?.querySelector('img');
-        const rect = button?.getBoundingClientRect();
-        return button instanceof HTMLButtonElement
-          && rect?.width > 0 && rect?.height > 0
-          && image instanceof HTMLImageElement
-          && image.complete && image.naturalWidth > 0;
-      },
-      null,
-      { timeout: 30_000 },
-    );
+    // Do not scroll to the bottom-of-About Brands logo before clicking the
+    // People round in the hero. Every editorial image is scrolled into view
+    // and checked for actual loaded pixels at its own popup step below.
     await page.waitForFunction(
       () => {
         const flip = document.getElementById('pcFrontCardFlip');
