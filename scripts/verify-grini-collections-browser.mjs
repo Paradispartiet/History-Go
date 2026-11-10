@@ -130,6 +130,7 @@ try {
       placeId,
       { timeout: 60_000 },
     );
+    try {
     await page.waitForFunction(
       ({ count, collections }) => {
         const card = document.getElementById('placeCard');
@@ -162,6 +163,35 @@ try {
       { count: expectedUiCollections.length, collections: expectedUiCollections },
       { timeout: 60_000 },
     );
+    } catch (error) {
+      const diagnostic = await page.evaluate((collections) => {
+        const card = document.getElementById('placeCard');
+        const brand = card?.querySelector('.pc-sheet-canonical-about [data-pc-round-gallery-brand="1"]');
+        const button = brand?.querySelector('button');
+        const img = button?.querySelector('img');
+        const box = button?.getBoundingClientRect();
+        return {
+          currentPlaceId: card?.dataset.currentPlaceId,
+          collectionMode: card?.dataset.collectionMode,
+          collectionCount: card?.dataset.collectionCount,
+          classes: card?.className,
+          editorials: card?.querySelectorAll('.pc-sheet-canonical-about').length ?? 0,
+          brand: { exists: Boolean(brand), button: Boolean(button), width: box?.width ?? 0, height: box?.height ?? 0,
+            image: img instanceof HTMLImageElement ? {src: img.getAttribute('src'), loading: img.loading, complete: img.complete, naturalWidth: img.naturalWidth} : null },
+          icons: collections.map(({id,iconId}) => {
+            const el=document.getElementById(iconId),rect=el?.getBoundingClientRect();
+            return {id,iconId,exists:Boolean(el),actualId:el?.dataset.collectionId,hidden:el?.hidden,
+              ariaHidden:el?.getAttribute('aria-hidden'),display:el?getComputedStyle(el).display:null,
+              width:rect?.width??0,height:rect?.height??0,roundReady:el?.dataset.roundReady,
+              imageSource:el?.querySelector('img')?.getAttribute('src')};
+          })
+        };
+      }, expectedUiCollections);
+      const full={message:String(error),diagnostic,pageErrors};
+      fs.writeFileSync(path.join(outDir,profile.name+'-collection-preflight.json'),JSON.stringify(full,null,2)+'\n');
+      console.error('Grini collections preflight diagnostics:',JSON.stringify(full));
+      throw error;
+    }
     // The editorial Brands logo can be outside the lazy-load distance on
     // desktop; scrolling the real button is necessary before checking pixels.
     const brandsButton = page.locator('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button');
