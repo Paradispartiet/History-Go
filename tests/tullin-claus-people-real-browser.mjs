@@ -33,7 +33,7 @@ try{
     return img instanceof HTMLImageElement && img.complete && img.naturalWidth===900 && img.naturalHeight===1200;
    },null,{timeout:70000});
    const front=await page.locator('#pcFrontImage').evaluate(img=>({src:img.currentSrc||img.src,alt:img.alt}));
-   assert.match(front.src,/tullin_front_editorial\.svg/,label+' missing original portrait illustration');
+   assert.match(front.src,/tullin_front_portrait\.svg/,label+' missing documentary upright illustration');
    await page.waitForFunction(()=>{
     const card=document.querySelector('#pcFrontCardFlip'),content=document.querySelector('#pcQuizCardContent');
     return !!card?.classList.contains('has-quiz-card')&&!!content?.querySelector('.pc-rendered-quiz-card')&&content.dataset.placeId==='tullin';
