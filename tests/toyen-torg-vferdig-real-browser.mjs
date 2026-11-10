@@ -35,7 +35,7 @@ try{
      const front=await page.locator('#pcFrontImage').evaluate(img=>({
        src:img.currentSrc||img.src,width:img.naturalWidth,height:img.naturalHeight,alt:img.alt
      }));
-     assert.ok(front.src.includes('toyen_torg_front_portrait.webp'),label+' missing dedicated standing front image');
+     assert.ok(front.src.includes('toyen_torg_front_portrait.svg'),label+' missing dedicated standing front image');
      assert.equal(front.width,900);assert.equal(front.height,1200);
      await page.waitForFunction(()=>{
        const card=document.querySelector('#pcFrontCardFlip'),content=document.querySelector('#pcQuizCardContent');
@@ -102,7 +102,7 @@ try{
      await page.screenshot({path:'artifacts/toyen-torg-vferdig/'+label+'-structures.png',fullPage:false});
      assert.equal(errors.length,0,label+' runtime page errors: '+errors.join(' / '));
      await page.screenshot({path:'artifacts/toyen-torg-vferdig/'+label+'.png',fullPage:false});
-     console.log(label+': upright authentic front 900x1200, QuizCard click/touch/expand/Escape/return, four populated collections and no JS errors PASS');
+     console.log(label+': upright illustrated front 900x1200, QuizCard click/touch/expand/Escape/return, four populated collections and no JS errors PASS');
    }finally{await context.close();}
  }
 }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
