@@ -72,6 +72,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadPersonPlaceUnlockToast", () => loadScriptOnce("js/ui/person-place-unlock-toast.js"));
     await safeRun("loadBadgeUnlockToast", () => loadScriptOnce("js/ui/badge-unlock-toast.js"));
     await safeRun("loadMap", () => loadScriptOnce("js/map.js?v=20261110-favorite-map1"));
+    // Emergency rollback of the map favorites overlay after taps stopped working on iPad.
+    // Keep the map and all History Go content; temporarily restore the normal all-place view.
+    await safeRun("resetFavoriteMapOnHotfix", () => window.HGMap?.setFavoriteViewOnly?.(false));
     await safeRun("loadAhaMusicBridge", () => loadScriptOnce("js/integrations/aha-music.js"));
     await safeRun("loadNearbyPlaceSelector", () => loadScriptOnce("dist/web/nearbyPlaceSelector.js"));
     await safeRun("loadNearbyPlacesList", () => loadScriptOnce("dist/web/nearbyPlacesList.js"));
@@ -99,7 +102,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadNearbyFilters", () => loadScriptOnce("dist/web/nearbyFilters.js"));
     await safeRun("loadLeftPanelMode", () => loadScriptOnce("dist/web/leftPanelMode.js?v=20260912-live-surfaces2"));
     await safeRun("loadNearbyFilterControls", () => loadScriptOnce("dist/web/nearbyFilterControls.js"));
-    await safeRun("loadHomeFavoriteMapPicker", () => loadScriptOnce("js/ui/home-favorite-map-picker.js?v=20261110-mapdock2"));
     await safeRun("loadNearbyBadgesPanel", () => loadScriptOnce("dist/web/nearbyBadgesPanel.js"));
     await safeRun("loadLeftPanel", () => loadScriptOnce("dist/web/left-panel.js?v=20260912-live-surfaces2"));
 
@@ -184,10 +186,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Critical boot gjør bare index brukbar: kart + places_index + markører.
     // Fallback til gammel boot() beholdes hvis boot-fast.js ikke er lastet.
     await safeRun("bootCritical", window.bootCritical || window.boot);
-    await safeRun("initHomeFavoriteMapPicker", () => {
-      window.HGNearbyFilterControls?.init?.();
-      window.HGHomeFavoriteMapPicker?.init?.();
-    });
     // Brand-rundingen rendres synkront når et sted åpnes. Gjør derfor de tre
     // canonicale Brand-kildene klare før appReady/kartet kan åpne første PlaceCard.
     await safeRun("initBrandsBeforeAppReady", async () => {
