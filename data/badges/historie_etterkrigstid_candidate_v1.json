@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "etterkrigstid",
   "name": "Etterkrigstid",
-  "status": "artwork_ready_binary_pending",
+  "status": "integrated",
   "sourceImage": "bilder/merker/historie/undermerker/etterkrigstid-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -106,15 +106,15 @@
   "quality": {
     "artworkProduced": true,
     "visualApproved": true,
-    "binaryVerified": false,
-    "integrated": false,
+    "binaryVerified": true,
+    "integrated": true,
     "technicalLocalVerified": true
   },
   "localesActive": false,
   "seriesProgress": {
-    "integrated": 5,
+    "integrated": 6,
     "total": 14,
-    "next": "etterkrigstid"
+    "next": "samtidshistorie"
   },
   "activationRule": "Produser en original i mørk brun Historie-stil (#603E1E, oker #D6A127), lag fire ellers identiske språkvarianter. Verifiser WebP med alfa, 1024×1024, SHA-256 og Git blob SHA for alle fem. Aktiver bare norsk etter visuell gjennomgang og målrettet CI. Ingen 6/14 på bildene.",
   "guard": "Bevar HistoryGo-logoen, Historie-hovedmerket og de fem integrerte Historie-undermerkene byte-identisk.",
@@ -131,13 +131,14 @@
     ]
   },
   "binaryTransfer": {
-    "verifiedInRepository": false,
+    "verifiedInRepository": true,
     "filesInLocalPackage": 5,
     "sourceArchive": "etterkrigstid_5_sprak_v3.zip",
     "expectedDimensions": [
       1024,
       1024
     ],
-    "expectedTransparency": true
+    "expectedTransparency": true,
+    "expectedHashesVerified": true
   }
 }
