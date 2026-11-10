@@ -15,6 +15,9 @@ on:
       - 'tests/tidlig-modernetid-candidate.test.mjs'
       - 'tests/historie-1800-badge-contract.test.mjs'
       - 'tests/historie-etterkrigstid-badge-contract.test.mjs'
+      - 'tests/historie-samtidshistorie-badge-contract.test.mjs'
+      - 'bilder/merker/historie/undermerker/samtidshistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/samtidshistorie.webp'
       - 'bilder/merker/historie/undermerker/etterkrigstid-brodert-v1.webp'
       - 'bilder/merker/historie/locales/*/etterkrigstid.webp'
       - 'tests/historie-1900-1945-badge.test.mjs'
@@ -60,6 +63,7 @@ jobs:
           node --test tests/tidlig-modernetid-candidate.test.mjs
           node --test tests/historie-1800-badge-contract.test.mjs
           node --test tests/historie-etterkrigstid-badge-contract.test.mjs
+          node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
       - name: Generate four-badge preview
         run: |
