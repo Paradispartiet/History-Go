@@ -406,6 +406,9 @@
 
   let activeModalSection = null;
   let activeModalBody = null;
+  /** @type {HTMLElement|null} */
+  let activeModalTrigger = null;
+  let activeModalReturnSectionId = "";
   let selectedCategory = null;
 
   function getPreferredDefaultCategory() {
@@ -903,9 +906,9 @@
         <div class="civi-section-popup-head">
           <div>
             <div class="civi-section-popup-kicker">Civication</div>
-            <h2 id="civiSectionPopupTitle">Seksjon</h2>
+            <h2 id="civiSectionPopupTitle" tabindex="-1">Seksjon</h2>
           </div>
-          <button type="button" class="civi-popup-close" data-civi-popup-close>×</button>
+          <button type="button" class="civi-popup-close" data-civi-popup-close aria-label="Lukk">×</button>
         </div>
         <div id="civiSectionPopupBody" class="civi-section-popup-body"></div>
       </div>
@@ -919,11 +922,32 @@
 
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape" && modal.classList.contains("is-open")) {
+        event.preventDefault();
         closePopup();
+      } else if (event.key === "Tab" && modal.classList.contains("is-open")) {
+        const controls = popupFocusables(modal);
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        const active = document.activeElement;
+        if (!first || !active || !controls.includes(/** @type {HTMLElement} */ (active)) || (event.shiftKey ? active === first : active === last)) {
+          event.preventDefault();
+          const target = (event.shiftKey ? last : first) || modal.querySelector("#civiSectionPopupTitle");
+          /** @type {HTMLElement|null} */ (target)?.focus({ preventScroll: true });
+        }
       }
     });
 
     return modal;
+  }
+
+  /** @param {HTMLElement} modal */
+  function popupFocusables(modal) {
+    return /** @type {HTMLElement[]} */ (Array.from(modal.querySelectorAll(
+      '.civi-section-popup-panel button:not(:disabled), .civi-section-popup-panel a[href], '
+      + '.civi-section-popup-panel input:not(:disabled), .civi-section-popup-panel select:not(:disabled), '
+      + '.civi-section-popup-panel textarea:not(:disabled), .civi-section-popup-panel [tabindex]'
+    ))).filter((element) => element.tabIndex >= 0 && !element.matches(":disabled") && element.getClientRects().length > 0
+      && !element.closest('[inert], [aria-hidden="true"]'));
   }
 
   function openPopup(section, config) {
@@ -936,7 +960,13 @@
     const body = getDirectBody(section);
     if (!body) return;
 
+    const currentModal = document.getElementById("civiSectionPopup");
+    const replacingPopup = currentModal?.classList.contains("is-open") && currentModal.contains(document.activeElement);
+    const trigger = replacingPopup ? activeModalTrigger : /** @type {HTMLElement|null} */ (document.activeElement);
+    const returnSectionId = replacingPopup ? activeModalReturnSectionId : trigger?.closest("section[id]")?.id || "";
     closePopup();
+    activeModalTrigger = trigger;
+    activeModalReturnSectionId = returnSectionId;
 
     const modal = ensureModal();
     const title = modal.querySelector("#civiSectionPopupTitle");
@@ -973,10 +1003,16 @@
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("civi-popup-open");
+    /** @type {HTMLElement|null} */ (title)?.focus({ preventScroll: true });
   }
 
   function closePopup() {
     const modal = document.getElementById("civiSectionPopup");
+    const restoreFocus = modal?.classList.contains("is-open") && modal.contains(document.activeElement);
+    const trigger = activeModalTrigger;
+    const returnSectionId = activeModalReturnSectionId;
+    activeModalTrigger = null;
+    activeModalReturnSectionId = "";
 
     // Hvis nabolagsvelgeren var innebygd i popupen, lukk og flytt den tilbake
     // til verdenslaget slik at den ikke blir liggende igjen som skjult innhold.
@@ -999,6 +1035,17 @@
 
     document.body.classList.remove("civi-popup-open");
     window.CivicationMiniSectionsUI?.refresh?.();
+    if (restoreFocus) {
+      // Live inbox updates can replace the original Min dag shortcut while
+      // this dialog is open. Return to its section heading in that case.
+      const target = trigger?.isConnected && !trigger.matches(":disabled")
+        && !trigger.closest('[inert], [aria-hidden="true"]') && trigger.getClientRects().length > 0
+        ? trigger : document.getElementById(returnSectionId)?.querySelector("h2, h3");
+      if (target && target.getClientRects().length > 0) {
+        if (target !== trigger) target.setAttribute("tabindex", "-1");
+        /** @type {HTMLElement} */ (target).focus({ preventScroll: true });
+      }
+    }
   }
 
   function ensureMiniStructure(section, key, config) {
@@ -1214,3 +1261,4 @@
     window.addEventListener(eventName, refreshTopActionCard);
   });
 })();
+

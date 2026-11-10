@@ -54,6 +54,7 @@ jobs:
         run: |
           node --test tests/civication-lifestory-choice-outcome-focus.test.js tests/civication-lifestory-next-day-focus.test.js
           node tests/civication-lifestory-day-sync.test.js
+          node tests/civication-mini-sections-popup-focus.test.js
       - name: Run Civication map tests
         run: npm run test:civication-map
       - name: Audit Civication place mappings
@@ -129,3 +130,4 @@ jobs:
         with:
           name: civication-browser-diagnostics
           path: reports/civication-browser/
+

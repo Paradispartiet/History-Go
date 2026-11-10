@@ -69,6 +69,53 @@ export async function verifySummaryInboxFocus(page: any) {
     assert.equal(result[key], true, 'summary inbox browser acceptance: ' + key);
   }
   assert.equal(result.inboxButtons, 1, 'summary exposes exactly one inbox shortcut');
+  // A controlled section exercises the real shared dialog used by the inbox,
+  // without delivering/answering mail or relying on changing inbox contents.
+  try {
+    await page.evaluate(() => {
+      const app = globalThis as any;
+      const doc = app.document;
+      const trigger = doc.createElement('button');
+      trigger.id = 'civiQaPopupReturn';
+      trigger.textContent = 'QA returpunkt';
+      doc.querySelector('#civiLifestoryPanel').appendChild(trigger);
+      const section = doc.createElement('section');
+      section.id = 'civiQaPopupSection';
+      section.innerHTML = '<div class="civi-section-body"><button>Første kontroll</button>'
+        + '<button disabled>Sperret kontroll</button><button id="civiQaPopupLast">Siste kontroll</button></div>';
+      doc.body.appendChild(section);
+      trigger.focus({ preventScroll: true });
+      app.CivicationMiniSectionsUI.openPopup(section, { label: 'Dialogfokus QA', category: 'personlig' });
+    });
+    const isFocused = (selector: string) => page.locator(selector).evaluate((element: any) =>
+      element === element.ownerDocument.activeElement);
+    assert.ok(await isFocused('#civiSectionPopupTitle'), 'opening dialog focuses its heading');
+    await page.keyboard.press('Shift+Tab');
+    assert.ok(await isFocused('#civiQaPopupLast'), 'Shift+Tab from heading reaches the last enabled control');
+    await page.keyboard.press('Tab');
+    assert.ok(await isFocused('#civiSectionPopup button[data-civi-popup-close]'), 'Tab wraps inside dialog');
+    await page.keyboard.press('Shift+Tab');
+    assert.ok(await isFocused('#civiQaPopupLast'), 'Shift+Tab wraps inside dialog');
+    await page.keyboard.press('Escape');
+    assert.ok(await isFocused('#civiQaPopupReturn'), 'Escape returns focus to the Min dag trigger');
+    await page.evaluate(() => {
+      const app = globalThis as any;
+      app.CivicationMiniSectionsUI.openPopup(app.document.getElementById('civiQaPopupSection'),
+        { label: 'Dialogfokus QA', category: 'personlig' });
+      app.document.getElementById('civiQaPopupReturn').remove();
+    });
+    await page.keyboard.press('Escape');
+    assert.ok(await isFocused('#civiLifestorySection h2'), 'a removed trigger falls back to the current Min dag heading');
+    result.popupFocus = { fixture: 'controlled content in real shared dialog', entry: true,
+      forwardWrap: true, backwardWrap: true, escapeReturn: true, removedTriggerFallback: true };
+  } finally {
+    await page.evaluate(() => {
+      const app = globalThis as any;
+      app.CivicationMiniSectionsUI?.closePopup?.();
+      app.document.getElementById('civiQaPopupReturn')?.remove();
+      app.document.getElementById('civiQaPopupSection')?.remove();
+    });
+  }
   return result;
 }
 
@@ -332,4 +379,5 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     await context.close();
   }
 }
+
 
