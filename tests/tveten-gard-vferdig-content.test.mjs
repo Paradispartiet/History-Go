@@ -11,7 +11,7 @@ test("Tveten has independent labelled front but preserves its documentary hero",
   assert.equal(place.id,placeId);
   assert.equal(place.category,"historie");
   assert.equal(place.coordStatus,"verified");
-  assert.match(place.image,/commons\\.wikimedia\\.org/);
+  assert.match(place.image,/commons\.wikimedia\.org/);
   assert.equal(place.imageLicense,"CC BY-SA 3.0");
   assert.equal(place.frontImage,"bilder/illustrasjoner/places/tveten_gard_front_editorial.svg");
   assert.notEqual(place.frontImage,place.image);
