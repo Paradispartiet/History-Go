@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "samtidshistorie",
   "name": "Samtidshistorie",
-  "status": "artwork_pending",
+  "status": "artwork_ready_binary_pending",
   "sourceImage": "bilder/merker/historie/undermerker/samtidshistorie-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -48,7 +48,7 @@
       1024
     ],
     "transparent": true,
-    "motif": "Norsk samtidshistorie fra 1970-årene til i dag som historisk montasje: havbasert olje- og gassindustri, utbygging av moderne offentlige byrom, framveksten av digitale medier og politisk/demokratisk offentlighet. Ikke framstill ulike tiår som én konkret hendelse.",
+    "motif": "Norsk samtidshistorie gjennom 1970-årene og fram til vår tid som brodert montasje: sosiale bevegelser og demokratisk deltakelse, urbanisering og kollektivtransport, data- og medierevolusjonen fra fjernsyn til personlige datamaskiner. En historisk illustrasjon, ikke én enkelt samtidig hendelse.",
     "composition": "Rundt originalt broderimerke i den godkjente Historie-familien. SAMTIDSHISTORIE øverst i bue, HISTORIE nederst. Kremhvit brodert tekst mot brun stoffring, oker som detalj. Alle språk deler eksakt samme motiv, bare tekst endres. Ingen progresjonstall som 7/14.",
     "typography": {
       "top": "SAMTIDSHISTORIE",
@@ -70,34 +70,45 @@
     "nb": {
       "heading": "SAMTIDSHISTORIE",
       "footer": "HISTORIE",
-      "path": "bilder/merker/historie/undermerker/samtidshistorie-brodert-v1.webp"
+      "path": "bilder/merker/historie/undermerker/samtidshistorie-brodert-v1.webp",
+      "bytes": 343558,
+      "gitBlobSha": "5a790c33a22ce5ab1507b813c8829f43dbdecb17"
     },
     "en": {
       "heading": "CONTEMPORARY",
       "footer": "HISTORY",
-      "path": "bilder/merker/historie/locales/en/samtidshistorie.webp"
+      "path": "bilder/merker/historie/locales/en/samtidshistorie.webp",
+      "bytes": 344086,
+      "gitBlobSha": "f89e325f6050a7adecb6f238e57640c100356411"
     },
     "es": {
       "heading": "CONTEMPORÁNEA",
       "footer": "HISTORIA",
-      "path": "bilder/merker/historie/locales/es/samtidshistorie.webp"
+      "path": "bilder/merker/historie/locales/es/samtidshistorie.webp",
+      "bytes": 344186,
+      "gitBlobSha": "3988f91a39c3bcb4f01f7041eadf26861fc01f81"
     },
     "pt": {
       "heading": "CONTEMPORÂNEA",
       "footer": "HISTÓRIA",
-      "path": "bilder/merker/historie/locales/pt/samtidshistorie.webp"
+      "path": "bilder/merker/historie/locales/pt/samtidshistorie.webp",
+      "bytes": 344312,
+      "gitBlobSha": "c19f2f3f5bbc1822fdee3c05727ae135800ba5fc"
     },
     "fr": {
       "heading": "CONTEMPORAINE",
       "footer": "HISTOIRE",
-      "path": "bilder/merker/historie/locales/fr/samtidshistorie.webp"
+      "path": "bilder/merker/historie/locales/fr/samtidshistorie.webp",
+      "bytes": 344058,
+      "gitBlobSha": "efffd1b892ed1be24e91cd298ee9a664787265ab"
     }
   },
   "quality": {
-    "artworkProduced": false,
+    "artworkProduced": true,
     "visualApproved": false,
     "binaryVerified": false,
-    "integrated": false
+    "integrated": false,
+    "technicalLocalVerified": true
   },
   "localesActive": false,
   "seriesProgress": {
@@ -106,5 +117,20 @@
     "next": "samtidshistorie"
   },
   "activationRule": "Produser norsk brodert original og fire identiske WebP-versjoner med kun oversatt topp- og bunntekst. Verifiser alle som 1024×1024 med gjennomsiktig bakgrunn og SHA-256/Git blob-SHA. Aktiver kun norsk etter visuell kontroll og målrettet CI; ikke merk som integrert før binærfilene finnes i repo. Bevar hovedmerke og tidligere seks undermerker.",
-  "guard": "HistoryGo-hovedlogo, Historie-hovedmerket og alle seks tidligere godkjente Historie-undermerker bevares byte-identisk."
+  "guard": "HistoryGo-hovedlogo, Historie-hovedmerket og alle seks tidligere godkjente Historie-undermerker bevares byte-identisk.",
+  "visualReview": {
+    "status": "visual_candidate",
+    "approved": false,
+    "notes": "Fem samstemte lokalt produserte 1024x1024 WebP med samme illustrasjon og korrekt oversatt tittel. Tittelplassering og border i alle språk må sluttgodkjennes før integrasjon."
+  },
+  "binaryTransfer": {
+    "verifiedInRepository": false,
+    "filesInLocalPackage": 5,
+    "sourceArchive": "samtidshistorie_5_sprak.zip",
+    "expectedDimensions": [
+      1024,
+      1024
+    ],
+    "expectedTransparency": true
+  }
 }
