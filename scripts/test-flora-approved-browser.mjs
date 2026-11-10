@@ -25,6 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"snobaer",label:"Snøbær",term:"Snøbær",path:"b09/70_snobaer_v1.webp"},
     {name:"gravbergknapp",label:"Gravbergknapp",term:"Gravbergknapp",path:"b09/69_gravbergknapp_v1.webp"},
     {name:"kjempespringfro",label:"Kjempespringfrø",term:"Kjempespringfrø",path:"b09/68_kjempespringfro_v1.webp"},
     {name:"parkslirekne",label:"Parkslirekne",term:"Parkslirekne",path:"b09/67_parkslirekne_v1.webp"},

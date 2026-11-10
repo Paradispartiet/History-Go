@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_snobaer: Object.freeze({
+      scientificName: "Symphoricarpos albus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/70_snobaer_v1.webp",
+      gitBlobSha: "499f861817273ca96a04bdab37ac368247867136",
+      reviewedAt: "2026-11-10",
+      stage: "sensommer_hvite_baer_og_rosa_blomster",
+      evidence: "data/natur/flora/illustration-quality-snobaer-20261110.json"
+    }),
     emne_flora_gravbergknapp: Object.freeze({
       scientificName: "Phedimus spurius",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/69_gravbergknapp_v1.webp",
@@ -746,7 +754,7 @@
 
   });
   // One scientific species appears twice in the public catalog; reuse the same approved artwork.
-  const aliases = Object.freeze({ emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
+  const aliases = Object.freeze({ emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
   const get = id => images[aliases[String(id)] || String(id)] || null;
   window.HG_NATURE_FLORA_APPROVED = Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
 })();
