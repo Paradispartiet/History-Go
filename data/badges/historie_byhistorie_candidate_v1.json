@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "categoryId": "historie",
+  "id": "byhistorie",
+  "name": "Byhistorie",
+  "status": "artwork_pending",
+  "sourceImage": "bilder/merker/historie/undermerker/byhistorie-brodert-v1.webp",
+  "parentBadgeReference": {
+    "path": "bilder/merker/historie.PNG",
+    "preserveExactOriginal": true
+  },
+  "siblingReferences": [
+    {
+      "id": "forhistorie",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "middelalder",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "tidlig_modernetid",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "attenhundretallet",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "nittenhundre_1900_1945",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "etterkrigstid",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "samtidshistorie",
+      "preserveExactOriginal": true
+    }
+  ],
+  "palette": {
+    "primary": "#603E1E",
+    "secondary": "#D6A127",
+    "text": "#F5E8CE",
+    "border": "Tykt flettet kastanjebrunt broderi; varme okerdetaljer. Ikke bruk grå By & arkitektur-farge eller universell gullkant."
+  },
+  "design": {
+    "format": "image/webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "transparent": true,
+    "motif": "Historisk norsk bymiljø som en brodert montasje av tidsepoker: brosteinsgate, eldre bygårder, markedsplass, gatebelysning og historiske spor fra byvekst. Motivets hovedtema er byens historiske forandring, ikke moderne byplanlegging eller arkitektur som fag. Unngå konkrete usikre historiske hendelser.",
+    "composition": "Rundt Historie-undermerke med mørkbrun flettet kant, kremhvit brodert topptekst BYHISTORIE og HISTORIE nederst. Fem identiske motiver med oversatt topp- og bunntekst. Lesbart ved 128px, ingen løpenummer på selve merket.",
+    "typography": {
+      "top": "BYHISTORIE",
+      "bottom": "HISTORIE",
+      "translateBothFields": true,
+      "noExternalCaption": true,
+      "forbidProgressFraction": true,
+      "legibleAtPixels": 128
+    },
+    "doNotUse": [
+      "8/14 eller andre progresjonstall på bildet",
+      "By & arkitektur-kategoriens grå eller sølvfargede kant",
+      "moderne biler, reklameskilt eller moderne byfoto",
+      "kun generisk arkitektursymbol uten historiske spor",
+      "ekstra tekstfelt eller illustrasjoner utenfor merket"
+    ]
+  },
+  "variants": {
+    "nb": {
+      "heading": "BYHISTORIE",
+      "footer": "HISTORIE",
+      "path": "bilder/merker/historie/undermerker/byhistorie-brodert-v1.webp"
+    },
+    "en": {
+      "heading": "URBAN HISTORY",
+      "footer": "HISTORY",
+      "path": "bilder/merker/historie/locales/en/byhistorie.webp"
+    },
+    "es": {
+      "heading": "HISTORIA URBANA",
+      "footer": "HISTORIA",
+      "path": "bilder/merker/historie/locales/es/byhistorie.webp"
+    },
+    "pt": {
+      "heading": "HISTÓRIA URBANA",
+      "footer": "HISTÓRIA",
+      "path": "bilder/merker/historie/locales/pt/byhistorie.webp"
+    },
+    "fr": {
+      "heading": "HISTOIRE URBAINE",
+      "footer": "HISTOIRE",
+      "path": "bilder/merker/historie/locales/fr/byhistorie.webp"
+    }
+  },
+  "quality": {
+    "artworkProduced": false,
+    "visualApproved": false,
+    "binaryVerified": false,
+    "integrated": false
+  },
+  "localesActive": false,
+  "seriesProgress": {
+    "integrated": 7,
+    "total": 14,
+    "next": "byhistorie"
+  },
+  "activationRule": "Produser fem WebP-originaler med eksakt samme scenografi og bare oversatt tekst. Verifiser 1024×1024, alfakanal, SHA-256 og Git blob-hasher. Aktiver bare norsk når alle fem filene er binært verifisert i GitHub og målrettet merke-CI er grønn.",
+  "guard": "HistoryGo-hovedlogo, Historie-hovedmerket og alle sju integrerte Historie-undermerker skal ikke endres."
+}
