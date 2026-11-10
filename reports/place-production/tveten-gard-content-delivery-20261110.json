@@ -15,7 +15,12 @@
     "story": "One source-grounded 1950/2006 turning point.",
     "leksikon": "Two place-specific articles with seven dated historical source points.",
     "sprakleksikon": "Five historically relevant Norwegian terms.",
-    "lesespor": "Four open source links, no copied articles."
+    "lesespor": "Four open source links, no copied articles.",
+    "historical_events": "2 sourced ownership events (1408 Hovedøya monastery; 1950 municipality purchase of most land) with distinct labelled original 1024x1024 SVGs.",
+    "placecard_collections": [
+      "people",
+      "historical_events"
+    ]
   },
   "source_review": {
     "primary": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/tveten-gard/",
@@ -34,8 +39,27 @@
     "Focused GitHub Actions CI and deterministic generation acceptance",
     "Real Chromium mobile and desktop visual review",
     "Separate GitHub Pages deployment verification",
-    "Source-qualified assessment of additional PlaceCard collections",
-    "Formal editorial vFerdig attestation"
+    "Formal editorial vFerdig attestation",
+    "Tveten browser acceptance for 390px and 1440px viewports (workflow now configured)"
   ],
-  "note": "Source and media delivery report, not vFerdig workcard or READ-FIRST attestation. Formal workcard must be recorded after the full current rule set has been read."
+  "note": "Content release candidate, not the formal vFerdig attestation. Two real PlaceCard collections integrated; final QA and merge pending.",
+  "collection_review": {
+    "people": {
+      "status": "PASS",
+      "count": 3,
+      "caveat": "Hannibal Sehested possible short-lived association; not presented as verified ownership."
+    },
+    "historical_events": {
+      "status": "PASS",
+      "count": 2
+    },
+    "objects": {
+      "status": "BEGRUNNET N/A",
+      "reason": "Building parts are not independent movable historical objects."
+    },
+    "brands": {
+      "status": "BEGRUNNET N/A",
+      "reason": "No locally verified authentic brand preview."
+    }
+  }
 }
