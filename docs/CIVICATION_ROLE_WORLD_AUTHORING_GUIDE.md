@@ -26,6 +26,8 @@ Prinsippet er **reuse before rewrite**. Role World skal samle, skjerpe og fylle 
 
 Hvis canonical resolver allerede eier en scope, skal Role World bruke den. Gamle badge-slugs eller historiske filnavn skal reconciles mot canonical scope i stedet for å bli nye parallelle identiteter.
 
+Før scener planlegges, opprett eller oppdater rollen i [Symposiums rolleoversikt](CIVICATION_JOBBGRUNNLAG.md). Profilen skal dokumentere oppgaver, fagspråk, materiell, vilkår, vanlige forløp og handlingsrom. Lenke videre til arbeidsgrammatikk og synopser der de finnes.
+
 ## 2. Skill tre statuser fra hverandre
 
 En rolle kan ha tre forskjellige modenhetsnivåer samtidig:
