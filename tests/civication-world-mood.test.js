@@ -20,6 +20,8 @@ function setup(initialPhase = "morning") {
   };
   const browser = {
     CivicationCalendar: {
+      DAY_PHASES: ["morning", "forenoon", "workday", "lunch",
+        "afternoon", "dinner", "evening", "day_end"],
       getPhase: () => clock.phase,
       getClock: () => ({ phase: clock.phase })
     },
@@ -60,7 +62,7 @@ test("følger spillklokken, oppdaterer kun DOM og sender ett signal per overgang
     getPhaseAnnouncements } = setup("morning");
   assert.equal(attributes.get("data-civi-visual-period"), "morning");
   assert.equal(phaseText.textContent, "Morgen");
-  assert.equal(exactPhaseText.textContent, "Fase: Morgen");
+  assert.equal(exactPhaseText.textContent, "Fase: Morgen · 1 av 8");
   assert.equal(getPhaseAnnouncements(), 1);
   // Repeated shell events must not re-announce the same aria-live phase.
   browser.CivicationWorldMood.sync();
@@ -71,20 +73,47 @@ test("følger spillklokken, oppdaterer kun DOM og sender ett signal per overgang
   listeners.get("civi:dayPhaseChanged")();
   assert.equal(attributes.get("data-civi-visual-period"), "day");
   assert.equal(phaseText.textContent, "Dag");
-  assert.equal(exactPhaseText.textContent, "Fase: Lunsj");
+  assert.equal(exactPhaseText.textContent, "Fase: Lunsj · 4 av 8");
   assert.equal(getPhaseAnnouncements(), 2);
   assert.deepEqual(changes, ["morning", "day"]);
   clock.phase = "workday"; // same visual bucket: exact phase must still update
   browser.CivicationWorldMood.sync();
-  assert.equal(exactPhaseText.textContent, "Fase: Arbeidsdag");
+  assert.equal(exactPhaseText.textContent, "Fase: Arbeidsdag · 3 av 8");
   assert.deepEqual(changes, ["morning", "day"]);
   clock.phase = "day_end";
   listeners.get("storage")({ key: "hg_civi_calendar_v1" });
   assert.equal(attributes.get("data-civi-visual-period"), "night");
   assert.equal(phaseText.textContent, "Natt");
-  assert.equal(exactPhaseText.textContent, "Fase: Dagens slutt");
+  assert.equal(exactPhaseText.textContent, "Fase: Dagens slutt · 8 av 8");
   assert.deepEqual(changes, ["morning", "day", "night"]);
   assert.equal(clock.phase, "day_end", "calendar is never mutated");
+});
+
+test("alle åtte døgnfaser viser den faktiske posisjonen i kalenderen", () => {
+  const { browser, clock, exactPhaseText } = setup("morning");
+  const phases = browser.CivicationCalendar.DAY_PHASES;
+  assert.equal(phases.length, 8);
+  for (const [index, phase] of phases.entries()) {
+    clock.phase = phase;
+    browser.CivicationWorldMood.sync();
+    assert.match(exactPhaseText.textContent, new RegExp("· " + (index + 1) + " av 8$"), phase);
+  }
+  assert.equal(clock.phase, "day_end", "Min dag never advances or rewrites the calendar");
+});
+
+test("før dagbroen lastes vises bare fasenavnet, aldri en oppdiktet posisjon", () => {
+  const { browser, clock, exactPhaseText, getPhaseAnnouncements } = setup("morning");
+  browser.CivicationCalendar.DAY_PHASES = undefined;
+  browser.CivicationWorldMood.sync();
+  assert.equal(exactPhaseText.textContent, "Fase: Morgen");
+  clock.phase = "unknown";
+  browser.CivicationWorldMood.sync();
+  assert.equal(exactPhaseText.textContent, "Fase: Morgen");
+  assert.ok(getPhaseAnnouncements() >= 2);
+  browser.CivicationCalendar.DAY_PHASES = ["morning", "forenoon"];
+  clock.phase = "forenoon";
+  browser.CivicationWorldMood.sync();
+  assert.equal(exactPhaseText.textContent, "Fase: Formiddag · 2 av 2");
 });
 
 test("scene lighting and Min dag illustration are wired without changing game choices", () => {
