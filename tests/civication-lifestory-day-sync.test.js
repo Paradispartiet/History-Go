@@ -134,7 +134,7 @@ async function main() {
     open: () => { openedPendingInbox++; return true; }
   };
   window.CivicationLifestoryUI.render();
-  assert.match(panel.textContent, /Det venter en melding i Morgen/,
+  assert.match(panel.textContent, /Du har noe å følge opp i fasen Morgen/,
     "Min dag shows a phase-specific prompt before a rejected day transition");
   const earlyInbox = panel.querySelectorAll("[data-lifestory-next-action]");
   assert.equal(earlyInbox.length, 1, "one inbox shortcut even without a selected mail card");
