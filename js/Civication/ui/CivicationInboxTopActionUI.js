@@ -4679,6 +4679,25 @@
     });
   }
 
+  function rememberLillebekkFocus(host) {
+    const active = document.activeElement;
+    const panel = active?.closest?.(".civi-lillebekk-dossier details[open]");
+    if (!panel) return "";
+    for (const attr of LILLEBEKK_PANEL_ATTRIBUTES) {
+      if (panel.hasAttribute(attr)) return attr;
+    }
+    return "";
+  }
+  function restoreLillebekkFocus(host, attr) {
+    if (!attr) return;
+    // The previous control was removed by innerHTML. Focus an existing,
+    // visible summary instead of leaving keyboard focus on the page body.
+    const panel = host.querySelector(".civi-lillebekk-dossier details[" + attr + "]");
+    if (!panel?.open) return;
+    const summary = panel.querySelector("summary");
+    if (typeof summary?.focus === "function") summary.focus({ preventScroll: true });
+  }
+
   function renderInboxSections() {
     const host = document.getElementById("civiInbox");
     if (!host) return false;
@@ -4721,6 +4740,9 @@
     `;
 
     const openLillebekkPanels = rememberOpenLillebekkPanels(host);
+    const activeLillebekkPanel = rememberLillebekkFocus(host);
+    const previousScrollTop = openLillebekkPanels.length && Number.isFinite(host.scrollTop)
+      ? host.scrollTop : null;
     host.innerHTML = markup;
     // The current phase's action may be queued and not yet in MailEngine.getInbox.
     // Render that same action above the message history, in the existing inbox.
@@ -4728,6 +4750,8 @@
 
     wireInboxResponses(host);
     restoreOpenLillebekkPanels(host, openLillebekkPanels);
+    restoreLillebekkFocus(host, activeLillebekkPanel);
+    if (previousScrollTop !== null) host.scrollTop = previousScrollTop;
     return true;
   }
 
