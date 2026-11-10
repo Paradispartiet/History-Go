@@ -64,6 +64,18 @@
     return PHASE_LABELS[key] || "Morgen";
   }
 
+  // The day calendar owns the authoritative eight-phase sequence. Show a
+  // read-only position, not a progress control or an invented story clock.
+  // During early boot the day bridge may not be installed yet; omit the
+  // position rather than guessing how many phases the calendar supports.
+  function getPhasePosition(phase) {
+    const phases = root.CivicationCalendar?.DAY_PHASES;
+    if (!Array.isArray(phases) || !phases.length) return null;
+    const index = phases.indexOf(phase);
+    if (index < 0) return null;
+    return { current: index + 1, total: phases.length };
+  }
+
   let lastPeriod = null;
   function sync() {
     const phase = readPhase();
@@ -75,7 +87,9 @@
     const periodText = ({ morning: "Morgen", day: "Dag", evening: "Kveld", night: "Natt" })[period] || "Morgen";
     if (label && label.textContent !== periodText) label.textContent = periodText;
     const phaseLabel = doc.querySelector?.(".civi-day-miniature-phase");
-    const nextPhaseText = "Fase: " + getPhaseLabel(phase);
+    const position = getPhasePosition(phase);
+    const nextPhaseText = "Fase: " + getPhaseLabel(phase)
+      + (position ? " · " + position.current + " av " + position.total : "");
     // The label is aria-live=polite. Avoid announcing the same phase again
     // when unrelated shell/storage events request another synchronization.
     if (phaseLabel && phaseLabel.textContent !== nextPhaseText) phaseLabel.textContent = nextPhaseText;
