@@ -924,18 +924,32 @@
     // there is no active job or visible top-action card.
     const pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.();
     const needsInboxFirst = !!pendingDayAction && !pendingDayAction.canStartNewDay;
-    // The selector may not expose an actionable card while the day-progress
-    // controller is still blocked by queued mail. After a failed rollover,
-    // let the player inspect the existing inbox rather than ending at an error
-    // with no way forward. Never synthesize or answer an inbox action here.
-    const canInspectBlockedDay = !!continuationError && !needsInboxFirst
-      && typeof window.CivicationNextActionUI?.open === "function";
-    const pendingDayActionHtml = needsInboxFirst || canInspectBlockedDay
+    // The day controller can know about queued or unanswered mail before the
+    // action selector has a card. Give the player a read-only inbox shortcut
+    // proactively rather than making them try a failed day rollover first.
+    // No new gating here: only the canonical progression can block a new day.
+    let pendingPhaseMail = null;
+    try {
+      const inspection = window.CivicationDayProgression?.inspect?.();
+      if (inspection && [
+        inspection.openItemsInPhase, inspection.queuedItemsInPhase,
+        inspection.deliveredItemsInPhase, inspection.openInboxItems
+      ].some((count) => Number(count) > 0)) pendingPhaseMail = inspection;
+    } catch (_) { /* the existing shell remains authoritative */ }
+    const inboxAvailable = typeof window.CivicationNextActionUI?.open === "function";
+    const canInspectPendingMail = !!pendingPhaseMail && inboxAvailable;
+    const canInspectBlockedDay = !!continuationError && inboxAvailable;
+    const pendingDayActionHtml = needsInboxFirst || canInspectPendingMail || canInspectBlockedDay
       ? '<button class="civi-btn" type="button" data-lifestory-next-action>Åpne innboksen</button>'
+      : "";
+    const pendingPhaseNote = canInspectPendingMail && !needsInboxFirst && !continuationError
+      ? '<p class="muted civi-lifestory-pending-phase" role="status">Det venter en melding i '
+        + escapeHtml(pendingPhaseMail.phaseLabel || "dagens fase")
+        + '. Åpne innboksen for å se hva som gjenstår.</p>'
       : "";
     const blockedDayNote = needsInboxFirst
       ? '<p class="muted" role="status">Du har fortsatt en melding eller oppgave i dag. Åpne innboksen og fullfør den før du starter neste dag.</p>'
-      : "";
+      : pendingPhaseNote;
     const nextDayDisabled = needsInboxFirst ? ' disabled title="Fullfør dagens meldinger først"' : '';
     const chapterReadyToSettle = sisteDag && !pendingPrivate && state.livsdag >= 21
       && getShellDay() === state.livsdag && state.kalenderDag === state.livsdag;
