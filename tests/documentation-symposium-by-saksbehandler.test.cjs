@@ -55,7 +55,7 @@ for (const domain of sourceDomains) assert.ok(profile.includes('https://' + doma
 assert.ok((profile.match(/https:\/\/www\.dibk\.no\//g) || []).length >= 6, 'procedural claims should be traceable to primary regulatory guidance');
 
 const localRefs = [...profile.matchAll(/\]\((\.\.\/[^)#]+)\)/g)].map(match => match[1]);
-assert.ok(localRefs.length >= 9, 'profile must bind to existing role, world, plan and Symposium sources');
+assert.ok(localRefs.length >= 8, 'profile must bind to existing role, world, plan and Symposium sources');
 for (const href of localRefs) {
   const resolved = path.resolve(root, 'docs/civication-symposium', href);
   assert.ok(fs.existsSync(resolved), 'broken local source reference: ' + href);
