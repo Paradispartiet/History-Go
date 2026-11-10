@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "attenhundretallet",
   "name": "1800-tallet",
-  "status": "artwork_pending",
+  "status": "integrated",
   "sourceImage": "bilder/merker/historie/undermerker/attenhundretallet-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -78,51 +78,78 @@
     "nb": {
       "heading": "1800-TALLET",
       "footer": "HISTORIE",
-      "path": "bilder/merker/historie/undermerker/attenhundretallet-brodert-v1.webp"
+      "path": "bilder/merker/historie/undermerker/attenhundretallet-brodert-v1.webp",
+      "bytes": 166898,
+      "sha256": "4f877eca2ae56608b9609c93b1697b775dbabd6f613fe75785ca45254cbea3fa",
+      "gitBlobSha": "aaff24e81d940bc60d463e9aa2b9dd0d502ebc8f"
     },
     "en": {
       "heading": "19TH CENTURY",
       "footer": "HISTORY",
-      "path": "bilder/merker/historie/locales/en/attenhundretallet.webp"
+      "path": "bilder/merker/historie/locales/en/attenhundretallet.webp",
+      "bytes": 167770,
+      "sha256": "ad7e196b86c354de39fb034f9bb1a8e33a57bb84779076bbcc2e0c735f59790b",
+      "gitBlobSha": "04cb339ce9b873f79edc136e21e43c58ed9c8f0d"
     },
     "es": {
       "heading": "SIGLO XIX",
       "footer": "HISTORIA",
-      "path": "bilder/merker/historie/locales/es/attenhundretallet.webp"
+      "path": "bilder/merker/historie/locales/es/attenhundretallet.webp",
+      "bytes": 166056,
+      "sha256": "8944c224f9476c363ab8c3784419699fbab899adf7ff0a8b481ee69a047926a5",
+      "gitBlobSha": "4b250c4388cadc69313d4467a27f7da4aa7e73fb"
     },
     "pt": {
       "heading": "SÉCULO XIX",
       "footer": "HISTÓRIA",
-      "path": "bilder/merker/historie/locales/pt/attenhundretallet.webp"
+      "path": "bilder/merker/historie/locales/pt/attenhundretallet.webp",
+      "bytes": 166784,
+      "sha256": "e829de21c178e17efce1e15f7a2eee36bacd9ec36250c3282c2bfd3e75670269",
+      "gitBlobSha": "9d7492c2986a91b78442fddc0387ce1123007cc3"
     },
     "fr": {
       "heading": "XIXe SIÈCLE",
       "footer": "HISTOIRE",
-      "path": "bilder/merker/historie/locales/fr/attenhundretallet.webp"
+      "path": "bilder/merker/historie/locales/fr/attenhundretallet.webp",
+      "bytes": 167330,
+      "sha256": "b63eabe6c4e7a0f49b4d341cc67f950886462eb1cf1bd0ca29b63ac1699028ea",
+      "gitBlobSha": "7d03cc988654a74eb1abffdb2fc5ba268373517e"
     }
   },
   "quality": {
-    "artworkProduced": false,
-    "visualApproved": false,
-    "binaryVerified": false,
-    "integrated": false
+    "artworkProduced": true,
+    "visualApproved": true,
+    "binaryVerified": true,
+    "integrated": true,
+    "technicalLocalVerified": true
   },
   "localesActive": false,
   "seriesProgress": {
-    "integrated": 3,
+    "integrated": 4,
     "total": 14,
-    "next": "attenhundretallet"
+    "next": "nittenhundre_1900_1945"
   },
   "activationRule": "Norsk aktivering er FORBUDT før alle fem 1024x1024 transparent WebP-originaler er overført og SHA-256/Git blob verifisert, og før visuell kontroll har bekreftet tydelig riktig tittel øverst, HISTORIE nederst, korrekte oversettelser på alle fem og mørk brun Historie-farge (#603E1E) med okeraksenter (#D6A127). Verifiser faktisk bilde, ikke bare manifesttekst. Ingen løpenumre, lilla/sølv/gullring. Deretter målrettet CI. Behold oversettelser inaktive. PROGRESJONSTEKST (for eksempel 3/14 eller 4/14) MÅ ALDRI TRYKKES ELLER BRODERES PÅ SELVE MERKET; den tilhører kun appens brukergrensesnitt.",
   "guard": "Eksisterende HistoryGo-logo, Historie-hovedmerket og de tre ferdige Historie-undermerkene må bevares nøyaktig.",
   "visualReview": {
     "required": true,
-    "topTextChecked": false,
-    "bottomTextChecked": false,
-    "allFiveLocaleTextsChecked": false,
-    "historieBrownChecked": false,
-    "braidedEdgeChecked": false,
+    "topTextChecked": true,
+    "bottomTextChecked": true,
+    "allFiveLocaleTextsChecked": true,
+    "historieBrownChecked": true,
+    "braidedEdgeChecked": true,
     "approvalRequiredBeforeActivation": true,
-    "noProgressNumberChecked": false
+    "noProgressNumberChecked": true,
+    "notes": "Fem 1024px illustrasjoner med synlig topp- og bunntekst, kastanjebrun Historie-farge, transparent ytterkant og uten progresjonstall."
+  },
+  "binaryTransfer": {
+    "verifiedInRepository": true,
+    "filesInLocalPackage": 5,
+    "expectedDimensions": [
+      1024,
+      1024
+    ],
+    "expectedTransparency": true,
+    "expectedHashesVerified": true
   }
 }
