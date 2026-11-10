@@ -234,6 +234,31 @@ async function main() {
   assert.equal(blockedWarning.getAttribute("tabindex"), "-1");
   assert.equal(window.document.activeElement, blockedWarning,
     "keyboard-activated Start neste dag restores focus to the rendered refusal");
+
+  // Focus outside Min dag must remain untouched when an inbox update refreshes
+  // the day summary. A focused blocked-day explanation must, in contrast,
+  // keep its reading position if its warning still exists after the refresh.
+  const outsideButton = window.document.createElement("button");
+  outsideButton.type = "button";
+  outsideButton.textContent = "External navigation";
+  window.document.body.appendChild(outsideButton);
+  outsideButton.focus();
+  window.CivicationNextActionUI = { open: () => true };
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, outsideButton,
+    "inbox refresh never steals keyboard focus from a control outside Min dag");
+  const warningBeforeRefresh = panel.querySelector("[data-lifestory-day-blocker]");
+  warningBeforeRefresh.focus();
+  delete window.CivicationNextActionUI;
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  const warningAfterRefresh = panel.querySelector("[data-lifestory-day-blocker]");
+  assert.notEqual(warningAfterRefresh, warningBeforeRefresh,
+    "the inbox refresh really replaced a changed summary");
+  assert.equal(window.document.activeElement, warningAfterRefresh,
+    "a visible blocked-day explanation keeps keyboard focus after refresh");
+  assert.equal(calendar.getClock().dayIndex, 1,
+    "focus recovery cannot move the canonical calendar");
+
   // Queued required mail can block the canonical calendar before the
   // selector offers a current card. A refusal must still offer a route to
   // the real inbox, without fabricating an answer or advancing the day.
