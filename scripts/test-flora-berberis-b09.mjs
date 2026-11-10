@@ -59,4 +59,4 @@ assert.equal(approved.get("emne_kratt_berberis")?.src,a.src,"Both Berberis cards
 assert(!approved.get("emne_flora_hostberberis")||approved.get("emne_flora_hostberberis")?.src!==a.src,"Høstberberis must not be incorrectly identified with Berberis genus representative");
 assert.equal(approved.get("emne_flora_mahonia")?.scientificName,"Mahonia aquifolium");
 assert.notEqual(approved.get(id)?.src,approved.get("emne_flora_mahonia")?.src);
-console.log("Berberis #94: genus illustration, original WebP, both card IDs, hashes, separate Høstberberis and 94 approved entries verified.");
+console.log("Berberis #94: genus illustration, original WebP, both card IDs, hashes, separate Høstberberis and at least 94 previously approved entries preserved.");
