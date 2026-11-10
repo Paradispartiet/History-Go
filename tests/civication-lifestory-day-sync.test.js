@@ -192,7 +192,9 @@ async function main() {
     "missing inbox UI does not bypass canonical pending-work gate");
   assert.equal(calendar.getClock().dayIndex, 1, "rendering without the inbox cannot advance the day");
   window.CivicationNextActionUI = inboxOpener;
-  window.CivicationLifestoryUI.render();
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, panel.querySelector(".civi-lifestory-summary h3"),
+    "reading focus remains on the summary heading when the inbox becomes available again");
   assert.equal(panel.querySelectorAll("[data-lifestory-next-action]").length, 1,
     "inbox shortcut returns exactly once when the real opener is ready");
   panel.querySelector("[data-lifestory-next-action]").click();
@@ -239,7 +241,26 @@ async function main() {
   window.CivicationNextActionUI = {
     open: () => { openedBlockedInbox++; return true; }
   };
-  window.CivicationLifestoryUI.render();
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.notEqual(panel.querySelector("[data-lifestory-day-blocker]"), blockedWarning,
+    "restored inbox shortcut causes a real summary update");
+  assert.equal(window.document.activeElement, panel.querySelector("[data-lifestory-day-blocker]"),
+    "a player reading the refusal keeps focus on the replacement explanation");
+  const outsideControl = window.document.createElement("button");
+  window.document.body.append(outsideControl);
+  outsideControl.focus();
+  delete window.CivicationNextActionUI;
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, outsideControl,
+    "an inbox refresh never steals focus from outside the summary");
+  window.CivicationNextActionUI = { open: () => { openedBlockedInbox++; return true; } };
+  window.document.body.classList.add("civi-mapmode");
+  panel.querySelector("[data-lifestory-day-blocker]").focus();
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.notEqual(window.document.activeElement, panel.querySelector("[data-lifestory-day-blocker]"),
+    "map mode does not restore focus into the hidden Min dag summary");
+  window.document.body.classList.remove("civi-mapmode");
+  outsideControl.remove();
   const recoverInbox = panel.querySelector("[data-lifestory-next-action]");
   assert.ok(recoverInbox, "blocked day offers inbox recovery even without a selected card");
   recoverInbox.click();

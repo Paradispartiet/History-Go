@@ -440,6 +440,10 @@
         : null;
       const focusedRecap = hasSummaryFocus
         && active?.matches?.('details[data-lifestory-disclosure="day-recap"] > summary');
+      const focusedReading = hasSummaryFocus
+        ? (active?.matches?.("[data-lifestory-day-blocker]") ? "[data-lifestory-day-blocker]"
+          : active === summary.querySelector("h3") ? "h3" : null)
+        : null;
       const expandedRecap = !!summary.querySelector?.('details[data-lifestory-disclosure="day-recap"][open]');
       summary.outerHTML = html;
       const refreshed = getPanel()?.querySelector?.(".civi-lifestory-summary");
@@ -464,6 +468,15 @@
         // disclosure and focus when an unrelated inbox update refreshes data.
         const recapSummary = refreshed.querySelector('details[data-lifestory-disclosure="day-recap"] > summary');
         if (recapSummary) /** @type {HTMLElement} */ (recapSummary).focus({ preventScroll: true });
+      } else if (focusedReading && refreshed) {
+        // Refused day transitions and unavailable actions can put reading
+        // focus on a message/heading. A later inbox refresh must preserve
+        // that position too, without moving the player to a new action.
+        const readingTarget = refreshed.querySelector(focusedReading) || refreshed.querySelector("h3");
+        if (readingTarget) {
+          readingTarget.setAttribute("tabindex", "-1");
+          /** @type {HTMLElement} */ (readingTarget).focus({ preventScroll: true });
+        }
       }
     }
   }
