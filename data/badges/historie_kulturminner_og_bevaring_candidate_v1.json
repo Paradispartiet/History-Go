@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "kulturminner_og_bevaring",
   "name": "Kulturminner og bevaring",
-  "status": "artwork_pending",
+  "status": "artwork_ready_binary_pending",
   "sourceImage": "bilder/merker/historie/undermerker/kulturminner_og_bevaring-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -90,34 +90,50 @@
     "nb": {
       "heading": "KULTURMINNER OG BEVARING",
       "footer": "HISTORIE",
-      "path": "bilder/merker/historie/undermerker/kulturminner_og_bevaring-brodert-v1.webp"
+      "path": "bilder/merker/historie/undermerker/kulturminner_og_bevaring-brodert-v1.webp",
+      "bytes": 380224,
+      "sha256": "25f93980a92f0b0bfb2a3b45cc6578e8928fa582ff718f57308e41fecbc5c47b",
+      "gitBlobSha": "081c7cfc3561c750a36d56a0d16379e51b525a29"
     },
     "en": {
       "heading": "HERITAGE PRESERVATION",
       "footer": "HISTORY",
-      "path": "bilder/merker/historie/locales/en/kulturminner_og_bevaring.webp"
+      "path": "bilder/merker/historie/locales/en/kulturminner_og_bevaring.webp",
+      "bytes": 380620,
+      "sha256": "812c3c5aea8578ee4e9d69e033e56c8e31fb6684b9b427ea415844f7f8b43072",
+      "gitBlobSha": "5c01991d0a19e148346c84a53107e146587fe3b6"
     },
     "es": {
       "heading": "PATRIMONIO Y CONSERVACIÓN",
       "footer": "HISTORIA",
-      "path": "bilder/merker/historie/locales/es/kulturminner_og_bevaring.webp"
+      "path": "bilder/merker/historie/locales/es/kulturminner_og_bevaring.webp",
+      "bytes": 380578,
+      "sha256": "115afb0dc7b69ea1c102abc87b3a0d218cdbb1fac3484c7ad929ef260a1a0b2f",
+      "gitBlobSha": "bf920d95913e1d88ecd8e6a03fb87b355c35d407"
     },
     "pt": {
       "heading": "PATRIMÔNIO E PRESERVAÇÃO",
       "footer": "HISTÓRIA",
-      "path": "bilder/merker/historie/locales/pt/kulturminner_og_bevaring.webp"
+      "path": "bilder/merker/historie/locales/pt/kulturminner_og_bevaring.webp",
+      "bytes": 380830,
+      "sha256": "acf525e4b87f1a8504240caa4217641ee57c0856f48c48f7fe4af79c88770792",
+      "gitBlobSha": "749a0eb079af5fb9168ac3ece9d116c5b76e046e"
     },
     "fr": {
       "heading": "PATRIMOINE ET CONSERVATION",
       "footer": "HISTOIRE",
-      "path": "bilder/merker/historie/locales/fr/kulturminner_og_bevaring.webp"
+      "path": "bilder/merker/historie/locales/fr/kulturminner_og_bevaring.webp",
+      "bytes": 379704,
+      "sha256": "fb700f3b4d4d4ad6f5dbb6bcee81a4734a4e1c1d05d2b5649797c46cb8988756",
+      "gitBlobSha": "3f7e2cf9015a36dcb660a9201c5bf1b2631838b2"
     }
   },
   "quality": {
-    "artworkProduced": false,
-    "visualApproved": false,
+    "artworkProduced": true,
+    "visualApproved": true,
     "binaryVerified": false,
-    "integrated": false
+    "integrated": false,
+    "technicalLocalVerified": true
   },
   "localesActive": false,
   "seriesProgress": {
@@ -125,6 +141,30 @@
     "total": 14,
     "next": "kulturminner_og_bevaring"
   },
-  "activationRule": "Produser fem originale 1024×1024 transparente WebP-filer med nøyaktig samme motiv og korrekt oversatt tekst. Kontroller SHA-256/Git blob, riktig Historie-brun kategori, lesbarhet og fravær av serienummer. Aktiver kun norsk etter komplett pakke og målrettet merketest. Oversettelsene skal ligge inaktive.",
-  "guard": "HistoryGo-hovedlogoen, Historie-hovedmerket og de 11 ferdige Historie-undermerkene skal bevares byte-identisk."
+  "activationRule": "Produser fem originale 1024×1024 transparente WebP-filer med nøyaktig samme motiv og korrekt oversatt tekst. Kontroller SHA-256/Git blob, riktig Historie-brun kategori, lesbarhet og fravær av serienummer. Aktiver kun norsk etter komplett pakke og målrettet merketest. Oversettelsene skal ligge inaktive. Ferdig lokal bildepakke er ikke det samme som GitHub-integrasjon: både binaryVerified og visualApproved må være true før aktivering.",
+  "guard": "HistoryGo-hovedlogoen, Historie-hovedmerket og de 11 ferdige Historie-undermerkene skal bevares byte-identisk.",
+  "visualReview": {
+    "approved": true,
+    "notes": "Five 1024×1024 transparent images reviewed side-by-side; all use identical restoration/wooden houses/stave church illustration and localized arched label/footer. Brown braided History frame, no 12/14 on badges.",
+    "languagesReviewed": [
+      "nb",
+      "en",
+      "es",
+      "pt",
+      "fr"
+    ],
+    "noProgressNumberChecked": true,
+    "categoryColorsChecked": true
+  },
+  "binaryTransfer": {
+    "verifiedInRepository": false,
+    "filesInLocalPackage": 5,
+    "archive": "kulturminner_og_bevaring_5_sprak.zip",
+    "expectedDimensions": [
+      1024,
+      1024
+    ],
+    "expectedTransparency": true,
+    "expectedHashesVerified": false
+  }
 }
