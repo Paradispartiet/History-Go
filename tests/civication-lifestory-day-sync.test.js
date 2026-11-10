@@ -134,6 +134,12 @@ async function main() {
   assert.equal(app.current().dag, 1);
   assert.equal(calendar.getClock().dayIndex, 1);
   assert.match(panel.textContent, /Fullfør dagens jobb/);
+  const blockedWarning = panel.querySelector("[data-lifestory-day-blocker]");
+  assert.ok(blockedWarning, "the refused rollover has an accessible explanation");
+  assert.equal(blockedWarning.getAttribute("role"), "alert");
+  assert.equal(blockedWarning.getAttribute("tabindex"), "-1");
+  assert.equal(window.document.activeElement, blockedWarning,
+    "keyboard-activated Start neste dag restores focus to the rendered refusal");
   app.setQueue([]);
 
   // Even at day_end the queue must be empty; an undelivered mandatory
