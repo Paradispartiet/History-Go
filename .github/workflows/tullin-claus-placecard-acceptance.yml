@@ -1,0 +1,41 @@
+name: Tullin – Claus People illustration and PlaceCard acceptance
+on:
+  pull_request:
+    paths:
+      - 'data/people/by/oslo/tullin/claus_tullin.json'
+      - 'data/runtime/people-all/part-006.json'
+      - 'data/runtime/place-open/tullin.json'
+      - 'bilder/illustrasjoner/people/claus_tullin_historygo_editorial.svg'
+      - 'tests/tullin-claus-symbolic-people.test.mjs'
+      - 'tests/tullin-claus-people-real-browser.mjs'
+      - '.github/workflows/tullin-claus-placecard-acceptance.yml'
+  workflow_dispatch:
+concurrency:
+  group: tullin-claus-placecard-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Focused People, quiz and collection preservation
+        run: node --test tests/tullin-claus-symbolic-people.test.mjs tests/tullin-completion.test.mjs tests/oslo-ts-tullin-people-card-v1.test.mjs
+      - name: Real 390px and 1440px Chromium People and QuizCard acceptance
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/tullin-claus-people-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tullin-claus-people-screenshots
+          path: artifacts/tullin-claus-people/
+          if-no-files-found: ignore
