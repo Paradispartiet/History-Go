@@ -28,6 +28,56 @@
     let placeBadgeLoadStarted = false;
     let markerMode = "badges";
     const MARKER_MODE_STORAGE_KEY = "hg_map_marker_mode";
+    const FAVORITE_ONLY_STORAGE_KEY = "hg_map_favorites_only_v1";
+    const FAVORITE_STYLE_STORAGE_KEY = "hg_map_favorite_style_v1";
+    const FAVORITE_PLACE_ICONS_KEY = "hg_map_favorite_place_icons_v1";
+    const FAVORITE_SYMBOLS = Object.freeze({
+      star: "⭐", heart: "❤️", pin: "📍", flag: "🚩",
+      museum: "🏛️", book: "📚", music: "🎵", nature: "🌳"
+    });
+    let favoriteViewOnly = false;
+    let favoriteMarkerStyle = "badges";
+    let favoritePlaceIcons = {};
+    function readFavoriteSettings() {
+      try {
+        favoriteViewOnly = localStorage.getItem(FAVORITE_ONLY_STORAGE_KEY) === "1";
+        const storedStyle = localStorage.getItem(FAVORITE_STYLE_STORAGE_KEY) || "badges";
+        favoriteMarkerStyle = storedStyle === "badges" || FAVORITE_SYMBOLS[storedStyle] ? storedStyle : "badges";
+        const parsed = JSON.parse(localStorage.getItem(FAVORITE_PLACE_ICONS_KEY) || "{}");
+        favoritePlaceIcons = parsed && typeof parsed === "object" && !Array.isArray(parsed)
+          ? Object.fromEntries(Object.entries(parsed).filter(([id, icon]) => id && FAVORITE_SYMBOLS[icon]))
+          : {};
+      } catch {
+        favoritePlaceIcons = {};
+      }
+    }
+    function favoriteSymbolMode() {
+      return favoriteViewOnly && favoriteMarkerStyle !== "badges";
+    }
+    function favoriteSymbolFor(id) {
+      return FAVORITE_SYMBOLS[favoritePlaceIcons[String(id)] || favoriteMarkerStyle] || "⭐";
+    }
+    function setFavoriteViewOnly(value) {
+      favoriteViewOnly = !!value;
+      try { localStorage.setItem(FAVORITE_ONLY_STORAGE_KEY, favoriteViewOnly ? "1" : "0"); } catch {}
+      if (MAP) drawPlaceMarkers();
+      return favoriteViewOnly;
+    }
+    function setFavoriteMarkerStyle(value) {
+      favoriteMarkerStyle = value === "badges" || FAVORITE_SYMBOLS[value] ? value : "badges";
+      try { localStorage.setItem(FAVORITE_STYLE_STORAGE_KEY, favoriteMarkerStyle); } catch {}
+      if (MAP) drawPlaceMarkers();
+      return favoriteMarkerStyle;
+    }
+    function setFavoritePlaceIcon(placeId, icon) {
+      const id = String(placeId || "").trim();
+      if (!id) return;
+      if (!icon || icon === "default") delete favoritePlaceIcons[id];
+      else if (FAVORITE_SYMBOLS[icon]) favoritePlaceIcons[id] = icon;
+      try { localStorage.setItem(FAVORITE_PLACE_ICONS_KEY, JSON.stringify(favoritePlaceIcons)); } catch {}
+      if (MAP && favoriteSymbolMode()) drawPlaceMarkers();
+    }
+    readFavoriteSettings();
     const STYLE_STORAGE_KEY = "hg_map_style_mode";
     const STYLE_MODE_STANDARD = "standard";
     const STYLE_MODE_SATELLITE = "satellite";
@@ -581,11 +631,14 @@
       const zoom = Number(((_a = MAP.getZoom) == null ? void 0 : _a.call(MAP)) || 10);
       for (const entry of placeAreaMarkers.values()) {
         const showBadge = isBadgeMarkerMode() && !!((_b = entry.badgeImage) == null ? void 0 : _b.complete) && entry.badgeImage.naturalWidth > 0;
+        const showFavorite = favoriteSymbolMode() && !!entry.favoriteSymbol;
+        entry.element.classList.toggle("has-favorite-icon", showFavorite);
         (_d = (_c = entry.element.classList) == null ? void 0 : _c.toggle) == null ? void 0 : _d.call(_c, "has-category-badge", showBadge);
-        const side = showBadge ? mapBadgeDiameter(zoom) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
+        const side = showFavorite ? Math.max(26, Math.min(42, 26 + (zoom - 11) * 2)) : showBadge ? mapBadgeDiameter(zoom) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
+        if (entry.favoriteSymbol) entry.favoriteSymbol.style.fontSize = `${Math.min(28, side * .66).toFixed(1)}px`;
         entry.element.style.width = `${side.toFixed(2)}px`;
         entry.element.style.height = `${side.toFixed(2)}px`;
-        entry.element.style.borderWidth = showBadge ? side < 6 ? "0px" : `${Math.min(2, side * 0.12).toFixed(2)}px` : "2px";
+        entry.element.style.borderWidth = showFavorite ? "0px" : showBadge ? side < 6 ? "0px" : `${Math.min(2, side * 0.12).toFixed(2)}px` : "2px";
       }
     }
     function syncPlaceAreaDomMarkers(features) {
@@ -623,6 +676,20 @@
         entry.element.style.borderColor = !markerBorder || markerBorder.toLowerCase() === markerFill.toLowerCase() ? "#17212a" : markerBorder;
         entry.element.style.opacity = ["review", "unknown"].includes(feature.properties.coordinateTrust) ? "0.9" : "1";
         entry.element.style.boxShadow = "0 0 0 1px rgba(0,0,0,.42), 0 1px 4px rgba(0,0,0,.3)";
+        const favoriteEmoji = favoriteSymbolMode() ? favoriteSymbolFor(id) : "";
+        if (entry.favoriteEmoji !== favoriteEmoji) {
+          entry.favoriteSymbol?.remove();
+          entry.favoriteEmoji = favoriteEmoji;
+          entry.favoriteSymbol = null;
+          if (favoriteEmoji) {
+            const symbol = document.createElement("span");
+            symbol.className = "hg-place-favorite-symbol";
+            symbol.textContent = favoriteEmoji;
+            symbol.setAttribute("aria-hidden", "true");
+            entry.element.appendChild(symbol);
+            entry.favoriteSymbol = symbol;
+          }
+        }
         const badgeSrc = isBadgeMarkerMode() ? placeBadgeImages.get(feature.properties.badgeKey || badgeCategoryId(feature.properties.category)) || "" : "";
         if (badgeSrc !== entry.badgeSrc) {
           (_b = entry.badgeImage) == null ? void 0 : _b.remove();
@@ -660,7 +727,7 @@
       }
     }
     function isBadgeMarkerMode() {
-      return markerMode === "badges";
+      return favoriteViewOnly ? favoriteMarkerStyle === "badges" : markerMode === "badges";
     }
     function setMarkerMode(nextMode) {
       markerMode = nextMode === "dots" ? "dots" : "badges";
@@ -741,7 +808,7 @@
         const label = entry.label;
         if (!label) continue;
         label.style.display = "none";
-        if (!useNativeTouchDetailMarkers() || !labelsAllowed || !entry.name || shown >= maxLabels) continue;
+        if ((!useNativeTouchDetailMarkers() && !favoriteSymbolMode()) || !labelsAllowed || !entry.name || shown >= maxLabels) continue;
         if (hasViewport && typeof MAP.project === "function") {
           let point;
           try {
@@ -770,13 +837,16 @@
       const diameter = nativeDetailDotDiameter(zoom);
       const width = Math.max(0.9, Math.min(1.4, diameter * 0.2));
       for (const entry of placeDetailMarkers.values()) {
-        const showBadge = (isBadgeMarkerMode() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM) && ((_d = entry.badgeImage) == null ? void 0 : _d.complete) && entry.badgeImage.naturalWidth > 0;
-        const size = showBadge ? nativeDetailBadgeDiameter(zoom) : diameter;
+        const showBadge = !favoriteSymbolMode() && (isBadgeMarkerMode() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM) && ((_d = entry.badgeImage) == null ? void 0 : _d.complete) && entry.badgeImage.naturalWidth > 0;
+        const showFavorite = favoriteSymbolMode() && !!entry.favoriteSymbol;
+        const size = showFavorite ? Math.max(26, Math.min(42, 26 + (zoom - 11) * 2)) : showBadge ? nativeDetailBadgeDiameter(zoom) : diameter;
+        entry.element.classList.toggle("has-favorite-icon", showFavorite);
+        if (entry.favoriteSymbol) entry.favoriteSymbol.style.fontSize = `${Math.min(28, size * .66).toFixed(1)}px`;
         entry.hasCategoryBadge = !!showBadge;
         entry.element.classList.toggle("has-category-badge", !!showBadge);
         entry.element.style.width = `${size.toFixed(2)}px`;
         entry.element.style.height = `${size.toFixed(2)}px`;
-        entry.element.style.borderWidth = showBadge ? "0px" : `${width.toFixed(2)}px`;
+        entry.element.style.borderWidth = showBadge || showFavorite ? "0px" : `${width.toFixed(2)}px`;
       }
       updateNativeDetailLabelVisibility();
     }
@@ -791,7 +861,7 @@
         MAP.on("zoomend", onViewportChanged);
         placeDetailMarkerEventsBound = true;
       }
-      const badgesReady = isBadgeMarkerMode() && placeBadgeImages.size > 0;
+      const badgesReady = isBadgeMarkerMode() && placeBadgeImages.size > 0 || favoriteSymbolMode();
       if (!badgesReady && zoom < PLACE_DETAIL_MIN_ZOOM || !badgesReady && !useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM) {
         for (const entry of placeDetailMarkers.values()) entry.marker.remove();
         placeDetailMarkers.clear();
@@ -804,8 +874,8 @@
       let visible = features.filter((feature) => {
         var _a2, _b2;
         if (((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) !== PLACE_MAP_LOD_DETAIL) return false;
-        if (zoom < PLACE_DETAIL_MIN_ZOOM && !(badgesReady && placeBadgeImages.has(feature.properties.badgeKey || badgeCategoryId(feature.properties.category)))) return false;
-        if (!useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM && !(badgesReady && placeBadgeImages.has(feature.properties.badgeKey || badgeCategoryId(feature.properties.category)))) return false;
+        if (!favoriteSymbolMode() && zoom < PLACE_DETAIL_MIN_ZOOM && !(badgesReady && placeBadgeImages.has(feature.properties.badgeKey || badgeCategoryId(feature.properties.category)))) return false;
+        if (!favoriteSymbolMode() && !useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM && !(badgesReady && placeBadgeImages.has(feature.properties.badgeKey || badgeCategoryId(feature.properties.category)))) return false;
         const coords = (_b2 = feature.geometry) == null ? void 0 : _b2.coordinates;
         if (!Array.isArray(coords) || coords.length < 2) return false;
         return typeof (bounds == null ? void 0 : bounds.contains) !== "function" || bounds.contains(coords);
@@ -817,7 +887,7 @@
       if (!visible.length) {
         visible = features.filter((feature) => {
           var _a2;
-          return ((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) === PLACE_MAP_LOD_DETAIL && (zoom >= PLACE_DETAIL_MIN_ZOOM || badgesReady && placeBadgeImages.has(feature.properties.badgeKey || badgeCategoryId(feature.properties.category))) && (useNativeTouchDetailMarkers() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM || badgesReady && placeBadgeImages.has(feature.properties.badgeKey || badgeCategoryId(feature.properties.category)));
+          return ((_a2 = feature == null ? void 0 : feature.properties) == null ? void 0 : _a2.mapLod) === PLACE_MAP_LOD_DETAIL && (favoriteSymbolMode() || zoom >= PLACE_DETAIL_MIN_ZOOM || badgesReady && placeBadgeImages.has(feature.properties.badgeKey || badgeCategoryId(feature.properties.category))) && (favoriteSymbolMode() || useNativeTouchDetailMarkers() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM || badgesReady && placeBadgeImages.has(feature.properties.badgeKey || badgeCategoryId(feature.properties.category)));
         }).sort((a, b) => {
           const [ax, ay] = a.geometry.coordinates;
           const [bx, by] = b.geometry.coordinates;
@@ -880,7 +950,21 @@
           entry.label.textContent = name;
           entry.element.setAttribute("aria-label", name);
         }
-        const badgeSrc = isBadgeMarkerMode() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM ? placeBadgeImages.get(feature.properties.badgeKey || badgeCategoryId(feature.properties.category)) || "" : "";
+        const favoriteEmoji = favoriteSymbolMode() ? favoriteSymbolFor(id) : "";
+        if (entry.favoriteEmoji !== favoriteEmoji) {
+          entry.favoriteSymbol?.remove();
+          entry.favoriteEmoji = favoriteEmoji;
+          entry.favoriteSymbol = null;
+          if (favoriteEmoji) {
+            const symbol = document.createElement("span");
+            symbol.className = "hg-place-favorite-symbol";
+            symbol.textContent = favoriteEmoji;
+            symbol.setAttribute("aria-hidden", "true");
+            entry.element.insertBefore(symbol, entry.label);
+            entry.favoriteSymbol = symbol;
+          }
+        }
+        const badgeSrc = !favoriteSymbolMode() && (isBadgeMarkerMode() || zoom >= PLACE_DETAIL_BADGE_MIN_ZOOM) ? placeBadgeImages.get(feature.properties.badgeKey || badgeCategoryId(feature.properties.category)) || "" : "";
         if (badgeSrc !== entry.badgeSrc) {
           (_i = entry.badgeImage) == null ? void 0 : _i.remove();
           entry.badgeSrc = badgeSrc;
@@ -1059,6 +1143,7 @@
       const places = typeof ((_a = window.HG_I18N) == null ? void 0 : _a.localizePlaces) === "function" ? window.HG_I18N.localizePlaces(PLACES) : PLACES;
       const features = [];
       for (const p of places) {
+        if (favoriteViewOnly && !window.HGFavoritePlaces?.has?.(p.id)) continue;
         const coordinateTrust = getCoordinateTrust(p);
         p.coordinateTrust = coordinateTrust;
         if (coordinateTrust === "invalid") {
@@ -1090,7 +1175,7 @@
           geometry: { type: "Point", coordinates: [lon, lat] }
         });
       }
-      if (!features.length) return;
+      // An empty favorite set must clear the map, not leave the old markers visible.
       const fc = { type: "FeatureCollection", features };
       applyStandardMapPalette();
       lastPlaceMarkerFeatures = features;
@@ -1101,6 +1186,9 @@
       const src = MAP.getSource(SRC);
       if (src && REQUIRED_PLACE_LAYERS.every((id) => MAP.getLayer(id))) {
         src.setData(fc);
+        for (const layer of [L_DOTS, L_GLOW, L_LAB]) {
+          if (MAP.getLayer(layer)) MAP.setLayoutProperty(layer, "visibility", (favoriteSymbolMode() || useNativeTouchDetailMarkers()) ? "none" : "visible");
+        }
         moveMarkersOnTop();
         return;
       }
@@ -1108,7 +1196,7 @@
       MAP.addSource(SRC, { type: "geojson", data: fc });
       MAP.addLayer({
         id: L_GLOW,
-        layout: { visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
+        layout: { visibility: (favoriteSymbolMode() || useNativeTouchDetailMarkers()) ? "none" : "visible" },
         minzoom: PLACE_DETAIL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "circle",
@@ -1117,7 +1205,7 @@
       });
       MAP.addLayer({
         id: L_DOTS,
-        layout: { visibility: useNativeTouchDetailMarkers() ? "none" : "visible" },
+        layout: { visibility: (favoriteSymbolMode() || useNativeTouchDetailMarkers()) ? "none" : "visible" },
         minzoom: PLACE_DETAIL_MIN_ZOOM,
         filter: PLACE_DETAIL_LOD_FILTER,
         type: "circle",
@@ -1133,7 +1221,7 @@
         source: SRC,
         layout: {
           ...getPlaceLabelLayout(false),
-          visibility: useNativeTouchDetailMarkers() ? "none" : "visible"
+          visibility: (favoriteSymbolMode() || useNativeTouchDetailMarkers()) ? "none" : "visible"
         },
         paint: getPlaceLabelPaint(false)
       });
@@ -1351,6 +1439,7 @@
     function refreshMarkers() {
       drawPlaceMarkers();
     }
+    window.addEventListener("hg:favorites-changed", () => { if (MAP && favoriteViewOnly) drawPlaceMarkers(); });
     window.HGCoordinateTrust = { getCoordinateTrust };
     window.HGMap = {
       initMap,
@@ -1368,6 +1457,13 @@
       badgeKeyForPlace,
       setMarkerMode,
       getMarkerMode: () => markerMode,
+      setFavoriteViewOnly,
+      getFavoriteViewOnly: () => favoriteViewOnly,
+      setFavoriteMarkerStyle,
+      getFavoriteMarkerStyle: () => favoriteMarkerStyle,
+      setFavoritePlaceIcon,
+      getFavoritePlaceIcon: (id) => favoritePlaceIcons[String(id || "")] || "default",
+      favoriteIconOptions: () => Object.keys(FAVORITE_SYMBOLS),
       maybeDrawMarkers,
       ensureMarkers,
       refreshMarkers
