@@ -104,6 +104,20 @@ async function main() {
   const archived = app.current().arkiv.length;
   assert.ok(archived > 0, "day one choices are stored");
 
+  // A transient read failure in the optional action selector must not
+  // replace the playable summary with a UI error or move the calendar.
+  window.CivicationNextActionSelector = {
+    getCurrent: () => { throw Error("selector is temporarily unavailable"); }
+  };
+  window.CivicationLifestoryUI.render();
+  assert.ok(panel.querySelector(".civi-lifestory-summary"),
+    "Min dag summary remains visible when the optional selector throws");
+  assert.ok(panel.querySelector("[data-lifestory-next-day]"),
+    "the existing canonical next-day action remains available to try");
+  assert.equal(calendar.getClock().dayIndex, 1,
+    "read-only selector failure cannot move the game day");
+  delete window.CivicationNextActionSelector;
+
   // The blocked-player answer link is a real UI action, not an engine
   // bypass: opening the modal must not move the shared calendar.
   let openedAnswerSurface = 0;

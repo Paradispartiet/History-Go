@@ -944,7 +944,12 @@
       + '</div></section>';
     // A pending mail needs a reachable player action in Min dag, even when
     // there is no active job or visible top-action card.
-    const pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.();
+    // The action selector is a read-only hint, not the canonical day gate.
+    // A transient selector error must never hide the playable day summary.
+    let pendingDayAction = null;
+    try {
+      pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.() || null;
+    } catch (_) { /* DayProgression still owns the real day transition. */ }
     const needsInboxFirst = !!pendingDayAction && !pendingDayAction.canStartNewDay;
     // The day controller can know about queued or unanswered mail before the
     // action selector has a card. Give the player a read-only inbox shortcut
