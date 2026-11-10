@@ -1227,12 +1227,21 @@ assert.equal(api.getLillebekkRestanseprioritetModel().current,true);
 // Unlike earlier tests this exercises event binding on the inbox host, not
 // only direct data-model API calls. Other message details are unaffected.
 const previousInboxQuery = host.querySelectorAll;
+const previousInboxQueryOne = host.querySelector;
+const previousActiveElement = ctx.document.activeElement;
+const previousScrollTop = host.scrollTop;
+const focusOptions = [];
+const mockPanelSummary = {focus(options){focusOptions.push(options);}};
+host.scrollTop = 248;
 const openNamedPanels = [
  {hasAttribute(attr){return attr==='data-civi-restanselogg';}},
  {hasAttribute(attr){return attr==='data-civi-kontrollovelse';}},
  {hasAttribute(){return false;}}
 ];
-const restoredRestanser = {open:false};
+const restoredRestanser = {
+ open:false,
+ querySelector(selector){return selector==='summary'?mockPanelSummary:null;}
+};
 const restoredExercise = {open:false};
 const untouchedUnrelated = {open:false};
 let clickSaveRestanse = null;
@@ -1249,6 +1258,15 @@ const mockSaveButton = {
  addEventListener(type, handler) { if(type==='click') clickSaveRestanse=handler; },
  closest(selector) { return selector==='[data-civi-restanselogg-editor]' ? mockEditor : null; }
 };
+ctx.document.activeElement = {
+ closest(selector) {
+  return selector==='.civi-lillebekk-dossier details[open]' ? openNamedPanels[0] : null;
+ }
+};
+host.querySelector = function(selector) {
+ return selector==='.civi-lillebekk-dossier details[data-civi-restanselogg]'
+  ? restoredRestanser : null;
+};
 host.querySelectorAll = function(selector) {
  if(selector==='.civi-lillebekk-dossier details[open]')return openNamedPanels;
  if(selector==='.civi-lillebekk-dossier details[data-civi-restanselogg]')return [restoredRestanser];
@@ -1260,6 +1278,9 @@ assert.equal(api.renderSections(),true);
 assert.equal(restoredRestanser.open,true);
 assert.equal(restoredExercise.open,true);
 assert.equal(untouchedUnrelated.open,false);
+assert.equal(host.scrollTop,248);
+assert.equal(focusOptions.length,1,'the focused Lillebekk work item returns keyboard focus to its summary');
+assert.equal(focusOptions[0].preventScroll,true,'prevent unintended Safari viewport movement');
 assert.equal(typeof clickSaveRestanse,'function','inbox save button has a click handler');
 const beforeClickLogId=api.getLillebekkRestanseprioritetModel().latestLog.id;
 mockReason.value='for kort';
@@ -1273,9 +1294,14 @@ restoredExercise.open=false;
 clickSaveRestanse();
 assert.equal(restoredRestanser.open,true,'work panel remains expanded after click rerender');
 assert.equal(restoredExercise.open,true,'another expanded work panel is retained');
+assert.equal(host.scrollTop,248,'preserve inbox scroll offset across an actual save click');
+assert.equal(focusOptions.length,2,'a successful save restores keyboard focus after DOM replacement');
 assert.equal(mockError.textContent,'');
 assert.equal(api.getLillebekkRestanseprioritetModel().latestLog.id,beforeClickLogId,'duplicate click does not create another case event');
 host.querySelectorAll=previousInboxQuery;
+host.querySelector=previousInboxQueryOne;
+ctx.document.activeElement=previousActiveElement;
+host.scrollTop=previousScrollTop;
 
 assert.equal(world.getWorkObject(caseId).status,'open');
 assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);

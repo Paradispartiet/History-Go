@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_hagegullregn: Object.freeze({
+      scientificName: "Laburnum anagyroides",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/77_hagegullregn_v1.webp",
+      gitBlobSha: "2c076dea8598603ed37c66fd1e24904166b8387b",
+      reviewedAt: "2026-11-10",
+      stage: "varblomstring_hengende_gule_blomster_og_belger",
+      evidence: "data/natur/flora/illustration-quality-hagegullregn-20261110.json"
+    }),
     emne_flora_buskmure: Object.freeze({
       scientificName: "Dasiphora fruticosa",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/76_buskmure_v1.webp",
