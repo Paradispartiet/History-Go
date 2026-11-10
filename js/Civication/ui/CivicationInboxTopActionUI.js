@@ -4642,6 +4642,43 @@
     });
   }
 
+  // Preserve named Lillebekk work panels when journal actions redraw the inbox.
+  // Anonymous inbox history remains closed after a normal refresh.
+  const LILLEBEKK_PANEL_ATTRIBUTES = [
+    "data-civi-lillebekk-documents",
+    "data-civi-lillebekk-saksframlegg",
+    "data-civi-lillebekk-leader-review",
+    "data-civi-lillebekk-fagsvar",
+    "data-civi-lillebekk-kontrollbilag",
+    "data-civi-lillebekk-resultater",
+    "data-civi-lillebekk-leder2",
+    "data-civi-lillebekk-supplering",
+    "data-civi-lillebekk-utkast",
+    "data-civi-lillebekk-svarrunde",
+    "data-civi-lillebekk-svarnotat",
+    "data-civi-elin3-mote",
+    "data-civi-kontrollplan",
+    "data-civi-kontrollovelse",
+    "data-civi-restanselogg"
+  ];
+  function rememberOpenLillebekkPanels(host) {
+    const open = [];
+    host.querySelectorAll(".civi-lillebekk-dossier details[open]").forEach(function (panel) {
+      for (const attr of LILLEBEKK_PANEL_ATTRIBUTES) {
+        if (panel.hasAttribute(attr)) { open.push(attr); break; }
+      }
+    });
+    return open;
+  }
+  function restoreOpenLillebekkPanels(host, open) {
+    open.forEach(function (attr) {
+      // Selectors use static, trusted attribute names only.
+      host.querySelectorAll(".civi-lillebekk-dossier details[" + attr + "]").forEach(function (panel) {
+        panel.open = true;
+      });
+    });
+  }
+
   function renderInboxSections() {
     const host = document.getElementById("civiInbox");
     if (!host) return false;
@@ -4683,12 +4720,14 @@
       </div>
     `;
 
+    const openLillebekkPanels = rememberOpenLillebekkPanels(host);
     host.innerHTML = markup;
     // The current phase's action may be queued and not yet in MailEngine.getInbox.
     // Render that same action above the message history, in the existing inbox.
     window.CivicationNextActionUI?.render?.();
 
     wireInboxResponses(host);
+    restoreOpenLillebekkPanels(host, openLillebekkPanels);
     return true;
   }
 
