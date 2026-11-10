@@ -1,7 +1,54 @@
-/* Favorites controls on HistoryGo homepage, adjacent to the existing badge selector. */
-#nearbyListContainer .hg-home-favorite-map-picker {
+/* Favorites selector in the fixed homepage map dock, immediately beside the badge picker. */
+.hg-map-favorite-filter {
+  position: relative;
+  order: 998;
+  flex: 0 0 auto;
+  pointer-events: auto;
+}
+body.hg-app .map-controls .hg-map-favorite-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 86px;
+  height: 38px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #050505;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.hg-map-favorite-trigger [data-favorite-trigger-icon] {
+  font-size: 19px;
+  line-height: 1;
+}
+body.hg-app .map-controls .hg-map-favorite-trigger.is-active {
+  border-color: #f8d87a;
+  color: #f8d87a;
+}
+@media (max-width: 480px) {
+  body.hg-app .map-controls .hg-map-favorite-trigger {
+    width: 38px;
+    min-width: 38px;
+    height: 38px;
+    padding: 0;
+  }
+  .hg-map-favorite-label { display: none; }
+}
+@media (max-width: 420px) {
+  body.hg-app .map-controls .hg-map-favorite-trigger {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+  }
+}
+
+.hg-map-favorite-filter .hg-home-favorite-map-picker {
   position: absolute;
-  top: 56px;
+  bottom: calc(100% + 8px);
   right: 0;
   width: min(322px, calc(100vw - 26px));
   max-height: min(65dvh, 540px);
@@ -15,8 +62,8 @@
   z-index: 70;
   font: inherit;
 }
-#nearbyListContainer .hg-home-favorite-map-picker[hidden],
-#nearbyListContainer .hg-fav-picker-custom[hidden] {
+.hg-map-favorite-filter .hg-home-favorite-map-picker[hidden],
+.hg-map-favorite-filter .hg-fav-picker-custom[hidden] {
   display: none !important;
 }
 .hg-fav-picker-heading {
@@ -118,8 +165,8 @@ body.hg-app #map .hg-place-favorite-symbol {
   filter: drop-shadow(0 1px 2px rgba(0,0,0,.75));
 }
 @media(max-width: 520px) {
-  #nearbyListContainer .hg-home-favorite-map-picker {
-    top: 48px;
+  .hg-map-favorite-filter .hg-home-favorite-map-picker {
+    bottom: calc(100% + 8px);
     width: min(290px, calc(100vw - 28px));
     padding: 11px;
   }
