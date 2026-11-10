@@ -37,7 +37,7 @@
     ],
     "transparent": true,
     "motif": "Norsk 1800-tall: Eidsvollbygningen/Grunnloven av 1814 som historisk symbol, og industrialisering langs elven med tidlig tekstilfabrikk, vannhjul eller historisk damplokomotiv. Illustrer dette som en forståelig montasje fra samme århundre, ikke som samtidige hendelser.",
-    "composition": "Rundt realistisk brodert Historie-merke i samme familie som Forhistorie, Middelalder og Tidlig moderne tid. 1800-TALLET øverst i bue, HISTORIE nederst. Flettet mørkebrun kant, varme okerfargede sømmer og tydelig motiv som fungerer ved 128px. Ingen årstall eller nummer utover tittelen.",
+    "composition": "Rundt brodert Historie-undermerke med mørk kastanjebrun flettet ytterkant. Tittelen 1800-TALLET SKAL være tydelig brodert i øvre bue; kategoriteksten HISTORIE SKAL være tydelig brodert nederst. Begge tekstfeltene må ligge PÅ selve merket, ikke utenfor, og kunne leses ved 128 px. Motivet viser Eidsvoll/Grunnloven, tidlig industri og jernbane. Ingen andre tekster, nummerering eller gullramme.",
     "doNotUse": [
       "steinalderboplass",
       "middelalderborg og rustning",
@@ -45,7 +45,31 @@
       "20. århundres biler, elektriske fabrikker eller moderne tog",
       "generisk gullring",
       "plakat/statuskart/nummerering"
-    ]
+    ],
+    "typography": {
+      "placement": "integrated_into_badge",
+      "top": "1800-TALLET",
+      "bottom": "HISTORIE",
+      "letters": "broderte, lyse kremtråder (#F5E8CE) på mørk brun (#603E1E) tekstbue",
+      "legibleAtPixels": 128,
+      "noExternalCaption": true,
+      "forbidAdditionalNumbers": true,
+      "translateBothFields": true
+    },
+    "categoryPaletteContract": {
+      "parentCategory": "historie",
+      "darkBrown": "#603E1E",
+      "ochreAccent": "#D6A127",
+      "lightText": "#F5E8CE",
+      "outline": "dark chestnut brown braided embroidery",
+      "forbidden": [
+        "purple border",
+        "silver border",
+        "generic gold border",
+        "black badge replacing brown family",
+        "badges without embroidered text"
+      ]
+    }
   },
   "variants": {
     "nb": {
@@ -86,6 +110,15 @@
     "total": 14,
     "next": "attenhundretallet"
   },
-  "activationRule": "Produser brodert norsk original og fire versjoner med kun oversatt tekst. Kontroller de fem 1024x1024 WebP-filene mot SHA-256/Git-hash, aktiver norsk original og behold øvrige inaktive etter målrettet CI.",
-  "guard": "Eksisterende HistoryGo-logo, Historie-hovedmerket og de tre ferdige Historie-undermerkene må bevares nøyaktig."
+  "activationRule": "Norsk aktivering er FORBUDT før alle fem 1024x1024 transparent WebP-originaler er overført og SHA-256/Git blob verifisert, og før visuell kontroll har bekreftet tydelig riktig tittel øverst, HISTORIE nederst, korrekte oversettelser på alle fem og mørk brun Historie-farge (#603E1E) med okeraksenter (#D6A127). Verifiser faktisk bilde, ikke bare manifesttekst. Ingen løpenumre, lilla/sølv/gullring. Deretter målrettet CI. Behold oversettelser inaktive.",
+  "guard": "Eksisterende HistoryGo-logo, Historie-hovedmerket og de tre ferdige Historie-undermerkene må bevares nøyaktig.",
+  "visualReview": {
+    "required": true,
+    "topTextChecked": false,
+    "bottomTextChecked": false,
+    "allFiveLocaleTextsChecked": false,
+    "historieBrownChecked": false,
+    "braidedEdgeChecked": false,
+    "approvalRequiredBeforeActivation": true
+  }
 }
