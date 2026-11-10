@@ -45,6 +45,8 @@ try {
      browser=await engine.launch({headless:true});
      const ctx=await browser.newContext({viewport:{width,height},hasTouch:true,locale:"nb-NO"});
      const page=await ctx.newPage();
+     // Returning visitor: the first-visit welcome is intentionally not open.
+     await page.addInitScript(() => localStorage.setItem("hg_onboarding_shown_v1", "1"));
      const errors=[];
      page.on("pageerror",e=>errors.push("PAGEERROR "+String(e).slice(0,400)));
      page.on("console",m=>{if(m.type()==="error")errors.push("CONSOLE "+m.text().slice(0,350));});
