@@ -2,7 +2,7 @@
 // Headless Linux WebKit is NOT a physical iPhone/Safari FPS certification.
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
-import { verifySummaryInboxFocus } from './verify-civication-visual-qa-browser.js';
+import { verifyChoiceRefreshFocus, verifySummaryInboxFocus } from './verify-civication-visual-qa-browser.js';
 
 export default async function verifyCivicationWebkitMobile(browser: any, origin: string, outputDir: string) {
   const context = await browser.newContext({
@@ -70,6 +70,7 @@ export default async function verifyCivicationWebkitMobile(browser: any, origin:
       '#civiLifestoryPanel .civi-lifestory-choice:not(:disabled):not([data-lifestory-navigates])'
     ).first();
     await localChoice.focus();
+    const choiceRefreshFocus = await verifyChoiceRefreshFocus(page);
     await localChoice.press('Enter');
     await page.waitForFunction(() =>
       !!(globalThis as any).document.querySelector('#civiLifestoryPanel .civi-lifestory-konsekvens'),
@@ -115,7 +116,7 @@ export default async function verifyCivicationWebkitMobile(browser: any, origin:
     return {
       engine: 'Playwright WebKit on Linux (not physical iPhone Safari)',
       viewport: { width: 390, height: 844 },
-      initial, afterChoice, summaryInboxFocus, map,
+      initial, choiceRefreshFocus, afterChoice, summaryInboxFocus, map,
       screenshots: [
         'min-dag-webkit-mobile-top.png',
         'min-dag-webkit-mobile-after-choice.png',
@@ -129,4 +130,5 @@ export default async function verifyCivicationWebkitMobile(browser: any, origin:
     await context.close();
   }
 }
+
 

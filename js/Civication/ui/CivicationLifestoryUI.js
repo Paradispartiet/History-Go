@@ -88,6 +88,8 @@
   // Weak keys keep this read-only view cache tied to the mounted summary.
   /** @type {WeakMap<Element, string>} */
   const summaryMarkup = new WeakMap();
+  /** @type {WeakMap<Element, string>} */
+  const choiceRoles = new WeakMap();
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
   /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }>, dramatisert: boolean }|null} */ let sisteKonsekvens = null;
 
@@ -483,7 +485,7 @@
   // updateProfile: jobbtilbud kan ha endret rollen, og HG_Lifestyle kan ha
   // telt nye tags (stamp-chipen) — re-render henter begge. render() er ren
   // lesing, så dette kan aldri starte en event-løkke.
-  window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); refreshPersonTypes(); render(); });
+  window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); refreshPersonTypes(); renderProfileUpdate(); });
   // The inactive-role mail handler persists shared private consequences. An
   // already mounted Min dag view must import those facts before its next save.
   // Keep the active job's own meters, work scenes and role-specific flags.
@@ -1354,6 +1356,41 @@
       + '</section>';
   }
 
+  /** @param {HTMLElement} panel @param {string} role */
+  function rememberChoiceFocus(panel, role) {
+    const active = document.activeElement;
+    if (!active || !panel.contains(active) || !active.matches("[data-lifestory-choice]")
+        || choiceRoles.get(active) !== role || document.body.classList.contains("civi-mapmode")) return null;
+    return { role, sceneId: active.getAttribute("data-lifestory-scene"),
+      choiceId: active.getAttribute("data-lifestory-choice") };
+  }
+
+  /**
+   * @param {HTMLElement} panel
+   * @param {string} role
+   * @param {{role: string, sceneId: string|null, choiceId: string|null}|null} previous
+   */
+  function restoreChoiceFocus(panel, role, previous) {
+    const buttons = /** @type {HTMLButtonElement[]} */ (Array.from(panel.querySelectorAll("[data-lifestory-choice]")));
+    if (!previous || previous.role !== role || document.body.classList.contains("civi-mapmode")) return;
+    // A dialog or another surface may deliberately acquire focus during render.
+    // Only repair the focus that fell to body when the old button disappeared.
+    if (document.activeElement && document.activeElement !== document.body) return;
+    // A profile refresh can replace the unchanged scene. Restore only that
+    // exact choice in the same role; real scene/role transitions own focus.
+    const same = buttons.find(button => !button.disabled
+      && button.getAttribute("data-lifestory-scene") === previous.sceneId
+      && button.getAttribute("data-lifestory-choice") === previous.choiceId);
+    same?.focus({ preventScroll: true });
+  }
+
+  function renderProfileUpdate() {
+    const panel = getPanel();
+    const previous = panel && state ? rememberChoiceFocus(panel, String(state.rolle)) : null;
+    render();
+    if (panel && state) restoreChoiceFocus(panel, String(state.rolle), previous);
+  }
+
   function render() {
     const panel = getPanel();
     if (!panel || !content || !state) return;
@@ -1394,6 +1431,7 @@
     panel.querySelectorAll?.("details[data-lifestory-disclosure]").forEach((detail) => {
       if (expanded.has(detail.getAttribute("data-lifestory-disclosure"))) /** @type {HTMLDetailsElement} */ (detail).open = true;
     });
+    panel.querySelectorAll("[data-lifestory-choice]").forEach(button => choiceRoles.set(button, String(state.rolle)));
     // When an asynchronous role adoption finishes, retire the prior role\x27s
     // unanswerable inbox projection and expose this role\x27s current scene.
     window.CivicationWaveAInboxBridge?.sync?.();
@@ -1657,5 +1695,6 @@
     getPendingWaveAEvent, answerWaveAChoice
   };
 })();
+
 
 

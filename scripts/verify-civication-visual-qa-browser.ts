@@ -4,6 +4,52 @@
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
 
+export async function verifyChoiceRefreshFocus(page: any) {
+  const result = await page.evaluate(() => {
+    const app = globalThis as any;
+    const doc = app.document;
+    const before = doc.activeElement;
+    if (!before?.matches?.('#civiLifestoryPanel [data-lifestory-choice]')) return null;
+    const sceneId = before.getAttribute('data-lifestory-scene');
+    const choiceId = before.getAttribute('data-lifestory-choice');
+    const day = app.CivicationCalendar.getClock().dayIndex;
+    const storyDay = app.CivicationLifestoryState.load().dag;
+    const choices = JSON.stringify(app.CivicationLifestoryState.load().tidligereValg);
+    const scrollY = app.scrollY;
+    app.dispatchEvent(new Event('updateProfile'));
+    const after = doc.activeElement;
+    return {
+      sceneId, choiceId, scrollBefore: scrollY,
+      replaced: before !== after,
+      sameChoice: !!after?.matches?.('#civiLifestoryPanel [data-lifestory-choice]')
+        && after.getAttribute('data-lifestory-scene') === sceneId
+        && after.getAttribute('data-lifestory-choice') === choiceId,
+      scrollUnchanged: Math.abs(app.scrollY - scrollY) <= 1,
+      dayUnchanged: app.CivicationCalendar.getClock().dayIndex === day,
+      storyDayUnchanged: app.CivicationLifestoryState.load().dag === storyDay,
+      choicesUnchanged: JSON.stringify(app.CivicationLifestoryState.load().tidligereValg) === choices
+    };
+  });
+  assert.ok(result, 'background refresh starts with a focused real choice');
+  for (const key of ['replaced', 'sameChoice', 'scrollUnchanged', 'dayUnchanged', 'storyDayUnchanged', 'choicesUnchanged']) {
+    assert.equal(result[key], true, 'choice profile refresh browser acceptance: ' + key);
+  }
+  // The mini-section controller schedules its final profile refresh at 520ms.
+  // Check the settled view as well as the synchronous event handler.
+  await page.waitForTimeout(600);
+  const settled = await page.evaluate((expected: any) => {
+    const app = globalThis as any;
+    const active = app.document.activeElement;
+    return { settledFocus: !!active?.matches?.('#civiLifestoryPanel [data-lifestory-choice]')
+      && active.getAttribute('data-lifestory-scene') === expected.sceneId
+      && active.getAttribute('data-lifestory-choice') === expected.choiceId,
+      settledScroll: Math.abs(app.scrollY - expected.scrollBefore) <= 1 };
+  }, result);
+  assert.ok(settled.settledFocus && settled.settledScroll, 'scheduled profile refreshes preserve the same choice and scroll');
+  Object.assign(result, settled);
+  return result;
+}
+
 // Real browser DOM/focus acceptance with a controlled, read-only inbox hint.
 // This verifies presentation, not delivery/answering of an actual queued mail.
 export async function verifySummaryInboxFocus(page: any) {
@@ -345,6 +391,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       ).first();
       await localChoice.waitFor({ state: 'visible', timeout: 90000 });
       await localChoice.focus();
+      const choiceRefreshFocus = await verifyChoiceRefreshFocus(decisionPage);
       await localChoice.press('Enter');
       await decisionPage.waitForFunction(() => {
         const doc = (globalThis as any).document;
@@ -370,6 +417,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       await decisionPage.screenshot({ path: join(outputDir, 'min-dag-mobile-after-choice.png'),
         fullPage: false, animations: 'disabled' });
       result.afterChoice = afterChoice;
+      result.choiceRefreshFocus = choiceRefreshFocus;
       result.screenshots.push('min-dag-mobile-after-choice.png');
       result.summaryInboxFocus = await verifySummaryInboxFocus(decisionPage);
     } finally {
@@ -386,5 +434,6 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     await context.close();
   }
 }
+
 
 

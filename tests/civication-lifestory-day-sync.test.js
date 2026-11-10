@@ -103,6 +103,41 @@ async function main() {
       "the secondary label is separated from the choice text");
   }
 
+  // A profile update redraws Min dag while the player is still reading a
+  // choice. Keep its keyboard position without selecting it or moving time.
+  const originalChoice = panel.querySelector("[data-lifestory-choice]:not(:disabled)");
+  const choiceId = originalChoice.getAttribute("data-lifestory-choice");
+  const sceneId = originalChoice.getAttribute("data-lifestory-scene");
+  const choicesBeforeRefresh = JSON.stringify(app.current().tidligereValg);
+  originalChoice.focus();
+  window.dispatchEvent(new window.Event("updateProfile"));
+  const refreshedChoice = Array.from(panel.querySelectorAll("[data-lifestory-choice]")).find(button =>
+    button.getAttribute("data-lifestory-choice") === choiceId && button.getAttribute("data-lifestory-scene") === sceneId);
+  assert.notEqual(refreshedChoice, originalChoice, "profile refresh really replaces the choice DOM");
+  assert.equal(window.document.activeElement, refreshedChoice, "the unchanged choice keeps keyboard focus");
+  const outsideChoiceControl = window.document.createElement("button");
+  window.document.body.append(outsideChoiceControl);
+  outsideChoiceControl.focus();
+  window.dispatchEvent(new window.Event("updateProfile"));
+  assert.equal(window.document.activeElement, outsideChoiceControl, "profile refresh does not steal external focus");
+  const previousInboxBridge = window.CivicationWaveAInboxBridge;
+  window.CivicationWaveAInboxBridge = { sync: () => outsideChoiceControl.focus() };
+  panel.querySelector("[data-lifestory-choice]:not(:disabled)").focus();
+  window.dispatchEvent(new window.Event("updateProfile"));
+  assert.equal(window.document.activeElement, outsideChoiceControl,
+    "a surface that takes focus during rendering retains it");
+  window.CivicationWaveAInboxBridge = previousInboxBridge;
+  window.document.body.classList.add("civi-mapmode");
+  panel.querySelector("[data-lifestory-choice]:not(:disabled)").focus();
+  window.dispatchEvent(new window.Event("updateProfile"));
+  assert.equal(window.document.activeElement.closest?.("[data-lifestory-choice]"), null,
+    "map mode never restores focus into the hidden story");
+  window.document.body.classList.remove("civi-mapmode");
+  outsideChoiceControl.remove();
+  assert.equal(calendar.getClock().dayIndex, 1, "choice focus recovery cannot advance the calendar");
+  assert.equal(app.current().dag, 1, "choice focus recovery cannot advance the story");
+  assert.equal(JSON.stringify(app.current().tidligereValg), choicesBeforeRefresh, "focus recovery cannot choose a story action");
+
   // The mail day cannot roll over while a Life Story choice is incomplete.
   calendar.setPhase("day_end");
   const blocked = await window.CivicationDayProgression.advancePhaseIfReady();
@@ -413,4 +448,5 @@ async function main() {
   console.log("civication lifestory day sync ok (shell blocks, calendar rolls once, workday idempotent)");
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });
+
 
