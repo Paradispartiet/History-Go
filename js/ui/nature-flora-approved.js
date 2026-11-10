@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_prydpaere: Object.freeze({
+      scientificName: "Pyrus calleryana",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/82_prydpaere_v1.webp",
+      gitBlobSha: "4edd7c7ee67c517f93ef85463f3394c1875a5965",
+      reviewedAt: "2026-11-10",
+      stage: "illustrert_varblomstring_hvite_blomster_og_smaa_pomefrukter",
+      evidence: "data/natur/flora/illustration-quality-prydpaere-20261110.json"
+    }),
     emne_flora_prydkirsebaer: Object.freeze({
       scientificName: "Prunus serrulata (m.fl.)",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/81_prydkirsebaer_v1.webp",
@@ -842,7 +850,7 @@
 
   });
   // One scientific species appears twice in the public catalog; reuse the same approved artwork.
-  const aliases = Object.freeze({ emne_ved_prydkirsebaer: "emne_flora_prydkirsebaer", emne_ved_platanlonn: "emne_flora_platanlonn", emne_kratt_syrin: "emne_flora_syrin", emne_kratt_mispel: "emne_flora_mispel", emne_kratt_spirea: "emne_flora_spirea", emne_kratt_berberis: "emne_flora_berberis", emne_kratt_mahonia: "emne_flora_mahonia", emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
+  const aliases = Object.freeze({ emne_ved_prydpaere: "emne_flora_prydpaere", emne_ved_prydkirsebaer: "emne_flora_prydkirsebaer", emne_ved_platanlonn: "emne_flora_platanlonn", emne_kratt_syrin: "emne_flora_syrin", emne_kratt_mispel: "emne_flora_mispel", emne_kratt_spirea: "emne_flora_spirea", emne_kratt_berberis: "emne_flora_berberis", emne_kratt_mahonia: "emne_flora_mahonia", emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
   const get = id => images[aliases[String(id)] || String(id)] || null;
   window.HG_NATURE_FLORA_APPROVED = Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
 })();
