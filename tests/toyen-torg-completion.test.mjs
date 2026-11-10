@@ -50,8 +50,8 @@ test("alle samlingspreviews er lokale og den redaksjonelle illustrasjonen er tra
   assert.equal(place.image!==place.frontImage,true);
   assert.equal("cardImage" in place,false);
   assert.equal("imageCard" in place,false);
-  assert.ok(place.objects.every((o)=>o.imageMeta?.assetType==="editorial_illustration"&&o.image.endsWith(".svg")));
-  assert.ok(place.structures.every((o)=>o.imageMeta?.assetType==="editorial_illustration"&&o.image.endsWith(".svg")));
+  assert.ok(place.objects.every((o)=>o.imageMeta?.assetType==="editorial_illustration"&&o.imageKind==="illustration"&&o.image.endsWith(".svg")));
+  assert.ok(place.structures.every((o)=>o.imageMeta?.assetType==="editorial_illustration"&&o.imageKind==="illustration"&&o.image.endsWith(".svg")));
   assert.ok(place.for_na.nowImageLabel.includes("ikke fotografi"));
   assert.equal(place.for_na.beforeImageMeta.license,"Public domain");
   const portrait = runtime.people[0];
