@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "samtidshistorie",
   "name": "Samtidshistorie",
-  "status": "artwork_ready_binary_pending",
+  "status": "integrated",
   "sourceImage": "bilder/merker/historie/undermerker/samtidshistorie-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -111,15 +111,15 @@
   "quality": {
     "artworkProduced": true,
     "visualApproved": true,
-    "binaryVerified": false,
-    "integrated": false,
+    "binaryVerified": true,
+    "integrated": true,
     "technicalLocalVerified": true
   },
   "localesActive": false,
   "seriesProgress": {
-    "integrated": 6,
+    "integrated": 7,
     "total": 14,
-    "next": "samtidshistorie"
+    "next": "byhistorie"
   },
   "activationRule": "Produser norsk brodert original og fire identiske WebP-versjoner med kun oversatt topp- og bunntekst. Verifiser alle som 1024×1024 med gjennomsiktig bakgrunn og SHA-256/Git blob-SHA. Aktiver kun norsk etter visuell kontroll og målrettet CI; ikke merk som integrert før binærfilene finnes i repo. Bevar hovedmerke og tidligere seks undermerker.",
   "guard": "HistoryGo-hovedlogo, Historie-hovedmerket og alle seks tidligere godkjente Historie-undermerker bevares byte-identisk.",
@@ -129,13 +129,14 @@
     "notes": "Fem språkvarianter visuelt gjennomgått i 1024 px og som 220 px kontaktark. Korrekt brun broderikant, oversatt topptittel og bunntekst, ingen 7/14, ingen tidligere merker påvirket."
   },
   "binaryTransfer": {
-    "verifiedInRepository": false,
+    "verifiedInRepository": true,
     "filesInLocalPackage": 5,
     "sourceArchive": "samtidshistorie_5_sprak.zip",
     "expectedDimensions": [
       1024,
       1024
     ],
-    "expectedTransparency": true
+    "expectedTransparency": true,
+    "expectedHashesVerified": true
   }
 }
