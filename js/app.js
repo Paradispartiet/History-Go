@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadNearbyFilters", () => loadScriptOnce("dist/web/nearbyFilters.js"));
     await safeRun("loadLeftPanelMode", () => loadScriptOnce("dist/web/leftPanelMode.js?v=20260912-live-surfaces2"));
     await safeRun("loadNearbyFilterControls", () => loadScriptOnce("dist/web/nearbyFilterControls.js"));
-    await safeRun("loadHomeFavoriteMapPicker", () => loadScriptOnce("js/ui/home-favorite-map-picker.js?v=20261110-favorite-map1"));
+    await safeRun("loadHomeFavoriteMapPicker", () => loadScriptOnce("js/ui/home-favorite-map-picker.js?v=20261110-mapdock2"));
     await safeRun("loadNearbyBadgesPanel", () => loadScriptOnce("dist/web/nearbyBadgesPanel.js"));
     await safeRun("loadLeftPanel", () => loadScriptOnce("dist/web/left-panel.js?v=20260912-live-surfaces2"));
 
