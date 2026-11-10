@@ -1,7 +1,9 @@
 # Civication – `Lost in Translation`: kildefunn og original historie v1
 
-**Dato:** 9. november 2026  
-**Status:** Kildekontrollert **redaksjonelt produksjonsgrunnlag**; ingen av scenene nedenfor er registrert eller spillbare. Ingen nye IMDb-, Goodreads- eller Film Producer-koblinger er publisert som verifiserte i metadataregistrene.  
+**Dato:** 9. november 2026
+
+**Status:** Kildekontrollert **redaksjonelt produksjonsgrunnlag**; ingen av scenene nedenfor er registrert eller spillbare. Ingen nye IMDb-, Goodreads- eller Film Producer-koblinger er publisert som verifiserte i metadataregistrene.
+
 **Avgrensning:** Dette er en **ny selvstendig privatlivstråd**, ikke C09 (Jonas), ikke C10 (*Before Sunrise*) og ikke en omarbeiding av filmens dialog, karakterer eller forløp.
 
 ## 1. Hva filmen faktisk viser
@@ -19,10 +21,14 @@
 
 ## 2. Original Civication-historie: «Et møte som ikke blir et løfte»
 
-**Fortellingstype:** privatliv / tidsbegrenset fortrolighet.  
-**Foreløpig serie-ID:** `lit_fortrolighet_v1` (kun redaksjonell; ingen runtime-ID reservert).  
-**Ny fiktiv kontakt:** Helle, som har ansvar for teknisk gjennomføring under et tredagers kulturarrangement. Hun har kommet til byen for et tidsavgrenset oppdrag og reiser tidlig på søndag. *Dette er hennes oppgave, ikke spillerens jobb.*  
-**Spilleren:** kan ha enhver Civication-jobb eller være arbeidsledig. At spilleren besøker et åpent kulturarrangement, gjør ikke hen til arrangør, ansatt, artist eller fagperson. Spilleren kan også velge å avstå fra arrangementet; historien må da ikke dikte opp et møte.  
+**Fortellingstype:** privatliv / tidsbegrenset fortrolighet.
+
+**Foreløpig serie-ID:** `lit_fortrolighet_v1` (kun redaksjonell; ingen runtime-ID reservert).
+
+**Ny fiktiv kontakt:** Helle, som har ansvar for teknisk gjennomføring under et tredagers kulturarrangement. Hun har kommet til byen for et tidsavgrenset oppdrag og reiser tidlig på søndag. *Dette er hennes oppgave, ikke spillerens jobb.*
+
+**Spilleren:** kan ha enhver Civication-jobb eller være arbeidsledig. At spilleren besøker et åpent kulturarrangement, gjør ikke hen til arrangør, ansatt, artist eller fagperson. Spilleren kan også velge å avstå fra arrangementet; historien må da ikke dikte opp et møte.
+
 **Eksterne relasjoner:** Helle sier selv at hun er i et forhold hjemme, men innholdet og kvaliteten på dette forholdet kjenner ikke spilleren. Spillerens egen samlivsstatus må hentes fra faktisk spilltilstand, ikke antas. Vi introduserer ingen hemmelig utroskap, skilsmisse eller helsetilstand som fakta.
 
 ### Hendelsesbok – det som må være sant før spilleren velger
