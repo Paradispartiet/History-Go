@@ -1222,6 +1222,55 @@ assert.ok(!host.innerHTML.includes('<img src=x onerror=alert(1)>'));
 saved=JSON.parse(JSON.stringify(saved));
 assert.equal(api.getLillebekkRestanseprioritetModel().current,true);
 
+
+// The actual save callback must keep the active accordion panel expanded.
+// Unlike earlier tests this exercises event binding on the inbox host, not
+// only direct data-model API calls. Other message details are unaffected.
+const previousInboxQuery = host.querySelectorAll;
+const openNamedPanels = [
+ {hasAttribute(attr){return attr==='data-civi-restanselogg';}},
+ {hasAttribute(attr){return attr==='data-civi-kontrollovelse';}},
+ {hasAttribute(){return false;}}
+];
+const restoredRestanser = {open:false};
+const restoredExercise = {open:false};
+const untouchedUnrelated = {open:false};
+let clickSaveRestanse = null;
+const mockReason = {value:regInjection};
+const mockError = {textContent:''};
+const mockEditor = {
+ querySelector(selector) {
+  if(selector==='[data-civi-restanselogg-reason]')return mockReason;
+  if(selector==='[data-civi-restanselogg-error]')return mockError;
+  return null;
+ }
+};
+const mockSaveButton = {
+ addEventListener(type, handler) { if(type==='click') clickSaveRestanse=handler; },
+ closest(selector) { return selector==='[data-civi-restanselogg-editor]' ? mockEditor : null; }
+};
+host.querySelectorAll = function(selector) {
+ if(selector==='.civi-lillebekk-dossier details[open]')return openNamedPanels;
+ if(selector==='.civi-lillebekk-dossier details[data-civi-restanselogg]')return [restoredRestanser];
+ if(selector==='.civi-lillebekk-dossier details[data-civi-kontrollovelse]')return [restoredExercise];
+ if(selector==='[data-civi-restanselogg-save]')return [mockSaveButton];
+ return [];
+};
+assert.equal(api.renderSections(),true);
+assert.equal(restoredRestanser.open,true);
+assert.equal(restoredExercise.open,true);
+assert.equal(untouchedUnrelated.open,false);
+assert.equal(typeof clickSaveRestanse,'function','inbox save button has a click handler');
+const beforeClickLogId=api.getLillebekkRestanseprioritetModel().latestLog.id;
+restoredRestanser.open=false;
+restoredExercise.open=false;
+clickSaveRestanse();
+assert.equal(restoredRestanser.open,true,'work panel remains expanded after click rerender');
+assert.equal(restoredExercise.open,true,'another expanded work panel is retained');
+assert.equal(mockError.textContent,'');
+assert.equal(api.getLillebekkRestanseprioritetModel().latestLog.id,beforeClickLogId,'duplicate click does not create another case event');
+host.querySelectorAll=previousInboxQuery;
+
 assert.equal(world.getWorkObject(caseId).status,'open');
 assert.equal(world.getWorkObject('by_radgiver_lillebekk_approval_001'),null);
 for(const flag of ['skolevei_ikke_dokumentert','early_green_corridor_unsecured','participation_record_missing']) {
