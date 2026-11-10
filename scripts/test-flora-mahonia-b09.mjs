@@ -50,6 +50,8 @@ assert.equal(approved.count,93);
 assert.equal(approved.get(id)?.scientificName,latin);
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
+assert.equal(approved.get("emne_kratt_mahonia")?.gitBlobSha,a.gitBlobSha,"Kratt-Mahonia must reuse canonical Mahonia original");
+assert.equal(approved.get("emne_kratt_mahonia")?.src,a.src,"Both Mahonia entries must reuse one image");
 assert.equal(approved.get("emne_flora_snobaer")?.scientificName,"Symphoricarpos albus");
 assert.notEqual(approved.get(id)?.src,approved.get("emne_flora_snobaer")?.src);
 console.log("Mahonia #93: taxonomy, WebP alpha, Git hash, quiz and 93 approved entries verified.");
