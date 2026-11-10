@@ -37,7 +37,7 @@ jobs:
           NODE
           git diff --check 'cfc4afd5fae4c92fea623f8d1761198b2a58609d' HEAD
           node --check scripts/verify-grini-collections-browser.mjs
-      - name: Grini actual browser desktop and mobile
+      - name: Grini actual browser desktop and mobile with failing DOM snapshot
         shell: bash
         run: |
           set -euo pipefail
