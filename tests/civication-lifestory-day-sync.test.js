@@ -140,6 +140,21 @@ async function main() {
   assert.equal(blockedWarning.getAttribute("tabindex"), "-1");
   assert.equal(window.document.activeElement, blockedWarning,
     "keyboard-activated Start neste dag restores focus to the rendered refusal");
+  // Queued required mail can block the canonical calendar before the
+  // selector offers a current card. A refusal must still offer a route to
+  // the real inbox, without fabricating an answer or advancing the day.
+  let openedBlockedInbox = 0;
+  window.CivicationNextActionUI = {
+    open: () => { openedBlockedInbox++; return true; }
+  };
+  window.CivicationLifestoryUI.render();
+  const recoverInbox = panel.querySelector("[data-lifestory-next-action]");
+  assert.ok(recoverInbox, "blocked day offers inbox recovery even without a selected card");
+  recoverInbox.click();
+  assert.equal(openedBlockedInbox, 1, "recovery delegates to the actual inbox surface");
+  assert.equal(calendar.getClock().dayIndex, 1, "opening inbox must not advance the calendar");
+  assert.equal(app.current().dag, 1, "opening inbox must not consume the story day");
+  delete window.CivicationNextActionUI;
   app.setQueue([]);
 
   // Even at day_end the queue must be empty; an undelivered mandatory
