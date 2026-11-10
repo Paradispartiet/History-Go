@@ -1,0 +1,66 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "place_id": "trosterudvillaen",
+  "category": "historie",
+  "status": "in_production",
+  "active_phase": "acceptance_and_merge",
+  "production_profile": "standard",
+  "profile_status": "provisional_pending_editorial_review",
+  "profile_reason": "Kildebasert overlegebolig og kulturpark med to adaptive PlaceCard-samlinger; automatisk Chromium-aksept bestått, formell sluttattestasjon og manuell visuell gjennomgang gjenstår.",
+  "primary_badge": "historie",
+  "underbadge_ids": [],
+  "badge_routing": "Historie: personhistorie og to dokumenterte eiendoms-/bygningshendelser; ikke dikt opp Objects eller Brands.",
+  "collection_ids": [
+    "people",
+    "historical_events"
+  ],
+  "collection_status": {
+    "people": "3 dokumenterte: Henrik Dedichen (boligens eier/beboer), Kristian Biong (arkitekt), Aimée Sommerfelt (vokste opp i villaen). To eksisterende Commons-portretter og én tydelig symbolillustrasjon.",
+    "historical_events": "2 dokumenterte: villaen ferdigstilt som bolig i 1901, rehabilitert villahage til kulturpark i 2024. Separate redaksjonelle originalillustrasjoner.",
+    "objects": "BEGRUNNET N/A: bygninger, hage og verandadetaljer er ikke selvstendige flyttbare gjenstander.",
+    "brands": "BEGRUNNET N/A: ingen særskilt godkjent autentisk lokal brandidentitet for PlaceCard."
+  },
+  "existing_core": {
+    "fullquiz": "21/21 uendret",
+    "quizcard": "10/10 uendret",
+    "fagverk": "curated uendret",
+    "story": 1,
+    "leksikon": 2,
+    "language_entries": 5,
+    "lesespor": 4,
+    "people": 3,
+    "historical_events": 2,
+    "photo": "Jan-Tore Egge, CC BY-SA 4.0, beholdt som original image",
+    "front": "Original 900 x 1200 SVG, tydelig merket illustrasjon"
+  },
+  "source_review": {
+    "status": "reviewed",
+    "sources": [
+      "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/trosterudvillaen/",
+      "https://lokalhistoriewiki.no/wiki/Trosterudvillaen",
+      "https://aktuelt.oslo.kommune.no/trosterudvillaen-soker-ny-leietaker",
+      "https://aktuelt.oslo.kommune.no/historievandring-i-trosterudparken-med-nye-kulturhistoriske-skilt"
+    ],
+    "boundaries": "Villaen var Dedichens bolig, ikke behandlingsbygning. Oslo kommune oppgir avvikling 1964 og overtakelse 1966, Lokalhistoriewiki oppgir nedleggelse 1966. Kildeskillet beholdes. Originalillustrasjonene er ikke autentiske foto, portretter eller historiske dokumenter."
+  },
+  "browser_acceptance": {
+    "status": "PASS_AUTOMATED",
+    "run": "https://github.com/Paradispartiet/History-Go/actions/runs/42920531305",
+    "viewports": [
+      390,
+      1440
+    ],
+    "tests": "Stående forside, 3 People, 2 historiske hendelser, popupbilder, QuizCard-vending, JavaScript-feil.",
+    "manual_visual_review": "PENDING",
+    "physical_device_qa": false
+  },
+  "remaining_before_vferdig": [
+    "Rett og bekreft generert Story-shard-paritet",
+    "Gjeldende READ-FIRST regelattestasjon",
+    "Full CI grønn etter siste commit",
+    "Manuell sluttvurdering av bilder/popup og faglig kildeavgrensning",
+    "Merge og bekreftet publisering",
+    "Formell vFerdig-attestasjon"
+  ],
+  "editorial_vferdig": false
+}
