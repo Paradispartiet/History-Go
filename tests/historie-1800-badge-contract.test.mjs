@@ -60,6 +60,10 @@ test('1800-tallet krever tydelig topp- og bunntekst i riktig Historie-palett',()
   assert.equal(a.design.typography.legibleAtPixels,128);
   assert.equal(a.design.typography.translateBothFields,true);
   assert.equal(a.design.typography.forbidAdditionalNumbers,true);
+  assert.equal(a.design.typography.forbidProgressFraction,true);
+  assert.equal(a.design.typography.noVisibleSeriesProgress,true);
+  assert.ok(a.design.typography.allowedVisibleTextPerLanguage.includes('3/14'));
+  assert.ok(a.design.typography.allowedVisibleTextPerLanguage.includes('4/14'));
   assert.equal(a.design.categoryPaletteContract.darkBrown,'#603E1E');
   assert.equal(a.design.categoryPaletteContract.ochreAccent,'#D6A127');
   assert.equal(a.design.categoryPaletteContract.lightText,'#F5E8CE');
@@ -73,7 +77,7 @@ test('1800-tallet krever tydelig topp- og bunntekst i riktig Historie-palett',()
   if(a.quality.integrated){
     assert.equal(a.quality.visualApproved,true);
     assert.equal(a.quality.binaryVerified,true);
-    for(const key of ['topTextChecked','bottomTextChecked','allFiveLocaleTextsChecked','historieBrownChecked','braidedEdgeChecked']){
+    for(const key of ['topTextChecked','bottomTextChecked','allFiveLocaleTextsChecked','historieBrownChecked','braidedEdgeChecked','noProgressNumberChecked']){
       assert.equal(a.visualReview[key],true,key+' må verifiseres visuelt før aktivering');
     }
     assert.equal(c.subBadgeImages?.attenhundretallet,a.sourceImage);
