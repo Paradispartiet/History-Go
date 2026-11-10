@@ -174,18 +174,20 @@ jobs:
           set -euo pipefail
           node --input-type=module <<'NODE'
           import cp from 'node:child_process';
+          import assert from 'node:assert/strict';
           const changed=cp.execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
-          const allowed=new Set([
-            'data/places/places_index.json',
-            'data/places/place_image_backlog_summary.json',
+          const expected=[
             'data/epoker/epoke-place-index.json',
             'data/fagverk/fagverk_release.json',
-            'data/runtime/place-open/minneparken_gamlebyen.json'
-          ]);
+            'data/places/place_image_backlog_summary.json',
+            'data/places/places_index.json',
+            'data/runtime/place-open/toyen_hovedgard.json',
+            'data/runtime/stories-all/part-004.json'
+          ];
           console.log('Unstaged generator outputs:',JSON.stringify(changed));
-          for(const p of changed)if(!allowed.has(p))throw Error('Unexpected generated path: '+p);
+          assert.deepEqual(changed.sort(),expected.sort(),'Pinned six-file derived-output delta changed; investigate before accepting');
           NODE
-          git add -- data/places/places_index.json data/places/place_image_backlog_summary.json data/epoker/epoke-place-index.json data/fagverk/fagverk_release.json data/runtime/place-open/minneparken_gamlebyen.json
+          git add -- data/epoker/epoke-place-index.json data/fagverk/fagverk_release.json data/places/place_image_backlog_summary.json data/places/places_index.json data/runtime/place-open/toyen_hovedgard.json data/runtime/stories-all/part-004.json
           git diff --quiet
           git diff --cached --check
           echo 'PASS isolated read-only QA: no pushes, no commit, no production activation'
