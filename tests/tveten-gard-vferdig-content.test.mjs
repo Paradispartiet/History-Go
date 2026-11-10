@@ -1,0 +1,75 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+const root=path.resolve(new URL("..",import.meta.url).pathname);
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),"utf8"));
+const placeId="tveten_gard";
+const place=read("data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/tveten_gard.json");
+const runtime=read("data/runtime/place-open/tveten_gard.json");
+test("Tveten has independent labelled front but preserves its documentary hero",()=>{
+  assert.equal(place.id,placeId);
+  assert.equal(place.category,"historie");
+  assert.equal(place.coordStatus,"verified");
+  assert.match(place.image,/commons\\.wikimedia\\.org/);
+  assert.equal(place.imageLicense,"CC BY-SA 3.0");
+  assert.equal(place.frontImage,"bilder/illustrasjoner/places/tveten_gard_front_editorial.svg");
+  assert.notEqual(place.frontImage,place.image);
+  assert.equal("cardImage" in place,false);
+  const svg=fs.readFileSync(path.join(root,place.frontImage),"utf8");
+  assert.match(svg,/<svg\\b/);
+  assert.match(svg,/width="900" height="1200"/);
+  assert.match(svg,/REDAKSJONELL ILLUSTRASJON · IKKE FOTOGRAFI/);
+  assert.equal(place.frontImageMeta.mediaType,"editorial_illustration");
+  const indexed=read("data/places/places_index.json").find(x=>x.id===placeId);
+  assert.equal(indexed.frontImage,place.frontImage);
+  assert.equal("cardImage" in indexed,false);
+  assert.equal(runtime.place.frontImage,place.frontImage);
+  assert.equal("cardImage" in runtime.place,false);
+});
+test("Tveten's People artwork is original, symbolic and not represented as historical portrait",()=>{
+  for(const id of ["even_bernhard_stenersen","mogens_lauritsson"]){
+    const p=read(`data/people/historie/oslo/tveten_gard/${id}.json`)[0];
+    assert.equal(p.id,id);
+    assert.ok(p.image.startsWith("bilder/illustrasjoner/people/"));
+    assert.equal(p.cardImage,p.image);
+    assert.equal(p.imageMeta.assetType,"editorial_person_illustration");
+    assert.match(p.imageMeta.disclosure,/ikke et autentisk portrett/i);
+    const art=fs.readFileSync(path.join(root,p.image),"utf8");
+    assert.match(art,/width="1024" height="1024"/);
+    assert.match(art,/IKKE HISTORISK PORTRETT/);
+    const inRuntime=runtime.people.find(x=>x.id===id);
+    assert.equal(inRuntime.image,p.image);
+    assert.equal(inRuntime.imageStatus,p.imageStatus);
+  }
+  assert.equal(runtime.people.length,3);
+});
+test("Tveten source modules are registered and present in place-open",()=>{
+  const story=read("data/stories/stories_tveten_gard.json");
+  const lex=read("data/leksikon/places/oslo/historie/leksikon_tveten_gard.json");
+  const lang=read("data/leksikon/sprak/places/europe/norway/oslo/tveten_gard.json");
+  const les=read("data/lesespor/oslo/lesespor_oslo_historie_tveten_gard.json");
+  assert.equal(story.length,1);
+  assert.equal(story[0].quality_profile,"episode_v1");
+  assert.equal(story[0].place_id,placeId);
+  assert.deepEqual(lex[0].chronology.map(x=>x.year),[1408,1677,1708,1810,1858,1950,2006]);
+  assert.equal(lex.length,2);
+  assert.equal(lang.entries.length,5);
+  assert.equal(les.items.length,4);
+  assert.ok(les.items.every(x=>x.access==="open"&&x.rights==="link_only"));
+  assert.deepEqual(runtime.stories,story);
+  assert.deepEqual(runtime.leksikon,lex);
+  assert.deepEqual(runtime.lesespor,les.items);
+  assert.deepEqual(runtime.language,lang);
+  assert.ok(read("data/stories/stories_manifest.json").files.some(x=>x.entity_id===placeId));
+  assert.ok(read("data/leksikon/manifest.json").files.includes("data/leksikon/places/oslo/historie/leksikon_tveten_gard.json"));
+  assert.ok(read("data/leksikon/sprak/manifest.json").place_files[placeId]);
+  assert.ok(read("data/lesespor/manifest.json").files.includes("oslo/lesespor_oslo_historie_tveten_gard.json"));
+});
+test("Existing 21/21 fullquiz and 10/10 QuizCard are unchanged in scope",()=>{
+  const quiz=read("data/quiz/historie/tveten_gard_sets.json");
+  const card=read("data/quizcards/historie/tveten_gard_quizcard_v1.json");
+  assert.equal(quiz.sets.reduce((n,x)=>n+x.questions.length,0),21);
+  assert.equal(card.cards[0].questions.length,10);
+  assert.equal(place.fagverk.status,"curated");
+});
