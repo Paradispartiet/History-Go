@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "kulturminner_og_bevaring",
   "name": "Kulturminner og bevaring",
-  "status": "artwork_ready_binary_pending",
+  "status": "integrated",
   "sourceImage": "bilder/merker/historie/undermerker/kulturminner_og_bevaring-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -131,15 +131,15 @@
   "quality": {
     "artworkProduced": true,
     "visualApproved": true,
-    "binaryVerified": false,
-    "integrated": false,
+    "binaryVerified": true,
+    "integrated": true,
     "technicalLocalVerified": true
   },
   "localesActive": false,
   "seriesProgress": {
-    "integrated": 11,
+    "integrated": 12,
     "total": 14,
-    "next": "kulturminner_og_bevaring"
+    "next": "krim_ulykker_og_branner"
   },
   "activationRule": "Produser fem originale 1024×1024 transparente WebP-filer med nøyaktig samme motiv og korrekt oversatt tekst. Kontroller SHA-256/Git blob, riktig Historie-brun kategori, lesbarhet og fravær av serienummer. Aktiver kun norsk etter komplett pakke og målrettet merketest. Oversettelsene skal ligge inaktive. Ferdig lokal bildepakke er ikke det samme som GitHub-integrasjon: både binaryVerified og visualApproved må være true før aktivering.",
   "guard": "HistoryGo-hovedlogoen, Historie-hovedmerket og de 11 ferdige Historie-undermerkene skal bevares byte-identisk.",
@@ -157,7 +157,7 @@
     "categoryColorsChecked": true
   },
   "binaryTransfer": {
-    "verifiedInRepository": false,
+    "verifiedInRepository": true,
     "filesInLocalPackage": 5,
     "archive": "kulturminner_og_bevaring_5_sprak.zip",
     "expectedDimensions": [
@@ -165,6 +165,6 @@
       1024
     ],
     "expectedTransparency": true,
-    "expectedHashesVerified": false
+    "expectedHashesVerified": true
   }
 }
