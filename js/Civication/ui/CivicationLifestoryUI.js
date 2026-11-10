@@ -423,11 +423,33 @@
     if (!view?.dagFerdig) return;
     const html = renderSummaryHtml(view);
     if (summary.outerHTML !== html) {
+      // Live inbox changes replace this summary. Preserve keyboard focus when
+      // a start-day/inbox control is replaced; do not scroll or touch the day.
+      // If the focused action disappears, prefer the other enabled action,
+      // then the summary heading as a safe reading position.
+      const active = document.activeElement;
+      const focusedAction = summary.contains(active) && !document.body.classList.contains("civi-mapmode")
+        ? (active?.matches?.("[data-lifestory-next-action]") ? "[data-lifestory-next-action]"
+          : active?.matches?.("[data-lifestory-next-day]") ? "[data-lifestory-next-day]" : null)
+        : null;
       const expandedRecap = !!summary.querySelector?.('details[data-lifestory-disclosure="day-recap"][open]');
       summary.outerHTML = html;
+      const refreshed = getPanel()?.querySelector?.(".civi-lifestory-summary");
       if (expandedRecap) {
-        const recap = getPanel()?.querySelector?.('details[data-lifestory-disclosure="day-recap"]');
+        const recap = refreshed?.querySelector?.('details[data-lifestory-disclosure="day-recap"]');
         if (recap) /** @type {HTMLDetailsElement} */ (recap).open = true;
+      }
+      if (focusedAction && refreshed) {
+        const same = refreshed.querySelector(focusedAction);
+        const alternative = focusedAction === "[data-lifestory-next-action]"
+          ? "[data-lifestory-next-day]" : "[data-lifestory-next-action]";
+        const target = (same && !same.disabled ? same : null)
+          || refreshed.querySelector(alternative + ":not(:disabled)")
+          || refreshed.querySelector("h3");
+        if (target) {
+          if (target.tagName === "H3") target.setAttribute("tabindex", "-1");
+          target.focus({ preventScroll: true });
+        }
       }
     }
   }

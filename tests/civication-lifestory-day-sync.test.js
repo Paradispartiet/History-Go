@@ -113,7 +113,24 @@ async function main() {
   window.CivicationNextActionUI = {
     open: () => { openedAnswerSurface++; return true; }
   };
-  window.CivicationLifestoryUI.render();
+  // A live inbox update may replace the summary while keyboard focus is on
+  // Start neste dag. Restore focus to the real alternative, without moving
+  // the calendar, and restore the original action when it returns.
+  panel.querySelector("[data-lifestory-next-day]").focus();
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, panel.querySelector("[data-lifestory-next-action]"),
+    "newly required inbox action receives focus when the old day button becomes disabled");
+  assert.equal(calendar.getClock().dayIndex, 1, "inbox refresh never rolls the calendar");
+  window.CivicationNextActionSelector = { getCurrent: () => null };
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, panel.querySelector("[data-lifestory-next-day]"),
+    "focus returns to Start neste dag if the inbox shortcut disappears");
+  window.CivicationNextActionSelector = {
+    getCurrent: () => ({ id: "required-morning", canStartNewDay: false })
+  };
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, panel.querySelector("[data-lifestory-next-action]"),
+    "focus follows the restored inbox route, rather than falling to body");
   assert.ok(panel.querySelector("[data-lifestory-next-action]"), "pending mail reachable from Min dag");
   assert.equal(panel.querySelector("[data-lifestory-next-day]")?.disabled, true,
     "Start neste dag is disabled while a current mail needs an answer");
@@ -122,8 +139,11 @@ async function main() {
   // A selector can signal mandatory mail before the inbox UI is loaded.
   // Never offer a dead shortcut or falsely allow the next day.
   const inboxOpener = window.CivicationNextActionUI;
+  panel.querySelector("[data-lifestory-next-action]").focus();
   delete window.CivicationNextActionUI;
-  window.CivicationLifestoryUI.render();
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, panel.querySelector(".civi-lifestory-summary h3"),
+    "when both day and inbox actions are unavailable, focus stays on the summary heading");
   assert.equal(panel.querySelectorAll("[data-lifestory-next-action]").length, 0,
     "no inert inbox button when the inbox UI is unavailable");
   assert.match(panel.textContent, /Fullfør den i Civication før du starter neste dag/,
