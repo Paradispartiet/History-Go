@@ -19,6 +19,28 @@ test('Historie-originalen og de tre ferdige merkene er byte-identiske',()=>{
   for(const [path,sha] of Object.entries(protectedFiles)) assert.equal(gitSha(get(path)),sha,path);
 });
 
+
+test('De tre integrerte Historie-merkene har tekst og riktig kategorifarge',()=>{
+  const originals=[
+    ['historie_forhistorie_candidate_v1.json','FORHISTORIE'],
+    ['historie_middelalder_candidate_v1.json','MIDDELALDER'],
+    ['historie_tidlig_modernetid_candidate_v1.json','TIDLIG MODERNE TID']
+  ];
+  const footers={nb:'HISTORIE',en:'HISTORY',es:'HISTORIA',pt:'HISTÓRIA',fr:'HISTOIRE'};
+  for(const [filename,heading] of originals){
+    const a=read('data/badges/'+filename);
+    assert.equal(a.quality.integrated,true,filename);
+    assert.equal(a.palette.primary,'#603E1E',filename);
+    assert.equal(a.palette.secondary,'#D6A127',filename);
+    assert.equal(a.palette.text,'#F5E8CE',filename);
+    assert.equal(a.variants.nb.heading,heading,filename);
+    for(const [lang,footer] of Object.entries(footers)){
+      assert.ok(a.variants[lang].heading.trim().length>0,filename+' '+lang+' topptekst');
+      assert.equal(a.variants[lang].footer,footer,filename+' '+lang+' bunntekst');
+    }
+  }
+});
+
 test('1800-tallet krever tydelig topp- og bunntekst i riktig Historie-palett',()=>{
   const c=read('data/badges/historie.json');
   const a=read('data/badges/historie_attenhundretallet_candidate_v1.json');
