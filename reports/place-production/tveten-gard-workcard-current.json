@@ -56,9 +56,9 @@
     "physical_device_qa": false
   },
   "remaining_before_vferdig": [
-    "Obligatorisk CI grønn på endelig innholds-PR, inkludert globale People-avvik",
-    "Merge og bekreftelse i main",
-    "Separat formell redaksjonell sluttattestasjon (inkludert visuelt skjermbildegrunnlag) og publiseringskontroll"
+    "Final GitHub Actions CI on PR head after Civication index synchronization",
+    "Merge PR into main and verify deployment/publication",
+    "Separate editorial vFerdig closeout after merge"
   ],
   "editorial_vferdig": false,
   "rule_preflight": {
@@ -130,5 +130,13 @@
         "final_content_plan"
       ]
     }
+  },
+  "civication_people_index": {
+    "status": "PASS",
+    "source": "canonical data/people/",
+    "generated_file": "data/Civication/historyPeople_index.json",
+    "workflow": "https://github.com/Paradispartiet/History-Go/actions/runs/42909869756",
+    "detail": "Civication history People index regenerated and --check passed; temporary one-shot workflow removed in same commit.",
+    "recorded_on": "2026-11-10"
   }
 }
