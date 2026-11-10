@@ -25,6 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"hagegullregn",label:"Hagegullregn",term:"Hagegullregn",path:"b09/77_hagegullregn_v1.webp"},
     {name:"buskmure",label:"Buskmure",term:"Buskmure",path:"b09/76_buskmure_v1.webp"},
     {name:"syrin",label:"Syrin",term:"Syrin",path:"b09/75_syrin_v1.webp"},
     {name:"mispel",label:"Mispel",term:"Mispel",path:"b09/74_mispel_v1.webp"},
