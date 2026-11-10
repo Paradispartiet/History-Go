@@ -1,0 +1,37 @@
+name: Tøyen hovedgård – PlaceCard-samlinger
+on:
+  pull_request:
+    paths:
+      - 'data/places/historie/oslo/places_historie/toyen_hovedgard.json'
+      - 'data/runtime/place-open/toyen_hovedgard.json'
+      - 'bilder/illustrasjoner/historical_events/toyen_hovedgard_*.svg'
+      - 'tests/toyen-hovedgard-placecard-collections.test.mjs'
+      - 'tests/toyen-hovedgard-collections-real-browser.mjs'
+      - '.github/workflows/toyen-hovedgard-collections-acceptance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Source, collection and retained-content contract
+        run: node --test tests/toyen-hovedgard-placecard-collections.test.mjs
+      - name: Real mobile and desktop PlaceCard acceptance
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/toyen-hovedgard-collections-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: toyen-hovedgard-collections-screenshots
+          path: artifacts/toyen-hovedgard-collections/
+          if-no-files-found: ignore
