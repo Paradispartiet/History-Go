@@ -1,10 +1,10 @@
 {
   "schema": "history_go_place_vferdig_preflight_v1",
   "place_id": "toyen_torg",
-  "date": "2026-11-06",
-  "status": "pending_photo_rights_only",
+  "date": "2026-11-10",
+  "status": "original_illustrations_replacement_pending_acceptance",
   "reviewer": "History Go content QA (assistant-assisted; no independent human review claimed)",
-  "scope": "Formal closeout evidence update only; existing content, images, quiz, collections and runtime unchanged",
+  "scope": "Documentation of six obsolete photo derivatives replaced by five original, explicitly labeled SVG illustrations; legacy cardImage removed per canonical PlaceCard contract. Pending targeted browser and content QA.",
   "prior_production": {
     "pr": "https://github.com/Paradispartiet/History-Go/pull/5635",
     "content_status": "complete",
@@ -34,7 +34,7 @@
     "credited_source": "https://grindaker.no/projects/toyen-torg/",
     "repository_rights_basis": "official_project_site_editorial_reference",
     "finding": "Six locally hosted variants (Place, portrait, card, two Objects and Structures) derive from two Damian Heinisch images on Grindaker's official site; provenance and credit are recorded but written reuse permission or a broadly applicable license has not been established. This is one rights-clearance workstream spanning multiple image slots, not merely a hero image.",
-    "clearance_status": "not_independently_verified",
+    "clearance_status": "resolved_by_replacement_pending_QA",
     "historical_2006_photo": "https://commons.wikimedia.org/wiki/File:Toyen_senter.jpg",
     "historic_2015_option": {
       "source": "https://commons.wikimedia.org/wiki/File:S%C3%B8rligata_-_T%C3%B8yen_torg_I.jpg",
@@ -43,7 +43,7 @@
       "date": "2015-06-30",
       "limit": "Historical/pre-2018 photograph only; must not stand in for a post-redevelopment photo"
     },
-    "disposition": "Retain unchanged by this report-only PR. Request documented permission covering History Go's six web-hosted derivatives of the two source photos (incl. crops/WebP), or obtain appropriately licensed genuine images and replace all affected derivatives with regenerated runtime.",
+    "disposition": "The six former local derivative image files were deleted from the working branch; active place fields now use five distinct original SVG illustrations. One obsolete legacy cardImage slot was removed entirely per canonical contract; real historical 2006 public-domain photo remains unchanged.",
     "affected_derived_files": [
       "bilder/places/toyen_torg.webp",
       "bilder/places/toyen_torg_front_portrait.webp",
@@ -69,7 +69,16 @@
       "visitoslo_result": "VisitOSLO 'frie rettigheter' usage guidance explicitly ties free use to marketing Oslo as a travel destination; general History Go reuse not established.",
       "rejected_candidate": "A 2023 article credits an older pre-renovation Tøyen square image CC BY 2.0; its later publication date is not the capture date.",
       "decision": "Do not mislabel dated archive photos as current, or replace documentary photos with synthetic photorealism."
-    }
+    },
+    "replacement_files": [
+      "bilder/illustrasjoner/places/toyen_torg_scene.svg",
+      "bilder/illustrasjoner/places/toyen_torg_front_portrait.svg",
+      "bilder/illustrasjoner/objects/toyen_torg_toyenteppene.svg",
+      "bilder/illustrasjoner/objects/toyen_torg_lysmaster.svg",
+      "bilder/illustrasjoner/structures/toyen_torg_toyensenteret.svg"
+    ],
+    "illustration_disclosure": "Every replacement artwork itself visibly reads 'ILLUSTRASJON · IKKE FOTOGRAFI' and carries metadata marking it as original editorial illustration. Not documentary proof or a true photo of the square.",
+    "current_status": "PR_HEAD_PENDING_TEST_AND_MERGE"
   },
   "evidence": {
     "completed_prs": [
@@ -87,7 +96,8 @@
       ],
       "pr": "https://github.com/Paradispartiet/History-Go/pull/7102",
       "run": "https://github.com/Paradispartiet/History-Go/actions/runs/42226190842",
-      "assertions": "Front 900x1200, operational QuizCard flip/expand/Escape/return and keyboard on desktop, four populated canonical collections with loaded preview images, Objects and Structures popup content, no JS page errors"
+      "assertions": "Front 900x1200, operational QuizCard flip/expand/Escape/return and keyboard on desktop, four populated canonical collections with loaded preview images, Objects and Structures popup content, no JS page errors",
+      "previous_photo_based_run": "Previous PR #7102 reflects the former photo-based state, so it must not be reused as certification of these illustration replacements."
     },
     "note": "No repository-wide CI success claimed.",
     "visual_review": {
@@ -102,8 +112,8 @@
   "closeout_gates": [
     {
       "id": "photo_reuse_for_all_six_local_derivatives",
-      "state": "OPEN",
-      "resolution": "Obtain written reuse terms for two original Damian Heinisch photos and six hosted derivatives including cropping/WebP, or replace with authentic appropriately licensed media and verify generated indexes."
+      "state": "REMEDIATED_ON_PR_PENDING_QA",
+      "resolution": "Former photo derivatives deleted from current branch; original illustrated assets and metadata are staged; verify runtime, no broken links and original 2006 photo retention before formal closure."
     },
     {
       "id": "targeted_placecard_browser_acceptance",
@@ -117,5 +127,5 @@
     }
   ],
   "remaining_content_rebuild": "none_required",
-  "decision": "Content remains complete, targeted browser QA and visual review PASS. Do not issue formal vFerdig until photo rights covering all locally hosted third-party derivative images are established or remediated."
+  "decision": "Do not issue formal vFerdig until original illustrations' actual browser loading and current branch CI pass and PR is merged. Photo-licensing inquiry not pursued; no email sent."
 }
