@@ -4698,9 +4698,34 @@
     if (typeof summary?.focus === "function") summary.focus({ preventScroll: true });
   }
 
+  let deferredInboxRefresh = false;
+  const inboxFocusHosts = new WeakSet();
+
+  function editingLillebekkInput() {
+    const active = document.activeElement;
+    const formField = /^(TEXTAREA|INPUT|SELECT)$/i.test(String(active?.tagName || ""));
+    return formField && !!rememberLillebekkFocus(document.getElementById("civiInbox"));
+  }
+
+  function installDeferredInboxRefresh(host) {
+    if (typeof host?.addEventListener !== "function" || inboxFocusHosts.has(host)) return;
+    inboxFocusHosts.add(host);
+    // Delegate on the stable inbox container; the form fields are recreated
+    // after explicit journal saves. Focusout bubbles when editing ends.
+    host.addEventListener("focusout", function () {
+      if (!deferredInboxRefresh) return;
+      window.setTimeout(function replayDeferredInboxRefresh() {
+        // Another editable field may have gained focus; preserve both drafts.
+        // When the last field loses focus, replay the latest mailbox state.
+        if (deferredInboxRefresh && !editingLillebekkInput()) renderInboxSections();
+      }, 0);
+    });
+  }
+
   function renderInboxSections() {
     const host = document.getElementById("civiInbox");
     if (!host) return false;
+    installDeferredInboxRefresh(host);
 
     const split = splitInboxByMessageChannel();
     const job = split.job || [];
@@ -4752,6 +4777,7 @@
     restoreOpenLillebekkPanels(host, openLillebekkPanels);
     restoreLillebekkFocus(host, activeLillebekkPanel);
     if (previousScrollTop !== null) host.scrollTop = previousScrollTop;
+    deferredInboxRefresh = false;
     return true;
   }
 
@@ -4770,12 +4796,13 @@
   }
 
   function refreshInboxWithoutInterruptingDraft() {
-    const active = document.activeElement;
-    const formField = /^(TEXTAREA|INPUT|SELECT)$/i.test(String(active?.tagName || ""));
-    // Background inbox events must not replace an actively edited Lillebekk
-    // form. Explicit save/decision handlers still call renderInboxSections()
-    // directly, so new journal state becomes visible immediately on submit.
-    if (formField && rememberLillebekkFocus(document.getElementById("civiInbox"))) return false;
+    // Background inbox events must not replace actively edited Lillebekk
+    // forms. Defer (don't drop) the refresh until the final focusout.
+    // Explicit save/decision handlers still render immediately on submit.
+    if (editingLillebekkInput()) {
+      deferredInboxRefresh = true;
+      return false;
+    }
     return renderInboxSections();
   }
 
