@@ -2,8 +2,8 @@
   "schema": "history_go_place_workcard_v2",
   "place_id": "tveten_gard",
   "category": "historie",
-  "status": "qa_passed_pending_merge",
-  "active_phase": "merge_and_publish",
+  "status": "ready_for_merge",
+  "active_phase": "final_ci",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Kildebasert historisk gårdssted med selvstendige bygnings- og eiendomsspor, to bildeklare samlinger, kuratert Fagverk og intakt fullquiz.",
@@ -46,19 +46,18 @@
   "browser_acceptance": {
     "status": "PASS",
     "run": "https://github.com/Paradispartiet/History-Go/actions/runs/42905802611",
+    "screenshot_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/42905802611/artifacts/13804168354",
     "viewports": [
       390,
       1440
     ],
-    "tests": "Source, collection and retained-content contract; QuizCard-vending; ekte People-/historiske hendelsespoppuper; billedlasting; null JavaScript-feil",
-    "screenshots": "https://github.com/Paradispartiet/History-Go/actions/runs/42905802611/artifacts/13804168354",
-    "manual_visual_review": "2026-11-10: seks faktiske skjermbilder av mobil og desktop inspisert; stedskort, People og historiske hendelser presenteres lesbart.",
-    "physical_device_qa": false
+    "tests": "PlaceCard 900x1200, QuizCard-flipp, People (3), Historical Events (2), faktisk image-load og popup, ingen JavaScript-feil",
+    "manual_visual_review": "Separate skjermbilder er arkivert som GitHub-artifact; uavhengig manuell visuell vurdering er ikke utført."
   },
   "remaining_before_vferdig": [
-    "Samtlige obligatoriske PR-kontroller godkjent på endelig SHA",
-    "Merge og verifisert main-innhold samt separat GitHub Pages-publisering",
-    "Formell redaksjonell vFerdig-attestasjon etter merge"
+    "Obligatorisk CI grønn på endelig innholds-PR, inkludert globale People-avvik",
+    "Merge og bekreftelse i main",
+    "Separat formell redaksjonell sluttattestasjon (inkludert visuelt skjermbildegrunnlag) og publiseringskontroll"
   ],
   "editorial_vferdig": false,
   "rule_preflight": {

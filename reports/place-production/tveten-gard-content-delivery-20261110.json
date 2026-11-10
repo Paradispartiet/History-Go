@@ -3,7 +3,7 @@
   "place_id": "tveten_gard",
   "category": "historie",
   "date": "2026-11-10",
-  "status": "content_integrated_pending_final_qa",
+  "status": "browser_acceptance_passed_pending_merge",
   "editorial_vferdig": false,
   "canonical": "data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/tveten_gard.json",
   "completed_content": {
@@ -37,10 +37,9 @@
   },
   "unverified": [
     "Focused GitHub Actions CI and deterministic generation acceptance",
-    "Real Chromium mobile and desktop visual review",
     "Separate GitHub Pages deployment verification",
     "Formal editorial vFerdig attestation",
-    "Tveten browser acceptance for 390px and 1440px viewports (workflow now configured)"
+    "Endelig obligatorisk GitHub CI på merge-head; main-merge og formell vFerdig-attestasjon"
   ],
   "note": "Content release candidate, not the formal vFerdig attestation. Two real PlaceCard collections integrated; final QA and merge pending.",
   "collection_review": {
@@ -61,5 +60,14 @@
       "status": "BEGRUNNET N/A",
       "reason": "No locally verified authentic brand preview."
     }
+  },
+  "browser_acceptance": {
+    "status": "PASS",
+    "run": "https://github.com/Paradispartiet/History-Go/actions/runs/42905802611",
+    "screenshot_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/42905802611/artifacts/13804168354",
+    "viewports": [
+      390,
+      1440
+    ]
   }
 }
