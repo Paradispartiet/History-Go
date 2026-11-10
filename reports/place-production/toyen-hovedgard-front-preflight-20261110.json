@@ -2,7 +2,7 @@
   "schema": "history_go_place_front_visual_preflight_v1",
   "place_id": "toyen_hovedgard",
   "category": "historie",
-  "status": "front_art_staged_pending_QA",
+  "status": "front_integrated_pending_browser_and_remaining_core",
   "date": "2026-11-10",
   "production_profile": "standard",
   "profile_status": "provisional_pending_collection_review",
@@ -35,9 +35,11 @@
     "description": "Original schematic editorial vector of historic main house, mansard roof, wings and courtyard; visibly marked illustration not photo.",
     "original_photo_separation": "The documentary 2009 hero remains unchanged. A distinct upright PlaceCard front image replaces the old identical hero/front URL.",
     "legacy_fields": "Removes obsolete cardImage from canonical Place without creating a duplicate QuizCard image. Existing QuizCard remains its own flip surface.",
-    "generated_index": "pending generation",
-    "generated_place_open": "pending generation",
-    "browser_review": "pending targeted real-browser acceptance"
+    "generated_index": "PASS: generated Places index updated via targeted GitHub runner",
+    "generated_place_open": "PASS: data/runtime/place-open/toyen_hovedgard.json reflects new front and removes cardImage",
+    "browser_review": "PENDING: visual acceptance in real mobile/desktop browser after this isolated delivery",
+    "targeted_tests": "PASS: tests/toyen-hovedgard-portrait-qa.test.mjs and tests/oslo-ts-toyen-hovedgard-parity.test.mjs completed before GitHub runner committed derived outputs",
+    "generated_commit": "0e7fb0dc90df6d740d215e930e621d0e14d983e5"
   },
   "collection_audit": {
     "people": {
