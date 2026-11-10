@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "categoryId": "historie",
+  "id": "etterkrigstid",
+  "name": "Etterkrigstid",
+  "status": "artwork_pending",
+  "sourceImage": "bilder/merker/historie/undermerker/etterkrigstid-brodert-v1.webp",
+  "parentBadgeReference": {
+    "path": "bilder/merker/historie.PNG",
+    "preserveExactOriginal": true
+  },
+  "siblingReferences": [
+    {
+      "id": "forhistorie",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "middelalder",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "tidlig_modernetid",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "attenhundretallet",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "nittenhundre_1900_1945",
+      "preserveExactOriginal": true
+    }
+  ],
+  "palette": {
+    "primary": "#603E1E",
+    "secondary": "#D6A127",
+    "text": "#F5E8CE",
+    "border": "Mørk kastanjebrun flettet broderikant; varme okerdetaljer, ikke gullring."
+  },
+  "design": {
+    "format": "image/webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "transparent": true,
+    "motif": "Norsk etterkrigstid ca. 1945–1970: gjenreisning og boligbygging, folk som bygger opp lokalsamfunn, nye skoler/velferdsordninger og et gjenreist bymiljø. En original brodert historisk montasje, ikke en moderne byreklame.",
+    "composition": "Selvstendig rundt stoffmerke i Historie-familien. ETTERKRIGSTID i øvre bue, HISTORIE nederst; kremhvit brodert tekst på brun stoffring. Kun disse to tekstfeltene på merket; lesbart ved 128px.",
+    "typography": {
+      "top": "ETTERKRIGSTID",
+      "bottom": "HISTORIE",
+      "translateBothFields": true,
+      "noExternalCaption": true,
+      "forbidProgressFraction": true,
+      "legibleAtPixels": 128
+    },
+    "doNotUse": [
+      "6/14 eller annet progresjonstall på merket",
+      "lilla eller sølvkant, universell gullkant",
+      "andre historiske epokers typiske motiver som steinaldertelt, middelalderborg eller damptog",
+      "moderne mobiltelefoner, biler eller nybyggeri etter 1970"
+    ]
+  },
+  "variants": {
+    "nb": {
+      "heading": "ETTERKRIGSTID",
+      "footer": "HISTORIE",
+      "path": "bilder/merker/historie/undermerker/etterkrigstid-brodert-v1.webp"
+    },
+    "en": {
+      "heading": "POSTWAR ERA",
+      "footer": "HISTORY",
+      "path": "bilder/merker/historie/locales/en/etterkrigstid.webp"
+    },
+    "es": {
+      "heading": "POSGUERRA",
+      "footer": "HISTORIA",
+      "path": "bilder/merker/historie/locales/es/etterkrigstid.webp"
+    },
+    "pt": {
+      "heading": "PÓS-GUERRA",
+      "footer": "HISTÓRIA",
+      "path": "bilder/merker/historie/locales/pt/etterkrigstid.webp"
+    },
+    "fr": {
+      "heading": "APRÈS-GUERRE",
+      "footer": "HISTOIRE",
+      "path": "bilder/merker/historie/locales/fr/etterkrigstid.webp"
+    }
+  },
+  "quality": {
+    "artworkProduced": false,
+    "visualApproved": false,
+    "binaryVerified": false,
+    "integrated": false
+  },
+  "localesActive": false,
+  "seriesProgress": {
+    "integrated": 5,
+    "total": 14,
+    "next": "etterkrigstid"
+  },
+  "activationRule": "Produser en original i mørk brun Historie-stil (#603E1E, oker #D6A127), lag fire ellers identiske språkvarianter. Verifiser WebP med alfa, 1024×1024, SHA-256 og Git blob SHA for alle fem. Aktiver bare norsk etter visuell gjennomgang og målrettet CI. Ingen 6/14 på bildene.",
+  "guard": "Bevar HistoryGo-logoen, Historie-hovedmerket og de fem integrerte Historie-undermerkene byte-identisk."
+}
