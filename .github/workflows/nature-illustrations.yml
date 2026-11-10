@@ -18,6 +18,12 @@ on:
       - 'js/ui/nature-flora-photographs.js'
       - 'finn-flora.html'
       - 'js/ui/nature-flora-approved.js'
+      - 'data/natur/flora/illustration-quality-sibirsk-ertebusk-20261110.json'
+      - 'scripts/test-flora-sibirsk-ertebusk-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/79_sibirsk_ertebusk_v1.webp'
+      - 'data/natur/flora/illustration-quality-russekaal-20261110.json'
+      - 'scripts/test-flora-russekaal-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/78_russekaal_v1.webp'
       - 'data/natur/flora/illustration-quality-hagegullregn-20261110.json'
       - 'scripts/test-flora-hagegullregn-b09.mjs'
       - 'bilder/natur/flora/illustrasjonskandidater/b09/77_hagegullregn_v1.webp'
@@ -342,6 +348,8 @@ jobs:
       - run: node scripts/test-flora-varkaal-b09.mjs
       - run: node scripts/test-flora-varmure-b09.mjs
       - run: node scripts/test-flora-rodknapp-b09.mjs
+      - run: node scripts/test-flora-sibirsk-ertebusk-b09.mjs
+      - run: node scripts/test-flora-russekaal-b09.mjs
       - run: node scripts/test-flora-hagegullregn-b09.mjs
       - run: node scripts/test-flora-buskmure-b09.mjs
       - run: node scripts/test-flora-syrin-b09.mjs
