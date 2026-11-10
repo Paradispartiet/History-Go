@@ -2,6 +2,7 @@
 // Headless Linux WebKit is NOT a physical iPhone/Safari FPS certification.
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
+import { verifySummaryInboxFocus } from './verify-civication-visual-qa-browser.js';
 
 export default async function verifyCivicationWebkitMobile(browser: any, origin: string, outputDir: string) {
   const context = await browser.newContext({
@@ -87,6 +88,7 @@ export default async function verifyCivicationWebkitMobile(browser: any, origin:
     assert.ok(afterChoice.focusInsideResult && afterChoice.visibleInViewport,
       'WebKit reveals and focuses the saved consequence after keyboard choice');
     await capture('min-dag-webkit-mobile-after-choice.png');
+    const summaryInboxFocus = await verifySummaryInboxFocus(page);
 
     await page.locator('#btnCiviMap').click();
     await page.waitForFunction(() =>
@@ -113,7 +115,7 @@ export default async function verifyCivicationWebkitMobile(browser: any, origin:
     return {
       engine: 'Playwright WebKit on Linux (not physical iPhone Safari)',
       viewport: { width: 390, height: 844 },
-      initial, afterChoice, map,
+      initial, afterChoice, summaryInboxFocus, map,
       screenshots: [
         'min-dag-webkit-mobile-top.png',
         'min-dag-webkit-mobile-after-choice.png',
@@ -127,3 +129,4 @@ export default async function verifyCivicationWebkitMobile(browser: any, origin:
     await context.close();
   }
 }
+

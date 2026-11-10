@@ -4,6 +4,74 @@
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
 
+// Real browser DOM/focus acceptance with a controlled, read-only inbox hint.
+// This verifies presentation, not delivery/answering of an actual queued mail.
+export async function verifySummaryInboxFocus(page: any) {
+  for (let step = 0; step < 30; step++) {
+    if (await page.locator('#civiLifestoryPanel .civi-lifestory-summary').count()) break;
+    const choice = page.locator('#civiLifestoryPanel .civi-lifestory-choice:not(:disabled):not([data-lifestory-navigates])').first();
+    assert.ok(await choice.count(), 'the first day remains playable through local decisions');
+    await choice.focus();
+    await choice.press('Enter');
+  }
+  await page.locator('#civiLifestoryPanel .civi-lifestory-summary').waitFor({ state: 'visible', timeout: 15000 });
+  const result = await page.evaluate(() => {
+    const app = globalThis as any;
+    const doc = app.document;
+    const selector = app.CivicationNextActionSelector;
+    const inbox = app.CivicationNextActionUI;
+    const day = app.CivicationCalendar.getClock().dayIndex;
+    const storyDay = app.CivicationLifestoryState.load().dag;
+    const refresh = () => app.dispatchEvent(new Event('civi:inboxChanged'));
+    const summary = () => doc.querySelector('#civiLifestoryPanel .civi-lifestory-summary');
+    const recap = () => summary().querySelector('details[data-lifestory-disclosure="day-recap"]');
+    const heading = () => summary().querySelector('h3');
+    let pending = false;
+    try {
+      app.CivicationNextActionSelector = { getCurrent: () => pending ? { id: 'qa-pending-mail', canStartNewDay: false } : null };
+      app.CivicationNextActionUI = { open: () => true };
+      app.CivicationLifestoryUI.render();
+      recap().open = true;
+      recap().querySelector('summary').focus({ preventScroll: true });
+      const original = summary();
+      const originalFocus = doc.activeElement;
+      const scrollY = app.scrollY;
+      refresh();
+      const unchangedNode = summary() === original && doc.activeElement === originalFocus;
+      pending = true;
+      refresh();
+      const changedNode = summary() !== original;
+      const recapPreserved = recap().open && doc.activeElement === recap().querySelector('summary');
+      const nextDayBlocked = summary().querySelector('[data-lifestory-next-day]')?.disabled === true;
+      summary().querySelector('[data-lifestory-next-action]').focus({ preventScroll: true });
+      delete app.CivicationNextActionUI;
+      refresh();
+      const fallbackFocus = doc.activeElement === heading();
+      app.CivicationNextActionUI = { open: () => true };
+      refresh();
+      const headingPreserved = doc.activeElement === heading();
+      return {
+        fixture: 'controlled inbox selector; real first-day choices and browser DOM',
+        unchangedNode, changedNode, recapPreserved, nextDayBlocked, fallbackFocus, headingPreserved,
+        inboxButtons: summary().querySelectorAll('[data-lifestory-next-action]').length,
+        scrollUnchanged: Math.abs(app.scrollY - scrollY) <= 1,
+        dayUnchanged: app.CivicationCalendar.getClock().dayIndex === day,
+        storyDayUnchanged: app.CivicationLifestoryState.load().dag === storyDay
+      };
+    } finally {
+      app.CivicationNextActionSelector = selector;
+      app.CivicationNextActionUI = inbox;
+      app.CivicationLifestoryUI.render();
+    }
+  });
+  for (const key of ['unchangedNode', 'changedNode', 'recapPreserved', 'nextDayBlocked',
+    'fallbackFocus', 'headingPreserved', 'scrollUnchanged', 'dayUnchanged', 'storyDayUnchanged']) {
+    assert.equal(result[key], true, 'summary inbox browser acceptance: ' + key);
+  }
+  assert.equal(result.inboxButtons, 1, 'summary exposes exactly one inbox shortcut');
+  return result;
+}
+
 export default async function verifyCivicationVisualQa(browser: any, origin: string, outputDir: string) {
   const context = await browser.newContext({
     viewport: { width: 390, height: 844 },
@@ -236,6 +304,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
         fullPage: false, animations: 'disabled' });
       result.afterChoice = afterChoice;
       result.screenshots.push('min-dag-mobile-after-choice.png');
+      result.summaryInboxFocus = await verifySummaryInboxFocus(decisionPage);
     } finally {
       await decisionPage.close();
     }
@@ -250,3 +319,4 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     await context.close();
   }
 }
+
