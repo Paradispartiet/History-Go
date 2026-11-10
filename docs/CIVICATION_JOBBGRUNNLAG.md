@@ -18,6 +18,8 @@ Dette er inngangen til den redaksjonelle dokumentasjonen om hvordan folk arbeide
 
 ## Dekning
 
+[Fullstendig Symposium-register: roller, jobber, livsposisjoner og Life Stories](CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md) viser alle kanoniske innslag, kildestier og hvilke kildeprofiler som mangler. Registrering betyr ikke at en jobb er spillbar eller at en synopsis er gjennomført.
+
 Start med [rollemodellmanifestet](../data/Civication/roleModels/manifest.json) for registrerte rollemodeller, [rolleverdener](../data/Civication/roleWorlds/) for egne livsposisjoner og [synopsismatrisen](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md) for private roller og relasjoner. Sjekk identitet før opprettelse, slik at gamle filnavn og aliaser går til riktig profil. Del beskrivelser av felles praksis via lenker, og gi hver rolle sitt eget ansvar, handlingsrom og særpreg. En rolle uten oppføring over mangler en gjennomgått profil i dette registeret. Profildekning føres separat fra spillbarhet.
 
 ## Hva hver profil skal dekke
