@@ -924,7 +924,13 @@
     // there is no active job or visible top-action card.
     const pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.();
     const needsInboxFirst = !!pendingDayAction && !pendingDayAction.canStartNewDay;
-    const pendingDayActionHtml = needsInboxFirst
+    // The selector may not expose an actionable card while the day-progress
+    // controller is still blocked by queued mail. After a failed rollover,
+    // let the player inspect the existing inbox rather than ending at an error
+    // with no way forward. Never synthesize or answer an inbox action here.
+    const canInspectBlockedDay = !!continuationError && !needsInboxFirst
+      && typeof window.CivicationNextActionUI?.open === "function";
+    const pendingDayActionHtml = needsInboxFirst || canInspectBlockedDay
       ? '<button class="civi-btn" type="button" data-lifestory-next-action>Åpne innboksen</button>'
       : "";
     const blockedDayNote = needsInboxFirst
