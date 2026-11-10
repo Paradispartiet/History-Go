@@ -13,6 +13,7 @@ on:
       - "scripts/check-documentation-governance.mts"
       - "tests/documentation-symposium-by-saksbehandler.test.cjs"
       - "tests/documentation-symposium-lager-drift.test.cjs"
+      - "tests/documentation-symposium-register.test.cjs"
       - ".github/workflows/documentation-governance.yml"
   workflow_dispatch:
 
@@ -55,6 +56,9 @@ jobs:
 
       - name: Verify Symposium warehouse work and safety sources
         run: node tests/documentation-symposium-lager-drift.test.cjs
+
+      - name: Verify complete Symposium register and canonical role boundaries
+        run: node tests/documentation-symposium-register.test.cjs
 
       - name: Upload documentation governance audit
         if: always()
