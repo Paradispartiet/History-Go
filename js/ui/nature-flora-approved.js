@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_spirea: Object.freeze({
+      scientificName: "Spiraea spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/73_spirea_v1.webp",
+      gitBlobSha: "252c311109bcd3beb0535b242dba234d7ce6f811",
+      reviewedAt: "2026-11-10",
+      stage: "pedagogisk_var_sommer_blomstring",
+      evidence: "data/natur/flora/illustration-quality-spirea-20261110.json"
+    }),
     emne_flora_berberis: Object.freeze({
       scientificName: "Berberis spp.",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/72_berberis_v1.webp",
@@ -770,7 +778,7 @@
 
   });
   // One scientific species appears twice in the public catalog; reuse the same approved artwork.
-  const aliases = Object.freeze({ emne_kratt_berberis: "emne_flora_berberis", emne_kratt_mahonia: "emne_flora_mahonia", emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
+  const aliases = Object.freeze({ emne_kratt_spirea: "emne_flora_spirea", emne_kratt_berberis: "emne_flora_berberis", emne_kratt_mahonia: "emne_flora_mahonia", emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
   const get = id => images[aliases[String(id)] || String(id)] || null;
   window.HG_NATURE_FLORA_APPROVED = Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
 })();

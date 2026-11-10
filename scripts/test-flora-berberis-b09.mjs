@@ -50,7 +50,7 @@ assert(a.sourceReferences.length>=2);
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,94);
+assert(approved.count>=94,"Existing 94 approved originals must remain approved");
 assert.equal(approved.get(id)?.scientificName,latin);
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
