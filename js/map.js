@@ -1202,7 +1202,7 @@
       if (src && REQUIRED_PLACE_LAYERS.every((id) => MAP.getLayer(id))) {
         src.setData(fc);
         for (const layer of [L_DOTS, L_GLOW, L_LAB]) {
-          if (MAP.getLayer(layer)) MAP.setLayoutProperty(
+          if (MAP.getLayer(layer) && typeof MAP.setLayoutProperty === "function") MAP.setLayoutProperty(
             layer,
             "visibility",
             favoriteSymbolMode() || useNativeTouchDetailMarkers() ? "none" : "visible"
