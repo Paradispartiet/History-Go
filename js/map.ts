@@ -745,13 +745,13 @@
       const showBadge = isBadgeMarkerMode() && !!entry.badgeImage?.complete && entry.badgeImage.naturalWidth > 0;
       entry.element.classList?.toggle?.("has-category-badge", showBadge);
       const showFavorite = favoriteSymbolMode() && !!entry.favoriteSymbol;
-      entry.element.classList.toggle("has-favorite-icon", showFavorite);
-      const side = showFavorite ? Math.max(26, Math.min(42, 26 + (zoom - 11) * 2))
-        : showBadge ? mapBadgeDiameter(zoom) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
-      if (entry.favoriteSymbol) entry.favoriteSymbol.style.fontSize = `${Math.min(28, side * .66).toFixed(1)}px`;
-      entry.element.style.width = `${side.toFixed(2)}px`;
-      entry.element.style.height = `${side.toFixed(2)}px`;
-      entry.element.style.borderWidth = showFavorite ? "0px" : showBadge ? (side < 6 ? "0px" : `${Math.min(2, side * 0.12).toFixed(2)}px`) : "2px";
+      entry.element.classList?.toggle?.("has-favorite-icon", showFavorite);
+      const side = showBadge ? mapBadgeDiameter(zoom) : interpolatePlaceAreaMarkerSide(zoom, entry.visited);
+      const renderedSide = showFavorite ? Math.max(26, Math.min(42, 26 + (zoom - 11) * 2)) : side;
+      if (entry.favoriteSymbol) entry.favoriteSymbol.style.fontSize = `${Math.min(28, renderedSide * .66).toFixed(1)}px`;
+      entry.element.style.width = `${renderedSide.toFixed(2)}px`;
+      entry.element.style.height = `${renderedSide.toFixed(2)}px`;
+      entry.element.style.borderWidth = showBadge ? (side < 6 ? "0px" : `${Math.min(2, side * 0.12).toFixed(2)}px`) : showFavorite ? "0px" : "2px";
     }
   }
 
@@ -994,9 +994,10 @@
       MAP.on("zoomend", onViewportChanged);
       placeDetailMarkerEventsBound = true;
     }
-    const badgesReady = (isBadgeMarkerMode() && placeBadgeImages.size > 0) || favoriteSymbolMode();
-    if ((!badgesReady && zoom < PLACE_DETAIL_MIN_ZOOM) ||
-        (!badgesReady && !useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM)) {
+    const badgesReady = isBadgeMarkerMode() && placeBadgeImages.size > 0;
+    const favoriteReady = favoriteSymbolMode();
+    if ((!badgesReady && !favoriteReady && zoom < PLACE_DETAIL_MIN_ZOOM) ||
+        (!badgesReady && !favoriteReady && !useNativeTouchDetailMarkers() && zoom < PLACE_DETAIL_BADGE_MIN_ZOOM)) {
       for (const entry of placeDetailMarkers.values()) entry.marker.remove();
       placeDetailMarkers.clear();
       return;
