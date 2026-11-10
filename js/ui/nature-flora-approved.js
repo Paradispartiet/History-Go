@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_russekaal: Object.freeze({
+      scientificName: "Bunias orientalis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/78_russekaal_v1.webp",
+      gitBlobSha: "610c7ba75478978a5a3cfdcb4f29f655fa555087",
+      reviewedAt: "2026-11-10",
+      stage: "sommerblomstring_gule_korsblomster_og_frukt",
+      evidence: "data/natur/flora/illustration-quality-russekaal-20261110.json"
+    }),
     emne_flora_hagegullregn: Object.freeze({
       scientificName: "Laburnum anagyroides",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/77_hagegullregn_v1.webp",
