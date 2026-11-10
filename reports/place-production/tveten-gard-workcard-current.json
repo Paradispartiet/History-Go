@@ -2,8 +2,8 @@
   "schema": "history_go_place_workcard_v2",
   "place_id": "tveten_gard",
   "category": "historie",
-  "status": "ready_for_browser_qa",
-  "active_phase": "final_browser_qa",
+  "status": "qa_passed_pending_merge",
+  "active_phase": "merge_and_publish",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "profile_reason": "Kildebasert historisk gårdssted med selvstendige bygnings- og eiendomsspor, to bildeklare samlinger, kuratert Fagverk og intakt fullquiz.",
@@ -44,19 +44,21 @@
     "boundaries": "1408 gjelder skriftlig omtale, ikke rydningsår. 1950 gjelder jordene, ikke kjøp av tunet (2006). Ikke påstå at overdragelsene fant sted i husene eller at symbolske SVG-er er autentiske dokumenter."
   },
   "browser_acceptance": {
-    "status": "PENDING",
+    "status": "PASS",
+    "run": "https://github.com/Paradispartiet/History-Go/actions/runs/42905802611",
     "viewports": [
       390,
       1440
     ],
-    "workflow": "https://github.com/Paradispartiet/History-Go/actions/workflows/tveten-gard-collections-acceptance.yml",
-    "tests": "Kontroller stående forside, quizvending, 3 People, 2 historiske hendelser, popupbilder og ingen JS-feil."
+    "tests": "Source, collection and retained-content contract; QuizCard-vending; ekte People-/historiske hendelsespoppuper; billedlasting; null JavaScript-feil",
+    "screenshots": "https://github.com/Paradispartiet/History-Go/actions/runs/42905802611/artifacts/13804168354",
+    "manual_visual_review": "2026-11-10: seks faktiske skjermbilder av mobil og desktop inspisert; stedskort, People og historiske hendelser presenteres lesbart.",
+    "physical_device_qa": false
   },
   "remaining_before_vferdig": [
-    "Bestått real-browser-test på 390 og 1440 px, og faglig visuell vurdering av faktisk bildelasting",
-    "Alle obligatoriske PR-porter grønne på riktig commit",
-    "Merge og bekreftelse av main og GitHub Pages-publisering",
-    "Separat formell vFerdig-attestasjon etter aksept"
+    "Samtlige obligatoriske PR-kontroller godkjent på endelig SHA",
+    "Merge og verifisert main-innhold samt separat GitHub Pages-publisering",
+    "Formell redaksjonell vFerdig-attestasjon etter merge"
   ],
   "editorial_vferdig": false,
   "rule_preflight": {
