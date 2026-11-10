@@ -4769,10 +4769,20 @@
     window.setTimeout(refreshTopAction, 260);
   }
 
+  function refreshInboxWithoutInterruptingDraft() {
+    const active = document.activeElement;
+    const formField = /^(TEXTAREA|INPUT|SELECT)$/i.test(String(active?.tagName || ""));
+    // Background inbox events must not replace an actively edited Lillebekk
+    // form. Explicit save/decision handlers still call renderInboxSections()
+    // directly, so new journal state becomes visible immediately on submit.
+    if (formField && rememberLillebekkFocus(document.getElementById("civiInbox"))) return false;
+    return renderInboxSections();
+  }
+
   function scheduleInboxSectionsRefresh() {
-    window.setTimeout(renderInboxSections, 0);
-    window.setTimeout(renderInboxSections, 80);
-    window.setTimeout(renderInboxSections, 260);
+    window.setTimeout(refreshInboxWithoutInterruptingDraft, 0);
+    window.setTimeout(refreshInboxWithoutInterruptingDraft, 80);
+    window.setTimeout(refreshInboxWithoutInterruptingDraft, 260);
   }
 
   function wrapMiniRefresh() {
