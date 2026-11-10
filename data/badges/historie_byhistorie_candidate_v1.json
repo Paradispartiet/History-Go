@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "byhistorie",
   "name": "Byhistorie",
-  "status": "artwork_pending",
+  "status": "integrated",
   "sourceImage": "bilder/merker/historie/undermerker/byhistorie-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -74,41 +74,75 @@
     "nb": {
       "heading": "BYHISTORIE",
       "footer": "HISTORIE",
-      "path": "bilder/merker/historie/undermerker/byhistorie-brodert-v1.webp"
+      "path": "bilder/merker/historie/undermerker/byhistorie-brodert-v1.webp",
+      "bytes": 405414,
+      "sha256": "3ced1fdcb88529cbc9f3d864227452012e62badba6c9a784a6697e7895c459f4",
+      "gitBlobSha": "2ba0f83c8e7cd120312f88e97ba03bc295d2a63c"
     },
     "en": {
       "heading": "URBAN HISTORY",
       "footer": "HISTORY",
-      "path": "bilder/merker/historie/locales/en/byhistorie.webp"
+      "path": "bilder/merker/historie/locales/en/byhistorie.webp",
+      "bytes": 406474,
+      "sha256": "4563c2efd363c3bc5fb74c81e58d4b24bbff9e928ac4f9daa1f1375da9050083",
+      "gitBlobSha": "0fa809b19bf6a974398f905d20a0bf85d883b099"
     },
     "es": {
       "heading": "HISTORIA URBANA",
       "footer": "HISTORIA",
-      "path": "bilder/merker/historie/locales/es/byhistorie.webp"
+      "path": "bilder/merker/historie/locales/es/byhistorie.webp",
+      "bytes": 407418,
+      "sha256": "820379f5860903f182f4710034ad90f24f316dcd7963ac8d6be70ff9291e5ed8",
+      "gitBlobSha": "021280010571110e4ddf987416437d8d66762ca9"
     },
     "pt": {
       "heading": "HISTÓRIA URBANA",
       "footer": "HISTÓRIA",
-      "path": "bilder/merker/historie/locales/pt/byhistorie.webp"
+      "path": "bilder/merker/historie/locales/pt/byhistorie.webp",
+      "bytes": 407920,
+      "sha256": "2cb736b47286eeeb1d8f26c97f57401fe59a25d143a0296a1680cf6605d66de6",
+      "gitBlobSha": "bd951ffed4c7bd91ae0527b39c08c794147b9592"
     },
     "fr": {
       "heading": "HISTOIRE URBAINE",
       "footer": "HISTOIRE",
-      "path": "bilder/merker/historie/locales/fr/byhistorie.webp"
+      "path": "bilder/merker/historie/locales/fr/byhistorie.webp",
+      "bytes": 407768,
+      "sha256": "b6382110104fce6ad0e69f8c6ae931e8c94157f5fa5cba5b2d44ecdbd7cff203",
+      "gitBlobSha": "5f3ea4f267f10bbd2161fb2b62aa936b96888ddd"
     }
   },
   "quality": {
-    "artworkProduced": false,
-    "visualApproved": false,
-    "binaryVerified": false,
-    "integrated": false
+    "artworkProduced": true,
+    "visualApproved": true,
+    "binaryVerified": true,
+    "integrated": true,
+    "technicalLocalVerified": true
   },
   "localesActive": false,
   "seriesProgress": {
-    "integrated": 7,
+    "integrated": 8,
     "total": 14,
-    "next": "byhistorie"
+    "next": "industrihistorie"
   },
   "activationRule": "Produser fem WebP-originaler med eksakt samme scenografi og bare oversatt tekst. Verifiser 1024×1024, alfakanal, SHA-256 og Git blob-hasher. Aktiver bare norsk når alle fem filene er binært verifisert i GitHub og målrettet merke-CI er grønn.",
-  "guard": "HistoryGo-hovedlogo, Historie-hovedmerket og alle sju integrerte Historie-undermerker skal ikke endres."
+  "guard": "HistoryGo-hovedlogo, Historie-hovedmerket og alle sju integrerte Historie-undermerker skal ikke endres.",
+  "visualReview": {
+    "status": "reviewed",
+    "approved": true,
+    "notes": "Five WebPs have one shared historic town illustration, uppercase embroidered arced titles in local language, HISTORY/HISTORIE bottom label, dark brown braided edge; no fraction or badge number",
+    "paletteChecked": "#603E1E",
+    "fiveLocalesChecked": true
+  },
+  "binaryTransfer": {
+    "verifiedInRepository": true,
+    "filesInLocalPackage": 5,
+    "expectedDimensions": [
+      1024,
+      1024
+    ],
+    "expectedAlpha": true,
+    "expectedHashesVerified": true,
+    "localAssetArchive": "byhistorie_5_sprak.zip"
+  }
 }
