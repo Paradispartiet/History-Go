@@ -1,0 +1,50 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {readFileSync,existsSync} from "node:fs";
+const read=p=>JSON.parse(readFileSync(new URL("../"+p,import.meta.url),"utf8"));
+const load=p=>readFileSync(new URL("../"+p,import.meta.url),"utf8");
+const people=read("data/people/by/oslo/tullin/claus_tullin.json");
+const runtime=read("data/runtime/place-open/tullin.json");
+const shard=read("data/runtime/people-all/part-006.json");
+const canonical=read("data/places/by/oslo/places/tullin.json");
+test("Claus Tullin has a distinct original, clearly-labelled non-portrait",()=>{
+ assert.equal(people.length,1);
+ const person=people[0];
+ assert.equal(person.id,"claus_tullin");
+ assert.match(person.popupDesc,/Christian Braunmann Tullin/);
+ assert.match(person.popupDesc,/ikke forveksles/i);
+ assert.equal(person.image,"bilder/illustrasjoner/people/claus_tullin_historygo_editorial.svg");
+ assert.equal(person.cardImage,person.image);
+ assert.equal(person.imageMeta.mediaType,"editorial_illustration");
+ assert.match(person.imageMeta.disclosure,/ikke historisk portrett/i);
+ assert.match(person.imageCaption,/ikke et historisk portrett/i);
+ assert.ok(existsSync(new URL("../"+person.image,import.meta.url)));
+ const svg=load(person.image);
+ assert.match(svg,/width="1024" height="1024"/);
+ assert.match(svg,/IKKE HISTORISK PORTRETT ELLER KART/);
+ assert.match(svg,/#808080/i);
+ assert.match(svg,/#404040/i);
+ const other=runtime.people.find(p=>p.id==="bjornstjerne_bjornson");
+ assert.ok(other);
+ assert.equal(other.image,"bilder/kort/people/bjornstjerne_bjornson.jpg");
+ for(const arr of [runtime.people,shard]){
+  const r=arr.find(p=>p.id==="claus_tullin");
+  assert.ok(r);
+  assert.equal(r.image,person.image);
+  assert.equal(r.cardImage,person.cardImage);
+  assert.equal(r.profileStatus,"ready_people_v1");
+ }
+});
+test("Existing Tullin rich PlaceCard, quiz, Fagverk and media remain untouched",()=>{
+ assert.equal(canonical.id,"tullin");
+ assert.deepEqual(canonical.place_card_profile.collection_ids,["people","objects","brands","structures"]);
+ assert.equal(canonical.fagverk.status,"curated");
+ assert.equal(canonical.frontImage,"bilder/places/tullin_front_portrait.webp");
+ const quiz=read("data/quiz/by/tullin_sets.json");
+ const cards=read("data/quizcards/by/topp10_by_kort_batch7.json");
+ assert.equal(quiz.sets.reduce((n,s)=>n+s.questions.length,0),42);
+ assert.equal(quiz.sets.length,6);
+ assert.ok(JSON.stringify(cards).includes("tullin"));
+ assert.equal(runtime.stories.length,4);
+ assert.ok(runtime.people.some(p=>p.id==="bjornstjerne_bjornson"));
+});
