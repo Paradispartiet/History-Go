@@ -25,6 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"berberis",label:"Berberis",term:"Berberis",path:"b09/72_berberis_v1.webp"},
     {name:"mahonia",label:"Mahonia",term:"Mahonia",path:"b09/71_mahonia_v1.webp"},
     {name:"snobaer",label:"Snøbær",term:"Snøbær",path:"b09/70_snobaer_v1.webp"},
     {name:"gravbergknapp",label:"Gravbergknapp",term:"Gravbergknapp",path:"b09/69_gravbergknapp_v1.webp"},
@@ -132,6 +133,12 @@ try{
     const title=species.label||species.term||species.name;
     const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
     await card.waitFor();
+    if(species.name==="berberis"){
+      const both=page.locator("#natureGrid").getByRole("button",{name:/^Berberis,/i});
+      assert.equal(await both.count(),2,"Berberis must have separate flora and kratt cards");
+      for(const entry of await both.all())
+        assert((await entry.locator("img").getAttribute("src")).endsWith(species.path),"Both Berberis entries must use the one genus original");
+    }
     if(species.name==="mahonia"){
       const both=page.locator("#natureGrid").getByRole("button",{name:/^Mahonia,/i});
       assert.equal(await both.count(),2,"Mahonia must have separate flora and kratt cards");

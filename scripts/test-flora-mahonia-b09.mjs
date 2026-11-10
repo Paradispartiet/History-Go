@@ -46,7 +46,7 @@ assert(a.sourceReferences.length>=2);
 const env={window:{}};
 vm.runInNewContext(read("js/ui/nature-flora-approved.js"),env,{timeout:2000});
 const approved=env.window.HG_NATURE_FLORA_APPROVED;
-assert.equal(approved.count,93);
+assert(approved.count>=93,"Previously approved Mahonia must remain integrated after later species");
 assert.equal(approved.get(id)?.scientificName,latin);
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
