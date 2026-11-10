@@ -143,6 +143,18 @@ try {
           if (!(el instanceof HTMLElement)) return false;
           const rect = el.getBoundingClientRect();
           if (el.hidden || el.getAttribute('aria-hidden') === 'true' || el.dataset.collectionId !== id) return false;
+          if (editorial && (id === 'objects' || id === 'historical_events')) {
+            // Place Sheet Direct deliberately hides original round icons.
+            // Require their real editorial gallery buttons in the proper
+            // section, then exercise those buttons below after scrolling.
+            const section = id === 'objects' ? 'history' : 'about';
+            const button = card.querySelector('[data-pc-round-gallery-section="'+section+'"] [data-pc-round-gallery-item="'+iconId+'"]');
+            const image = button?.querySelector('img');
+            return getComputedStyle(el).display === 'none'
+              && el.dataset.pcRoundGallerySource === '1'
+              && button instanceof HTMLButtonElement
+              && image instanceof HTMLImageElement && Boolean(image.getAttribute('src'));
+          }
           if (id === 'brands' && editorial) {
             // The canonical Brands action remains in the old grid, while the
             // visible, uncropped logo belongs at the end of the About section.
@@ -262,10 +274,33 @@ try {
     const popupChecks = [];
     for (const expected of expectedUiCollections) {
       const before = await page.evaluate(() => window.__HG_PLACE_CLOSEOUT_POPUPS__?.length || 0);
-      // The visible About-section Brands button delegates to the canonical popup.
-      const action = expected.id === 'brands'
-        ? page.locator('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button')
-        : page.locator(`#${expected.iconId}`);
+      // The canonical source rounds are CSS-hidden under Place Sheet Direct.
+      // Select their real editorial section and click the visible gallery
+      // button, which forwards to the original popup handler.
+      const section = expected.id === 'objects' ? 'history'
+        : expected.id === 'historical_events' || expected.id === 'brands' ? 'about' : null;
+      if (section) {
+        await page.locator('#placeCard > [data-hg-place-sheet-nav="1"] [data-hg-place-sheet-jump="'+section+'"]').press('Enter');
+        await page.locator('#placeCard [data-hg-place-sheet-section="'+section+'"]').first().waitFor({state:'visible',timeout:15_000});
+      }
+      const gallerySelector = expected.id === 'brands'
+        ? '#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button'
+        : section
+          ? '#placeCard [data-pc-round-gallery-section="'+section+'"] [data-pc-round-gallery-item="'+expected.iconId+'"]'
+          : null;
+      const action = page.locator(gallerySelector || `#${expected.iconId}`);
+      if (gallerySelector) {
+        await action.scrollIntoViewIfNeeded();
+        await page.waitForFunction((selector) => {
+          const button = document.querySelector(selector);
+          const image = button?.querySelector('img');
+          const rect = button?.getBoundingClientRect();
+          return button instanceof HTMLButtonElement
+            && rect?.width > 0 && rect?.height > 0
+            && image instanceof HTMLImageElement
+            && image.complete && image.naturalWidth > 0;
+        }, gallerySelector, {timeout:30_000});
+      }
       await action.click();
       await page.waitForFunction(
         (count) => (window.__HG_PLACE_CLOSEOUT_POPUPS__?.length || 0) > count,
