@@ -83,6 +83,11 @@
   // Jobbresolver og oppstart kan laste innhold samtidig. Siste rolle vinner.
   let roleLoadSequence = 0;
   let dayAdvancePending = false;
+  // Compare generated markup with generated markup, not browser-serialized
+  // DOM (which normalizes entities and includes open/focus attributes).
+  // Weak keys keep this read-only view cache tied to the mounted summary.
+  /** @type {WeakMap<Element, string>} */
+  const summaryMarkup = new WeakMap();
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
   /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }>, dramatisert: boolean }|null} */ let sisteKonsekvens = null;
 
@@ -422,7 +427,7 @@
     const view = Runner.getView(state, content);
     if (!view?.dagFerdig) return;
     const html = renderSummaryHtml(view);
-    if (summary.outerHTML !== html) {
+    if (summaryMarkup.get(summary) !== html) {
       // Live inbox changes replace this summary. Preserve keyboard focus when
       // a start-day/inbox control is replaced; do not scroll or touch the day.
       // If the focused action disappears, prefer the other enabled action,
@@ -438,6 +443,7 @@
       const expandedRecap = !!summary.querySelector?.('details[data-lifestory-disclosure="day-recap"][open]');
       summary.outerHTML = html;
       const refreshed = getPanel()?.querySelector?.(".civi-lifestory-summary");
+      if (refreshed) summaryMarkup.set(refreshed, html);
       if (expandedRecap) {
         const recap = refreshed?.querySelector?.('details[data-lifestory-disclosure="day-recap"]');
         if (recap) /** @type {HTMLDetailsElement} */ (recap).open = true;
@@ -1354,6 +1360,8 @@
       .map((detail) => detail.getAttribute("data-lifestory-disclosure")));
 
     renderHeaderStatus(view);
+    const paused = Runner.isContinuationPaused?.(state, content);
+    const summaryHtml = view.dagFerdig && !paused ? renderSummaryHtml(view) : "";
     const personalBanner = shellStory?.status === "private-only"
       ? '<section class="civi-lifestory-personal-mode" data-lifestory-personal-only>'
         + '<h3>Privatlivet ditt fortsetter</h3>'
@@ -1362,12 +1370,14 @@
         + 'arbeidsoppgaver og meldinger finner du i innboksen.</p></section>'
       : "";
     panel.innerHTML = personalBanner + renderKonsekvensHtml()
-      + (Runner.isContinuationPaused?.(state, content)
+      + (paused
         ? '<section data-lifestory-paused><h3>Historien er satt på pause</h3><p>Velg ' + escapeHtml(continuationRole) + ' som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
-        : (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : renderEmptyPhaseHtml())))
+        : (view.dagFerdig ? summaryHtml : (view.scene ? renderSceneHtml(view.scene) : renderEmptyPhaseHtml())))
       + renderPreviousChoiceHtml(view)
       + renderStatusHtml(view)
       + renderPanelsHtml(view);
+    const summary = panel.querySelector(".civi-lifestory-summary");
+    if (summary) summaryMarkup.set(summary, summaryHtml);
     panel.querySelectorAll?.("details[data-lifestory-disclosure]").forEach((detail) => {
       if (expanded.has(detail.getAttribute("data-lifestory-disclosure"))) /** @type {HTMLDetailsElement} */ (detail).open = true;
     });
@@ -1634,4 +1644,5 @@
     getPendingWaveAEvent, answerWaveAChoice
   };
 })();
+
 

@@ -150,13 +150,27 @@ async function main() {
   const dayRecap = panel.querySelector('details[data-lifestory-disclosure="day-recap"]');
   dayRecap.open = true;
   dayRecap.querySelector("summary").focus();
+  const unchangedSummary = panel.querySelector(".civi-lifestory-summary");
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(panel.querySelector(".civi-lifestory-summary"), unchangedSummary,
+    "an unchanged inbox notification preserves the mounted summary despite open/focus attributes");
+  assert.equal(window.document.activeElement, dayRecap.querySelector("summary"),
+    "unchanged updates preserve the original focused disclosure node");
+  // A real inbox change still replaces the summary and restores its reading state.
+  window.CivicationNextActionSelector = { getCurrent: () => null };
   window.dispatchEvent(new window.Event("civi:inboxChanged"));
   const refreshedRecap = panel.querySelector('details[data-lifestory-disclosure="day-recap"]');
+  assert.notEqual(panel.querySelector(".civi-lifestory-summary"), unchangedSummary,
+    "changed inbox state still updates the summary");
   assert.equal(refreshedRecap.open, true, "expanded recap survives a live inbox refresh");
   assert.equal(window.document.activeElement, refreshedRecap.querySelector("summary"),
     "keyboard focus remains on the refreshed recap disclosure");
   assert.equal(calendar.getClock().dayIndex, 1, "reading recap does not advance the shell day");
   refreshedRecap.open = false;
+  window.CivicationNextActionSelector = {
+    getCurrent: () => ({ id: "required-morning", canStartNewDay: false })
+  };
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
   assert.ok(panel.querySelector("[data-lifestory-next-action]"), "pending mail reachable from Min dag");
   assert.equal(panel.querySelector("[data-lifestory-next-day]")?.disabled, true,
     "Start neste dag is disabled while a current mail needs an answer");
@@ -340,3 +354,4 @@ async function main() {
   console.log("civication lifestory day sync ok (shell blocks, calendar rolls once, workday idempotent)");
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });
+
