@@ -25,7 +25,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = '3a9badc815caa8677c865c831b79cd835f87e069'
+          git merge-base --is-ancestor '3a9badc815caa8677c865c831b79cd835f87e069' HEAD
+          test "$(git diff --name-only '3a9badc815caa8677c865c831b79cd835f87e069' HEAD)" = '.github/workflows/minneparken-830eee-readonly-qa-20261110-temp.yml'
           test -z "$(git status --porcelain)"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
