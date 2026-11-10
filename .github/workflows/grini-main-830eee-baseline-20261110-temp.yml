@@ -1,0 +1,42 @@
+name: Temporary Grini pure-main 830eee browser baseline
+on:
+  push:
+    branches:
+      - qa/minneparken-current-main-830eee-20261110
+    paths:
+      - .github/workflows/grini-main-830eee-baseline-20261110-temp.yml
+permissions:
+  contents: read
+jobs:
+  actual-grini-pure-main:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 830eee234f0bcc6e30823b814bf0b8178fb9cd19
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Prove exact main baseline
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = '830eee234f0bcc6e30823b814bf0b8178fb9cd19'
+          test -z "$(git status --porcelain)"
+      - name: Reproduce Grini browser test on unmodified main
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          node scripts/verify-grini-collections-browser.mjs grini_fangeleir
+      - name: Preserve screenshot and diagnostics regardless of result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grini-main-830eee-browser-baseline
+          path: artifacts/grini-closeout/grini_fangeleir/
+          retention-days: 30
+          if-no-files-found: warn
