@@ -18,6 +18,9 @@ on:
       - 'js/ui/nature-flora-photographs.js'
       - 'finn-flora.html'
       - 'js/ui/nature-flora-approved.js'
+      - 'data/natur/flora/illustration-quality-snobaer-20261110.json'
+      - 'scripts/test-flora-snobaer-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/70_snobaer_v1.webp'
       - 'data/natur/flora/illustration-quality-gravbergknapp-20261110.json'
       - 'scripts/test-flora-gravbergknapp-b09.mjs'
       - 'bilder/natur/flora/illustrasjonskandidater/b09/69_gravbergknapp_v1.webp'
@@ -318,6 +321,7 @@ jobs:
       - run: node scripts/test-flora-varkaal-b09.mjs
       - run: node scripts/test-flora-varmure-b09.mjs
       - run: node scripts/test-flora-rodknapp-b09.mjs
+      - run: node scripts/test-flora-snobaer-b09.mjs
       - run: node scripts/test-flora-gravbergknapp-b09.mjs
       - run: node scripts/test-flora-kjempespringfro-b09.mjs
       - run: node scripts/test-flora-parkslirekne-b09.mjs
