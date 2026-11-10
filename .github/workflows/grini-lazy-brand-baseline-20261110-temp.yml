@@ -31,7 +31,8 @@ jobs:
           const files=cp.execFileSync('git',['diff','--name-only','cfc4afd5fae4c92fea623f8d1761198b2a58609d','HEAD'],{encoding:'utf8'}).trim().split('\n').sort();
           assert.deepEqual(files.sort(),['scripts/verify-grini-collections-browser.mjs','.github/workflows/grini-lazy-brand-baseline-20261110-temp.yml'].sort());
           const source=cp.execFileSync('git',['show','HEAD:scripts/verify-grini-collections-browser.mjs'],{encoding:'utf8'});
-          assert.match(source,/await brandsButton\.scrollIntoViewIfNeeded\(\)/);
+          assert.doesNotMatch(source,/await brandsButton\.scrollIntoViewIfNeeded\(\)/,'No pre-scroll before People pointer action');
+          assert.match(source,/await action\.scrollIntoViewIfNeeded\(\)/,'Every editorial gallery must be scrolled before pixel validation');
           assert.match(source,/el\.dataset\.pcRoundGallerySource === '1'/,'Moved source icons must be recognized');
           assert.match(source,/data-pc-round-gallery-item/,'Real editorial gallery button must be tested');
           assert.match(source,/image\.complete && image\.naturalWidth > 0/);
@@ -39,7 +40,7 @@ jobs:
           NODE
           git diff --check 'cfc4afd5fae4c92fea623f8d1761198b2a58609d' HEAD
           node --check scripts/verify-grini-collections-browser.mjs
-      - name: Grini real gallery UI, pixels, popup and desktop/mobile QA
+      - name: Grini full desktop/mobile popup, canonical galleries and loaded images
         shell: bash
         run: |
           set -euo pipefail
