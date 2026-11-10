@@ -7,35 +7,20 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 
-test("favorittkartvelgeren ligger i den faste kartdock ved badgevelgeren", () => {
-  const picker = read("js/ui/home-favorite-map-picker.js");
-  const css = read("css/home-favorite-map-picker.css");
-  assert.match(picker, /document\.querySelector\("\.map-controls"\)/);
-  assert.match(picker, /dock\?\.querySelector\("\.hg-map-category-filter"\)/);
-  assert.match(picker, /dock\.insertBefore\(host, badgeFilter\)/);
-  assert.match(picker, /hgMapFavoriteTrigger/);
-  assert.doesNotMatch(picker, /document\.getElementById\("nearbyFavoritesFilterBtn"\)/);
-  assert.match(css, /\.hg-map-favorite-filter\s*\{/);
-  assert.match(css, /order:\s*998/);
-  assert.match(css, /bottom:\s*calc\(100% \+ 8px\)/);
-  assert.doesNotMatch(css, /#nearbyListContainer \.hg-home-favorite-map-picker/);
-});
-
-test("favorittknappen kan opprettes selv om kartdock lastes senere", () => {
-  const picker = read("js/ui/home-favorite-map-picker.js");
-  assert.match(picker, /MutationObserver/);
-  assert.match(picker, /ensureVisible/);
-  assert.match(picker, /window\.HGHomeFavoriteMapPicker = \{ init: ensureVisible/);
-  assert.match(picker, /data-favorite-view="favorites"/);
-  assert.match(picker, /data-favorite-style/);
-});
-
-test("index henter ny favorittvelger og beholder kartbadgevelgeren", () => {
+test("sikkerhetsrettelse: index laster ikke favorittoverlegget som blokkerte iPad-interaksjon", () => {
   const html = read("index.html");
   const app = read("js/app.js");
-  assert.match(html, /css\/home-favorite-map-picker\.css\?v=20261110-mapdock2/);
-  assert.match(html, /js\/app\.js\?v=20261110-mapdock2/);
-  assert.match(app, /js\/ui\/home-favorite-map-picker\.js\?v=20261110-mapdock2/);
-  assert.match(app, /HGHomeFavoriteMapPicker\?\.init\?\.\(\)/);
+  assert.doesNotMatch(html, /home-favorite-map-picker\.css/);
+  assert.doesNotMatch(app, /loadHomeFavoriteMapPicker|initHomeFavoriteMapPicker/);
+  assert.match(app, /resetFavoriteMapOnHotfix/);
+  assert.match(app, /HGMap\?\.setFavoriteViewOnly\?\.\(false\)/);
+  assert.match(html, /js\/app\.js\?v=20261111-touch-rollback1/);
+  assert.match(html, /id="map"/);
+  assert.match(app, /loadMap/);
+});
+
+test("kartets vanlige badgevelger og Utforsk forblir i kildekoden", () => {
   assert.match(read("js/map-controls-runtime.ts"), /\.hg-map-category-filter/);
+  assert.match(read("js/ui/nearbyFilterControls.ts"), /nearbyFavoritesFilterBtn/);
+  assert.match(read("js/map.ts"), /setFavoriteViewOnly/);
 });
