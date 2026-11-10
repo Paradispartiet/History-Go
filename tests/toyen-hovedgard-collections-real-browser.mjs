@@ -68,7 +68,7 @@ try{
       ['pcPeopleIcon',/Jens Bjelke|Henrik Bjelke/i,'people'],
       ['pcCategoryCollectionIcon',/sædegårdsrettigheter|universitetsgrunn/i,'historical-events']
    ]){
-    const icon=page.locator('[data-pc-round-gallery-item="'+iconId+'"]');
+    const icon=page.locator(iconId==='pcPeopleIcon' ? '#pcPeopleIcon' : '[data-pc-round-gallery-item="'+iconId+'"]');
     await icon.waitFor({state:'visible',timeout:30000});await icon.click();
     const popup=page.locator('.hg-popup.placecard-round-popup.visible');
     await popup.waitFor({state:'visible',timeout:20000});
