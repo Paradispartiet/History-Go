@@ -25,6 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"sibirsk-ertebusk",label:"Sibirsk ertebusk",term:"Sibirsk ertebusk",path:"b09/79_sibirsk_ertebusk_v1.webp"},
     {name:"russekaal",label:"Russekål",term:"Russekål",path:"b09/78_russekaal_v1.webp"},
     {name:"hagegullregn",label:"Hagegullregn",term:"Hagegullregn",path:"b09/77_hagegullregn_v1.webp"},
     {name:"buskmure",label:"Buskmure",term:"Buskmure",path:"b09/76_buskmure_v1.webp"},
