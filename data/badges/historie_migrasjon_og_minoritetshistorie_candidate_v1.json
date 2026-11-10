@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "migrasjon_og_minoritetshistorie",
   "name": "Migrasjon og minoritetshistorie",
-  "status": "artwork_pending",
+  "status": "integrated",
   "sourceImage": "bilder/merker/historie/undermerker/migrasjon_og_minoritetshistorie-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -98,41 +98,80 @@
     "nb": {
       "heading": "MIGRASJON OG MINORITETSHISTORIE",
       "footer": "HISTORIE",
-      "path": "bilder/merker/historie/undermerker/migrasjon_og_minoritetshistorie-brodert-v1.webp"
+      "path": "bilder/merker/historie/undermerker/migrasjon_og_minoritetshistorie-brodert-v1.webp",
+      "bytes": 354764,
+      "sha256": "eceacfaa13b4165551c124759de8cebffacfb67d6710bf32d3aa394e25891241",
+      "gitBlobSha": "c41722a87eec8d4df024d9124a706c5f1b43680e"
     },
     "en": {
       "heading": "MIGRATION & MINORITY HISTORY",
       "footer": "HISTORY",
-      "path": "bilder/merker/historie/locales/en/migrasjon_og_minoritetshistorie.webp"
+      "path": "bilder/merker/historie/locales/en/migrasjon_og_minoritetshistorie.webp",
+      "bytes": 353110,
+      "sha256": "54000afd2566699d8c150505960602f611344d9575a45e9a28484ecfe133d9d1",
+      "gitBlobSha": "7f52a235349b35e0a00f0145550a3cc0b199d6a2"
     },
     "es": {
       "heading": "MIGRACIÓN E HISTORIA DE LAS MINORÍAS",
       "footer": "HISTORIA",
-      "path": "bilder/merker/historie/locales/es/migrasjon_og_minoritetshistorie.webp"
+      "path": "bilder/merker/historie/locales/es/migrasjon_og_minoritetshistorie.webp",
+      "bytes": 354242,
+      "sha256": "4d6db3c854fda1f6accb2a3e125d857d7945d5881a525e89ae8eb36c71ff244f",
+      "gitBlobSha": "95870ef5be3279476da84178f547ab08d1290cbd"
     },
     "pt": {
       "heading": "MIGRAÇÃO E HISTÓRIA DAS MINORIAS",
       "footer": "HISTÓRIA",
-      "path": "bilder/merker/historie/locales/pt/migrasjon_og_minoritetshistorie.webp"
+      "path": "bilder/merker/historie/locales/pt/migrasjon_og_minoritetshistorie.webp",
+      "bytes": 355022,
+      "sha256": "2ceebdda22a22d640e904379ab5beb3f67104c4bb966956936a6d22239b05278",
+      "gitBlobSha": "5ffd7e7aa9ff475ffa79fa4dfe1a503be66f59bc"
     },
     "fr": {
       "heading": "MIGRATION ET HISTOIRE DES MINORITÉS",
       "footer": "HISTOIRE",
-      "path": "bilder/merker/historie/locales/fr/migrasjon_og_minoritetshistorie.webp"
+      "path": "bilder/merker/historie/locales/fr/migrasjon_og_minoritetshistorie.webp",
+      "bytes": 354862,
+      "sha256": "088f315c11b7bf029d25399aad5ec5dafa2083668fb3f8159b1b3d8e0980044f",
+      "gitBlobSha": "cb8a0eb02feceed7ae0df6109bbf980e515a7fdc"
     }
   },
   "quality": {
-    "artworkProduced": false,
-    "visualApproved": false,
-    "binaryVerified": false,
-    "integrated": false
+    "artworkProduced": true,
+    "visualApproved": true,
+    "binaryVerified": true,
+    "integrated": true,
+    "technicalLocalVerified": true
   },
   "localesActive": false,
   "seriesProgress": {
-    "integrated": 13,
+    "integrated": 14,
     "total": 14,
-    "next": "migrasjon_og_minoritetshistorie"
+    "next": null
   },
-  "activationRule": "Lag fem originale, separate 1024×1024 transparente WebP med identisk motiv og oversatt tekst. Verifiser SHA-256, Git-blob, farge og etiketter. Aktiver bare norsk etter grønn målrettet CI; la øvrige språk være inaktive.",
-  "guard": "HistoryGo-logo, Historie-hovedmerket og tidligere tretten ferdige undermerker skal bevares byte-identisk."
+  "activationRule": "Fem separate originale 1024×1024 WebP med identisk motiv og kun oversatte tekstfelt; SHA-256/Git-blober er verifisert. Kun norsk er aktivert; de øvrige fire forblir inaktive.",
+  "guard": "HistoryGo-logo, Historie-hovedmerket og tidligere tretten ferdige undermerker skal bevares byte-identisk.",
+  "visualReview": {
+    "approved": true,
+    "languagesReviewed": [
+      "nb",
+      "en",
+      "es",
+      "pt",
+      "fr"
+    ],
+    "notes": "Samme historiske motiv av migrasjon, sjøtransport og mangfold; brunt brodert Historie-merke med okerdetaljer, fem oversatte etiketter og uten 14/14 på merket.",
+    "noProgressNumberChecked": true,
+    "categoryColorsChecked": true
+  },
+  "binaryTransfer": {
+    "verifiedInRepository": true,
+    "filesInLocalPackage": 5,
+    "expectedDimensions": [
+      1024,
+      1024
+    ],
+    "expectedTransparency": true,
+    "expectedHashesVerified": true
+  }
 }

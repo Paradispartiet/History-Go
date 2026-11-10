@@ -21,6 +21,9 @@ on:
       - 'tests/historie-sosialhistorie-badge-contract.test.mjs'
       - 'tests/historie-kulturminner-bevaring-badge-contract.test.mjs'
       - 'tests/historie-krim-ulykker-branner-badge-contract.test.mjs'
+      - 'tests/historie-migrasjon-minoritetshistorie-badge-contract.test.mjs'
+      - 'bilder/merker/historie/undermerker/migrasjon_og_minoritetshistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/migrasjon_og_minoritetshistorie.webp'
       - 'bilder/merker/historie/undermerker/krim_ulykker_og_branner-brodert-v1.webp'
       - 'bilder/merker/historie/locales/*/krim_ulykker_og_branner.webp'
       - 'bilder/merker/historie/undermerker/kulturminner_og_bevaring-brodert-v1.webp'
@@ -87,6 +90,7 @@ jobs:
           node --test tests/historie-sosialhistorie-badge-contract.test.mjs
           node --test tests/historie-kulturminner-bevaring-badge-contract.test.mjs
           node --test tests/historie-krim-ulykker-branner-badge-contract.test.mjs
+          node --test tests/historie-migrasjon-minoritetshistorie-badge-contract.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
       - name: Generate four-badge preview
