@@ -149,15 +149,35 @@ try {
             const button = gallery?.querySelector('button');
             const image = button?.querySelector('img');
             const box = button?.getBoundingClientRect();
+            // The About-section brand is below long prose and its image is
+            // intentionally loading="lazy". Check that the real preview exists
+            // here, then scroll it into view before requiring decoded pixels.
             return getComputedStyle(el).display === 'none'
               && box?.width > 0 && box?.height > 0
-              && image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0;
+              && image instanceof HTMLImageElement && Boolean(image.getAttribute('src'));
           }
           return rect.width > 0 && rect.height > 0;
         });
       },
       { count: expectedUiCollections.length, collections: expectedUiCollections },
       { timeout: 60_000 },
+    );
+    // The editorial Brands logo can be outside the lazy-load distance on
+    // desktop; scrolling the real button is necessary before checking pixels.
+    const brandsButton = page.locator('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button');
+    await brandsButton.scrollIntoViewIfNeeded();
+    await page.waitForFunction(
+      () => {
+        const button = document.querySelector('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button');
+        const image = button?.querySelector('img');
+        const rect = button?.getBoundingClientRect();
+        return button instanceof HTMLButtonElement
+          && rect?.width > 0 && rect?.height > 0
+          && image instanceof HTMLImageElement
+          && image.complete && image.naturalWidth > 0;
+      },
+      null,
+      { timeout: 30_000 },
     );
     await page.waitForFunction(
       () => {
