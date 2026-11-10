@@ -939,7 +939,7 @@
     const inboxAvailable = typeof window.CivicationNextActionUI?.open === "function";
     const canInspectPendingMail = !!pendingPhaseMail && inboxAvailable;
     const canInspectBlockedDay = !!continuationError && inboxAvailable;
-    const pendingDayActionHtml = needsInboxFirst || canInspectPendingMail || canInspectBlockedDay
+    const pendingDayActionHtml = inboxAvailable && (needsInboxFirst || canInspectPendingMail || canInspectBlockedDay)
       ? '<button class="civi-btn" type="button" data-lifestory-next-action>Åpne innboksen</button>'
       : "";
     const pendingPhaseNote = canInspectPendingMail && !needsInboxFirst && !continuationError
@@ -948,7 +948,9 @@
         + '. Åpne innboksen for å se hva som gjenstår.</p>'
       : "";
     const blockedDayNote = needsInboxFirst
-      ? '<p class="muted" role="status">Du har fortsatt en melding eller oppgave i dag. Åpne innboksen og fullfør den før du starter neste dag.</p>'
+      ? '<p class="muted" role="status">Du har fortsatt en melding eller oppgave i dag. '
+        + (inboxAvailable ? 'Åpne innboksen og fullfør den' : 'Fullfør den i Civication')
+        + ' før du starter neste dag.</p>'
       : pendingPhaseNote;
     const nextDayDisabled = needsInboxFirst ? ' disabled title="Fullfør dagens meldinger først"' : '';
     const chapterReadyToSettle = sisteDag && !pendingPrivate && state.livsdag >= 21

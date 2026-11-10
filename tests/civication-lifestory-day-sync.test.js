@@ -119,6 +119,22 @@ async function main() {
     "Start neste dag is disabled while a current mail needs an answer");
   assert.match(panel.textContent, /Åpne innboksen og fullfør/,
     "the player sees why the next day is blocked");
+  // A selector can signal mandatory mail before the inbox UI is loaded.
+  // Never offer a dead shortcut or falsely allow the next day.
+  const inboxOpener = window.CivicationNextActionUI;
+  delete window.CivicationNextActionUI;
+  window.CivicationLifestoryUI.render();
+  assert.equal(panel.querySelectorAll("[data-lifestory-next-action]").length, 0,
+    "no inert inbox button when the inbox UI is unavailable");
+  assert.match(panel.textContent, /Fullfør den i Civication før du starter neste dag/,
+    "blocked day retains actionable guidance without a broken shortcut");
+  assert.equal(panel.querySelector("[data-lifestory-next-day]").disabled, true,
+    "missing inbox UI does not bypass canonical pending-work gate");
+  assert.equal(calendar.getClock().dayIndex, 1, "rendering without the inbox cannot advance the day");
+  window.CivicationNextActionUI = inboxOpener;
+  window.CivicationLifestoryUI.render();
+  assert.equal(panel.querySelectorAll("[data-lifestory-next-action]").length, 1,
+    "inbox shortcut returns exactly once when the real opener is ready");
   panel.querySelector("[data-lifestory-next-action]").click();
   assert.equal(openedAnswerSurface, 1);
   assert.equal(calendar.getClock().dayIndex, 1);
