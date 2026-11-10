@@ -1625,7 +1625,7 @@
   function maybeDrawMarkers() { ensureMarkers(); }
   function refreshMarkers() { drawPlaceMarkers(); }
 
-  window.addEventListener("hg:favorites-changed", () => {
+  window.addEventListener?.("hg:favorites-changed", () => {
     if (MAP && favoriteViewOnly) drawPlaceMarkers();
   });
   window.HGCoordinateTrust = { getCoordinateTrust };
