@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_mahonia: Object.freeze({
+      scientificName: "Mahonia aquifolium",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/71_mahonia_v1.webp",
+      gitBlobSha: "0fe084f5ddb1a57dc80c6306ca589d0cc5139417",
+      reviewedAt: "2026-11-10",
+      stage: "varblomstring_og_sensommerbaer",
+      evidence: "data/natur/flora/illustration-quality-mahonia-20261110.json"
+    }),
     emne_flora_snobaer: Object.freeze({
       scientificName: "Symphoricarpos albus",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/70_snobaer_v1.webp",
