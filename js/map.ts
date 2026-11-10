@@ -51,7 +51,7 @@
       favoriteMarkerStyle = storedStyle === "badges" || FAVORITE_SYMBOLS[storedStyle] ? storedStyle : "badges";
       const parsed = JSON.parse(localStorage.getItem(FAVORITE_PLACE_ICONS_KEY) || "{}");
       favoritePlaceIcons = parsed && typeof parsed === "object" && !Array.isArray(parsed)
-        ? Object.fromEntries(Object.entries(parsed).filter(([id, icon]) => id && FAVORITE_SYMBOLS[String(icon)]))
+        ? Object.fromEntries(Object.entries(parsed).filter(([id, icon]) => id && typeof icon === "string" && FAVORITE_SYMBOLS[icon])) as Record<string, string>
         : {};
     } catch { favoritePlaceIcons = {}; }
   }
