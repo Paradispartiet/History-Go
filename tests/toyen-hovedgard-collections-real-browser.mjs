@@ -75,7 +75,7 @@ try{
     const t=await popup.innerText();
     assert.match(t,expected,label+' missing expected '+labelSuffix+' in gallery');
     if(labelSuffix==='historical-events'){
-      assert.match(t,/1670/);assert.match(t,/1812/);
+      assert.match(t,/sædegårdsrettigheter/i);assert.match(t,/universitetsgrunn/i);
     }
     await page.screenshot({path:'artifacts/toyen-hovedgard-collections/'+label+'-'+labelSuffix+'.png'});
     await page.keyboard.press('Escape');
