@@ -1,0 +1,54 @@
+name: Temporary Grini lazy brand real-browser QA
+on:
+  push:
+    branches:
+      - fix/grini-collections-lazy-brands-browser-20261110
+    paths:
+      - .github/workflows/grini-lazy-brand-baseline-20261110-temp.yml
+permissions:
+  contents: read
+jobs:
+  grini-desktop-mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Validate exact one-file patch and strict whitespace
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor 'cfc4afd5fae4c92fea623f8d1761198b2a58609d' HEAD
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import cp from 'node:child_process';
+          const files=cp.execFileSync('git',['diff','--name-only','cfc4afd5fae4c92fea623f8d1761198b2a58609d','HEAD'],{encoding:'utf8'}).trim().split('\n').sort();
+          assert.deepEqual(files.sort(),['scripts/verify-grini-collections-browser.mjs','.github/workflows/grini-lazy-brand-baseline-20261110-temp.yml'].sort());
+          const source=cp.execFileSync('git',['show','HEAD:scripts/verify-grini-collections-browser.mjs'],{encoding:'utf8'});
+          assert.match(source,/await brandsButton\.scrollIntoViewIfNeeded\(\)/);
+          assert.match(source,/image\.complete && image\.naturalWidth > 0/);
+          console.log('PASS exact patch: lazy image loaded-pixels assertion retained');
+          NODE
+          git diff --check 'cfc4afd5fae4c92fea623f8d1761198b2a58609d' HEAD
+          node --check scripts/verify-grini-collections-browser.mjs
+      - name: Grini actual browser desktop and mobile
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          node scripts/verify-grini-collections-browser.mjs grini_fangeleir
+      - name: Preserve real screenshot and desktop/mobile QA reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grini-brands-lazy-browser-evidence
+          path: artifacts/grini-closeout/grini_fangeleir/
+          retention-days: 30
+          if-no-files-found: warn
