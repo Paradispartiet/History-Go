@@ -132,6 +132,12 @@ try{
     const title=species.label||species.term||species.name;
     const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
     await card.waitFor();
+    if(species.name==="mahonia"){
+      const both=page.locator("#natureGrid").getByRole("button",{name:/^Mahonia,/i});
+      assert.equal(await both.count(),2,"Mahonia must have separate flora and kratt cards");
+      for(const entry of await both.all())
+        assert((await entry.locator("img").getAttribute("src")).endsWith(species.path),"Both Mahonia entries must use the one approved original");
+    }
     await card.locator("img").evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
     assert((await card.locator("img").getAttribute("src")).endsWith(species.path));
     assert.equal((await card.locator(".ne-image-label").innerText()).trim(),"Illustrasjon");
