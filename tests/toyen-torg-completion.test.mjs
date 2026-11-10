@@ -38,11 +38,22 @@ test("Tøyen torg har én avgrenset torgidentitet og nøyaktig fire By-samlinger
 });
 
 test("alle samlingspreviews er lokale og den redaksjonelle illustrasjonen er transparent", async () => {
-  const files = [place.image, place.cardImage, place.frontImage, place.for_na.beforeImage, ...runtime.people.map((item) => item.image), ...place.objects.map((item) => item.image), ...place.structures.map((item) => item.image), ...runtime.brands.map((item) => item.logo)];
+  const files = [place.image, place.frontImage, place.for_na.beforeImage, ...runtime.people.map((item) => item.image), ...place.objects.map((item) => item.image), ...place.structures.map((item) => item.image), ...runtime.brands.map((item) => item.logo)];
   for (const file of files) assert.equal(exists(file), true, file);
   const { default: sharp } = await import("sharp");
   const front = await sharp(path.join(root, place.frontImage)).metadata();
   assert.deepEqual({ width: front.width, height: front.height }, { width: 900, height: 1200 });
+  assert.equal(place.frontImageMeta.assetType,"editorial_illustration");
+  assert.equal(place.imageMeta.assetType,"editorial_illustration");
+  assert.equal(place.image.endsWith(".svg"),true);
+  assert.equal(place.frontImage.endsWith(".svg"),true);
+  assert.equal(place.image!==place.frontImage,true);
+  assert.equal("cardImage" in place,false);
+  assert.equal("imageCard" in place,false);
+  assert.ok(place.objects.every((o)=>o.imageMeta?.assetType==="editorial_illustration"&&o.image.endsWith(".svg")));
+  assert.ok(place.structures.every((o)=>o.imageMeta?.assetType==="editorial_illustration"&&o.image.endsWith(".svg")));
+  assert.ok(place.for_na.nowImageLabel.includes("ikke fotografi"));
+  assert.equal(place.for_na.beforeImageMeta.license,"Public domain");
   const portrait = runtime.people[0];
   const portraitMeta = await sharp(path.join(root, portrait.image)).metadata();
   const portraitStats = await sharp(path.join(root, portrait.image)).stats();
