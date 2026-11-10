@@ -16,9 +16,9 @@ assert.ok(beginNext > 0 && endNext > beginNext && beginFocus > 0 && endFocus > b
 const realFunctions = source.slice(beginNext, endNext) + "\n" + source.slice(beginFocus, endFocus);
 assert.match(source, /onNextDay\(event\.detail === 0\)/, "keyboard origin is passed from the next-day control");
 
-function setup({ shell = false, blocked = false, alreadyAdvanced = false, mapMode = false,
+function setup({ shell = false, blocked = false, throws = false, alreadyAdvanced = false, mapMode = false,
   hasScene = true } = {}) {
-  const actions = { scroll: 0, focus: 0, renders: 0, saves: 0, dispatches: 0, lastFocusOptions: null, attrs: {} };
+  const actions = { scroll: 0, focus: 0, blockedFocus: 0, renders: 0, saves: 0, dispatches: 0, lastFocusOptions: null, attrs: {} };
   const state = { dag: 3, livsdag: 3, dagFerdig: true };
   let shellDay = alreadyAdvanced ? 4 : 3;
   const heading = {
@@ -32,10 +32,14 @@ function setup({ shell = false, blocked = false, alreadyAdvanced = false, mapMod
       actions.scroll++;
     }
   };
+  const warning = {
+    focus(options) { actions.blockedFocus++; actions.lastFocusOptions = options; }
+  };
   const panel = {
     querySelector(selector) {
       if (selector === ".civi-lifestory-scene") return hasScene ? destination : null;
       if (selector === ".civi-lifestory-summary") return destination;
+      if (selector === "[data-lifestory-day-blocker]") return scope.continuationError ? warning : null;
       return null;
     }
   };
@@ -52,11 +56,16 @@ function setup({ shell = false, blocked = false, alreadyAdvanced = false, mapMod
     },
     Event: class { constructor(type) { this.type = type; } },
     dayAdvancePending: false,
+    continuationError: "",
     shellStoryUnavailable: () => false,
     getShellDay: () => shell ? shellDay : null,
     syncSharedPrivateState() {},
     ensureShellDayAdvanced: async () => {
-      if (blocked) return false;
+      if (throws) throw Error("simulated transient failure");
+      if (blocked) {
+        scope.continuationError = "Dagslutt har utestående handlinger i Civication.";
+        return false;
+      }
       if (!alreadyAdvanced) shellDay++;
       return true;
     },
@@ -100,6 +109,24 @@ test("shell day stays put when pending inbox work blocks day transition", async 
   assert.equal(actions.renders, 1);
   assert.equal(actions.scroll, 0);
   assert.equal(actions.focus, 0);
+  assert.equal(actions.blockedFocus, 1, "keyboard users are taken to the blocked-day explanation");
+  assert.equal(actions.lastFocusOptions.preventScroll, true, "blocked transition must not scroll");
+});
+
+test("touch rejection announces the alert without stealing focus or scrolling", async () => {
+  const { api, actions } = setup({ shell: true, blocked: true });
+  await api.runNextDay(false);
+  assert.equal(actions.blockedFocus, 0);
+  assert.equal(actions.scroll, 0);
+});
+
+test("unexpected day-transition error stays visible with the current day preserved", async () => {
+  const { api, state, scope, actions } = setup({ shell: true, throws: true });
+  await api.runNextDay(true);
+  assert.match(scope.continuationError, /Dagskiftet kunne ikke fullføres/);
+  assert.equal(state.dag, 3);
+  assert.equal(actions.blockedFocus, 1);
+  assert.equal(actions.scroll, 0);
 });
 
 test("canonical shell day transition reveals new scene exactly once", async () => {
