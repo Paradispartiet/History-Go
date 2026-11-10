@@ -116,6 +116,26 @@ test("før dagbroen lastes vises bare fasenavnet, aldri en oppdiktet posisjon", 
   assert.equal(exactPhaseText.textContent, "Fase: Formiddag · 2 av 2");
 });
 
+test("dagkalenderen ferdigstilles etter Min dag uten å endre spillklokken", () => {
+  const { browser, clock, listeners, exactPhaseText, getPhaseAnnouncements } = setup("morning");
+  const phaseList = browser.CivicationCalendar.DAY_PHASES;
+  browser.CivicationCalendar.DAY_PHASES = undefined;
+  browser.CivicationWorldMood.sync();
+  assert.equal(exactPhaseText.textContent, "Fase: Morgen");
+  const beforeReady = getPhaseAnnouncements();
+  browser.CivicationCalendar.DAY_PHASES = phaseList;
+  assert.equal(typeof listeners.get("civi:dayCalendarReady"), "function");
+  listeners.get("civi:dayCalendarReady")();
+  assert.equal(exactPhaseText.textContent, "Fase: Morgen · 1 av 8");
+  assert.equal(getPhaseAnnouncements(), beforeReady + 1);
+  listeners.get("civi:dayCalendarReady")();
+  assert.equal(getPhaseAnnouncements(), beforeReady + 1, "no duplicate live announcement");
+  assert.equal(clock.phase, "morning");
+  const bridge = fs.readFileSync(path.join(__dirname,
+    "../js/Civication/systems/day/dayCalendarBridge.js"), "utf8");
+  assert.match(bridge, /window\.Event\("civi:dayCalendarReady"\)/);
+});
+
 test("scene lighting and Min dag illustration are wired without changing game choices", () => {
   const root = path.join(__dirname, "..");
   const three = fs.readFileSync(path.join(root, "js/Civication/ui/CivicationThreeMap.js"), "utf8");
