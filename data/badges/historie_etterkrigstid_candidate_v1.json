@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "etterkrigstid",
   "name": "Etterkrigstid",
-  "status": "artwork_pending",
+  "status": "artwork_ready_binary_pending",
   "sourceImage": "bilder/merker/historie/undermerker/etterkrigstid-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -65,34 +65,50 @@
     "nb": {
       "heading": "ETTERKRIGSTID",
       "footer": "HISTORIE",
-      "path": "bilder/merker/historie/undermerker/etterkrigstid-brodert-v1.webp"
+      "path": "bilder/merker/historie/undermerker/etterkrigstid-brodert-v1.webp",
+      "bytes": 509358,
+      "sha256": "58a95e2c146b22f53703371c3a32a75cae705146de7d49e70cdf7123406700f0",
+      "gitBlobSha": "1415330db451469b02869664fc578ec47281593c"
     },
     "en": {
       "heading": "POSTWAR ERA",
       "footer": "HISTORY",
-      "path": "bilder/merker/historie/locales/en/etterkrigstid.webp"
+      "path": "bilder/merker/historie/locales/en/etterkrigstid.webp",
+      "bytes": 467598,
+      "sha256": "1e7dbbe530a29560a8d338808d276119324c676aab657c3b08a33c780d62f13b",
+      "gitBlobSha": "209ed56a72c1970d3f991398ae81008f2bda67ba"
     },
     "es": {
       "heading": "POSGUERRA",
       "footer": "HISTORIA",
-      "path": "bilder/merker/historie/locales/es/etterkrigstid.webp"
+      "path": "bilder/merker/historie/locales/es/etterkrigstid.webp",
+      "bytes": 467274,
+      "sha256": "89d05843bc4c98dc7694597a387b6e66c98d6aab19474b43976c112ab7ef28eb",
+      "gitBlobSha": "3225a4436d94067ef1822badcdac11f28b315011"
     },
     "pt": {
       "heading": "PÓS-GUERRA",
       "footer": "HISTÓRIA",
-      "path": "bilder/merker/historie/locales/pt/etterkrigstid.webp"
+      "path": "bilder/merker/historie/locales/pt/etterkrigstid.webp",
+      "bytes": 468094,
+      "sha256": "d1f6531ad8451bc115ee8990780442d1525d2e32950c9714699ad17f962c2341",
+      "gitBlobSha": "e436af7551ef007d619631cd741b506ea2ea6175"
     },
     "fr": {
       "heading": "APRÈS-GUERRE",
       "footer": "HISTOIRE",
-      "path": "bilder/merker/historie/locales/fr/etterkrigstid.webp"
+      "path": "bilder/merker/historie/locales/fr/etterkrigstid.webp",
+      "bytes": 468032,
+      "sha256": "6bf17c5c04bfe253b7468aef387f722bbc3f6f3e86ef0a6f38dd0fb3206b4f16",
+      "gitBlobSha": "82306345285590febf5e01fb3411b4be23313ed4"
     }
   },
   "quality": {
-    "artworkProduced": false,
-    "visualApproved": false,
+    "artworkProduced": true,
+    "visualApproved": true,
     "binaryVerified": false,
-    "integrated": false
+    "integrated": false,
+    "technicalLocalVerified": true
   },
   "localesActive": false,
   "seriesProgress": {
@@ -101,5 +117,27 @@
     "next": "etterkrigstid"
   },
   "activationRule": "Produser en original i mørk brun Historie-stil (#603E1E, oker #D6A127), lag fire ellers identiske språkvarianter. Verifiser WebP med alfa, 1024×1024, SHA-256 og Git blob SHA for alle fem. Aktiver bare norsk etter visuell gjennomgang og målrettet CI. Ingen 6/14 på bildene.",
-  "guard": "Bevar HistoryGo-logoen, Historie-hovedmerket og de fem integrerte Historie-undermerkene byte-identisk."
+  "guard": "Bevar HistoryGo-logoen, Historie-hovedmerket og de fem integrerte Historie-undermerkene byte-identisk.",
+  "visualReview": {
+    "status": "reviewed_locally",
+    "approved": true,
+    "detail": "Fem visuelt sammenlignede versjoner av samme broderte scene; oversatt topptittel og nederste kategoritittel, mørk brun kategori- og okerfarge, uten 6/14 på merke; etterkrigstidsmotivet viser boligbygging, helsetjeneste, skole og kollektivtransport.",
+    "reviewedLanguages": [
+      "nb",
+      "en",
+      "es",
+      "pt",
+      "fr"
+    ]
+  },
+  "binaryTransfer": {
+    "verifiedInRepository": false,
+    "filesInLocalPackage": 5,
+    "sourceArchive": "etterkrigstid_5_sprak.zip",
+    "expectedDimensions": [
+      1024,
+      1024
+    ],
+    "expectedTransparency": true
+  }
 }
