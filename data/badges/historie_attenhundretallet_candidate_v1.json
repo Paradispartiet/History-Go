@@ -54,7 +54,10 @@
       "legibleAtPixels": 128,
       "noExternalCaption": true,
       "forbidAdditionalNumbers": true,
-      "translateBothFields": true
+      "translateBothFields": true,
+      "forbidProgressFraction": true,
+      "allowedVisibleTextPerLanguage": "Kun variants[lang].heading øverst og variants[lang].footer nederst. Aldri '3/14', '4/14', eller andre progresjonstall på merket.",
+      "noVisibleSeriesProgress": true
     },
     "categoryPaletteContract": {
       "parentCategory": "historie",
@@ -110,7 +113,7 @@
     "total": 14,
     "next": "attenhundretallet"
   },
-  "activationRule": "Norsk aktivering er FORBUDT før alle fem 1024x1024 transparent WebP-originaler er overført og SHA-256/Git blob verifisert, og før visuell kontroll har bekreftet tydelig riktig tittel øverst, HISTORIE nederst, korrekte oversettelser på alle fem og mørk brun Historie-farge (#603E1E) med okeraksenter (#D6A127). Verifiser faktisk bilde, ikke bare manifesttekst. Ingen løpenumre, lilla/sølv/gullring. Deretter målrettet CI. Behold oversettelser inaktive.",
+  "activationRule": "Norsk aktivering er FORBUDT før alle fem 1024x1024 transparent WebP-originaler er overført og SHA-256/Git blob verifisert, og før visuell kontroll har bekreftet tydelig riktig tittel øverst, HISTORIE nederst, korrekte oversettelser på alle fem og mørk brun Historie-farge (#603E1E) med okeraksenter (#D6A127). Verifiser faktisk bilde, ikke bare manifesttekst. Ingen løpenumre, lilla/sølv/gullring. Deretter målrettet CI. Behold oversettelser inaktive. PROGRESJONSTEKST (for eksempel 3/14 eller 4/14) MÅ ALDRI TRYKKES ELLER BRODERES PÅ SELVE MERKET; den tilhører kun appens brukergrensesnitt.",
   "guard": "Eksisterende HistoryGo-logo, Historie-hovedmerket og de tre ferdige Historie-undermerkene må bevares nøyaktig.",
   "visualReview": {
     "required": true,
@@ -119,6 +122,7 @@
     "allFiveLocaleTextsChecked": false,
     "historieBrownChecked": false,
     "braidedEdgeChecked": false,
-    "approvalRequiredBeforeActivation": true
+    "approvalRequiredBeforeActivation": true,
+    "noProgressNumberChecked": false
   }
 }
