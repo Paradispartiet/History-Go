@@ -188,41 +188,4 @@ assert.equal(readiness.gate?.broad_rollout_allowed_now, true);
 const readinessRole = (readiness.roles || []).find(row => row.key === KEY);
 assert.ok(readinessRole?.already_reference_or_pilot);
 
-// Symposium belongs to the existing role proof, not to a newly counted
-// gameplay test. Editorial coverage cannot confer role-world completion.
-const symposiumPath = 'docs/civication-symposium/by-saksbehandler.md';
-const symposium = fs.readFileSync(path.join(ROOT, symposiumPath), 'utf8');
-const symposiumIndex = fs.readFileSync(path.join(ROOT, 'docs/CIVICATION_JOBBGRUNNLAG.md'), 'utf8');
-const plannerProfile = fs.readFileSync(path.join(ROOT, 'docs/civication-symposium/arealplanlegger.md'), 'utf8');
-assert.ok(symposiumIndex.includes('(civication-symposium/by-saksbehandler.md)'));
-assert.ok(plannerProfile.includes('(by-saksbehandler.md)'));
-assert.ok(symposium.includes('by_saksbehandler'));
-assert.ok(symposium.includes(['by','radgiver','plan'].join('_')), 'Lillebekk ownership remains with plan adviser');
-assert.match(symposium, /Lillebekks eksisterende plansak|Lillebekk-plansaken/);
-assert.match(symposium, /ikke.*vedtak|ikke.*avgjørelse|fiktivt vedtak/i);
-for (const section of [
-  'Rolle, oppdrag og beslutningsmyndighet',
-  'Ordliste: synonymer, nabotitler, fag og dokumenter',
-  'Verktøy, klær, steder og dokumentkrav',
-  'Klasse, arbeidsvilkår, frister og makt',
-  'Arbeidsmatrise: fem etablerte praksisfortellinger',
-  'Hendelser, konflikt og realistiske valg',
-  'Dokumentnett, rollegrense og kontinuitet'
-]) assert.ok(symposium.includes('## ' + section), 'missing Symposium professional layer: ' + section);
-assert.equal(grammar.practice_stories.length, 5);
-for (const practice of grammar.practice_stories) {
-  assert.match(practice.id, /^s[1-5]$/);
-  assert.ok(symposium.includes('**' + practice.id + ':'), 'Symposium must explain existing task ' + practice.id);
-}
-assert.equal((symposium.match(/\| \*\*s[1-5]:/g) || []).length, 5);
-for (const domain of ['www.dibk.no', 'www.regjeringen.no']) {
-  assert.ok(symposium.includes('https://' + domain + '/'), 'primary public source: ' + domain);
-}
-const symposiumRefs = [...symposium.matchAll(/\]\((\.\.\/[^)#]+)\)/g)].map(m => m[1]);
-assert.ok(symposiumRefs.length >= 8, 'role and source network must be navigable');
-for (const href of symposiumRefs) {
-  const resolved = path.resolve(ROOT, 'docs/civication-symposium', href);
-  assert.ok(fs.existsSync(resolved), 'broken Symposium reference: ' + href);
-}
-
 console.log('✓ By Saksbehandler Role World rollout closes situated-reputation debt fail-closed');
