@@ -17,6 +17,7 @@ const storage={
 };
 const world=createAdapter(storage);
 const host={innerHTML:'',querySelectorAll(){return [];}};
+const inboxWindowEvents = {};
 const ctx={
  document:{
   readyState:'loading',
@@ -27,7 +28,7 @@ const ctx={
   CivicationState:{getActivePosition(){return activeRole;}},
   CivicationWorkWorld:world,
   CivicationMailEngine:{getInbox(){return [];}},
-  addEventListener(){},
+  addEventListener(name, handler){(inboxWindowEvents[name] ||= []).push(handler);},
   setTimeout(){throw new Error('test must not schedule UI refreshes');}
  }
 };
@@ -1298,6 +1299,37 @@ assert.equal(host.scrollTop,248,'preserve inbox scroll offset across an actual s
 assert.equal(focusOptions.length,2,'a successful save restores keyboard focus after DOM replacement');
 assert.equal(mockError.textContent,'');
 assert.equal(api.getLillebekkRestanseprioritetModel().latestLog.id,beforeClickLogId,'duplicate click does not create another case event');
+// An unrelated inbox event must never replace unsent text while the
+// player is actively composing a Lillebekk note in an open work panel.
+const beforeAutoTimer = ctx.window.setTimeout;
+const queuedAuto = [];
+ctx.window.setTimeout = function(callback, delay) {queuedAuto.push({callback, delay});};
+const unfinishedNote = 'Jeg jobber fremdeles med begrunnelsen for skolevei og overvann – ingen journalføring ennå.';
+ctx.document.activeElement = {
+ tagName:'TEXTAREA',
+ value:unfinishedNote,
+ closest(selector){return selector==='.civi-lillebekk-dossier details[open]'?openNamedPanels[0]:null;}
+};
+const draftBeforeRefresh = '<div data-unsent-player-note="1">Begrunnelse under arbeid</div>';
+host.innerHTML = draftBeforeRefresh;
+assert.ok(inboxWindowEvents['civi:inboxChanged']?.length,'real inbox change event was wired');
+inboxWindowEvents['civi:inboxChanged'][0]();
+const autoInboxRenders = queuedAuto.filter(item=>item.callback.name==='refreshInboxWithoutInterruptingDraft');
+assert.equal(autoInboxRenders.length,3,'background redraw uses the guarded scheduler');
+assert.deepEqual(Array.from(autoInboxRenders.map(item=>item.delay)),[0,80,260]);
+for (const item of autoInboxRenders) {
+ assert.equal(item.callback(),false,'editing the Lillebekk note suppresses an automatic redraw');
+}
+assert.equal(host.innerHTML,draftBeforeRefresh,'draft form DOM is not discarded by background events');
+assert.equal(ctx.document.activeElement.value,unfinishedNote,'typed but unsent note is preserved');
+ctx.document.activeElement={
+ tagName:'BUTTON',
+ closest(selector){return selector==='.civi-lillebekk-dossier details[open]'?openNamedPanels[0]:null;}
+};
+assert.equal(autoInboxRenders[0].callback(),true,'normal refresh resumes after editing');
+assert.ok(host.innerHTML.includes('data-civi-inbox-sections="1"'));
+ctx.window.setTimeout=beforeAutoTimer;
+
 host.querySelectorAll=previousInboxQuery;
 host.querySelector=previousInboxQueryOne;
 ctx.document.activeElement=previousActiveElement;
