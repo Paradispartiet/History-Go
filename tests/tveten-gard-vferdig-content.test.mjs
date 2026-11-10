@@ -48,7 +48,7 @@ test("Tveten source modules are registered and present in place-open",()=>{
   const story=read("data/stories/stories_tveten_gard.json");
   const lex=read("data/leksikon/places/oslo/historie/leksikon_tveten_gard.json");
   const lang=read("data/leksikon/sprak/places/europe/norway/oslo/tveten_gard.json");
-  const les=read("data/lesespor/oslo/lesespor_oslo_historie_tveten_gard.json");
+  const les={items:read("data/lesespor/oslo/lesespor_oslo_historie.json").items.filter(x=>x.place_ids.includes("tveten_gard"))};
   assert.equal(story.length,1);
   assert.equal(story[0].quality_profile,"episode_v1");
   assert.equal(story[0].place_id,placeId);
@@ -64,7 +64,7 @@ test("Tveten source modules are registered and present in place-open",()=>{
   assert.ok(read("data/stories/stories_manifest.json").files.some(x=>x.entity_id===placeId));
   assert.ok(read("data/leksikon/manifest.json").files.includes("data/leksikon/places/oslo/historie/leksikon_tveten_gard.json"));
   assert.ok(read("data/leksikon/sprak/manifest.json").place_files[placeId]);
-  assert.ok(read("data/lesespor/manifest.json").files.includes("oslo/lesespor_oslo_historie_tveten_gard.json"));
+  assert.ok(read("data/lesespor/manifest.json").files.includes("oslo/lesespor_oslo_historie.json"));
 });
 test("Existing 21/21 fullquiz and 10/10 QuizCard are unchanged in scope",()=>{
   const quiz=read("data/quiz/historie/tveten_gard_sets.json");
