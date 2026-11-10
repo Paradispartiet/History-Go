@@ -55,7 +55,7 @@ test('Krigshistorie har korrekt brun palett, topp/bunntekst og bare norsk aktive
  assert.equal(c.color,'#603E1E');
  assert.equal(c.secondaryColor,'#D6A127');
  assert.equal(c.sub.length,14);
- assert.equal(Object.keys(c.subBadgeImages).length,10);
+ assert.ok(Object.keys(c.subBadgeImages).length>=10,'Ti integrerte originalmerker må forbli registrert etter senere utvidelser');
  assert.equal(c.subBadgeImages.krigshistorie,m.sourceImage);
  assert.equal(m.palette.primary,c.color);
  assert.equal(m.palette.secondary,c.secondaryColor);
