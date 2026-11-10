@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "middelalder",
   "name": "Middelalder",
-  "status": "artwork_ready_binary_pending",
+  "status": "integrated",
   "sourceImage": "bilder/merker/historie/undermerker/middelalder-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -81,30 +81,33 @@
   },
   "quality": {
     "artworkProduced": true,
-    "visualApproved": false,
-    "binaryVerified": false,
-    "integrated": false,
+    "visualApproved": true,
+    "binaryVerified": true,
+    "integrated": true,
     "technicalLocalVerified": true
   },
   "localesActive": false,
   "activationRule": "Produser og godkjenn ett enkelt korrekt brodert middelaldermerke; lag fire varianter med identisk motiv og oversatt tekst, verifiser WebP/alfakanal/SHA-256, aktiver bare norsk original. Endre aldri Historie-hovedmerket eller Forhistorie.",
   "visualReview": {
-    "status": "candidate",
-    "note": "Five locally generated 1024x1024 transparent WebP files. Identical medieval town embroidery, localized headings and footers. Await final visual approval; assets not yet uploaded to this branch."
+    "status": "reviewed",
+    "approved": true,
+    "reference": "Forhistorie original design; same circular embroidered badge, brown braided border, title at top, HISTORIE at bottom",
+    "notes": "Norwegian medieval village with stone church, city wall/gate tower and market; translated text only on EN/ES/PT/FR, no numbering on badge."
   },
   "binaryTransfer": {
-    "verifiedInRepository": false,
+    "verifiedInRepository": true,
     "filesInLocalPackage": 5,
     "sourceArchive": "middelalder_fem_sprak.zip",
     "expectedDimensions": [
       1024,
       1024
     ],
-    "expectedTransparency": true
+    "expectedTransparency": true,
+    "expectedHashesVerified": true
   },
   "seriesProgress": {
-    "integrated": 1,
+    "integrated": 2,
     "total": 14,
-    "next": "middelalder"
+    "next": "tidlig_modernetid"
   }
 }
