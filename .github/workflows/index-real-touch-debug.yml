@@ -1,0 +1,29 @@
+name: Full index tap regression (diagnostic)
+
+on:
+  pull_request:
+    paths:
+      - 'tests/index-real-touch-debug-browser.mjs'
+      - '.github/workflows/index-real-touch-debug.yml'
+      - 'index.html'
+      - 'js/app.js'
+      - 'css/layout.css'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-index-taps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Load actual HistoryGo index and test pointer taps
+        run: node tests/index-real-touch-debug-browser.mjs
