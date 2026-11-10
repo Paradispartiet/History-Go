@@ -18,6 +18,9 @@ on:
       - 'tests/historie-byhistorie-badge-contract.test.mjs'
       - 'tests/historie-industrihistorie-badge-contract.test.mjs'
       - 'tests/historie-krigshistorie-badge-contract.test.mjs'
+      - 'tests/historie-sosialhistorie-badge-contract.test.mjs'
+      - 'bilder/merker/historie/undermerker/sosialhistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/sosialhistorie.webp'
       - 'bilder/merker/historie/undermerker/krigshistorie-brodert-v1.webp'
       - 'bilder/merker/historie/locales/*/krigshistorie.webp'
       - 'bilder/merker/historie/undermerker/industrihistorie-brodert-v1.webp'
@@ -75,6 +78,7 @@ jobs:
           node --test tests/historie-byhistorie-badge-contract.test.mjs
           node --test tests/historie-industrihistorie-badge-contract.test.mjs
           node --test tests/historie-krigshistorie-badge-contract.test.mjs
+          node --test tests/historie-sosialhistorie-badge-contract.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
       - name: Generate four-badge preview
