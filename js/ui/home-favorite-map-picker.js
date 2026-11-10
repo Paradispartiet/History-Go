@@ -71,13 +71,13 @@
     });
 
     const places = favoritePlaces();
-    const select = panel.querySelector("[data-favorite-place]");
-    const iconSelect = panel.querySelector("[data-favorite-place-icon]");
+    const select = /** @type {HTMLSelectElement|null} */ (panel.querySelector("[data-favorite-place]"));
+    const iconSelect = /** @type {HTMLSelectElement|null} */ (panel.querySelector("[data-favorite-place-icon]"));
     const customSection = panel.querySelector("[data-favorite-custom]");
     if (customSection) customSection.hidden = style === "badges" || !places.length;
     if (select) {
       select.replaceChildren();
-      for (const place of places) select.add(new Option(place.name, place.id));
+      for (const place of places) select.appendChild(new Option(place.name, place.id));
       if (!places.some((place) => place.id === selectedPlaceId)) selectedPlaceId = places[0]?.id || "";
       select.value = selectedPlaceId;
     }
@@ -151,9 +151,9 @@
         styleHost.appendChild(item);
       }
       const iconSelect = panel.querySelector("[data-favorite-place-icon]");
-      iconSelect.add(new Option("Bruk valgt standardikon", "default"));
+      iconSelect.appendChild(new Option("Bruk valgt standardikon", "default"));
       for (const [id, emoji, label] of symbols) {
-        if (id !== "badges") iconSelect.add(new Option(`${emoji} ${label}`, id));
+        if (id !== "badges") iconSelect.appendChild(new Option(`${emoji} ${label}`, id));
       }
       host.appendChild(panel);
       panel.addEventListener("click", (event) => {
@@ -170,11 +170,11 @@
         }
       });
       panel.querySelector("[data-favorite-place]").addEventListener("change", (event) => {
-        selectedPlaceId = String(event.target.value || "");
+        selectedPlaceId = event.target instanceof HTMLSelectElement ? event.target.value : "";
         render();
       });
       panel.querySelector("[data-favorite-place-icon]").addEventListener("change", (event) => {
-        window.HGMap?.setFavoritePlaceIcon?.(selectedPlaceId, event.target.value);
+        window.HGMap?.setFavoritePlaceIcon?.(selectedPlaceId, event.target instanceof HTMLSelectElement ? event.target.value : "default");
         render();
       });
       document.addEventListener("click", (event) => {
