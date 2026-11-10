@@ -77,6 +77,13 @@ try{
     await popup.waitFor({state:'visible',timeout:20000});
     const t=await popup.innerText();
     assert.match(t,expected,label+' missing expected '+labelSuffix+' in gallery');
+    if(labelSuffix==='people'){
+      await page.waitForFunction(()=>{
+        const popup=document.querySelector('.hg-popup.placecard-round-popup.visible');
+        const imgs=[...(popup?.querySelectorAll('.pc-person img.pc-person-img')||[])];
+        return imgs.length===2&&imgs.every(img=>img.complete&&img.naturalWidth>0);
+      },null,{timeout:30000});
+    }
     if(labelSuffix==='historical-events'){
       assert.match(t,/sædegårdsrettigheter/i);assert.match(t,/universitetsgrunn/i);
     }
