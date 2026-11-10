@@ -34,14 +34,18 @@ Maskinlesbare kildehenvisninger og kontroll mot faktisk runtime ligger i [filmTh
 
 **Nærlesing av manus, s. 71–73:** Før kampen diskuterer Dante og de andre hvem som skal betale for drikke fra butikken. Deretter går scenen fra skiltet på døra til et bilde av hele bygget fra gata. Manuset veksler mellom kunden ved den låste døra og spillerne på taket før kunden klatrer opp. Skiltet gir kunden en ventetid, mens vekslingen mellom nivåene lar oss se hva ventetiden betyr for begge parter. [Manus](https://thescriptsavant.com/movies/Clerks.pdf) · [Lisensiert utdrag hos Movieclips](https://www.youtube.com/watch?v=tp7ss_bTP4Y)
 
-**Overført til spillet:** På dag 12 konkurrerer invitasjonen og den andre kundens leveranse om samme ettermiddag. Den gamle lenka gjør konflikten konkret. Å rette og sende bruker av tida frilanseren har lovet bort. Å varsle gir Lea tid til å skrive kortversjonen. I begge tilfeller får vi se hvem som gjør arbeidet og hva foreningen faktisk sender ut.
+**Kinoversjonen og First Cut:** En sammenligning av de to klippene dokumenterer at kinoversjonen går tilbake til hockeyspillet etter bildet av kunden ved den stengte døra. First Cut gir kampen mer plass og har flere innstillinger, blant annet av spillerne på vei opp stigen. Det gir dekning for perspektivskiftet mellom kunde og spillere, mens den nøyaktige rytmen varierer mellom versjonene. Observasjonen bygger på versjonssammenligningen. [Movie-Censorship, taksekvensen](https://www.movie-censorship.com/report.php?ID=2422593)
+
+**Overført til spillet:** På dag 12 konkurrerer invitasjonen og den andre kundens leveranse om samme ettermiddag. Leas ønske om en gjennomgang av hele forsida kommer like før fristen. Spilleren kan sende den avtalte invitasjonen og overlate forsida til Lea, eller varsle at samlet levering vil ta lenger tid. Da kan Lea sende en kortversjon. I begge tilfeller får vi se hvem som gjør arbeidet og hva foreningen faktisk sender ut.
 
 **Arbeidet og ansvaret:** Invitasjonen sier torsdag, påmeldingsskjemaet sier fredag, og Lea har sendt torsdag til styret. Lea kan rette styremeldingen og forsida. Styrelederen bestiller og godkjenner teksten. Frilanseren redigerer invitasjonen, sjekker lenka og må samtidig holde en frist for en annen kunde.
 
 - **Dag 8–9:** Spilleren kan skrive en prøveåpning og sende et avgrenset tilbud, vente på en bekreftet bestilling eller takke nei og gjøre ferdig den andre kundens rettelse. Oppfølgingen følger det lagrede valget.
-- **Dag 11–13:** Når styrelederen bestiller, får spilleren dato og påmeldingsfrist og finner lenka til årets skjema. Ved levering godkjenner styrelederen teksten etter å ha testet lenka på mobilen. Ved varslet forsinkelse sender Lea en kortversjon, og styrelederen trekker bestillingen. En ubesvart forespørsel gir ingen leveransefrist.
+- **Dag 11–13:** Når styrelederen bestiller, får spilleren dato og påmeldingsfrist og finner lenka til årets skjema. Ved levering godkjenner styrelederen teksten etter å ha testet lenka på mobilen. Spilleren kan også avklare hvem som skal ta forsida ved en eventuell senere bestilling. Ved varslet forsinkelse sender Lea en kortversjon, og styrelederen trekker bestillingen. En ubesvart forespørsel gir ingen leveransefrist.
 
-Filmkoblingen ligger i hvordan små avbrytelser og kryssende forpliktelser preger en vanlig arbeidsdag. Scenene er spillbare i `frilans_med_lea.json` og `frilans_neste_steg.json`.
+**Dag 14–15 ved avbestilling.** Spilleren kan be om honorar for halvtimen som er brukt, eller avslutte saken og gjøre ferdig den andre kundens rettelse. Ber spilleren om honorar, kommer styrelederen tilbake med 300 kroner for halvtimen og en fakturamerking. Bekreftelsen lagrer et avtalt beløp. Fakturaen er fortsatt usendt, og saldoen endres ikke. Ved godkjent levering avsluttes invitasjonsoppdraget på dag 13.
+
+Filmkoblingen ligger i hvordan små avbrytelser og kryssende forpliktelser preger en vanlig arbeidsdag. Scenene er spillbare i `frilans_med_lea.json`, `frilans_neste_steg.json` og `frilans_etter_neste_steg.json`.
 
 
 ## Restport

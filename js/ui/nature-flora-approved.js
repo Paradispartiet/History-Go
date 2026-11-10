@@ -5,6 +5,22 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_parkslirekne: Object.freeze({
+      scientificName: "Reynoutria japonica",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/67_parkslirekne_v1.webp",
+      gitBlobSha: "8c33e23ca5587e0cc4db7ab889b762dc5abd9dad",
+      reviewedAt: "2026-11-06",
+      stage: "sensommerblomstring_med_jordstengler",
+      evidence: "data/natur/flora/illustration-quality-parkslirekne-20261106.json"
+    }),
+    emne_flora_kanadagullris: Object.freeze({
+      scientificName: "Solidago canadensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/66_kanadagullris_v1.webp",
+      gitBlobSha: "738ff7e58c4011fc1c2c96bd75d7fd9322ff9d07",
+      reviewedAt: "2026-11-06",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-kanadagullris-20261106.json"
+    }),
     emne_flora_kjempebjornkjeks: Object.freeze({
       scientificName: "Heracleum mantegazzianum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/65_kjempebjornkjeks_v1.webp",

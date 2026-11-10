@@ -1,0 +1,35 @@
+name: Tøyen torg – final PlaceCard and QuizCard acceptance
+on:
+  pull_request:
+    paths:
+      - 'tests/toyen-torg-vferdig-real-browser.mjs'
+      - '.github/workflows/toyen-torg-vferdig-acceptance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: toyen-torg-vferdig-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    name: Real mobile and desktop PlaceCard acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify Tøyen torg portrait, flip and four populated collections with popups
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/toyen-torg-vferdig-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: toyen-torg-vferdig-screen
+          path: artifacts/toyen-torg-vferdig/
+          if-no-files-found: ignore

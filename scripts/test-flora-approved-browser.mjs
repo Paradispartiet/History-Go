@@ -25,6 +25,8 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"parkslirekne",label:"Parkslirekne",term:"Parkslirekne",path:"b09/67_parkslirekne_v1.webp"},
+    {name:"kanadagullris",label:"Kanadagullris",term:"Kanadagullris",path:"b09/66_kanadagullris_v1.webp"},
     {name:"kjempebjornkjeks",label:"Kjempebjørnekjeks",term:"Kjempebjørnekjeks",path:"b09/65_kjempebjornkjeks_v1.webp"},
     {name:"skvallerkaal",label:"Skvallerkål",term:"Skvallerkål",path:"b09/64_skvallerkaal_v1.webp"},
     {name:"hagelupin",label:"Hagelupin",term:"Hagelupin",path:"b09/63_hagelupin_v1.webp"},
