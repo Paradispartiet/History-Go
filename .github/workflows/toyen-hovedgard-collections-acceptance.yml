@@ -9,6 +9,9 @@ on:
       - 'tests/toyen-hovedgard-collections-real-browser.mjs'
       - '.github/workflows/toyen-hovedgard-collections-acceptance.yml'
   workflow_dispatch:
+concurrency:
+  group: toyen-hovedgard-collections-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
