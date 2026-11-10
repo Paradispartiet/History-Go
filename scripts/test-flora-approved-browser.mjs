@@ -131,10 +131,6 @@ try{
     const title=species.label||species.term||species.name;
     const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
     await card.waitFor();
-    if(species.name==="snobaer"){
-      await page.waitForTimeout(1200);
-      console.log("Snøbær debug:",JSON.stringify({card:await card.evaluate(el=>el.outerHTML.slice(0,850)),stats:await page.locator("#natureStats").innerText(),rawApproved:await page.evaluate(()=>window.HG_NATURE_FLORA_APPROVED?.get("emne_flora_snobaer")),rawCount:await page.evaluate(()=>window.HG_NATURE_FLORA_APPROVED?.count)}));
-    }
     await card.locator("img").evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
     assert((await card.locator("img").getAttribute("src")).endsWith(species.path));
     assert.equal((await card.locator(".ne-image-label").innerText()).trim(),"Illustrasjon");

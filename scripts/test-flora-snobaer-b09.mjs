@@ -49,6 +49,7 @@ assert.equal(approved.count,92);
 assert.equal(approved.get(id)?.scientificName,latin);
 assert.equal(approved.get(id)?.src,a.src);
 assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
+assert.equal(approved.get("emne_kratt_snobaer")?.gitBlobSha,a.gitBlobSha,"Same Snøbær species in kratt collection must reuse canonical artwork");
 assert.equal(approved.get("emne_flora_gravbergknapp")?.scientificName,"Phedimus spurius");
 assert.notEqual(approved.get(id)?.src,approved.get("emne_flora_gravbergknapp")?.src);
 console.log("Snøbær #92: botanical taxonomy, original WebP, exact Git hash, canonical quiz and 92 approved images verified.");

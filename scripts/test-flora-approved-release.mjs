@@ -188,6 +188,7 @@ const expected = [
 ];
 assert.equal(approved.count,expected.length,"publication count changed without species QA");
 assert.equal(approved.get("emne_flora_tysk_honsetarm")?.src, approved.get("emne_flora_tyskhonsetarm")?.src, "Tysk hønsetarm aliases must reuse one illustration");
+assert.equal(approved.get("emne_kratt_snobaer")?.src,approved.get("emne_flora_snobaer")?.src,"Kratt Snøbær must reuse the same species artwork");
 assert.equal(approved.get("emne_flora_knoppurt")?.src, approved.get("emne_flora_engknoppurt")?.src, "Knoppurt must reuse Engknoppurt illustration");
 assert.equal(approved.get("emne_flora_knoppurt")?.gitBlobSha, approved.get("emne_flora_engknoppurt")?.gitBlobSha, "Knoppurt alias must not add a duplicate image");
 assert.equal(batch.items.length,15);
