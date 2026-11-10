@@ -40,7 +40,7 @@ test('Middelalder: all five original WebPs must exist and exactly match manifest
     const b=readFileSync(url);
     assert.equal(b.length,v.bytes,lang+' length');
     assert.equal(createHash('sha256').update(b).digest('hex'),v.sha256,lang+' SHA-256');
-    const blobHash=createHash('sha1').update(Buffer.from('blob '+b.length+'\\0')).update(b).digest('hex');
+    const blobHash=createHash('sha1').update(Buffer.from('blob '+b.length)).update(Buffer.from([0])).update(b).digest('hex');
     assert.equal(blobHash,v.gitBlobSha,lang+' Git blob SHA');
     assert.equal(b.toString('ascii',0,4),'RIFF');
     assert.equal(b.toString('ascii',8,12),'WEBP');
