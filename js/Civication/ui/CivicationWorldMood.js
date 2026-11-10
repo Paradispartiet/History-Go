@@ -107,6 +107,7 @@
   function init() {
     const doc = root.document;
     if (!doc) return;
+    root.addEventListener?.("civi:dayCalendarReady", sync);
     root.addEventListener?.("civi:dayPhaseChanged", sync);
     root.addEventListener?.("civi:booted", sync);
     root.addEventListener?.("civi:lifestoryChanged", sync);
