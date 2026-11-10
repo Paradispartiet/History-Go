@@ -943,7 +943,7 @@
       ? '<button class="civi-btn" type="button" data-lifestory-next-action>Åpne innboksen</button>'
       : "";
     const pendingPhaseNote = canInspectPendingMail && !needsInboxFirst && !continuationError
-      ? '<p class="muted civi-lifestory-pending-phase" role="status">Det venter en melding i '
+      ? '<p class="muted civi-lifestory-pending-phase" role="status">Du har noe å følge opp i fasen '
         + escapeHtml(pendingPhaseMail.phaseLabel || "dagens fase")
         + '. Åpne innboksen for å se hva som gjenstår.</p>'
       : "";
