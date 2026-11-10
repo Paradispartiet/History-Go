@@ -18,6 +18,9 @@ on:
       - 'js/ui/nature-flora-photographs.js'
       - 'finn-flora.html'
       - 'js/ui/nature-flora-approved.js'
+      - 'data/natur/flora/illustration-quality-buskmure-20261110.json'
+      - 'scripts/test-flora-buskmure-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/76_buskmure_v1.webp'
       - 'data/natur/flora/illustration-quality-syrin-20261110.json'
       - 'scripts/test-flora-syrin-b09.mjs'
       - 'bilder/natur/flora/illustrasjonskandidater/b09/75_syrin_v1.webp'
@@ -336,6 +339,7 @@ jobs:
       - run: node scripts/test-flora-varkaal-b09.mjs
       - run: node scripts/test-flora-varmure-b09.mjs
       - run: node scripts/test-flora-rodknapp-b09.mjs
+      - run: node scripts/test-flora-buskmure-b09.mjs
       - run: node scripts/test-flora-syrin-b09.mjs
       - run: node scripts/test-flora-mispel-b09.mjs
       - run: node scripts/test-flora-spirea-b09.mjs
