@@ -1229,6 +1229,11 @@ assert.equal(api.getLillebekkRestanseprioritetModel().current,true);
 // only direct data-model API calls. Other message details are unaffected.
 const previousInboxQuery = host.querySelectorAll;
 const previousInboxQueryOne = host.querySelector;
+const previousInboxAddEventListener = host.addEventListener;
+const inboxFocusoutHandlers = [];
+host.addEventListener = function(event, handler) {
+ if(event==='focusout') inboxFocusoutHandlers.push(handler);
+};
 const previousActiveElement = ctx.document.activeElement;
 const previousScrollTop = host.scrollTop;
 const focusOptions = [];
@@ -1322,16 +1327,35 @@ for (const item of autoInboxRenders) {
 }
 assert.equal(host.innerHTML,draftBeforeRefresh,'draft form DOM is not discarded by background events');
 assert.equal(ctx.document.activeElement.value,unfinishedNote,'typed but unsent note is preserved');
+assert.equal(inboxFocusoutHandlers.length,1,'one focusout listener on the stable inbox container');
+ctx.document.activeElement={
+ tagName:'TEXTAREA',
+ value:'Et annet aktivt fagfelt under arbeid',
+ closest(selector){return selector==='.civi-lillebekk-dossier details[open]'?openNamedPanels[0]:null;}
+};
+inboxFocusoutHandlers[0]();
+const firstReplay=queuedAuto.filter(item=>item.callback.name==='replayDeferredInboxRefresh');
+assert.equal(firstReplay.length,1);
+firstReplay[0].callback();
+assert.equal(host.innerHTML,draftBeforeRefresh,'switching between editable fields does not flush the pending refresh');
 ctx.document.activeElement={
  tagName:'BUTTON',
  closest(selector){return selector==='.civi-lillebekk-dossier details[open]'?openNamedPanels[0]:null;}
 };
-assert.equal(autoInboxRenders[0].callback(),true,'normal refresh resumes after editing');
-assert.ok(host.innerHTML.includes('data-civi-inbox-sections="1"'));
+inboxFocusoutHandlers[0]();
+const allReplays=queuedAuto.filter(item=>item.callback.name==='replayDeferredInboxRefresh');
+assert.equal(allReplays.length,2);
+allReplays[1].callback();
+assert.ok(host.innerHTML.includes('data-civi-inbox-sections="1"'),'pending inbox changes replay automatically after blur');
+inboxFocusoutHandlers[0]();
+assert.equal(queuedAuto.filter(item=>item.callback.name==='replayDeferredInboxRefresh').length,2,
+ 'after a successful replay the pending flag has been cleared');
+assert.equal(autoInboxRenders[0].callback(),true,'ordinary refresh still works after editing');
 ctx.window.setTimeout=beforeAutoTimer;
 
 host.querySelectorAll=previousInboxQuery;
 host.querySelector=previousInboxQueryOne;
+host.addEventListener=previousInboxAddEventListener;
 ctx.document.activeElement=previousActiveElement;
 host.scrollTop=previousScrollTop;
 
