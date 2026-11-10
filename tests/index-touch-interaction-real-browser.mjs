@@ -88,7 +88,40 @@ try{
         badgeClicked=await b.getAttribute("aria-expanded")==="true";
       }catch(e){console.error("BADGE CLICK ERROR "+engineName+" "+String(e).slice(0,2200));}
       console.log("INDEX BADGE RESULT "+engineName+" "+badgeClicked+" errors="+JSON.stringify(errors.slice(0,12)));
-      report.push({engineName,exploreClicked,mapClicked,badgeClicked,errors:errors.slice(0,12)});
+      await page.locator(".hg-map-category-trigger").click({timeout:9000});
+      await page.evaluate(()=>{
+        const map=window.HGMap?.getMap?.();
+        if(map?.jumpTo) map.jumpTo({center:[10.759,59.922],zoom:16});
+      });
+      await page.waitForTimeout(1200);
+      const markerProbe=await page.evaluate(()=>{
+        const map=window.HGMap?.getMap?.();
+        const layers=["hg-places-hit","hg-place-areas-hit"].filter(id=>!!map?.getLayer?.(id));
+        const markers=[...document.querySelectorAll(".hg-place-detail-marker, .hg-place-area-marker")]
+          .map(el=>{
+            const r=el.getBoundingClientRect();
+            return {id:el.dataset.placeId,x:r.left+r.width/2,y:r.top+r.height/2,w:r.width,h:r.height};
+          }).filter(m=>m.x>35&&m.x<innerWidth-130&&m.y>90&&m.y<innerHeight-150&&m.w>0)
+          .map(m=>({
+            ...m,
+            hit:layers.length?map.queryRenderedFeatures([m.x,m.y],{layers}).map(f=>f.properties?.id).slice(0,5):[],
+            top:document.elementFromPoint(m.x,m.y)?.id||document.elementFromPoint(m.x,m.y)?.className||""
+          }));
+        const selected=markers.find(m=>m.hit.length)||markers[0]||null;
+        const center={x:innerWidth*.45,y:innerHeight*.43};
+        const stack=document.elementsFromPoint(center.x,center.y).slice(0,8).map(e=>e.id||e.className||e.tagName);
+        return {layers,handlers:!!map?.__hgPlaceHandlers,markers:markers.slice(0,10),selected,center,centerStack:stack,
+          panelRect:(()=>{const e=document.getElementById("panel");const r=e?.getBoundingClientRect();return r?{x:r.x,y:r.y,w:r.width,h:r.height,display:getComputedStyle(e).display,pe:getComputedStyle(e).pointerEvents}:null;})()};
+      });
+      console.log("INDEX MAP MARKER PROBE "+engineName+" "+JSON.stringify(markerProbe));
+      let placeOpened=false;
+      if(markerProbe.selected){
+        await page.touchscreen.tap(markerProbe.selected.x,markerProbe.selected.y);
+        await page.waitForTimeout(2300);
+        placeOpened=await page.evaluate(()=>location.hash.includes("#/place/")||!!document.getElementById("placeCard")?.dataset.currentPlaceId);
+      }
+      console.log("INDEX MARKER TAP RESULT "+engineName+" "+placeOpened+" hash="+await page.evaluate(()=>location.hash));
+      report.push({engineName,exploreClicked,mapClicked,badgeClicked,placeOpened,markerProbe,errors:errors.slice(0,12)});
     }catch(e){
       console.error("INDEX TEST FATAL "+engineName+" "+String(e.stack||e).slice(0,5000));
       report.push({engineName,fatal:String(e.stack||e),errors});
@@ -97,5 +130,5 @@ try{
 }finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}
 console.log("INDEX CLICK REPORT "+JSON.stringify(report));
 assert.equal(report.length,2);
-assert.ok(report.every(r=>r.exploreClicked&&r.mapClicked&&r.badgeClicked),
+assert.ok(report.every(r=>r.exploreClicked&&r.mapClicked&&r.badgeClicked&&r.placeOpened),
   "A real page must handle Explore, map, and category badge taps on iPad/WebKit and phone/Chromium");
