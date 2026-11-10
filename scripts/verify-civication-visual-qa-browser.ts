@@ -49,6 +49,17 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       };
     });
     assert.match(minDag.phase, /^Fase: \S/, 'Min dag shows the real game phase');
+    const phasePosition = await page.evaluate(() => {
+      const app = globalThis as any;
+      const phase = app.CivicationCalendar?.getPhase?.();
+      const phases = app.CivicationCalendar?.DAY_PHASES;
+      return { phase, index: Array.isArray(phases) ? phases.indexOf(phase) + 1 : 0,
+        total: Array.isArray(phases) ? phases.length : 0 };
+    });
+    assert.ok(phasePosition.index > 0 && phasePosition.total === 8,
+      'canonical Civication calendar exposes eight ordered daily phases');
+    assert.ok(minDag.phase.endsWith(' · ' + phasePosition.index + ' av ' + phasePosition.total),
+      'Min dag shows the exact canonical phase position, not a guessed progress value');
     assert.ok(minDag.headerFits, 'Min dag header and miniature do not overlap at 390px');
     assert.ok(minDag.artSize?.width && minDag.artSize?.height, 'miniature illustration has dimensions');
     assert.ok(minDag.sceneVisible, 'Min dag has an active scene or shell story');
