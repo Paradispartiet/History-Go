@@ -90,6 +90,19 @@ async function main() {
   assert.equal(calendar.getClock().dayIndex, 1);
   assert.equal(app.current().kalenderDag, 1, "checkpoint initializes against shell calendar");
 
+  // Button labels and their tone/skill/action hints need an actual text
+  // separator. Otherwise textContent (and copied/accessibility text in some
+  // environments) fuses the words, e.g. "dagenomsorg".
+  const firstDayChoices = Array.from(panel.querySelectorAll(".civi-lifestory-choice"));
+  assert.ok(firstDayChoices.some(button => button.querySelector(":scope > small")),
+    "the first scene contains a choice with a secondary label");
+  for (const button of firstDayChoices) {
+    const label = button.querySelector(":scope > span")?.textContent;
+    const hint = button.querySelector(":scope > small")?.textContent;
+    if (label && hint) assert.ok(button.textContent.includes(label + " " + hint),
+      "the secondary label is separated from the choice text");
+  }
+
   // The mail day cannot roll over while a Life Story choice is incomplete.
   calendar.setPhase("day_end");
   const blocked = await window.CivicationDayProgression.advancePhaseIfReady();

@@ -794,9 +794,9 @@
         + (valg.handling ? " data-lifestory-navigates=\"true\"" : "")
         + (status.available ? "" : " disabled aria-disabled=\"true\"") + ">"
         + "<span>" + escapeHtml(valg.tekst) + "</span>"
-        + (valg.tone ? "<small>" + escapeHtml(valg.tone) + "</small>" : "")
-        + (required ? "<small class=\"civi-lifestory-skill-hint\">" + escapeHtml(detail) + "</small>" : "")
-        + (/** @type {any} */ (valg).handling ? "<small class=\"civi-lifestory-action-hint\">→ "
+        + (valg.tone ? " <small>" + escapeHtml(valg.tone) + "</small>" : "")
+        + (required ? " <small class=\"civi-lifestory-skill-hint\">" + escapeHtml(detail) + "</small>" : "")
+        + (/** @type {any} */ (valg).handling ? " <small class=\"civi-lifestory-action-hint\">→ "
           + escapeHtml(/** @type {any} */ (window).CivicationLifestoryActions?.HANDLING_LABELS?.[/** @type {any} */ (valg).handling.type] || "utfører handlingen")
           + "</small>" : "")
         + "</button>";
