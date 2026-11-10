@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_sibirsk_ertebusk: Object.freeze({
+      scientificName: "Caragana arborescens",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/79_sibirsk_ertebusk_v1.webp",
+      gitBlobSha: "dea018f7c4b396527db9b037d17bf44aae866e57",
+      reviewedAt: "2026-11-10",
+      stage: "varblomstring_og_sommerbelger_pedagogisk",
+      evidence: "data/natur/flora/illustration-quality-sibirsk-ertebusk-20261110.json"
+    }),
     emne_flora_russekaal: Object.freeze({
       scientificName: "Bunias orientalis",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/78_russekaal_v1.webp",
