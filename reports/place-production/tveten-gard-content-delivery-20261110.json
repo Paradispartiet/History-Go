@@ -1,0 +1,73 @@
+{
+  "schema": "history_go_place_content_delivery_v1",
+  "place_id": "tveten_gard",
+  "category": "historie",
+  "date": "2026-11-10",
+  "status": "browser_acceptance_passed_pending_merge",
+  "editorial_vferdig": false,
+  "canonical": "data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_10/tveten_gard.json",
+  "completed_content": {
+    "placecard": "Separate original 900x1200 editorial SVG. Licensed CC BY-SA 3.0 2018 documentary hero retained.",
+    "fullquiz": "Existing 21/21 unchanged",
+    "quizcard": "Existing 10/10 unchanged",
+    "fagverk": "Existing curated content unchanged",
+    "people": "Three established historical profiles; two newly supplied symbolic non-portrait SVG illustrations.",
+    "story": "One source-grounded 1950/2006 turning point.",
+    "leksikon": "Two place-specific articles with seven dated historical source points.",
+    "sprakleksikon": "Five historically relevant Norwegian terms.",
+    "lesespor": "Four open source links, no copied articles.",
+    "historical_events": "2 sourced ownership events (1408 Hovedøya monastery; 1950 municipality purchase of most land) with distinct labelled original 1024x1024 SVGs.",
+    "placecard_collections": [
+      "people",
+      "historical_events"
+    ]
+  },
+  "source_review": {
+    "primary": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/tveten-gard/",
+    "secondary": [
+      "https://oslobyleksikon.no/side/Tveten_g%C3%A5rd",
+      "https://lokalhistoriewiki.no/Tveten_(Oslo_gnr_140/1)"
+    ],
+    "historical_cautions": [
+      "The year 1408 is first documented written mention, not an established clearing year.",
+      "Mogens Lauritssøn takes over after 1708, not necessarily during 1708.",
+      "The 1950 municipality purchase refers to most farm land, while acquisition of the buildings is in 2006.",
+      "The two new People images are symbolic original editorial graphics, not historical portraits."
+    ]
+  },
+  "unverified": [
+    "Focused GitHub Actions CI and deterministic generation acceptance",
+    "Separate GitHub Pages deployment verification",
+    "Formal editorial vFerdig attestation",
+    "Endelig obligatorisk GitHub CI på merge-head; main-merge og formell vFerdig-attestasjon"
+  ],
+  "note": "Content release candidate, not the formal vFerdig attestation. Two real PlaceCard collections integrated; final QA and merge pending.",
+  "collection_review": {
+    "people": {
+      "status": "PASS",
+      "count": 3,
+      "caveat": "Hannibal Sehested possible short-lived association; not presented as verified ownership."
+    },
+    "historical_events": {
+      "status": "PASS",
+      "count": 2
+    },
+    "objects": {
+      "status": "BEGRUNNET N/A",
+      "reason": "Building parts are not independent movable historical objects."
+    },
+    "brands": {
+      "status": "BEGRUNNET N/A",
+      "reason": "No locally verified authentic brand preview."
+    }
+  },
+  "browser_acceptance": {
+    "status": "PASS",
+    "run": "https://github.com/Paradispartiet/History-Go/actions/runs/42905802611",
+    "screenshot_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/42905802611/artifacts/13804168354",
+    "viewports": [
+      390,
+      1440
+    ]
+  }
+}
