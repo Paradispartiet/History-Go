@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_buskmure: Object.freeze({
+      scientificName: "Dasiphora fruticosa",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/76_buskmure_v1.webp",
+      gitBlobSha: "d6f7dcbe2eda238ea05a9e614e893d4a6c3f38d3",
+      reviewedAt: "2026-11-10",
+      stage: "sommerblomstring_gule_fembladige_blomster",
+      evidence: "data/natur/flora/illustration-quality-buskmure-20261110.json"
+    }),
     emne_flora_syrin: Object.freeze({
       scientificName: "Syringa vulgaris",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/75_syrin_v1.webp",
