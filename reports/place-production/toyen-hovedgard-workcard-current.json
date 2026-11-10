@@ -20,13 +20,13 @@
     ],
     "boundaries": "1670 og 1812 gjelder rettigheter og eierskifte på Tøyen; ingen påstand om at tildelingshandlingene fant sted i hovedhuset. Eksisterende Jens Bjelke-bilde er slektsvåpen, ikke identitetsportrett."
   },
-  "active_file_scope": "Canonical Tøyen hovedgård, place-open, to lokale historiske SVG-kort, én målrettet Node-test og Chromium-akseptanseworkflow. Ingen quiz, badges, global People eller andre Places endres.",
+  "active_file_scope": "Tøyen hovedgårds canonical Place, to illustrerte Historical Events, rettet Henrik Bjelke-monogram i canonical People med genererte People-shards, oppdatert place-open og epokeindeks, målrettede kontrakts-/browsertester. Ingen quiz, hovedbadge eller andre steder endret.",
   "collection_ids": [
     "people",
     "historical_events"
   ],
   "collection_status": {
-    "people": "PASS: Jens Bjelke og Henrik Bjelke; to eksisterende canonical People med direkte stedstilknytning.",
+    "people": "PASS – Jens og Henrik Bjelke; Henrik har originalt, tydelig ikke-portrett SVG-monogram, kilde- og rettighetsmetadata og lastbar preview kontrollert i ekte Chromium.",
     "historical_events": "PASS: sædegårdsrettigheter 1670 og universitetets overtakelse 1812, to selvstendige originalillustrasjoner 1024x1024 merket ikke historiske dokumenter.",
     "objects": "BEGRUNNET N/A: fasade, kjeller, mansardtak og sidefløyer er bygningsdeler; ingen dokumentert selvstendig fysisk Object kvalifisert.",
     "brands": "BEGRUNNET N/A: uten autentisk, lokalt forankret merke/ordmerke som egen entity i hovedgårdens funksjon."
@@ -43,25 +43,26 @@
     "front": "900×1200 original redaksjonell SVG-illustrasjon, tydelig merket, fra merget PR #7148"
   },
   "browser_acceptance": {
-    "status": "PENDING",
-    "test": "tests/toyen-hovedgard-collections-real-browser.mjs",
+    "status": "PASS",
+    "run": "https://github.com/Paradispartiet/History-Go/actions/runs/42874199454",
     "viewports": [
       390,
       1440
     ],
-    "scope": "Forside 900×1200, QuizCard-vending, to People, to Historical Events, popupene og script-feil."
+    "tests": "QuizCard-vending, to People og to Historical Events, popup, visning av begge faktiske personbilder, ingen JavaScript-feil",
+    "manual_visual_review": "2026-11-10: Mobilskjermbilde av People-popup kontrollert etter ny original Henrik-illustrasjon; denne er tydelig merket illustrasjon, ikke portrett.",
+    "screenshot_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/42874199454/artifacts/13791675544",
+    "physical_device_qa": false
   },
   "remaining_before_vferdig": [
-    "Bestått og dokumentert målrettet Chromium-akseptanse på mobil og desktop.",
-    "Visuell kontroll av People-/Historical Events-popupbilder og kortoverskrift.",
-    "Vurdering av endelig formell vFerdig-attestasjon; ingen menneskelig fysisk enhetstest påstås."
+    "Eventuell egen formell vFerdig-sluttattestasjon etter samlingsmerge og Pages-bekreftelse; ingen fysisk enhetstest påstås."
   ],
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
     "status": "PASS",
     "place_id": "toyen_hovedgard",
     "category": "historie",
-    "recorded_at": "2026-11-10T17:49:00Z",
+    "recorded_at": "2026-11-10T18:24:48.053Z",
     "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
     "files": [
       {
