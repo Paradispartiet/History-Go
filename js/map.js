@@ -1439,7 +1439,7 @@
     function refreshMarkers() {
       drawPlaceMarkers();
     }
-    window.addEventListener("hg:favorites-changed", () => { if (MAP && favoriteViewOnly) drawPlaceMarkers(); });
+    window.addEventListener?.("hg:favorites-changed", () => { if (MAP && favoriteViewOnly) drawPlaceMarkers(); });
     window.HGCoordinateTrust = { getCoordinateTrust };
     window.HGMap = {
       initMap,
