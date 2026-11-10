@@ -77,6 +77,18 @@ declare global {
       render?: () => void;
     };
     renderLeftBadges?: () => void;
+    HGFavoritePlaces?: {
+      getIds?: () => string[];
+      has?: (placeId: string) => boolean;
+      count?: () => number;
+      toggle?: (placeId: string) => boolean;
+    };
+    HGHomeFavoriteMapPicker?: {
+      init?: () => boolean;
+      render?: () => void;
+      toggle?: () => void;
+      close?: () => void;
+    };
     HGNearbyFilterControls?: {
       init?: () => void;
       updateFilterButton?: () => void;
