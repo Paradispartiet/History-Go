@@ -50,6 +50,8 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - name: Fast Min dag choice and day-transition regression
+        run: node --test tests/civication-lifestory-choice-outcome-focus.test.js tests/civication-lifestory-next-day-focus.test.js
       - name: Run Civication map tests
         run: npm run test:civication-map
       - name: Audit Civication place mappings
