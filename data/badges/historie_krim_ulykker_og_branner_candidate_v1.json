@@ -3,7 +3,7 @@
   "categoryId": "historie",
   "id": "krim_ulykker_og_branner",
   "name": "Krim, ulykker og branner",
-  "status": "artwork_pending",
+  "status": "integrated",
   "sourceImage": "bilder/merker/historie/undermerker/krim_ulykker_og_branner-brodert-v1.webp",
   "parentBadgeReference": {
     "path": "bilder/merker/historie.PNG",
@@ -95,41 +95,80 @@
     "nb": {
       "heading": "KRIM, ULYKKER OG BRANNER",
       "footer": "HISTORIE",
-      "path": "bilder/merker/historie/undermerker/krim_ulykker_og_branner-brodert-v1.webp"
+      "path": "bilder/merker/historie/undermerker/krim_ulykker_og_branner-brodert-v1.webp",
+      "bytes": 446712,
+      "sha256": "55625906105881b90c3d3d5b56e3e69e07c01fd31437debe44572785738a79bc",
+      "gitBlobSha": "ef274faad88d99b784b1ef7dc1f5f41c12735ad7"
     },
     "en": {
       "heading": "CRIME, ACCIDENTS & FIRES",
       "footer": "HISTORY",
-      "path": "bilder/merker/historie/locales/en/krim_ulykker_og_branner.webp"
+      "path": "bilder/merker/historie/locales/en/krim_ulykker_og_branner.webp",
+      "bytes": 446010,
+      "sha256": "d38169e83a9391fcf7a782f39265435fa763bb751675b519ec51f1f6625e6f7f",
+      "gitBlobSha": "9526ea2901533eeb69031a88b42a756f101d2a54"
     },
     "es": {
       "heading": "CRÍMENES, ACCIDENTES E INCENDIOS",
       "footer": "HISTORIA",
-      "path": "bilder/merker/historie/locales/es/krim_ulykker_og_branner.webp"
+      "path": "bilder/merker/historie/locales/es/krim_ulykker_og_branner.webp",
+      "bytes": 447634,
+      "sha256": "6a9ffcebf20ae11b0706fbce34f430ce2d4b92c2ee7204f4ebdd64b3941d3bd8",
+      "gitBlobSha": "593c1e945051ec6ce60f4ac328745b4350bf11a8"
     },
     "pt": {
       "heading": "CRIMES, ACIDENTES E INCÊNDIOS",
       "footer": "HISTÓRIA",
-      "path": "bilder/merker/historie/locales/pt/krim_ulykker_og_branner.webp"
+      "path": "bilder/merker/historie/locales/pt/krim_ulykker_og_branner.webp",
+      "bytes": 447222,
+      "sha256": "4ea6f4efd78875b3a61b1ec614c831150c52edc207fae12139f9000b6580be78",
+      "gitBlobSha": "a23114dc8f5a8977dae9bf57f92149bd8ec6326c"
     },
     "fr": {
       "heading": "CRIMES, ACCIDENTS ET INCENDIES",
       "footer": "HISTOIRE",
-      "path": "bilder/merker/historie/locales/fr/krim_ulykker_og_branner.webp"
+      "path": "bilder/merker/historie/locales/fr/krim_ulykker_og_branner.webp",
+      "bytes": 447504,
+      "sha256": "b18550225d99c99fd92fe729f938781027c04c089b658f25c656b6b3a6d3b379",
+      "gitBlobSha": "138404a4e143643df957ab821e6a9dee8cd7d1c3"
     }
   },
   "quality": {
-    "artworkProduced": false,
-    "visualApproved": false,
-    "binaryVerified": false,
-    "integrated": false
+    "artworkProduced": true,
+    "visualApproved": true,
+    "binaryVerified": true,
+    "integrated": true,
+    "technicalLocalVerified": true
   },
   "localesActive": false,
   "seriesProgress": {
-    "integrated": 12,
+    "integrated": 13,
     "total": 14,
-    "next": "krim_ulykker_og_branner"
+    "next": "migrasjon_og_minoritetshistorie"
   },
-  "activationRule": "Lag fem byte-identiske 1024×1024 transparente WebP med identisk scene og bare oversatte tekstfelt. Kontroller riktige farger, alle bildenes synlige etiketter, fravær av progresjonstall, SHA-256/Git-blob, og aktiver kun norsk etter målrettet test. Fire andre språk forblir inaktive.",
-  "guard": "HistoryGo-hovedlogoen, Historie-hovedmerket og alle tolv integrerte Historie-undermerkene skal forbli byte-identiske."
+  "activationRule": "Fem individuelle WebP-filer med identisk historisk sentralillustrasjon og korrekt oversatt overskrift og bunntekst. Git-blob og SHA-256 skal være verifisert, bare norsk registreres aktivt; øvrige språk beholdes inaktive.",
+  "guard": "HistoryGo-hovedlogoen, Historie-hovedmerket og alle tolv integrerte Historie-undermerkene skal forbli byte-identiske.",
+  "binaryTransfer": {
+    "verifiedInRepository": true,
+    "filesInLocalPackage": 5,
+    "expectedDimensions": [
+      1024,
+      1024
+    ],
+    "expectedTransparency": true,
+    "expectedHashesVerified": true
+  },
+  "visualReview": {
+    "approved": true,
+    "languagesReviewed": [
+      "nb",
+      "en",
+      "es",
+      "pt",
+      "fr"
+    ],
+    "noProgressNumberChecked": true,
+    "categoryColorsChecked": true,
+    "notes": "Samme historiske motiv, brun Historie-ring, okerdetaljer og fem oversatte buetekster. Ingen progresjonstall."
+  }
 }
