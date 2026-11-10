@@ -129,6 +129,22 @@ async function main() {
   // An unemployed player can skip empty phases, but may not skip an
   // unanswered required morning mail.
   app.setQueue([{ id: "required-morning", phase: "morning", status: "queued", required: true }]);
+  let openedPendingInbox = 0;
+  window.CivicationNextActionUI = {
+    open: () => { openedPendingInbox++; return true; }
+  };
+  window.CivicationLifestoryUI.render();
+  assert.match(panel.textContent, /Det venter en melding i Morgen/,
+    "Min dag shows a phase-specific prompt before a rejected day transition");
+  const earlyInbox = panel.querySelectorAll("[data-lifestory-next-action]");
+  assert.equal(earlyInbox.length, 1, "one inbox shortcut even without a selected mail card");
+  assert.equal(panel.querySelector("[data-lifestory-next-day]").disabled, false,
+    "read-only inbox hint does not change the canonical day gate");
+  earlyInbox[0].click();
+  assert.equal(openedPendingInbox, 1, "early shortcut delegates to the real inbox");
+  assert.equal(calendar.getClock().dayIndex, 1, "opening pending mail cannot move the day");
+  assert.equal(app.current().dag, 1, "opening pending mail cannot advance the story");
+  delete window.CivicationNextActionUI;
   panel.querySelector("[data-lifestory-next-day]").click();
   await delay();
   assert.equal(app.current().dag, 1);
