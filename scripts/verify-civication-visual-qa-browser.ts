@@ -4,7 +4,7 @@
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
 
-export async function verifyChoiceRefreshFocus(page: any) {
+export async function verifyChoiceRefreshFocus(page: any, outputDir?: string) {
   const result = await page.evaluate(() => {
     const app = globalThis as any;
     const doc = app.document;
@@ -43,9 +43,18 @@ export async function verifyChoiceRefreshFocus(page: any) {
     return { settledFocus: !!active?.matches?.('#civiLifestoryPanel [data-lifestory-choice]')
       && active.getAttribute('data-lifestory-scene') === expected.sceneId
       && active.getAttribute('data-lifestory-choice') === expected.choiceId,
-      settledScroll: Math.abs(app.scrollY - expected.scrollBefore) <= 1 };
+      settledScroll: Math.abs(app.scrollY - expected.scrollBefore) <= 1,
+      activeTag: active?.tagName || '', activeId: active?.id || '',
+      activeScene: active?.getAttribute?.('data-lifestory-scene'),
+      activeChoice: active?.getAttribute?.('data-lifestory-choice'),
+      scrollBefore: expected.scrollBefore, scrollAfter: app.scrollY };
   }, result);
-  assert.ok(settled.settledFocus && settled.settledScroll, 'scheduled profile refreshes preserve the same choice and scroll');
+  if ((!settled.settledFocus || !settled.settledScroll) && outputDir) {
+    await page.screenshot({ path: join(outputDir, 'min-dag-profile-refresh-failure.png'),
+      fullPage: false, animations: 'disabled' }).catch(() => {});
+  }
+  assert.ok(settled.settledFocus, 'scheduled profile refresh focus: ' + JSON.stringify({ ...result, ...settled }));
+  assert.ok(settled.settledScroll, 'scheduled profile refresh scroll: ' + JSON.stringify({ ...result, ...settled }));
   Object.assign(result, settled);
   return result;
 }
@@ -391,7 +400,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       ).first();
       await localChoice.waitFor({ state: 'visible', timeout: 90000 });
       await localChoice.focus();
-      const choiceRefreshFocus = await verifyChoiceRefreshFocus(decisionPage);
+      const choiceRefreshFocus = await verifyChoiceRefreshFocus(decisionPage, outputDir);
       await localChoice.press('Enter');
       await decisionPage.waitForFunction(() => {
         const doc = (globalThis as any).document;

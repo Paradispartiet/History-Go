@@ -70,7 +70,7 @@ export default async function verifyCivicationWebkitMobile(browser: any, origin:
       '#civiLifestoryPanel .civi-lifestory-choice:not(:disabled):not([data-lifestory-navigates])'
     ).first();
     await localChoice.focus();
-    const choiceRefreshFocus = await verifyChoiceRefreshFocus(page);
+    const choiceRefreshFocus = await verifyChoiceRefreshFocus(page, outputDir);
     await localChoice.press('Enter');
     await page.waitForFunction(() =>
       !!(globalThis as any).document.querySelector('#civiLifestoryPanel .civi-lifestory-konsekvens'),
