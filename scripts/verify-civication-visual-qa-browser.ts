@@ -263,8 +263,21 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     if (mapType === 'webgl') {
       result.closeRendererInfo = await page.evaluate(() =>
         (globalThis as any).CivicationThreeMap.getSceneStats().rendererInfo);
-      assert.ok(result.cityRendererInfo && result.closeRendererInfo,
-        'WebGL draw-call and memory telemetry is available for visual QA');
+      // These values must come from rendered WebGL frames. Reject empty
+      // counters before treating them as useful performance evidence.
+      // This is only a sanity check, NOT a measured physical iPhone FPS.
+      for (const [view, info] of [
+        ['city', result.cityRendererInfo],
+        ['close', result.closeRendererInfo]
+      ] as const) {
+        assert.ok(info && Number.isFinite(info.calls) && info.calls > 0
+          && Number.isFinite(info.triangles) && info.triangles > 0,
+          `${view} WebGL frame reports nonzero draw calls and triangles`);
+        assert.ok(Number.isFinite(info.geometries) && info.geometries > 0
+          && Number.isFinite(info.textures) && info.textures >= 0
+          && Number.isFinite(info.pixelRatio) && info.pixelRatio > 0,
+          `${view} WebGL frame reports valid resources and pixel ratio`);
+      }
     }
     // An isolated second page verifies the actual choice-to-consequence
     // transition. Keep the original page's city/zoom screenshots unchanged,
