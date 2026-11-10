@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_gravbergknapp: Object.freeze({
+      scientificName: "Phedimus spurius",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/69_gravbergknapp_v1.webp",
+      gitBlobSha: "4e25f6210f4932d379a735d5c0d0601db376f91c",
+      reviewedAt: "2026-11-10",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-gravbergknapp-20261110.json"
+    }),
     emne_flora_kjempespringfro: Object.freeze({
       scientificName: "Impatiens glandulifera",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/68_kjempespringfro_v1.webp",
