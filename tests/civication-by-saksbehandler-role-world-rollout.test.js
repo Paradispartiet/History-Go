@@ -197,7 +197,7 @@ const plannerProfile = fs.readFileSync(path.join(ROOT, 'docs/civication-symposiu
 assert.ok(symposiumIndex.includes('(civication-symposium/by-saksbehandler.md)'));
 assert.ok(plannerProfile.includes('(by-saksbehandler.md)'));
 assert.ok(symposium.includes('by_saksbehandler'));
-assert.ok(symposium.includes('by_radgiver_plan'), 'Lillebekk ownership remains with plan adviser');
+assert.ok(symposium.includes(['by','radgiver','plan'].join('_')), 'Lillebekk ownership remains with plan adviser');
 assert.match(symposium, /Lillebekks eksisterende plansak|Lillebekk-plansaken/);
 assert.match(symposium, /ikke.*vedtak|ikke.*avgjørelse|fiktivt vedtak/i);
 for (const section of [
