@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "categoryId": "historie",
+  "id": "samtidshistorie",
+  "name": "Samtidshistorie",
+  "status": "artwork_pending",
+  "sourceImage": "bilder/merker/historie/undermerker/samtidshistorie-brodert-v1.webp",
+  "parentBadgeReference": {
+    "path": "bilder/merker/historie.PNG",
+    "preserveExactOriginal": true
+  },
+  "siblingReferences": [
+    {
+      "id": "forhistorie",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "middelalder",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "tidlig_modernetid",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "attenhundretallet",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "nittenhundre_1900_1945",
+      "preserveExactOriginal": true
+    },
+    {
+      "id": "etterkrigstid",
+      "preserveExactOriginal": true
+    }
+  ],
+  "palette": {
+    "primary": "#603E1E",
+    "secondary": "#D6A127",
+    "text": "#F5E8CE",
+    "border": "Mørk kastanjebrun flettet broderikant med okergule sømmer, ingen generisk gullkant."
+  },
+  "design": {
+    "format": "image/webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "transparent": true,
+    "motif": "Norsk samtidshistorie fra 1970-årene til i dag som historisk montasje: havbasert olje- og gassindustri, utbygging av moderne offentlige byrom, framveksten av digitale medier og politisk/demokratisk offentlighet. Ikke framstill ulike tiår som én konkret hendelse.",
+    "composition": "Rundt originalt broderimerke i den godkjente Historie-familien. SAMTIDSHISTORIE øverst i bue, HISTORIE nederst. Kremhvit brodert tekst mot brun stoffring, oker som detalj. Alle språk deler eksakt samme motiv, bare tekst endres. Ingen progresjonstall som 7/14.",
+    "typography": {
+      "top": "SAMTIDSHISTORIE",
+      "bottom": "HISTORIE",
+      "translateBothFields": true,
+      "noExternalCaption": true,
+      "forbidProgressFraction": true,
+      "legibleAtPixels": 128
+    },
+    "doNotUse": [
+      "7/14 eller andre progresjonstall på selve merket",
+      "gullring, lilla eller sølv som kategori-farge",
+      "fotografi eller flat generisk ikonografi",
+      "andre tidsepokers motiver som vikingskip, borg eller damptog",
+      "falske logoer eller falske historiske dokumenter"
+    ]
+  },
+  "variants": {
+    "nb": {
+      "heading": "SAMTIDSHISTORIE",
+      "footer": "HISTORIE",
+      "path": "bilder/merker/historie/undermerker/samtidshistorie-brodert-v1.webp"
+    },
+    "en": {
+      "heading": "CONTEMPORARY",
+      "footer": "HISTORY",
+      "path": "bilder/merker/historie/locales/en/samtidshistorie.webp"
+    },
+    "es": {
+      "heading": "CONTEMPORÁNEA",
+      "footer": "HISTORIA",
+      "path": "bilder/merker/historie/locales/es/samtidshistorie.webp"
+    },
+    "pt": {
+      "heading": "CONTEMPORÂNEA",
+      "footer": "HISTÓRIA",
+      "path": "bilder/merker/historie/locales/pt/samtidshistorie.webp"
+    },
+    "fr": {
+      "heading": "CONTEMPORAINE",
+      "footer": "HISTOIRE",
+      "path": "bilder/merker/historie/locales/fr/samtidshistorie.webp"
+    }
+  },
+  "quality": {
+    "artworkProduced": false,
+    "visualApproved": false,
+    "binaryVerified": false,
+    "integrated": false
+  },
+  "localesActive": false,
+  "seriesProgress": {
+    "integrated": 6,
+    "total": 14,
+    "next": "samtidshistorie"
+  },
+  "activationRule": "Produser norsk brodert original og fire identiske WebP-versjoner med kun oversatt topp- og bunntekst. Verifiser alle som 1024×1024 med gjennomsiktig bakgrunn og SHA-256/Git blob-SHA. Aktiver kun norsk etter visuell kontroll og målrettet CI; ikke merk som integrert før binærfilene finnes i repo. Bevar hovedmerke og tidligere seks undermerker.",
+  "guard": "HistoryGo-hovedlogo, Historie-hovedmerket og alle seks tidligere godkjente Historie-undermerker bevares byte-identisk."
+}
