@@ -1,0 +1,58 @@
+name: Minneparken historical caption and quiz regression
+on:
+  push:
+    branches:
+      - qa/minneparken-final-1a3c2a4-20261111
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: echo "CHROME_BIN=$(command -v google-chrome)" >> "$GITHUB_ENV"
+      - name: Existing source and release guards
+        run: node --test tests/minneparken-historical-photo-provenance.test.mjs tests/minneparken-knowledge-registry.test.mjs tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-story-candidate.test.mjs
+      - name: Caption stays readable after crop and real QuizCard works
+        run: |
+          set -euo pipefail
+          trap 'git restore data/quiz/manifest.json data/quizcards/historie/manifest.json scripts/verify-minneparken-quizcard-real-browser.mjs' EXIT
+          python - <<'PY'
+          import json
+          q='data/quiz/manifest.json';c='data/quizcards/historie/manifest.json'
+          qm=json.load(open(q));cm=json.load(open(c));i='minneparken_gamlebyen';f='data/quiz/historie/'+i+'_sets.json'
+          qm['files'].append(f);qm['sets'].append({'targetId':i,'file':f});cm['collections'].append(i+'_quizcard_v1.json')
+          for p,d in [(q,qm),(c,cm)]:open(p,'w').write(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+          p='scripts/verify-minneparken-quizcard-real-browser.mjs';s=open(p).read()
+          anchor="await page.screenshot({path:path.join(output,profile.name+'-front-historical-photo.png'),fullPage:true});"
+          extra="""
+             await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTop=240;el.dispatchEvent(new Event('scroll'));});
+             await page.waitForFunction(()=>{
+               const caption=document.querySelector('#placeCard .pc-photo-caption'),hero=document.querySelector('#placeCard .pc-sheet-hero'),quiz=document.querySelector('#pcStatusBar > .pc-progress-status-line');
+               if(!caption||!hero||!quiz)return false;
+               const c=caption.getBoundingClientRect(),h=hero.getBoundingClientRect(),q=quiz.getBoundingClientRect();
+               return c.height>0&&c.top>=h.top&&c.bottom<=h.bottom&&c.top>=0&&c.bottom<=innerHeight&&c.bottom+5<=q.top;
+             },null,{timeout:15000});
+             await page.screenshot({path:path.join(output,profile.name+'-historical-caption-scrolled.png'),fullPage:true});
+             await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTop=0;el.dispatchEvent(new Event('scroll'));});
+          """
+          assert s.count(anchor)==1
+          open(p,'w').write(s.replace(anchor,anchor+extra))
+          PY
+          node scripts/verify-minneparken-quizcard-real-browser.mjs
+      - name: No manifest activation remains
+        if: always()
+        run: git diff --exit-code data/quiz/manifest.json data/quizcards/historie/manifest.json scripts/verify-minneparken-quizcard-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: minneparken-historical-caption-regression
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 14

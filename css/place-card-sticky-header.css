@@ -33,6 +33,12 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-headin
   transform: translateY(var(--pc-hero-collapse-offset, 0px));
 }
 
+/* A wrapped historical source note also needs breathing room in the natural
+   grid, before any crop is possible. Keep caption-free headings unchanged. */
+body.hg-app #placeCard.is-place-sheet-direct .pc-heading-hero.has-photo-source .pc-heading-content:has(.pc-photo-caption) {
+  row-gap: 10px;
+}
+
 /* Section navigation stays at the bottom of the sheet, not under the photo. */
 body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-section-nav {
   top: auto;
