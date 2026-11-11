@@ -89,8 +89,8 @@ try{
      await page.waitForTimeout(450);
      // On first boot a delayed router/onboarding pass can close a newly
      // opened card. Retry the actual public API once; do not bypass UI state.
-     const stillOpen=await page.locator("#placeCard").evaluate(el=>
-      el.classList.contains("is-open") && el.dataset.currentPlaceId===place.id);
+     const stillOpen=await page.locator("#placeCard").evaluate((el,id)=>
+      el.classList.contains("is-open") && el.dataset.currentPlaceId===id,place.id);
      if(!stillOpen){
       await page.evaluate(()=>document.querySelector("#hgOnboardingModal .hg-onb-close")?.click());
       open=await page.evaluate(async place=>await window.openPlaceCard(place)!==false,place);
