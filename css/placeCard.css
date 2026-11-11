@@ -859,8 +859,10 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* Place.image: display the whole photo inside the hero, never zoom/crop it. */
+  object-fit: contain;
   object-position: center;
+  background: #15212b;
   opacity: 0;
   display: block;
   transition: opacity 180ms ease;
