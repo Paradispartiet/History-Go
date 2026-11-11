@@ -1,0 +1,22 @@
+/* History Go — shared photographic overview framing contract.
+   Apply to the canonical Place.image landscape heading, Place.frontImage portrait,
+   legacy Place popup hero, and the before/after documentary pair.
+   A subject is never cropped just to fill its frame: any unused space is a
+   quiet dark mat. The reverse QuizCard, People, brands and badges are untouched.
+   Scoped to Place surfaces so other image families preserve their own geometry. */
+
+/* The landscape Place.image under the heading. */
+body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
+/* The 3:4 front side of the collectible PlaceCard only. */
+body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage,
+/* The legacy popup's principal documentary image. */
+body.hg-app .hg-place-popup-v2 .hg-place-hero-media > .hg-place-hero-image,
+/* Paired historical photographs should also keep their full source composition. */
+body.hg-app #placeCard .pc-sheet-canonical-before-after figure img {
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: linear-gradient(145deg, #1c2b35 0%, #0b121b 100%);
+}
+
+/* The photo's aspect ratio is preserved. QuizCard and round collection badges
+   intentionally do not inherit this documentary-photo policy. */
