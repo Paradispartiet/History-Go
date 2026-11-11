@@ -155,8 +155,8 @@ try{
     // WebKit can report cancelled fetches from a prior document when the test
     // navigates/reloads. Keep those separate from real application exceptions.
     const cancelledNavigationRequests=result.errors.filter(message=>
-      /due to access control checks\\.?$/.test(message) &&
-      (/^\\/127\\.0\\.0\\.1:\\d+\\//.test(message) || /^\\/tiles\\.basemaps\\.cartocdn\\.com\\//.test(message))
+      message.endsWith(' due to access control checks.') &&
+      (message.startsWith('/127.0.0.1:') || message.startsWith('/tiles.basemaps.cartocdn.com/'))
     );
     const applicationErrors=result.errors.filter(message=>!cancelledNavigationRequests.includes(message));
     result.cancelledNavigationRequests=cancelledNavigationRequests.length;
