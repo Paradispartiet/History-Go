@@ -302,6 +302,86 @@ async function playReturn(browser, label, viewport, choices, expected) {
   }
 }
 
+
+async function playVikar(browser, label, viewport, choices, expected) {
+  const context = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: true });
+  const page = await context.newPage();
+  const errors = [];
+  const trace = [];
+  page.on('pageerror', error => errors.push(error.message));
+  try {
+    await page.goto(origin + '/Civication.html?lifestoryRole=ekspeditor', { waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.rolle === 'ekspeditor'
+      && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId,
+      null, { timeout: 90000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    assert.equal((await page.evaluate(() => globalThis.CivicationLifestoryState.load())).arkiv.length, 0,
+      label + ': no test-only seeded progress');
+
+    let reachedVikar = false;
+    let last = null;
+    for (let n = 0; n < 55; n++) {
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': normal Life Story scene available');
+      if (sceneId === 'ny_kollega_01_midt_i_koen') reachedVikar = true;
+      if (sceneId === 'ny_kollega_02_amir_bekrefter') {
+        const kicker = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(kicker, /Fra Amir/, label + ': actual trainer must be Amir');
+      }
+      const wanted = choices[sceneId];
+      const button = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
+        + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])').first();
+      assert.equal(await button.count(), 1, label + ': enabled choice at ' + sceneId);
+      await button.scrollIntoViewIfNeeded();
+      const rect = await button.boundingBox();
+      assert.ok(rect && rect.width > 0 && rect.height > 0, label + ': visible option at ' + sceneId);
+      assert.ok(rect.x >= -2 && rect.x + rect.width <= viewport.width + 2,
+        label + ': no horizontal overflow at ' + sceneId);
+      if (sceneId === 'ny_kollega_01_midt_i_koen' || sceneId === expected.finalScene) {
+        await page.screenshot({ path: path.join(output, label + '-' + sceneId + '.png'), fullPage: true });
+      }
+      const before = await page.evaluate(() => globalThis.CivicationLifestoryState.load().arkiv.length);
+      const choiceId = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(n => globalThis.CivicationLifestoryState.load().arkiv.length === n + 1,
+        before, { timeout: 20000 });
+      const state = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.equal(state.arkiv.at(-1).sceneId, sceneId);
+      assert.equal(state.arkiv.at(-1).valgId, choiceId);
+      trace.push([sceneId, choiceId]);
+      if (sceneId === expected.finalScene) { last = sceneId; break; }
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    }
+    assert.ok(reachedVikar, label + ': canonical vikar scene must be rendered');
+    assert.equal(last, expected.finalScene, label + ': correct outcome scene played');
+    const finished = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    for (const [flag, shouldBeTrue] of Object.entries(expected.flags)) {
+      assert.equal(finished.tidligereValg[flag] === true, shouldBeTrue,
+        label + ': do not credit an unperformed act: ' + flag);
+    }
+    if (expected.status) assert.equal(finished.threadState.ny_kollega_og_tillit.status, expected.status);
+    const snapshot = finished.arkiv.map(row => [row.sceneId, row.valgId]);
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(),
+      null, { timeout: 90000 });
+    const reloaded = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.deepEqual(reloaded.arkiv.map(row => [row.sceneId, row.valgId]), snapshot,
+      label + ': reloading cannot invent or lose training');
+    for (const [flag, shouldBeTrue] of Object.entries(expected.flags)) {
+      assert.equal(reloaded.tidligereValg[flag] === true, shouldBeTrue,
+        label + ': persistence of ' + flag);
+    }
+    assert.deepEqual(errors, [], label + ': no browser runtime errors');
+    await page.screenshot({ path: path.join(output, label + '-vikar-after-reload.png'), fullPage: true });
+    return { label, viewport, last, flags: expected.flags, trace };
+  } finally {
+    await context.close();
+  }
+}
+
 (async () => {
   let browser;
   const results = [];
@@ -394,7 +474,29 @@ async function playReturn(browser, label, viewport, choices, expected) {
       { finalScene: 'retur_01_uten_kvittering', status: 'escalated',
         flags: { retur_utbetaling_uten_bilag: true, retur_avvik_meldt: false,
           retur_avstemming_bekreftet: false } }));
-    console.log('PASS: ekspeditør price, stock and return/complaint Life Story on mobile and iPad', JSON.stringify(results));
+    const vikarSelf = {
+      ny_kollega_01_midt_i_koen: 'hjelp_kort',
+      ny_kollega_02_vis_pantekort: 'vis_en_gang',
+      ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen'
+    };
+    const vikarAmir = {
+      ny_kollega_01_midt_i_koen: 'send_til_amir',
+      ny_kollega_02_amir_bekrefter: 'registrer_amirs_hjelp'
+    };
+    const vikarUnfinished = {
+      ny_kollega_01_midt_i_koen: 'be_vente',
+      ny_kollega_02_avtal_hjelp: 'lat_det_ligge'
+    };
+    results.push(await playVikar(browser, 'vikar-mobile-portrait', { width: 390, height: 844 }, vikarSelf,
+      { finalScene: 'ny_kollega_03_vikar_forklarer',
+        flags: { hjalp_ny_kollega: true, pant_vikar_forstod: true, pant_amir_hjalp: false } }));
+    results.push(await playVikar(browser, 'vikar-ipad-portrait', { width: 820, height: 1180 }, vikarAmir,
+      { finalScene: 'ny_kollega_02_amir_bekrefter',
+        flags: { pant_amir_hjalp: true, pant_veiledning_av_amir_loggfort: true, hjalp_ny_kollega: false } }));
+    results.push(await playVikar(browser, 'vikar-ipad-landscape', { width: 1180, height: 820 }, vikarUnfinished,
+      { finalScene: 'ny_kollega_02_avtal_hjelp', status: 'escalated',
+        flags: { pant_hjelp_ikke_fulgt_opp: true, pant_vikar_forstod: false, hjalp_ny_kollega: false } }));
+    console.log('PASS: ekspeditør price, stock, returns and verified vikar pant training on mobile and iPad', JSON.stringify(results));
   } finally {
     writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2) + '\n');
     if (browser) await browser.close();
