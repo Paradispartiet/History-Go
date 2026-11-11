@@ -37,27 +37,18 @@
     document.addEventListener("load", event => update(event.target), true);
     document.addEventListener("error", event => update(event.target), true);
 
+    // Observe only photo src/hidden changes. Map markers and other dynamic UI
+    // add thousands of DOM nodes; never rescan on those unrelated inserts.
     const observer = new MutationObserver(records => {
-      let inserted = false;
       for (const record of records) {
-        if (record.type === "attributes") {
-          if (record.target instanceof HTMLImageElement
-              && record.target.matches(imageSelector)) update(record.target);
-        } else if (record.type === "childList") {
-          // On opening a new place popup, register photos already cached.
-          inserted ||= Array.from(record.addedNodes).some(node =>
-            node instanceof Element &&
-            (node.matches(imageSelector) || Boolean(node.querySelector(imageSelector)))
-          );
-        }
+        if (record.target instanceof HTMLImageElement
+            && record.target.matches(imageSelector)) update(record.target);
       }
-      if (inserted) updateAll();
     });
     observer.observe(document.body, {
       subtree: true,
       attributes: true,
-      attributeFilter: ["src", "hidden"],
-      childList: true
+      attributeFilter: ["src", "hidden"]
     });
   }
 
