@@ -18,6 +18,9 @@ Dette er inngangen til den redaksjonelle dokumentasjonen om hvordan folk arbeide
 | [Arbeids- og karriereveileder](civication-symposium/arbeids-og-karriereveileder.md) | `psykologi/psykologi_arbeids_og_karriereveiledning` | [Life Story](../data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/role.json) · [Arbeidslivstråder](../data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/threads.json) |
 | [Idrettsutøver](civication-symposium/idrettsutover.md) | `sport/sport_utover` | [Arbeidsgrammatikk](../data/Civication/workGrammars/sport/sport_utover.json) · [Life Story](../data/Civication/lifestory/roles/sport_utover/role.json) |
 
+| [Psykolog](civication-symposium/psykolog.md) | Life Story `psykolog` | [Rolle](../data/Civication/lifestory/roles/psykolog/role.json) · [Tråder](../data/Civication/lifestory/roles/psykolog/threads.json) |
+| [Psykologspesialist](civication-symposium/psykologspesialist.md) | Life Story `spesialistpsykolog` | [Rolle](../data/Civication/lifestory/roles/spesialistpsykolog/role.json) · [Tråder](../data/Civication/lifestory/roles/spesialistpsykolog/threads.json) |
+
 ## Dekning
 
 [Fullstendig Symposium-register: roller, jobber, livsposisjoner og Life Stories](CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md) viser alle kanoniske innslag, kildestier og hvilke kildeprofiler som mangler. Registrering betyr ikke at en jobb er spillbar eller at en synopsis er gjennomført.
