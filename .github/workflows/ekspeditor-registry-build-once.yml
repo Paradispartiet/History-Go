@@ -1,0 +1,34 @@
+name: Build ekspeditor registry once
+on:
+  push:
+    branches:
+      - fix/ekspeditor-prisavvik-oppfolging-20261111
+    paths:
+      - .github/workflows/ekspeditor-registry-build-once.yml
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.repository == 'Paradispartiet/History-Go' && github.ref == 'refs/heads/fix/ekspeditor-prisavvik-oppfolging-20261111'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/ekspeditor-prisavvik-oppfolging-20261111
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rebuild exact tested registry
+        run: |
+          test "$(git hash-object data/Civication/compiledSceneRegistryV1.json)" = "2d2c3a3648483cff5354b3a2279caf73b6bc9a9b"
+          node scripts/build-civication-scene-registry.mjs --write
+          test "$(git hash-object data/Civication/compiledSceneRegistryV1.json)" = "15c58b8aaa9f9f1e0e1b32527adf89da4317b65d"
+          node scripts/build-civication-scene-registry.mjs --check
+          node tests/civication-ekspeditor-price-handover.test.js
+      - name: Save generated registry on this branch only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Civication/compiledSceneRegistryV1.json
+          git commit -m "build: regenerate tested ekspeditor price follow-up registry"
+          git push origin HEAD:fix/ekspeditor-prisavvik-oppfolging-20261111
