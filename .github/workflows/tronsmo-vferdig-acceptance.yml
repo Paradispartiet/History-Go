@@ -50,9 +50,10 @@ jobs:
           import {createHash} from 'node:crypto';
           const base='https://paradispartiet.github.io/History-Go/';
           const ids=['ivar_tronsmo','per_petterson','lars_fiske','bendik_kaltenborn'];
+          const files=ids.map(id=>({id,file:'bilder/illustrasjoner/people/'+id+'_historygo_editorial.svg'}));
+          files.push({id:'place-open-runtime',file:'data/runtime/place-open/tronsmo_bokhandel.json'});
           const results=[];
-          for(const id of ids){
-            const file='bilder/illustrasjoner/people/'+id+'_historygo_editorial.svg';
+          for(const {id,file} of files){
             const expected=createHash('sha256').update(fs.readFileSync(file)).digest('hex');
             let status=0,actual='',reason='';
             try{
@@ -63,9 +64,9 @@ jobs:
             }catch(e){reason=String(e.message||e);}
             results.push({id,path:base+file,http_status:status,sha_matches:actual===expected,reason});
           }
-          const status=results.every(x=>x.http_status===200&&x.sha_matches)?'PASS_LIVE_ASSETS':'HOLD_UNVERIFIED';
+          const status=results.every(x=>x.http_status===200&&x.sha_matches)?'PASS_LIVE_ASSETS_AND_RUNTIME':'HOLD_UNVERIFIED';
           const out={place_id:'tronsmo_bokhandel',checked_utc:new Date().toISOString(),base,status,results,
-            interpretation:'PASS_LIVE_ASSETS verifies four exact illustrated People assets on public Pages, not necessarily the specific GitHub deploy run.'};
+            interpretation:'PASS verifies four illustrated People assets AND the exact Tronsmo place-open runtime file as served by public Pages; this is direct publication evidence, not an Actions deployment-run receipt.'};
           fs.writeFileSync('artifacts/tronsmo-live-evidence.json',JSON.stringify(out,null,2)+'\n');
           console.log(JSON.stringify(out,null,2));
           NODE
