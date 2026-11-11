@@ -1,0 +1,42 @@
+name: PlaceCard – overview framing without source crop
+on:
+  pull_request:
+    paths:
+      - 'css/placeCard.css'
+      - 'css/place-sheet.css'
+      - 'css/place-popup-v2.css'
+      - 'js/ui/place-card.js'
+      - 'index.html'
+      - 'sw.js'
+      - 'tests/placecard-all-place-image-overview-browser.mjs'
+      - '.github/workflows/placecard-overview-framing-browser.yml'
+  workflow_dispatch:
+concurrency:
+  group: placecard-overview-framing-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Confirm source syntax
+        run: node --check js/ui/place-card.js && node --check tests/placecard-all-place-image-overview-browser.mjs
+      - name: Real responsive photo overview and safe click layer acceptance
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/placecard-all-place-image-overview-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: placecard-overview-framing-mobile-desktop
+          path: artifacts/placecard-overview-framing/
+          if-no-files-found: ignore
