@@ -1580,10 +1580,22 @@ if (!card) return;
   };
   if (frontImgEl) {
     frontImgEl.style.objectPosition = mediaPosition(imageComposition.portraitPosition);
-    // Only opt-in portrait crops use cover. Reset when switching places.
-    frontImgEl.style.objectFit = imageComposition.portraitFit === "cover" ? "cover" : "";
+    // Always fit the complete portrait within its 3:4 frame. Existing
+    // focal-position metadata remains harmless for contain-fit images.
+    frontImgEl.style.objectFit = "contain";
   }
   if (headerImgEl) headerImgEl.style.objectPosition = mediaPosition(imageComposition.heroPosition);
+  if (headerHeroEl) {
+    const backgroundSource = String(place.image || "").trim();
+    // Put the same photo behind the sharp, contained image as a heavily
+    // blurred ambient fill. Reject CSS string delimiters/newlines.
+    if (backgroundSource && !/["\\\r\n]/u.test(backgroundSource)) {
+      headerHeroEl.style.setProperty("--pc-overview-backdrop", `url("${backgroundSource}")`);
+    } else {
+      headerHeroEl.style.removeProperty("--pc-overview-backdrop");
+    }
+    headerHeroEl.style.setProperty("--pc-overview-position", mediaPosition(imageComposition.heroPosition));
+  }
   setPlaceCardImgSrcStable(frontImgEl, place.frontImage || place.cardImage || place.image || "");
   setPlaceCardQuizImage(frontCardFlipEl, quizCardImgEl, place);
   const quizStart = performance.now();
