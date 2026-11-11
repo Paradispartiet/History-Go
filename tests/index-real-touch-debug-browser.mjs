@@ -63,13 +63,57 @@ try{
   try{
    browser=await engine.launch({headless:true});
    const ctx=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:true,locale:'nb-NO'});
+   await ctx.addInitScript(() => {
+    const Native = window.MutationObserver;
+    window.__HG_OBSERVER_RUNAWAYS__ = [];
+    window.MutationObserver = class extends Native {
+     constructor(callback) {
+      const origin = new Error('Observer created').stack;
+      let start=0, count=0;
+      super((records, observer) => {
+       const now=performance.now();
+       if(now-start>150){start=now;count=0;}
+       if(++count>500){
+        observer.disconnect();
+        const detail={origin,count,target:records[0]?.target?.id||records[0]?.target?.className,attribute:records[0]?.attributeName};
+        window.__HG_OBSERVER_RUNAWAYS__.push(detail);
+        console.error('OBSERVER RUNAWAY '+JSON.stringify(detail));
+        return;
+       }
+       callback(records,observer);
+      });
+     }
+    };
+   });
    let page=await ctx.newPage();
    page.on('pageerror',e=>result.errors.push(e.message));
-   await page.goto(base+'/index.html#/map',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);
+   await page.goto(base+'/index.html#/place/stortinget',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);
    await page.locator('#hgOnboardingModal').waitFor({state:'visible',timeout:15000});
    await tap(page,'.hg-onb-close');
    await page.locator('#hgOnboardingModal').waitFor({state:'hidden'});
    result.welcomeDismissed=true;
+   await cardVisible(page,'stortinget');
+   await page.waitForTimeout(10000);
+   console.log('STORTINGET STATE '+JSON.stringify(await page.evaluate(()=>({
+    hash:location.hash,body:document.body.className,ready:window.__HG_APP_READY__,
+    observers:window.__HG_OBSERVER_RUNAWAYS__,error:window.__HG_LAST_ERROR__,
+    menuBound:document.getElementById('headerMenuButton')?.dataset.hgHeaderMenuBound
+   }))));
+   assert.deepEqual(await page.evaluate(()=>window.__HG_OBSERVER_RUNAWAYS__),[],'No observer may starve input after opening Stortinget');
+   await tap(page,'#headerMenuButton');
+   await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='true');
+   await tap(page,'#headerMenuButton');
+   await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='false');
+   const favoriteBefore=await page.locator('#pcFavorite').textContent();
+   await tap(page,'#pcFavorite');
+   await page.waitForFunction(before=>document.getElementById('pcFavorite')?.textContent!==before,favoriteBefore);
+   await tap(page,'#pcFavorite');
+   await page.waitForFunction(before=>document.getElementById('pcFavorite')?.textContent===before,favoriteBefore);
+   await tap(page,'#pcCollapseBtn');
+   await page.waitForFunction(()=>document.getElementById('placeCard')?.getAttribute('aria-hidden')==='true');
+   await tap(page,'#pcMini');await cardVisible(page,'stortinget');
+   result.stortingetHeaderAndCard=true;
+   await backToMap(page);
    // A genuine first session, then reuse its stored state and HTTP cache after reopening.
    for(const state of ['first-visit','returning-tab']){
     if(state==='returning-tab'){
