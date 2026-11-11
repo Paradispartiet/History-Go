@@ -1,0 +1,22 @@
+name: Minneparken image source review
+on:
+  push:
+    branches: [qa/minneparken-final-1a3c2a4-20261111]
+    paths: [.github/workflows/minneparken-image-source-review.yml]
+permissions:
+  contents: read
+jobs:
+  source-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download identified Commons portraits without altering originals
+        run: |
+          mkdir -p source-images
+          curl --fail --retry 3 -L 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Gerhard_Fischer_%28ca_1967%29.jpg' -o source-images/gerhard_fischer.jpg
+          curl --fail --retry 3 -L 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Harry_Fett%2C_riksantikvar%2C_ca._1935%2C_Oslo_Museum%2C_OB.F05862b.jpg' -o source-images/harry_fett.jpg
+          file source-images/*
+          sha256sum source-images/* > source-images/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: minneparken-source-portraits
+          path: source-images/
