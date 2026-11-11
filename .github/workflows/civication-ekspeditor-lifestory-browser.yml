@@ -5,6 +5,7 @@ on:
     paths:
       - 'data/Civication/lifestory/roles/ekspeditor/scenes.json'
       - 'tests/civication-lifestory-ekspeditor.test.js'
+      - 'tests/civication-skills-evidence.test.js'
       - 'scripts/verify-civication-ekspeditor-lifestory-browser.cjs'
       - '.github/workflows/civication-ekspeditor-lifestory-browser.yml'
   workflow_dispatch:
@@ -33,6 +34,7 @@ jobs:
         run: |
           node --check tests/civication-lifestory-ekspeditor.test.js
           node tests/civication-lifestory-ekspeditor.test.js
+          node tests/civication-skills-evidence.test.js
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Play through the real Life Story UI

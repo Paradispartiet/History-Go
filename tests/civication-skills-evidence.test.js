@@ -136,7 +136,7 @@ const authored = [
   ["arbeidsledig","d6_sen_prove","prove","creativity"],
   ["arbeidsledig","d4_skape_moetet","proev","creativity"],
   ["ekspeditor","prisfeil_02_koen","rett_synlig","practical_mastery"],
-  ["ekspeditor","ny_kollega_01_midt_i_koen","hjelp_kort","communication"],
+  ["ekspeditor","ny_kollega_03_vikar_forklarer","sjekk_forklaringen","communication"],
   ["ekspeditor","varen_01_som_ikke_finnes","aerlig_om_lageret","social_awareness"],
   ["ekspeditor","varen_01_som_ikke_finnes","sjekk_selv","practical_mastery"],
   ["ekspeditor","retur_01_uten_kvittering","hold_regelen","communication"],
@@ -161,6 +161,17 @@ function build(roleId) {
 
 const unemployedContent = build("arbeidsledig");
 const expeditorContent = build("ekspeditor");
+// An intention to help is not earned communication practice: the evidence is
+// awarded after the trainee explains the actual pant method successfully.
+const vikarStart = expeditorContent.scenes.find(s => s.id === "ny_kollega_01_midt_i_koen");
+const offeredHelp = vikarStart.valg.find(c => c.id === "hjelp_kort");
+assert.equal(offeredHelp.skills_practice, undefined, "offer of coaching cannot award a completed lesson");
+assert.equal(offeredHelp.effekter.flagg.hjalp_ny_kollega, undefined,
+  "the original lesson-completion evidence cannot be credited for a promise");
+const vikarCheck = expeditorContent.scenes.find(s => s.id === "ny_kollega_03_vikar_forklarer")
+  ?.valg.find(c => c.id === "sjekk_forklaringen");
+assert.equal(vikarCheck?.skills_practice?.skill_id, "communication");
+assert.equal(vikarCheck?.effekter?.flagg?.hjalp_ny_kollega, true);
 const ids = new Set();
 for (const [role, sceneId, choiceId, skillId] of authored) {
   const pack = role === "ekspeditor" ? expeditorContent : unemployedContent;
