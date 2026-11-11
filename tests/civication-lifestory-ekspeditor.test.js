@@ -640,7 +640,7 @@ const day2VikarIntro = raw.roleScenes.scenes.find(s => s.id === 'd2_formiddag_vi
 assert.deepStrictEqual(day2VikarIntro.valg.map(v => v.id), ['laer_bort_metoden', 'vis_raskt'],
   'keep both original day-two vikar choice identifiers');
 for (const id of ['d2_vikar_retur_02_kort_svar','d2_vikar_retur_02_kontroll',
-  'd2_vikar_retur_03_vikar_utforer']) {
+  'd2_vikar_retur_03_lene_godkjenner', 'd2_vikar_retur_03_vikar_utforer']) {
   assert.ok(raw.roleScenes.scenes.some(s => s.id === id),
     'canonical day-two vikar return continuation: ' + id);
 }
@@ -686,6 +686,11 @@ take(day2Vikar, 'd2_vikar_retur_02_kontroll', 'sammenlign_kvittering_og_vare');
 assert.ok(flag(day2Vikar, 'retur_d2_vilkar_kontrollert'));
 assert.ok(!flag(day2Vikar, 'retur_d2_bytte_gjennomfort'), 'checking a receipt is not performing the swap');
 assert.ok(!flag(day2Vikar, 'laerte_bort_metoden'));
+assert.ok(!flag(day2Vikar, 'retur_d2_lene_godkjent'), 'checking policy is not managerial approval');
+take(day2Vikar, 'd2_vikar_retur_03_lene_godkjenner', 'noter_lenes_beslutning');
+assert.ok(flag(day2Vikar, 'retur_d2_lene_godkjent'));
+assert.ok(!flag(day2Vikar, 'retur_d2_bytte_gjennomfort'), 'manager approval does not execute a sale');
+assert.ok(!flag(day2Vikar, 'laerte_bort_metoden'), 'approval is not the teaching evidence');
 take(day2Vikar, 'd2_vikar_retur_03_vikar_utforer', 'veiled_og_kontroller_byttet');
 assert.ok(flag(day2Vikar, 'retur_d2_vikar_forstod'));
 assert.ok(flag(day2Vikar, 'retur_d2_bytte_gjennomfort'));
@@ -700,6 +705,7 @@ assert.ok(flag(day2Vikar, 'retur_d2_ufullstendig_veiledning'));
 assert.ok(!flag(day2Vikar, 'laerte_bort_metoden'), 'brief advice is not finished tutoring');
 take(day2Vikar, 'd2_vikar_retur_02_kort_svar', 'ta_gjennomgangen');
 take(day2Vikar, 'd2_vikar_retur_02_kontroll', 'sammenlign_kvittering_og_vare');
+take(day2Vikar, 'd2_vikar_retur_03_lene_godkjenner', 'noter_lenes_beslutning');
 take(day2Vikar, 'd2_vikar_retur_03_vikar_utforer', 'gjør_det_selv');
 assert.ok(flag(day2Vikar, 'retur_d2_bytte_utfort_av_spiller'));
 assert.ok(flag(day2Vikar, 'retur_d2_vikar_kontroll_venter'));
@@ -720,6 +726,16 @@ take(day2Vikar, 'd2_formiddag_vikaren_kommer_til_deg', 'vis_raskt');
 take(day2Vikar, 'd2_vikar_retur_02_kort_svar', 'ga_tilbake');
 assert.ok(flag(day2Vikar, 'retur_d2_ikke_fulgt_opp'));
 assert.ok(!flag(day2Vikar, 'retur_d2_vilkar_kontrollert'));
+assert.ok(!flag(day2Vikar, 'laerte_bort_metoden'));
+assert.equal(day2Vikar.threadState.ny_kollega_og_tillit.status, 'escalated');
+
+day2Vikar = reachDay2Vikar();
+take(day2Vikar, 'd2_formiddag_vikaren_kommer_til_deg', 'laer_bort_metoden');
+take(day2Vikar, 'd2_vikar_retur_02_kontroll', 'sammenlign_kvittering_og_vare');
+take(day2Vikar, 'd2_vikar_retur_03_lene_godkjenner', 'vent_pa_dokumentasjon');
+assert.ok(flag(day2Vikar, 'retur_d2_lene_godkjenning_venter'));
+assert.ok(!flag(day2Vikar, 'retur_d2_lene_godkjent'));
+assert.ok(!flag(day2Vikar, 'retur_d2_bytte_gjennomfort'));
 assert.ok(!flag(day2Vikar, 'laerte_bort_metoden'));
 assert.equal(day2Vikar.threadState.ny_kollega_og_tillit.status, 'escalated');
 
