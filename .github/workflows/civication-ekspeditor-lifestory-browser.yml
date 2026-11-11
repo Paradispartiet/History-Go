@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'data/Civication/lifestory/roles/ekspeditor/scenes.json'
+      - 'tests/civication-lifestory-ekspeditor.test.js'
       - 'scripts/verify-civication-ekspeditor-lifestory-browser.cjs'
       - '.github/workflows/civication-ekspeditor-lifestory-browser.yml'
   workflow_dispatch:
@@ -28,6 +29,10 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+      - name: Verify canonical Life Story regression before browser work
+        run: |
+          node --check tests/civication-lifestory-ekspeditor.test.js
+          node tests/civication-lifestory-ekspeditor.test.js
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Play through the real Life Story UI
