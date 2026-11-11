@@ -56,78 +56,70 @@ async function backToMap(page){
  },null,{timeout:15000});
  console.log('BACK TO MAP '+page.url());
 }
+async function exerciseCard(page,id){
+ await cardVisible(page,id);
+ await tap(page,'#headerMenuButton');
+ await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='true');
+ await tap(page,'#headerMenuButton');
+ await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='false');
+ const favoriteBefore=await page.locator('#pcFavorite').textContent();
+ await tap(page,'#pcFavorite');
+ await page.waitForFunction(before=>document.getElementById('pcFavorite')?.textContent!==before,favoriteBefore);
+ await tap(page,'#pcFavorite');
+ await page.waitForFunction(before=>document.getElementById('pcFavorite')?.textContent===before,favoriteBefore);
+ await tap(page,'#pcCollapseBtn');
+ await page.waitForFunction(()=>document.getElementById('placeCard')?.getAttribute('aria-hidden')==='true');
+ // The footer thumbnail must still respond after a place was opened from the map.
+ await tap(page,'#pcMini');await cardVisible(page,id);
+}
 try{
  for(const [name,engine,width,height] of [['webkit-ipad',webkit,820,1180],['chromium-phone',chromium,390,844]]){
-  let browser;
-  const result={name,flows:[],errors:[]};
-  try{
-   browser=await engine.launch({headless:true});
-   const ctx=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:true,locale:'nb-NO'});
-   await ctx.addInitScript(() => {
-    const Native = window.MutationObserver;
-    window.__HG_OBSERVER_RUNAWAYS__ = [];
-    window.MutationObserver = class extends Native {
-     constructor(callback) {
-      const origin = new Error('Observer created').stack;
-      let count=0, resetPending=false;
-      super((records, observer) => {
-       if(!resetPending){resetPending=true;setTimeout(()=>{count=0;resetPending=false;},0);}
-       if(++count>500){
-        observer.disconnect();
-        const detail={origin,count,target:records[0]?.target?.id||records[0]?.target?.className,attribute:records[0]?.attributeName};
-        window.__HG_OBSERVER_RUNAWAYS__.push(detail);
-        console.error('OBSERVER RUNAWAY '+JSON.stringify(detail));
-        return;
-       }
-       callback(records,observer);
-      });
+  for(const tracing of [false,true]){
+   let browser;
+   const result={name,tracing,flows:[],errors:[]};
+   try{
+    browser=await engine.launch({headless:true});
+    const ctx=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:true,locale:'nb-NO'});
+    // Keep native observers and input handling: never repair the app from the test.
+    const page=await ctx.newPage();
+    page.on('pageerror',e=>result.errors.push(e.message));
+    const entry=base+'/index.html'+(tracing?'?hgTapTrace=1':'');
+    await page.goto(entry+'#/map',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);
+    await page.locator('#hgOnboardingModal').waitFor({state:'visible',timeout:15000});
+    await tap(page,'.hg-onb-close');
+    await page.locator('#hgOnboardingModal').waitFor({state:'hidden'});
+    if(tracing){
+     await page.waitForFunction(()=>!!window.HGDeviceTapTrace);
+     assert.equal(await page.locator('#hgDeviceTapTrace').evaluate(e=>getComputedStyle(e).pointerEvents),'none');
+    }else{
+     assert.equal(await page.evaluate(()=>typeof window.HGDeviceTapTrace),'undefined');
+    }
+    await page.waitForFunction(()=>!!window.HGMap?.getMap());
+    let previousId;
+    for(let i=0;i<2;i++){
+     const id=await mapHit(page,previousId);
+     await exerciseCard(page,id);
+     if(tracing){
+      const trace=await page.evaluate(()=>window.HGDeviceTapTrace.snapshot());
+      assert.ok(trace.opens.some(e=>e.place===id));
+      assert.ok(trace.events.some(e=>e.type==='click'));
+      console.log('DEVICE TRACE '+JSON.stringify(trace));
      }
-    };
-   });
-   let page=await ctx.newPage();
-   page.on('pageerror',e=>result.errors.push(e.message));
-   await page.goto(base+'/index.html?hgTapTrace=1#/place/stortinget',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);
-   await page.locator('#hgOnboardingModal').waitFor({state:'visible',timeout:15000});
-   await tap(page,'.hg-onb-close');
-   await page.locator('#hgOnboardingModal').waitFor({state:'hidden'});
-   result.welcomeDismissed=true;
-   await page.waitForFunction(()=>!!window.HGDeviceTapTrace);
-   assert.equal(await page.locator('#hgDeviceTapTrace').evaluate(e=>getComputedStyle(e).pointerEvents),'none');
-   await cardVisible(page,'stortinget');
-   await page.waitForTimeout(10000);
-   console.log('STORTINGET STATE '+JSON.stringify(await page.evaluate(()=>({
-    hash:location.hash,body:document.body.className,ready:window.__HG_APP_READY__,
-    observers:window.__HG_OBSERVER_RUNAWAYS__,error:window.__HG_LAST_ERROR__,
-    menuBound:document.getElementById('headerMenuButton')?.dataset.hgHeaderMenuBound
-   }))));
-   assert.deepEqual(await page.evaluate(()=>window.__HG_OBSERVER_RUNAWAYS__),[],'No observer may starve input after opening Stortinget');
-   await tap(page,'#headerMenuButton');
-   await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='true');
-   await tap(page,'#headerMenuButton');
-   await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='false');
-   const favoriteBefore=await page.locator('#pcFavorite').textContent();
-   await tap(page,'#pcFavorite');
-   await page.waitForFunction(before=>document.getElementById('pcFavorite')?.textContent!==before,favoriteBefore);
-   await tap(page,'#pcFavorite');
-   await page.waitForFunction(before=>document.getElementById('pcFavorite')?.textContent===before,favoriteBefore);
-   await tap(page,'#pcCollapseBtn');
-   await page.waitForFunction(()=>document.getElementById('placeCard')?.getAttribute('aria-hidden')==='true');
-   await tap(page,'#pcMini');await cardVisible(page,'stortinget');
-   result.stortingetHeaderAndCard=true;
-   const trace=await page.evaluate(()=>window.HGDeviceTapTrace.snapshot());
-   assert.ok(trace.opens.some(e=>e.place==='stortinget'));
-   assert.ok(trace.events.some(e=>e.type==='click'));
-   console.log('DEVICE TRACE '+JSON.stringify(trace));
-   await backToMap(page);
-   await page.goto(base+'/index.html?hgTapTrace=1#/place/stortinget',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);await cardVisible(page,'stortinget');
-   await page.waitForTimeout(3000);
-   await tap(page,'#headerMenuButton');
-   await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='true');
-   assert.deepEqual(await page.evaluate(()=>window.__HG_OBSERVER_RUNAWAYS__),[]);
-   result.flows.push({place:'stortinget',reopened:true,header:true});
-   result.passed=true;await ctx.close();
-  }catch(e){result.passed=false;result.failure=String(e.stack||e);console.error(result.failure);}
-  finally{await browser?.close();results.push(result);console.log('NAVIGATION RESULT '+JSON.stringify(result));}
+     await backToMap(page);
+     result.flows.push({place:id,mapTap:true,header:true,favorite:true,footer:true,back:true});
+     previousId=id;
+    }
+    // Retain direct-link and returning-session coverage as a separate path.
+    await page.goto(entry+'#/place/stortinget',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);
+    await exerciseCard(page,'stortinget');
+    await page.reload({waitUntil:'domcontentloaded'});await ready(page);
+    await exerciseCard(page,'stortinget');
+    result.flows.push({place:'stortinget',directLink:true,reloaded:true});
+    assert.deepEqual(result.errors,[],'No uncaught JavaScript errors');
+    result.passed=true;await ctx.close();
+   }catch(e){result.passed=false;result.failure=String(e.stack||e);console.error(result.failure);}
+   finally{await browser?.close();results.push(result);console.log('NAVIGATION RESULT '+JSON.stringify(result));}
+  }
  }
 }finally{await new Promise(r=>server.close(r));}
-assert.ok(results.every(r=>r.passed),'Full touch navigation must pass on both engines');
+assert.ok(results.length===4&&results.every(r=>r.passed),'Native touch navigation must pass with and without tracing on both engines');
