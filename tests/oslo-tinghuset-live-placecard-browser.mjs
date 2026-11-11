@@ -17,7 +17,7 @@ assert.equal(runtime.place?.fagverk?.schema,'history_go_place_fagverk_v2');
 assert.equal(canonical.imageMeta?.license,'Public domain');
 assert.ok(fs.statSync(canonical.image).size>8000);
 assert.ok(fs.statSync(canonical.cardImage).size>8000);
-assert.equal(canonical.frontImage,'bilder/places/tinghuset_front_portrait.webp');
+assert.equal(canonical.frontImage,'bilder/places/tinghuset_front_portrait_2022.webp');
 assert.equal(canonical.frontImageMeta?.license,'Public domain');
 assert.equal(canonical.frontImageMeta?.creator,'Mahlum');
 assert.equal(canonical.frontImageMeta?.sourcePage,'https://commons.wikimedia.org/wiki/File:Oslo_tinghus.jpg');
@@ -52,7 +52,7 @@ try{
    const actualTitle=await page.locator('#pcTitle').innerText();
    assert.match(actualTitle,/(tinghus|courthouse)/i);
    const imgs=await page.evaluate(()=>({hero:document.querySelector('#pcHeaderImage')?.naturalWidth||0,front:document.querySelector('#pcFrontImage')?.naturalHeight||0,frontSrc:document.querySelector('#pcFrontImage')?.currentSrc||''}));
-   assert.ok(imgs.frontSrc.includes('tinghuset_front_portrait.webp'),'PlaceCard must render separately sourced portrait');
+   assert.ok(imgs.frontSrc.includes('tinghuset_front_portrait_2022.webp'),'PlaceCard must render separately sourced portrait');
    assert.ok(imgs.hero>0&&imgs.front>0);
    check.placeCard=true;check.photos=true;
    await page.screenshot({path:path.join(out,'tinghuset-'+label+'-front.png'),fullPage:false});
