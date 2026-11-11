@@ -28,7 +28,7 @@ test('Robotikk: Vitenskap-original og ti tidligere undermerker bevares', () => {
   assert.equal(badge.secondaryColor,'#FFFFFF');
   assert.equal(badge.sub.length,16);
   assert.ok(badge.sub.includes(manifest.id));
-  assert.equal(Object.keys(badge.subBadgeImages).length,11);
+  assert.ok(Object.keys(badge.subBadgeImages).length >= 11, 'at least 11 previously integrated science badges must remain');
   for (const [id,path] of Object.entries(existing)) {
     assert.equal(badge.subBadgeImages[id],path,id+' changed');
     assert.ok(existsSync(new URL(path,root)),id+' asset missing');
