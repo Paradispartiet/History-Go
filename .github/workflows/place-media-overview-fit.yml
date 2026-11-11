@@ -1,0 +1,46 @@
+name: History Go – full-scene PlaceCard media fit
+on:
+  pull_request:
+    paths:
+      - 'css/place-media-overview-fit.css'
+      - 'css/placeCard.css'
+      - 'css/place-sheet.css'
+      - 'css/place-popup-v2.css'
+      - 'css/micro-place-card.css'
+      - 'js/ui/place-card.js'
+      - 'index.html'
+      - 'tests/place-media-overview-fit-real-browser.mjs'
+      - 'tests/placecard-media-hero-responsive-browser.test.mjs'
+      - 'tests/oslo-v1-image-composition.test.mjs'
+      - '.github/workflows/place-media-overview-fit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: place-media-overview-fit-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  images-390-1440:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Preserve 16 Oslo image-composition source contracts
+        run: node --test tests/oslo-v1-image-composition.test.mjs
+      - name: Verify actual PlaceCard image and frontImage zoom at 390/1440
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/place-media-overview-fit-real-browser.mjs
+          CHROME_BIN="$CHROME_BIN" node tests/placecard-media-hero-responsive-browser.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: place-media-overview-fit-screenshots
+          path: artifacts/place-media-overview-fit/
+          if-no-files-found: ignore
