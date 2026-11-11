@@ -1,0 +1,28 @@
+name: Place image source crop inventory one-shot
+on:
+  push:
+    branches: [audit/places-overview-crop-inventory-20261111]
+    paths:
+      - 'scripts/audit-place-image-framing.mjs'
+      - '.github/workflows/place-image-source-audit-once.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inventory every canonical Place, note every pre-crop risk
+        run: |
+          mkdir -p artifacts
+          node --check scripts/audit-place-image-framing.mjs
+          node scripts/audit-place-image-framing.mjs --output artifacts/place-image-source-crop-inventory.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: all-place-image-source-crop-inventory
+          path: artifacts/place-image-source-crop-inventory.json
