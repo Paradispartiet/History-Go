@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_sotmispel: Object.freeze({
+      scientificName: "Amelanchier spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/83_sotmispel_v1.webp",
+      gitBlobSha: "9f6a28b49ef751d7bb6aac307b03dafdfea1caff",
+      reviewedAt: "2026-11-11",
+      stage: "pedagogisk_varblomstring_og_sommerbaer",
+      evidence: "data/natur/flora/illustration-quality-sotmispel-20261111.json"
+    }),
     emne_flora_prydpaere: Object.freeze({
       scientificName: "Pyrus calleryana",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/82_prydpaere_v2.webp",
@@ -850,7 +858,7 @@
 
   });
   // One scientific species appears twice in the public catalog; reuse the same approved artwork.
-  const aliases = Object.freeze({ emne_ved_prydpaere: "emne_flora_prydpaere", emne_ved_prydkirsebaer: "emne_flora_prydkirsebaer", emne_ved_platanlonn: "emne_flora_platanlonn", emne_kratt_syrin: "emne_flora_syrin", emne_kratt_mispel: "emne_flora_mispel", emne_kratt_spirea: "emne_flora_spirea", emne_kratt_berberis: "emne_flora_berberis", emne_kratt_mahonia: "emne_flora_mahonia", emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
+  const aliases = Object.freeze({ emne_ved_sotmispel: "emne_flora_sotmispel", emne_ved_prydpaere: "emne_flora_prydpaere", emne_ved_prydkirsebaer: "emne_flora_prydkirsebaer", emne_ved_platanlonn: "emne_flora_platanlonn", emne_kratt_syrin: "emne_flora_syrin", emne_kratt_mispel: "emne_flora_mispel", emne_kratt_spirea: "emne_flora_spirea", emne_kratt_berberis: "emne_flora_berberis", emne_kratt_mahonia: "emne_flora_mahonia", emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
   const get = id => images[aliases[String(id)] || String(id)] || null;
   window.HG_NATURE_FLORA_APPROVED = Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
 })();
