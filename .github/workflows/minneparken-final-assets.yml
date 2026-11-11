@@ -1,0 +1,20 @@
+name: Minneparken final source assets
+on:
+  push:
+    branches: [qa/minneparken-final-1a3c2a4-20261111]
+    paths: [.github/workflows/minneparken-final-assets.yml]
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir source
+          curl --fail --retry 3 -L 'https://www.niku.no/wp-content/themes/niku/library/images/logo-positive.svg' -o source/niku-logo.svg
+          curl --fail --retry 3 -L 'https://upload.wikimedia.org/wikipedia/commons/1/15/Oslo%2C_Minneparken%2C_Pilgrimsleden_milestone_643_km%2C_01.jpg' -o source/minneparken-milestone-20260703.jpg
+          sha256sum source/* > source/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: minneparken-final-source-assets
+          path: source/
