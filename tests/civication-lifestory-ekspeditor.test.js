@@ -164,6 +164,11 @@ assert.ok(state2.arkiv.some((e) => e.sceneId === "d2_kveld_kassadifferansen"),
 // Real actors must remain distinct: Amir's verification cannot appear as Lene's message.
 assert.strictEqual(raw.roleScenes.scenes.find(s => s.id === 'prisfeil_05_amir_sjekker').avsender,
   'erfaren_kollega', 'Amir must be the sender of his own verification result');
+for (const sceneId of ['prisfeil_03_undersok_etter_snarevei', 'prisfeil_03_meld_avvik']) {
+  const prompt = raw.roleScenes.scenes.find(s => s.id === sceneId);
+  assert.strictEqual(prompt.avsender, null, sceneId + ' is narrator guidance, not a fabricated message from Lene');
+  assert.strictEqual(prompt.visningstype, 'intern vurdering');
+}
 
 // --- Samme eldre Life Story-tråd: kontroll -> handel -> melding -> mottak -> etterkontroll. ---
 // Use the actual Day Runner, not a fabricated archive or a parallel mail family.
