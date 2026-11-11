@@ -78,7 +78,8 @@ try {
         headingImage: get("#pcHeaderImage"),
         title: get("#pcTitle"),
         rounds,
-        objectFit: getComputedStyle(document.getElementById("pcHeaderImage")).objectFit
+        objectFit: getComputedStyle(document.getElementById("pcHeaderImage")).objectFit,
+        portraitFit: getComputedStyle(document.getElementById("pcFrontImage")).objectFit
       };
     });
     const { card, grid, side, events, heading, headingImage, title, rounds } = result;
@@ -93,7 +94,8 @@ try {
     assert.ok(rounds.every(round => Math.abs(round.width - round.height) < 2), `round aspect at ${width}`);
     assert.equal(new Set(rounds.map(round => Math.round(round.y))).size, 4, `four round rows at ${width}`);
     assert.ok(headingImage.width >= title.width && title.y >= heading.y, `heading over landscape image at ${width}`);
-    assert.equal(result.objectFit, "cover");
+    assert.equal(result.objectFit, "contain", `landscape image must preserve source at ${width}`);
+    assert.equal(result.portraitFit, "contain", `standing frontImage must preserve source at ${width}`);
     await page.locator("#pcHeaderHero").evaluate(hero => hero.classList.remove("has-photo-source", "has-image"));
     const noPhotoHeight = await page.locator("#pcHeaderHero").evaluate(hero => hero.getBoundingClientRect().height);
     assert.ok(noPhotoHeight < heading.height, `missing image leaves no blank hero at ${width}`);
