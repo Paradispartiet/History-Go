@@ -70,7 +70,7 @@ jobs:
           main_source=Path('bilder/places/auto/tjuvholmen_2024_ssu_source_thumb.jpg')
           front_source=Path('bilder/places/auto/tjuvholmen_2026_lenz_source_thumb.jpg')
           grab('Tjuvholmen allé, Oslo.jpg',main_source)
-          grab('Tjuvholmen allé Oslo 2026-01-14 02.jpg',front_source)
+          grab('Tjuvholmen Oslo 2026-01-14 01.jpg',front_source)
           digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
           assert digest(main_source)!=digest(front_source),'Distinct source photos required'
           main=Path('bilder/places/tjuvholmen_main_2024.webp')
@@ -108,7 +108,7 @@ jobs:
           }
           old['frontImageMeta']={
            'source':'wikimedia_commons_documentary_photo',
-           'sourcePage':'https://commons.wikimedia.org/wiki/File:Tjuvholmen_all%C3%A9_Oslo_2026-01-14_02.jpg',
+           'sourcePage':'https://commons.wikimedia.org/wiki/File:Tjuvholmen_Oslo_2026-01-14_01.jpg',
            'sourceLocalAsset':str(front_source),
            'sourceSha256':digest(front_source),'sourceLocalSha256':digest(front_source),
            'creator':'Leonhard Lenz','credit':'Leonhard Lenz / Wikimedia Commons',
