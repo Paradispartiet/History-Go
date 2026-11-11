@@ -15,7 +15,7 @@
     const binding = selectors.find(item => image.matches(item.image));
     if (!binding) return;
     const owner = image.closest(binding.owner);
-    if (!owner) return;
+    if (!(owner instanceof HTMLElement)) return;
     const source = image.currentSrc || image.src;
     const isReady = Boolean(source && image.complete && image.naturalWidth > 0 && !image.hidden);
     if (!isReady) {
