@@ -1,0 +1,54 @@
+name: Oslo T-S 09 Oslo tinghus – one-shot Place-open integration
+on:
+  push:
+    branches:
+      - content/oslo-ts-09-tinghuset-vferdig-20261111
+    paths:
+      - 'data/places/politikk/oslo/places_politikk/tinghuset.json'
+      - 'tests/tinghuset-ts09-placecard-browser.mjs'
+      - '.github/workflows/tinghuset-ts09-integrate.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tinghuset-ts09-integration-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ts-09-tinghuset-vferdig-20261111
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate Place-open
+        run: npm run place-open:build
+      - name: Check canonical 13 People and 3 galleries, mobile and desktop
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          test -n "$CHROME_BIN" || { echo "::error::Chrome missing"; exit 1; }
+          CHROME_BIN="$CHROME_BIN" node tests/tinghuset-ts09-placecard-browser.mjs
+      - name: Commit generated Oslo tinghus Place-open payload only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runtime/place-open/tinghuset.json
+          if ! git diff --cached --quiet; then
+            git commit -m "build(tinghuset): sync canonical three-collection Place-open"
+            git fetch origin content/oslo-ts-09-tinghuset-vferdig-20261111
+            git rebase origin/content/oslo-ts-09-tinghuset-vferdig-20261111
+            git push origin HEAD:content/oslo-ts-09-tinghuset-vferdig-20261111
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tinghuset-ts09-browser-evidence
+          path: artifacts/tinghuset-ts09/
+          if-no-files-found: ignore

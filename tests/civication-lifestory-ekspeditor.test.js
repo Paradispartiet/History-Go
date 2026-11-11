@@ -523,4 +523,116 @@ assert.strictEqual(ret.threadState.kunden_som_tror_du_bestemmer.status, 'complet
 assert.ok(!flag(ret, 'retur_kundens_sak_avklart'),
   'accounting correction alone is not a customer-complaint ruling');
 
+// Pantelapp-veiledning: a promise or delegation is not completed learning.
+const pantOpening = raw.roleScenes.scenes.find(s => s.id === 'ny_kollega_01_midt_i_koen');
+assert.deepStrictEqual(pantOpening.valg.map(v => v.id), ['hjelp_kort', 'be_vente', 'send_til_amir'],
+  'the original three vikar choices are retained');
+for (const id of [
+  'ny_kollega_02_avtal_hjelp', 'ny_kollega_02_vis_pantekort',
+  'ny_kollega_02_amir_bekrefter', 'ny_kollega_03_vikar_forklarer',
+  'd2_formiddag_vikaren_etter_amir'
+]) assert.ok(raw.roleScenes.scenes.some(s => s.id === id), 'canonical vikar scene exists: ' + id);
+assert.equal(raw.roleScenes.scenes.find(s => s.id === 'ny_kollega_02_amir_bekrefter').avsender,
+  'erfaren_kollega', 'Amir is the sender of his own actual verification');
+assert.match(raw.roleScenes.scenes.find(s => s.id === 'ny_kollega_03_vikar_forklarer').tekst,
+  /ikke skannes om igjen/, 'the previously redeemed slip must not be scanned a second time');
+
+function toVikarEncounter() {
+  const st = State.createInitialState(content);
+  let count = 0;
+  while (!st.dagFerdig) {
+    const scene = Runner.selectNextScene(st, content);
+    assert.ok(scene, 'the canonical day-one story reaches the vikar');
+    if (scene.id === 'ny_kollega_01_midt_i_koen') return st;
+    Runner.applyChoice(st, content, scene.id, scene.valg[0].id);
+    assert.ok(++count < 45, 'vikar is still reachable in the established story');
+  }
+  assert.fail('vikar scene must not disappear');
+}
+let pant = toVikarEncounter();
+const initialVikarTrust = pant.relasjoner.ny_kollega;
+take(pant, 'ny_kollega_01_midt_i_koen', 'hjelp_kort');
+assert.ok(pant.relasjoner.ny_kollega - initialVikarTrust <= 1,
+  'promised instruction cannot get the full teaching reward in advance');
+assert.ok(flag(pant, 'pant_veiledning_startet'));
+assert.ok(!flag(pant, 'hjalp_ny_kollega'), 'an intention to demonstrate is not actual teaching');
+take(pant, 'ny_kollega_02_vis_pantekort', 'vis_en_gang');
+assert.ok(flag(pant, 'pant_kvittering_registrert_en_gang'));
+assert.ok(!flag(pant, 'hjalp_ny_kollega'), 'demonstration alone does not prove the learner understands');
+take(pant, 'ny_kollega_03_vikar_forklarer', 'sjekk_forklaringen');
+assert.ok(flag(pant, 'hjalp_ny_kollega'));
+assert.ok(flag(pant, 'pant_vikar_forstod'));
+assert.ok(flag(pant, 'pant_veiledning_fullfort'));
+
+pant = toVikarEncounter();
+take(pant, 'ny_kollega_01_midt_i_koen', 'hjelp_kort');
+take(pant, 'ny_kollega_02_vis_pantekort', 'vis_en_gang');
+take(pant, 'ny_kollega_03_vikar_forklarer', 'ikke_sjekk');
+assert.ok(flag(pant, 'pant_demo_uten_etterkontroll'));
+assert.ok(!flag(pant, 'hjalp_ny_kollega'));
+assert.equal(pant.threadState.ny_kollega_og_tillit.status, 'escalated');
+
+pant = toVikarEncounter();
+const priorIntegrity = pant.meters.integritet;
+const priorVikarRelation = pant.relasjoner.ny_kollega;
+take(pant, 'ny_kollega_01_midt_i_koen', 'be_vente');
+assert.equal(pant.relasjoner.ny_kollega, priorVikarRelation,
+  'agreeing to help after the queue must not count as rejecting the trainee');
+assert.equal(pant.meters.integritet, priorIntegrity,
+  'serving the queue first with an agreed handoff is not an integrity fault');
+assert.ok(flag(pant, 'pant_hjelp_utsatt'));
+assert.ok(!flag(pant, 'hjalp_ny_kollega'), 'waiting does not mean instruction occurred');
+take(pant, 'ny_kollega_02_avtal_hjelp', 'vis_etter_ko');
+assert.ok(flag(pant, 'pant_avlosning_avtalt'));
+assert.ok(!flag(pant, 'hjalp_ny_kollega'), 'relief agreement still needs actual instruction');
+take(pant, 'ny_kollega_02_vis_pantekort', 'vis_en_gang');
+take(pant, 'ny_kollega_03_vikar_forklarer', 'sjekk_forklaringen');
+assert.ok(flag(pant, 'hjalp_ny_kollega'));
+
+pant = toVikarEncounter();
+take(pant, 'ny_kollega_01_midt_i_koen', 'be_vente');
+take(pant, 'ny_kollega_02_avtal_hjelp', 'lat_det_ligge');
+assert.ok(flag(pant, 'pant_hjelp_ikke_fulgt_opp'));
+assert.ok(!flag(pant, 'hjalp_ny_kollega'));
+assert.equal(pant.threadState.ny_kollega_og_tillit.status, 'escalated');
+
+pant = toVikarEncounter();
+take(pant, 'ny_kollega_01_midt_i_koen', 'send_til_amir');
+assert.ok(flag(pant, 'pant_henvist_amir'));
+assert.ok(!flag(pant, 'pant_amir_hjalp'), 'referral is not an Amir result');
+assert.ok(!flag(pant, 'hjalp_ny_kollega'), 'referral is not a personally verified lesson');
+take(pant, 'ny_kollega_02_amir_bekrefter', 'registrer_amirs_hjelp');
+assert.ok(flag(pant, 'pant_amir_hjalp'));
+assert.ok(flag(pant, 'pant_veiledning_av_amir_loggfort'));
+assert.ok(!flag(pant, 'hjalp_ny_kollega'), 'a colleague must keep the credit for his work');
+let vikarDayOne = 0;
+while (!pant.dagFerdig) {
+  const scene = Runner.selectNextScene(pant, content);
+  assert.ok(scene, 'day one continues after delegated pant');
+  Runner.applyChoice(pant, content, scene.id, scene.valg[0].id);
+  assert.ok(++vikarDayOne < 100);
+}
+Runner.startNextDay(pant, content);
+const day2Choices = [];
+for (let i = 0; i < 75 && !pant.dagFerdig; i++) {
+  const scene = Runner.selectNextScene(pant, content);
+  assert.ok(scene);
+  day2Choices.push(scene.id);
+  assert.notEqual(scene.id, 'd2_formiddag_amir_om_gulvet',
+    'Amir cannot claim the trainee was abandoned after he taught her');
+  assert.notEqual(scene.id, 'd2_formiddag_vikaren_kommer_til_deg',
+    'player cannot claim credit for Amir\'s demonstration');
+  if (scene.id === 'd2_formiddag_vikaren_etter_amir') {
+    take(pant, scene.id, 'sporr_vikaren');
+    break;
+  }
+  Runner.applyChoice(pant, content, scene.id, scene.valg[0].id);
+}
+assert.ok(day2Choices.includes('d2_formiddag_vikaren_etter_amir'),
+  'delegated and confirmed training has its own true day-two follow-up');
+assert.ok(flag(pant, 'pant_egen_oppfolging_d2'));
+assert.ok(!flag(pant, 'hjalp_ny_kollega'),
+  'follow-up does not fabricate a personal day-one demonstration');
+assert.equal(pant.threadState.ny_kollega_og_tillit.status, 'completed');
+
 console.log("civication lifestory ekspeditor ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");

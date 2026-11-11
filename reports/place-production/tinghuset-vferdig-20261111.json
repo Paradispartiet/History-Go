@@ -1,0 +1,94 @@
+{
+  "schema": "history_go_place_vferdig_attestation_v1",
+  "place_id": "tinghuset",
+  "name": "Oslo tinghus",
+  "date": "2026-11-11",
+  "status": "vferdig_editorially_reviewed",
+  "reviewer": "History Go assistant-assisted editorial QA; no physical-device testing or independent human certification claimed",
+  "production_profile": "standard",
+  "primary_badge": "politikk",
+  "release": {
+    "branch": "main",
+    "production_pr": "https://github.com/Paradispartiet/History-Go/pull/7222",
+    "production_merge_commit": "1065c4c6d9d47371dc16251d1ba3db9602e540e4",
+    "qa_head_sha": "3379525e6f50d96a44b0a8d5e3db9a368dd285f9",
+    "qa_status": "17/17 GitHub Actions workflows successful",
+    "public_origin": "https://paradispartiet.github.io/History-Go/",
+    "github_pages_status": "PENDING_EXACT_BYTE_PARITY_CHECK",
+    "note": "Repo main merge is verified. Public Pages bytes are checked independently in the closeout acceptance workflow; do not infer live parity from merge alone."
+  },
+  "core": {
+    "source": "data/places/politikk/oslo/places_politikk/tinghuset.json",
+    "canonical_status": "complete",
+    "production_completed_at": "2026-11-11",
+    "quiz": {
+      "full_question_count": 21,
+      "quizcard": "Existing quiz-to-QuizCard data preserved; Playwright front/back flip PASS"
+    },
+    "fagverk": "curated source-backed documentation preserved",
+    "stories": 1,
+    "language_entries": 5,
+    "history": "Earlier source-checked content, Før/etter, Lesespor and chronologies preserved rather than fabricated anew"
+  },
+  "collections": {
+    "placecard_profile": [
+      "people",
+      "objects",
+      "brands"
+    ],
+    "people": {
+      "count": 13,
+      "notes": "Existing source-backed People with local media; 390/1440 real browser popup and images PASS"
+    },
+    "objects": {
+      "count": 3,
+      "notes": "Three locally documented physical objects; existing images PASS"
+    },
+    "brands": {
+      "count": 1,
+      "notes": "Beate Ellingsen AS, documented interior design commission and brand logo; real browser PASS"
+    },
+    "productions": {
+      "status": "BEGRUNNET_NA",
+      "reason": "No source-backed standalone production established for a fourth collection; no filler"
+    }
+  },
+  "media": {
+    "image": {
+      "path": "bilder/places/auto/tinghuset__oslo_tinghus.jpg",
+      "creator": "Mahlum",
+      "license": "Public domain",
+      "original_sha256": "e255f5352a530f6a248d1bb07c466ec23efa871206afffb43245665ca078136c"
+    },
+    "frontImage": {
+      "path": "bilder/places/tinghuset_front_portrait_2022.webp",
+      "sourceOriginal": "bilder/places/auto/tinghuset__oslo_tinghus_2022.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Oslo_Tinghus,_2022.jpg",
+      "creator": "Ssu",
+      "license": "CC BY-SA 4.0",
+      "dimensions": "900x1200",
+      "original_sha256": "117686df90ba6fbe023e1e5094ca7b89a78fd905289de2788ae416c2de96336a",
+      "output_sha256": "fcedc35854c896426ee1f469d663a4cf0c15005a945a8c21ceabe834b4de5305",
+      "editorial_review": "PASS: entrance and façade readable; visually inspected against local source and 390/1440 app tests; non-generative crop"
+    },
+    "distinct_originals": true
+  },
+  "qa": {
+    "workflow_count": 17,
+    "successful_workflows": 17,
+    "pr": "https://github.com/Paradispartiet/History-Go/pull/7222",
+    "browser": "Chromium 390x844 and 1440x1000, PlaceCard, QuizCard flip, three complete galleries including images, no JS errors",
+    "rule_preflight": "PASS for 10 current production rules including Politikk badge",
+    "place_open": "PASS deterministic generated runtime sync",
+    "quiz_production_context": "PASS deterministic source rebuild",
+    "source_images": "PASS two unrelated original photo SHA-256 fingerprints",
+    "existing_history": "No new claim or image fabricated"
+  },
+  "limitations": [
+    "Publication parity not yet established in this report; live check required before claiming public website matches main.",
+    "No physical iOS device validation or independent human editorial certification.",
+    "No renewed full historical fact-check of all earlier content; existing source-backed production and CI preserved."
+  ],
+  "remaining_place_blockers": [],
+  "verification_scope": "Assistant-assisted formal vFerdig report for already produced source-backed standard profile place, requiring the separately documented public byte-parity check for Pages publication."
+}
