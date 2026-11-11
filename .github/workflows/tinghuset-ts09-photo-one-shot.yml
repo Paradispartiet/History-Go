@@ -88,9 +88,9 @@ jobs:
       - name: Regenerate canonical derived state
         run: |
           npm run place-open:build
-          npm run quiz:context
+          node scripts/build-quiz-production-context.mjs --category politikk --target tinghuset --output data/quiz/production_context/politikk/tinghuset.json
+          node scripts/build-quiz-production-context.mjs --category politikk --target tinghuset --output data/quiz/production_context/politikk/tinghuset.json --check
           npm run place-open:check
-          npm run audit:quiz-production-context
           node scripts/check-distinct-place-photos.mjs --place data/places/politikk/oslo/places_politikk/tinghuset.json --require-both
       - name: Commit only the affected Place source, photo and derived outputs
         run: |
