@@ -1,0 +1,38 @@
+name: Oslo T–S 09 — Torshov documentary image acceptance
+on:
+  pull_request:
+    paths:
+      - 'data/places/by/oslo/places/torshov.json'
+      - 'data/runtime/place-open/torshov.json'
+      - 'data/places/places_index.json'
+      - 'bilder/places/by/torshov_front_portrait.webp'
+      - 'tests/torshov-portrait-contract.test.mjs'
+      - '.github/workflows/oslo-ts09-torshov-media-acceptance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: torshov-ts09-review-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify actual image, attribution and canonical runtime
+        run: |
+          node --test tests/torshov-portrait-contract.test.mjs
+          npm run place-open:check
+      - name: Preserve full-quality image for visual approval
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: torshov-front-portrait-original
+          path: bilder/places/by/torshov_front_portrait.webp
+          if-no-files-found: error
