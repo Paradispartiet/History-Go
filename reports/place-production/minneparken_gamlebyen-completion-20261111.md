@@ -1,6 +1,8 @@
 # Minneparken – sluttintegrasjon 11. november 2026
 
-## Gjeldende beslutning
+## Kontrollsnapshot før endelig merge
+
+Gjeldende merge- og CI-status føres i [PR #6966](https://github.com/Paradispartiet/History-Go/pull/6966). Denne rapporten dokumenterer kontrollen før merge.
 
 PR #6966 er fortsatt draft mens faktisk mobil-/desktop-QA og endelig CI
 kontrolleres. Ingen main-merge eller produksjonsdeploy hevdes i denne rapporten.
@@ -76,6 +78,9 @@ brukes som reserve for en manglende samling.
 - Fagverk-release og Place-open bygges fra canonical data; endelig --check
   og uendret Git-tre skal være grønne på siste PR-head.
 - Faktisk appkjøring på `2341b924`: tekst/PlaceCard/Fagverk mobil og desktop PASS; QuizCard desktop 10/10, flip/utvid/Escape/tastatur PASS. Mobilen avdekket 0,1 px overlapp mellom den lange bildekrediteringen og quizhandlingen. Krediteringen er redigert kortere med datoer og begge fotografnavn bevart. Ny uendret-head app-QA kreves.
+- Faktisk app-QA [#43094257390](https://github.com/Paradispartiet/History-Go/actions/runs/43094257390) har bestått på `094309fb`: mobil/desktop PlaceCard, Fagverk, tre samlinger, alle åtte popupfaner, Språk-innsamling, favoritt, nær/fjern-besøkskontroll i isolert testkontekst, QuizCard 10/10 og fullquiz 21/21. Skjermbildeartefakt og endelig CI må fortsatt kontrolleres.
+- Originalenes SHA-256 er registrert; distinct-photo-audit består. Utgått `cardImage` er fjernet fra kilde og runtime, og kontrakttesten krever fravær.
+- Epokeindeks og Knowledge-backfill-rapport er regenerert etter aktiv Story/quiz. 39 epoketester og canonical Knowledge-check består, med null kontraktsfeil.
 - Faktisk app-QA og ordinær PR-CI må leses på **samme endelige commit**.
   Tidligere kjøringer og en grønn statisk test erstatter ikke denne porten.
 
