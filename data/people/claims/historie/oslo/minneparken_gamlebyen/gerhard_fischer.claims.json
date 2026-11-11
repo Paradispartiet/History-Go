@@ -1,0 +1,126 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "gerhard_fischer",
+  "profile_file": "data/people/historie/oslo/minneparken_gamlebyen/gerhard_fischer.json",
+  "identity": {
+    "canonical_identity": "Gerhard Fischer, den norske arkitekt og arkeolog med dokumentert rolle ved Minneparken.",
+    "name_variants": [
+      "Gerhard Fischer"
+    ],
+    "not": [
+      "navnelike personer"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "profession",
+      "claim": "Gerhard Fischer var norsk arkitekt og arkeolog.",
+      "source_url": "https://snl.no/Gerhard_Fischer",
+      "source_location": "Innledning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-11",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "work",
+      "claim": "Fischer ledet arbeidet ved Minneparken i Gamlebyen i Oslo i 1926–1932.",
+      "source_url": "https://snl.no/Gerhard_Fischer",
+      "source_location": "Bakgrunn",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-11",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "plan",
+      "claim": "Gerhard Fischers arkeologiske undersøkelser avdekket grunnmurer, og parkplanen hans ble godkjent i 1928.",
+      "source_url": "https://oslobyleksikon.no/side/Minneparken",
+      "source_location": "Innledning og avslutning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-11",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "career",
+      "claim": "Fischer ble konservator ved Universitetets oldsaksamling i 1938 og undersøkte norske middelalderanlegg.",
+      "source_url": "https://snl.no/Gerhard_Fischer",
+      "source_location": "Bakgrunn og Arkeologi og bygningsundersøkelser",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-11",
+      "status": "verified",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "profession"
+    ],
+    "kindLabel": [
+      "profession"
+    ],
+    "year": [
+      "plan"
+    ],
+    "placeId": [
+      "work"
+    ],
+    "places[minneparken_gamlebyen]": [
+      "work"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "profession",
+          "work",
+          "plan"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "profession"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "work"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "plan"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "career"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "4/4",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-11-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

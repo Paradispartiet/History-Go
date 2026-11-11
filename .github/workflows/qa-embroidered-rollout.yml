@@ -4,6 +4,16 @@ on:
     paths:
       - 'bilder/merker/*-brodert-v*.webp'
       - 'data/badges/*.json'
+      - 'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag.webp'
+      - 'bilder/merker/vitenskap/locales/*/teknologi_og_ingeniorfag.webp'
+      - 'scripts/import-vitenskap-ingeniorfag-assets-v1.py'
+      - 'tests/vitenskap-teknologi-ingeniorfag-badge-candidate.test.mjs'
+      - 'tests/vitenskap-data-programvare-algoritmer-badge.test.mjs'
+      - 'tests/vitenskap-nettverk-digital-infrastruktur-badge.test.mjs'
+      - 'bilder/merker/vitenskap/brodert/nettverk_og_digital_infrastruktur.webp'
+      - 'bilder/merker/vitenskap/locales/*/nettverk_og_digital_infrastruktur.webp'
+      - 'bilder/merker/vitenskap/brodert/data_programvare_og_algoritmer.webp'
+      - 'bilder/merker/vitenskap/locales/*/data_programvare_og_algoritmer.webp'
       - 'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'
       - 'bilder/merker/by/locales/*/infrastruktur.webp'
       - 'scripts/import-infrastruktur-assets-v1.py'
@@ -57,6 +67,10 @@ on:
       - 'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'
       - 'bilder/merker/by/locales/*/monumenter_og_landemerker.webp'
       - 'tests/badge-embroidered-rollout-v1.test.mjs'
+      - 'tests/recent-underbadges-registered.test.mjs'
+      - 'badge-kontaktark.html'
+      - 'js/fagverk-ia-v3-badge-progress.js'
+      - 'js/fagverk-forside.js'
       - '.github/workflows/qa-embroidered-rollout.yml'
 permissions:
   contents: read
@@ -91,8 +105,12 @@ jobs:
           node --test tests/historie-kulturminner-bevaring-badge-contract.test.mjs
           node --test tests/historie-krim-ulykker-branner-badge-contract.test.mjs
           node --test tests/historie-migrasjon-minoritetshistorie-badge-contract.test.mjs
+          node --test tests/vitenskap-teknologi-ingeniorfag-badge-candidate.test.mjs
+          node --test tests/vitenskap-data-programvare-algoritmer-badge.test.mjs
+          node --test tests/vitenskap-nettverk-digital-infrastruktur-badge.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
+          node --test tests/recent-underbadges-registered.test.mjs
       - name: Generate four-badge preview
         run: |
           python -m pip install -q pillow

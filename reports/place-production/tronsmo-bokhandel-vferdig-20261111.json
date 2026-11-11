@@ -1,0 +1,116 @@
+{
+  "schema": "history_go_place_vferdig_attestation_v1",
+  "place_id": "tronsmo_bokhandel",
+  "date": "2026-11-11",
+  "status": "vferdig_editorially_reviewed",
+  "reviewer": "History Go content QA (assistant-assisted; no independent human sign-off or physical-device approval claimed)",
+  "production_profile": "standard",
+  "primary_badge": "litteratur",
+  "underbadge_ids": [
+    "poesi",
+    "sakprosa",
+    "skjonnlitteratur",
+    "forfattere_og_litteratursteder"
+  ],
+  "underbadge_decision": "Beholder de fire eksisterende Litteratur-undermerkene og kategoriens eksisterende uttrykk; ingen ny merkegrafikk eller kunstige samlinger er lagt til.",
+  "release": {
+    "branch": "main",
+    "original_production_pr": "https://github.com/Paradispartiet/History-Go/pull/5840",
+    "quiz_people_pr": "https://github.com/Paradispartiet/History-Go/pull/6773",
+    "illustration_pr": "https://github.com/Paradispartiet/History-Go/pull/7211",
+    "illustration_merge_commit": "042ef5fd2257b1e4aa118259dd1a96b75afd70eb",
+    "full_closeout_qa_pr": "https://github.com/Paradispartiet/History-Go/pull/7216",
+    "full_closeout_qa_merge_commit": "e3434536bbbccee14ba5ba2542430b244f79fc70",
+    "github_pages_status": "PASS_LIVE_ASSETS_AND_RUNTIME",
+    "public_origin": "https://paradispartiet.github.io/History-Go/",
+    "github_pages_evidence": "GitHub Actions #43068101865 (live job success) independently fetched four person SVGs and data/runtime/place-open/tronsmo_bokhandel.json from public Pages; all five returned HTTP 200 with SHA-256 byte parity against repository source. This establishes publicly served content parity, not the identity of a particular Pages deployment run.",
+    "live_evidence_run": "https://github.com/Paradispartiet/History-Go/actions/runs/43068101865",
+    "live_evidence_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/43068101865/artifacts/13875554185"
+  },
+  "universal_core": {
+    "identity": "Tronsmo Bokhandel, Universitetsgata 12, Oslo; verified canonical address and coordinates preserved.",
+    "source_review": "Earlier merged production and its dated source/People claims retained; this attestation does not claim independent re-verification of every older historical source.",
+    "story": 1,
+    "fullquiz": {
+      "sets": 4,
+      "questions": 28,
+      "knowledge_linked": "28/28",
+      "quizcard_collections": 4,
+      "quizcard_questions_total": 40,
+      "quizcard_parity": "40/40",
+      "browser_flip": "PASS"
+    },
+    "fagverk": {
+      "status": "curated",
+      "article_count": 3
+    },
+    "leksikon_articles": 1,
+    "language_entries": 6,
+    "lesespor_count": 4,
+    "front_image": "bilder/places/tronsmo_bokhandel_front_portrait.webp",
+    "main_image": "bilder/places/tronsmo_bokhandel.webp",
+    "image_license": "CC BY-SA 4.0",
+    "before_after": "No new before/after pair invented in this closeout",
+    "news": "No news item added or claimed in the media closeout"
+  },
+  "collections": {
+    "people": {
+      "status": "PASS",
+      "count": 4,
+      "identities": [
+        "Ivar Tronsmo",
+        "Per Petterson",
+        "Lars Fiske",
+        "Bendik Kaltenborn"
+      ],
+      "media": "Four separate 1024×1024 original symbolic editorial illustrations, all labeled NOT authentic portraits; all four loaded in real mobile and desktop gallery."
+    },
+    "objects": {
+      "status": "PASS",
+      "count": 1,
+      "identity": "Vindusdekorasjonene av Lars Fiske og Bendik Kaltenborn i 2017",
+      "media": "Existing documented member image loads on mobile and desktop."
+    },
+    "brands": {
+      "status": "PASS",
+      "count": 1,
+      "identity": "Tronsmo Bokhandel",
+      "media": "Existing member image loads on mobile and desktop."
+    },
+    "productions": {
+      "status": "PASS",
+      "count": 1,
+      "identity": "Tronsmo 40-årsjubileumsboks, 2013",
+      "media": "Existing member image loads on mobile and desktop."
+    },
+    "placecard_profile": [
+      "people",
+      "objects",
+      "brands",
+      "productions"
+    ],
+    "no_filler": true
+  },
+  "qa": {
+    "targeted_source_tests": "PASS – https://github.com/Paradispartiet/History-Go/actions/runs/43068101865",
+    "targeted_browser": "PASS",
+    "viewports": [
+      390,
+      1440
+    ],
+    "browser_scope": "Actual Chromium PlaceCard opens, tall frontImage displays, QuizCard flips both ways, all four canonical galleries open and show the correct member count, all 7 member preview images load in both viewport sizes, no uncaught JavaScript errors.",
+    "browser_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/43068101865/artifacts/13876163831",
+    "manual_visual_review": "Assistant inspected saved mobile and desktop front, People, Objects, Brands, and Productions screenshots from the prior full passing run; no material visual blockers observed. No independent human/device review claimed.",
+    "full_quiz_source_parity": "PASS – 28 unique Knowledge-linked questions and 40/40 existing QuizCard question slots preserved.",
+    "pages_content_match": "PASS – 5/5 exact public repository-to-Pages asset/runtime SHA-256 matches.",
+    "limitations": "No physical-device QA, independent editorial signature, or fresh complete audit of every historic claim and every unrelated PlaceCard tab. The separate git-pages deployment run ID was not obtained; direct public resource parity was verified."
+  },
+  "editorial_boundaries": [
+    "Person illustrations are original symbolic editorial graphics, not facial likenesses or authentic historical portraits.",
+    "Per Petterson remains canonically anchored at Nasjonalbiblioteket with a sourced direct Tronsmo workplace relation; no duplicate People ID.",
+    "Objects refer to a documented 2017 storefront decoration and not an assertion of present-day façade unchanged.",
+    "Retain canonical source photo provenance, status and coordinates; do not invent objects, brands, stories or quiz questions."
+  ],
+  "remaining_place_blockers": [],
+  "verification_scope": "Formal assistant-assisted vFerdig closeout of an already complete standard-profile Place, based on existing curated source production, four-gallery browser acceptance and independently fetched exact live assets and runtime. The limitations above remain transparent; this is not a representation of third-party certification or physical-device review."
+}

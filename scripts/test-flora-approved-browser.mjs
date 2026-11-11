@@ -25,6 +25,11 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"russesvalerot",label:"Russesvalerot",term:"Russesvalerot",path:"b09/88_russesvalerot_v1.webp"},
+    {name:"kjempeslirekne",label:"Kjempeslirekne",term:"Kjempeslirekne",path:"b09/87_kjempeslirekne_v1.webp"},
+    {name:"aakersvineblom",label:"Åkersvineblom",term:"Åkersvineblom",path:"b09/86_aakersvineblom_v1.webp"},
+    {name:"sitkagran",label:"Sitkagran",term:"Sitkagran",path:"b09/85_sitkagran_v1.webp"},
+    {name:"tuja",label:"Tuja",term:"Tuja",path:"b09/84_tuja_v1.webp"},
     {name:"sotmispel",label:"Søtmispel",term:"Søtmispel",path:"b09/83_sotmispel_v1.webp"},
     {name:"prydpaere",label:"Prydpære",term:"Prydpære",path:"b09/82_prydpaere_v2.webp"},
     {name:"prydkirsebaer",label:"Prydkirsebær",term:"Prydkirsebær",path:"b09/81_prydkirsebaer_v1.webp"},

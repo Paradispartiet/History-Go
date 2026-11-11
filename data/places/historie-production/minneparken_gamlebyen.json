@@ -91,6 +91,16 @@
       "temporalCoverage": "contemporary_to_event",
       "provenance": "Foreningen Middelalder-Oslo, faglig omtale av arbeidene november 2025",
       "limitations": "Engasjert interesseorganisasjons vurdering; dokumenterer ikke nødvendigvis situasjonen i november 2026."
+    },
+    {
+      "id": "source_minneparken_visit_2026",
+      "url": "https://kolsas.rotary.no/no/nyhetsdetaljer/201",
+      "sourceLocation": "Rapport om tur 9. juni 2026, publisert 11. juni, avsluttende bilde og bildetekst ved katedralruinene",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-11-11",
+      "temporalCoverage": "contemporary_to_event",
+      "provenance": "Tore Nedrebø, Kolsås Rotaryklubb, datert besøksrapport og eget foto",
+      "limitations": "Førstehåndsbevis på synlige ruiner og besøk i juni 2026. Ikke faglig befaring, tilgjengelighetsmåling eller attest på ferdige parktiltak."
     }
   ],
   "caseRealizations": [
@@ -194,11 +204,12 @@
   ],
   "presentTrace": {
     "objectStatus": "altered",
-    "statement": "Minneparken er fremdeles oppført som ruinpark av Oslo kommune. Katedral- og klosterruinene ligger i historisk område, mens betongdekket ble fjernet og apsiden delvis rekonstruert i 2024; ingen av kildene verifiserer at alle parktiltak var ferdigstilt i 2026.",
-    "originalSiteRelationship": "Ruinlandskapet ligger på de historiske kirke- og klosterområdene; noen synlige strukturer er restaurert eller rekonstruert.",
+    "statement": "Oslo kommunes kontrollerte eiendomsside beskriver ruinparken. En besøksrapport fra 9. juni 2026 med navngitt fotograf viser besøkende ved synlige katedralruiner. Foto og rapport dokumenterer fysisk eksistens og besøksbruk i 2026, men ikke sluttstatus for plen, gangsti, gjerder eller universell tilgjengelighet.",
+    "originalSiteRelationship": "Parken ligger ved de historiske kirke- og klostertomtene. Middelaldermurer, konserverte partier og rekonstruert apside skal skilles; ingen påstand om at ruinlandskapet er uendret.",
     "sourceIds": [
       "source_minneparken_kommune",
-      "source_minneparken_2025"
+      "source_minneparken_2025",
+      "source_minneparken_visit_2026"
     ]
   },
   "quizOpening": {
@@ -246,8 +257,14 @@
       ]
     },
     "F": {
-      "status": "N/A",
-      "rationale": "Lokalhistorisk kilde og foto fra 15. juli 2007 (Helge Høifødt, PD-self) er lisens-/datokontrollert og versjonert lokalt i PR, men historisk bilde er IKKE ny befaring eller dokumentasjon av ferdig fysisk parktilstand i november 2026. Kommunens stedsbeskrivelse og status fra november 2025 dokumenterer ikke sluttføring i 2026. Gate F forblir N/A."
+      "status": "PASS",
+      "evidenceRefs": [
+        "presentTrace",
+        "sources",
+        "caseRealizations[0].comparativeScale",
+        "caseRealizations[0].causationAndUncertainty"
+      ],
+      "rationale": "Ferskverifisert fysisk spor med offisiell eiendomsside og faktisk datert besøk 9. juni 2026. PASS gjelder det dokumenterte ruinlandskapet og avgrenset besøksbruk; ikke kommunens uverifiserte parkferdigstillelse. Dette er en kildekontroll, ikke en utført egen befaring."
     },
     "G": {
       "status": "N/A",
@@ -259,8 +276,8 @@
     }
   },
   "review": {
-    "reviewer": "ChatGPT – foreløpig source-bounded Historie-audit",
-    "reviewedAt": "2026-11-03",
-    "notes": "Blokkerte sluttporter er eksplisitt åpne. Denne rapporten er ikke godkjent Historie-fullproduksjon."
+    "reviewer": "Codex – kilde-, tids- og sporavgrensning",
+    "reviewedAt": "2026-11-11",
+    "notes": "F er kontrollert mot åpnet 2026-besøkskilde og kommunal eiendomsside. Slutt-QA og publiseringsaktivering er fortsatt ikke fullført; ingen uavhengig menneskelig review hevdes."
   }
 }

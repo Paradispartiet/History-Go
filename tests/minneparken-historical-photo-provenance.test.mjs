@@ -66,6 +66,12 @@ test('Canonical runtime index exposes the dated photograph and historical captio
 });
 
 test('Historic 2007 image cannot certify present-condition gate F or Historie ready',()=>{
- assert.equal(history.gates.F.status,'N/A');
- assert.equal(history.status,'blocked');
+ assert.ok(!history.gates.F.evidenceRefs?.includes('imageMeta'));
+ if(history.gates.F.status==='PASS'){
+  assert.ok(history.presentTrace.sourceIds.includes('source_minneparken_visit_2026'));
+  const source=history.sources.find(s=>s.id==='source_minneparken_visit_2026');
+  assert.equal(source.url,'https://kolsas.rotary.no/no/nyhetsdetaljer/201');
+  assert.match(source.sourceLocation,/9\. juni 2026/);
+  assert.match(source.limitations,/Ikke faglig befaring/);
+ } else assert.equal(history.status,'blocked');
 });

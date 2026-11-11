@@ -40,7 +40,7 @@ fs.mkdirSync(out, { recursive: true });
 let browser;
 const results = [];
 try {
-  browser = await chromium.launch({ headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
+  browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME_BIN || undefined, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
   for (const { label, width, height, mobile } of [
     { label:'mobile', width:390, height:844, mobile:true },
     { label:'desktop', width:1440, height:960, mobile:false }

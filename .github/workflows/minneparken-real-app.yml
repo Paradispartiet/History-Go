@@ -1,0 +1,39 @@
+name: Minneparken actual app acceptance
+on:
+  push:
+    branches: ['content/minneparken-kildebasert-leksikon-20261103']
+  pull_request:
+    paths:
+      - '**/*minneparken*'
+      - 'data/people/historie/oslo/minneparken_gamlebyen/**'
+      - 'bilder/kort/people/gerhard_fischer.jpg'
+      - 'bilder/kort/people/harry_fett.jpg'
+      - '.github/workflows/minneparken-real-app.yml'
+permissions:
+  contents: read
+concurrency:
+  group: minneparken-app-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  actual-mobile-desktop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Use installed Chrome
+        run: echo "CHROME_BIN=$(command -v google-chrome || command -v chromium)" >> "$GITHUB_ENV"
+      - name: Check candidate contracts
+        run: node --test tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-story-candidate.test.mjs tests/minneparken-historical-photo-provenance.test.mjs tests/minneparken-knowledge-registry.test.mjs
+      - name: Actual mobile and desktop app, collections, QuizCard and full quiz
+        run: node scripts/verify-minneparken-candidate-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: minneparken-actual-app
+          path: artifacts/
+          retention-days: 14

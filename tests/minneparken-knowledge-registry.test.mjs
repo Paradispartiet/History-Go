@@ -40,9 +40,9 @@ test('21/21 reviewed Minneparken questions own real canonical Knowledge links an
   assert.equal(unique.size,32);
 });
 
-test('QuizCard mirrors source Knowledge links, but only as an inactive candidate',()=>{
+test('QuizCard mirrors source Knowledge links with an explicit publication status',()=>{
   assert.equal(card.cards[0].questions.length,10);
-  assert.equal(card.production_status,'not_active_editorial_approval_pending');
+  assert.ok(['not_active_editorial_approval_pending','active_source_reviewed'].includes(card.production_status));
   for(const question of card.cards[0].questions){
     const source=qs.find(q=>q.id===question.sourceQuestionId);
     assert.ok(source,question.id);
@@ -52,11 +52,19 @@ test('QuizCard mirrors source Knowledge links, but only as an inactive candidate
   }
 });
 
-test('Knowledge pre-registration never approves the Historie physical, quiz or story gates',()=>{
-  assert.equal(history.status,'blocked');
-  for(const gate of ['F','G','H'])assert.equal(history.gates[gate].status,'N/A');
-  assert.ok(!(qm.files||[]).includes(quizFile));
-  assert.ok(!(qm.sets||[]).some(s=>s.targetId===ID||s.file===quizFile));
-  assert.ok(!cm.collections.includes(`${ID}_quizcard_v1.json`));
-  assert.ok(!sm.files.some(s=>s.path===`data/stories/stories_${ID}.json`));
+test('Knowledge registration alone cannot activate quiz or Story before release review',()=>{
+  const quizActive=(qm.files||[]).includes(quizFile)||(qm.sets||[]).some(s=>s.targetId===ID||s.file===quizFile);
+  const cardActive=cm.collections.includes(`${ID}_quizcard_v1.json`);
+  const storyActive=sm.files.some(s=>s.path===`data/stories/stories_${ID}.json`);
+  if(history.status!=='ready'){
+    assert.equal(quizActive,false);
+    assert.equal(cardActive,false);
+    assert.equal(storyActive,false);
+  } else {
+    for(const gate of ['F','G','H'])assert.equal(history.gates[gate].status,'PASS');
+    assert.equal(quizActive,true);
+    assert.equal(cardActive,true);
+    assert.equal(storyActive,true);
+    assert.ok(history.review.notes.includes('slutt'));
+  }
 });
