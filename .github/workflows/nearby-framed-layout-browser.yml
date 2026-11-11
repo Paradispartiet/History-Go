@@ -30,6 +30,7 @@ on:
       - 'css/nature.css'
       - 'index.html'
       - 'tests/nearby-framed-layout-browser.test.mjs'
+      - 'tests/index-touch-interaction-real-browser.mjs'
       - 'tests/header-language-menu-browser.test.mjs'
       - '.github/workflows/nearby-framed-layout-browser.yml'
   workflow_dispatch:
@@ -59,6 +60,8 @@ jobs:
         run: node --test tests/nearby-explore-guide.test.mjs
       - name: Install Chromium
         run: npx playwright install --with-deps chromium webkit
+      - name: Diagnose real index touch on Safari iPad and Chrome phone
+        run: node tests/index-touch-interaction-real-browser.mjs
       - name: Verify footer geometry contract
         run: node --test tests/mobile-footer-layout.test.mjs
       - name: Audit footer layout on phone and tablet
