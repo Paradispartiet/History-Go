@@ -108,7 +108,28 @@ async function play(browser, label, viewport, choices, expected) {
     assert.equal(reloaded.tidligereValg.eksp_life_pris_etterkontroll_verifisert === true, expected.verified);
     assert.deepEqual(pageErrors, [], label + ': browser has no uncaught JavaScript errors');
     await page.screenshot({ path: path.join(output, label + '-after-reload.png'), fullPage: true });
-    return { label, viewport, finalScene, verified: expected.verified, status: expected.status, trace };
+    const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+    if (await popup.isVisible().catch(() => false)) await popup.click();
+    await page.locator('.civi-footer button[data-category="minDag"]').click();
+    for (const name of ['history', 'full-history']) {
+      const details = page.locator('[data-lifestory-disclosure="' + name + '"]').first();
+      assert.equal(await details.count(), 1, label + ': actual history disclosure exists');
+      if (!(await details.evaluate(el => el.open))) await details.locator(':scope > summary').click();
+    }
+    const symposium = page.locator('[data-lifestory-symposium]').first();
+    const normalize = text => String(text).replace(/\s+/g, ' ').trim();
+    const shown = normalize(await symposium.innerText());
+    for (const record of reloaded.arkiv.filter(row => row.threadId === 'prisfeilen_i_koen')) {
+      assert.ok(shown.includes(normalize(record.valgTekst)), label + ': visible Symposium contains actual choice ' + record.sceneId);
+      assert.ok(shown.includes(normalize(record.konsekvensTekst)), label + ': visible Symposium contains actual consequence ' + record.sceneId);
+    }
+    if (expected.finalScene === 'prisfeil_05_amir_sjekker') {
+      assert.ok(shown.includes('Amir utførte kontrollen'), label + ': visible history attributes the check to Amir');
+    }
+    await symposium.scrollIntoViewIfNeeded();
+    await page.screenshot({ path: path.join(output, label + '-symposium.png'), fullPage: true });
+    return { label, viewport, finalScene, verified: expected.verified, status: expected.status, trace,
+      visibleSymposiumChecked: true };
   } finally {
     await context.close();
   }
