@@ -12,7 +12,7 @@ assert.ok(start >= 0 && end > start, "PlaceCard DOM exists in index.html");
 const placeCard = source.slice(start, end).replace('aria-hidden="true"', 'aria-hidden="false"');
 const fixture = `<!doctype html><html><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="/css/placeCard.css">
+<link rel="stylesheet" href="/css/placeCard.css">\n<link rel="stylesheet" href="/css/place-media-overview-fit.css">
 <style>body{margin:0;background:#000;color:white;font-family:system-ui}</style>
 </head><body class="hg-app hg-phone">
 ${placeCard}
@@ -36,11 +36,11 @@ const server = http.createServer((request, response) => {
     response.end(fixture);
     return;
   }
-  if (pathname !== "/css/placeCard.css") {
+  if (!["/css/placeCard.css", "/css/place-media-overview-fit.css"].includes(pathname)) {
     response.writeHead(404); response.end("not found"); return;
   }
   response.writeHead(200, { "content-type": "text/css; charset=utf-8" });
-  response.end(fs.readFileSync(path.join(root, "css/placeCard.css")));
+  response.end(fs.readFileSync(path.join(root, pathname.slice(1))));
 });
 
 const rect = element => {
@@ -78,7 +78,7 @@ try {
         headingImage: get("#pcHeaderImage"),
         title: get("#pcTitle"),
         rounds,
-        objectFit: getComputedStyle(document.getElementById("pcHeaderImage")).objectFit
+        objectFit: getComputedStyle(document.getElementById("pcHeaderImage")).objectFit,\n        portraitFit: getComputedStyle(document.getElementById("pcFrontImage")).objectFit
       };
     });
     const { card, grid, side, events, heading, headingImage, title, rounds } = result;
@@ -93,7 +93,7 @@ try {
     assert.ok(rounds.every(round => Math.abs(round.width - round.height) < 2), `round aspect at ${width}`);
     assert.equal(new Set(rounds.map(round => Math.round(round.y))).size, 4, `four round rows at ${width}`);
     assert.ok(headingImage.width >= title.width && title.y >= heading.y, `heading over landscape image at ${width}`);
-    assert.equal(result.objectFit, "cover");
+    assert.equal(result.objectFit, "contain", `complete landscape photo at ${width}`);\n    assert.equal(result.portraitFit, "contain", `complete frontImage at ${width}`);
     await page.locator("#pcHeaderHero").evaluate(hero => hero.classList.remove("has-photo-source", "has-image"));
     const noPhotoHeight = await page.locator("#pcHeaderHero").evaluate(hero => hero.getBoundingClientRect().height);
     assert.ok(noPhotoHeight < heading.height, `missing image leaves no blank hero at ${width}`);
