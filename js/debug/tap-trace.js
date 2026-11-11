@@ -89,7 +89,8 @@
 
   for (const type of ["pointerdown", "touchend", "click"]) {
     window.addEventListener(type, event => {
-      const point = event.changedTouches?.[0] || event;
+      const pointer = /** @type {MouseEvent & TouchEvent} */ (event);
+      const point = pointer.changedTouches?.[0] || pointer;
       const top = Number.isFinite(point.clientX) && Number.isFinite(point.clientY)
         ? document.elementFromPoint(point.clientX, point.clientY) : null;
       push(state.events, { type, phase: "capture", target: name(event.target), top: name(top) });
