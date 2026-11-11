@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_sitkagran: Object.freeze({
+      scientificName: "Picea sitchensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/85_sitkagran_v1.webp",
+      gitBlobSha: "9fc42236838ad22a748e3f5236ec9a83008d6ea4",
+      reviewedAt: "2026-11-11",
+      stage: "eviggronn_barved_med_spisse_naler_og_hengende_kongler",
+      evidence: "data/natur/flora/illustration-quality-sitkagran-20261111.json"
+    }),
     emne_flora_tuja: Object.freeze({
       scientificName: "Thuja occidentalis",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/84_tuja_v1.webp",
