@@ -25,6 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"kjempeslirekne",label:"Kjempeslirekne",term:"Kjempeslirekne",path:"b09/87_kjempeslirekne_v1.webp"},
     {name:"aakersvineblom",label:"Åkersvineblom",term:"Åkersvineblom",path:"b09/86_aakersvineblom_v1.webp"},
     {name:"sitkagran",label:"Sitkagran",term:"Sitkagran",path:"b09/85_sitkagran_v1.webp"},
     {name:"tuja",label:"Tuja",term:"Tuja",path:"b09/84_tuja_v1.webp"},
