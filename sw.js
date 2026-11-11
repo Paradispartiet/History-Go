@@ -4,7 +4,7 @@
    ============================================================ */
 
 // New cache namespace invalidates previously cached PlaceCard CSS/JS on activation.
-const SW_VERSION = "hg-sw-2026-11-11-map-clickthrough1";
+const SW_VERSION = "hg-sw-2026-11-11-place-overview1";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -33,6 +33,7 @@ const PRECACHE_URLS = [
   "css/nearby.css",
   "css/overlay.css",
   "css/placeCard.css",
+  "css/place-image-overview.css",
   "css/popups.css",
   "css/profile.css",
   "css/profile-dashboard.css",
@@ -52,6 +53,7 @@ const PRECACHE_URLS = [
   // UI popup + place card
   "js/ui/popup-utils.js",
   "js/ui/place-card.js",
+  "js/ui/place-image-overview.js",
   "js/hgchips.js",
 
   // Knowledge / trivia / insight / data
