@@ -90,6 +90,7 @@
   const summaryMarkup = new WeakMap();
   /** @type {WeakMap<Element, string>} */
   const choiceRoles = new WeakMap();
+  let choiceActionDepth = 0;
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
   /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }>, dramatisert: boolean }|null} */ let sisteKonsekvens = null;
 
@@ -485,7 +486,7 @@
   // updateProfile: jobbtilbud kan ha endret rollen, og HG_Lifestyle kan ha
   // telt nye tags (stamp-chipen) — re-render henter begge. render() er ren
   // lesing, så dette kan aldri starte en event-løkke.
-  window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); refreshPersonTypes(); renderProfileUpdate(); });
+  window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); refreshPersonTypes(); render(); });
   // The inactive-role mail handler persists shared private consequences. An
   // already mounted Min dag view must import those facts before its next save.
   // Keep the active job's own meters, work scenes and role-specific flags.
@@ -539,6 +540,7 @@
     // Refresh shared facts before running an ordinary work choice, including
     // when the private-story event occurred while this view was not listening.
     syncSharedPrivateState(persisted);
+    choiceActionDepth += 1;
     try {
       const scene = content.scenes.find((s) => s.id === sceneId);
       const valg = scene ? (scene.valg || []).find((c) => c.id === choiceId) : null;
@@ -603,8 +605,9 @@
       }
     } catch (error) {
       console.error("[CivicationLifestoryUI] valg feilet", error);
+    } finally {
+      try { render(); } finally { choiceActionDepth -= 1; }
     }
-    render();
     return accepted;
   }
 
@@ -1384,16 +1387,10 @@
     same?.focus({ preventScroll: true });
   }
 
-  function renderProfileUpdate() {
-    const panel = getPanel();
-    const previous = panel && state ? rememberChoiceFocus(panel, String(state.rolle)) : null;
-    render();
-    if (panel && state) restoreChoiceFocus(panel, String(state.rolle), previous);
-  }
-
   function render() {
     const panel = getPanel();
     if (!panel || !content || !state) return;
+    const focusedChoice = choiceActionDepth === 0 ? rememberChoiceFocus(panel, String(state.rolle)) : null;
 
     if (shellStoryUnavailable()) {
       panel.innerHTML = renderShellStoryHtml();
@@ -1435,6 +1432,7 @@
     // When an asynchronous role adoption finishes, retire the prior role\x27s
     // unanswerable inbox projection and expose this role\x27s current scene.
     window.CivicationWaveAInboxBridge?.sync?.();
+    restoreChoiceFocus(panel, String(state.rolle), focusedChoice);
   }
 
   // A choice replaces its own button with a consequence/new scene. On phones,

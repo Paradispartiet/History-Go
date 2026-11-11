@@ -115,6 +115,11 @@ async function main() {
     button.getAttribute("data-lifestory-choice") === choiceId && button.getAttribute("data-lifestory-scene") === sceneId);
   assert.notEqual(refreshedChoice, originalChoice, "profile refresh really replaces the choice DOM");
   assert.equal(window.document.activeElement, refreshedChoice, "the unchanged choice keeps keyboard focus");
+  window.CivicationLifestoryUI.refresh();
+  assert.notEqual(window.document.activeElement, refreshedChoice, "a subsequent background render also replaces the DOM");
+  assert.equal(window.document.activeElement.getAttribute("data-lifestory-choice"), choiceId,
+    "the subsequent render preserves the same active choice");
+  assert.equal(window.document.activeElement.getAttribute("data-lifestory-scene"), sceneId);
   const outsideChoiceControl = window.document.createElement("button");
   window.document.body.append(outsideChoiceControl);
   outsideChoiceControl.focus();
