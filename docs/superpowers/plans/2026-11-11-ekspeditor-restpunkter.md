@@ -11,3 +11,5 @@ Bygg videre på den mergede priskjeden, ikke på den lukkede alternative PR #721
 - [ ] Merge etter grønn CI og kvalitetsvurdering, og kontroller main-integritet.
 
 Lønn og opptjening av stilling/Badge er ikke implementert av denne bolken. Dag 3 er siste skrevne arbeidsdag; en fortsatt utsatt oppgave blir ikke automatisk løst.
+
+Integrasjon: #7215 ble merget mens første slutthead kjørte. Lageravvikets scener, regresjon og nettleserforløp beholdes sammen med prisrettelsene. Samlet versjon kontrolleres på nytt før merge.

@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_kjempeslirekne: Object.freeze({
+      scientificName: "Reynoutria sachalinensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/87_kjempeslirekne_v1.webp",
+      gitBlobSha: "15792add5d7eb8c4614c6f94e1b177e86db7bc08",
+      reviewedAt: "2026-11-11",
+      stage: "sensommerblomstring_med_store_hjerteblad_og_jordstengler",
+      evidence: "data/natur/flora/illustration-quality-kjempeslirekne-20261111.json"
+    }),
     emne_flora_aakersvineblom: Object.freeze({
       scientificName: "Senecio vulgaris",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/86_aakersvineblom_v1.webp",

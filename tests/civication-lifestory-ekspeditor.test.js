@@ -278,4 +278,128 @@ assert.ok(flag(priceState, 'eksp_life_pris_melding_venter'));
 assert.ok(!flag(priceState, 'eksp_life_pris_overtatt'));
 assert.strictEqual(priceState.threadState.prisfeilen_i_koen.status, 'escalated');
 
+// --- Existing stock thread: physical count, customer resolution, handover and actual checks. ---
+const stockScenes = [
+  'varen_01_som_ikke_finnes', 'varen_02_rett_ubegrunnet_lovnad',
+  'varen_02_kontroller_beholdning', 'varen_02_amir_teller',
+  'varen_03_avklar_kunden', 'varen_04_meld_telleavvik',
+  'varen_05_lene_bekrefter', 'varen_06_etterkontroll', 'varen_07_amir_etterkontroll'
+];
+for (const id of stockScenes) {
+  assert.ok(raw.roleScenes.scenes.some(s => s.id === id), 'retain canonical stock scene ' + id);
+}
+for (const id of ['varen_02_rett_ubegrunnet_lovnad', 'varen_02_kontroller_beholdning', 'varen_04_meld_telleavvik']) {
+  const s = raw.roleScenes.scenes.find(s => s.id === id);
+  assert.strictEqual(s.avsender, null, id + ' is work guidance, not a fabricated message');
+}
+for (const id of ['varen_02_amir_teller', 'varen_07_amir_etterkontroll']) {
+  assert.strictEqual(raw.roleScenes.scenes.find(s => s.id === id).avsender, 'erfaren_kollega',
+    'Amir must be named as actual counter');
+}
+assert.strictEqual(raw.roleScenes.scenes.find(s => s.id === 'varen_05_lene_bekrefter').avsender,
+  'butikksjef', 'Lene confirms the handover herself');
+
+function toStockEncounter() {
+  const current = State.createInitialState(content);
+  let steps = 0;
+  while (!current.dagFerdig) {
+    const scene = Runner.selectNextScene(current, content);
+    assert.ok(scene, 'the normal story reaches the stock task');
+    if (scene.id === 'varen_01_som_ikke_finnes') return current;
+    Runner.applyChoice(current, content, scene.id, scene.valg[0].id);
+    assert.ok(++steps < 40, 'stock task is playable on day one');
+  }
+  assert.fail('stock encounter cannot silently disappear');
+}
+let stock = toStockEncounter();
+take(stock, 'varen_01_som_ikke_finnes', 'aerlig_om_lageret');
+assert.ok(flag(stock, 'lager_usikkert_forklart'));
+assert.ok(!flag(stock, 'lager_ett_funnet'), 'conversation alone does not count stock');
+take(stock, 'varen_02_kontroller_beholdning', 'tell_selv');
+assert.ok(flag(stock, 'lager_telling_egen'));
+assert.ok(!flag(stock, 'lager_kunde_fikk_vare'), 'finding one item is not a completed sale');
+take(stock, 'varen_03_avklar_kunden', 'gjennomfor_salget');
+assert.ok(flag(stock, 'lager_kunde_fikk_vare'));
+assert.ok(!flag(stock, 'lager_avvik_meldt'), 'sale does not report missing stock');
+take(stock, 'varen_04_meld_telleavvik', 'send_tellenotat');
+assert.ok(flag(stock, 'lager_avvik_meldt'));
+assert.ok(!flag(stock, 'lager_ansvar_overtatt'), 'sent note is not receipt');
+take(stock, 'varen_05_lene_bekrefter', 'avtal_egen_sjekk');
+assert.ok(flag(stock, 'lager_ansvar_overtatt'));
+assert.ok(!flag(stock, 'lager_etterkontroll_verifisert'), 'a promise to check does not count as verification');
+take(stock, 'varen_06_etterkontroll', 'sjekk_null_selv');
+assert.ok(flag(stock, 'lager_system_oppdatert'));
+assert.ok(flag(stock, 'lager_etterkontroll_egen'));
+assert.ok(flag(stock, 'lager_etterkontroll_verifisert'));
+assert.strictEqual(stock.threadState.varen_som_ikke_finnes.status, 'completed');
+
+stock = toStockEncounter();
+take(stock, 'varen_01_som_ikke_finnes', 'aerlig_om_lageret');
+take(stock, 'varen_02_kontroller_beholdning', 'amir_teller');
+assert.ok(flag(stock, 'lager_telling_delegert'));
+assert.ok(!flag(stock, 'lager_ett_funnet'), 'delegating is not an actual stock result');
+take(stock, 'varen_02_amir_teller', 'registrer_amirs_telling');
+assert.ok(flag(stock, 'lager_telling_amir'));
+assert.ok(!flag(stock, 'lager_telling_egen'));
+take(stock, 'varen_03_avklar_kunden', 'la_lene_gjennomfore');
+assert.ok(flag(stock, 'lager_vare_solgt_av_lene'));
+assert.ok(!flag(stock, 'lager_kunde_fikk_vare'), 'the player did not execute Lene\'s sale');
+take(stock, 'varen_04_meld_telleavvik', 'send_tellenotat');
+take(stock, 'varen_05_lene_bekrefter', 'be_amir_folge_opp');
+assert.ok(!flag(stock, 'lager_etterkontroll_verifisert'));
+take(stock, 'varen_06_etterkontroll', 'be_amir_etterkontroll');
+assert.ok(!flag(stock, 'lager_etterkontroll_amir'), 'Amir has not responded yet');
+take(stock, 'varen_07_amir_etterkontroll', 'registrer_amir');
+assert.ok(flag(stock, 'lager_etterkontroll_amir'));
+assert.ok(!flag(stock, 'lager_etterkontroll_egen'));
+assert.ok(flag(stock, 'lager_etterkontroll_verifisert'));
+assert.strictEqual(stock.threadState.varen_som_ikke_finnes.status, 'completed');
+
+stock = toStockEncounter();
+take(stock, 'varen_01_som_ikke_finnes', 'lov_i_morgen');
+assert.ok(flag(stock, 'lovte_for_mye'));
+take(stock, 'varen_02_rett_ubegrunnet_lovnad', 'rett_beskjeden');
+assert.ok(flag(stock, 'lager_lovnad_rettet'));
+take(stock, 'varen_02_kontroller_beholdning', 'tell_selv');
+take(stock, 'varen_03_avklar_kunden', 'gjennomfor_salget');
+take(stock, 'varen_04_meld_telleavvik', 'utsett_avviket');
+assert.ok(flag(stock, 'lager_avviksmelding_venter'));
+assert.ok(!flag(stock, 'lager_avvik_meldt'));
+assert.ok(!flag(stock, 'lager_ansvar_overtatt'));
+assert.strictEqual(stock.threadState.varen_som_ikke_finnes.status, 'escalated');
+
+stock = toStockEncounter();
+take(stock, 'varen_01_som_ikke_finnes', 'lov_i_morgen');
+take(stock, 'varen_02_rett_ubegrunnet_lovnad', 'la_lovnaden_staa');
+assert.ok(flag(stock, 'lager_ubekreftet_lovnad_staar'));
+assert.ok(!flag(stock, 'lager_ett_funnet'));
+assert.strictEqual(stock.threadState.varen_som_ikke_finnes.status, 'escalated');
+
+stock = toStockEncounter();
+take(stock, 'varen_01_som_ikke_finnes', 'sjekk_selv');
+assert.ok(flag(stock, 'lager_ett_funnet'));
+take(stock, 'varen_03_avklar_kunden', 'la_kunden_vente');
+assert.ok(!flag(stock, 'lager_kunde_fikk_vare'));
+assert.ok(!flag(stock, 'lager_avvik_meldt'));
+assert.strictEqual(stock.threadState.varen_som_ikke_finnes.status, 'escalated');
+
+stock = toStockEncounter();
+take(stock, 'varen_01_som_ikke_finnes', 'sjekk_selv');
+take(stock, 'varen_03_avklar_kunden', 'gjennomfor_salget');
+take(stock, 'varen_04_meld_telleavvik', 'send_tellenotat');
+take(stock, 'varen_05_lene_bekrefter', 'avtal_egen_sjekk');
+take(stock, 'varen_06_etterkontroll', 'ikke_sjekket');
+assert.ok(flag(stock, 'lager_system_oppdatert'));
+assert.ok(flag(stock, 'lager_etterkontroll_venter'));
+assert.ok(!flag(stock, 'lager_etterkontroll_verifisert'));
+assert.strictEqual(stock.threadState.varen_som_ikke_finnes.status, 'escalated');
+
+stock = toStockEncounter();
+take(stock, 'varen_01_som_ikke_finnes', 'aerlig_om_lageret');
+take(stock, 'varen_02_kontroller_beholdning', 'amir_teller');
+take(stock, 'varen_02_amir_teller', 'avklar_variant');
+assert.ok(flag(stock, 'lager_variant_venter'));
+assert.ok(!flag(stock, 'lager_ett_funnet'), 'unverified variant cannot count as the customer item');
+assert.strictEqual(stock.threadState.varen_som_ikke_finnes.status, 'escalated');
+
 console.log("civication lifestory ekspeditor ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");
