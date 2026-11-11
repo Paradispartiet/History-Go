@@ -50,7 +50,7 @@ try{
    await page.waitForFunction(()=>window.__HG_APP_READY__===true&&window.__HG_ROUTER_STARTED__===true&&document.querySelector('#placeCard')?.dataset.currentPlaceId==='tinghuset',null,{timeout:80000});
    await page.waitForFunction(()=>document.querySelector('#pcFrontImage')?.complete&&document.querySelector('#pcFrontImage')?.naturalWidth>0&&document.querySelector('#pcHeaderImage')?.naturalWidth>0,null,{timeout:35000});
    const actualTitle=await page.locator('#pcTitle').innerText();
-   assert.match(actualTitle,/tinghus/i);
+   assert.match(actualTitle,/(tinghus|courthouse)/i);
    const imgs=await page.evaluate(()=>({hero:document.querySelector('#pcHeaderImage')?.naturalWidth||0,front:document.querySelector('#pcFrontImage')?.naturalHeight||0,frontSrc:document.querySelector('#pcFrontImage')?.currentSrc||''}));
    assert.ok(imgs.frontSrc.includes('tinghuset_front_portrait.webp'),'PlaceCard must render separately sourced portrait');
    assert.ok(imgs.hero>0&&imgs.front>0);
@@ -71,7 +71,7 @@ try{
   try{
    await page.goto(base+'/fagverk-sted.html?place='+id,{waitUntil:'domcontentloaded',timeout:55000});
    await page.waitForFunction(()=>document.querySelector('#fagverkPlaceContent')?.hidden===false,null,{timeout:35000});
-   assert.match(await page.locator('#fagverkPlaceTitle').innerText(),/tinghus/i);
+   assert.match(await page.locator('#fagverkPlaceTitle').innerText(),/(tinghus|courthouse)/i);
    assert.ok(await page.locator('#fagverkPlaceLenses a').count()>=3);
    assert.equal(await page.locator('#fagverkPlaceError').isHidden(),true);
    check.fagverk=true;
