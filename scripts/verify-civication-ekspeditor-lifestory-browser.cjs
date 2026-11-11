@@ -50,6 +50,11 @@ async function play(browser, label, viewport, choices, expected) {
       const sceneId = info?.sceneId;
       assert.ok(sceneId, label + ': a playable scene must be available');
       if (sceneId === 'prisfeil_02_koen') arrivedAtPrice = true;
+      if (sceneId === 'prisfeil_05_amir_sjekker') {
+        const sender = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(sender, /Fra Amir/, label + ': Amir must be named as sender');
+        assert.doesNotMatch(sender, /Fra Lene/, label + ': Lene did not perform this check');
+      }
       const buttons = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice]:not([disabled])');
       const availableCount = await buttons.count();
       assert.ok(availableCount > 0, label + ': visible enabled choice in ' + sceneId);
