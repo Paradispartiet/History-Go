@@ -15,7 +15,19 @@ test('Vitenskap: ingeniørfag beholder hovedmerke og eksisterende undermerker', 
   assert.equal(parent.image, 'bilder/merker/vitenskap/brodert/vitenskap.webp');
   assert.equal(parent.sub.length, 16);
   assert.ok(parent.sub.includes('teknologi_og_ingeniorfag'));
-  assert.equal(Object.keys(parent.subBadgeImages).length, 7);
+  assert.equal(Object.keys(parent.subBadgeImages).length, candidate.status === 'integrated' ? 8 : 7);
+  const originalSeven = {
+    naturvitenskap:'bilder/merker/vitenskap/brodert/naturvitenskap.webp',
+    teknologi:'bilder/merker/vitenskap/brodert/teknologi.webp',
+    matematikk:'bilder/merker/vitenskap/brodert/matematikk.webp',
+    informasjonsteknologi:'bilder/merker/vitenskap/brodert/informasjonsteknologi.webp',
+    forskning_og_metode:'bilder/merker/vitenskap/brodert/forskning_og_metode.webp',
+    astronomi_og_fysikk:'bilder/merker/vitenskap/brodert/astronomi_og_fysikk.webp',
+    kjemi_og_materialvitenskap:'bilder/merker/vitenskap/brodert/kjemi_og_materialvitenskap.webp'
+  };
+  for (const [id, path] of Object.entries(originalSeven)) {
+    assert.equal(parent.subBadgeImages[id],path,id+' existing badge path unchanged');
+  }
   assert.equal(candidate.parentBadgeReference.path, parent.image);
   assert.equal(candidate.palette.primary, parent.color);
   assert.equal(candidate.palette.secondary, parent.secondaryColor);
