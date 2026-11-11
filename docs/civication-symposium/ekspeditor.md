@@ -180,7 +180,7 @@ I denne jobbmailens første scene gir Lene allerede instruks om å sjekke hyllep
 
 ### Redaksjonelle kontrollpunkter fra kildefilene
 
-Ved dokumentgjennomgangen 11. november 2026 har åpningsscenen et valg som retter to plakater, men alle åpningsvalg låser opp samme prisfeilscene. Før revisjon må det avklares om kampanjekaffen var kontrollert og rettet; en rettet feil skal ikke bare oppstå på nytt uten forklaring.
+Åpningsscenen er nå avgrenset til en stikkprøve av brød og juice. Den kan avdekke og få rettet merking på disse varene, men ikke kampanjekaffens prisfeil. Alle tre åpningsvalg leder derfor fortsatt til den eksisterende kaffescenen uten at den samme varen påstås å være kontrollert og rettet to ganger. Å åpne presis uten en frivillig stikkprøve gir ikke lenger et ubegrunnet integritetstrekk. Selve Life Story-prisoppfølgingen nedenfor krever fortsatt særskilt revisjon.
 
 Prisfeilscenen har både et valg som avslutter tråden etter å ha rettet kundens pris, og et valg som også melder avviket til Lene. Kundens handel og retting av årsaken må behandles som to forskjellige oppgaver. Ikke anta at systemprisen eller hyllemerkingen er rettet fordi kunden har fått et avslag.
 

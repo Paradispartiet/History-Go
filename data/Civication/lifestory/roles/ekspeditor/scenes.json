@@ -11,11 +11,11 @@
       "tilgjengelighet": "start",
       "prioritet": 10,
       "tittel": "Første ordentlige kasseøkt",
-      "tekst": "Lene skriver: «Du får første ordentlige kasseøkt i dag. Det viktigste er å holde flyt uten å miste nøyaktighet. Og åpningen er din: kundene skal aldri merke hva som måtte fikses før døra gikk opp.»",
+      "tekst": "Lene skriver: «Du får første ordentlige kasseøkt i dag. Før åpning kan du ta en stikkprøve av hylleprisene eller spørre Amir om hva du bør se etter. Hvis du finner et prisavvik, må varen og tilbudsvilkårene kontrolleres. Du kan rette en bekreftet kampanjepris i selve handelen; jeg har ansvaret for å få rettet butikkens prisgrunnlag.»",
       "valg": [
         {
           "id": "sjekk_plakatene",
-          "tekst": "Gå en runde og sjekk hylleplakatene mot kassa før åpning",
+          "tekst": "Ta en stikkprøve av prisetikettene for brød og juice før åpning",
           "tone": "grundig",
           "skills_practice": {"skill_id":"practical_mastery","activity_type":"verify_store_prices","evidence_flag":"sjekket_priser_foer_aapning","delta":2},
           "effekter": {
@@ -32,22 +32,21 @@
               }
             }
           },
-          "konsekvensTekst": "Du finner to plakater som ikke stemmer og retter dem før noen ser det. Ingen vil noensinne vite. Det er litt av poenget.",
+          "konsekvensTekst": "Du finner feil merking på brød og juice, dokumenterer forskjellene og melder dem til Lene. Hun får på plass korrekt merking før åpning. Kampanjekaffen inngår ikke i denne stikkprøven.",
           "laaserOpp": [
             "prisfeil_02_koen"
           ]
         },
         {
           "id": "aapne_raskt",
-          "tekst": "Åpne presis og ta det som kommer",
+          "tekst": "Åpne presis og avklar eventuelle prisfeil når de oppstår",
           "tone": "effektiv",
           "effekter": {
             "relasjoner": {
               "butikksjef": 2
             },
             "meters": {
-              "energi": -1,
-              "integritet": -2
+              "energi": -1
             },
             "flagg": {
               "aapnet_raskt": true
@@ -58,7 +57,7 @@
               }
             }
           },
-          "konsekvensTekst": "Døra går opp på slaget. Butikken ser våken ut. Du håper det den ikke rakk å bli, ikke synes.",
+          "konsekvensTekst": "Butikken åpner presis. Du har ikke gjort en ekstra stikkprøve, men står klar til å undersøke et prisavvik hvis en kunde oppdager det.",
           "laaserOpp": [
             "prisfeil_02_koen"
           ]
@@ -84,7 +83,7 @@
               }
             }
           },
-          "konsekvensTekst": "«Kaffen,» sier Amir uten å nøle. «Plakaten sier alltid noe annet enn kassa første dagen. Sjekk den før kø nummer én.»",
+          "konsekvensTekst": "«Kampanjekaffen er det mange spør om,» sier Amir. «Hvis kassa viser en annen pris, må vi sjekke at etiketten gjelder samme pakke og tilbudsperiode.»",
           "laaserOpp": [
             "prisfeil_02_koen"
           ]
@@ -101,7 +100,7 @@
       "tilgjengelighet": "laast",
       "prioritet": 9,
       "tittel": "Kassa sier 49, plakaten sier 39 — og køen vokser",
-      "tekst": "Kunden kjøper kampanjekaffen. Kassa viser 49, hylleplakaten viser 39. Bak henne står fem personer og sukker. Amir er opptatt med varepåfyll.",
+      "tekst": "Kunden legger kampanjekaffen på båndet. Kassa viser 49, hylleetiketten viser 39. Kaffen inngikk ikke i morgenens stikkprøve. Fem personer venter i kø, og Amir er opptatt med varepåfyll.",
       "valg": [
         {
           "id": "rett_synlig",
