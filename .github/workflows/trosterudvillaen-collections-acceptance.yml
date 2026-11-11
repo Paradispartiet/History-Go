@@ -1,0 +1,42 @@
+name: Trosterudvillaen – PlaceCard-samlinger
+on:
+  pull_request:
+    paths:
+      - 'data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_08/trosterudvillaen.json'
+      - 'data/runtime/place-open/trosterudvillaen.json'
+      - 'bilder/illustrasjoner/places/trosterudvillaen_front_editorial.svg'
+      - 'bilder/illustrasjoner/people/aimee_sommerfelt_historygo_editorial.svg'
+      - 'bilder/illustrasjoner/historical_events/trosterudvillaen_*.svg'
+      - 'tests/trosterudvillaen-placecard-content.test.mjs'
+      - 'tests/trosterudvillaen-collections-real-browser.mjs'
+      - '.github/workflows/trosterudvillaen-collections-acceptance.yml'
+  workflow_dispatch:
+concurrency:
+  group: trosterudvillaen-collections-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Source, galleries and existing quiz contracts
+        run: node --test tests/trosterudvillaen-placecard-content.test.mjs
+      - name: Real mobile and desktop PlaceCard acceptance
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/trosterudvillaen-collections-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trosterudvillaen-collections-screenshots
+          path: artifacts/trosterudvillaen-collections/
+          if-no-files-found: ignore
