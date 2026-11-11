@@ -47,7 +47,8 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-med
 /* Front faces are photographs; the reverse face is a complete QuizCard.
    Never zoom/crop quiz artwork when the front card uses cover. */
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard .pc-card-face-front > img{
-  object-fit: cover;
+  /* Preserve the original photo, rather than magnifying it to fill 3:4. */
+  object-fit: contain;
   object-position: center;
 }
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard .pc-card-face-back img,
