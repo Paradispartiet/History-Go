@@ -69,7 +69,7 @@ async function exerciseFavoriteMapPicker(page, favoriteId) {
    stored:localStorage.getItem('hg_favorite_place_ids_v1'),only:window.HGMap?.getFavoriteViewOnly?.()
  }),favoriteId)));
  await page.waitForFunction(() => window.HGMap?.getFavoriteViewOnly?.()===true);
- assert.equal(await page.evaluate(id=>window.HGFavoritePlaces.has(id)),true,'Favorite comes from PlaceCard star');
+ assert.equal(await page.evaluate(id=>window.HGFavoritePlaces.has(id),favoriteId),true,'Favorite comes from PlaceCard star');
  await tap(page,'[data-favorite-style="star"]');
  await page.waitForFunction(()=>window.HGMap?.getFavoriteMarkerStyle?.()==='star');
  await tap(page,'[data-favorite-view="all"]');
