@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_russesvalerot: Object.freeze({
+      scientificName: "Vincetoxicum rossicum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/88_russesvalerot_v1.webp",
+      gitBlobSha: "c0afbdff9044f5b0f079c62110bc71674e032eb9",
+      reviewedAt: "2026-11-11",
+      stage: "rosabrun_stjerneblomstring_og_frostand_med_frokapsler",
+      evidence: "data/natur/flora/illustration-quality-russesvalerot-20261111.json"
+    }),
     emne_flora_kjempeslirekne: Object.freeze({
       scientificName: "Reynoutria sachalinensis",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/87_kjempeslirekne_v1.webp",
