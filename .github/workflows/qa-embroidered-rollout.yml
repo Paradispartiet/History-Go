@@ -13,6 +13,9 @@ on:
       - 'tests/vitenskap-elektronikk-robotikk-automatisering-badge.test.mjs'
       - 'tests/vitenskap-medisin-badge-contract.test.mjs'
       - 'tests/vitenskap-psykologi-hjerne-badge.test.mjs'
+      - 'tests/vitenskap-vitenskapshistorie-badge.test.mjs'
+      - 'bilder/merker/vitenskap/brodert/vitenskapshistorie.webp'
+      - 'bilder/merker/vitenskap/locales/*/vitenskapshistorie.webp'
       - 'scripts/import-vitenskap-psykologi-hjerne-v1.py'
       - 'bilder/merker/vitenskap/brodert/psykologi_og_hjerne.webp'
       - 'bilder/merker/vitenskap/locales/*/psykologi_og_hjerne.webp'
@@ -121,6 +124,7 @@ jobs:
           node --test tests/vitenskap-elektronikk-robotikk-automatisering-badge.test.mjs
           node --test tests/vitenskap-medisin-badge-contract.test.mjs
           node --test tests/vitenskap-psykologi-hjerne-badge.test.mjs
+          node --test tests/vitenskap-vitenskapshistorie-badge.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
           node --test tests/recent-underbadges-registered.test.mjs

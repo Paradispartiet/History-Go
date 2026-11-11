@@ -31,8 +31,8 @@ test('Psykologi: eksisterende tolv originalmerker bevares og kandidat aktiveres 
     assert.ok(existsSync(new URL(science.subBadgeImages[oldId], root)), oldId + ' missing');
   }
   assert.ok(['candidate','integrated'].includes(manifest.status));
-  assert.equal(Object.keys(science.subBadgeImages).length,
-    manifest.status === 'integrated' ? 13 : 12);
+  assert.ok(Object.keys(science.subBadgeImages).length >=
+    (manifest.status === 'integrated' ? 13 : 12), 'Previously integrated science badges must remain present');
   assert.equal(science.subBadgeImages[id],
     manifest.status === 'integrated' ? manifest.variants.nb.path : undefined);
 });
