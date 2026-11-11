@@ -59,6 +59,21 @@ for (const scene of raw.lifeScenes.scenes) {
   }
 }
 
+// Opening checks do not magically fix the later coffee discrepancy.
+const opening = raw.roleScenes.scenes.find(s => s.id === 'apning_01_forste_okt');
+const coffeeEncounter = raw.roleScenes.scenes.find(s => s.id === 'prisfeil_02_koen');
+assert.ok(opening && coffeeEncounter, 'reuse the existing Life Story scene IDs');
+assert.deepStrictEqual(opening.valg.map(c => c.id), ['sjekk_plakatene', 'aapne_raskt', 'spor_amir'],
+  'the original opening branches remain playable');
+const checked = opening.valg.find(c => c.id === 'sjekk_plakatene');
+assert.match(checked.tekst, /brød og juice/);
+assert.match(checked.konsekvensTekst, /Kampanjekaffen inngår ikke/,
+  'the preliminary spot check must not pretend to cover coffee');
+assert.match(coffeeEncounter.tekst, /Kaffen inngikk ikke i morgenens stikkprøve/,
+  'the later encounter must be consistent across all opening choices');
+assert.ok(!Object.hasOwn(opening.valg.find(c => c.id === 'aapne_raskt').effekter.meters, 'integritet'),
+  'opening on time cannot automatically count as an integrity violation');
+
 // --- Dag 1: privat morgen først, deretter Lenes kasseøkt-brief ---
 let state = State.createInitialState(content);
 assert.strictEqual(state.rolle, "ekspeditor");
