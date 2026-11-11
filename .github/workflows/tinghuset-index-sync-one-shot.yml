@@ -1,0 +1,53 @@
+name: Tinghuset one-shot generated places index sync
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/tinghuset-index-sync-one-shot.yml'
+      - 'data/places/places_index.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tinghuset-index-sync-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/tinghuset-places-index-parity-20261111
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild canonical places index, verify Tinghuset and no unrelated changes
+        run: |
+          npm run places:index:build
+          npm run places:index:check
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const all=JSON.parse(fs.readFileSync('data/places/places_index.json','utf8'));
+          const t=all.find(x=>x.id==='tinghuset');
+          assert.ok(t,'Oslo tinghus is absent from the map index');
+          assert.equal(t.frontImage,'bilder/places/tinghuset_front_portrait_2022.webp');
+          assert.equal(t.production_status,'complete');
+          console.log('Canonical place index Oslo tinghus current frontImage, production status: PASS');
+          NODE
+      - name: Commit only canonical generated index
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/places_index.json
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "build(tinghuset): synchronize canonical places index portrait and completion"
+            git fetch origin fix/tinghuset-places-index-parity-20261111
+            git rebase origin/fix/tinghuset-places-index-parity-20261111
+            git push origin HEAD:fix/tinghuset-places-index-parity-20261111
+          fi
