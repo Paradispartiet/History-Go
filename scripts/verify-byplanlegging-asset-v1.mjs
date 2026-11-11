@@ -29,10 +29,20 @@ for (const [locale,v] of Object.entries(c.variants)) {
   assert.equal(buf.length,v.bytes,locale+' bytes');
   assert.equal(buf.toString('ascii',0,4),'RIFF',locale+' RIFF');
   assert.equal(buf.toString('ascii',8,12),'WEBP',locale+' WebP');
-  assert.equal(buf.toString('ascii',12,16),'VP8X',locale+' VP8X');
-  assert.equal(buf.readUIntLE(24,3)+1,1024,locale+' width');
-  assert.equal(buf.readUIntLE(27,3)+1,1024,locale+' height');
-  assert.ok(buf[20]&0x10,locale+' transparent alpha flag');
+  const encoding=buf.toString('ascii',12,16);
+  assert.ok(['VP8X','VP8L'].includes(encoding),locale+' valid extended/lossless WebP');
+  if(locale==='nb')assert.equal(encoding,'VP8X','active original remains extended WebP');
+  if(encoding==='VP8X'){
+    assert.equal(buf.readUIntLE(24,3)+1,1024,locale+' width');
+    assert.equal(buf.readUIntLE(27,3)+1,1024,locale+' height');
+    assert.ok(buf[20]&0x10,locale+' transparent alpha flag');
+  }else{
+    assert.equal(buf[20],0x2f,locale+' lossless WebP signature');
+    const bits=buf.readUInt32LE(21);
+    assert.equal((bits&0x3fff)+1,1024,locale+' width');
+    assert.equal(((bits>>>14)&0x3fff)+1,1024,locale+' height');
+    assert.ok((bits>>>28)&1,locale+' lossless alpha channel');
+  }
   assert.equal(createHash('sha256').update(buf).digest('hex'),v.sha256,locale+' SHA-256');
 }
 console.log('Byplanlegging 7/10: all five pinned WebP files are verified; original is active and locale files remain inactive.');
