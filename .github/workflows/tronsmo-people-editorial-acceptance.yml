@@ -1,0 +1,44 @@
+name: Tronsmo – People editorial browser acceptance
+on:
+  pull_request:
+    paths:
+      - 'data/people/litteratur/oslo/tronsmo_bokhandel/ivar_tronsmo.json'
+      - 'data/people/kunst/oslo/tronsmo_bokhandel/lars_fiske.json'
+      - 'data/people/kunst/oslo/tronsmo_bokhandel/bendik_kaltenborn.json'
+      - 'bilder/illustrasjoner/people/ivar_tronsmo_historygo_editorial.svg'
+      - 'bilder/illustrasjoner/people/lars_fiske_historygo_editorial.svg'
+      - 'bilder/illustrasjoner/people/bendik_kaltenborn_historygo_editorial.svg'
+      - 'data/runtime/place-open/tronsmo_bokhandel.json'
+      - 'tests/oslo-ts-tronsmo-people-quizcard-v1.test.mjs'
+      - 'tests/tronsmo-people-editorial-real-browser.mjs'
+      - '.github/workflows/tronsmo-people-editorial-acceptance.yml'
+  workflow_dispatch:
+concurrency:
+  group: tronsmo-people-acceptance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Source, image and quiz integrity
+        run: node --test tests/oslo-ts-tronsmo-people-quizcard-v1.test.mjs
+      - name: Real mobile and desktop PlaceCard acceptance
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/tronsmo-people-editorial-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tronsmo-people-editorial-screenshots
+          path: artifacts/tronsmo-people-editorial/
+          if-no-files-found: ignore
