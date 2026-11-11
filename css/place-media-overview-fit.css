@@ -1,0 +1,77 @@
+/* History Go – preserve the whole place photograph at every viewport.
+   image = wide/landscape PlaceCard header, frontImage = 3:4 collectible face.
+   A blurred copy fills spare space as a passive backdrop; the sharp source
+   remains fully visible.  Do not apply to People, badges or QuizCard art. */
+
+body.hg-app #placeCard .pc-heading-hero.has-photo-source {
+  background-color: #141c24;
+  isolation: isolate;
+}
+
+/* Soft edge-to-edge backdrop never replaces the unzoomed, sharp photograph. */
+body.hg-app #placeCard .pc-heading-hero.has-photo-source::before {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--pc-overview-backdrop, none);
+  background-size: cover;
+  background-position: var(--pc-overview-position, center);
+  background-repeat: no-repeat;
+  filter: blur(18px) brightness(.52) saturate(.88);
+}
+
+/* Both the main image and the front image retain all their source pixels.
+   !important protects the contract from later dynamically loaded legacy CSS
+   and inline imageComposition.portraitFit='cover' values. */
+body.hg-app #placeCard #pcHeaderHero > #pcHeaderImage,
+body.hg-app #placeCard .pc-heading-hero > .pc-heading-image {
+  z-index: 1;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+body.hg-app #placeCard #pcFrontImage,
+body.hg-app #placeCard .pc-frontcard .pc-card-face-front > img {
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+  background-color: #111a22;
+}
+
+/* The translucent gradient and controls stay above the two image layers. */
+body.hg-app #placeCard .pc-heading-hero.has-photo-source::after {
+  z-index: 2;
+}
+body.hg-app #placeCard .pc-heading-hero .pc-heading-content {
+  z-index: 3;
+}
+
+/* Full scene for any auxiliary place hero and map micro-card. */
+body.hg-app .hg-place-popup-v2 .hg-place-hero-image,
+body.hg-app #placeCard.is-micro-place .pc-micro-media img {
+  object-fit: contain !important;
+  object-position: center !important;
+  background-color: #131c27;
+}
+
+/* Before/after is evidence: never lose the edges of either original. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+  .pc-sheet-canonical-before-after figure img {
+  object-fit: contain !important;
+  object-position: center !important;
+  background-color: #141c24;
+}
+
+/* Keep explicitly curated visual artwork and QuizCard backs completely intact. */
+body.hg-app #placeCard .pc-card-face-back img,
+body.hg-app #placeCard .pc-quiz-card-image {
+  object-fit: contain !important;
+}
+
+/* Portrait photos and transparent editorial illustrations can use the same
+   visible frame without a forced additional crop or enlargement. */
