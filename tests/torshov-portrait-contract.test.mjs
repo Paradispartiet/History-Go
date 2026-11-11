@@ -17,11 +17,16 @@ test('Torshov documentary image is an actual local 900x1200 WebP, source and cre
  assert.equal(meta.width,900);
  assert.equal(meta.height,1200);
  assert.equal(place.frontImageMeta.outputSha256,createHash('sha256').update(buffer).digest('hex'));
- assert.equal(place.frontImageMeta.license,'CC BY-SA 4.0');
- assert.equal(place.frontImageMeta.creator,'Tore Sætre');
- assert.match(place.frontImageMeta.transformation,/Torshov og Sandaker/);
- assert.equal(place.frontImageMeta.reviewStatus,'editorial_crop_review_passed');
- assert.equal(runtime.place.frontImageMeta.reviewStatus,'editorial_crop_review_passed');
+ assert.equal(place.frontImageMeta.license,'CC BY-SA 2.0');
+ assert.equal(place.imageMeta.sourceSha256,'39fe81477fa5f4ec633a2745b4931269d05f71cd203576e71ede036a5cd0a539');
+ assert.equal(place.imageMeta.license,'CC BY-SA 4.0');
+ assert.notEqual(place.frontImageMeta.sourceSha256,place.imageMeta.sourceSha256);
+ assert.notEqual(place.frontImageMeta.sourcePage,place.imageMeta.sourcePage);
+ assert.equal(place.frontImageMeta.creator,'Wilhelm Joys Andersen');
+ assert.equal(place.frontImageMeta.sourcePage,'https://commons.wikimedia.org/wiki/File:Torshov_arial.jpg');
+ assert.match(place.frontImageMeta.transformation,/selvstendig foto tatt i 2010/);
+ assert.equal(place.frontImageMeta.reviewStatus,'pending_editorial_crop_review');
+ assert.equal(runtime.place.frontImageMeta.reviewStatus,'pending_editorial_crop_review');
 });
 test('Torshov remains a single canonical place with original quiz and geo baseline',()=>{
  const p=JSON.parse(fs.readFileSync('data/places/by/oslo/places/torshov.json','utf8'));
