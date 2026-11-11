@@ -1,0 +1,37 @@
+/* History Go – no destructive zoom on documentary Place images.
+ * PlaceCard header (image), flip front (frontImage), legacy Place popup,
+ * Before/After and Micro Place media show the complete supplied picture.
+ * The photo frame retains a quiet neutral background where aspect ratios differ.
+ *
+ * This stylesheet is deliberately loaded as a late compatibility layer:
+ * Place Sheet CSS is dynamically injected after index.html styles, and some
+ * earlier Place compositions used inline object-fit:cover. The narrow !important
+ * rules apply ONLY to place photographs, never People, badges, quiz artwork,
+ * flora, map icons or other collection media.
+ */
+body.hg-app #placeCard .pc-heading-hero.has-photo-source{
+  background:linear-gradient(145deg,#1d2932,#111821 64%,#22252a);
+}
+body.hg-app #placeCard #pcHeaderImage.pc-heading-image{
+  object-fit:contain !important;
+  /* Preserve per-place authored object-position when it exists. */
+}
+body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage{
+  object-fit:contain !important;
+}
+body.hg-app #placeCard .pc-card-face-front{
+  background:linear-gradient(155deg,#25313d,#131921 55%,#29313b);
+}
+body.hg-app .hg-place-popup-v2 .hg-place-hero-media .hg-place-hero-image{
+  object-fit:contain !important;
+}
+body.hg-app #placeCard.is-unified-place .pc-sheet-canonical-before-after figure img{
+  object-fit:contain !important;
+  background:#17202b;
+}
+body.hg-app #placeCard.is-micro-place .pc-micro-media img{
+  object-fit:contain !important;
+}
+body.hg-app #placeCard #pcMiniImg{
+  object-fit:contain !important;
+}
