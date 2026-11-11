@@ -73,7 +73,19 @@ async function exerciseCard(page,id){
  await tap(page,'#pcFavorite');
  await page.waitForFunction(before=>document.getElementById('pcFavorite')?.textContent===before,favoriteBefore);
  await tap(page,'#pcCollapseBtn');
- await page.waitForFunction(()=>document.getElementById('placeCard')?.getAttribute('aria-hidden')==='true');
+ try {
+  await page.waitForFunction(()=>document.getElementById('placeCard')?.getAttribute('aria-hidden')==='true');
+ } catch (error) {
+  const diagnostic = await page.evaluate(() => {
+   const pc=document.getElementById('placeCard');
+   const mini=document.getElementById('pcMini');
+   const button=document.getElementById('pcCollapseBtn');
+   const describe=el=>el?{className:el.className,ariaHidden:el.getAttribute('aria-hidden'),display:getComputedStyle(el).display,pointerEvents:getComputedStyle(el).pointerEvents}:null;
+   return {url:location.href,placeCard:describe(pc),mini:describe(mini),collapseButton:describe(button),bodyClass:document.body.className,trace:window.HGDeviceTapTrace?.snapshot?.()||null};
+  });
+  console.error('COLLAPSE STATE AFTER TAP '+JSON.stringify(diagnostic));
+  throw error;
+ }
  // The footer thumbnail must still respond after a place was opened from the map.
  await tap(page,'#pcMini');await cardVisible(page,id);
 }
