@@ -28,7 +28,7 @@ test('All four legacy Tronsmo QuizCards retain IDs and have 40/40 exact canonica
 });
 test('Three source-curated People have disclosed original editorial images; Per Petterson stays directly linked',()=>{
  const rel=['ivar_tronsmo','per_petterson','lars_fiske','bendik_kaltenborn'];assert.deepEqual(place.related_people_ids,rel);
- const per=people.find(x=>x.id==='per_petterson');assert.ok(per?.places.includes(target));assert.equal(per.placeId,'nasjonalbiblioteket');
+ const per=people.find(x=>x.id==='per_petterson');assert.ok(per?.places.includes(target));assert.equal(per.placeId,'nasjonalbiblioteket');assert.equal(per.image,'bilder/illustrasjoner/people/per_petterson_historygo_editorial.svg');assert.equal(per.cardImage,per.image);assert.equal(per.imageStatus,'original_editorial_not_an_authentic_portrait');assert.match(fs.readFileSync(new URL('../'+per.image,import.meta.url),'utf8'),/IKKE ET AUTENTISK PORTRETT/);
  for(const [id,profile,claims] of [
  ['ivar_tronsmo','people/litteratur/oslo/tronsmo_bokhandel/ivar_tronsmo.json','people/claims/litteratur/oslo/tronsmo_bokhandel/ivar_tronsmo.claims.json'],
  ['lars_fiske','people/kunst/oslo/tronsmo_bokhandel/lars_fiske.json','people/claims/kunst/oslo/tronsmo_bokhandel/lars_fiske.claims.json'],
@@ -38,5 +38,5 @@ test('Three source-curated People have disclosed original editorial images; Per 
 });
 test('Generated runtime includes founder, employee, and the two window artists',()=>{
  const r=read('data/runtime/place-open/tronsmo_bokhandel.json'),ids=r.people.map(p=>p.id);
- for(const id of ['ivar_tronsmo','per_petterson','lars_fiske','bendik_kaltenborn'])assert.equal(ids.filter(x=>x===id).length,1,id);for(const id of ['ivar_tronsmo','lars_fiske','bendik_kaltenborn']){const p=r.people.find(p=>p.id===id);assert.equal(p.image,`bilder/illustrasjoner/people/${id}_historygo_editorial.svg`);assert.equal(p.imageStatus,'original_editorial_not_an_authentic_portrait');}
+ for(const id of ['ivar_tronsmo','per_petterson','lars_fiske','bendik_kaltenborn'])assert.equal(ids.filter(x=>x===id).length,1,id);for(const id of ['ivar_tronsmo','lars_fiske','bendik_kaltenborn']){const p=r.people.find(p=>p.id===id);assert.equal(p.image,`bilder/illustrasjoner/people/${id}_historygo_editorial.svg`);assert.equal(p.imageStatus,'original_editorial_not_an_authentic_portrait');}const per=r.people.find(p=>p.id==='per_petterson');assert.equal(per.image,'bilder/illustrasjoner/people/per_petterson_historygo_editorial.svg');assert.equal(per.imageStatus,'original_editorial_not_an_authentic_portrait');
 });
