@@ -4,6 +4,10 @@ on:
     paths:
       - 'bilder/merker/*-brodert-v*.webp'
       - 'data/badges/*.json'
+      - 'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag.webp'
+      - 'bilder/merker/vitenskap/locales/*/teknologi_og_ingeniorfag.webp'
+      - 'scripts/import-vitenskap-ingeniorfag-assets-v1.py'
+      - 'tests/vitenskap-teknologi-ingeniorfag-badge-candidate.test.mjs'
       - 'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'
       - 'bilder/merker/by/locales/*/infrastruktur.webp'
       - 'scripts/import-infrastruktur-assets-v1.py'
@@ -91,6 +95,7 @@ jobs:
           node --test tests/historie-kulturminner-bevaring-badge-contract.test.mjs
           node --test tests/historie-krim-ulykker-branner-badge-contract.test.mjs
           node --test tests/historie-migrasjon-minoritetshistorie-badge-contract.test.mjs
+          node --test tests/vitenskap-teknologi-ingeniorfag-badge-candidate.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
       - name: Generate four-badge preview
