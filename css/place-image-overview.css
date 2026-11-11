@@ -1,0 +1,86 @@
+/* HISTORY GO — oversiktsbilder uten tvungen zoom.
+   Behold hele image/frontImage i deres faktiske rammer; fyll eventuelle
+   sidefelt med en dempet, uskarp kopi av samme kilde. QuizCard, person-
+   portretter, merker og runde samlingsbilder har egne regler og røres ikke.
+   Dette kan ikke hente tilbake motiv som ble beskåret da en WebP ble laget. */
+
+body.hg-app #placeCard .pc-heading-hero.has-photo-source,
+body.hg-app #placeCard .pc-card-face-front,
+body.hg-app .hg-place-popup-v2 .hg-place-hero-media{
+  background-color: #14212a;
+}
+
+/* Landscape place.image in the persistent heading, including sticky header.
+   A dark photographic matte avoids empty bars for nonmatching aspect ratios. */
+body.hg-app #placeCard .pc-heading-hero.has-photo-source::before{
+  content: "";
+  position: absolute;
+  inset: -16px;
+  background-image: var(--hg-place-overview-backdrop, none);
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px) brightness(.55) saturate(.8);
+  opacity: .78;
+  pointer-events: none;
+  z-index: 0;
+}
+body.hg-app #placeCard .pc-heading-hero #pcHeaderImage{
+  object-fit: contain !important;
+  object-position: center !important;
+  z-index: 0;
+}
+body.hg-app #placeCard .pc-heading-hero.has-photo-source::after{
+  z-index: 0;
+}
+
+/* Portrait frontImage: never crop buildings, facades, people or artworks to
+   fill the 3:4 frame. The back/QuizCard face remains entirely untouched. */
+body.hg-app #placeCard .pc-frontcard .pc-card-face-front{
+  overflow: hidden;
+}
+body.hg-app #placeCard .pc-frontcard .pc-card-face-front::after{
+  content: "";
+  position: absolute;
+  inset: -16px;
+  background-image: var(--hg-place-overview-backdrop, none);
+  background-size: cover;
+  background-position: center;
+  filter: blur(16px) brightness(.55) saturate(.8);
+  opacity: .72;
+  pointer-events: none;
+  z-index: 0;
+}
+body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage{
+  object-fit: contain !important;
+  object-position: center !important;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+/* Alternate large Place popup: same no-crop contract for place.image. */
+body.hg-app .hg-place-popup-v2 .hg-place-hero-media::before{
+  content: "";
+  position: absolute;
+  inset: -16px;
+  z-index: 0;
+  background-image: var(--hg-place-overview-backdrop, none);
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px) brightness(.55) saturate(.8);
+  opacity: .76;
+  pointer-events: none;
+}
+body.hg-app .hg-place-popup-v2 .hg-place-hero-media .hg-place-hero-image{
+  object-fit: contain !important;
+  object-position: center !important;
+  z-index: 1;
+}
+
+/* Før/etter are documentary comparisons: no irreversible crop. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+  .pc-sheet-canonical-before-after figure img{
+  object-fit: contain !important;
+  object-position: center !important;
+  background: #14212a;
+}
