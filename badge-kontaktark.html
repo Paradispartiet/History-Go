@@ -78,7 +78,7 @@ async function loadRegisteredUnderbadges() {
       const grid=document.createElement("div");
       grid.className="grid";
       for (const [id,path] of assets) {
-        const label=id.replaceAll("_"," ").replace(/(^|\\s)\\S/g,ch=>ch.toLocaleUpperCase("nb-NO"));
+        const label=id.replaceAll("_"," ").split(" ").map(word => word ? word.charAt(0).toLocaleUpperCase("nb-NO") + word.slice(1) : "").join(" ");
         const card=document.createElement("article");
         card.className="card";
         const button=document.createElement("button");
