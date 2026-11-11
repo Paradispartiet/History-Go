@@ -216,6 +216,16 @@ Den opprinnelige snarveien, `boy_regelen`, gir nå en **faktisk feilutbetaling u
 
 Fem låste oppfølgingsscener er lagt til i den eksisterende `kunden_som_tror_du_bestemmer`-tråden: `retur_02_hva_er_grunnen`, `retur_03_lene_tar_saken`, `retur_04_lene_undersokte_varen`, `retur_05_lene_undersoker_bilag` og `retur_06_avstemming_bekreftet`. Dermed er returregler, kundens mulige reklamasjon, butikkens interne fullmakt og regnskapsoppfølging ulike oppgaver, uten en parallell historiefamilie. Den eksisterende [Life Story-regresjonstesten](../../tests/civication-lifestory-ekspeditor.test.js) gjennomspiller både faktisk løsning og grener der kjøpsbevis, vareundersøkelse, omlevering eller avstemming står uferdig.
 
+### Vikarens pantekvittering – gjennomført hjelp, ikke bare henvisning
+
+Den kanoniske scenen `ny_kollega_01_midt_i_koen` er utvidet i samme tråd, `ny_kollega_og_tillit`, med fem konkrete oppfølgingsscener. Vikarens problem er ikke en vag «metode», men en pantekvittering som skal behandles i bemannet kasse mens tre kunder venter. I spillets **fiktive butikk** viser kvitteringen 14 kroner. Medarbeideren skal kontrollere hvor den hører hjemme, beløpet og at den registreres én gang. Først når spilleren faktisk har vist fremgangsmåten og latt vikaren forklare kontrollpunktene, registreres `hjalp_ny_kollega` og dokumentert læring. At man tilbyr hjelp, avtaler avløsning eller viser en handling uten etterkontroll, teller ikke som fullført opplæring.
+
+Det er også forsvarlig å avklare køen først, men da må konkret hjelp avtales og følges opp. Amir kan ta veiledningen; i så fall er det **han** som krediteres den gjennomførte demonstrasjonen. En henvisning alene er ikke en utført oppgave. Dag 2 skiller derfor mellom vikar som fikk opplæring fra spilleren, vikar som ble hjulpet av Amir og vikar som faktisk ble stående uten oppfølging. Ingen løsning skanner samme innløste kvittering en gang til som øvelse.
+
+**Yrkesgrunnlag:** [Infinitum – ofte stilte spørsmål](https://infinitum.no/no/pantesystemet/ofte-stilte-spoersmaal/) beskriver pantesystemet og utbetaling gjennom pantekvittering eller kontanter. [Infinitum – pant for utsalgssteder](https://infinitum.no/no/samle-inn-pant/for-utsalg/) beskriver butikkenes mottaks- og utbetalingsoppgaver. [REMA 1000 – ofte stilte spørsmål](https://www.rema.no/om-rema/kundeservice/ofte-stilte-sporsmal/) gir ett dokumentert eksempel på at pantelapper innløses i bemannet kasse. Spillets konkrete kasseskjerm, beløp, personer, samtaler og opplæringsrekkefølge er **redaksjonelle premisser**, ikke generelle regler for alle kjeder eller kassasystemer.
+
+[Den eksisterende Life Story-testen](../../tests/civication-lifestory-ekspeditor.test.js) kontrollerer selvstendig opplæring, venting med avtalt hjelp, manglende oppfølging, delegasjon til Amir og at riktig dag-2-scene utløses for hver gren. Scenenes opprinnelige ID og alle de tre valg-ID-ene er beholdt.
+
 ### Hva som er avklart og hva som gjenstår
 
 Den fiktive butikkens ansvarsfordeling, klær, utstyr, eksempeluke, lønnsgrunnlag, opplæringsinnhold og sammenhengende prishistorie er nå beskrevet over. De er redaksjonelle premisser, ikke bekreftede rutiner fra en bestemt kjede eller ferdig implementerte spilldata.
