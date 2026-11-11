@@ -17,7 +17,7 @@ const server=http.createServer((req,res)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const base='http://127.0.0.1:'+server.address().port;
 fs.mkdirSync('artifacts/tronsmo-people-editorial',{recursive:true});
-const ids=['ivar_tronsmo','lars_fiske','bendik_kaltenborn'];
+const ids=['ivar_tronsmo','per_petterson','lars_fiske','bendik_kaltenborn'];
 let browser;
 try{
  browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN||undefined,args:['--no-sandbox','--disable-dev-shm-usage']});
@@ -42,7 +42,7 @@ try{
    const popup=page.locator('.hg-popup.placecard-round-popup.visible');
    await popup.waitFor({state:'visible',timeout:20000});
    const text=await popup.innerText();
-   for(const name of ['Ivar Tronsmo','Lars Fiske','Bendik Kaltenborn'])assert.ok(text.includes(name),label+' missing '+name);
+   for(const name of ['Ivar Tronsmo','Per Petterson','Lars Fiske','Bendik Kaltenborn'])assert.ok(text.includes(name),label+' missing '+name);
    await page.waitForFunction((ids)=>{
     const popup=document.querySelector('.hg-popup.placecard-round-popup.visible');
     if(!popup)return false;
@@ -52,7 +52,7 @@ try{
    await page.screenshot({path:'artifacts/tronsmo-people-editorial/'+label+'-people.png'});
    await page.keyboard.press('Escape');
    assert.deepEqual(errors,[],label+' unexpected JavaScript errors');
-   console.log(label+': portrait PlaceCard, QuizCard flip, three disclosed People illustrations loaded, popup and no JS errors PASS');
+   console.log(label+': portrait PlaceCard, QuizCard flip, four disclosed People illustrations loaded, popup and no JS errors PASS');
   }finally{await context.close();}
  }
 }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
