@@ -816,11 +816,11 @@
       "tilgjengelighet": "laast",
       "prioritet": 11,
       "tittel": "Amir har talt varevarianten",
-      "tekst": "Amir svarer: «Jeg kontrollerte varenummer og variant. Hylla er tom, og én pakke ligger bak pallen. Systemet viste to før salget. Det er et telleavvik på én.»",
+      "tekst": "Amir svarer: «Jeg fant én pakke bak pallen. Hylla er tom, og systemet viser to. Jeg har ikke kontrollert at varenummeret på pakken er riktig variant ennå.»",
       "valg": [
         {
           "id": "registrer_amirs_telling",
-          "tekst": "Registrer at Amir utførte tellingen, og hent den ene pakken til kunden",
+          "tekst": "Be Amir bekrefte varenummer og variant, registrer deretter hans telling",
           "effekter": {
             "flagg": {
               "lager_ett_funnet": true,
@@ -832,14 +832,14 @@
               }
             }
           },
-          "konsekvensTekst": "Du dokumenterer kontrollør, variant og ett fysisk eksemplar. Kundens handel og beholdningsavviket gjenstår fortsatt.",
+          "konsekvensTekst": "Du sammenligner varenummeret med Amir. Det er riktig variant, og Amir bekrefter den ene fysiske pakken. Du dokumenterer ham som kontrollør. Kunden har ennå ikke fått varen.",
           "laaserOpp": [
             "varen_03_avklar_kunden"
           ]
         },
         {
           "id": "avklar_variant",
-          "tekst": "Opplys at du ennå ikke har kontrollert om Amirs pakke gjelder riktig variant",
+          "tekst": "Be om vareidentifikasjon før du bruker Amirs foreløpige telling",
           "effekter": {
             "flagg": {
               "lager_variant_venter": true
@@ -850,7 +850,7 @@
               }
             }
           },
-          "konsekvensTekst": "Du ber om en bekreftelse på vareidentifikasjonen før kunden får et svar. Uten denne avklaringen skal tellingen ikke registreres som kontrollert for den etterspurte varen."
+          "konsekvensTekst": "Du ber Amir avklare varenummeret før du bruker tellingen for kundens vare. Resultatet er foreløpig og skal ikke registreres som bekreftet."
         }
       ]
     },
@@ -1127,10 +1127,10 @@
         },
         {
           "id": "avvent_resultat",
-          "tekst": "Ikke godkjenn etterkontrollen før vareidentifikasjonen er bekreftet",
+          "tekst": "Utsett å registrere Amirs resultat i avviksloggen",
           "effekter": {
             "flagg": {
-              "lager_amir_kontroll_venter": true
+              "lager_amir_logg_venter": true
             },
             "threads": {
               "varen_som_ikke_finnes": {
@@ -1138,7 +1138,7 @@
               }
             }
           },
-          "konsekvensTekst": "Du lar resultatet stå uverifisert i spillerhistorikken og ber om entydig vareidentifikasjon. Saken forblir åpen."
+          "konsekvensTekst": "Amir har meldt kontrollresultatet, men du har ikke ført det i avviksloggen eller gitt Lene bekreftelsen. Dokumentasjonen er fortsatt uferdig."
         }
       ]
     },
