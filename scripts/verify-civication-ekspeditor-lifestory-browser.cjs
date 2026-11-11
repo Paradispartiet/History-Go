@@ -382,6 +382,98 @@ async function playVikar(browser, label, viewport, choices, expected) {
   }
 }
 
+
+async function playDayTwoReturnTraining(browser, label, viewport, choices, expected) {
+  const context = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: true });
+  const page = await context.newPage();
+  const errors = [];
+  const trace = [];
+  page.on('pageerror', error => errors.push(error.message));
+  try {
+    await page.goto(origin + '/Civication.html?lifestoryRole=ekspeditor', { waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.rolle === 'ekspeditor'
+      && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId,
+      null, { timeout: 90000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    assert.equal((await page.evaluate(() => globalThis.CivicationLifestoryState.load())).arkiv.length,
+      0, label + ': starts from a fresh player state');
+    let sawReturnRequest = false, sawDayChange = false, last = null;
+    for (let n = 0; n < 130; n++) {
+      const state = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      if (state.dagFerdig && state.dag === 1) {
+        const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+        if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+        await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+        const nextDay = page.locator('[data-lifestory-next-day]:not([disabled])').first();
+        assert.equal(await nextDay.count(), 1, label + ': native next-day control is enabled');
+        await nextDay.click({ timeout: 20000 });
+        await page.waitForFunction(() => globalThis.CivicationLifestoryState.load().dag === 2,
+          null, { timeout: 45000 });
+        sawDayChange = true;
+        continue;
+      }
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': a natural day-one/day-two scene is available');
+      if (sceneId === 'd2_formiddag_vikaren_kommer_til_deg') {
+        sawReturnRequest = true;
+        assert.equal(state.dag, 2, label + ': return training belongs to day two');
+      }
+      const wanted = choices[sceneId];
+      const selector = '[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
+        + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])';
+      const button = page.locator(selector).first();
+      assert.equal(await button.count(), 1, label + ': enabled choice for ' + sceneId + '/' + wanted);
+      await button.scrollIntoViewIfNeeded();
+      const bounds = await button.boundingBox();
+      assert.ok(bounds && bounds.width > 0 && bounds.height > 0,
+        label + ': visible player action in ' + sceneId);
+      assert.ok(bounds.x >= -2 && bounds.x + bounds.width <= viewport.width + 2,
+        label + ': no horizontal button overflow in ' + sceneId);
+      if (sceneId === 'd2_formiddag_vikaren_kommer_til_deg' || sceneId === expected.finalScene) {
+        await page.screenshot({ path: path.join(output, label + '-' + sceneId + '.png'), fullPage: true });
+      }
+      const nBefore = state.arkiv.length;
+      const choiceId = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(previous => globalThis.CivicationLifestoryState.load().arkiv.length === previous + 1,
+        nBefore, { timeout: 20000 });
+      const saved = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.equal(saved.arkiv.at(-1).sceneId, sceneId);
+      assert.equal(saved.arkiv.at(-1).valgId, choiceId);
+      trace.push([sceneId, choiceId]);
+      if (sceneId === expected.finalScene) { last = sceneId; break; }
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    }
+    assert.ok(sawDayChange && sawReturnRequest, label + ': follows actual day-one to day-two UI');
+    assert.equal(last, expected.finalScene, label + ': follows chosen return-coaching branch');
+    const finalState = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.equal(finalState.threadState.ny_kollega_og_tillit.status, expected.status);
+    for (const [flag, value] of Object.entries(expected.flags)) {
+      assert.equal(finalState.tidligereValg[flag] === true, value,
+        label + ': evidence flag matches performed work ' + flag);
+    }
+    const archive = finalState.arkiv.map(a => [a.sceneId, a.valgId]);
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(),
+      null, { timeout: 90000 });
+    const restored = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.deepEqual(restored.arkiv.map(a => [a.sceneId, a.valgId]), archive,
+      label + ': exact return history preserved after reload');
+    for (const [flag, value] of Object.entries(expected.flags)) {
+      assert.equal(restored.tidligereValg[flag] === true, value,
+        label + ': evidence flag preserved after reload ' + flag);
+    }
+    assert.deepEqual(errors, [], label + ': no browser exceptions');
+    await page.screenshot({ path: path.join(output, label + '-day2-after-reload.png'), fullPage: true });
+    return { label, viewport, day: 2, last, status: expected.status, trace };
+  } finally {
+    await context.close();
+  }
+}
+
 (async () => {
   let browser;
   const results = [];
@@ -496,7 +588,46 @@ async function playVikar(browser, label, viewport, choices, expected) {
     results.push(await playVikar(browser, 'vikar-ipad-landscape', { width: 1180, height: 820 }, vikarUnfinished,
       { finalScene: 'ny_kollega_02_avtal_hjelp', status: 'escalated',
         flags: { pant_hjelp_ikke_fulgt_opp: true, pant_vikar_forstod: false, hjalp_ny_kollega: false } }));
-    console.log('PASS: ekspeditør price, stock, returns and verified vikar pant training on mobile and iPad', JSON.stringify(results));
+    const fullTrainingDayTwo = {
+      ny_kollega_01_midt_i_koen: 'hjelp_kort',
+      ny_kollega_02_vis_pantekort: 'vis_en_gang',
+      ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen',
+      d2_formiddag_vikaren_kommer_til_deg: 'laer_bort_metoden',
+      d2_vikar_retur_02_kontroll: 'sammenlign_kvittering_og_vare',
+      d2_vikar_retur_03_vikar_utforer: 'veiled_og_kontroller_byttet'
+    };
+    const traineeNotCheckedDayTwo = {
+      ny_kollega_01_midt_i_koen: 'hjelp_kort',
+      ny_kollega_02_vis_pantekort: 'vis_en_gang',
+      ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen',
+      d2_formiddag_vikaren_kommer_til_deg: 'vis_raskt',
+      d2_vikar_retur_02_kort_svar: 'ta_gjennomgangen',
+      d2_vikar_retur_02_kontroll: 'sammenlign_kvittering_og_vare',
+      d2_vikar_retur_03_vikar_utforer: 'gjør_det_selv'
+    };
+    const noReturnFollowUpDayTwo = {
+      ny_kollega_01_midt_i_koen: 'hjelp_kort',
+      ny_kollega_02_vis_pantekort: 'vis_en_gang',
+      ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen',
+      d2_formiddag_vikaren_kommer_til_deg: 'vis_raskt',
+      d2_vikar_retur_02_kort_svar: 'ga_tilbake'
+    };
+    results.push(await playDayTwoReturnTraining(browser, 'day2-return-mobile-portrait',
+      { width: 390, height: 844 }, fullTrainingDayTwo,
+      { finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'completed',
+        flags: { retur_d2_vilkar_kontrollert: true, retur_d2_bytte_gjennomfort: true,
+          retur_d2_vikar_forstod: true, laerte_bort_metoden: true } }));
+    results.push(await playDayTwoReturnTraining(browser, 'day2-return-ipad-portrait',
+      { width: 820, height: 1180 }, traineeNotCheckedDayTwo,
+      { finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'escalated',
+        flags: { retur_d2_bytte_utfort_av_spiller: true, retur_d2_vikar_kontroll_venter: true,
+          retur_d2_vikar_forstod: false, laerte_bort_metoden: false } }));
+    results.push(await playDayTwoReturnTraining(browser, 'day2-return-ipad-landscape',
+      { width: 1180, height: 820 }, noReturnFollowUpDayTwo,
+      { finalScene: 'd2_vikar_retur_02_kort_svar', status: 'escalated',
+        flags: { retur_d2_ikke_fulgt_opp: true, retur_d2_vilkar_kontrollert: false,
+          retur_d2_bytte_gjennomfort: false, laerte_bort_metoden: false } }));
+    console.log('PASS: ekspeditør day-two return instruction plus all earlier Life Story paths on mobile and iPad', JSON.stringify(results));
   } finally {
     writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2) + '\n');
     if (browser) await browser.close();
