@@ -25,7 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
-    {name:"prydpaere",label:"Prydpære",term:"Prydpære",path:"b09/82_prydpaere_v1.webp"},
+    {name:"prydpaere",label:"Prydpære",term:"Prydpære",path:"b09/82_prydpaere_v2.webp"},
     {name:"prydkirsebaer",label:"Prydkirsebær",term:"Prydkirsebær",path:"b09/81_prydkirsebaer_v1.webp"},
     {name:"platanlonn",label:"Platanlønn",term:"Platanlønn",path:"b09/80_platanlonn_v1.webp"},
     {name:"sibirsk-ertebusk",label:"Sibirsk ertebusk",term:"Sibirsk ertebusk",path:"b09/79_sibirsk_ertebusk_v1.webp"},
