@@ -127,5 +127,18 @@ async function report(h) {
   await delegated.answer(delegated.pending().id, 'A');
   assert(delegated.flags().has('ekspeditor_pris_kontrollert_av_amir'));
   assert(delegated.flags().has('ekspeditor_pris_retting_kontrollert'));
-  console.log('Ekspeditør price handover: 4 complete paths + unreported, deferred and delegated checks OK');
+  for (const finalChoice of ['A', 'B']) {
+    const h = await start('D');
+    await report(h);
+    await h.answer(h.pending().id, 'B');
+    await h.answer('ekspeditor_prisavvik_amir_kontroll', 'B');
+    assert(h.flags().has('ekspeditor_pris_kontrollert_av_amir'));
+    assert(!h.flags().has('ekspeditor_pris_retting_kontrollert'));
+    assert.equal(h.pending()?.id, 'ekspeditor_prisavvik_kontroller_retting');
+    await h.answer(h.pending().id, finalChoice);
+    assert.equal(h.flags().has('ekspeditor_pris_retting_kontrollert'), finalChoice === 'A');
+    assert.equal(h.flags().has('ekspeditor_pris_kontroll_venter'), finalChoice === 'B');
+    assert.equal(h.w.CivicationState.getState().mail_runtime_v1.step_index, 1);
+  }
+  console.log('Ekspeditør price handover: 4 complete paths + unreported, deferred, delegated and 2 extra own-check paths OK');
 })().catch(error => { console.error(error); process.exitCode = 1; });
