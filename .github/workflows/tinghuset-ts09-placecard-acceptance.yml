@@ -1,0 +1,38 @@
+name: Oslo T-S 09 – Tinghuset PlaceCard acceptance
+on:
+  pull_request:
+    paths:
+      - 'data/places/politikk/oslo/places_politikk/tinghuset.json'
+      - 'data/runtime/place-open/tinghuset.json'
+      - 'tests/tinghuset-ts09-placecard-browser.mjs'
+      - '.github/workflows/tinghuset-ts09-placecard-acceptance.yml'
+  workflow_dispatch:
+concurrency:
+  group: tinghuset-ts09-acceptance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify generated Place-open sync
+        run: npm run place-open:check
+      - name: Run real mobile and desktop Tinghuset PlaceCard
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/tinghuset-ts09-placecard-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tinghuset-ts09-placecard-screenshots
+          path: artifacts/tinghuset-ts09/
+          if-no-files-found: ignore
