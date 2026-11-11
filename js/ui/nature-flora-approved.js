@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_legepestrot: Object.freeze({
+      scientificName: "Petasites hybridus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/89_legepestrot_v1.webp",
+      gitBlobSha: "ab547d4a1d66f930d63f684450c622b3919961c8",
+      reviewedAt: "2026-11-11",
+      stage: "varblomstring_og_senere_blader_botanisk_sammenstilling",
+      evidence: "data/natur/flora/illustration-quality-legepestrot-20261111.json"
+    }),
     emne_flora_russesvalerot: Object.freeze({
       scientificName: "Vincetoxicum rossicum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/88_russesvalerot_v1.webp",
