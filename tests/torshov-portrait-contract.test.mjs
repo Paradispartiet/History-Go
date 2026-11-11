@@ -25,8 +25,8 @@ test('Torshov documentary image is an actual local 900x1200 WebP, source and cre
  assert.equal(place.frontImageMeta.creator,'Wilhelm Joys Andersen');
  assert.equal(place.frontImageMeta.sourcePage,'https://commons.wikimedia.org/wiki/File:Torshov_arial.jpg');
  assert.match(place.frontImageMeta.transformation,/selvstendig foto tatt i 2010/);
- assert.equal(place.frontImageMeta.reviewStatus,'pending_editorial_crop_review');
- assert.equal(runtime.place.frontImageMeta.reviewStatus,'pending_editorial_crop_review');
+ assert.equal(place.frontImageMeta.reviewStatus,'editorial_crop_review_passed');
+ assert.equal(runtime.place.frontImageMeta.reviewStatus,'editorial_crop_review_passed');
 });
 test('Torshov remains a single canonical place with original quiz and geo baseline',()=>{
  const p=JSON.parse(fs.readFileSync('data/places/by/oslo/places/torshov.json','utf8'));
