@@ -72,9 +72,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadPersonPlaceUnlockToast", () => loadScriptOnce("js/ui/person-place-unlock-toast.js"));
     await safeRun("loadBadgeUnlockToast", () => loadScriptOnce("js/ui/badge-unlock-toast.js"));
     await safeRun("loadMap", () => loadScriptOnce("js/map.js?v=20261110-favorite-map1"));
-    // Emergency rollback of the map favorites overlay after taps stopped working on iPad.
-    // Keep the map and all History Go content; temporarily restore the normal all-place view.
-    await safeRun("resetFavoriteMapOnHotfix", () => window.HGMap?.setFavoriteViewOnly?.(false));
     await safeRun("loadAhaMusicBridge", () => loadScriptOnce("js/integrations/aha-music.js"));
     await safeRun("loadNearbyPlaceSelector", () => loadScriptOnce("dist/web/nearbyPlaceSelector.js"));
     await safeRun("loadNearbyPlacesList", () => loadScriptOnce("dist/web/nearbyPlacesList.js"));
@@ -87,6 +84,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     // lastet før quiz/app-runtime trenger window.saveVisitedFromQuiz.
     await safeRun("loadPersistence", () => loadScriptOnce("js/state/persistence.js"));
     await safeRun("loadFavorites", () => loadScriptOnce("js/state/favorites.js"));
+    // Existing accounts can have a persisted favorites-only flag from the
+    // rollback period. Never start with an empty map when no favorites exist.
+    await safeRun("restoreFavoriteMapSafely", () => {
+      if (window.HGMap?.getFavoriteViewOnly?.() && !window.HGFavoritePlaces?.count?.()) {
+        window.HGMap.setFavoriteViewOnly(false);
+      }
+    });
     // The footer's Notat and Observer buttons use these existing canonical
     // runtimes. They were not loaded by the app entry, so clicks silently did
     // nothing (Notat) or showed "ikke lastet" (Observer). Bind before the
@@ -186,6 +190,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Critical boot gjør bare index brukbar: kart + places_index + markører.
     // Fallback til gammel boot() beholdes hvis boot-fast.js ikke er lastet.
     await safeRun("bootCritical", window.bootCritical || window.boot);
+    // Mount only a small button beside the existing badge selector; no
+    // full-page overlay or global pointer capture. Keep profile map untouched.
+    await safeRun("loadHomeFavoriteMapPicker", () => loadScriptOnce("js/ui/home-favorite-map-picker.js?v=20261111-safe-map1"));
+    await safeRun("initHomeFavoriteMapPicker", () => window.HGHomeFavoriteMapPicker?.init?.());
     // Brand-rundingen rendres synkront når et sted åpnes. Gjør derfor de tre
     // canonicale Brand-kildene klare før appReady/kartet kan åpne første PlaceCard.
     await safeRun("initBrandsBeforeAppReady", async () => {
