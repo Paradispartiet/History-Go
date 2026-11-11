@@ -67,7 +67,8 @@ try{
     const popup=page.locator('.hg-popup.placecard-round-popup.visible');
     await popup.waitFor({state:'visible',timeout:20000});
     const body=(await popup.innerText()).trim();
-    assert.ok(body.length>50,'empty popup '+id);
+    // Canonical Brands may be an image-first popup; verify actual loaded identity image below.
+    if(id!=='brands')assert.ok(body.length>50,'empty popup '+id);
     if(id==='people'){
      assert.match(body,/tinghus|dommer|kunstner|arkitekt|advokat|forsvarer/i,'wrong People popup');
      await page.waitForFunction(()=>{
