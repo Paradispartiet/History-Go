@@ -52,7 +52,7 @@ async function backToMap(page){
  await tap(page,'[data-hg-nav-back]');
  await page.waitForURL(/#\/map$/,{timeout:30000});await ready(page);
  await page.waitForFunction(()=>{
-  const c=document.getElementById('placeCard');return !c||getComputedStyle(c).display==='none'||c.getBoundingClientRect().height===0;
+  const c=document.getElementById('placeCard');if(!c)return true;const s=getComputedStyle(c);return !c.dataset.currentPlaceId&&c.getAttribute('aria-hidden')==='true'&&(s.display==='none'||(s.pointerEvents==='none'&&Number(s.opacity)===0));
  },null,{timeout:15000});
  console.log('BACK TO MAP '+page.url());
 }
@@ -83,9 +83,10 @@ try{
     await page.waitForFunction(()=>document.getElementById('nearbyExploreToggle')?.getAttribute('aria-expanded')==='true');
     await tap(page,'#nearbyExploreToggle');
     await page.waitForFunction(()=>document.getElementById('nearbyExploreToggle')?.getAttribute('aria-expanded')==='false');
+    assert.equal(await page.evaluate(()=>document.body.classList.contains('map-only')||document.body.classList.contains('mode-map')),false);
+    const first=await mapHit(page,null);await backToMap(page);
     await tap(page,'#btnSeeMap');
     await page.waitForFunction(()=>document.body.classList.contains('map-only')||document.body.classList.contains('mode-map'));
-    const first=await mapHit(page,null);await backToMap(page);
     const second=await mapHit(page,first);assert.notEqual(second,first);
     // Reload an open PlaceCard to verify the stored tab/route restores without a shielding panel.
     await page.reload({waitUntil:'domcontentloaded'});await ready(page);await cardVisible(page,second);
@@ -96,7 +97,7 @@ try{
     await page.waitForFunction(()=>document.querySelector('.hg-map-category-trigger')?.getAttribute('aria-expanded')==='false');
     const after=await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([k])=>/visited|merit|collect|quiz.*(done|progress|score)/i.test(k))));
     assert.deepEqual(after,progress,'Navigation must preserve local progress');
-    result.flows.push({state,first,second,backButton:true,reloadPlace:true,badgePicker:true,progressPreserved:true});
+    result.flows.push({state,first,second,normalMode:true,dedicatedMapMode:true,backButton:true,reloadPlace:true,badgePicker:true,progressPreserved:true});
    }
    result.passed=true;await ctx.close();
   }catch(e){result.passed=false;result.failure=String(e.stack||e);console.error(result.failure);}
