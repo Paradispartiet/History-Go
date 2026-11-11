@@ -62,6 +62,17 @@ try{
       await page.goto(base+"/index.html?hgTest=1#/",{waitUntil:"domcontentloaded",timeout:70000});
       await page.waitForFunction(()=>window.__HG_APP_READY__===true,null,{timeout:90000});
       await page.waitForTimeout(1200);
+      const initialMapHit=await page.evaluate(()=>{
+        const x=innerWidth*.38,y=innerHeight*.44;
+        const stack=document.elementsFromPoint(x,y).slice(0,8).map(el=>el.id||el.className||el.tagName);
+        const top=document.elementFromPoint(x,y);
+        const panel=document.getElementById("panel");
+        return {x,y,stack,topWithinMap:!!top?.closest?.("#mapLayer"),panelDisplay:panel?getComputedStyle(panel).display:null,
+          panelPointerEvents:panel?getComputedStyle(panel).pointerEvents:null};
+      });
+      console.log("INDEX EMPTY MAP HIT "+engineName+" "+JSON.stringify(initialMapHit));
+      assert.equal(initialMapHit.topWithinMap,true,
+        "The empty legacy #panel must never block the map canvas in Explore view");
       await inspect(page,"#nearbyExploreToggle",engineName+" initial Explore");
       let exploreClicked=false,mapClicked=false,badgeClicked=false;
       try{
@@ -117,11 +128,31 @@ try{
       let placeOpened=false;
       if(markerProbe.selected){
         await page.touchscreen.tap(markerProbe.selected.x,markerProbe.selected.y);
-        await page.waitForTimeout(2300);
-        placeOpened=await page.evaluate(()=>location.hash.includes("#/place/")||!!document.getElementById("placeCard")?.dataset.currentPlaceId);
+        try{
+          await page.waitForFunction(expectedId=>{
+            const card=document.getElementById("placeCard");
+            const rect=card?.getBoundingClientRect();
+            return location.hash.includes("#/place/") &&
+              card?.dataset.currentPlaceId===expectedId &&
+              !document.body.classList.contains("map-only") &&
+              !document.body.classList.contains("mode-map") &&
+              getComputedStyle(card).display!=="none" &&
+              getComputedStyle(card).pointerEvents!=="none" &&
+              rect?.height>100;
+          },markerProbe.selected.id,{timeout:24000});
+          placeOpened=true;
+        }catch(e){
+          console.error("PLACE CARD NOT VISIBLE "+engineName+" "+String(e).slice(0,900));
+        }
       }
-      console.log("INDEX MARKER TAP RESULT "+engineName+" "+placeOpened+" hash="+await page.evaluate(()=>location.hash));
-      report.push({engineName,exploreClicked,mapClicked,badgeClicked,placeOpened,markerProbe,errors:errors.slice(0,12)});
+      const cardState=await page.evaluate(()=>{
+        const card=document.getElementById("placeCard");
+        return {hash:location.hash,id:card?.dataset.currentPlaceId,display:card?getComputedStyle(card).display:"",
+          opacity:card?getComputedStyle(card).opacity:"",pointerEvents:card?getComputedStyle(card).pointerEvents:"",
+          height:card?.getBoundingClientRect().height,bodyClass:document.body.className};
+      });
+      console.log("INDEX MARKER TAP RESULT "+engineName+" "+placeOpened+" "+JSON.stringify(cardState));
+      report.push({engineName,exploreClicked,mapClicked,badgeClicked,placeOpened,cardState,markerProbe,errors:errors.slice(0,12)});
     }catch(e){
       console.error("INDEX TEST FATAL "+engineName+" "+String(e.stack||e).slice(0,5000));
       report.push({engineName,fatal:String(e.stack||e),errors});
