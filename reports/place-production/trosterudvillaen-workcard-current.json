@@ -3,10 +3,10 @@
   "place_id": "trosterudvillaen",
   "category": "historie",
   "status": "in_production",
-  "active_phase": "acceptance_and_merge",
+  "active_phase": "release_verification_and_vferdig_closeout",
   "production_profile": "standard",
   "profile_status": "provisional_pending_editorial_review",
-  "profile_reason": "Kildebasert overlegebolig og kulturpark med to adaptive PlaceCard-samlinger; automatisk Chromium-aksept bestått, formell sluttattestasjon og manuell visuell gjennomgang gjenstår.",
+  "profile_reason": "Fullført og merget stedsspesifikk innholdsleveranse (#7188). Full PR-CI og Chromium 390/1440 px bestått; kontroll av skjermbildeeksporter er gjennomført. Publisert GitHub Pages-deploy og full redaksjonell slutt-QA er ennå ikke selvstendig attestert.",
   "primary_badge": "historie",
   "underbadge_ids": [],
   "badge_routing": "Historie: personhistorie og to dokumenterte eiendoms-/bygningshendelser; ikke dikt opp Objects eller Brands.",
@@ -51,16 +51,13 @@
       1440
     ],
     "tests": "Stående forside, 3 People, 2 historiske hendelser, popupbilder, QuizCard-vending, JavaScript-feil.",
-    "manual_visual_review": "PENDING",
+    "manual_visual_review": "PARTIAL_PASS: seks eksporterte Chromium-skjermbilder for forside, People og historiske hendelser på 390/1440 px er gjennomgått; full manuell kontroll av alle PlaceCard-faner og fysisk enhet er ikke attestert.",
     "physical_device_qa": false
   },
   "remaining_before_vferdig": [
-    "Rett og bekreft generert Story-shard-paritet",
-    "Gjeldende READ-FIRST regelattestasjon",
-    "Full CI grønn etter siste commit",
-    "Manuell sluttvurdering av bilder/popup og faglig kildeavgrensning",
-    "Merge og bekreftet publisering",
-    "Formell vFerdig-attestasjon"
+    "Bekreft vellykket GitHub Pages-deploy med commit ad0af8c740b5024c9ab96dacea0907574fefacee eller etterfølgende main-commit som inneholder den.",
+    "Fullfør og dokumenter manuell slutt-QA av samlingspreview, popup, faste faner og helhetlig mobil/desktop-utseende; fysisk enhet skal ikke påstås testet.",
+    "Opprett formell vFerdig-attestasjon først når dokumenterte sluttporter er bestått."
   ],
   "editorial_vferdig": false,
   "rule_preflight": {
@@ -132,5 +129,17 @@
         "final_content_plan"
       ]
     }
+  },
+  "release_verification": {
+    "production_pr": "https://github.com/Paradispartiet/History-Go/pull/7188",
+    "merge_commit": "ad0af8c740b5024c9ab96dacea0907574fefacee",
+    "merged_at_utc": "2026-11-11T11:00:32Z",
+    "merged_to_main": true,
+    "merged_commit_is_ancestor_of_main": true,
+    "pr_exact_head_workflows": "26/26 completed success",
+    "targeted_browser": "PASS",
+    "github_pages_deployment": "NOT_VERIFIED",
+    "editorial_vferdig": "PENDING",
+    "checked_date": "2026-11-11"
   }
 }
