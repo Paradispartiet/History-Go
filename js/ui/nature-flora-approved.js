@@ -7,10 +7,10 @@
   const images = Object.freeze({
     emne_flora_prydpaere: Object.freeze({
       scientificName: "Pyrus calleryana",
-      src: "bilder/natur/flora/illustrasjonskandidater/b09/82_prydpaere_v1.webp",
-      gitBlobSha: "4edd7c7ee67c517f93ef85463f3394c1875a5965",
-      reviewedAt: "2026-11-10",
-      stage: "illustrert_varblomstring_hvite_blomster_og_smaa_pomefrukter",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/82_prydpaere_v2.webp",
+      gitBlobSha: "b83fdaa1c76f1741fdd0395983cf100631ee9eb6",
+      reviewedAt: "2026-11-11",
+      stage: "illustrert_varblomstring_hvite_blomster_og_rotsystem",
       evidence: "data/natur/flora/illustration-quality-prydpaere-20261110.json"
     }),
     emne_flora_prydkirsebaer: Object.freeze({
