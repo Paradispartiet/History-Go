@@ -59,7 +59,7 @@ test('Medisin: five 1024 px transparent WebP originals with translated main-cate
    assert.ok(bytes[20]&16,lang+' has no transparency');
    assert.equal(bytes.length,v.bytes,lang);
    assert.equal(createHash('sha256').update(bytes).digest('hex'),v.sha256,lang);
-   const blob=createHash('sha1').update(Buffer.from('blob '+bytes.length+'\\0')).update(bytes).digest('hex');
+   const blob=createHash('sha1').update(Buffer.from('blob '+bytes.length)).update(Buffer.from([0])).update(bytes).digest('hex');
    assert.equal(blob,v.gitBlobSha,lang);
  }
 });
