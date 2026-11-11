@@ -9,6 +9,9 @@ on:
       - 'scripts/import-vitenskap-ingeniorfag-assets-v1.py'
       - 'tests/vitenskap-teknologi-ingeniorfag-badge-candidate.test.mjs'
       - 'tests/vitenskap-data-programvare-algoritmer-badge.test.mjs'
+      - 'tests/vitenskap-nettverk-digital-infrastruktur-badge.test.mjs'
+      - 'bilder/merker/vitenskap/brodert/nettverk_og_digital_infrastruktur.webp'
+      - 'bilder/merker/vitenskap/locales/*/nettverk_og_digital_infrastruktur.webp'
       - 'bilder/merker/vitenskap/brodert/data_programvare_og_algoritmer.webp'
       - 'bilder/merker/vitenskap/locales/*/data_programvare_og_algoritmer.webp'
       - 'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'
@@ -104,6 +107,7 @@ jobs:
           node --test tests/historie-migrasjon-minoritetshistorie-badge-contract.test.mjs
           node --test tests/vitenskap-teknologi-ingeniorfag-badge-candidate.test.mjs
           node --test tests/vitenskap-data-programvare-algoritmer-badge.test.mjs
+          node --test tests/vitenskap-nettverk-digital-infrastruktur-badge.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
           node --test tests/recent-underbadges-registered.test.mjs
