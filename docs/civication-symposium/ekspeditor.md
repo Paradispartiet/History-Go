@@ -178,24 +178,22 @@ Denne rollen er arbeidseksempel for [felles arbeidsmåte for alle roller, jobber
 
 I denne jobbmailens første scene gir Lene allerede instruks om å sjekke hyllepris, be kollega om hjelp og rette en bekreftet feil. Dette må brukes som utgangspunkt for revisjonen av normal jobbgameplay. Den eldre Life Story-filen har andre scene-ID-er og er ikke alene bevis på hvordan denne jobbmailen spilles. Det kreves en gjennomspilling for å fastslå faktisk vist innhold og lagrede konsekvenser.
 
-### Redaksjonelle kontrollpunkter fra kildefilene
+### Life Story: kontrollpunktene er fulgt opp
 
-Ved dokumentgjennomgangen 11. november 2026 har åpningsscenen et valg som retter to plakater, men alle åpningsvalg låser opp samme prisfeilscene. Før revisjon må det avklares om kampanjekaffen var kontrollert og rettet; en rettet feil skal ikke bare oppstå på nytt uten forklaring.
+Den eksisterende åpningsscenen er nå overtakelse av ordinær vakt klokken 12. Kontrollen før kassa gjelder meierihylla; kampanjekaffen er ikke allerede kontrollert og rettet. Å begynne til avtalt tid gir ikke integritetstrekk. Å spørre Amir om hjelp med prisen har samme integritetsfølge som å undersøke forsvarlig selv.
 
-Prisfeilscenen har både et valg som avslutter tråden etter å ha rettet kundens pris, og et valg som også melder avviket til Lene. Kundens handel og retting av årsaken må behandles som to forskjellige oppgaver. Ikke anta at systemprisen eller hyllemerkingen er rettet fordi kunden har fått et avslag.
+Prisfeilen følges gjennom kundens handel, melding til Lene, hennes uttrykkelige mottaksbekreftelse og etterkontroll. En rettet handel avslutter ikke prisavviket. Spillerens egen kontroll og Amirs rapporterte kontroll har hver sin faktiske historikk. Utsatt melding eller kontroll blir tilgjengelig på neste Life Story-dag.
 
-Scenen gir også integritetstrekk for valget om å åpne presis. Vurder om handlingen faktisk innebærer et kjent forsømt ansvar før den gis en slik følge. Beskriv hva spilleren visste og hadde fått beskjed om.
+Scenen med gammel ID `lukking_01_fem_minutter` handler nå om overlevering klokken 19.55 før avtalt vaktslutt klokken 20. Butikken er fortsatt åpen, Amir er på vakt og medarbeideren har ikke fått låseansvar. Kunden kan hjelpes samtidig som noen tar imot restoppgavene. Problemet ved å gå uten overlevering er at arbeid mangler en ansvarlig; det er ikke galt å avslutte en avtalt vakt. Historiske scene- og valg-ID-er beholdes for eksisterende lagringer.
 
-Dette er statiske funn i de lenkede kildefilene, ikke en gjennomspilling eller dokumentasjon på hva runtime viser. Ingen spillscene er endret som del av denne metodebeskrivelsen.
+[Life Story-regresjonen](../../tests/civication-lifestory-ekspeditor-price-continuity.test.js) bruker faktiske Runner-valg: ni kombinasjoner av åpning og prishåndtering, to utsatte oppfølginger neste dag, lagring, navngitt kontroll og Symposium-historikk. Den eksisterende [Skills-testen](../../tests/civication-skills-evidence.test.js) kontrollerer fortsatt at ferdighetsvalg krever opptjent praksis.
 
 ### Hva som er avklart og hva som gjenstår
 
-Den fiktive butikkens ansvarsfordeling, klær, utstyr, eksempeluke, lønnsgrunnlag, opplæringsinnhold og sammenhengende prishistorie er nå beskrevet over. De er redaksjonelle premisser, ikke bekreftede rutiner fra en bestemt kjede eller ferdig implementerte spilldata.
+Den fiktive butikkens ansvarsfordeling, klær, utstyr, eksempeluke, lønnsgrunnlag og opplæring er beskrevet over. De er redaksjonelle premisser, ikke bekreftede rutiner fra en bestemt kjede. Lønnseksemplet er ikke en implementert arbeidsavtale eller lønnskjøring i spillet.
 
-Følgende gjenstår før rollen kan omtales som ferdig etter arbeidsmåten:
-
-- Normal jobbmail har nå eget svar for bekreftet avløsning og egen priskontroll, og eksisterende priskonsekvenser leder til melding, mottaksbekreftelse og etterkontroll. Regenerert sceneregister og [VM-gjennomspilling](../../tests/civication-ekspeditor-price-handover.test.js) kontrollerer fire startvalg, reparasjon, utsatt kontroll og navngitt delegert kontroll. Dette er automatisk gjennomspilling av normal spillkjede, ikke en visuell nettlesertest.
-- De eldre Life Story-scenenes kontrollpunkter over er fortsatt åpne. De skal revideres i sin egen eksisterende kjede, uten å opprette en konkurrerende historie.
-- VM-testen verifiserer handlingenes grenflagg og historikk hver for seg, uendret plansteg gjennom oppfølgingen, neste privatlivssteg og at den besvarte jobbscenen ikke gjentas. Kontroller også hvordan dette vises i spillerens Symposium i nettleseren.
-- Gjennomfør visuell nettlesertest av de berørte dialogene og spillerhistorikken. Den automatiske VM-gjennomspillingen erstatter ikke dette.
-- Videre praksisarbeid kan samle flere direkte beskrivelser av kollegabeskjeder og avbrytelser. Replikkene over er fortsatt tydelig merkede skriveeksempler; intervjuet med Mads er et avgrenset praksisgrunnlag fra ferskvare.
+- Normal jobbmail bruker den eksisterende spillkjeden med fire startvalg, reparasjon, mottaksbekreftelse og etterkontroll. [VM-testen](../../tests/civication-ekspeditor-price-handover.test.js) dekker også egen kontroll etter Amirs resultat, utsatt kontroll, uendret plansteg og at besvarte scener ikke gjentas.
+- Life Story bruker sin eksisterende Runner og arkiv. Endringen overfører ikke automatisk historikk eller flags mellom de to spillkjedene.
+- [Nettleserkontrollen](../../scripts/verify-civication-ekspeditor-browser.mjs) er laget for faktiske valg, gjenlasting og vist Symposium-historikk i mobilformat og to iPad-formater. Den bruker en uttrykkelig utviklerinngang til rollen, uten ferdigspilt historikk. Resultat og skjermbilder skal vurderes i den tilhørende CI-kjøringen før visuell kontroll kan omtales som bestått.
+- Hele rollen er ikke ferdigattestert: øvrige arbeidsoppgaver, videre ansettelsesforløp og økonomi må kontrolleres etter samme metode. Prishistorien er det konkrete arbeidseksemplet.
+- Videre praksisarbeid kan samle flere direkte beskrivelser av kollegabeskjeder og avbrytelser. Replikkene over er fortsatt merkede skriveeksempler; intervjuet med Mads er et avgrenset praksisgrunnlag fra ferskvare.
