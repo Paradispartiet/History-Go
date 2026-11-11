@@ -9,6 +9,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
   <title>History Go</title>
+  <script>
+    if (new URLSearchParams(location.search).get("hgTapTrace") === "1") {
+      const trace = document.createElement("script");
+      trace.src = "js/debug/tap-trace.js?v=20261111-1";
+      trace.async = false;
+      document.head.appendChild(trace);
+    }
+  </script>
 
   <script src="js/config.js?v=20261023-map-controls-cleanup2"></script>
 
