@@ -69,7 +69,7 @@ const checked = opening.valg.find(c => c.id === 'sjekk_plakatene');
 assert.match(checked.tekst, /brød og juice/);
 assert.match(checked.konsekvensTekst, /Kampanjekaffen inngår ikke/,
   'the preliminary spot check must not pretend to cover coffee');
-assert.match(coffeeEncounter.tekst, /Kaffen inngikk ikke i morgenens stikkprøve/,
+assert.match(coffeeEncounter.tekst, /Kaffen inngikk ikke i stikkprøven av brød og juice/,
   'the later encounter must be consistent across all opening choices');
 assert.ok(!Object.hasOwn(opening.valg.find(c => c.id === 'aapne_raskt').effekter.meters, 'integritet'),
   'opening on time cannot automatically count as an integrity violation');
