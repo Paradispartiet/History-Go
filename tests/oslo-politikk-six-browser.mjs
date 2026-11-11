@@ -87,6 +87,7 @@ try{
     if(places[id].frontImageMeta.historicalOnly)item.historicalYearVisible=view.text.includes('2008');
     await page.screenshot({path:path.join(out,id+'-'+label+'-front.png')});
     if(places[id].frontImageMeta.historicalOnly){
+     item.phase='historical-caption-after-scroll';
      await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTop=240;el.dispatchEvent(new Event('scroll'));});
      await page.waitForFunction(()=>document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned'),null,{timeout:12000});
      await page.waitForFunction(()=>{const c=document.querySelector('#placeCard .pc-photo-caption'),shell=document.querySelector('#placeCard .pc-sheet-hero');if(!c||!shell)return false;const a=c.getBoundingClientRect(),b=shell.getBoundingClientRect();return a.width>0&&a.height>0&&a.top>=b.top&&a.bottom<=b.bottom&&a.top>=0&&a.bottom<=innerHeight;},null,{timeout:12000});
@@ -95,15 +96,18 @@ try{
     }
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card'),null,{timeout:35000});
     const flip=page.locator('#pcFrontCardFlip');
+    item.phase='quizcard-position-before-click';
     item.quizBeforeClick=await positionQuizCard(page);
     const rect=await flip.boundingBox();
     assert.ok(rect?.height>75,'QuizCard zero height');
+    item.phase='quizcard-flip';
     await flip.click({position:{x:20,y:Math.max(24,rect.height-24)},timeout:12000});
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:12000});
     assert.ok((await page.locator('.pc-card-face-back').innerText()).length>50);
     await flip.locator('.pc-card-flip-inner').evaluate(async el=>{
      await Promise.all(el.getAnimations().map(a=>a.finished));
     });
+    item.phase='quizcard-position-after-flip';
     item.quizPosition=await positionQuizCard(page);
     await page.waitForFunction(()=>{
      const flip=document.querySelector('#pcFrontCardFlip'),inner=flip?.querySelector('.pc-card-flip-inner'),head=flip?.querySelector('.pc-rendered-quiz-head');
@@ -117,6 +121,7 @@ try{
     await flip.screenshot({path:path.join(out,id+'-'+label+'-quizcard.png')});
     await page.screenshot({path:path.join(out,id+'-'+label+'-quizcard-viewport.png')});
     item.quizCard=true;
+    item.phase='verified';
     if(places[id].frontImageMeta.historicalOnly)assert.equal(item.historicalYearVisible,true,id+' historical photo year missing from PlaceCard');
    }catch(e){
     item.problems.push('PlaceCard/QuizCard '+String(e).slice(0,300));
@@ -124,7 +129,7 @@ try{
      const el=document.querySelector('#pcFrontCardFlip'),head=el?.querySelector('.pc-rendered-quiz-head'),inner=el?.querySelector('.pc-card-flip-inner');
      const rect=e=>{const r=e?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,left:r.left,width:r.width,height:r.height}:null;};
      const r=head?.getBoundingClientRect(),hit=r?document.elementFromPoint(r.left+r.width/2,r.top+5):null;
-     return {classes:el?.className,card:rect(el),head:rect(head),transform:inner?getComputedStyle(inner).transform:null,hit:hit?.outerHTML.slice(0,500)};
+     return {classes:el?.className,card:rect(el),head:rect(head),hero:rect(document.querySelector('#placeCard .pc-sheet-hero')),caption:rect(document.querySelector('#placeCard .pc-photo-caption')),scrollTop:document.querySelector('#placeCard .pc-body')?.scrollTop,transform:inner?getComputedStyle(inner).transform:null,hit:hit?.outerHTML.slice(0,500)};
     });
     await page.screenshot({path:path.join(out,id+'-'+label+'-failure.png')});
    }
