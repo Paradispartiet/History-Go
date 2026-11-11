@@ -1,0 +1,40 @@
+name: Tinghuset TS09 READ-FIRST workcard refresh
+on:
+  pull_request:
+    paths:
+      - 'reports/place-production/tinghuset-workcard-current.json'
+      - '.github/workflows/tinghuset-ts09-readfirst-one-shot.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tinghuset-ts09-readfirst-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ts-09-tinghuset-vferdig-20261111
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record canonical source rule hashes and category routing
+        run: |
+          node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/tinghuset-workcard-current.json --place-id tinghuset --category politikk
+          node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/tinghuset-workcard-current.json
+      - name: Commit workcard snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/place-production/tinghuset-workcard-current.json
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(tinghuset): record canonical READ-FIRST source hashes"
+            git fetch origin content/oslo-ts-09-tinghuset-vferdig-20261111
+            git rebase origin/content/oslo-ts-09-tinghuset-vferdig-20261111
+            git push origin HEAD:content/oslo-ts-09-tinghuset-vferdig-20261111
+          fi
