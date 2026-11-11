@@ -8,6 +8,30 @@ import { chromium } from 'playwright';
 const root=process.cwd(),ids=['hoyesteretts_hus','folkets_hus_oslo','hoyres_hus','hoyblokka','victoria_terrasse','y_blokka'];
 const out=path.resolve('artifacts/oslo-politikk-six-browser');fs.mkdirSync(out,{recursive:true});
 const cards=JSON.parse(fs.readFileSync('data/quizcards/politikk/topp10_politikk_oslo_sentrum_six_pr6579.json','utf8')).cards;
+async function positionQuizCard(page){
+ const result=await page.locator('#pcFrontCardFlip').evaluate(async el=>{
+  const body=el.closest('.pc-body');
+  if(!body)throw new Error('QuizCard has no scroll body');
+  const rect=e=>{const r=e?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,left:r.left,width:r.width,height:r.height}:null;};
+  const geometry=()=>({card:rect(el),hero:rect(document.querySelector('#placeCard .pc-sheet-hero')),body:rect(body),nav:rect(document.querySelector('#placeCard > [data-hg-place-sheet-nav="1"]')),scrollTop:body.scrollTop});
+  const before=geometry();
+  for(let i=0;i<15;i++){
+   // The navigation is BELOW the reading pane, not an upper sticky header.
+   // Position before the first real click as well as after the flip: native
+   // auto-scroll can otherwise put the target behind the retained photo.
+   const g=geometry(),top=Math.max(g.body.top,g.hero?.bottom||0)+12;
+   body.scrollTop+=g.card.top-top;
+   await new Promise(resolve=>setTimeout(resolve,50));
+   const next=geometry(),upper=Math.max(next.body.top,next.hero?.bottom||0);
+   const lower=Math.min(next.body.bottom,next.nav?.top??innerHeight,innerHeight);
+   const x=next.card.left+20,y=next.card.top+Math.max(24,next.card.height-24);
+   const hit=document.elementFromPoint(x,y);
+   if(next.card.top>=upper&&next.card.bottom<=lower&&hit?.closest('#pcFrontCardFlip')===el)return {before,after:next};
+  }
+  throw new Error('QuizCard is not fully readable and pointer-reachable: '+JSON.stringify({before,after:geometry()}));
+ });
+ return result;
+}
 const places={};
 for(const id of ids){
  const place=JSON.parse(fs.readFileSync('data/runtime/place-open/'+id+'.json','utf8')).place;places[id]=place;
@@ -70,28 +94,17 @@ try{
      await page.locator('#placeCard .pc-body').evaluate(el=>{el.scrollTop=0;el.dispatchEvent(new Event('scroll'));});
     }
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card')&&document.querySelector('#pcQuizCardContent .pc-rendered-quiz-card'),null,{timeout:35000});
-    const flip=page.locator('#pcFrontCardFlip'),rect=await flip.boundingBox();
+    const flip=page.locator('#pcFrontCardFlip');
+    item.quizBeforeClick=await positionQuizCard(page);
+    const rect=await flip.boundingBox();
     assert.ok(rect?.height>75,'QuizCard zero height');
     await flip.click({position:{x:20,y:Math.max(24,rect.height-24)},timeout:12000});
     await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:12000});
     assert.ok((await page.locator('.pc-card-face-back').innerText()).length>50);
-    await flip.scrollIntoViewIfNeeded();
     await flip.locator('.pc-card-flip-inner').evaluate(async el=>{
      await Promise.all(el.getAnimations().map(a=>a.finished));
     });
-    // Browser visibility ignores sticky overlays. Scroll the actual outer
-    // card below the retained hero/nav before testing a rendered screen point.
-    item.quizPosition=await flip.evaluate(async el=>{
-     const body=el.closest('.pc-body');
-     const rect=e=>{const r=e?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,left:r.left,width:r.width,height:r.height}:null;};
-     const before={card:rect(el),hero:rect(document.querySelector('#placeCard .pc-sheet-hero'))};
-     for(let i=0;i<3;i++){
-      const top=Math.max(body.getBoundingClientRect().top,document.querySelector('#placeCard .pc-sheet-hero')?.getBoundingClientRect().bottom||0,document.querySelector('#placeCard .pc-sheet-section-nav')?.getBoundingClientRect().bottom||0)+12;
-      body.scrollTop+=el.getBoundingClientRect().top-top;
-      await new Promise(requestAnimationFrame);
-     }
-     return {before,after:{card:rect(el),hero:rect(document.querySelector('#placeCard .pc-sheet-hero'))}};
-    });
+    item.quizPosition=await positionQuizCard(page);
     await page.waitForFunction(()=>{
      const flip=document.querySelector('#pcFrontCardFlip'),inner=flip?.querySelector('.pc-card-flip-inner'),head=flip?.querySelector('.pc-rendered-quiz-head');
      if(!flip||!inner||!head)return false;
