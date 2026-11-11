@@ -196,6 +196,27 @@
   content:"";
 }
 
+/* Keep the complete frontImage readable, even when its source aspect ratio
+   differs from the 3:4 card. The softly blurred source only fills empty bars;
+   it must never replace the sharp, uncropped image or the QuizCard reverse. */
+#placeCard .pc-card-face-front[data-media-state="ready"]::after{
+  content:"";
+  position:absolute;
+  inset:-12px;
+  z-index:0;
+  pointer-events:none;
+  background-image:var(--pc-overview-front-photo, none);
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  filter:blur(15px) brightness(.40);
+  opacity:.68;
+}
+#placeCard .pc-card-face-front > #pcFrontImage{
+  object-fit:contain;
+  object-position:center;
+}
+
 .pc-card-face-back{
   transform: rotateY(180deg);
 }
@@ -851,15 +872,33 @@
 
 #placeCard .pc-heading-hero.has-photo-source{
   min-height: clamp(148px, 25vw, 205px);
-  background: #252621;
+  background: #18232c;
+}
+
+/* A panoramic heading often has a much wider frame than the documentary
+   source. Never zoom that source to fill the header. Preserve the whole
+   original sharp image over a soft, low-contrast continuation of itself. */
+#placeCard .pc-heading-hero.has-photo-source::before{
+  content:"";
+  position:absolute;
+  inset:-14px;
+  z-index:0;
+  pointer-events:none;
+  background-image:var(--pc-overview-heading-photo, none);
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  filter:blur(16px) brightness(.45);
+  opacity:.70;
 }
 
 #placeCard .pc-heading-image{
   position: absolute;
   inset: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   opacity: 0;
   display: block;
@@ -874,14 +913,14 @@
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
   background: linear-gradient(180deg, rgba(0,0,0,.02) 0%, rgba(0,0,0,.06) 25%, rgba(0,0,0,.45) 55%, rgba(0,0,0,.78) 80%, rgba(0,0,0,.90) 100%);
 }
 
 #placeCard .pc-heading-content{
   position: relative;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: stretch;
