@@ -93,7 +93,7 @@ Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer
 
 **Rolle:** Frilanseren er spilleren. Lea samordner invitasjonen og kan rette styremeldingen og forsida. Styrelederen kan bestille og godkjenne teksten. Den andre kunden har allerede fått løfte om en korrektur. [Spillbar åpning](../data/Civication/lifestory/continuations/frilans_med_lea.json) · [Leveranse og kundesvar](../data/Civication/lifestory/continuations/frilans_neste_steg.json)
 
-**Filmgrunnlag:** *Clerks* (1994) / Film Producer `scenario_clerks_1994`. Filmen følger en arbeidsdag der avbrytelser og plikter hoper seg opp. Tabellen skiller observerte situasjoner fra vår tolkning og våre mulige tråder. Takscenen er allerede koblet til et spillbart valg. De øvrige radene er produksjonsgrunnlag. [Miramax](https://www.miramax.com/movie/Clerks/) · [Semaine de la Critique](https://www.semainedelacritique.com/en/edition/1994/movie/clerks) · [Kildenotat med takscenen](CIVICATION_FILM_THEME_SOURCE_NOTES_WAVE_02.md#c04--forespørselen-som-ikke-er-en-kontrakt-clerks-1994)
+**Filmgrunnlag:** *Clerks* (1994) / Film Producer `scenario_clerks_1994`. Filmen følger en arbeidsdag der avbrytelser og plikter hoper seg opp. Tabellen skiller observerte situasjoner fra vår tolkning og våre mulige tråder. Takscenen og spørsmålet om hvem som må svare for en kollegas feil, har spillbare tolkninger. De øvrige radene er produksjonsgrunnlag. [Miramax](https://www.miramax.com/movie/Clerks/) · [Semaine de la Critique](https://www.semainedelacritique.com/en/edition/1994/movie/clerks) · [Kildenotat med takscenen](CIVICATION_FILM_THEME_SOURCE_NOTES_WAVE_02.md#c04--forespørselen-som-ikke-er-en-kontrakt-clerks-1994)
 
 **Bokspor:** Ford Madox Fords *The Good Soldier* (L12) er foreløpig en formreferanse. Dowell forteller i ettertid og oppgir vesentlige opplysninger etter hvert. En Civication-tråd kan tilsvarende la to personer beskrive samme avtale ulikt og gi spilleren mulighet til å sjekke hva som ble sagt og når. Plottet i C04 er originalt. [Yale Modernism Lab](https://campuspress.yale.edu/modernismlab/the-good-soldier/)
 
@@ -122,6 +122,10 @@ Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer
 | Feil som kan rettes | Dag 8. Bruk torsdagen fra styremeldingen i en prøveåpning. Lea sjekker bookingen og bekrefter at fredag er riktig. | Frilanseren retter prøven før noe sendes til deltakerne og bruker −1 energi på omarbeidet. Dag 9 fortsetter i samme scene som når du avklarer datoen først. En ekstra gjennomgang av forsida mens avtalt arbeid venter, er et mulig framtidig avsporingsvalg. |
 
 De to leveringsvalgene, avbestillingsgrenen, feilsporet på dag 8 og den felles e-posten på dag 13 er implementert. Symposium lagrer hva deltakerne fikk, sammen med de valgene og konsekvensene spilleren faktisk opplevde.
+
+#### Ekspeditørens tredje vakt
+
+Lene finner en retur på spillerens vaktlinje med feil kvitteringsnummer. Amir forteller spilleren at det var han som tok returen. Spilleren kan si hva de vet, la Amir forklare selv mens spilleren tar kassa, eller ta på seg skylda. Det siste gir omarbeid når Lene ber om bilaget. Etterpå ser alle den samme rettede linja. Lene har kontrollert kvitteringsnummeret og signert. Symposium viser hvem som forklarte seg og hva Lene rettet. [Scenene i ekspeditørrollen](../data/Civication/lifestory/roles/ekspeditor/scenes.json)
 
 ### C05 – Byråkratiet og personen
 

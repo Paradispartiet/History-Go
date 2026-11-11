@@ -1020,6 +1020,63 @@
       ]
     },
     {
+      "id": "d3_returavvik_i_skiftloggen",
+      "threadId": "returavvik_i_skiftloggen",
+      "fase": "morgen",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Førte du den returen?»",
+      "tekst": "Før åpning legger Lene skiftloggen på disken. En retur fra i går står på linja for vakta di. «Kvittering 317 stemmer ikke med varen. Førte du den?» Amir står ved siden av deg. Han lener seg bort. «Det var jeg som tok den mens du henta varer. Jeg tror jeg skrev av nummeret fra lappen som lå oppå.»",
+      "valg": [
+        {
+          "id": "forklar_hva_du_vet",
+          "tekst": "«Amir sa han tok returen mens jeg henta varer. Jeg så ikke hvilken kvittering han brukte.»",
+          "konsekvensTekst": "Lene spør Amir hvor bilaget ligger. Han peker på konvolutten fra gårsdagen. Lene legger den ved loggen og sier at hun sjekker dem sammen etter åpning.",
+          "effekter": {
+            "flagg": {
+              "returavvik_spor": "forklart"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "la_amir_forklare",
+          "tekst": "«Amir, kan du vise Lene hvilken kvittering du brukte? Jeg tar kassa når vi åpner.»",
+          "konsekvensTekst": "Amir finner konvolutten og forklarer Lene hva han gjorde. Du blir ved kassa mens de snakker. «Takk for at jeg fikk forklare det selv,» sier Amir etterpå.",
+          "effekter": {
+            "flagg": {
+              "returavvik_spor": "amir_forklarte"
+            },
+            "meters": {
+              "energi": -1
+            },
+            "relasjoner": {
+              "erfaren_kollega": 1
+            }
+          }
+        },
+        {
+          "id": "ta_skylda",
+          "tekst": "«Ja, det var jeg.»",
+          "konsekvensTekst": "Du tar på deg returen for å spare Amir for praten. Når Lene ber deg finne bilaget, vet du ikke hvor det ligger. Amir må avbryte. «Vent, det var jeg. Det ligger i konvolutten.» Lene legger bilaget til side. «Da sjekker jeg det før jeg skriver noe.»",
+          "effekter": {
+            "flagg": {
+              "returavvik_spor": "tok_skylda"
+            },
+            "meters": {
+              "energi": -1,
+              "integritet": -2
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "d3_stamkunden_prismatch",
       "threadId": "kunden_som_tror_du_bestemmer",
       "fase": "formiddag",
@@ -1106,6 +1163,39 @@
             }
           },
           "konsekvensTekst": "Hun fikk avslaget. Nå VET hun at du bestemmer — og neste gang står hun der med noe dyrere."
+        }
+      ]
+    },
+    {
+      "id": "d3_lene_retter_returloggen",
+      "threadId": "returavvik_i_skiftloggen",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Det var 371»",
+      "tekst": "Lene har lagt bilaget ved loggen. «Returbeløpet stemmer. Det var 371 som skulle stå her, ikke 317. Jeg har rettet linja og signert.»",
+      "conditions": {
+        "flagg": {
+          "returavvik_spor": {
+            "finnes": true
+          }
+        }
+      },
+      "valg": [
+        {
+          "id": "les_rettingen",
+          "tekst": "Se på bilaget og den rettede linja",
+          "konsekvensTekst": "Lene har rettet kvitteringsnummeret i loggen til 371. Bilaget ligger ved. Returbeløpet står som før.",
+          "effekter": {
+            "threads": {
+              "returavvik_i_skiftloggen": {
+                "status": "completed"
+              }
+            }
+          }
         }
       ]
     },
