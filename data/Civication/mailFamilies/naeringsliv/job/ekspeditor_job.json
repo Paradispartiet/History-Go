@@ -28,17 +28,17 @@
           "repeatable": false,
           "stage": "stable",
           "subject": "Prisfeilen i køen",
-          "summary": "En kampanjepris stemmer ikke med kassa mens køen vokser.",
+          "summary": "Kampanjekaffen skannes til 49. Kunden mener samme pakke er merket 39. Avklar handelen og følg opp prisgrunnlaget.",
           "situation": [
-            "Fra Lene, butikksjef: Du får første ordentlige kasseøkt i dag. Det viktigste er å holde flyt uten å miste nøyaktighet. Ved prisfeil: sjekk hyllepris, spør kollega hvis køen vokser, forklar kunden kort hva du gjør, og rett feilen synlig hvis butikken har gjort feil.",
-            "Fra Amir, erfaren kollega: Prisfeil er aldri bare prisfeil når det står folk bak og sukker. Ikke bli stresset inn i gjetting. Det tar lengre tid å rette en feil du latet som du visste.",
-            "Fra System: Kunde kjøper kaffe på kampanje. Kassa viser 49 kroner, hylleplakat viser 39 kroner. Kø: 5 personer. Kollega tilgjengelig: ja, men opptatt med varepåfyll. Risiko: feil pris, irritert kunde, voksende kø."
+            "Fra Lene, butikksjef: Du har kassa. Når du har kontrollert samme vare, størrelse og gyldige kampanjevilkår, har du fullmakt til å korrigere kampanjeprisen i handelen. Er du usikker, spør meg. Endring av butikkens prisgrunnlag tar jeg ansvar for. Meld varen, begge priser og hva dere har undersøkt.",
+            "Fra Amir, erfaren kollega: Jeg fyller på varer og kan hjelpe. Be meg sjekke etiketten, eller avtal at jeg tar kassa mens du sjekker selv. Vi må vite hvem som gjør hva før noen går fra kassa.",
+            "Kunden legger fram kaffe. Kassa viser 49 kroner. Kunden sier at etiketten viser 39. Fem personer venter. Du har ennå ikke kontrollert at tilbudet gjelder samme pakke."
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Stoppe kort, sjekke hyllepris og forklare kunden",
-              "reply": "Jeg sier at prisen ikke stemmer, ber kunden vente et øyeblikk, og ber Amir sjekke hylleplakaten mens jeg holder køen informert.",
+              "label": "Be Amir kontrollere vare og kampanjevilkår mens du holder kassa",
+              "reply": "Kan du sjekke at 39 gjelder samme kaffe, størrelse og kampanjeperiode? Jeg forklarer kunden at vi undersøker prisen.",
               "effects": {
                 "accuracy": 3,
                 "customer_trust": 3,
@@ -49,11 +49,13 @@
               },
               "next_bias": {
                 "set_flags": [
-                  "ekspeditor_week1_checks_price_openly"
+                  "ekspeditor_week1_checks_price_openly",
+                  "ekspeditor_pris_kontrollert",
+                  "ekspeditor_pris_handel_rettet"
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_checks_price_openly",
-              "feedback": "Bra håndtert. Du gjorde feilen synlig uten å gjøre den dramatisk. Kunden fikk riktig pris, og køen skjønte hvorfor det tok litt tid.",
+              "feedback": "Amir bekrefter at 39 gjelder samme pakke og et gyldig tilbud. Du bruker den avtalte fullmakten og korrigerer handelen til 39. Kunden betaler. Prisgrunnlaget viser fortsatt 49; avviket er ennå ikke meldt til Lene.",
               "effect": {
                 "accuracy": 3,
                 "customer_trust": 3,
@@ -63,7 +65,9 @@
                 "manager_trust": 2
               },
               "tags": [
-                "ekspeditor_week1_checks_price_openly"
+                "ekspeditor_week1_checks_price_openly",
+                "ekspeditor_pris_kontrollert",
+                "ekspeditor_pris_handel_rettet"
               ]
             },
             {
@@ -83,7 +87,7 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_quick_price_fix",
-              "feedback": "Det holdt køen i gang. Men husk å melde feilen etterpå. Hvis ikke får alle etter deg samme situasjon.",
+              "feedback": "Du gir kunden 39 og kunden betaler. Varen og kampanjevilkårene er ennå ikke kontrollert. Du kan fortsatt undersøke og melde avviket; butikkens prisgrunnlag er ikke dermed rettet.",
               "effect": {
                 "queue_flow": 2,
                 "customer_trust": 1,
@@ -112,7 +116,7 @@
                 ]
               },
               "triggers_on_choice": "ekspeditor_week1_system_over_customer",
-              "feedback": "Men plakaten står jo rett der. Skal jeg betale mer fordi systemet deres ikke er oppdatert?",
+              "feedback": "Kunden ber deg undersøke før handelen avsluttes. Du har ikke kontrollert merkingen. Lene er tilgjengelig, og du kan fortsatt be henne avklare hva som gjelder.",
               "effect": {
                 "queue_flow": 1,
                 "customer_trust": -3,
@@ -122,6 +126,41 @@
               },
               "tags": [
                 "ekspeditor_week1_system_over_customer"
+              ]
+            },
+            {
+              "id": "D",
+              "label": "Avtal avløsning med Amir og kontroller merkingen selv",
+              "reply": "Kan du ta kassa mens jeg sjekker varen, størrelsen og kampanjevilkårene? Jeg går først når du har bekreftet at du tar over.",
+              "effects": {
+                "accuracy": 3,
+                "customer_trust": 3,
+                "queue_pressure": 1,
+                "service_quality": 3,
+                "stress": 1,
+                "manager_trust": 2
+              },
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_week1_self_price_check",
+                  "ekspeditor_pris_kontrollert",
+                  "ekspeditor_pris_handel_rettet"
+                ]
+              },
+              "triggers_on_choice": "ekspeditor_week1_checks_price_openly",
+              "feedback": "Amir bekrefter avløsningen. Du kontrollerer samme pakke og et gyldig tilbud på 39, kommer tilbake til kassa og korrigerer handelen. Kunden betaler. Prisgrunnlaget viser fortsatt 49; avviket er ennå ikke meldt til Lene.",
+              "effect": {
+                "accuracy": 3,
+                "customer_trust": 3,
+                "queue_pressure": 1,
+                "service_quality": 3,
+                "stress": 1,
+                "manager_trust": 2
+              },
+              "tags": [
+                "ekspeditor_week1_self_price_check",
+                "ekspeditor_pris_kontrollert",
+                "ekspeditor_pris_handel_rettet"
               ]
             }
           ],
@@ -639,10 +678,50 @@
           "channel": "job",
           "messageChannel": "job",
           "mail_class": "job_message",
-          "subject": "Konsekvens: Prisfeilen i køen",
-          "summary": "Bra håndtert. Du gjorde feilen synlig uten å gjøre den dramatisk. Kunden fikk riktig pris, og køen skjønte hvorfor det tok litt tid.",
+          "subject": "Handelen er avklart; prisavviket gjenstår",
+          "summary": "Kunden har betalt 39 etter kontroll. Butikkens prisgrunnlag viser fortsatt 49.",
           "situation": [
-            "Bra håndtert. Du gjorde feilen synlig uten å gjøre den dramatisk. Kunden fikk riktig pris, og køen skjønte hvorfor det tok litt tid."
+            "Kunden har betalt 39 etter kontroll. Butikkens prisgrunnlag viser fortsatt 49.",
+            "Amir: Vi fikk hjulpet kunden. Nå trenger Lene varen, begge priser og hva som ble kontrollert."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Meld det kontrollerte prisavviket til Lene",
+              "reply": "Samme kaffepakke: gyldig etikett 39, registrert pris 49. Handelen er korrigert til 39. Kan du ta oppfølgingen av prisgrunnlaget?",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_kontrollert",
+                  "ekspeditor_pris_handel_rettet",
+                  "ekspeditor_pris_meldt"
+                ]
+              },
+              "feedback": "Du sender vare, variant, begge priser og det som er undersøkt. Meldingen er sendt. Du har ennå ikke fått bekreftet at Lene har overtatt.",
+              "tags": [
+                "ekspeditor_pris_kontrollert",
+                "ekspeditor_pris_handel_rettet",
+                "ekspeditor_pris_meldt"
+              ],
+              "triggers_on_choice": "ekspeditor_prisavvik_mottatt"
+            },
+            {
+              "id": "B",
+              "label": "Gå tilbake til køen uten å melde prisavviket",
+              "reply": "Jeg tar neste kunde og lar oppfølgingen ligge foreløpig.",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_ikke_meldt"
+                ]
+              },
+              "feedback": "Kundemøtet er over, men ingen har overtatt prisavviket. Det er fortsatt uavklart hvem som følger det opp.",
+              "tags": [
+                "ekspeditor_pris_ikke_meldt"
+              ]
+            }
           ]
         },
         {
@@ -653,10 +732,50 @@
           "channel": "job",
           "messageChannel": "job",
           "mail_class": "job_message",
-          "subject": "Konsekvens: Prisfeilen i køen",
-          "summary": "Det holdt køen i gang. Men husk å melde feilen etterpå. Hvis ikke får alle etter deg samme situasjon.",
+          "subject": "Kontroller grunnlaget etter den raske korrigeringen",
+          "summary": "Du ga kunden 39 uten å kontrollere tilbudet. Det er fortsatt mulig å undersøke før du melder saken.",
           "situation": [
-            "Det holdt køen i gang. Men husk å melde feilen etterpå. Hvis ikke får alle etter deg samme situasjon."
+            "Du ga kunden 39 uten å kontrollere tilbudet. Det er fortsatt mulig å undersøke før du melder saken.",
+            "Amir er tilgjengelig for å kontrollere pakken og etiketten."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be Amir kontrollere tilbudet og meld funnet til Lene",
+              "reply": "Kan du sjekke samme pakke, størrelse og gyldighet? Jeg melder deretter begge priser og funnet til Lene.",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_kontrollert",
+                  "ekspeditor_pris_handel_rettet",
+                  "ekspeditor_pris_meldt"
+                ]
+              },
+              "feedback": "Amir bekrefter at tilbudet på 39 gjelder denne pakken. Handelen var riktig korrigert. Du melder det kontrollerte avviket til Lene; mottak er ennå ikke bekreftet.",
+              "tags": [
+                "ekspeditor_pris_kontrollert",
+                "ekspeditor_pris_handel_rettet",
+                "ekspeditor_pris_meldt"
+              ],
+              "triggers_on_choice": "ekspeditor_prisavvik_mottatt"
+            },
+            {
+              "id": "B",
+              "label": "Gå tilbake til køen uten å melde prisavviket",
+              "reply": "Jeg tar neste kunde og lar oppfølgingen ligge foreløpig.",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_ikke_meldt"
+                ]
+              },
+              "feedback": "Kundemøtet er over, men ingen har overtatt prisavviket. Det er fortsatt uavklart hvem som følger det opp.",
+              "tags": [
+                "ekspeditor_pris_ikke_meldt"
+              ]
+            }
           ]
         },
         {
@@ -667,10 +786,49 @@
           "channel": "job",
           "messageChannel": "job",
           "mail_class": "job_message",
-          "subject": "Konsekvens: Prisfeilen i køen",
-          "summary": "Men plakaten står jo rett der. Skal jeg betale mer fordi systemet deres ikke er oppdatert?",
+          "subject": "Undersøk prisgrunnlaget før kunden går",
+          "summary": "Kunden venter fortsatt på en avklaring. Handelen er ikke avsluttet. Lene kan hjelpe.",
           "situation": [
-            "Men plakaten står jo rett der. Skal jeg betale mer fordi systemet deres ikke er oppdatert?"
+            "Kunden venter fortsatt på en avklaring. Handelen er ikke avsluttet. Lene kan hjelpe."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be Lene kontrollere tilbudet sammen med deg",
+              "reply": "Jeg har ikke undersøkt merkingen. Kan vi sjekke varen og tilbudet før kunden betaler?",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_kontrollert",
+                  "ekspeditor_pris_handel_rettet",
+                  "ekspeditor_pris_meldt"
+                ]
+              },
+              "feedback": "Lene kontrollerer samme pakke og gyldig kampanjepris 39 sammen med deg. Du korrigerer handelen innenfor fullmakten, og kunden betaler. Dere skiller kundens handel fra det videre arbeidet med prisgrunnlaget.",
+              "tags": [
+                "ekspeditor_pris_kontrollert",
+                "ekspeditor_pris_handel_rettet",
+                "ekspeditor_pris_meldt"
+              ],
+              "triggers_on_choice": "ekspeditor_prisavvik_mottatt"
+            },
+            {
+              "id": "B",
+              "label": "La saken stå uten å hente noen",
+              "reply": "Jeg tar ikke saken videre nå.",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_ikke_meldt"
+                ]
+              },
+              "feedback": "Kunden har ikke fått en avklaring, og handelen er fortsatt uavklart. Prisavviket er ikke undersøkt eller overlevert.",
+              "tags": [
+                "ekspeditor_pris_ikke_meldt"
+              ]
+            }
           ]
         },
         {
@@ -853,6 +1011,168 @@
           "summary": "Noen kunder er vanskelige. Men hvis det blir hovedforklaringen, lærer du mindre av situasjonene. Vi må se hva du kan styre i møtet.",
           "situation": [
             "Noen kunder er vanskelige. Men hvis det blir hovedforklaringen, lærer du mindre av situasjonene. Vi må se hva du kan styre i møtet."
+          ]
+        },
+        {
+          "id": "ekspeditor_prisavvik_mottatt",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Lene bekrefter at hun overtar prisavviket",
+          "summary": "Lene: Jeg har fått vare, begge priser og kontrollgrunnlaget. Jeg tar ansvar for prisgrunnlaget.",
+          "situation": [
+            "Lene: Jeg har fått vare, begge priser og kontrollgrunnlaget. Jeg tar ansvar for prisgrunnlaget.",
+            "Dette er bekreftet mottak og ansvar. Retting er ikke bekreftet ennå."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avtal at du kontrollerer prisen etter retting",
+              "reply": "Gi meg beskjed når endringen er lagt inn, så kontrollerer jeg samme vare på nytt.",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_overtatt"
+                ]
+              },
+              "feedback": "Lene bekrefter oppfølgingen og avtalen om ny kontroll. Prisgrunnlaget er ennå ikke bekreftet rettet.",
+              "tags": [
+                "ekspeditor_pris_overtatt"
+              ],
+              "triggers_on_choice": "ekspeditor_prisavvik_kontroller_retting"
+            },
+            {
+              "id": "B",
+              "label": "Avtal at Amir tar etterkontrollen",
+              "reply": "Kan Amir ta kontrollen når prisgrunnlaget er endret? Jeg overleverer varen og begge priser.",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_overtatt",
+                  "ekspeditor_pris_kontroll_delegert"
+                ]
+              },
+              "feedback": "Lene bekrefter ansvaret sitt. Amir bekrefter at han tar etterkontrollen. Avtalen er gjort, men resultatet av kontrollen foreligger ikke ennå.",
+              "tags": [
+                "ekspeditor_pris_overtatt",
+                "ekspeditor_pris_kontroll_delegert"
+              ],
+              "triggers_on_choice": "ekspeditor_prisavvik_amir_kontroll"
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_prisavvik_kontroller_retting",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Prisgrunnlaget er endret – kontroller samme vare",
+          "summary": "Lene: Prisgrunnlaget for kaffepakken er nå endret til 39. Kan du kontrollere at den samme pakken registreres riktig?",
+          "situation": [
+            "Lene: Prisgrunnlaget for kaffepakken er nå endret til 39. Kan du kontrollere at den samme pakken registreres riktig?",
+            "Lenes melding er en bekreftet retting fra ansvarlig. Etterkontrollen er en egen oppgave."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Kontroller samme pakke mot etiketten og registrert pris",
+              "reply": "Jeg kontrollerer pakken på nytt og sammenligner registrert pris med den gyldige etiketten.",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_grunnlag_rettet",
+                  "ekspeditor_pris_retting_kontrollert"
+                ]
+              },
+              "feedback": "Den samme pakken registreres nå til 39, og etiketten viser 39. Du melder resultatet til Lene. Kundens handel, overleveringen og etterkontrollen er dokumentert som forskjellige handlinger.",
+              "tags": [
+                "ekspeditor_pris_grunnlag_rettet",
+                "ekspeditor_pris_retting_kontrollert"
+              ]
+            },
+            {
+              "id": "B",
+              "label": "Opplys at etterkontrollen fortsatt gjenstår",
+              "reply": "Jeg har fått meldingen om retting, men har ikke fått kontrollert pakken ennå. Etterkontrollen må stå åpen.",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_grunnlag_rettet",
+                  "ekspeditor_pris_kontroll_venter"
+                ]
+              },
+              "feedback": "Lene har meldt retting, men ingen etterkontroll er utført. Du gir beskjed om den åpne oppgaven og påstår ikke at resultatet er kontrollert.",
+              "tags": [
+                "ekspeditor_pris_grunnlag_rettet",
+                "ekspeditor_pris_kontroll_venter"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_prisavvik_amir_kontroll",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_ekspeditor_job",
+          "role_scope": "ekspeditor",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Amir melder resultatet av etterkontrollen",
+          "summary": "Amir: Lene meldte at prisgrunnlaget var endret. Jeg har kontrollert samme kaffepakke mot etiketten og registrert pris. Begge viser 39.",
+          "situation": [
+            "Amir: Lene meldte at prisgrunnlaget var endret. Jeg har kontrollert samme kaffepakke mot etiketten og registrert pris. Begge viser 39.",
+            "Det er Amir som har utført etterkontrollen, ikke spilleren."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrer Amirs konkrete kontrollresultat",
+              "reply": "Jeg gir Lene beskjed om at Amir har kontrollert samme pakke og bekreftet 39 mot etiketten.",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_grunnlag_rettet",
+                  "ekspeditor_pris_kontrollert_av_amir",
+                  "ekspeditor_pris_retting_kontrollert"
+                ]
+              },
+              "feedback": "Amirs kontrollresultat er overlevert til Lene. Historien viser hvem som kontrollerte, og at delegering ikke i seg selv var bevis på at oppgaven var gjort.",
+              "tags": [
+                "ekspeditor_pris_grunnlag_rettet",
+                "ekspeditor_pris_kontrollert_av_amir",
+                "ekspeditor_pris_retting_kontrollert"
+              ]
+            },
+            {
+              "id": "B",
+              "label": "Kontroller pakken selv i tillegg",
+              "reply": "Jeg har fått Amirs resultat, men vil også kontrollere samme pakke selv.",
+              "effect": 0,
+              "effects": {},
+              "next_bias": {
+                "set_flags": [
+                  "ekspeditor_pris_grunnlag_rettet",
+                  "ekspeditor_pris_kontrollert_av_amir"
+                ]
+              },
+              "feedback": "Amirs konkrete resultat er mottatt. Din egen ekstra kontroll gjenstår.",
+              "tags": [
+                "ekspeditor_pris_grunnlag_rettet",
+                "ekspeditor_pris_kontrollert_av_amir"
+              ],
+              "triggers_on_choice": "ekspeditor_prisavvik_kontroller_retting"
+            }
           ]
         }
       ],
