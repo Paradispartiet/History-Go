@@ -2,13 +2,13 @@
   "version": 1,
   "id": "ekspeditor",
   "navn": "Ekspeditør",
-  "kjernefantasi": "Du står bak disken der butikken møter folk — kasse, kunder, prisfeil, lager og lukking, i tempo som aldri venter.",
+  "kjernefantasi": "Du står bak disken der butikken møter folk — kasse, kunder, prisfeil, lager og overlevering, i tempo som aldri venter.",
   "arbeidsoppgaver": [
     "holde flyt i kassa uten å miste nøyaktighet",
     "møte kunder med regler du ikke selv eier",
     "rette prisfeil synlig når butikken har gjort feil",
     "holde lager og hyller ærlige",
-    "åpne og lukke slik at neste skift slipper å rydde"
+    "gjøre avtalte forberedelser og overlevere til neste skift; åpning og stenging krever tildelt ansvar"
   ],
   "personer": [
     {
@@ -47,7 +47,7 @@
     "kundens forventning vs fullmakten du faktisk har",
     "hjelpe på gulvet vs egen kø",
     "love for mye vs si sannheten om lageret",
-    "bli fort ferdig vs standard for neste skift"
+    "fordele oppgaver og overlevere innenfor avtalt vakt"
   ],
   "endings": [
     {
@@ -88,7 +88,7 @@
     {
       "id": "nokkelbaerer",
       "navn": "Nøkkelbærer",
-      "tekst": "Du fant lovlige løsninger der andre ga etter, tok ansvar for lukkingen, holdt standarden når ingen så på. Tillit er en nøkkel man får utlevert — og du fikk den.",
+      "tekst": "Du fant lovlige løsninger der andre ga etter, tok ansvar for overleveringen, holdt standarden når ingen så på. Tillit er en nøkkel man får utlevert — og du fikk den.",
       "kriterier": {
         "meters": {
           "integritet": {
@@ -160,36 +160,48 @@
   "dagsplan": {
     "1": [
       {
-        "klokke": "08:00",
-        "tekst": "Åpning"
+        "klokke": "12:00",
+        "tekst": "Overta kassa og avklare fullmakter"
       },
       {
-        "klokke": "10:00",
-        "tekst": "Første kasseøkt"
+        "klokke": "16:00",
+        "tekst": "Avtalt pause med avløsning"
       },
       {
-        "klokke": "20:45",
-        "tekst": "Lukking"
+        "klokke": "19:55",
+        "tekst": "Overlevering til neste skift"
+      },
+      {
+        "klokke": "20:00",
+        "tekst": "Avtalt vaktslutt"
       }
     ],
     "2": [
       {
-        "klokke": "09:00",
-        "tekst": "Morgenprat med Lene"
+        "klokke": "12:00",
+        "tekst": "Neste arbeidsøkt: prat med Lene"
       },
       {
         "klokke": "15:00",
-        "tekst": "Nøkkelen til disken"
+        "tekst": "Tilbud om mer ansvar"
+      },
+      {
+        "klokke": "20:00",
+        "tekst": "Avtalt vaktslutt"
       }
     ],
     "3": [
       {
-        "klokke": "08:00",
-        "tekst": "Åpning"
+        "klokke": "12:00",
+        "tekst": "Overta neste arbeidsøkt"
       },
       {
-        "klokke": "11:00",
+        "klokke": "14:00",
         "tekst": "Stamkunden"
+      },
+      {
+        "klokke": "20:00",
+        "tekst": "Avtalt vaktslutt"
       }
     ]
   }
