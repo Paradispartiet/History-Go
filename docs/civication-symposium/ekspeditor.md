@@ -234,6 +234,22 @@ Oppgaven krever en faktisk sekvens: Avklar kundens grunn, les det lokale rutinea
 
 Fire låste oppfølgingsscener er lagt til i den samme tråden `ny_kollega_og_tillit`: `d2_vikar_retur_02_kort_svar`, `d2_vikar_retur_02_kontroll`, `d2_vikar_retur_03_lene_godkjenner` og `d2_vikar_retur_03_vikar_utforer`. De opprinnelige scene- og valg-ID-ene på dag 2 er beholdt. Manglende oppfølging, et ubekreftet refusjonsløfte, uavklart bytte eller at medarbeideren overtar alt selv etterlater opplæringen åpen; ingen av disse teller som verifisert ferdighet. Kassen i denne fiktive butikken og de konkrete varelinjene er redaksjonelle produksjonspremisser. Den kanoniske [Life Story-testen](../../tests/civication-lifestory-ekspeditor.test.js) og [Skills-evidenstesten](../../tests/civication-skills-evidence.test.js) skal bekrefte at gjennomført arbeid, registrert ansvar og ferdighetsbevis samsvarer.
 
+### Nøkkel, returfullmakt og delt arbeid
+
+På ettermiddagen dag 2 tilbyr Lene en personlig fullmakt til ordinære returer opptil 500 kroner etter spillbutikkens skriftlige vilkår. Beløpet og ansvarsfordelingen er fiktive butikkpremisser. Beløpet er ingen grense for kundens reklamasjonsrett.
+
+Den eksisterende scenen `d2_ettermiddag_nokkelen` skiller mellom tre faktiske utfall:
+
+| Valg | Hva som er avklart | Hva som ikke er utført |
+| --- | --- | --- |
+| Ta imot etter gjennomgang | Lene bekrefter personlig returfullmakt og leverer ut disknøkkelen. | Ingen kundesak er behandlet. Stenging, bemanning, prismatch og reklamasjonsavgjørelser inngår ikke. |
+| Be om en uke til | Videre opplæring og ny gjennomgang er avtalt. Lene beholder nøkkel og avgjørelsesansvar. | Ingen fullmakt er gitt. Å be om opplæring gir ikke trekk i synlighet. |
+| Dele dokumentkontrollen | Medarbeideren finner kjøpsbevis; vikaren sammenligner vare og dato. Lene har bekreftet fordelingen og avgjør returene. | En arbeidsavtale er ikke utført kontroll, personlig returfullmakt eller delt stengeansvar. |
+
+Spillerens arkiv beholder den valgte handlingen og Lenes svar. Egne flagg skiller aktiv fullmakt, utlevert nøkkel, utsatt fullmakt og avtalt dokumentkontroll. De opprinnelige scene- og valg-ID-ene beholdes. Å ta imot en fullmakt gir ingen ferdighetsgodkjenning i seg selv. Den tidligere opplæringssaken på formiddagen krever fortsatt Lenes særskilte godkjenning; en senere fullmakt gjelder ikke bakover i tid.
+
+[Life Story-testen](../../tests/civication-lifestory-ekspeditor.test.js) følger faktiske valg fram til alle tre utfall og kontrollerer lagret historikk og fullmaktsflagg. [Nettleserkontrollen](../../scripts/verify-civication-ekspeditor-lifestory-browser.cjs) skal kontrollere de samme utfallene på mobil og iPad. Ny grønn CI og gjennomgåtte skjermbilder kreves før denne endringen kan omtales som verifisert. Dag-3-saken om prismatch er en egen restoppgave.
+
 ### Hva som er avklart og hva som gjenstår
 
 Den fiktive butikkens ansvarsfordeling, klær, utstyr, eksempeluke, lønnsgrunnlag, opplæringsinnhold og sammenhengende prishistorie er nå beskrevet over. De er redaksjonelle premisser, ikke bekreftede rutiner fra en bestemt kjede eller ferdig implementerte spilldata.

@@ -398,6 +398,7 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
     assert.equal((await page.evaluate(() => globalThis.CivicationLifestoryState.load())).arkiv.length,
       0, label + ': starts from a fresh player state');
     let sawReturnRequest = false, sawDayChange = false, last = null;
+    let dayTransitionMode = null;
     for (let n = 0; n < 130; n++) {
       const state = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
       if (state.dagFerdig && state.dag === 1) {
@@ -409,10 +410,12 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
         const nextDay = page.locator('[data-lifestory-next-day]').first();
         assert.equal(await nextDay.count(), 1, label + ': real day summary contains its day control');
         if (await nextDay.isEnabled()) {
+          dayTransitionMode = 'ui';
           await nextDay.click({ timeout: 20000 });
           await page.waitForFunction(() => globalThis.CivicationLifestoryState.load().dag === 2,
             null, { timeout: 45000 });
         } else {
+          dayTransitionMode = 'runner-fixture';
           // The full Civication shell may have an unrelated pending inbox
           // action for a test-only, jobless role. Never grant/complete that
           // unrelated task, disable the production gate or fake scene choices.
@@ -497,7 +500,60 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
     }
     assert.deepEqual(errors, [], label + ': no browser exceptions');
     await page.screenshot({ path: path.join(output, label + '-day2-after-reload.png'), fullPage: true });
-    return { label, viewport, day: 2, last, status: expected.status, trace };
+    const authorityId = 'd2_ettermiddag_nokkelen';
+    let authority = null;
+    for (let n = 0; n < 60; n++) {
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': actual continuation reaches authority conversation');
+      const state = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      const wanted = sceneId === authorityId ? expected.authorityChoice : null;
+      const selector = '[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
+        + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])';
+      const button = page.locator(selector).first();
+      await button.scrollIntoViewIfNeeded();
+      if (sceneId === authorityId) {
+        assert.ok(!state.tidligereValg.ekspeditor_returfullmakt_aktiv,
+          label + ': earlier trainee transaction did not use a future mandate');
+        const bounds = await button.boundingBox();
+        assert.ok(bounds && bounds.x >= -2 && bounds.x + bounds.width <= viewport.width + 2,
+          label + ': authority button fits viewport');
+        await page.screenshot({ path: path.join(output, label + '-authority-before.png'), fullPage: true });
+      }
+      const choiceId = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(previous => globalThis.CivicationLifestoryState.load().arkiv.length === previous + 1,
+        state.arkiv.length, { timeout: 20000 });
+      trace.push([sceneId, choiceId]);
+      if (sceneId !== authorityId) continue;
+      const result = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      const accepted = wanted === 'ta_ansvaret';
+      const authorityFlags = {
+        ekspeditor_returfullmakt_aktiv: accepted,
+        ekspeditor_disknokkel_utlevert: accepted,
+        ekspeditor_returfullmakt_utsatt: wanted === 'en_uke_til',
+        ekspeditor_dokumentkontroll_delt: wanted === 'del_med_vikaren'
+      };
+      for (const [flag, value] of Object.entries({ ...expected.flags, ...authorityFlags })) {
+        assert.equal(result.tidligereValg[flag] === true, value, label + ': authority preserves actual evidence ' + flag);
+      }
+      if (wanted === 'en_uke_til') assert.ok(result.meters.synlighet >= state.meters.synlighet);
+      assert.equal(result.arkiv.at(-1).valgId, wanted);
+      await page.screenshot({ path: path.join(output, label + '-authority-after.png'), fullPage: true });
+      await page.reload({ waitUntil: 'load', timeout: 90000 });
+      await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(), null, { timeout: 90000 });
+      const reloaded = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.deepEqual(reloaded.arkiv, result.arkiv, label + ': authority history persists exactly');
+      assert.deepEqual(reloaded.tidligereValg, result.tidligereValg, label + ': authority evidence persists exactly');
+      authority = { sceneId, choiceId, flags: authorityFlags };
+      break;
+    }
+    assert.ok(authority, label + ': completes actual authority conversation');
+    assert.deepEqual(errors, [], label + ': authority continuation has no browser exceptions');
+    return { label, viewport, day: 2, dayTransitionMode, last, status: expected.status, authority, trace };
   } finally {
     await context.close();
   }
@@ -645,17 +701,17 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
     };
     results.push(await playDayTwoReturnTraining(browser, 'day2-return-mobile-portrait',
       { width: 390, height: 844 }, fullTrainingDayTwo,
-      { finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'completed',
+      { authorityChoice: 'ta_ansvaret', finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'completed',
         flags: { retur_d2_vilkar_kontrollert: true, retur_d2_lene_godkjent: true,
           retur_d2_bytte_gjennomfort: true, retur_d2_vikar_forstod: true, laerte_bort_metoden: true } }));
     results.push(await playDayTwoReturnTraining(browser, 'day2-return-ipad-portrait',
       { width: 820, height: 1180 }, traineeNotCheckedDayTwo,
-      { finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'escalated',
+      { authorityChoice: 'en_uke_til', finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'escalated',
         flags: { retur_d2_lene_godkjent: true, retur_d2_bytte_utfort_av_spiller: true,
           retur_d2_vikar_kontroll_venter: true, retur_d2_vikar_forstod: false, laerte_bort_metoden: false } }));
     results.push(await playDayTwoReturnTraining(browser, 'day2-return-ipad-landscape',
       { width: 1180, height: 820 }, noReturnFollowUpDayTwo,
-      { finalScene: 'd2_vikar_retur_02_kort_svar', status: 'escalated',
+      { authorityChoice: 'del_med_vikaren', finalScene: 'd2_vikar_retur_02_kort_svar', status: 'escalated',
         flags: { retur_d2_ikke_fulgt_opp: true, retur_d2_vilkar_kontrollert: false,
           retur_d2_lene_godkjent: false, retur_d2_bytte_gjennomfort: false, laerte_bort_metoden: false } }));
     console.log('PASS: ekspeditør day-two return instruction plus all earlier Life Story paths on mobile and iPad', JSON.stringify(results));
