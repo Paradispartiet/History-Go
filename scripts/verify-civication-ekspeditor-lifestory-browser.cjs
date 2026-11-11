@@ -50,16 +50,13 @@ async function play(browser, label, viewport, choices, expected) {
       const sceneId = info?.sceneId;
       assert.ok(sceneId, label + ': a playable scene must be available');
       if (sceneId === 'prisfeil_02_koen') arrivedAtPrice = true;
-      if (!arrivedAtPrice && sceneId !== 'apning_01_forste_okt' && sceneId !== 'privat_morgen_start') {
-        // Normal scene ordering may include other real private/work scenes.
-        // Their first enabled option is played via the visible UI as well.
-      }
       const buttons = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice]:not([disabled])');
       const availableCount = await buttons.count();
       assert.ok(availableCount > 0, label + ': visible enabled choice in ' + sceneId);
       const wanted = choices[sceneId];
-      const button = wanted ? buttons.filter({ has: page.locator('span') }).and(page.locator(
-        '[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice="' + wanted + '"]')) : buttons.first();
+      const button = wanted
+        ? page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice="' + wanted + '"]:not([disabled])')
+        : buttons.first();
       assert.equal(await button.count(), 1, label + ': requested choice exists ' + sceneId + '/' + wanted);
       await button.scrollIntoViewIfNeeded();
       const rect = await button.boundingBox();
