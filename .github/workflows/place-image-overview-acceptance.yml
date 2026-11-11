@@ -1,0 +1,39 @@
+name: Place image and frontImage overview framing
+on:
+  pull_request:
+    paths:
+      - 'css/place-image-overview.css'
+      - 'js/ui/place-image-overview.js'
+      - 'index.html'
+      - 'tests/place-image-overview-browser.mjs'
+      - '.github/workflows/place-image-overview-acceptance.yml'
+  workflow_dispatch:
+concurrency:
+  group: place-image-overview-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  overview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify image preview script syntax
+        run: node --check js/ui/place-image-overview.js
+      - name: Verify full image/frontImage at mobile and desktop sizes
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/place-image-overview-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: place-image-overview-390-1440
+          path: artifacts/place-image-overview/
+          if-no-files-found: ignore
