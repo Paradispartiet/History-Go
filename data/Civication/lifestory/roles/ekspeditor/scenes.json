@@ -589,13 +589,18 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "«Dere skulle jo ha den inne igjen»",
-      "tekst": "Stamkunden spør etter varen hun har ventet på i en uke. Hylla er tom, systemet sier «på lager: 2», og du vet at systemet lyver oftere enn folk tror.",
+      "tekst": "En stamkunde spør etter varen hun har ventet på. Hylla er tom, mens beholdningsbildet viser to av samme variant. Du har ennå ikke kontrollert bakrom eller siste varemottak. Kunden vil vite om hun kan få varen nå.",
       "valg": [
         {
           "id": "aerlig_om_lageret",
-          "tekst": "Vær ærlig: systemet sier to, hylla sier null — tilby å bestille med navn på",
+          "tekst": "Fortell hva du vet: hylla er tom, systemet viser to – tilby å undersøke nå",
           "tone": "ærlig",
-          "skills_practice": {"skill_id":"social_awareness","activity_type":"explain_stock_to_customer","evidence_flag":"aerlig_om_lageret","delta":1},
+          "skills_practice": {
+            "skill_id": "social_awareness",
+            "activity_type": "explain_stock_to_customer",
+            "evidence_flag": "aerlig_om_lageret",
+            "delta": 1
+          },
           "effekter": {
             "relasjoner": {
               "stamkunde": 6
@@ -605,15 +610,19 @@
               "energi": -2
             },
             "flagg": {
-              "aerlig_om_lageret": true
+              "aerlig_om_lageret": true,
+              "lager_usikkert_forklart": true
             },
             "threads": {
               "varen_som_ikke_finnes": {
-                "status": "completed"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "«Endelig en som sier det som det er,» sier hun. Du skriver navnet hennes på bestillingen mens hun ser på."
+          "konsekvensTekst": "Du forklarer forskjellen mellom hylla og registrert beholdning, uten å love en levering. Kunden blir ved disken mens du ordner en fysisk kontroll. Ingen vare er funnet eller bestilt ennå.",
+          "laaserOpp": [
+            "varen_02_kontroller_beholdning"
+          ]
         },
         {
           "id": "lov_i_morgen",
@@ -633,13 +642,21 @@
               }
             }
           },
-          "konsekvensTekst": "Hun nikker og går. Du vet ikke om den kommer i morgen. Det gjør hun i morgen."
+          "konsekvensTekst": "Kunden noterer seg løftet og går mot utgangen. Du har ikke kontrollert lageret eller varemottaket. Ingen levering er bekreftet, og du kan ennå rekke å korrigere beskjeden.",
+          "laaserOpp": [
+            "varen_02_rett_ubegrunnet_lovnad"
+          ]
         },
         {
           "id": "sjekk_selv",
-          "tekst": "Be henne vente to minutter og sjekk lageret selv",
+          "tekst": "Avtal avløsning og kontroller både hylle og bakrom før du svarer",
           "tone": "grundig",
-          "skills_practice": {"skill_id":"practical_mastery","activity_type":"inspect_warehouse_stock","evidence_flag":"sjekket_lageret_selv","delta":2},
+          "skills_practice": {
+            "skill_id": "practical_mastery",
+            "activity_type": "inspect_warehouse_stock",
+            "evidence_flag": "sjekket_lageret_selv",
+            "delta": 2
+          },
           "effekter": {
             "relasjoner": {
               "stamkunde": 3
@@ -649,7 +666,9 @@
               "synlighet": 2
             },
             "flagg": {
-              "sjekket_lageret_selv": true
+              "sjekket_lageret_selv": true,
+              "lager_ett_funnet": true,
+              "lager_telling_egen": true
             },
             "threads": {
               "varen_som_ikke_finnes": {
@@ -657,7 +676,469 @@
               }
             }
           },
-          "konsekvensTekst": "Du finner én — bak en pall med feilplassert juice. Systemet hadde nesten rett. Kunden fikk varen, og du fikk vite hvor lageret lyver."
+          "konsekvensTekst": "Amir tar kassa mens du kontrollerer riktig varevariant. Hylla er tom; du finner én pakke bak en pall. Før salget viser systemet to, mens fysisk telling er én. Kunden venter fortsatt, og ingen vare er overlevert eller avvik meldt ennå.",
+          "laaserOpp": [
+            "varen_03_avklar_kunden"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "varen_02_rett_ubegrunnet_lovnad",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Du lovet mer enn du visste",
+      "tekst": "Kunden er på vei ut. Du sa at varen kommer i morgen, men har verken sett en bekreftet leveranse eller kontrollert varen. Dette løftet kan ikke stå som dokumentert levering.",
+      "valg": [
+        {
+          "id": "rett_beskjeden",
+          "tekst": "Gå bort til kunden og korriger løftet før hun forlater butikken",
+          "effekter": {
+            "meters": {
+              "energi": -1,
+              "integritet": 3
+            },
+            "flagg": {
+              "lager_lovnad_rettet": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Du sier at du ikke vet når varen kommer, men kan undersøke hva som faktisk finnes nå. Kunden setter av noen minutter; det tidligere leveringsløftet er trukket tilbake.",
+          "laaserOpp": [
+            "varen_02_kontroller_beholdning"
+          ]
+        },
+        {
+          "id": "la_lovnaden_staa",
+          "tekst": "La kunden gå uten å korrigere det ubekreftede løftet",
+          "effekter": {
+            "flagg": {
+              "lager_ubekreftet_lovnad_staar": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Kunden går med en forventning om levering i morgen. Du har ikke kontrollert leveransen eller rettet beskjeden, og saken står åpen."
+        }
+      ]
+    },
+    {
+      "id": "varen_02_kontroller_beholdning",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Få et faktisk tall, ikke gjett fra skjermen",
+      "tekst": "Systemet viser to av varevarianten, men hylla er tom. Du må kontrollere riktig vare, bakrom og eventuell uoppfylt leveranse. Dersom Amir teller, er det han som utfører kontrollen.",
+      "valg": [
+        {
+          "id": "tell_selv",
+          "tekst": "Avtal kasseavløsning, finn riktig variant og tell hylle og bakrom",
+          "effekter": {
+            "meters": {
+              "energi": -3
+            },
+            "flagg": {
+              "lager_ett_funnet": true,
+              "lager_telling_egen": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du teller hylle null og bakrom én av riktig variant, bak pallen. Systemet viste to før handelen. Du har et konkret avvik på én, men kunden har fortsatt ikke fått varen.",
+          "laaserOpp": [
+            "varen_03_avklar_kunden"
+          ]
+        },
+        {
+          "id": "amir_teller",
+          "tekst": "Be Amir kontrollere varevariant og antall mens du betjener kassa",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": 2
+            },
+            "flagg": {
+              "lager_telling_delegert": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Amir bekrefter at han går til bakrommet for å telle. Du har bedt om kontrollen, men har ennå ikke fått et kontrollresultat.",
+          "laaserOpp": [
+            "varen_02_amir_teller"
+          ]
+        },
+        {
+          "id": "ikke_telt",
+          "tekst": "Si fra at beholdningen ennå ikke er kontrollert",
+          "effekter": {
+            "flagg": {
+              "lager_telling_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du skriver at hylle og system ikke stemmer, men ingen har faktisk talt bakrommet. Kunden får ikke en ny leveringsgaranti."
+        }
+      ]
+    },
+    {
+      "id": "varen_02_amir_teller",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Amir har talt varevarianten",
+      "tekst": "Amir svarer: «Jeg kontrollerte varenummer og variant. Hylla er tom, og én pakke ligger bak pallen. Systemet viste to før salget. Det er et telleavvik på én.»",
+      "valg": [
+        {
+          "id": "registrer_amirs_telling",
+          "tekst": "Registrer at Amir utførte tellingen, og hent den ene pakken til kunden",
+          "effekter": {
+            "flagg": {
+              "lager_ett_funnet": true,
+              "lager_telling_amir": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du dokumenterer kontrollør, variant og ett fysisk eksemplar. Kundens handel og beholdningsavviket gjenstår fortsatt.",
+          "laaserOpp": [
+            "varen_03_avklar_kunden"
+          ]
+        },
+        {
+          "id": "avklar_variant",
+          "tekst": "Opplys at du ennå ikke har kontrollert om Amirs pakke gjelder riktig variant",
+          "effekter": {
+            "flagg": {
+              "lager_variant_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du ber om en bekreftelse på vareidentifikasjonen før kunden får et svar. Uten denne avklaringen skal tellingen ikke registreres som kontrollert for den etterspurte varen."
+        }
+      ]
+    },
+    {
+      "id": "varen_03_avklar_kunden",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "stamkunde",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Én vare funnet – kunden venter",
+      "tekst": "Det er funnet én pakke av riktig varevariant. Kunden venter fortsatt. Før salg var faktisk antall én mot systemets to. Levering til kunden og rapportering av beholdningsavviket er ulike oppgaver.",
+      "valg": [
+        {
+          "id": "gjennomfor_salget",
+          "tekst": "Hent pakken, gjennomfør vanlig salg og gi kunden varen",
+          "effekter": {
+            "relasjoner": {
+              "stamkunde": 4
+            },
+            "meters": {
+              "energi": -1
+            },
+            "flagg": {
+              "lager_kunde_fikk_vare": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du legger den funne pakken i kassa, gjennomfører handelen og gir kunden varen. Hun får den varen som faktisk var på lager. Avviket mellom opptalt én og registrert to før salget gjenstår.",
+          "laaserOpp": [
+            "varen_04_meld_telleavvik"
+          ]
+        },
+        {
+          "id": "la_lene_gjennomfore",
+          "tekst": "Overlever kunde og identifisert vare til Lene; hun tar salget",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 2
+            },
+            "flagg": {
+              "lager_kunde_overtatt_av_lene": true,
+              "lager_vare_solgt_av_lene": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lene overtar kunden og gjennomfører salget av den ene fysiske varen. Du registrerer at det var Lene, ikke du, som solgte pakken. Beholdningsavviket er fortsatt ikke meldt i avviksloggen.",
+          "laaserOpp": [
+            "varen_04_meld_telleavvik"
+          ]
+        },
+        {
+          "id": "la_kunden_vente",
+          "tekst": "Fortell at du ikke har avklart utleveringen og må få hjelp",
+          "effekter": {
+            "flagg": {
+              "lager_kunde_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du er tydelig på at varen er funnet, men har ikke overlevert den eller gitt et nytt løfte. Kunden må avvente en ansvarlig kollega; oppgaven er ikke fullført."
+        }
+      ]
+    },
+    {
+      "id": "varen_04_meld_telleavvik",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Meld feil beholdning – ikke kall den rettet",
+      "tekst": "Før kunden kjøpte varen, var registrert beholdning to, mens fysisk telling av samme variant var én. Den ene pakken er nå solgt. Lene har ansvar for beholdningskorrigeringen. Opplys både tellegrunnlag, hvem som telte og hva kunden fikk.",
+      "valg": [
+        {
+          "id": "send_tellenotat",
+          "tekst": "Send Lene varenummer, fysisk antall, systemtall, salg og kontrollør",
+          "effekter": {
+            "flagg": {
+              "lager_avvik_meldt": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sender det konkrete telleavviket til Lene. Notatet er sendt, men du har ikke fått bekreftet at Lene har overtatt eller at systemet er korrigert.",
+          "laaserOpp": [
+            "varen_05_lene_bekrefter"
+          ]
+        },
+        {
+          "id": "utsett_avviket",
+          "tekst": "Si tydelig at avviket ikke er meldt, og at oppfølgingen gjenstår",
+          "effekter": {
+            "flagg": {
+              "lager_avviksmelding_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du lar telleavviket stå åpent. Kunden har fått varen, men registrert beholdning er fortsatt ikke avstemt; ingen mottaksbekreftelse finnes."
+        }
+      ]
+    },
+    {
+      "id": "varen_05_lene_bekrefter",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Lene tar ansvar for beholdningen",
+      "tekst": "Lene svarer: «Jeg har mottatt notatet. Vi har ett fysisk eksemplar mot to registrert før salget, og varen er nå solgt. Jeg avstemmer beholdningen. Jeg melder fra når tallene er oppdatert; dere må kontrollere resultatet etterpå.»",
+      "valg": [
+        {
+          "id": "avtal_egen_sjekk",
+          "tekst": "Registrer Lenes mottak og avtal at du kontrollerer etter oppdateringen",
+          "effekter": {
+            "flagg": {
+              "lager_ansvar_overtatt": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer at Lene har overtatt avviket. Selve korrigeringen og din etterkontroll er ennå ikke gjennomført.",
+          "laaserOpp": [
+            "varen_06_etterkontroll"
+          ]
+        },
+        {
+          "id": "be_amir_folge_opp",
+          "tekst": "Registrer Lenes mottak og avtal at Amir kan hjelpe med kontrollen",
+          "effekter": {
+            "flagg": {
+              "lager_ansvar_overtatt": true,
+              "lager_etterkontroll_delegert": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lene har overtatt ansvaret. Du ber Amir være tilgjengelig for etterkontroll; ingen kontroll er foreløpig utført.",
+          "laaserOpp": [
+            "varen_06_etterkontroll"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "varen_06_etterkontroll",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Oppdatert beholdning må prøves mot virkeligheten",
+      "tekst": "Lene melder at hun har korrigert telleavviket: etter salget viser beholdningsbildet null av den aktuelle varianten. En oppdatert systemverdi er ikke bevis på at hylla og bakrommet fortsatt er tomme.",
+      "valg": [
+        {
+          "id": "sjekk_null_selv",
+          "tekst": "Tell samme varevariant på nytt og sammenlign med null i systemet",
+          "effekter": {
+            "meters": {
+              "energi": -1
+            },
+            "flagg": {
+              "lager_system_oppdatert": true,
+              "lager_etterkontroll_egen": true,
+              "lager_etterkontroll_verifisert": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du teller null i hylla og null i bakrommet av samme variant, og kontrollerer at systemet viser null. Du dokumenterer utført etterkontroll til Lene."
+        },
+        {
+          "id": "be_amir_etterkontroll",
+          "tekst": "Be Amir utføre sluttkontrollen; vent på faktisk resultat",
+          "effekter": {
+            "flagg": {
+              "lager_system_oppdatert": true,
+              "lager_etterkontroll_delegert": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Amir tar oppgaven, men har ikke meldt tilbake ennå. Lenes oppdaterte systemtall er registrert, ikke noen fysisk bekreftet kontroll.",
+          "laaserOpp": [
+            "varen_07_amir_etterkontroll"
+          ]
+        },
+        {
+          "id": "ikke_sjekket",
+          "tekst": "Noter at Lene har oppdatert beholdningen, men at fysisk kontroll gjenstår",
+          "effekter": {
+            "flagg": {
+              "lager_system_oppdatert": true,
+              "lager_etterkontroll_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer Lenes endring uten å påstå at noen har talt hylla eller lageret. Etterkontrollen står fortsatt åpen."
+        }
+      ]
+    },
+    {
+      "id": "varen_07_amir_etterkontroll",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Amirs fysiske sluttkontroll",
+      "tekst": "Amir svarer: «Jeg kontrollerte samme variant etter salget. Det er null igjen i hylla og bakrommet, og systemet viser null.» Dette er Amirs undersøkelse, ikke din.",
+      "valg": [
+        {
+          "id": "registrer_amir",
+          "tekst": "Registrer Amirs navngitte kontroll og gi resultatet til Lene",
+          "effekter": {
+            "flagg": {
+              "lager_system_oppdatert": true,
+              "lager_etterkontroll_amir": true,
+              "lager_etterkontroll_verifisert": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer at Amir utførte den fysiske etterkontrollen, og melder samsvarende tall til Lene. Oppgaven er nå dokumentert avsluttet."
+        },
+        {
+          "id": "avvent_resultat",
+          "tekst": "Ikke godkjenn etterkontrollen før vareidentifikasjonen er bekreftet",
+          "effekter": {
+            "flagg": {
+              "lager_amir_kontroll_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du lar resultatet stå uverifisert i spillerhistorikken og ber om entydig vareidentifikasjon. Saken forblir åpen."
         }
       ]
     },
