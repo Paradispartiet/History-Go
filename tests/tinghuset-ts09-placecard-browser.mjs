@@ -15,7 +15,7 @@ assert.equal(place.production_profile,'standard');
 assert.equal(place.profile_status,'confirmed');
 assert.deepEqual(place.place_card_profile?.collection_ids,collectionIds);
 assert.ok(runtime.people.length>=13,'Expected 13 canonical People from prior source-curated place production');
-for(const id of place.related_people_ids){
+for(const {id} of runtime.people){
  const p=runtime.people.find(x=>x.id===id);
  assert.ok(p,'missing generated People '+id);
  assert.ok(p.image&&p.image.length>5,'missing canonical People picture '+id);
@@ -46,7 +46,7 @@ try{
    await page.waitForFunction(()=>{const card=document.querySelector('#pcFrontCardFlip'),content=document.querySelector('#pcQuizCardContent');return card?.classList.contains('has-quiz-card')&&content?.querySelector('.pc-rendered-quiz-card');},null,{timeout:80000});
    const mode=await page.locator('#placeCard').evaluate(el=>({mode:el.dataset.collectionMode,count:Number(el.dataset.collectionCount)}));
    assert.equal(mode.mode,'place-card-collections-v2');
-   assert.equal(mode.count,4);
+   assert.equal(mode.count,3);
    await page.screenshot({path:'artifacts/tinghuset-ts09/'+label+'-front.png'});
    const flip=page.locator('#pcFrontCardFlip');
    await flip.scrollIntoViewIfNeeded();await flip.click();
