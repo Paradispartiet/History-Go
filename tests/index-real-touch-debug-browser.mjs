@@ -21,7 +21,8 @@ async function tap(page,selector){
  });
  console.log('TAP '+selector+' '+JSON.stringify(hit));
  assert.ok(hit.w>0&&hit.h>0,'Tap target must be visible: '+selector);
- await page.touchscreen.tap(hit.x,hit.y);
+ // Native touch with scrolling, stability and hit-target checks; never force input.
+ await page.locator(selector).tap();
 }
 async function cardVisible(page,id){
  await page.waitForFunction(id=>{
@@ -112,6 +113,12 @@ try{
      await backToMap(page);
      result.flows.push({place:id,mapTap:true,header:true,favorite:true,footer:true,back:true});
      previousId=id;
+     // The shared back link intentionally navigates to the ordinary map URL.
+     // Re-enter the explicit diagnostic URL before the next traced flow.
+     if(tracing){
+      await page.goto(entry+'#/map',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);
+      await page.waitForFunction(()=>!!window.HGDeviceTapTrace&&!!window.HGMap?.getMap());
+     }
     }
     // Retain direct-link and returning-session coverage as a separate path.
     await page.goto(entry+'#/place/stortinget',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);
