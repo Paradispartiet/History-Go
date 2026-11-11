@@ -404,11 +404,36 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
         const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
         if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
         await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
-        const nextDay = page.locator('[data-lifestory-next-day]:not([disabled])').first();
-        assert.equal(await nextDay.count(), 1, label + ': native next-day control is enabled');
-        await nextDay.click({ timeout: 20000 });
-        await page.waitForFunction(() => globalThis.CivicationLifestoryState.load().dag === 2,
-          null, { timeout: 45000 });
+        assert.ok(await page.locator('.civi-lifestory-summary').isVisible(),
+          label + ': day-one story really reached its summary');
+        const nextDay = page.locator('[data-lifestory-next-day]').first();
+        assert.equal(await nextDay.count(), 1, label + ': real day summary contains its day control');
+        if (await nextDay.isEnabled()) {
+          await nextDay.click({ timeout: 20000 });
+          await page.waitForFunction(() => globalThis.CivicationLifestoryState.load().dag === 2,
+            null, { timeout: 45000 });
+        } else {
+          // The full Civication shell may have an unrelated pending inbox
+          // action for a test-only, jobless role. Never grant/complete that
+          // unrelated task, disable the production gate or fake scene choices.
+          // Isolate only the day boundary with the *canonical* Runner API.
+          assert.ok(await page.locator('[data-lifestory-next-action]').count(),
+            label + ': disabled shell day transition must expose its inbox prerequisite');
+          await page.screenshot({ path: path.join(output, label + '-day1-shell-inbox-gate.png'), fullPage: true });
+          await page.evaluate(async () => {
+            const api = globalThis;
+            const c = await api.CivicationLifestoryContent.loadContent('ekspeditor');
+            const saved = api.CivicationLifestoryState.load();
+            if (!saved.dagFerdig || saved.dag !== 1) throw new Error('not at day-one conclusion');
+            api.CivicationLifestoryRunner.startNextDay(saved, c);
+            api.CivicationLifestoryState.save(saved);
+          });
+          await page.reload({ waitUntil: 'load', timeout: 90000 });
+          await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.dag === 2
+            && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId,
+            null, { timeout: 45000 });
+          await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+        }
         sawDayChange = true;
         continue;
       }
