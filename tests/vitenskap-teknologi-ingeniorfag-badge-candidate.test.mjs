@@ -43,7 +43,7 @@ test('Vitenskap: fem språkvarianter, korrekt tekst og ingen progresjonstall', (
   assert.equal(candidate.localesActive, false);
   for (const [lang, v] of Object.entries(candidate.variants)) {
     assert.equal(v.path.endsWith('teknologi_og_ingeniorfag.webp'), true, lang);
-    assert.equal(/\\b\\d+\\s*\\/\\s*\\d+\\b/.test(v.heading + ' ' + v.footer), false, lang);
+    assert.equal(/[0-9]/.test(v.heading + ' ' + v.footer), false, lang);
     assert.match(v.sha256, /^[a-f0-9]{64}$/);
     assert.match(v.gitBlobSha, /^[a-f0-9]{40}$/);
     assert.ok(v.bytes > 1000, lang);
@@ -65,7 +65,7 @@ test('Vitenskap: låste WebP-originaler verifiseres når binærene er overført'
     assert.equal(b.readUIntLE(27,3)+1,1024,lang);
     assert.ok((b[20]&16)!==0,lang+' alpha');
     assert.equal(createHash('sha256').update(b).digest('hex'),v.sha256,lang);
-    const blob = createHash('sha1').update(Buffer.from('blob '+b.length+'\\0')).update(b).digest('hex');
+    const blob = createHash('sha1').update(Buffer.from('blob '+b.length)).update(Buffer.from([0])).update(b).digest('hex');
     assert.equal(blob,v.gitBlobSha,lang);
   }
 });
