@@ -64,7 +64,20 @@ async function exerciseCard(page,id){
  await tap(page,'#headerMenuButton');
  await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='false');
  await tap(page,'#pcRoute');
- await page.locator('#pcRouteMenu').waitFor({state:'visible'});
+ try {
+  await page.locator('#pcRouteMenu').waitFor({state:'visible'});
+ } catch (error) {
+  const detail=await page.evaluate(()=>{
+   const card=document.getElementById('placeCard');
+   const route=document.getElementById('pcRoute');
+   const drawer=document.getElementById('nearbyListContainer');
+   const rect=route?.getBoundingClientRect();
+   const x=rect?(rect.left+rect.right)/2:0,y=rect?(rect.top+rect.bottom)/2:0;
+   return {url:location.href,placeId:card?.dataset.currentPlaceId,cardHidden:card?.getAttribute('aria-hidden'),footerBound:window.__HG_FOOTER_ACTIONS_BOUND__,routeMenuExists:!!document.getElementById('pcRouteMenu'),routeHit:document.elementFromPoint(x,y)?.outerHTML.slice(0,400),drawerClass:drawer?.className,trace:window.HGDeviceTapTrace?.snapshot?.()||null};
+  });
+  console.error('ROUTE MENU AFTER TAP '+JSON.stringify(detail));
+  throw error;
+ }
  await tap(page,'#pcRoute');
  await page.locator('#pcRouteMenu').waitFor({state:'detached'});
  const favoriteBefore=await page.locator('#pcFavorite').textContent();
