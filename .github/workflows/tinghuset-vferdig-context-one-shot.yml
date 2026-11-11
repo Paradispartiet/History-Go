@@ -1,0 +1,42 @@
+name: Tinghuset vFerdig targeted quiz context integration
+on:
+  pull_request:
+    paths:
+      - 'data/places/politikk/oslo/places_politikk/tinghuset.json'
+      - '.github/workflows/tinghuset-vferdig-context-one-shot.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tinghuset-vferdig-targeted-context-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/tinghuset-vferdig-closeout-20261111
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild Tinghuset quiz context only
+        run: |
+          node scripts/build-quiz-production-context.mjs --category politikk --target tinghuset --output data/quiz/production_context/politikk/tinghuset.json
+          node scripts/build-quiz-production-context.mjs --category politikk --target tinghuset --output data/quiz/production_context/politikk/tinghuset.json --check
+      - name: Commit exactly one dependent context
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/politikk/tinghuset.json
+          if ! git diff --cached --quiet; then
+            git commit -m "build(tinghuset): refresh quiz context after editorial image metadata approval"
+            git fetch origin docs/tinghuset-vferdig-closeout-20261111
+            git rebase origin/docs/tinghuset-vferdig-closeout-20261111
+            git push origin HEAD:docs/tinghuset-vferdig-closeout-20261111
+          fi
