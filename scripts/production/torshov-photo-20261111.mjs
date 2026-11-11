@@ -35,7 +35,7 @@ const outmeta=await sharp(output).metadata();
 if(outmeta.format!=='webp'||outmeta.width!==900||outmeta.height!==1200)throw Error('Invalid standing portrait output');
 const sum=(buf)=>createHash('sha256').update(buf).digest('hex');
 const place=JSON.parse(fs.readFileSync(placePath,'utf8'));
-if(place.id!=='torshov'||place.imageSourceUrl!==sourcePage)throw Error('Canonical photo metadata changed: manual source review required');
+if(place.id!=='torshov'||decodeURIComponent(place.imageSourceUrl||'').replaceAll('_',' ')!==decodeURIComponent(sourcePage).replaceAll('_',' '))throw Error('Canonical photo metadata changed: manual source review required');
 place.frontImage=output;
 place.frontImageMeta={
   source:'Wikimedia Commons, original documentary photograph',
