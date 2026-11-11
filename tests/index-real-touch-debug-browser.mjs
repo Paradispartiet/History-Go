@@ -62,6 +62,10 @@ async function exerciseCard(page,id){
  await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='true');
  await tap(page,'#headerMenuButton');
  await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='false');
+ await tap(page,'#pcRoute');
+ await page.locator('#pcRouteMenu').waitFor({state:'visible'});
+ await tap(page,'#pcRoute');
+ await page.locator('#pcRouteMenu').waitFor({state:'detached'});
  const favoriteBefore=await page.locator('#pcFavorite').textContent();
  await tap(page,'#pcFavorite');
  await page.waitForFunction(before=>document.getElementById('pcFavorite')?.textContent!==before,favoriteBefore);
