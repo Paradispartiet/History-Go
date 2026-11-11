@@ -1,0 +1,47 @@
+name: Tronsmo People Per Petterson runtime regeneration
+on:
+  pull_request:
+    paths:
+      - 'data/people/litteratur/oslo/people_litteratur_oslo.json'
+      - 'bilder/illustrasjoner/people/per_petterson_historygo_editorial.svg'
+      - '.github/workflows/tronsmo-people-regenerate-20261111.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tronsmo-per-regenerate-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/tronsmo-people-editorial-images-20261111
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Materialize canonical People and Place-open
+        run: |
+          npm run place-open:build
+          npm run civication:history-people:build
+      - name: Verify four People and QuizCard parity
+        run: |
+          node --test tests/oslo-ts-tronsmo-people-quizcard-v1.test.mjs
+          npm run place-open:check
+      - name: Commit only dependent generated projections
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runtime/place-open/tronsmo_bokhandel.json data/runtime/place-open/nasjonalbiblioteket.json data/runtime/people-all/ data/Civication/historyPeople_index.json
+          if ! git diff --cached --quiet; then
+            git commit -m "build(tronsmo): sync Per Petterson editorial portrait replacement"
+            git fetch origin content/tronsmo-people-editorial-images-20261111
+            git rebase origin/content/tronsmo-people-editorial-images-20261111
+            git push origin HEAD:content/tronsmo-people-editorial-images-20261111
+          fi
