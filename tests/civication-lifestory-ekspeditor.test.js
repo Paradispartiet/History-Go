@@ -746,7 +746,9 @@ function reachCounterMandate() {
     const scn = Runner.selectNextScene(st, content);
     assert.ok(scn, 'actual day-two scenes lead to the counter mandate');
     if (scn.id === 'd2_ettermiddag_nokkelen') return st;
-    Runner.applyChoice(st, content, scn.id, scn.valg[0].id);
+    const choiceId = scn.id === 'd2_formiddag_vikaren_kommer_til_deg' ? 'vis_raskt'
+      : scn.id === 'd2_vikar_retur_02_kort_svar' ? 'ga_tilbake' : scn.valg[0].id;
+    Runner.applyChoice(st, content, scn.id, choiceId);
   }
   assert.fail('counter mandate must remain reachable');
 }
@@ -755,6 +757,10 @@ for (const choice of ['ta_ansvaret', 'en_uke_til', 'del_med_vikaren']) {
   const beforeVisibility = st.meters.synlighet;
   const beforeHistory = st.arkiv.length;
   const taughtBefore = flag(st, 'laerte_bort_metoden');
+  assert.equal(taughtBefore, false, 'mandate test starts with unfinished return instruction');
+  const offeredChoice = raw.roleScenes.scenes.find(s => s.id === 'd2_ettermiddag_nokkelen')
+    .valg.find(v => v.id === choice);
+  assert.equal(offeredChoice.skills_practice, undefined, 'mandate conversation is not skills practice');
   assert.ok(!flag(st, 'ekspeditor_returfullmakt_aktiv'));
   assert.ok(!flag(st, 'ekspeditor_disknokkel_utlevert'));
   take(st, 'd2_ettermiddag_nokkelen', choice);

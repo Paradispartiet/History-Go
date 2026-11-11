@@ -32,10 +32,10 @@
 
 **Interfaces:** Consumes canonical `State.createInitialState(content)`, `Runner.selectNextScene/applyChoice/startNextDay/getSymposium`. Produces recorded choice flags and archive entries in the same role/thread.
 
-- [ ] Skriv Runner-regresjon for de tre faktiske fullmaktsvalgene; kjør og observer forventet feil.
-- [ ] Revider bare den eksisterende scenen; bevar øvrige sceneobjekter og alle ID-er.
-- [ ] Kjør kanonisk Life Story, kontinuitet og Skills-evidens; forvent grønt.
-- [ ] Forleng de tre eksisterende dag-2-browserforløpene med fullmaktsvalg og reload-kontroll, og rapporter testmetode for dagskiftet.
-- [ ] Oppdater rolleprofilens fullmaktsbeskrivelse og dokumenterte status uten å ferdigattestere hele rollen.
+- [x] Skriv Runner-regresjon for de tre faktiske fullmaktsvalgene; kjør og observer forventet feil.
+- [x] Revider bare den eksisterende scenen; bevar øvrige sceneobjekter og alle ID-er.
+- [x] Kjør kanonisk Life Story, kontinuitet og Skills-evidens; forvent grønt.
+- [x] Forleng de tre eksisterende dag-2-browserforløpene med fullmaktsvalg og reload-kontroll, og rapporter testmetode for dagskiftet.
+- [x] Oppdater rolleprofilens fullmaktsbeskrivelse og dokumenterte status uten å ferdigattestere hele rollen.
 - [ ] Publiser én PR fra isolert arbeidsgren; kontroller full Civication-suite, browserbilder og uavhengig review på siste head.
 - [ ] Merge grønn head og kontroller main-integritet.
