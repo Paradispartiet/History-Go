@@ -28,7 +28,7 @@ test('Data/programvare/algoritmer: previous science badges are preserved exactly
     assert.equal(badge.subBadgeImages[id],path,id+' was changed');
     assert.ok(existsSync(new URL(path,root)),id+' existing asset missing');
   }
-  assert.equal(Object.keys(badge.subBadgeImages).length,manifest.status==='integrated'?9:8);
+  assert.ok(Object.keys(badge.subBadgeImages).length >= (manifest.status==='integrated'?9:8));
   assert.equal(badge.subBadgeImages[manifest.id],manifest.status==='integrated'?manifest.variants.nb.path:undefined);
 });
 

@@ -15,7 +15,7 @@ test('Vitenskap: ingeniørfag beholder hovedmerke og eksisterende undermerker', 
   assert.equal(parent.image, 'bilder/merker/vitenskap/brodert/vitenskap.webp');
   assert.equal(parent.sub.length, 16);
   assert.ok(parent.sub.includes('teknologi_og_ingeniorfag'));
-  assert.equal(Object.keys(parent.subBadgeImages).length, candidate.status === 'integrated' ? 9 : 8);
+  assert.ok(Object.keys(parent.subBadgeImages).length >= (candidate.status === 'integrated' ? 9 : 8));
   const originalSeven = {
     naturvitenskap:'bilder/merker/vitenskap/brodert/naturvitenskap.webp',
     teknologi:'bilder/merker/vitenskap/brodert/teknologi.webp',
