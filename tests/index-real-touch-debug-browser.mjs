@@ -39,11 +39,11 @@ async function mapHit(page,previousId){
    const hits=layers.length?map.queryRenderedFeatures([x,y],{layers}).map(f=>f.properties?.id):[];
    return {id:el.dataset.placeId,x,y,w:r.width,h:r.height,hits};
   }).filter(m=>m.id!==previousId&&m.w>0&&m.x>35&&m.x<innerWidth-130&&m.y>100&&m.y<innerHeight-160);
-  const selected=markers.find(m=>m.hits[0]===m.id)||markers.find(m=>m.hits.includes(m.id));
+  const selected=markers.find(m=>document.elementFromPoint(m.x,m.y)?.closest?.('[data-place-id]')?.dataset.placeId===m.id)||markers.find(m=>m.hits[0]===m.id);
   const stack=selected?document.elementsFromPoint(selected.x,selected.y).slice(0,8).map(n=>({id:n.id,cls:String(n.className),z:getComputedStyle(n).zIndex,pe:getComputedStyle(n).pointerEvents,display:getComputedStyle(n).display,visibility:getComputedStyle(n).visibility})):[];
   return {selected,markers:markers.slice(0,12),stack};
  },previousId);
- console.log('MARKER '+JSON.stringify(probe));assert.ok(probe.selected,'A rendered map hit feature is required');
+ console.log('MARKER '+JSON.stringify(probe));assert.ok(probe.selected,'A visible, unobstructed place marker is required');
  const hit=probe.selected;
  await page.touchscreen.tap(hit.x,hit.y);await cardVisible(page,hit.id);
  console.log('PLACE OPENED '+hit.id+' '+page.url());return hit.id;
