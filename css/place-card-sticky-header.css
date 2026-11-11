@@ -26,6 +26,13 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   min-height: var(--pc-original-hero-height);
 }
 
+/* The heading follows the cropped lower edge, while source provenance must
+   remain inside the visible photograph. Counter only that heading offset;
+   keep the original dated caption node, size and photo unchanged. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-heading-hero.has-photo-source .pc-heading-content .pc-photo-caption {
+  transform: translateY(var(--pc-hero-collapse-offset, 0px));
+}
+
 /* Section navigation stays at the bottom of the sheet, not under the photo. */
 body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-section-nav {
   top: auto;
