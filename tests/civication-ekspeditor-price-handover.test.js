@@ -127,5 +127,33 @@ async function report(h) {
   await delegated.answer(delegated.pending().id, 'A');
   assert(delegated.flags().has('ekspeditor_pris_kontrollert_av_amir'));
   assert(delegated.flags().has('ekspeditor_pris_retting_kontrollert'));
-  console.log('Ekspeditør price handover: 4 complete paths + unreported, deferred and delegated checks OK');
+  // Amir has verified the price, but choosing an additional personal check is
+  // only a promise until the player actually answers that follow-up.
+  for (const extraChoice of ['A', 'B']) {
+    const extra = await start('D');
+    await report(extra);
+    await extra.answer('ekspeditor_prisavvik_mottatt', 'B');
+    assert(extra.flags().has('ekspeditor_pris_kontroll_delegert'));
+    assert(!extra.flags().has('ekspeditor_pris_retting_kontrollert'), 'delegation is not a completed check');
+    await extra.answer('ekspeditor_prisavvik_amir_kontroll', 'B');
+    assert(extra.flags().has('ekspeditor_pris_kontrollert_av_amir'), 'Amir actually completed his check');
+    assert(!extra.flags().has('ekspeditor_pris_retting_kontrollert'), 'additional self-check is still outstanding');
+    assert(!extra.flags().has('ekspeditor_pris_kontroll_venter'), 'requesting a check is not the same as deferring it');
+    assert.equal(extra.pending()?.id, 'ekspeditor_prisavvik_kontroller_retting');
+    assert.equal(extra.w.CivicationState.getState().mail_runtime_v1.history.length, 4);
+    await extra.answer('ekspeditor_prisavvik_kontroller_retting', extraChoice);
+    assert(extra.flags().has('ekspeditor_pris_grunnlag_rettet'));
+    assert(extra.flags().has('ekspeditor_pris_kontrollert_av_amir'), 'retain who performed the delegated check');
+    assert.equal(extra.flags().has('ekspeditor_pris_retting_kontrollert'), extraChoice === 'A', 'only the completed personal check is marked verified');
+    assert.equal(extra.flags().has('ekspeditor_pris_kontroll_venter'), extraChoice === 'B', 'deferral must remain visible');
+    assert.equal(extra.w.CivicationState.getState().mail_runtime_v1.step_index, 1, 'extra check does not advance the mail plan');
+    const extraHistory = extra.w.CivicationState.getState().mail_runtime_v1.history;
+    assert.equal(extraHistory.length, 5, 'both Amir and personal follow-ups are recorded separately');
+    assert.deepEqual(Array.from(extraHistory, row => row.choice_id), ['D', 'A', 'B', 'B', extraChoice]);
+    await extra.engine.onAppOpen({ force: true });
+    assert.notEqual(extra.pending()?.id, firstId, 'price encounter must not repeat after extra check');
+    assert.equal(extra.pending()?.mail_plan_meta?.step_index, 1, 'the private-life step remains next');
+  }
+
+  console.log('Ekspeditør price handover: 4 complete paths + unreported, deferred, delegated and both extra self-check outcomes OK');
 })().catch(error => { console.error(error); process.exitCode = 1; });
