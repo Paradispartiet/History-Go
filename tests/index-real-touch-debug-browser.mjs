@@ -65,19 +65,21 @@ try {
      console.log("FULL INDEX ERRORS "+name+" "+JSON.stringify(errors.slice(0,30)));
      let clickResult;
      try{
-       const target=page.locator("#nearbyExploreToggle");
-       if(before.nearby && !before.nearby.missing && before.nearby.rect.w>0){
-         await target.click({timeout:4500});
-         clickResult={physical:"ok",expanded:await target.getAttribute("aria-expanded")};
-       }else clickResult={physical:"unavailable"};
-     }catch(e){clickResult={physical:"failed",error:String(e).slice(0,6600),after:await description(page)};}
+       const currentPoint=await page.evaluate(() => {
+         const b=document.getElementById("nearbyExploreToggle").getBoundingClientRect();
+         return {x:b.left+b.width/2,y:b.top+b.height/2};
+       });
+       await page.touchscreen.tap(currentPoint.x,currentPoint.y);
+       await page.waitForTimeout(450);
+       clickResult={physical:"touchscreen.tap",point:currentPoint,expanded:await page.locator("#nearbyExploreToggle").getAttribute("aria-expanded")};
+     }catch(e){clickResult={physical:"failed",error:String(e).slice(0,6500),after:await description(page)};}
      console.log("FULL INDEX CLICK "+name+" "+JSON.stringify(clickResult));
      let force;
      try{
        force=await page.evaluate(()=>{const b=document.getElementById("nearbyExploreToggle");if(!b)return "missing";b.click();return b.getAttribute("aria-expanded");});
      }catch(e){force=String(e);}
      console.log("FULL INDEX DOMCLICK "+name+" "+JSON.stringify(force));
-     if(!before.ready || clickResult.physical!=="ok" || clickResult.expanded!=="true" || !before.mapCenter.mapReceivesTap)
+     if(!before.ready || clickResult.physical!=="touchscreen.tap" || clickResult.expanded!=="true" || !before.mapCenter.mapReceivesTap)
        failures.push({name,ready:before.ready,error:before.load_error,mapCenter:before.mapCenter,click:clickResult,dom:force});
      await ctx.close();
    }catch(e){failures.push({name,error:String(e)});console.log("BROWSER "+name+" ERROR "+String(e));}
