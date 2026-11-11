@@ -444,7 +444,7 @@ assert.ok(!flag(ret, 'retur_mangel_bekreftet'), 'allegation and proof of purchas
 take(ret, 'retur_03_lene_tar_saken', 'overlever_varen');
 assert.ok(flag(ret, 'retur_sak_registrert'));
 assert.ok(flag(ret, 'retur_lene_overtatt'));
-assert.ok(!flag(ret, 'retur_omlevering_utfort'), 'overlevering to Lene cannot complete the customer's remedy');
+assert.ok(!flag(ret, 'retur_omlevering_utfort'), "overlevering to Lene cannot complete the customer's remedy");
 take(ret, 'retur_04_lene_undersokte_varen', 'utlever_ny_vare');
 assert.ok(flag(ret, 'retur_mangel_bekreftet'));
 assert.ok(flag(ret, 'retur_omlevering_utfort'));
@@ -515,7 +515,7 @@ assert.ok(!flag(ret, 'retur_avstemming_bekreftet'),
 take(ret, 'retur_05_lene_undersoker_bilag', 'registrer_undersokelsen');
 assert.ok(flag(ret, 'retur_bilag_undersokt'));
 assert.ok(!flag(ret, 'retur_avstemming_bekreftet'),
-  'manager's investigation is not verified correction');
+  "manager's investigation is not verified correction");
 take(ret, 'retur_06_avstemming_bekreftet', 'dokumenter_sluttresultat');
 assert.ok(flag(ret, 'retur_kasse_rettet_av_lene'));
 assert.ok(flag(ret, 'retur_avstemming_bekreftet'));
