@@ -57,6 +57,10 @@ on:
       - 'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'
       - 'bilder/merker/by/locales/*/monumenter_og_landemerker.webp'
       - 'tests/badge-embroidered-rollout-v1.test.mjs'
+      - 'tests/recent-underbadges-registered.test.mjs'
+      - 'badge-kontaktark.html'
+      - 'js/fagverk-ia-v3-badge-progress.js'
+      - 'js/fagverk-forside.js'
       - '.github/workflows/qa-embroidered-rollout.yml'
 permissions:
   contents: read
@@ -93,6 +97,7 @@ jobs:
           node --test tests/historie-migrasjon-minoritetshistorie-badge-contract.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
+          node --test tests/recent-underbadges-registered.test.mjs
       - name: Generate four-badge preview
         run: |
           python -m pip install -q pillow
