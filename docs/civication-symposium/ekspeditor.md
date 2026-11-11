@@ -194,7 +194,8 @@ Den fiktive butikkens ansvarsfordeling, klær, utstyr, eksempeluke, lønnsgrunnl
 
 Følgende gjenstår før rollen kan omtales som ferdig etter arbeidsmåten:
 
-- Revider eksisterende jobbmail og relevante Life Story-scener mot premissene, uten å opprette en konkurrerende historie. Bygg sceneregisteret gjennom eksisterende produksjonsvei.
-- Verifiser at valgene gir faktisk oppfølging, at en rettet feil ikke gjentas uforklart, og at bekreftet overlevering og retting vises riktig i spillerhistorikken.
-- Gjennomspill hele det berørte forløpet med relevante alternative valg. En kildefil- eller dokumentkontroll erstatter ikke dette.
+- Normal jobbmail har nå eget svar for bekreftet avløsning og egen priskontroll, og eksisterende priskonsekvenser leder til melding, mottaksbekreftelse og etterkontroll. Regenerert sceneregister og [VM-gjennomspilling](../../tests/civication-ekspeditor-price-handover.test.js) kontrollerer fire startvalg, reparasjon, utsatt kontroll og navngitt delegert kontroll. Dette er automatisk gjennomspilling av normal spillkjede, ikke en visuell nettlesertest.
+- De eldre Life Story-scenenes kontrollpunkter over er fortsatt åpne. De skal revideres i sin egen eksisterende kjede, uten å opprette en konkurrerende historie.
+- VM-testen verifiserer handlingenes grenflagg og historikk hver for seg, uendret plansteg gjennom oppfølgingen, neste privatlivssteg og at den besvarte jobbscenen ikke gjentas. Kontroller også hvordan dette vises i spillerens Symposium i nettleseren.
+- Gjennomfør visuell nettlesertest av de berørte dialogene og spillerhistorikken. Den automatiske VM-gjennomspillingen erstatter ikke dette.
 - Videre praksisarbeid kan samle flere direkte beskrivelser av kollegabeskjeder og avbrytelser. Replikkene over er fortsatt tydelig merkede skriveeksempler; intervjuet med Mads er et avgrenset praksisgrunnlag fra ferskvare.
