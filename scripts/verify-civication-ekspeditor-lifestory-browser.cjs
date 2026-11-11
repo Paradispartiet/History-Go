@@ -114,6 +114,90 @@ async function play(browser, label, viewport, choices, expected) {
   }
 }
 
+
+async function playStock(browser, label, viewport, choices, expected) {
+  const context = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: true });
+  const page = await context.newPage();
+  const pageErrors = [];
+  const trace = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+  try {
+    await page.goto(origin + '/Civication.html?lifestoryRole=ekspeditor', { waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.rolle === 'ekspeditor'
+      && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId, null, { timeout: 90000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    assert.equal((await page.evaluate(() => globalThis.CivicationLifestoryState.load())).arkiv.length, 0,
+      label + ': start without injected progress');
+    let stockSeen = false;
+    let last = null;
+    for (let n = 0; n < 65; n++) {
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': a visible scene exists');
+      if (sceneId === 'varen_01_som_ikke_finnes') stockSeen = true;
+      if (['varen_02_amir_teller', 'varen_07_amir_etterkontroll'].includes(sceneId)) {
+        const kicker = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(kicker, /Fra Amir/, label + ': stock check is attributed to Amir');
+      }
+      if (sceneId === 'varen_05_lene_bekrefter') {
+        const kicker = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(kicker, /Fra Lene/, label + ': receipt belongs to Lene');
+      }
+      const enabled = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice]:not([disabled])');
+      const wanted = choices[sceneId];
+      const button = wanted
+        ? page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice="' + wanted + '"]:not([disabled])')
+        : enabled.first();
+      assert.equal(await button.count(), 1, label + ': actual selectable choice ' + sceneId + '/' + wanted);
+      await button.scrollIntoViewIfNeeded();
+      const rect = await button.boundingBox();
+      assert.ok(rect && rect.width > 0 && rect.height > 0, label + ': visible choice geometry');
+      assert.ok(rect.x >= -2 && rect.x + rect.width <= viewport.width + 2,
+        label + ': choice never overflows horizontally in ' + sceneId);
+      if (sceneId === 'varen_01_som_ikke_finnes' || sceneId === expected.finalScene) {
+        await page.screenshot({ path: path.join(output, label + '-' + sceneId + '.png'), fullPage: true });
+      }
+      const before = await page.evaluate(() => globalThis.CivicationLifestoryState.load().arkiv.length);
+      const selected = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(n => globalThis.CivicationLifestoryState.load().arkiv.length === n + 1,
+        before, { timeout: 20000 });
+      const saved = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.equal(saved.arkiv.at(-1).sceneId, sceneId);
+      assert.equal(saved.arkiv.at(-1).valgId, selected);
+      trace.push([sceneId, selected]);
+      if (sceneId === expected.finalScene) { last = sceneId; break; }
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    }
+    assert.ok(stockSeen, label + ': actual stock encounter played via browser controls');
+    assert.equal(last, expected.finalScene, label + ': intended stock branch finished');
+    const final = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.equal(final.threadState.varen_som_ikke_finnes.status, expected.status);
+    assert.equal(final.tidligereValg.lager_etterkontroll_verifisert === true, expected.verified);
+    assert.equal(final.tidligereValg.lager_etterkontroll_amir === true, expected.amir === true,
+      label + ': only an actually recorded Amir check counts');
+    if (expected.verified) {
+      assert.equal(final.tidligereValg.lager_avvik_meldt, true);
+      assert.equal(final.tidligereValg.lager_ansvar_overtatt, true);
+    }
+    const beforeReload = final.arkiv.map(row => [row.sceneId, row.valgId]);
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(), null,
+      { timeout: 90000 });
+    const afterReload = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.deepEqual(afterReload.arkiv.map(row => [row.sceneId, row.valgId]), beforeReload,
+      label + ': reload cannot invent or lose a stock task');
+    assert.equal(afterReload.tidligereValg.lager_etterkontroll_verifisert === true, expected.verified);
+    assert.deepEqual(pageErrors, [], label + ': no browser runtime error');
+    await page.screenshot({ path: path.join(output, label + '-stock-after-reload.png'), fullPage: true });
+    return { label, viewport, last, status: expected.status, verified: expected.verified, trace };
+  } finally {
+    await context.close();
+  }
+}
+
 (async () => {
   let browser;
   const results = [];
@@ -148,7 +232,40 @@ async function play(browser, label, viewport, choices, expected) {
     };
     results.push(await play(browser, 'ipad-landscape', { width: 1180, height: 820 }, delegated,
       { finalScene: 'prisfeil_05_amir_sjekker', verified: true, status: 'completed' }));
-    console.log('PASS: ekspeditør original Life Story UI at mobile + two iPad viewports', JSON.stringify(results));
+    const stockSelf = {
+      varen_01_som_ikke_finnes: 'aerlig_om_lageret',
+      varen_02_kontroller_beholdning: 'tell_selv',
+      varen_03_avklar_kunden: 'gjennomfor_salget',
+      varen_04_meld_telleavvik: 'send_tellenotat',
+      varen_05_lene_bekrefter: 'avtal_egen_sjekk',
+      varen_06_etterkontroll: 'sjekk_null_selv'
+    };
+    const stockAmir = {
+      varen_01_som_ikke_finnes: 'aerlig_om_lageret',
+      varen_02_kontroller_beholdning: 'amir_teller',
+      varen_02_amir_teller: 'registrer_amirs_telling',
+      varen_03_avklar_kunden: 'la_lene_gjennomfore',
+      varen_04_meld_telleavvik: 'send_tellenotat',
+      varen_05_lene_bekrefter: 'be_amir_folge_opp',
+      varen_06_etterkontroll: 'be_amir_etterkontroll',
+      varen_07_amir_etterkontroll: 'registrer_amir'
+    };
+    const stockUnfinished = {
+      varen_01_som_ikke_finnes: 'lov_i_morgen',
+      varen_02_rett_ubegrunnet_lovnad: 'rett_beskjeden',
+      varen_02_kontroller_beholdning: 'tell_selv',
+      varen_03_avklar_kunden: 'gjennomfor_salget',
+      varen_04_meld_telleavvik: 'send_tellenotat',
+      varen_05_lene_bekrefter: 'avtal_egen_sjekk',
+      varen_06_etterkontroll: 'ikke_sjekket'
+    };
+    results.push(await playStock(browser, 'stock-mobile-portrait', { width: 390, height: 844 }, stockSelf,
+      { finalScene: 'varen_06_etterkontroll', verified: true, status: 'completed' }));
+    results.push(await playStock(browser, 'stock-ipad-portrait', { width: 820, height: 1180 }, stockAmir,
+      { finalScene: 'varen_07_amir_etterkontroll', verified: true, status: 'completed', amir: true }));
+    results.push(await playStock(browser, 'stock-ipad-landscape', { width: 1180, height: 820 }, stockUnfinished,
+      { finalScene: 'varen_06_etterkontroll', verified: false, status: 'escalated' }));
+    console.log('PASS: ekspeditør price + missing-stock Life Story on mobile and iPad', JSON.stringify(results));
   } finally {
     writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2) + '\n');
     if (browser) await browser.close();
