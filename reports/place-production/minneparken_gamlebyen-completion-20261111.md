@@ -1,88 +1,99 @@
-# Minneparken – konkret ferdigstillingskontroll 11. november 2026
+# Minneparken – sluttintegrasjon 11. november 2026
 
-## Omfang og beslutning
+## Gjeldende beslutning
 
-Teknisk integrasjon av PR #6966 med et navngitt main-snapshot, ikke en
-redaksjonell publiseringsgodkjenning. Ingen feltobservasjon eller uavhengig
-review er utført eller signert på vegne av andre.
+PR #6966 er fortsatt draft mens faktisk mobil-/desktop-QA og endelig CI
+kontrolleres. Ingen main-merge eller produksjonsdeploy hevdes i denne rapporten.
+Historie-innholdets A–H er kilde- og redaksjonskontrollert; dette er ikke det
+samme som at hele app-leveransen er ferdig godkjent.
 
-- Opprinnelig PR-head: `3a9badc815caa8677c865c831b79cd835f87e069`.
-- Testet main-snapshot: `1a3c2a4f812a28fa7207b1e28338c4bdc5e34089`.
-- Integrasjonscommit: `220bd335ae0fc756497a25a253b6fc44f2e7718f`.
-- Integrasjonstre: `fa7235bf04a59f88c1a5cd982228ddc4a2822c04`, identisk lokalt og i GitHub.
-- Main-snapshotet har 342 commits som ikke ligger i opprinnelig draft-head.
-- Isolert nettleserkjøring: https://github.com/Paradispartiet/History-Go/actions/runs/43014800965
+Arbeidet er samkjørt med `main a855755c52ed7f01c350eb5f2ac42709bbf05385`.
+Det nye kandidatinnholdet er først publisert til PR-grenen i `779b1710921b62b9014114df3735202a53183aed`;
+`2341b92479b39a91e1d8e8cf66c7cc4fa8f48fb5` retter materialiseringen i app-testen.
+Den etterfølgende aktiveringscommiten er en separat, reviewbar endring.
 
-## Faktisk gjennomført
+## Faktisk ferdigstilt innhold
 
-Fem mergekonflikter er løst. Epokeindeks, Fagverk-release og Place-indeks er
-regenerert fra det kombinerte kildetreet. Språkmanifestet er slått sammen
-uten å miste Minneparken, Tøyen hovedgård, Tveten gård eller Trosterudvillaen.
-Bildebackloggens aggregater og kategorifordeling er beregnet på nytt fra
-hele bildeauditen, i stedet for å velge en av de motstridende gamle tellingene.
+- Separat stående `frontImage`, 800 × 1200, fra Ssus foto 19. august 2025.
+  Opptaksdato, fotograf, CC BY-SA 4.0 og crop er registrert. Bildet fra 2007
+  beholdes som et eksplisitt historisk bilde; ingen av bildene kalles 2026-foto.
+- Gerhard Fischer og Harry Fett er nye canonical People med individuelle
+  profiler, claims, setningsmapping og identitetskontrollerte Commons-portretter.
+  Begge nye profilene består People Profile-validatoren uten feil.
+- Objects: Gudrun på Hauges gravstein og det katalogførte gravminnet over
+  Magdalena Frantzdotter/Jens Nilssøn. Medlemsbilder, kilde, rettigheter og
+  usikker nåværende plassering er ført for hvert objekt.
+- Historiske hendelser: parkåpningen i 1932 og avdekkingen i 2024. Fotoene
+  merkes som senere kontekstbilder og utgis ikke for bilder av selve hendelsen.
+- Adaptiv PlaceCard-profil med tre samlinger. Kandidataudit av stedsnavn,
+  forvaltningsaktører og prosjektaktører ligger i gjeldende workcard.
+- Alle 21 quizfasiter og Knowledge-forklaringer gjennomgått; distraktorer
+  revidert til sammenlignbare alternativer. Ti QuizCard-spørsmål speiler
+  fullquiz nøyaktig. Ingen Knowledge-påstand eller ID er omskrevet.
+- Kildebundet Story har gjennomgått separat seksleddet narrativ kontroll.
+  Quiz-, QuizCard- og Story-manifester aktiveres i draften før endelig app-QA.
+- Datert nyhetsnotis om det faktiske besøket i juni 2026 og et åpent Lesespor
+  om avdekking, murverk og rekonstruksjon. Ingen kopiert artikkelfulltekst.
+- Indekser, Place-open, People-/scenario-People, Lesespor, Stories og Fagverk
+  materialiseres med repositoryets generatorer.
 
-De eksisterende foreslåtte rettelsene fra #7028/#7034 for By-originaler og
-WebP-lokaler er integrert i testgrunnlaget. Verifikasjonsskriptet for
-Byplanlegging er i tillegg oppdatert til å godta senere originaler bare i
-canonical rekkefølge og på eksakte filstier. Ingen bildebytes, hashkrav,
-alpha- eller dimensjonskrav er endret. Grini-testrettelsen fra #7159 er
-integrert uten produksjonskodeendringer eller økte timeouter.
+## F – dagens spor og den faktiske kildegrensen
 
-## Lokale kontroller
+[Besøksrapporten fra Kolsås Rotaryklubb](https://kolsas.rotary.no/no/nyhetsdetaljer/201)
+er skrevet av Tore Nedrebø og publisert 11. juni 2026. Den omtaler besøket
+9. juni og viser deltakerne ved Hallvardskatedralens ruiner. Kilden er åpnet,
+og fotografiet er inspisert. Dette er førstehåndsdokumentasjon av synlige
+ruiner og besøk i 2026, ikke en opplysning om kommunens fullføringsdato.
 
-| Kontroll | Resultat |
-| --- | --- |
-| TypeScript build:tools og build:scripts | PASS |
-| Minneparken-kilder, bildeproveniens, Knowledge, quiz/QuizCard, Story og epokeindeks | 41/41 PASS |
-| Samtidsarkitektur og Byplanlegging | 4/4 PASS, separat verifikasjonsskript PASS |
-| Historie-validatorens kontrakter, bildetekst og stabil QuizCard-hydrering | 16/16 PASS |
-| Place-indeks, 1 538 Place-open-payloads, epokeindeks og Fagverk-release determinisme | PASS |
-| Canonical Knowledge --check | 0 kontraktsfeil; 4 707 eksisterende spørsmålsadvarsler og 451 uløste emnekoblinger er ikke godkjent som rettet |
-| Full bildeaudit og samsvar med backlog-summary | 1 538 steder: 216 lokale, 142 eksterne, 79 valgfrie, 1 101 manglende, 0 ugyldige |
-| Diff-whitespace mot det testede main-snapshotet | PASS |
-| Historie-publiseringsport | FAIL: blocked og F=N/A, to eksplisitte feil |
-| Lokal Chrome-start | Ikke kjørt ferdig: kjøremiljøet avviser nettleserens socket-opprettelse; dette er ikke app-PASS |
+[Oslo kommunes eiendomsside](https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/)
+er kontrollert på nytt. Planlagt plen, gangsti, universell tilgjengelighet,
+gjerdeutforming og murtopper skal ikke omtales som ferdigstilt på grunnlag
+av disse kildene. Kildene fra september/november 2025 beholder sine datoer.
 
-Bildeauditen dekker hele katalogen; de 1 101 manglende bildene er ikke
-tilskrevet Minneparken. Historiske Minneparken-bildebytes og synlig datert
-proveniens består egne kontrakttester. Et historisk bilde fra 2007 er fortsatt
-ikke bevis for fysisk tilstand i 2026.
+Canonical F gjelder skala, årsak, usikkerhet og ferskverifiserte fysiske spor
+(`PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md` §4B F). PASS betyr her at disse
+forholdene er kontrollert og avgrenset; det betyr ikke at kommunen har
+ferdigstilt alle parktiltak. Egen befaring og uavhengig menneskelig
+fagfellesignatur er ikke utført eller antatt.
 
-## Ny kildesjekk
+## Før/etter og kandidater som ikke publiseres
 
-Følgende faktiske sider er åpnet 11. november 2026:
+Commons-kategoriene for Minneparken og Hallvardskatedralen, 1917-arkivkandidaten,
+2007-fotoet og 2025-fotoet er undersøkt. De kontrollerte bildene viser ulike
+kamerastandpunkter eller andre avgrensninger. De publiseres derfor ikke som et
+falskt sammenlignbart Før/etter-par. Historisk og nyere foto har sine egne
+medieflater. Ingen tilfeldig kirkeruin, parkaktør eller generell gjenstand
+brukes som reserve for en manglende samling.
 
-- [Oslo kommunes Minneparken-side](https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/minneparken/): beskriver fortsatt tilretteleggingen som planlagt; dokumenterer ikke ferdigstillelse i 2026.
-- [Kulturetatens pressemelding 26. mars 2026](https://www.mynewsdesk.com/no/kulturbyen-oslo/pressreleases/pilegrim-i-oslo-opplev-byen-som-en-moderne-pilegrim-3440057): inviterer til vandring og skiltavduking i Minneparken 30. mars. Den dokumenterer en invitasjon, ikke at arrangementet faktisk fant sted eller plen, gangsti, universell tilgang og sikring var ferdige.
+## Kontroller og gjenværende port
 
-Denne nye 2026-kilden løser derfor ikke F. Ingen kilde er ommerket til
-feltbefaring, og ingen review-signatur er oppdiktet.
+- READ-FIRST med ferske filhasher: PASS.
+- De to nye People-profilenes claims-/setningsvalidering: PASS.
+- Minneparken: 16 målrettede kilde-, bilde-, quiz-, Knowledge- og Story-tester: PASS.
+- Historie changed-mode: én pakke, null feil etter utfylt G-kontrakt.
+- Målrettet quiz-kontekst: deterministisk rebuild og metadataparitet: PASS.
+- Full Stories-integritet: 219 filer / 356 historier, PASS.
+- Fagverk-release og Place-open bygges fra canonical data; endelig --check
+  og uendret Git-tre skal være grønne på siste PR-head.
+- Faktisk appkjøring på `2341b924`: tekst/PlaceCard/Fagverk mobil og desktop PASS; QuizCard desktop 10/10, flip/utvid/Escape/tastatur PASS. Mobilen avdekket 0,1 px overlapp mellom den lange bildekrediteringen og quizhandlingen. Krediteringen er redigert kortere med datoer og begge fotografnavn bevart. Ny uendret-head app-QA kreves.
+- Faktisk app-QA og ordinær PR-CI må leses på **samme endelige commit**.
+  Tidligere kjøringer og en grønn statisk test erstatter ikke denne porten.
 
-## Seksdelt kvalitetsvurdering
+Den eksisterende globale People Profile-auditen rapporterte også 34 feil i
+andre profiler. Ingen av feilene gjaldt de to nye Minneparken-profilene;
+ingen generell katalogopprydding eller uavhengig signoff hevdes her.
 
-Dette er en foreløpig vurdering av hele leveransen, ikke bare kodepakken.
+## Seksdelt kvalitetsvurdering før ferdigmelding
 
 | Dimensjon | Score | Evidens og begrensning |
 | --- | --- | --- |
-| Korrekthet og evidens | 4/5 | Kilde-/fasitparitet og proveniens består; usikker 2026-status er eksplisitt beholdt. |
-| Dekning og ferdigstillelse | 2/5 | Feltbevis, uavhengige godkjenninger og publiseringsaktivering mangler. |
-| Faglig/redaksjonell kvalitet | 3/5 | Kildebundet innhold og struktur er kontrollert, men uavhengig redaksjonell sluttkontroll foreligger ikke. |
-| Teknisk integritet | 3/5 | 61 lokale tester og determinismekontroller består; ny samkjørt nettleser-QA og full endelig PR-CI er fortsatt under kontroll. |
-| Sikkerhet og ansvarlighet | 4/5 | Ingen feilaktig fysisk besøksregistrering eller falske felt-/review-godkjenninger introdusert; manifestene er inaktive. |
-| Vedlikeholdbarhet og etterprøvbarhet | 4/5 | Pinet grunnlag, identiske Git-trær, permanente testkrav og eksakte kildehenvisninger. |
+| Korrekthet og evidens | 5/5 | Identiteter, avgrensede claims, foto-/lisensproveniens og ærlige dateringsgrenser. |
+| Dekning og ferdigstillelse | 4/5 | Tre ferdige innholdssamlinger og hele quiz/Story/Knowledge-kjeden; faktisk slutt-QA gjenstår. |
+| Faglig/redaksjonell kvalitet | 4/5 | Individuelle profiler, konkrete gravminner, plausible distraktorer og separat narrativ kontroll. |
+| Teknisk integritet | 3/5 | Målrettede porter består; endelig CI og faktisk app-kontroll pågår. |
+| Sikkerhet og ansvarlighet | 5/5 | Ingen falske feltbevis, signaturer, ferdigattester eller fysisk besøksregistrering. |
+| Vedlikeholdbarhet og etterprøvbarhet | 5/5 | Canonical eierskap, generatorer, hasher, kilde-/claim- og manifestspor. |
 
-Sum: **20/30**. Hele Minneparken-leveransen er **ikke ferdig, ikke
-publiseringsklar og ikke klassifisert som høy kvalitet** etter repoets
-sluttport. Dette kan ikke omgjøres med en automatisk ferdigmelding.
-
-## Reelle gjenstående leveranser
-
-1. Datert og etterprøvbar fysisk tilstand i 2026, vurdert av fagansvarlig.
-2. Faktisk separat stående `frontImage` med proveniens. Kilden har fremdeles bare historisk liggende `image` og legacy `cardImage`; ingen `frontImage`. Den grønne historiske bildetestingen godkjenner ikke full bildekontrakt.
-3. Full READ-FIRST-/rule-preflight og kildebundet samlingsproduksjon. Kilden har ingen `place_card_profile`; People/Objects/Brands/historiske hendelser er ennå ikke materialisert som en komplett profil. Et kandidatnavn eller en legacy-visning er ikke ferdig samling.
-4. Selvstendig gjennomgang av alle 21 quizspørsmål, ti QuizCard-spørsmål og Knowledge-kildene.
-5. Selvstendig narrativ godkjenning av Story, med faktisk navn og dato.
-6. Kodegjennomgang og full ordinær CI på den endelige integrerte PR-headen.
-7. Først deretter dokumentert aktivering, slutt-QA og merge etter gjeldende kontrakter.
-
-Kravene ligger i [issue #7068](https://github.com/Paradispartiet/History-Go/issues/7068).
+**26/30, foreløpig.** Dette er ikke en ferdig- eller mergegodkjenning.
+Teknisk integritet og dekning omscores først når den endelige app-/CI-porten
+faktisk består; main-merge skal deretter verifiseres separat.
