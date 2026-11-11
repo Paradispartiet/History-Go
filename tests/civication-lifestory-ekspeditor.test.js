@@ -161,6 +161,10 @@ while (!state2.dagFerdig) {
 assert.ok(state2.arkiv.some((e) => e.sceneId === "d2_kveld_kassadifferansen"),
   "bøyd regel => kassadifferansen følger deg hjem på dag 2");
 
+// Real actors must remain distinct: Amir's verification cannot appear as Lene's message.
+assert.strictEqual(raw.roleScenes.scenes.find(s => s.id === 'prisfeil_05_amir_sjekker').avsender,
+  'erfaren_kollega', 'Amir must be the sender of his own verification result');
+
 // --- Samme eldre Life Story-tråd: kontroll -> handel -> melding -> mottak -> etterkontroll. ---
 // Use the actual Day Runner, not a fabricated archive or a parallel mail family.
 function toPriceEncounter(openingChoice) {
