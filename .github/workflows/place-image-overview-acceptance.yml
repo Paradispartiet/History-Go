@@ -1,0 +1,36 @@
+name: Place image – universal overview fitting
+on:
+  pull_request:
+    paths:
+      - 'css/place-image-overview.css'
+      - 'index.html'
+      - 'tests/place-image-overview-fit-browser.mjs'
+      - '.github/workflows/place-image-overview-acceptance.yml'
+  workflow_dispatch:
+concurrency:
+  group: place-image-overview-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify complete Place images in Chromium at 390 and 1440
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/place-image-overview-fit-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: place-image-overview-mobile-desktop
+          path: artifacts/place-image-overview/
+          if-no-files-found: ignore
