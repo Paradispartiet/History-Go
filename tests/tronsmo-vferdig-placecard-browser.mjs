@@ -62,7 +62,7 @@ try{
       ?page.locator('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button')
       :page.locator('[data-pc-round-gallery-item="'+icon+'"]');
     const action=await editorial.isVisible().catch(()=>false)?editorial:source;
-    await action.scrollIntoViewIfNeeded();
+    // Playwright handles scrolling in click(). Explicit scroll can detach editorial gallery nodes during lazy rerender.
     await action.click({force:id==='people',timeout:20000});
     const popup=page.locator('.hg-popup.placecard-round-popup.visible');
     await popup.waitFor({state:'visible',timeout:20000});
