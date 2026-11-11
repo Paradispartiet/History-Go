@@ -74,13 +74,28 @@ try {
        clickResult={physical:"touchscreen.tap",point:currentPoint,expanded:await page.locator("#nearbyExploreToggle").getAttribute("aria-expanded")};
      }catch(e){clickResult={physical:"failed",error:String(e).slice(0,6500),after:await description(page)};}
      console.log("FULL INDEX CLICK "+name+" "+JSON.stringify(clickResult));
+     await page.evaluate(()=>window.HGNearbyDrawer?.close?.());
+     let badgeResult;
+     try {
+       const point = await page.evaluate(() => {
+         const b=document.querySelector(".hg-map-category-trigger").getBoundingClientRect();
+         const x=b.left+b.width/2,y=b.top+b.height/2;
+         const element=document.elementFromPoint(x,y);
+         return {x,y,target:element?.outerHTML?.slice(0,160)};
+       });
+       await page.touchscreen.tap(point.x,point.y);
+       await page.waitForTimeout(350);
+       badgeResult={point,expanded:await page.locator(".hg-map-category-trigger").getAttribute("aria-expanded"),
+         overlay:await page.evaluate(()=>document.getElementById("hgMapCategoryOptions")?.hidden)};
+     }catch(e){badgeResult={error:String(e).slice(0,1300)};}
+     console.log("FULL INDEX BADGETAP "+name+" "+JSON.stringify(badgeResult));
      let force;
      try{
        force=await page.evaluate(()=>{const b=document.getElementById("nearbyExploreToggle");if(!b)return "missing";b.click();return b.getAttribute("aria-expanded");});
      }catch(e){force=String(e);}
      console.log("FULL INDEX DOMCLICK "+name+" "+JSON.stringify(force));
-     if(!before.ready || clickResult.physical!=="touchscreen.tap" || clickResult.expanded!=="true" || !before.mapCenter.mapReceivesTap)
-       failures.push({name,ready:before.ready,error:before.load_error,mapCenter:before.mapCenter,click:clickResult,dom:force});
+     if(!before.ready || clickResult.physical!=="touchscreen.tap" || clickResult.expanded!=="true" || !before.mapCenter.mapReceivesTap || badgeResult.expanded!=="true")
+       failures.push({name,ready:before.ready,error:before.load_error,mapCenter:before.mapCenter,click:clickResult,badge:badgeResult,dom:force});
      await ctx.close();
    }catch(e){failures.push({name,error:String(e)});console.log("BROWSER "+name+" ERROR "+String(e));}
    finally{await browser?.close();}
