@@ -2442,11 +2442,11 @@
       "tilgjengelighet": "start",
       "prioritet": 7,
       "tittel": "Nøkkelen til disken",
-      "tekst": "Lene legger en nøkkel på disken: «Denne åpner den låsbare disken. Jeg kan også gi deg avgrenset fullmakt til ordinære returer opp til 500 kroner etter butikkens dokumenterte vilkår. Reklamasjoner må fortsatt vurderes etter loven, og du skal hente hjelp hvis saken går utenfor opplæringen din. Vil du ta ansvaret?»",
+      "tekst": "Lene legger nøkkelen til den låsbare disken ved siden av returvilkårene. «Jeg tilbyr deg personlig fullmakt til å godkjenne ordinære returer opptil 500 kroner når vilkårene er oppfylt og kjøpet er dokumentert. Vi går gjennom vilkårene før du svarer. Ved tvil eller noe du ikke har lært, henter du meg. Reklamasjoner sender du fortsatt til meg for vurdering. Nøkkelen gir deg tilgang til disken, ikke ansvar for å stenge butikken eller endre bemanningen.»",
       "valg": [
         {
           "id": "ta_ansvaret",
-          "tekst": "Ta nøkkelen",
+          "tekst": "Gå gjennom vilkårene med Lene og ta imot fullmakten og nøkkelen",
           "tone": "modig",
           "effekter": {
             "relasjoner": {
@@ -2458,7 +2458,9 @@
               "psyke": -2
             },
             "flagg": {
-              "tok_nokkelansvar": true
+              "tok_nokkelansvar": true,
+              "ekspeditor_returfullmakt_aktiv": true,
+              "ekspeditor_disknokkel_utlevert": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -2466,7 +2468,7 @@
               }
             }
           },
-          "konsekvensTekst": "Nøkkelen er lett. Det den låser opp er ikke. Neste gang noen sier «det er vel du som bestemmer» — så er det faktisk litt sant."
+          "konsekvensTekst": "Dere leser returvilkårene sammen. Du gjentar hvilke returer du kan godkjenne, beløpsgrensen og når Lene må avgjøre saken. «Ja, den fullmakten gjelder deg fra nå», sier hun og gir deg disknøkkelen. Du kan fortsatt be om hjelp. Fullmakten gjelder ikke prismatch, reklamasjonsavgjørelser, stenging eller bemanning, og den kan ikke gis videre til vikaren. Ingen retur er behandlet i denne samtalen."
         },
         {
           "id": "en_uke_til",
@@ -2477,11 +2479,11 @@
               "butikksjef": 1
             },
             "meters": {
-              "psyke": 3,
-              "synlighet": -2
+              "psyke": 3
             },
             "flagg": {
-              "ba_om_en_uke_til": true
+              "ba_om_en_uke_til": true,
+              "ekspeditor_returfullmakt_utsatt": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -2489,11 +2491,11 @@
               }
             }
           },
-          "konsekvensTekst": "«Det er et godt svar,» sier Lene og tar nøkkelen tilbake. «De som griper alt med en gang, slipper ofte noe annet.»"
+          "konsekvensTekst": "«Da øver vi videre sammen denne uka», sier Lene. Hun beholder disknøkkelen og avgjør retursakene mens du får mer opplæring. Dere avtaler en ny gjennomgang før en eventuell fullmakt. Du har ikke tatt imot ansvaret ennå."
         },
         {
           "id": "del_med_vikaren",
-          "tekst": "Foreslå at du og vikaren deler kveldsansvaret",
+          "tekst": "Foreslå at du og vikaren kontrollerer dokumentasjonen sammen, mens Lene avgjør returene",
           "tone": "kollegial",
           "effekter": {
             "relasjoner": {
@@ -2505,7 +2507,8 @@
               "synlighet": 2
             },
             "flagg": {
-              "delte_ansvaret": true
+              "delte_ansvaret": true,
+              "ekspeditor_dokumentkontroll_delt": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -2513,7 +2516,7 @@
               }
             }
           },
-          "konsekvensTekst": "Lene hever et øyebryn — og noterer. «Det er sånn skiftledere tenker. Greit, dere deler.»"
+          "konsekvensTekst": "Lene bekrefter fordelingen: Du finner fram kjøpsbeviset, og vikaren sammenligner vare og dato med bilaget. Dere legger opplysningene fram for Lene, som fortsatt godkjenner returene. Hun beholder disknøkkelen. Dere har avtalt felles dokumentkontroll, ikke delt stengeansvar eller fått personlig returfullmakt. Selve kontrollarbeidet gjenstår når neste kunde kommer."
         }
       ]
     },
