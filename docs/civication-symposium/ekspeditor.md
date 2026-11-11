@@ -138,7 +138,7 @@ Beskjedene er redaksjonelle replikkeksempler. De er ikke sitater fra ansatte.
 
 **Faktakontroll:** Kontroller samme vare, størrelse og kampanjevilkår. I dette hovedforløpet bekrefter kontrollen 39. Etter den uttrykkelige lokale fullmakten kan medarbeideren korrigere denne handelen. Hvis kontrollen viser noe annet, må forklaringen og neste steg følge funnet; det skal ikke brukes en forhåndsskrevet bekreftelse på at butikken tok feil.
 
-**Etter kundemøtet:** Kunden betaler. Medarbeideren melder varen, begge priser og kontrollen til Lene. Eksempel: «Kaffen i kampanjen skannes til 49. Amir har kontrollert at 39 gjelder samme pakke. Handelen er korrigert; prisgrunnlaget gjenstår.»
+**Etter kundemøtet:** Kunden betaler. Medarbeideren melder varen, begge priser og kontrollen til Lene. Beskjeden skal navngi den som faktisk undersøkte merkingen. Eksempel når Amir gjorde kontrollen: «Kaffen i kampanjen skannes til 49. Amir har kontrollert at 39 gjelder samme pakke. Handelen er korrigert; prisgrunnlaget gjenstår.»
 
 **Bekreftelse:** Først når Lene svarer at hun tar saken, kan den beskrives som overtatt. Først etter at retting er bekreftet og varen er kontrollert igjen, kan årsaken beskrives som løst. Dersom bekreftelsen uteblir, må oppgaven stå åpen eller overleveres videre ved vaktslutt.
 
