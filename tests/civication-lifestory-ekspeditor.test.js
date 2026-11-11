@@ -550,7 +550,10 @@ function toVikarEncounter() {
   assert.fail('vikar scene must not disappear');
 }
 let pant = toVikarEncounter();
+const initialVikarTrust = pant.relasjoner.ny_kollega;
 take(pant, 'ny_kollega_01_midt_i_koen', 'hjelp_kort');
+assert.ok(pant.relasjoner.ny_kollega - initialVikarTrust <= 1,
+  'promised instruction cannot get the full teaching reward in advance');
 assert.ok(flag(pant, 'pant_veiledning_startet'));
 assert.ok(!flag(pant, 'hjalp_ny_kollega'), 'an intention to demonstrate is not actual teaching');
 take(pant, 'ny_kollega_02_vis_pantekort', 'vis_en_gang');
@@ -571,7 +574,10 @@ assert.equal(pant.threadState.ny_kollega_og_tillit.status, 'escalated');
 
 pant = toVikarEncounter();
 const priorIntegrity = pant.meters.integritet;
+const priorVikarRelation = pant.relasjoner.ny_kollega;
 take(pant, 'ny_kollega_01_midt_i_koen', 'be_vente');
+assert.equal(pant.relasjoner.ny_kollega, priorVikarRelation,
+  'agreeing to help after the queue must not count as rejecting the trainee');
 assert.equal(pant.meters.integritet, priorIntegrity,
   'serving the queue first with an agreed handoff is not an integrity fault');
 assert.ok(flag(pant, 'pant_hjelp_utsatt'));
