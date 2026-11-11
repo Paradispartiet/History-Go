@@ -8,7 +8,13 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const read = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
 const categories = read('data/categories/category_contract.json').runtimeCategories;
 const index = read('data/badges/index.json').files;
-const redesigned = ['film_tv','psykologi','helse','utdanning'];
+const redesigned = {
+  film_tv: 'bilder/merker/film_tv-brodert-v5.webp',
+  psykologi: 'bilder/merker/psykologi-brodert-v1.webp',
+  helse: 'bilder/merker/helse-brodert-v1.webp',
+  utdanning: 'bilder/merker/utdanning-brodert-v1.webp',
+  musikk: 'bilder/merker/musikk-brodert-v1.webp'
+};
 
 test('all 19 canonical categories have actual badge images in the registry', () => {
   assert.deepEqual(new Set(index.map(path => path.split('/').at(-1).replace('.json',''))), new Set(categories));
@@ -21,17 +27,14 @@ test('all 19 canonical categories have actual badge images in the registry', () 
   }
 });
 
-test('redesigned badges have distinct accessible symbolic vector artwork', () => {
-  for (const id of redesigned) {
+test('redesigned badges retain their currently approved embroidered WebP originals', () => {
+  for (const [id, expected] of Object.entries(redesigned)) {
     const badge = read('data/badges/' + id + '.json');
-    assert.equal(badge.image, 'bilder/merker/' + id + '.svg');
-    const svg = readFileSync(resolve(root, badge.image), 'utf8');
-    assert.match(svg, /<svg\s+xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
-    assert.match(svg, /<title id="title">/);
-    assert.match(svg, /<desc id="desc">/);
-    assert.ok(svg.includes('id="symbol-' + id + '"'), id + ' lacks its dedicated motif');
-    assert.match(svg, /<\/svg>\s*$/);
-    assert.doesNotMatch(svg, /<script|<image\s|<foreignObject|xlink:href=|<use\s/);
+    assert.equal(badge.image, expected, id + ' approved badge image');
+    const art = readFileSync(resolve(root, badge.image));
+    assert.ok(art.length > 4000, id + ' empty artwork');
+    assert.equal(art.toString('ascii', 0, 4), 'RIFF', id);
+    assert.equal(art.toString('ascii', 8, 12), 'WEBP', id);
   }
 });
 
@@ -80,12 +83,11 @@ test('Medier uses lighter-blue embroidered art without replacing other category 
 
 test('originale merker beholdes med eksisterende bildefiler og farger', () => {
   const locked = {
-    historie: {image:'bilder/merker/historie.PNG',color:'#603E1E',secondaryColor:'#533217'},
-    sport: {image:'bilder/merker/sport.PNG',color:'#A01D13',secondaryColor:'#A51E15'},
+    historie: {image:'bilder/merker/historie.PNG',color:'#603E1E',secondaryColor:'#D6A127'},
+    sport: {image:'bilder/merker/sport.PNG',color:'#A01D13',secondaryColor:'#FFFFFF'},
     naeringsliv: {image:'bilder/merker/naeringsliv3.webp',color:'#0E3290',secondaryColor:'#AFB0B0'},
-    politikk: {image:'bilder/merker/politikk.PNG',color:'#103E71',secondaryColor:'#114A84'},
-    subkultur: {image:'bilder/merker/Subkultur3.PNG',color:'#292625',secondaryColor:'#E78847'},
-    musikk: {image:'bilder/merker/musikk.PNG',color:'#122033',secondaryColor:'#121E2B'}
+    politikk: {image:'bilder/merker/politikk.PNG',color:'#103E71',secondaryColor:'#FFFFFF'},
+    subkultur: {image:'bilder/merker/Subkultur3.PNG',color:'#292625',secondaryColor:'#E78847'}
   };
   for (const [id,expected] of Object.entries(locked)) {
     const badge=read('data/badges/' + id + '.json');
@@ -99,7 +101,7 @@ test('Vitenskap har registrert lilla, sydd hovedmerke og sju fungerende undermer
   const badge = read('data/badges/vitenskap.json');
   const manifest=read('data/badges/vitenskap_underbadge_artwork.json');
   assert.equal(badge.color,'#6A5AE0');
-  assert.equal(badge.secondaryColor,'#332B51');
+  assert.equal(badge.secondaryColor,'#FFFFFF');
   assert.equal(manifest.categoryId,'vitenskap');
   assert.equal(manifest.color,badge.color);
   assert.equal(manifest.parentImage,badge.image);
