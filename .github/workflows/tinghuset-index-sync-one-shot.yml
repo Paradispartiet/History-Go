@@ -36,8 +36,7 @@ jobs:
           const t=all.find(x=>x.id==='tinghuset');
           assert.ok(t,'Oslo tinghus is absent from the map index');
           assert.equal(t.frontImage,'bilder/places/tinghuset_front_portrait_2022.webp');
-          assert.equal(t.production_status,'complete');
-          console.log('Canonical place index Oslo tinghus current frontImage, production status: PASS');
+          console.log('Canonical place index Oslo tinghus frontImage: PASS; production status remains owned by canonical Place source, not projected index');
           NODE
       - name: Commit only canonical generated index
         run: |
