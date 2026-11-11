@@ -1,0 +1,57 @@
+name: Oslo T–S 09 — Torshov documentary portrait materialization
+on:
+  pull_request:
+    paths:
+      - 'scripts/production/torshov-photo-20261111.mjs'
+      - 'tests/torshov-portrait-contract.test.mjs'
+      - 'data/places/by/oslo/places/torshov.json'
+      - 'reports/place-production/torshov-workcard-current.json'
+      - '.github/workflows/oslo-ts09-torshov-photo-materialize.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: torshov-ts09-media-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  produce:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ts-09-torshov-portrait-20261111
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Create photo once from the actual credited Commons original
+        run: |
+          if [ ! -f bilder/places/by/torshov_front_portrait.webp ]; then
+            node scripts/production/torshov-photo-20261111.mjs
+          else
+            echo "The original portrait derivative has already been committed. Preserve it."
+          fi
+      - name: Materialize canonical projections
+        run: |
+          npm run place-open:build
+          npm run places:index:build
+      - name: Exact targeted photo and baseline quiz test
+        run: |
+          node --test tests/torshov-portrait-contract.test.mjs
+          npm run place-open:check
+      - name: Commit only intended source and generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/places/by/torshov_front_portrait.webp data/places/by/oslo/places/torshov.json data/places/places_index.json data/runtime/place-open/torshov.json
+          if ! git diff --cached --quiet; then
+            git commit -m "assets(torshov): integrate CC BY-SA 2018 standing 900x1200 portrait and runtime"
+            git fetch origin content/oslo-ts-09-torshov-portrait-20261111
+            git rebase origin/content/oslo-ts-09-torshov-portrait-20261111
+            git push origin HEAD:content/oslo-ts-09-torshov-portrait-20261111
+          fi
