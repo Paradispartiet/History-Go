@@ -1,0 +1,39 @@
+name: Place image overview fit – browser regression
+on:
+  pull_request:
+    paths:
+      - 'css/placeCard.css'
+      - 'css/place-sheet.css'
+      - 'css/place-popup-v2.css'
+      - 'css/place-image-framing.css'
+      - 'tests/placecard-media-hero-responsive-browser.test.mjs'
+      - 'tests/place-image-overview-fit-browser.mjs'
+      - 'index.html'
+      - 'sw.js'
+      - '.github/workflows/place-overview-image-fit-browser.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: place-overview-fit-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Full overview photograph fit at 320/390/900/1440 px
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chromium/Chrome not available"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/place-image-overview-fit-browser.mjs
+      - name: Existing PlaceCard hero and round geometry
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          CHROME_BIN="$CHROME_BIN" node tests/placecard-media-hero-responsive-browser.test.mjs
