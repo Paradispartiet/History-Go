@@ -24,6 +24,35 @@ Dette er inngangen til den redaksjonelle dokumentasjonen om hvordan folk arbeide
 
 Start med [rollemodellmanifestet](../data/Civication/roleModels/manifest.json) for registrerte rollemodeller, [rolleverdener](../data/Civication/roleWorlds/) for egne livsposisjoner og [synopsismatrisen](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md) for private roller og relasjoner. Sjekk identitet før opprettelse, slik at gamle filnavn og aliaser går til riktig profil. Del beskrivelser av felles praksis via lenker, og gi hver rolle sitt eget ansvar, handlingsrom og særpreg. En rolle uten oppføring over mangler en gjennomgått profil i dette registeret. Profildekning føres separat fra spillbarhet.
 
+## Felles arbeidsmåte for alle roller, jobber og Life Stories
+
+Fastlagt 11. november 2026. Vi må kunne forstå hva et menneske faktisk gjør i rollen sin: hva arbeidet eller hverdagen består av, hva som forventes, hvilke hjelpemidler personen bruker, og hvem som bestemmer. Dette gjelder alle yrkesroller, jobber, livsposisjoner, private roller og Life Stories i det eksisterende registeret. Kravene nedenfor konkretiserer profilkravene; de oppretter ikke et parallelt register.
+
+### Én rolle og hele sammenhengen først
+
+Begynn med én rolle og gjør sammenhengen mellom rollebeskrivelse, ordliste, oppgaver, kilder, synopsis og spillforløp ferdig før eksemplet brukes som grunnlag for neste rolle. [Ekspeditør i dagligvare](civication-symposium/ekspeditor.md#arbeidet-eksempel-og-kobling-til-eksisterende-scener) er gjennomgående arbeidseksempel. Det er arbeidsmåten som skal gjenbrukes, ikke butikkens oppgaver, konflikter eller dialog med nye stillingstitler.
+
+1. **Finn eksisterende identitet og innhold.** Les rolleprofil, rollemodell eller arbeidsgrammatikk, Life Story og relevante scener. Bruk det som finnes. En ny profil skal ikke opprette en konkurrerende rolle eller et nytt forløp som allerede finnes.
+2. **Undersøk vanlig praksis før hendelsen.** Skriv stillingsbeskrivelse for hver jobb: formål, konkrete oppgaver, forventninger, kompetanse, arbeidssted, hvem personen svarer til og grensene for ansvaret. Vis også en vanlig arbeidsøkt der ingenting dramatisk skjer.
+3. **Lag ordlisten gjennom arbeidet.** Ta med verktøy, dokumenter, oppgaver, faguttrykk og beskjeder mellom kolleger. Skill faktiske synonymer fra søkeord, beslektede begreper og jobber med annet ansvar. En skanner og en strekkode er for eksempel to forskjellige ting, selv om de brukes sammen. Merk skrevet eksempelreplikk som eksempel, ikke som innsamlet sitat.
+4. **Beskriv vilkår og makt konkret.** Undersøk klær, utstyr, arbeidstid, lønn, ansettelsesform og klasse der de har betydning. Vis hva det betyr å være ny, midlertidig eller avhengig av ekstravakter. Hvem kan si nei, hvem bestemmer over tid og penger, og hvem bærer følgene? Skill personens frykt fra andres faktiske handlinger. Dater lønnskilder og oppgi hvilken avtale de gjelder; en tariffsats er ikke automatisk personens lønn.
+5. **Følg oppgaven helt fram.** For hver oppgave beskrives behov, forberedelse, rekkefølge, redskaper, dokumentasjon og avslutning. Hva kan personen ordne selv, hva må diskuteres med andre, og hva må sendes videre? En overlevering krever avklart mottaker og bekreftelse; en sendt beskjed er ikke alene bevis på overtatt ansvar.
+6. **La hendelsene komme fra oppgavene.** Undersøk hva som pleier å gå galt, hvilke løsninger som finnes og hvilke hensyn som kolliderer. Skriv et konkret hovedforløp med flere plausible svar. Flere svar kan gi samme hovedhistorie med ulike følger. Ikke gi automatisk moralsk straff for å be om hjelp, holde avtalt arbeidstid eller følge en forsvarlig prioritering.
+7. **Koble dokumentene og kontroller eksisterende scener.** Rolleprofil, ordliste, oppgaver og kildegrunnlag skal vise til hverandre og til synopsis og spillinnhold. Kontroller at scenen følger beskrevne fullmakter, at tidligere valg faktisk får følger og at oppfølging ikke forsvinner når kundemøtet er slutt. Lesing av en kildefil beviser ikke at den brukes i runtime; kontroller den aktive produksjonsveien før en scenerevisjon.
+8. **Før manglene åpent.** Oppgi konkret hva som mangler, hva som må undersøkes og hvilken del av historien eller arbeidet det berører. En registrert profil er ikke dermed kildeavklart, scenerevidert, spilltestet eller ferdig. Ikke erklær hele rollen ferdig på grunnlag av ett eksempel.
+
+### Tilpasning til private roller og Life Stories
+
+En privat rolle eller livsposisjon skal ha en rollebeskrivelse som dekker hverdagsoppgaver, forventninger, relasjoner, ressurser og handlingsrom. Ikke tving arbeidsgiver, lønn, uniform eller stillingshierarki inn der det ikke finnes. Undersøk i stedet hvem som disponerer tid, bolig, penger, omsorg eller tilgang, og hvilke avtaler personen faktisk er bundet av. Marker irrelevante felt med en kort begrunnelse.
+
+En Life Story kan omfatte flere jobber, private roller og livsposisjoner over tid. Lenke til de relevante profilene, og vis hvordan jobbskifter og tidligere hendelser påvirker det videre livet. Spillerens Symposium skal bare fortelle hendelser, valg og avtaler som faktisk er registrert, ikke finne på manglende historikk.
+
+### Kilder, verk og spillforslag skal skilles
+
+Selve jobben undersøkes gjennom virkelige arbeidsbeskrivelser, relevante fagkilder og eksempler fra praksis. Registrer hvilken påstand hver kilde støtter, når den er kontrollert og hvor den gjelder. En arbeidsgivers rutine gjelder ikke automatisk hele yrket. Offentlige kundevilkår dokumenterer heller ikke nødvendigvis interne fullmakter.
+
+Bøker og filmer kan gi mennesker, miljøer og konflikter å arbeide med. Dokumenter først verkets faktiske handling, skill den fra tolkningen, og lag deretter en egen spillbar historie. Verket erstatter ikke undersøkelser av jobben. Personer, butikkregler og hendelser skrevet for spillet skal merkes som redaksjonelle forslag.
+
 ## Hva hver profil skal dekke
 
 | Del | Hva forfatteren må kunne slå opp |
