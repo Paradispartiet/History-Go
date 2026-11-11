@@ -64,6 +64,10 @@ async function exerciseFavoriteMapPicker(page, favoriteId) {
  await tap(page,'#hgMapFavoriteTrigger');
  await page.locator('#hgHomeFavoriteMapPicker').waitFor({state:'visible'});
  await tap(page,'[data-favorite-view="favorites"]');
+ console.log('FAVORITE AFTER FILTER '+JSON.stringify(await page.evaluate(id=>({
+   id,active:window.HGFavoritePlaces?.has?.(id),ids:window.HGFavoritePlaces?.getIds?.(),
+   stored:localStorage.getItem('hg_favorite_place_ids_v1'),only:window.HGMap?.getFavoriteViewOnly?.()
+ }),favoriteId)));
  await page.waitForFunction(() => window.HGMap?.getFavoriteViewOnly?.()===true);
  assert.equal(await page.evaluate(id=>window.HGFavoritePlaces.has(id)),true,'Favorite comes from PlaceCard star');
  await tap(page,'[data-favorite-style="star"]');
@@ -163,8 +167,18 @@ try{
       await tap(page,'#pcFavorite');
       await page.waitForFunction(id=>window.HGFavoritePlaces?.has?.(id)===true,id);
      }
+     if(i===0) console.log('FAVORITE BEFORE BACK '+JSON.stringify(await page.evaluate(id=>({
+       id, active:window.HGFavoritePlaces?.has?.(id),ids:window.HGFavoritePlaces?.getIds?.(),
+       stored:localStorage.getItem('hg_favorite_place_ids_v1'),href:location.href
+     }),id)));
      await backToMap(page);
-     if(i===0) await exerciseFavoriteMapPicker(page,id);
+     if(i===0) {
+       console.log('FAVORITE AFTER BACK '+JSON.stringify(await page.evaluate(id=>({
+         id,active:window.HGFavoritePlaces?.has?.(id),ids:window.HGFavoritePlaces?.getIds?.(),
+         stored:localStorage.getItem('hg_favorite_place_ids_v1'),href:location.href
+       }),id)));
+       await exerciseFavoriteMapPicker(page,id);
+     }
      result.flows.push({place:id,mapTap:true,header:true,favorite:true,footer:true,back:true});
      previousId=id;
      // The shared back link intentionally navigates to the ordinary map URL.
