@@ -31,7 +31,7 @@ const description = async page => page.evaluate(()=>{
   };
   return {ready:window.__HG_APP_READY__,load_error:window.__HG_APP_LOAD_ERROR__,last_error:window.__HG_LAST_ERROR__,
     missing:window.__HG_INDEX_RUNTIME_MISSING__,auth:!!window.HGLoginGate?.allowed,
-    body_classes:document.body.className,html_classes:document.documentElement.className,
+    body_classes:document.body.className,html_classes:document.documentElement.className,shownFlag:localStorage.getItem("hg_onboarding_shown_v1"),
     map:!!window.HGMap?.getMap?.(),mapUnavailable:el("#map")?.dataset.mapUnavailable,initLeftPanel:typeof window.initLeftPanel,
     markerCount:document.querySelectorAll(".hg-place-detail-marker,.hg-place-area-marker").length,
     nearby:hit("#nearbyExploreToggle"),dock:hit(".hg-map-category-trigger"),
@@ -70,7 +70,7 @@ try {
          await target.click({timeout:4500});
          clickResult={physical:"ok",expanded:await target.getAttribute("aria-expanded")};
        }else clickResult={physical:"unavailable"};
-     }catch(e){clickResult={physical:"failed",error:String(e).slice(0,1400)};}
+     }catch(e){clickResult={physical:"failed",error:String(e).slice(0,6600),after:await description(page)};}
      console.log("FULL INDEX CLICK "+name+" "+JSON.stringify(clickResult));
      let force;
      try{
