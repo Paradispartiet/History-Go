@@ -188,6 +188,16 @@ Fem låste oppfølgingsscener er lagt inn i den eksisterende Life Story-filen: `
 
 [Regresjonstesten for Life Story](../../tests/civication-lifestory-ekspeditor.test.js) inkluderer grenene for sjekket handel, snarvei med reparasjon, Amirs kontroll, direkte rapportering, utsatt melding og uutført etterkontroll. Dette er en Day Runner-test som må bestå CI før merge, og den kan ikke erstatte faktisk kontroll av tekst, knapper og lagret historikk i nettleseren.
 
+### Lageravviket – fra systemtall til fysisk telling og kundesvar
+
+Den eksisterende Life Story-scenen `varen_01_som_ikke_finnes` er nå grunnlaget for en sammenhengende lageroppgave. Først er hylla tom, mens beholdningsbildet viser to av samme variant. **Dette er et uavklart avvik, ikke dokumentasjon på at varen er tilgjengelig.** Butikkmedarbeideren kan forklare usikkerheten, gjennomføre en fysisk telling etter avtalt kasseavløsning eller la Amir telle. Et ubekreftet løfte om levering neste dag må korrigeres overfor kunden, eller stå som en eksplisitt uavklart feil.
+
+Når riktig varevariant faktisk er talt, finner spillbutikken én fysisk vare før salget, mot to i systemet. Kunden kan få den ene varen gjennom et faktisk salg, eller Lene kan ta over salget. Ingen av disse handlingene betyr at beholdningsavviket er meldt eller rettet. Spillerens neste oppgave er å sende avviket til Lene med varenummer, fysisk antall, systemtall, tidspunkt i forhold til salget og navnet på den som telte. Lenes **mottaksbekreftelse** er et eget steg, og deretter må endringen kontrolleres mot hylla og lageret. Fullført status gis først ved dokumentert egenkontroll eller Amirs uttrykkelig mottatte kontrollresultat.
+
+De åtte låste oppfølgingsscenene i [eksisterende Life Story-fil](../../data/Civication/lifestory/roles/ekspeditor/scenes.json) bruker samme tråd, `varen_som_ikke_finnes`. De beholder den opprinnelige scene-ID-en og alle tre opprinnelige valg-ID-ene. Ingen parallell historiekjede eller ekstra spillmotor er opprettet. Nye flagg skiller `lager_ett_funnet`, `lager_kunde_fikk_vare`, `lager_avvik_meldt`, `lager_ansvar_overtatt`, `lager_system_oppdatert` og `lager_etterkontroll_verifisert`. Delegert telling og avtalt etterkontroll registreres separat og teller ikke som gjennomført.
+
+Den oppdaterte [Life Story-regresjonstesten](../../tests/civication-lifestory-ekspeditor.test.js) dekker begge kontrollører, kundens faktiske salg, redigering av ubekreftet løfte, og åpne oppgaver ved manglende telling, melding og etterkontroll. **Kildeavgrensning:** Utdanning.no, Udir og stillingsgrunnlaget dokumenterer varetelling, lagerarbeid, dokumentkontroll og kundeveiledning som yrkesoppgaver. Butikkens personer, eksakte antall, kasseoppsett og replikker er redaksjonelle premisser for spillet – ikke en faktisk kjedes rutiner.
+
 ### Hva som er avklart og hva som gjenstår
 
 Den fiktive butikkens ansvarsfordeling, klær, utstyr, eksempeluke, lønnsgrunnlag, opplæringsinnhold og sammenhengende prishistorie er nå beskrevet over. De er redaksjonelle premisser, ikke bekreftede rutiner fra en bestemt kjede eller ferdig implementerte spilldata.
@@ -198,4 +208,5 @@ Følgende gjenstår før rollen kan omtales som ferdig etter arbeidsmåten:
 - Den eldre Life Story-priskjeden er revidert i sin opprinnelige tråd og skal gjennomgå både automatisk regresjon og visuell nettleserkontroll. Øvrige Life Story-temaer er ikke godkjent som del av denne prisbolken.
 - VM-testen verifiserer handlingenes grenflagg og historikk hver for seg, uendret plansteg gjennom oppfølgingen, neste privatlivssteg og at den besvarte jobbscenen ikke gjentas. Kontroller også hvordan dette vises i spillerens Symposium i nettleseren.
 - Gjennomfør visuell nettlesertest av de berørte dialogene og spillerhistorikken. Den automatiske VM-gjennomspillingen erstatter ikke dette.
+- Lageravvikets opprinnelige Life Story-kjede er revidert med fysisk kontroll, avviksmelding, ansvar og faktisk etterkontroll. Grønn CI og nettlesergjennomspilling kreves før denne delen kan godkjennes; ordinær jobbmail for samme rolle er en annen runtime.
 - Videre praksisarbeid kan samle flere direkte beskrivelser av kollegabeskjeder og avbrytelser. Replikkene over er fortsatt tydelig merkede skriveeksempler; intervjuet med Mads er et avgrenset praksisgrunnlag fra ferskvare.
