@@ -87,6 +87,15 @@ try{
      },place)!==false;
      if(!open)problems.push("openPlaceCard returned false");
      await page.waitForTimeout(450);
+     // On first boot a delayed router/onboarding pass can close a newly
+     // opened card. Retry the actual public API once; do not bypass UI state.
+     const stillOpen=await page.locator("#placeCard").evaluate(el=>
+      el.classList.contains("is-open") && el.dataset.currentPlaceId===place.id);
+     if(!stillOpen){
+      await page.evaluate(()=>document.querySelector("#hgOnboardingModal .hg-onb-close")?.click());
+      open=await page.evaluate(async place=>await window.openPlaceCard(place)!==false,place);
+      await page.waitForTimeout(700);
+     }
      // Check for a delayed onboarding overlay after each actual PlaceCard open.
      await page.evaluate(()=>document.querySelector("#hgOnboardingModal .hg-onb-close")?.click());
      const overlay=await page.locator("#hgOnboardingModal").evaluate(m=>m.getAttribute("aria-hidden")==="false" && getComputedStyle(m).display!=="none").catch(()=>false);
