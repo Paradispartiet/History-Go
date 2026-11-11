@@ -1,0 +1,25 @@
+name: Temporary main-only touch regression baseline
+on:
+  push:
+    branches: [qa/main-index-touch-baseline-20261111]
+    paths: ['.github/workflows/index-tap-main-baseline-once.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 7b39221290bca308031560b6729c3f2fdcdac9f3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node --test tests/device-tap-trace.test.mjs
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Verify native taps on unmodified main, as direct comparison
+        run: node tests/index-real-touch-debug-browser.mjs
