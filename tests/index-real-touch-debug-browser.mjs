@@ -57,6 +57,27 @@ async function backToMap(page){
  },null,{timeout:15000});
  console.log('BACK TO MAP '+page.url());
 }
+async function exerciseFavoriteMapPicker(page, favoriteId) {
+ await page.waitForFunction(() => !!document.querySelector('.map-controls .hg-map-favorite-filter #hgMapFavoriteTrigger'),null,{timeout:15000});
+ const button=page.locator('#hgMapFavoriteTrigger');
+ assert.equal(await button.evaluate(el=>el.closest('.map-controls')!==null),true);
+ await tap(page,'#hgMapFavoriteTrigger');
+ await page.locator('#hgHomeFavoriteMapPicker').waitFor({state:'visible'});
+ await tap(page,'[data-favorite-view="favorites"]');
+ await page.waitForFunction(() => window.HGMap?.getFavoriteViewOnly?.()===true);
+ assert.equal(await page.evaluate(id=>window.HGFavoritePlaces.has(id)),true,'Favorite comes from PlaceCard star');
+ await tap(page,'[data-favorite-style="star"]');
+ await page.waitForFunction(()=>window.HGMap?.getFavoriteMarkerStyle?.()==='star');
+ await tap(page,'[data-favorite-view="all"]');
+ await page.waitForFunction(()=>window.HGMap?.getFavoriteViewOnly?.()===false);
+ await tap(page,'[data-favorite-close]');
+ await page.locator('#hgHomeFavoriteMapPicker').waitFor({state:'hidden'});
+ await tap(page,'#headerMenuButton');
+ await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='true');
+ await tap(page,'#headerMenuButton');
+ await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='false');
+ console.log('FAVORITE MAP PICKER PASSED '+favoriteId);
+}
 async function exerciseCard(page,id){
  await cardVisible(page,id);
  await tap(page,'#headerMenuButton');
@@ -136,7 +157,14 @@ try{
       assert.ok(trace.events.some(e=>e.type==='click'));
       console.log('DEVICE TRACE '+JSON.stringify(trace));
      }
+     // Save one favorite through the real PlaceCard action, then exercise
+     // the homepage picker and confirm other UI stays tappable afterwards.
+     if(i===0) {
+      await tap(page,'#pcFavorite');
+      await page.waitForFunction(id=>window.HGFavoritePlaces?.has?.(id)===true,id);
+     }
      await backToMap(page);
+     if(i===0) await exerciseFavoriteMapPicker(page,id);
      result.flows.push({place:id,mapTap:true,header:true,favorite:true,footer:true,back:true});
      previousId=id;
      // The shared back link intentionally navigates to the ordinary map URL.
