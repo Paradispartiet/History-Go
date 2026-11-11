@@ -85,6 +85,7 @@ try{
    try{
     browser=await engine.launch({headless:true});
     const ctx=await browser.newContext({viewport:{width,height},hasTouch:true,isMobile:true,locale:'nb-NO'});
+    ctx.setDefaultTimeout(15000);
     // Keep native observers and input handling: never repair the app from the test.
     const page=await ctx.newPage();
     page.on('pageerror',e=>result.errors.push(e.message));
