@@ -1,0 +1,39 @@
+{
+  "schema": "history_go_place_image_framing_audit_summary_v1",
+  "checked_date": "2026-11-11",
+  "mode": "canonical_manifest_metadata_only",
+  "total_canonical_places": 1552,
+  "invalid_files": 0,
+  "summary": {
+    "potential_pre_cropped_frontImage": 12,
+    "source_review_candidates": 151,
+    "frontImage_missing": 1349,
+    "image_missing": 1205,
+    "same_source_for_both_roles": 134,
+    "same_file_for_both_roles": 13,
+    "photo_source_metadata_missing_for_frontImage": 23
+  },
+  "potential_pre_cropped_place_ids": [
+    "gamle_trikkestallen",
+    "markveien",
+    "olaf_ryes_plass",
+    "sofienbergparken",
+    "oslo_hospital",
+    "alunverket",
+    "lilleborg_fabrikker",
+    "myrens_verksted",
+    "schous_bryggeri",
+    "toyen_trafo",
+    "brekkedammen",
+    "nydalsdammen"
+  ],
+  "artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/43103219348/artifacts/13892618397",
+  "script": "scripts/audit-place-image-framing.mjs",
+  "policy": {
+    "display": "image and frontImage are fitted to their photo frames without cropping, while existing focal positions are preserved",
+    "source_export": "New fixed-size files must contain the sharp entire original image over a soft copy of the same image in spare space",
+    "old_exports": "Any pixels discarded in older hard-cropped WebP must be regenerated from the documented original; css object-fit cannot restore them",
+    "limitations": "Metadata flags are leads, not proof of a bad composition. Missing frontImage is not necessarily an error for all place tiers; human editorial framing review is necessary."
+  },
+  "status": "audit_complete_action_queue_pending"
+}
