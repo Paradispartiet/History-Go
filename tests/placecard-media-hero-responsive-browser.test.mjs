@@ -52,7 +52,7 @@ await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
 const { port } = server.address();
 let browser;
 try {
-  browser = await chromium.launch({ headless: true });
+  browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME_BIN || undefined, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
   const page = await browser.newPage();
   for (const width of [320, 390, 900]) {
     await page.setViewportSize({ width, height: 900 });
