@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_aakersvineblom: Object.freeze({
+      scientificName: "Senecio vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/86_aakersvineblom_v1.webp",
+      gitBlobSha: "cb143fd0f24c23410b51f3d5e66c367855762c23",
+      reviewedAt: "2026-11-11",
+      stage: "blomstring_og_frostand_med_pappus",
+      evidence: "data/natur/flora/illustration-quality-aakersvineblom-20261111.json"
+    }),
     emne_flora_sitkagran: Object.freeze({
       scientificName: "Picea sitchensis",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/85_sitkagran_v1.webp",
