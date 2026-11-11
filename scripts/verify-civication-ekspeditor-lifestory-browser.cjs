@@ -419,6 +419,10 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
         sawReturnRequest = true;
         assert.equal(state.dag, 2, label + ': return training belongs to day two');
       }
+      if (sceneId === 'd2_vikar_retur_03_lene_godkjenner') {
+        const sender = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(sender, /Fra Lene/, label + ': authorizing manager speaks for herself');
+      }
       const wanted = choices[sceneId];
       const selector = '[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
         + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])';
@@ -594,6 +598,7 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
       ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen',
       d2_formiddag_vikaren_kommer_til_deg: 'laer_bort_metoden',
       d2_vikar_retur_02_kontroll: 'sammenlign_kvittering_og_vare',
+      d2_vikar_retur_03_lene_godkjenner: 'noter_lenes_beslutning',
       d2_vikar_retur_03_vikar_utforer: 'veiled_og_kontroller_byttet'
     };
     const traineeNotCheckedDayTwo = {
@@ -603,6 +608,7 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
       d2_formiddag_vikaren_kommer_til_deg: 'vis_raskt',
       d2_vikar_retur_02_kort_svar: 'ta_gjennomgangen',
       d2_vikar_retur_02_kontroll: 'sammenlign_kvittering_og_vare',
+      d2_vikar_retur_03_lene_godkjenner: 'noter_lenes_beslutning',
       d2_vikar_retur_03_vikar_utforer: 'gjør_det_selv'
     };
     const noReturnFollowUpDayTwo = {
@@ -615,18 +621,18 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
     results.push(await playDayTwoReturnTraining(browser, 'day2-return-mobile-portrait',
       { width: 390, height: 844 }, fullTrainingDayTwo,
       { finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'completed',
-        flags: { retur_d2_vilkar_kontrollert: true, retur_d2_bytte_gjennomfort: true,
-          retur_d2_vikar_forstod: true, laerte_bort_metoden: true } }));
+        flags: { retur_d2_vilkar_kontrollert: true, retur_d2_lene_godkjent: true,
+          retur_d2_bytte_gjennomfort: true, retur_d2_vikar_forstod: true, laerte_bort_metoden: true } }));
     results.push(await playDayTwoReturnTraining(browser, 'day2-return-ipad-portrait',
       { width: 820, height: 1180 }, traineeNotCheckedDayTwo,
       { finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'escalated',
-        flags: { retur_d2_bytte_utfort_av_spiller: true, retur_d2_vikar_kontroll_venter: true,
-          retur_d2_vikar_forstod: false, laerte_bort_metoden: false } }));
+        flags: { retur_d2_lene_godkjent: true, retur_d2_bytte_utfort_av_spiller: true,
+          retur_d2_vikar_kontroll_venter: true, retur_d2_vikar_forstod: false, laerte_bort_metoden: false } }));
     results.push(await playDayTwoReturnTraining(browser, 'day2-return-ipad-landscape',
       { width: 1180, height: 820 }, noReturnFollowUpDayTwo,
       { finalScene: 'd2_vikar_retur_02_kort_svar', status: 'escalated',
         flags: { retur_d2_ikke_fulgt_opp: true, retur_d2_vilkar_kontrollert: false,
-          retur_d2_bytte_gjennomfort: false, laerte_bort_metoden: false } }));
+          retur_d2_lene_godkjent: false, retur_d2_bytte_gjennomfort: false, laerte_bort_metoden: false } }));
     console.log('PASS: ekspeditør day-two return instruction plus all earlier Life Story paths on mobile and iPad', JSON.stringify(results));
   } finally {
     writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2) + '\n');
