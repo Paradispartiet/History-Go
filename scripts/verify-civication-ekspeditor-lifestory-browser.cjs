@@ -87,6 +87,12 @@ async function play(browser, label, viewport, choices, expected) {
     assert.equal(completed.threadState.prisfeilen_i_koen.status, expected.status);
     assert.ok(completed.arkiv.some(x => x.sceneId === 'prisfeil_04_lene_bekrefter'),
       label + ': Lene acceptance is an actual archived player step');
+    if (expected.finalScene === 'prisfeil_05_amir_sjekker') {
+      assert.equal(completed.tidligereValg.eksp_life_pris_etterkontroll_amir, true,
+        label + ': Amir must be named as the person who actually checked');
+      assert.notEqual(completed.tidligereValg.eksp_life_pris_etterkontroll_egen, true,
+        label + ': do not fabricate a personal check after Amir');
+    }
     const snapshot = completed.arkiv.map(x => [x.sceneId, x.valgId]);
     await page.reload({ waitUntil: 'load', timeout: 90000 });
     await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(), null,
@@ -128,8 +134,15 @@ async function play(browser, label, viewport, choices, expected) {
       { finalScene: 'prisfeil_05_sjekk_selv', verified: true, status: 'completed' }));
     results.push(await play(browser, 'ipad-portrait', { width: 820, height: 1180 }, open,
       { finalScene: 'prisfeil_05_sjekk_selv', verified: false, status: 'escalated' }));
-    results.push(await play(browser, 'ipad-landscape', { width: 1180, height: 820 }, good,
-      { finalScene: 'prisfeil_05_sjekk_selv', verified: true, status: 'completed' }));
+    const delegated = {
+      apning_01_forste_okt: 'spor_amir',
+      prisfeil_02_koen: 'rop_paa_amir',
+      prisfeil_03_meld_avvik: 'send_notat',
+      prisfeil_04_lene_bekrefter: 'amir_kontrollerer',
+      prisfeil_05_amir_sjekker: 'registrer_amir'
+    };
+    results.push(await play(browser, 'ipad-landscape', { width: 1180, height: 820 }, delegated,
+      { finalScene: 'prisfeil_05_amir_sjekker', verified: true, status: 'completed' }));
     console.log('PASS: ekspeditør original Life Story UI at mobile + two iPad viewports', JSON.stringify(results));
   } finally {
     writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2) + '\n');
