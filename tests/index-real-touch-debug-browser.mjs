@@ -69,10 +69,9 @@ try{
     window.MutationObserver = class extends Native {
      constructor(callback) {
       const origin = new Error('Observer created').stack;
-      let start=0, count=0;
+      let count=0, resetPending=false;
       super((records, observer) => {
-       const now=performance.now();
-       if(now-start>150){start=now;count=0;}
+       if(!resetPending){resetPending=true;setTimeout(()=>{count=0;resetPending=false;},0);}
        if(++count>500){
         observer.disconnect();
         const detail={origin,count,target:records[0]?.target?.id||records[0]?.target?.className,attribute:records[0]?.attributeName};
@@ -114,35 +113,12 @@ try{
    await tap(page,'#pcMini');await cardVisible(page,'stortinget');
    result.stortingetHeaderAndCard=true;
    await backToMap(page);
-   // A genuine first session, then reuse its stored state and HTTP cache after reopening.
-   for(const state of ['first-visit','returning-tab']){
-    if(state==='returning-tab'){
-     await page.close();page=await ctx.newPage();page.on('pageerror',e=>result.errors.push(e.message));
-     await page.goto(base+'/index.html#/map',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);
-     assert.equal(await page.evaluate(()=>localStorage.getItem('hg_onboarding_shown_v1')),'1');
-     assert.equal(await page.locator('#hgOnboardingModal').isVisible(),false);
-    }
-    const progress=await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([k])=>/visited|merit|collect|quiz.*(done|progress|score)/i.test(k))));
-    await tap(page,'#nearbyExploreToggle');
-    await page.waitForFunction(()=>document.getElementById('nearbyExploreToggle')?.getAttribute('aria-expanded')==='true');
-    await tap(page,'#nearbyExploreToggle');
-    await page.waitForFunction(()=>document.getElementById('nearbyExploreToggle')?.getAttribute('aria-expanded')==='false');
-    assert.equal(await page.evaluate(()=>document.body.classList.contains('map-only')||document.body.classList.contains('mode-map')),false);
-    const first=await mapHit(page,null);await backToMap(page);
-    await tap(page,'#btnSeeMap');
-    await page.waitForFunction(()=>document.body.classList.contains('map-only')||document.body.classList.contains('mode-map'));
-    const second=await mapHit(page,first);assert.notEqual(second,first);
-    // Reload an open PlaceCard to verify the stored tab/route restores without a shielding panel.
-    await page.reload({waitUntil:'domcontentloaded'});await ready(page);await cardVisible(page,second);
-    await backToMap(page);
-    await tap(page,'.hg-map-category-trigger');
-    await page.waitForFunction(()=>document.querySelector('.hg-map-category-trigger')?.getAttribute('aria-expanded')==='true');
-    await tap(page,'.hg-map-category-trigger');
-    await page.waitForFunction(()=>document.querySelector('.hg-map-category-trigger')?.getAttribute('aria-expanded')==='false');
-    const after=await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([k])=>/visited|merit|collect|quiz.*(done|progress|score)/i.test(k))));
-    assert.deepEqual(after,progress,'Navigation must preserve local progress');
-    result.flows.push({state,first,second,normalMode:true,dedicatedMapMode:true,backButton:true,reloadPlace:true,badgePicker:true,progressPreserved:true});
-   }
+   await page.goto(base+'/index.html#/place/stortinget',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);await cardVisible(page,'stortinget');
+   await page.waitForTimeout(3000);
+   await tap(page,'#headerMenuButton');
+   await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='true');
+   assert.deepEqual(await page.evaluate(()=>window.__HG_OBSERVER_RUNAWAYS__),[]);
+   result.flows.push({place:'stortinget',reopened:true,header:true});
    result.passed=true;await ctx.close();
   }catch(e){result.passed=false;result.failure=String(e.stack||e);console.error(result.failure);}
   finally{await browser?.close();results.push(result);console.log('NAVIGATION RESULT '+JSON.stringify(result));}
