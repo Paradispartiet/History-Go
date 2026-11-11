@@ -1,0 +1,40 @@
+name: Civication ekspeditor Life Story browser
+
+on:
+  pull_request:
+    paths:
+      - 'data/Civication/lifestory/roles/ekspeditor/scenes.json'
+      - 'scripts/verify-civication-ekspeditor-lifestory-browser.cjs'
+      - '.github/workflows/civication-ekspeditor-lifestory-browser.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ekspeditor-browser:
+    name: Ekspeditør prisavvik – mobil og iPad
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Play through the real Life Story UI
+        run: node scripts/verify-civication-ekspeditor-lifestory-browser.cjs
+      - name: Upload actual UI screenshots and trace
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ekspeditor-lifestory-mobile-ipad
+          path: reports/civication-ekspeditor-lifestory-browser/

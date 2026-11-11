@@ -182,11 +182,11 @@ I denne jobbmailens første scene gir Lene allerede instruks om å sjekke hyllep
 
 Åpningsscenen er nå avgrenset til en stikkprøve av brød og juice. Den kan avdekke og få rettet merking på disse varene, men ikke kampanjekaffens prisfeil. Alle tre åpningsvalg leder derfor fortsatt til den eksisterende kaffescenen uten at den samme varen påstås å være kontrollert og rettet to ganger. Å åpne presis uten en frivillig stikkprøve gir ikke lenger et ubegrunnet integritetstrekk. Selve Life Story-prisoppfølgingen nedenfor krever fortsatt særskilt revisjon.
 
-Prisfeilscenen har både et valg som avslutter tråden etter å ha rettet kundens pris, og et valg som også melder avviket til Lene. Kundens handel og retting av årsaken må behandles som to forskjellige oppgaver. Ikke anta at systemprisen eller hyllemerkingen er rettet fordi kunden har fått et avslag.
+De opprinnelige valgene i `prisfeil_02_koen` beholdes, men prisfeilen avsluttes ikke lenger når én kunde får riktig pris. Den eksisterende tråden `prisfeilen_i_koen` følges gjennom kontroll av samme vare og kampanje, konkret melding til Lene, dokumentert mottak og utført etterkontroll. Den som tok 39 uten å kontrollere varen, får anledning til å undersøke i etterkant eller erkjenne en fortsatt åpen oppgave. En melding uten svar teller ikke som overtatt; en avtale om etterkontroll teller ikke som gjennomført kontroll.
 
-Scenen gir også integritetstrekk for valget om å åpne presis. Vurder om handlingen faktisk innebærer et kjent forsømt ansvar før den gis en slik følge. Beskriv hva spilleren visste og hadde fått beskjed om.
+Fem låste oppfølgingsscener er lagt inn i den eksisterende Life Story-filen: `prisfeil_03_undersok_etter_snarevei`, `prisfeil_03_meld_avvik`, `prisfeil_04_lene_bekrefter`, `prisfeil_05_sjekk_selv` og `prisfeil_05_amir_sjekker`. Deres flagg skiller korrigert handel, faktisk rapport, bekreftet ansvar og egen eller delegert etterkontroll. Grener som lar en kontroll eller melding stå uferdig, blir eskalert i stedet for markert fullført. Alle opprinnelige scene-/valg-ID-er, Life Story-runneren og jobbmailfamilien beholdes.
 
-Dette er statiske funn i de lenkede kildefilene, ikke en gjennomspilling eller dokumentasjon på hva runtime viser. Ingen spillscene er endret som del av denne metodebeskrivelsen.
+[Regresjonstesten for Life Story](../../tests/civication-lifestory-ekspeditor.test.js) inkluderer grenene for sjekket handel, snarvei med reparasjon, Amirs kontroll, direkte rapportering, utsatt melding og uutført etterkontroll. Dette er en Day Runner-test som må bestå CI før merge, og den kan ikke erstatte faktisk kontroll av tekst, knapper og lagret historikk i nettleseren.
 
 ### Hva som er avklart og hva som gjenstår
 
@@ -195,7 +195,7 @@ Den fiktive butikkens ansvarsfordeling, klær, utstyr, eksempeluke, lønnsgrunnl
 Følgende gjenstår før rollen kan omtales som ferdig etter arbeidsmåten:
 
 - Normal jobbmail har nå eget svar for bekreftet avløsning og egen priskontroll, og eksisterende priskonsekvenser leder til melding, mottaksbekreftelse og etterkontroll. Regenerert sceneregister og [VM-gjennomspilling](../../tests/civication-ekspeditor-price-handover.test.js) kontrollerer fire startvalg, reparasjon, utsatt kontroll og navngitt delegert kontroll. Dette er automatisk gjennomspilling av normal spillkjede, ikke en visuell nettlesertest.
-- De eldre Life Story-scenenes kontrollpunkter over er fortsatt åpne. De skal revideres i sin egen eksisterende kjede, uten å opprette en konkurrerende historie.
+- Den eldre Life Story-priskjeden er revidert i sin opprinnelige tråd og skal gjennomgå både automatisk regresjon og visuell nettleserkontroll. Øvrige Life Story-temaer er ikke godkjent som del av denne prisbolken.
 - VM-testen verifiserer handlingenes grenflagg og historikk hver for seg, uendret plansteg gjennom oppfølgingen, neste privatlivssteg og at den besvarte jobbscenen ikke gjentas. Kontroller også hvordan dette vises i spillerens Symposium i nettleseren.
 - Gjennomfør visuell nettlesertest av de berørte dialogene og spillerhistorikken. Den automatiske VM-gjennomspillingen erstatter ikke dette.
 - Videre praksisarbeid kan samle flere direkte beskrivelser av kollegabeskjeder og avbrytelser. Replikkene over er fortsatt tydelig merkede skriveeksempler; intervjuet med Mads er et avgrenset praksisgrunnlag fra ferskvare.
