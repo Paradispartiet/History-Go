@@ -36,7 +36,7 @@ jobs:
           from pathlib import Path
           from urllib.parse import quote
           import requests
-          from PIL import Image,ImageOps
+          from PIL import Image,ImageOps,ImageFilter
           from io import BytesIO
           root=Path('.')
           place=Path('data/places/by/oslo/places/tjuvholmen.json')
@@ -75,14 +75,22 @@ jobs:
           assert digest(main_source)!=digest(front_source),'Distinct source photos required'
           main=Path('bilder/places/tjuvholmen_main_2024.webp')
           front=Path('bilder/places/tjuvholmen_front_2026.webp')
+          def overview_composition(original, size, destination, quality):
+            # Sharp, original source is wholly visible; no center crop or zoom.
+            original=ImageOps.exif_transpose(original).convert('RGB')
+            soft=ImageOps.fit(original,size,method=Image.Resampling.LANCZOS)
+            soft=soft.filter(ImageFilter.GaussianBlur(radius=32))
+            backdrop=Image.blend(soft,Image.new('RGB',size,(17,24,32)),.34)
+            sharp=ImageOps.contain(original,size,method=Image.Resampling.LANCZOS)
+            x=(size[0]-sharp.width)//2
+            y=(size[1]-sharp.height)//2
+            backdrop.paste(sharp,(x,y))
+            backdrop.save(destination,'WEBP',quality=quality,method=6)
+            return f'{original.width}x{original.height}',f'{sharp.width}x{sharp.height}'
           with Image.open(main_source) as image:
-            main_img=ImageOps.fit(image.convert('RGB'),(1200,675),Image.Resampling.LANCZOS,centering=(.5,.5))
-            main_img.save(main,'WEBP',quality=90,method=6)
-            main_dimensions=f'{image.width}x{image.height}'
+            main_dimensions,main_visible=overview_composition(image,(1200,675),main,90)
           with Image.open(front_source) as image:
-            front_img=ImageOps.fit(image.convert('RGB'),(900,1200),Image.Resampling.LANCZOS,centering=(.5,.5))
-            front_img.save(front,'WEBP',quality=91,method=6)
-            front_dimensions=f'{image.width}x{image.height}'
+            front_dimensions,front_visible=overview_composition(image,(900,1200),front,91)
           old['image']=str(main)
           old['cardImage']=str(main)
           old['frontImage']=str(front)
@@ -93,9 +101,9 @@ jobs:
            'sourceSha256':digest(main_source),'sourceLocalSha256':digest(main_source),
            'creator':'Ssu','credit':'Ssu / Wikimedia Commons','license':'CC BY-SA 4.0',
            'licenseUrl':'https://creativecommons.org/licenses/by-sa/4.0/',
-           'originalDimensions':'4032x3024','localSourceDimensions':main_dimensions,
+           'originalDimensions':main_dimensions,'localSourceDimensions':main_dimensions,'visibleSourceDimensions':main_visible,
            'outputDimensions':'1200x675','outputSha256':digest(main),'assetType':'documentary_place_photo',
-           'transformation':'Centrert 16:9 utsnitt av Commons-fotografi fra 2024, ingen KI-generering.',
+           'transformation':'Hele 2024-fotografiet plassert skarpt i 16:9 ramme med myk mørk bakgrunn av samme bilde; ingen zoom, ingen skarp motivbeskjæring, ingen KI-generering.',
            'verifiedAt':'2026-11-11'
           }
           old['frontImageMeta']={
@@ -106,10 +114,10 @@ jobs:
            'creator':'Leonhard Lenz','credit':'Leonhard Lenz / Wikimedia Commons',
            'license':'CC0 1.0',
            'licenseUrl':'https://creativecommons.org/publicdomain/zero/1.0/',
-           'originalDimensions':'8144x5424','localSourceDimensions':front_dimensions,
+           'originalDimensions':front_dimensions,'localSourceDimensions':front_dimensions,'visibleSourceDimensions':front_visible,
            'outputDimensions':'900x1200','outputSha256':digest(front),'assetType':'documentary_place_photo',
            'orientation':'portrait','aspectRatio':'3:4',
-           'transformation':'Centrert 3:4 utsnitt av selvstendig Commons-fotografi fra januar 2026, ingen KI-generering.',
+           'transformation':'Hele 2026-fotografiet plassert skarpt i 3:4 ramme med myk mørk bakgrunn av samme bilde; ingen zoom, ingen skarp motivbeskjæring, ingen KI-generering.',
            'reviewStatus':'pending_editorial_crop_review','verifiedAt':'2026-11-11'
           }
           old['imageCredit']='Ssu / Wikimedia Commons'
