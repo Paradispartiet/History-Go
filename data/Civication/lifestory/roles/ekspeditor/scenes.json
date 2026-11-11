@@ -2121,7 +2121,7 @@
         {
           "id": "sammenlign_kvittering_og_vare",
           "tekst": "Vis vikaren kontroll av kjøpsdato, varenummer, tilstand og butikkens vilkår",
-          "konsekvensTekst": "Dere kontrollerer samme varenummer mot kvitteringen, ser at matboksen er ubrukt og uskadd, finner alternativ farge til samme pris, og dokumenterer at kunden ønsker bytte. Vilkårene er nå bekreftet i denne saken, men selve byttet og opplæringskontrollen gjenstår.",
+          "konsekvensTekst": "Dere kontrollerer varenummer og kvittering, ser at matboksen er ubrukt og uskadd, og finner alternativ farge til samme pris innenfor butikkens oppgitte frist. Ingen kontantrefusjon er aktuell. Vilkår og vare er kontrollert, men Lene må fortsatt godkjenne akkurat dette byttet før kasseregistreringen.",
           "effekter": {
             "meters": {
               "energi": -2
@@ -2138,7 +2138,7 @@
             }
           },
           "laaserOpp": [
-            "d2_vikar_retur_03_vikar_utforer"
+            "d2_vikar_retur_03_lene_godkjenner"
           ]
         },
         {
@@ -2178,6 +2178,56 @@
       ]
     },
     {
+      "id": "d2_vikar_retur_03_lene_godkjenner",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Lene godkjenner dette konkrete byttet",
+      "tekst": "Lene ser kvitteringen, den ubrukte matboksen og vilkårene. Hun sier: «Dette er et frivillig bytte innenfor butikkens ordning, og alternativ farge koster det samme. Jeg godkjenner dette ene byttet. Vis vikaren hvordan begge varelinjene og byttebilaget føres. Generell returfullmakt gir jeg ikke nå.»",
+      "valg": [
+        {
+          "id": "noter_lenes_beslutning",
+          "tekst": "Registrer Lenes konkrete godkjenning og la vikaren gjøre den avtalte kasseregistreringen",
+          "konsekvensTekst": "Du dokumenterer at Lene godkjente dette ene byttet. Kunden og vikaren er klare, men selve byttet er ennå ikke utført. Dere går videre til registrering og kontroll.",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 1
+            },
+            "flagg": {
+              "retur_d2_lene_godkjent": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "d2_vikar_retur_03_vikar_utforer"
+          ]
+        },
+        {
+          "id": "vent_pa_dokumentasjon",
+          "tekst": "La avgjørelsen stå uregistrert til grunnlaget er dokumentert",
+          "konsekvensTekst": "Lene har muntlig sagt ja, men du har ikke dokumentert beslutningen eller gitt vikaren grunnlag for å gjennomføre byttet. Ingen vare er levert ut, og opplæringen er åpen.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_lene_godkjenning_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "d2_vikar_retur_03_vikar_utforer",
       "threadId": "ny_kollega_og_tillit",
       "fase": "formiddag",
@@ -2187,7 +2237,7 @@
       "tilgjengelighet": "laast",
       "prioritet": 9,
       "tittel": "Vikaren gjennomfører et dokumentert bytte",
-      "tekst": "Den opprinnelige matboksen og kvitteringen er kontrollert. I denne butikken er frivillig bytte innen 14 dager tillatt for ubrukt kjøkkenutstyr. En tilsvarende matboks i ønsket farge finnes til samme pris. Kunden har akseptert et bytte, ikke bedt om penger tilbake. Vikaren må nå kunne forklare og registrere begge varelinjene riktig.",
+      "tekst": "Lene har godkjent dette konkrete byttet, og den opprinnelige matboksen, kjøpet og de skriftlige vilkårene er kontrollert. Kunden har akseptert en annen farge til samme pris. Vikaren skal nå forklare prosedyren, registrere begge varelinjene og vise et korrekt byttebilag. Lenes godkjenning er ikke en generell returfullmakt for deg eller vikaren.",
       "valg": [
         {
           "id": "veiled_og_kontroller_byttet",
