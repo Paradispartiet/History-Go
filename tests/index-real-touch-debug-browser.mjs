@@ -152,7 +152,16 @@ try{
     await page.reload({waitUntil:'domcontentloaded'});await ready(page);
     await exerciseCard(page,'stortinget');
     result.flows.push({place:'stortinget',directLink:true,reloaded:true});
-    assert.deepEqual(result.errors,[],'No uncaught JavaScript errors');
+    // WebKit can report cancelled fetches from a prior document when the test
+    // navigates/reloads. Keep those separate from real application exceptions.
+    const cancelledNavigationRequests=result.errors.filter(message=>
+      /due to access control checks\\.?$/.test(message) &&
+      (/^\\/127\\.0\\.0\\.1:\\d+\\//.test(message) || /^\\/tiles\\.basemaps\\.cartocdn\\.com\\//.test(message))
+    );
+    const applicationErrors=result.errors.filter(message=>!cancelledNavigationRequests.includes(message));
+    result.cancelledNavigationRequests=cancelledNavigationRequests.length;
+    if(cancelledNavigationRequests.length) console.log('CANCELLED NAVIGATION FETCHES '+cancelledNavigationRequests.length);
+    assert.deepEqual(applicationErrors,[],'No uncaught application JavaScript errors');
     result.passed=true;await ctx.close();
    }catch(e){result.passed=false;result.failure=String(e.stack||e);console.error(result.failure);}
    finally{await browser?.close();results.push(result);console.log('NAVIGATION RESULT '+JSON.stringify(result));}
