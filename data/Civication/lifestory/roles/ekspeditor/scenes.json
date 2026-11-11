@@ -523,28 +523,21 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Vikaren stopper ved kassa di",
-      "tekst": "Vikaren stiller seg ved kassa med et pantekort i hånda: «Hvordan gjør jeg dette? Beklager, jeg vet du har kø.» Tre kunder venter. Alle hører alt.",
+      "tekst": "Vikaren står ved kassa med en pantekvittering på 14 kroner. Tre kunder venter. Hun spør hvordan kvitteringen skal kontrolleres og registreres uten at beløpet utbetales eller trekkes fra to ganger. Denne fiktive butikken bruker skanning i bemannet kasse.",
       "valg": [
         {
           "id": "hjelp_kort",
-          "tekst": "Hjelp kort og tydelig — tretti sekunder nå sparer ti minutter senere",
+          "tekst": "Avklar køen og tilby å vise én korrekt pantekvittering ved kassa",
           "tone": "raus",
-          "skills_practice": {
-            "skill_id": "communication",
-            "activity_type": "demonstrate_colleague_method",
-            "evidence_flag": "hjalp_ny_kollega",
-            "delta": 2
-          },
           "effekter": {
             "relasjoner": {
               "ny_kollega": 7
             },
             "meters": {
-              "energi": -3,
-              "psyke": 2
+              "energi": -1
             },
             "flagg": {
-              "hjalp_ny_kollega": true
+              "pant_veiledning_startet": true
             },
             "threads": {
               "ny_kollega_og_tillit": {
@@ -552,22 +545,24 @@
               }
             }
           },
-          "konsekvensTekst": "Du viser grepet én gang, rolig. Vikaren gjentar det riktig på første forsøk. Kunden i køen smiler faktisk litt."
+          "konsekvensTekst": "Du sier at du skal vise hvilken butikk kvitteringen kommer fra, hvor beløpet kontrolleres og hvordan den registreres én gang. Du har avtalt veiledning, men har ennå ikke gjennomført den.",
+          "laaserOpp": [
+            "ny_kollega_02_vis_pantekort"
+          ]
         },
         {
           "id": "be_vente",
-          "tekst": "Be vikaren vente til køen er unna",
+          "tekst": "Si at du må ta køen først, og avtal hvem som hjelper vikaren etterpå",
           "tone": "avvisende",
           "effekter": {
             "relasjoner": {
               "ny_kollega": -5
             },
             "meters": {
-              "energi": 1,
-              "integritet": -2
+              "energi": 1
             },
             "flagg": {
-              "avviste_vikaren": true
+              "pant_hjelp_utsatt": true
             },
             "threads": {
               "ny_kollega_og_tillit": {
@@ -575,11 +570,14 @@
               }
             }
           },
-          "konsekvensTekst": "Vikaren trekker seg unna med pantekortet. Kunden foran deg later som hun ikke så det. Alle så det."
+          "konsekvensTekst": "Du forklarer at køen må betjenes, men avtaler at spørsmålet skal følges opp. Vikaren venter med kvitteringen; ingen kontroll eller veiledning er utført ennå.",
+          "laaserOpp": [
+            "ny_kollega_02_avtal_hjelp"
+          ]
         },
         {
           "id": "send_til_amir",
-          "tekst": "Pek vikaren mot Amir — han kan dette best",
+          "tekst": "Be Amir overta veiledningen og få bekreftet resultatet",
           "tone": "praktisk",
           "effekter": {
             "relasjoner": {
@@ -590,7 +588,7 @@
               "handlingsrom": 1
             },
             "flagg": {
-              "sendte_vikaren_videre": true
+              "pant_henvist_amir": true
             },
             "threads": {
               "ny_kollega_og_tillit": {
@@ -598,7 +596,251 @@
               }
             }
           },
-          "konsekvensTekst": "Amir tar det uten å blunke. Vikaren lærer det riktig. Du lurer et øyeblikk på om du sendte fra deg mer enn et spørsmål."
+          "konsekvensTekst": "Du ber Amir kontrollere pantekvitteringen og vise vikaren rutinen, men vet ennå ikke om oppgaven er utført. En henvisning er ikke det samme som bekreftet hjelp.",
+          "laaserOpp": [
+            "ny_kollega_02_amir_bekrefter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_02_avtal_hjelp",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Køen er unna – hva skjer med pantekortet?",
+      "tekst": "De tre kundene er ekspedert, men vikaren har fortsatt pantekvitteringen. Hun har ikke fått opplæring ennå. Du kan nå organisere et konkret svar i stedet for å anta at noen ordnet det.",
+      "valg": [
+        {
+          "id": "vis_etter_ko",
+          "tekst": "Avtal kasseavløsning og vis rutinen selv",
+          "konsekvensTekst": "Amir tar kassa i noen minutter. Vikaren blir hos deg, og pantekvitteringen er fortsatt uinnløst. Det neste steget er å kontrollere og vise selve registreringen.",
+          "effekter": {
+            "flagg": {
+              "pant_avlosning_avtalt": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "ny_kollega_02_vis_pantekort"
+          ]
+        },
+        {
+          "id": "avtal_amir",
+          "tekst": "Be Amir ta veiledningen og bekrefte hva vikaren har lært",
+          "konsekvensTekst": "Amir sier at han tar saken når han har overtatt denne kassa. Han har ennå ikke rapportert noen utført registrering.",
+          "effekter": {
+            "flagg": {
+              "pant_henvist_amir": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "ny_kollega_02_amir_bekrefter"
+          ]
+        },
+        {
+          "id": "lat_det_ligge",
+          "tekst": "La vikaren stå uten avklart hjelp",
+          "konsekvensTekst": "Vikaren står fortsatt med en ubehandlet pantekvittering. Ingen har kontrollert den eller avtalt konkret oppfølging, og oppgaven er uferdig.",
+          "effekter": {
+            "meters": {
+              "integritet": -2
+            },
+            "flagg": {
+              "pant_hjelp_ikke_fulgt_opp": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_02_vis_pantekort",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Vis kontrollen før kvitteringen innløses",
+      "tekst": "Pantekvitteringen viser 14 kroner og kommer fra butikkens egen automat. I denne butikkens bemannede kasse kan beløpet innløses ved å skanne kvitteringen én gang. Vikaren må se at registreringen er gyldig og ikke gjøres to ganger.",
+      "valg": [
+        {
+          "id": "vis_en_gang",
+          "tekst": "Kontroller butikk og beløp, skann én gang og vis kasselinjen",
+          "konsekvensTekst": "Du kontrollerer butikk og beløp, skanner kvitteringen én gang og viser hvor 14 kroner føres. Vikaren observerer at pantebeløpet blir registrert nøyaktig én gang. Hun har ennå ikke selv forklart fremgangsmåten.",
+          "effekter": {
+            "meters": {
+              "energi": -2
+            },
+            "flagg": {
+              "pant_demo_gjennomfort": true,
+              "pant_kvittering_registrert_en_gang": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "ny_kollega_03_vikar_forklarer"
+          ]
+        },
+        {
+          "id": "manuelt_uten_sjekk",
+          "tekst": "Foreslå å taste beløpet manuelt uten å kontrollere kvitteringen",
+          "konsekvensTekst": "Vikaren blir usikker. Du har ikke kontrollert at kvitteringen gjelder butikken eller at den ikke allerede er brukt. Ingen utbetaling blir gjennomført på dette usikre grunnlaget; Lene må kontaktes for en trygg metode.",
+          "effekter": {
+            "flagg": {
+              "pant_manuell_snarvei_stanset": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "be_amir_forklare",
+          "tekst": "Si at du ikke er trygg på kassafunksjonen, og be Amir vise den",
+          "konsekvensTekst": "Du overlater veiledningen til en erfaren kollega i stedet for å gjette. Om Amir faktisk har gjennomført kontrollen, må bekreftes særskilt.",
+          "effekter": {
+            "flagg": {
+              "pant_henvist_amir": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "ny_kollega_02_amir_bekrefter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_02_amir_bekrefter",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Amir forteller hva han faktisk viste",
+      "tekst": "Amir svarer: «Jeg kontrollerte butikk og beløp på pantekvitteringen, skannet den én gang og viste vikaren hvor kasselinjen kom. Hun fikk forklart hvorfor den ikke skal registreres om igjen.» Dette er Amirs veiledning, ikke din egen demonstrasjon.",
+      "valg": [
+        {
+          "id": "registrer_amirs_hjelp",
+          "tekst": "Registrer Amirs utførte veiledning og hvem som gjorde den",
+          "konsekvensTekst": "Du registrerer at Amir viste kontroll, engangsregistrering og resultat i kassa. Vikaren har fått hjelp, men du har ikke selv utført denne veiledningen.",
+          "effekter": {
+            "flagg": {
+              "pant_amir_hjalp": true,
+              "pant_veiledning_av_amir_loggfort": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          }
+        },
+        {
+          "id": "utsett_registreringen",
+          "tekst": "Noter at Amir gjorde jobben, men la dokumentasjonen vente",
+          "konsekvensTekst": "Amir har forklart rutinen, men du har ikke ført hans hjelp i spillerens oppgavelogg. Den faktiske veiledningen er ikke din, og dokumentasjonen står åpen.",
+          "effekter": {
+            "flagg": {
+              "pant_amir_hjalp": true,
+              "pant_amir_logg_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_03_vikar_forklarer",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Kan vikaren nå forklare rutinen selv?",
+      "tekst": "Den første kvitteringen er ferdig registrert. For å unngå dobbel innløsning skal den ikke skannes om igjen. Vikaren kan i stedet forklare fremgangsmåten med en ny, ennå ikke innløst kvittering som eksempel.",
+      "valg": [
+        {
+          "id": "sjekk_forklaringen",
+          "tekst": "La vikaren peke ut kontrollpunktene og bekreft forståelsen",
+          "konsekvensTekst": "Vikaren forklarer at hun må kontrollere hvor kvitteringen kommer fra, lese beløpet, registrere den én gang i bemannet kasse og kontrollere resultatet. Du gir konkret tilbakemelding. Opplæringen er først nå dokumentert fullført.",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 5
+            },
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "hjalp_ny_kollega": true,
+              "pant_vikar_forstod": true,
+              "pant_veiledning_fullfort": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "skills_practice": {
+            "skill_id": "communication",
+            "activity_type": "demonstrate_colleague_method",
+            "evidence_flag": "hjalp_ny_kollega",
+            "delta": 2
+          }
+        },
+        {
+          "id": "ikke_sjekk",
+          "tekst": "La vikaren gå videre uten å kontrollere at metoden er forstått",
+          "konsekvensTekst": "Du har vist én registrering, men vet ikke om vikaren kan gjøre det riktig selv. Derfor skal ferdig opplæring ikke registreres.",
+          "effekter": {
+            "flagg": {
+              "pant_demo_uten_etterkontroll": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
         }
       ]
     },
@@ -1816,11 +2058,14 @@
         "flagg": {
           "hjalp_ny_kollega": {
             "finnes": false
+          },
+          "pant_amir_hjalp": {
+            "finnes": false
           }
         }
       },
       "tittel": "Amir tar en rolig prat",
-      "tekst": "Amir stiller seg ved siden av deg i en stille periode: «Vikaren spurte meg i går — etter at hun hadde stått fast i ti minutter. Ingen klarer gulvet alene her. Ikke du heller.»",
+      "tekst": "Amir tar en rolig prat: «Vikaren ble stående med pantekvitteringen i går uten at noen fullførte opplæringen. Når køen er lang, må vi avtale hvem som hjelper henne, ikke bare håpe at noen gjør det.»",
       "valg": [
         {
           "id": "ta_poenget",
@@ -1868,6 +2113,60 @@
             }
           },
           "konsekvensTekst": "Amir trekker på skuldrene: «Køen din går fortere når det er to som kan jobben.» Han sier det ikke igjen."
+        }
+      ]
+    },
+    {
+      "id": "d2_formiddag_vikaren_etter_amir",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "conditions": {
+        "flagg": {
+          "pant_amir_hjalp": true
+        }
+      },
+      "tittel": "Hvem lærte vikaren å bruke pantekortet?",
+      "tekst": "Vikaren sier: «Amir viste meg pantekvitteringen i går. Takk for at du fikk tak i ham. Kan jeg få prøve å forklare rutinen selv i dag?» Du kan følge opp samhandlingen uten å påstå at du gjorde Amirs demonstrasjon.",
+      "valg": [
+        {
+          "id": "sporr_vikaren",
+          "tekst": "La vikaren beskrive kontrollpunktene og gi egen tilbakemelding",
+          "konsekvensTekst": "Vikaren forklarer butikk, beløp, engangsregistrering og kontroll av kasselinjen. Du bekrefter det hun kan og registrerer ditt eget oppfølgingsarbeid i dag, adskilt fra Amirs opplæring i går.",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 3,
+              "erfaren_kollega": 1
+            },
+            "flagg": {
+              "pant_vikar_forklarte_d2": true,
+              "pant_egen_oppfolging_d2": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "completed"
+              }
+            }
+          }
+        },
+        {
+          "id": "takke_amir",
+          "tekst": "Takk Amir og avtal en senere gjennomgang med vikaren",
+          "konsekvensTekst": "Du dokumenterer at Amir hjalp vikaren i går, men har ennå ikke kontrollert hennes egen forståelse. Dere avtaler et senere øvingspunkt.",
+          "effekter": {
+            "flagg": {
+              "pant_oppfolging_d2_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          }
         }
       ]
     },
