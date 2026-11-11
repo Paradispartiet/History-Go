@@ -40,7 +40,7 @@ test("sixteen Oslo candidates have distinct, real card, portrait and landscape m
 test("PlaceCard keeps artwork uncut and applies focal positions only to place photographs",()=>{
   const css = fs.readFileSync("css/place-sheet.css","utf8");
   const js = fs.readFileSync("js/ui/place-card.js","utf8");
-  assert.match(css,/\.pc-frontcard \.pc-card-face-front > img\s*\{\s*object-fit: cover/u);
+  assert.match(css,/\.pc-frontcard \.pc-card-face-front > img\s*\{[\s\S]*?object-fit: contain/u);\n  assert.match(js,/frontImgEl\.style\.objectFit = "contain"/u);
   assert.match(css,/\.pc-frontcard \.pc-quiz-card-image\s*\{\s*object-fit: contain/u);
   assert.match(js,/frontImgEl\.style\.objectPosition = mediaPosition\(imageComposition\.portraitPosition\)/u);
   assert.match(js,/headerImgEl\.style\.objectPosition = mediaPosition\(imageComposition\.heroPosition\)/u);
