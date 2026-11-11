@@ -1,7 +1,6 @@
 # Oslo Prosjektrom — kildevurdering og gjenværende v1-porter
 
-Dato: 2026-11-03
-
+Dato: 2026-11-03  
 Sted: `oslo_prosjektrom` · Kunst · Platous gate 18 (nåværende publikumsinngang)
 
 ## Identitet og historisk avgrensning

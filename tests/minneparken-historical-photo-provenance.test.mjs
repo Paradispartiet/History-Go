@@ -33,7 +33,8 @@ function jpegDimensions(b){
 test('Historic Minneparken photo is an actual versioned JPEG with verified source dimensions',()=>{
  assert.equal(place.id,'minneparken_gamlebyen');
  assert.equal(place.image,PHOTO);
- assert.equal(place.cardImage,PHOTO);
+ assert.equal('cardImage' in place,false,'Revised Place must not carry retired cardImage');
+ assert.notEqual(place.frontImage,PHOTO,'Standing collectible must use a separate original');
  const bytes=fs.readFileSync(path.join(root,PHOTO));
  assert.ok(bytes.length>200000&&bytes.length<6000000,'Unexpected historical photo byte size');
  assert.deepEqual(jpegDimensions(bytes),{width:3072,height:2304});
@@ -59,7 +60,8 @@ test('Canonical runtime index exposes the dated photograph and historical captio
  const placeInIndex=index.find(row=>row.id==='minneparken_gamlebyen');
  assert.ok(placeInIndex,'Minneparken missing from runtime index');
  assert.equal(placeInIndex.image,PHOTO,'Runtime index must carry historical photo');
- assert.equal(placeInIndex.cardImage,PHOTO,'Runtime index must carry matching front card photo');
+ assert.equal('cardImage' in placeInIndex,false,'Runtime index must not retain retired cardImage');
+ assert.equal(placeInIndex.frontImage,place.frontImage,'Runtime must carry the separate standing front image');
  assert.equal(placeInIndex.imageMeta?.historicalOnly,true,'Runtime index must carry historicalOnly flag');
  assert.match(placeInIndex.imageMeta.historicalCaption,/2007/,'Runtime index must carry dated caption');
  assert.match(placeInIndex.imageMeta.historicalCaption,/2024/);
