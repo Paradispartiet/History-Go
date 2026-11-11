@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'tests/index-real-touch-debug-browser.mjs'
+      - 'tests/device-tap-trace.test.mjs'
+      - 'js/debug/tap-trace.js'
       - '.github/workflows/index-real-touch-debug.yml'
       - 'index.html'
       - 'js/app.js'
@@ -28,6 +30,7 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - run: node --test tests/device-tap-trace.test.mjs
       - run: npx playwright install --with-deps chromium webkit
       - name: Load actual HistoryGo index and test pointer taps
         run: node tests/index-real-touch-debug-browser.mjs

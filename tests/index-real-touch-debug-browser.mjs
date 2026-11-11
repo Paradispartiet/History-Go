@@ -86,11 +86,13 @@ try{
    });
    let page=await ctx.newPage();
    page.on('pageerror',e=>result.errors.push(e.message));
-   await page.goto(base+'/index.html#/place/stortinget',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);
+   await page.goto(base+'/index.html?hgTapTrace=1#/place/stortinget',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);
    await page.locator('#hgOnboardingModal').waitFor({state:'visible',timeout:15000});
    await tap(page,'.hg-onb-close');
    await page.locator('#hgOnboardingModal').waitFor({state:'hidden'});
    result.welcomeDismissed=true;
+   await page.waitForFunction(()=>!!window.HGDeviceTapTrace);
+   assert.equal(await page.locator('#hgDeviceTapTrace').evaluate(e=>getComputedStyle(e).pointerEvents),'none');
    await cardVisible(page,'stortinget');
    await page.waitForTimeout(10000);
    console.log('STORTINGET STATE '+JSON.stringify(await page.evaluate(()=>({
@@ -112,8 +114,12 @@ try{
    await page.waitForFunction(()=>document.getElementById('placeCard')?.getAttribute('aria-hidden')==='true');
    await tap(page,'#pcMini');await cardVisible(page,'stortinget');
    result.stortingetHeaderAndCard=true;
+   const trace=await page.evaluate(()=>window.HGDeviceTapTrace.snapshot());
+   assert.ok(trace.opens.some(e=>e.place==='stortinget'));
+   assert.ok(trace.events.some(e=>e.type==='click'));
+   console.log('DEVICE TRACE '+JSON.stringify(trace));
    await backToMap(page);
-   await page.goto(base+'/index.html#/place/stortinget',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);await cardVisible(page,'stortinget');
+   await page.goto(base+'/index.html?hgTapTrace=1#/place/stortinget',{waitUntil:'domcontentloaded',timeout:60000});await ready(page);await cardVisible(page,'stortinget');
    await page.waitForTimeout(3000);
    await tap(page,'#headerMenuButton');
    await page.waitForFunction(()=>document.getElementById('headerMenuButton')?.getAttribute('aria-expanded')==='true');
