@@ -118,7 +118,9 @@ try{
      if(!media.titleVisible)problems.push("PlaceCard title clipped inside hero after place switch");
      if(!media.hero?.decoded||!media.hero?.source.endsWith(place.image))problems.push("Real hero image did not decode");
      if(!media.portrait?.decoded||!media.portrait?.source.endsWith(place.frontImage))problems.push("Real portrait did not decode");
-     if(media.hero?.fit!=="cover")problems.push("Hero CSS does not use cover");
+     // Global overview framing must not crop source images to match a frame.
+     if(media.hero?.fit!=="contain")problems.push("Hero CSS crops image instead of preserving the complete overview");
+     if(media.portrait?.fit!=="contain")problems.push("Portrait CSS crops frontImage instead of preserving the complete overview");
      if(media.hero?.position!==place.imageComposition.heroPosition)problems.push("Wrong hero focus point");
      if(media.portrait?.position!==place.imageComposition.portraitPosition)problems.push("Wrong portrait focus point");
      if(media.visible){
