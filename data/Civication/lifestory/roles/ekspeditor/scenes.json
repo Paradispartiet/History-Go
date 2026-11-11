@@ -104,7 +104,7 @@
       "valg": [
         {
           "id": "rett_synlig",
-          "tekst": "Stopp kort, sjekk plakaten, og rett feilen synlig — butikken har gjort feil",
+          "tekst": "Kontroller samme pakke og kampanjevilkår før du retter kundens pris",
           "tone": "faglig",
           "skills_practice": {
             "skill_id": "practical_mastery",
@@ -122,15 +122,20 @@
               "energi": -4
             },
             "flagg": {
-              "rettet_feilen_synlig": true
+              "rettet_feilen_synlig": true,
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_handel_rettet": true
             },
             "threads": {
               "prisfeilen_i_koen": {
-                "status": "completed"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "«Plakaten har rett, kassa tar feil — du får 39,» sier du høyt nok til at køen hører det. To i køen nikker. Det tok førti sekunder."
+          "konsekvensTekst": "Du sjekker at tilbudet på 39 gjelder nøyaktig denne pakken og perioden. Etter Lenes avtalte fullmakt korrigerer du handelen fra 49 til 39. Kunden betaler. Prisgrunnlaget står fortsatt på 49; avviket er ikke meldt.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik"
+          ]
         },
         {
           "id": "gjett_pris",
@@ -142,7 +147,8 @@
               "integritet": -4
             },
             "flagg": {
-              "gjettet_prisen": true
+              "gjettet_prisen": true,
+              "eksp_life_pris_39_uten_kontroll": true
             },
             "threads": {
               "prisfeilen_i_koen": {
@@ -150,11 +156,14 @@
               }
             }
           },
-          "konsekvensTekst": "Køen glir videre. Du aner ikke om det var riktig. Det gjør ikke kassaoppgjøret i kveld heller."
+          "konsekvensTekst": "Du slår inn 39 uten å kontrollere vare eller kampanjevilkår. Kunden betaler og køen går videre. Du vet ennå ikke om prisen var riktig, og må undersøke avviket etter handelen.",
+          "laaserOpp": [
+            "prisfeil_03_undersok_etter_snarevei"
+          ]
         },
         {
           "id": "rop_paa_amir",
-          "tekst": "Be Amir sjekke plakaten mens du holder køen i gang",
+          "tekst": "Be Amir kontrollere samme pakke og tilbudsvilkår mens du holder kassa",
           "tone": "samarbeidende",
           "effekter": {
             "relasjoner": {
@@ -165,7 +174,10 @@
               "synlighet": -2
             },
             "flagg": {
-              "fikk_hjelp_med_prisen": true
+              "fikk_hjelp_med_prisen": true,
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_sjekket_av_amir": true,
+              "eksp_life_pris_handel_rettet": true
             },
             "threads": {
               "prisfeilen_i_koen": {
@@ -173,11 +185,14 @@
               }
             }
           },
-          "konsekvensTekst": "Amir er tilbake på tjue sekunder med plakaten i hånda. Køen merket knapt noe. Du merket at du trengte ham."
+          "konsekvensTekst": "Amir sammenligner samme pakke, størrelse og gyldig tilbud: 39 er riktig. Du korrigerer handelen til 39 etter Lenes avtalte fullmakt. Kunden betaler. Prisgrunnlaget viser fortsatt 49 og avviket er ikke meldt.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik"
+          ]
         },
         {
           "id": "rett_og_logg_avvik",
-          "tekst": "Rett kundens pris og meld det konkrete avviket til Lene, så feilen ikke gjentas",
+          "tekst": "Kontroller varen, rett kundens pris og meld det konkrete avviket til Lene",
           "tone": "grundig oppfølging",
           "skills_requirement": {
             "skill_id": "practical_mastery",
@@ -193,7 +208,216 @@
               "energi": -3
             },
             "flagg": {
-              "meldte_prisavvik_til_lene": true
+              "meldte_prisavvik_til_lene": true,
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_handel_rettet": true,
+              "eksp_life_pris_meldt": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du bekrefter at 39 gjelder samme pakke og kampanjeperiode, retter denne handelen og sender Lene vare, begge priser og hva du undersøkte. Meldingen er sendt; Lene har ennå ikke bekreftet mottak eller retting.",
+          "laaserOpp": [
+            "prisfeil_04_lene_bekrefter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_03_undersok_etter_snarevei",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "39 kroner uten kontroll – følg opp",
+      "tekst": "Du tok 39 for kaffen for å få køen videre, uten å sjekke om etiketten gjaldt denne pakken. Handelen er gjennomført, men du kan fortsatt kontrollere varen og dokumentere avviket.",
+      "valg": [
+        {
+          "id": "sjekk_selv",
+          "tekst": "Avtal avløsning, sjekk vare og kampanjevilkår selv og dokumenter funnet",
+          "effekter": {
+            "meters": {
+              "energi": -2,
+              "integritet": 2
+            },
+            "flagg": {
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_sjekket_selv": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Amir tar kassa etter avtale. Du kontrollerer samme pakke, størrelse og gyldig kampanjeperiode: 39 var riktig. Nå kan du dokumentere at kunden fikk riktig beløp, men butikkens prisgrunnlag gjenstår.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik"
+          ]
+        },
+        {
+          "id": "be_amir",
+          "tekst": "Be Amir kontrollere varen og vilkårene mens du tar neste kunde",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": 2
+            },
+            "flagg": {
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_sjekket_av_amir": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Amir kontrollerer samme pakke og bekrefter at tilbudet på 39 er gyldig. Den allerede gjennomførte handelen var riktig, men avviket må fremdeles meldes.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik"
+          ]
+        },
+        {
+          "id": "la_sta_apent",
+          "tekst": "Si fra at prisavviket ikke er undersøkt og må overleveres",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_undersokelse_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du markerer at tilbud og vare ennå ikke er undersøkt. Du kan ikke beskrive verken handelen eller butikksystemet som kontrollert; oppgaven står uavklart."
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_03_meld_avvik",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Meld prisavviket, ikke bare kundens handel",
+      "tekst": "Kunden har betalt 39, og kontrollen har bekreftet tilbudet for samme pakke. Kassa viser fortsatt 49 som prisgrunnlag. Lene har ansvaret for retting av butikkens oppsett. Oppgi hvem som undersøkte varen, vareidentifikasjon, beløp og kampanjeperiode.",
+      "valg": [
+        {
+          "id": "send_notat",
+          "tekst": "Send et konkret avviksnotat til Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_meldt": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sender Lene vare og variant, hyllepris 39, kassepris 49, gyldig kampanje og hvem som kontrollerte. Handelen er korrigert, men du har ennå ikke fått en mottaksbekreftelse.",
+          "laaserOpp": [
+            "prisfeil_04_lene_bekrefter"
+          ]
+        },
+        {
+          "id": "utsett_melding",
+          "tekst": "Opplys at avviket fortsatt ikke er meldt, og overlever restoppgaven",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_melding_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du lar avviket stå som åpent og sier fra om den uferdige meldingen. Kunden fikk riktig pris, men neste kunde kan fremdeles møte feil prisgrunnlag."
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_04_lene_bekrefter",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Lene bekrefter ansvar – kontrollen gjenstår",
+      "tekst": "Lene svarer på prisavviket: «Jeg har mottatt notatet om kaffen og tar ansvar for prisgrunnlaget. Jeg sier fra når endringen er lagt inn. Avtal hvem som kontrollerer samme vare etterpå.» Mottak er ikke det samme som utført retting.",
+      "valg": [
+        {
+          "id": "kontroller_selv",
+          "tekst": "Registrer Lenes bekreftelse og avtal egen etterkontroll",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_overtatt": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer at Lene har overtatt feilen og avtaler å kontrollere samme vare etter oppdateringen. Retting og etterkontroll er ennå ikke dokumentert utført.",
+          "laaserOpp": [
+            "prisfeil_05_sjekk_selv"
+          ]
+        },
+        {
+          "id": "amir_kontrollerer",
+          "tekst": "Registrer Lenes bekreftelse og avtal etterkontroll med Amir",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_overtatt": true,
+              "eksp_life_pris_etterkontroll_delegert": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lene har overtatt feilen. Amir bekrefter at han tar etterkontrollen når prisgrunnlaget er oppdatert. Avtalen alene betyr ikke at kontrollen er gjennomført.",
+          "laaserOpp": [
+            "prisfeil_05_amir_sjekker"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_05_sjekk_selv",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Kaffens nye pris – egen etterkontroll",
+      "tekst": "Lene melder nå at butikkens prisgrunnlag for den aktuelle kaffepakken er endret til 39. Det er hennes bekreftelse på rettingen. Din etterkontroll av samme pakke er en egen handling.",
+      "valg": [
+        {
+          "id": "kontroller_39",
+          "tekst": "Skann samme pakke, sammenlign etiketten og meld resultatet til Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_egen": true,
+              "eksp_life_pris_etterkontroll_verifisert": true
             },
             "threads": {
               "prisfeilen_i_koen": {
@@ -201,7 +425,73 @@
               }
             }
           },
-          "konsekvensTekst": "Du gir kunden kampanjeprisen 39, kontrollerer plakaten og sender Lene et presist avviksnotat. Hun tar ansvaret for å rette systemet. Kunden slipper å forklare feilen på nytt."
+          "konsekvensTekst": "Du skanner den aktuelle kaffepakken. Kassa viser nå 39, etiketten viser 39 og kampanjen gjelder. Du melder den utførte kontrollen til Lene og kan dokumentere at avviket er løst."
+        },
+        {
+          "id": "ikke_kontrollert",
+          "tekst": "Meld at prisen er endret, men at egen etterkontroll gjenstår",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Lenes melding bekrefter endringen, men du har ikke skannet pakken på nytt. Etterkontrollen blir stående som uutført og overleveres videre."
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_05_amir_sjekker",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Amir melder etterkontroll",
+      "tekst": "Lene har meldt retting av prisgrunnlaget. Amir svarer: «Jeg skannet samme kaffepakke. Registrert pris og gyldig etikett viser begge 39.» Dette er Amirs kontroll, ikke spillerens.",
+      "valg": [
+        {
+          "id": "registrer_amir",
+          "tekst": "Registrer Amirs konkrete kontrollresultat hos Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_amir": true,
+              "eksp_life_pris_etterkontroll_verifisert": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du gir Lene beskjed om at Amir utførte kontrollen og fant 39 i både kasse og på etikett. Resultatet kan dokumenteres som løst, med riktig kontrollør."
+        },
+        {
+          "id": "ekstra_egenkontroll",
+          "tekst": "Registrer Amirs resultat, men avtal også en egen ekstra kontroll",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_amir": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Amirs resultat er dokumentert og tilsier at feilen er rettet. Du vil selv kontrollere samme vare før du markerer din ekstra kontroll som fullført.",
+          "laaserOpp": [
+            "prisfeil_05_sjekk_selv"
+          ]
         }
       ]
     },
