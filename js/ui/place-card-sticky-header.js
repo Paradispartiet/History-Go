@@ -45,7 +45,27 @@
       if (!shellHero || !naturalHeight || !card.classList.contains("is-original-photo-pinned")) return;
       // Continuous crop of the ORIGINAL photograph; font, badges, positions,
       // source image and image scaling stay exactly the same.
-      const crop = Math.min(naturalHeight - minimumHeight, Math.max(0, scroller.scrollTop));
+      let crop = Math.min(naturalHeight - minimumHeight, Math.max(0, scroller.scrollTop));
+      const caption = hero.querySelector('.pc-photo-caption');
+      if (caption instanceof HTMLElement && caption.getBoundingClientRect().height > 0) {
+        // The dated caption is counter-translated by CSS. Reserve its real
+        // height before moving the quiz/title/meta upward; otherwise the date
+        // stays inside the photo but overlaps those controls after collapse.
+        const currentCrop = parseFloat(card.style.getPropertyValue('--pc-hero-collapse-offset')) || 0;
+        const captionBounds = caption.getBoundingClientRect();
+        const textTops = [
+          hero.querySelector('#pcStatusBar > .pc-progress-status-line'),
+          headingRow,
+          hero.querySelector('#pcMeta')
+        ].filter(node => node instanceof HTMLElement)
+          .map(node => node.getBoundingClientRect())
+          .filter(bounds => bounds.width > 0 && bounds.height > 0)
+          .map(bounds => bounds.top);
+        if (textTops.length) {
+          const readableCrop = Math.max(0, currentCrop + Math.min(...textTops) - captionBounds.bottom - 8);
+          crop = Math.min(crop, readableCrop);
+        }
+      }
       const visible = naturalHeight - crop;
       const value = visible + "px";
       if (card.style.getPropertyValue("--pc-visible-hero-height") !== value) {
