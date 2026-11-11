@@ -1987,28 +1987,274 @@
         }
       },
       "tittel": "Vikaren spør deg først nå",
-      "tekst": "Vikaren kommer rett til deg med en retur hun ikke forstår: «Du forklarer sånn at jeg tør å spørre.» Det er blitt din kø hun stiller seg i — på godt og vondt.",
+      "tekst": "Vikaren kommer med en kunde som ønsker å bytte en ubrukt matboks til en annen farge. Kunden har en kvittering fra butikken og sier at det ikke er feil ved varen: «Jeg tok feil farge.» Vikaren spør: «Skal jeg bare gi pengene tilbake?» Butikkens byttevilkår ligger ved kassa, men ingen har kontrollert dem ennå.",
       "valg": [
         {
           "id": "laer_bort_metoden",
-          "tekst": "Ta fem minutter og lær bort hele grepet, ikke bare svaret",
+          "tekst": "Avtal kasseavløsning og vis hvordan bytte, kjøpsbevis og reklamasjon skilles",
           "tone": "raus",
-          "skills_practice": {
-            "skill_id": "communication",
-            "activity_type": "teach_work_method",
-            "evidence_flag": "laerte_bort_metoden",
-            "delta": 2
-          },
           "effekter": {
             "relasjoner": {
-              "ny_kollega": 6,
-              "erfaren_kollega": 2
+              "ny_kollega": 1
             },
             "meters": {
-              "energi": -3,
-              "synlighet": 3
+              "energi": -1
             },
             "flagg": {
+              "retur_d2_opplaring_avtalt": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du spør hva kunden ønsker, og forklarer at en feilfri vare følger butikkens frivillige byttevilkår, mens reklamasjon gjelder en mulig mangel. Vikaren får tid til å lære kontrollen. Ingen vare, frist eller kassetransaksjon er ennå kontrollert.",
+          "laaserOpp": [
+            "d2_vikar_retur_02_kontroll"
+          ]
+        },
+        {
+          "id": "vis_raskt",
+          "tekst": "Gi et foreløpig råd om å kontrollere vilkårene, og gå tilbake til køen",
+          "tone": "effektiv",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 1
+            },
+            "meters": {
+              "energi": -1
+            },
+            "flagg": {
+              "viste_raskt": true,
+              "retur_d2_ufullstendig_veiledning": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sier at feilfri vare ikke automatisk gir rett til kontantrefusjon, og peker på bytterutinen. Vikaren har ennå ikke undersøkt kvittering, vare eller frist, og kunden venter fremdeles.",
+          "laaserOpp": [
+            "d2_vikar_retur_02_kort_svar"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d2_vikar_retur_02_kort_svar",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Kunden venter fortsatt – hvem følger opp?",
+      "tekst": "Vikaren sier: «Jeg vet at vi må sjekke byttereglene, men har ikke funnet vilkårene eller kontrollert kvitteringen. Kunden spør igjen om penger tilbake.» Det korte rådet ditt har ikke løst kundens sak og er heller ikke fullført opplæring.",
+      "valg": [
+        {
+          "id": "ta_gjennomgangen",
+          "tekst": "Avtal kasseavløsning og undersøk vilkårene sammen",
+          "konsekvensTekst": "Amir tar køen i noen minutter. Dere finner rutinearket for denne butikkens bytteordning og setter av tid til å kontrollere kjøpet; kunden har ennå ikke fått en avgjørelse.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_opplaring_avtalt": true,
+              "retur_d2_oppfolging_avtalt": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "d2_vikar_retur_02_kontroll"
+          ]
+        },
+        {
+          "id": "be_lene_ta_det",
+          "tekst": "Be Lene ta kunden, og dokumenter at du ikke har lært bort fremgangsmåten",
+          "konsekvensTekst": "Lene blir bedt om å overta, men har ikke bekreftet en beslutning. Du lar veiledningen stå som en uferdig oppgave, uten å tilskrive deg eller vikaren et gjennomført bytte.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_lene_forespurt": true,
+              "retur_d2_veiledning_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "ga_tilbake",
+          "tekst": "Gå tilbake til køen uten å avtale hvem som følger opp",
+          "konsekvensTekst": "Kunden og vikaren blir stående uten en avklart returprosedyre. Ingen vare er registrert eller byttet; opplæringen står åpen.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_ikke_fulgt_opp": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d2_vikar_retur_02_kontroll",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Kontroller butikkens vilkår og riktig vare",
+      "tekst": "I den fiktive butikken sier rutinearket at ubrukt kjøkkenutstyr med kjøpsbevis kan byttes innen 14 dager. Det gir ikke automatisk kontantrefusjon. Kvitteringen viser kjøp for fire dager siden. Kunden ønsker en matboks i en annen farge, og har sagt at varen ikke er defekt. Før bytte må vareidentitet, tilstand og pris på begge varene kontrolleres.",
+      "valg": [
+        {
+          "id": "sammenlign_kvittering_og_vare",
+          "tekst": "Vis vikaren kontroll av kjøpsdato, varenummer, tilstand og butikkens vilkår",
+          "konsekvensTekst": "Dere kontrollerer varenummer og kvittering, ser at matboksen er ubrukt og uskadd, og finner alternativ farge til samme pris innenfor butikkens oppgitte frist. Ingen kontantrefusjon er aktuell. Vilkår og vare er kontrollert, men Lene må fortsatt godkjenne akkurat dette byttet før kasseregistreringen.",
+          "effekter": {
+            "meters": {
+              "energi": -2
+            },
+            "flagg": {
+              "retur_d2_vilkar_kontrollert": true,
+              "retur_d2_vareidentitet_bekreftet": true,
+              "retur_d2_kunde_oensker_bytte": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "d2_vikar_retur_03_lene_godkjenner"
+          ]
+        },
+        {
+          "id": "gi_refusjon_uten_sjekk",
+          "tekst": "Foreslå kontantrefusjon uten å kontrollere vilkårene",
+          "konsekvensTekst": "Vikaren påpeker at kunden bare ønsker en annen farge. Du stopper forslaget før noen utbetaling gjennomføres. Kjøpsgrunnlaget og butikkens frivillige vilkår er ennå ikke kontrollert; saken må følges opp.",
+          "effekter": {
+            "meters": {
+              "integritet": -2
+            },
+            "flagg": {
+              "retur_d2_ubegrunnet_refusjon_stanset": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "be_lene_avklare",
+          "tekst": "Be Lene undersøke om kjøpet omfattes av butikkens byttevilkår",
+          "konsekvensTekst": "Du overfører konkrete opplysninger om kvittering, matboks og kundens ønske. Lene er forespurt, men har ikke bekreftet vilkår eller gjennomført byttet. Vikaren har ikke fullført opplæringen.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_lene_forespurt": true,
+              "retur_d2_vilkar_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d2_vikar_retur_03_lene_godkjenner",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Lene godkjenner dette konkrete byttet",
+      "tekst": "Lene ser kvitteringen, den ubrukte matboksen og vilkårene. Hun sier: «Dette er et frivillig bytte innenfor butikkens ordning, og alternativ farge koster det samme. Jeg godkjenner dette ene byttet. Vis vikaren hvordan begge varelinjene og byttebilaget føres. Generell returfullmakt gir jeg ikke nå.»",
+      "valg": [
+        {
+          "id": "noter_lenes_beslutning",
+          "tekst": "Registrer Lenes konkrete godkjenning og la vikaren gjøre den avtalte kasseregistreringen",
+          "konsekvensTekst": "Du dokumenterer at Lene godkjente dette ene byttet. Kunden og vikaren er klare, men selve byttet er ennå ikke utført. Dere går videre til registrering og kontroll.",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 1
+            },
+            "flagg": {
+              "retur_d2_lene_godkjent": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "d2_vikar_retur_03_vikar_utforer"
+          ]
+        },
+        {
+          "id": "vent_pa_dokumentasjon",
+          "tekst": "La avgjørelsen stå uregistrert til grunnlaget er dokumentert",
+          "konsekvensTekst": "Lene har muntlig sagt ja, men du har ikke dokumentert beslutningen eller gitt vikaren grunnlag for å gjennomføre byttet. Ingen vare er levert ut, og opplæringen er åpen.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_lene_godkjenning_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d2_vikar_retur_03_vikar_utforer",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Vikaren gjennomfører et dokumentert bytte",
+      "tekst": "Lene har godkjent dette konkrete byttet, og den opprinnelige matboksen, kjøpet og de skriftlige vilkårene er kontrollert. Kunden har akseptert en annen farge til samme pris. Vikaren skal nå forklare prosedyren, registrere begge varelinjene og vise et korrekt byttebilag. Lenes godkjenning er ikke en generell returfullmakt for deg eller vikaren.",
+      "valg": [
+        {
+          "id": "veiled_og_kontroller_byttet",
+          "tekst": "La vikaren forklare reglene, registrere retur- og ny varelinje og kontroller bilaget",
+          "konsekvensTekst": "Vikaren forklarer at kunden bytter en feilfri vare etter butikkens frivillige vilkår, sjekker kvittering og varenummer, registrerer innlevert og utlevert matboks én gang hver og viser et byttebilag uten kontantutbetaling. Du kontrollerer bilaget og gir tilbakemelding. Nå er både kundens bytte og opplæringen faktisk fullført.",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 5,
+              "erfaren_kollega": 1
+            },
+            "meters": {
+              "energi": -2,
+              "synlighet": 2
+            },
+            "flagg": {
+              "retur_d2_vikar_forstod": true,
+              "retur_d2_bytte_gjennomfort": true,
               "laerte_bort_metoden": true
             },
             "threads": {
@@ -2017,29 +2263,47 @@
               }
             }
           },
-          "konsekvensTekst": "Neste gang løser hun det selv — og du ser henne forklare det videre til helgevakten. Sånn sprer standarder seg."
+          "skills_practice": {
+            "skill_id": "communication",
+            "activity_type": "teach_work_method",
+            "evidence_flag": "laerte_bort_metoden",
+            "delta": 2
+          }
         },
         {
-          "id": "vis_raskt",
-          "tekst": "Vis raskt og gå tilbake til køen din",
-          "tone": "effektiv",
+          "id": "gjør_det_selv",
+          "tekst": "Utfør byttet selv uten å kontrollere om vikaren kan metoden",
+          "konsekvensTekst": "Du registrerer både innlevert og ny vare til samme pris og gir kunden dokumentasjon på byttet. Kundens oppgave er håndtert, men vikaren har verken forklart kontrollpunktene eller utført registreringen. Opplæringsløpet står åpent.",
           "effekter": {
-            "relasjoner": {
-              "ny_kollega": 2
-            },
             "meters": {
-              "energi": -1
+              "energi": -2
             },
             "flagg": {
-              "viste_raskt": true
+              "retur_d2_bytte_utfort_av_spiller": true,
+              "retur_d2_vikar_kontroll_venter": true
             },
             "threads": {
               "ny_kollega_og_tillit": {
-                "stepDelta": 1
+                "status": "escalated"
               }
             }
-          },
-          "konsekvensTekst": "Hun får svaret og du får køen. I morgen spør hun om det samme."
+          }
+        },
+        {
+          "id": "utsett_bytte",
+          "tekst": "Fortell at varen og vilkårene er kontrollert, men at byttet ennå ikke er registrert",
+          "konsekvensTekst": "Kunden får beskjed om det som er kontrollert, men ingen ny vare er utlevert og ingen byttetransaksjon utført. Vikaren har heller ikke vist at hun kan fullføre oppgaven. Saken forblir åpen.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_bytte_venter": true,
+              "retur_d2_vikar_kontroll_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
         }
       ]
     },

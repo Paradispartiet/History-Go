@@ -124,7 +124,7 @@ const authored = [
   ["arbeidsledig", "d3_soknad_svar", "les_hva_de_saa_etter", "wisdom_judgement"],
   ["life", "privat_kveld_svar", "svar_aerlig", "social_awareness"],
   ["ekspeditor", "apning_01_forste_okt", "sjekk_plakatene", "practical_mastery"],
-  ["ekspeditor", "d2_formiddag_vikaren_kommer_til_deg", "laer_bort_metoden", "communication"],
+  ["ekspeditor", "d2_vikar_retur_03_vikar_utforer", "veiled_og_kontroller_byttet", "communication"],
   ["arbeidsledig","soknad_01_hullet","aerlig","communication"],
   ["arbeidsledig","soknad_01_hullet","referanse","social_awareness"],
   ["arbeidsledig","rytme_01_dagen_flyter","bygg_ramme","agency"],
@@ -164,6 +164,16 @@ const expeditorContent = build("ekspeditor");
 // An intention to help is not earned communication practice: the evidence is
 // awarded after the trainee explains the actual pant method successfully.
 const vikarStart = expeditorContent.scenes.find(s => s.id === "ny_kollega_01_midt_i_koen");
+const returnPromise = expeditorContent.scenes.find(s => s.id === "d2_formiddag_vikaren_kommer_til_deg")
+  ?.valg.find(c => c.id === "laer_bort_metoden");
+const returnCompletion = expeditorContent.scenes.find(s => s.id === "d2_vikar_retur_03_vikar_utforer")
+  ?.valg.find(c => c.id === "veiled_og_kontroller_byttet");
+assert.equal(returnPromise?.skills_practice, undefined,
+  "agreeing to teach returns is not earned instruction evidence");
+assert.equal(returnPromise?.effekter?.flagg?.laerte_bort_metoden, undefined);
+assert.equal(returnCompletion?.skills_practice?.skill_id, "communication");
+assert.equal(returnCompletion?.skills_practice?.evidence_flag, "laerte_bort_metoden");
+assert.equal(returnCompletion?.effekter?.flagg?.laerte_bort_metoden, true);
 const offeredHelp = vikarStart.valg.find(c => c.id === "hjelp_kort");
 assert.equal(offeredHelp.skills_practice, undefined, "offer of coaching cannot award a completed lesson");
 assert.equal(offeredHelp.effekter.flagg.hjalp_ny_kollega, undefined,
