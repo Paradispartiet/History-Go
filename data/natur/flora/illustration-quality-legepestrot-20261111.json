@@ -1,0 +1,52 @@
+{
+  "schema": "history-go-flora-single-species-review-v1",
+  "batch": "09",
+  "date": "2026-11-11",
+  "status": "candidate_awaiting_git_blob",
+  "baselineApproved": 110,
+  "approvedCountAfterRelease": 111,
+  "publicationRule": "Do not approve or merge until original WebP binary is uploaded and mandatory CI passes; preserve all 110 earlier originals and their hashes.",
+  "items": [
+    {
+      "name": "Legepestrot – botanisk originalillustrasjon",
+      "catalogId": "emne_flora_legepestrot",
+      "scientificName": "Petasites hybridus",
+      "existingQuizId": "quiz_nature_flora_legepestrot",
+      "src": "bilder/natur/flora/illustrasjonskandidater/b09/89_legepestrot_v1.webp",
+      "candidate": "bilder/natur/flora/illustrasjonskandidater/b09/89_legepestrot_v1.webp",
+      "gitBlobSha": "ab547d4a1d66f930d63f684450c622b3919961c8",
+      "sha256": "2bef3885f2ed8884a4c3fcf9d701ddad76290286d27798c77a7ab3a0f22d2798",
+      "sizeBytes": 518784,
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "reviewStatus": "candidate",
+      "approvedForPublication": false,
+      "reviewedAt": null,
+      "stage": "varblomstring_og_senere_blader_botanisk_sammenstilling",
+      "botanicalVisualDecision": "Tette rosa-purpur blomsterkurver på rødbrune skjellkledde stengler, svært store nyre-/hjerteformede blad med synlig nervatur og filtaktig underside, kraftig krypende jordstengel med røtter",
+      "visualChecks": {
+        "transparent": true,
+        "originalAlphaVerified": true,
+        "blackBackgroundReviewed": true,
+        "fullImageReviewed": true,
+        "localWebPVerified": true,
+        "botanicalApproved": false
+      },
+      "sourceReferences": [
+        "https://www.rhs.org.uk/plants/12567/petasites-hybridus/details",
+        "https://dnr.wisconsin.gov/topic/Invasives/fact/ButterflyDock",
+        "https://www.rolv.no/urtemedisin/medisinplanter/peta_hyb.htm"
+      ],
+      "observations": "Lokal digital botanisk original for svart visningsbakgrunn. Viser både tidlige blomsterstengler og senere store blad som pedagogisk sesongsammenstilling, med eget rotsystem. Eksakt WebP-binærfil må overføres til repo før publisering.",
+      "limitations": "Blomsterstengel og fullt utviklete blad representerer ulike fenologiske stadier. Tegningen er en botanisk illustrasjon, ikke fotografi eller bestemmelsesnøkkel.",
+      "publicationBlockedBy": [
+        "Upload exact original WebP binary to GitHub and verify both hashes",
+        "Integrate approved runtime + tests without changing 110 earlier originals",
+        "Mandatory illustration-contract and approved-flora-browser pass on final PR head",
+        "Verify Pages after merge"
+      ]
+    }
+  ]
+}
