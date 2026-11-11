@@ -12,6 +12,16 @@
 body.hg-app #placeCard .pc-heading-hero.has-photo-source{
   background:linear-gradient(145deg,#1d2932,#111821 64%,#22252a);
 }
+/* The old desktop header was 980x257, reducing a complete 16:9 photo to
+ * 457x257 in the middle. Give the overview a frame proportionate to the
+ * actual image while leaving the mobile header's existing geometry alone.
+ * Sticky-header code measures its own natural height after this rule. */
+@media (min-width:721px){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+    .pc-heading-hero.has-photo-source{
+    min-height:clamp(320px,38vw,470px);
+  }
+}
 body.hg-app #placeCard #pcHeaderImage.pc-heading-image{
   object-fit:contain !important;
   /* Preserve per-place authored object-position when it exists. */
