@@ -1559,11 +1559,20 @@ if (!card) return;
       });
       headerImgEl.addEventListener("error", () => {
         headerHeroEl.classList.remove("has-image", "has-photo-source");
+        headerHeroEl.style.removeProperty("--pc-overview-heading-photo");
         headerImgEl.removeAttribute("src");
       });
     }
     headerHeroEl.classList.remove("has-image");
-    headerHeroEl.classList.toggle("has-photo-source", Boolean(String(place.image || "").trim()));
+    const overviewHeroSource = String(place.image || "").trim();
+    headerHeroEl.classList.toggle("has-photo-source", Boolean(overviewHeroSource));
+    // A soft copy only fills the empty margins. The sharp image itself stays
+    // entirely visible at any viewport ratio, including the sticky header.
+    headerHeroEl.style.setProperty(
+      "--pc-overview-heading-photo",
+      overviewHeroSource ? `url(${JSON.stringify(overviewHeroSource)})` : "none"
+    );
+    headerImgEl.style.objectFit = "contain";
     setPlaceCardImgSrcStable(headerImgEl, place.image || "");
     if (headerImgEl.complete && headerImgEl.naturalWidth > 0) {
       headerHeroEl.classList.add("has-image");
@@ -1580,8 +1589,17 @@ if (!card) return;
   };
   if (frontImgEl) {
     frontImgEl.style.objectPosition = mediaPosition(imageComposition.portraitPosition);
-    // Only opt-in portrait crops use cover. Reset when switching places.
-    frontImgEl.style.objectFit = imageComposition.portraitFit === "cover" ? "cover" : "";
+    // No Place may enlarge/crop the frontImage to force it into a 3:4 frame.
+    // Older portraitFit:"cover" metadata is retained for provenance, not applied.
+    frontImgEl.style.objectFit = "contain";
+    const frontFace = frontImgEl.closest(".pc-card-face-front");
+    if (frontFace instanceof HTMLElement) {
+      const overviewFrontSource = String(place.frontImage || place.cardImage || place.image || "").trim();
+      frontFace.style.setProperty(
+        "--pc-overview-front-photo",
+        overviewFrontSource ? `url(${JSON.stringify(overviewFrontSource)})` : "none"
+      );
+    }
   }
   if (headerImgEl) headerImgEl.style.objectPosition = mediaPosition(imageComposition.heroPosition);
   setPlaceCardImgSrcStable(frontImgEl, place.frontImage || place.cardImage || place.image || "");
