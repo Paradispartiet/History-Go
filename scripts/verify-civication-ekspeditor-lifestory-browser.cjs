@@ -223,6 +223,85 @@ async function playStock(browser, label, viewport, choices, expected) {
   }
 }
 
+async function playReturn(browser, label, viewport, choices, expected) {
+  const context = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: true });
+  const page = await context.newPage();
+  const errors = [];
+  const trace = [];
+  page.on('pageerror', error => errors.push(error.message));
+  try {
+    await page.goto(origin + '/Civication.html?lifestoryRole=ekspeditor', { waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.rolle === 'ekspeditor'
+      && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId,
+      null, { timeout: 90000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    const initial = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.equal(initial.arkiv.length, 0, label + ': no preloaded history');
+    let reachedReturn = false;
+    let last = null;
+    for (let n = 0; n < 90; n++) {
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': current scene must be playable');
+      if (sceneId === 'retur_01_uten_kvittering') reachedReturn = true;
+      if (['retur_03_lene_tar_saken', 'retur_04_lene_undersokte_varen'].includes(sceneId)) {
+        const title = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(title, /Fra Lene/, label + ': real manager owns her decisions');
+      }
+      const available = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice]:not([disabled])');
+      const selected = choices[sceneId];
+      const button = selected
+        ? page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice="' + selected + '"]:not([disabled])')
+        : available.first();
+      assert.equal(await button.count(), 1, label + ': a real enabled choice exists: ' + sceneId + '/' + selected);
+      await button.scrollIntoViewIfNeeded();
+      const rect = await button.boundingBox();
+      assert.ok(rect && rect.width > 0 && rect.height > 0, label + ': choice has visible dimensions');
+      assert.ok(rect.x >= -2 && rect.x + rect.width <= viewport.width + 2,
+        label + ': no horizontal overflow at ' + sceneId);
+      if (sceneId === 'retur_01_uten_kvittering' || sceneId === expected.finalScene) {
+        await page.screenshot({ path: path.join(output, label + '-' + sceneId + '.png'), fullPage: true });
+      }
+      const before = await page.evaluate(() => globalThis.CivicationLifestoryState.load().arkiv.length);
+      const choiceId = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(beforeCount => globalThis.CivicationLifestoryState.load().arkiv.length === beforeCount + 1,
+        before, { timeout: 20000 });
+      const current = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.equal(current.arkiv.at(-1).sceneId, sceneId);
+      assert.equal(current.arkiv.at(-1).valgId, choiceId);
+      trace.push([sceneId, choiceId]);
+      if (sceneId === expected.finalScene) { last = sceneId; break; }
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    }
+    assert.ok(reachedReturn, label + ': original return scene actually played');
+    assert.equal(last, expected.finalScene);
+    const finished = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    const flags = finished.tidligereValg;
+    for (const [name, yes] of Object.entries(expected.flags)) {
+      assert.equal(flags[name] === true, yes, label + ': fact ' + name + ' is recorded only when executed');
+    }
+    if (expected.status) assert.equal(finished.threadState.kunden_som_tror_du_bestemmer.status, expected.status);
+    const snapshot = finished.arkiv.map(row => [row.sceneId, row.valgId]);
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(),
+      null, { timeout: 90000 });
+    const reloaded = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.deepEqual(reloaded.arkiv.map(row => [row.sceneId, row.valgId]), snapshot,
+      label + ': reload cannot invent a return decision');
+    for (const [name, yes] of Object.entries(expected.flags)) {
+      assert.equal(reloaded.tidligereValg[name] === true, yes, label + ': durable ' + name);
+    }
+    assert.deepEqual(errors, [], label + ': browser runtime must stay error-free');
+    await page.screenshot({ path: path.join(output, label + '-return-after-reload.png'), fullPage: true });
+    return { label, viewport, last, flags: expected.flags, trace };
+  } finally {
+    await context.close();
+  }
+}
+
 (async () => {
   let browser;
   const results = [];
@@ -290,7 +369,32 @@ async function playStock(browser, label, viewport, choices, expected) {
       { finalScene: 'varen_07_amir_etterkontroll', verified: true, status: 'completed', amir: true }));
     results.push(await playStock(browser, 'stock-ipad-landscape', { width: 1180, height: 820 }, stockUnfinished,
       { finalScene: 'varen_06_etterkontroll', verified: false, status: 'escalated' }));
-    console.log('PASS: ekspeditør price + missing-stock Life Story on mobile and iPad', JSON.stringify(results));
+    const legalComplaint = {
+      retur_01_uten_kvittering: 'hold_regelen',
+      retur_02_hva_er_grunnen: 'be_om_ordrebekreftelse',
+      retur_03_lene_tar_saken: 'overlever_varen',
+      retur_04_lene_undersokte_varen: 'utlever_ny_vare'
+    };
+    const awaitingProof = {
+      retur_01_uten_kvittering: 'hent_lene',
+      retur_02_hva_er_grunnen: 'be_om_tid_til_bevis'
+    };
+    const unauthorizedRefund = {
+      retur_01_uten_kvittering: 'boy_regelen'
+    };
+    results.push(await playReturn(browser, 'return-mobile-portrait', { width: 390, height: 844 }, legalComplaint,
+      { finalScene: 'retur_04_lene_undersokte_varen', status: 'active',
+        flags: { retur_kjop_dokumentert: true, retur_lene_overtatt: true,
+          retur_mangel_bekreftet: true, retur_omlevering_utfort: true } }));
+    results.push(await playReturn(browser, 'return-ipad-portrait', { width: 820, height: 1180 }, awaitingProof,
+      { finalScene: 'retur_02_hva_er_grunnen', status: 'escalated',
+        flags: { retur_kjopsbevis_venter: true, retur_kjop_dokumentert: false,
+          retur_lene_overtatt: false, retur_omlevering_utfort: false } }));
+    results.push(await playReturn(browser, 'return-ipad-landscape', { width: 1180, height: 820 }, unauthorizedRefund,
+      { finalScene: 'retur_01_uten_kvittering', status: 'escalated',
+        flags: { retur_utbetaling_uten_bilag: true, retur_avvik_meldt: false,
+          retur_avstemming_bekreftet: false } }));
+    console.log('PASS: ekspeditør price, stock and return/complaint Life Story on mobile and iPad', JSON.stringify(results));
   } finally {
     writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2) + '\n');
     if (browser) await browser.close();

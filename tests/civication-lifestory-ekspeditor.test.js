@@ -402,4 +402,125 @@ assert.ok(flag(stock, 'lager_variant_venter'));
 assert.ok(!flag(stock, 'lager_ett_funnet'), 'unverified variant cannot count as the customer item');
 assert.strictEqual(stock.threadState.varen_som_ikke_finnes.status, 'escalated');
 
+// Returns are not automatically refunds: complaint vs voluntary change-of-mind.
+const returnScene = raw.roleScenes.scenes.find(s => s.id === 'retur_01_uten_kvittering');
+assert.deepStrictEqual(returnScene.valg.map(c => c.id), ['hold_regelen', 'boy_regelen', 'hent_lene'],
+  'preserve return scene and its original choice IDs');
+assert.match(returnScene.tekst, /uklart om varen er feilfri/);
+assert.match(returnScene.valg.find(c => c.id === 'hold_regelen').konsekvensTekst,
+  /reklamasjon/, 'a complaint cannot be treated as a voluntary store return');
+assert.ok(!returnScene.valg.find(c => c.id === 'hold_regelen').konsekvensTekst.includes('tilgodelapp'),
+  'the store must not invent a voucher before checking the reason');
+for (const [id, actor] of [
+  ['retur_02_hva_er_grunnen', null],
+  ['retur_03_lene_tar_saken', 'butikksjef'],
+  ['retur_04_lene_undersokte_varen', 'butikksjef'],
+  ['retur_05_lene_undersoker_bilag', 'butikksjef'],
+  ['retur_06_avstemming_bekreftet', 'butikksjef']
+]) {
+  const scene = raw.roleScenes.scenes.find(s => s.id === id);
+  assert.ok(scene && scene.avsender === actor, id + ' is a real, attributed scene');
+}
+function toReturnEncounter() {
+  const st = State.createInitialState(content);
+  let steps = 0;
+  while (!st.dagFerdig) {
+    const scene = Runner.selectNextScene(st, content);
+    assert.ok(scene, 'real Life Story runner reaches the return encounter');
+    if (scene.id === 'retur_01_uten_kvittering') return st;
+    Runner.applyChoice(st, content, scene.id, scene.valg[0].id);
+    assert.ok(++steps < 90, 'existing day-one tasks reach the return');
+  }
+  assert.fail('existing return scene must remain reachable');
+}
+let ret = toReturnEncounter();
+take(ret, 'retur_01_uten_kvittering', 'hold_regelen');
+assert.ok(flag(ret, 'retur_avklart_sporsmal'));
+assert.ok(!flag(ret, 'retur_kjop_dokumentert'), 'asking a question does not prove a purchase');
+take(ret, 'retur_02_hva_er_grunnen', 'be_om_ordrebekreftelse');
+assert.ok(flag(ret, 'retur_kjop_dokumentert'));
+assert.ok(flag(ret, 'retur_mulig_reklamasjon'));
+assert.ok(!flag(ret, 'retur_mangel_bekreftet'), 'allegation and proof of purchase are not proof of a defect');
+take(ret, 'retur_03_lene_tar_saken', 'overlever_varen');
+assert.ok(flag(ret, 'retur_sak_registrert'));
+assert.ok(flag(ret, 'retur_lene_overtatt'));
+assert.ok(!flag(ret, 'retur_omlevering_utfort'), "overlevering to Lene cannot complete the customer's remedy");
+take(ret, 'retur_04_lene_undersokte_varen', 'utlever_ny_vare');
+assert.ok(flag(ret, 'retur_mangel_bekreftet'));
+assert.ok(flag(ret, 'retur_omlevering_utfort'));
+assert.ok(flag(ret, 'retur_kundens_sak_avklart'));
+assert.notStrictEqual(ret.threadState.kunden_som_tror_du_bestemmer.status, 'completed',
+  'customer remedy does not erase the broader job/authority learning thread');
+
+ret = toReturnEncounter();
+take(ret, 'retur_01_uten_kvittering', 'hent_lene');
+assert.ok(flag(ret, 'retur_ba_lene_om_hjelp'));
+assert.ok(!flag(ret, 'retur_lene_overtatt'), 'requesting manager is not confirmed handover');
+take(ret, 'retur_02_hva_er_grunnen', 'be_om_tid_til_bevis');
+assert.ok(flag(ret, 'retur_kjopsbevis_venter'));
+assert.ok(!flag(ret, 'retur_kjop_dokumentert'));
+assert.strictEqual(ret.threadState.kunden_som_tror_du_bestemmer.status, 'escalated');
+
+ret = toReturnEncounter();
+take(ret, 'retur_01_uten_kvittering', 'hold_regelen');
+take(ret, 'retur_02_hva_er_grunnen', 'avvis_originalkvittering');
+assert.ok(flag(ret, 'retur_feilaktig_avvist'));
+assert.ok(!flag(ret, 'retur_sak_registrert'));
+assert.strictEqual(ret.threadState.kunden_som_tror_du_bestemmer.status, 'escalated');
+
+ret = toReturnEncounter();
+take(ret, 'retur_01_uten_kvittering', 'hold_regelen');
+take(ret, 'retur_02_hva_er_grunnen', 'be_om_ordrebekreftelse');
+take(ret, 'retur_03_lene_tar_saken', 'avvent_overlevering');
+assert.ok(flag(ret, 'retur_overlevering_venter'));
+assert.ok(!flag(ret, 'retur_lene_overtatt'));
+assert.strictEqual(ret.threadState.kunden_som_tror_du_bestemmer.status, 'escalated');
+
+ret = toReturnEncounter();
+take(ret, 'retur_01_uten_kvittering', 'hold_regelen');
+take(ret, 'retur_02_hva_er_grunnen', 'be_om_ordrebekreftelse');
+take(ret, 'retur_03_lene_tar_saken', 'overlever_varen');
+take(ret, 'retur_04_lene_undersokte_varen', 'avvent_utlevering');
+assert.ok(flag(ret, 'retur_mangel_bekreftet'));
+assert.ok(!flag(ret, 'retur_omlevering_utfort'));
+assert.strictEqual(ret.threadState.kunden_som_tror_du_bestemmer.status, 'escalated');
+
+// The wrong refund is actually performed on day 1, but a confession on
+// day 2 is never allowed to claim the cash balance is already corrected.
+ret = toReturnEncounter();
+take(ret, 'retur_01_uten_kvittering', 'boy_regelen');
+assert.ok(flag(ret, 'retur_uten_fullmakt'));
+assert.ok(flag(ret, 'retur_utbetaling_uten_bilag'));
+assert.ok(!flag(ret, 'retur_avvik_meldt'));
+let stepsToDay2 = 0;
+while (!ret.dagFerdig) {
+  const scene = Runner.selectNextScene(ret, content);
+  assert.ok(scene, 'day one must still complete after the unauthorized refund');
+  Runner.applyChoice(ret, content, scene.id, scene.valg[0].id);
+  assert.ok(++stepsToDay2 < 60);
+}
+Runner.startNextDay(ret, content);
+let reachedEvening = false;
+for (let i = 0; i < 80 && !ret.dagFerdig; i++) {
+  const scene = Runner.selectNextScene(ret, content);
+  assert.ok(scene);
+  if (scene.id === 'd2_kveld_kassadifferansen') { reachedEvening = true; break; }
+  Runner.applyChoice(ret, content, scene.id, scene.valg[0].id);
+}
+assert.ok(reachedEvening, 'actual unsupported refund leads to cashier discrepancy on day two');
+take(ret, 'd2_kveld_kassadifferansen', 'fortell_alt');
+assert.ok(flag(ret, 'retur_avvik_meldt'));
+assert.ok(!flag(ret, 'retur_avstemming_bekreftet'),
+  'reporting a mistake does not reconcile the till');
+take(ret, 'retur_05_lene_undersoker_bilag', 'registrer_undersokelsen');
+assert.ok(flag(ret, 'retur_bilag_undersokt'));
+assert.ok(!flag(ret, 'retur_avstemming_bekreftet'),
+  "manager's investigation is not verified correction");
+take(ret, 'retur_06_avstemming_bekreftet', 'dokumenter_sluttresultat');
+assert.ok(flag(ret, 'retur_kasse_rettet_av_lene'));
+assert.ok(flag(ret, 'retur_avstemming_bekreftet'));
+assert.strictEqual(ret.threadState.kunden_som_tror_du_bestemmer.status, 'completed');
+assert.ok(!flag(ret, 'retur_kundens_sak_avklart'),
+  'accounting correction alone is not a customer-complaint ruling');
+
 console.log("civication lifestory ekspeditor ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");
