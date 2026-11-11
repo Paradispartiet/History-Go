@@ -44,10 +44,11 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-med
   background:linear-gradient(145deg, #1d2938, #080d14);
 }
 
-/* Front faces are photographs; the reverse face is a complete QuizCard.
-   Never zoom/crop quiz artwork when the front card uses cover. */
+/* Preserve the full documentary frontImage or artwork within its 3:4 face.
+   The photo-safe backdrop behind the image fills any spare margins; the
+   QuizCard reverse remains independent and is never cropped. */
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard .pc-card-face-front > img{
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard .pc-card-face-back img,
