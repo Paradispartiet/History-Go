@@ -65,3 +65,37 @@ Dette er rolleforfatterens mulige forløp, bygget på dokumenterte arbeidsoppgav
 [Rollemodell](../../data/Civication/roleModels/naeringsliv/ekspeditor.json) · [Rolleverden](../../data/Civication/roleWorlds/naeringsliv/ekspeditor.json) · [Spillscener](../../data/Civication/lifestory/roles/ekspeditor/scenes.json) · [Clerks-kildenotat](../CIVICATION_FILM_THEME_SOURCE_NOTES_WAVE_02.md#c04--forespørselen-som-ikke-er-en-kontrakt-clerks-1994)
 
 Fra *Clerks* kan vi hente konflikten om hvem som får disponere tida når avløsningen uteblir. Vaktfordeling, adgang og overlevering må komme fra den norske spillbutikkens etablerte praksis. Et løfte om å bli igjen eller en faktisk bekreftet avløsning kan føres videre i synopsis og spillets historikk når spilleren har gjort valget.
+
+## Arbeidet eksempel og kobling til eksisterende scener
+
+Denne rollen er arbeidseksempel for [felles arbeidsmåte for alle roller, jobber og Life Stories](../CIVICATION_JOBBGRUNNLAG.md#felles-arbeidsmåte-for-alle-roller-jobber-og-life-stories). Eksemplet er ikke en ferdigattest for rollen. Stillingsbeskrivelse, ordliste, vilkår, oppgaver og kilder over skal brukes sammen med eksisterende spillinnhold.
+
+### Prisen ved hylla – én oppgave gjennom dokumentnettet
+
+| Dokument eller del | Hva det bidrar med |
+| --- | --- |
+| Rolle og ansvar over | Avklarer hva ekspeditøren kan undersøke og hva skiftansvarlig må avgjøre. Lokal fullmakt til priskorrigering må beskrives før den legges til grunn. |
+| Titler og ordliste; utstyr og dokumenter over | Skiller vare, variant, strekkode, hylleetikett, registrert pris og priskorrigering. Begreper som brukes sammen er ikke dermed synonymer. |
+| Oppgaver og vanlige forløp over | Kontroller vare og størrelse mot merkingen, avklar salget, og følg opp årsaken til prisforskjellen. |
+| Kildegrunnlaget over | Underbygger butikkarbeidet. Spillbutikkens bestemte fullmakter, personer og dialog er redaksjonelle premisser. |
+| [Rollemodell](../../data/Civication/roleModels/naeringsliv/ekspeditor.json) | Eksisterende rolleidentitet, hovedforløpet «Bak disken», Lene som butikksjef og Amir som erfaren kollega. |
+| [Life Story-scener](../../data/Civication/lifestory/roles/ekspeditor/scenes.json) | Har allerede tråden `prisfeilen_i_koen`, åpningen `apning_01_forste_okt` og prisavviket `prisfeil_02_koen`. Bruk dem som revisjonsgrunnlag, ikke opprett en parallell historie. |
+| [Mailplan](../../data/Civication/mailPlans/naeringsliv/ekspeditor_plan.json) | Kobler den eksisterende rolleidentiteten til mailfamilier. Aktiv scenekilde og byggvei må kontrolleres før spillendringer. |
+| Spillerens Symposium | Skal vise den kontrollen, avgjørelsen og bekreftede overleveringen som faktisk ble gjennomført. |
+
+### Redaksjonelle kontrollpunkter fra kildefilene
+
+Ved dokumentgjennomgangen 11. november 2026 har åpningsscenen et valg som retter to plakater, men alle åpningsvalg låser opp samme prisfeilscene. Før revisjon må det avklares om kampanjekaffen var kontrollert og rettet; en rettet feil skal ikke bare oppstå på nytt uten forklaring.
+
+Prisfeilscenen har både et valg som avslutter tråden etter å ha rettet kundens pris, og et valg som også melder avviket til Lene. Kundens handel og retting av årsaken må behandles som to forskjellige oppgaver. Ikke anta at systemprisen eller hyllemerkingen er rettet fordi kunden har fått et avslag.
+
+Scenen gir også integritetstrekk for valget om å åpne presis. Vurder om handlingen faktisk innebærer et kjent forsømt ansvar før den gis en slik følge. Beskriv hva spilleren visste og hadde fått beskjed om.
+
+Dette er statiske funn i de lenkede kildefilene, ikke en gjennomspilling eller dokumentasjon på hva runtime viser. Ingen spillscene er endret som del av denne metodebeskrivelsen.
+
+### Hva som fortsatt mangler i arbeidseksemplet
+
+- Bekreftet lokal rutine for prisavvik, registrering og hvem som kan godkjenne retting.
+- Praksiseksempler på avbrytelser, opplæring og beskjeder mellom kolleger; skrevne replikkforslag må merkes.
+- Valgt arbeidssted eller uttrykkelig fiktiv butikk med beskrevne klær, utstyr, ansettelsesvilkår, lønnsgrunnlag og vaktplan.
+- Kontroll av aktiv scenekilde, sammenhengende revisjon og faktisk gjennomspilling før rollen kan omtales som ferdig etter arbeidsmåten.
