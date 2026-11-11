@@ -192,8 +192,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("bootCritical", window.bootCritical || window.boot);
     // Mount only a small button beside the existing badge selector; no
     // full-page overlay or global pointer capture. Keep profile map untouched.
-    await safeRun("loadHomeFavoriteMapPicker", () => loadScriptOnce("js/ui/home-favorite-map-picker.js?v=20261111-safe-map1"));
-    await safeRun("initHomeFavoriteMapPicker", () => window.HGHomeFavoriteMapPicker?.init?.());
+    // The picker is optional. A missing or stale UI asset must NEVER stop
+    // appReady or interfere with map, header, footer or PlaceCard actions.
+    await safeRun("loadHomeFavoriteMapPicker", async () => {
+      try {
+        await loadScriptOnce("js/ui/home-favorite-map-picker.js?v=20261111-safe-map1");
+        window.HGHomeFavoriteMapPicker?.init?.();
+      } catch (error) {
+        console.warn("[HGHomeFavoriteMapPicker] optional control unavailable", error);
+      }
+    });
     // Brand-rundingen rendres synkront når et sted åpnes. Gjør derfor de tre
     // canonicale Brand-kildene klare før appReady/kartet kan åpne første PlaceCard.
     await safeRun("initBrandsBeforeAppReady", async () => {
