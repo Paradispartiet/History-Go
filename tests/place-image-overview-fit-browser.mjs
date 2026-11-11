@@ -73,6 +73,11 @@ try{
           assert.equal(result.header.fit,'contain',label+':'+id+' image overzoom');
           assert.ok(result.front.sourceVisible&&result.header.sourceVisible);
           assert.ok(result.front.width>0&&result.header.width>0);
+          if(!mobile){
+            assert.ok(result.header.height>=320,label+' '+id+' desktop header too shallow for a complete overview');
+            // Landscape views should occupy at least 60% of the broad heading.
+            assert.ok(result.header.displayWidth>=result.header.width*0.59,label+' '+id+' overview is visually too small');
+          }
           // Quiz backs intentionally keep their separate complete image fit.
           assert.deepEqual(errors,[],label+' '+id+' runtime JS errors');
           await page.screenshot({path:'artifacts/place-image-overview/'+label+'-'+id+'.png'});
