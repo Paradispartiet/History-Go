@@ -1,0 +1,32 @@
+name: Civication ekspeditør browser
+on:
+  pull_request:
+    paths:
+      - 'data/Civication/lifestory/roles/ekspeditor/**'
+      - 'scripts/verify-civication-ekspeditor-browser.mjs'
+      - '.github/workflows/civication-ekspeditor-browser.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ekspeditor-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/verify-civication-ekspeditor-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ekspeditor-browser
+          path: reports/ekspeditor-browser/
+          retention-days: 7
