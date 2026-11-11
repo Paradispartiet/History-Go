@@ -161,4 +161,112 @@ while (!state2.dagFerdig) {
 assert.ok(state2.arkiv.some((e) => e.sceneId === "d2_kveld_kassadifferansen"),
   "bøyd regel => kassadifferansen følger deg hjem på dag 2");
 
+// --- Samme eldre Life Story-tråd: kontroll -> handel -> melding -> mottak -> etterkontroll. ---
+// Use the actual Day Runner, not a fabricated archive or a parallel mail family.
+function toPriceEncounter(openingChoice) {
+  const current = State.createInitialState(content);
+  let steps = 0;
+  while (!current.dagFerdig) {
+    const scene = Runner.selectNextScene(current, content);
+    assert.ok(scene, 'every step toward the first price encounter must be playable');
+    if (scene.id === 'prisfeil_02_koen') return current;
+    const selected = scene.id === 'apning_01_forste_okt' ? openingChoice : scene.valg[0].id;
+    Runner.applyChoice(current, content, scene.id, selected);
+    assert.ok(++steps < 20, 'price encounter remains reachable on day one');
+  }
+  assert.fail('price encounter cannot silently disappear');
+}
+function take(current, id, choiceId) {
+  const actual = Runner.selectNextScene(current, content);
+  assert.strictEqual(actual?.id, id, 'follow-up must be the actual next available scene');
+  const before = current.arkiv.length;
+  Runner.applyChoice(current, content, id, choiceId);
+  assert.strictEqual(current.arkiv.length, before + 1, 'one played choice yields one archive event');
+}
+function flag(current, key) { return current.tidligereValg[key] === true; }
+let priceState = toPriceEncounter('sjekk_plakatene');
+take(priceState, 'prisfeil_02_koen', 'rett_synlig');
+assert.ok(flag(priceState, 'eksp_life_pris_handel_rettet'));
+assert.ok(!flag(priceState, 'eksp_life_pris_meldt'), 'customer sale never reports a system defect');
+take(priceState, 'prisfeil_03_meld_avvik', 'send_notat');
+assert.ok(flag(priceState, 'eksp_life_pris_meldt'));
+assert.ok(!flag(priceState, 'eksp_life_pris_overtatt'), 'sent message is not receipt');
+take(priceState, 'prisfeil_04_lene_bekrefter', 'kontroller_selv');
+assert.ok(flag(priceState, 'eksp_life_pris_overtatt'));
+assert.ok(!flag(priceState, 'eksp_life_pris_etterkontroll_verifisert'), 'delegating or agreeing to check is not verifying');
+take(priceState, 'prisfeil_05_sjekk_selv', 'kontroller_39');
+assert.ok(flag(priceState, 'eksp_life_pris_etterkontroll_egen'));
+assert.ok(flag(priceState, 'eksp_life_pris_etterkontroll_verifisert'));
+assert.strictEqual(priceState.threadState.prisfeilen_i_koen.status, 'completed');
+
+priceState = toPriceEncounter('aapne_raskt');
+take(priceState, 'prisfeil_02_koen', 'gjett_pris');
+assert.ok(!flag(priceState, 'eksp_life_pris_vare_sjekket'), 'shortcut is unverified');
+take(priceState, 'prisfeil_03_undersok_etter_snarevei', 'sjekk_selv');
+assert.ok(flag(priceState, 'eksp_life_pris_vare_sjekket'), 'shortcut can be repaired after sale');
+take(priceState, 'prisfeil_03_meld_avvik', 'send_notat');
+take(priceState, 'prisfeil_04_lene_bekrefter', 'kontroller_selv');
+take(priceState, 'prisfeil_05_sjekk_selv', 'ikke_kontrollert');
+assert.ok(flag(priceState, 'eksp_life_pris_grunnlag_rettet'));
+assert.ok(flag(priceState, 'eksp_life_pris_etterkontroll_venter'));
+assert.ok(!flag(priceState, 'eksp_life_pris_etterkontroll_verifisert'));
+assert.strictEqual(priceState.threadState.prisfeilen_i_koen.status, 'escalated', 'unfinished own check stays open');
+
+priceState = toPriceEncounter('spor_amir');
+take(priceState, 'prisfeil_02_koen', 'rop_paa_amir');
+assert.ok(flag(priceState, 'eksp_life_pris_sjekket_av_amir'));
+take(priceState, 'prisfeil_03_meld_avvik', 'send_notat');
+take(priceState, 'prisfeil_04_lene_bekrefter', 'amir_kontrollerer');
+assert.ok(flag(priceState, 'eksp_life_pris_etterkontroll_delegert'));
+assert.ok(!flag(priceState, 'eksp_life_pris_etterkontroll_verifisert'), 'delegation is not execution');
+take(priceState, 'prisfeil_05_amir_sjekker', 'registrer_amir');
+assert.ok(flag(priceState, 'eksp_life_pris_etterkontroll_amir'));
+assert.ok(!flag(priceState, 'eksp_life_pris_etterkontroll_egen'));
+assert.ok(flag(priceState, 'eksp_life_pris_etterkontroll_verifisert'));
+assert.strictEqual(priceState.threadState.prisfeilen_i_koen.status, 'completed');
+
+// Skill-locked D remains locked by production Skills; this stub permits only the
+// already-practised opening check so that the real Runner continuation is tested.
+priceState = toPriceEncounter('sjekk_plakatene');
+const originalSkills = global.CivicationSkills;
+global.CivicationSkills = {
+  checkRequirement(req) {
+    const practised = flag(priceState, 'sjekket_priser_foer_aapning');
+    return {available: practised && req.skill_id === 'practical_mastery' && req.min_score <= 2,
+      required: req.min_score, score: practised ? 2 : 0, measured: true, label: req.skill_id};
+  }
+};
+try {
+  take(priceState, 'prisfeil_02_koen', 'rett_og_logg_avvik');
+} finally {
+  if (originalSkills === undefined) delete global.CivicationSkills;
+  else global.CivicationSkills = originalSkills;
+}
+assert.ok(flag(priceState, 'eksp_life_pris_meldt'), 'original report choice already sends report');
+assert.ok(!flag(priceState, 'eksp_life_pris_overtatt'), 'Lene has not yet accepted at sale time');
+take(priceState, 'prisfeil_04_lene_bekrefter', 'amir_kontrollerer');
+take(priceState, 'prisfeil_05_amir_sjekker', 'ekstra_egenkontroll');
+assert.ok(flag(priceState, 'eksp_life_pris_etterkontroll_amir'));
+assert.ok(!flag(priceState, 'eksp_life_pris_etterkontroll_verifisert'), 'extra personal check not yet performed');
+take(priceState, 'prisfeil_05_sjekk_selv', 'kontroller_39');
+assert.ok(flag(priceState, 'eksp_life_pris_etterkontroll_egen'));
+assert.ok(flag(priceState, 'eksp_life_pris_etterkontroll_verifisert'));
+assert.strictEqual(priceState.threadState.prisfeilen_i_koen.status, 'completed');
+assert.strictEqual(priceState.arkiv.filter(row => row.sceneId === 'prisfeil_03_meld_avvik').length, 0,
+  'reported path cannot require sending the same report twice');
+
+priceState = toPriceEncounter('aapne_raskt');
+take(priceState, 'prisfeil_02_koen', 'gjett_pris');
+take(priceState, 'prisfeil_03_undersok_etter_snarevei', 'la_sta_apent');
+assert.ok(flag(priceState, 'eksp_life_pris_undersokelse_venter'));
+assert.ok(!flag(priceState, 'eksp_life_pris_meldt'));
+assert.strictEqual(priceState.threadState.prisfeilen_i_koen.status, 'escalated');
+
+priceState = toPriceEncounter('sjekk_plakatene');
+take(priceState, 'prisfeil_02_koen', 'rett_synlig');
+take(priceState, 'prisfeil_03_meld_avvik', 'utsett_melding');
+assert.ok(flag(priceState, 'eksp_life_pris_melding_venter'));
+assert.ok(!flag(priceState, 'eksp_life_pris_overtatt'));
+assert.strictEqual(priceState.threadState.prisfeilen_i_koen.status, 'escalated');
+
 console.log("civication lifestory ekspeditor ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");
