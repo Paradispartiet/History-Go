@@ -2,6 +2,8 @@
 
 **Status:** Redaksjonell metode. Ingen ny runtime, scene-ID, spillstatus, låsing eller progresjon.
 
+Se [Symposiums rolleprofiler](CIVICATION_JOBBGRUNNLAG.md) for kildegrunnlaget til jobbene, livsposisjonene og de private rollene. Profilene lenker til synopser og etablerte spillforløp.
+
 ## Faglig forankring
 
 History Go Fagverk: `data/fagverk/litteratur/arketyper_grunnfortellinger_narrativhistorie.json`, registrert under Litteratur.

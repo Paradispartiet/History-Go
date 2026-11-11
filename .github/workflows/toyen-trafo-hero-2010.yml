@@ -1,0 +1,71 @@
+name: Tøyen trafo – independent 2010 building hero
+on:
+  push:
+    branches: [content/toyen-trafo-hero-focus-20261105]
+    paths:
+      - 'scripts/build-toyen-trafo-hero-2010.mjs'
+      - 'tests/toyen-trafo-hero-2010.test.mjs'
+      - 'tests/toyen-trafo-hero-2010-real-browser.mjs'
+      - '.github/workflows/toyen-trafo-hero-2010.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: toyen-trafo-hero-photo-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    name: Verify licensed actual building hero and mobile composition
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Fetch Oslo teatersenter Commons photo with original SHA verification
+        run: |
+          mkdir -p bilder/places/source
+          curl --fail --location --show-error --silent --retry 5 --retry-all-errors --retry-delay 3 --connect-timeout 20 --max-time 120 \
+            -A 'HistoryGoPlacePhotoVerifier/1.0 (editorial documentary use)' \
+            -o bilder/places/source/toyen_trafo_ots_2010_original.jpg \
+            'https://upload.wikimedia.org/wikipedia/commons/1/1a/T%C3%B8yenTrafo001.jpg'
+      - name: Build place-focused WebP and preserve 1931 archival reference
+        run: node scripts/build-toyen-trafo-hero-2010.mjs
+      - name: Refresh canonical runtime
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+      - name: Targeted source, photo and index checks
+        run: |
+          node --test tests/toyen-trafo-hero-2010.test.mjs
+          npm run places:index:check
+          npm run place-open:check
+      - name: Actual mobile and desktop PlaceCard hero render
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/toyen-trafo-hero-2010-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: toyen-trafo-hero-visual
+          path: artifacts/toyen-trafo-hero/
+          if-no-files-found: ignore
+      - name: Commit source, output and canonical runtime
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/places/source/toyen_trafo_ots_2010_original.jpg
+          git add bilder/places/toyen_trafo_hero_2010.webp
+          git add data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04/toyen_trafo.json
+          git add reports/place-production/toyen-trafo-hero-photo-20261105.json
+          git add data/places/places_index.json data/runtime/place-open/toyen_trafo.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Tøyen trafo: publish source-verified building-focused 2010 main photo"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi

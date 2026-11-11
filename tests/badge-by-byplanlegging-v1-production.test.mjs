@@ -23,13 +23,22 @@ const previous={
 test('Byplanlegging 7/10 is registered without replacing six protected By originals',()=>{
  const by=read('data/badges/by.json'),plan=read('data/badges/underbadge_batch01_production.json');
  assert.equal(by.sub.length,10);
- assert.deepEqual(by.subBadgeImages,{...previous,byplanlegging:image});
+ const later=[
+  ['infrastruktur','bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'],
+  ['monumenter_og_landemerker','bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'],
+  ['bolig_og_bomiljo','bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v1.webp']
+ ];
+ assert.deepEqual(by.sub.slice(7),later.map(([id])=>id));
+ const present=later.filter(([id])=>Object.hasOwn(by.subBadgeImages,id));
+ assert.deepEqual(present,later.slice(0,present.length),'new By originals must be sequential');
+ assert.deepEqual(by.subBadgeImages,{...previous,byplanlegging:image,...Object.fromEntries(present)});
+ assert.deepEqual(Object.keys(by.subBadgeImages),[...Object.keys(previous),'byplanlegging',...present.map(([id])=>id)]);
  const a=plan.families.by.assets.find(x=>x.id==='byplanlegging');
  assert.equal(a.status,'integrated');
  assert.equal(a.selectedImage,image);
  assert.deepEqual(a.quality,{visualApproved:true,technicalApproved:true});
  assert.equal(a.sha256,hashes.nb);
- for(const id of by.sub.slice(7))assert.equal(by.subBadgeImages[id],undefined);
+ for(const id of by.sub.slice(7+present.length))assert.equal(by.subBadgeImages[id],undefined);
 });
 test('Byplanlegging exact WebP plus four translated files have verified transparent headers and hashes',()=>{
  const c=read('data/badges/byplanlegging_candidate_v1.json');
@@ -37,7 +46,11 @@ test('Byplanlegging exact WebP plus four translated files have verified transpar
  assert.equal(c.status,'integrated');
  assert.equal(c.quality.registered,true);
  assert.equal(manifest.status,'review_required_not_active');
- assert.equal(manifest.entries.length,56);
+ const by=read('data/badges/by.json');
+ const later=['infrastruktur','monumenter_og_landemerker','bolig_og_bomiljo'];
+ const integrated=later.filter(id=>Object.hasOwn(by.subBadgeImages,id));
+ assert.deepEqual(integrated,later.slice(0,integrated.length),'new By originals and review locales must be staged sequentially');
+ assert.equal(manifest.entries.length,56+integrated.length*4,'exact four new review locales per integrated By original');
  assert.deepEqual(Object.keys(c.variants),['nb','en','es','pt','fr']);
  const entries=manifest.entries.filter(e=>e.category==='by'&&e.id==='byplanlegging');
  assert.deepEqual(entries.map(e=>e.locale),['en','es','pt','fr']);
@@ -69,6 +82,5 @@ test('Byplanlegging exact WebP plus four translated files have verified transpar
    assert.equal(localeEntry.footer,v.footer);
   }
  }
- assert.deepEqual(manifest.skipped.filter(e=>e.category==='by').map(e=>e.id),
-   ['infrastruktur','monumenter_og_landemerker','bolig_og_bomiljo']);
+ assert.deepEqual(manifest.skipped.filter(e=>e.category==='by').map(e=>e.id),later.slice(integrated.length),'only not-yet-integrated By originals may be skipped');
 });

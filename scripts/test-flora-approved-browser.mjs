@@ -25,6 +25,30 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"sotmispel",label:"Søtmispel",term:"Søtmispel",path:"b09/83_sotmispel_v1.webp"},
+    {name:"prydpaere",label:"Prydpære",term:"Prydpære",path:"b09/82_prydpaere_v2.webp"},
+    {name:"prydkirsebaer",label:"Prydkirsebær",term:"Prydkirsebær",path:"b09/81_prydkirsebaer_v1.webp"},
+    {name:"platanlonn",label:"Platanlønn",term:"Platanlønn",path:"b09/80_platanlonn_v1.webp"},
+    {name:"sibirsk-ertebusk",label:"Sibirsk ertebusk",term:"Sibirsk ertebusk",path:"b09/79_sibirsk_ertebusk_v1.webp"},
+    {name:"russekaal",label:"Russekål",term:"Russekål",path:"b09/78_russekaal_v1.webp"},
+    {name:"hagegullregn",label:"Hagegullregn",term:"Hagegullregn",path:"b09/77_hagegullregn_v1.webp"},
+    {name:"buskmure",label:"Buskmure",term:"Buskmure",path:"b09/76_buskmure_v1.webp"},
+    {name:"syrin",label:"Syrin",term:"Syrin",path:"b09/75_syrin_v1.webp"},
+    {name:"mispel",label:"Mispel",term:"Mispel",path:"b09/74_mispel_v1.webp"},
+    {name:"spirea",label:"Spirea",term:"Spirea",path:"b09/73_spirea_v1.webp"},
+    {name:"berberis",label:"Berberis",term:"Berberis",path:"b09/72_berberis_v1.webp"},
+    {name:"mahonia",label:"Mahonia",term:"Mahonia",path:"b09/71_mahonia_v1.webp"},
+    {name:"snobaer",label:"Snøbær",term:"Snøbær",path:"b09/70_snobaer_v1.webp"},
+    {name:"gravbergknapp",label:"Gravbergknapp",term:"Gravbergknapp",path:"b09/69_gravbergknapp_v1.webp"},
+    {name:"kjempespringfro",label:"Kjempespringfrø",term:"Kjempespringfrø",path:"b09/68_kjempespringfro_v1.webp"},
+    {name:"parkslirekne",label:"Parkslirekne",term:"Parkslirekne",path:"b09/67_parkslirekne_v1.webp"},
+    {name:"kanadagullris",label:"Kanadagullris",term:"Kanadagullris",path:"b09/66_kanadagullris_v1.webp"},
+    {name:"kjempebjornkjeks",label:"Kjempebjørnekjeks",term:"Kjempebjørnekjeks",path:"b09/65_kjempebjornkjeks_v1.webp"},
+    {name:"skvallerkaal",label:"Skvallerkål",term:"Skvallerkål",path:"b09/64_skvallerkaal_v1.webp"},
+    {name:"hagelupin",label:"Hagelupin",term:"Hagelupin",path:"b09/63_hagelupin_v1.webp"},
+    {name:"rynkerose",label:"Rynkerose",term:"Rynkerose",path:"b09/62_rynkerose_v1.webp"},
+    {name:"svalerot",label:"Svalerot",term:"Svalerot",path:"b09/61_svalerot_v1.webp"},
+    {name:"rosslyng",label:"Røsslyng",term:"Røsslyng",path:"b09/60_rosslyng_v1.webp"},
     {name:"rodtvetann",label:"Rød tvetann",term:"Rød tvetann",path:"b09/59_rodtvetann_v1.webp"},
     {name:"rodknapp",label:"Rødknapp",term:"Rødknapp",path:"b09/58_rodknapp_v1.webp"},
     {name:"balderbra",label:"Balderbrå",term:"Balderbrå",path:"b09/57_balderbra_v1.webp"},
@@ -120,6 +144,18 @@ try{
     const title=species.label||species.term||species.name;
     const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
     await card.waitFor();
+    if(species.name==="berberis"){
+      const both=page.locator("#natureGrid").getByRole("button",{name:/^Berberis,/i});
+      assert.equal(await both.count(),2,"Berberis must have separate flora and kratt cards");
+      for(const entry of await both.all())
+        assert((await entry.locator("img").getAttribute("src")).endsWith(species.path),"Both Berberis entries must use the one genus original");
+    }
+    if(species.name==="mahonia"){
+      const both=page.locator("#natureGrid").getByRole("button",{name:/^Mahonia,/i});
+      assert.equal(await both.count(),2,"Mahonia must have separate flora and kratt cards");
+      for(const entry of await both.all())
+        assert((await entry.locator("img").getAttribute("src")).endsWith(species.path),"Both Mahonia entries must use the one approved original");
+    }
     await card.locator("img").evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
     assert((await card.locator("img").getAttribute("src")).endsWith(species.path));
     assert.equal((await card.locator(".ne-image-label").innerText()).trim(),"Illustrasjon");

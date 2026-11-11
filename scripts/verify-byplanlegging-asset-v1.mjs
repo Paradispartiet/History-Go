@@ -15,10 +15,21 @@ assert.equal(c.status,'integrated');
 assert.equal(c.quality.registered,true);
 assert.equal(c.quality.technicalApproved,true);
 assert.equal(by.sub.length,10);
-assert.deepEqual(Object.keys(by.subBadgeImages),[
+const firstSeven=[
   'klassisk_arkitektur','modernisme','funksjonalisme',
   'brutalisme','postmodernisme','samtidsarkitektur','byplanlegging'
-]);
+];
+const later=[
+  ['infrastruktur','bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'],
+  ['monumenter_og_landemerker','bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'],
+  ['bolig_og_bomiljo','bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v1.webp']
+];
+assert.deepEqual(by.sub.slice(0,7),firstSeven);
+assert.deepEqual(by.sub.slice(7),later.map(([id])=>id));
+const present=later.filter(([id])=>Object.hasOwn(by.subBadgeImages,id));
+assert.deepEqual(present,later.slice(0,present.length),'new By originals must be sequential');
+assert.deepEqual(Object.keys(by.subBadgeImages),[...firstSeven,...present.map(([id])=>id)]);
+for(const [id,expected] of present)assert.equal(by.subBadgeImages[id],expected,id+' pinned original');
 assert.equal(by.subBadgeImages.byplanlegging,c.sourceImage,'Activate original only');
 assert.deepEqual(Object.keys(c.variants),['nb','en','es','pt','fr']);
 

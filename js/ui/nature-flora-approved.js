@@ -5,6 +5,198 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_sotmispel: Object.freeze({
+      scientificName: "Amelanchier spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/83_sotmispel_v1.webp",
+      gitBlobSha: "9f6a28b49ef751d7bb6aac307b03dafdfea1caff",
+      reviewedAt: "2026-11-11",
+      stage: "pedagogisk_varblomstring_og_sommerbaer",
+      evidence: "data/natur/flora/illustration-quality-sotmispel-20261111.json"
+    }),
+    emne_flora_prydpaere: Object.freeze({
+      scientificName: "Pyrus calleryana",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/82_prydpaere_v2.webp",
+      gitBlobSha: "b83fdaa1c76f1741fdd0395983cf100631ee9eb6",
+      reviewedAt: "2026-11-11",
+      stage: "illustrert_varblomstring_hvite_blomster_og_rotsystem",
+      evidence: "data/natur/flora/illustration-quality-prydpaere-20261110.json"
+    }),
+    emne_flora_prydkirsebaer: Object.freeze({
+      scientificName: "Prunus serrulata (m.fl.)",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/81_prydkirsebaer_v1.webp",
+      gitBlobSha: "92789dac09f9a915b190774aa4e4fd87727e9781",
+      reviewedAt: "2026-11-10",
+      stage: "pedagogisk_varblomstring_rosa_prydkirsebaer",
+      evidence: "data/natur/flora/illustration-quality-prydkirsebaer-20261110.json"
+    }),
+    emne_flora_platanlonn: Object.freeze({
+      scientificName: "Acer pseudoplatanus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/80_platanlonn_v1.webp",
+      gitBlobSha: "a9a52def2f4bfc226da05087c4805d2b5a5f8cbc",
+      reviewedAt: "2026-11-10",
+      stage: "pedagogisk_kombinert_blomstring_og_vingefrukter",
+      evidence: "data/natur/flora/illustration-quality-platanlonn-20261110.json"
+    }),
+    emne_flora_sibirsk_ertebusk: Object.freeze({
+      scientificName: "Caragana arborescens",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/79_sibirsk_ertebusk_v1.webp",
+      gitBlobSha: "dea018f7c4b396527db9b037d17bf44aae866e57",
+      reviewedAt: "2026-11-10",
+      stage: "varblomstring_og_sommerbelger_pedagogisk",
+      evidence: "data/natur/flora/illustration-quality-sibirsk-ertebusk-20261110.json"
+    }),
+    emne_flora_russekaal: Object.freeze({
+      scientificName: "Bunias orientalis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/78_russekaal_v1.webp",
+      gitBlobSha: "610c7ba75478978a5a3cfdcb4f29f655fa555087",
+      reviewedAt: "2026-11-10",
+      stage: "sommerblomstring_gule_korsblomster_og_frukt",
+      evidence: "data/natur/flora/illustration-quality-russekaal-20261110.json"
+    }),
+    emne_flora_hagegullregn: Object.freeze({
+      scientificName: "Laburnum anagyroides",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/77_hagegullregn_v1.webp",
+      gitBlobSha: "2c076dea8598603ed37c66fd1e24904166b8387b",
+      reviewedAt: "2026-11-10",
+      stage: "varblomstring_hengende_gule_blomster_og_belger",
+      evidence: "data/natur/flora/illustration-quality-hagegullregn-20261110.json"
+    }),
+    emne_flora_buskmure: Object.freeze({
+      scientificName: "Dasiphora fruticosa",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/76_buskmure_v1.webp",
+      gitBlobSha: "d6f7dcbe2eda238ea05a9e614e893d4a6c3f38d3",
+      reviewedAt: "2026-11-10",
+      stage: "sommerblomstring_gule_fembladige_blomster",
+      evidence: "data/natur/flora/illustration-quality-buskmure-20261110.json"
+    }),
+    emne_flora_syrin: Object.freeze({
+      scientificName: "Syringa vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/75_syrin_v1.webp",
+      gitBlobSha: "8a0f0d616ae6f5c546a1366fdb049468c9128c89",
+      reviewedAt: "2026-11-10",
+      stage: "varblomstring_lilla_syrinklaser",
+      evidence: "data/natur/flora/illustration-quality-syrin-20261110.json"
+    }),
+    emne_flora_mispel: Object.freeze({
+      scientificName: "Cotoneaster spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/74_mispel_v1.webp",
+      gitBlobSha: "8a4b2561fd576501e75f0cd2474eba8d143aab10",
+      reviewedAt: "2026-11-10",
+      stage: "pedagogisk_slektsmotiv_blomster_og_frukt",
+      evidence: "data/natur/flora/illustration-quality-mispel-20261110.json"
+    }),
+    emne_flora_spirea: Object.freeze({
+      scientificName: "Spiraea spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/73_spirea_v1.webp",
+      gitBlobSha: "252c311109bcd3beb0535b242dba234d7ce6f811",
+      reviewedAt: "2026-11-10",
+      stage: "pedagogisk_slektsmotiv_hvite_og_rosa_blomster",
+      evidence: "data/natur/flora/illustration-quality-spirea-20261110.json"
+    }),
+    emne_flora_berberis: Object.freeze({
+      scientificName: "Berberis spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/72_berberis_v1.webp",
+      gitBlobSha: "57d1070b052ec5b1f6c30650f47a688a93d14039",
+      reviewedAt: "2026-11-10",
+      stage: "pedagogisk_kombinert_varblomstring_hostbaer",
+      evidence: "data/natur/flora/illustration-quality-berberis-20261110.json"
+    }),
+    emne_flora_mahonia: Object.freeze({
+      scientificName: "Mahonia aquifolium",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/71_mahonia_v1.webp",
+      gitBlobSha: "0fe084f5ddb1a57dc80c6306ca589d0cc5139417",
+      reviewedAt: "2026-11-10",
+      stage: "varblomstring_og_sensommerbaer",
+      evidence: "data/natur/flora/illustration-quality-mahonia-20261110.json"
+    }),
+    emne_flora_snobaer: Object.freeze({
+      scientificName: "Symphoricarpos albus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/70_snobaer_v1.webp",
+      gitBlobSha: "499f861817273ca96a04bdab37ac368247867136",
+      reviewedAt: "2026-11-10",
+      stage: "sensommer_hvite_baer_og_rosa_blomster",
+      evidence: "data/natur/flora/illustration-quality-snobaer-20261110.json"
+    }),
+    emne_flora_gravbergknapp: Object.freeze({
+      scientificName: "Phedimus spurius",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/69_gravbergknapp_v1.webp",
+      gitBlobSha: "4e25f6210f4932d379a735d5c0d0601db376f91c",
+      reviewedAt: "2026-11-10",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-gravbergknapp-20261110.json"
+    }),
+    emne_flora_kjempespringfro: Object.freeze({
+      scientificName: "Impatiens glandulifera",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/68_kjempespringfro_v1.webp",
+      gitBlobSha: "e0ea9015f83e599d9fa8810f28bd67b16dfdd570",
+      reviewedAt: "2026-11-10",
+      stage: "sensommerblomstring_med_frokapsler",
+      evidence: "data/natur/flora/illustration-quality-kjempespringfro-20261110.json"
+    }),
+    emne_flora_parkslirekne: Object.freeze({
+      scientificName: "Reynoutria japonica",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/67_parkslirekne_v1.webp",
+      gitBlobSha: "8c33e23ca5587e0cc4db7ab889b762dc5abd9dad",
+      reviewedAt: "2026-11-06",
+      stage: "sensommerblomstring_med_jordstengler",
+      evidence: "data/natur/flora/illustration-quality-parkslirekne-20261106.json"
+    }),
+    emne_flora_kanadagullris: Object.freeze({
+      scientificName: "Solidago canadensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/66_kanadagullris_v1.webp",
+      gitBlobSha: "738ff7e58c4011fc1c2c96bd75d7fd9322ff9d07",
+      reviewedAt: "2026-11-06",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-kanadagullris-20261106.json"
+    }),
+    emne_flora_kjempebjornkjeks: Object.freeze({
+      scientificName: "Heracleum mantegazzianum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/65_kjempebjornkjeks_v1.webp",
+      gitBlobSha: "1a22fff228e3e73d3d83d882e0be445b709c2519",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-kjempebjornkjeks-20261106.json"
+    }),
+    emne_flora_skvallerkaal: Object.freeze({
+      scientificName: "Aegopodium podagraria",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/64_skvallerkaal_v1.webp",
+      gitBlobSha: "27b6c73f26c53ed7c3840565605416b01480fad6",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_med_jordstengler",
+      evidence: "data/natur/flora/illustration-quality-skvallerkaal-20261106.json"
+    }),
+    emne_flora_hagelupin: Object.freeze({
+      scientificName: "Lupinus polyphyllus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/63_hagelupin_v1.webp",
+      gitBlobSha: "389ac8dc3a6e2a948695de1586f92ccee85c6ee4",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_og_skolm",
+      evidence: "data/natur/flora/illustration-quality-hagelupin-20261106.json"
+    }),
+    emne_flora_rynkerose: Object.freeze({
+      scientificName: "Rosa rugosa",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/62_rynkerose_v1.webp",
+      gitBlobSha: "b66382b7a76f60773eef79ad46b3ecb425c41b9b",
+      reviewedAt: "2026-11-06",
+      stage: "sommerblomstring_og_nyper",
+      evidence: "data/natur/flora/illustration-quality-rynkerose-20261106.json"
+    }),
+    emne_flora_svalerot: Object.freeze({
+      scientificName: "Vincetoxicum hirundinaria",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/61_svalerot_v1.webp",
+      gitBlobSha: "f60778d725256fd3bb8d91f293f605d1a0781e72",
+      reviewedAt: "2026-11-05",
+      stage: "sommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-svalerot-20261105.json"
+    }),
+    emne_flora_rosslyng: Object.freeze({
+      scientificName: "Calluna vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/60_rosslyng_v1.webp",
+      gitBlobSha: "ba6314781c3b81b6d775c05f1bffe109d0ab457b",
+      reviewedAt: "2026-11-05",
+      stage: "sensommerblomstring",
+      evidence: "data/natur/flora/illustration-quality-rosslyng-20261105.json"
+    }),
     emne_flora_rodtvetann: Object.freeze({
       scientificName: "Lamium purpureum",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/59_rodtvetann_v1.webp",
@@ -666,7 +858,7 @@
 
   });
   // One scientific species appears twice in the public catalog; reuse the same approved artwork.
-  const aliases = Object.freeze({ emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
+  const aliases = Object.freeze({ emne_ved_sotmispel: "emne_flora_sotmispel", emne_ved_prydpaere: "emne_flora_prydpaere", emne_ved_prydkirsebaer: "emne_flora_prydkirsebaer", emne_ved_platanlonn: "emne_flora_platanlonn", emne_kratt_syrin: "emne_flora_syrin", emne_kratt_mispel: "emne_flora_mispel", emne_kratt_spirea: "emne_flora_spirea", emne_kratt_berberis: "emne_flora_berberis", emne_kratt_mahonia: "emne_flora_mahonia", emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
   const get = id => images[aliases[String(id)] || String(id)] || null;
   window.HG_NATURE_FLORA_APPROVED = Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
 })();

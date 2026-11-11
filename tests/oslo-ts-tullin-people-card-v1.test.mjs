@@ -33,9 +33,9 @@ test('Existing Tullin QuizCard 10/10 exact fullquiz and Knowledge parity; other 
 });
 test('Claus Tullin is one canonical, source-curated person distinct from his father',()=>{
  assert.equal(people.length,1);const p=people[0];assert.equal(p.id,'claus_tullin');assert.equal(p.placeId,'tullin');
- assert.equal(p.profileStandard,'people_profile_v1.0');assert.equal(p.profileStatus,'source_curated_media_pending');
+ assert.equal(p.profileStandard,'people_profile_v1.0');assert.equal(p.profileStatus,'ready_people_v1');
  assert.equal(p.claimsFile,'data/people/claims/by/oslo/tullin/claus_tullin.claims.json');
- assert.equal(p.image,'');assert.ok(p.roundHoldbacks.includes('tullin'));
+ assert.equal(p.image,'bilder/illustrasjoner/people/claus_tullin_historygo_editorial.svg');assert.ok(!p.roundHoldbacks?.includes('tullin'));assert.match(p.imageMeta.disclosure,/ikke historisk portrett/i);
  assert.equal(claims.person_id,'claus_tullin');assert.equal(claims.identity.identity_status,'verified');
  assert.equal(claims.claims.length,7);
  assert.ok(claims.claims.every(x=>x.status==='verified'&&x.source_url));
@@ -47,5 +47,5 @@ test('Both relevant People remain visible in generated Place-open runtime withou
  const ids=rt.people.map(x=>x.id);
  for(const id of ['claus_tullin','bjornstjerne_bjornson'])assert.equal(ids.filter(x=>x===id).length,1,id);
  const claus=rt.people.find(x=>x.id==='claus_tullin');
- assert.equal(claus.profileStatus,'source_curated_media_pending');
+ assert.equal(claus.profileStatus,'ready_people_v1');
 });

@@ -29,7 +29,10 @@ test("Tøyen trafo Place-open displays the correct Brands without changing other
   assert.deepEqual(payload.brands.map(row => row.id), actors.map(row => row.id));
   assert.deepEqual(payload.people.map(row => row.id), ["thorvald_astrup","kari_rolfsen"]);
   assert.equal(payload.stories.length, 1);
-  assert.equal(payload.leksikon.length, 1);
+  assert.deepEqual(payload.leksikon.map(row => row.id), [
+    "toyen_trafo_industri_til_kunstnerhus",
+    "toyen_trafo_ots_oslo_fri_verkstedival_2026_12"
+  ]);
   assert.equal(payload.lesespor.length, 4);
   assert.equal(payload.language.entries.length, 6);
 });

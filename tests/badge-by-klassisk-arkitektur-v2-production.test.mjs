@@ -26,7 +26,11 @@ test('Klassisk arkitektur v2 is active with verified grey embroidered WebP',()=>
 });
 test('the other nine By entries, 12 Film & TV and seven Scenekunst badges are preserved',()=>{
  const by=read('data/badges/by.json'),film=read('data/badges/film_tv.json'),stage=read('data/badges/scenekunst.json');
- assert.equal(by.sub.length,10);assert.equal(Object.keys(by.subBadgeImages).length,7);
+ const infrastructureActive=read('data/badges/infrastruktur_candidate_v1.json').status==='integrated';
+ assert.equal(by.sub.length,10);
+ const activeCount=Object.keys(by.subBadgeImages).length;
+ assert.ok(activeCount>=(infrastructureActive?8:7));
+ assert.deepEqual(Object.keys(by.subBadgeImages),by.sub.slice(0,activeCount));
  assert.equal(Object.keys(film.subBadgeImages).length,12);
  assert.equal(Object.keys(stage.subBadgeImages).length,7);
 });

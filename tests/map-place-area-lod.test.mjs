@@ -1,4 +1,5 @@
 import test from "node:test";
+import "./home-favorite-map-picker-visibility.test.mjs";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -121,7 +122,7 @@ test("områdemarkører er mindre firkanter uten å redusere hitflaten", () => {
 
   const app = read("js/app.js");
   const index = read("index.html");
-  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20261028-badges-readable-close5"\)/);
+  assert.match(app, /loadScriptOnce\("js\/map\.js\?v=20\d{6}-[a-z0-9-]+"\)/);
   assert.match(index, /(?:\.\/)?js\/app\.js\?v=[A-Za-z0-9._-]+/);
 
   assert.doesNotMatch(source, /id: L_AREA_(?:GLOW|DOTS),/);
@@ -282,7 +283,9 @@ test("områdemarkører bruker faktisk Badge-kurven ved utzooming", () => {
 test("kartet henter nye JS- og CSS-ressurser etter Badge-oppdatering", () => {
   const app = read("js/app.js");
   const html = read("index.html");
-  assert.ok(app.includes("js/map.js?v=20261028-badges-readable-close5"), "kartmodulen må få ny cacheversjon");
+  const currentMapVersion = app.match(/js\/map\.js\?v=(20\d{6})-[a-z0-9-]+/);
+  assert.ok(currentMapVersion && Number(currentMapVersion[1]) >= 20261028,
+    "kartmodulen må få en cacheversjon fra eller etter badge-oppdateringen");
   // Startmodulen kan få en nyere cacheversjon når andre funksjoner publiseres etter Badge-oppdateringen.
   const appVersion = html.match(/js\/app\.js\?v=(20\d{6})-[a-z0-9-]+/);
   assert.ok(appVersion && Number(appVersion[1]) >= 20261028, "startmodulen må få en oppdatert cacheversjon");
@@ -297,4 +300,91 @@ test("merkene oppdaterer størrelse under faktisk zoom på både område- og det
     assert.match(code, /const side = showBadge \? mapBadgeDiameter\(zoom\)/, name + ": område-Badges må bruke felles størrelseskurve");
     assert.match(code, /if \(isBadgeMarkerMode\(\)\) return mapBadgeDiameter\(zoom\)/, name + ": detalj-Badges må bruke samme kurve");
   }
+});
+
+
+test("forsidekartet filtrerer til favoritter og gjenoppretter alle steder", () => {
+  const allLayers = new Map();
+  const allSources = new Map();
+  const allMarkers = [];
+  const favorites = new Set(["fav-a"]);
+  const storage = new Map();
+  const makeElement = () => ({
+    className: "", dataset: {}, style: {}, children: [],
+    classList: { toggle() {} },
+    addEventListener() {}, setAttribute() {},
+    appendChild(child) { this.children.push(child); return child; },
+    insertBefore(child) { this.children.push(child); return child; },
+    remove() { this.removed = true; }
+  });
+  class Marker {
+    constructor({ element }) { this.element = element; }
+    setLngLat(coords) { this.coords = coords; return this; }
+    addTo() { allMarkers.push(this); return this; }
+    remove() { this.removed = true; }
+  }
+  class MapLibre {
+    on(event, handlerOrLayer, handler) {
+      if (event === "load") (handler || handlerOrLayer)();
+      return this;
+    }
+    once() { return this; }
+    off() {}
+    resize() {}
+    getZoom() { return 13; }
+    getCenter() { return { lng: 10.75, lat: 59.91 }; }
+    getBounds() { return { contains: () => true }; }
+    getCanvas() { return { addEventListener() {} }; }
+    isStyleLoaded() { return true; }
+    getStyle() { return { layers: [] }; }
+    getSource(id) { return allSources.get(id); }
+    addSource(id, source) {
+      allSources.set(id, { data: source.data, setData(data) { this.data = data; } });
+    }
+    removeSource(id) { allSources.delete(id); }
+    getLayer(id) { return allLayers.get(id); }
+    addLayer(layer) { allLayers.set(layer.id, layer); }
+    removeLayer(id) { allLayers.delete(id); }
+    moveLayer() {}
+    setLayoutProperty() {}
+    setPaintProperty() {}
+    addControl() {}
+  }
+  const mapElement = { dataset: {}, setAttribute() {} };
+  const document = {
+    getElementById: id => id === "map" ? mapElement : null,
+    querySelector: () => null,
+    createElement: makeElement
+  };
+  const context = {
+    console, document, setTimeout, clearTimeout,
+    localStorage: {
+      getItem(key) { return storage.get(key) || null; },
+      setItem(key, value) { storage.set(key, value); }
+    },
+    maplibregl: { Map: MapLibre, Marker, NavigationControl: class {} },
+    navigator: { maxTouchPoints: 1 }, innerWidth: 700,
+    addEventListener() {},
+    HGFavoritePlaces: { has: id => favorites.has(id) }
+  };
+  context.window = context;
+  vm.createContext(context);
+  vm.runInContext(legacy, context, { filename: "js/map.js" });
+  context.HGMap.initMap();
+  context.HGMap.setPlaces([
+    { id: "fav-a", name: "A", category: "historie", lat: 59.914, lon: 10.752, r: 50 },
+    { id: "other-b", name: "B", category: "historie", lat: 59.915, lon: 10.753, r: 50 }
+  ]);
+  const ids = () => Array.from(allSources.get("hg-places").data.features, item => item.properties.id);
+  assert.deepEqual(ids(), ["fav-a", "other-b"]);
+  context.HGMap.setFavoriteViewOnly(true);
+  assert.deepEqual(ids(), ["fav-a"]);
+  context.HGMap.setFavoriteMarkerStyle("star");
+  assert.equal(context.HGMap.getFavoriteMarkerStyle(), "star");
+  assert.ok(allMarkers.some(marker => marker.element.children.some(el => el.className === "hg-place-favorite-symbol")));
+  favorites.clear();
+  context.HGMap.refreshMarkers();
+  assert.deepEqual(ids(), [], "tom favorittliste må fjerne gamle markører");
+  context.HGMap.setFavoriteViewOnly(false);
+  assert.deepEqual(ids(), ["fav-a", "other-b"]);
 });

@@ -4,6 +4,58 @@ on:
     paths:
       - 'bilder/merker/*-brodert-v*.webp'
       - 'data/badges/*.json'
+      - 'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'
+      - 'bilder/merker/by/locales/*/infrastruktur.webp'
+      - 'scripts/import-infrastruktur-assets-v1.py'
+      - 'tests/infrastruktur-candidate.test.mjs'
+      - 'tests/monumenter-badge.test.mjs'
+      - 'tests/bolig-badge.test.mjs'
+      - 'tests/forhistorie-candidate.test.mjs'
+      - 'tests/middelalder-candidate.test.mjs'
+      - 'tests/tidlig-modernetid-candidate.test.mjs'
+      - 'tests/historie-1800-badge-contract.test.mjs'
+      - 'tests/historie-etterkrigstid-badge-contract.test.mjs'
+      - 'tests/historie-byhistorie-badge-contract.test.mjs'
+      - 'tests/historie-industrihistorie-badge-contract.test.mjs'
+      - 'tests/historie-krigshistorie-badge-contract.test.mjs'
+      - 'tests/historie-sosialhistorie-badge-contract.test.mjs'
+      - 'tests/historie-kulturminner-bevaring-badge-contract.test.mjs'
+      - 'tests/historie-krim-ulykker-branner-badge-contract.test.mjs'
+      - 'tests/historie-migrasjon-minoritetshistorie-badge-contract.test.mjs'
+      - 'bilder/merker/historie/undermerker/migrasjon_og_minoritetshistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/migrasjon_og_minoritetshistorie.webp'
+      - 'bilder/merker/historie/undermerker/krim_ulykker_og_branner-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/krim_ulykker_og_branner.webp'
+      - 'bilder/merker/historie/undermerker/kulturminner_og_bevaring-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/kulturminner_og_bevaring.webp'
+      - 'bilder/merker/historie/undermerker/sosialhistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/sosialhistorie.webp'
+      - 'bilder/merker/historie/undermerker/krigshistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/krigshistorie.webp'
+      - 'bilder/merker/historie/undermerker/industrihistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/industrihistorie.webp'
+      - 'bilder/merker/historie/undermerker/byhistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/byhistorie.webp'
+      - 'tests/historie-samtidshistorie-badge-contract.test.mjs'
+      - 'bilder/merker/historie/undermerker/samtidshistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/samtidshistorie.webp'
+      - 'bilder/merker/historie/undermerker/etterkrigstid-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/etterkrigstid.webp'
+      - 'tests/historie-1900-1945-badge.test.mjs'
+      - 'bilder/merker/historie/undermerker/nittenhundre_1900_1945-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/nittenhundre_1900_1945.webp'
+      - 'bilder/merker/historie/undermerker/attenhundretallet-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/attenhundretallet.webp'
+      - 'bilder/merker/historie/undermerker/tidlig_modernetid-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/tidlig_modernetid.webp'
+      - 'bilder/merker/historie/undermerker/middelalder-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/middelalder.webp'
+      - 'bilder/merker/historie/undermerker/forhistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/forhistorie.webp'
+      - 'bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v1.webp'
+      - 'bilder/merker/by/locales/*/bolig_og_bomiljo.webp'
+      - 'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'
+      - 'bilder/merker/by/locales/*/monumenter_og_landemerker.webp'
       - 'tests/badge-embroidered-rollout-v1.test.mjs'
       - '.github/workflows/qa-embroidered-rollout.yml'
 permissions:
@@ -24,6 +76,23 @@ jobs:
         run: |
           node --test tests/badge-embroidered-rollout-v1.test.mjs
           node --test tests/badge-embroidered-rollout-v2.test.mjs
+          node --test tests/infrastruktur-candidate.test.mjs
+          node --test tests/monumenter-badge.test.mjs
+          node --test tests/bolig-badge.test.mjs
+          node --test tests/forhistorie-candidate.test.mjs
+          node --test tests/middelalder-candidate.test.mjs
+          node --test tests/tidlig-modernetid-candidate.test.mjs
+          node --test tests/historie-1800-badge-contract.test.mjs
+          node --test tests/historie-etterkrigstid-badge-contract.test.mjs
+          node --test tests/historie-byhistorie-badge-contract.test.mjs
+          node --test tests/historie-industrihistorie-badge-contract.test.mjs
+          node --test tests/historie-krigshistorie-badge-contract.test.mjs
+          node --test tests/historie-sosialhistorie-badge-contract.test.mjs
+          node --test tests/historie-kulturminner-bevaring-badge-contract.test.mjs
+          node --test tests/historie-krim-ulykker-branner-badge-contract.test.mjs
+          node --test tests/historie-migrasjon-minoritetshistorie-badge-contract.test.mjs
+          node --test tests/historie-samtidshistorie-badge-contract.test.mjs
+          node --test tests/historie-1900-1945-badge.test.mjs
       - name: Generate four-badge preview
         run: |
           python -m pip install -q pillow

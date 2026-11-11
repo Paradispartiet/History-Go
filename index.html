@@ -9,6 +9,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
   <title>History Go</title>
+  <script>
+    if (new URLSearchParams(location.search).get("hgTapTrace") === "1") {
+      const trace = document.createElement("script");
+      trace.src = "js/debug/tap-trace.js?v=20261111-1";
+      trace.async = false;
+      document.head.appendChild(trace);
+    }
+  </script>
 
   <script src="js/config.js?v=20261023-map-controls-cleanup2"></script>
 
@@ -39,10 +47,11 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/layout.css?v=20261111-map-clickthrough1">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/search.css">
   <link rel="stylesheet" href="css/nearby.css?v=20261009-nearby-map-frame1">
+  <link rel="stylesheet" href="css/nearby-explore-guide.css?v=20261106-1">
   <link rel="stylesheet" href="css/miniProfile.css">
   <link rel="stylesheet" href="css/profile.css">
   <link rel="stylesheet" href="css/merits.css">
@@ -51,6 +60,7 @@
   <link rel="stylesheet" href="css/overlay.css">
   <link rel="stylesheet" href="css/effects.css">
   <link rel="stylesheet" href="css/map.css?v=20261028-badges-readable-close5">
+  <link rel="stylesheet" href="css/home-favorite-map-picker.css?v=20261111-safe-map1">
   <link rel="stylesheet" href="css/placeCard.css?v=20261102-visible-layout6">
   <link rel="stylesheet" href="css/place-card-sticky-header.css?v=20261102-half-crop2">
   <link rel="stylesheet" href="css/place-card-reader.css?v=20261010-continuous2">
@@ -300,6 +310,30 @@
         </div>
       </div>
 
+      <div class="nearby-discovery-tools" role="search" aria-label="Søk i Utforsk">
+        <label class="nearby-quick-search" for="nearbyQuickSearch">
+          <span aria-hidden="true">⌕</span>
+          <input id="nearbyQuickSearch" type="search" placeholder="Søk i steder…" autocomplete="off">
+        </label>
+        <button id="nearbyGuideToggle" type="button" aria-expanded="false" aria-controls="nearbyGuidePanel">✨ Veiviser</button>
+        <div class="nearby-discovery-status">
+          <span id="nearbyActiveFilter"></span>
+          <output id="nearbySearchCount" aria-live="polite"></output>
+        </div>
+      </div>
+      <div id="nearbyGuidePanel" class="nearby-guide-panel" role="region" aria-label="Utforsk-veiviseren" hidden>
+        <p class="nearby-guide-heading">Hva har du lyst til å finne?</p>
+        <div class="nearby-guide-actions">
+          <button type="button" data-hg-guide-action="near">📍 Nærmeste steder</button>
+          <button type="button" data-hg-guide-action="new">🎯 Noe nytt</button>
+          <button type="button" data-hg-guide-action="history">🏛️ Tidsreise</button>
+          <button type="button" data-hg-guide-action="people">👥 Finn folk</button>
+          <button type="button" data-hg-guide-action="nature">🌿 Finn natur</button>
+          <button type="button" data-hg-guide-action="routes">🥾 Finn ruter</button>
+          <button type="button" data-hg-guide-action="badges">🏅 Finn merker</button>
+        </div>
+      </div>
+
       <div class="nearby-row2">
         <div id="nearbyList" class="nearby-strip"></div>
         <div id="leftPeopleList" class="nearby-strip" hidden></div>
@@ -445,6 +479,7 @@
 
   <script defer src="js/ui/place-card-sticky-header.js?v=20261102-half-crop2"></script>
   <script defer src="js/ui/place-card-round-gallery.js?v=20261103-editorial1"></script>
-  <script type="module" src="./js/app.js?v=20261102-visible-layout6"></script>
+  <script defer src="js/ui/nearby-explore-guide.js?v=20261106-1"></script>
+  <script type="module" src="./js/app.js?v=20261111-safe-map1"></script>
 </body>
 </html>

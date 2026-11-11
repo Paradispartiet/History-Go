@@ -6,6 +6,12 @@ import { resolve } from 'node:path';
 const root=resolve(import.meta.dirname,'..');
 const read=path=>JSON.parse(readFileSync(resolve(root,path),'utf8'));
 const plan=read('data/badges/underbadge_batch01_production.json');
+const infrastructureCandidate=read('data/badges/infrastruktur_candidate_v1.json');
+const infrastructureActive=infrastructureCandidate.status==='integrated';
+const monumentCandidate=read('data/badges/monumenter_candidate_v1.json');
+const monumentActive=monumentCandidate.status==='integrated';
+const boligCandidate=read('data/badges/bolig_candidate_v1.json');
+const boligActive=boligCandidate.status==='integrated';
 const firstPilotKeys=['scenekunst/teater','by/klassisk_arkitektur','film_tv/spillefilm'];
 const approvedMain={
  historie:'bilder/merker/historie.PNG',
@@ -34,14 +40,14 @@ test('legacy candidates and the activated Scenekunst and Film underbadges are re
   assert.deepEqual(family.assets.map(a=>a.id),parent.sub);
   if(id==='scenekunst') assert.deepEqual(parent.subBadgeImages,activated);
   else if(id==='film_tv') assert.deepEqual(parent.subBadgeImages,{spillefilm:'bilder/merker/film_tv/undermerker/spillefilm-brodert-v2.webp',kortfilm:'bilder/merker/film_tv/undermerker/kortfilm-brodert-v1.webp',dokumentarfilm:'bilder/merker/film_tv/undermerker/dokumentarfilm-brodert-v1.webp',tv_serier:'bilder/merker/film_tv/undermerker/tv_serier-brodert-v1.webp',nyheter_og_reportasje:'bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp',klassikere:'bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp',norsk_film_og_tv:'bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp',filmfestivaler:'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp',filmlocations:'bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp',film_og_tv_produksjon:'bilder/merker/film_tv/undermerker/film_og_tv_produksjon-brodert-v1.webp',arkiv_og_kanon:'bilder/merker/film_tv/undermerker/arkiv_og_kanon-brodert-v1.webp',visningssteder:'bilder/merker/film_tv/undermerker/visningssteder-brodert-v1.webp'});
-  else if(id==='by') assert.deepEqual(parent.subBadgeImages,{klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp',modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v1.webp',funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp',brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v1.webp',postmodernisme:'bilder/merker/by/undermerker/postmodernisme-brodert-v1.webp',samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp',byplanlegging:'bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp'});
+  else if(id==='by') assert.deepEqual(parent.subBadgeImages,{klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp',modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v1.webp',funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp',brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v1.webp',postmodernisme:'bilder/merker/by/undermerker/postmodernisme-brodert-v1.webp',samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp',byplanlegging:'bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp',...(infrastructureActive?{infrastruktur:'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'}:{}),...(monumentActive?{monumenter_og_landemerker:'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'}:{}),...(boligActive?{bolig_og_bomiljo:'bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v1.webp'}:{})});
   else assert.equal(parent.subBadgeImages,undefined,id+' other underbadges remain inactive');
   for(const asset of family.assets){
    const path='bilder/merker/'+id+'/undermerker/'+asset.id+'-brodert-v1.webp';
    assert.equal(asset.proposedFile,path);
    const activeImage=id==='scenekunst'?activated[asset.id]:(id==='film_tv'||id==='by')?(parent.subBadgeImages?.[asset.id]||null):null;
    assert.equal(asset.selectedImage,activeImage||null,id+'/'+asset.id);
-   assert.equal(asset.quality.visualApproved,(id==='film_tv'&&['kortfilm','dokumentarfilm','tv_serier','nyheter_og_reportasje','klassikere','norsk_film_og_tv','filmfestivaler','filmlocations','film_og_tv_produksjon','arkiv_og_kanon','visningssteder'].includes(asset.id))||(id==='by'&&['klassisk_arkitektur','modernisme','funksjonalisme','brutalisme','postmodernisme','samtidsarkitektur','byplanlegging'].includes(asset.id)));
+   assert.equal(asset.quality.visualApproved,(id==='film_tv'&&['kortfilm','dokumentarfilm','tv_serier','nyheter_og_reportasje','klassikere','norsk_film_og_tv','filmfestivaler','filmlocations','film_og_tv_produksjon','arkiv_og_kanon','visningssteder'].includes(asset.id))||(id==='by'&&(['klassisk_arkitektur','modernisme','funksjonalisme','brutalisme','postmodernisme','samtidsarkitektur','byplanlegging'].includes(asset.id)||(asset.id==='infrastruktur'&&infrastructureActive)||(asset.id==='monumenter_og_landemerker'&&monumentActive)||(asset.id==='bolig_og_bomiljo'&&boligActive))));
    assert.ok(asset.label.length>=3&&asset.motif.length>=25);
    if(asset.status==='rendered_candidate'||asset.status==='rework_required'){
      if(asset.status==='rework_required'){
@@ -65,12 +71,22 @@ test('legacy candidates and the activated Scenekunst and Film underbadges are re
    }else if(asset.status==='integrated'){
      assert.ok(id==='film_tv'||id==='by');
      if(id==='film_tv') assert.ok(['kortfilm','dokumentarfilm','tv_serier','nyheter_og_reportasje','klassikere','norsk_film_og_tv','filmfestivaler','filmlocations','film_og_tv_produksjon','arkiv_og_kanon','visningssteder'].includes(asset.id));
-     else assert.ok(['klassisk_arkitektur','modernisme','funksjonalisme','brutalisme','postmodernisme','samtidsarkitektur','byplanlegging'].includes(asset.id));
+     else assert.ok(['klassisk_arkitektur','modernisme','funksjonalisme','brutalisme','postmodernisme','samtidsarkitektur','byplanlegging','infrastruktur','monumenter_og_landemerker','bolig_og_bomiljo'].includes(asset.id));
      assert.equal(asset.quality.visualApproved,true);
      assert.ok(existsSync(resolve(root,asset.selectedImage)));
    }else{
      assert.equal(asset.status,'planned');
-     assert.ok(!existsSync(resolve(root,path)));
+     if(id==='by'&&asset.id==='infrastruktur'&&infrastructureCandidate.quality.repositoryBinaryVerified){
+       assert.equal(infrastructureCandidate.status,'binary_verified_awaiting_approval');
+       const variant=infrastructureCandidate.variants.nb;
+       assert.equal(path,variant.path);
+       const bytes=readFileSync(resolve(root,path));
+       assert.equal(bytes.length,variant.bytes);
+       assert.equal(createHash('sha256').update(bytes).digest('hex'),variant.sha256);
+       assert.equal(asset.quality.visualApproved,false);
+     }else{
+       assert.ok(!existsSync(resolve(root,path)));
+     }
    }
    total++;
   }

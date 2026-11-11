@@ -210,7 +210,10 @@
   }
 
   function showExploreBase() {
-    document.body?.classList.remove("hg-view-profile", "hg-view-civication", "hg-view-quiz");
+    // Leaving dedicated map view must clear both mode flags. LayerManager only
+    // removes "mode-map"; the legacy "map-only" flag otherwise keeps the
+    // PlaceCard and Explore drawer hidden despite successful #/place navigation.
+    document.body?.classList.remove("map-only", "hg-view-profile", "hg-view-civication", "hg-view-quiz");
     document.body?.classList.add("hg-view-map");
 
     if (window.LayerManager?.setMode) {

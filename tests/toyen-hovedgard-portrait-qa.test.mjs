@@ -1,0 +1,44 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+const root=path.resolve(new URL('..',import.meta.url).pathname);
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
+const id='toyen_hovedgard',p=read('data/places/historie/oslo/places_historie/'+id+'.json');
+test('front of Tøyen hovedgård is independent upright original illustration',()=>{
+  assert.equal(p.id,id);
+  assert.equal(p.category,'historie');
+  assert.match(p.image,/commons\.wikimedia\.org/);
+  assert.equal(p.imageLicense,'CC BY-SA 3.0');
+  assert.equal(p.frontImage,'bilder/illustrasjoner/places/toyen_hovedgard_front_editorial.svg');
+  assert.notEqual(p.frontImage,p.image);
+  assert.equal('cardImage' in p,false,'legacy cardImage must not be reintroduced');
+  assert.equal('imageCard' in p,false);
+  const s=fs.readFileSync(path.join(root,p.frontImage),'utf8');
+  assert.match(s,/<svg\b/);
+  assert.match(s,/width="900" height="1200"/);
+  assert.match(s,/REDAKSJONELL ILLUSTRASJON · IKKE FOTOGRAFI/);
+  assert.equal(p.frontImageMeta.mediaType,'editorial_illustration');
+  assert.match(p.frontImageMeta.disclosure,/ikke fotografi/i);
+});
+test('existing historical content and 21 fullquiz / 10 QuizCard remain',()=>{
+  assert.equal(p.address.number,'23B');
+  assert.equal(p.coordStatus,'verified');
+  assert.equal(p.fagverk.status,'curated');
+  assert.equal(p.fagverk.article.length,3);
+  const quiz=read('data/quiz/historie/toyen_hovedgard_sets.json');
+  assert.equal(quiz.sets.length,3);
+  assert.equal(quiz.sets.reduce((n,s)=>n+s.questions.length,0),21);
+  const card=read('data/quizcards/historie/toyen_hovedgard_quizcard_v1.json');
+  assert.equal(card.cards[0].questions.length,10);
+});
+test('generated place index and place-open mirror canonical frontImage without cardImage',()=>{
+  const index=read('data/places/places_index.json');
+  const ix=index.find(x=>x.id===id);
+  assert.ok(ix,'missing from Places index');
+  assert.equal(ix.frontImage,p.frontImage);
+  assert.equal('cardImage' in ix,false);
+  const rt=read('data/runtime/place-open/'+id+'.json');
+  assert.equal(rt.place.frontImage,p.frontImage);
+  assert.equal('cardImage' in rt.place,false);
+});

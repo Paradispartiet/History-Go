@@ -1,0 +1,173 @@
+/* Favorites selector in the fixed homepage map dock, immediately beside the badge picker. */
+.hg-map-favorite-filter {
+  position: relative;
+  order: 998;
+  flex: 0 0 auto;
+  pointer-events: auto;
+}
+body.hg-app .map-controls .hg-map-favorite-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 86px;
+  height: 38px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #050505;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.hg-map-favorite-trigger [data-favorite-trigger-icon] {
+  font-size: 19px;
+  line-height: 1;
+}
+body.hg-app .map-controls .hg-map-favorite-trigger.is-active {
+  border-color: #f8d87a;
+  color: #f8d87a;
+}
+@media (max-width: 480px) {
+  body.hg-app .map-controls .hg-map-favorite-trigger {
+    width: 38px;
+    min-width: 38px;
+    height: 38px;
+    padding: 0;
+  }
+  .hg-map-favorite-label { display: none; }
+}
+@media (max-width: 420px) {
+  body.hg-app .map-controls .hg-map-favorite-trigger {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+  }
+}
+
+.hg-map-favorite-filter .hg-home-favorite-map-picker {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  width: min(322px, calc(100vw - 26px));
+  max-height: min(65dvh, 540px);
+  overflow-y: auto;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.24);
+  box-shadow: 0 14px 36px rgba(0,0,0,.55);
+  background: #161b24;
+  color: #fff;
+  z-index: 70;
+  font: inherit;
+}
+.hg-map-favorite-filter .hg-home-favorite-map-picker[hidden],
+.hg-map-favorite-filter .hg-fav-picker-custom[hidden] {
+  display: none !important;
+}
+.hg-fav-picker-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.hg-fav-picker-heading strong { font-size: 16px; }
+.hg-fav-picker-close {
+  font-size: 22px;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  min-height: 32px;
+  min-width: 32px;
+  cursor: pointer;
+}
+.hg-home-favorite-map-picker [data-favorite-count] {
+  display: block;
+  opacity: .72;
+  margin-top: 2px;
+}
+.hg-home-favorite-map-picker p {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #dae3f1;
+  margin: 9px 0 12px;
+}
+.hg-fav-picker-group,
+.hg-fav-picker-symbols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.hg-fav-picker-symbols { max-height: 150px; overflow-y: auto; }
+.hg-fav-picker-group button,
+.hg-fav-picker-symbols button {
+  appearance: none;
+  border: 1px solid #526174;
+  background: #283243;
+  border-radius: 9px;
+  padding: 7px 9px;
+  min-height: 36px;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.hg-fav-picker-group button.is-active,
+.hg-fav-picker-symbols button.is-active {
+  border-color: #8fc7ff;
+  background: #234d78;
+  box-shadow: inset 0 0 0 1px #8fc7ff;
+}
+.hg-fav-picker-subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 14px 0 8px;
+}
+.hg-fav-picker-custom {
+  display: grid;
+  gap: 7px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #4b5567;
+}
+.hg-fav-picker-custom label { font-size: 12px; font-weight: 600; }
+.hg-fav-picker-custom select {
+  min-width: 0;
+  width: 100%;
+  padding: 8px;
+  background: #283243;
+  border: 1px solid #66768b;
+  border-radius: 8px;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+}
+body.hg-app #map .hg-place-area-marker.has-favorite-icon,
+body.hg-app #map .hg-place-detail-marker.has-favorite-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible;
+}
+body.hg-app #map .hg-place-favorite-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.75));
+}
+@media(max-width: 520px) {
+  .hg-map-favorite-filter .hg-home-favorite-map-picker {
+    bottom: calc(100% + 8px);
+    width: min(290px, calc(100vw - 28px));
+    padding: 11px;
+  }
+}

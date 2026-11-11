@@ -16,13 +16,17 @@ test("By Modernisme badge has exact 1024px gray embroidered image, correct routi
   assert.equal(by.image,"bilder/merker/by-brodert-v6.webp");
   assert.equal(oslo.scope,"city_only");
   assert.equal(oslo.image,"bilder/merker/by/oslo-brodert-v1.webp");
+  const infrastructureActive=read('data/badges/infrastruktur_candidate_v1.json').status==='integrated';
   assert.deepEqual(by.subBadgeImages,{
     klassisk_arkitektur:"bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp",
     modernisme:imagePath,
     funksjonalisme:"bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp",
     brutalisme:"bilder/merker/by/undermerker/brutalisme-brodert-v1.webp",
     postmodernisme:"bilder/merker/by/undermerker/postmodernisme-brodert-v1.webp",
-    samtidsarkitektur:"bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp",byplanlegging:"bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp"
+    samtidsarkitektur:"bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp",byplanlegging:"bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp",
+    ...(infrastructureActive?{infrastruktur:"bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp"}:{}),
+    ...(by.subBadgeImages.monumenter_og_landemerker?{monumenter_og_landemerker:"bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp"}:{}),
+    ...(by.subBadgeImages.bolig_og_bomiljo?{bolig_og_bomiljo:"bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v1.webp"}:{})
   });
   assert.equal(by.sub.length,10);
   assert.equal(asset.status,"integrated");
@@ -40,8 +44,11 @@ test("By Modernisme badge has exact 1024px gray embroidered image, correct routi
 });
 test("other By candidates are inactive and 12 Film & TV plus 7 Scenekunst remain active",()=>{
   const by=read("data/badges/by.json"),film=read("data/badges/film_tv.json"),scene=read("data/badges/scenekunst.json");
-  assert.equal(Object.keys(by.subBadgeImages).length,7);
+  const infrastructureActive=read('data/badges/infrastruktur_candidate_v1.json').status==='integrated';
+  const activeCount=Object.keys(by.subBadgeImages).length;
+  assert.ok(activeCount>=(infrastructureActive?8:7));
+  assert.deepEqual(Object.keys(by.subBadgeImages),by.sub.slice(0,activeCount));
   assert.equal(Object.keys(film.subBadgeImages).length,12);
   assert.equal(Object.keys(scene.subBadgeImages).length,7);
-  for(const id of by.sub.slice(7))assert.equal(by.subBadgeImages[id],undefined);
+  for(const id of by.sub.slice(activeCount))assert.equal(by.subBadgeImages[id],undefined);
 });

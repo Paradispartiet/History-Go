@@ -11,6 +11,9 @@ on:
       - "docs/**"
       - "reports/README.md"
       - "scripts/check-documentation-governance.mts"
+      - "tests/documentation-symposium-by-saksbehandler.test.cjs"
+      - "tests/documentation-symposium-lager-drift.test.cjs"
+      - "tests/documentation-symposium-register.test.cjs"
       - ".github/workflows/documentation-governance.yml"
   workflow_dispatch:
 
@@ -47,6 +50,15 @@ jobs:
           set -o pipefail
           mkdir -p reports/documentation-governance
           node dist/scripts/check-documentation-governance.mjs 2>&1 | tee reports/documentation-governance/audit.log
+
+      - name: Verify Symposium caseworker sources and role links
+        run: node tests/documentation-symposium-by-saksbehandler.test.cjs
+
+      - name: Verify Symposium warehouse work and safety sources
+        run: node tests/documentation-symposium-lager-drift.test.cjs
+
+      - name: Verify complete Symposium register and canonical role boundaries
+        run: node tests/documentation-symposium-register.test.cjs
 
       - name: Upload documentation governance audit
         if: always()

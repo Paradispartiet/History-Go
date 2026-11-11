@@ -84,6 +84,13 @@ for (const id of ["overgang_01", "lek_01", "garderobe_01", "observasjon_01", "be
 }
 assert.strictEqual(state.tidligereValg.aapnet_leken_for_ema, true);
 assert.strictEqual(state.tidligereValg.skrev_konkret_observasjon, true);
+assert.ok(dag1Ids.indexOf("overlevering_01") > dag1Ids.indexOf("bemanning_01"),
+  "overleveringen skjer etter at hentingen er fordelt");
+const savedDay = JSON.parse(JSON.stringify(state));
+const handoff = Runner.getSymposium(savedDay, content).tidslinje
+  .find((entry) => entry.sceneId === "overlevering_01");
+assert.strictEqual(handoff.valgId, "notat");
+assert.match(handoff.konsekvensTekst, /Kari.*Anne/);
 
 state = Runner.startNextDay(state, content);
 assert.strictEqual(state.dag, 2);
@@ -116,9 +123,19 @@ guard = 0;
 while (!state2.dagFerdig) {
   const scene = Runner.selectNextScene(state2, content);
   assert.ok(scene, "alternativ dag 1 skal ha scener");
-  Runner.applyChoice(state2, content, scene.id, scene.valg[0].id);
+  if (scene.id === "overlevering_01") {
+    const trustBefore = state2.relasjoner.erfaren_assistent;
+    Runner.applyChoice(state2, content, scene.id, "muntlig");
+    assert.strictEqual(state2.relasjoner.erfaren_assistent, trustBefore + 2);
+  } else {
+    Runner.applyChoice(state2, content, scene.id, scene.valg[0].id);
+  }
   assert.ok(++guard < 60, "alternativ dag 1 må terminere");
 }
+const oralHandoff = Runner.getSymposium(JSON.parse(JSON.stringify(state2)), content).tidslinje
+  .filter((entry) => entry.sceneId === "overlevering_01");
+assert.deepStrictEqual(oralHandoff.map((entry) => entry.valgId), ["muntlig"]);
+assert.match(oralHandoff[0].konsekvensTekst, /Kari.*Anne/);
 state2 = Runner.startNextDay(state2, content);
 candidates = Runner.getCandidateScenes(state2, content).map((scene) => scene.id);
 assert.ok(candidates.includes("d2_overgang_presset"), "rask avskjed skal gi reparasjonsgrenen dag 2");

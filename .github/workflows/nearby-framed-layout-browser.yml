@@ -16,6 +16,9 @@ on:
       - 'tests/mobile-footer-layout.test.mjs'
       - 'tests/mobile-footer-browser.test.mjs'
       - 'css/nearby.css'
+      - 'css/nearby-explore-guide.css'
+      - 'js/ui/nearby-explore-guide.js'
+      - 'tests/nearby-explore-guide.test.mjs'
       - 'css/map.css'
       - 'css/placeCard.css'
       - 'tests/map-mode-controls-browser.test.mjs'
@@ -27,6 +30,7 @@ on:
       - 'css/nature.css'
       - 'index.html'
       - 'tests/nearby-framed-layout-browser.test.mjs'
+      - 'tests/index-touch-interaction-real-browser.mjs'
       - 'tests/header-language-menu-browser.test.mjs'
       - '.github/workflows/nearby-framed-layout-browser.yml'
   workflow_dispatch:
@@ -52,8 +56,12 @@ jobs:
         run: npm ci
       - name: Verify all footer action runtimes and real save flows
         run: node --test tests/footer-actions-runtime.test.mjs
+      - name: Verify Utforsk compact tabs, category search and Veiviser
+        run: node --test tests/nearby-explore-guide.test.mjs
       - name: Install Chromium
         run: npx playwright install --with-deps chromium webkit
+      - name: Diagnose real index touch on Safari iPad and Chrome phone
+        run: node tests/index-touch-interaction-real-browser.mjs
       - name: Verify footer geometry contract
         run: node --test tests/mobile-footer-layout.test.mjs
       - name: Audit footer layout on phone and tablet
