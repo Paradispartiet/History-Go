@@ -1151,14 +1151,19 @@
       "avsender": null,
       "tilgjengelighet": "start",
       "prioritet": 7,
-      "tittel": "Retur uten kvittering",
-      "tekst": "En kunde vil returnere en vare uten kvittering og blir høyere i stemmen for hver setning: «Det er vel DU som jobber her?» Regelen er ikke din. Ansiktet er ditt.",
+      "tittel": "Retur uten kvittering: Angrer kunden, eller er det en feil?",
+      "tekst": "En kunde kommer med hodetelefoner i en åpnet eske, uten original kvittering. «Jeg fikk dem i gave. Jeg vil levere dem tilbake», sier kunden. Det er ennå uklart om varen er feilfri og kunden angrer, eller om kunden vil klage på en feil. Det må avklares før butikken avgjør saken.",
       "valg": [
         {
           "id": "hold_regelen",
-          "tekst": "Forklar regelen rolig — og pek på det du faktisk KAN gjøre",
+          "tekst": "Spør om det er feil ved varen eller et ønske om bytte, og forklar forskjellen",
           "tone": "profesjonell",
-          "skills_practice": {"skill_id":"communication","activity_type":"explain_returns_policy","evidence_flag":"holdt_regelen","delta":1},
+          "skills_practice": {
+            "skill_id": "communication",
+            "activity_type": "explain_returns_policy",
+            "evidence_flag": "holdt_regelen",
+            "delta": 1
+          },
           "effekter": {
             "relasjoner": {
               "butikksjef": 4
@@ -1168,7 +1173,8 @@
               "psyke": -2
             },
             "flagg": {
-              "holdt_regelen": true
+              "holdt_regelen": true,
+              "retur_avklart_sporsmal": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -1176,11 +1182,14 @@
               }
             }
           },
-          "konsekvensTekst": "«Uten kvittering kan jeg gi tilgodelapp, ikke kontanter. Det kan jeg gjøre nå.» Kunden er ikke fornøyd. Men han tar tilgodelappen."
+          "konsekvensTekst": "Du forklarer at retur av en feilfri vare i fysisk butikk følger avtalt bytte- eller returordning, mens mulig feil ved varen skal vurderes som reklamasjon. Kunden får forklare hva som faktisk er galt. Du har ikke godkjent bytte, kontantutbetaling eller avvist en reklamasjon.",
+          "laaserOpp": [
+            "retur_02_hva_er_grunnen"
+          ]
         },
         {
           "id": "boy_regelen",
-          "tekst": "Ta returen utenom — det er ikke verdt bråket",
+          "tekst": "Gi pengene tilbake uten å avklare grunnlag, kjøp eller egen fullmakt",
           "tone": "ettergivende",
           "effekter": {
             "relasjoner": {
@@ -1191,7 +1200,9 @@
               "psyke": 2
             },
             "flagg": {
-              "boyde_regelen": true
+              "boyde_regelen": true,
+              "retur_uten_fullmakt": true,
+              "retur_utbetaling_uten_bilag": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -1199,13 +1210,18 @@
               }
             }
           },
-          "konsekvensTekst": "Kunden går fornøyd. Kassa di stemmer ikke lenger med bilagene. Det er en samtale som venter på deg et sted."
+          "konsekvensTekst": "For å roe køen utbetaler du beløpet uten kjøpsbevis, avgjørelse eller korrekt returbilag. Kunden går, men kasseoppgjøret og begrunnelsen kan ikke avstemmes. Du har gjort en faktisk feil som må meldes og rettes."
         },
         {
           "id": "hent_lene",
-          "tekst": "Hent Lene — dette er over fullmakten din",
+          "tekst": "Be Lene bistå med å finne ut om dette er bytte eller reklamasjon",
           "tone": "korrekt",
-          "skills_practice": {"skill_id":"wisdom_judgement","activity_type":"escalate_authority_limit","evidence_flag":"hentet_sjefen","delta":1},
+          "skills_practice": {
+            "skill_id": "wisdom_judgement",
+            "activity_type": "escalate_authority_limit",
+            "evidence_flag": "hentet_sjefen",
+            "delta": 1
+          },
           "effekter": {
             "relasjoner": {
               "butikksjef": 2
@@ -1215,7 +1231,8 @@
               "handlingsrom": -2
             },
             "flagg": {
-              "hentet_sjefen": true
+              "hentet_sjefen": true,
+              "retur_ba_lene_om_hjelp": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -1223,7 +1240,181 @@
               }
             }
           },
-          "konsekvensTekst": "Lene løser det på tjue sekunder — med nøyaktig samme svar som du hadde tenkt å gi. Du noterer deg det."
+          "konsekvensTekst": "Du sier at Lene kan avklare butikkens returvilkår og vurdere klagen. Du har bedt om hjelp; kunden har foreløpig ikke fått en godkjent retur eller en beslutning om reklamasjon.",
+          "laaserOpp": [
+            "retur_02_hva_er_grunnen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "retur_02_hva_er_grunnen",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Kunden sier hva som faktisk er galt",
+      "tekst": "Når du spør, svarer kunden: «Den venstre siden spiller nesten ikke lyd. Jeg fikk dem i gave, og giveren kan sende meg ordrebekreftelsen fra denne butikken.» Dette er en opplysning om en mulig feil, ikke dokumentasjon på at varen er undersøkt eller at kjøpet allerede er bekreftet.",
+      "valg": [
+        {
+          "id": "be_om_ordrebekreftelse",
+          "tekst": "Be om kjøpsbevis og registrer kundens opplysning om feil",
+          "effekter": {
+            "meters": {
+              "energi": -1
+            },
+            "flagg": {
+              "retur_mulig_reklamasjon": true,
+              "retur_kjop_dokumentert": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Kunden viser ordrebekreftelsen fra giveren med butikk, vare og kjøpsdato. Du registrerer at kjøpet er dokumentert og at en mulig mangel er meldt. Du har ennå ikke vurdert årsaken eller lovet noen bestemt løsning.",
+          "laaserOpp": [
+            "retur_03_lene_tar_saken"
+          ]
+        },
+        {
+          "id": "be_om_tid_til_bevis",
+          "tekst": "Registrer klagen og avtal hvordan kunden kan fremskaffe kjøpsbevis",
+          "effekter": {
+            "flagg": {
+              "retur_mulig_reklamasjon": true,
+              "retur_kjopsbevis_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du noterer påstanden om manglende lyd og foreslår ordrebekreftelse eller annet kjøpsbevis, ikke bare original papirkvittering. Kunden går for å kontakte giveren. Ingen reklamasjonsavgjørelse er tatt."
+        },
+        {
+          "id": "avvis_originalkvittering",
+          "tekst": "Avvis klagen fordi original papirkvittering mangler",
+          "effekter": {
+            "meters": {
+              "integritet": -4
+            },
+            "flagg": {
+              "retur_feilaktig_avvist": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du avviser saken uten å undersøke alternativ dokumentasjon eller påstått feil. Kunden protesterer og ber om at avslaget vurderes av ansvarlig. Det er en uavklart reklamasjon, ikke en korrekt behandlet retur."
+        }
+      ]
+    },
+    {
+      "id": "retur_03_lene_tar_saken",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Lene tar imot den mulige reklamasjonen",
+      "tekst": "Lene sier: «Ordrebekreftelsen viser kjøp hos oss og dato. Kunden opplyser om dårlig lyd på venstre side. Vi registrerer dette som en reklamasjon og undersøker varen før vi avgjør hva kunden har krav på. Du kan ta imot vare og grunnlag; jeg er ansvarlig for vurderingen.»",
+      "valg": [
+        {
+          "id": "overlever_varen",
+          "tekst": "Registrer saken, legg ved kjøpsbevis og overlever varen til Lene",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 2
+            },
+            "flagg": {
+              "retur_sak_registrert": true,
+              "retur_lene_overtatt": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer opplysningen om lydfeil, ordrebekreftelsen og kundens kontaktinformasjon etter butikkens rutine. Lene bekrefter at hun har overtatt undersøkelsen. Du har ikke utbetalt penger eller bestemt hvilken løsning som følger av loven.",
+          "laaserOpp": [
+            "retur_04_lene_undersokte_varen"
+          ]
+        },
+        {
+          "id": "avvent_overlevering",
+          "tekst": "Forklar at kundens dokumentasjon er mottatt, men at saken ennå ikke er levert til Lene",
+          "effekter": {
+            "flagg": {
+              "retur_overlevering_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du markerer at ordrebekreftelsen finnes, men at vareundersøkelsen og formell overlevering gjenstår. Kundens reklamasjon er ikke ferdigbehandlet."
+        }
+      ]
+    },
+    {
+      "id": "retur_04_lene_undersokte_varen",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Lene har undersøkt varen",
+      "tekst": "Lene melder: «Jeg har testet varen og bekreftet at lyden faller ut på venstre side. Vi tilbyr en tilsvarende ny vare som løsning på reklamasjonen, og kunden har takket ja. Registrer byttet og lever ut den nye varen etter rutinen.»",
+      "valg": [
+        {
+          "id": "utlever_ny_vare",
+          "tekst": "Registrer omleveringen og overlever den nye varen til kunden",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 2
+            },
+            "flagg": {
+              "retur_mangel_bekreftet": true,
+              "retur_omlevering_utfort": true,
+              "retur_kundens_sak_avklart": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer hvilken vare som ble mottatt og omlevert, knytter det til dokumentert kjøp og gir kunden den nye varen. Kundens reklamasjon er fulgt opp. Arbeidstråden kan fortsatt gi nye ansvarsspørsmål senere i uken."
+        },
+        {
+          "id": "avvent_utlevering",
+          "tekst": "Registrer at Lene har besluttet omlevering, men at varen ennå ikke er utlevert",
+          "effekter": {
+            "flagg": {
+              "retur_mangel_bekreftet": true,
+              "retur_utlevering_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Undersøkelsen er fullført og kunden har godtatt løsningen, men du har ikke registrert eller overlevert erstatningsvaren. Restoppgaven står åpen."
         }
       ]
     },
@@ -1652,7 +1843,7 @@
       "tilgjengelighet": "start",
       "prioritet": 7,
       "tittel": "Nøkkelen til disken",
-      "tekst": "Lene legger en nøkkel på disken foran deg: «Låsbar disk, retur-fullmakt opp til 500, og ansvar for vikaren på kveldsskift. Vil du ha det? Det betyr at neste vanskelige kunde faktisk ER din.»",
+      "tekst": "Lene legger en nøkkel på disken: «Denne åpner den låsbare disken. Jeg kan også gi deg avgrenset fullmakt til ordinære returer opp til 500 kroner etter butikkens dokumenterte vilkår. Reklamasjoner må fortsatt vurderes etter loven, og du skal hente hjelp hvis saken går utenfor opplæringen din. Vil du ta ansvaret?»",
       "valg": [
         {
           "id": "ta_ansvaret",
@@ -1739,14 +1930,17 @@
       "conditions": {
         "threads": {
           "kunden_som_tror_du_bestemmer": "escalated"
+        },
+        "flagg": {
+          "boyde_regelen": true
         }
       },
       "tittel": "Kassadifferansen",
-      "tekst": "På vei hjem tikker det inn en melding fra Lene: «Kassa di fra i går stemmer ikke med bilagene. Vet du noe om det?» Du vet nøyaktig hva det er: returen du tok utenom.",
+      "tekst": "Etter skiftet skriver Lene: «Jeg ser en utbetaling fra kassen uten returbilag eller dokumentert grunnlag. Vet du hva som skjedde?» Du husker at du betalte kunden tilbake uten å avklare varen eller kjøpet. Meldingen er ikke en ferdig undersøkelse av differansen.",
       "valg": [
         {
           "id": "fortell_alt",
-          "tekst": "Svar ærlig nå — returen, kunden, hele situasjonen",
+          "tekst": "Forklar utbetalingen, kunden og manglende bilag, og be om kontroll",
           "tone": "ærlig",
           "effekter": {
             "relasjoner": {
@@ -1757,15 +1951,19 @@
               "psyke": -2
             },
             "flagg": {
-              "fortalte_om_returen": true
+              "fortalte_om_returen": true,
+              "retur_avvik_meldt": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
-                "status": "completed"
+                "status": "active"
               }
             }
           },
-          "konsekvensTekst": "Lene svarer: «Takk for at du sa det selv. Neste gang: tilgodelapp. Da slipper vi begge denne meldingen.»"
+          "konsekvensTekst": "Du forteller hva du gjorde og hva som mangler. Lene bekrefter mottaket og sier at hun vil kontrollere kassen og returgrunnlaget. En ærlig rapport er ikke i seg selv en korrigert kassedifferanse.",
+          "laaserOpp": [
+            "retur_05_lene_undersoker_bilag"
+          ]
         },
         {
           "id": "la_ligge",
@@ -1785,7 +1983,100 @@
               }
             }
           },
-          "konsekvensTekst": "Du legger telefonen med skjermen ned. Differanser går ikke over. De venter."
+          "konsekvensTekst": "Du unnlater å forklare utbetalingen. Manglende returbilag og uavklart refusjonsgrunnlag er fortsatt dokumenterte restoppgaver."
+        }
+      ]
+    },
+    {
+      "id": "retur_05_lene_undersoker_bilag",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Lene finner grunnlaget for kasseavviket",
+      "tekst": "Lene svarer: «Jeg fant utbetalingen du fortalte om. Det finnes ikke et godkjent returbilag eller en vurdering av kjøpsgrunnlaget. Jeg har registrert hendelsen for avstemming. Kassen er ennå ikke bekreftet rettet.»",
+      "valg": [
+        {
+          "id": "registrer_undersokelsen",
+          "tekst": "Registrer Lenes funn og be om dokumentert sluttavstemming",
+          "effekter": {
+            "flagg": {
+              "retur_lene_overtatt": true,
+              "retur_bilag_undersokt": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du fører at Lene fant utbetalingen og har tatt ansvar for avstemmingen. Det er ikke det samme som at kassen er korrigert. Du venter på hennes kontrollresultat.",
+          "laaserOpp": [
+            "retur_06_avstemming_bekreftet"
+          ]
+        },
+        {
+          "id": "la_kontrollen_vente",
+          "tekst": "La Lenes undersøkelse stå som åpen uten å registrere sluttkontroll",
+          "effekter": {
+            "flagg": {
+              "retur_avstemming_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Lene har funnet utbetalingen, men avstemmingen er ikke ferdig eller dokumentert. Oppgaven forblir åpen."
+        }
+      ]
+    },
+    {
+      "id": "retur_06_avstemming_bekreftet",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Lene bekrefter avstemt kasse",
+      "tekst": "Lene melder: «Jeg har nå kontrollert kassebevegelsen mot utbetalingen og ført nødvendig dokumentasjon om hendelsen. Avstemmingen er fullført. Vi må fortsatt håndtere kundens eventuelle krav etter vanlige regler; den tidligere utbetalingen var ikke en reklamasjonsavgjørelse.»",
+      "valg": [
+        {
+          "id": "dokumenter_sluttresultat",
+          "tekst": "Registrer at Lene har utført og bekreftet avstemmingen",
+          "effekter": {
+            "flagg": {
+              "retur_avstemming_bekreftet": true,
+              "retur_kasse_rettet_av_lene": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer at Lene har avstemt kassen og dokumentert det konkrete avviket. Du oppgir hennes kontroll som kilde og markerer ikke at du selv utførte korrigeringen."
+        },
+        {
+          "id": "utsett_loggføring",
+          "tekst": "La resultatet stå uregistrert til dokumentasjonen er tilgjengelig",
+          "effekter": {
+            "flagg": {
+              "retur_sluttdokumentasjon_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du har fått beskjed om resultatet, men ikke ført den bekreftede avstemmingen i den lokale loggen. Restoppgaven står fortsatt åpen."
         }
       ]
     },
