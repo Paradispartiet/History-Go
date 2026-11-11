@@ -1,0 +1,41 @@
+name: Oslo T–S 09 — record canonical rule preflight
+on:
+  pull_request:
+    paths:
+      - 'reports/place-production/torshov-workcard-current.json'
+      - '.github/workflows/oslo-ts09-torshov-readfirst-record.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: torshov-ts09-preflight-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  record:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/oslo-ts-09-torshov-portrait-20261111
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record actual repository hashes using canonical script
+        run: |
+          node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/torshov-workcard-current.json --place-id torshov --category by
+          node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/torshov-workcard-current.json
+      - name: Commit exact rule evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/place-production/torshov-workcard-current.json
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(torshov): record exact canonical READ-FIRST source hashes"
+            git fetch origin content/oslo-ts-09-torshov-portrait-20261111
+            git rebase origin/content/oslo-ts-09-torshov-portrait-20261111
+            git push origin HEAD:content/oslo-ts-09-torshov-portrait-20261111
+          fi
