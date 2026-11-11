@@ -180,7 +180,7 @@ I denne jobbmailens første scene gir Lene allerede instruks om å sjekke hyllep
 
 ### Redaksjonelle kontrollpunkter fra kildefilene
 
-Åpningsscenen er nå avgrenset til en stikkprøve av brød og juice. Den kan avdekke og få rettet merking på disse varene, men ikke kampanjekaffens prisfeil. Alle tre åpningsvalg leder derfor fortsatt til den eksisterende kaffescenen uten at den samme varen påstås å være kontrollert og rettet to ganger. Å åpne presis uten en frivillig stikkprøve gir ikke lenger et ubegrunnet integritetstrekk. Selve Life Story-prisoppfølgingen nedenfor krever fortsatt særskilt revisjon.
+Første kasseøkt starter ved overtakelse av ordinær vakt klokken 12. En stikkprøve av brød og juice gjøres med avtalt avløsning. Den kan avdekke og få rettet merking på disse varene, men ikke kampanjekaffens prisfeil. Alle tre åpningsvalg leder derfor fortsatt til den eksisterende kaffescenen uten at den samme varen påstås å være kontrollert og rettet to ganger. Å overta kassa presis uten en frivillig stikkprøve gir ikke lenger et ubegrunnet integritetstrekk. Kaffeprisen følges videre i den eksisterende tråden nedenfor.
 
 De opprinnelige valgene i `prisfeil_02_koen` beholdes, men prisfeilen avsluttes ikke lenger når én kunde får riktig pris. Den eksisterende tråden `prisfeilen_i_koen` følges gjennom kontroll av samme vare og kampanje, konkret melding til Lene, dokumentert mottak og utført etterkontroll. Den som tok 39 uten å kontrollere varen, får anledning til å undersøke i etterkant eller erkjenne en fortsatt åpen oppgave. En melding uten svar teller ikke som overtatt; en avtale om etterkontroll teller ikke som gjennomført kontroll.
 
@@ -197,6 +197,14 @@ Når riktig varevariant faktisk er talt, finner spillbutikken én fysisk vare f�
 De åtte låste oppfølgingsscenene i [eksisterende Life Story-fil](../../data/Civication/lifestory/roles/ekspeditor/scenes.json) bruker samme tråd, `varen_som_ikke_finnes`. De beholder den opprinnelige scene-ID-en og alle tre opprinnelige valg-ID-ene. Ingen parallell historiekjede eller ekstra spillmotor er opprettet. Nye flagg skiller `lager_ett_funnet`, `lager_kunde_fikk_vare`, `lager_avvik_meldt`, `lager_ansvar_overtatt`, `lager_system_oppdatert` og `lager_etterkontroll_verifisert`. Delegert telling og avtalt etterkontroll registreres separat og teller ikke som gjennomført.
 
 Den oppdaterte [Life Story-regresjonstesten](../../tests/civication-lifestory-ekspeditor.test.js) dekker begge kontrollører, kundens faktiske salg, redigering av ubekreftet løfte, og åpne oppgaver ved manglende telling, melding og etterkontroll. **Kildeavgrensning:** Utdanning.no, Udir og stillingsgrunnlaget dokumenterer varetelling, lagerarbeid, dokumentkontroll og kundeveiledning som yrkesoppgaver. Butikkens personer, eksakte antall, kasseoppsett og replikker er redaksjonelle premisser for spillet – ikke en faktisk kjedes rutiner.
+
+### Restoppgaver og ordinær vakt
+
+En utsatt undersøkelse, melding eller etterkontroll kan gjenopptas på neste av de tre skrevne arbeidsdagene. Dag 2 og 3 gjenbruker samme arbeidsrekkefølge og begreper, med egne scene-ID-er for faktisk historikk. Bare det uferdige steget blir tilgjengelig; mottak og Amirs kontrollresultat krever fortsatt den konkrete avtalen. Utført arbeid rydder venteflagget. Det er ingen oppdiktet overlevering eller automatisk fullføring ved dagskifte. Arbeid som fortsatt utsettes på siste skrevne dag, blir stående åpent.
+
+Første vakt er 12–20, med fullt avløst pause 16–16.30 og overlevering 19.55. Den nye medarbeideren har ikke fått låseansvar. Den historiske scene-ID-en `lukking_01_fem_minutter` og valg-ID-ene beholdes, men teksten og nye historikkoppføringer gjelder overlevering ved vaktslutt. Å hjelpe kunden sammen med Amir eller å dele kundehjelp og overlevering er begge forsvarlige valg innenfor vakta. Det er manglende rydding og uavklart ansvar som gir en dårlig følge, ikke avtalt vaktslutt.
+
+Å be Amir kontrollere en pris gir ikke trekk i synlighet og har samme integritetsfølge som forsvarlig egenkontroll. Forskjellen ligger i fordeling av arbeid og energi. [Kontinuitetstesten](../../tests/civication-lifestory-ekspeditor-continuity.test.js) følger reelle valg gjennom utsatt undersøkelse, melding og kontroll, lagring, nytt dagskifte, navngitt kontrollør og avsluttet tråd.
 
 ### Retur uten kvittering – bytterett, reklamasjon og fullmakt
 
@@ -217,6 +225,7 @@ Følgende gjenstår før rollen kan omtales som ferdig etter arbeidsmåten:
 - Normal jobbmail har nå eget svar for bekreftet avløsning og egen priskontroll, og eksisterende priskonsekvenser leder til melding, mottaksbekreftelse og etterkontroll. Regenerert sceneregister og [VM-gjennomspilling](../../tests/civication-ekspeditor-price-handover.test.js) kontrollerer fire startvalg, reparasjon, utsatt kontroll og navngitt delegert kontroll. Dette er automatisk gjennomspilling av normal spillkjede, ikke en visuell nettlesertest.
 - Den eldre Life Story-priskjeden er revidert i sin opprinnelige tråd og skal gjennomgå både automatisk regresjon og visuell nettleserkontroll. Øvrige Life Story-temaer er ikke godkjent som del av denne prisbolken.
 - VM-testen verifiserer handlingenes grenflagg og historikk hver for seg, uendret plansteg gjennom oppfølgingen, neste privatlivssteg og at den besvarte jobbscenen ikke gjentas. Kontroller også hvordan dette vises i spillerens Symposium i nettleseren.
-- Gjennomfør visuell nettlesertest av de berørte dialogene og spillerhistorikken. Den automatiske VM-gjennomspillingen erstatter ikke dette.
 - Lageravvikets opprinnelige Life Story-kjede er revidert med fysisk kontroll, avviksmelding, ansvar og faktisk etterkontroll. Grønn CI og nettlesergjennomspilling kreves før denne delen kan godkjennes; ordinær jobbmail for samme rolle er en annen runtime.
+
+- Den fokuserte [nettleserkontrollen](../../scripts/verify-civication-ekspeditor-lifestory-browser.cjs) klikker faktiske valg på mobil og to iPad-formater, gjenlaster lagringen og åpner «Hele livshistorien». Den kontrollerer synlig valgtekst, konsekvenser og Amirs kontrollørrolle mot det faktiske arkivet. Tilhørende CI-resultat og skjermbilder må vurderes før visuell kontroll omtales som bestått.
 - Videre praksisarbeid kan samle flere direkte beskrivelser av kollegabeskjeder og avbrytelser. Replikkene over er fortsatt tydelig merkede skriveeksempler; intervjuet med Mads er et avgrenset praksisgrunnlag fra ferskvare.

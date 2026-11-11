@@ -97,7 +97,7 @@ test('originale merker beholdes med eksisterende bildefiler og farger', () => {
   }
 });
 
-test('Vitenskap har registrert lilla, sydd hovedmerke og sju fungerende undermerker', () => {
+test('Vitenskap har registrert lilla, sydd hovedmerke og ni fungerende undermerker', () => {
   const badge = read('data/badges/vitenskap.json');
   const manifest=read('data/badges/vitenskap_underbadge_artwork.json');
   assert.equal(badge.color,'#6A5AE0');
@@ -106,7 +106,11 @@ test('Vitenskap har registrert lilla, sydd hovedmerke og sju fungerende undermer
   assert.equal(manifest.color,badge.color);
   assert.equal(manifest.parentImage,badge.image);
   assert.equal(manifest.assets.length,7);
-  assert.equal(Object.keys(badge.subBadgeImages).length,7);
+  assert.equal(Object.keys(badge.subBadgeImages).length,9);
+  assert.equal(badge.subBadgeImages.data_programvare_og_algoritmer,
+    'bilder/merker/vitenskap/brodert/data_programvare_og_algoritmer.webp');
+  assert.equal(badge.subBadgeImages.teknologi_og_ingeniorfag,
+    'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag.webp');
   const checkImage=(imagePath,svgPath)=>{
     assert.match(imagePath,/^bilder\/merker\/vitenskap\/brodert\/[a-z_]+\.webp$/);
     const bytes=readFileSync(resolve(root,imagePath));

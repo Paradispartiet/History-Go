@@ -18,6 +18,12 @@ on:
       - 'js/ui/nature-flora-photographs.js'
       - 'finn-flora.html'
       - 'js/ui/nature-flora-approved.js'
+      - 'data/natur/flora/illustration-quality-russesvalerot-20261111.json'
+      - 'scripts/test-flora-russesvalerot-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/88_russesvalerot_v1.webp'
+      - 'data/natur/flora/illustration-quality-kjempeslirekne-20261111.json'
+      - 'scripts/test-flora-kjempeslirekne-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/87_kjempeslirekne_v1.webp'
       - 'data/natur/flora/illustration-quality-aakersvineblom-20261111.json'
       - 'scripts/test-flora-aakersvineblom-b09.mjs'
       - 'bilder/natur/flora/illustrasjonskandidater/b09/86_aakersvineblom_v1.webp'
@@ -369,6 +375,8 @@ jobs:
       - run: node scripts/test-flora-varkaal-b09.mjs
       - run: node scripts/test-flora-varmure-b09.mjs
       - run: node scripts/test-flora-rodknapp-b09.mjs
+      - run: node scripts/test-flora-russesvalerot-b09.mjs
+      - run: node scripts/test-flora-kjempeslirekne-b09.mjs
       - run: node scripts/test-flora-aakersvineblom-b09.mjs
       - run: node scripts/test-flora-sitkagran-b09.mjs
       - run: node scripts/test-flora-tuja-b09.mjs
