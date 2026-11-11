@@ -1,0 +1,77 @@
+name: Tronsmo – vFerdig PlaceCard acceptance
+on:
+  pull_request:
+    paths:
+      - 'tests/tronsmo-vferdig-placecard-browser.mjs'
+      - '.github/workflows/tronsmo-vferdig-acceptance.yml'
+  workflow_dispatch:
+concurrency:
+  group: tronsmo-vferdig-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Preserve quiz, People and canonical image contracts
+        run: node --test tests/oslo-ts-tronsmo-people-quizcard-v1.test.mjs
+      - name: PlaceCard, four galleries and QuizCard on mobile and desktop
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome not found"; exit 1; fi
+          CHROME_BIN="$CHROME_BIN" node tests/tronsmo-vferdig-placecard-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tronsmo-vferdig-browser-evidence
+          path: artifacts/tronsmo-vferdig/
+          if-no-files-found: ignore
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check actual Pages paths against merged main assets, without claiming unverified deploy
+        run: |
+          mkdir -p artifacts
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const base='https://paradispartiet.github.io/History-Go/';
+          const ids=['ivar_tronsmo','per_petterson','lars_fiske','bendik_kaltenborn'];
+          const results=[];
+          for(const id of ids){
+            const file='bilder/illustrasjoner/people/'+id+'_historygo_editorial.svg';
+            const expected=createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+            let status=0,actual='',reason='';
+            try{
+              const response=await fetch(base+file,{signal:AbortSignal.timeout(15000),cache:'no-store'});
+              status=response.status;
+              if(response.ok){const buf=Buffer.from(await response.arrayBuffer());actual=createHash('sha256').update(buf).digest('hex');}
+              else reason='HTTP '+status;
+            }catch(e){reason=String(e.message||e);}
+            results.push({id,path:base+file,http_status:status,sha_matches:actual===expected,reason});
+          }
+          const status=results.every(x=>x.http_status===200&&x.sha_matches)?'PASS_LIVE_ASSETS':'HOLD_UNVERIFIED';
+          const out={place_id:'tronsmo_bokhandel',checked_utc:new Date().toISOString(),base,status,results,
+            interpretation:'PASS_LIVE_ASSETS verifies four exact illustrated People assets on public Pages, not necessarily the specific GitHub deploy run.'};
+          fs.writeFileSync('artifacts/tronsmo-live-evidence.json',JSON.stringify(out,null,2)+'\n');
+          console.log(JSON.stringify(out,null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tronsmo-live-evidence
+          path: artifacts/tronsmo-live-evidence.json
+          if-no-files-found: ignore
