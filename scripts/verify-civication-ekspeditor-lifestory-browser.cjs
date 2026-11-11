@@ -128,6 +128,10 @@ async function play(browser, label, viewport, choices, expected) {
     }
     await symposium.scrollIntoViewIfNeeded();
     await page.screenshot({ path: path.join(output, label + '-symposium.png'), fullPage: true });
+    const lastPrice = reloaded.arkiv.filter(row => row.threadId === 'prisfeilen_i_koen').at(-1);
+    const lastEntry = symposium.locator('ol > li').filter({ hasText: lastPrice.valgTekst }).last();
+    await lastEntry.scrollIntoViewIfNeeded();
+    await lastEntry.screenshot({ path: path.join(output, label + '-symposium-price-result.png') });
     return { label, viewport, finalScene, verified: expected.verified, status: expected.status, trace,
       visibleSymposiumChecked: true };
   } finally {
