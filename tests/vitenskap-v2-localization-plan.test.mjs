@@ -35,7 +35,7 @@ test('All five science v2 candidates have a complete localized text plan but rem
       assert.ok(variant.footer.length >= 20, locale+' '+item.id+' missing complete footer');
       assert.equal(variant.footer, audit.footerTranslation[locale]);
       assert.ok(variant.visualReviewRequired);
-      assert.doesNotMatch(variant.heading+' '+variant.footer, /\\b[0-9]+\\/[0-9]+\\b/);
+      assert.doesNotMatch(variant.heading+' '+variant.footer, new RegExp('[0-9]+/[0-9]+'));
       if (locale === 'nb') assert.equal(variant.status, 'candidate_verified_existing');
       else {
         assert.equal(variant.status, 'not_generated');
