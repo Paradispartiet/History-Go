@@ -1981,6 +1981,12 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   object-fit: cover;
   border-radius: 50%;
 }
+/* The general portrait rule above must not crop an embroidered badge. */
+#placeCard .pc-title-row > #pcBadgesIcon > img.pc-badge-round-img {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
 
 @media (max-width: 520px) {
   #placeCard .pc-title-row {
