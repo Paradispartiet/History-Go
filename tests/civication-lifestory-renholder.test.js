@@ -389,3 +389,8 @@ legacyLearning=JSON.parse(JSON.stringify(legacyLearning));
 assert.ok(!legacyLearning.tidligereValg.ren_opp_demo_sett&&!legacyLearning.tidligereValg.ren_opp_ovelse_utfort&&!legacyLearning.tidligereValg.ren_opp_tilbakemelding);
 assert.ok(!Runner.getCandidateScenes(legacyLearning,content).some(x=>x.id.startsWith('opp_')),'legacy learning does not unlock new training scenes');
 assert.equal(Runner.getSymposium(legacyLearning,content).tidslinje.length,0,'no invented archive from old flags');
+// Player-facing training feedback must explain the observed result, not storage flags.
+for(const scene of raw.roleScenes.scenes.filter(x=>x.id==='d2_runde_med_amina'||x.id.startsWith('opp_')||x.id.startsWith('rygg_'))){
+ const text=[scene.tekst,...scene.valg.flatMap(v=>[v.tekst,v.konsekvensTekst])].join(' ');
+ assert.doesNotMatch(text,/læringsmarkør|tidligereValg|ren_opp_|ren_bel_/i,'technical implementation leaked into scene '+scene.id);
+}
