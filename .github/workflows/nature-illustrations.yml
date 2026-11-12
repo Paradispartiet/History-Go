@@ -18,6 +18,9 @@ on:
       - 'js/ui/nature-flora-photographs.js'
       - 'finn-flora.html'
       - 'js/ui/nature-flora-approved.js'
+      - 'data/natur/flora/illustration-quality-hagtorn-20261112.json'
+      - 'scripts/test-flora-hagtorn-b09.mjs'
+      - 'bilder/natur/flora/illustrasjonskandidater/b09/93_hagtorn_v1.webp'
       - 'data/natur/flora/illustration-quality-blankmispel-20261112.json'
       - 'scripts/test-flora-blankmispel-b09.mjs'
       - 'bilder/natur/flora/illustrasjonskandidater/b09/92_blankmispel_v1.webp'
@@ -387,6 +390,7 @@ jobs:
       - run: node scripts/test-flora-varkaal-b09.mjs
       - run: node scripts/test-flora-varmure-b09.mjs
       - run: node scripts/test-flora-rodknapp-b09.mjs
+      - run: node scripts/test-flora-hagtorn-b09.mjs
       - run: node scripts/test-flora-blankmispel-b09.mjs
       - run: node scripts/test-flora-hostberberis-b09.mjs
       - run: node scripts/test-flora-kirsebaerlaurbaer-b09.mjs
