@@ -77,42 +77,33 @@ def gold_glyph(char,font):
     return stamp
 
 def add_arch_text(img, label, upper):
-    """Place every glyph fully inside an allocated annular title strip.
-
-    The tracking budget must be included in the angular measurement, not
-    appended afterwards; otherwise long localized names overshoot the band.
-    """
-    radius=428 if upper else 411
-    allowed=math.radians(112 if upper else 123)
-    # Width is geometry-driven. Long translated titles must get smaller
-    # rather than overlapping planets, leaves, equipment or outer stitches.
+    r=405 if upper else 389
+    limit=math.radians(119)
     size=65
-    tracking=0.6
-    while size>25:
+    while size>35:
         font=ImageFont.truetype(FONT_PATH,size)
         widths=[font.getlength(ch) for ch in label]
-        total=sum(widths)+max(len(label)-1,0)*tracking
-        if total/radius<=allowed:
+        if sum(widths) / r < limit * 0.91:
             break
         size-=1
-    font=ImageFont.truetype(FONT_PATH,size)
-    advances=[font.getlength(ch)+tracking for ch in label]
+    max_length=r*limit
+    tracking=max(1.0,min(7.5,(max_length*0.92-sum(widths))/max(1,len(label)-1)))
+    advances=[w+tracking for w in widths]
     total=sum(advances)-tracking
-    assert total/radius<=allowed+0.001, (label, total/radius, allowed)
     cursor=0
     for ch,advance in zip(label,advances):
         mid=cursor+advance/2
         if upper:
-            theta=-math.pi/2-total/(2*radius)+mid/radius
+            theta=-math.pi/2-total/(2*r)+mid/r
             rotation=-(math.degrees(theta)+90)
         else:
-            theta=math.pi/2+total/(2*radius)-mid/radius
+            theta=math.pi/2+total/(2*r)-mid/r
             rotation=90-math.degrees(theta)
         if ch!=' ':
             glyph=gold_glyph(ch,font)
             glyph=glyph.rotate(rotation,resample=Image.Resampling.BICUBIC,expand=True)
-            x=512+radius*math.cos(theta)
-            y=512+radius*math.sin(theta)
+            x=512+r*math.cos(theta)
+            y=512+r*math.sin(theta)
             img.alpha_composite(glyph,(int(x-glyph.width/2),int(y-glyph.height/2)))
         cursor+=advance
     return size
