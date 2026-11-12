@@ -6,13 +6,14 @@ const { mkdirSync, writeFileSync } = require('node:fs');
 const path = require('node:path');
 const { chromium } = require('playwright');
 const origin = 'http://127.0.0.1:4188';
+const employed = process.env.RENHOLDER_CASE === 'ansatt';
 const organic = process.env.RENHOLDER_CASE === 'dagskifte';
 const complaint = organic || process.env.RENHOLDER_CASE === 'klage';
 const targetDay = complaint ? 7 : 2;
 const spill = process.env.RENHOLDER_CASE === 'soel';
 const training = process.env.RENHOLDER_CASE === 'opplaering';
 const thread = complaint ? 'usynlig_arbeid' : training ? 'ryggen_sier_fra' : spill ? 'soelet_i_fellesarealet' : 'tidsvinduet_krymper';
-const output = path.resolve('reports/civication-renholder-'+(organic?'dagskifte':complaint?'klage':training?'opplaering':spill?'soel':'lifestory')+'-browser');
+const output = path.resolve('reports/civication-renholder-'+(employed?'ansatt':organic?'dagskifte':complaint?'klage':training?'opplaering':spill?'soel':'lifestory')+'-browser');
 mkdirSync(output, { recursive: true });
 const server = spawn('python3', ['-m', 'http.server', '4188', '--bind', '127.0.0.1'], { stdio: 'ignore' });
 let serverError = null;
@@ -209,6 +210,10 @@ async function play(browser, fixture) {
  let browser;const results=[];
  try {
   await waitForServer();browser=await chromium.launch({headless:true});
+  if(employed){
+    const verify=require('../dist/scripts/verify-civication-renholder-employed-browser.js').default;
+    results.push(await verify(browser,origin,output));return;
+  }
   const sizes=[{width:390,height:844},{width:820,height:1180},{width:1180,height:820}];
   const complete={ren_soel_rengjort:true,ren_soel_aapnet:true,ren_soel_kari_mottatt:true,ren_soel_ansvar_bekreftet:true,ren_soel_skilt_kontrollert:true,ren_soel_vernerunde_avtalt:true};
   const trained={ren_bel_plan_bekreftet:true,ren_bel_transport_utfort:true,ren_bel_mottatt:true,ren_opp_demo_sett:true,ren_opp_ovelse_utfort:true,ren_opp_tilbakemelding:true,laerte_soneprioritering:true};

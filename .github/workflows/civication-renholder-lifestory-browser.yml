@@ -9,6 +9,9 @@ on:
       - 'tests/civication-lifestory-renholder.test.js'
       - 'tests/civication-lifestory-renholder-soel.test.js'
       - 'scripts/verify-civication-renholder-lifestory-browser.cjs'
+      - 'scripts/verify-civication-renholder-employed-browser.ts'
+      - 'scripts/verify-civication-arbeidsledig-browser.ts'
+      - 'tsconfig.scripts.build.json'
       - '.github/workflows/civication-renholder-lifestory-browser.yml'
   workflow_dispatch:
 
@@ -25,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        case: [lifestory, soel, opplaering, klage, dagskifte]
+        case: [lifestory, soel, opplaering, klage, dagskifte, ansatt]
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -41,7 +44,7 @@ jobs:
           node tests/civication-lifestory-renholder.test.js
           node tests/civication-lifestory-renholder-soel.test.js
       - name: Build shared UI calendar test helper
-        if: matrix.case == 'dagskifte'
+        if: matrix.case == 'dagskifte' || matrix.case == 'ansatt'
         run: npm run build:scripts
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
