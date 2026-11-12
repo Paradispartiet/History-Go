@@ -25,7 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
-    {name:"hagtorn",label:"Hagtorn \\(ofte plantet / treform\\)",term:"Hagtorn (ofte plantet",path:"b09/93_hagtorn_v1.webp"},
+    {name:"hagtorn",label:"Hagtorn",term:"Hagtorn",path:"b09/93_hagtorn_v1.webp"},
     {name:"blankmispel",label:"Blankmispel",term:"Blankmispel",path:"b09/92_blankmispel_v1.webp"},
     {name:"hostberberis",label:"Høstberberis",term:"Høstberberis",path:"b09/91_hostberberis_v1.webp"},
     {name:"kirsebaerlaurbaer",label:"Kirsebærlaurbær",term:"Kirsebærlaurbær",path:"b09/90_kirsebaerlaurbaer_v1.webp"},
@@ -152,7 +152,20 @@ try{
     await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await page.locator("#natureSearch").fill(species.term||species.name);
     const title=species.label||species.term||species.name;
-    const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
+    const matching=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")});
+    await matching.first().waitFor();
+    let cardIndex=0;
+    if(species.name==="hagtorn"){
+      // Kratt and ved cards share the name "Hagtorn". Pick the flora card
+      // by its unique approved illustration instead of relying on sort order.
+      const variants=await matching.all();
+      const sources=await Promise.all(variants.map(async entry=>
+        await entry.locator("img").count() ? await entry.locator("img").getAttribute("src") : null
+      ));
+      cardIndex=sources.findIndex(src=>typeof src==="string"&&src.endsWith(species.path));
+      assert(cardIndex>=0,"Hagtorn flora card must use its own botanical original");
+    }
+    const card=matching.nth(cardIndex);
     await card.waitFor();
     if(species.name==="berberis"){
       const both=page.locator("#natureGrid").getByRole("button",{name:/^Berberis,/i});
@@ -191,7 +204,7 @@ try{
     await test.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await test.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await test.locator("#natureSearch").fill(species.term||species.name);
-    const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
+    const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).nth(cardIndex);
     await fallback.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:20000});
     assert.equal(await fallback.locator("img").count(),0);
     await fallback.click();
