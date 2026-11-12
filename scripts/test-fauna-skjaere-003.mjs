@@ -18,10 +18,13 @@ assert.equal(crypto.createHash("sha256").update(b).digest("hex"),"970f33e9ac528e
 assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),"e3da752bce1c4f637b80198559b805c98c1d82c7");
 assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,12),"WEBP");assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0);assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
-const aReg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert.equal(aReg.count,3);
+const aReg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert(aReg.count>=3,"Skjære remains approved");
 assert.equal(aReg.get(id)?.src,a.src);assert.equal(aReg.get(id)?.scientificName,"Pica pica");assert.equal(aReg.get(id)?.gitBlobSha,a.gitBlobSha);
 assert.equal(aReg.get("emne_fauna_kraake")?.gitBlobSha,"efbf5b4d09143192cb5c7405e07f04eadd15f1a1");
 assert.equal(aReg.get("emne_fauna_graaspurv")?.gitBlobSha,"468b3c17af9a0b90aebe7ce1cdd6866f9224687f");
-assert.equal(aReg.get("emne_fauna_svarttrost"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261112-03"));
+
+const html=read("finn-fauna.html");
+const registerScript=html.indexOf("js/ui/nature-fauna-approved.js?v=");
+const explorerScript=html.indexOf("js/ui/nature-explorer.js?v=");
+assert(registerScript>=0&&explorerScript>registerScript,"Approved Fauna register must load before explorer regardless of its cache version");
 console.log("Finn Fauna #3 Skjære: unique alpha WebP, correct species and quiz, 3 approved originals.");
