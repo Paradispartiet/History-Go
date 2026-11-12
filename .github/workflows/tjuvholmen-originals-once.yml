@@ -28,7 +28,17 @@ jobs:
         run: |
           set -euo pipefail
           git add -- reports/place-production/tjuvholmen-structures-source-candidates-20261112.json reports/place-production/tjuvholmen-structure-originals-retrieval-20261112.json
-          git add -- bilder/kort/structures/source/tjuvtitten_full_original.jpg bilder/kort/structures/source/tjuvholmen_bystrand_full_original.jpg bilder/kort/structures/source/skulpturparken_skjaeret_full_original.jpg 2>/dev/null || true
+          git add -A -- bilder/kort/structures/source/
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path(".")
+          manifest=json.loads((root/"reports/place-production/tjuvholmen-structures-source-candidates-20261112.json").read_text())
+          for item in manifest["candidates"]:
+              if item.get("original_file_pending") is False:
+                  path=root/item["original_archive"]["path"]
+                  assert path.is_file(), f"Reported original missing on disk: {path}"
+          PY
           if git diff --cached --quiet; then
             echo "No new verified originals or evidence"
             exit 0
