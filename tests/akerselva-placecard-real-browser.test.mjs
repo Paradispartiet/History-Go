@@ -100,7 +100,7 @@ try {
         };
       });
       assert.equal(media.front.fit, 'contain', tag + ': photo must not be cropped on portrait card');
-      assert.equal(media.hero.fit, 'cover', tag + ': landscape photo covers header');
+      assert.equal(media.hero.fit, 'contain', tag + ': whole landscape photo remains visible in header');
       assert.ok(media.front.height > media.front.width, tag + ': front photo is natively portrait');
       assert.ok(media.hero.width > media.hero.height, tag + ': header photo is landscape');
       assert.notEqual(media.front.src, media.hero.src, tag + ': independent front and header photos');

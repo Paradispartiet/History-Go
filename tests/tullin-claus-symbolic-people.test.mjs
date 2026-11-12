@@ -1,11 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {readFileSync,existsSync} from "node:fs";
+import {readFileSync,existsSync,readdirSync} from "node:fs";
 const read=p=>JSON.parse(readFileSync(new URL("../"+p,import.meta.url),"utf8"));
 const load=p=>readFileSync(new URL("../"+p,import.meta.url),"utf8");
 const people=read("data/people/by/oslo/tullin/claus_tullin.json");
 const runtime=read("data/runtime/place-open/tullin.json");
-const shard=read("data/runtime/people-all/part-006.json");
+const shard=readdirSync(new URL("../data/runtime/people-all/",import.meta.url))
+ .filter(file=>/^part-\d+\.json$/.test(file))
+ .flatMap(file=>read("data/runtime/people-all/"+file));
 const canonical=read("data/places/by/oslo/places/tullin.json");
 test("Claus Tullin has a distinct original, clearly-labelled non-portrait",()=>{
  assert.equal(people.length,1);
