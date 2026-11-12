@@ -47,7 +47,7 @@
     "filler_forbidden": true,
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
-  "qa": "Bildekilder og binære WebP lagret i main (#7234); foto caption/cardImage/By-badge korrigering under PR; integrert mobil/desktop manuell QA og fullstendige samlinger utestår",
+  "qa": "Native Tjuvholmen Chromium at 390 and 1440 passed image/frontImage contain, both decoded original assets and QuizCard flip (run 43169533643). Manual screenshot/collection preview QA still pending.",
   "merged": true,
   "verified_at": "2026-11-12",
   "rule_preflight": {
@@ -124,5 +124,17 @@
     "status": "BLOCKED",
     "reason": "People/Brands/Structures og nettleser-/redaksjonell sluttkontroll uferdige; ikke hevde vFerdig",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
+  },
+  "browser_acceptance": {
+    "status": "BROWSER_PASS_MANUAL_REVIEW_PENDING",
+    "viewports": [
+      390,
+      1440
+    ],
+    "run": "https://github.com/Paradispartiet/History-Go/actions/runs/43169533643",
+    "screenshot_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/43169533643/artifacts/13921696186",
+    "photo_fit": "contain",
+    "quizcard_flip": "PASS",
+    "physical_device_qa": false
   }
 }

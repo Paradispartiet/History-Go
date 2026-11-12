@@ -55,7 +55,10 @@ jobs:
           git diff --cached --check
           if ! git diff --cached --quiet; then
             git commit -m "build(tjuvholmen): synchronize canonical media, People and By badge projections"
-            git fetch origin content/tjuvholmen-editorial-closeout-20261112
+            # All desired artifacts were committed above. Discard incidental build output before rebasing.
+          git reset --hard HEAD
+          git clean -fd
+          git fetch origin content/tjuvholmen-editorial-closeout-20261112
             git rebase origin/content/tjuvholmen-editorial-closeout-20261112
             git push origin HEAD:content/tjuvholmen-editorial-closeout-20261112
           fi

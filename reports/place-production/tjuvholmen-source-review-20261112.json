@@ -17,7 +17,19 @@
     "frontImage": "bilder/places/tjuvholmen_front_2026.webp",
     "provenance": "Two different Wikimedia Commons CC0 photographs by Leonhard Lenz; SHA-256 stored in canonical imageMeta/frontImageMeta; source thumbnails preserved",
     "source": "https://commons.wikimedia.org/wiki/File:Tjuvholmen_Oslo_2026-01-14_02.jpg",
-    "remaining": "Manual browser visual/flip review at 390/1440 px"
+    "remaining": "Automated native Chromium image and QuizCard PASS at 390/1440 (run 43169533643); separate manual screenshot review still required",
+    "native_browser": {
+      "status": "PASS",
+      "run": "https://github.com/Paradispartiet/History-Go/actions/runs/43169533643",
+      "artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/43169533643/artifacts/13921696186",
+      "viewports": [
+        390,
+        1440
+      ],
+      "image": "contain",
+      "frontImage": "contain",
+      "quizcard_flip": true
+    }
   },
   "badge": {
     "status": "SOURCE_CORRECTED",
@@ -56,6 +68,13 @@
           "role": "2018 group exhibition at Galleri Brandstrup, Tjuvholmen",
           "source": "https://kunstverket.no/kunstneroversikt/mno/bjarne-melgaard",
           "asset": "Existing image; provenance needs review"
+        },
+        {
+          "id": "stephen_butkus",
+          "role": "Photography exhibitions at THE THIEF (2015 and 2018) and Tjuvholmen pedestrian bridge, July 2018",
+          "source": "https://www.fineart.no/kunstner/stephen-butkus",
+          "additional_source": "https://www.fineart.no/galleriobjekt/Stephen_Butkus_-_You_Had_Me_At_Goodbye__10/389908",
+          "asset": "Existing local image; provenance needs verification"
         }
       ],
       "unsupported_existing": [
@@ -74,13 +93,9 @@
         {
           "id": "niels_onstad",
           "reason": "Onstad is not source-backed as an actor in Tjuvholmen / Astrup Fearnley development"
-        },
-        {
-          "id": "stephen_butkus",
-          "reason": "Direct on-site action or project relationship not established"
         }
       ],
-      "action": "Remove unsupported Tjuvholmen relations through canonical People source owners, preserve legitimately linked People elsewhere. Do not promote until every selected preview has sourced portrait and relationship."
+      "action": "Verified Tjuvholmen People relations should be retained. Remove unsupported links for other actors through canonical source records; only use original, rights-clear preview images. No placeholder portraits."
     },
     "brands": {
       "status": "BLOCKED",
@@ -135,7 +150,7 @@
   },
   "vferdig": {
     "editorial_status": "BLOCKED",
-    "reason": "People and Brands visual/source gates not met, Structures not materialized, final native browser screenshot/flip QA incomplete",
+    "reason": "People and Brands image/source gates not met; Structures not materialized; manual screenshot/collection review remains pending; native mobile/desktop photo and QuizCard test PASS",
     "no_filler": true,
     "do_not_mark_complete": true
   },
