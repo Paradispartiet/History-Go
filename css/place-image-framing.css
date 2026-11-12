@@ -11,6 +11,9 @@ body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
 body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage,
 /* The legacy popup's principal documentary image. */
 body.hg-app .hg-place-popup-v2 .hg-place-hero-media > .hg-place-hero-image,
+/* Micro-place and miniature previews inherit the same place-photo contract. */
+body.hg-app #placeCard.is-micro-place .pc-micro-media img,
+body.hg-app #placeCard #pcMiniImg,
 /* Paired historical photographs should also keep their full source composition. */
 body.hg-app #placeCard .pc-sheet-canonical-before-after figure img {
   object-fit: contain !important;
