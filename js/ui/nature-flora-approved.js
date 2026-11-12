@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_rynkesurbaer: Object.freeze({
+      scientificName: "Aronia melanocarpa",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/94_svartsurbaer_v1.webp",
+      gitBlobSha: "3059a859aea76264001162d81a29e5257192aa12",
+      reviewedAt: "2026-11-12",
+      stage: "varblomstring_svartfrukt_og_rod_hostfarge_sammenstilling",
+      evidence: "data/natur/flora/illustration-quality-svartsurbaer-20261112.json"
+    }),
     emne_flora_amerikahagtorn: Object.freeze({
       scientificName: "Crataegus spp.",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/93_hagtorn_v1.webp",
