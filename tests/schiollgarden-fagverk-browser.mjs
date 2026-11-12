@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Schiøllgården v1: real browser QA for the curated Place-owned Fagverk page.
+// Schiøllgården Fagverk checkpoint: real browser QA for the curated Place-owned Fagverk page.
 // Uses localhost's documented CI login bypass; production authentication remains unchanged.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -51,6 +51,10 @@ try {
         const error = document.getElementById('fagverkPlaceError');
         return content?.hidden === false || error?.hidden === false;
       }, null, {timeout:90000});
+      await page.waitForFunction(() => {
+        const image = document.getElementById('fagverkPlaceImage');
+        return image?.complete && image.naturalWidth > 0;
+      }, null, {timeout:15000});
       const snapshot = await page.evaluate(() => {
         const q = selector => document.querySelector(selector);
         const image = q('#fagverkPlaceImage');
@@ -79,9 +83,9 @@ try {
       assert.match(snapshot.title,/Schiøllgården/i);
       assert.equal(snapshot.status,'Kuratert stedsfagverk');
       assert.ok(snapshot.lead.length>=70,'Curated Fagverk introduction missing');
-      assert.ok(snapshot.articleCount>=3,'Three unique historical Fagverk sections must render');
+      assert.equal(snapshot.articleCount,place.fagverk.article.length,'Every edited Fagverk paragraph must render');
       assert.ok(snapshot.lenses>=3,'Canonical city lenses must resolve');
-      assert.ok(snapshot.questions>=4,'Historical questions must render');
+      assert.equal(snapshot.questions,place.fagverk.guiding_questions.length,'Every guiding question must render');
       assert.ok(snapshot.traces>=2,'Source-bound local observations must render');
       assert.ok(snapshot.chapters>=2,'Canonical city chapters must resolve');
       assert.ok(snapshot.sources>=4,'Source links must be visible');
