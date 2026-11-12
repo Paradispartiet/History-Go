@@ -1,0 +1,51 @@
+name: Science v2 – isolated localized badge proof
+on:
+  pull_request:
+    paths:
+      - 'scripts/create-vitenskap-v2-textbands.py'
+      - '.github/workflows/vitenskap-v2-textbands-proof.yml'
+permissions:
+  contents: write
+jobs:
+  preview:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'art/vitenskap-v2-translate-bands-20261112'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet pillow numpy
+      - name: Render English Mathematics candidate without changing active badges
+        run: python scripts/create-vitenskap-v2-textbands.py --id matematikk --locale en
+      - name: Check English candidate image
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          root=Path('bilder/merker/vitenskap/kandidater')
+          old=Image.open(root/'matematikk-v2.webp').convert('RGBA')
+          new=Image.open(root/'locales/en/matematikk-v2.webp').convert('RGBA')
+          assert old.size == new.size == (1024, 1024)
+          assert old.getchannel('A').tobytes() == new.getchannel('A').tobytes()
+          import numpy as np
+          a=np.asarray(old)[280:744, 280:744,:3].astype('int16')
+          b=np.asarray(new)[280:744, 280:744,:3].astype('int16')
+          err=np.abs(a-b)
+          assert err.mean()<6,err.mean()
+          assert np.percentile(err,99)<32,np.percentile(err,99)
+          print('Technical proof passed; visual inspection still required.')
+          PY
+      - name: Commit candidate to PR branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/merker/vitenskap/kandidater/locales/en/matematikk-v2.webp
+          if ! git diff --cached --quiet; then
+            git commit -m 'art(badges): English Mathematics v2 artwork candidate'
+            git push
+          fi
