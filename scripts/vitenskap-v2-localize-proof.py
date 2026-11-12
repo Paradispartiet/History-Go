@@ -101,7 +101,7 @@ def make(id,locale,output):
     assert output_img.getchannel('A').tobytes()==preserved_alpha
     out=ROOT/output
     out.parent.mkdir(parents=True,exist_ok=True)
-    output_img.save(out,'WEBP',lossless=True,method=6)
+    output_img.save(out,'WEBP',quality=94,lossless=False,method=6)
     print(f'{out.relative_to(ROOT)} {out.stat().st_size} bytes')
 
 if __name__=='__main__':
