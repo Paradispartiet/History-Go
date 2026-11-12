@@ -67,13 +67,13 @@ jobs:
                   print('Image fetch retry',filename,repr(exc)[:300])
                   time.sleep(3)
             raise RuntimeError('Unable to fetch licensed Commons source '+filename)
-          main_source=Path('bilder/places/auto/tjuvholmen_2024_ssu_source_thumb.jpg')
+          main_source=Path('bilder/places/auto/tjuvholmen_2026_lenz_waterfront_source_thumb.jpg')
           front_source=Path('bilder/places/auto/tjuvholmen_2026_lenz_source_thumb.jpg')
-          grab('Tjuvholmen allé, Oslo.jpg',main_source)
+          grab('Tjuvholmen Oslo 2026-01-14 02.jpg',main_source)
           grab('Tjuvholmen Oslo 2026-01-14 01.jpg',front_source)
           digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
           assert digest(main_source)!=digest(front_source),'Distinct source photos required'
-          main=Path('bilder/places/tjuvholmen_main_2024.webp')
+          main=Path('bilder/places/tjuvholmen_main_2026_waterfront.webp')
           front=Path('bilder/places/tjuvholmen_front_2026.webp')
           def overview_composition(original, size, destination, quality):
             # Sharp, original source is wholly visible; no center crop or zoom.
@@ -96,14 +96,14 @@ jobs:
           old['frontImage']=str(front)
           old['imageMeta']={
            'source':'wikimedia_commons_documentary_photo',
-           'sourcePage':'https://commons.wikimedia.org/wiki/File:Tjuvholmen_all%C3%A9,_Oslo.jpg',
+           'sourcePage':'https://commons.wikimedia.org/wiki/File:Tjuvholmen_Oslo_2026-01-14_02.jpg',
            'sourceLocalAsset':str(main_source),
            'sourceSha256':digest(main_source),'sourceLocalSha256':digest(main_source),
-           'creator':'Ssu','credit':'Ssu / Wikimedia Commons','license':'CC BY-SA 4.0',
-           'licenseUrl':'https://creativecommons.org/licenses/by-sa/4.0/',
+           'creator':'Leonhard Lenz','credit':'Leonhard Lenz / Wikimedia Commons','license':'CC0 1.0',
+           'licenseUrl':'https://creativecommons.org/publicdomain/zero/1.0/',
            'originalDimensions':main_dimensions,'localSourceDimensions':main_dimensions,'visibleSourceDimensions':main_visible,
            'outputDimensions':'1200x675','outputSha256':digest(main),'assetType':'documentary_place_photo',
-           'transformation':'Hele 2024-fotografiet plassert skarpt i 16:9 ramme med myk mørk bakgrunn av samme bilde; ingen zoom, ingen skarp motivbeskjæring, ingen KI-generering.',
+           'transformation':'Hele 2026-vannkantfotografiet plassert skarpt i 16:9 ramme med myk mørk bakgrunn av samme bilde; ingen zoom, ingen skarp motivbeskjæring, ingen KI-generering.',
            'verifiedAt':'2026-11-11'
           }
           old['frontImageMeta']={
@@ -120,9 +120,9 @@ jobs:
            'transformation':'Hele 2026-fotografiet plassert skarpt i 3:4 ramme med myk mørk bakgrunn av samme bilde; ingen zoom, ingen skarp motivbeskjæring, ingen KI-generering.',
            'reviewStatus':'pending_editorial_crop_review','verifiedAt':'2026-11-11'
           }
-          old['imageCredit']='Ssu / Wikimedia Commons'
-          old['imageLicense']='CC BY-SA 4.0'
-          old['imageLicenseUrl']='https://creativecommons.org/licenses/by-sa/4.0/'
+          old['imageCredit']='Leonhard Lenz / Wikimedia Commons'
+          old['imageLicense']='CC0 1.0'
+          old['imageLicenseUrl']='https://creativecommons.org/publicdomain/zero/1.0/'
           old['imageSourceUrl']=old['imageMeta']['sourcePage']
           card['status']='local_binary_images_ready_pending_editorial_and_collections'
           card['new_media']['main_image']['local_source']=str(main_source)
@@ -152,8 +152,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add bilder/places/auto/tjuvholmen_2024_ssu_source_thumb.jpg bilder/places/auto/tjuvholmen_2026_lenz_source_thumb.jpg
-          git add bilder/places/tjuvholmen_main_2024.webp bilder/places/tjuvholmen_front_2026.webp
+          git add bilder/places/auto/tjuvholmen_2026_lenz_waterfront_source_thumb.jpg bilder/places/auto/tjuvholmen_2026_lenz_source_thumb.jpg
+          git add bilder/places/tjuvholmen_main_2026_waterfront.webp bilder/places/tjuvholmen_front_2026.webp
           git add data/places/by/oslo/places/tjuvholmen.json
           git add data/runtime/place-open/tjuvholmen.json data/places/places_index.json
           git add data/quiz/production_context/by/tjuvholmen.json
