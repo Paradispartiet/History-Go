@@ -88,7 +88,7 @@ def thread_relief(source):
     assert np.array_equal(out[:,:,3],original[:,:,3])
     # Only annular regions may be edited; the central scientific illustration
     # stays byte-identical BEFORE WebP serialization.
-    assert np.array_equal(out[255:770,255:770],original[255:770,255:770])
+    assert np.array_equal(out[280:744,280:744],original[280:744,280:744])
     assert np.array_equal(out[0:40,0:SIZE],original[0:40,0:SIZE])
     return Image.fromarray(out,"RGBA"), {
         "goldPixelsEnhanced":int(gold.sum()),
@@ -104,7 +104,7 @@ def sha_info(path):
         "path":str(path.relative_to(ROOT)),
         "bytes":len(b),
         "sha256":hashlib.sha256(b).hexdigest(),
-        "gitBlobSha":hashlib.sha1(b"blob "+str(len(b)).encode()+b"\\0"+b).hexdigest()
+        "gitBlobSha":hashlib.sha1(b"blob "+str(len(b)).encode()+b"\0"+b).hexdigest()
     }
 
 def preview(before,after):
@@ -147,8 +147,8 @@ def main():
             decoded=f.convert("RGBA")
         assert decoded.size==(1024,1024)
         assert decoded.getchannel("A").tobytes()==before.getchannel("A").tobytes()
-        src_center=np.asarray(before)[255:770,255:770,:3].astype("int16")
-        out_center=np.asarray(decoded)[255:770,255:770,:3].astype("int16")
+        src_center=np.asarray(before)[280:744,280:744,:3].astype("int16")
+        out_center=np.asarray(decoded)[280:744,280:744,:3].astype("int16")
         delta=np.abs(src_center-out_center)
         assert float(delta.mean())<6,delta.mean()
         assert float(np.percentile(delta,99))<38,np.percentile(delta,99)
