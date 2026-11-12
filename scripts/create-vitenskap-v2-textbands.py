@@ -25,8 +25,8 @@ def textile_band(source):
     xx, yy = x - 512, y - 512
     r = np.hypot(xx, yy)
     deg = np.degrees(np.arctan2(yy, xx))
-    upper = (deg >= -151) & (deg <= -29) & (r >= 392) & (r <= 457)
-    lower = (deg >= 29) & (deg <= 151) & (r >= 389) & (r <= 456)
+    upper = (((deg >= -147) & (deg <= -33) & (r >= 389) & (r <= 458)) | ((deg >= -125) & (deg <= -55) & (r >= 349) & (r < 389)))
+    lower = (((deg >= 31) & (deg <= 149) & (r >= 384) & (r <= 458)) | ((deg >= 53) & (deg <= 127) & (r >= 343) & (r < 384)))
     mask = upper | lower
     # Soft fabric-toned replacement for ORIGINAL LETTERING ONLY.
     # The embroidered rim and center are not masked.
@@ -37,10 +37,10 @@ def textile_band(source):
     new[...,1] = np.clip(11 + 0.04 * (rr - 420) + noise // 5, 0,255)
     new[...,2] = np.clip(42 + 0.16 * (rr - 420) + noise // 3, 0,255)
     # Feather edges of the text field by 2 pixels, avoiding a sharp patch seam.
-    upper_feather = np.minimum(np.minimum(r-392, 457-r),
-                           np.minimum(deg+151, -29-deg) * 6)
-    lower_feather = np.minimum(np.minimum(r-389, 456-r),
-                           np.minimum(deg-29, 151-deg) * 6)
+    upper_feather = np.minimum(np.minimum(r-349, 458-r),
+                           np.minimum(deg+147, -33-deg) * 6)
+    lower_feather = np.minimum(np.minimum(r-343, 458-r),
+                           np.minimum(deg-31, 149-deg) * 6)
     feather = np.where(upper,upper_feather,np.where(lower,lower_feather,0))
     blend = np.where(mask, np.clip(feather/3.0,0,1),0)[...,None]
     a[...,:3] = np.uint8(np.clip(a[...,:3]*(1-blend) + new*blend,0,255))
@@ -62,7 +62,7 @@ def gold_glyph(char,font):
     return stamp
 
 def add_arch_text(img, label, upper):
-    r=424 if upper else 421
+    r=399 if upper else 389
     limit=math.radians(119)
     size=65
     while size>35:
