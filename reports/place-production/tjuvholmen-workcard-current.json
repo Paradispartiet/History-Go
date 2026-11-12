@@ -41,13 +41,13 @@
   },
   "collection_gate": {
     "people": "BLOCKED: 4 kandidater har direkte kildekobling; tre gamle generiske portretter og noen udokumenterte stedsrelasjoner kan ikke telle i ferdig samling",
-    "brands": "BLOCKED: BAHR, Galleri Brandstrup og THE THIEF er stedskvalifiserte; alle tre mangler verifiserte lokale logoer",
+    "brands": "BLOCKED 2/3: THE THIEF offisiell logo er kildekontrollert og aktiv i Place-open; BAHR og Galleri Brandstrup mangler autentiske, lokale og visuelt godkjente logoer.",
     "objects": "KANDIDATREVIEW: skulpturer i offentlig park, verifiser samlingseier og selvstendig kilde/bilde før opptak",
     "structures": "BLOCKED: dokumenterte byrom/anlegg finnes, men struktur-entities og samlingsbilder er ikke materialisert",
     "filler_forbidden": true,
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
-  "qa": "Tjuvholmen image/frontImage and QuizCard native Chromium 390/1440 PASS; manual photo and flip screenshot inspection PASS. All source photos and local WebPs are stored in main. People/Brands/Structures content and preview requirements remain blocked.",
+  "qa": "Foto og QuizCard-browser PASS (390/1440). THE THIEF 900x520 offisiell SVG-avledet logo og Place-open-binding PASS; BAHR/Galleri Brandstrup, People og Structures gjenstår.",
   "merged": true,
   "verified_at": "2026-11-12",
   "rule_preflight": {
@@ -122,7 +122,7 @@
   },
   "vferdig": {
     "status": "BLOCKED",
-    "reason": "Collection sources/preview assets and structures still incomplete. Browser and screenshot checks PASS.",
+    "reason": "THE THIEF logo PASS, men to Brand-logoer og People/Structures-samlingene er ikke godkjent; vFerdig fortsatt BLOCKED.",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
   "browser_acceptance": {
@@ -137,5 +137,13 @@
     "quizcard_flip": "PASS",
     "physical_device_qa": false,
     "manual_screenshot_review": "PASS: 390 and 1440 PlaceCard photo and QuizCard inspected; prior mobile transient screenshot not reproduced"
+  },
+  "brand_logo_coverage": {
+    "total": 3,
+    "pass": 1,
+    "blocked": 2,
+    "verified_logo": "bilder/kort/brands/the_thief.webp",
+    "source": "data/brands/the_thief_logo_provenance.json",
+    "runtime": "data/runtime/place-open/tjuvholmen.json"
   }
 }
