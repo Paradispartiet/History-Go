@@ -29,7 +29,7 @@ LABELS=[
  ("Procédure", 214,469,296,495, 12,-5,"paper","clipboard procedure"),
  ("Mesure", 218,496,286,520, 13,-5,"paper","clipboard measurement"),
  ("Analyse", 225,520,301,548, 13,-5,"paper","clipboard analysis"),
- ("PRÉLÈV.\\nA-037", 345,718,403,764, 11,-8,"paper","sample packet"),
+ ("PRÉLÈV.\nA-037", 345,718,403,764, 11,-8,"paper","sample packet"),
 ]
 # Additional label stays as neutral sample identification A-037.
 
@@ -63,7 +63,7 @@ def amend_patch(base, title, rect, px, tilt=0):
     out.paste(patch,(x0,y0),m)
     font_size=px
     measurement=ImageDraw.Draw(out)
-    lines=title.split('\\n')
+    lines=title.splitlines()
     while font_size>8:
         font=ImageFont.truetype(FONT,font_size)
         box=measurement.multiline_textbbox((0,0),title,font=font,spacing=1)
