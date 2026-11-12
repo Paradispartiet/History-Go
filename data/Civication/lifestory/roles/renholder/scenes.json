@@ -26,7 +26,8 @@
               "energi": -4
             },
             "flagg": {
-              "tok_hygienisk_rent": true
+              "tok_hygienisk_rent": true,
+              "ren_log2_egen_full": true
             },
             "threads": {
               "rommet_som_saa_rent_ut": {
@@ -52,7 +53,8 @@
               "energi": -2
             },
             "flagg": {
-              "valgte_synlig_rent": true
+              "valgte_synlig_rent": true,
+              "ren_log2_egen_delvis": true
             },
             "threads": {
               "rommet_som_saa_rent_ut": {
@@ -78,7 +80,8 @@
               "handlingsrom": 2
             },
             "flagg": {
-              "spurte_om_metode": true
+              "spurte_om_metode": true,
+              "ren_log2_delt": true
             },
             "threads": {
               "rommet_som_saa_rent_ut": {
@@ -421,22 +424,15 @@
       "tilgjengelighet": "start",
       "prioritet": 7,
       "tittel": "«Det rommet blir jo aldri vasket»",
-      "tekst": "Kari videresender en klage fra Sindre: «Møterom 2 blir jo aldri vasket.» Du var inne før møtet i morges. På romlista kan Kari se hvilke oppgaver som faktisk ble gjort.",
+      "tekst": "Kari videresender Sindres klage: «Møterom 2 blir jo aldri vasket.» Før du svarer, må du se på dagens registrerte handlinger: hvilke punkter du tok, hva Amina eventuelt gjorde og hva som fortsatt gjenstår. Lukten ved serveringsbenken er en egen observasjon med uavklart årsak.",
       "valg": [
         {
           "id": "dokumenter",
-          "tekst": "Send Kari runde-loggen din, nøkternt og uten spydighet",
-          "tone": "profesjonell",
+          "tekst": "Åpne dagens romliste og gjør klar en presis oversikt til Kari",
+          "konsekvensTekst": "Du åpner registreringene fra møtet med romlista. Oversikten må skille egen utførelse, Aminas eventuelle del og gjenstående punkter. Du har ennå ikke sendt denne oversikten eller fått bekreftet mottak.",
           "effekter": {
-            "relasjoner": {
-              "driftsleder": 5
-            },
-            "meters": {
-              "integritet": 4,
-              "synlighet": 5
-            },
             "flagg": {
-              "dokumenterte_runden": true
+              "ren_log2_gjennomgang_valgt": true
             },
             "threads": {
               "usynlig_arbeid": {
@@ -444,50 +440,49 @@
               }
             }
           },
-          "konsekvensTekst": "Kari svarer: «Det var det jeg trodde. Jeg svarer ham.» Loggen din sier det du ikke orket å si selv."
+          "laaserOpp": [
+            "klage2_02_full",
+            "klage2_02_delvis",
+            "klage2_02_delt",
+            "klage2_02_ukjent"
+          ]
         },
         {
           "id": "la_ligge",
-          "tekst": "La det ligge — folk ser aldri dette arbeidet uansett",
-          "tone": "resignert",
+          "tekst": "La klagen vente uten å sende romstatus nå",
+          "konsekvensTekst": "Du lar meldingen vente og sender ingen ny romstatus. Det som faktisk er utført, forblir registrert; klagen er verken undersøkt eller avklart gjennom dette valget.",
           "effekter": {
-            "meters": {
-              "psyke": -5,
-              "synlighet": -2
-            },
             "flagg": {
-              "lot_det_ligge": true
+              "lot_det_ligge": true,
+              "ren_log2_svar_venter": true
             },
             "threads": {
               "usynlig_arbeid": {
-                "status": "dormant"
+                "stepDelta": 1
               }
             }
-          },
-          "konsekvensTekst": "Du lukker meldingen. Det er bare en klage. Men den blir liggende et sted bak i hodet resten av kvelden."
+          }
         },
         {
           "id": "si_fra_tydelig",
-          "tekst": "Svar Sindre direkte at dere var inne før møtet, og vis til det som står på romlista.",
-          "tone": "tydelig",
+          "tekst": "Svar at du vil gå gjennom romlista før du uttaler deg om arbeidet",
+          "konsekvensTekst": "Du skriver til Sindre at du vil sjekke dagens romliste. Dette er et svar på henvendelsen, ikke dokumentasjon på at alle punktene ble gjort. Du trenger fortsatt riktig oversikt og mottaker.",
           "effekter": {
-            "relasjoner": {
-              "kontorbruker": -4
-            },
-            "meters": {
-              "synlighet": 6,
-              "integritet": 3
-            },
             "flagg": {
               "sa_fra_til_bruker": true
             },
             "threads": {
               "usynlig_arbeid": {
-                "status": "escalated"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "Det blir stille i tråden. Du vet ikke om det var lurt, men Sindre kan nå se hva som faktisk ble gjort før møtet."
+          "laaserOpp": [
+            "klage2_02_full",
+            "klage2_02_delvis",
+            "klage2_02_delt",
+            "klage2_02_ukjent"
+          ]
         }
       ]
     },
@@ -798,57 +793,45 @@
       "tilgjengelighet": "start",
       "prioritet": 7,
       "conditions": {
-        "threads": {
-          "usynlig_arbeid": "escalated"
+        "flagg": {
+          "ren_log2_sendt": true
         }
       },
-      "tittel": "Svaret fra Sindre",
-      "tekst": "Sent på kvelden tikker det inn en melding fra Sindre: «Visste ikke at dere var innom før møtet. Beklager utspillet. Kan du si fra hvis vi roter det til for dere?» Du leser den to ganger.",
+      "tittel": "Sindre svarer på romstatusen",
+      "tekst": "Sindre skriver at han har lest oversikten om møterom 2: «Beklager at jeg skrev at det aldri blir vasket. Jeg må være konkret om hva jeg mener mangler.» Svaret forteller at meldingen er lest. Det fullfører ikke gjenstående rompunkter og forklarer ikke lukten.",
       "valg": [
         {
           "id": "ta_imot",
-          "tekst": "Ta imot beklagelsen og svar vennlig",
-          "tone": "raus",
+          "tekst": "Bekreft at du har lest svaret og hold fast ved den registrerte statusen",
+          "konsekvensTekst": "Du svarer at du har lest beklagelsen. Utførte punkter, restarbeid og uavklart lukt beholder hver sin status. En bedre samtale er ikke et nytt renholdsresultat.",
           "effekter": {
-            "relasjoner": {
-              "kontorbruker": 7
-            },
-            "meters": {
-              "psyke": 5,
-              "synlighet": 2
-            },
             "flagg": {
-              "tok_imot_beklagelse": true
+              "tok_imot_beklagelse": true,
+              "ren_log2_sindre_lest": true
             },
             "threads": {
               "usynlig_arbeid": {
-                "status": "completed"
+                "stepDelta": 1
               }
             }
-          },
-          "konsekvensTekst": "Du svarer kort og vennlig. Det kostet å si fra i går. I kveld kjennes det som det var verdt det."
+          }
         },
         {
           "id": "hold_avstand",
-          "tekst": "Les den, men ikke svar — skaden er alt gjort",
-          "tone": "kjølig",
+          "tekst": "Les svaret og la ditt eget svar vente",
+          "konsekvensTekst": "Du leser Sindres svar, men sender ikke et eget svar nå. Mottaket fra Sindre er dokumentert; eget svar står åpent. Det endrer ingen arbeidsregistreringer.",
           "effekter": {
-            "relasjoner": {
-              "kontorbruker": -2
-            },
-            "meters": {
-              "psyke": -2
-            },
             "flagg": {
-              "holdt_avstand": true
+              "holdt_avstand": true,
+              "ren_log2_sindre_lest": true,
+              "ren_log2_eget_svar_venter": true
             },
             "threads": {
               "usynlig_arbeid": {
-                "status": "dormant"
+                "stepDelta": 1
               }
             }
-          },
-          "konsekvensTekst": "Meldingen blir stående ulest-markert. Kanskje du svarer i morgen. Kanskje ikke."
+          }
         }
       ]
     },
@@ -862,26 +845,15 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "«Rom 204 blir jo aldri vasket»",
-      "tekst": "Kari videresender en ny klage — denne gangen fra fjerde etasje: «Rom 204 blir jo aldri vasket.» Du vasket det klokka sju i dag, før noen kom. Sindre lærte det forrige uke; nå er det en ny som ikke vet.",
+      "tekst": "Kari videresender en klage på rom 204. Dere må sammenholde den med dagens romliste: hva som faktisk ble utført og kontrollert, hva som gjenstår eller om rommet var utilgjengelig. Registreringene fra møterom 2 og øvelsen i møterom 4 beviser ikke noe om rom 204.",
       "valg": [
         {
           "id": "vis_loggen_rolig",
-          "tekst": "Send Kari loggen: rom 204 vasket 07:10 i dag",
-          "tone": "faglig",
-          "livsstil": [
-            "legitimacy",
-            "visibility"
-          ],
+          "tekst": "Gå gjennom den faktiske registreringen for rom 204",
+          "konsekvensTekst": "Du åpner dagens registrering for rom 204. Før du sender den, må den vise utførte og gjenstående punkter uten å fylle inn en klokkeslettlogg eller arbeid som mangler i historien.",
           "effekter": {
-            "meters": {
-              "synlighet": 3,
-              "integritet": 2
-            },
-            "relasjoner": {
-              "kontorbruker": 2
-            },
             "flagg": {
-              "viste_loggen": true
+              "ren_log204_gjennomgang_valgt": true
             },
             "threads": {
               "usynlig_arbeid": {
@@ -889,45 +861,34 @@
               }
             }
           },
-          "konsekvensTekst": "«Da har jeg svaret mitt,» skriver Kari. Loggen sier det du slipper å si selv — igjen. Denne gangen orket du det."
+          "laaserOpp": [
+            "klage204_03_full",
+            "klage204_03_delvis",
+            "klage204_03_stengt",
+            "klage204_03_ukjent"
+          ]
         },
         {
           "id": "la_det_passere",
-          "tekst": "Bare nikke og gå videre — det er ikke verdt det",
-          "tone": "resignert",
-          "livsstil": [
-            "avoidance"
-          ],
+          "tekst": "La klagen stå ubesvart foreløpig",
+          "konsekvensTekst": "Du sender ingen romstatus nå. Verken klagen eller arbeidets kvalitet er avgjort av at du lar meldingen vente. Registrert utførelse og restarbeid står fortsatt som før.",
           "effekter": {
-            "meters": {
-              "integritet": -2,
-              "synlighet": -1
-            },
             "flagg": {
-              "lot_klagen_passere": true
+              "lot_klagen_passere": true,
+              "ren_log204_svar_venter": true
             },
             "threads": {
               "usynlig_arbeid": {
                 "stepDelta": 1
               }
             }
-          },
-          "konsekvensTekst": "Du lukker meldingen. Klagen er feil, men uimotsagt sprer den seg fortere enn sannheten gjør."
+          }
         },
         {
           "id": "meld_til_kari",
-          "tekst": "Be Kari ta det prinsipielt — sånt skal ikke gro",
-          "tone": "formell",
-          "livsstil": [
-            "process"
-          ],
+          "tekst": "Be Kari følge opp klagen sammen med den faktiske romstatusen",
+          "konsekvensTekst": "Du ber Kari følge opp henvendelsen. Forespørselen avgjør ikke om klagen stemmer eller om rommet er ferdig. Dere trenger først dagens konkrete registrering for dette rommet.",
           "effekter": {
-            "meters": {
-              "synlighet": 1
-            },
-            "relasjoner": {
-              "driftsleder": 2
-            },
             "flagg": {
               "meldte_klagen": true
             },
@@ -937,7 +898,12 @@
               }
             }
           },
-          "konsekvensTekst": "Kari noterer. «Bra du sier fra — det er sånt som ender i møter hvis det får gro.»"
+          "laaserOpp": [
+            "klage204_03_full",
+            "klage204_03_delvis",
+            "klage204_03_stengt",
+            "klage204_03_ukjent"
+          ]
         }
       ]
     },
@@ -2339,6 +2305,606 @@
       "conditions": {
         "flagg": {
           "ren_opp_ovelse_utfort": true
+        }
+      }
+    },
+    {
+      "id": "klage2_02_full",
+      "threadId": "usynlig_arbeid",
+      "dag": 1,
+      "fase": "kveld",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Hva viser lista for møterom 2?",
+      "tekst": "Du tok bord, avfall, håndtak og brytere på den avtalte lista. Lukten ved serveringsbenken ble meldt som fortsatt til stede; årsaken er uavklart. Velg om du sender akkurat denne statusen eller lar oversikten vente.",
+      "valg": [
+        {
+          "id": "send_status",
+          "tekst": "Send den konkrete statusen med utfører og restpunkter",
+          "konsekvensTekst": "Du sender Kari denne oversikten: Du tok bord, avfall, håndtak og brytere på den avtalte lista. Lukten ved serveringsbenken ble meldt som fortsatt til stede; årsaken er uavklart. Du ber henne bruke den når hun følger opp klagen. Oversikten er sendt; mottak er ikke bekreftet ennå.",
+          "effekter": {
+            "flagg": {
+              "ren_log2_sendt": true,
+              "dokumenterte_runden": true,
+              "ren_log2_kjent": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "klage2_03_mottak"
+          ]
+        },
+        {
+          "id": "avvent_status",
+          "tekst": "La oversikten vente uten å føre den som sendt",
+          "konsekvensTekst": "Du sender ikke oversikten nå. De registrerte oppgavene beholder sin status, og oppfølgingen av klagen står åpen.",
+          "effekter": {
+            "flagg": {
+              "ren_log2_status_venter": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_log2_egen_full": true
+        }
+      }
+    },
+    {
+      "id": "klage2_02_delvis",
+      "threadId": "usynlig_arbeid",
+      "dag": 1,
+      "fase": "kveld",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Hva viser lista for møterom 2?",
+      "tekst": "Du tok bordet og avfallet. Håndtak og brytere står som gjenstående. Lukten ved serveringsbenken ble meldt med uavklart årsak. Velg om du sender akkurat denne statusen eller lar oversikten vente.",
+      "valg": [
+        {
+          "id": "send_status",
+          "tekst": "Send den konkrete statusen med utfører og restpunkter",
+          "konsekvensTekst": "Du sender Kari denne oversikten: Du tok bordet og avfallet. Håndtak og brytere står som gjenstående. Lukten ved serveringsbenken ble meldt med uavklart årsak. Du ber henne bruke den når hun følger opp klagen. Oversikten er sendt; mottak er ikke bekreftet ennå.",
+          "effekter": {
+            "flagg": {
+              "ren_log2_sendt": true,
+              "dokumenterte_runden": true,
+              "ren_log2_kjent": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "klage2_03_mottak"
+          ]
+        },
+        {
+          "id": "avvent_status",
+          "tekst": "La oversikten vente uten å føre den som sendt",
+          "konsekvensTekst": "Du sender ikke oversikten nå. De registrerte oppgavene beholder sin status, og oppfølgingen av klagen står åpen.",
+          "effekter": {
+            "flagg": {
+              "ren_log2_status_venter": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_log2_egen_delvis": true
+        }
+      }
+    },
+    {
+      "id": "klage2_02_delt",
+      "threadId": "usynlig_arbeid",
+      "dag": 1,
+      "fase": "kveld",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Hva viser lista for møterom 2?",
+      "tekst": "Du tok bordet og avfallet. Amina tok håndtak og brytere. Utførelsen føres med hver sin utfører. Lukten ved serveringsbenken er fortsatt en observasjon med uavklart årsak. Velg om du sender akkurat denne statusen eller lar oversikten vente.",
+      "valg": [
+        {
+          "id": "send_status",
+          "tekst": "Send den konkrete statusen med utfører og restpunkter",
+          "konsekvensTekst": "Du sender Kari denne oversikten: Du tok bordet og avfallet. Amina tok håndtak og brytere. Utførelsen føres med hver sin utfører. Lukten ved serveringsbenken er fortsatt en observasjon med uavklart årsak. Du ber henne bruke den når hun følger opp klagen. Oversikten er sendt; mottak er ikke bekreftet ennå.",
+          "effekter": {
+            "flagg": {
+              "ren_log2_sendt": true,
+              "dokumenterte_runden": true,
+              "ren_log2_kjent": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "klage2_03_mottak"
+          ]
+        },
+        {
+          "id": "avvent_status",
+          "tekst": "La oversikten vente uten å føre den som sendt",
+          "konsekvensTekst": "Du sender ikke oversikten nå. De registrerte oppgavene beholder sin status, og oppfølgingen av klagen står åpen.",
+          "effekter": {
+            "flagg": {
+              "ren_log2_status_venter": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_log2_delt": true
+        }
+      }
+    },
+    {
+      "id": "klage2_02_ukjent",
+      "threadId": "usynlig_arbeid",
+      "dag": 1,
+      "fase": "kveld",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Hva viser lista for møterom 2?",
+      "tekst": "Romlista gir ikke en detaljert oversikt over hvem som tok bord, avfall, håndtak og brytere i møterom 2. Du må avklare punktene før du kan bruke dem i svaret til Sindre. Lukten har fortsatt uavklart årsak.",
+      "valg": [
+        {
+          "id": "send_status",
+          "tekst": "Send den konkrete statusen med utfører og restpunkter",
+          "konsekvensTekst": "Du sender Kari det du vet: Det mangler en detaljert oversikt over utførelse og ansvar for punktene i møterom 2. Disse punktene og årsaken til lukten står uavklart. Oversikten er sendt; du har ennå ikke fått bekreftet mottak.",
+          "effekter": {
+            "flagg": {
+              "ren_log2_sendt": true,
+              "dokumenterte_runden": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "klage2_03_mottak"
+          ]
+        },
+        {
+          "id": "avvent_status",
+          "tekst": "La oversikten vente uten å føre den som sendt",
+          "konsekvensTekst": "Du sender ikke oversikten nå. De registrerte oppgavene beholder sin status, og oppfølgingen av klagen står åpen.",
+          "effekter": {
+            "flagg": {
+              "ren_log2_status_venter": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_log2_egen_full": {
+            "finnes": false
+          },
+          "ren_log2_egen_delvis": {
+            "finnes": false
+          },
+          "ren_log2_delt": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "klage2_03_mottak",
+      "threadId": "usynlig_arbeid",
+      "dag": 1,
+      "fase": "kveld",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Har Kari mottatt oversikten?",
+      "tekst": "Oversikten om møterom 2 er sendt. Be om konkret mottak; en sendt melding gjør ikke restpunktene ferdige eller klagen avgjort.",
+      "valg": [
+        {
+          "id": "bekreft_mottak",
+          "tekst": "Få Kari til å bekrefte at oversikten er mottatt",
+          "konsekvensTekst": "Kari bekrefter at hun har mottatt oversikten med utførere og restpunkter. Hun følger opp henvendelsen med denne statusen. Romarbeidet og den uavklarte lukten endres ikke av bekreftelsen.",
+          "effekter": {
+            "flagg": {
+              "ren_log2_mottatt": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        },
+        {
+          "id": "avvent_mottak",
+          "tekst": "La mottaket stå ubekreftet",
+          "konsekvensTekst": "Du har sendt oversikten, men ikke fått uttrykkelig mottak fra Kari. Det åpne mottaket føres separat fra selve romarbeidet.",
+          "effekter": {
+            "flagg": {
+              "ren_log2_mottak_venter": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_log2_sendt": true
+        }
+      }
+    },
+    {
+      "id": "klage204_01_arbeid",
+      "threadId": "usynlig_arbeid",
+      "dag": 3,
+      "fase": "morgen",
+      "tilgjengelighet": "start",
+      "prioritet": 11,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Dagens oppgave i rom 204",
+      "tekst": "Kari har ført bord, avfall, håndtak og brytere i rom 204 på dagens liste. Sjekk tilgang og bruk den lokale instruksen for oppgavene. Dette er dagens egen romoppgave, atskilt fra tidligere møterom og Aminas øvingspunkt.",
+      "valg": [
+        {
+          "id": "utfor_hele_lista",
+          "tekst": "Utfør og kontroller punktene på romlista",
+          "konsekvensTekst": "Du har tilgang, utfører bord, avfall, håndtak og brytere etter lokal instruks og kontrollerer punktene mot lista. Du registrerer disse oppgavene som eget arbeid i rom 204. Det gir ingen registrering av arbeid på andre rom.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_full": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        },
+        {
+          "id": "utfor_delvis",
+          "tekst": "Ta bordet og avfallet, og før berøringspunktene som gjenstående",
+          "konsekvensTekst": "Du utfører bordet og avfallet etter lokal instruks og kontrollerer disse punktene. Håndtak og brytere er ikke utført og står som restarbeid på lista for rom 204.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_delvis": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        },
+        {
+          "id": "ingen_tilgang",
+          "tekst": "Registrer manglende tilgang og meld behov for ny tid",
+          "konsekvensTekst": "Rommet er i bruk og du får ikke tilgang til oppgaven nå. Du registrerer punktene som uutført og melder behov for ny avklaring til Kari. Meldingen utfører ingen av punktene.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_stengt": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "klage204_03_full",
+      "threadId": "usynlig_arbeid",
+      "dag": 3,
+      "fase": "formiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Statusen som kan sendes om rom 204",
+      "tekst": "Dagens registrering viser at du utførte og kontrollerte bord, avfall, håndtak og brytere på romlista for rom 204. Klagen må vurderes mot akkurat denne statusen.",
+      "valg": [
+        {
+          "id": "send_status",
+          "tekst": "Send den dokumenterte romstatusen til Kari",
+          "konsekvensTekst": "Du sender Kari oversikten: Dagens registrering viser at du utførte og kontrollerte bord, avfall, håndtak og brytere på romlista for rom 204. Oversikten er sendt, men du har ikke et bekreftet mottak eller en avgjørelse av klagen ennå.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_sendt": true,
+              "viste_loggen": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "klage204_04_mottak"
+          ]
+        },
+        {
+          "id": "avvent_status",
+          "tekst": "La oversikten vente uten å føre den som sendt",
+          "konsekvensTekst": "Du sender ikke oversikten nå. Gjenstående punkter og behovet for oppfølging av klagen blir stående. Ingen ny utførelse registreres.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_status_venter": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_log204_full": true
+        }
+      }
+    },
+    {
+      "id": "klage204_03_delvis",
+      "threadId": "usynlig_arbeid",
+      "dag": 3,
+      "fase": "formiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Statusen som kan sendes om rom 204",
+      "tekst": "Dagens registrering viser eget utført og kontrollert bord og avfall i rom 204. Håndtak og brytere gjenstår. Klagen må vurderes mot akkurat denne statusen.",
+      "valg": [
+        {
+          "id": "send_status",
+          "tekst": "Send den dokumenterte romstatusen til Kari",
+          "konsekvensTekst": "Du sender Kari oversikten: Dagens registrering viser eget utført og kontrollert bord og avfall i rom 204. Håndtak og brytere gjenstår. Oversikten er sendt, men du har ikke et bekreftet mottak eller en avgjørelse av klagen ennå.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_sendt": true,
+              "viste_loggen": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "klage204_04_mottak"
+          ]
+        },
+        {
+          "id": "avvent_status",
+          "tekst": "La oversikten vente uten å føre den som sendt",
+          "konsekvensTekst": "Du sender ikke oversikten nå. Gjenstående punkter og behovet for oppfølging av klagen blir stående. Ingen ny utførelse registreres.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_status_venter": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_log204_delvis": true
+        }
+      }
+    },
+    {
+      "id": "klage204_03_stengt",
+      "threadId": "usynlig_arbeid",
+      "dag": 3,
+      "fase": "formiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Statusen som kan sendes om rom 204",
+      "tekst": "Dagens registrering viser manglende tilgang til rom 204. Ingen av punktene er registrert utført; det er meldt behov for ny tid. Klagen må vurderes mot akkurat denne statusen.",
+      "valg": [
+        {
+          "id": "send_status",
+          "tekst": "Send den dokumenterte romstatusen til Kari",
+          "konsekvensTekst": "Du sender Kari oversikten: Dagens registrering viser manglende tilgang til rom 204. Ingen av punktene er registrert utført; det er meldt behov for ny tid. Oversikten er sendt, men du har ikke et bekreftet mottak eller en avgjørelse av klagen ennå.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_sendt": true,
+              "viste_loggen": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "klage204_04_mottak"
+          ]
+        },
+        {
+          "id": "avvent_status",
+          "tekst": "La oversikten vente uten å føre den som sendt",
+          "konsekvensTekst": "Du sender ikke oversikten nå. Gjenstående punkter og behovet for oppfølging av klagen blir stående. Ingen ny utførelse registreres.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_status_venter": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_log204_stengt": true
+        }
+      }
+    },
+    {
+      "id": "klage204_03_ukjent",
+      "threadId": "usynlig_arbeid",
+      "dag": 3,
+      "fase": "formiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Statusen som kan sendes om rom 204",
+      "tekst": "Romlista mangler en detaljert registrering av dagens arbeid i rom 204. Du kan ikke fastslå utførelse eller tidspunkt ut fra opplysninger om andre rom. Klagen må undersøkes videre.",
+      "valg": [
+        {
+          "id": "send_status",
+          "tekst": "Send den dokumenterte romstatusen til Kari",
+          "konsekvensTekst": "Du sender Kari at dagens utførelse og tidspunkt i rom 204 må avklares. Opplysninger om møterom 2 og øvelsen i møterom 4 kan ikke fylle hullet. Oversikten er sendt, men du har ikke bekreftet mottak eller en avgjørelse av klagen.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_sendt": true,
+              "viste_loggen": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "klage204_04_mottak"
+          ]
+        },
+        {
+          "id": "avvent_status",
+          "tekst": "La oversikten vente uten å føre den som sendt",
+          "konsekvensTekst": "Du sender ikke oversikten nå. Gjenstående punkter og behovet for oppfølging av klagen blir stående. Ingen ny utførelse registreres.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_status_venter": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_log204_full": {
+            "finnes": false
+          },
+          "ren_log204_delvis": {
+            "finnes": false
+          },
+          "ren_log204_stengt": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "klage204_04_mottak",
+      "threadId": "usynlig_arbeid",
+      "dag": 3,
+      "fase": "formiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Kari tar imot romstatusen",
+      "tekst": "Be Kari bekrefte mottak av oversikten for rom 204. Restarbeid og mulig videre undersøkelse må holdes fra hverandre. Ingen mottaksbekreftelse kan utføre rompunktene.",
+      "valg": [
+        {
+          "id": "bekreft_mottak",
+          "tekst": "Få Kari til å bekrefte mottaket av oversikten",
+          "konsekvensTekst": "Kari bekrefter at hun har mottatt den dokumenterte statusen for rom 204. Hun bruker den til å følge opp klagen og avklare eventuelle restoppgaver. Bekreftelsen gjør ikke restarbeid ferdig og avgjør ikke automatisk hva klageren observerte.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_mottatt": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        },
+        {
+          "id": "avvent_mottak",
+          "tekst": "La mottaket stå åpent til Kari svarer",
+          "konsekvensTekst": "Oversikten er sendt, men Kari har ikke bekreftet mottak. Du fører mottaket som åpent og lar arbeidsregistreringene stå som de er.",
+          "effekter": {
+            "flagg": {
+              "ren_log204_mottak_venter": true
+            },
+            "threads": {
+              "usynlig_arbeid": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_log204_sendt": true
         }
       }
     }

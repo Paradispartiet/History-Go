@@ -83,12 +83,18 @@
     let best = null;
     for (const e of endings) {
       const { score, flagHits } = scoreEnding(e, state);
+      // Opt-in factual endings must satisfy every authored criterion.
+      const maximum = Object.entries(WEIGHTS).reduce((sum, [group, weight]) =>
+        sum + Object.keys(e.kriterier?.[group] || {}).length * weight, 0);
+      if (e.kreverAlleKriterier === true && score !== maximum) continue;
       if (flagHits > 0 && (!best || score > best.score)) best = { ending: e, score };
     }
     if (best) {
       return presentEnding(best.ending, best.score, false, state, content);
     }
-    const std = endings.find((e) => e.standard) || endings[0];
+    const eligibleFallback = (e) => e.kreverAlleKriterier !== true || scoreEnding(e, state).score === Object.entries(WEIGHTS).reduce((sum, [group, weight]) => sum + Object.keys(e.kriterier?.[group] || {}).length * weight, 0);
+    const std = endings.find((e) => e.standard && eligibleFallback(e)) || endings.find(eligibleFallback);
+    if (!std) return null;
     return presentEnding(std, 0, true, state, content);
   }
 

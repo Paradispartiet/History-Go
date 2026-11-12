@@ -58,7 +58,7 @@ En synopsis kan bygge på et rom som skifter fra opptatt til ledig i løpet av v
 
 ## Samlet rollegrunnlag og lokal bruk
 
-Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 44 eksisterende Life Story-scenene på dag 1–7. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle scener til godkjent yrkesveiledning.
+Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 55 eksisterende Life Story-scenene på dag 1–7. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle scener til godkjent yrkesveiledning.
 
 ### Stillingsbeskrivelse og en vanlig økt
 
@@ -152,12 +152,12 @@ Seks låste oppfølginger er lagt til. [Den kanoniske renholdertesten](../../tes
 
 | Eksisterende del | Status og konkret revisjonsbehov |
 | --- | --- |
-| `tidsvindu_01_telefon` og `d2_standard_ekstra_rom` | Revidert sammen med `d2_rolig_formiddag`: bekreftet plan, eget og Aminas arbeid, utsatte oppgaver og mottak føres separat. De øvrige radene nedenfor gjenstår. |
+| `tidsvindu_01_telefon` og `d2_standard_ekstra_rom` | Revidert sammen med `d2_rolig_formiddag`: bekreftet plan, eget og Aminas arbeid, utsatte oppgaver og mottak føres separat. Tilgangssporets skille mellom plan og utførelse beholdes. |
 | `soel_01_krise` og begge dag-2-etterspill | Revidert med fem låste oppfølginger: sikring, rengjøring, kontroll, mottak, tiltaksansvar og skiltkontroll føres hver for seg. Tralla er ikke registrert utbedret. |
 | `rygg_01_vurdering` og `d2_runde_med_amina` | Revidert med seks oppfølginger: avklart avfallsoppgave, faktisk transport og mottak; deretter demonstrasjon, egen øvelse og konkret tilbakemelding. Ingen medisinsk garanti eller generell kompetansegodkjenning. |
-| `usynlig_01_melding` og `d3_rom_204_klagen` | Bruk bare den utførte delen av romlista som dokumentasjon. Klokken 07.10, utført arbeid og «forrige uke» må ha et faktisk fortellingsgrunnlag. |
+| `usynlig_01_melding` og `d3_rom_204_klagen` | Revidert: faktisk romarbeid, riktig utfører, sendt oversikt og Karis mottak føres separat. Rom 204 har en morgenoppgave; ukjent eldre romstatus fylles ikke inn. Sindres svar gjør ikke restarbeid ferdig. |
 | `d2_avvik_fulgt_opp` | Revidert: ja gir framtidig avtale; ingen av svarene gir gjennomført deltakelse eller lukket utstyrssak. |
 | Tilgangsscenene `wave_a_c17` til `wave_d_c17` | Bevar skillet mellom registrert hindring, ny plan, befaring, fri tilkomst og utført renhold. Ingen automatisk flytting av hylla. |
-| Rolleavslutningene | Kontroller hvert utsagn mot faktisk historie. Delvise kriterietreff må ikke gi oppdiktet helseutfall, utført arbeid eller teamlederstatus. |
+| Rolleavslutningene | Revidert: alle kriterier kreves for hver av de fem tidligere avslutningene. Tekstene beskriver konkrete handlinger; nøytral åpen arbeidsstatus brukes uten et helt grunnlag. Ingen helsegaranti, ferdig bygg eller teamlederstatus. |
 
-Revisjonslista dokumenterer det som fortsatt gjenstår i samme rolle. Tidsvinduet og sølet har fem nye oppfølginger hver; belastning og opplæring har seks. Klagehistorikk og eldre rolleavslutninger står fortsatt åpne. Profil og synopsis er koblet, men de øvrige delene må gjennomgås og testes før hele renholderforløpet kan kalles ferdig.
+Tidsvinduet og sølet har fem nye oppfølginger hver; belastning og opplæring har seks. Klagehistorikken har elleve nye scener med separate rombevis, sending og mottak. Den kanoniske testen følger 81 klageruter, eldre uavklarte romlister, lagring, Symposium og sju dager. Avslutningstesten kontrollerer hver renholderavslutning og manglende kriterier, samt uendret kalibrering for de øvrige 14 rollene. Nettlesermodusen `RENHOLDER_CASE=klage` prøver tre ruter gjennom sju dager med synlig avslutning på mobil og to iPad-formater. Visuell CI må gjennomgås før den kalles bestått. Dette sertifiserer fortsatt ikke fysisk Safari eller hele normaljobbkalenderen.

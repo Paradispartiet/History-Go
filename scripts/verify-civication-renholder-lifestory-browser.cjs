@@ -6,10 +6,12 @@ const { mkdirSync, writeFileSync } = require('node:fs');
 const path = require('node:path');
 const { chromium } = require('playwright');
 const origin = 'http://127.0.0.1:4188';
+const complaint = process.env.RENHOLDER_CASE === 'klage';
+const targetDay = complaint ? 7 : 2;
 const spill = process.env.RENHOLDER_CASE === 'soel';
 const training = process.env.RENHOLDER_CASE === 'opplaering';
-const thread = training ? 'ryggen_sier_fra' : spill ? 'soelet_i_fellesarealet' : 'tidsvinduet_krymper';
-const output = path.resolve('reports/civication-renholder-'+(training?'opplaering':spill?'soel':'lifestory')+'-browser');
+const thread = complaint ? 'usynlig_arbeid' : training ? 'ryggen_sier_fra' : spill ? 'soelet_i_fellesarealet' : 'tidsvinduet_krymper';
+const output = path.resolve('reports/civication-renholder-'+(complaint?'klage':training?'opplaering':spill?'soel':'lifestory')+'-browser');
 mkdirSync(output, { recursive: true });
 const server = spawn('python3', ['-m', 'http.server', '4188', '--bind', '127.0.0.1'], { stdio: 'ignore' });
 let serverError = null;
@@ -28,7 +30,7 @@ async function openDay(page) {
   if (await close.isVisible().catch(()=>false)) await close.click({timeout:12000});
   await page.locator('.civi-footer button[data-category="minDag"]').click({timeout:20000});
 }
-async function startDayTwo(page,label) {
+async function startNextStoryDay(page,label,fromDay) {
   const next = page.locator('[data-lifestory-next-day]').first();
   assert.equal(await next.count(),1,label+': real day summary has day control');
   let mode = 'ui';
@@ -36,20 +38,20 @@ async function startDayTwo(page,label) {
   else {
     mode = 'runner-fixture';
     assert.ok(await page.locator('[data-lifestory-next-action]').count(),label+': disclose shell inbox gate');
-    await page.screenshot({path:path.join(output,label+'-shell-inbox-gate.png'),fullPage:true});
-    await page.evaluate(async()=>{
+    await page.screenshot({path:path.join(output,label+'-day-'+fromDay+'-shell-inbox-gate.png'),fullPage:true});
+    await page.evaluate(async(fromDay)=>{
       const c=await globalThis.CivicationLifestoryContent.loadContent('renholder');
       const s=globalThis.CivicationLifestoryState.load();
-      if(s.dag!==1 || !s.dagFerdig) throw new Error('not at actual day-one conclusion');
+      if(s.dag!==fromDay || !s.dagFerdig) throw new Error('not at actual day conclusion');
       globalThis.CivicationLifestoryRunner.startNextDay(s,c);
       globalThis.CivicationLifestoryState.save(s);
-    });
+    },fromDay);
     await page.reload({waitUntil:'load',timeout:90000});
   }
-  await page.waitForFunction(()=>globalThis.CivicationLifestoryState?.load?.()?.dag===2,null,{timeout:45000});
+  await page.waitForFunction(day=>globalThis.CivicationLifestoryState?.load?.()?.dag===day,fromDay+1,{timeout:45000});
   return mode;
 }
-const baseFlags = training ? {ren_bel_plan_bekreftet:false,ren_bel_transport_utfort:false,ren_bel_mottatt:false,ren_bel_plan_venter:false,ren_bel_arbeid_venter:false,ren_bel_mottak_venter:false,ren_opp_demo_sett:false,ren_opp_demo_venter:false,ren_opp_ovelse_utfort:false,ren_opp_ovelse_avbrutt:false,ren_opp_tilbakemelding:false,ren_opp_tilbakemelding_venter:false,ren_opp_avklaring_venter:false,laerte_soneprioritering:false,laerte_teknikk:false} : spill ? {ren_soel_rengjort:false,ren_soel_aapnet:false,ren_soel_arbeid_venter:false,ren_soel_kontroll_venter:false,ren_soel_kari_mottatt:false,ren_soel_mottak_venter:false,ren_soel_ansvar_bekreftet:false,ren_soel_skilt_kontrollert:false,ren_soel_tralle_utbedret:false,ren_soel_vernerunde_avtalt:false,ren_soel_tiltakskontroll_venter:false} : { ren_tid_plan_bekreftet:false, ren_tid_wc3_spiller:false,
+const baseFlags = complaint ? {ren_log2_sendt:false,ren_log2_mottatt:false,ren_log204_sendt:false,ren_log204_mottatt:false,ren_log204_full:false,ren_log204_delvis:false,ren_log204_stengt:false} : training ? {ren_bel_plan_bekreftet:false,ren_bel_transport_utfort:false,ren_bel_mottatt:false,ren_bel_plan_venter:false,ren_bel_arbeid_venter:false,ren_bel_mottak_venter:false,ren_opp_demo_sett:false,ren_opp_demo_venter:false,ren_opp_ovelse_utfort:false,ren_opp_ovelse_avbrutt:false,ren_opp_tilbakemelding:false,ren_opp_tilbakemelding_venter:false,ren_opp_avklaring_venter:false,laerte_soneprioritering:false,laerte_teknikk:false} : spill ? {ren_soel_rengjort:false,ren_soel_aapnet:false,ren_soel_arbeid_venter:false,ren_soel_kontroll_venter:false,ren_soel_kari_mottatt:false,ren_soel_mottak_venter:false,ren_soel_ansvar_bekreftet:false,ren_soel_skilt_kontrollert:false,ren_soel_tralle_utbedret:false,ren_soel_vernerunde_avtalt:false,ren_soel_tiltakskontroll_venter:false} : { ren_tid_plan_bekreftet:false, ren_tid_wc3_spiller:false,
   ren_tid_korridor3_amina:false, ren_tid_kontorer_spiller:false, ren_tid_trapp_spiller:false,
   ren_tid_amina_venter:false, ren_tid_kari_mottatt:false, ren_tid_plan_venter:false,
   ren_tid_egen_oppgave_venter:false, ren_tid_mottak_venter:false };
@@ -65,24 +67,25 @@ async function play(browser, fixture) {
     await page.waitForFunction(()=>globalThis.CivicationLifestoryState?.load?.()?.rolle==='renholder'
       && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId,null,{timeout:90000});
     assert.equal((await page.evaluate(()=>globalThis.CivicationLifestoryState.load())).arkiv.length,0);
-    for(let n=0;n<140;n++) {
+    for(let n=0;n<300;n++) {
       const before=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
       await openDay(page);
       if(before.dagFerdig) {
-        if(before.dag===2) break;
-        assert.equal(before.dag,1);
-        dayTransitionMode=await startDayTwo(page,label);continue;
+        if(before.dag===targetDay) break;
+        assert.ok(before.dag<targetDay);
+        const mode=await startNextStoryDay(page,label,before.dag);
+        dayTransitionMode=(dayTransitionMode||[]).concat({fromDay:before.dag,mode});continue;
       }
       const info=await page.evaluate(()=>globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
       const id=info?.sceneId;assert.ok(id,label+': actual next scene');
-      const wanted=choices[id];
+      const wanted=choices[id] || (fixture.lastChoices ? await page.locator('[data-lifestory-scene="'+id+'"][data-lifestory-choice]:not([disabled])').last().getAttribute('data-lifestory-choice') : null);
       const button=page.locator('[data-lifestory-scene="'+id+'"][data-lifestory-choice'
         +(wanted?'="'+wanted+'"':'')+']:not([disabled])').first();
       assert.equal(await button.count(),1,label+': visible choice '+id+'/'+wanted);
       await button.scrollIntoViewIfNeeded();
       const rect=await button.boundingBox();
       assert.ok(rect&&rect.width>0&&rect.x>=-2&&rect.x+rect.width<=viewport.width+2,label+': button geometry '+id);
-      const focus=training ? (id.startsWith('rygg_')||id.startsWith('opp_')||id==='d2_runde_med_amina') : spill ? (id.startsWith('soel_')||id==='d2_avvik_fulgt_opp'||id==='d2_glatt_gulv_etterspill') : id==='tidsvindu_01_telefon'||id.startsWith('tid_')||id==='d2_standard_ekstra_rom'||id==='d2_rolig_formiddag';
+      const focus=complaint ? (id.startsWith('klage')||id==='usynlig_01_melding'||id==='d3_rom_204_klagen'||id==='d2_kveld_verdighet') : training ? (id.startsWith('rygg_')||id.startsWith('opp_')||id==='d2_runde_med_amina') : spill ? (id.startsWith('soel_')||id==='d2_avvik_fulgt_opp'||id==='d2_glatt_gulv_etterspill') : id==='tidsvindu_01_telefon'||id.startsWith('tid_')||id==='d2_standard_ekstra_rom'||id==='d2_rolig_formiddag';
       if(focus) {
         if(id==='tid_02_kari_prioriterer'||id==='tid_05_kari_mottar') {
           assert.match(await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent(),/Fra Kari/);
@@ -127,17 +130,24 @@ async function play(browser, fixture) {
       }
     }
     const final=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
-    assert.ok(final.dag===2&&final.dagFerdig&&sawRequest&&sawPlan&&dayTransitionMode,label+': completed actual two-day route');
+    assert.ok(final.dag===targetDay&&final.dagFerdig&&sawRequest&&sawPlan&&dayTransitionMode,label+': completed actual story route');
     for(const [k,v] of Object.entries({...baseFlags,...flags})) assert.equal(final.tidligereValg[k]===true,v,label+': evidence '+k);
-    assert.equal(final.threadState[thread].status,status);
+    if(!complaint) assert.equal(final.threadState[thread].status,status);
     assert.ok(!final.tidligereValg.ren_tid_korridor3_spiller,label+': Amina retains her work');
     await page.reload({waitUntil:'load',timeout:90000});
-    await page.waitForFunction(()=>globalThis.CivicationLifestoryState?.load?.()?.dag===2
-      && globalThis.CivicationLifestoryState.load().dagFerdig,null,{timeout:90000});
+    await page.waitForFunction(day=>globalThis.CivicationLifestoryState?.load?.()?.dag===day
+      && globalThis.CivicationLifestoryState.load().dagFerdig,targetDay,{timeout:90000});
     const saved=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
     assert.deepEqual(saved.arkiv,final.arkiv,label+': exact history after reload');
     assert.deepEqual(saved.tidligereValg,final.tidligereValg,label+': exact evidence after reload');
     await openDay(page);
+    if(complaint){
+      const ending=await page.evaluate(async()=>globalThis.CivicationLifestoryEndings.resolveEnding(globalThis.CivicationLifestoryState.load(),await globalThis.CivicationLifestoryContent.loadContent('renholder')));
+      assert.equal(ending.id,fixture.ending,label+': factual final ending');
+      const box=page.locator('.civi-lifestory-ending').first();
+      assert.ok((await box.textContent()).includes(ending.tekst),label+': visible final ending');
+      await box.scrollIntoViewIfNeeded();await box.screenshot({path:path.join(output,label+'-ending.png')});
+    }
     for(const disclosure of ['history','full-history']) {
       const box=page.locator('[data-lifestory-disclosure="'+disclosure+'"]').first();
       if(!(await box.evaluate(el=>el.open))) await box.locator(':scope > summary').click();
@@ -154,7 +164,7 @@ async function play(browser, fixture) {
     await result.scrollIntoViewIfNeeded();
     await result.screenshot({path:path.join(output,label+'-symposium-result.png')});
     assert.deepEqual(errors,[],label+': no uncaught browser exceptions');
-    return {label,viewport,dayTransitionMode,days:2,flags:{...baseFlags,...flags},status,trace,archiveLength:saved.arkiv.length};
+    return {label,viewport,dayTransitionMode,days:targetDay,ending:fixture.ending,flags:{...baseFlags,...flags},status,trace,archiveLength:saved.arkiv.length};
   } catch(error) {
     await page.screenshot({path:path.join(output,label+'-failure.png'),fullPage:true}).catch(()=>{});
     throw error;
@@ -167,7 +177,11 @@ async function play(browser, fixture) {
   const sizes=[{width:390,height:844},{width:820,height:1180},{width:1180,height:820}];
   const complete={ren_soel_rengjort:true,ren_soel_aapnet:true,ren_soel_kari_mottatt:true,ren_soel_ansvar_bekreftet:true,ren_soel_skilt_kontrollert:true,ren_soel_vernerunde_avtalt:true};
   const trained={ren_bel_plan_bekreftet:true,ren_bel_transport_utfort:true,ren_bel_mottatt:true,ren_opp_demo_sett:true,ren_opp_ovelse_utfort:true,ren_opp_tilbakemelding:true,laerte_soneprioritering:true};
-  const cases=training ? [
+  const cases=complaint ? [
+   {label:'klage-full-mobile',extra:{},ending:'fagstolt',flags:{ren_log2_sendt:true,ren_log2_mottatt:true,ren_log204_sendt:true,ren_log204_mottatt:true,ren_log204_full:true}},
+   {label:'klage-delvis-ipad-portrait',extra:{rommet_01_melding:'synlig_runde',klage2_02_delvis:'avvent_status',d2_runde_med_amina:'bare_jobbe',klage204_01_arbeid:'utfor_delvis',d3_rom_204_klagen:'meld_til_kari'},ending:'sier_fra',flags:{ren_log204_sendt:true,ren_log204_mottatt:true,ren_log204_delvis:true}},
+   {label:'klage-aapen-ipad-landscape',lastChoices:true,extra:{rommet_01_melding:'spor_amina',usynlig_01_melding:'la_ligge',klage204_01_arbeid:'ingen_tilgang',d3_rom_204_klagen:'la_det_passere'},ending:'aapen_arbeidsstatus',flags:{ren_log204_stengt:true}}
+  ] : training ? [
    {label:'opplaering-utfort-mobile',extra:{},flags:trained},
    {label:'opplaering-ole-forslag-ipad',extra:{rygg_01_vurdering:'spor_ole',d2_runde_med_amina:'foreslaa_forbedring'},flags:trained},
    {label:'opplaering-plan-venter-ipad',extra:{rygg_01_vurdering:'press_gjennom',rygg_02_plan:'avvent_plan'},flags:{...trained,ren_bel_plan_bekreftet:false,ren_bel_transport_utfort:false,ren_bel_plan_venter:true}},
@@ -195,8 +209,8 @@ async function play(browser, fixture) {
    {label:'mottak-dag2-mobile',start:'ta_stille',plan:'prioriter_toaletter',extra:{tid_05_kari_mottar:'avvent_mottak'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_wc3_spiller:true,ren_tid_kari_mottatt:true}}
   ];
   for(const [i,c] of cases.entries()) results.push(await play(browser,{...c,viewport:sizes[i%3],status:c.status||(training||spill?'escalated':'active'),
-    choices:training||spill ? {...c.extra} : {tidsvindu_01_telefon:c.start,tid_02_kari_prioriterer:c.plan,...c.extra}}));
-  console.log('PASS: '+cases.length+' real renholder '+(training?'training':spill?'spill':'capacity')+' routes, two days, reload and visible Symposium',JSON.stringify(results));
+    choices:complaint||training||spill ? {...c.extra} : {tidsvindu_01_telefon:c.start,tid_02_kari_prioriterer:c.plan,...c.extra}}));
+  console.log('PASS: '+cases.length+' real renholder '+(complaint?'complaint':training?'training':spill?'spill':'capacity')+' routes, '+targetDay+' days, reload and visible Symposium',JSON.stringify(results));
  } finally {
   writeFileSync(path.join(output,'results.json'),JSON.stringify(results,null,2)+'\n');
   if(browser) await browser.close();server.kill('SIGTERM');
