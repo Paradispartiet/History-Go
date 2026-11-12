@@ -36,6 +36,16 @@ for(const w of items) {
  assert.equal(w.entity_routing.image_clearance,"BLOCKED_BOTH_RIGHTS_LAYERS");
 }
 assert.equal(card.object_artwork_review.classification_status,"CONDITIONAL_BY_OBJECT_ROUTING_RESOLVED_RIGHTS_NOT_CLEARED");
+
+const park=place.structures.find(x=>x.id==="skulpturparken_skjaeret");
+const runtimePark=runtime.place.structures.find(x=>x.id==="skulpturparken_skjaeret");
+assert.ok(park&&runtimePark);
+assert.equal(runtimePark.desc,park.desc,"Park interpretive text must appear in PlaceCard runtime");
+for(const title of ["Eyes","Edge II","Untitled (Totem)","White Snow Cake","MOONRISE. East. November.","Spalt","Things for a House on an Island"]) assert.ok(park.desc.includes(title), "Missing named work in park text: "+title);
+assert.ok(park.desc.includes("Anish Kapoors Untitled (1997)"));
+assert.ok(park.desc.includes("Selvaag Art Collection")&&park.desc.includes("Tjuvholmen KS"));
+assert.ok(park.source_urls.includes("https://www.afmuseet.no/tjuvholmen-skulpturpark/"));
+assert.equal(card.structure_asset_coverage.source_originals_archived,0,"No fake originals accepted after Wikimedia 429");
 const eyes=items.find(x=>x.id==="louise_bourgeois_eyes");
 assert.ok(eyes);
 assert.equal(eyes.approved_year,1997);
