@@ -4,7 +4,7 @@
    ============================================================ */
 
 // New cache namespace invalidates previously cached PlaceCard CSS/JS on activation.
-const SW_VERSION = "hg-sw-2026-11-11-place-image-fit1";
+const SW_VERSION = "hg-sw-2026-11-12-place-image-fit2";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
