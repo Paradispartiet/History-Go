@@ -428,6 +428,9 @@
       if (ids.has(eid)) push(`duplikat ending-id: ${eid}`);
       ids.add(eid);
       if (!ending.navn) push(`ending ${eid}: mangler navn`);
+      if (ending.kreverAlleKriterier !== undefined && typeof ending.kreverAlleKriterier !== "boolean") {
+        push(`ending ${eid}: kreverAlleKriterier må være boolsk`);
+      }
       if (ending.standard === true) standardCount++;
       if (ending.kriterier === undefined) continue;
       const k = ending.kriterier;

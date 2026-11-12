@@ -50,7 +50,7 @@ const siste = (s) => s.valg.filter(choice => !choice.skills_requirement).at(-1).
 
 const FORVENTET = {
   arbeidsledig: { foerste: "bygget_kompetanse", siste: "kom_i_jobb" },
-  renholder: { foerste: "fagstolt", siste: "usynlig_forbigaatt" },
+  renholder: { foerste: "fagstolt", siste: "aapen_arbeidsstatus" },
   ekspeditor: { foerste: "trygg_paa_gulvet", siste: "mistet_tilliten" },
   arealplanlegger: { foerste: "faglig_sterk", siste: "politisk_lydig" },
   controller: { foerste: "sporbar_styring", siste: "hard_kontroll" },
@@ -141,3 +141,47 @@ assert.ok(uiSource.includes("CivicationLifestoryEndings") && uiSource.includes("
 assert.ok(uiSource.includes("civi-lifestory-ending"), "UI-et rendrer ending-seksjonen");
 
 console.log(`civication lifestory endings ok (${Object.keys(manifest.roles).length} roller, forsiktig vs hensynsløst kårer ulike slutter)`);
+
+// Opt-in factual endings require every criterion; unmarked endings retain scoring.
+{
+ const s=State.createInitialState(build('renholder'));
+ const strict={id:'strict',navn:'Observed result',tekst:'Only after every required fact.',kreverAlleKriterier:true,kriterier:{flagg:{one:true,two:true},meters:{energi:{min:10}},relasjoner:{driftsleder:{min:10}},traader:{usynlig_arbeid:'completed'}}};
+ const fallback={id:'neutral',navn:'Open status',tekst:'Review recorded and outstanding work.',standard:true};
+ const c={role:{endings:[strict,fallback]}};
+ s.tidligereValg.one=true;
+ assert.strictEqual(Endings.resolveEnding(s,c).id,'neutral','one matched fact cannot select a strict factual ending');
+ s.tidligereValg.two=true;s.threadState.usynlig_arbeid.status='completed';
+ assert.strictEqual(Endings.resolveEnding(s,c).id,'strict');
+ for(const mutate of [x=>delete x.tidligereValg.one,x=>x.meters.energi=0,x=>x.relasjoner.driftsleder=0,x=>x.threadState.usynlig_arbeid.status='active']){
+  const missing=JSON.parse(JSON.stringify(s));mutate(missing);assert.strictEqual(Endings.resolveEnding(missing,c).id,'neutral');
+ }
+ const additive={...strict};delete additive.kreverAlleKriterier;
+ const partial=State.createInitialState(build('renholder'));partial.tidligereValg.one=true;
+ assert.strictEqual(Endings.resolveEnding(partial,{role:{endings:[additive,fallback]}}).id,'strict','unmarked behavior is preserved');
+}
+assert.throws(()=>{const broken=JSON.parse(JSON.stringify(raw));broken.role.endings[0].kreverAlleKriterier='true';Content.buildContent(broken);},/kreverAlleKriterier/,'strict mode rejects a string instead of boolean');
+
+// Criterion fixtures isolate every authored renholder ending and every required fact.
+{
+ const c=build('renholder');const neutral=c.role.endings.find(e=>e.standard);
+ for(const ending of c.role.endings.filter(e=>!e.standard)){
+  assert.equal(ending.kreverAlleKriterier,true);
+  const s=State.createInitialState(c);const k=ending.kriterier;
+  Object.assign(s.tidligereValg,k.flagg);
+  for(const [key,range] of Object.entries(k.meters||{}))s.meters[key]=range.min??range.max;
+  const isolated={role:{endings:[ending,neutral]}};
+  assert.equal(Endings.resolveEnding(s,isolated).id,ending.id);
+  for(const flag of Object.keys(k.flagg||{})){
+   const missing=JSON.parse(JSON.stringify(s));delete missing.tidligereValg[flag];
+   assert.equal(Endings.resolveEnding(missing,isolated).id,neutral.id,ending.id+' requires '+flag);
+  }
+  for(const [key,range] of Object.entries(k.meters||{})){
+   const missing=JSON.parse(JSON.stringify(s));missing.meters[key]=range.min!==undefined?range.min-1:range.max+1;
+   assert.equal(Endings.resolveEnding(missing,isolated).id,neutral.id,ending.id+' requires '+key);
+  }
+ }
+ const strict={...c.role.endings[0],standard:true};
+ const fresh=State.createInitialState(c);
+ assert.equal(Endings.resolveEnding(fresh,{role:{endings:[strict]}}),null,'strict fallback cannot bypass its own facts');
+ assert.equal(Endings.resolveEnding(fresh,{role:{endings:[strict,neutral]}}).id,neutral.id);
+}
