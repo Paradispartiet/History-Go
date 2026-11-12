@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_svarttrost:Object.freeze({
+   scientificName:"Turdus merula",
+   src:"bilder/natur/fauna/godkjent/04_svarttrost_v1.webp",
+   gitBlobSha:"61278635c130708fda7e42c958576db5a98040e5",
+   reviewedAt:"2026-11-12",
+   stage:"adult_male_black_female_brown_breast_streaks",
+   evidence:"data/natur/fauna/illustration-quality-svarttrost-20261112.json"
+  }),
   emne_fauna_skjaere:Object.freeze({
    scientificName:"Pica pica",
    src:"bilder/natur/fauna/godkjent/03_skjaere_v1.webp",

@@ -1,0 +1,36 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import crypto from "node:crypto";
+import vm from "node:vm";
+const root=new URL("../",import.meta.url),read=p=>fs.readFileSync(new URL(p,root),"utf8");
+const q=JSON.parse(read("data/natur/fauna/illustration-quality-svarttrost-20261112.json")),a=q.items[0];
+const id="emne_fauna_svarttrost",latin="Turdus merula",quiz="quiz_fauna_svarttrost";
+assert.equal(q.speciesNumber,4);assert.equal(q.baselineApproved,3);assert.equal(q.approvedCountAfterRelease,4);
+assert.equal(q.items.length,1);assert.equal(a.catalogId,id);assert.equal(a.scientificName,latin);
+assert.equal(a.family,"Turdidae");assert.equal(a.existingQuizId,quiz);
+assert.equal(a.reviewStatus,"approved");assert.equal(a.approvedForPublication,true);assert.equal(a.originalBinaryVerified,true);
+assert(a.visualChecks.blackBackgroundReviewed&&a.visualChecks.trueAlphaWebP&&a.visualChecks.fullImageReviewed);
+assert(a.visualChecks.adultMaleBlack&&a.visualChecks.maleOrangeYellowBill&&a.visualChecks.maleGoldenEyeRing);
+assert(a.visualChecks.adultFemaleBrownStreakedBreast&&a.visualChecks.correctSpeciesNotHoodedCrow);
+assert(a.sourceReferences.length>=2);
+for(const p of ["data/natur/fauna/fugler_by.json","data/runtime/nature-all/fauna-001.json"]){
+ const x=JSON.parse(read(p)).flatMap(v=>v.kind==="emne_pack"?v.items:[v]).find(v=>v.id===id);
+ assert(x,"Svarttrost must exist in existing species/runtime catalogs");
+ assert.equal(x.title,"Svarttrost");assert.equal(x.latin,latin);assert.equal(x.taxonomy?.latin_navn,latin);assert.equal(x.taxonomy?.familie,"Turdidae");
+ assert(x.quiz_ids?.includes(quiz));
+}
+const b=fs.readFileSync(new URL(a.src,root));
+assert.equal(b.length,a.sizeBytes);assert.equal(b.length,443904);
+assert.equal(crypto.createHash("sha256").update(b).digest("hex"),"7a24b0b211003549a6b8c12db85585231a12edffea7c5745e227318a7a0b82eb");
+assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),"61278635c130708fda7e42c958576db5a98040e5");
+assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,12),"WEBP");
+assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0);
+assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
+const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
+const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,4);
+assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,latin);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
+for(const [p,sha] of [["emne_fauna_skjaere","e3da752bce1c4f637b80198559b805c98c1d82c7"],["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" must be preserved");
+assert.equal(reg.get("emne_fauna_blaameis"),null);
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261112-04"));
+assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
+console.log("Finn Fauna #4 Svarttrost: male/female, transparent original, exact binary, pre-existing quiz and four originals OK.");
