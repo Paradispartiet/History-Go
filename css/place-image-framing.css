@@ -11,6 +11,9 @@ body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
 body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage,
 /* The legacy popup's principal documentary image. */
 body.hg-app .hg-place-popup-v2 .hg-place-hero-media > .hg-place-hero-image,
+/* Micro-place and miniature previews inherit the same place-photo contract. */
+body.hg-app #placeCard.is-micro-place .pc-micro-media img,
+body.hg-app #placeCard #pcMiniImg,
 /* Paired historical photographs should also keep their full source composition. */
 body.hg-app #placeCard .pc-sheet-canonical-before-after figure img {
   object-fit: contain !important;
@@ -20,3 +23,14 @@ body.hg-app #placeCard .pc-sheet-canonical-before-after figure img {
 
 /* The photo's aspect ratio is preserved. QuizCard and round collection badges
    intentionally do not inherit this documentary-photo policy. */
+
+/* Give wide overview photographs enough height on tablet/desktop.
+   At the old 205px cap, a complete 16:9 source could shrink into a tiny
+   center strip. Keep mobile layout and the sticky header's own measured
+   collapse geometry unchanged. Never enlarge the bitmap past its frame. */
+@media (min-width: 721px) {
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
+    .pc-heading-hero.has-photo-source:not(.is-collapsed) {
+    min-height: clamp(340px, 48vw, 530px);
+  }
+}
