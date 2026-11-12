@@ -31,7 +31,7 @@
     }
 
     function release() {
-      card.classList.remove("is-original-photo-pinned");
+      card.classList.remove("is-original-photo-pinned", "is-quizcard-reading");
       card.style.removeProperty("--pc-original-hero-height");
       card.style.removeProperty("--pc-visible-hero-height");
       card.style.removeProperty("--pc-hero-collapse-offset");
@@ -43,6 +43,18 @@
     function renderScroll() {
       frameScheduled = false;
       if (!shellHero || !naturalHeight || !card.classList.contains("is-original-photo-pinned")) return;
+      // On desktop, the sticky photograph must yield when someone reads below
+      // it. Otherwise a tall hero covers the native QuizCard pointer target.
+      // Retain the pinned initial overview and historical source caption; keep
+      // the hero unpinned until the reader has returned almost to the top.
+      // Mobile retains the existing pinned-photo behavior.
+      const quizAvailable = window.innerWidth >= 721 &&
+        card.querySelector("#pcFrontCardFlip.has-quiz-card") instanceof HTMLElement;
+      const releaseAt = Math.max(280, Math.min(350, Math.round(naturalHeight * 0.55)));
+      const reading = card.classList.contains("is-quizcard-reading");
+      card.classList.toggle("is-quizcard-reading", quizAvailable &&
+        (reading ? scroller.scrollTop > 48 : scroller.scrollTop >= releaseAt));
+
       // Continuous crop of the ORIGINAL photograph; font, badges, positions,
       // source image and image scaling stay exactly the same.
       let crop = Math.min(naturalHeight - minimumHeight, Math.max(0, scroller.scrollTop));

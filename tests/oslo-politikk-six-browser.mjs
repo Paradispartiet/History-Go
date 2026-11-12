@@ -14,6 +14,17 @@ async function positionQuizCard(page){
   if(!body)throw new Error('QuizCard has no scroll body');
   const rect=e=>{const r=e?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,left:r.left,width:r.width,height:r.height}:null;};
   const geometry=()=>({card:rect(el),hero:rect(document.querySelector('#placeCard .pc-sheet-hero')),body:rect(body),nav:rect(document.querySelector('#placeCard > [data-hg-place-sheet-nav="1"]')),scrollTop:body.scrollTop});
+  // Model a real downward scroll into the reading area. A twelve-pixel
+  // auto-adjustment against the moving sticky-hero boundary can converge
+  // without ever revealing the full QuizCard. Keep the subsequent real
+  // non-forced pointer click and hit-testing assertions unchanged.
+  if(innerWidth>=721 && document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned')){
+   const hero=document.querySelector('#placeCard .pc-sheet-hero');
+   const releaseScroll=Math.min(body.scrollHeight-body.clientHeight,
+     Math.max(300,Math.min(360,Math.ceil((hero?.offsetHeight||0)*0.6))));
+   if(body.scrollTop<releaseScroll) body.scrollTo({top:releaseScroll,behavior:'instant'});
+   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  }
   const before=geometry();
   for(let i=0;i<15;i++){
    // The navigation is BELOW the reading pane, not an upper sticky header.
@@ -26,7 +37,7 @@ async function positionQuizCard(page){
    const heroPinned=()=>document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned')
      && getComputedStyle(document.querySelector('#placeCard .pc-sheet-hero')).position==='sticky';
    const g=geometry(),top=Math.max(g.body.top,heroPinned()?(g.hero?.bottom||0):g.body.top)+12;
-   body.scrollTop+=g.card.top-top;
+   body.scrollBy({top:g.card.top-top,behavior:'instant'});
    await new Promise(resolve=>setTimeout(resolve,50));
    const next=geometry(),upper=Math.max(next.body.top,heroPinned()?(next.hero?.bottom||0):next.body.top);
    const lower=Math.min(next.body.bottom,next.nav?.top??innerHeight,innerHeight);

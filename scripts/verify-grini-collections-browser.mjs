@@ -276,7 +276,18 @@ try {
           : null;
       const action = page.locator(gallerySelector || `#${expected.iconId}`);
       if (gallerySelector) {
-        await action.scrollIntoViewIfNeeded();
+        // The gallery can be re-rendered during editorial section activation.
+        // Re-resolve the real locator after a transient DOM detach, rather
+        // than bypassing the visible button or forcing a click.
+        for (let attempt = 0; attempt < 3; attempt++) {
+          try {
+            await action.scrollIntoViewIfNeeded({timeout: 15000});
+            break;
+          } catch (error) {
+            if (!/not attached to the DOM/i.test(String(error)) || attempt === 2) throw error;
+            await action.waitFor({state:'visible',timeout:15000});
+          }
+        }
         await page.waitForFunction((selector) => {
           const button = document.querySelector(selector);
           const image = button?.querySelector('img');
