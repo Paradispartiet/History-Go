@@ -27,7 +27,8 @@
 ## Oppdatert produksjonsstatus – 12. november 2026
 
 - **16 av 16** Vitenskap-undermerker er registrert i `data/badges/vitenskap.json`, med norske originaler; de ni nyere merkene er produsert i den godkjente, detaljrike broderistilen.
-- **Naturvitenskap v2 er produsert:** Fem WebP-originaler med botanikk, dyreliv, geologi og laboratorieforskning, full hovedkategoritekst og arkivert v1-original. **Seks** eldre merker gjenstår.\n- **De opprinnelige sju eldre merkeillustrasjoner må oppgraderes enkeltvis:** Naturvitenskap, Teknologi, Informasjonsteknologi, Matematikk, Forskning og metode, Astronomi og fysikk, Kjemi og materialvitenskap.
+- **Naturvitenskap v2 er produsert:** Fem WebP-originaler med botanikk, dyreliv, geologi og laboratorieforskning, full hovedkategoritekst og arkivert v1-original. **Seks** eldre merker gjenstår.
+- **Revisjonsseriens sju opprinnelige merker:** Naturvitenskap, Teknologi, Informasjonsteknologi, Matematikk, Forskning og metode, Astronomi og fysikk, Kjemi og materialvitenskap.
 - Det er verifisert at alle sju eldre bildene har en enkel symbolkomposisjon på lys bunn og **mangler den obligatoriske nedre teksten «VITENSKAP & TEKNOLOGI»**.
 - De sju eksisterende originalene og SHA-ene er låst for etterprøvbar revisjon i `data/badges/vitenskap_legacy_illustration_review_20261112.json`. **Ingen av originalene erstattes før et nytt enkelt, rundt merke er visuelt kontrollert**, med fem språkvarianter, korrekt underkategoritittel øverst og fullt kategorinavn nederst.
 - En poster, statusgrafikk, et kontaktark eller utsnitt av et helt galleri er **ikke** en gyldig produksjonsfil. Feilaktige bildegenereringer skal forkastes; bildet må være ett enkelt brodert merke i kvadratisk 1024 × 1024 WebP med transparent utside.
