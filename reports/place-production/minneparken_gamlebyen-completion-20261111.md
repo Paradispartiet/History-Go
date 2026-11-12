@@ -4,8 +4,9 @@
 
 Gjeldende merge- og CI-status føres i [PR #6966](https://github.com/Paradispartiet/History-Go/pull/6966). Denne rapporten dokumenterer kontrollen før merge.
 
-PR #6966 er fortsatt draft mens faktisk mobil-/desktop-QA og endelig CI
-kontrolleres. Ingen main-merge eller produksjonsdeploy hevdes i denne rapporten.
+Dette er et historisk snapshot fra 11. november da PR-en ennå var utkast.
+Gjeldende sluttintegrasjon og evidens er oppdatert i seksjonen 12. november nedenfor.
+Ingen main-merge eller separat produksjonsdeploy er foretatt ved rapportskrivingen.
 Historie-innholdets A–H er kilde- og redaksjonskontrollert; dette er ikke det
 samme som at hele app-leveransen er ferdig godkjent.
 
@@ -102,3 +103,51 @@ ingen generell katalogopprydding eller uavhengig signoff hevdes her.
 **26/30, foreløpig.** Dette er ikke en ferdig- eller mergegodkjenning.
 Teknisk integritet og dekning omscores først når den endelige app-/CI-porten
 faktisk består; main-merge skal deretter verifiseres separat.
+
+
+## Supplerende sluttkontroll – 12. november 2026
+
+Dette tillegget oppdaterer kontrollsnapshotet ovenfor. Tidligere utkaststatus og
+foreløpige kvalitetspoeng var riktige da de ble skrevet, ikke dagens endelige
+mergebevis. PR-beskrivelsen er sannhetskilde for løpende exact-head CI og merge.
+
+- En [ny full appakseptanse](https://github.com/Paradispartiet/History-Go/actions/runs/43162939358)
+  på PR-kandidat `a913c864f7aff7f3114f67e095c34aa884eb5a62` er grønn på mobil
+  og desktop. Skjermbildeartefakt `13919027211` er inspisert: de tre
+  samlingene, popupvisningene, Fagverk, QuizCard 10/10 og fullquiz 21/21
+  uten skrivehandling til fysisk besøksstatus. Strukturerte rapporter viser
+  ingen JS-sidefeil eller ødelagte synlige bilder.
+- Bildeutsnittsregresjonen [Akerselva](https://github.com/Paradispartiet/History-Go/actions/runs/43162939285)
+  og [PlaceCard media](https://github.com/Paradispartiet/History-Go/actions/runs/43162939566)
+  består. De oppdaterte testene bevarer bildekilde-/synlighetskrav, og følger
+  `docs/PLACE_IMAGE_FRAMING.md`: `object-fit: contain`, ikke en foreldet
+  `cover`-forventning. QuizCard-/hit-testing er ikke svekket.
+- [Oslo sentrum Politikk real browser](https://github.com/Paradispartiet/History-Go/actions/runs/43162938935)
+  og [Grini staging preflight](https://github.com/Paradispartiet/History-Go/actions/runs/43162939066)
+  er grønne på samme tidligere kandidat. Ved tilleggets utforming var 48 av
+  49 ordinære workflow-kjøringer grønne; en separat Oslo batch04-fullquiz- og
+  QuizCard-nettleserkontroll kjørte fortsatt. **Dette er ikke påstått 49/49**.
+- Kildegrensen består: besøksfoto fra juni 2026 dokumenterer synlige ruiner og
+  besøk. Kommunale planer om plen, gangsti, gjerder og universell tilgjengelighet
+  er ikke behandlet som ferdigattest. Ingen uavhengig menneskelig signatur
+  eller egen befaring hevdes.
+- Nytt main-grunnlag integreres i siste toforeldres commit. Den overlappende
+  Oslo visual-browser-testen ble løst ved å bevare streng `contain`-
+  **og sentreringskontroll** fra denne PR-grenen; øvrige ferske main-filer tas
+  uendret med. Det innfører ikke nye Places-/Quiz-/Story-publiseringsporter.
+
+### Seksdelt kvalitetsport for siste kandidat
+
+| Dimensjon | Score | Etterprøvbar begrunnelse |
+| --- | ---: | --- |
+| Korrekthet og evidens | 5/5 | Dokumentert identitet, kilde-/claim- og foto-/lisensspor med 2026-avgrensning. |
+| Dekning og ferdigstillelse | 4/5 | Tre eide samlinger, 21 quizspørsmål, 10 QuizCard-kort, 32 Knowledge-enheter, Story, språk, Fagverk og appvisning. |
+| Faglig/redaksjonell kvalitet | 4/5 | Egen stedshistorie, konkrete personer/gravminner og kildekontrollert quiz/narrativ. |
+| Teknisk integritet | **3/5 inntil full grønn exact-head CI; 4/5 ved PASS** | Samlet browser-/datakontroll må også passere etter siste main-integrasjon, ikke bare tidligere delkjøringer. |
+| Sikkerhet og ansvarlighet | 5/5 | Ingen falske besøk, ferdigattester eller menneskelige godkjenninger. |
+| Vedlikeholdbarhet og etterprøvbarhet | 5/5 | Canonical data, generatorer, determinisme, synlig kilde-/testspor og avgrensede testkorreksjoner. |
+
+**Foreløpig 26/30; 27/30 når alle 49 relevante CI-kjøringene er grønne på
+eksakt endelig PR-head.** Ingen merge skal utføres før den betingelsen er
+oppfylt, PR-en er teknisk mergebar og kvaliteten er kontrollert mot siste
+main. Dette er ikke et forsøk på å forhåndsgodkjenne en ventende CI-jobb.

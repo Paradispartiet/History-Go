@@ -1,5 +1,7 @@
 # Symposium – Ekspeditør i dagligvare
 
+[Samlet synopsis for ekspeditørens Life Story](../civication-synopsis/ekspeditor.md) · [Profil- og synopsisstatus i felles register](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md#profil-og-synopsis-føres-hver-for-seg)
+
 [Til rolleoversikten](../CIVICATION_JOBBGRUNNLAG.md)
 
 ## Rolle og ansvar
