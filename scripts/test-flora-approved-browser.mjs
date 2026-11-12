@@ -25,6 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"svartsurbaer",label:"Svartsurbær",term:"Svartsurbær",path:"b09/94_svartsurbaer_v1.webp"},
     {name:"hagtorn",label:"Hagtorn",term:"Hagtorn",path:"b09/93_hagtorn_v1.webp"},
     {name:"blankmispel",label:"Blankmispel",term:"Blankmispel",path:"b09/92_blankmispel_v1.webp"},
     {name:"hostberberis",label:"Høstberberis",term:"Høstberberis",path:"b09/91_hostberberis_v1.webp"},
