@@ -3,10 +3,10 @@
   "place_id": "tjuvholmen",
   "name": "Tjuvholmen",
   "category": "by",
-  "status": "local_binary_images_ready_pending_editorial_and_collections",
-  "production_profile": "pending_source_based_collection_review",
-  "profile_status": "unconfirmed",
-  "active_phase": "Oslo T–S 10/20 – CC0 waterside landscape overview and separate 3:4 documentary portrait, source hashes, PlaceCard editorial audit",
+  "status": "editorial_closeout_blocked_by_collection_assets",
+  "production_profile": "standard",
+  "profile_status": "source_reviewed_pending_collection_acceptance",
+  "active_phase": "Stedskort: historisk kildekontroll, korrekte By-undermerker og bildeproveniens; samlinger kan ikke gis PASS før originale bilder, logoer og stedsrelasjoner er verifisert",
   "canonical_source": "data/places/by/oslo/places/tjuvholmen.json",
   "existing_content": {
     "fullquiz_questions": 42,
@@ -40,14 +40,15 @@
     }
   },
   "collection_gate": {
-    "people": "8 existing links; 3 placeholder images and source-specific place links require review before promotion",
-    "brands": "3 linked companies; license-ready actual Brand logos must be verified",
-    "objects": "No verified standalone local artifacts confirmed – do not invent",
-    "historical_events": "Not produced; separate source review needed before any claim",
-    "filler_forbidden": true
+    "people": "BLOCKED: 4 kandidater har direkte kildekobling; tre gamle generiske portretter og noen udokumenterte stedsrelasjoner kan ikke telle i ferdig samling",
+    "brands": "BLOCKED: BAHR, Galleri Brandstrup og THE THIEF er stedskvalifiserte; alle tre mangler verifiserte lokale logoer",
+    "objects": "KANDIDATREVIEW: skulpturer i offentlig park, verifiser samlingseier og selvstendig kilde/bilde før opptak",
+    "structures": "BLOCKED: dokumenterte byrom/anlegg finnes, men struktur-entities og samlingsbilder er ikke materialisert",
+    "filler_forbidden": true,
+    "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
-  "qa": "Photo sources local and byte-verified; editorial crop/mobile/desktop and People/Brands collection audit PENDING",
-  "merged": false,
+  "qa": "Tjuvholmen image/frontImage and QuizCard native Chromium 390/1440 PASS; manual photo and flip screenshot inspection PASS. All source photos and local WebPs are stored in main. People/Brands/Structures content and preview requirements remain blocked.",
+  "merged": true,
   "verified_at": "2026-11-12",
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
@@ -118,5 +119,23 @@
         "final_content_plan"
       ]
     }
+  },
+  "vferdig": {
+    "status": "BLOCKED",
+    "reason": "Collection sources/preview assets and structures still incomplete. Browser and screenshot checks PASS.",
+    "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
+  },
+  "browser_acceptance": {
+    "status": "PASS",
+    "viewports": [
+      390,
+      1440
+    ],
+    "run": "https://github.com/Paradispartiet/History-Go/actions/runs/43170454014",
+    "screenshot_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/43170454014/artifacts/13922520197",
+    "photo_fit": "contain",
+    "quizcard_flip": "PASS",
+    "physical_device_qa": false,
+    "manual_screenshot_review": "PASS: 390 and 1440 PlaceCard photo and QuizCard inspected; prior mobile transient screenshot not reproduced"
   }
 }
