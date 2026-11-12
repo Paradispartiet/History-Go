@@ -19,6 +19,11 @@ on:
       - 'tests/vitenskap-legacy-illustrations-review.test.mjs'
       - 'tests/placecard-underbadge-science-v2-candidates.test.mjs'
       - 'tests/vitenskap-forskning-fr-internal-labels-v3.test.mjs'
+      - 'tests/vitenskap-forskning-internal-locales-v3.test.mjs'
+      - 'data/badges/vitenskap_forskning_internal_locales_v3_20261112.json'
+      - 'bilder/merker/vitenskap/kandidater/revisjoner/en/*.webp'
+      - 'bilder/merker/vitenskap/kandidater/revisjoner/es/*.webp'
+      - 'bilder/merker/vitenskap/kandidater/revisjoner/pt/*.webp'
       - 'bilder/merker/vitenskap/kandidater/revisjoner/fr/*.webp'
       - 'data/badges/vitenskap_forskning_fr_internal_labels_v3.json'
       - 'tests/vitenskap-v2-localization-plan.test.mjs'
@@ -155,6 +160,7 @@ jobs:
           node --test tests/vitenskap-legacy-illustrations-review.test.mjs
           node --test tests/placecard-underbadge-science-v2-candidates.test.mjs
           node --test tests/vitenskap-forskning-fr-internal-labels-v3.test.mjs
+          node --test tests/vitenskap-forskning-internal-locales-v3.test.mjs
           node --test tests/vitenskap-v2-localization-plan.test.mjs
           node --test tests/vitenskap-teknologi-revision-v2.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
