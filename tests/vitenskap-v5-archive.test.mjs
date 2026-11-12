@@ -16,7 +16,7 @@ const expectedIds = [
 const expectedLocales = ['en', 'es', 'pt', 'fr'];
 const hash = (alg, bytes) => createHash(alg).update(bytes).digest('hex');
 const gitBlob = bytes => hash('sha1',
-  Buffer.concat([Buffer.from('blob ' + bytes.length + '\\0'), bytes]));
+  Buffer.concat([Buffer.from('blob ' + bytes.length + String.fromCharCode(0)), bytes]));
 
 test('All 20 archived v5 science badges have exact binary checksums and retain original v4 sources', () => {
   assert.equal(v5.categoryId, 'vitenskap');
