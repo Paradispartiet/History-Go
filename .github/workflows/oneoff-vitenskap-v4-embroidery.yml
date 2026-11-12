@@ -39,7 +39,7 @@ jobs:
             data=Path(v['path']).read_bytes()
             assert data[:4]==b'RIFF' and data[8:12]==b'WEBP'
             assert hashlib.sha256(data).hexdigest()==v['sha256']
-            assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\\0'+data).hexdigest()==v['gitBlobSha']
+            assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==v['gitBlobSha']
             with Image.open(v['path']) as im:
               assert im.size==(1024,1024)
             print('Validated candidate',v['locale'],v['gitBlobSha'])
