@@ -73,7 +73,29 @@ try{
       assert.equal(await card.getAttribute("data-collection-profile-source"),
         "place_card_profile_v2_curated",tag+": curated profile");
       assert.equal(await card.getAttribute("data-collection-requested-count"),"3",tag+": three collections");
-      assert.equal(await page.locator("#pcCategoryCollectionIcon").isVisible(),true,tag+": Structures card visible");
+      try {
+        await page.locator("#pcCategoryCollectionIcon").waitFor({state:"visible",timeout:16000});
+      }catch(error){
+        const diagnostic=await page.evaluate(()=>{
+          const card=document.getElementById("placeCard");
+          const icon=document.getElementById("pcCategoryCollectionIcon");
+          const grid=card?.querySelector(".pc-icons-quad");
+          const place=window.PLACES?.find(p=>p.id==="tjuvholmen");
+          const report=el=>el?{hidden:el.hidden,ariaHidden:el.getAttribute("aria-hidden"),
+            className:el.className,inlineStyle:el.getAttribute("style"),
+            computed:{display:getComputedStyle(el).display,visibility:getComputedStyle(el).visibility,opacity:getComputedStyle(el).opacity},
+            rect:{width:el.getBoundingClientRect().width,height:el.getBoundingClientRect().height},
+            parent:el.parentElement?.className}:null;
+          return {card:report(card),grid:report(grid),icon:report(icon),
+            selected:window.HGPlaceCardCollections?.getConfigured?.(place),
+            actualProfile:place?.place_card_profile,
+            cardData:{...card?.dataset},gridData:{...grid?.dataset},
+            html:icon?.outerHTML.slice(0,650)};
+        });
+        console.error(tag+" STRUCTURES_VISIBILITY_DIAGNOSTIC",JSON.stringify(diagnostic));
+        await page.screenshot({path:path.join(out,tag+"-structures-failed-visible.png"),fullPage:false}).catch(()=>{});
+        throw error;
+      }
       assert.equal(await page.locator("#pcBrandsIcon").isVisible(),true,tag+": Brands card visible");
       assert.equal(await page.locator("#pcPeopleIcon").isVisible(),true,tag+": People card visible");
       assert.equal(await page.locator("#pcObjectsIcon").isVisible(),false,tag+": no filler Objects card");
