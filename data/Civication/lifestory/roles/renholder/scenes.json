@@ -350,40 +350,17 @@
       "avsender": null,
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Ryggen strammer etter løftene",
-      "tekst": "Etter trallen, sekkene og de tunge dørene kjenner du det kjente draget nederst i ryggen. Du har en pause til gode — og en halv sone igjen.",
+      "tittel": "Belastningen må avklares før neste oppgave",
+      "tekst": "Du kjenner ubehag i ryggen og har avfallshåndtering igjen på lista. Du har en avtalt pause igjen. Herfra vet du ikke årsaken til ubehaget eller hva som vil gå over. Oppgavene, utstyret og ruten må avklares med Kari; et kort råd fra Ole erstatter ikke tilrettelegging og nødvendig opplæring.",
       "valg": [
         {
           "id": "ta_pausen",
-          "tekst": "Ta pausen du har krav på",
-          "tone": "selvbevarende",
+          "tekst": "Ta den avtalte pausen og be Kari avklare resten av arbeidet",
+          "konsekvensTekst": "Du tar den avtalte pausen og sender Kari beskjed om belastningen og avfallsoppgaven som gjenstår. Pausen er tatt. Ingen sone er dermed ferdig, og det er ikke fastslått at ubehaget har gitt seg.",
           "effekter": {
-            "meters": {
-              "energi": 5,
-              "psyke": 2
-            },
             "flagg": {
-              "tok_pausen": true
-            },
-            "threads": {
-              "ryggen_sier_fra": {
-                "stepDelta": 1
-              }
-            }
-          },
-          "konsekvensTekst": "Ti minutter på pauserommet. Ryggen slipper taket, litt. Sonen blir ferdig fem minutter senere enn planen — og det går helt fint."
-        },
-        {
-          "id": "press_gjennom",
-          "tekst": "Press gjennom — pausen tar du når sonen er ferdig",
-          "tone": "hard",
-          "effekter": {
-            "meters": {
-              "energi": -7,
-              "psyke": -4
-            },
-            "flagg": {
-              "presset_kroppen": true
+              "tok_pausen": true,
+              "ren_bel_kapasitet_meldt": true
             },
             "threads": {
               "ryggen_sier_fra": {
@@ -391,30 +368,46 @@
               }
             }
           },
-          "konsekvensTekst": "Du blir ferdig på tiden. Om kvelden må du sitte helt stille i ti minutter før du klarer å ta av deg skoene."
+          "laaserOpp": [
+            "rygg_02_plan"
+          ]
         },
         {
-          "id": "spor_ole",
-          "tekst": "Spør Ole om løfteteknikk for trallene",
-          "tone": "lærende",
+          "id": "press_gjennom",
+          "tekst": "Forsøk å fortsette uten ny avklaring",
+          "konsekvensTekst": "Du gjør deg klar til å fortsette på den gamle planen, men har ikke avklart utstyr, rute eller oppgaver med Kari. Forsøket føres som et valg, ikke som ferdig transport eller et bestemt helseutfall.",
           "effekter": {
-            "relasjoner": {
-              "verneombud": 6
-            },
-            "meters": {
-              "energi": -1,
-              "handlingsrom": 2
-            },
             "flagg": {
-              "laerte_teknikk": true
+              "presset_kroppen": true,
+              "ren_bel_fortsatte_uten_plan": true
             },
             "threads": {
               "ryggen_sier_fra": {
-                "status": "completed"
+                "status": "escalated"
               }
             }
           },
-          "konsekvensTekst": "Ole viser deg på tretti sekunder: senk hev-håndtaket, skyv med beina, aldri vri. «Kroppen din er verktøyet ditt. Ingen erstatter det for deg.»"
+          "laaserOpp": [
+            "rygg_02_plan"
+          ]
+        },
+        {
+          "id": "spor_ole",
+          "tekst": "Spør Ole hvordan belastningen kan tas opp med Kari",
+          "konsekvensTekst": "Du ber Ole om hjelp til å ta opp belastningen. Ole sier at Kari må avklare arbeidsmåte, utstyr, oppgaver og behov for opplæring. Samtalen gir ikke en bestemt løfteteknikk eller dokumentasjon på at du har lært den.",
+          "effekter": {
+            "flagg": {
+              "ren_bel_spurte_ole": true
+            },
+            "threads": {
+              "ryggen_sier_fra": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "rygg_02_plan"
+          ]
         }
       ]
     },
@@ -752,77 +745,46 @@
       "avsender": "erfaren_kollega",
       "tilgjengelighet": "start",
       "prioritet": 7,
-      "tittel": "Amina viser deg soneprioritering",
-      "tekst": "Amina tar deg med på en runde: «Glem lista et øyeblikk. Se på rommet: Hvor tar folk? Hvor samles fukt? Hvor kommer klagene fra? Det er kartet ditt. Lista er bare huskelappen.»",
+      "tittel": "En avgrenset øvingsoppgave med Amina",
+      "tekst": "Kari har satt av tid med Amina til å øve på håndtak og brytere i møterom 4 etter dagens romliste. Dette er en ny, avgrenset oppgave, ikke bevis på gårsdagens romarbeid. Amina kan først vise innlært lokal metode. Deretter må du selv prøve og få konkret tilbakemelding. Romlista og lokale krav gjelder fortsatt.",
       "valg": [
         {
           "id": "laer_metoden",
-          "tekst": "Gå runden hennes og lær metoden",
-          "tone": "lærende",
+          "tekst": "Be Amina vise oppgaven før du prøver selv",
+          "konsekvensTekst": "Du ber om en gjennomgang av håndtakene og bryterne på dagens liste. Amina sier ja til å vise. Forespørselen er avklart, men demonstrasjon, egen øvelse og vurdering er ikke gjennomført.",
           "effekter": {
-            "relasjoner": {
-              "erfaren_kollega": 6
-            },
-            "meters": {
-              "handlingsrom": 4,
-              "energi": -2
-            },
             "flagg": {
-              "laerte_soneprioritering": true
-            },
-            "threads": {
-              "rommet_som_saa_rent_ut": {
-                "stepDelta": 1
-              }
+              "ren_opp_avtalt": true
             }
           },
-          "konsekvensTekst": "Etter tjue minutter ser du bygget annerledes: ikke rom som skal vaskes, men soner med ulik risiko. Det er samme jobb — og en helt annen jobb."
+          "laaserOpp": [
+            "opp_02_demonstrasjon"
+          ]
         },
         {
           "id": "foreslaa_forbedring",
-          "tekst": "Foreslå at metoden hennes blir standard for hele teamet",
-          "tone": "konstruktiv",
+          "tekst": "Foreslå en felles gjennomgang, og be først om å prøve denne oppgaven",
+          "konsekvensTekst": "Du foreslår at Kari vurderer en felles gjennomgang senere. Amina sier ja til en lokal øvingsøkt nå. Forslaget er ikke en vedtatt teamrutine, og du har ennå ikke sett demonstrasjonen eller prøvd oppgaven.",
           "effekter": {
-            "relasjoner": {
-              "erfaren_kollega": 4,
-              "driftsleder": 3
-            },
-            "meters": {
-              "synlighet": 5,
-              "handlingsrom": 2
-            },
             "flagg": {
-              "foreslo_amina_metode": true
-            },
-            "threads": {
-              "rommet_som_saa_rent_ut": {
-                "stepDelta": 1
-              }
+              "foreslo_amina_metode": true,
+              "ren_opp_avtalt": true
             }
           },
-          "konsekvensTekst": "«Da må DU si det til Kari,» ler Amina. «Meg hører hun ikke på — jeg har bare gjort dette i nitten år.»"
+          "laaserOpp": [
+            "opp_02_demonstrasjon"
+          ]
         },
         {
           "id": "bare_jobbe",
-          "tekst": "Takk for tipset, men gjør heller runden din i fred",
-          "tone": "avmålt",
+          "tekst": "Takk nei til øvingsøkta nå og be om senere avklaring",
+          "konsekvensTekst": "Du takker nei til denne øvingsøkta. Amina tar imot svaret. Opplæringsbehovet må avklares videre med Kari; ingen demonstrasjon eller egen øvelse er gjennomført. Avslaget gjør heller ikke dagens romliste ferdig.",
           "effekter": {
-            "relasjoner": {
-              "erfaren_kollega": -3
-            },
-            "meters": {
-              "energi": 2
-            },
             "flagg": {
-              "avslo_amina_runde": true
-            },
-            "threads": {
-              "rommet_som_saa_rent_ut": {
-                "stepDelta": 1
-              }
+              "avslo_amina_runde": true,
+              "ren_opp_avklaring_venter": true
             }
-          },
-          "konsekvensTekst": "Amina trekker på skuldrene og går. Du får sonen din ferdig. Noe i deg lurer på hva du nettopp valgte bort."
+          }
         }
       ]
     },
@@ -2109,6 +2071,276 @@
           }
         }
       ]
+    },
+    {
+      "id": "rygg_02_plan",
+      "threadId": "ryggen_sier_fra",
+      "dag": 1,
+      "fase": "ettermiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Kari må avklare avfallsoppgaven",
+      "tekst": "Beskriv hva som gjenstår og hva du trenger før du fortsetter. En egnet renholdsvogn og en tilgjengelig rute kan være del av en lokal plan. Renholdsvogna er et annet hjelpemiddel enn kaffetralla fra sølhendelsen; ingen avklaring her reparerer den.",
+      "valg": [
+        {
+          "id": "bekreft_plan",
+          "tekst": "Avklar avfallsoppgaven, kjent utstyr og rute med Kari",
+          "konsekvensTekst": "Kari bekrefter en avgrenset oppgave: transporter de avtalte sekkene til avfallsrommet med renholdsvogna du er opplært i å bruke, hvis kontrollen før bruk viser at utstyr og rute er egnet. Annet restarbeid må planlegges separat. Planen er bekreftet, men sekkene er ikke flyttet.",
+          "effekter": {
+            "flagg": {
+              "ren_bel_plan_bekreftet": true
+            },
+            "threads": {
+              "ryggen_sier_fra": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "rygg_03_transport",
+            "rygg_04_mottak"
+          ]
+        },
+        {
+          "id": "avvent_plan",
+          "tekst": "La oppgaven vente til Kari har avklart utstyr og opplegg",
+          "konsekvensTekst": "Du lar avfallsoppgaven stå uferdig og melder behovet for avklaring. Du har ingen bekreftet ny arbeidsplan og registrerer ingen utført transport. Dette er ikke avslag på nødvendig opplæring eller bevis på at andre har overtatt.",
+          "effekter": {
+            "flagg": {
+              "ren_bel_plan_venter": true
+            },
+            "threads": {
+              "ryggen_sier_fra": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "rygg_04_mottak"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rygg_03_transport",
+      "threadId": "ryggen_sier_fra",
+      "dag": 1,
+      "fase": "ettermiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 14,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tittel": "Utstyr og rute må fungere i praksis",
+      "tekst": "Du har en plan for de avtalte sekkene. Kontroller renholdsvogna, den avtalte ruten og oppgaven etter lokal instruks før du bruker utstyret. Denne scenen gjelder bare den avgrensede avfallstransporten, ikke alle rom eller årsaken til ryggubehaget.",
+      "valg": [
+        {
+          "id": "utfor_transport",
+          "tekst": "Kontroller forutsetningene og utfør den avtalte transporten",
+          "konsekvensTekst": "Kontrollen viser at renholdsvogna og den avtalte ruten kan brukes til oppgaven etter lokal instruks. Du gjennomfører transporten til avfallsrommet, kontrollerer at de avtalte sekkene er levert og registrerer akkurat dette arbeidet. Andre sekker, rom og kaffetralla er ikke gjort ferdige gjennom handlingen.",
+          "effekter": {
+            "flagg": {
+              "ren_bel_utstyr_rute_kontrollert": true,
+              "ren_bel_transport_utfort": true
+            },
+            "threads": {
+              "ryggen_sier_fra": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "stopp_og_meld",
+          "tekst": "Stopp ved manglende forutsetninger og meld restoppgaven",
+          "konsekvensTekst": "Ved kontrollen ser du at ruten ikke er tilgjengelig som avtalt. Du lar sekkene stå etter lokal rutine og melder hindringen til Kari. Transporten er ikke gjennomført, og en ny avklaring må komme før denne planen brukes.",
+          "effekter": {
+            "flagg": {
+              "ren_bel_arbeid_venter": true,
+              "ren_bel_rute_hindret": true
+            },
+            "threads": {
+              "ryggen_sier_fra": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_bel_plan_bekreftet": true
+        }
+      }
+    },
+    {
+      "id": "rygg_04_mottak",
+      "threadId": "ryggen_sier_fra",
+      "dag": 1,
+      "fase": "ettermiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tittel": "Har Kari fått arbeidsstatusen?",
+      "tekst": "Skill bekreftet plan fra kontrollert utstyr og rute, faktisk avfallstransport og oppgaver som fortsatt venter. Ta bare med det som er registrert. Beskriv belastningen uten å føre opp en diagnose eller en lovnad om at den er borte.",
+      "valg": [
+        {
+          "id": "bekreft_mottak",
+          "tekst": "Send den dokumenterte statusen og få Kari til å bekrefte mottak",
+          "konsekvensTekst": "Du sender oversikten. Kari bekrefter at hun har lest arbeidsstatusen og følger opp restoppgaver og belastningen videre. Bekreftelsen flytter ingen sekker, lærer deg ingen teknikk og fastslår ikke et helseutfall.",
+          "effekter": {
+            "flagg": {
+              "ren_bel_status_sendt": true,
+              "ren_bel_mottatt": true
+            },
+            "threads": {
+              "ryggen_sier_fra": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "avvent_mottak",
+          "tekst": "Send statusen og la mottaket stå ubekreftet",
+          "konsekvensTekst": "Du sender den dokumenterte statusen uten å få svar ennå. Mottaket står ubekreftet. Plan, utført transport og eventuelle hindringer beholder hver sin registrerte status.",
+          "effekter": {
+            "flagg": {
+              "ren_bel_status_sendt": true,
+              "ren_bel_mottak_venter": true
+            },
+            "threads": {
+              "ryggen_sier_fra": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "opp_02_demonstrasjon",
+      "threadId": "rommet_som_saa_rent_ut",
+      "dag": 2,
+      "fase": "ettermiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "tittel": "Se hva Amina faktisk viser",
+      "tekst": "Øvingsoppgaven er håndtak og brytere i møterom 4. Amina bruker romlista og den lokale instruksen for flater og metode. Hun kan vise på ett av punktene hvordan utstyr velges og hvordan resultatet kontrolleres. Hennes arbeid skal ikke føres som ditt.",
+      "valg": [
+        {
+          "id": "se_demonstrasjon",
+          "tekst": "Se den avgrensede demonstrasjonen og still spørsmål",
+          "konsekvensTekst": "Amina viser oppgaven på ett punkt og forklarer kontrollen mot romlista. Du følger demonstrasjonen og stiller spørsmål. Den demonstrerte flata er Aminas arbeid; du har fortsatt ikke utført din egen øvingsdel eller fått den vurdert.",
+          "effekter": {
+            "flagg": {
+              "ren_opp_demo_sett": true
+            }
+          },
+          "laaserOpp": [
+            "opp_03_egen_ovelse"
+          ]
+        },
+        {
+          "id": "utsett_demonstrasjon",
+          "tekst": "Be om å utsette demonstrasjonen til den kan gjennomføres",
+          "konsekvensTekst": "Demonstrasjonen blir utsatt. Du har ingen gjennomført øvelse eller vurdering å registrere. Behovet for ny tid står åpent; avtalen om en økt er ikke det samme som å ha sett den.",
+          "effekter": {
+            "flagg": {
+              "ren_opp_demo_venter": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "opp_03_egen_ovelse",
+      "threadId": "rommet_som_saa_rent_ut",
+      "dag": 2,
+      "fase": "ettermiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 14,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tittel": "Prøv de avtalte punktene selv",
+      "tekst": "Amina har vist ett punkt. Du skal prøve de øvrige avtalte håndtakene og bryterne på lista mens hun følger med. Bruk den lokale instruksen for disse flatene. Før ditt arbeid atskilt fra punktet Amina viste.",
+      "valg": [
+        {
+          "id": "utfor_ovelsen",
+          "tekst": "Utfør øvingsdelen og egenkontrollen mens Amina følger med",
+          "konsekvensTekst": "Du utfører de avtalte øvingspunktene og kontrollerer resultatet mot romlista mens Amina følger med. Du registrerer egen øvelse. Amina har ennå ikke gitt den konkrete tilbakemeldingen, og øvelsen er ikke en generell godkjenning av all renholdskompetanse.",
+          "effekter": {
+            "flagg": {
+              "ren_opp_ovelse_utfort": true,
+              "ren_opp_egenkontroll": true
+            }
+          },
+          "laaserOpp": [
+            "opp_04_tilbakemelding"
+          ]
+        },
+        {
+          "id": "avbryt_og_spor",
+          "tekst": "Avbryt øvelsen og be om mer veiledning",
+          "konsekvensTekst": "Du stopper før øvingsdelen er gjennomført og ber Amina forklare framgangsmåten igjen. Hun bekrefter at dere trenger mer øvelse før denne oppgaven vurderes. Restpunktene er ikke ferdige; en avbrutt øvelse er ikke dokumentert mestring.",
+          "effekter": {
+            "flagg": {
+              "ren_opp_ovelse_avbrutt": true,
+              "ren_opp_mer_ovelse": true
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_opp_demo_sett": true
+        }
+      }
+    },
+    {
+      "id": "opp_04_tilbakemelding",
+      "threadId": "rommet_som_saa_rent_ut",
+      "dag": 2,
+      "fase": "ettermiddag",
+      "tilgjengelighet": "laast",
+      "prioritet": 14,
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "tittel": "Hva observerte Amina?",
+      "tekst": "Du har utført og egenkontrollert den avtalte øvingsdelen. Amina må gi en konkret tilbakemelding på det hun observerte. Skill vurderingen av håndtakene og bryterne her fra en generell godkjenning eller et framtidig ansvar for teamet.",
+      "valg": [
+        {
+          "id": "faa_tilbakemelding",
+          "tekst": "Be om konkret tilbakemelding på den observerte utførelsen",
+          "konsekvensTekst": "Amina bekrefter at hun så deg velge utstyr, utføre de avtalte øvingspunktene og kontrollere resultatet etter lokal instruks. Tilbakemeldingen gjelder denne avgrensede øvelsen. Videre opplæring må tilpasses de neste oppgavene.",
+          "effekter": {
+            "flagg": {
+              "ren_opp_tilbakemelding": true,
+              "ren_opp_oppgave_bekreftet": true,
+              "laerte_soneprioritering": true
+            }
+          }
+        },
+        {
+          "id": "avvent_tilbakemelding",
+          "tekst": "La vurderingen stå åpen til Amina har gitt tilbakemelding",
+          "konsekvensTekst": "Den utførte øvelsen og egenkontrollen er registrert, men tilbakemeldingen mangler. Du fører ikke oppgaven som bekreftet vurdert eller generelt mestret. Dere må ta oppfølgingen senere.",
+          "effekter": {
+            "flagg": {
+              "ren_opp_tilbakemelding_venter": true
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_opp_ovelse_utfort": true
+        }
+      }
     }
   ]
 }
