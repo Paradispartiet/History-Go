@@ -6,7 +6,7 @@
   "status": "editorial_closeout_blocked_by_collection_assets",
   "production_profile": "standard",
   "profile_status": "source_reviewed_pending_collection_acceptance",
-  "active_phase": "Brands GODKJENT 3/3, People-portretter 2/5 GODKJENT. Fullfør Melgaard, Butkus og Hans Rasmus Astrup, samt autentiske Structures. Ingen filler eller feilstedkoblinger.",
+  "active_phase": "Structures 3 dokumenterte WebP previews koblet til PlaceCard; kontrollér runtime og mobil/desktop. People-portretter 2/5, tre mangler. Fulloppløste Structure-originaler står åpne.",
   "canonical_source": "data/places/by/oslo/places/tjuvholmen.json",
   "existing_content": {
     "fullquiz_questions": 42,
@@ -40,14 +40,14 @@
     }
   },
   "collection_gate": {
-    "people": "BLOCKED 2/5: Pushwagner og Renzo Piano har autentiske, lisensierte og visuelt godkjente portretter. Piano er koblet til Tjuvholmen og Astrup Fearnley. Melgaard og Butkus bildefiler mangler; Hans Rasmus Astrup har placeholder.",
+    "people": "BLOCKED 2/5: Pushwagner og Renzo Piano har dokumenterte autentiske portretter; Melgaard og Butkus mangler bildefiler og Hans Rasmus Astrup har generisk placeholder.",
     "brands": "GODKJENT 3/3: BAHR, Galleri Brandstrup og THE THIEF originalmerker med SHA-256, kildeproveniens, visuell godkjenning og kanoniske Place-open-koblinger.",
     "objects": "KANDIDATREVIEW: skulpturer i offentlig park, verifiser samlingseier og selvstendig kilde/bilde før opptak",
-    "structures": "BLOCKED: dokumenterte byrom/anlegg finnes, men struktur-entities og samlingsbilder er ikke materialisert",
+    "structures": "STAGED 3/3: Tjuvtitten, Tjuvholmen bystrand og skulpturparken på Skjæret har kildebelagte lokale WebP previews og SHA-256. Fulloppløste JPEG-originaler og faktisk PlaceCard-QA gjenstår.",
     "filler_forbidden": true,
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
-  "qa": "BAHR/Galleri Brandstrup/THE THIEF logoer 3/3 og runtime PASS. Tjuvholmen image/frontImage/QuizCard Chromium PASS. Pushwagner CC BY-SA 3.0 og Renzo Piano CC BY-SA 2.0 har visuelt godkjente portretter, verifiserte SHA-256 og synkronisert runtime. Renzo Piano integrert i PR #7266 (2eea038be4bac24d4ed6d7a939e729ab6c10052d). Tre People-portretter gjenstår.",
+  "qa": "Brands 3/3 og Pushwagner/Renzo-kildeportretter verifisert. Structures WebP previews 3/3 visuelt inspisert og koblet i kanonisk Place og place-open på PR-gren; live app QA gjenstår.",
   "merged": true,
   "verified_at": "2026-11-12",
   "rule_preflight": {
@@ -122,7 +122,7 @@
   },
   "vferdig": {
     "status": "BLOCKED",
-    "reason": "Brands 3/3 GODKJENT, People 2/5 godkjente dokumenterte portretter, tre People-portretter og Structures fortsatt åpne.",
+    "reason": "Brands 3/3 GODKJENT; People 2/5 portretter, Structures 3 lokale WebP-kandidater men fulloppløste originaler og appsluttkontroll mangler; Objects og øvrig canonical core må gjennom sluttkontroll.",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
   "browser_acceptance": {
@@ -185,6 +185,22 @@
     "renzo_piano_merge": {
       "pr": 7266,
       "commit": "2eea038be4bac24d4ed6d7a939e729ab6c10052d"
-    }
+    },
+    "additional_source_provenance": "data/people/renzo_piano_image_provenance.json"
+  },
+  "structure_asset_coverage": {
+    "total": 3,
+    "webp_files": 3,
+    "source_originals_archived": 0,
+    "source_kind": "Wikimedia Commons 960px preview JPEG; full original requests returned HTTP 429",
+    "visual_qa": "PASS",
+    "runtime_candidate_branch": true,
+    "live_browser_qa": "PENDING",
+    "provenance": "reports/place-production/tjuvholmen-structures-source-candidates-20261112.json",
+    "paths": [
+      "bilder/kort/structures/tjuvtitten.webp",
+      "bilder/kort/structures/tjuvholmen_bystrand.webp",
+      "bilder/kort/structures/skulpturparken_skjaeret.webp"
+    ]
   }
 }
