@@ -4,12 +4,11 @@ on:
     paths:
       - 'scripts/revise-vitenskap-v5-preview.py'
       - '.github/workflows/qa-vitenskap-v5-visual.yml'
-      - 'scripts/archive-vitenskap-v5-candidates.py'
       - 'data/badges/vitenskap_v4_remaining_four_locales_20261112.json'
       - 'data/badges/vitenskap_forskning_v4_embroidered_candidates_20261112.json'
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: science-v5-visual-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -18,9 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
-          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -56,17 +52,3 @@ jobs:
           name: science-v5-20-candidates-and-mobile-comparison
           path: out/vitenskap-v5-review/
           retention-days: 30
-      - name: Archive approved-technical v5 candidates on isolated review branch
-        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'science-v5-thread-relief-mobile-qa-20261112' }}
-        run: |
-          python scripts/archive-vitenskap-v5-candidates.py
-          git diff --exit-code -- data/badges/vitenskap.json bilder/merker/vitenskap/brodert
-          git add bilder/merker/vitenskap/kandidater/revisjoner/
-          git add bilder/merker/vitenskap/kandidater/contact-sheet-v5-mobile.jpg
-          git add data/badges/vitenskap_v5_candidates_20261112.json
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --cached --quiet; then
-            git commit -m "Science: archive 20 v5 visual candidates without activation"
-            git push origin HEAD:${{ github.head_ref }}
-          fi
