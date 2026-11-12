@@ -30,10 +30,10 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Build real place-open payload and index
         run: |
-          npm run place-open:build
           npm run places:index:build
-          npm run place-open:check
+          npm run place-open:build
           npm run places:index:check
+          npm run place-open:check
           node scripts/check-distinct-place-photos.mjs --place data/places/by/oslo/places/tjuvholmen.json --require-both
       - name: Real Tjuvholmen mobile/desktop open, photo and QuizCard test
         run: |
