@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_blaameis:Object.freeze({
+   scientificName:"Cyanistes caeruleus",
+   src:"bilder/natur/fauna/godkjent/05_blaameis_v1.webp",
+   gitBlobSha:"038718c8ba46ee769d5c5cc76920229ed9d4171d",
+   reviewedAt:"2026-11-12",
+   stage:"adult_perched_and_hanging_blue_crown_yellow_breast",
+   evidence:"data/natur/fauna/illustration-quality-blaameis-20261112.json"
+  }),
   emne_fauna_svarttrost:Object.freeze({
    scientificName:"Turdus merula",
    src:"bilder/natur/fauna/godkjent/04_svarttrost_v1.webp",

@@ -27,10 +27,10 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0);
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
-const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,4);
+const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=4,"Existing Svarttrost must remain approved");
 assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,latin);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
 for(const [p,sha] of [["emne_fauna_skjaere","e3da752bce1c4f637b80198559b805c98c1d82c7"],["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" must be preserved");
-assert.equal(reg.get("emne_fauna_blaameis"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261112-04"));
+assert.equal(reg.get("emne_fauna_kjottmeis"),null);
+assert(/nature-fauna-approved\.js\?v=20261112-0[4-9]/.test(read("finn-fauna.html")));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #4 Svarttrost: male/female, transparent original, exact binary, pre-existing quiz and four originals OK.");

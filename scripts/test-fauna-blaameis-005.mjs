@@ -1,0 +1,38 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import crypto from "node:crypto";
+import vm from "node:vm";
+const root=new URL("../",import.meta.url),read=p=>fs.readFileSync(new URL(p,root),"utf8");
+const q=JSON.parse(read("data/natur/fauna/illustration-quality-blaameis-20261112.json")),a=q.items[0];
+const id="emne_fauna_blaameis",latin="Cyanistes caeruleus",quiz="quiz_fauna_blaameis";
+assert.equal(q.speciesNumber,5);assert.equal(q.baselineApproved,4);assert.equal(q.approvedCountAfterRelease,5);
+assert.equal(q.items.length,1);assert.equal(a.catalogId,id);assert.equal(a.scientificName,latin);
+assert.equal(a.family,"Paridae");assert.equal(a.existingQuizId,quiz);
+assert.equal(a.reviewStatus,"approved");assert.equal(a.approvedForPublication,true);assert.equal(a.originalBinaryVerified,true);
+assert(a.sourceReferences.length>=2);
+assert(a.visualChecks.blackBackgroundReviewed&&a.visualChecks.trueAlphaWebP&&a.visualChecks.fullImageReviewed);
+assert(a.visualChecks.blueCrown&&a.visualChecks.whiteCheekBlackEyeStripe&&a.visualChecks.yellowUnderparts);
+assert(a.visualChecks.greenishBack&&a.visualChecks.blueWingsTailWithWhiteWingBar&&a.visualChecks.correctSpeciesNotGreatTit);
+for(const p of ["data/natur/fauna/fugler_by.json","data/runtime/nature-all/fauna-001.json"]){
+ const x=JSON.parse(read(p)).flatMap(v=>v.kind==="emne_pack"?v.items:[v]).find(v=>v.id===id);
+ assert(x,"Blåmeis source/runtime must exist");
+ assert.equal(x.title,"Blåmeis");assert.equal(x.latin,latin);
+ assert.equal(x.taxonomy?.latin_navn,latin);assert.equal(x.taxonomy?.familie,"Paridae");
+ assert(x.quiz_ids?.includes(quiz));
+}
+const b=fs.readFileSync(new URL(a.src,root));
+assert.equal(b.length,371772);assert.equal(b.length,a.sizeBytes);
+assert.equal(crypto.createHash("sha256").update(b).digest("hex"),"337a794433133e23e0b2eb604074f2b8ff70a4aa7265fa2e8e1300c239e80156");
+assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),"038718c8ba46ee769d5c5cc76920229ed9d4171d");
+assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,12),"WEBP");
+assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0,"WebP must have alpha");
+assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
+const env={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),env);
+const reg=env.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,5);
+assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,latin);
+assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
+for(const [p,sha] of [["emne_fauna_svarttrost","61278635c130708fda7e42c958576db5a98040e5"],["emne_fauna_skjaere","e3da752bce1c4f637b80198559b805c98c1d82c7"],["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" must be preserved");
+assert.equal(reg.get("emne_fauna_kjottmeis"),null,"Kjøttmeis must retain SVG until separately approved");
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261112-05"));
+assert(read("scripts/test-nature-illustrations.mjs").includes("330"),"Preserve 330 SVGs");
+console.log("Finn Fauna #5 Blåmeis: alpha WebP, species and quiz, original hashes, and 5 originals verified.");
