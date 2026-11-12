@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_ringdue:Object.freeze({
+   scientificName:"Columba palumbus",
+   src:"bilder/natur/fauna/godkjent/07_ringdue_v1.webp",
+   gitBlobSha:"643eea93e2803fb1de8fcaaf6fba378aa7d61e74",
+   reviewedAt:"2026-11-12",
+   stage:"adult_perched_and_flying_white_neck_and_wing_bars",
+   evidence:"data/natur/fauna/illustration-quality-ringdue-20261112.json"
+  }),
   emne_fauna_kjottmeis:Object.freeze({
    scientificName:"Parus major",
    src:"bilder/natur/fauna/godkjent/06_kjottmeis_v1.webp",

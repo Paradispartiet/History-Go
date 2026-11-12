@@ -28,7 +28,7 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0,"Transparent WebP required");
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const env={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),env);
-const reg=env.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,6);
+const reg=env.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=6,"Kjøttmeis remains approved after later additions");
 assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,latin);
 assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
 for(const [p,sha] of [
@@ -38,7 +38,7 @@ for(const [p,sha] of [
  ["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],
  ["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]
 ])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" original preserved");
-assert.equal(reg.get("emne_fauna_ringdue"),null,"Ringdue remains on original SVG until separately approved");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261112-06"));
+assert.equal(reg.get("emne_fauna_ringdue")?.gitBlobSha,"643eea93e2803fb1de8fcaaf6fba378aa7d61e74","Ringdue now has an approved original");
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261112-07"));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #6 Kjøttmeis: verified original WebP, sex dimorphism, quiz, 6 originals and legacy SVGs.");
