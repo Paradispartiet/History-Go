@@ -1,13 +1,15 @@
-name: Science v2 – isolated localized badge proof
+name: Science v2 – localized badge candidates (not active)
 on:
   pull_request:
     paths:
       - 'scripts/create-vitenskap-v2-textbands.py'
       - '.github/workflows/vitenskap-v2-textbands-proof.yml'
+      - 'data/badges/vitenskap_v2_locale_candidates_artwork_20261112.json'
+      - 'bilder/merker/vitenskap/kandidater/locales/**'
 permissions:
   contents: write
 jobs:
-  preview:
+  previews:
     if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'art/vitenskap-v2-translate-bands-20261112'
     runs-on: ubuntu-latest
     steps:
@@ -19,33 +21,51 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --quiet pillow numpy
-      - name: Render English Mathematics candidate without changing active badges
-        run: python scripts/create-vitenskap-v2-textbands.py --id matematikk --locale en
-      - name: Check English candidate image
+      - name: Render 20 localized WebP candidate badges with verified manifest
+        run: python scripts/create-vitenskap-v2-textbands.py --all
+      - name: Validate each candidate format, artwork center, alpha, hash and registry isolation
         run: |
           python - <<'PY'
-          import json
+          import json, hashlib
           from pathlib import Path
-          from PIL import Image
-          root=Path('bilder/merker/vitenskap/kandidater')
-          old=Image.open(root/'matematikk-v2.webp').convert('RGBA')
-          new=Image.open(root/'locales/en/matematikk-v2.webp').convert('RGBA')
-          assert old.size == new.size == (1024, 1024)
-          assert old.getchannel('A').tobytes() == new.getchannel('A').tobytes()
           import numpy as np
-          a=np.asarray(old)[280:744, 280:744,:3].astype('int16')
-          b=np.asarray(new)[280:744, 280:744,:3].astype('int16')
-          err=np.abs(a-b)
-          assert err.mean()<6,err.mean()
-          assert np.percentile(err,99)<32,np.percentile(err,99)
-          print('Technical proof passed; visual inspection still required.')
+          from PIL import Image
+          m=json.loads(Path('data/badges/vitenskap_v2_locale_candidates_artwork_20261112.json').read_text())
+          a=json.loads(Path('data/badges/vitenskap.json').read_text())
+          plan=json.loads(Path('data/badges/vitenskap_v2_localization_20261112.json').read_text())
+          assert m['status']=='candidate_visual_review_required_not_active'
+          assert len(m['items'])==20
+          assert len(a['subBadgeImages'])==16
+          for v in m['items']:
+              source=next(x for x in plan['items'] if x['id']==v['id'])
+              assert v['locale'] in ('en','es','pt','fr')
+              assert v['heading']==source['variants'][v['locale']]['heading']
+              assert v['footer']==source['variants'][v['locale']]['footer']
+              assert v['path'].startswith('bilder/merker/vitenskap/kandidater/locales/')
+              assert a['subBadgeImages'][v['id']] != v['path']
+              data=Path(v['path']).read_bytes()
+              assert data[:4]==b'RIFF' and data[8:12]==b'WEBP'
+              assert hashlib.sha256(data).hexdigest()==v['sha256']
+              assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==v['gitBlobSha']
+              with Image.open(source['sourceNorwegianCandidate']['path']) as image:
+                  old=image.convert('RGBA')
+              with Image.open(v['path']) as image:
+                  new=image.convert('RGBA')
+              assert old.size==new.size==(1024,1024)
+              assert old.getchannel('A').tobytes()==new.getchannel('A').tobytes()
+              baseline=np.asarray(old)[270:754,270:754,:3].astype('int16')
+              candidate=np.asarray(new)[270:754,270:754,:3].astype('int16')
+              diff=np.abs(baseline-candidate)
+              assert diff.mean()<6,(v['id'],v['locale'],diff.mean())
+              assert np.percentile(diff,99)<32,(v['id'],v['locale'])
+          print('Verified 20 candidate originals, hashes, and unchanged 16 active subbadges')
           PY
-      - name: Commit candidate to PR branch only
+      - name: Commit only inactive candidates and manifest on PR branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add bilder/merker/vitenskap/kandidater/locales/en/matematikk-v2.webp
+          git add bilder/merker/vitenskap/kandidater/locales data/badges/vitenskap_v2_locale_candidates_artwork_20261112.json
           if ! git diff --cached --quiet; then
-            git commit -m 'art(badges): English Mathematics v2 artwork candidate'
+            git commit -m 'art(badges): store 20 translated science v2 candidates with binary manifest'
             git push
           fi
