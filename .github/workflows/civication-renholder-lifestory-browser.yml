@@ -1,0 +1,46 @@
+name: Civication renholder Life Story browser
+
+on:
+  pull_request:
+    paths:
+      - 'data/Civication/lifestory/roles/renholder/**'
+      - 'js/Civication/lifestory/**'
+      - 'js/Civication/ui/CivicationLifestoryUI.js'
+      - 'tests/civication-lifestory-renholder.test.js'
+      - 'scripts/verify-civication-renholder-lifestory-browser.cjs'
+      - '.github/workflows/civication-renholder-lifestory-browser.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  renholder-browser:
+    name: Renholder romstatus – mobil og iPad
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify canonical renholder regression
+        run: node tests/civication-lifestory-renholder.test.js
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Play actual room-status choices and Symposium
+        run: node scripts/verify-civication-renholder-lifestory-browser.cjs
+      - name: Upload screenshots and trace
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: renholder-lifestory-mobile-ipad
+          path: reports/civication-renholder-lifestory-browser/
+          if-no-files-found: error
