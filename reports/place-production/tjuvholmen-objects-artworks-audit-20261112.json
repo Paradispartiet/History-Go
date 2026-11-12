@@ -6,7 +6,7 @@
   "status": "EIGHT_PHYSICAL_ARTWORKS_IDENTIFIED_NOT_IMAGE_OR_OBJECT_APPROVED",
   "result_summary": "Eight named works (six listed as Selvaag Art Collection, two as Tjuvholmen KS) form real source-backed object/artwork candidates. No approved artwork close-ups or individual Objects are created from the overview park photos. vFerdig remains blocked pending rights/classification and collection review.",
   "priority": "Verify classification in existing Objects vs Works model before activation; artwork images require both legitimate photographer rights and appropriate rights analysis for the underlying protected sculpture.",
-  "work_year_policy": "Use only verified work year, not park installation year (2012), and preserve disagreement on Eyes.",
+  "work_year_policy": "Use the individual artwork owner's record where available. Eyes accepted as 1997 on Selvaag owner's catalogue, corroborated by park site and SNL. Preserve Museum's conflicting 1992 for provenance.",
   "sources": [
     {
       "url": "https://www.afmuseet.no/tjuvholmen-skulpturpark/",
@@ -37,16 +37,28 @@
       "type": "owner_history",
       "confidence": "direct",
       "supports": "2012 public park opening and selected artist presence"
+    },
+    {
+      "url": "https://www.selvaagartcollection.com/en/artwork/eyes",
+      "type": "owner_primary_individual_artwork_record",
+      "confidence": "direct",
+      "supports": "Eyes artist, title, 1997, black granite, each stone 160cm diameter"
+    },
+    {
+      "url": "https://snl.no/Louise_Bourgeois",
+      "type": "independent_encyclopedic_artwork_confirmation",
+      "confidence": "direct",
+      "supports": "Tjuvholmen's black granite Eyes sculpture dated 1997"
     }
   ],
   "ownership_note": "Astrup Fearnley explicitly states that the artworks in Tjuvholmen Sculpture Park are not part of its museum collection; the two specified exceptions to Selvaag ownership are held by Tjuvholmen KS.",
-  "source_warning": "The separate park site's Eyes (1997) conflicts with Astrup Fearnley's Eyes (1992), so approved_year is null until reconciled; not a missing title or artist.",
+  "source_warning": "The museum's Eyes (1992) conflicts with the owner Selvaag's catalogue year 1997, verified by the park site and SNL. Preferred accepted work year is now 1997; conflict remains explicitly documented.",
   "artwork_candidates": [
     {
       "id": "louise_bourgeois_eyes",
       "title": "Eyes",
       "artist": "Louise Bourgeois",
-      "approved_year": null,
+      "approved_year": 1997,
       "reported_years": [
         "1992",
         "1997"
@@ -65,7 +77,18 @@
         "https://www.tjuvholmenskulptur.no/",
         "https://www.selvaagartcollection.com/en/artwork/sculpture"
       ],
-      "notes": "Museum states 1992; park-specific site states 1997. Do not publish an unverified single work year."
+      "notes": "Resolved via work owner's own collection record (Selvaag Art Collection: Eyes, 1997), corroborated by park site and Store norske leksikon. Museum park inventory reports 1992 and remains recorded as source discrepancy, not silently erased.",
+      "year_resolution": {
+        "status": "ACCEPTED_OWNER_PRIMARY_SOURCE",
+        "approved_year": 1997,
+        "owner_source": "https://www.selvaagartcollection.com/en/artwork/eyes",
+        "corroboration": [
+          "https://www.tjuvholmenskulptur.no/",
+          "https://snl.no/Louise_Bourgeois"
+        ],
+        "conflicting_museum_source": "https://www.afmuseet.no/tjuvholmen-skulpturpark/",
+        "conflicting_museum_year": 1992
+      }
     },
     {
       "id": "antony_gormley_edge_ii",
@@ -255,7 +278,6 @@
     "separate_works_question": "Resolve whether individually sourced contemporary sculptures are represented under Works rather than historical Objects. Do not create generic objects without media and provenance."
   },
   "next_gates": [
-    "Resolve Eyes work date conflict from artist/owner catalogue and document result.",
     "Check one-by-one whether each work has a properly licensed, identity-verified photo and clearance appropriate to its intended presentation.",
     "Decide canonical Works vs Objects representation and avoid duplicating the entire sculpture park.",
     "If approved, store artist, title, source original, licensing, SHA-256 and photo attribution, then generate and test mobile/desktop real PlaceCard.",
