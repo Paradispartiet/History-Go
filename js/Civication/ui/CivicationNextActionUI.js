@@ -1122,8 +1122,9 @@
             && !document.body.classList.contains("civi-mapmode")) {
           if (sourcePopup) window.CivicationMiniSectionsUI?.closePopup?.();
           else close();
-          document.querySelector('.civi-footer button[data-category="minDag"]')?.click();
-          const heading = document.querySelector("#civiLifestoryPanel h3");
+          const dayButton = /** @type {HTMLButtonElement|null} */ (document.querySelector('.civi-footer button[data-category="minDag"]'));
+          dayButton?.click();
+          const heading = /** @type {HTMLElement|null} */ (document.querySelector("#civiLifestoryPanel h3"));
           if (heading) {
             heading.setAttribute("tabindex", "-1");
             heading.focus({ preventScroll: true });
