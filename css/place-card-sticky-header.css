@@ -13,6 +13,18 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   isolation: isolate;
 }
 
+/* On larger screens a tall, uncropped Place overview remains pinned while
+   reading. Once a QuizCard is flipped, its expand button lives farther down
+   the same scroll pane; a sticky hero can cover that real pointer target.
+   Let the authentic hero scroll out with the content during QuizCard reading.
+   Do not disable hit testing or simulate clicks through the photograph. */
+@media (min-width: 721px) {
+  body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned:has(#pcFrontCardFlip.is-flipped) .pc-sheet-hero {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 /* Retain the original image's object-fit geometry while the outer wrapper
    reveals less from its bottom. Neither icons nor text are resized. */
 body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-hero #pcHeaderHero {
