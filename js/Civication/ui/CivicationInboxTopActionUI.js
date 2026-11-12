@@ -3838,11 +3838,10 @@
   // Ids that are active answerable actions in the current day phase (or the single active
   // inbox fallback). The active id may render a direct answer surface here; all other
   // ids stay passive so archived/open threads never borrow choices from another mail.
-  function getNextActionOwnedIds() {
+  function getNextActionOwnedIds(currentId) {
     const ids = new Set();
 
-    const current = window.CivicationNextActionSelector?.getCurrent?.();
-    if (current && current.id) ids.add(String(current.id).trim());
+    if (currentId) ids.add(currentId);
 
     const inspection = window.CivicationDayProgression?.inspect?.();
     const bundle = inspection?.phaseBundle || null;
@@ -3870,11 +3869,10 @@
     `;
   }
 
-  function isCurrentNextActionItem(item) {
+  function isCurrentNextActionItem(item, currentId) {
     const mailId = mailIdOf(item);
     if (!mailId) return false;
-    const current = window.CivicationNextActionSelector?.getCurrent?.();
-    return !!current && String(current.id || "").trim() === mailId;
+    return !!currentId && currentId === mailId;
   }
 
   function renderDirectChoicesHtml(item) {
@@ -4036,7 +4034,7 @@
     `;
   }
 
-  function renderChoiceButtons(item, ownedIds) {
+  function renderChoiceButtons(item, ownedIds, currentId) {
     // Choices belong to the one currently active action above the history.
     // Earlier/later pending messages are read-only until their turn arrives.
     if (hasEmbeddedInboxActions()) {
@@ -4047,7 +4045,7 @@
     const mailId = mailIdOf(item);
     if (!isOpenItem(item) || !mailId) return "";
 
-    if (hasChoices(item) && isCurrentNextActionItem(item)) {
+    if (hasChoices(item) && isCurrentNextActionItem(item, currentId)) {
       return renderDirectChoicesHtml(item);
     }
 
@@ -4056,7 +4054,7 @@
     return "";
   }
 
-  function renderInboxCard(item, channelLabel, ownedIds) {
+  function renderInboxCard(item, channelLabel, ownedIds, currentId) {
     const lines = bodyLinesOf(item);
     const pending = isOpenItem(item);
     const statusLabel = pending ? "Åpen" : "Avklart";
@@ -4078,7 +4076,7 @@
         ${lines.length ? `<div class="civi-inbox-body">${lines.map(function (line) {
           return `<p>${escapeHtml(line)}</p>`;
         }).join("")}</div>` : ""}
-        ${renderChoiceButtons(item, ownedIds)}
+        ${renderChoiceButtons(item, ownedIds, currentId)}
       </article>
     `;
   }
@@ -4088,12 +4086,12 @@
     return item?.resolved === true || status === "resolved" || status === "answered" || status === "closed";
   }
 
-  function renderInboxSection(label, intro, items, emptyText, ownedIds) {
+  function renderInboxSection(label, intro, items, emptyText, ownedIds, currentId) {
     const visible = (Array.isArray(items) ? items : [])
       .filter(function (item) { return item && item.deleted !== true && item.archived !== true; });
 
     const openItems = visible.filter(function (item) {
-      return isOpenItem(item) && !(hasEmbeddedInboxActions() && isCurrentNextActionItem(item));
+      return isOpenItem(item) && !(hasEmbeddedInboxActions() && isCurrentNextActionItem(item, currentId));
     });
 
     const resolvedItems = visible.filter(function (item) { return !isOpenItem(item) || isResolved(item); });
@@ -4101,7 +4099,7 @@
     // open in its channel. Otherwise the user sees "0 åpne" above a mail
     // that is waiting for their answer in the same inbox.
     const activeCount = hasEmbeddedInboxActions()
-      ? visible.filter(function (item) { return isOpenItem(item) && isCurrentNextActionItem(item); }).length
+      ? visible.filter(function (item) { return isOpenItem(item) && isCurrentNextActionItem(item, currentId); }).length
       : 0;
     const pendingCount = openItems.length + activeCount;
 
@@ -4116,7 +4114,7 @@
         </div>
         <div class="civi-inbox-channel-list">
           ${openItems.length
-            ? openItems.map(function (item) { return renderInboxCard(item, label, ownedIds); }).join("")
+            ? openItems.map(function (item) { return renderInboxCard(item, label, ownedIds, currentId); }).join("")
             : `<div class="civi-inbox-empty muted">${activeCount
               ? "Den aktive meldingen vises øverst i innboksen."
               : escapeHtml(emptyText)}</div>`
@@ -4126,7 +4124,7 @@
               <details class="civi-inbox-history">
                 <summary>Vis gamle meldinger (${resolvedItems.length})</summary>
                 <div class="civi-inbox-history-list">
-                  ${resolvedItems.map(function (item) { return renderInboxCard(item, label, ownedIds); }).join("")}
+                  ${resolvedItems.map(function (item) { return renderInboxCard(item, label, ownedIds, currentId); }).join("")}
                 </div>
               </details>
             `
@@ -4734,7 +4732,11 @@
     const privateMessages = (split.private || []).concat(split.unknown || []);
     const systemMessages = split.system || [];
 
-    const ownedIds = getNextActionOwnedIds();
+    // One synchronous render observes one selection. Re-reading the entire
+    // day/inbox for each history row made rendering scale with two inbox scans.
+    // This snapshot is local; the next render always selects fresh state.
+    const currentId = String(window.CivicationNextActionSelector?.getCurrent?.()?.id || "").trim();
+    const ownedIds = getNextActionOwnedIds(currentId);
 
     const markup = `
       <div class="civi-inbox-sections" data-civi-inbox-sections="1">
@@ -4745,21 +4747,21 @@
           "Arbeid, stilling, rolleprogresjon, arbeidsdag, konflikter, forfremmelse, stagnasjon og oppsigelse.",
           job,
           "Ingen jobbmail akkurat nå.",
-          ownedIds
+          ownedIds, currentId
         )}
         ${renderInboxSection(
           "Personlige meldinger",
           "Kveld, fritid, private relasjoner og livshendelser utenfor jobblogikken.",
           privateMessages,
           "Ingen personlige meldinger akkurat nå.",
-          ownedIds
+          ownedIds, currentId
         )}
         ${systemMessages.length ? renderInboxSection(
           "System",
           "Statusmeldinger og tekniske beskjeder.",
           systemMessages,
           "Ingen systemmeldinger.",
-          ownedIds
+          ownedIds, currentId
         ) : ""}
       </div>
     `;
@@ -4806,10 +4808,24 @@
     return renderInboxSections();
   }
 
+  let inboxRefreshQueued = false;
+  let inboxRefreshTrailing = 0;
   function scheduleInboxSectionsRefresh() {
-    window.setTimeout(refreshInboxWithoutInterruptingDraft, 0);
-    window.setTimeout(refreshInboxWithoutInterruptingDraft, 80);
-    window.setTimeout(refreshInboxWithoutInterruptingDraft, 260);
+    // Merge notifications from the same answer into one immediate refresh
+    // and one trailing readiness refresh. Each reads current state at execution;
+    // journal draft protection and explicit save renders keep their ownership.
+    if (!inboxRefreshQueued) {
+      inboxRefreshQueued = true;
+      window.setTimeout(function flushInboxRefresh() {
+        inboxRefreshQueued = false;
+        refreshInboxWithoutInterruptingDraft();
+      }, 0);
+    }
+    if (inboxRefreshTrailing) window.clearTimeout(inboxRefreshTrailing);
+    inboxRefreshTrailing = window.setTimeout(function flushTrailingInboxRefresh() {
+      inboxRefreshTrailing = 0;
+      refreshInboxWithoutInterruptingDraft();
+    }, 260);
   }
 
   function wrapMiniRefresh() {
