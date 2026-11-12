@@ -125,7 +125,7 @@ def make_one(item,locale):
     dst.parent.mkdir(parents=True,exist_ok=True)
     out.save(dst, "WEBP",quality=95,method=6)
     data=dst.read_bytes()
-    git_sha=hashlib.sha1(b"blob "+str(len(data)).encode()+b"\\0"+data).hexdigest()
+    git_sha=hashlib.sha1(b"blob "+str(len(data)).encode()+b"\0"+data).hexdigest()
     return {"id":item["id"],"locale":locale,"path":str(dst.relative_to(ROOT)),
             "heading":variant["heading"],"footer":variant["footer"],
             "upperFontSize":upper_size,"lowerFontSize":lower_size,
@@ -154,5 +154,5 @@ if __name__=="__main__":
             "items":produced
         }
         path=ROOT/"data/badges/vitenskap_v2_locale_candidates_artwork_20261112.json"
-        path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\\n",encoding="utf8")
+        path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
     print(json.dumps(produced,ensure_ascii=False,indent=2))
