@@ -25,7 +25,7 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.deepEqual([1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)],[1024,1536]);
 const env={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),env);
 const approved=env.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(approved.count,1);assert.equal(approved.get(id)?.src,a.src);assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);assert.equal(approved.get("emne_fauna_kraake"),null);
+assert(approved.count>=1,"Gråspurv remains approved");assert.equal(approved.get(id)?.src,a.src);assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
 const explorer=read("js/ui/nature-explorer.js"),html=read("finn-fauna.html");
 assert(explorer.includes("approvedFaunaIllustrations?.get(id)?.src"),"Approved originals must take priority over schematic SVG");
 assert(explorer.includes("const art=drawings?.resolve(id);"),"Old SVG fallback must stay");

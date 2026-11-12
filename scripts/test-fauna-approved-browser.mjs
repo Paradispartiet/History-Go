@@ -54,15 +54,52 @@ try {
    }
    await context.close();
   }
+  // Kråke #2: approved transparent original, full image on black, fallback on failure.
+  for(const brokenCrow of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenCrow)await context.route("**/bilder/natur/fauna/godkjent/02_kraake_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Kråke");
+   const crow=page.locator("#natureGrid").getByRole("button",{name:/^Kråke,/i}).first();
+   await crow.waitFor();
+   if(brokenCrow){
+    await crow.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await crow.locator("img").count(),0,"Kråke: never substitute photos");
+   }else{
+    const img=crow.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("02_kraake_v1.webp"));
+    assert.equal(await crow.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await crow.screenshot({path:path.join(artifacts,"kraake-card-"+width+".png")});
+   }
+   await crow.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenCrow)await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Kråke: dialog must fit viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"kraake-detail-"+width+".png")});
+   }
+   await context.close();
+  }
+  // Skjære keeps its older schematic SVG until individually approved.
   const context=await browser.newContext({viewport:{width,height:900}});
   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
-  await page.locator("#natureSearch").fill("Kråke");
-  const crow=page.locator("#natureGrid").getByRole("button",{name:/^Kråke,/i}).first();
-  await crow.waitFor();assert((await crow.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Other 330 schematics must keep working");
+  await page.locator("#natureSearch").fill("Skjære");
+  const magpie=page.locator("#natureGrid").getByRole("button",{name:/^Skjære,/i}).first();
+  await magpie.waitFor();assert((await magpie.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Other species retain the schematic SVG fallback");
   await context.close();
-  console.log("Finn Fauna Gråspurv "+width+"px: approved image, dialog, black contain, failure and SVG fallback OK");
+  console.log("Finn Fauna Gråspurv og Kråke "+width+"px: approved image, dialog, black contain, failure and SVG fallback OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
