@@ -20,6 +20,8 @@ export default async function verifyRenholderEmployment(browser:any,origin:strin
     localStorage.setItem('HG_TEST_MODE','1');
     const app=globalThis as any;
     app.__renholderAudit=[];
+    app.DEBUG=true;
+    app.performance.setResourceTimingBufferSize(10000);
     app.document.addEventListener('click',(event:any)=>{
       const target=event.target;
       const button=target?.closest?.('[data-civi-next-action-answer],[data-civi-next-action-advance],[data-lifestory-next-day]');
@@ -52,6 +54,8 @@ export default async function verifyRenholderEmployment(browser:any,origin:strin
   page.on('pageerror',(e:Error)=>errors.push(e.message));
   page.on('console',(m:any)=>{if(['warning','error'].includes(m.type()))browserLog.push(m.type()+': '+m.text());});
   page.on('requestfailed',(r:any)=>browserLog.push('requestfailed '+r.url()+' '+r.failure()?.errorText));
+  page.on('request',(r:any)=>{if(/data\/quiz\//.test(r.url()))browserLog.push('quiz request '+r.url());});
+  page.on('requestfinished',(r:any)=>{if(/data\/quiz\//.test(r.url()))browserLog.push('quiz finished '+r.url());});
   page.on('response',(r:any)=>{if(r.status()>=400)browserLog.push('HTTP '+r.status()+' '+r.url());});
   const state=()=>page.evaluate(()=>(globalThis as any).CivicationLifestoryState.load());
   const economy=()=>page.evaluate(()=>{
