@@ -48,8 +48,11 @@ export default async function verifyRenholderEmployment(browser:any,origin:strin
       });
     },true);
   });
-  const page=await context.newPage();const errors:string[]=[];const trace:any[]=[];let earned=0;
+  const page=await context.newPage();const errors:string[]=[];const browserLog:string[]=[];const trace:any[]=[];let earned=0;
   page.on('pageerror',(e:Error)=>errors.push(e.message));
+  page.on('console',(m:any)=>{if(['warning','error'].includes(m.type()))browserLog.push(m.type()+': '+m.text());});
+  page.on('requestfailed',(r:any)=>browserLog.push('requestfailed '+r.url()+' '+r.failure()?.errorText));
+  page.on('response',(r:any)=>{if(r.status()>=400)browserLog.push('HTTP '+r.status()+' '+r.url());});
   const state=()=>page.evaluate(()=>(globalThis as any).CivicationLifestoryState.load());
   const economy=()=>page.evaluate(()=>{
     const app=globalThis as any,w=app.CivicationState.getWallet();
@@ -156,7 +159,7 @@ export default async function verifyRenholderEmployment(browser:any,origin:strin
     return {passed:true,quizSets:8,earnedMerits:8,employedDays:7,calendarDay:8,roleMailProof,days,payout,trace};
   }catch(error){
     await page.screenshot({path:join(output,'renholder-employed-failure.png'),fullPage:true}).catch(()=>{});
-    const diagnostic=await page.evaluate(()=>{const app=globalThis as any;return {clock:app.CivicationCalendar?.getClock?.(),active:app.CivicationState?.getActivePosition?.(),offer:app.CivicationJobs?.getLatestPendingOffer?.(),story:app.CivicationLifestoryState?.load?.(),next:app.CivicationNextActionSelector?.getCurrent?.(),inspection:app.CivicationDayProgression?.inspect?.(),audit:app.__renholderAudit};}).catch(()=>null);
-    writeFileSync(join(output,'renholder-employed-diagnostic.json'),JSON.stringify({earned,trace,diagnostic},null,2));throw error;
+    const diagnostic=await page.evaluate(()=>{const app=globalThis as any;return {url:app.location.href,bodyClass:app.document.body.className,question:app.document.querySelector('#quizQuestion')?.textContent,footerBound:app.__HG_FOOTER_ACTIONS_BOUND__,quizApiBound:app.__HG_QUIZ_ENGINE_APP_API_BOUND__,digitalAccess:app.QuizEngine?.__HG_DIGITAL_QUIZ_ACCESS_PATCHED__,openMode:app.OPEN_MODE,visibleText:app.document.body.innerText.slice(-12000),resources:app.performance.getEntriesByType('resource').filter((r:any)=>/quiz|manifest/.test(r.name)).map((r:any)=>({url:r.name,duration:r.duration})),clock:app.CivicationCalendar?.getClock?.(),active:app.CivicationState?.getActivePosition?.(),offer:app.CivicationJobs?.getLatestPendingOffer?.(),story:app.CivicationLifestoryState?.load?.(),next:app.CivicationNextActionSelector?.getCurrent?.(),inspection:app.CivicationDayProgression?.inspect?.(),audit:app.__renholderAudit};}).catch(()=>null);
+    writeFileSync(join(output,'renholder-employed-diagnostic.json'),JSON.stringify({earned,trace,errors,browserLog,diagnostic},null,2));throw error;
   }finally{await context.close();}
 }
