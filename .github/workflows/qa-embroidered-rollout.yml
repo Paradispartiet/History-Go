@@ -16,6 +16,8 @@ on:
       - 'tests/vitenskap-vitenskapshistorie-badge.test.mjs'
       - 'tests/vitenskap-vitenskaps-teknologihistorie-badge.test.mjs'
       - 'tests/vitenskap-klima-miljovitenskap-badge.test.mjs'
+      - 'tests/vitenskap-legacy-illustrations-review.test.mjs'
+      - 'docs/badges/vitenskap-felles-brodert-stil-20261111.md'
       - 'bilder/merker/vitenskap/brodert/klima_og_miljovitenskap.webp'
       - 'bilder/merker/vitenskap/locales/*/klima_og_miljovitenskap.webp'
       - 'bilder/merker/vitenskap/brodert/vitenskaps_og_teknologihistorie.webp'
@@ -133,6 +135,7 @@ jobs:
           node --test tests/vitenskap-vitenskapshistorie-badge.test.mjs
           node --test tests/vitenskap-vitenskaps-teknologihistorie-badge.test.mjs
           node --test tests/vitenskap-klima-miljovitenskap-badge.test.mjs
+          node --test tests/vitenskap-legacy-illustrations-review.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
           node --test tests/recent-underbadges-registered.test.mjs
