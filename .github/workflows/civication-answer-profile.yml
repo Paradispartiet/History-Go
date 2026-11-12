@@ -1,0 +1,35 @@
+name: Civication answer profile (diagnostic only)
+on:
+  pull_request:
+    types: [labeled, synchronize]
+    paths:
+      - 'scripts/profile-civication-job-browser.ts'
+      - '.github/workflows/civication-answer-profile.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: civi-profile-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  profile:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'civi-profile')
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build:scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Measure five genuine job answers
+        run: node dist/scripts/profile-civication-job-browser.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: civication-answer-profile
+          path: reports/civication-profile/
+          if-no-files-found: warn
