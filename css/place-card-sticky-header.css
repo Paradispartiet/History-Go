@@ -70,3 +70,13 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-body {
   scroll-padding-top: calc(var(--pc-visible-hero-height, 0px) + 12px);
   scroll-padding-bottom: 16px;
 }
+
+/* Reading navigation yields the real sticky photo, including on phones.
+   This lets the selected section actually appear above the bottom dock. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned.is-section-reading .pc-sheet-hero {
+  position: relative;
+  z-index: 1;
+}
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned.is-section-reading .pc-body {
+  scroll-padding-top: 12px;
+}

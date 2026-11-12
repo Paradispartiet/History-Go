@@ -107,7 +107,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     ++readyGeneration;
     restoreLegacyPlaceCardStructure();
     const root = card();
-    root?.classList.remove(CARD_CLASS, "is-place-sheet-direct");
+    root?.classList.remove(CARD_CLASS, "is-place-sheet-direct", "is-section-reading");
     if (root) {
       delete root.dataset.hgUnifiedPlaceId;
       delete root.dataset.hgUnifiedGeneration;
@@ -138,6 +138,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     const shell = mountPlaceSheetPhase1(place);
     if (!(shell instanceof HTMLElement)) return null;
 
+    if (_options.refresh) root.classList.remove("is-section-reading");
     root.classList.add(CARD_CLASS, "is-place-sheet-direct");
     root.dataset.hgUnifiedPlaceId = id;
     const generation = ++readyGeneration;
@@ -153,12 +154,17 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
     if (!(section instanceof HTMLElement)) return false;
 
     const scroller = card()?.querySelector<HTMLElement>(":scope > .pc-body");
+    // Section jumps must uncover the reading pane, not pin an entire photo
+    // between the text and the bottom navigation. Reset for About.
+    if (scroller && scroller.parentElement) {
+      scroller.parentElement.classList.toggle("is-section-reading", id !== "about");
+    }
     if (id === "about" && scroller) {
       // About includes the introduction beside the portrait. Returning to the
       // card start also lets its real sticky photograph expand before reading.
-      scroller.scrollTop = 0;
+      scroller.scrollTo({ top: 0, behavior: "instant" });
     } else {
-      try { section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" }); }
+      try { section.scrollIntoView({ behavior: "instant", block: "start" }); }
       catch { section.scrollIntoView?.(); }
     }
     if (options.focus) {
