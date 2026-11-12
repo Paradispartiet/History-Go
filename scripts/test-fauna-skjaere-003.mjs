@@ -23,5 +23,8 @@ assert.equal(aReg.get(id)?.src,a.src);assert.equal(aReg.get(id)?.scientificName,
 assert.equal(aReg.get("emne_fauna_kraake")?.gitBlobSha,"efbf5b4d09143192cb5c7405e07f04eadd15f1a1");
 assert.equal(aReg.get("emne_fauna_graaspurv")?.gitBlobSha,"468b3c17af9a0b90aebe7ce1cdd6866f9224687f");
 
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261112-03"));
+const html=read("finn-fauna.html");
+const registerScript=html.indexOf("js/ui/nature-fauna-approved.js?v=");
+const explorerScript=html.indexOf("js/ui/nature-explorer.js?v=");
+assert(registerScript>=0&&explorerScript>registerScript,"Approved Fauna register must load before explorer regardless of its cache version");
 console.log("Finn Fauna #3 Skjære: unique alpha WebP, correct species and quiz, 3 approved originals.");
