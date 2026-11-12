@@ -49,7 +49,7 @@ test('Vitenskap: sju eldre originaler bevares til en ferdig godkjent enkeltmerke
         .update(Buffer.from('blob ' + bytes.length + '\0')).update(bytes).digest('hex');
       assert.equal(actual, item.baselineGitBlobSha, item.id + ': original updated before approved revision');
     } else if (item.revisionStatus === 'integrated_v2') {
-      assert.equal(item.id, 'naturvitenskap');
+      assert.ok(['naturvitenskap','teknologi'].includes(item.id), 'Unexpected integrated revision '+item.id);
       const previous = read(item.previousOriginalArchivePath);
       const previousGitBlob = createHash('sha1')
         .update(Buffer.from('blob ' + previous.length + '\0')).update(previous).digest('hex');
