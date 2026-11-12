@@ -43,7 +43,7 @@ jobs:
           root=Path('.')
           path=root/'reports/place-production/tjuvholmen-structures-source-candidates-20261112.json'
           d=json.loads(path.read_text(encoding='utf-8'))
-          assert d['status']=='local_source_and_webp_bytes_verified_pending_visual_and_runtime'
+          assert d['status']=='local_commons_source_bytes_and_webps_verified_originals_may_be_pending'
           assert len(d['candidates'])==3
           for c in d['candidates']:
               for field,pathkey in [('photo_sha256','source_local_path'),('webp_sha256','planned_asset')]:
@@ -54,6 +54,8 @@ jobs:
                   assert im.format=='WEBP'
                   assert list(im.size)==c['webp_dimensions']
               assert 'PENDING_VISUAL_AND_COLLECTION_REVIEW' in c['photo_review_status']
+              assert c['source_is_full_original'] == (c['source_asset_kind'] == 'original')
+              assert not (c['original_file_pending'] and c['source_is_full_original'])
               print('ASSET_PASS', c['id'], c['webp_sha256'])
           PY
 
