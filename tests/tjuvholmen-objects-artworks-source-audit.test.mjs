@@ -29,7 +29,9 @@ for(const w of items) {
 }
 const eyes=items.find(x=>x.id==="louise_bourgeois_eyes");
 assert.ok(eyes);
-assert.equal(eyes.approved_year,null);
+assert.equal(eyes.approved_year,1997);
+assert.equal(eyes.year_resolution.status,"ACCEPTED_OWNER_PRIMARY_SOURCE");
+assert.ok(eyes.year_resolution.owner_source.includes("selvaagartcollection.com"));
 assert.deepEqual(eyes.reported_years,["1992","1997"]);
 assert.ok(audit.image_rights.legal_source_url.includes("lovdata.no"));
 assert.equal(audit.image_rights.decision,"NO_BINARY_IMPORT_FROM_UNLICENSED_WORK_PHOTOS");
