@@ -1,0 +1,38 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import crypto from "node:crypto";
+import vm from "node:vm";
+const root=new URL("../",import.meta.url);
+const read=p=>fs.readFileSync(new URL(p,root),"utf8");
+const q=JSON.parse(read("data/natur/fauna/illustration-quality-kraake-20261112.json")),a=q.items[0];
+const id="emne_fauna_kraake",latin="Corvus cornix",quiz="quiz_fauna_kraake";
+assert.equal(q.speciesNumber,2);assert.equal(q.baselineApproved,1);assert.equal(q.approvedCountAfterRelease,2);
+assert.equal(q.items.length,1);assert.equal(a.catalogId,id);assert.equal(a.scientificName,latin);assert.equal(a.family,"Corvidae");
+assert.equal(a.existingQuizId,quiz);assert.equal(a.reviewStatus,"approved");assert.equal(a.approvedForPublication,true);assert.equal(a.originalBinaryVerified,true);
+assert.equal(a.sizeBytes,411334);assert.equal(a.gitBlobSha,"efbf5b4d09143192cb5c7405e07f04eadd15f1a1");assert.equal(a.sha256,"c3e86be407f0c21ba67e079f2d54358c9d5749d76d990702db65faca5197aea2");
+assert(a.sourceReferences.length>=2);assert(a.visualChecks.blackBackgroundReviewed&&a.visualChecks.trueAlphaWebP&&a.visualChecks.noEggNestOrFeatherInserts);
+const source=JSON.parse(read("data/natur/fauna/fugler_by.json")).find(x=>x.id===id);
+const runtime=JSON.parse(read("data/runtime/nature-all/fauna-001.json")).flatMap(x=>x.kind==="emne_pack"?x.items:[x]);
+const rt=runtime.find(x=>x.id===id);
+for(const x of [source,rt]){
+ assert(x,"Existing Kråke artskort must be present");
+ assert.equal(x.title,"Kråke");assert.equal(x.latin,latin);assert.equal(x.taxonomy?.latin_navn,latin);
+ assert.equal(x.taxonomy?.familie,"Corvidae");assert(x.quiz_ids?.includes(quiz));
+}
+const b=fs.readFileSync(new URL(a.src,root));
+assert.equal(b.length,411334);assert.equal(b.length,a.sizeBytes);
+assert.equal(crypto.createHash("sha256").update(b).digest("hex"),a.sha256);
+assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),a.gitBlobSha);
+assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,12),"WEBP");assert.equal(b.toString("ascii",12,16),"VP8X");
+assert((b[20]&0x10)!==0,"Kråke requires an actual WebP alpha channel");
+assert.deepEqual([1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)],[1024,1536]);
+const env={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),env);
+const approved=env.window.HG_NATURE_FAUNA_APPROVED;
+assert.equal(approved.count,2);
+assert.equal(approved.get(id)?.src,a.src);assert.equal(approved.get(id)?.scientificName,latin);assert.equal(approved.get(id)?.gitBlobSha,a.gitBlobSha);
+assert.equal(approved.get("emne_fauna_graaspurv")?.gitBlobSha,"468b3c17af9a0b90aebe7ce1cdd6866f9224687f","Original #1 must remain unchanged");
+assert.equal(approved.get("emne_fauna_skjaere"),null,"Skjære stays on SVG fallback");
+const explorer=read("js/ui/nature-explorer.js"),html=read("finn-fauna.html");
+assert(explorer.includes("approvedFaunaIllustrations?.get(id)?.src"),"Approved fauna must take priority");
+assert(html.includes("js/ui/nature-fauna-approved.js"),"Approval registry must precede explorer");
+console.log("Finn Fauna #2 Kråke: confirmed transparent WebP, unique ornithological artwork, source quiz, and 330 fallback originals");
