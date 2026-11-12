@@ -103,3 +103,192 @@ play(colleague, 'prisfeil_02_koen', 'rop_paa_amir');
 assert.equal(colleague.meters.integritet - colleagueBefore, own.meters.integritet - ownBefore);
 assert(colleague.meters.synlighet >= visibility, 'sound help-seeking must not incur an unexplained visibility penalty');
 console.log('Ekspeditor continuity: 6 real day-2/day-3 recovery paths at 3 stages, actor attribution, no replay, ordinary shift and sound help-seeking OK');
+
+
+// Day three: real choices, no fabricated history or meter/flag injection.
+const Endings = require('../js/Civication/lifestory/lifestoryEndings.js');
+assert.equal(Endings.resolveEnding(State.createInitialState(content), content).id,
+  'arbeid_og_restoppgaver', 'without evidence, the ending must not invent achievements');
+function dayThree(pressure = 'kort_pause', overrides = {}) {
+  let s = State.createInitialState(content);
+  const seen = new Set();
+  for (let n = 0; n < 180 && s.dag < 3; n++) {
+    if (s.dagFerdig) {
+      const before = s.arkiv.map(x => [x.sceneId, x.valgId]);
+      s = Runner.startNextDay(JSON.parse(JSON.stringify(s)), content);
+      assert.deepEqual(s.arkiv.map(x => [x.sceneId, x.valgId]), before);
+      continue;
+    }
+    const scene = Runner.selectNextScene(s, content);
+    assert(scene, 'three-day route has a real next scene');
+    const candidates = scene.valg.filter(c => !c.skills_requirement);
+    let choice = candidates[0].id;
+    if (s.dag === 1) choice = candidates.slice().sort((a,b) =>
+      (a.effekter?.meters?.energi || 0) - (b.effekter?.meters?.energi || 0))[0].id;
+    if (scene.id === 'd2_morgen_vaktpress_etter_stenging') { choice = pressure; seen.add(scene.id); }
+    if (scene.id === 'd2_ettermiddag_nokkelen') choice = 'ta_ansvaret';
+    play(s, scene.id, overrides[scene.id] || choice);
+  }
+  assert.equal(s.dag, 3);
+  assert(seen.has('d2_morgen_vaktpress_etter_stenging'), 'actual low-capacity day-one choices reach day-two support request');
+  return s;
+}
+function priceRequest(pressure = 'kort_pause') {
+  const s = dayThree(pressure);
+  until(s, 'd3_stamkunden_prismatch');
+  return s;
+}
+for (const choice of ['hold_regelen_vennlig', 'tilby_det_du_kan', 'gi_etter_igjen']) {
+  let s = priceRequest();
+  const prior = s.arkiv.map(x => [x.sceneId,x.valgId]);
+  assert(!s.tidligereValg.fant_lovlig_losning, 'unverified history cannot supply a day-three solution');
+  play(s, 'd3_stamkunden_prismatch', choice);
+  assert(!s.tidligereValg.fant_lovlig_losning, 'first response is not verified eligibility or a sale');
+  assert(!s.tidligereValg.d3_pris_lene_avklart, 'return authority does not decide a prismatch request');
+  if (choice === 'hold_regelen_vennlig') {
+    play(s, 'd3_pris_02_lene_svarer', 'forklar_og_gjennomfor');
+    assert(s.tidligereValg.d3_pris_handel_avklart);
+    assert(s.tidligereValg.d3_pris_lene_avklart);
+    assert(!s.tidligereValg.d3_pris_medlemspris_brukt);
+  } else if (choice === 'tilby_det_du_kan') {
+    play(s, 'd3_pris_02_medlemsvilkar', 'kontroller_og_gjennomfor');
+    assert(s.tidligereValg.d3_pris_medlemsvilkar_kontrollert);
+    assert(s.tidligereValg.d3_pris_medlemspris_brukt);
+    assert(s.tidligereValg.d3_pris_handel_avklart);
+    assert(s.tidligereValg.fant_lovlig_losning);
+  } else {
+    assert(s.tidligereValg.d3_pris_avvik_apent);
+    assert(!s.tidligereValg.d3_pris_avvik_meldt);
+    play(s, 'd3_pris_02_meld_avslag', 'meld_avviket');
+    assert(s.tidligereValg.d3_pris_avvik_meldt);
+    assert(!s.tidligereValg.d3_pris_ansvar_bekreftet);
+    play(s, 'd3_pris_03_lene_bekrefter', 'registrer_mottaket');
+    assert(s.tidligereValg.d3_pris_ansvar_bekreftet);
+    assert(s.tidligereValg.d3_pris_avvik_apent, 'receipt is not correction of the unauthorized discount');
+    assert.equal(s.threadState.kunden_som_tror_du_bestemmer.status, 'escalated');
+  }
+  s = JSON.parse(JSON.stringify(s));
+  assert.deepEqual(s.arkiv.slice(0,prior.length).map(x=>[x.sceneId,x.valgId]), prior);
+  assert.equal(s.arkiv.filter(x=>x.sceneId==='d3_stamkunden_prismatch').length,1);
+  const timeline = Runner.getSymposium(s,content).tidslinje;
+  assert(timeline.some(x=>x.sceneId==='d3_stamkunden_prismatch' && x.valgId===choice));
+}
+// Waiting must not silently complete a transaction or its follow-up.
+for (const route of ['manager', 'member', 'report']) {
+  const s = priceRequest();
+  play(s, 'd3_stamkunden_prismatch', route==='manager'?'hold_regelen_vennlig':route==='member'?'tilby_det_du_kan':'gi_etter_igjen');
+  if (route==='manager') play(s, 'd3_pris_02_lene_svarer','avvent_kunden');
+  else if(route==='member') play(s,'d3_pris_02_medlemsvilkar','avvent_kunden');
+  else play(s,'d3_pris_02_meld_avslag','utsett_melding');
+  assert(!s.tidligereValg.d3_pris_handel_avklart);
+  assert.equal(s.threadState.kunden_som_tror_du_bestemmer.status,'escalated');
+  if(route==='report') assert(!s.tidligereValg.d3_pris_avvik_meldt);
+}
+for (const pressure of ['kort_pause','be_om_stotte','press_videre']) {
+  const s = dayThree(pressure);
+  const id = pressure==='kort_pause'?'d3_ettermiddag_pause_virket'
+    :pressure==='be_om_stotte'?'d3_ettermiddag_kollegastotten':'d3_ettermiddag_presset_sitter';
+  until(s,id);
+  const visibility = s.meters.synlighet;
+  play(s,id,pressure==='kort_pause'?'foresla_felles_pauser':pressure==='be_om_stotte'?'hjelp_vikaren':'si_fra_nu');
+  assert(s.meters.synlighet>=visibility, 'planning or receiving sound relief does not cost status');
+  if(pressure==='kort_pause') {
+    assert(s.tidligereValg.ekspeditor_pauser_avtalt);
+    assert(!s.tidligereValg.d3_pause_gjennomfort, 'a confirmed future break plan is not a taken break');
+    const scene = content.scenes.find(x=>x.id===id);
+    assert.equal(scene.avsender,'butikksjef', 'manager speaks for staffing authority');
+  } else if(pressure==='be_om_stotte') {
+    assert(s.tidligereValg.d3_stotte_vikar_egen_kontroll);
+    assert(!s.tidligereValg.d3_stotte_amir_kontroll_bekreftet);
+  } else assert(s.tidligereValg.ekspeditor_brøt_pressmønster);
+  assert.equal(s.threadState.arbeidsrytme_og_overskudd.status,'completed');
+  finishDay(s);
+  assert(Endings.resolveEnding(s,content));
+}
+let delegated = dayThree('be_om_stotte');
+until(delegated,'d3_ettermiddag_kollegastotten');
+play(delegated,'d3_ettermiddag_kollegastotten','del_med_amir');
+assert(delegated.tidligereValg.d3_stotte_amir_opplaering_venter);
+assert(!delegated.tidligereValg.ekspeditor_stotte_gitt_videre);
+play(delegated,'d3_stotte_02_amir_resultat','kontroller_resultatet');
+assert(delegated.tidligereValg.d3_stotte_amir_kontroll_bekreftet);
+assert(!delegated.tidligereValg.d3_stotte_amir_opplaering_venter);
+assert(!delegated.tidligereValg.ekspeditor_stotte_gitt_videre, 'Amir keeps the credit for his own instruction');
+let unresolved = dayThree('press_videre');
+until(unresolved,'d3_ettermiddag_presset_sitter');
+play(unresolved,'d3_ettermiddag_presset_sitter','press_igjen');
+assert.equal(unresolved.threadState.arbeidsrytme_og_overskudd.status,'escalated');
+// A partially matching legacy flag may not invent a composite achievement.
+for (const ending of content.role.endings.filter(x=>!x.standard)) {
+  assert.equal(Object.keys(ending.kriterier.flagg).length,1, 'each authored claim has one concrete evidence flag');
+  assert.deepEqual(Object.keys(ending.kriterier),['flagg'], 'no meter hit can amplify an unrelated partial claim');
+}
+console.log('Ekspeditor day three: actual price checks, unresolved variants, three support paths, actor attribution and neutral endings OK');
+
+// Each of the six authored endings is reachable through actual complete weeks.
+const leavePriceOpen = { prisfeil_02_koen: 'gjett_pris',
+  prisfeil_03_undersok_etter_snarevei: 'la_sta_apent',
+  prisfeil_03_undersok_etter_snarevei_d2: 'la_sta_apent',
+  prisfeil_03_undersok_etter_snarevei_d3: 'la_sta_apent' };
+const ownTraining = { ny_kollega_01_midt_i_koen: 'hjelp_kort',
+  ny_kollega_02_vis_pantekort: 'vis_en_gang', ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen' };
+const endingsSeen = new Set();
+for (const [expected, overrides] of [
+  ['trygg_paa_gulvet', {}],
+  ['mistet_tilliten', { d3_stamkunden_prismatch: 'gi_etter_igjen' }],
+  ['faar_ting_unna', { ...leavePriceOpen, lukking_01_fem_minutter: 'kutt_hjornene' }],
+  ['nokkelbaerer', { ...leavePriceOpen }],
+  ['butikksjef_emne', { ...leavePriceOpen, ...ownTraining, d2_ettermiddag_nokkelen: 'en_uke_til' }],
+  ['arbeid_og_restoppgaver', { ...leavePriceOpen, ny_kollega_01_midt_i_koen: 'send_til_amir',
+    d2_ettermiddag_nokkelen: 'en_uke_til' }]
+]) {
+  let s = State.createInitialState(content);
+  for (let n = 0; n < 240; n++) {
+    if (s.dagFerdig) {
+      if (s.dag === 3) break;
+      s = Runner.startNextDay(JSON.parse(JSON.stringify(s)),content); continue;
+    }
+    const sc = Runner.selectNextScene(s,content);
+    assert(sc, 'complete ending route has a scene');
+    const choices = sc.valg.filter(x=>!x.skills_requirement);
+    const chosen = overrides[sc.id] || (s.dag===1 ? choices.slice().sort((a,b)=>
+      (a.effekter?.meters?.energi||0)-(b.effekter?.meters?.energi||0)) : choices)[0].id;
+    play(s,sc.id,chosen);
+  }
+  assert(s.dag===3 && s.dagFerdig);
+  const e = Endings.resolveEnding(s,content);
+  assert.equal(e.id,expected, 'complete actual history resolves the intended evidence-specific ending');
+  const authored = content.role.endings.find(x=>x.id===e.id);
+  if (!authored.standard) assert(s.tidligereValg[Object.keys(authored.kriterier.flagg)[0]] === true);
+  const timeline = Runner.getSymposium(s,content).tidslinje;
+  assert.deepEqual(timeline.map(x=>[x.sceneId,x.valgId]),s.arkiv.map(x=>[x.sceneId,x.valgId]));
+  const restored = JSON.parse(JSON.stringify(s));
+  assert.deepEqual(Endings.resolveEnding(restored,content),e, 'same evidence resolves same ending after reload');
+  assert.equal(new Set(s.arkiv.map(x=>x.sceneId)).size,s.arkiv.length, 'no replayed scenes in completed week');
+  endingsSeen.add(e.id);
+}
+assert.equal(endingsSeen.size,6);
+let pendingAmir = dayThree('be_om_stotte');
+until(pendingAmir,'d3_ettermiddag_kollegastotten');
+play(pendingAmir,'d3_ettermiddag_kollegastotten','del_med_amir');
+play(pendingAmir,'d3_stotte_02_amir_resultat','avvent_resultat');
+assert(pendingAmir.tidligereValg.d3_stotte_amir_opplaering_venter);
+assert(!pendingAmir.tidligereValg.d3_stotte_amir_kontroll_bekreftet);
+assert.equal(pendingAmir.threadState.arbeidsrytme_og_overskudd.status,'escalated');
+console.log('Ekspeditor: all six evidenced endings and unresolved delegated instruction follow actual saved three-day routes');
+
+// A new transaction may not remove the escalation of an earlier waiting return.
+for (const route of ['manager','member']) {
+ const s = dayThree('kort_pause', {retur_01_uten_kvittering:'hent_lene',
+   retur_02_hva_er_grunnen:'be_om_tid_til_bevis'});
+ until(s,'d3_stamkunden_prismatch');
+ assert(s.tidligereValg.retur_kjopsbevis_venter);
+ assert.equal(s.threadState.kunden_som_tror_du_bestemmer.status,'escalated');
+ play(s,'d3_stamkunden_prismatch',route==='manager'?'hold_regelen_vennlig':'tilby_det_du_kan');
+ assert.equal(s.threadState.kunden_som_tror_du_bestemmer.status,'escalated','new request preserves older escalation');
+ play(s,route==='manager'?'d3_pris_02_lene_svarer':'d3_pris_02_medlemsvilkar',
+   route==='manager'?'forklar_og_gjennomfor':'kontroller_og_gjennomfor');
+ assert(s.tidligereValg.d3_pris_handel_avklart);
+ assert(s.tidligereValg.retur_kjopsbevis_venter);
+ assert.equal(s.threadState.kunden_som_tror_du_bestemmer.status,'escalated','one completed sale does not resolve the other case');
+}

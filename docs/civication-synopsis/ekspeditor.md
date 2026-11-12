@@ -34,9 +34,15 @@ Første vakt slutter klokken 20. Kunden, ryddingen og overleveringen må fordele
 
 På ettermiddagen tilbyr Lene en personlig returfullmakt. Du kan ta imot etter gjennomgang og få disknøkkelen, be om mer opplæring eller avtale felles dokumentkontroll mens hun avgjør returene. Nøkkelen gir ikke stengeansvar, og samarbeid gir ikke vikaren din fullmakt. Ingen kundesak er behandlet bare fordi ansvaret er avtalt.
 
-**Tredje dag:** Stamkunden ber om prismatch og hevder at du ga avslag sist. Dette er et eksisterende, ennå ikke gjennomgått scenepremiss. Påstanden hennes skal ikke behandles som bekreftet spillerhistorikk. Medlemsrabatt, prisgrunnlag og fullmakt må undersøkes før et bestemt avslag kan beskrives som en riktig løsning. Den nåværende scenen må revideres på dette punktet.
+**Tredje dag, når kundetråden fortsatt er aktiv eller eskalert:** Stamkunden viser en nettannonse fra en annen butikk og hevder at du ga avslag sist. Påstanden er fortsatt hennes; historien slår ikke fast at en tidligere rabatt er gitt. I den fiktive saken viser kassa 179 for matboks MB-04, nettannonsen 149 og butikkens avgrensede medlemstilbud 159. Dette er tre forskjellige prisgrunnlag. Returfullmakten gir ikke prismatchfullmakt.
 
-Dagen kan dessuten følge opp pauser, kollegastøtte eller vedvarende arbeidspress fra dagen før. Disse scenene er del av eksisterende innhold, men konkret oppgave, bekreftet hjelp, riktig avsender og følger av belastning må gjennomgås før de godkjennes etter samme metode. Å be om avlastning skal ikke i seg selv fortelles som å miste ansikt.
+Du kan spørre Lene. Hun avgjør prismatch i denne konkrete saken, men kunden må fortsatt velge om hun vil kjøpe. Du kan også undersøke riktig vare, tilbudstid og gyldig medlemsbevis. Først etter kontroll, kundens ja, registrering og godkjent betaling er handelen gjennomført. Kunden kan la være å kjøpe; en forespørsel er ingen ferdig handel.
+
+Velger du å registrere 149 uten kontroll eller godkjenning, får kunden et faktisk avslag på 30. Det er et prisavvik som må meldes med varen, kvitteringsreferansen og begge priser. Lene kan bekrefte at hun tar undersøkelsen videre. Det er ikke en dokumentert retting. Avviket står derfor åpent ved historiens slutt, også hvis ansvaret er overtatt. Historien dikter ikke opp mistet tillit, et nytt krav fra kunden eller en innbetaling som retter salget.
+
+Den eksisterende grenen med fullført avstemming etter feilutbetaling på dag 2 avslutter kundetråden og viser ikke denne nye prismatchsaken. Det er en bevart forløpsgrense, ikke bevis på at kunden ba om prismatch. Er en eldre retur derimot fortsatt uavklart, beholder den sin eskalering også etter et nytt, avklart salg.
+
+Dag 3 følger også den registrerte arbeidsfordelingen fra dagen før. Lene og Amir kan bekrefte en plan for avløsning; det betyr ikke at en framtidig pause er tatt. Når vikaren skal sammenligne juice og hylleetikett, kan du få avløsning, vise kontrollen og kontrollere hennes egen sammenligning. Du kan i stedet avtale at Amir gjør gjennomgangen. Da må hans resultat innhentes, og det er hans opplæring. Ved fortsatt arbeidspress kan Amir faktisk ta over kassa etter avklart overlevering. Å be om avlastning er ikke tap av ansikt. Fortsetter du uten avklaring, står behovet for avlastning åpent.
 
 ## Valgene skal gi forskjellige historier om arbeidet
 
@@ -48,11 +54,11 @@ Spillerens Symposium skal derfor kunne vise undersøkelse, korrigert handel, sen
 
 | Del | Kanonisk innhold | Hva som fortsatt må kontrolleres |
 | --- | --- | --- |
-| Personer, mål og mulige avslutninger | [Rollebeskrivelsen](../../data/Civication/lifestory/roles/ekspeditor/role.json) | Avslutningene må leses mot faktisk oppfølging. Gamle kriterier eller flagg alene er ikke redaksjonell godkjenning av hele historien. |
+| Personer, mål og mulige avslutninger | [Rollebeskrivelsen](../../data/Civication/lifestory/roles/ekspeditor/role.json) | Hver konkret avslutning har ett bevisflagg og beskriver bare den dokumenterte handlingen. Den nøytrale standardavslutningen tilskriver ingen ferdige oppgaver, tillitstap eller forfremmelse. |
 | Arbeidslivstråder | [Trådene](../../data/Civication/lifestory/roles/ekspeditor/threads.json) | Trådtittel og status må samsvare med oppgaven som faktisk er gjort. |
-| De tre skrevne dagene | [Life Story-scenene](../../data/Civication/lifestory/roles/ekspeditor/scenes.json) | Dag-3-prismatch og de tre belastnings-/støtteoppfølgingene gjenstår som beskrevet over. |
+| De tre skrevne dagene | [Life Story-scenene](../../data/Civication/lifestory/roles/ekspeditor/scenes.json) | Prisgrunnlag, lederavgjørelse, avviksmelding, avløsning og begge kontrollører har egne handlinger. Et meldt eller overtatt prisavvik er fortsatt ikke rettet. |
 | Prisfeil i ordinær jobb | [Jobbmailfamilien](../../data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json) | Dette er en egen produksjonsvei. Life Story-historikk skal ikke antas å være delt med normal jobbkjede uten kontrollert kobling. |
 | Yrkespraksis og lokale vilkår | [Profil, ordliste og kildekart](../civication-symposium/ekspeditor.md) | Direkte praksiseksempler og lokale variasjoner må fortsatt merkes og undersøkes. Eksempeluke og lønnsgrunnlag er ikke dermed implementert økonomi. |
-| Gjennomspilling og visning | [Regresjon](../../tests/civication-lifestory-ekspeditor.test.js), [kontinuitet](../../tests/civication-lifestory-ekspeditor-continuity.test.js) og [nettleserkontroll](../../scripts/verify-civication-ekspeditor-lifestory-browser.cjs) | Nettlesertestene har en dokumentert Runner-overgang til dag 2. Hele jobbkalenderen og fysisk Safari er ikke dekket av den kontrollen. |
+| Gjennomspilling og visning | [Regresjon](../../tests/civication-lifestory-ekspeditor.test.js), [kontinuitet](../../tests/civication-lifestory-ekspeditor-continuity.test.js) og [nettleserkontroll](../../scripts/verify-civication-ekspeditor-lifestory-browser.cjs) | Nettlesertestene rapporterer UI- eller Runner-overgang for begge dagskifter og kontrollerer dag 3, avslutning og synlig Symposium. Hele jobbkalenderen og fysisk Safari er fortsatt utenfor denne kontrollen. |
 
 Denne synopsisen samler eksisterende arbeid og synliggjør hullene. Den skriver ikke nye hendelser inn i spillerens lagring. Bøker og filmer kan senere gi nye perspektiver på person og miljø; yrkespraksis og fullmakter må fortsatt ha sitt eget kildegrunnlag.
