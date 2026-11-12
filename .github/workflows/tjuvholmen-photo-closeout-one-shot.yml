@@ -1,22 +1,18 @@
-name: Tjuvholmen real PlaceCard photo and runtime closeout
+name: Tjuvholmen one-shot Civication people projection regeneration
 on:
   pull_request:
     paths:
-      - 'data/places/by/oslo/places/tjuvholmen.json'
-      - 'data/people/by/oslo/people_by_oslo.json'
-      - 'data/people/filantroper/oslo/people_filantroper_oslo.json'
-      - 'tests/tjuvholmen-place-photo-native-browser.mjs'
       - '.github/workflows/tjuvholmen-photo-closeout-one-shot.yml'
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: tjuvholmen-closeout-${{ github.ref }}
+  group: tjuvholmen-history-people-one-shot-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  sync-and-browser:
+  sync-civication-history-people:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,37 +24,21 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Build real place-open payload and index
+      - name: Build and check canonical Civication People projection
         run: |
-          npm run places:index:build
-          npm run place-open:build
-          npm run places:index:check
-          npm run place-open:check
-          node scripts/check-distinct-place-photos.mjs --place data/places/by/oslo/places/tjuvholmen.json --require-both
-      - name: Real Tjuvholmen mobile/desktop open, photo and QuizCard test
-        run: |
-          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
-          if [ -z "$CHROME_BIN" ]; then echo "::error::Chrome missing"; exit 1; fi
-          CHROME_BIN="$CHROME_BIN" node tests/tjuvholmen-place-photo-native-browser.mjs
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: tjuvholmen-real-photo-browser
-          path: .tmp/tjuvholmen-photo-browser
-          if-no-files-found: ignore
-      - name: Commit generated payload and index for Tjuvholmen
-        if: success()
+          npm run civication:history-people:build
+          npm run civication:history-people:check
+      - name: Commit only generated Civication index to Tjuvholmen PR branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -u data/runtime/place-open data/places/places_index.json
+          git add data/Civication/historyPeople_index.json
           git diff --cached --check
           if ! git diff --cached --quiet; then
-            git commit -m "build(tjuvholmen): synchronize canonical media, People and By badge projections"
-            # All desired artifacts were committed above. Discard incidental build output before rebasing.
-          git reset --hard HEAD
-          git clean -fd
-          git fetch origin content/tjuvholmen-editorial-closeout-20261112
+            git commit -m "build(tjuvholmen): synchronize Civication People index after sourced People updates"
+            git reset --hard HEAD
+            git clean -fd
+            git fetch origin content/tjuvholmen-editorial-closeout-20261112
             git rebase origin/content/tjuvholmen-editorial-closeout-20261112
             git push origin HEAD:content/tjuvholmen-editorial-closeout-20261112
           fi

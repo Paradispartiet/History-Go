@@ -47,7 +47,7 @@
     "filler_forbidden": true,
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
-  "qa": "Native Tjuvholmen Chromium at 390 and 1440 passed image/frontImage contain, both decoded original assets and QuizCard flip (run 43169533643). Manual screenshot/collection preview QA still pending.",
+  "qa": "Tjuvholmen image/frontImage and QuizCard native Chromium 390/1440 PASS; manual photo and flip screenshot inspection PASS. All source photos and local WebPs are stored in main. People/Brands/Structures content and preview requirements remain blocked.",
   "merged": true,
   "verified_at": "2026-11-12",
   "rule_preflight": {
@@ -122,19 +122,20 @@
   },
   "vferdig": {
     "status": "BLOCKED",
-    "reason": "People/Brands/Structures og nettleser-/redaksjonell sluttkontroll uferdige; ikke hevde vFerdig",
+    "reason": "Collection sources/preview assets and structures still incomplete. Browser and screenshot checks PASS.",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
   "browser_acceptance": {
-    "status": "BROWSER_PASS_MANUAL_REVIEW_PENDING",
+    "status": "PASS",
     "viewports": [
       390,
       1440
     ],
-    "run": "https://github.com/Paradispartiet/History-Go/actions/runs/43169533643",
-    "screenshot_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/43169533643/artifacts/13921696186",
+    "run": "https://github.com/Paradispartiet/History-Go/actions/runs/43170454014",
+    "screenshot_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/43170454014/artifacts/13922520197",
     "photo_fit": "contain",
     "quizcard_flip": "PASS",
-    "physical_device_qa": false
+    "physical_device_qa": false,
+    "manual_screenshot_review": "PASS: 390 and 1440 PlaceCard photo and QuizCard inspected; prior mobile transient screenshot not reproduced"
   }
 }
