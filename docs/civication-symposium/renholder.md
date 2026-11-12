@@ -165,7 +165,7 @@ Tidsvinduet og sølet har fem nye oppfølginger hver; belastning og opplæring h
 
 ## Kalenderkontroll og gjenværende lukking
 
-Den tidligere nettleserkontrollen brukte en uttrykkelig Runner-fixture ved innbokskravet. Streng modus `RENHOLDER_CASE=dagskifte` gjenbruker nå den eksisterende `nextDayViaUi`-hjelperen: spilleren svarer i innboksen, kvitterer for faktiske sammendrag og bruker dagskifteknappene. Modusen krever at kalender og Life Story går fra dag 1 til 7 uten hopp eller omskrevet arkiv. Den kan ikke bruke Runner-reserven. CI-resultat og bilder må være dokumentert på den aktuelle PR-headen før kontrollen omtales som bestått.
+Den tidligere nettleserkontrollen brukte en uttrykkelig Runner-fixture ved innbokskravet. Streng modus `RENHOLDER_CASE=dagskifte` gjenbruker nå den eksisterende `nextDayViaUi`-hjelperen: spilleren svarer i innboksen, kvitterer for faktiske sammendrag og bruker dagskifteknappene. Modusen krever at kalender og Life Story går fra dag 1 til 7 uten hopp eller omskrevet arkiv. Den kan ikke bruke Runner-reserven. Kontrollen bestod på head `609d9d4b`: tre ruter med 18 faktiske UI-dagskifter, dag 7 i både kalender og fortelling, bevart arkiv og riktige avslutninger. Alle 40 bilder er gjennomgått. [PR #7295](https://github.com/Paradispartiet/History-Go/pull/7295) · [CI-bevis](https://github.com/Paradispartiet/History-Go/actions/runs/43277637032).
 
 Rolleparameteren starter et eksplisitt renholder-Life Story-spor uten å dokumentere opptjent og akseptert jobb. Den strenge kalenderkontrollen beviser derfor ikke alene full ansettelsesflyt, jobbmail eller lønn. [Fellesregisterets reststatus](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md#renholder--samlet-reststatus) eier den samlede oversikten.
 

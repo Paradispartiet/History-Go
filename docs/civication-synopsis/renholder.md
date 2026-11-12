@@ -68,6 +68,6 @@ Tidsvinduet er nå revidert med bekreftet plan, faktisk utførelse, begge aktør
 
 ## Gjenstående kontroll før samlet lukking
 
-Den strenge kalenderkontrollen `RENHOLDER_CASE=dagskifte` skal spille de tre klagerutene gjennom synlig innboks og reelle dagskifteknapper, med kalender og Life Story synkronisert gjennom dag 7. Ingen Runner-reserve er tillatt i denne modusen. CI-beviset knyttes til den konkrete PR-headen. Dette er fortsatt et eksplisitt Life Story-testspor; faktisk renholderansettelse, jobbmail og lønnsforløp må ikke utledes av rolleparameteren.
+Den strenge kalenderkontrollen `RENHOLDER_CASE=dagskifte` skal spille de tre klagerutene gjennom synlig innboks og reelle dagskifteknapper, med kalender og Life Story synkronisert gjennom dag 7. Ingen Runner-reserve er tillatt i denne modusen. Denne kontrollen bestod på head `609d9d4b`: tre ruter, 18 faktiske UI-dagskifter og bevart historikk fram til riktige avslutninger. [PR #7295 og kontrollbevis](https://github.com/Paradispartiet/History-Go/pull/7295). Dette er fortsatt et eksplisitt Life Story-testspor; faktisk renholderansettelse, jobbmail og lønnsforløp må ikke utledes av rolleparameteren.
 
 Fysisk iPad/Safari er ikke utført. [Profilens manuelle sjekkliste](../civication-symposium/renholder.md#fysisk-ipadsafari--åpen-kontroll) beskriver testen og hvilke opplysninger som må føres. [Fellesregisteret](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md#renholder--samlet-reststatus) samler reststatusen; synopsisen er ikke en parallell ferdigliste.
