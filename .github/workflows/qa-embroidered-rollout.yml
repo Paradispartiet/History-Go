@@ -4,6 +4,51 @@ on:
     paths:
       - 'bilder/merker/*-brodert-v*.webp'
       - 'data/badges/*.json'
+      - 'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag.webp'
+      - 'bilder/merker/vitenskap/locales/*/teknologi_og_ingeniorfag.webp'
+      - 'scripts/import-vitenskap-ingeniorfag-assets-v1.py'
+      - 'tests/vitenskap-teknologi-ingeniorfag-badge-candidate.test.mjs'
+      - 'tests/vitenskap-data-programvare-algoritmer-badge.test.mjs'
+      - 'tests/vitenskap-nettverk-digital-infrastruktur-badge.test.mjs'
+      - 'tests/vitenskap-elektronikk-robotikk-automatisering-badge.test.mjs'
+      - 'tests/vitenskap-medisin-badge-contract.test.mjs'
+      - 'tests/vitenskap-psykologi-hjerne-badge.test.mjs'
+      - 'tests/vitenskap-vitenskapshistorie-badge.test.mjs'
+      - 'tests/vitenskap-vitenskaps-teknologihistorie-badge.test.mjs'
+      - 'tests/vitenskap-klima-miljovitenskap-badge.test.mjs'
+      - 'tests/vitenskap-legacy-illustrations-review.test.mjs'
+      - 'tests/placecard-underbadge-science-v2-candidates.test.mjs'
+      - 'tests/vitenskap-v2-localization-plan.test.mjs'
+      - 'bilder/merker/vitenskap/kandidater/*.webp'
+      - 'js/ui/badges.js'
+      - 'js/ui/place-card.js'
+      - 'css/placeCard.css'
+      - 'index.html'
+      - 'sw.js'
+      - 'tests/vitenskap-teknologi-revision-v2.test.mjs'
+      - 'bilder/merker/vitenskap/brodert/teknologi.webp'
+      - 'bilder/merker/vitenskap/arkiv/teknologi-v1.webp'
+      - 'bilder/merker/vitenskap/locales/*/teknologi.webp'
+      - 'bilder/merker/vitenskap/brodert/naturvitenskap.webp'
+      - 'bilder/merker/vitenskap/locales/*/naturvitenskap.webp'
+      - 'docs/badges/vitenskap-felles-brodert-stil-20261111.md'
+      - 'bilder/merker/vitenskap/brodert/klima_og_miljovitenskap.webp'
+      - 'bilder/merker/vitenskap/locales/*/klima_og_miljovitenskap.webp'
+      - 'bilder/merker/vitenskap/brodert/vitenskaps_og_teknologihistorie.webp'
+      - 'bilder/merker/vitenskap/locales/*/vitenskaps_og_teknologihistorie.webp'
+      - 'bilder/merker/vitenskap/brodert/vitenskapshistorie.webp'
+      - 'bilder/merker/vitenskap/locales/*/vitenskapshistorie.webp'
+      - 'scripts/import-vitenskap-psykologi-hjerne-v1.py'
+      - 'bilder/merker/vitenskap/brodert/psykologi_og_hjerne.webp'
+      - 'bilder/merker/vitenskap/locales/*/psykologi_og_hjerne.webp'
+      - 'bilder/merker/vitenskap/brodert/medisin.webp'
+      - 'bilder/merker/vitenskap/locales/*/medisin.webp'
+      - 'bilder/merker/vitenskap/brodert/elektronikk_robotikk_og_automatisering.webp'
+      - 'bilder/merker/vitenskap/locales/*/elektronikk_robotikk_og_automatisering.webp'
+      - 'bilder/merker/vitenskap/brodert/nettverk_og_digital_infrastruktur.webp'
+      - 'bilder/merker/vitenskap/locales/*/nettverk_og_digital_infrastruktur.webp'
+      - 'bilder/merker/vitenskap/brodert/data_programvare_og_algoritmer.webp'
+      - 'bilder/merker/vitenskap/locales/*/data_programvare_og_algoritmer.webp'
       - 'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'
       - 'bilder/merker/by/locales/*/infrastruktur.webp'
       - 'scripts/import-infrastruktur-assets-v1.py'
@@ -21,6 +66,9 @@ on:
       - 'tests/historie-sosialhistorie-badge-contract.test.mjs'
       - 'tests/historie-kulturminner-bevaring-badge-contract.test.mjs'
       - 'tests/historie-krim-ulykker-branner-badge-contract.test.mjs'
+      - 'tests/historie-migrasjon-minoritetshistorie-badge-contract.test.mjs'
+      - 'bilder/merker/historie/undermerker/migrasjon_og_minoritetshistorie-brodert-v1.webp'
+      - 'bilder/merker/historie/locales/*/migrasjon_og_minoritetshistorie.webp'
       - 'bilder/merker/historie/undermerker/krim_ulykker_og_branner-brodert-v1.webp'
       - 'bilder/merker/historie/locales/*/krim_ulykker_og_branner.webp'
       - 'bilder/merker/historie/undermerker/kulturminner_og_bevaring-brodert-v1.webp'
@@ -54,6 +102,10 @@ on:
       - 'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'
       - 'bilder/merker/by/locales/*/monumenter_og_landemerker.webp'
       - 'tests/badge-embroidered-rollout-v1.test.mjs'
+      - 'tests/recent-underbadges-registered.test.mjs'
+      - 'badge-kontaktark.html'
+      - 'js/fagverk-ia-v3-badge-progress.js'
+      - 'js/fagverk-forside.js'
       - '.github/workflows/qa-embroidered-rollout.yml'
 permissions:
   contents: read
@@ -87,8 +139,23 @@ jobs:
           node --test tests/historie-sosialhistorie-badge-contract.test.mjs
           node --test tests/historie-kulturminner-bevaring-badge-contract.test.mjs
           node --test tests/historie-krim-ulykker-branner-badge-contract.test.mjs
+          node --test tests/historie-migrasjon-minoritetshistorie-badge-contract.test.mjs
+          node --test tests/vitenskap-teknologi-ingeniorfag-badge-candidate.test.mjs
+          node --test tests/vitenskap-data-programvare-algoritmer-badge.test.mjs
+          node --test tests/vitenskap-nettverk-digital-infrastruktur-badge.test.mjs
+          node --test tests/vitenskap-elektronikk-robotikk-automatisering-badge.test.mjs
+          node --test tests/vitenskap-medisin-badge-contract.test.mjs
+          node --test tests/vitenskap-psykologi-hjerne-badge.test.mjs
+          node --test tests/vitenskap-vitenskapshistorie-badge.test.mjs
+          node --test tests/vitenskap-vitenskaps-teknologihistorie-badge.test.mjs
+          node --test tests/vitenskap-klima-miljovitenskap-badge.test.mjs
+          node --test tests/vitenskap-legacy-illustrations-review.test.mjs
+          node --test tests/placecard-underbadge-science-v2-candidates.test.mjs
+          node --test tests/vitenskap-v2-localization-plan.test.mjs
+          node --test tests/vitenskap-teknologi-revision-v2.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
+          node --test tests/recent-underbadges-registered.test.mjs
       - name: Generate four-badge preview
         run: |
           python -m pip install -q pillow

@@ -1,6 +1,6 @@
 # Symposium – Renholder
 
-[Til rolleoversikten](../CIVICATION_JOBBGRUNNLAG.md)
+[Til rolleoversikten](../CIVICATION_JOBBGRUNNLAG.md) · [Samlet synopsis](../civication-synopsis/renholder.md)
 
 ## Rolle og ansvar
 
@@ -55,3 +55,58 @@ Dette er mulige forløp for et alminnelig bygg med romplan. Sykehus, matproduksj
 [Rollemodell](../../data/Civication/roleModels/naeringsliv/renholder.json) · [Arbeidsgrammatikk](../../data/Civication/workGrammars/naeringsliv/renholder.json) · [Rolleverden](../../data/Civication/roleWorlds/naeringsliv/renholder.json) · [Spillscener](../../data/Civication/lifestory/roles/renholder/scenes.json)
 
 En synopsis kan bygge på et rom som skifter fra opptatt til ledig i løpet av vakta. Hvis begge svar fører til at rommet tas senere, kan spilleren likevel ha brukt ulik tid eller fått en tydeligere avtale med kontaktpersonen. En konkret utestående oppgave er et annet utfall og kan dukke opp ved neste overlevering.
+
+## Samlet rollegrunnlag og lokal bruk
+
+Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 28 eksisterende Life Story-scenene på dag 1–7. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle scener til godkjent yrkesveiledning.
+
+### Stillingsbeskrivelse og en vanlig økt
+
+Arbeidet planlegges ut fra avtalte arealer, oppgaver, frekvens og kvalitetskrav. Renholderen velger innlært metode og egnet utstyr, utfører oppgavene, kontrollerer resultatet og registrerer det som faktisk er gjort. Udir dokumenterer planlegging, metodevalg, HMS, kvalitet og dokumentasjon som faglige oppgaver. [Udir, kompetansemål](https://www.udir.no/lk20/rof03-01/kompetansemaal-og-vurdering/kv319?lang=nob).
+
+I kontorbyggeksemplet begynner økta med romlista og kontroll av tilgang og utstyr. Et ledig møterom kan tas før brukerne kommer. Oppgavene utføres etter den lokale planen, resultatet kontrolleres og restarbeid føres før neste rom. Ved vaktslutt må neste person kunne skille et rengjort rom fra et utilgjengelig rom og et meldt bygningsavvik. Dette er en redaksjonell konkretisering, ikke en bestemt arbeidsgivers komplette prosedyre.
+
+### Ord som må skilles i arbeidet
+
+Beskjedene er skrevne eksempler, ikke innsamlede sitater fra renholdere.
+
+| Begrep | Forskjellen det gjør | Eksempel på beskjed |
+| --- | --- | --- |
+| Romliste / renholdsplan | Lista viser konkrete rom eller oppgaver; planen beskriver omfang og rytme. Lokale dokumenter kan kombinere dem. | «Rommet er ledig, men hvilken del av planen skal tas nå?» |
+| Tilkomst / utført renhold | Fri vei er en forutsetning for en oppgave, ikke resultatet av den. | «Drift har sett på hylla. Lageret er fortsatt ikke rengjort.» |
+| Renholdsmiddel / sikkerhetsdatablad | Middelet brukes i oppgaven; databladet gir produktinformasjon som inngår i risikovurdering og sikker bruk. | «Jeg trenger opplæringen og produktinformasjonen før jeg bruker dette.» |
+| Dosering / kontakttid | Hvor mye middel som brukes og hvor lenge et produkt eventuelt skal virke er forskjellige forhold. Følg produkt og metode; ingen universell tid eller blanding fastsettes her. | «Gjelder denne framgangsmåten dette produktet og denne flata?» |
+| Egenkontroll / kvalitetskontroll | Egenkontroll gjelder eget resultat. En avtalt kvalitetskontroll kan også utføres av andre. | «Jeg har kontrollert mitt arbeid; hvem gjør den avtalte etterkontrollen?» |
+| Avvik / mottak / utbedring | Beskrevet avvik, bekreftet mottaker og faktisk rettet forhold er tre forskjellige ting. | «Kari har mottatt meldingen. Vi har ikke fått bekreftet fri tilkomst.» |
+
+Begrepene er arbeidsdefinisjoner for profilen. Produktvalg og vern krever konkret vurdering; Arbeidstilsynet skiller mellom ulike renholdsmiljøer og beskriver kjemisk påvirkning, opplæring og tiltak. [Renhold og kjemisk påvirkning](https://www.arbeidstilsynet.no/risikofylt-arbeid/kjemikalier/renholdsarbeid-og-kjemisk-pavirkning/) · [Stoffkartotek og sikkerhetsdatablad](https://www.arbeidstilsynet.no/risikofylt-arbeid/kjemikalier/stoffkartotek/).
+
+### Hvem bestemmer, og hvem må følge opp?
+
+I den fiktive historien fordeler Kari renholdsoppgavene og avklarer endringer i planen. Amina kan veilede eller ta en avtalt del, men blir ikke leder av å være erfaren. Kontorbrukeren kan gi informasjon om rombruk; en klage endrer ikke automatisk arbeidsavtalen. Drift må avklare den tekniske hindringen ved lagerdøra.
+
+Ole er verneombud, ikke en erstatning for arbeidsgiver eller teknisk drift. Arbeidstilsynet beskriver verneombudets oppfølging av arbeidsmiljø, opplæring og vernetiltak, mens arbeidsgiver har det overordnede HMS-ansvaret. At Ole svarer, betyr ikke at tralla er reparert. [Arbeidstilsynet, verneombud](https://www.arbeidstilsynet.no/hms/roller-i-hms-arbeidet/verneombud/).
+
+### Arbeidssted, klær, tid, lønn og klasse
+
+Kontorbyggeksemplet skal ikke hente sykehuskrav fra Ahus som om de gjaldt alle bygg. Ahus-utlysningen dokumenterer deres bruk av Clean Pilot og NS-INSTA 800, og arbeid på dag, kveld og helg. Hadsel-eksemplet gjelder en konkret fast deltidsstilling ved et legekontor, med daglig og periodisk renhold etter plan. Dette er to ulike arbeidsgiverkontekster, ikke spillpersonens arbeidsavtale. [Ahus](https://arbeidsplassen.nav.no/stillinger/stilling/8178dd88-16fa-4ccd-b6fa-a7d1491b3edf) · [Hadsel](https://arbeidsplassen.nav.no/stillinger/stilling/54bc6d82-54de-451e-a984-373307efa864).
+
+Arbeidstøy, sko, hansker og annet vern må velges ut fra oppgaven, eksponeringen og lokal instruks. Kostyme, konkret produktsett og utstyrsliste må fastsettes for spillbygget. Verken en universell klutfarge eller bestemt dosering er dokumentert gjennom denne profilen.
+
+Ansettelsesform, stillingsprosent, avtalt vakt, pauser og lønnsgrunnlag må avklares før de gis som fakta om personen. Scenenes klokkeslett er fortellingsankre, ikke en komplett arbeidsavtale eller lønnsberegning. Vi setter ikke en generell renholderlønn eller en stillingsprosent for å fylle hullet.
+
+Klasse vises gjennom kontroll over arealer, tid, bemanning og rapporter. Følelsen av å ha skyld i et utilgjengelig rom er personens situasjon, ikke bevis på at alle renholdere er maktesløse eller at Kari har truet noen. Arbeidstilsynet beskriver ergonomi som tilpasning av arbeid, utstyr og omgivelser; løsningen kan ikke reduseres til at arbeidstakeren lærer ett løftegrep. [Ergonomisk arbeidsmiljø](https://www.arbeidstilsynet.no/arbeidsmiljo/ergonomi/).
+
+### Hva som må gjennomgås i spillinnholdet
+
+| Eksisterende del | Konkret revisjonsbehov |
+| --- | --- |
+| `tidsvindu_01_telefon` og `d2_standard_ekstra_rom` | Avklar hvilke oppgaver og rom som omfordeles, hva Kari godkjenner og hva som faktisk utføres. Ikke gjør tap av pause eller automatisk kritikk til eneste følger av å si ja eller nei. |
+| `soel_01_krise` og begge dag-2-etterspill | Skill sikring, rengjøring, kontroll, avviksmelding, ansvar og utbedring. At skilt eller reparasjon er planlagt, viser ikke at de er på plass. |
+| `rygg_01_vurdering` og `d2_runde_med_amina` | Avklar hjelpemiddel, belastning og konkret opplæring. Et råd eller en demonstrasjon er ikke bevis på mestret teknikk, og kroppen skal ikke beskrives som et verktøy arbeidstakeren alene må beskytte. |
+| `usynlig_01_melding` og `d3_rom_204_klagen` | Bruk bare den utførte delen av romlista som dokumentasjon. Klokken 07.10, utført arbeid og «forrige uke» må ha et faktisk fortellingsgrunnlag. |
+| `d2_avvik_fulgt_opp` | En invitasjon til vernerunde neste uke er en avtale, ikke gjennomført deltakelse. |
+| Tilgangsscenene `wave_a_c17` til `wave_d_c17` | Bevar skillet mellom registrert hindring, ny plan, befaring, fri tilkomst og utført renhold. Ingen automatisk flytting av hylla. |
+| Rolleavslutningene | Kontroller hvert utsagn mot faktisk historie. Delvise kriterietreff må ikke gi oppdiktet helseutfall, utført arbeid eller teamlederstatus. |
+
+Dette er dokumentert revisjonsarbeid, ikke nye scener eller en parallell rolle. Profil og synopsis er koblet; de øvrige delene må gjennomgås og testes før hele renholderforløpet kan kalles ferdig.

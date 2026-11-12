@@ -52,7 +52,7 @@ await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
 const { port } = server.address();
 let browser;
 try {
-  browser = await chromium.launch({ headless: true });
+  browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME_BIN || undefined, args: ['--no-sandbox', '--disable-dev-shm-usage'] });
   const page = await browser.newPage();
   for (const width of [320, 390, 900]) {
     await page.setViewportSize({ width, height: 900 });
@@ -93,7 +93,7 @@ try {
     assert.ok(rounds.every(round => Math.abs(round.width - round.height) < 2), `round aspect at ${width}`);
     assert.equal(new Set(rounds.map(round => Math.round(round.y))).size, 4, `four round rows at ${width}`);
     assert.ok(headingImage.width >= title.width && title.y >= heading.y, `heading over landscape image at ${width}`);
-    assert.equal(result.objectFit, "cover");
+    assert.equal(result.objectFit, "contain", "Place.image must preserve the full overview without zoom");
     await page.locator("#pcHeaderHero").evaluate(hero => hero.classList.remove("has-photo-source", "has-image"));
     const noPhotoHeight = await page.locator("#pcHeaderHero").evaluate(hero => hero.getBoundingClientRect().height);
     assert.ok(noPhotoHeight < heading.height, `missing image leaves no blank hero at ${width}`);

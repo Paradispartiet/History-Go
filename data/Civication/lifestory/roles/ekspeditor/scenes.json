@@ -11,13 +11,18 @@
       "tilgjengelighet": "start",
       "prioritet": 10,
       "tittel": "Første ordentlige kasseøkt",
-      "tekst": "Lene skriver: «Du får første ordentlige kasseøkt i dag. Det viktigste er å holde flyt uten å miste nøyaktighet. Og åpningen er din: kundene skal aldri merke hva som måtte fikses før døra gikk opp.»",
+      "tekst": "Klokka er 12, og du skal overta kassa. Lene avklarer oppgavene: «Du har ikke låseansvar. Kontroller samme vare, størrelse og gyldige kampanjevilkår før du korrigerer en kampanjepris i handelen. Meld avviket til meg; endring av prisgrunnlaget tar jeg ansvar for.» Amir kan hjelpe eller avløse etter avtale.",
       "valg": [
         {
           "id": "sjekk_plakatene",
-          "tekst": "Gå en runde og sjekk hylleplakatene mot kassa før åpning",
+          "tekst": "Avtal avløsning og ta en stikkprøve av brød og juice før du overtar kassa",
           "tone": "grundig",
-          "skills_practice": {"skill_id":"practical_mastery","activity_type":"verify_store_prices","evidence_flag":"sjekket_priser_foer_aapning","delta":2},
+          "skills_practice": {
+            "skill_id": "practical_mastery",
+            "activity_type": "verify_store_prices",
+            "evidence_flag": "sjekket_priser_foer_aapning",
+            "delta": 2
+          },
           "effekter": {
             "meters": {
               "integritet": 4,
@@ -32,22 +37,21 @@
               }
             }
           },
-          "konsekvensTekst": "Du finner to plakater som ikke stemmer og retter dem før noen ser det. Ingen vil noensinne vite. Det er litt av poenget.",
+          "konsekvensTekst": "Amir bekrefter at han tar kassa mens du kontrollerer brød og juice. To etiketter må rettes. Lene følger opp, og du kontrollerer at merkingen stemmer. Kampanjekaffen inngår ikke i denne stikkprøven.",
           "laaserOpp": [
             "prisfeil_02_koen"
           ]
         },
         {
           "id": "aapne_raskt",
-          "tekst": "Åpne presis og ta det som kommer",
+          "tekst": "Overta kassa til avtalt tid og undersøk henvendelsene som kommer",
           "tone": "effektiv",
           "effekter": {
             "relasjoner": {
               "butikksjef": 2
             },
             "meters": {
-              "energi": -1,
-              "integritet": -2
+              "energi": -1
             },
             "flagg": {
               "aapnet_raskt": true
@@ -58,7 +62,7 @@
               }
             }
           },
-          "konsekvensTekst": "Døra går opp på slaget. Butikken ser våken ut. Du håper det den ikke rakk å bli, ikke synes.",
+          "konsekvensTekst": "Du overtar kassa som avtalt. Det er ikke i seg selv en forsømmelse å starte kundebehandlingen til rett tid.",
           "laaserOpp": [
             "prisfeil_02_koen"
           ]
@@ -84,7 +88,7 @@
               }
             }
           },
-          "konsekvensTekst": "«Kaffen,» sier Amir uten å nøle. «Plakaten sier alltid noe annet enn kassa første dagen. Sjekk den før kø nummer én.»",
+          "konsekvensTekst": "Amir sier at kampanjevarer kan få feil pris, og viser hvordan du kontrollerer vare, størrelse og gyldighet. Dere har gjennomgått metoden, men kaffepakken er ikke kontrollert ennå.",
           "laaserOpp": [
             "prisfeil_02_koen"
           ]
@@ -101,11 +105,11 @@
       "tilgjengelighet": "laast",
       "prioritet": 9,
       "tittel": "Kassa sier 49, plakaten sier 39 — og køen vokser",
-      "tekst": "Kunden kjøper kampanjekaffen. Kassa viser 49, hylleplakaten viser 39. Bak henne står fem personer og sukker. Amir er opptatt med varepåfyll.",
+      "tekst": "Kunden legger kampanjekaffen på båndet. Kassa viser 49, hylleetiketten viser 39. Kaffen inngikk ikke i stikkprøven av brød og juice. Fem personer venter i kø, og Amir er opptatt med varepåfyll.",
       "valg": [
         {
           "id": "rett_synlig",
-          "tekst": "Stopp kort, sjekk plakaten, og rett feilen synlig — butikken har gjort feil",
+          "tekst": "Avtal avløsning og kontroller samme pakke og kampanjevilkår før du retter kundens pris",
           "tone": "faglig",
           "skills_practice": {
             "skill_id": "practical_mastery",
@@ -123,15 +127,21 @@
               "energi": -4
             },
             "flagg": {
-              "rettet_feilen_synlig": true
+              "rettet_feilen_synlig": true,
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_handel_rettet": true,
+              "eksp_life_pris_undersokelse_venter": false
             },
             "threads": {
               "prisfeilen_i_koen": {
-                "status": "completed"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "«Plakaten har rett, kassa tar feil — du får 39,» sier du høyt nok til at køen hører det. To i køen nikker. Det tok førti sekunder."
+          "konsekvensTekst": "Amir bekrefter at han tar kassa mens du undersøker. Du sjekker at tilbudet på 39 gjelder nøyaktig denne pakken og perioden. Etter Lenes avtalte fullmakt korrigerer du handelen fra 49 til 39. Kunden betaler. Prisgrunnlaget står fortsatt på 49; avviket er ikke meldt.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik"
+          ]
         },
         {
           "id": "gjett_pris",
@@ -143,7 +153,8 @@
               "integritet": -4
             },
             "flagg": {
-              "gjettet_prisen": true
+              "gjettet_prisen": true,
+              "eksp_life_pris_39_uten_kontroll": true
             },
             "threads": {
               "prisfeilen_i_koen": {
@@ -151,11 +162,14 @@
               }
             }
           },
-          "konsekvensTekst": "Køen glir videre. Du aner ikke om det var riktig. Det gjør ikke kassaoppgjøret i kveld heller."
+          "konsekvensTekst": "Du slår inn 39 uten å kontrollere vare eller kampanjevilkår. Kunden betaler og køen går videre. Du vet ennå ikke om prisen var riktig, og må undersøke avviket etter handelen.",
+          "laaserOpp": [
+            "prisfeil_03_undersok_etter_snarevei"
+          ]
         },
         {
           "id": "rop_paa_amir",
-          "tekst": "Be Amir sjekke plakaten mens du holder køen i gang",
+          "tekst": "Be Amir kontrollere samme pakke og tilbudsvilkår mens du holder kassa",
           "tone": "samarbeidende",
           "effekter": {
             "relasjoner": {
@@ -163,10 +177,14 @@
             },
             "meters": {
               "energi": -2,
-              "synlighet": -2
+              "integritet": 5
             },
             "flagg": {
-              "fikk_hjelp_med_prisen": true
+              "fikk_hjelp_med_prisen": true,
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_sjekket_av_amir": true,
+              "eksp_life_pris_handel_rettet": true,
+              "eksp_life_pris_undersokelse_venter": false
             },
             "threads": {
               "prisfeilen_i_koen": {
@@ -174,11 +192,14 @@
               }
             }
           },
-          "konsekvensTekst": "Amir er tilbake på tjue sekunder med plakaten i hånda. Køen merket knapt noe. Du merket at du trengte ham."
+          "konsekvensTekst": "Amir sammenligner samme pakke, størrelse og gyldig tilbud: 39 er riktig. Du korrigerer handelen til 39 etter Lenes avtalte fullmakt. Kunden betaler. Prisgrunnlaget viser fortsatt 49 og avviket er ikke meldt.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik"
+          ]
         },
         {
           "id": "rett_og_logg_avvik",
-          "tekst": "Rett kundens pris og meld det konkrete avviket til Lene, så feilen ikke gjentas",
+          "tekst": "Kontroller varen, rett kundens pris og meld det konkrete avviket til Lene",
           "tone": "grundig oppfølging",
           "skills_requirement": {
             "skill_id": "practical_mastery",
@@ -194,7 +215,225 @@
               "energi": -3
             },
             "flagg": {
-              "meldte_prisavvik_til_lene": true
+              "meldte_prisavvik_til_lene": true,
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_handel_rettet": true,
+              "eksp_life_pris_meldt": true,
+              "eksp_life_pris_undersokelse_venter": false,
+              "eksp_life_pris_melding_venter": false
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du bekrefter at 39 gjelder samme pakke og kampanjeperiode, retter denne handelen og sender Lene vare, begge priser og hva du undersøkte. Meldingen er sendt; Lene har ennå ikke bekreftet mottak eller retting.",
+          "laaserOpp": [
+            "prisfeil_04_lene_bekrefter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_03_undersok_etter_snarevei",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "39 kroner uten kontroll – følg opp",
+      "tekst": "Du tok 39 for kaffen for å få køen videre, uten å sjekke om etiketten gjaldt denne pakken. Handelen er gjennomført, men du kan fortsatt kontrollere varen og dokumentere avviket.",
+      "valg": [
+        {
+          "id": "sjekk_selv",
+          "tekst": "Avtal avløsning, sjekk vare og kampanjevilkår selv og dokumenter funnet",
+          "effekter": {
+            "meters": {
+              "energi": -2,
+              "integritet": 2
+            },
+            "flagg": {
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_sjekket_selv": true,
+              "eksp_life_pris_undersokelse_venter": false,
+              "eksp_life_pris_handel_rettet": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Amir tar kassa etter avtale. Du kontrollerer samme pakke, størrelse og gyldig kampanjeperiode: 39 var riktig. Nå kan du dokumentere at kunden fikk riktig beløp, men butikkens prisgrunnlag gjenstår.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik"
+          ]
+        },
+        {
+          "id": "be_amir",
+          "tekst": "Be Amir kontrollere varen og vilkårene mens du tar neste kunde",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": 2
+            },
+            "flagg": {
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_sjekket_av_amir": true,
+              "eksp_life_pris_undersokelse_venter": false,
+              "eksp_life_pris_handel_rettet": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Amir kontrollerer samme pakke og bekrefter at tilbudet på 39 er gyldig. Den allerede gjennomførte handelen var riktig, men avviket må fremdeles meldes.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik"
+          ]
+        },
+        {
+          "id": "la_sta_apent",
+          "tekst": "Si fra at prisavviket ikke er undersøkt og må overleveres",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_undersokelse_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du markerer at tilbud og vare ennå ikke er undersøkt. Du kan ikke beskrive verken handelen eller butikksystemet som kontrollert; oppgaven står uavklart."
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_03_meld_avvik",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Meld prisavviket, ikke bare kundens handel",
+      "tekst": "Kunden har betalt 39, og kontrollen har bekreftet tilbudet for samme pakke. Kassa viser fortsatt 49 som prisgrunnlag. Lene har ansvaret for retting av butikkens oppsett. Oppgi hvem som undersøkte varen, vareidentifikasjon, beløp og kampanjeperiode.",
+      "valg": [
+        {
+          "id": "send_notat",
+          "tekst": "Send et konkret avviksnotat til Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_meldt": true,
+              "eksp_life_pris_melding_venter": false
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sender Lene vare og variant, hyllepris 39, kassepris 49, gyldig kampanje og hvem som kontrollerte. Handelen er korrigert, men du har ennå ikke fått en mottaksbekreftelse.",
+          "laaserOpp": [
+            "prisfeil_04_lene_bekrefter"
+          ]
+        },
+        {
+          "id": "utsett_melding",
+          "tekst": "Opplys at avviket fortsatt ikke er meldt, og overlever restoppgaven",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_melding_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du lar avviket stå som åpent og sier fra om den uferdige meldingen. Kunden fikk riktig pris, men neste kunde kan fremdeles møte feil prisgrunnlag."
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_04_lene_bekrefter",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Lene bekrefter ansvar – kontrollen gjenstår",
+      "tekst": "Lene svarer på prisavviket: «Jeg har mottatt notatet om kaffen og tar ansvar for prisgrunnlaget. Jeg sier fra når endringen er lagt inn. Avtal hvem som kontrollerer samme vare etterpå.» Mottak er ikke det samme som utført retting.",
+      "valg": [
+        {
+          "id": "kontroller_selv",
+          "tekst": "Registrer Lenes bekreftelse og avtal egen etterkontroll",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_overtatt": true,
+              "eksp_life_pris_etterkontroll_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer at Lene har overtatt feilen og avtaler å kontrollere samme vare etter oppdateringen. Retting og etterkontroll er ennå ikke dokumentert utført.",
+          "laaserOpp": [
+            "prisfeil_05_sjekk_selv"
+          ]
+        },
+        {
+          "id": "amir_kontrollerer",
+          "tekst": "Registrer Lenes bekreftelse og avtal etterkontroll med Amir",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_overtatt": true,
+              "eksp_life_pris_etterkontroll_delegert": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lene har overtatt feilen. Amir bekrefter at han tar etterkontrollen når prisgrunnlaget er oppdatert. Avtalen alene betyr ikke at kontrollen er gjennomført.",
+          "laaserOpp": [
+            "prisfeil_05_amir_sjekker"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_05_sjekk_selv",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Kaffens nye pris – egen etterkontroll",
+      "tekst": "Lene melder nå at butikkens prisgrunnlag for den aktuelle kaffepakken er endret til 39. Det er hennes bekreftelse på rettingen. Din etterkontroll av samme pakke er en egen handling.",
+      "valg": [
+        {
+          "id": "kontroller_39",
+          "tekst": "Skann samme pakke, sammenlign etiketten og meld resultatet til Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_egen": true,
+              "eksp_life_pris_etterkontroll_verifisert": true,
+              "eksp_life_pris_etterkontroll_venter": false
             },
             "threads": {
               "prisfeilen_i_koen": {
@@ -202,7 +441,75 @@
               }
             }
           },
-          "konsekvensTekst": "Du gir kunden kampanjeprisen 39, kontrollerer plakaten og sender Lene et presist avviksnotat. Hun tar ansvaret for å rette systemet. Kunden slipper å forklare feilen på nytt."
+          "konsekvensTekst": "Du skanner den aktuelle kaffepakken. Kassa viser nå 39, etiketten viser 39 og kampanjen gjelder. Du melder den utførte kontrollen til Lene og kan dokumentere at avviket er løst."
+        },
+        {
+          "id": "ikke_kontrollert",
+          "tekst": "Meld at prisen er endret, men at egen etterkontroll gjenstår",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Lenes melding bekrefter endringen, men du har ikke skannet pakken på nytt. Etterkontrollen blir stående som uutført og overleveres videre."
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_05_amir_sjekker",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Amir melder etterkontroll",
+      "tekst": "Lene har meldt retting av prisgrunnlaget. Amir svarer: «Jeg skannet samme kaffepakke. Registrert pris og gyldig etikett viser begge 39.» Dette er Amirs kontroll, ikke spillerens.",
+      "valg": [
+        {
+          "id": "registrer_amir",
+          "tekst": "Registrer Amirs konkrete kontrollresultat hos Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_amir": true,
+              "eksp_life_pris_etterkontroll_verifisert": true,
+              "eksp_life_pris_etterkontroll_venter": false
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du gir Lene beskjed om at Amir utførte kontrollen og fant 39 i både kasse og på etikett. Resultatet kan dokumenteres som løst, med riktig kontrollør."
+        },
+        {
+          "id": "ekstra_egenkontroll",
+          "tekst": "Registrer Amirs resultat, men avtal også en egen ekstra kontroll",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_amir": true,
+              "eksp_life_pris_etterkontroll_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Amirs resultat er dokumentert og tilsier at feilen er rettet. Du vil selv kontrollere samme vare før du markerer din ekstra kontroll som fullført.",
+          "laaserOpp": [
+            "prisfeil_05_sjekk_selv"
+          ]
         }
       ]
     },
@@ -216,23 +523,21 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Vikaren stopper ved kassa di",
-      "tekst": "Vikaren stiller seg ved kassa med et pantekort i hånda: «Hvordan gjør jeg dette? Beklager, jeg vet du har kø.» Tre kunder venter. Alle hører alt.",
+      "tekst": "Vikaren står ved kassa med en pantekvittering på 14 kroner. Tre kunder venter. Hun spør hvordan kvitteringen skal kontrolleres og registreres uten at beløpet utbetales eller trekkes fra to ganger. Denne fiktive butikken bruker skanning i bemannet kasse.",
       "valg": [
         {
           "id": "hjelp_kort",
-          "tekst": "Hjelp kort og tydelig — tretti sekunder nå sparer ti minutter senere",
+          "tekst": "Avklar køen og tilby å vise én korrekt pantekvittering ved kassa",
           "tone": "raus",
-          "skills_practice": {"skill_id":"communication","activity_type":"demonstrate_colleague_method","evidence_flag":"hjalp_ny_kollega","delta":2},
           "effekter": {
             "relasjoner": {
-              "ny_kollega": 7
+              "ny_kollega": 1
             },
             "meters": {
-              "energi": -3,
-              "psyke": 2
+              "energi": -1
             },
             "flagg": {
-              "hjalp_ny_kollega": true
+              "pant_veiledning_startet": true
             },
             "threads": {
               "ny_kollega_og_tillit": {
@@ -240,22 +545,22 @@
               }
             }
           },
-          "konsekvensTekst": "Du viser grepet én gang, rolig. Vikaren gjentar det riktig på første forsøk. Kunden i køen smiler faktisk litt."
+          "konsekvensTekst": "Du sier at du skal vise hvilken butikk kvitteringen kommer fra, hvor beløpet kontrolleres og hvordan den registreres én gang. Du har avtalt veiledning, men har ennå ikke gjennomført den.",
+          "laaserOpp": [
+            "ny_kollega_02_vis_pantekort"
+          ]
         },
         {
           "id": "be_vente",
-          "tekst": "Be vikaren vente til køen er unna",
+          "tekst": "Si at du må ta køen først, og avtal hvem som hjelper vikaren etterpå",
           "tone": "avvisende",
           "effekter": {
-            "relasjoner": {
-              "ny_kollega": -5
-            },
+            "relasjoner": {},
             "meters": {
-              "energi": 1,
-              "integritet": -2
+              "energi": 1
             },
             "flagg": {
-              "avviste_vikaren": true
+              "pant_hjelp_utsatt": true
             },
             "threads": {
               "ny_kollega_og_tillit": {
@@ -263,22 +568,25 @@
               }
             }
           },
-          "konsekvensTekst": "Vikaren trekker seg unna med pantekortet. Kunden foran deg later som hun ikke så det. Alle så det."
+          "konsekvensTekst": "Du forklarer at køen må betjenes, men avtaler at spørsmålet skal følges opp. Vikaren venter med kvitteringen; ingen kontroll eller veiledning er utført ennå.",
+          "laaserOpp": [
+            "ny_kollega_02_avtal_hjelp"
+          ]
         },
         {
           "id": "send_til_amir",
-          "tekst": "Pek vikaren mot Amir — han kan dette best",
+          "tekst": "Be Amir overta veiledningen og få bekreftet resultatet",
           "tone": "praktisk",
           "effekter": {
             "relasjoner": {
-              "erfaren_kollega": 3,
-              "ny_kollega": 1
+              "ny_kollega": 1,
+              "erfaren_kollega": 1
             },
             "meters": {
               "handlingsrom": 1
             },
             "flagg": {
-              "sendte_vikaren_videre": true
+              "pant_henvist_amir": true
             },
             "threads": {
               "ny_kollega_og_tillit": {
@@ -286,7 +594,251 @@
               }
             }
           },
-          "konsekvensTekst": "Amir tar det uten å blunke. Vikaren lærer det riktig. Du lurer et øyeblikk på om du sendte fra deg mer enn et spørsmål."
+          "konsekvensTekst": "Du ber Amir kontrollere pantekvitteringen og vise vikaren rutinen, men vet ennå ikke om oppgaven er utført. En henvisning er ikke det samme som bekreftet hjelp.",
+          "laaserOpp": [
+            "ny_kollega_02_amir_bekrefter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_02_avtal_hjelp",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Køen er unna – hva skjer med pantekortet?",
+      "tekst": "De tre kundene er ekspedert, men vikaren har fortsatt pantekvitteringen. Hun har ikke fått opplæring ennå. Du kan nå organisere et konkret svar i stedet for å anta at noen ordnet det.",
+      "valg": [
+        {
+          "id": "vis_etter_ko",
+          "tekst": "Avtal kasseavløsning og vis rutinen selv",
+          "konsekvensTekst": "Amir tar kassa i noen minutter. Vikaren blir hos deg, og pantekvitteringen er fortsatt uinnløst. Det neste steget er å kontrollere og vise selve registreringen.",
+          "effekter": {
+            "flagg": {
+              "pant_avlosning_avtalt": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "ny_kollega_02_vis_pantekort"
+          ]
+        },
+        {
+          "id": "avtal_amir",
+          "tekst": "Be Amir ta veiledningen og bekrefte hva vikaren har lært",
+          "konsekvensTekst": "Amir sier at han tar saken når han har overtatt denne kassa. Han har ennå ikke rapportert noen utført registrering.",
+          "effekter": {
+            "flagg": {
+              "pant_henvist_amir": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "ny_kollega_02_amir_bekrefter"
+          ]
+        },
+        {
+          "id": "lat_det_ligge",
+          "tekst": "La vikaren stå uten avklart hjelp",
+          "konsekvensTekst": "Vikaren står fortsatt med en ubehandlet pantekvittering. Ingen har kontrollert den eller avtalt konkret oppfølging, og oppgaven er uferdig.",
+          "effekter": {
+            "meters": {
+              "integritet": -2
+            },
+            "flagg": {
+              "pant_hjelp_ikke_fulgt_opp": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_02_vis_pantekort",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Vis kontrollen før kvitteringen innløses",
+      "tekst": "Pantekvitteringen viser 14 kroner og kommer fra butikkens egen automat. I denne butikkens bemannede kasse kan beløpet innløses ved å skanne kvitteringen én gang. Vikaren må se at registreringen er gyldig og ikke gjøres to ganger.",
+      "valg": [
+        {
+          "id": "vis_en_gang",
+          "tekst": "Kontroller butikk og beløp, skann én gang og vis kasselinjen",
+          "konsekvensTekst": "Du kontrollerer butikk og beløp, skanner kvitteringen én gang og viser hvor 14 kroner føres. Vikaren observerer at pantebeløpet blir registrert nøyaktig én gang. Hun har ennå ikke selv forklart fremgangsmåten.",
+          "effekter": {
+            "meters": {
+              "energi": -2
+            },
+            "flagg": {
+              "pant_demo_gjennomfort": true,
+              "pant_kvittering_registrert_en_gang": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "ny_kollega_03_vikar_forklarer"
+          ]
+        },
+        {
+          "id": "manuelt_uten_sjekk",
+          "tekst": "Foreslå å taste beløpet manuelt uten å kontrollere kvitteringen",
+          "konsekvensTekst": "Vikaren blir usikker. Du har ikke kontrollert at kvitteringen gjelder butikken eller at den ikke allerede er brukt. Ingen utbetaling blir gjennomført på dette usikre grunnlaget; Lene må kontaktes for en trygg metode.",
+          "effekter": {
+            "flagg": {
+              "pant_manuell_snarvei_stanset": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "be_amir_forklare",
+          "tekst": "Si at du ikke er trygg på kassafunksjonen, og be Amir vise den",
+          "konsekvensTekst": "Du overlater veiledningen til en erfaren kollega i stedet for å gjette. Om Amir faktisk har gjennomført kontrollen, må bekreftes særskilt.",
+          "effekter": {
+            "flagg": {
+              "pant_henvist_amir": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "ny_kollega_02_amir_bekrefter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_02_amir_bekrefter",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Amir forteller hva han faktisk viste",
+      "tekst": "Amir svarer: «Jeg kontrollerte butikk og beløp på pantekvitteringen, skannet den én gang og viste vikaren hvor kasselinjen kom. Hun fikk forklart hvorfor den ikke skal registreres om igjen.» Dette er Amirs veiledning, ikke din egen demonstrasjon.",
+      "valg": [
+        {
+          "id": "registrer_amirs_hjelp",
+          "tekst": "Registrer Amirs utførte veiledning og hvem som gjorde den",
+          "konsekvensTekst": "Du registrerer at Amir viste kontroll, engangsregistrering og resultat i kassa. Vikaren har fått hjelp, men du har ikke selv utført denne veiledningen.",
+          "effekter": {
+            "flagg": {
+              "pant_amir_hjalp": true,
+              "pant_veiledning_av_amir_loggfort": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          }
+        },
+        {
+          "id": "utsett_registreringen",
+          "tekst": "Noter at Amir gjorde jobben, men la dokumentasjonen vente",
+          "konsekvensTekst": "Amir har forklart rutinen, men du har ikke ført hans hjelp i spillerens oppgavelogg. Den faktiske veiledningen er ikke din, og dokumentasjonen står åpen.",
+          "effekter": {
+            "flagg": {
+              "pant_amir_hjalp": true,
+              "pant_amir_logg_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_03_vikar_forklarer",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Kan vikaren nå forklare rutinen selv?",
+      "tekst": "Den første kvitteringen er ferdig registrert. For å unngå dobbel innløsning skal den ikke skannes om igjen. Vikaren kan i stedet forklare fremgangsmåten med en ny, ennå ikke innløst kvittering som eksempel.",
+      "valg": [
+        {
+          "id": "sjekk_forklaringen",
+          "tekst": "La vikaren peke ut kontrollpunktene og bekreft forståelsen",
+          "konsekvensTekst": "Vikaren forklarer at hun må kontrollere hvor kvitteringen kommer fra, lese beløpet, registrere den én gang i bemannet kasse og kontrollere resultatet. Du gir konkret tilbakemelding. Opplæringen er først nå dokumentert fullført.",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 5
+            },
+            "meters": {
+              "psyke": 1
+            },
+            "flagg": {
+              "hjalp_ny_kollega": true,
+              "pant_vikar_forstod": true,
+              "pant_veiledning_fullfort": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "skills_practice": {
+            "skill_id": "communication",
+            "activity_type": "demonstrate_colleague_method",
+            "evidence_flag": "hjalp_ny_kollega",
+            "delta": 2
+          }
+        },
+        {
+          "id": "ikke_sjekk",
+          "tekst": "La vikaren gå videre uten å kontrollere at metoden er forstått",
+          "konsekvensTekst": "Du har vist én registrering, men vet ikke om vikaren kan gjøre det riktig selv. Derfor skal ferdig opplæring ikke registreres.",
+          "effekter": {
+            "flagg": {
+              "pant_demo_uten_etterkontroll": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
         }
       ]
     },
@@ -300,13 +852,18 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "«Dere skulle jo ha den inne igjen»",
-      "tekst": "Stamkunden spør etter varen hun har ventet på i en uke. Hylla er tom, systemet sier «på lager: 2», og du vet at systemet lyver oftere enn folk tror.",
+      "tekst": "En stamkunde spør etter varen hun har ventet på. Hylla er tom, mens beholdningsbildet viser to av samme variant. Du har ennå ikke kontrollert bakrom eller siste varemottak. Kunden vil vite om hun kan få varen nå.",
       "valg": [
         {
           "id": "aerlig_om_lageret",
-          "tekst": "Vær ærlig: systemet sier to, hylla sier null — tilby å bestille med navn på",
+          "tekst": "Fortell hva du vet: hylla er tom, systemet viser to – tilby å undersøke nå",
           "tone": "ærlig",
-          "skills_practice": {"skill_id":"social_awareness","activity_type":"explain_stock_to_customer","evidence_flag":"aerlig_om_lageret","delta":1},
+          "skills_practice": {
+            "skill_id": "social_awareness",
+            "activity_type": "explain_stock_to_customer",
+            "evidence_flag": "aerlig_om_lageret",
+            "delta": 1
+          },
           "effekter": {
             "relasjoner": {
               "stamkunde": 6
@@ -316,15 +873,19 @@
               "energi": -2
             },
             "flagg": {
-              "aerlig_om_lageret": true
+              "aerlig_om_lageret": true,
+              "lager_usikkert_forklart": true
             },
             "threads": {
               "varen_som_ikke_finnes": {
-                "status": "completed"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "«Endelig en som sier det som det er,» sier hun. Du skriver navnet hennes på bestillingen mens hun ser på."
+          "konsekvensTekst": "Du forklarer forskjellen mellom hylla og registrert beholdning, uten å love en levering. Kunden blir ved disken mens du ordner en fysisk kontroll. Ingen vare er funnet eller bestilt ennå.",
+          "laaserOpp": [
+            "varen_02_kontroller_beholdning"
+          ]
         },
         {
           "id": "lov_i_morgen",
@@ -344,13 +905,21 @@
               }
             }
           },
-          "konsekvensTekst": "Hun nikker og går. Du vet ikke om den kommer i morgen. Det gjør hun i morgen."
+          "konsekvensTekst": "Kunden noterer seg løftet og går mot utgangen. Du har ikke kontrollert lageret eller varemottaket. Ingen levering er bekreftet, og du kan ennå rekke å korrigere beskjeden.",
+          "laaserOpp": [
+            "varen_02_rett_ubegrunnet_lovnad"
+          ]
         },
         {
           "id": "sjekk_selv",
-          "tekst": "Be henne vente to minutter og sjekk lageret selv",
+          "tekst": "Avtal avløsning og kontroller både hylle og bakrom før du svarer",
           "tone": "grundig",
-          "skills_practice": {"skill_id":"practical_mastery","activity_type":"inspect_warehouse_stock","evidence_flag":"sjekket_lageret_selv","delta":2},
+          "skills_practice": {
+            "skill_id": "practical_mastery",
+            "activity_type": "inspect_warehouse_stock",
+            "evidence_flag": "sjekket_lageret_selv",
+            "delta": 2
+          },
           "effekter": {
             "relasjoner": {
               "stamkunde": 3
@@ -360,7 +929,9 @@
               "synlighet": 2
             },
             "flagg": {
-              "sjekket_lageret_selv": true
+              "sjekket_lageret_selv": true,
+              "lager_ett_funnet": true,
+              "lager_telling_egen": true
             },
             "threads": {
               "varen_som_ikke_finnes": {
@@ -368,7 +939,469 @@
               }
             }
           },
-          "konsekvensTekst": "Du finner én — bak en pall med feilplassert juice. Systemet hadde nesten rett. Kunden fikk varen, og du fikk vite hvor lageret lyver."
+          "konsekvensTekst": "Amir tar kassa mens du kontrollerer riktig varevariant. Hylla er tom; du finner én pakke bak en pall. Før salget viser systemet to, mens fysisk telling er én. Kunden venter fortsatt, og ingen vare er overlevert eller avvik meldt ennå.",
+          "laaserOpp": [
+            "varen_03_avklar_kunden"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "varen_02_rett_ubegrunnet_lovnad",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Du lovet mer enn du visste",
+      "tekst": "Kunden er på vei ut. Du sa at varen kommer i morgen, men har verken sett en bekreftet leveranse eller kontrollert varen. Dette løftet kan ikke stå som dokumentert levering.",
+      "valg": [
+        {
+          "id": "rett_beskjeden",
+          "tekst": "Gå bort til kunden og korriger løftet før hun forlater butikken",
+          "effekter": {
+            "meters": {
+              "energi": -1,
+              "integritet": 3
+            },
+            "flagg": {
+              "lager_lovnad_rettet": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Du sier at du ikke vet når varen kommer, men kan undersøke hva som faktisk finnes nå. Kunden setter av noen minutter; det tidligere leveringsløftet er trukket tilbake.",
+          "laaserOpp": [
+            "varen_02_kontroller_beholdning"
+          ]
+        },
+        {
+          "id": "la_lovnaden_staa",
+          "tekst": "La kunden gå uten å korrigere det ubekreftede løftet",
+          "effekter": {
+            "flagg": {
+              "lager_ubekreftet_lovnad_staar": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Kunden går med en forventning om levering i morgen. Du har ikke kontrollert leveransen eller rettet beskjeden, og saken står åpen."
+        }
+      ]
+    },
+    {
+      "id": "varen_02_kontroller_beholdning",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Få et faktisk tall, ikke gjett fra skjermen",
+      "tekst": "Systemet viser to av varevarianten, men hylla er tom. Du må kontrollere riktig vare, bakrom og eventuell uoppfylt leveranse. Dersom Amir teller, er det han som utfører kontrollen.",
+      "valg": [
+        {
+          "id": "tell_selv",
+          "tekst": "Avtal kasseavløsning, finn riktig variant og tell hylle og bakrom",
+          "effekter": {
+            "meters": {
+              "energi": -3
+            },
+            "flagg": {
+              "lager_ett_funnet": true,
+              "lager_telling_egen": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du teller hylle null og bakrom én av riktig variant, bak pallen. Systemet viste to før handelen. Du har et konkret avvik på én, men kunden har fortsatt ikke fått varen.",
+          "laaserOpp": [
+            "varen_03_avklar_kunden"
+          ]
+        },
+        {
+          "id": "amir_teller",
+          "tekst": "Be Amir kontrollere varevariant og antall mens du betjener kassa",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": 2
+            },
+            "flagg": {
+              "lager_telling_delegert": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Amir bekrefter at han går til bakrommet for å telle. Du har bedt om kontrollen, men har ennå ikke fått et kontrollresultat.",
+          "laaserOpp": [
+            "varen_02_amir_teller"
+          ]
+        },
+        {
+          "id": "ikke_telt",
+          "tekst": "Si fra at beholdningen ennå ikke er kontrollert",
+          "effekter": {
+            "flagg": {
+              "lager_telling_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du skriver at hylle og system ikke stemmer, men ingen har faktisk talt bakrommet. Kunden får ikke en ny leveringsgaranti."
+        }
+      ]
+    },
+    {
+      "id": "varen_02_amir_teller",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Amir har talt varevarianten",
+      "tekst": "Amir svarer: «Jeg fant én pakke bak pallen. Hylla er tom, og systemet viser to. Jeg har ikke kontrollert at varenummeret på pakken er riktig variant ennå.»",
+      "valg": [
+        {
+          "id": "registrer_amirs_telling",
+          "tekst": "Be Amir bekrefte varenummer og variant, registrer deretter hans telling",
+          "effekter": {
+            "flagg": {
+              "lager_ett_funnet": true,
+              "lager_telling_amir": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sammenligner varenummeret med Amir. Det er riktig variant, og Amir bekrefter den ene fysiske pakken. Du dokumenterer ham som kontrollør. Kunden har ennå ikke fått varen.",
+          "laaserOpp": [
+            "varen_03_avklar_kunden"
+          ]
+        },
+        {
+          "id": "avklar_variant",
+          "tekst": "Be om vareidentifikasjon før du bruker Amirs foreløpige telling",
+          "effekter": {
+            "flagg": {
+              "lager_variant_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du ber Amir avklare varenummeret før du bruker tellingen for kundens vare. Resultatet er foreløpig og skal ikke registreres som bekreftet."
+        }
+      ]
+    },
+    {
+      "id": "varen_03_avklar_kunden",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "stamkunde",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Én vare funnet – kunden venter",
+      "tekst": "Det er funnet én pakke av riktig varevariant. Kunden venter fortsatt. Før salg var faktisk antall én mot systemets to. Levering til kunden og rapportering av beholdningsavviket er ulike oppgaver.",
+      "valg": [
+        {
+          "id": "gjennomfor_salget",
+          "tekst": "Hent pakken, gjennomfør vanlig salg og gi kunden varen",
+          "effekter": {
+            "relasjoner": {
+              "stamkunde": 4
+            },
+            "meters": {
+              "energi": -1
+            },
+            "flagg": {
+              "lager_kunde_fikk_vare": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du legger den funne pakken i kassa, gjennomfører handelen og gir kunden varen. Hun får den varen som faktisk var på lager. Avviket mellom opptalt én og registrert to før salget gjenstår.",
+          "laaserOpp": [
+            "varen_04_meld_telleavvik"
+          ]
+        },
+        {
+          "id": "la_lene_gjennomfore",
+          "tekst": "Overlever kunde og identifisert vare til Lene; hun tar salget",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 2
+            },
+            "flagg": {
+              "lager_kunde_overtatt_av_lene": true,
+              "lager_vare_solgt_av_lene": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lene overtar kunden og gjennomfører salget av den ene fysiske varen. Du registrerer at det var Lene, ikke du, som solgte pakken. Beholdningsavviket er fortsatt ikke meldt i avviksloggen.",
+          "laaserOpp": [
+            "varen_04_meld_telleavvik"
+          ]
+        },
+        {
+          "id": "la_kunden_vente",
+          "tekst": "Fortell at du ikke har avklart utleveringen og må få hjelp",
+          "effekter": {
+            "flagg": {
+              "lager_kunde_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du er tydelig på at varen er funnet, men har ikke overlevert den eller gitt et nytt løfte. Kunden må avvente en ansvarlig kollega; oppgaven er ikke fullført."
+        }
+      ]
+    },
+    {
+      "id": "varen_04_meld_telleavvik",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Meld feil beholdning – ikke kall den rettet",
+      "tekst": "Før kunden kjøpte varen, var registrert beholdning to, mens fysisk telling av samme variant var én. Den ene pakken er nå solgt. Lene har ansvar for beholdningskorrigeringen. Opplys både tellegrunnlag, hvem som telte og hva kunden fikk.",
+      "valg": [
+        {
+          "id": "send_tellenotat",
+          "tekst": "Send Lene varenummer, fysisk antall, systemtall, salg og kontrollør",
+          "effekter": {
+            "flagg": {
+              "lager_avvik_meldt": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sender det konkrete telleavviket til Lene. Notatet er sendt, men du har ikke fått bekreftet at Lene har overtatt eller at systemet er korrigert.",
+          "laaserOpp": [
+            "varen_05_lene_bekrefter"
+          ]
+        },
+        {
+          "id": "utsett_avviket",
+          "tekst": "Si tydelig at avviket ikke er meldt, og at oppfølgingen gjenstår",
+          "effekter": {
+            "flagg": {
+              "lager_avviksmelding_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du lar telleavviket stå åpent. Kunden har fått varen, men registrert beholdning er fortsatt ikke avstemt; ingen mottaksbekreftelse finnes."
+        }
+      ]
+    },
+    {
+      "id": "varen_05_lene_bekrefter",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Lene tar ansvar for beholdningen",
+      "tekst": "Lene svarer: «Jeg har mottatt notatet. Vi har ett fysisk eksemplar mot to registrert før salget, og varen er nå solgt. Jeg avstemmer beholdningen. Jeg melder fra når tallene er oppdatert; dere må kontrollere resultatet etterpå.»",
+      "valg": [
+        {
+          "id": "avtal_egen_sjekk",
+          "tekst": "Registrer Lenes mottak og avtal at du kontrollerer etter oppdateringen",
+          "effekter": {
+            "flagg": {
+              "lager_ansvar_overtatt": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer at Lene har overtatt avviket. Selve korrigeringen og din etterkontroll er ennå ikke gjennomført.",
+          "laaserOpp": [
+            "varen_06_etterkontroll"
+          ]
+        },
+        {
+          "id": "be_amir_folge_opp",
+          "tekst": "Registrer Lenes mottak og avtal at Amir kan hjelpe med kontrollen",
+          "effekter": {
+            "flagg": {
+              "lager_ansvar_overtatt": true,
+              "lager_etterkontroll_delegert": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lene har overtatt ansvaret. Du ber Amir være tilgjengelig for etterkontroll; ingen kontroll er foreløpig utført.",
+          "laaserOpp": [
+            "varen_06_etterkontroll"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "varen_06_etterkontroll",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Oppdatert beholdning må prøves mot virkeligheten",
+      "tekst": "Lene melder at hun har korrigert telleavviket: etter salget viser beholdningsbildet null av den aktuelle varianten. En oppdatert systemverdi er ikke bevis på at hylla og bakrommet fortsatt er tomme.",
+      "valg": [
+        {
+          "id": "sjekk_null_selv",
+          "tekst": "Tell samme varevariant på nytt og sammenlign med null i systemet",
+          "effekter": {
+            "meters": {
+              "energi": -1
+            },
+            "flagg": {
+              "lager_system_oppdatert": true,
+              "lager_etterkontroll_egen": true,
+              "lager_etterkontroll_verifisert": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du teller null i hylla og null i bakrommet av samme variant, og kontrollerer at systemet viser null. Du dokumenterer utført etterkontroll til Lene."
+        },
+        {
+          "id": "be_amir_etterkontroll",
+          "tekst": "Be Amir utføre sluttkontrollen; vent på faktisk resultat",
+          "effekter": {
+            "flagg": {
+              "lager_system_oppdatert": true,
+              "lager_etterkontroll_delegert": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Amir tar oppgaven, men har ikke meldt tilbake ennå. Lenes oppdaterte systemtall er registrert, ikke noen fysisk bekreftet kontroll.",
+          "laaserOpp": [
+            "varen_07_amir_etterkontroll"
+          ]
+        },
+        {
+          "id": "ikke_sjekket",
+          "tekst": "Noter at Lene har oppdatert beholdningen, men at fysisk kontroll gjenstår",
+          "effekter": {
+            "flagg": {
+              "lager_system_oppdatert": true,
+              "lager_etterkontroll_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer Lenes endring uten å påstå at noen har talt hylla eller lageret. Etterkontrollen står fortsatt åpen."
+        }
+      ]
+    },
+    {
+      "id": "varen_07_amir_etterkontroll",
+      "threadId": "varen_som_ikke_finnes",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Amirs fysiske sluttkontroll",
+      "tekst": "Amir svarer: «Jeg kontrollerte samme variant etter salget. Det er null igjen i hylla og bakrommet, og systemet viser null.» Dette er Amirs undersøkelse, ikke din.",
+      "valg": [
+        {
+          "id": "registrer_amir",
+          "tekst": "Registrer Amirs navngitte kontroll og gi resultatet til Lene",
+          "effekter": {
+            "flagg": {
+              "lager_system_oppdatert": true,
+              "lager_etterkontroll_amir": true,
+              "lager_etterkontroll_verifisert": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer at Amir utførte den fysiske etterkontrollen, og melder samsvarende tall til Lene. Oppgaven er nå dokumentert avsluttet."
+        },
+        {
+          "id": "avvent_resultat",
+          "tekst": "Utsett å registrere Amirs resultat i avviksloggen",
+          "effekter": {
+            "flagg": {
+              "lager_amir_logg_venter": true
+            },
+            "threads": {
+              "varen_som_ikke_finnes": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Amir har meldt kontrollresultatet, men du har ikke ført det i avviksloggen eller gitt Lene bekreftelsen. Dokumentasjonen er fortsatt uferdig."
         }
       ]
     },
@@ -381,14 +1414,19 @@
       "avsender": null,
       "tilgjengelighet": "start",
       "prioritet": 7,
-      "tittel": "Retur uten kvittering",
-      "tekst": "En kunde vil returnere en vare uten kvittering og blir høyere i stemmen for hver setning: «Det er vel DU som jobber her?» Regelen er ikke din. Ansiktet er ditt.",
+      "tittel": "Retur uten kvittering: Angrer kunden, eller er det en feil?",
+      "tekst": "En kunde kommer med hodetelefoner i en åpnet eske, uten original kvittering. «Jeg fikk dem i gave. Jeg vil levere dem tilbake», sier kunden. Det er ennå uklart om varen er feilfri og kunden angrer, eller om kunden vil klage på en feil. Det må avklares før butikken avgjør saken.",
       "valg": [
         {
           "id": "hold_regelen",
-          "tekst": "Forklar regelen rolig — og pek på det du faktisk KAN gjøre",
+          "tekst": "Spør om det er feil ved varen eller et ønske om bytte, og forklar forskjellen",
           "tone": "profesjonell",
-          "skills_practice": {"skill_id":"communication","activity_type":"explain_returns_policy","evidence_flag":"holdt_regelen","delta":1},
+          "skills_practice": {
+            "skill_id": "communication",
+            "activity_type": "explain_returns_policy",
+            "evidence_flag": "holdt_regelen",
+            "delta": 1
+          },
           "effekter": {
             "relasjoner": {
               "butikksjef": 4
@@ -398,7 +1436,8 @@
               "psyke": -2
             },
             "flagg": {
-              "holdt_regelen": true
+              "holdt_regelen": true,
+              "retur_avklart_sporsmal": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -406,11 +1445,14 @@
               }
             }
           },
-          "konsekvensTekst": "«Uten kvittering kan jeg gi tilgodelapp, ikke kontanter. Det kan jeg gjøre nå.» Kunden er ikke fornøyd. Men han tar tilgodelappen."
+          "konsekvensTekst": "Du forklarer at retur av en feilfri vare i fysisk butikk følger avtalt bytte- eller returordning, mens mulig feil ved varen skal vurderes som reklamasjon. Kunden får forklare hva som faktisk er galt. Du har ikke godkjent bytte, kontantutbetaling eller avvist en reklamasjon.",
+          "laaserOpp": [
+            "retur_02_hva_er_grunnen"
+          ]
         },
         {
           "id": "boy_regelen",
-          "tekst": "Ta returen utenom — det er ikke verdt bråket",
+          "tekst": "Gi pengene tilbake uten å avklare grunnlag, kjøp eller egen fullmakt",
           "tone": "ettergivende",
           "effekter": {
             "relasjoner": {
@@ -421,7 +1463,9 @@
               "psyke": 2
             },
             "flagg": {
-              "boyde_regelen": true
+              "boyde_regelen": true,
+              "retur_uten_fullmakt": true,
+              "retur_utbetaling_uten_bilag": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -429,13 +1473,18 @@
               }
             }
           },
-          "konsekvensTekst": "Kunden går fornøyd. Kassa di stemmer ikke lenger med bilagene. Det er en samtale som venter på deg et sted."
+          "konsekvensTekst": "For å roe køen utbetaler du beløpet uten kjøpsbevis, avgjørelse eller korrekt returbilag. Kunden går, men kasseoppgjøret og begrunnelsen kan ikke avstemmes. Du har gjort en faktisk feil som må meldes og rettes."
         },
         {
           "id": "hent_lene",
-          "tekst": "Hent Lene — dette er over fullmakten din",
+          "tekst": "Be Lene bistå med å finne ut om dette er bytte eller reklamasjon",
           "tone": "korrekt",
-          "skills_practice": {"skill_id":"wisdom_judgement","activity_type":"escalate_authority_limit","evidence_flag":"hentet_sjefen","delta":1},
+          "skills_practice": {
+            "skill_id": "wisdom_judgement",
+            "activity_type": "escalate_authority_limit",
+            "evidence_flag": "hentet_sjefen",
+            "delta": 1
+          },
           "effekter": {
             "relasjoner": {
               "butikksjef": 2
@@ -445,7 +1494,8 @@
               "handlingsrom": -2
             },
             "flagg": {
-              "hentet_sjefen": true
+              "hentet_sjefen": true,
+              "retur_ba_lene_om_hjelp": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -453,7 +1503,181 @@
               }
             }
           },
-          "konsekvensTekst": "Lene løser det på tjue sekunder — med nøyaktig samme svar som du hadde tenkt å gi. Du noterer deg det."
+          "konsekvensTekst": "Du sier at Lene kan avklare butikkens returvilkår og vurdere klagen. Du har bedt om hjelp; kunden har foreløpig ikke fått en godkjent retur eller en beslutning om reklamasjon.",
+          "laaserOpp": [
+            "retur_02_hva_er_grunnen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "retur_02_hva_er_grunnen",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Kunden sier hva som faktisk er galt",
+      "tekst": "Når du spør, svarer kunden: «Den venstre siden spiller nesten ikke lyd. Jeg fikk dem i gave, og giveren kan sende meg ordrebekreftelsen fra denne butikken.» Dette er en opplysning om en mulig feil, ikke dokumentasjon på at varen er undersøkt eller at kjøpet allerede er bekreftet.",
+      "valg": [
+        {
+          "id": "be_om_ordrebekreftelse",
+          "tekst": "Be om kjøpsbevis og registrer kundens opplysning om feil",
+          "effekter": {
+            "meters": {
+              "energi": -1
+            },
+            "flagg": {
+              "retur_mulig_reklamasjon": true,
+              "retur_kjop_dokumentert": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Kunden viser ordrebekreftelsen fra giveren med butikk, vare og kjøpsdato. Du registrerer at kjøpet er dokumentert og at en mulig mangel er meldt. Du har ennå ikke vurdert årsaken eller lovet noen bestemt løsning.",
+          "laaserOpp": [
+            "retur_03_lene_tar_saken"
+          ]
+        },
+        {
+          "id": "be_om_tid_til_bevis",
+          "tekst": "Registrer klagen og avtal hvordan kunden kan fremskaffe kjøpsbevis",
+          "effekter": {
+            "flagg": {
+              "retur_mulig_reklamasjon": true,
+              "retur_kjopsbevis_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du noterer påstanden om manglende lyd og foreslår ordrebekreftelse eller annet kjøpsbevis, ikke bare original papirkvittering. Kunden går for å kontakte giveren. Ingen reklamasjonsavgjørelse er tatt."
+        },
+        {
+          "id": "avvis_originalkvittering",
+          "tekst": "Avvis klagen fordi original papirkvittering mangler",
+          "effekter": {
+            "meters": {
+              "integritet": -4
+            },
+            "flagg": {
+              "retur_feilaktig_avvist": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du avviser saken uten å undersøke alternativ dokumentasjon eller påstått feil. Kunden protesterer og ber om at avslaget vurderes av ansvarlig. Det er en uavklart reklamasjon, ikke en korrekt behandlet retur."
+        }
+      ]
+    },
+    {
+      "id": "retur_03_lene_tar_saken",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Lene tar imot den mulige reklamasjonen",
+      "tekst": "Lene sier: «Ordrebekreftelsen viser kjøp hos oss og dato. Kunden opplyser om dårlig lyd på venstre side. Vi registrerer dette som en reklamasjon og undersøker varen før vi avgjør hva kunden har krav på. Du kan ta imot vare og grunnlag; jeg er ansvarlig for vurderingen.»",
+      "valg": [
+        {
+          "id": "overlever_varen",
+          "tekst": "Registrer saken, legg ved kjøpsbevis og overlever varen til Lene",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 2
+            },
+            "flagg": {
+              "retur_sak_registrert": true,
+              "retur_lene_overtatt": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer opplysningen om lydfeil, ordrebekreftelsen og kundens kontaktinformasjon etter butikkens rutine. Lene bekrefter at hun har overtatt undersøkelsen. Du har ikke utbetalt penger eller bestemt hvilken løsning som følger av loven.",
+          "laaserOpp": [
+            "retur_04_lene_undersokte_varen"
+          ]
+        },
+        {
+          "id": "avvent_overlevering",
+          "tekst": "Forklar at kundens dokumentasjon er mottatt, men at saken ennå ikke er levert til Lene",
+          "effekter": {
+            "flagg": {
+              "retur_overlevering_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du markerer at ordrebekreftelsen finnes, men at vareundersøkelsen og formell overlevering gjenstår. Kundens reklamasjon er ikke ferdigbehandlet."
+        }
+      ]
+    },
+    {
+      "id": "retur_04_lene_undersokte_varen",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Lene har undersøkt varen",
+      "tekst": "Lene melder: «Jeg har testet varen og bekreftet at lyden faller ut på venstre side. Vi tilbyr en tilsvarende ny vare som løsning på reklamasjonen, og kunden har takket ja. Registrer byttet og lever ut den nye varen etter rutinen.»",
+      "valg": [
+        {
+          "id": "utlever_ny_vare",
+          "tekst": "Registrer omleveringen og overlever den nye varen til kunden",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 2
+            },
+            "flagg": {
+              "retur_mangel_bekreftet": true,
+              "retur_omlevering_utfort": true,
+              "retur_kundens_sak_avklart": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer hvilken vare som ble mottatt og omlevert, knytter det til dokumentert kjøp og gir kunden den nye varen. Kundens reklamasjon er fulgt opp. Arbeidstråden kan fortsatt gi nye ansvarsspørsmål senere i uken."
+        },
+        {
+          "id": "avvent_utlevering",
+          "tekst": "Registrer at Lene har besluttet omlevering, men at varen ennå ikke er utlevert",
+          "effekter": {
+            "flagg": {
+              "retur_mangel_bekreftet": true,
+              "retur_utlevering_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Undersøkelsen er fullført og kunden har godtatt løsningen, men du har ikke registrert eller overlevert erstatningsvaren. Restoppgaven står åpen."
         }
       ]
     },
@@ -462,24 +1686,29 @@
       "threadId": "lukkingen",
       "fase": "kveld",
       "dag": 1,
-      "visningstype": "privat hendelse",
+      "visningstype": "samtale",
       "avsender": null,
       "tilgjengelighet": "start",
       "prioritet": 7,
-      "tittel": "Fem minutter før stengetid",
-      "tekst": "Klokka er 20:55. En kunde tar i døra: «Jeg skal bare ha én ting!» Bak deg venter hele lukkerutinen — kasse, søppel, hyller, alarm. Neste skift åpner på det du etterlater.",
+      "tittel": "Fem minutter før vaktslutt",
+      "tekst": "Klokka er 19:55. Vakta di slutter klokka 20, og butikken er fortsatt åpen. En kunde trenger hjelp. Arbeidsplassen må ryddes og uferdige oppgaver overleveres. Amir er på neste skift og er tilgjengelig. Du har ikke fått ansvar for å låse butikken.",
       "valg": [
         {
           "id": "full_lukking",
-          "tekst": "Slipp kunden inn — og gjør full lukking etterpå, uansett hvor sent det blir",
+          "tekst": "Hjelp kunden, rydd arbeidsplassen og overlever til Amir innen vaktslutt",
           "tone": "pliktoppfyllende",
-          "skills_practice": {"skill_id":"agency","activity_type":"complete_shop_closing","evidence_flag":"ryddet_for_neste_skift","delta":2},
+          "skills_practice": {
+            "skill_id": "agency",
+            "activity_type": "complete_shift_handover",
+            "evidence_flag": "ryddet_for_neste_skift",
+            "delta": 2
+          },
           "effekter": {
             "relasjoner": {
               "stamkunde": 3
             },
             "meters": {
-              "energi": -6,
+              "energi": -4,
               "integritet": 4
             },
             "flagg": {
@@ -491,16 +1720,21 @@
               }
             }
           },
-          "konsekvensTekst": "Du går tjue minutter over tid. Butikken du låser er en butikk du selv ville åpnet."
+          "konsekvensTekst": "Du hjelper kunden og gjør arbeidsplassen klar. Amir bekrefter at han tar over og vet hva som gjenstår. Du avslutter vakta til avtalt tid; du låser ikke butikken."
         },
         {
           "id": "laas_presis",
-          "tekst": "Pek beklagende på klokka, lås presis og gjør lukkingen skikkelig",
+          "tekst": "Avtal at Amir tar kunden mens du gjør overleveringen ferdig",
           "tone": "grensesettende",
-          "skills_practice": {"skill_id":"practical_mastery","activity_type":"complete_on_time_closing","evidence_flag":"laaste_presis","delta":1},
+          "skills_practice": {
+            "skill_id": "practical_mastery",
+            "activity_type": "complete_on_time_handover",
+            "evidence_flag": "overleverte_presis",
+            "delta": 1
+          },
           "effekter": {
             "relasjoner": {
-              "stamkunde": -3
+              "stamkunde": 1
             },
             "meters": {
               "energi": -3,
@@ -508,7 +1742,7 @@
             },
             "flagg": {
               "ryddet_for_neste_skift": true,
-              "laaste_presis": true
+              "overleverte_presis": true
             },
             "threads": {
               "lukkingen": {
@@ -516,11 +1750,11 @@
               }
             }
           },
-          "konsekvensTekst": "Kunden himler med øynene gjennom glasset. Lukkingen blir gjort riktig. Åpningstidene finnes av en grunn."
+          "konsekvensTekst": "Amir bekrefter at han hjelper kunden. Du rydder arbeidsplassen og overleverer det som gjenstår før du går til avtalt tid. Butikken er fortsatt åpen."
         },
         {
           "id": "kutt_hjornene",
-          "tekst": "Slipp kunden inn og kutt lukkerutinen — du er ferdig til 21:05",
+          "tekst": "Gå uten å rydde eller avtale hvem som tar de uferdige oppgavene",
           "tone": "snarvei",
           "effekter": {
             "meters": {
@@ -528,7 +1762,8 @@
               "integritet": -5
             },
             "flagg": {
-              "kuttet_lukkingen": true
+              "kuttet_lukkingen": true,
+              "ekspeditor_gikk_uten_overlevering": true
             },
             "threads": {
               "lukkingen": {
@@ -536,7 +1771,7 @@
               }
             }
           },
-          "konsekvensTekst": "Du rekker bussen. Søpla står igjen bak disken, og kassatellingen ble «omtrent». Morgenskiftet heter forresten Amir."
+          "konsekvensTekst": "Du går, men emballasjen ligger igjen og ingen har fått oversikt over restoppgavene. Problemet er den manglende overleveringen, ikke at du avsluttet vakta til avtalt tid."
         }
       ]
     },
@@ -551,7 +1786,7 @@
       "prioritet": 12,
       "stedId": "butikk",
       "tittel": "Etter en tung vakt",
-      "tekst": "Du kjenner gårsdagens kø og stengearbeid i kroppen. Lene trenger deg på gulvet om få minutter. Du har ennå tid til å si fra om at tempoet i dag må være forsvarlig.",
+      "tekst": "Du kjenner gårsdagens kø og overlevering i kroppen. Før neste vakt har du tid til å si fra om at tempoet må være forsvarlig.",
       "conditions": {
         "meters": {
           "energi": {
@@ -563,7 +1798,7 @@
         {
           "id": "kort_pause",
           "tekst": "Si fra og ta en kort pause før du går på gulvet",
-          "konsekvensTekst": "Lene flytter et lite gjøremål til senere. Du får vann, ro og et par minutters oversikt. Oppgavene er der fortsatt, men du møter dem mer samlet.",
+          "konsekvensTekst": "Lene bekrefter at en tralle med emballasje kan stå på avtalt lagerplass til etter kasseovertakelsen. Du setter den der, tar vann og et par minutter i ro før økta. Arbeidet med tralla er utsatt, ikke ferdig.",
           "effekter": {
             "meters": {
               "energi": 4,
@@ -577,8 +1812,8 @@
         },
         {
           "id": "be_om_stotte",
-          "tekst": "Be Amir dele de tyngste oppgavene den første timen",
-          "konsekvensTekst": "Amir hjelper deg gjennom den første rushen. Det er ikke en fridag, men du slipper å løse alt alene.",
+          "tekst": "Avklar med Amir hvem som tar kassa og hvem som tar varetralla",
+          "konsekvensTekst": "Amir sier ja til å ta varetralla mens du betjener kassa den første timen. Dere fordeler varene og kundene før dere begynner. Du slipper å avbryte hvert salg for å hente varer. Amir har ikke dermed fått lederfullmakt.",
           "effekter": {
             "meters": {
               "energi": 2,
@@ -594,7 +1829,7 @@
         },
         {
           "id": "press_videre",
-          "tekst": "Ikke si noe og ta hele åpningen alene",
+          "tekst": "Ikke si noe og ta kassa og varetralla alene",
           "konsekvensTekst": "Du kommer i gang, men merker at du reagerer tregere når køen bygger seg opp. Resten av dagen starter med mindre overskudd.",
           "effekter": {
             "meters": {
@@ -623,7 +1858,7 @@
         }
       },
       "tittel": "Morgenskiftet la merke til det",
-      "tekst": "Lene tar deg i gangen: «Amir sa åpningen i dag var den letteste på flere uker. Alt sto klart.» Hun ser på deg et sekund ekstra. «Vi trenger folk som lukker sånn.»",
+      "tekst": "Lene møter deg før neste vakt: «Amir sa du overleverte arbeidsplassen ryddig og ga oversikt over det som gjensto. Det gjorde det lettere å fortsette.»",
       "valg": [
         {
           "id": "ta_imot",
@@ -646,11 +1881,11 @@
               }
             }
           },
-          "konsekvensTekst": "Du forteller om kunden fem minutter før stengetid. Lene ler: «Sånn er jobben. Bra du tok begge deler.»"
+          "konsekvensTekst": "Du forteller hvordan kunden ble hjulpet og oppgavene overlevert. Lene bekrefter at det var nyttig å få en konkret oversikt."
         },
         {
           "id": "tone_ned",
-          "tekst": "Tone det ned — det var jo bare lukking",
+          "tekst": "Si at du gjorde den avtalte overleveringen",
           "tone": "beskjeden",
           "effekter": {
             "meters": {
@@ -666,7 +1901,7 @@
               }
             }
           },
-          "konsekvensTekst": "«Bare lukking,» gjentar Lene, og går videre. Du lurer på om beskjedenhet og usynlighet er samme dør."
+          "konsekvensTekst": "Lene bekrefter at en ryddig overlevering er en del av arbeidet. Du trenger ikke gjøre den til en større prestasjon enn det var."
         }
       ]
     },
@@ -686,12 +1921,12 @@
           }
         }
       },
-      "tittel": "Åpningen ble tung i dag",
-      "tekst": "Lene venter ved kassa: «Amir brukte tjue minutter på å rydde før han fikk åpnet. Søppel bak disken, kassa telte ikke. Hva skjedde i går?»",
+      "tittel": "Neste skift manglet en overlevering",
+      "tekst": "Lene spør før neste vakt: «Amir måtte rydde emballasje og finne ut hvilke oppgaver som sto igjen. Hva rakk du, og hva ble ikke overlevert?»",
       "valg": [
         {
           "id": "innrom_og_fiks",
-          "tekst": "Innrøm snarveien — og ta kveldens lukking som en ny sjanse",
+          "tekst": "Forklar hva som ikke ble gjort, og avtal bedre overlevering",
           "tone": "ærlig",
           "effekter": {
             "relasjoner": {
@@ -711,11 +1946,11 @@
               }
             }
           },
-          "konsekvensTekst": "«Greit. Alle kutter én lukking,» sier Lene. «Ingen kutter to.» Amir nikker til deg senere — han har hørt verre unnskyldninger."
+          "konsekvensTekst": "Du beskriver det som gjensto. Lene avklarer hva som skal prioriteres før neste vaktslutt og hvem du skal overlevere til."
         },
         {
           "id": "skyld_paa_kunden",
-          "tekst": "Skyld på kunden som kom fem minutter før stengetid",
+          "tekst": "Legg hele ansvaret på kunden som kom før vaktslutt",
           "tone": "unnvikende",
           "effekter": {
             "relasjoner": {
@@ -753,23 +1988,274 @@
         }
       },
       "tittel": "Vikaren spør deg først nå",
-      "tekst": "Vikaren kommer rett til deg med en retur hun ikke forstår: «Du forklarer sånn at jeg tør å spørre.» Det er blitt din kø hun stiller seg i — på godt og vondt.",
+      "tekst": "Vikaren kommer med en kunde som ønsker å bytte en ubrukt matboks til en annen farge. Kunden har en kvittering fra butikken og sier at det ikke er feil ved varen: «Jeg tok feil farge.» Vikaren spør: «Skal jeg bare gi pengene tilbake?» Butikkens byttevilkår ligger ved kassa, men ingen har kontrollert dem ennå.",
       "valg": [
         {
           "id": "laer_bort_metoden",
-          "tekst": "Ta fem minutter og lær bort hele grepet, ikke bare svaret",
+          "tekst": "Avtal kasseavløsning og vis hvordan bytte, kjøpsbevis og reklamasjon skilles",
           "tone": "raus",
-          "skills_practice": {"skill_id":"communication","activity_type":"teach_work_method","evidence_flag":"laerte_bort_metoden","delta":2},
           "effekter": {
             "relasjoner": {
-              "ny_kollega": 6,
-              "erfaren_kollega": 2
+              "ny_kollega": 1
             },
             "meters": {
-              "energi": -3,
-              "synlighet": 3
+              "energi": -1
             },
             "flagg": {
+              "retur_d2_opplaring_avtalt": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du spør hva kunden ønsker, og forklarer at en feilfri vare følger butikkens frivillige byttevilkår, mens reklamasjon gjelder en mulig mangel. Vikaren får tid til å lære kontrollen. Ingen vare, frist eller kassetransaksjon er ennå kontrollert.",
+          "laaserOpp": [
+            "d2_vikar_retur_02_kontroll"
+          ]
+        },
+        {
+          "id": "vis_raskt",
+          "tekst": "Gi et foreløpig råd om å kontrollere vilkårene, og gå tilbake til køen",
+          "tone": "effektiv",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 1
+            },
+            "meters": {
+              "energi": -1
+            },
+            "flagg": {
+              "viste_raskt": true,
+              "retur_d2_ufullstendig_veiledning": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sier at feilfri vare ikke automatisk gir rett til kontantrefusjon, og peker på bytterutinen. Vikaren har ennå ikke undersøkt kvittering, vare eller frist, og kunden venter fremdeles.",
+          "laaserOpp": [
+            "d2_vikar_retur_02_kort_svar"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d2_vikar_retur_02_kort_svar",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Kunden venter fortsatt – hvem følger opp?",
+      "tekst": "Vikaren sier: «Jeg vet at vi må sjekke byttereglene, men har ikke funnet vilkårene eller kontrollert kvitteringen. Kunden spør igjen om penger tilbake.» Det korte rådet ditt har ikke løst kundens sak og er heller ikke fullført opplæring.",
+      "valg": [
+        {
+          "id": "ta_gjennomgangen",
+          "tekst": "Avtal kasseavløsning og undersøk vilkårene sammen",
+          "konsekvensTekst": "Amir tar køen i noen minutter. Dere finner rutinearket for denne butikkens bytteordning og setter av tid til å kontrollere kjøpet; kunden har ennå ikke fått en avgjørelse.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_opplaring_avtalt": true,
+              "retur_d2_oppfolging_avtalt": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "d2_vikar_retur_02_kontroll"
+          ]
+        },
+        {
+          "id": "be_lene_ta_det",
+          "tekst": "Be Lene ta kunden, og dokumenter at du ikke har lært bort fremgangsmåten",
+          "konsekvensTekst": "Lene blir bedt om å overta, men har ikke bekreftet en beslutning. Du lar veiledningen stå som en uferdig oppgave, uten å tilskrive deg eller vikaren et gjennomført bytte.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_lene_forespurt": true,
+              "retur_d2_veiledning_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "ga_tilbake",
+          "tekst": "Gå tilbake til køen uten å avtale hvem som følger opp",
+          "konsekvensTekst": "Kunden og vikaren blir stående uten en avklart returprosedyre. Ingen vare er registrert eller byttet; opplæringen står åpen.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_ikke_fulgt_opp": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d2_vikar_retur_02_kontroll",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Kontroller butikkens vilkår og riktig vare",
+      "tekst": "I den fiktive butikken sier rutinearket at ubrukt kjøkkenutstyr med kjøpsbevis kan byttes innen 14 dager. Det gir ikke automatisk kontantrefusjon. Kvitteringen viser kjøp for fire dager siden. Kunden ønsker en matboks i en annen farge, og har sagt at varen ikke er defekt. Før bytte må vareidentitet, tilstand og pris på begge varene kontrolleres.",
+      "valg": [
+        {
+          "id": "sammenlign_kvittering_og_vare",
+          "tekst": "Vis vikaren kontroll av kjøpsdato, varenummer, tilstand og butikkens vilkår",
+          "konsekvensTekst": "Dere kontrollerer varenummer og kvittering, ser at matboksen er ubrukt og uskadd, og finner alternativ farge til samme pris innenfor butikkens oppgitte frist. Ingen kontantrefusjon er aktuell. Vilkår og vare er kontrollert, men Lene må fortsatt godkjenne akkurat dette byttet før kasseregistreringen.",
+          "effekter": {
+            "meters": {
+              "energi": -2
+            },
+            "flagg": {
+              "retur_d2_vilkar_kontrollert": true,
+              "retur_d2_vareidentitet_bekreftet": true,
+              "retur_d2_kunde_oensker_bytte": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "d2_vikar_retur_03_lene_godkjenner"
+          ]
+        },
+        {
+          "id": "gi_refusjon_uten_sjekk",
+          "tekst": "Foreslå kontantrefusjon uten å kontrollere vilkårene",
+          "konsekvensTekst": "Vikaren påpeker at kunden bare ønsker en annen farge. Du stopper forslaget før noen utbetaling gjennomføres. Kjøpsgrunnlaget og butikkens frivillige vilkår er ennå ikke kontrollert; saken må følges opp.",
+          "effekter": {
+            "meters": {
+              "integritet": -2
+            },
+            "flagg": {
+              "retur_d2_ubegrunnet_refusjon_stanset": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "be_lene_avklare",
+          "tekst": "Be Lene undersøke om kjøpet omfattes av butikkens byttevilkår",
+          "konsekvensTekst": "Du overfører konkrete opplysninger om kvittering, matboks og kundens ønske. Lene er forespurt, men har ikke bekreftet vilkår eller gjennomført byttet. Vikaren har ikke fullført opplæringen.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_lene_forespurt": true,
+              "retur_d2_vilkar_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d2_vikar_retur_03_lene_godkjenner",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Lene godkjenner dette konkrete byttet",
+      "tekst": "Lene ser kvitteringen, den ubrukte matboksen og vilkårene. Hun sier: «Dette er et frivillig bytte innenfor butikkens ordning, og alternativ farge koster det samme. Jeg godkjenner dette ene byttet. Vis vikaren hvordan begge varelinjene og byttebilaget føres. Generell returfullmakt gir jeg ikke nå.»",
+      "valg": [
+        {
+          "id": "noter_lenes_beslutning",
+          "tekst": "Registrer Lenes konkrete godkjenning og la vikaren gjøre den avtalte kasseregistreringen",
+          "konsekvensTekst": "Du dokumenterer at Lene godkjente dette ene byttet. Kunden og vikaren er klare, men selve byttet er ennå ikke utført. Dere går videre til registrering og kontroll.",
+          "effekter": {
+            "relasjoner": {
+              "butikksjef": 1
+            },
+            "flagg": {
+              "retur_d2_lene_godkjent": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "laaserOpp": [
+            "d2_vikar_retur_03_vikar_utforer"
+          ]
+        },
+        {
+          "id": "vent_pa_dokumentasjon",
+          "tekst": "La avgjørelsen stå uregistrert til grunnlaget er dokumentert",
+          "konsekvensTekst": "Lene har muntlig sagt ja, men du har ikke dokumentert beslutningen eller gitt vikaren grunnlag for å gjennomføre byttet. Ingen vare er levert ut, og opplæringen er åpen.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_lene_godkjenning_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d2_vikar_retur_03_vikar_utforer",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 9,
+      "tittel": "Vikaren gjennomfører et dokumentert bytte",
+      "tekst": "Lene har godkjent dette konkrete byttet, og den opprinnelige matboksen, kjøpet og de skriftlige vilkårene er kontrollert. Kunden har akseptert en annen farge til samme pris. Vikaren skal nå forklare prosedyren, registrere begge varelinjene og vise et korrekt byttebilag. Lenes godkjenning er ikke en generell returfullmakt for deg eller vikaren.",
+      "valg": [
+        {
+          "id": "veiled_og_kontroller_byttet",
+          "tekst": "La vikaren forklare reglene, registrere retur- og ny varelinje og kontroller bilaget",
+          "konsekvensTekst": "Vikaren forklarer at kunden bytter en feilfri vare etter butikkens frivillige vilkår, sjekker kvittering og varenummer, registrerer innlevert og utlevert matboks én gang hver og viser et byttebilag uten kontantutbetaling. Du kontrollerer bilaget og gir tilbakemelding. Nå er både kundens bytte og opplæringen faktisk fullført.",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 5,
+              "erfaren_kollega": 1
+            },
+            "meters": {
+              "energi": -2,
+              "synlighet": 2
+            },
+            "flagg": {
+              "retur_d2_vikar_forstod": true,
+              "retur_d2_bytte_gjennomfort": true,
               "laerte_bort_metoden": true
             },
             "threads": {
@@ -778,29 +2264,47 @@
               }
             }
           },
-          "konsekvensTekst": "Neste gang løser hun det selv — og du ser henne forklare det videre til helgevakten. Sånn sprer standarder seg."
+          "skills_practice": {
+            "skill_id": "communication",
+            "activity_type": "teach_work_method",
+            "evidence_flag": "laerte_bort_metoden",
+            "delta": 2
+          }
         },
         {
-          "id": "vis_raskt",
-          "tekst": "Vis raskt og gå tilbake til køen din",
-          "tone": "effektiv",
+          "id": "gjør_det_selv",
+          "tekst": "Utfør byttet selv uten å kontrollere om vikaren kan metoden",
+          "konsekvensTekst": "Du registrerer både innlevert og ny vare til samme pris og gir kunden dokumentasjon på byttet. Kundens oppgave er håndtert, men vikaren har verken forklart kontrollpunktene eller utført registreringen. Opplæringsløpet står åpent.",
           "effekter": {
-            "relasjoner": {
-              "ny_kollega": 2
-            },
             "meters": {
-              "energi": -1
+              "energi": -2
             },
             "flagg": {
-              "viste_raskt": true
+              "retur_d2_bytte_utfort_av_spiller": true,
+              "retur_d2_vikar_kontroll_venter": true
             },
             "threads": {
               "ny_kollega_og_tillit": {
-                "stepDelta": 1
+                "status": "escalated"
               }
             }
-          },
-          "konsekvensTekst": "Hun får svaret og du får køen. I morgen spør hun om det samme."
+          }
+        },
+        {
+          "id": "utsett_bytte",
+          "tekst": "Fortell at varen og vilkårene er kontrollert, men at byttet ennå ikke er registrert",
+          "konsekvensTekst": "Kunden får beskjed om det som er kontrollert, men ingen ny vare er utlevert og ingen byttetransaksjon utført. Vikaren har heller ikke vist at hun kan fullføre oppgaven. Saken forblir åpen.",
+          "effekter": {
+            "flagg": {
+              "retur_d2_bytte_venter": true,
+              "retur_d2_vikar_kontroll_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "escalated"
+              }
+            }
+          }
         }
       ]
     },
@@ -817,11 +2321,14 @@
         "flagg": {
           "hjalp_ny_kollega": {
             "finnes": false
+          },
+          "pant_amir_hjalp": {
+            "finnes": false
           }
         }
       },
       "tittel": "Amir tar en rolig prat",
-      "tekst": "Amir stiller seg ved siden av deg i en stille periode: «Vikaren spurte meg i går — etter at hun hadde stått fast i ti minutter. Ingen klarer gulvet alene her. Ikke du heller.»",
+      "tekst": "Amir tar en rolig prat: «Vikaren ble stående med pantekvitteringen i går uten at noen fullførte opplæringen. Når køen er lang, må vi avtale hvem som hjelper henne, ikke bare håpe at noen gjør det.»",
       "valg": [
         {
           "id": "ta_poenget",
@@ -873,6 +2380,60 @@
       ]
     },
     {
+      "id": "d2_formiddag_vikaren_etter_amir",
+      "threadId": "ny_kollega_og_tillit",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "conditions": {
+        "flagg": {
+          "pant_amir_hjalp": true
+        }
+      },
+      "tittel": "Hvem lærte vikaren å bruke pantekortet?",
+      "tekst": "Vikaren sier: «Amir viste meg pantekvitteringen i går. Takk for at du fikk tak i ham. Kan jeg få prøve å forklare rutinen selv i dag?» Du kan følge opp samhandlingen uten å påstå at du gjorde Amirs demonstrasjon.",
+      "valg": [
+        {
+          "id": "sporr_vikaren",
+          "tekst": "La vikaren beskrive kontrollpunktene og gi egen tilbakemelding",
+          "konsekvensTekst": "Vikaren forklarer butikk, beløp, engangsregistrering og kontroll av kasselinjen. Du bekrefter det hun kan og registrerer ditt eget oppfølgingsarbeid i dag, adskilt fra Amirs opplæring i går.",
+          "effekter": {
+            "relasjoner": {
+              "ny_kollega": 3,
+              "erfaren_kollega": 1
+            },
+            "flagg": {
+              "pant_vikar_forklarte_d2": true,
+              "pant_egen_oppfolging_d2": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "status": "completed"
+              }
+            }
+          }
+        },
+        {
+          "id": "takke_amir",
+          "tekst": "Takk Amir og avtal en senere gjennomgang med vikaren",
+          "konsekvensTekst": "Du dokumenterer at Amir hjalp vikaren i går, men har ennå ikke kontrollert hennes egen forståelse. Dere avtaler et senere øvingspunkt.",
+          "effekter": {
+            "flagg": {
+              "pant_oppfolging_d2_venter": true
+            },
+            "threads": {
+              "ny_kollega_og_tillit": {
+                "stepDelta": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "d2_ettermiddag_nokkelen",
       "threadId": "kunden_som_tror_du_bestemmer",
       "fase": "ettermiddag",
@@ -882,11 +2443,11 @@
       "tilgjengelighet": "start",
       "prioritet": 7,
       "tittel": "Nøkkelen til disken",
-      "tekst": "Lene legger en nøkkel på disken foran deg: «Låsbar disk, retur-fullmakt opp til 500, og ansvar for vikaren på kveldsskift. Vil du ha det? Det betyr at neste vanskelige kunde faktisk ER din.»",
+      "tekst": "Lene legger nøkkelen til den låsbare disken ved siden av returvilkårene. «Jeg tilbyr deg personlig fullmakt til å godkjenne ordinære returer opptil 500 kroner når vilkårene er oppfylt og kjøpet er dokumentert. Vi går gjennom vilkårene før du svarer. Ved tvil eller noe du ikke har lært, henter du meg. Reklamasjoner sender du fortsatt til meg for vurdering. Nøkkelen gir deg tilgang til disken, ikke ansvar for å stenge butikken eller endre bemanningen.»",
       "valg": [
         {
           "id": "ta_ansvaret",
-          "tekst": "Ta nøkkelen",
+          "tekst": "Gå gjennom vilkårene med Lene og ta imot fullmakten og nøkkelen",
           "tone": "modig",
           "effekter": {
             "relasjoner": {
@@ -898,7 +2459,9 @@
               "psyke": -2
             },
             "flagg": {
-              "tok_nokkelansvar": true
+              "tok_nokkelansvar": true,
+              "ekspeditor_returfullmakt_aktiv": true,
+              "ekspeditor_disknokkel_utlevert": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -906,7 +2469,7 @@
               }
             }
           },
-          "konsekvensTekst": "Nøkkelen er lett. Det den låser opp er ikke. Neste gang noen sier «det er vel du som bestemmer» — så er det faktisk litt sant."
+          "konsekvensTekst": "Dere leser returvilkårene sammen. Du gjentar hvilke returer du kan godkjenne, beløpsgrensen og når Lene må avgjøre saken. «Ja, den fullmakten gjelder deg fra nå», sier hun og gir deg disknøkkelen. Du kan fortsatt be om hjelp. Fullmakten gjelder ikke prismatch, reklamasjonsavgjørelser, stenging eller bemanning, og den kan ikke gis videre til vikaren. Ingen retur er behandlet i denne samtalen."
         },
         {
           "id": "en_uke_til",
@@ -917,11 +2480,11 @@
               "butikksjef": 1
             },
             "meters": {
-              "psyke": 3,
-              "synlighet": -2
+              "psyke": 3
             },
             "flagg": {
-              "ba_om_en_uke_til": true
+              "ba_om_en_uke_til": true,
+              "ekspeditor_returfullmakt_utsatt": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -929,11 +2492,11 @@
               }
             }
           },
-          "konsekvensTekst": "«Det er et godt svar,» sier Lene og tar nøkkelen tilbake. «De som griper alt med en gang, slipper ofte noe annet.»"
+          "konsekvensTekst": "«Da øver vi videre sammen denne uka», sier Lene. Hun beholder disknøkkelen og avgjør retursakene mens du får mer opplæring. Dere avtaler en ny gjennomgang før en eventuell fullmakt. Du har ikke tatt imot ansvaret ennå."
         },
         {
           "id": "del_med_vikaren",
-          "tekst": "Foreslå at du og vikaren deler kveldsansvaret",
+          "tekst": "Foreslå at du og vikaren kontrollerer dokumentasjonen sammen, mens Lene avgjør returene",
           "tone": "kollegial",
           "effekter": {
             "relasjoner": {
@@ -945,7 +2508,8 @@
               "synlighet": 2
             },
             "flagg": {
-              "delte_ansvaret": true
+              "delte_ansvaret": true,
+              "ekspeditor_dokumentkontroll_delt": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -953,7 +2517,7 @@
               }
             }
           },
-          "konsekvensTekst": "Lene hever et øyebryn — og noterer. «Det er sånn skiftledere tenker. Greit, dere deler.»"
+          "konsekvensTekst": "Lene bekrefter fordelingen: Du finner fram kjøpsbeviset, og vikaren sammenligner vare og dato med bilaget. Dere legger opplysningene fram for Lene, som fortsatt godkjenner returene. Hun beholder disknøkkelen. Dere har avtalt felles dokumentkontroll, ikke delt stengeansvar eller fått personlig returfullmakt. Selve kontrollarbeidet gjenstår når neste kunde kommer."
         }
       ]
     },
@@ -969,14 +2533,17 @@
       "conditions": {
         "threads": {
           "kunden_som_tror_du_bestemmer": "escalated"
+        },
+        "flagg": {
+          "boyde_regelen": true
         }
       },
       "tittel": "Kassadifferansen",
-      "tekst": "På vei hjem tikker det inn en melding fra Lene: «Kassa di fra i går stemmer ikke med bilagene. Vet du noe om det?» Du vet nøyaktig hva det er: returen du tok utenom.",
+      "tekst": "Etter skiftet skriver Lene: «Jeg ser en utbetaling fra kassen uten returbilag eller dokumentert grunnlag. Vet du hva som skjedde?» Du husker at du betalte kunden tilbake uten å avklare varen eller kjøpet. Meldingen er ikke en ferdig undersøkelse av differansen.",
       "valg": [
         {
           "id": "fortell_alt",
-          "tekst": "Svar ærlig nå — returen, kunden, hele situasjonen",
+          "tekst": "Forklar utbetalingen, kunden og manglende bilag, og be om kontroll",
           "tone": "ærlig",
           "effekter": {
             "relasjoner": {
@@ -987,15 +2554,19 @@
               "psyke": -2
             },
             "flagg": {
-              "fortalte_om_returen": true
+              "fortalte_om_returen": true,
+              "retur_avvik_meldt": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
-                "status": "completed"
+                "status": "active"
               }
             }
           },
-          "konsekvensTekst": "Lene svarer: «Takk for at du sa det selv. Neste gang: tilgodelapp. Da slipper vi begge denne meldingen.»"
+          "konsekvensTekst": "Du forteller hva du gjorde og hva som mangler. Lene bekrefter mottaket og sier at hun vil kontrollere kassen og returgrunnlaget. En ærlig rapport er ikke i seg selv en korrigert kassedifferanse.",
+          "laaserOpp": [
+            "retur_05_lene_undersoker_bilag"
+          ]
         },
         {
           "id": "la_ligge",
@@ -1015,7 +2586,100 @@
               }
             }
           },
-          "konsekvensTekst": "Du legger telefonen med skjermen ned. Differanser går ikke over. De venter."
+          "konsekvensTekst": "Du unnlater å forklare utbetalingen. Manglende returbilag og uavklart refusjonsgrunnlag er fortsatt dokumenterte restoppgaver."
+        }
+      ]
+    },
+    {
+      "id": "retur_05_lene_undersoker_bilag",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Lene finner grunnlaget for kasseavviket",
+      "tekst": "Lene svarer: «Jeg fant utbetalingen du fortalte om. Det finnes ikke et godkjent returbilag eller en vurdering av kjøpsgrunnlaget. Jeg har registrert hendelsen for avstemming. Kassen er ennå ikke bekreftet rettet.»",
+      "valg": [
+        {
+          "id": "registrer_undersokelsen",
+          "tekst": "Registrer Lenes funn og be om dokumentert sluttavstemming",
+          "effekter": {
+            "flagg": {
+              "retur_lene_overtatt": true,
+              "retur_bilag_undersokt": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du fører at Lene fant utbetalingen og har tatt ansvar for avstemmingen. Det er ikke det samme som at kassen er korrigert. Du venter på hennes kontrollresultat.",
+          "laaserOpp": [
+            "retur_06_avstemming_bekreftet"
+          ]
+        },
+        {
+          "id": "la_kontrollen_vente",
+          "tekst": "La Lenes undersøkelse stå som åpen uten å registrere sluttkontroll",
+          "effekter": {
+            "flagg": {
+              "retur_avstemming_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Lene har funnet utbetalingen, men avstemmingen er ikke ferdig eller dokumentert. Oppgaven forblir åpen."
+        }
+      ]
+    },
+    {
+      "id": "retur_06_avstemming_bekreftet",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 11,
+      "tittel": "Lene bekrefter avstemt kasse",
+      "tekst": "Lene melder: «Jeg har nå kontrollert kassebevegelsen mot utbetalingen og ført nødvendig dokumentasjon om hendelsen. Avstemmingen er fullført. Vi må fortsatt håndtere kundens eventuelle krav etter vanlige regler; den tidligere utbetalingen var ikke en reklamasjonsavgjørelse.»",
+      "valg": [
+        {
+          "id": "dokumenter_sluttresultat",
+          "tekst": "Registrer at Lene har utført og bekreftet avstemmingen",
+          "effekter": {
+            "flagg": {
+              "retur_avstemming_bekreftet": true,
+              "retur_kasse_rettet_av_lene": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer at Lene har avstemt kassen og dokumentert det konkrete avviket. Du oppgir hennes kontroll som kilde og markerer ikke at du selv utførte korrigeringen."
+        },
+        {
+          "id": "utsett_loggføring",
+          "tekst": "La resultatet stå uregistrert til dokumentasjonen er tilgjengelig",
+          "effekter": {
+            "flagg": {
+              "retur_sluttdokumentasjon_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du har fått beskjed om resultatet, men ikke ført den bekreftede avstemmingen i den lokale loggen. Restoppgaven står fortsatt åpen."
         }
       ]
     },
@@ -1029,62 +2693,51 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "«Du ga meg jo avslag sist»",
-      "tekst": "Stamkunden legger varene på båndet og smiler: «Du matcher jo prisen fra nettbutikken? Du ga meg vel avslag sist — eller?» Køen bak henne vokser, og alle hører på.",
+      "tekst": "Stamkunden legger en matboks på båndet. Kassa viser 179 kroner. Hun viser en nettannonse fra en annen butikk til 149: «Du matcher vel den? Jeg mener du ga meg avslag sist.» Det er hennes påstand, ikke bekreftet historikk. Du har ikke fullmakt til prismatch; returfullmakten endrer ikke det. Du kan undersøke dagens tilbud eller be Lene avgjøre saken. Køen vokser mens hun venter.",
       "valg": [
         {
           "id": "hold_regelen_vennlig",
-          "tekst": "Holde regelen, vennlig: «Det har jeg dessverre ikke fullmakt til»",
+          "tekst": "Forklar fullmaktsgrensen og be Lene avgjøre prismatch",
           "tone": "ryddig",
           "livsstil": [
             "legitimacy"
           ],
           "effekter": {
             "meters": {
-              "integritet": 3
-            },
-            "relasjoner": {
-              "stamkunde": -1
+              "integritet": 2
             },
             "flagg": {
-              "holdt_regelen": true
-            },
-            "threads": {
-              "kunden_som_tror_du_bestemmer": {
-                "stepDelta": 1
-              }
+              "d3_pris_lene_spurt": true
             }
           },
-          "konsekvensTekst": "Hun himler med øynene, men betaler. Køen bak så en som kunne reglene sine — det er også kundeservice."
+          "konsekvensTekst": "Du forteller kunden at du må spørre Lene, og sender henne vare, butikkpris og nettannonsen. Kunden venter på svaret. Du har ikke avslått prismatch på Lenes vegne eller avsluttet handelen.",
+          "laaserOpp": [
+            "d3_pris_02_lene_svarer"
+          ]
         },
         {
           "id": "tilby_det_du_kan",
-          "tekst": "Tilby det du faktisk KAN: medlemsrabatten hun ikke bruker",
+          "tekst": "Undersøk om dagens medlemspris gjelder varen og kunden",
           "tone": "løsningsorientert",
           "livsstil": [
             "craft"
           ],
           "effekter": {
             "meters": {
-              "integritet": 2,
-              "synlighet": 1
-            },
-            "relasjoner": {
-              "stamkunde": 3
+              "integritet": 2
             },
             "flagg": {
-              "fant_lovlig_losning": true
-            },
-            "threads": {
-              "kunden_som_tror_du_bestemmer": {
-                "stepDelta": 1
-              }
+              "d3_pris_medlemsvilkar_etterspurt": true
             }
           },
-          "konsekvensTekst": "«Oi, den visste jeg ikke om!» Hun sparer nesten det samme, og du ga ikke bort noe du ikke eier. Amir nikker fra nabokassa."
+          "konsekvensTekst": "Du henter fram butikkens tilbud og spør kunden om hun vil at du kontrollerer medlemsvilkårene. Hun sier ja. Du har ennå ikke kontrollert varen eller medlemsbeviset, og har ikke lovet et bestemt avslag.",
+          "laaserOpp": [
+            "d3_pris_02_medlemsvilkar"
+          ]
         },
         {
           "id": "gi_etter_igjen",
-          "tekst": "Gi etter — det er raskest, og køen venter",
+          "tekst": "Registrer 149 og avslutt salget uten å kontrollere eller spørre",
           "tone": "ettergivende",
           "livsstil": [
             "shortcut"
@@ -1093,11 +2746,10 @@
             "meters": {
               "integritet": -3
             },
-            "relasjoner": {
-              "stamkunde": 3
-            },
             "flagg": {
-              "ga_etter_igjen": true
+              "ga_etter_igjen": true,
+              "d3_pris_avslag_utfort": true,
+              "d3_pris_avvik_apent": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -1105,7 +2757,10 @@
               }
             }
           },
-          "konsekvensTekst": "Hun fikk avslaget. Nå VET hun at du bestemmer — og neste gang står hun der med noe dyrere."
+          "konsekvensTekst": "Du endrer 179 til 149. Kunden betaler, og kvitteringen viser avslaget på 30 kroner. Du har utført en priskorrigering uten dokumentert grunnlag eller fullmakt. Det må meldes og undersøkes. Dette beviser verken at du ga rabatt tidligere eller at kunden vil kreve mer neste gang.",
+          "laaserOpp": [
+            "d3_pris_02_meld_avslag"
+          ]
         }
       ]
     },
@@ -1117,12 +2772,12 @@
         }
       },
       "tittel": "Pausen som ga rom",
-      "tekst": "Lene ser at du holdt oversikten bedre etter den korte pausen i går. Hun vil vite hvordan dere skal få dette til når det blir travelt igjen.",
+      "tekst": "Lene og Amir går gjennom arbeidsfordelingen før ettermiddagsrushet. Du tok et par minutter i ro før gårsdagens økt. Nå må dere avklare avløsning i kassa dersom du trenger en kort pause i dagens rush. En foreslått pause er ikke en bekreftet avløsning.",
       "valg": [
         {
           "id": "foresla_felles_pauser",
-          "tekst": "Foreslå korte, planlagte pauser gjennom vakten",
-          "konsekvensTekst": "Lene prøver en enklere fordeling gjennom neste rush. Du har funnet en måte å ta ansvar uten å ignorere kapasiteten din.",
+          "tekst": "Avtal pausen med Lene og få Amir til å bekrefte avløsningen",
+          "konsekvensTekst": "Lene godkjenner fordelingen. Amir bekrefter at han tar over kassa når du varsler før pausen, og at dere overleverer uferdige kundesaker. Avløsningen er avtalt. Pausen er ikke tatt ennå.",
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -1143,8 +2798,8 @@
         },
         {
           "id": "behold_egen_rutine",
-          "tekst": "Fortsett med å varsle når belastningen blir for høy",
-          "konsekvensTekst": "Lene godtar at du sier fra tidlig. Du har fortsatt ansvaret for arbeidet ditt, men ikke for å tåle alt i stillhet.",
+          "tekst": "Avklar med Lene hvordan du varsler før kapasiteten blir for lav",
+          "konsekvensTekst": "Du beskriver når du mister oversikten. Lene ber deg varsle henne før du forlater kassa, så hun kan sørge for avløsning. Dere har avtalt hvem du kontakter; du er ikke avløst eller på pause nå.",
           "effekter": {
             "meters": {
               "integritet": 2
@@ -1164,7 +2819,7 @@
       "fase": "ettermiddag",
       "dag": 3,
       "visningstype": "samtale",
-      "avsender": "erfaren_kollega",
+      "avsender": "butikksjef",
       "tilgjengelighet": "start",
       "prioritet": 9
     },
@@ -1176,12 +2831,12 @@
         }
       },
       "tittel": "Et ansvar dere deler",
-      "tekst": "Amir fulgte opp støtten du ba om i går. Nå spør han om du kan gjøre det samme for vikaren før ettermiddagsrushet.",
+      "tekst": "Amir tok varetralla mens du betjente kassa i går. Nå spør vikaren om hylleetiketten for juice gjelder én eller halvannen liter. Hun må lære å sammenligne varenummer og størrelse før hun bruker etiketten som prisgrunnlag. Kassa må fortsatt være betjent mens noen viser henne.",
       "valg": [
         {
           "id": "hjelp_vikaren",
-          "tekst": "Del et konkret grep med vikaren",
-          "konsekvensTekst": "Vikaren løser neste oppgave selv. Den hjelpen du fikk i går blir til noe flere kan bruke.",
+          "tekst": "Få Amir til å avløse, vis kontrollen og kontroller vikarens egen sammenligning",
+          "konsekvensTekst": "Amir bekrefter avløsningen og tar kassa. Du viser vikaren varenummer og størrelse på enlitersjuicen. Deretter finner hun selv etiketten for samme nummer og én liter, og forklarer hvorfor etiketten for halvannen liter ikke gjelder. Du sammenligner varen og etiketten med henne før du går tilbake til kassa.",
           "effekter": {
             "meters": {
               "energi": -2,
@@ -1192,7 +2847,8 @@
               "erfaren_kollega": 2
             },
             "flagg": {
-              "ekspeditor_stotte_gitt_videre": true
+              "ekspeditor_stotte_gitt_videre": true,
+              "d3_stotte_vikar_egen_kontroll": true
             },
             "threads": {
               "arbeidsrytme_og_overskudd": {
@@ -1203,8 +2859,8 @@
         },
         {
           "id": "del_med_amir",
-          "tekst": "Be Amir organisere opplæringen mens du holder kassen",
-          "konsekvensTekst": "Amir tar opplæringen. Du setter en grense for egen kapasitet uten å overlate vikaren til seg selv.",
+          "tekst": "Avtal at Amir viser etikettkontrollen mens du betjener kassa",
+          "konsekvensTekst": "Amir bekrefter at han tar gjennomgangen med vikaren. Du blir i kassa. Fordelingen er avtalt, men du har ennå ikke fått vite hva hun gjorde eller forstod.",
           "effekter": {
             "meters": {
               "handlingsrom": 1,
@@ -1214,14 +2870,18 @@
               "erfaren_kollega": 1
             },
             "flagg": {
-              "ekspeditor_opplaering_fordelt": true
+              "ekspeditor_opplaering_fordelt": true,
+              "d3_stotte_amir_opplaering_venter": true
             },
             "threads": {
               "arbeidsrytme_og_overskudd": {
-                "status": "completed"
+                "status": "active"
               }
             }
-          }
+          },
+          "laaserOpp": [
+            "d3_stotte_02_amir_resultat"
+          ]
         }
       ],
       "threadId": "arbeidsrytme_og_overskudd",
@@ -1245,7 +2905,7 @@
         {
           "id": "si_fra_nu",
           "tekst": "Si fra og be om avlastning før du gjør en feil",
-          "konsekvensTekst": "Amir tar over kassen noen minutter. Du mister litt ansikt der og da, men unngår å love noe du ikke kan holde.",
+          "konsekvensTekst": "Du sier at du mister oversikten og ber om avløsning. Amir bekrefter at han tar kassa, og du gir ham de uferdige kundesakene før du går til side noen minutter. Avløsningen er gjennomført. Å si fra om kapasiteten din er en del av forsvarlig arbeid, ikke et tap av ansikt.",
           "effekter": {
             "meters": {
               "energi": 3,
@@ -1268,7 +2928,7 @@
         {
           "id": "press_igjen",
           "tekst": "Fortsett uten pause selv om du mister oversikten",
-          "konsekvensTekst": "Du kommer gjennom vakten, men feilrisikoen og utmattelsen blir større. Det er ikke en varig løsning å presse videre hver dag.",
+          "konsekvensTekst": "Du fortsetter å veksle mellom kassa og andre oppgaver uten å avklare avlastning. Du merker fortsatt at du mister oversikten. Det er ikke registrert en bestemt salgsfeil, men behovet for avlastning står åpent.",
           "effekter": {
             "meters": {
               "energi": -4,
@@ -1280,7 +2940,7 @@
             },
             "threads": {
               "arbeidsrytme_og_overskudd": {
-                "status": "completed"
+                "status": "escalated"
               }
             }
           }
@@ -1293,6 +2953,829 @@
       "avsender": "erfaren_kollega",
       "tilgjengelighet": "start",
       "prioritet": 9
+    },
+    {
+      "id": "prisfeil_03_undersok_etter_snarevei_d2",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 13,
+      "tittel": "39 kroner uten kontroll – følg opp",
+      "tekst": "Du tok 39 for kaffen for å få køen videre, uten å sjekke om etiketten gjaldt denne pakken. Handelen er gjennomført, men du kan fortsatt kontrollere varen og dokumentere avviket.",
+      "valg": [
+        {
+          "id": "sjekk_selv",
+          "tekst": "Avtal avløsning, sjekk vare og kampanjevilkår selv og dokumenter funnet",
+          "effekter": {
+            "meters": {
+              "energi": -2,
+              "integritet": 2
+            },
+            "flagg": {
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_sjekket_selv": true,
+              "eksp_life_pris_undersokelse_venter": false,
+              "eksp_life_pris_handel_rettet": true,
+              "eksp_life_pris_melding_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Amir tar kassa etter avtale. Du kontrollerer samme pakke, størrelse og gyldig kampanjeperiode: 39 var riktig. Nå kan du dokumentere at kunden fikk riktig beløp, men butikkens prisgrunnlag gjenstår.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik_d2"
+          ]
+        },
+        {
+          "id": "be_amir",
+          "tekst": "Be Amir kontrollere varen og vilkårene mens du tar neste kunde",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": 2
+            },
+            "flagg": {
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_sjekket_av_amir": true,
+              "eksp_life_pris_undersokelse_venter": false,
+              "eksp_life_pris_handel_rettet": true,
+              "eksp_life_pris_melding_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Amir kontrollerer samme pakke og bekrefter at tilbudet på 39 er gyldig. Den allerede gjennomførte handelen var riktig, men avviket må fremdeles meldes.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik_d2"
+          ]
+        },
+        {
+          "id": "la_sta_apent",
+          "tekst": "Si fra at prisavviket ikke er undersøkt og må overleveres",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_undersokelse_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du markerer at tilbud og vare ennå ikke er undersøkt. Du kan ikke beskrive verken handelen eller butikksystemet som kontrollert; oppgaven står uavklart."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "eksp_life_pris_undersokelse_venter": true
+        }
+      }
+    },
+    {
+      "id": "prisfeil_03_meld_avvik_d2",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 13,
+      "tittel": "Meld prisavviket, ikke bare kundens handel",
+      "tekst": "Kunden har betalt 39, og kontrollen har bekreftet tilbudet for samme pakke. Kassa viser fortsatt 49 som prisgrunnlag. Lene har ansvaret for retting av butikkens oppsett. Oppgi hvem som undersøkte varen, vareidentifikasjon, beløp og kampanjeperiode.",
+      "valg": [
+        {
+          "id": "send_notat",
+          "tekst": "Send et konkret avviksnotat til Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_meldt": true,
+              "eksp_life_pris_melding_venter": false
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sender Lene vare og variant, hyllepris 39, kassepris 49, gyldig kampanje og hvem som kontrollerte. Handelen er korrigert, men du har ennå ikke fått en mottaksbekreftelse.",
+          "laaserOpp": [
+            "prisfeil_04_lene_bekrefter_d2"
+          ]
+        },
+        {
+          "id": "utsett_melding",
+          "tekst": "Opplys at avviket fortsatt ikke er meldt, og overlever restoppgaven",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_melding_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du lar avviket stå som åpent og sier fra om den uferdige meldingen. Kunden fikk riktig pris, men neste kunde kan fremdeles møte feil prisgrunnlag."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "eksp_life_pris_melding_venter": true
+        }
+      }
+    },
+    {
+      "id": "prisfeil_04_lene_bekrefter_d2",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 13,
+      "tittel": "Lene bekrefter ansvar – kontrollen gjenstår",
+      "tekst": "Lene svarer på prisavviket: «Jeg har mottatt notatet om kaffen og tar ansvar for prisgrunnlaget. Jeg sier fra når endringen er lagt inn. Avtal hvem som kontrollerer samme vare etterpå.» Mottak er ikke det samme som utført retting.",
+      "valg": [
+        {
+          "id": "kontroller_selv",
+          "tekst": "Registrer Lenes bekreftelse og avtal egen etterkontroll",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_overtatt": true,
+              "eksp_life_pris_etterkontroll_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer at Lene har overtatt feilen og avtaler å kontrollere samme vare etter oppdateringen. Retting og etterkontroll er ennå ikke dokumentert utført.",
+          "laaserOpp": [
+            "prisfeil_05_sjekk_selv_d2"
+          ]
+        },
+        {
+          "id": "amir_kontrollerer",
+          "tekst": "Registrer Lenes bekreftelse og avtal etterkontroll med Amir",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_overtatt": true,
+              "eksp_life_pris_etterkontroll_delegert": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lene har overtatt feilen. Amir bekrefter at han tar etterkontrollen når prisgrunnlaget er oppdatert. Avtalen alene betyr ikke at kontrollen er gjennomført.",
+          "laaserOpp": [
+            "prisfeil_05_amir_sjekker_d2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_05_sjekk_selv_d2",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 13,
+      "tittel": "Kaffens nye pris – egen etterkontroll",
+      "tekst": "Lene melder nå at butikkens prisgrunnlag for den aktuelle kaffepakken er endret til 39. Det er hennes bekreftelse på rettingen. Din etterkontroll av samme pakke er en egen handling.",
+      "valg": [
+        {
+          "id": "kontroller_39",
+          "tekst": "Skann samme pakke, sammenlign etiketten og meld resultatet til Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_egen": true,
+              "eksp_life_pris_etterkontroll_verifisert": true,
+              "eksp_life_pris_etterkontroll_venter": false
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du skanner den aktuelle kaffepakken. Kassa viser nå 39, etiketten viser 39 og kampanjen gjelder. Du melder den utførte kontrollen til Lene og kan dokumentere at avviket er løst."
+        },
+        {
+          "id": "ikke_kontrollert",
+          "tekst": "Meld at prisen er endret, men at egen etterkontroll gjenstår",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Lenes melding bekrefter endringen, men du har ikke skannet pakken på nytt. Etterkontrollen blir stående som uutført og overleveres videre."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "eksp_life_pris_etterkontroll_venter": true
+        }
+      }
+    },
+    {
+      "id": "prisfeil_05_amir_sjekker_d2",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 13,
+      "tittel": "Amir melder etterkontroll",
+      "tekst": "Lene har meldt retting av prisgrunnlaget. Amir svarer: «Jeg skannet samme kaffepakke. Registrert pris og gyldig etikett viser begge 39.» Dette er Amirs kontroll, ikke spillerens.",
+      "valg": [
+        {
+          "id": "registrer_amir",
+          "tekst": "Registrer Amirs konkrete kontrollresultat hos Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_amir": true,
+              "eksp_life_pris_etterkontroll_verifisert": true,
+              "eksp_life_pris_etterkontroll_venter": false
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du gir Lene beskjed om at Amir utførte kontrollen og fant 39 i både kasse og på etikett. Resultatet kan dokumenteres som løst, med riktig kontrollør."
+        },
+        {
+          "id": "ekstra_egenkontroll",
+          "tekst": "Registrer Amirs resultat, men avtal også en egen ekstra kontroll",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_amir": true,
+              "eksp_life_pris_etterkontroll_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Amirs resultat er dokumentert og tilsier at feilen er rettet. Du vil selv kontrollere samme vare før du markerer din ekstra kontroll som fullført.",
+          "laaserOpp": [
+            "prisfeil_05_sjekk_selv_d2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_03_undersok_etter_snarevei_d3",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 3,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 13,
+      "tittel": "39 kroner uten kontroll – følg opp",
+      "tekst": "Du tok 39 for kaffen for å få køen videre, uten å sjekke om etiketten gjaldt denne pakken. Handelen er gjennomført, men du kan fortsatt kontrollere varen og dokumentere avviket.",
+      "valg": [
+        {
+          "id": "sjekk_selv",
+          "tekst": "Avtal avløsning, sjekk vare og kampanjevilkår selv og dokumenter funnet",
+          "effekter": {
+            "meters": {
+              "energi": -2,
+              "integritet": 2
+            },
+            "flagg": {
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_sjekket_selv": true,
+              "eksp_life_pris_undersokelse_venter": false,
+              "eksp_life_pris_handel_rettet": true,
+              "eksp_life_pris_melding_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Amir tar kassa etter avtale. Du kontrollerer samme pakke, størrelse og gyldig kampanjeperiode: 39 var riktig. Nå kan du dokumentere at kunden fikk riktig beløp, men butikkens prisgrunnlag gjenstår.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik_d3"
+          ]
+        },
+        {
+          "id": "be_amir",
+          "tekst": "Be Amir kontrollere varen og vilkårene mens du tar neste kunde",
+          "effekter": {
+            "relasjoner": {
+              "erfaren_kollega": 2
+            },
+            "flagg": {
+              "eksp_life_pris_vare_sjekket": true,
+              "eksp_life_pris_sjekket_av_amir": true,
+              "eksp_life_pris_undersokelse_venter": false,
+              "eksp_life_pris_handel_rettet": true,
+              "eksp_life_pris_melding_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "active"
+              }
+            }
+          },
+          "konsekvensTekst": "Amir kontrollerer samme pakke og bekrefter at tilbudet på 39 er gyldig. Den allerede gjennomførte handelen var riktig, men avviket må fremdeles meldes.",
+          "laaserOpp": [
+            "prisfeil_03_meld_avvik_d3"
+          ]
+        },
+        {
+          "id": "la_sta_apent",
+          "tekst": "Si fra at prisavviket ikke er undersøkt og må overleveres",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_undersokelse_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du markerer at tilbud og vare ennå ikke er undersøkt. Du kan ikke beskrive verken handelen eller butikksystemet som kontrollert; oppgaven står uavklart."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "eksp_life_pris_undersokelse_venter": true
+        }
+      }
+    },
+    {
+      "id": "prisfeil_03_meld_avvik_d3",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 3,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 13,
+      "tittel": "Meld prisavviket, ikke bare kundens handel",
+      "tekst": "Kunden har betalt 39, og kontrollen har bekreftet tilbudet for samme pakke. Kassa viser fortsatt 49 som prisgrunnlag. Lene har ansvaret for retting av butikkens oppsett. Oppgi hvem som undersøkte varen, vareidentifikasjon, beløp og kampanjeperiode.",
+      "valg": [
+        {
+          "id": "send_notat",
+          "tekst": "Send et konkret avviksnotat til Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_meldt": true,
+              "eksp_life_pris_melding_venter": false
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du sender Lene vare og variant, hyllepris 39, kassepris 49, gyldig kampanje og hvem som kontrollerte. Handelen er korrigert, men du har ennå ikke fått en mottaksbekreftelse.",
+          "laaserOpp": [
+            "prisfeil_04_lene_bekrefter_d3"
+          ]
+        },
+        {
+          "id": "utsett_melding",
+          "tekst": "Opplys at avviket fortsatt ikke er meldt, og overlever restoppgaven",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_melding_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Du lar avviket stå som åpent og sier fra om den uferdige meldingen. Kunden fikk riktig pris, men neste kunde kan fremdeles møte feil prisgrunnlag."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "eksp_life_pris_melding_venter": true
+        }
+      }
+    },
+    {
+      "id": "prisfeil_04_lene_bekrefter_d3",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 13,
+      "tittel": "Lene bekrefter ansvar – kontrollen gjenstår",
+      "tekst": "Lene svarer på prisavviket: «Jeg har mottatt notatet om kaffen og tar ansvar for prisgrunnlaget. Jeg sier fra når endringen er lagt inn. Avtal hvem som kontrollerer samme vare etterpå.» Mottak er ikke det samme som utført retting.",
+      "valg": [
+        {
+          "id": "kontroller_selv",
+          "tekst": "Registrer Lenes bekreftelse og avtal egen etterkontroll",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_overtatt": true,
+              "eksp_life_pris_etterkontroll_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du registrerer at Lene har overtatt feilen og avtaler å kontrollere samme vare etter oppdateringen. Retting og etterkontroll er ennå ikke dokumentert utført.",
+          "laaserOpp": [
+            "prisfeil_05_sjekk_selv_d3"
+          ]
+        },
+        {
+          "id": "amir_kontrollerer",
+          "tekst": "Registrer Lenes bekreftelse og avtal etterkontroll med Amir",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_overtatt": true,
+              "eksp_life_pris_etterkontroll_delegert": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Lene har overtatt feilen. Amir bekrefter at han tar etterkontrollen når prisgrunnlaget er oppdatert. Avtalen alene betyr ikke at kontrollen er gjennomført.",
+          "laaserOpp": [
+            "prisfeil_05_amir_sjekker_d3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prisfeil_05_sjekk_selv_d3",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 13,
+      "tittel": "Kaffens nye pris – egen etterkontroll",
+      "tekst": "Lene melder nå at butikkens prisgrunnlag for den aktuelle kaffepakken er endret til 39. Det er hennes bekreftelse på rettingen. Din etterkontroll av samme pakke er en egen handling.",
+      "valg": [
+        {
+          "id": "kontroller_39",
+          "tekst": "Skann samme pakke, sammenlign etiketten og meld resultatet til Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_egen": true,
+              "eksp_life_pris_etterkontroll_verifisert": true,
+              "eksp_life_pris_etterkontroll_venter": false
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du skanner den aktuelle kaffepakken. Kassa viser nå 39, etiketten viser 39 og kampanjen gjelder. Du melder den utførte kontrollen til Lene og kan dokumentere at avviket er løst."
+        },
+        {
+          "id": "ikke_kontrollert",
+          "tekst": "Meld at prisen er endret, men at egen etterkontroll gjenstår",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "escalated"
+              }
+            }
+          },
+          "konsekvensTekst": "Lenes melding bekrefter endringen, men du har ikke skannet pakken på nytt. Etterkontrollen blir stående som uutført og overleveres videre."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "eksp_life_pris_etterkontroll_venter": true
+        }
+      }
+    },
+    {
+      "id": "prisfeil_05_amir_sjekker_d3",
+      "threadId": "prisfeilen_i_koen",
+      "fase": "morgen",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 13,
+      "tittel": "Amir melder etterkontroll",
+      "tekst": "Lene har meldt retting av prisgrunnlaget. Amir svarer: «Jeg skannet samme kaffepakke. Registrert pris og gyldig etikett viser begge 39.» Dette er Amirs kontroll, ikke spillerens.",
+      "valg": [
+        {
+          "id": "registrer_amir",
+          "tekst": "Registrer Amirs konkrete kontrollresultat hos Lene",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_amir": true,
+              "eksp_life_pris_etterkontroll_verifisert": true,
+              "eksp_life_pris_etterkontroll_venter": false
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "status": "completed"
+              }
+            }
+          },
+          "konsekvensTekst": "Du gir Lene beskjed om at Amir utførte kontrollen og fant 39 i både kasse og på etikett. Resultatet kan dokumenteres som løst, med riktig kontrollør."
+        },
+        {
+          "id": "ekstra_egenkontroll",
+          "tekst": "Registrer Amirs resultat, men avtal også en egen ekstra kontroll",
+          "effekter": {
+            "flagg": {
+              "eksp_life_pris_grunnlag_rettet": true,
+              "eksp_life_pris_etterkontroll_amir": true,
+              "eksp_life_pris_etterkontroll_venter": true
+            },
+            "threads": {
+              "prisfeilen_i_koen": {
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Amirs resultat er dokumentert og tilsier at feilen er rettet. Du vil selv kontrollere samme vare før du markerer din ekstra kontroll som fullført.",
+          "laaserOpp": [
+            "prisfeil_05_sjekk_selv_d3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d3_pris_02_lene_svarer",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 25,
+      "tittel": "Lene avgjør nettprisen",
+      "tekst": "Lene svarer: «Jeg godkjenner ikke prismatch til 149 i denne saken. Butikkprisen er 179. Forklar kunden svaret og spør om hun fortsatt vil kjøpe. Et eventuelt medlemstilbud krever sin egen kontroll.» Dette er Lenes avgjørelse i spillbutikken, ikke en generell regel om alle nettpriser.",
+      "valg": [
+        {
+          "id": "forklar_og_gjennomfor",
+          "tekst": "Forklar Lenes svar og gjennomfør salget til 179 hvis kunden sier ja",
+          "konsekvensTekst": "Du forklarer hva Lene har avgjort. Kunden sier at hun vil kjøpe til 179. Du registrerer varen, får godkjent betaling og gir henne kvitteringen. Denne handelen er avklart; hennes påstand om en tidligere rabatt er fortsatt ikke bekreftet.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_lene_avklart": true,
+              "d3_pris_handel_avklart": true,
+              "holdt_regelen": true
+            }
+          }
+        },
+        {
+          "id": "avvent_kunden",
+          "tekst": "Forklar svaret, men la handelen vente mens kunden bestemmer seg",
+          "konsekvensTekst": "Du forklarer Lenes avgjørelse. Kunden vil tenke seg om. Varen er ikke betalt, og du registrerer at kundens valg gjenstår.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_lene_avklart": true,
+              "d3_pris_handel_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_pris_02_medlemsvilkar",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 25,
+      "tittel": "Varen og medlemsvilkårene",
+      "tekst": "Tilbudsbildet i denne fiktive butikken viser medlemspris 159 på matboks MB-04 denne uka. Det gjelder dokumentert medlemskap og riktig variant; ingen må melde seg inn for å få svar på prismatch. Kunden har sagt ja til at du kontrollerer hennes medlemsbevis. At tilbudet finnes, betyr ennå ikke at du har kontrollert hennes vare og bevis.",
+      "valg": [
+        {
+          "id": "kontroller_og_gjennomfor",
+          "tekst": "Sammenlign varen og medlemsbeviset, og gjennomfør kjøpet hvis vilkårene er oppfylt",
+          "konsekvensTekst": "Du finner MB-04 på varen og i tilbudsbildet, kontrollerer gyldig medlemsbevis og at tilbudet gjelder i dag. Kunden godtar 159. Du registrerer medlemsprisen, kontrollerer godkjent betaling og gir henne kvitteringen. Det er et kontrollert medlemstilbud, ikke prismatch til nettpris på 149.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_medlemsvilkar_kontrollert": true,
+              "d3_pris_medlemspris_brukt": true,
+              "d3_pris_handel_avklart": true,
+              "fant_lovlig_losning": true
+            }
+          }
+        },
+        {
+          "id": "be_lene_avgjore",
+          "tekst": "Be Lene avgjøre prismatch i stedet",
+          "konsekvensTekst": "Du lar være å bruke medlemsprisen og sender vare, butikkpris og nettannonse til Lene. Ingen rabatt eller betaling er registrert.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_lene_spurt": true
+            }
+          },
+          "laaserOpp": [
+            "d3_pris_02_lene_svarer"
+          ]
+        },
+        {
+          "id": "avvent_kunden",
+          "tekst": "La kunden bestemme seg før du går videre med kontroll og betaling",
+          "konsekvensTekst": "Kunden vil vente. Du lar varen og betalingen stå uavklart. Du har ikke undersøkt medlemsbeviset eller registrert en rabatt.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_handel_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_pris_02_meld_avslag",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 25,
+      "tittel": "Avslaget mangler grunnlag",
+      "tekst": "Kvitteringen viser MB-04 til 149 i stedet for registrert butikkpris 179. Avslaget på 30 er ikke godkjent av Lene eller knyttet til et kontrollert tilbud. Du må beskrive hva du faktisk gjorde; en melding retter ikke salget eller prisgrunnlaget.",
+      "valg": [
+        {
+          "id": "meld_avviket",
+          "tekst": "Send Lene varenummer, kvitteringsreferanse, begge priser og manglende fullmakt",
+          "konsekvensTekst": "Du sender Lene MB-04, kvitteringsreferansen,179 før korreksjon, 149 betalt og at du manglet godkjenning. Du ber henne undersøke transaksjonen. Meldingen er sendt; mottak og videre oppfølging gjenstår.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_avvik_meldt": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "d3_pris_03_lene_bekrefter"
+          ]
+        },
+        {
+          "id": "utsett_melding",
+          "tekst": "La avviket stå åpent uten å sende meldingen nå",
+          "konsekvensTekst": "Du sender ingen melding. Avslaget er utført, men ingen mottaker har overtatt oppfølgingen. Oppgaven står åpen.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_melding_utsatt": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_pris_03_lene_bekrefter",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 25,
+      "tittel": "Hvem følger opp prisavviket?",
+      "tekst": "Meldingen om avslaget ligger hos Lene. Du trenger et uttrykkelig svar om hvem som tar undersøkelsen videre. Selv et bekreftet mottak sier ikke om transaksjonen er kontrollert eller rettet.",
+      "valg": [
+        {
+          "id": "registrer_mottaket",
+          "tekst": "Be om bekreftelse og noter hva Lene faktisk overtar",
+          "konsekvensTekst": "Lene bekrefter at hun har mottatt MB-04, kvitteringsreferansen og prisforskjellen. Hun tar undersøkelsen av transaksjonen og fullmakten videre. Ingen retting er dokumentert ennå. Du registrerer mottakeren og lar selve prisavviket stå åpent.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_ansvar_bekreftet": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "avvent_svar",
+          "tekst": "La saken stå åpen uten bekreftet mottak",
+          "konsekvensTekst": "Du har ikke fått et uttrykkelig svar fra Lene. Den sendte meldingen står i historikken; ansvar og retting er fortsatt uavklart.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_mottak_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_stotte_02_amir_resultat",
+      "threadId": "arbeidsrytme_og_overskudd",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 25,
+      "tittel": "Hva fikk vikaren til?",
+      "tekst": "Amir kommer tilbake etter den avtalte gjennomgangen. At han tok oppgaven, er ikke alene et resultat om hva vikaren forstod. Du kan be ham beskrive kontrollen før du registrerer den som fulgt opp.",
+      "valg": [
+        {
+          "id": "kontroller_resultatet",
+          "tekst": "Be Amir beskrive vikarens egen kontroll og noter resultatet",
+          "konsekvensTekst": "Amir forteller at han viste varenummer og størrelse på enlitersjuicen. Vikaren fant så selv riktig etikett og forklarte forskjellen fra halvannen liter; han kontrollerte sammenligningen. Du noterer hans gjennomgang og kontroll. Dette er Amirs opplæring, ikke din egen demonstrasjon.",
+          "effekter": {
+            "flagg": {
+              "d3_stotte_amir_kontroll_bekreftet": true,
+              "d3_stotte_amir_opplaering_venter": false
+            },
+            "threads": {
+              "arbeidsrytme_og_overskudd": {
+                "status": "completed"
+              }
+            }
+          }
+        },
+        {
+          "id": "avvent_resultat",
+          "tekst": "La oppfølgingen stå åpen til resultatet er avklart",
+          "konsekvensTekst": "Du har fortsatt bare en bekreftet arbeidsfordeling. Hva vikaren gjorde og forstod er ikke avklart i oppfølgingen.",
+          "effekter": {
+            "flagg": {
+              "d3_stotte_amir_opplaering_venter": true
+            },
+            "threads": {
+              "arbeidsrytme_og_overskudd": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 }

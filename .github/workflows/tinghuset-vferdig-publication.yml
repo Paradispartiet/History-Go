@@ -1,0 +1,63 @@
+name: Tinghuset vFerdig – public Pages byte parity
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/places/politikk/oslo/places_politikk/tinghuset.json'
+      - 'data/runtime/place-open/tinghuset.json'
+      - 'reports/place-production/tinghuset-vferdig-20261111.json'
+      - '.github/workflows/tinghuset-vferdig-publication.yml'
+  workflow_dispatch:
+concurrency:
+  group: tinghuset-vferdig-parity-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  public-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify public front photo and Place-open against the committed main-equivalent bytes
+        run: |
+          mkdir -p artifacts
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import crypto from 'node:crypto';
+          import assert from 'node:assert/strict';
+          const base='https://paradispartiet.github.io/History-Go/';
+          const files=['bilder/places/tinghuset_front_portrait_2022.webp','data/runtime/place-open/tinghuset.json'];
+          const sha=buffer=>crypto.createHash('sha256').update(buffer).digest('hex');
+          const results=[];
+          for(const file of files){
+            const expected=sha(fs.readFileSync(file));
+            let status=null,actual='',error=null,body=null;
+            try{
+              const response=await fetch(base+file,{cache:'no-store',signal:AbortSignal.timeout(20000)});
+              status=response.status;
+              if(response.ok){body=Buffer.from(await response.arrayBuffer());actual=sha(body);}
+              else error='HTTP '+status;
+            }catch(e){error=String(e.message||e);}
+            results.push({file,url:base+file,http_status:status,sha256_source:expected,sha256_public:actual,exact_bytes:expected===actual&&status===200,error});
+            if(file.endsWith('.json')&&body){
+              const payload=JSON.parse(body);
+              assert.equal(payload?.place?.id,'tinghuset');
+              assert.equal(payload?.place?.frontImage,'bilder/places/tinghuset_front_portrait_2022.webp');
+              assert.deepEqual(payload?.place?.place_card_profile?.collection_ids,['people','objects','brands']);
+            }
+          }
+          const report={schema:'history_go_public_pages_byte_parity_v1',place_id:'tinghuset',checked_utc:new Date().toISOString(),status:results.every(r=>r.exact_bytes)?'PASS':'HOLD_NOT_PROVEN',results};
+          fs.writeFileSync('artifacts/tinghuset-pages-byte-parity.json',JSON.stringify(report,null,2)+'\n');
+          console.log(JSON.stringify(report,null,2));
+          assert.equal(report.status,'PASS','Public GitHub Pages still lacks exact 2022 photo/runtime bytes; do not claim deployed');
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tinghuset-pages-byte-parity-evidence
+          path: artifacts/tinghuset-pages-byte-parity.json
+          if-no-files-found: error

@@ -859,8 +859,10 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* Place.image: display the whole photo inside the hero, never zoom/crop it. */
+  object-fit: contain;
   object-position: center;
+  background: #15212b;
   opacity: 0;
   display: block;
   transition: opacity 180ms ease;
@@ -2429,3 +2431,13 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
 }
 
 
+
+/* PlaceCard shows the registered place-specific underbadge, not a generic icon. */
+.pc-underbadge-thumb {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 8px;
+  flex: 0 0 38px;
+}

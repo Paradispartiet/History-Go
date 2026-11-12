@@ -125,7 +125,10 @@ body.hg-app .hg-place-popup-v2 .hg-place-hero-image{
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  /* The legacy Place popup must not introduce a second crop. */
+  object-fit: contain;
+  object-position: center;
+  background: #15212b;
   transition: opacity .2s ease;
 }
 

@@ -60,6 +60,10 @@
     const badgeCompatibility = badgePage && !integratedBadgeRoute
       ? `<a class="fagverk-portal-compat" href="${esc(badgePage)}">Åpne eksisterende merkevisning</a>`
       : '';
+    const activeUnderbadgeCount = Object.keys(badge?.subBadgeImages || {}).length;
+    const underbadgeAction = subjectReady && activeUnderbadgeCount
+      ? `<a class="fagverk-portal-compat" href="${esc(subjectPage)}#fagverkIaProgresjon">Vis ${activeUnderbadgeCount} undermerker</a>`
+      : '';
 
     return `<article id="fag-${esc(id)}" class="fagverk-portal-card" data-subject="${esc(id)}">
       <div class="fagverk-portal-card-head">
@@ -67,7 +71,7 @@
         <div><h3>${esc(name)}</h3><div class="fagverk-portal-card-meta">${points} poeng · ${esc(tier)}</div></div>
       </div>
       <p class="fagverk-portal-card-description">${esc(description)}</p>
-      <div class="fagverk-portal-actions">${subjectAction}${badgeCompatibility}</div>
+      <div class="fagverk-portal-actions">${subjectAction}${underbadgeAction}${badgeCompatibility}</div>
     </article>`;
   }
 

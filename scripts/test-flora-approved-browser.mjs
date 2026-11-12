@@ -25,7 +25,19 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
-    {name:"prydpaere",label:"Prydpære",term:"Prydpære",path:"b09/82_prydpaere_v1.webp"},
+    {name:"svartsurbaer",label:"Svartsurbær",term:"Svartsurbær",path:"b09/94_svartsurbaer_v1.webp"},
+    {name:"hagtorn",label:"Hagtorn",term:"Hagtorn",path:"b09/93_hagtorn_v1.webp"},
+    {name:"blankmispel",label:"Blankmispel",term:"Blankmispel",path:"b09/92_blankmispel_v1.webp"},
+    {name:"hostberberis",label:"Høstberberis",term:"Høstberberis",path:"b09/91_hostberberis_v1.webp"},
+    {name:"kirsebaerlaurbaer",label:"Kirsebærlaurbær",term:"Kirsebærlaurbær",path:"b09/90_kirsebaerlaurbaer_v1.webp"},
+    {name:"legepestrot",label:"Legepestrot",term:"Legepestrot",path:"b09/89_legepestrot_v1.webp"},
+    {name:"russesvalerot",label:"Russesvalerot",term:"Russesvalerot",path:"b09/88_russesvalerot_v1.webp"},
+    {name:"kjempeslirekne",label:"Kjempeslirekne",term:"Kjempeslirekne",path:"b09/87_kjempeslirekne_v1.webp"},
+    {name:"aakersvineblom",label:"Åkersvineblom",term:"Åkersvineblom",path:"b09/86_aakersvineblom_v1.webp"},
+    {name:"sitkagran",label:"Sitkagran",term:"Sitkagran",path:"b09/85_sitkagran_v1.webp"},
+    {name:"tuja",label:"Tuja",term:"Tuja",path:"b09/84_tuja_v1.webp"},
+    {name:"sotmispel",label:"Søtmispel",term:"Søtmispel",path:"b09/83_sotmispel_v1.webp"},
+    {name:"prydpaere",label:"Prydpære",term:"Prydpære",path:"b09/82_prydpaere_v2.webp"},
     {name:"prydkirsebaer",label:"Prydkirsebær",term:"Prydkirsebær",path:"b09/81_prydkirsebaer_v1.webp"},
     {name:"platanlonn",label:"Platanlønn",term:"Platanlønn",path:"b09/80_platanlonn_v1.webp"},
     {name:"sibirsk-ertebusk",label:"Sibirsk ertebusk",term:"Sibirsk ertebusk",path:"b09/79_sibirsk_ertebusk_v1.webp"},
@@ -141,7 +153,20 @@ try{
     await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await page.locator("#natureSearch").fill(species.term||species.name);
     const title=species.label||species.term||species.name;
-    const card=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
+    const matching=page.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")});
+    await matching.first().waitFor();
+    let cardIndex=0;
+    if(species.name==="hagtorn"){
+      // Kratt and ved cards share the name "Hagtorn". Pick the flora card
+      // by its unique approved illustration instead of relying on sort order.
+      const variants=await matching.all();
+      const sources=await Promise.all(variants.map(async entry=>
+        await entry.locator("img").count() ? await entry.locator("img").getAttribute("src") : null
+      ));
+      cardIndex=sources.findIndex(src=>typeof src==="string"&&src.endsWith(species.path));
+      assert(cardIndex>=0,"Hagtorn flora card must use its own botanical original");
+    }
+    const card=matching.nth(cardIndex);
     await card.waitFor();
     if(species.name==="berberis"){
       const both=page.locator("#natureGrid").getByRole("button",{name:/^Berberis,/i});
@@ -180,7 +205,7 @@ try{
     await test.goto("http://127.0.0.1:"+port+"/finn-flora.html",{waitUntil:"domcontentloaded"});
     await test.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
     await test.locator("#natureSearch").fill(species.term||species.name);
-    const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).first();
+    const fallback=test.locator("#natureGrid").getByRole("button",{name:new RegExp("^"+title+",","i")}).nth(cardIndex);
     await fallback.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:20000});
     assert.equal(await fallback.locator("img").count(),0);
     await fallback.click();

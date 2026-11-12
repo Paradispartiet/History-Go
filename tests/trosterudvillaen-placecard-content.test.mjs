@@ -1,0 +1,70 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {readFileSync} from "node:fs";
+const read=path=>JSON.parse(readFileSync(new URL("../"+path,import.meta.url),"utf8"));
+const raw=path=>readFileSync(new URL("../"+path,import.meta.url),"utf8");
+const id="trosterudvillaen";
+const place=read("data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_08/trosterudvillaen.json");
+const runtime=read("data/runtime/place-open/trosterudvillaen.json");
+test("Trosterudvillaen: documentary photograph preserved, a separate original portrait front",()=>{
+  assert.equal(place.id,id);
+  assert.equal(place.imageMeta.license,"CC BY-SA 4.0");
+  assert.ok(place.image.includes("Trosterudvillaen.jpg"));
+  assert.equal(place.frontImage,"bilder/illustrasjoner/places/trosterudvillaen_front_editorial.svg");
+  assert.notEqual(place.image,place.frontImage);
+  assert.equal("cardImage" in place,false);
+  assert.equal("cardImage" in runtime.place,false);
+  assert.equal(runtime.place.frontImage,place.frontImage);
+  const image=raw(place.frontImage);
+  assert.ok(image.includes('width="900" height="1200"'));
+  assert.ok(image.includes("REDAKSJONELL ILLUSTRASJON"));
+  assert.ok(image.includes("IKKE FOTO"));
+  assert.equal(place.frontImageMeta.mediaType,"editorial_illustration");
+});
+test("Trosterudvillaen: three genuine People; Aimée is symbolic, never an invented portrait",()=>{
+  assert.deepEqual(place.related_people_ids,["henrik_dedichen","kristian_biong","aimee_sommerfelt"]);
+  const person=read("data/people/litteratur/oslo/trosterudvillaen/aimee_sommerfelt.json")[0];
+  assert.equal(person.image,"bilder/illustrasjoner/people/aimee_sommerfelt_historygo_editorial.svg");
+  assert.equal(person.cardImage,person.image);
+  assert.equal(person.imageMeta.mediaType,"editorial_illustration");
+  assert.ok(person.imageMeta.disclosure.includes("ikke et historisk portrett"));
+  assert.ok(raw(person.image).includes("IKKE ET HISTORISK PORTRETT"));
+  assert.equal(runtime.people.length,3);
+  assert.equal(runtime.people.find(x=>x.id===person.id).image,person.image);
+});
+test("Trosterudvillaen: two source-backed historical events with distinct original visuals",()=>{
+  assert.deepEqual(place.place_card_profile.collection_ids,["people","historical_events"]);
+  assert.equal(place.historical_events.length,2);
+  assert.deepEqual(place.historical_events.map(x=>x.year),[1901,2024]);
+  assert.deepEqual(runtime.place.historical_events,place.historical_events);
+  assert.equal(place.collection_audit.candidates.objects.status,"BEGRUNNET N/A");
+  assert.equal(place.collection_audit.candidates.brands.status,"BEGRUNNET N/A");
+  for(const evt of place.historical_events){
+    assert.equal(evt.type,"historical_event");
+    assert.equal(evt.placeSpecific,true);
+    assert.ok(evt.source_urls.length>=2);
+    assert.ok(evt.locationBoundary.length>=70);
+    assert.ok(raw(evt.image).includes("IKKE ET HISTORISK FOTOGRAFI"));
+    assert.equal(evt.imageMeta.mediaType,"editorial_illustration");
+  }
+});
+test("Trosterudvillaen: sourced Story and Lexicon, five terms and four readings, old quiz retained",()=>{
+  const story=read("data/stories/stories_trosterudvillaen.json");
+  const lex=read("data/leksikon/places/oslo/historie/leksikon_trosterudvillaen.json");
+  const lang=read("data/leksikon/sprak/places/europe/norway/oslo/trosterudvillaen.json");
+  const les=read("data/lesespor/oslo/lesespor_oslo_historie.json").items.filter(x=>x.place_ids?.includes(id));
+  const quiz=read("data/quiz/historie/trosterudvillaen_sets.json");
+  const card=read("data/quizcards/historie/trosterudvillaen_quizcard_v1.json");
+  assert.equal(story.length,1);assert.equal(story[0].quality_profile,"episode_v1");
+  assert.equal(lex.length,2);
+  assert.deepEqual(lex[0].chronology.map(x=>x.year),[1901,1933,1964,1966,2006,2024]);
+  assert.equal(lang.entries.length,5);
+  assert.equal(les.length,4);
+  assert.deepEqual(runtime.stories,story);
+  assert.deepEqual(runtime.leksikon,lex);
+  assert.deepEqual(runtime.language,lang);
+  assert.deepEqual(runtime.lesespor,les);
+  assert.equal(quiz.sets.reduce((n,x)=>n+x.questions.length,0),21);
+  assert.equal(card.cards[0].questions.length,10);
+  assert.equal(place.fagverk.status,"curated");
+});

@@ -4,7 +4,7 @@
    ============================================================ */
 
 // New cache namespace invalidates previously cached PlaceCard CSS/JS on activation.
-const SW_VERSION = "hg-sw-2026-11-02-placecard-v1.3.159";
+const SW_VERSION = "hg-sw-2026-11-12-place-image-fit2-naturvitenskap-v2-underbadge-art-v1-quiz-scroll-inset1-badges-loader-sync1";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -33,6 +33,7 @@ const PRECACHE_URLS = [
   "css/nearby.css",
   "css/overlay.css",
   "css/placeCard.css",
+  "css/place-image-framing.css",
   "css/popups.css",
   "css/profile.css",
   "css/profile-dashboard.css",

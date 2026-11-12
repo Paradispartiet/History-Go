@@ -1,0 +1,864 @@
+#!/usr/bin/env node
+// Targeted Chromium acceptance for the original ekspeditør Life Story, not
+// the normal jobmail runtime. Dev URL selects a role without granting a job.
+const assert = require('node:assert/strict');
+const { spawn } = require('node:child_process');
+const { mkdirSync, writeFileSync } = require('node:fs');
+const path = require('node:path');
+const { chromium } = require('playwright');
+
+const origin = 'http://127.0.0.1:4187';
+const output = path.resolve('reports/civication-ekspeditor-lifestory-browser');
+mkdirSync(output, { recursive: true });
+const server = spawn('python3', ['-m', 'http.server', '4187', '--bind', '127.0.0.1'], { stdio: 'ignore' });
+let serverError = null;
+server.on('error', error => { serverError = error; });
+
+async function waitForServer() {
+  const limit = Date.now() + 20000;
+  while (Date.now() < limit) {
+    if (serverError) throw serverError;
+    if (server.exitCode !== null) throw new Error('HTTP server stopped: ' + server.exitCode);
+    try { if ((await fetch(origin + '/Civication.html')).ok) return; } catch {}
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  throw new Error('Civication static test server did not start');
+}
+
+async function play(browser, label, viewport, choices, expected) {
+  const context = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: true });
+  const page = await context.newPage();
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+  const trace = [];
+  try {
+    await page.goto(origin + '/Civication.html?lifestoryRole=ekspeditor', { waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => {
+      const app = globalThis;
+      return app.CivicationLifestoryState?.load?.()?.rolle === 'ekspeditor'
+        && !!app.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId;
+    }, null, { timeout: 90000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    await page.locator('.civi-lifestory-scene').first().waitFor({ state: 'visible', timeout: 20000 });
+    const started = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.equal(started.arkiv.length, 0, 'fresh context begins without a seeded story');
+
+    let arrivedAtPrice = false;
+    let finalScene = null;
+    for (let n = 0; n < 45; n++) {
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': a playable scene must be available');
+      if (sceneId === 'prisfeil_02_koen') arrivedAtPrice = true;
+      if (sceneId === 'prisfeil_05_amir_sjekker') {
+        const sender = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(sender, /Fra Amir/, label + ': Amir must be named as sender');
+        assert.doesNotMatch(sender, /Fra Lene/, label + ': Lene did not perform this check');
+      }
+      const buttons = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice]:not([disabled])');
+      const availableCount = await buttons.count();
+      assert.ok(availableCount > 0, label + ': visible enabled choice in ' + sceneId);
+      const wanted = choices[sceneId];
+      const button = wanted
+        ? page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice="' + wanted + '"]:not([disabled])')
+        : buttons.first();
+      assert.equal(await button.count(), 1, label + ': requested choice exists ' + sceneId + '/' + wanted);
+      await button.scrollIntoViewIfNeeded();
+      const rect = await button.boundingBox();
+      assert.ok(rect && rect.width > 0 && rect.height > 0, label + ': button must have visible geometry');
+      assert.ok(rect.x >= -2 && rect.x + rect.width <= viewport.width + 2,
+        label + ': choice must not overflow horizontally in ' + sceneId);
+      if (sceneId === 'prisfeil_02_koen' || sceneId === expected.finalScene) {
+        await page.screenshot({ path: path.join(output, label + '-' + sceneId + '.png'), fullPage: true });
+      }
+      const before = await page.evaluate(() => globalThis.CivicationLifestoryState.load().arkiv.length);
+      const selected = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(previous => globalThis.CivicationLifestoryState.load().arkiv.length === previous + 1,
+        before, { timeout: 20000 });
+      const after = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.equal(after.arkiv.at(-1).sceneId, sceneId);
+      assert.equal(after.arkiv.at(-1).valgId, selected);
+      trace.push([sceneId, selected]);
+      if (sceneId === expected.finalScene) { finalScene = sceneId; break; }
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    }
+    assert.ok(arrivedAtPrice, label + ': the original price encounter must be rendered');
+    assert.equal(finalScene, expected.finalScene, label + ': price follow-up must terminate visibly');
+    const completed = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.equal(completed.tidligereValg.eksp_life_pris_etterkontroll_verifisert === true, expected.verified);
+    assert.equal(completed.threadState.prisfeilen_i_koen.status, expected.status);
+    assert.ok(completed.arkiv.some(x => x.sceneId === 'prisfeil_04_lene_bekrefter'),
+      label + ': Lene acceptance is an actual archived player step');
+    if (expected.finalScene === 'prisfeil_05_amir_sjekker') {
+      assert.equal(completed.tidligereValg.eksp_life_pris_etterkontroll_amir, true,
+        label + ': Amir must be named as the person who actually checked');
+      assert.notEqual(completed.tidligereValg.eksp_life_pris_etterkontroll_egen, true,
+        label + ': do not fabricate a personal check after Amir');
+    }
+    const snapshot = completed.arkiv.map(x => [x.sceneId, x.valgId]);
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(), null,
+      { timeout: 90000 });
+    const reloaded = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.deepEqual(reloaded.arkiv.map(x => [x.sceneId, x.valgId]), snapshot,
+      label + ': reload preserves only actual played steps');
+    assert.equal(reloaded.tidligereValg.eksp_life_pris_etterkontroll_verifisert === true, expected.verified);
+    assert.deepEqual(pageErrors, [], label + ': browser has no uncaught JavaScript errors');
+    await page.screenshot({ path: path.join(output, label + '-after-reload.png'), fullPage: true });
+    const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+    if (await popup.isVisible().catch(() => false)) await popup.click();
+    await page.locator('.civi-footer button[data-category="minDag"]').click();
+    for (const name of ['history', 'full-history']) {
+      const details = page.locator('[data-lifestory-disclosure="' + name + '"]').first();
+      assert.equal(await details.count(), 1, label + ': actual history disclosure exists');
+      if (!(await details.evaluate(el => el.open))) await details.locator(':scope > summary').click();
+    }
+    const symposium = page.locator('[data-lifestory-symposium]').first();
+    const normalize = text => String(text).replace(/\s+/g, ' ').trim();
+    const shown = normalize(await symposium.innerText());
+    for (const record of reloaded.arkiv.filter(row => row.threadId === 'prisfeilen_i_koen')) {
+      assert.ok(shown.includes(normalize(record.valgTekst)), label + ': visible Symposium contains actual choice ' + record.sceneId);
+      assert.ok(shown.includes(normalize(record.konsekvensTekst)), label + ': visible Symposium contains actual consequence ' + record.sceneId);
+    }
+    if (expected.finalScene === 'prisfeil_05_amir_sjekker') {
+      assert.ok(shown.includes('Amir utførte kontrollen'), label + ': visible history attributes the check to Amir');
+    }
+    await symposium.scrollIntoViewIfNeeded();
+    await page.screenshot({ path: path.join(output, label + '-symposium.png'), fullPage: true });
+    const lastPrice = reloaded.arkiv.filter(row => row.threadId === 'prisfeilen_i_koen').at(-1);
+    const lastEntry = symposium.locator('ol > li').filter({ hasText: lastPrice.valgTekst }).last();
+    await lastEntry.scrollIntoViewIfNeeded();
+    await lastEntry.screenshot({ path: path.join(output, label + '-symposium-price-result.png') });
+    return { label, viewport, finalScene, verified: expected.verified, status: expected.status, trace,
+      visibleSymposiumChecked: true };
+  } finally {
+    await context.close();
+  }
+}
+
+
+async function playStock(browser, label, viewport, choices, expected) {
+  const context = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: true });
+  const page = await context.newPage();
+  const pageErrors = [];
+  const trace = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+  try {
+    await page.goto(origin + '/Civication.html?lifestoryRole=ekspeditor', { waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.rolle === 'ekspeditor'
+      && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId, null, { timeout: 90000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    assert.equal((await page.evaluate(() => globalThis.CivicationLifestoryState.load())).arkiv.length, 0,
+      label + ': start without injected progress');
+    let stockSeen = false;
+    let last = null;
+    for (let n = 0; n < 65; n++) {
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': a visible scene exists');
+      if (sceneId === 'varen_01_som_ikke_finnes') stockSeen = true;
+      if (['varen_02_amir_teller', 'varen_07_amir_etterkontroll'].includes(sceneId)) {
+        const kicker = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(kicker, /Fra Amir/, label + ': stock check is attributed to Amir');
+      }
+      if (sceneId === 'varen_05_lene_bekrefter') {
+        const kicker = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(kicker, /Fra Lene/, label + ': receipt belongs to Lene');
+      }
+      const enabled = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice]:not([disabled])');
+      const wanted = choices[sceneId];
+      const button = wanted
+        ? page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice="' + wanted + '"]:not([disabled])')
+        : enabled.first();
+      assert.equal(await button.count(), 1, label + ': actual selectable choice ' + sceneId + '/' + wanted);
+      await button.scrollIntoViewIfNeeded();
+      const rect = await button.boundingBox();
+      assert.ok(rect && rect.width > 0 && rect.height > 0, label + ': visible choice geometry');
+      assert.ok(rect.x >= -2 && rect.x + rect.width <= viewport.width + 2,
+        label + ': choice never overflows horizontally in ' + sceneId);
+      if (sceneId === 'varen_01_som_ikke_finnes' || sceneId === expected.finalScene) {
+        await page.screenshot({ path: path.join(output, label + '-' + sceneId + '.png'), fullPage: true });
+      }
+      const before = await page.evaluate(() => globalThis.CivicationLifestoryState.load().arkiv.length);
+      const selected = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(n => globalThis.CivicationLifestoryState.load().arkiv.length === n + 1,
+        before, { timeout: 20000 });
+      const saved = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.equal(saved.arkiv.at(-1).sceneId, sceneId);
+      assert.equal(saved.arkiv.at(-1).valgId, selected);
+      trace.push([sceneId, selected]);
+      if (sceneId === expected.finalScene) { last = sceneId; break; }
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    }
+    assert.ok(stockSeen, label + ': actual stock encounter played via browser controls');
+    assert.equal(last, expected.finalScene, label + ': intended stock branch finished');
+    const final = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.equal(final.threadState.varen_som_ikke_finnes.status, expected.status);
+    assert.equal(final.tidligereValg.lager_etterkontroll_verifisert === true, expected.verified);
+    assert.equal(final.tidligereValg.lager_etterkontroll_amir === true, expected.amir === true,
+      label + ': only an actually recorded Amir check counts');
+    if (expected.verified) {
+      assert.equal(final.tidligereValg.lager_avvik_meldt, true);
+      assert.equal(final.tidligereValg.lager_ansvar_overtatt, true);
+    }
+    const beforeReload = final.arkiv.map(row => [row.sceneId, row.valgId]);
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(), null,
+      { timeout: 90000 });
+    const afterReload = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.deepEqual(afterReload.arkiv.map(row => [row.sceneId, row.valgId]), beforeReload,
+      label + ': reload cannot invent or lose a stock task');
+    assert.equal(afterReload.tidligereValg.lager_etterkontroll_verifisert === true, expected.verified);
+    assert.deepEqual(pageErrors, [], label + ': no browser runtime error');
+    await page.screenshot({ path: path.join(output, label + '-stock-after-reload.png'), fullPage: true });
+    return { label, viewport, last, status: expected.status, verified: expected.verified, trace };
+  } finally {
+    await context.close();
+  }
+}
+
+async function playReturn(browser, label, viewport, choices, expected) {
+  const context = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: true });
+  const page = await context.newPage();
+  const errors = [];
+  const trace = [];
+  page.on('pageerror', error => errors.push(error.message));
+  try {
+    await page.goto(origin + '/Civication.html?lifestoryRole=ekspeditor', { waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.rolle === 'ekspeditor'
+      && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId,
+      null, { timeout: 90000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    const initial = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.equal(initial.arkiv.length, 0, label + ': no preloaded history');
+    let reachedReturn = false;
+    let last = null;
+    for (let n = 0; n < 90; n++) {
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': current scene must be playable');
+      if (sceneId === 'retur_01_uten_kvittering') reachedReturn = true;
+      if (['retur_03_lene_tar_saken', 'retur_04_lene_undersokte_varen'].includes(sceneId)) {
+        const title = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(title, /Fra Lene/, label + ': real manager owns her decisions');
+      }
+      const available = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice]:not([disabled])');
+      const selected = choices[sceneId];
+      const button = selected
+        ? page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice="' + selected + '"]:not([disabled])')
+        : available.first();
+      assert.equal(await button.count(), 1, label + ': a real enabled choice exists: ' + sceneId + '/' + selected);
+      await button.scrollIntoViewIfNeeded();
+      const rect = await button.boundingBox();
+      assert.ok(rect && rect.width > 0 && rect.height > 0, label + ': choice has visible dimensions');
+      assert.ok(rect.x >= -2 && rect.x + rect.width <= viewport.width + 2,
+        label + ': no horizontal overflow at ' + sceneId);
+      if (sceneId === 'retur_01_uten_kvittering' || sceneId === expected.finalScene) {
+        await page.screenshot({ path: path.join(output, label + '-' + sceneId + '.png'), fullPage: true });
+      }
+      const before = await page.evaluate(() => globalThis.CivicationLifestoryState.load().arkiv.length);
+      const choiceId = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(beforeCount => globalThis.CivicationLifestoryState.load().arkiv.length === beforeCount + 1,
+        before, { timeout: 20000 });
+      const current = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.equal(current.arkiv.at(-1).sceneId, sceneId);
+      assert.equal(current.arkiv.at(-1).valgId, choiceId);
+      trace.push([sceneId, choiceId]);
+      if (sceneId === expected.finalScene) { last = sceneId; break; }
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    }
+    assert.ok(reachedReturn, label + ': original return scene actually played');
+    assert.equal(last, expected.finalScene);
+    const finished = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    const flags = finished.tidligereValg;
+    for (const [name, yes] of Object.entries(expected.flags)) {
+      assert.equal(flags[name] === true, yes, label + ': fact ' + name + ' is recorded only when executed');
+    }
+    if (expected.status) assert.equal(finished.threadState.kunden_som_tror_du_bestemmer.status, expected.status);
+    const snapshot = finished.arkiv.map(row => [row.sceneId, row.valgId]);
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(),
+      null, { timeout: 90000 });
+    const reloaded = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.deepEqual(reloaded.arkiv.map(row => [row.sceneId, row.valgId]), snapshot,
+      label + ': reload cannot invent a return decision');
+    for (const [name, yes] of Object.entries(expected.flags)) {
+      assert.equal(reloaded.tidligereValg[name] === true, yes, label + ': durable ' + name);
+    }
+    assert.deepEqual(errors, [], label + ': browser runtime must stay error-free');
+    await page.screenshot({ path: path.join(output, label + '-return-after-reload.png'), fullPage: true });
+    return { label, viewport, last, flags: expected.flags, trace };
+  } finally {
+    await context.close();
+  }
+}
+
+
+async function playVikar(browser, label, viewport, choices, expected) {
+  const context = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: true });
+  const page = await context.newPage();
+  const errors = [];
+  const trace = [];
+  page.on('pageerror', error => errors.push(error.message));
+  try {
+    await page.goto(origin + '/Civication.html?lifestoryRole=ekspeditor', { waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.rolle === 'ekspeditor'
+      && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId,
+      null, { timeout: 90000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    assert.equal((await page.evaluate(() => globalThis.CivicationLifestoryState.load())).arkiv.length, 0,
+      label + ': no test-only seeded progress');
+
+    let reachedVikar = false;
+    let last = null;
+    for (let n = 0; n < 55; n++) {
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': normal Life Story scene available');
+      if (sceneId === 'ny_kollega_01_midt_i_koen') reachedVikar = true;
+      if (sceneId === 'ny_kollega_02_amir_bekrefter') {
+        const kicker = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(kicker, /Fra Amir/, label + ': actual trainer must be Amir');
+      }
+      const wanted = choices[sceneId];
+      const button = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
+        + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])').first();
+      assert.equal(await button.count(), 1, label + ': enabled choice at ' + sceneId);
+      await button.scrollIntoViewIfNeeded();
+      const rect = await button.boundingBox();
+      assert.ok(rect && rect.width > 0 && rect.height > 0, label + ': visible option at ' + sceneId);
+      assert.ok(rect.x >= -2 && rect.x + rect.width <= viewport.width + 2,
+        label + ': no horizontal overflow at ' + sceneId);
+      if (sceneId === 'ny_kollega_01_midt_i_koen' || sceneId === expected.finalScene) {
+        await page.screenshot({ path: path.join(output, label + '-' + sceneId + '.png'), fullPage: true });
+      }
+      const before = await page.evaluate(() => globalThis.CivicationLifestoryState.load().arkiv.length);
+      const choiceId = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(n => globalThis.CivicationLifestoryState.load().arkiv.length === n + 1,
+        before, { timeout: 20000 });
+      const state = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.equal(state.arkiv.at(-1).sceneId, sceneId);
+      assert.equal(state.arkiv.at(-1).valgId, choiceId);
+      trace.push([sceneId, choiceId]);
+      if (sceneId === expected.finalScene) { last = sceneId; break; }
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    }
+    assert.ok(reachedVikar, label + ': canonical vikar scene must be rendered');
+    assert.equal(last, expected.finalScene, label + ': correct outcome scene played');
+    const finished = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    for (const [flag, shouldBeTrue] of Object.entries(expected.flags)) {
+      assert.equal(finished.tidligereValg[flag] === true, shouldBeTrue,
+        label + ': do not credit an unperformed act: ' + flag);
+    }
+    if (expected.status) assert.equal(finished.threadState.ny_kollega_og_tillit.status, expected.status);
+    const snapshot = finished.arkiv.map(row => [row.sceneId, row.valgId]);
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(),
+      null, { timeout: 90000 });
+    const reloaded = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.deepEqual(reloaded.arkiv.map(row => [row.sceneId, row.valgId]), snapshot,
+      label + ': reloading cannot invent or lose training');
+    for (const [flag, shouldBeTrue] of Object.entries(expected.flags)) {
+      assert.equal(reloaded.tidligereValg[flag] === true, shouldBeTrue,
+        label + ': persistence of ' + flag);
+    }
+    assert.deepEqual(errors, [], label + ': no browser runtime errors');
+    await page.screenshot({ path: path.join(output, label + '-vikar-after-reload.png'), fullPage: true });
+    return { label, viewport, last, flags: expected.flags, trace };
+  } finally {
+    await context.close();
+  }
+}
+
+
+async function playDayTwoReturnTraining(browser, label, viewport, choices, expected) {
+  const context = await browser.newContext({ viewport, isMobile: viewport.width < 600, hasTouch: true });
+  const page = await context.newPage();
+  const errors = [];
+  const trace = [];
+  page.on('pageerror', error => errors.push(error.message));
+  try {
+    await page.goto(origin + '/Civication.html?lifestoryRole=ekspeditor', { waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.rolle === 'ekspeditor'
+      && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId,
+      null, { timeout: 90000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    assert.equal((await page.evaluate(() => globalThis.CivicationLifestoryState.load())).arkiv.length,
+      0, label + ': starts from a fresh player state');
+    const authored = await page.evaluate(async () => (await globalThis.CivicationLifestoryContent.loadContent('ekspeditor')).scenes);
+    let sawReturnRequest = false, sawDayChange = false, last = null;
+    let dayTransitionMode = null;
+    for (let n = 0; n < 130; n++) {
+      const state = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      if (state.dagFerdig && state.dag === 1) {
+        const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+        if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+        await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+        assert.ok(await page.locator('.civi-lifestory-summary').isVisible(),
+          label + ': day-one story really reached its summary');
+        const nextDay = page.locator('[data-lifestory-next-day]').first();
+        assert.equal(await nextDay.count(), 1, label + ': real day summary contains its day control');
+        if (await nextDay.isEnabled()) {
+          dayTransitionMode = 'ui';
+          await nextDay.click({ timeout: 20000 });
+          await page.waitForFunction(() => globalThis.CivicationLifestoryState.load().dag === 2,
+            null, { timeout: 45000 });
+        } else {
+          dayTransitionMode = 'runner-fixture';
+          // The full Civication shell may have an unrelated pending inbox
+          // action for a test-only, jobless role. Never grant/complete that
+          // unrelated task, disable the production gate or fake scene choices.
+          // Isolate only the day boundary with the *canonical* Runner API.
+          assert.ok(await page.locator('[data-lifestory-next-action]').count(),
+            label + ': disabled shell day transition must expose its inbox prerequisite');
+          await page.screenshot({ path: path.join(output, label + '-day1-shell-inbox-gate.png'), fullPage: true });
+          await page.evaluate(async () => {
+            const api = globalThis;
+            const c = await api.CivicationLifestoryContent.loadContent('ekspeditor');
+            const saved = api.CivicationLifestoryState.load();
+            if (!saved.dagFerdig || saved.dag !== 1) throw new Error('not at day-one conclusion');
+            api.CivicationLifestoryRunner.startNextDay(saved, c);
+            api.CivicationLifestoryState.save(saved);
+          });
+          await page.reload({ waitUntil: 'load', timeout: 90000 });
+          await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.dag === 2
+            && !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.()?.sceneId,
+            null, { timeout: 45000 });
+          await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+        }
+        sawDayChange = true;
+        continue;
+      }
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': a natural day-one/day-two scene is available');
+      if (sceneId === 'd2_formiddag_vikaren_kommer_til_deg') {
+        sawReturnRequest = true;
+        assert.equal(state.dag, 2, label + ': return training belongs to day two');
+      }
+      if (sceneId === 'd2_vikar_retur_03_lene_godkjenner') {
+        const sender = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
+        assert.match(sender, /Fra Lene/, label + ': authorizing manager speaks for herself');
+      }
+      let wanted = choices[sceneId];
+      if (!wanted && state.dag === 1) {
+        wanted = authored.find(s => s.id === sceneId).valg.filter(c => !c.skills_requirement)
+          .slice().sort((a,b) => (a.effekter?.meters?.energi || 0) - (b.effekter?.meters?.energi || 0))[0].id;
+      }
+      const selector = '[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
+        + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])';
+      const button = page.locator(selector).first();
+      assert.equal(await button.count(), 1, label + ': enabled choice for ' + sceneId + '/' + wanted);
+      await button.scrollIntoViewIfNeeded();
+      const bounds = await button.boundingBox();
+      assert.ok(bounds && bounds.width > 0 && bounds.height > 0,
+        label + ': visible player action in ' + sceneId);
+      assert.ok(bounds.x >= -2 && bounds.x + bounds.width <= viewport.width + 2,
+        label + ': no horizontal button overflow in ' + sceneId);
+      if (sceneId === 'd2_formiddag_vikaren_kommer_til_deg' || sceneId === expected.finalScene) {
+        await page.screenshot({ path: path.join(output, label + '-' + sceneId + '.png'), fullPage: true });
+      }
+      const nBefore = state.arkiv.length;
+      const choiceId = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(previous => globalThis.CivicationLifestoryState.load().arkiv.length === previous + 1,
+        nBefore, { timeout: 20000 });
+      const saved = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.equal(saved.arkiv.at(-1).sceneId, sceneId);
+      assert.equal(saved.arkiv.at(-1).valgId, choiceId);
+      trace.push([sceneId, choiceId]);
+      if (sceneId === expected.finalScene) { last = sceneId; break; }
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+    }
+    assert.ok(sawDayChange && sawReturnRequest, label + ': follows actual day-one to day-two UI');
+    assert.equal(last, expected.finalScene, label + ': follows chosen return-coaching branch');
+    const finalState = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.equal(finalState.threadState.ny_kollega_og_tillit.status, expected.status);
+    for (const [flag, value] of Object.entries(expected.flags)) {
+      assert.equal(finalState.tidligereValg[flag] === true, value,
+        label + ': evidence flag matches performed work ' + flag);
+    }
+    const archive = finalState.arkiv.map(a => [a.sceneId, a.valgId]);
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(),
+      null, { timeout: 90000 });
+    const restored = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.deepEqual(restored.arkiv.map(a => [a.sceneId, a.valgId]), archive,
+      label + ': exact return history preserved after reload');
+    for (const [flag, value] of Object.entries(expected.flags)) {
+      assert.equal(restored.tidligereValg[flag] === true, value,
+        label + ': evidence flag preserved after reload ' + flag);
+    }
+    assert.deepEqual(errors, [], label + ': no browser exceptions');
+    await page.screenshot({ path: path.join(output, label + '-day2-after-reload.png'), fullPage: true });
+    const authorityId = 'd2_ettermiddag_nokkelen';
+    let authority = null;
+    for (let n = 0; n < 60; n++) {
+      const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+      if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+      await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+      const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+      const sceneId = info?.sceneId;
+      assert.ok(sceneId, label + ': actual continuation reaches authority conversation');
+      const state = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      const wanted = sceneId === authorityId ? expected.authorityChoice : null;
+      const selector = '[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
+        + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])';
+      const button = page.locator(selector).first();
+      await button.scrollIntoViewIfNeeded();
+      if (sceneId === authorityId) {
+        assert.ok(!state.tidligereValg.ekspeditor_returfullmakt_aktiv,
+          label + ': earlier trainee transaction did not use a future mandate');
+        const bounds = await button.boundingBox();
+        assert.ok(bounds && bounds.x >= -2 && bounds.x + bounds.width <= viewport.width + 2,
+          label + ': authority button fits viewport');
+        await page.screenshot({ path: path.join(output, label + '-authority-before.png'), fullPage: true });
+      }
+      const choiceId = await button.getAttribute('data-lifestory-choice');
+      await button.click({ timeout: 20000 });
+      await page.waitForFunction(previous => globalThis.CivicationLifestoryState.load().arkiv.length === previous + 1,
+        state.arkiv.length, { timeout: 20000 });
+      trace.push([sceneId, choiceId]);
+      if (sceneId !== authorityId) continue;
+      const result = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      const accepted = wanted === 'ta_ansvaret';
+      const authorityFlags = {
+        ekspeditor_returfullmakt_aktiv: accepted,
+        ekspeditor_disknokkel_utlevert: accepted,
+        ekspeditor_returfullmakt_utsatt: wanted === 'en_uke_til',
+        ekspeditor_dokumentkontroll_delt: wanted === 'del_med_vikaren'
+      };
+      for (const [flag, value] of Object.entries({ ...expected.flags, ...authorityFlags })) {
+        assert.equal(result.tidligereValg[flag] === true, value, label + ': authority preserves actual evidence ' + flag);
+      }
+      if (wanted === 'en_uke_til') assert.ok(result.meters.synlighet >= state.meters.synlighet);
+      assert.equal(result.arkiv.at(-1).valgId, wanted);
+      await page.screenshot({ path: path.join(output, label + '-authority-after.png'), fullPage: true });
+      await page.reload({ waitUntil: 'load', timeout: 90000 });
+      await page.waitForFunction(() => !!globalThis.CivicationLifestoryUI?.getCurrentSceneInfo?.(), null, { timeout: 90000 });
+      const reloaded = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+      assert.deepEqual(reloaded.arkiv, result.arkiv, label + ': authority history persists exactly');
+      assert.deepEqual(reloaded.tidligereValg, result.tidligereValg, label + ': authority evidence persists exactly');
+      authority = { sceneId, choiceId, flags: authorityFlags };
+      break;
+    }
+    assert.ok(authority, label + ': completes actual authority conversation');
+    assert.deepEqual(errors, [], label + ': authority continuation has no browser exceptions');
+    const dayThree = await continueThroughDayThree(page, label, viewport, choices, expected.dayThree, trace);
+    assert.deepEqual(errors, [], label + ': no exceptions through the complete story');
+    return { label, viewport, day: 3, dayTransitionMode, last, status: expected.status, authority, dayThree, trace };
+  } finally {
+    await context.close();
+  }
+}
+
+async function continueThroughDayThree(page, label, viewport, choices, expected, trace) {
+  const openDay = async () => {
+    const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+    if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+  };
+  let transitionMode = null;
+  let sawPrice = false, sawSupport = false;
+  for (let n = 0; n < 120; n++) {
+    const state = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    await openDay();
+    if (state.dagFerdig) {
+      if (state.dag === 3) break;
+      assert.equal(state.dag, 2, label + ': only genuine completed day two may advance');
+      const next = page.locator('[data-lifestory-next-day]').first();
+      assert.equal(await next.count(), 1);
+      if (await next.isEnabled()) {
+        transitionMode = 'ui';
+        await next.click({ timeout: 20000 });
+      } else {
+        transitionMode = 'runner-fixture';
+        assert.ok(await page.locator('[data-lifestory-next-action]').count());
+        await page.screenshot({ path: path.join(output, label + '-day2-shell-inbox-gate.png'), fullPage: true });
+        await page.evaluate(async () => {
+          const c = await globalThis.CivicationLifestoryContent.loadContent('ekspeditor');
+          const s = globalThis.CivicationLifestoryState.load();
+          if (s.dag !== 2 || !s.dagFerdig) throw new Error('not at actual day-two conclusion');
+          globalThis.CivicationLifestoryRunner.startNextDay(s, c);
+          globalThis.CivicationLifestoryState.save(s);
+        });
+        await page.reload({ waitUntil: 'load', timeout: 90000 });
+      }
+      await page.waitForFunction(() => globalThis.CivicationLifestoryState.load().dag === 3,
+        null, { timeout: 45000 });
+      continue;
+    }
+    const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+    const sceneId = info?.sceneId;
+    assert.ok(sceneId, label + ': continuing through actual day-three scenes');
+    const wanted = choices[sceneId];
+    const button = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
+      + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])').first();
+    assert.equal(await button.count(), 1, label + ': chosen day-three action exists ' + sceneId);
+    await button.scrollIntoViewIfNeeded();
+    const bounds = await button.boundingBox();
+    assert.ok(bounds && bounds.width > 0 && bounds.x >= -2 && bounds.x + bounds.width <= viewport.width + 2);
+    const focus = sceneId === 'd3_stamkunden_prismatch' || sceneId === expected.supportScene
+      || sceneId.startsWith('d3_pris_') || sceneId === 'd3_stotte_02_amir_resultat';
+    if (focus) {
+      if (sceneId === expected.supportScene) sawSupport = true;
+      if (sceneId === 'd3_ettermiddag_pause_virket') {
+        assert.match(await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent(), /Fra Lene/);
+      }
+      const scene = page.locator('.civi-lifestory-scene').first();
+      await scene.scrollIntoViewIfNeeded();
+      await scene.screenshot({ path: path.join(output, label + '-' + sceneId + '-before.png') });
+    }
+    const choiceId = await button.getAttribute('data-lifestory-choice');
+    const visibility = state.meters.synlighet;
+    await button.click({ timeout: 20000 });
+    await page.waitForFunction(previous => globalThis.CivicationLifestoryState.load().arkiv.length === previous + 1,
+      state.arkiv.length, { timeout: 20000 });
+    const after = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.equal(after.arkiv.at(-1).sceneId, sceneId);
+    assert.equal(after.arkiv.at(-1).valgId, choiceId);
+    trace.push([sceneId, choiceId]);
+    if (sceneId === 'd3_stamkunden_prismatch') {
+      sawPrice = true;
+      assert.ok(!after.tidligereValg.fant_lovlig_losning, label + ': request is not a checked member transaction');
+      assert.ok(!after.tidligereValg.d3_pris_lene_avklart, label + ': return authority is not prismatch authority');
+    }
+    if (sceneId === expected.supportScene && choiceId !== 'press_igjen') {
+      assert.ok(after.meters.synlighet >= visibility, label + ': asking for relief does not cost status');
+    }
+    if (focus) {
+      const consequence = page.locator('.civi-lifestory-konsekvens').first();
+      await consequence.scrollIntoViewIfNeeded();
+      await consequence.screenshot({ path: path.join(output, label + '-' + sceneId + '-after.png') });
+    }
+  }
+  const finalState = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+  assert.equal(finalState.dag, 3);
+  assert.ok(finalState.dagFerdig && sawPrice && sawSupport && transitionMode,
+    label + ': actually completes day three after the chosen support history');
+  for (const [flag, value] of Object.entries(expected.flags)) {
+    assert.equal(finalState.tidligereValg[flag] === true, value, label + ': day-three evidence ' + flag);
+  }
+  assert.equal(finalState.threadState.arbeidsrytme_og_overskudd.status, expected.supportStatus);
+  const ending = await page.evaluate(async () => globalThis.CivicationLifestoryEndings.resolveEnding(
+    globalThis.CivicationLifestoryState.load(), await globalThis.CivicationLifestoryContent.loadContent('ekspeditor')));
+  const endingEvidence = { trygg_paa_gulvet: 'eksp_life_pris_etterkontroll_verifisert',
+    faar_ting_unna: 'ekspeditor_gikk_uten_overlevering', nokkelbaerer: 'ekspeditor_disknokkel_utlevert',
+    mistet_tilliten: 'd3_pris_avvik_apent', butikksjef_emne: 'retur_d2_vikar_forstod' };
+  assert.ok(ending.id === 'arbeid_og_restoppgaver' || finalState.tidligereValg[endingEvidence[ending.id]] === true,
+    label + ': ending has its concrete work evidence');
+  if (expected.priceChoice === 'gi_etter_igjen') assert.equal(ending.id, 'mistet_tilliten');
+  const endingBox = page.locator('.civi-lifestory-ending').first();
+  assert.equal(await endingBox.locator('h3').textContent(), ending.navn);
+  await endingBox.scrollIntoViewIfNeeded();
+  await endingBox.screenshot({ path: path.join(output, label + '-day3-ending.png') });
+  await page.reload({ waitUntil: 'load', timeout: 90000 });
+  await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.dagFerdig === true,
+    null, { timeout: 90000 });
+  const restored = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+  assert.deepEqual(restored.arkiv, finalState.arkiv, label + ': exact complete three-day archive after reload');
+  assert.deepEqual(restored.tidligereValg, finalState.tidligereValg);
+  await openDay();
+  const history = page.locator('[data-lifestory-disclosure="history"]').first();
+  if (!(await history.evaluate(el => el.open))) await history.locator(':scope > summary').click();
+  const symposium = page.locator('[data-lifestory-symposium]').first();
+  if (!(await symposium.evaluate(el => el.open))) await symposium.locator(':scope > summary').click();
+  const normalize = value => String(value).replace(/\s+/g, ' ').trim();
+  const shown = normalize(await symposium.textContent());
+  for (const row of restored.arkiv.filter(x => x.dag === 3)) {
+    assert.ok(shown.includes(normalize(row.valgTekst)), label + ': actual day-three choice in Symposium ' + row.sceneId);
+    assert.ok(shown.includes(normalize(row.konsekvensTekst)), label + ': actual day-three consequence in Symposium ' + row.sceneId);
+  }
+  const priceRow = restored.arkiv.filter(x => x.dag === 3 && x.sceneId.startsWith('d3_pris_')).at(-1);
+  const entry = symposium.locator('ol > li').filter({ hasText: priceRow.valgTekst }).last();
+  await entry.scrollIntoViewIfNeeded();
+  await entry.screenshot({ path: path.join(output, label + '-day3-symposium-result.png') });
+  return { day: 3, transitionMode, priceChoice: expected.priceChoice, supportScene: expected.supportScene,
+    supportStatus: expected.supportStatus, ending, flags: expected.flags, archiveLength: restored.arkiv.length };
+}
+
+(async () => {
+  let browser;
+  const results = [];
+  try {
+    await waitForServer();
+    browser = await chromium.launch({ headless: true });
+    const good = {
+      apning_01_forste_okt: 'sjekk_plakatene',
+      prisfeil_02_koen: 'rett_synlig',
+      prisfeil_03_meld_avvik: 'send_notat',
+      prisfeil_04_lene_bekrefter: 'kontroller_selv',
+      prisfeil_05_sjekk_selv: 'kontroller_39'
+    };
+    const open = {
+      apning_01_forste_okt: 'aapne_raskt',
+      prisfeil_02_koen: 'gjett_pris',
+      prisfeil_03_undersok_etter_snarevei: 'sjekk_selv',
+      prisfeil_03_meld_avvik: 'send_notat',
+      prisfeil_04_lene_bekrefter: 'kontroller_selv',
+      prisfeil_05_sjekk_selv: 'ikke_kontrollert'
+    };
+    results.push(await play(browser, 'mobile-portrait', { width: 390, height: 844 }, good,
+      { finalScene: 'prisfeil_05_sjekk_selv', verified: true, status: 'completed' }));
+    results.push(await play(browser, 'ipad-portrait', { width: 820, height: 1180 }, open,
+      { finalScene: 'prisfeil_05_sjekk_selv', verified: false, status: 'escalated' }));
+    const delegated = {
+      apning_01_forste_okt: 'spor_amir',
+      prisfeil_02_koen: 'rop_paa_amir',
+      prisfeil_03_meld_avvik: 'send_notat',
+      prisfeil_04_lene_bekrefter: 'amir_kontrollerer',
+      prisfeil_05_amir_sjekker: 'registrer_amir'
+    };
+    results.push(await play(browser, 'ipad-landscape', { width: 1180, height: 820 }, delegated,
+      { finalScene: 'prisfeil_05_amir_sjekker', verified: true, status: 'completed' }));
+    const stockSelf = {
+      varen_01_som_ikke_finnes: 'aerlig_om_lageret',
+      varen_02_kontroller_beholdning: 'tell_selv',
+      varen_03_avklar_kunden: 'gjennomfor_salget',
+      varen_04_meld_telleavvik: 'send_tellenotat',
+      varen_05_lene_bekrefter: 'avtal_egen_sjekk',
+      varen_06_etterkontroll: 'sjekk_null_selv'
+    };
+    const stockAmir = {
+      varen_01_som_ikke_finnes: 'aerlig_om_lageret',
+      varen_02_kontroller_beholdning: 'amir_teller',
+      varen_02_amir_teller: 'registrer_amirs_telling',
+      varen_03_avklar_kunden: 'la_lene_gjennomfore',
+      varen_04_meld_telleavvik: 'send_tellenotat',
+      varen_05_lene_bekrefter: 'be_amir_folge_opp',
+      varen_06_etterkontroll: 'be_amir_etterkontroll',
+      varen_07_amir_etterkontroll: 'registrer_amir'
+    };
+    const stockUnfinished = {
+      varen_01_som_ikke_finnes: 'lov_i_morgen',
+      varen_02_rett_ubegrunnet_lovnad: 'rett_beskjeden',
+      varen_02_kontroller_beholdning: 'tell_selv',
+      varen_03_avklar_kunden: 'gjennomfor_salget',
+      varen_04_meld_telleavvik: 'send_tellenotat',
+      varen_05_lene_bekrefter: 'avtal_egen_sjekk',
+      varen_06_etterkontroll: 'ikke_sjekket'
+    };
+    results.push(await playStock(browser, 'stock-mobile-portrait', { width: 390, height: 844 }, stockSelf,
+      { finalScene: 'varen_06_etterkontroll', verified: true, status: 'completed' }));
+    results.push(await playStock(browser, 'stock-ipad-portrait', { width: 820, height: 1180 }, stockAmir,
+      { finalScene: 'varen_07_amir_etterkontroll', verified: true, status: 'completed', amir: true }));
+    results.push(await playStock(browser, 'stock-ipad-landscape', { width: 1180, height: 820 }, stockUnfinished,
+      { finalScene: 'varen_06_etterkontroll', verified: false, status: 'escalated' }));
+    const legalComplaint = {
+      retur_01_uten_kvittering: 'hold_regelen',
+      retur_02_hva_er_grunnen: 'be_om_ordrebekreftelse',
+      retur_03_lene_tar_saken: 'overlever_varen',
+      retur_04_lene_undersokte_varen: 'utlever_ny_vare'
+    };
+    const awaitingProof = {
+      retur_01_uten_kvittering: 'hent_lene',
+      retur_02_hva_er_grunnen: 'be_om_tid_til_bevis'
+    };
+    const unauthorizedRefund = {
+      retur_01_uten_kvittering: 'boy_regelen'
+    };
+    results.push(await playReturn(browser, 'return-mobile-portrait', { width: 390, height: 844 }, legalComplaint,
+      { finalScene: 'retur_04_lene_undersokte_varen', status: 'active',
+        flags: { retur_kjop_dokumentert: true, retur_lene_overtatt: true,
+          retur_mangel_bekreftet: true, retur_omlevering_utfort: true } }));
+    results.push(await playReturn(browser, 'return-ipad-portrait', { width: 820, height: 1180 }, awaitingProof,
+      { finalScene: 'retur_02_hva_er_grunnen', status: 'escalated',
+        flags: { retur_kjopsbevis_venter: true, retur_kjop_dokumentert: false,
+          retur_lene_overtatt: false, retur_omlevering_utfort: false } }));
+    results.push(await playReturn(browser, 'return-ipad-landscape', { width: 1180, height: 820 }, unauthorizedRefund,
+      { finalScene: 'retur_01_uten_kvittering', status: 'escalated',
+        flags: { retur_utbetaling_uten_bilag: true, retur_avvik_meldt: false,
+          retur_avstemming_bekreftet: false } }));
+    const vikarSelf = {
+      ny_kollega_01_midt_i_koen: 'hjelp_kort',
+      ny_kollega_02_vis_pantekort: 'vis_en_gang',
+      ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen'
+    };
+    const vikarAmir = {
+      ny_kollega_01_midt_i_koen: 'send_til_amir',
+      ny_kollega_02_amir_bekrefter: 'registrer_amirs_hjelp'
+    };
+    const vikarUnfinished = {
+      ny_kollega_01_midt_i_koen: 'be_vente',
+      ny_kollega_02_avtal_hjelp: 'lat_det_ligge'
+    };
+    results.push(await playVikar(browser, 'vikar-mobile-portrait', { width: 390, height: 844 }, vikarSelf,
+      { finalScene: 'ny_kollega_03_vikar_forklarer',
+        flags: { hjalp_ny_kollega: true, pant_vikar_forstod: true, pant_amir_hjalp: false } }));
+    results.push(await playVikar(browser, 'vikar-ipad-portrait', { width: 820, height: 1180 }, vikarAmir,
+      { finalScene: 'ny_kollega_02_amir_bekrefter',
+        flags: { pant_amir_hjalp: true, pant_veiledning_av_amir_loggfort: true, hjalp_ny_kollega: false } }));
+    results.push(await playVikar(browser, 'vikar-ipad-landscape', { width: 1180, height: 820 }, vikarUnfinished,
+      { finalScene: 'ny_kollega_02_avtal_hjelp', status: 'escalated',
+        flags: { pant_hjelp_ikke_fulgt_opp: true, pant_vikar_forstod: false, hjalp_ny_kollega: false } }));
+    const fullTrainingDayTwo = {
+      d2_morgen_vaktpress_etter_stenging: 'kort_pause',
+      d3_stamkunden_prismatch: 'hold_regelen_vennlig',
+      d3_pris_02_lene_svarer: 'forklar_og_gjennomfor', d3_ettermiddag_pause_virket: 'foresla_felles_pauser',
+      ny_kollega_01_midt_i_koen: 'hjelp_kort',
+      ny_kollega_02_vis_pantekort: 'vis_en_gang',
+      ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen',
+      d2_formiddag_vikaren_kommer_til_deg: 'laer_bort_metoden',
+      d2_vikar_retur_02_kontroll: 'sammenlign_kvittering_og_vare',
+      d2_vikar_retur_03_lene_godkjenner: 'noter_lenes_beslutning',
+      d2_vikar_retur_03_vikar_utforer: 'veiled_og_kontroller_byttet'
+    };
+    const traineeNotCheckedDayTwo = {
+      d2_morgen_vaktpress_etter_stenging: 'be_om_stotte',
+      d3_stamkunden_prismatch: 'tilby_det_du_kan',
+      d3_pris_02_medlemsvilkar: 'kontroller_og_gjennomfor', d3_ettermiddag_kollegastotten: 'del_med_amir', d3_stotte_02_amir_resultat: 'kontroller_resultatet',
+      ny_kollega_01_midt_i_koen: 'hjelp_kort',
+      ny_kollega_02_vis_pantekort: 'vis_en_gang',
+      ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen',
+      d2_formiddag_vikaren_kommer_til_deg: 'vis_raskt',
+      d2_vikar_retur_02_kort_svar: 'ta_gjennomgangen',
+      d2_vikar_retur_02_kontroll: 'sammenlign_kvittering_og_vare',
+      d2_vikar_retur_03_lene_godkjenner: 'noter_lenes_beslutning',
+      d2_vikar_retur_03_vikar_utforer: 'gjør_det_selv'
+    };
+    const noReturnFollowUpDayTwo = {
+      d2_morgen_vaktpress_etter_stenging: 'press_videre',
+      d3_stamkunden_prismatch: 'gi_etter_igjen',
+      d3_pris_02_meld_avslag: 'meld_avviket', d3_pris_03_lene_bekrefter: 'registrer_mottaket', d3_ettermiddag_presset_sitter: 'press_igjen',
+      ny_kollega_01_midt_i_koen: 'hjelp_kort',
+      ny_kollega_02_vis_pantekort: 'vis_en_gang',
+      ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen',
+      d2_formiddag_vikaren_kommer_til_deg: 'vis_raskt',
+      d2_vikar_retur_02_kort_svar: 'ga_tilbake'
+    };
+    results.push(await playDayTwoReturnTraining(browser, 'day2-return-mobile-portrait',
+      { width: 390, height: 844 }, fullTrainingDayTwo,
+      { dayThree: { priceChoice: 'hold_regelen_vennlig', supportScene: 'd3_ettermiddag_pause_virket', supportStatus: 'completed', flags: { d3_pris_lene_avklart: true, d3_pris_handel_avklart: true, d3_pris_medlemspris_brukt: false, ekspeditor_pauser_avtalt: true } }, authorityChoice: 'ta_ansvaret', finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'completed',
+        flags: { retur_d2_vilkar_kontrollert: true, retur_d2_lene_godkjent: true,
+          retur_d2_bytte_gjennomfort: true, retur_d2_vikar_forstod: true, laerte_bort_metoden: true } }));
+    results.push(await playDayTwoReturnTraining(browser, 'day2-return-ipad-portrait',
+      { width: 820, height: 1180 }, traineeNotCheckedDayTwo,
+      { dayThree: { priceChoice: 'tilby_det_du_kan', supportScene: 'd3_ettermiddag_kollegastotten', supportStatus: 'completed', flags: { d3_pris_medlemsvilkar_kontrollert: true, d3_pris_medlemspris_brukt: true, d3_pris_handel_avklart: true, d3_stotte_amir_kontroll_bekreftet: true, ekspeditor_stotte_gitt_videre: false } }, authorityChoice: 'en_uke_til', finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'escalated',
+        flags: { retur_d2_lene_godkjent: true, retur_d2_bytte_utfort_av_spiller: true,
+          retur_d2_vikar_kontroll_venter: true, retur_d2_vikar_forstod: false, laerte_bort_metoden: false } }));
+    results.push(await playDayTwoReturnTraining(browser, 'day2-return-ipad-landscape',
+      { width: 1180, height: 820 }, noReturnFollowUpDayTwo,
+      { dayThree: { priceChoice: 'gi_etter_igjen', supportScene: 'd3_ettermiddag_presset_sitter', supportStatus: 'escalated', flags: { d3_pris_avvik_apent: true, d3_pris_ansvar_bekreftet: true, d3_pris_handel_avklart: false, ekspeditor_oversaa_slitasje: true } }, authorityChoice: 'del_med_vikaren', finalScene: 'd2_vikar_retur_02_kort_svar', status: 'escalated',
+        flags: { retur_d2_ikke_fulgt_opp: true, retur_d2_vilkar_kontrollert: false,
+          retur_d2_lene_godkjent: false, retur_d2_bytte_gjennomfort: false, laerte_bort_metoden: false } }));
+    console.log('PASS: ekspeditør three-day price, support, endings and saved Symposium plus all earlier Life Story paths on mobile and iPad', JSON.stringify(results));
+  } finally {
+    writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2) + '\n');
+    if (browser) await browser.close();
+    server.kill('SIGTERM');
+  }
+})().catch(error => { console.error(error?.stack || error); process.exitCode = 1; });

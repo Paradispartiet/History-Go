@@ -5,12 +5,108 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_rynkesurbaer: Object.freeze({
+      scientificName: "Aronia melanocarpa",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/94_svartsurbaer_v1.webp",
+      gitBlobSha: "3059a859aea76264001162d81a29e5257192aa12",
+      reviewedAt: "2026-11-12",
+      stage: "varblomstring_svartfrukt_og_rod_hostfarge_sammenstilling",
+      evidence: "data/natur/flora/illustration-quality-svartsurbaer-20261112.json"
+    }),
+    emne_flora_amerikahagtorn: Object.freeze({
+      scientificName: "Crataegus spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/93_hagtorn_v1.webp",
+      gitBlobSha: "fd7c6eae8e1c7a4e6faadbb9568ad6c554b30300",
+      reviewedAt: "2026-11-12",
+      stage: "varblomstring_og_rod_hostfrukt_sammenstilling",
+      evidence: "data/natur/flora/illustration-quality-hagtorn-20261112.json"
+    }),
+    emne_flora_blankmispel: Object.freeze({
+      scientificName: "Cotoneaster lucidus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/92_blankmispel_v1.webp",
+      gitBlobSha: "d7404ca56aa5a2cd106ba921efe7c079c1937bcd",
+      reviewedAt: "2026-11-12",
+      stage: "varblomstring_og_morke_hostfrukter_sammenstilling",
+      evidence: "data/natur/flora/illustration-quality-blankmispel-20261112.json"
+    }),
+    emne_flora_hostberberis: Object.freeze({
+      scientificName: "Berberis thunbergii",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/91_hostberberis_v1.webp",
+      gitBlobSha: "12d5fcb95e1a73249a7226f74603b914b4bc7b9b",
+      reviewedAt: "2026-11-12",
+      stage: "varblomstring_og_hostfarge_med_rode_bar_pedagogisk_sammenstilling",
+      evidence: "data/natur/flora/illustration-quality-hostberberis-20261112.json"
+    }),
+    emne_flora_kirsebaerlaurbaer: Object.freeze({
+      scientificName: "Prunus laurocerasus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/90_kirsebaerlaurbaer_v1.webp",
+      gitBlobSha: "098124b91e5ef0557b5b3bcea8dfe38e157179ce",
+      reviewedAt: "2026-11-11",
+      stage: "varblomstring_og_sensommerfrukt_sammenstilt",
+      evidence: "data/natur/flora/illustration-quality-kirsebaerlaurbaer-20261111.json"
+    }),
+    emne_flora_legepestrot: Object.freeze({
+      scientificName: "Petasites hybridus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/89_legepestrot_v1.webp",
+      gitBlobSha: "ab547d4a1d66f930d63f684450c622b3919961c8",
+      reviewedAt: "2026-11-11",
+      stage: "varblomstring_og_senere_blader_botanisk_sammenstilling",
+      evidence: "data/natur/flora/illustration-quality-legepestrot-20261111.json"
+    }),
+    emne_flora_russesvalerot: Object.freeze({
+      scientificName: "Vincetoxicum rossicum",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/88_russesvalerot_v1.webp",
+      gitBlobSha: "c0afbdff9044f5b0f079c62110bc71674e032eb9",
+      reviewedAt: "2026-11-11",
+      stage: "rosabrun_stjerneblomstring_og_frostand_med_frokapsler",
+      evidence: "data/natur/flora/illustration-quality-russesvalerot-20261111.json"
+    }),
+    emne_flora_kjempeslirekne: Object.freeze({
+      scientificName: "Reynoutria sachalinensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/87_kjempeslirekne_v1.webp",
+      gitBlobSha: "15792add5d7eb8c4614c6f94e1b177e86db7bc08",
+      reviewedAt: "2026-11-11",
+      stage: "sensommerblomstring_med_store_hjerteblad_og_jordstengler",
+      evidence: "data/natur/flora/illustration-quality-kjempeslirekne-20261111.json"
+    }),
+    emne_flora_aakersvineblom: Object.freeze({
+      scientificName: "Senecio vulgaris",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/86_aakersvineblom_v1.webp",
+      gitBlobSha: "cb143fd0f24c23410b51f3d5e66c367855762c23",
+      reviewedAt: "2026-11-11",
+      stage: "blomstring_og_frostand_med_pappus",
+      evidence: "data/natur/flora/illustration-quality-aakersvineblom-20261111.json"
+    }),
+    emne_flora_sitkagran: Object.freeze({
+      scientificName: "Picea sitchensis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/85_sitkagran_v1.webp",
+      gitBlobSha: "9fc42236838ad22a748e3f5236ec9a83008d6ea4",
+      reviewedAt: "2026-11-11",
+      stage: "eviggronn_barved_med_spisse_naler_og_hengende_kongler",
+      evidence: "data/natur/flora/illustration-quality-sitkagran-20261111.json"
+    }),
+    emne_flora_tuja: Object.freeze({
+      scientificName: "Thuja occidentalis",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/84_tuja_v1.webp",
+      gitBlobSha: "30147c996579632e9f612c3fd4897803381c14b2",
+      reviewedAt: "2026-11-11",
+      stage: "eviggront_skjelblad_og_modne_frokongler",
+      evidence: "data/natur/flora/illustration-quality-tuja-20261111.json"
+    }),
+    emne_flora_sotmispel: Object.freeze({
+      scientificName: "Amelanchier spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/83_sotmispel_v1.webp",
+      gitBlobSha: "9f6a28b49ef751d7bb6aac307b03dafdfea1caff",
+      reviewedAt: "2026-11-11",
+      stage: "pedagogisk_varblomstring_og_sommerbaer",
+      evidence: "data/natur/flora/illustration-quality-sotmispel-20261111.json"
+    }),
     emne_flora_prydpaere: Object.freeze({
       scientificName: "Pyrus calleryana",
-      src: "bilder/natur/flora/illustrasjonskandidater/b09/82_prydpaere_v1.webp",
-      gitBlobSha: "4edd7c7ee67c517f93ef85463f3394c1875a5965",
-      reviewedAt: "2026-11-10",
-      stage: "illustrert_varblomstring_hvite_blomster_og_smaa_pomefrukter",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/82_prydpaere_v2.webp",
+      gitBlobSha: "b83fdaa1c76f1741fdd0395983cf100631ee9eb6",
+      reviewedAt: "2026-11-11",
+      stage: "illustrert_varblomstring_hvite_blomster_og_rotsystem",
       evidence: "data/natur/flora/illustration-quality-prydpaere-20261110.json"
     }),
     emne_flora_prydkirsebaer: Object.freeze({
@@ -850,7 +946,7 @@
 
   });
   // One scientific species appears twice in the public catalog; reuse the same approved artwork.
-  const aliases = Object.freeze({ emne_ved_prydpaere: "emne_flora_prydpaere", emne_ved_prydkirsebaer: "emne_flora_prydkirsebaer", emne_ved_platanlonn: "emne_flora_platanlonn", emne_kratt_syrin: "emne_flora_syrin", emne_kratt_mispel: "emne_flora_mispel", emne_kratt_spirea: "emne_flora_spirea", emne_kratt_berberis: "emne_flora_berberis", emne_kratt_mahonia: "emne_flora_mahonia", emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
+  const aliases = Object.freeze({ emne_ved_tuja: "emne_flora_tuja", emne_ved_sotmispel: "emne_flora_sotmispel", emne_ved_prydpaere: "emne_flora_prydpaere", emne_ved_prydkirsebaer: "emne_flora_prydkirsebaer", emne_ved_platanlonn: "emne_flora_platanlonn", emne_kratt_syrin: "emne_flora_syrin", emne_kratt_mispel: "emne_flora_mispel", emne_kratt_spirea: "emne_flora_spirea", emne_kratt_berberis: "emne_flora_berberis", emne_kratt_mahonia: "emne_flora_mahonia", emne_kratt_snobaer: "emne_flora_snobaer", emne_flora_knoppurt: "emne_flora_engknoppurt", emne_flora_tysk_honsetarm: "emne_flora_tyskhonsetarm" });
   const get = id => images[aliases[String(id)] || String(id)] || null;
   window.HG_NATURE_FLORA_APPROVED = Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
 })();

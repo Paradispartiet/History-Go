@@ -120276,17 +120276,21 @@
               "service_quality": 3,
               "stress": 1
             },
-            "feedback": "Bra håndtert. Du gjorde feilen synlig uten å gjøre den dramatisk. Kunden fikk riktig pris, og køen skjønte hvorfor det tok litt tid.",
+            "feedback": "Amir bekrefter at 39 gjelder samme pakke og et gyldig tilbud. Du bruker den avtalte fullmakten og korrigerer handelen til 39. Kunden betaler. Prisgrunnlaget viser fortsatt 49; avviket er ennå ikke meldt til Lene.",
             "id": "A",
-            "label": "Stoppe kort, sjekke hyllepris og forklare kunden",
+            "label": "Be Amir kontrollere vare og kampanjevilkår mens du holder kassa",
             "next_bias": {
               "set_flags": [
-                "ekspeditor_week1_checks_price_openly"
+                "ekspeditor_week1_checks_price_openly",
+                "ekspeditor_pris_kontrollert",
+                "ekspeditor_pris_handel_rettet"
               ]
             },
-            "reply": "Jeg sier at prisen ikke stemmer, ber kunden vente et øyeblikk, og ber Amir sjekke hylleplakaten mens jeg holder køen informert.",
+            "reply": "Kan du sjekke at 39 gjelder samme kaffe, størrelse og kampanjeperiode? Jeg forklarer kunden at vi undersøker prisen.",
             "tags": [
-              "ekspeditor_week1_checks_price_openly"
+              "ekspeditor_week1_checks_price_openly",
+              "ekspeditor_pris_kontrollert",
+              "ekspeditor_pris_handel_rettet"
             ],
             "triggers_on_choice": "ekspeditor_week1_checks_price_openly"
           },
@@ -120305,7 +120309,7 @@
               "queue_flow": 2,
               "stress": -1
             },
-            "feedback": "Det holdt køen i gang. Men husk å melde feilen etterpå. Hvis ikke får alle etter deg samme situasjon.",
+            "feedback": "Du gir kunden 39 og kunden betaler. Varen og kampanjevilkårene er ennå ikke kontrollert. Du kan fortsatt undersøke og melde avviket; butikkens prisgrunnlag er ikke dermed rettet.",
             "id": "B",
             "label": "Gi kunden laveste pris raskt for å holde køen i gang",
             "next_bias": {
@@ -120334,7 +120338,7 @@
               "manager_trust": -1,
               "queue_flow": 1
             },
-            "feedback": "Men plakaten står jo rett der. Skal jeg betale mer fordi systemet deres ikke er oppdatert?",
+            "feedback": "Kunden ber deg undersøke før handelen avsluttes. Du har ikke kontrollert merkingen. Lene er tilgjengelig, og du kan fortsatt be henne avklare hva som gjelder.",
             "id": "C",
             "label": "Si at kasseprisen gjelder",
             "next_bias": {
@@ -120347,6 +120351,41 @@
               "ekspeditor_week1_system_over_customer"
             ],
             "triggers_on_choice": "ekspeditor_week1_system_over_customer"
+          },
+          {
+            "effect": {
+              "accuracy": 3,
+              "customer_trust": 3,
+              "manager_trust": 2,
+              "queue_pressure": 1,
+              "service_quality": 3,
+              "stress": 1
+            },
+            "effects": {
+              "accuracy": 3,
+              "customer_trust": 3,
+              "manager_trust": 2,
+              "queue_pressure": 1,
+              "service_quality": 3,
+              "stress": 1
+            },
+            "feedback": "Amir bekrefter avløsningen. Du kontrollerer samme pakke og et gyldig tilbud på 39, kommer tilbake til kassa og korrigerer handelen. Kunden betaler. Prisgrunnlaget viser fortsatt 49; avviket er ennå ikke meldt til Lene.",
+            "id": "D",
+            "label": "Avtal avløsning med Amir og kontroller merkingen selv",
+            "next_bias": {
+              "set_flags": [
+                "ekspeditor_week1_self_price_check",
+                "ekspeditor_pris_kontrollert",
+                "ekspeditor_pris_handel_rettet"
+              ]
+            },
+            "reply": "Kan du ta kassa mens jeg sjekker varen, størrelsen og kampanjevilkårene? Jeg går først når du har bekreftet at du tar over.",
+            "tags": [
+              "ekspeditor_week1_self_price_check",
+              "ekspeditor_pris_kontrollert",
+              "ekspeditor_pris_handel_rettet"
+            ],
+            "triggers_on_choice": "ekspeditor_week1_checks_price_openly"
           }
         ],
         "competency": "service_med_noyaktighet",
@@ -120366,13 +120405,13 @@
         "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json",
         "scene_catalog_version": 1,
         "situation": [
-          "Fra Lene, butikksjef: Du får første ordentlige kasseøkt i dag. Det viktigste er å holde flyt uten å miste nøyaktighet. Ved prisfeil: sjekk hyllepris, spør kollega hvis køen vokser, forklar kunden kort hva du gjør, og rett feilen synlig hvis butikken har gjort feil.",
-          "Fra Amir, erfaren kollega: Prisfeil er aldri bare prisfeil når det står folk bak og sukker. Ikke bli stresset inn i gjetting. Det tar lengre tid å rette en feil du latet som du visste.",
-          "Fra System: Kunde kjøper kaffe på kampanje. Kassa viser 49 kroner, hylleplakat viser 39 kroner. Kø: 5 personer. Kollega tilgjengelig: ja, men opptatt med varepåfyll. Risiko: feil pris, irritert kunde, voksende kø."
+          "Fra Lene, butikksjef: Du har kassa. Når du har kontrollert samme vare, størrelse og gyldige kampanjevilkår, har du fullmakt til å korrigere kampanjeprisen i handelen. Er du usikker, spør meg. Endring av butikkens prisgrunnlag tar jeg ansvar for. Meld varen, begge priser og hva dere har undersøkt.",
+          "Fra Amir, erfaren kollega: Jeg fyller på varer og kan hjelpe. Be meg sjekke etiketten, eller avtal at jeg tar kassa mens du sjekker selv. Vi må vite hvem som gjør hva før noen går fra kassa.",
+          "Kunden legger fram kaffe. Kassa viser 49 kroner. Kunden sier at etiketten viser 39. Fem personer venter. Du har ennå ikke kontrollert at tilbudet gjelder samme pakke."
         ],
         "stage": "stable",
         "subject": "Prisfeilen i køen",
-        "summary": "En kampanjepris stemmer ikke med kassa mens køen vokser.",
+        "summary": "Kampanjekaffen skannes til 49. Kunden mener samme pakke er merket 39. Avklar handelen og følg opp prisgrunnlaget.",
         "task_domain": "kasse_og_kundemote"
       },
       "id": "job_ekspeditor_week1_price_error_in_queue",
@@ -120385,16 +120424,16 @@
             "effects": {
               "score_delta": 0
             },
-            "feedback": "Bra håndtert. Du gjorde feilen synlig uten å gjøre den dramatisk. Kunden fikk riktig pris, og køen skjønte hvorfor det tok litt tid.",
+            "feedback": "Amir bekrefter at 39 gjelder samme pakke og et gyldig tilbud. Du bruker den avtalte fullmakten og korrigerer handelen til 39. Kunden betaler. Prisgrunnlaget viser fortsatt 49; avviket er ennå ikke meldt til Lene.",
             "id": "A",
-            "label": "Stoppe kort, sjekke hyllepris og forklare kunden",
-            "reply": "Jeg sier at prisen ikke stemmer, ber kunden vente et øyeblikk, og ber Amir sjekke hylleplakaten mens jeg holder køen informert."
+            "label": "Be Amir kontrollere vare og kampanjevilkår mens du holder kassa",
+            "reply": "Kan du sjekke at 39 gjelder samme kaffe, størrelse og kampanjeperiode? Jeg forklarer kunden at vi undersøker prisen."
           },
           {
             "effects": {
               "score_delta": 0
             },
-            "feedback": "Det holdt køen i gang. Men husk å melde feilen etterpå. Hvis ikke får alle etter deg samme situasjon.",
+            "feedback": "Du gir kunden 39 og kunden betaler. Varen og kampanjevilkårene er ennå ikke kontrollert. Du kan fortsatt undersøke og melde avviket; butikkens prisgrunnlag er ikke dermed rettet.",
             "id": "B",
             "label": "Gi kunden laveste pris raskt for å holde køen i gang",
             "reply": "Jeg sier at kunden får prisen på plakaten og retter beløpet raskt uten å sjekke videre."
@@ -120403,20 +120442,29 @@
             "effects": {
               "score_delta": 0
             },
-            "feedback": "Men plakaten står jo rett der. Skal jeg betale mer fordi systemet deres ikke er oppdatert?",
+            "feedback": "Kunden ber deg undersøke før handelen avsluttes. Du har ikke kontrollert merkingen. Lene er tilgjengelig, og du kan fortsatt be henne avklare hva som gjelder.",
             "id": "C",
             "label": "Si at kasseprisen gjelder",
             "reply": "Jeg sier at jeg må følge prisen i systemet, og at kunden kan ta det med butikksjefen hvis hun mener plakaten viser feil."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Amir bekrefter avløsningen. Du kontrollerer samme pakke og et gyldig tilbud på 39, kommer tilbake til kassa og korrigerer handelen. Kunden betaler. Prisgrunnlaget viser fortsatt 49; avviket er ennå ikke meldt til Lene.",
+            "id": "D",
+            "label": "Avtal avløsning med Amir og kontroller merkingen selv",
+            "reply": "Kan du ta kassa mens jeg sjekker varen, størrelsen og kampanjevilkårene? Jeg går først når du har bekreftet at du tar over."
           }
         ],
         "content": {
           "situation": [
-            "Fra Lene, butikksjef: Du får første ordentlige kasseøkt i dag. Det viktigste er å holde flyt uten å miste nøyaktighet. Ved prisfeil: sjekk hyllepris, spør kollega hvis køen vokser, forklar kunden kort hva du gjør, og rett feilen synlig hvis butikken har gjort feil.",
-            "Fra Amir, erfaren kollega: Prisfeil er aldri bare prisfeil når det står folk bak og sukker. Ikke bli stresset inn i gjetting. Det tar lengre tid å rette en feil du latet som du visste.",
-            "Fra System: Kunde kjøper kaffe på kampanje. Kassa viser 49 kroner, hylleplakat viser 39 kroner. Kø: 5 personer. Kollega tilgjengelig: ja, men opptatt med varepåfyll. Risiko: feil pris, irritert kunde, voksende kø."
+            "Fra Lene, butikksjef: Du har kassa. Når du har kontrollert samme vare, størrelse og gyldige kampanjevilkår, har du fullmakt til å korrigere kampanjeprisen i handelen. Er du usikker, spør meg. Endring av butikkens prisgrunnlag tar jeg ansvar for. Meld varen, begge priser og hva dere har undersøkt.",
+            "Fra Amir, erfaren kollega: Jeg fyller på varer og kan hjelpe. Be meg sjekke etiketten, eller avtal at jeg tar kassa mens du sjekker selv. Vi må vite hvem som gjør hva før noen går fra kassa.",
+            "Kunden legger fram kaffe. Kassa viser 49 kroner. Kunden sier at etiketten viser 39. Fem personer venter. Du har ennå ikke kontrollert at tilbudet gjelder samme pakke."
           ],
           "subject": "Prisfeilen i køen",
-          "summary": "En kampanjepris stemmer ikke med kassa mens køen vokser."
+          "summary": "Kampanjekaffen skannes til 49. Kunden mener samme pakke er merket 39. Avklar handelen og følg opp prisgrunnlaget."
         },
         "day_phase": "any",
         "delivery": "mail",
@@ -120442,7 +120490,7 @@
         "thread_id": "ekspeditor.mail.job_ekspeditor_week1_price_error_in_queue",
         "version": 1
       },
-      "source_hash": "813b35d55c31c5f810bfb863c61b39a8d326a0298555d69b7a9af869369cdf40",
+      "source_hash": "c09a5b7a8ee66186d9bc28174142c53f2d7e752b1fba9429be0baf956dec3cbe",
       "source_path": "data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
@@ -292432,7 +292480,7 @@
     "file_count": 7,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "720dc0201feda3a0ab182385ba32ed6f755860a592d709c1cb11e814425b9c0e",
+  "registry_hash": "3ee3b87bd8c7d6f8cdf40858435df8c75cfb595690c1a016db1fe820816d7ebe",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",

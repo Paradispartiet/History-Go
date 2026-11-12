@@ -68,6 +68,21 @@ body.hg-app .app-shell > *{
   pointer-events: auto;
 }
 
+/* The legacy panel shell is empty on the index map. Its flex main used to
+   become a transparent touch shield over the MapLibre canvas, even with
+   #panel.hidden. Only a genuinely open view panel should accept input. */
+body.hg-app .app-shell > main {
+  pointer-events: none;
+}
+body.hg-app .app-shell > main > #panel:not(.hidden):not([hidden]) {
+  pointer-events: auto;
+}
+body.hg-app .app-shell > main > #panel.hidden,
+body.hg-app .app-shell > main > #panel[hidden] {
+  display: none;
+  pointer-events: none;
+}
+
 /* ============================================================
    HEADER
    ============================================================ */

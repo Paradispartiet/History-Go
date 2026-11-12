@@ -13,6 +13,13 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   isolation: isolate;
 }
 
+/* Native focus/scrollIntoView must leave controls below the sticky photograph.
+   Otherwise the QuizCard expand button can scroll behind the title on desktop. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-body {
+  scroll-padding-top: calc(var(--pc-visible-hero-height, 0px) + 12px);
+  scroll-padding-bottom: 16px;
+}
+
 /* Retain the original image's object-fit geometry while the outer wrapper
    reveals less from its bottom. Neither icons nor text are resized. */
 body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-hero #pcHeaderHero {
@@ -24,6 +31,19 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
 body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-hero .pc-heading-content {
   flex: 0 0 auto;
   min-height: var(--pc-original-hero-height);
+}
+
+/* The heading follows the cropped lower edge, while source provenance must
+   remain inside the visible photograph. Counter only that heading offset;
+   keep the original dated caption node, size and photo unchanged. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-heading-hero.has-photo-source .pc-heading-content .pc-photo-caption {
+  transform: translateY(var(--pc-hero-collapse-offset, 0px));
+}
+
+/* A wrapped historical source note also needs breathing room in the natural
+   grid, before any crop is possible. Keep caption-free headings unchanged. */
+body.hg-app #placeCard.is-place-sheet-direct .pc-heading-hero.has-photo-source .pc-heading-content:has(.pc-photo-caption) {
+  row-gap: 10px;
 }
 
 /* Section navigation stays at the bottom of the sheet, not under the photo. */

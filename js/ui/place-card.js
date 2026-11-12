@@ -1323,9 +1323,13 @@ if (!card.dataset.pcIconsBound) {
         || String((currentPlace || place)?.category || "Ukjent fagområde");
       const relevantSubcategories = getRelevantBadgeSubcategories(currentPlace || place || {}, placeBadge);
       const subcategoryItems = relevantSubcategories.length
-        ? relevantSubcategories.map((subId) => `
-            <span class="pc-badges-chip">${formatSubcategoryLabel(subId, placeBadge)}</span>
-          `).join("")
+        ? relevantSubcategories.map((subId) => {
+            const imagePath = String(placeBadge?.subBadgeImages?.[subId] || "");
+            const thumb = imagePath.startsWith("bilder/merker/") && imagePath.endsWith(".webp")
+              ? `<img class="pc-underbadge-thumb" src="${escapePlaceCardHTML(imagePath)}" alt="">`
+              : "";
+            return `<span class="pc-badges-chip">${thumb}${escapePlaceCardHTML(formatSubcategoryLabel(subId, placeBadge))}</span>`;
+          }).join("")
         : `<div class="pc-badges-empty">Ingen stedsspesifikke underbadges registrert ennå</div>`;
 
       const timeInfo = (typeof window.HGTimeResolver?.resolvePlaceTime === "function")
@@ -2082,6 +2086,12 @@ function getRelevantBadgeSubcategories(place, placeBadge) {
   };
 
   const explicitFields = [
+    place?.subcategory,
+    place?.subcategory_id,
+    place?.subcategoryId,
+    place?.subcategoryIds,
+    place?.secondaryBadgeIds,
+    place?.secondary_badge_ids,
     place?.underbadge_ids,
     place?.sub_badges,
     place?.subBadges,
@@ -2114,6 +2124,8 @@ function getRelevantBadgeSubcategories(place, placeBadge) {
     .map((sub) => normalizeToken(sub))
     .filter((subId, index, arr) => subId && arr.indexOf(subId) === index && explicitMatches.has(subId));
 }
+
+window.HGPlaceBadgeRelevantSubcategories = getRelevantBadgeSubcategories;
 
 /**
  * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
@@ -2209,6 +2221,10 @@ if (badgesEl) {
 
   const placeBadge = getBadgeForPlace(place, BADGES_LIST);
   const relevantSubcategories = getRelevantBadgeSubcategories(place, placeBadge);
+  const preferredSubBadgeId = relevantSubcategories.find(id => {
+    const src = String(placeBadge?.subBadgeImages?.[id] || "");
+    return src.startsWith("bilder/merker/") && src.endsWith(".webp");
+  });
 
   badgesEl.innerHTML = placeBadge
     ? `
@@ -2217,19 +2233,26 @@ if (badgesEl) {
       </div>
       ${
         relevantSubcategories.length
-          ? relevantSubcategories.map(sub => `
-            <div class="pc-badges-chip">${formatSubcategoryLabel(sub, placeBadge)}</div>
-          `).join("")
+          ? relevantSubcategories.map(sub => {
+            const src = String(placeBadge?.subBadgeImages?.[sub] || "");
+            const thumb = src.startsWith("bilder/merker/") && src.endsWith(".webp")
+              ? `<img class="pc-underbadge-thumb" src="${escapePlaceCardHTML(src)}" alt="">`
+              : "";
+            return `<div class="pc-badges-chip">${thumb}${escapePlaceCardHTML(formatSubcategoryLabel(sub, placeBadge))}</div>`;
+          }).join("")
           : `<div class="pc-badges-empty">Ingen stedsspesifikke underbadges registrert ennå</div>`
       }
     `
     : `<div class="pc-empty">Badges.json mangler badge for category: ${String(place?.category || "ukjent").trim() || "ukjent"}</div>`;
 
   if (badgesIcon) {
-    const img = placeBadge ? (placeBadge.image || placeBadge.icon || "") : "";
+    const subBadgeImage = preferredSubBadgeId ? String(placeBadge?.subBadgeImages?.[preferredSubBadgeId] || "") : "";
+    const img = subBadgeImage || (placeBadge ? (placeBadge.image || placeBadge.icon || "") : "");
     if (img) {
-      const label = placeBadge?.name || placeBadge?.title || placeBadge?.id || "Badge";
-      badgesIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="${label}" title="${label}">`;
+      const label = preferredSubBadgeId
+        ? formatSubcategoryLabel(preferredSubBadgeId, placeBadge)
+        : (placeBadge?.name || placeBadge?.title || placeBadge?.id || "Badge");
+      badgesIcon.innerHTML = `<img src="${escapePlaceCardHTML(img)}" class="pc-person-img" alt="${escapePlaceCardHTML(label)}" title="${escapePlaceCardHTML(label)}">`;
     } else {
       const badgeCount = placeBadge ? (1 + relevantSubcategories.length) : 0;
       setRoundLabel(badgesIcon, "🏅", badgeCount);

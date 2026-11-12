@@ -40,10 +40,7 @@
 
   function updateMapView(next) {
     window.HGMap?.setFavoriteViewOnly?.(next);
-    // Keep the existing Explore place list consistent with the map.
-    window.HGNearbyFilters?.setFavoritesOnly?.(next);
-    window.updateNearbyFavoritesFilterButton?.();
-    window.HGLeftPanelMode?.rerender?.();
+    // Only the homepage map changes. Utforsk and profile map keep their own filters.
     render();
   }
 

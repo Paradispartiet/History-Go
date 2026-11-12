@@ -1,0 +1,53 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+const root=new URL('../',import.meta.url);
+const raw=p=>readFileSync(new URL(p,root));
+const json=p=>JSON.parse(raw(p).toString('utf8'));
+const reg=json('data/badges/vitenskap.json');
+const manifest=json('data/badges/vitenskap_teknologi_revision_v2.json');
+const audit=json('data/badges/vitenskap_legacy_illustration_review_20261112.json');
+test('Teknologi v2: 16 science underbadges and archive preserved',()=>{
+ assert.equal(reg.id,'vitenskap');
+ assert.equal(reg.name,'Vitenskap & teknologi');
+ assert.equal(reg.color,'#6A5AE0');
+ assert.equal(reg.image,manifest.parentBadgePath);
+ assert.equal(reg.sub.length,16);
+ assert.equal(Object.keys(reg.subBadgeImages).length,16);
+ assert.equal(manifest.status,'integrated');
+ assert.equal(reg.subBadgeImages.teknologi,manifest.variants.nb.path);
+ const item=audit.items.find(x=>x.id==='teknologi');
+ assert.equal(item.revisionStatus,'integrated_v2');
+ assert.equal(item.previousOriginalArchivePath,manifest.originalBadgeBackup.path);
+ assert.equal(item.newActiveGitBlobSha,manifest.variants.nb.gitBlobSha);
+ const archived=raw(item.previousOriginalArchivePath);
+ const oldBlob=createHash('sha1').update(Buffer.from('blob '+archived.length+'\0')).update(archived).digest('hex');
+ assert.equal(oldBlob,manifest.originalBadgeBackup.gitBlobSha);
+ for(const id of reg.sub)assert.ok(reg.subBadgeImages[id],id+' inactive');
+});
+test('Teknologi v2: five authentic transparent WebP originals and translated full category footer',()=>{
+ assert.deepEqual(Object.keys(manifest.variants).sort(),['en','es','fr','nb','pt']);
+ assert.equal(manifest.activeLocale,'nb');
+ assert.equal(manifest.localesActive,false);
+ assert.equal(manifest.design.fullParentCategoryAtBottom,true);
+ assert.equal(manifest.design.noProgressCounters,true);
+ assert.equal(manifest.quality.binaryVerifiedInRepository,true);
+ const footer=audit.footerTranslation;
+ for(const [lang,v] of Object.entries(manifest.variants)){
+  assert.equal(v.footer,footer[lang]);
+  assert.ok(v.heading.length>6);
+  assert.doesNotMatch(v.heading+v.footer,/\d+\/\d+/);
+  const bytes=raw(v.path);
+  assert.equal(bytes.toString('ascii',0,4),'RIFF',lang);
+  assert.equal(bytes.toString('ascii',8,12),'WEBP',lang);
+  assert.equal(bytes.toString('ascii',12,16),'VP8X',lang);
+  assert.equal(bytes.readUIntLE(24,3)+1,1024,lang);
+  assert.equal(bytes.readUIntLE(27,3)+1,1024,lang);
+  assert.notEqual(bytes[20]&16,0,lang+' missing alpha');
+  assert.equal(bytes.length,v.bytes,lang);
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),v.sha256,lang);
+  const blob=createHash('sha1').update(Buffer.from('blob '+bytes.length+'\0')).update(bytes).digest('hex');
+  assert.equal(blob,v.gitBlobSha,lang);
+ }
+});

@@ -118,9 +118,10 @@ try{
      if(!media.titleVisible)problems.push("PlaceCard title clipped inside hero after place switch");
      if(!media.hero?.decoded||!media.hero?.source.endsWith(place.image))problems.push("Real hero image did not decode");
      if(!media.portrait?.decoded||!media.portrait?.source.endsWith(place.frontImage))problems.push("Real portrait did not decode");
-     if(media.hero?.fit!=="cover")problems.push("Hero CSS does not use cover");
-     if(media.hero?.position!==place.imageComposition.heroPosition)problems.push("Wrong hero focus point");
-     if(media.portrait?.position!==place.imageComposition.portraitPosition)problems.push("Wrong portrait focus point");
+     // Documentary photographs are no longer cropped to honor old focus points.
+     // Verify the displayed source stays fully visible in both Place image slots.
+     if(media.hero?.fit!=="contain")problems.push("Hero photograph is cropped (expected contain)");
+     if(media.portrait?.fit!=="contain")problems.push("Front photograph is cropped (expected contain)");
      if(media.visible){
       for(const [selector,label] of [["#pcHeaderHero","hero"],["#pcFrontCardFlip","front"]]){
        try{
