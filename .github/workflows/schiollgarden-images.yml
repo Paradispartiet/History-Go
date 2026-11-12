@@ -1,0 +1,36 @@
+name: Schiollgarden image browser QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/schiollgarden-images.yml'
+      - 'tests/schiollgarden-images-browser.mjs'
+      - 'bilder/places/schiollgarden/**'
+      - 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02/schiollgarden_prinsens_gate_26.json'
+      - 'data/runtime/place-open/schiollgarden_prinsens_gate_26.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: schiollgarden-images-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/schiollgarden-images-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: schiollgarden-image-browser-qa
+          path: artifacts/schiollgarden-images
+          if-no-files-found: warn
