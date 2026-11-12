@@ -1,0 +1,44 @@
+name: Tjuvholmen Structures real PlaceCard browser
+
+on:
+  pull_request:
+    paths:
+      - 'data/places/by/oslo/places/tjuvholmen.json'
+      - 'data/runtime/place-open/tjuvholmen.json'
+      - 'bilder/kort/structures/**'
+      - 'tests/tjuvholmen-structures-placecard-real-browser.test.mjs'
+      - '.github/workflows/tjuvholmen-structures-placecard-browser.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tjuvholmen-structures-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  real-placecard:
+    name: Tjuvholmen 390px and 1440px real click
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Check exact canonical Place-open parity
+        run: npm run place-open:check
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify real app collection preview, click, popup and image at phone and desktop width
+        run: node tests/tjuvholmen-structures-placecard-real-browser.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tjuvholmen-structures-real-browser
+          path: artifacts/tjuvholmen-structures-browser/
+          if-no-files-found: warn
+          retention-days: 14

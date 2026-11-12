@@ -45,7 +45,7 @@
   },
   "collection_review": {
     "people": {
-      "status": "BLOCKED",
+      "status": "BLOCKED_2_OF_5",
       "verified_direct": [
         {
           "id": "niels_torp",
@@ -79,6 +79,14 @@
           "source": "https://www.fineart.no/kunstner/stephen-butkus",
           "additional_source": "https://www.fineart.no/galleriobjekt/Stephen_Butkus_-_You_Had_Me_At_Goodbye__10/389908",
           "asset": "Existing local image; provenance needs verification"
+        },
+        {
+          "id": "renzo_piano",
+          "role": "Arkitekten bak Astrup Fearnleys museumsbygning på Tjuvholmen",
+          "source": "https://www.afmuseet.no/en/the-museum-building/",
+          "asset": "bilder/kort/people/renzo_piano.webp",
+          "provenance": "data/people/renzo_piano_image_provenance.json",
+          "imageReview": "PASS: identity-confirmed Cirone-Musi Commons portrait CC BY-SA 2.0; merged PR #7266"
         }
       ],
       "unsupported_existing": [
@@ -99,9 +107,9 @@
           "reason": "Onstad is not source-backed as an actor in Tjuvholmen / Astrup Fearnley development"
         }
       ],
-      "action": "1 av 4 aktive People har nå ekte kildeklart portrett (Pushwagner). Melgaard og Butkus peker fortsatt til ikke-eksisterende PNG-bilder; Hans Rasmus Astrup har generisk placeholder. For Hans Rasmus Astrup må foto vise kunstsamleren (1939–2021), aldri navnebroren, 1800-tallspolitikeren.",
+      "action": "2/5 aktive personer har nå autentiske og kildeklare portretter: Hariton Pushwagner og Renzo Piano. Bjarne Melgaard og Stephen Butkus peker fortsatt til manglende PNG, mens kunstsamleren Hans Rasmus Astrup (1939–2021) har generisk placeholder. Wikimedia Commons-kategorien Hans Rasmus Astrup gjelder politikeren fra 1800-tallet og må aldri brukes som bildebevis for samleren.",
       "runtime": {
-        "status": "1_OF_4_VISUAL_APPROVED",
+        "status": "2_OF_5_VISUAL_APPROVED",
         "personId": "hariton_pushwagner",
         "source": "data/people/hariton_pushwagner_image_provenance.json",
         "image": "bilder/kort/people/hariton_pushwagner.webp",
@@ -109,6 +117,10 @@
           "tjuvholmen",
           "aker_brygge",
           "torggata"
+        ],
+        "verifiedIds": [
+          "hariton_pushwagner",
+          "renzo_piano"
         ]
       }
     },
@@ -160,17 +172,18 @@
       "note": "No independent, sourced artifact review completed; do not mark reasoned N/A until documented research"
     },
     "structures": {
-      "status": "BLOCKED",
+      "status": "STAGED_3_WEBP_PREVIEWS_PENDING_FULL_ORIGINALS_AND_BROWSER_QA",
       "verified_candidates": [
-        "Tjuvholmen allé / public-space infrastructure",
-        "Astrup Fearnley museum building (owns separate primary Place)",
-        "Skjæret and public waterside park"
+        "Tjuvtitten – genuine tower, not designed by Renzo Piano",
+        "Tjuvholmen bystrand – public beach at Skjæret, not historical 19th-century sjøbad",
+        "Skulpturparken på Skjæret – public sculpture park, not duplicate Astrup Fearnley Place"
       ],
       "sources": [
         "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/tjuvholmen/",
         "https://www.afmuseet.no/en/the-museum-building/"
       ],
-      "action": "Select genuine independent byrom/anlegg entities and source-specific thumbnails; do not duplicate the museum as a second Place."
+      "action": "Three 900px WebP previews and 960px Commons sources are committed with creator, CC BY-SA 3.0, SHA-256, and visual PASS in #7269. Canonical Structures and runtime staged in follow-on PR. Full-resolution Commons JPEG originals (HTTP 429) and native PlaceCard mobile/desktop QA remain pending.",
+      "provenance": "reports/place-production/tjuvholmen-structures-source-candidates-20261112.json"
     }
   },
   "core": {
@@ -185,7 +198,7 @@
   },
   "vferdig": {
     "editorial_status": "BLOCKED",
-    "reason": "Brands 3/3 GODKJENT. People 1/4: 2 manglende PNG, ett generisk placeholder; Structures uferdig.",
+    "reason": "Brands 3/3; People 2/5; Structures 3 WebP previews staged, full source originals and live app QA pending; Objects and canonical core require honest closeout review.",
     "no_filler": true,
     "do_not_mark_complete": true
   },
