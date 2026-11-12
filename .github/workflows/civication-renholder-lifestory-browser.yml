@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        case: [lifestory, soel, opplaering, klage]
+        case: [lifestory, soel, opplaering, klage, dagskifte]
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -40,6 +40,9 @@ jobs:
         run: |
           node tests/civication-lifestory-renholder.test.js
           node tests/civication-lifestory-renholder-soel.test.js
+      - name: Build shared UI calendar test helper
+        if: matrix.case == 'dagskifte'
+        run: npm run build:scripts
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Play actual room-status choices and Symposium

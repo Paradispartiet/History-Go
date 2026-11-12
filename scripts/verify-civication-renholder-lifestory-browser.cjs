@@ -6,12 +6,13 @@ const { mkdirSync, writeFileSync } = require('node:fs');
 const path = require('node:path');
 const { chromium } = require('playwright');
 const origin = 'http://127.0.0.1:4188';
-const complaint = process.env.RENHOLDER_CASE === 'klage';
+const organic = process.env.RENHOLDER_CASE === 'dagskifte';
+const complaint = organic || process.env.RENHOLDER_CASE === 'klage';
 const targetDay = complaint ? 7 : 2;
 const spill = process.env.RENHOLDER_CASE === 'soel';
 const training = process.env.RENHOLDER_CASE === 'opplaering';
 const thread = complaint ? 'usynlig_arbeid' : training ? 'ryggen_sier_fra' : spill ? 'soelet_i_fellesarealet' : 'tidsvinduet_krymper';
-const output = path.resolve('reports/civication-renholder-'+(complaint?'klage':training?'opplaering':spill?'soel':'lifestory')+'-browser');
+const output = path.resolve('reports/civication-renholder-'+(organic?'dagskifte':complaint?'klage':training?'opplaering':spill?'soel':'lifestory')+'-browser');
 mkdirSync(output, { recursive: true });
 const server = spawn('python3', ['-m', 'http.server', '4188', '--bind', '127.0.0.1'], { stdio: 'ignore' });
 let serverError = null;
@@ -44,6 +45,24 @@ async function openDay(page) {
   await page.locator('.civi-footer button[data-category="minDag"]').click({timeout:20000});
 }
 async function startNextStoryDay(page,label,fromDay) {
+  if (organic) {
+    const before=await page.evaluate(()=>({
+      calendar:globalThis.CivicationCalendar.getClock().dayIndex,
+      story:globalThis.CivicationLifestoryState.load()
+    }));
+    assert.equal(Number(before.calendar),fromDay,label+': calendar starts on story day');
+    const {nextDayViaUi}=require('../dist/scripts/verify-civication-arbeidsledig-browser.js');
+    await nextDayViaUi(page,label,fromDay);
+    const after=await page.evaluate(()=>({
+      calendar:globalThis.CivicationCalendar.getClock().dayIndex,
+      story:globalThis.CivicationLifestoryState.load()
+    }));
+    assert.equal(Number(after.calendar),fromDay+1,label+': one actual calendar rollover');
+    assert.equal(after.story.dag,fromDay+1,label+': story follows actual calendar');
+    assert.equal(after.story.kalenderDag,fromDay+1,label+': canonical calendar checkpoint');
+    assert.deepEqual(after.story.arkiv.slice(0,before.story.arkiv.length),before.story.arkiv,label+': rollover preserves existing archive');
+    return 'ui-inbox';
+  }
   const next = page.locator('[data-lifestory-next-day]').first();
   assert.equal(await next.count(),1,label+': real day summary has day control');
   let mode = 'ui';
@@ -180,7 +199,7 @@ async function play(browser, fixture) {
     await withCurrentElement(()=>result.scrollIntoViewIfNeeded());
     await withCurrentElement(()=>result.screenshot({path:path.join(output,label+'-symposium-result.png')}));
     assert.deepEqual(errors,[],label+': no uncaught browser exceptions');
-    return {label,viewport,dayTransitionMode,days:targetDay,ending:fixture.ending,flags:{...baseFlags,...flags},status,trace,archiveLength:saved.arkiv.length,detachedRetries};
+    return {label,viewport,dayTransitionMode,days:targetDay,calendarMode:organic?'ui-inbox':'story-fixture',ending:fixture.ending,flags:{...baseFlags,...flags},status,trace,archiveLength:saved.arkiv.length,detachedRetries};
   } catch(error) {
     await page.screenshot({path:path.join(output,label+'-failure.png'),fullPage:true}).catch(()=>{});
     throw error;
