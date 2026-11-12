@@ -3,7 +3,7 @@
   "place_id": "tjuvholmen",
   "name": "Tjuvholmen",
   "category": "by",
-  "status": "in_production",
+  "status": "local_binary_images_ready_pending_editorial_and_collections",
   "production_profile": "pending_source_based_collection_review",
   "profile_status": "unconfirmed",
   "active_phase": "Oslo T–S 10/20 – CC0 waterside landscape overview and separate 3:4 documentary portrait, source hashes, PlaceCard editorial audit",
@@ -23,14 +23,20 @@
       "creator": "Leonhard Lenz",
       "license": "CC0 1.0",
       "planned_path": "bilder/places/tjuvholmen_main_2026_waterfront.webp",
-      "source_description": "Waterfront and waterside architecture overview; full landscape source preserved"
+      "source_description": "Waterfront and waterside architecture overview; full landscape source preserved",
+      "local_source": "bilder/places/auto/tjuvholmen_2026_lenz_waterfront_source_thumb.jpg",
+      "local_source_sha256": "92e2c0831ea77844adfbc91b9fd7da81bc58a883801c853f15953eb16fc42156",
+      "webp_sha256": "d86a4d02ff666e9aaa46d42e849cf4c8db7ab37a4efc10a4c96552be9014f079"
     },
     "front_image": {
       "source_page": "https://commons.wikimedia.org/wiki/File:Tjuvholmen_Oslo_2026-01-14_01.jpg",
       "creator": "Leonhard Lenz",
       "license": "CC0 1.0",
       "planned_path": "bilder/places/tjuvholmen_front_2026.webp",
-      "source_description": "Winter pedestrian lane; full portrait source preserved"
+      "source_description": "Winter pedestrian lane; full portrait source preserved",
+      "local_source": "bilder/places/auto/tjuvholmen_2026_lenz_source_thumb.jpg",
+      "local_source_sha256": "e58cb49130e662253483fedc3f70b9442764289a963441fdfc02330b23dd82d5",
+      "webp_sha256": "7c0ad4ff147eb02c971bd0b0c27d7057f8136807ae76c6501c660ed1cfc55a3e"
     }
   },
   "collection_gate": {
@@ -40,7 +46,77 @@
     "historical_events": "Not produced; separate source review needed before any claim",
     "filler_forbidden": true
   },
-  "qa": "PENDING binary source transfer and 390/1440 browser full-photo review; verify person/place and brand collection links",
+  "qa": "Photo sources local and byte-verified; editorial crop/mobile/desktop and People/Brands collection audit PENDING",
   "merged": false,
-  "verified_at": "2026-11-12"
+  "verified_at": "2026-11-12",
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "tjuvholmen",
+    "category": "by",
+    "recorded_at": "2026-11-12T06:10:17.321Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "eacaec225d5a1c61e43ed6cbe9754bc007ecff3818dfd630940dd4f4870ba7f5"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "2fba6e0e7e6747b6c95266c57ca875ce7b6b2bfbe5e9e1abac79c02ad35aee0d"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "b42bb5cc086737acc0046d8d871c54f10b2b7fdf1d56cf0a447b02b9227feb8b"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "9e7eb88f4c701b8588473e63bb03697762f3c178df7716acdc12a16d406c4525"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "fbd5e39905942e116c1fef9e375253c54f93d292b82bac03379d011f38fe93c6"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/by.json",
+        "sha256": "dbd099a18d159b00f1fa3cff1478101ec5a269d94c8b5066722c277ed26ec067"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "structures"
+      ],
+      "category_expression": "structures",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  }
 }
