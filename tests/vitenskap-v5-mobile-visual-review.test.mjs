@@ -27,6 +27,9 @@ test('Visual comparison page is a non-activating reader for all five science top
   const html = file('vitenskap-v5-review.html');
   assert.match(html, /Vitenskap &amp; teknologi – v5-gjennomgang/);
   assert.match(html, /Ikke aktive merker/);
+  assert.match(html, /html:not\\(\\.hg-auth-verified\\) body/);
+  assert.match(html, /src="js\\/aha\\.js"/);
+  assert.match(html, /src="js\\/auth\\/require-login\\.js/);
   assert.match(html, /id="topic"/);
   assert.match(html, /id="language"/);
   assert.match(html, /id="size"/);
