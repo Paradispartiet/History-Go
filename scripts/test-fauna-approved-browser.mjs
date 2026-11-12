@@ -1,0 +1,68 @@
+import assert from "node:assert/strict";
+import http from "node:http";
+import fs from "node:fs";
+import path from "node:path";
+import {fileURLToPath} from "node:url";
+import {chromium} from "playwright";
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
+const artifacts=path.join(root,"artifacts","fauna-approval");
+fs.mkdirSync(artifacts,{recursive:true});
+const mime={".html":"text/html",".js":"application/javascript",".json":"application/json",".css":"text/css",".webp":"image/webp",".png":"image/png",".svg":"image/svg+xml"};
+const server=http.createServer((req,res)=>{
+ const pathname=decodeURIComponent(new URL(req.url||"/","http://127.0.0.1").pathname),filename=path.resolve(root,"."+pathname);
+ if(!filename.startsWith(root+path.sep)||!fs.existsSync(filename)||!fs.statSync(filename).isFile()){res.writeHead(404);res.end();return;}
+ res.writeHead(200,{"Content-Type":mime[path.extname(filename)]||"application/octet-stream"});fs.createReadStream(filename).pipe(res);
+});
+await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));
+const port=server.address().port;
+let browser;
+try {
+ browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
+ for(const width of [390,1440]){
+  for(const broken of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(broken)await context.route("**/bilder/natur/fauna/godkjent/01_graaspurv_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Gråspurv");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Gråspurv,/i}).first();
+   await card.waitFor();
+   if(broken){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Never substitute photographs for a failed original");
+   } else {
+    await card.locator("img").evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await card.locator("img").getAttribute("src")).endsWith("01_graaspurv_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await card.locator("img").evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"graaspurv-card-"+width+".png")});
+   }
+   await card.click();
+   await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(broken)await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds && bounds.width<=width);
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"graaspurv-detail-"+width+".png")});
+   }
+   await context.close();
+  }
+  const context=await browser.newContext({viewport:{width,height:900}});
+  await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+  await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+  const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+  await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+  await page.locator("#natureSearch").fill("Kråke");
+  const crow=page.locator("#natureGrid").getByRole("button",{name:/^Kråke,/i}).first();
+  await crow.waitFor();assert((await crow.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Other 330 schematics must keep working");
+  await context.close();
+  console.log("Finn Fauna Gråspurv "+width+"px: approved image, dialog, black contain, failure and SVG fallback OK");
+ }
+} finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}

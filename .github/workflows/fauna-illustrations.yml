@@ -1,0 +1,41 @@
+name: Finn Fauna original illustrations
+on:
+  pull_request:
+    paths:
+      - 'js/ui/nature-fauna-approved.js'
+      - 'js/ui/nature-explorer.js'
+      - 'finn-fauna.html'
+      - 'css/nature-explorer.css'
+      - 'data/natur/fauna/illustration-quality-*.json'
+      - 'bilder/natur/fauna/godkjent/**'
+      - 'scripts/test-fauna-approved-*.mjs'
+      - 'scripts/test-fauna-*.mjs'
+      - '.github/workflows/fauna-illustrations.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: fauna-illustrations-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  illustration-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/test-fauna-graaspurv-001.mjs
+      - run: node scripts/test-nature-illustrations.mjs
+  approved-fauna-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-fauna-approved-browser.mjs

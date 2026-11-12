@@ -58,7 +58,7 @@ En synopsis kan bygge på et rom som skifter fra opptatt til ledig i løpet av v
 
 ## Samlet rollegrunnlag og lokal bruk
 
-Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 38 eksisterende Life Story-scenene på dag 1–7. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle scener til godkjent yrkesveiledning.
+Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 44 eksisterende Life Story-scenene på dag 1–7. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle scener til godkjent yrkesveiledning.
 
 ### Stillingsbeskrivelse og en vanlig økt
 
@@ -129,16 +129,35 @@ De fem nye låste oppfølgingene ligger i samme søltråd. Begge dag-2-etterspil
 
 [Den kanoniske søltesten](../../tests/civication-lifestory-renholder-soel.test.js) følger 36 faktiske kombinasjoner, begge invitasjonssvar, åpne tiltak gjennom sju dager, lagring og Symposium. Nettleserkontrollen kjøres med `RENHOLDER_CASE=soel`; den skiller normalt UI-dagskifte fra en eksplisitt Runner-fixture ved innboksgrensen. Fysisk Safari og hele normaljobbkalenderen er ikke sertifisert.
 
+### Revidert arbeidseksempel: belastning og en konkret øvingsoppgave
+
+Kildekontroll 12. november 2026: Arbeidstilsynet beskriver ergonomi som tilpasning av oppgaver, utstyr og arbeidssted, med arbeidsgiveransvar for tilrettelegging. Dette støtter at Kari må avklare oppgaven og hjelpemidlene; det dokumenterer ikke et bestemt helseutfall for spillpersonen. [Ergonomisk arbeidsmiljø](https://www.arbeidstilsynet.no/arbeidsmiljo/ergonomi/).
+
+Arbeidstilsynets opplæringsgrunnlag skiller informasjon, demonstrasjon og trening og krever tilpasning til oppgaven og arbeidstakeren. Udir knytter renholdsarbeid til planlegging, metodevalg, ergonomi og kvalitetsvurdering. Derfor registrerer spillet de ulike trinnene separat. [Generelle krav til opplæring](https://www.arbeidstilsynet.no/arbeidstid-og-organisering/generelle-krav-til-opplaring) · [Udir, ROF03-01](https://www.udir.no/lk20/rof03-01/kompetansemaal-og-vurdering/kv319?lang=nob).
+
+| Del | Lokalt spillpremiss og faktisk resultat | Åpent uten neste handling |
+| --- | --- | --- |
+| Belastning | Spilleren tar avtalt pause, forsøker å fortsette eller spør Ole om oppfølging. | Ingen ferdig sone, lært teknikk, diagnose eller lovet bedring. |
+| Avfallsoppgave | Kari bekrefter oppgaven og kjent renholdsvogn/rute. Spilleren må kontrollere forutsetningene og faktisk transportere sekkene. | Uavklart plan eller blokkert rute gir fortsatt restarbeid. Renholdsvogna er ikke kaffetralla. |
+| Overlevering | Dokumentert plan, transport og hindring sendes og kan bekreftes mottatt av Kari. | Mottak utfører ikke transport og fjerner ikke belastningsproblemet. |
+| Demonstrasjon | Amina viser ett punkt på dagens lokale liste i møterom 4. | Hennes demonstrerte punkt er ikke spillerens øvelse. |
+| Egen øvelse | Spilleren utfører og egenkontrollerer de øvrige avtalte håndtakene og bryterne mens Amina følger med. | Avbrutt øvelse eller manglende tilbakemelding er ikke bekreftet vurdering. |
+| Tilbakemelding | Amina bekrefter det hun faktisk observerte i denne øvingsoppgaven. | Ingen generell godkjenning av all renholdskompetanse, løfteteknikk, teamrutine eller lederrolle. |
+
+Møterommet, sekkene, personene og lokale avklaringer er fiktive spillpremisser. Ingen bestemt dosering, generell løfteoppskrift eller medisinsk behandling fastsettes her. Den gamle markøren `laerte_soneprioritering` settes først ved faktisk tilbakemelding og betyr nå bare bekreftet gjennomføring av denne avgrensede øvelsen. Gamle lagrede markører gjøres ikke om til nye arbeidsbevis. `laerte_teknikk` gis ikke ved spørsmål til Ole.
+
+Seks låste oppfølginger er lagt til. [Den kanoniske renholdertesten](../../tests/civication-lifestory-renholder.test.js) følger 162 faktiske kombinasjoner, lagring, Symposium og sju dager. Nettlesermodusen `RENHOLDER_CASE=opplaering` dekker de konkrete lærings- og venteutfallene på mobil og to iPad-formater. Dagskifte ved innboksgrensen må fortsatt erklæres som Runner-fixture når det brukes.
+
 ### Hva som må gjennomgås i spillinnholdet
 
 | Eksisterende del | Status og konkret revisjonsbehov |
 | --- | --- |
 | `tidsvindu_01_telefon` og `d2_standard_ekstra_rom` | Revidert sammen med `d2_rolig_formiddag`: bekreftet plan, eget og Aminas arbeid, utsatte oppgaver og mottak føres separat. De øvrige radene nedenfor gjenstår. |
 | `soel_01_krise` og begge dag-2-etterspill | Revidert med fem låste oppfølginger: sikring, rengjøring, kontroll, mottak, tiltaksansvar og skiltkontroll føres hver for seg. Tralla er ikke registrert utbedret. |
-| `rygg_01_vurdering` og `d2_runde_med_amina` | Avklar hjelpemiddel, belastning og konkret opplæring. Et råd eller en demonstrasjon er ikke bevis på mestret teknikk, og kroppen skal ikke beskrives som et verktøy arbeidstakeren alene må beskytte. |
+| `rygg_01_vurdering` og `d2_runde_med_amina` | Revidert med seks oppfølginger: avklart avfallsoppgave, faktisk transport og mottak; deretter demonstrasjon, egen øvelse og konkret tilbakemelding. Ingen medisinsk garanti eller generell kompetansegodkjenning. |
 | `usynlig_01_melding` og `d3_rom_204_klagen` | Bruk bare den utførte delen av romlista som dokumentasjon. Klokken 07.10, utført arbeid og «forrige uke» må ha et faktisk fortellingsgrunnlag. |
 | `d2_avvik_fulgt_opp` | Revidert: ja gir framtidig avtale; ingen av svarene gir gjennomført deltakelse eller lukket utstyrssak. |
 | Tilgangsscenene `wave_a_c17` til `wave_d_c17` | Bevar skillet mellom registrert hindring, ny plan, befaring, fri tilkomst og utført renhold. Ingen automatisk flytting av hylla. |
 | Rolleavslutningene | Kontroller hvert utsagn mot faktisk historie. Delvise kriterietreff må ikke gi oppdiktet helseutfall, utført arbeid eller teamlederstatus. |
 
-Revisjonslista dokumenterer det som fortsatt gjenstår i samme rolle. Tidsvinduet og sølet har fem nye oppfølginger hver. De øvrige revisjonspunktene står fortsatt åpne. Profil og synopsis er koblet, men de øvrige delene må gjennomgås og testes før hele renholderforløpet kan kalles ferdig.
+Revisjonslista dokumenterer det som fortsatt gjenstår i samme rolle. Tidsvinduet og sølet har fem nye oppfølginger hver; belastning og opplæring har seks. Klagehistorikk og eldre rolleavslutninger står fortsatt åpne. Profil og synopsis er koblet, men de øvrige delene må gjennomgås og testes før hele renholderforløpet kan kalles ferdig.

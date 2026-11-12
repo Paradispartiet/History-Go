@@ -314,3 +314,83 @@ assert.ok(roomFlag(separate,'ren_tid_korridor3_amina'));
 assert.ok(!roomFlag(separate,'ren_tid_wc3_spiller'));
 assert.ok(roomFlag(separate,'ren_tid_egen_oppgave_venter'));
 console.log('Renholder: later actual receipt and independently completed colleague work remain separate from unfinished own rooms');
+
+// A request for ergonomic support is not demonstrated or learned technique.
+let support=State.createInitialState(content);
+reachRoom(support,'rygg_01_vurdering');
+chooseRoom(support,'rygg_01_vurdering','spor_ole');
+assert.ok(!support.tidligereValg.laerte_teknikk,'asking Ole cannot establish learned technique');
+
+const learnedFlag=(s,k)=>s.tidligereValg[k]===true;
+function finishLearningDay(s){
+ for(let n=0;!s.dagFerdig;n++){
+  assert.ok(n<130,'learning route terminates');
+  const scene=Runner.selectNextScene(s,content);assert.ok(scene);
+  Runner.applyChoice(s,content,scene.id,scene.valg.find(v=>!v.skills_requirement).id);
+ }
+ return s;
+}
+const burdenRoutes=[['bekreft_plan','utfor_transport'],['bekreft_plan','stopp_og_meld'],['avvent_plan',null]];
+const learningRoutes=[
+ ['bare_jobbe',null,null,null],
+ ...['laer_metoden','foreslaa_forbedring'].flatMap(start=>[
+  [start,'utsett_demonstrasjon',null,null],
+  [start,'se_demonstrasjon','avbryt_og_spor',null],
+  [start,'se_demonstrasjon','utfor_ovelsen','faa_tilbakemelding'],
+  [start,'se_demonstrasjon','utfor_ovelsen','avvent_tilbakemelding']
+ ])
+];
+let learningRouteCount=0;
+for(const initial of ['ta_pausen','press_gjennom','spor_ole'])for(const [plan,work] of burdenRoutes)for(const receipt of ['bekreft_mottak','avvent_mottak'])for(const [learn,demo,practice,feedback] of learningRoutes){
+ let s=State.createInitialState(content);reachRoom(s,'rygg_01_vurdering');chooseRoom(s,'rygg_01_vurdering',initial);
+ assert.equal(learnedFlag(s,'tok_pausen'),initial==='ta_pausen');
+ assert.ok(!learnedFlag(s,'laerte_teknikk')&&!learnedFlag(s,'ren_bel_transport_utfort'));
+ assert.notEqual(s.threadState.ryggen_sier_fra.status,'completed');
+ chooseRoom(s,'rygg_02_plan',plan);assert.ok(!learnedFlag(s,'ren_bel_transport_utfort'),'plan is not transport');
+ if(work)chooseRoom(s,'rygg_03_transport',work);
+ assert.equal(learnedFlag(s,'ren_bel_transport_utfort'),work==='utfor_transport');
+ chooseRoom(s,'rygg_04_mottak',receipt);
+ assert.equal(learnedFlag(s,'ren_bel_mottatt'),receipt==='bekreft_mottak');
+ assert.equal(learnedFlag(s,'ren_bel_transport_utfort'),work==='utfor_transport','receipt cannot move bags');
+ assert.ok(!learnedFlag(s,'ren_soel_tralle_utbedret'),'renholdsvogn does not repair kaffetralle');
+ finishLearningDay(s);s=Runner.startNextDay(JSON.parse(JSON.stringify(s)),content);reachRoom(s,'d2_runde_med_amina');
+ const relation=s.relasjoner.erfaren_kollega;
+ chooseRoom(s,'d2_runde_med_amina',learn);
+ assert.ok(!learnedFlag(s,'laerte_soneprioritering')&&!learnedFlag(s,'ren_opp_demo_sett')&&!learnedFlag(s,'ren_opp_ovelse_utfort'),'reply/proposal is not learning');
+ if(learn==='bare_jobbe')assert.equal(s.relasjoner.erfaren_kollega,relation,'deferring training is not automatically punished');
+ if(demo){chooseRoom(s,'opp_02_demonstrasjon',demo);assert.ok(!learnedFlag(s,'laerte_soneprioritering')&&!learnedFlag(s,'ren_opp_ovelse_utfort'),'watching is not own practice');}
+ if(practice){chooseRoom(s,'opp_03_egen_ovelse',practice);assert.ok(!learnedFlag(s,'laerte_soneprioritering'),'practice still needs feedback');}
+ if(feedback)chooseRoom(s,'opp_04_tilbakemelding',feedback);
+ assert.equal(learnedFlag(s,'ren_opp_demo_sett'),demo==='se_demonstrasjon');
+ assert.equal(learnedFlag(s,'ren_opp_ovelse_utfort'),practice==='utfor_ovelsen');
+ assert.equal(learnedFlag(s,'ren_opp_tilbakemelding'),feedback==='faa_tilbakemelding');
+ assert.equal(learnedFlag(s,'laerte_soneprioritering'),feedback==='faa_tilbakemelding');
+ assert.ok(!learnedFlag(s,'laerte_teknikk'),'no general lifting qualification');
+ assert.ok(!learnedFlag(s,'ren_tid_korridor3_spiller'),'Amina retains her earlier room work');
+ const proof=JSON.parse(JSON.stringify(s.tidligereValg));const archive=JSON.parse(JSON.stringify(s.arkiv));
+ s=JSON.parse(JSON.stringify(s));assert.deepEqual(s.arkiv,archive);
+ for(const row of archive.filter(x=>x.sceneId.startsWith('rygg_')||x.sceneId.startsWith('opp_'))){
+  assert.ok(Runner.getSymposium(s,content).tidslinje.some(x=>x.sceneId===row.sceneId&&x.valgId===row.valgId&&x.konsekvensTekst===row.konsekvensTekst));
+ }
+ finishLearningDay(s);
+ while(s.dag<7){s=Runner.startNextDay(JSON.parse(JSON.stringify(s)),content);finishLearningDay(s);}
+ for(const k of Object.keys(proof).filter(k=>k.startsWith('ren_bel_')||k.startsWith('ren_opp_')))assert.equal(s.tidligereValg[k],proof[k],'specific evidence survives seven days '+k);
+ assert.equal(s.tidligereValg.wa_d_c17_status,'andre_rom_tilbudt');
+ learningRouteCount++;
+}
+assert.equal(learningRouteCount,162);
+console.log('Renholder learning: 162 actual routes; plan/work/receipt, demo/practice/feedback, deferred and interrupted variants, exact Symposium and seven-day persistence OK');
+// Compatibility fixture: a legacy save can contain historical learning flags,
+// but those flags are not new demonstration/practice/feedback events.
+let legacyLearning=State.createInitialState(content);
+legacyLearning.tidligereValg.laerte_teknikk=true;
+legacyLearning.tidligereValg.laerte_soneprioritering=true;
+legacyLearning=JSON.parse(JSON.stringify(legacyLearning));
+assert.ok(!legacyLearning.tidligereValg.ren_opp_demo_sett&&!legacyLearning.tidligereValg.ren_opp_ovelse_utfort&&!legacyLearning.tidligereValg.ren_opp_tilbakemelding);
+assert.ok(!Runner.getCandidateScenes(legacyLearning,content).some(x=>x.id.startsWith('opp_')),'legacy learning does not unlock new training scenes');
+assert.equal(Runner.getSymposium(legacyLearning,content).tidslinje.length,0,'no invented archive from old flags');
+// Player-facing training feedback must explain the observed result, not storage flags.
+for(const scene of raw.roleScenes.scenes.filter(x=>x.id==='d2_runde_med_amina'||x.id.startsWith('opp_')||x.id.startsWith('rygg_'))){
+ const text=[scene.tekst,...scene.valg.flatMap(v=>[v.tekst,v.konsekvensTekst])].join(' ');
+ assert.doesNotMatch(text,/læringsmarkør|tidligereValg|ren_opp_|ren_bel_/i,'technical implementation leaked into scene '+scene.id);
+}
