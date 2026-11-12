@@ -2,7 +2,7 @@
 
 **Identitet:** `naeringsliv/renholder`, Life Story `renholder`.
 
-**Status:** Samlet redaksjonell synopsis over de 28 eksisterende scenene på sju fortellingsdager. Den samler dagens innhold og peker ut revisjonsbehov. Den godkjenner ikke automatisk scenene, opplæringen eller avslutningene. [Profilen](../civication-symposium/renholder.md) eier yrkesgrunnlag, ordliste og kildekart. [Registeret](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md) fører profil og synopsis separat.
+**Status:** Samlet redaksjonell synopsis over de 33 eksisterende scenene på sju fortellingsdager. Den samler dagens innhold og peker ut revisjonsbehov. Den godkjenner ikke automatisk scenene, opplæringen eller avslutningene. [Profilen](../civication-symposium/renholder.md) eier yrkesgrunnlag, ordliste og kildekart. [Registeret](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md) fører profil og synopsis separat.
 
 Du arbeider som renholder i bygget som allerede finnes i rollepakken. Før andre bruker møterommet, skal du gjennom en bestemt romliste. Senere kan rommet være fullt av folk igjen. Når noen sier at det aldri blir vasket, må du kunne vise hva som ble gjort, hva som sto igjen og hva du ikke kom til.
 
@@ -14,11 +14,13 @@ Personene og hendelsene er skrevet for spillet. Kildene dokumenterer arbeidsoppg
 
 **Dag 1:** Møterom 2 er ledig før møtet klokken ni. Lista omfatter bord, avfall, håndtak og brytere. Ved serveringsbenken lukter det, men årsaken er ukjent. Du kan gjøre den planlagte runden, føre noen oppgaver som gjenstående eller dele arbeidet med Amina. Det som ble rengjort, må føres med riktig utfører. Lukten må beskrives som en observasjon, ikke som bevis på slurv, smitte eller en årsak du ikke har undersøkt.
 
-Kari ber deretter om tredje etasje i samme tidsvindu fordi en kollega er borte. Her må historien avklare prioritet, tilkomst og ansvar. Det er ikke nok at du sier ja, eller at Amina er positiv til å dele. En endret plan må vise hva som blir utsatt og hvem som har godkjent fordelingen.
+Kari ber deretter om toalettene og korridoren i tredje etasje fordi en kollega er borte. Kontorer og trapp står igjen på egen liste. Du kan si ja, melde kapasiteten, sette en grense eller foreslå deling. Dette er svar på forespørselen, ikke utført arbeid. Kari må bekrefte prioriterte toaletter med andre oppgaver utsatt, en deling som Amina også sier ja til, eller at du beholder egen rute mens hun følger opp ekstrabehovet. Den avtalte pausen beholdes.
+
+Du utfører og kontrollerer den bekreftede egenoppgaven før den føres som gjort. I delt plan må Amina selv bekrefte korridoren og kontrollen av resultatet. Det er hennes arbeid. Du sender romstatusen til Kari og kan få bekreftet mottak, eller la det stå ubekreftet. Rom som ikke ble utført, en plan uten avklaring og et Amina-resultat uten svar forblir åpne.
 
 I fellesarealet oppstår søl. Oppgaven består av å håndtere den umiddelbare faren, utføre renholdet og kontrollere resultatet. En avviksmelding er en annen del av arbeidet. At Ole svarer eller at Sindre holder folk unna, viser ikke alene at gulvet er rengjort og kan åpnes igjen. Senere må en klage fra Sindre sammenholdes med den faktiske romlista. Den kan vise både utførte oppgaver og restarbeid; den trenger ikke frikjenne eller felle noen som person.
 
-**Dag 2:** Arbeidet følger opp sølet, ekstrarommene og klagen. En avtalt framtidig vernerunde skal stå som avtalt, ikke som gjennomført. Et spørsmål om tralla eller skiltene må ha et navngitt ansvar og et faktisk kontrollresultat før tiltaket kan kalles utført. Tidsregnskapet kan vise hvorfor en oppgave ikke ble gjort, men er ikke i seg selv ny bemanning.
+**Dag 2:** Arbeidet følger opp sølet, ekstrarommene og klagen. En avtalt framtidig vernerunde skal stå som avtalt, ikke som gjennomført. Et spørsmål om tralla eller skiltene må ha et navngitt ansvar og et faktisk kontrollresultat før tiltaket kan kalles utført. Oppfølgingen av tidsvinduet leser den dokumenterte romstatusen i stedet for å finne på en kvalitetsklage eller mistet pause. En uttrykkelig mottaksbekreftelse fra Kari kan avklare et tidligere ubekreftet mottak, men gjør ikke resten av rommene ferdige. Et tidsregnskap er heller ikke ny bemanning.
 
 Amina kan vise prioritering og arbeidsmåte. Historien må velge en konkret oppgave og kontrollere hva du faktisk utfører etter gjennomgangen. Et forslag om å gjøre metoden til felles standard er en annen handling. Det gjør deg ikke automatisk til teamleder.
 
@@ -53,8 +55,8 @@ Spillerens Symposium skal holde utført renhold, kontroll, meldt avvik, bekrefte
 
 ## Kildekoblinger og revisjonsrekkefølge
 
-[Personer, arbeidsoppgaver og avslutninger](../../data/Civication/lifestory/roles/renholder/role.json) · [Arbeidslivstråder](../../data/Civication/lifestory/roles/renholder/threads.json) · [28 scener, dag 1–7](../../data/Civication/lifestory/roles/renholder/scenes.json) · [Arbeidsgrammatikk](../../data/Civication/workGrammars/naeringsliv/renholder.json) · [Rolleverden](../../data/Civication/roleWorlds/naeringsliv/renholder.json) · [C17 som tematisk inngang](../CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c17--å-arbeide-seg-tom)
+[Personer, arbeidsoppgaver og avslutninger](../../data/Civication/lifestory/roles/renholder/role.json) · [Arbeidslivstråder](../../data/Civication/lifestory/roles/renholder/threads.json) · [33 scener, dag 1–7](../../data/Civication/lifestory/roles/renholder/scenes.json) · [Arbeidsgrammatikk](../../data/Civication/workGrammars/naeringsliv/renholder.json) · [Rolleverden](../../data/Civication/roleWorlds/naeringsliv/renholder.json) · [C17 som tematisk inngang](../CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c17--å-arbeide-seg-tom)
 
-Dette er én koblet synopsis, ikke 28 nye hendelser. Normal jobbmail og Life Story er egne produksjonsveier. Et tematisk C17-spor eller en bok-/filmreferanse er ikke dokumentasjon på renholdspraksis.
+Dette er én koblet synopsis, ikke 33 nye hendelser. Normal jobbmail og Life Story er egne produksjonsveier. Et tematisk C17-spor eller en bok-/filmreferanse er ikke dokumentasjon på renholdspraksis.
 
-Neste scenerevisjon skal først gjøre omfordelingen ved tidspress konkret, deretter søl og avvik, og så opplæring, klagehistorikk og avslutninger. Tilgangssporets skille mellom plan, befaring og utført arbeid skal bevares. [Profilens revisjonsliste](../civication-symposium/renholder.md#hva-som-må-gjennomgås-i-spillinnholdet) viser de konkrete hullene. Ingen runtime eller spillerlagring er endret ved å skrive denne synopsisen.
+Tidsvinduet er nå revidert med bekreftet plan, faktisk utførelse, begge aktørers resultater og mottak. Neste scenerevisjon gjelder søl og avvik, deretter opplæring, klagehistorikk og avslutninger. Tilgangssporets skille mellom plan, befaring og utført arbeid skal bevares. [Profilens revisjonsliste](../civication-symposium/renholder.md#hva-som-må-gjennomgås-i-spillinnholdet) viser de konkrete hullene. Synopsisen beskriver den reviderte tidsvinduoppgaven, men godkjenner ikke resten av spillinnholdet eller hele normaljobbkalenderen. Den endrer ikke lagret spillerhistorikk.
