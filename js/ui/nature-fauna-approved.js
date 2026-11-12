@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_skjaere:Object.freeze({
+   scientificName:"Pica pica",
+   src:"bilder/natur/fauna/godkjent/03_skjaere_v1.webp",
+   gitBlobSha:"e3da752bce1c4f637b80198559b805c98c1d82c7",
+   reviewedAt:"2026-11-12",
+   stage:"adult_perched_and_flying_green_tail",
+   evidence:"data/natur/fauna/illustration-quality-skjaere-20261112.json"
+  }),
   emne_fauna_kraake:Object.freeze({
    scientificName:"Corvus cornix",
    src:"bilder/natur/fauna/godkjent/02_kraake_v1.webp",

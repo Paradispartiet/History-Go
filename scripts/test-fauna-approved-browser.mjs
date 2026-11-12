@@ -90,16 +90,52 @@ try {
    }
    await context.close();
   }
-  // Skjære keeps its older schematic SVG until individually approved.
+  // Skjære #3: approved transparent original, full image on black, fallback on failure.
+  for(const brokenMagpie of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenMagpie)await context.route("**/bilder/natur/fauna/godkjent/03_skjaere_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Skjære");
+   const magpie=page.locator("#natureGrid").getByRole("button",{name:/^Skjære,/i}).first();
+   await magpie.waitFor();
+   if(brokenMagpie){
+    await magpie.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await magpie.locator("img").count(),0,"Skjære: never substitute photos");
+   }else{
+    const img=magpie.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("03_skjaere_v1.webp"));
+    assert.equal(await magpie.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await magpie.screenshot({path:path.join(artifacts,"skjaere-card-"+width+".png")});
+   }
+   await magpie.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenMagpie)await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Skjære: dialog must fit viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"skjaere-detail-"+width+".png")});
+   }
+   await context.close();
+  }
+  // Svarttrost retains its older schematic SVG until individually approved.
   const context=await browser.newContext({viewport:{width,height:900}});
   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
-  await page.locator("#natureSearch").fill("Skjære");
-  const magpie=page.locator("#natureGrid").getByRole("button",{name:/^Skjære,/i}).first();
-  await magpie.waitFor();assert((await magpie.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Other species retain the schematic SVG fallback");
+  await page.locator("#natureSearch").fill("Svarttrost");
+  const blackbird=page.locator("#natureGrid").getByRole("button",{name:/^Svarttrost,/i}).first();
+  await blackbird.waitFor();assert((await blackbird.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Other species retain the schematic SVG fallback");
   await context.close();
-  console.log("Finn Fauna Gråspurv og Kråke "+width+"px: approved image, dialog, black contain, failure and SVG fallback OK");
+  console.log("Finn Fauna Gråspurv, Kråke og Skjære "+width+"px: approved image, dialog, black contain, failure and SVG fallback OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
