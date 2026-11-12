@@ -215,6 +215,27 @@ jobs:
 
           exit "$BUILD_STATUS"
 
+      # Temporary diagnostic to recover the exact generated source-map mapping.
+      # Only mapping character offsets are printed; source files remain unchanged.
+      - name: Diagnose source map drift (temporary)
+        if: failure() && steps.build-web-check.outcome == 'failure'
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const {execFileSync} = require('node:child_process');
+          const file = 'dist/web/place-unified-surface.js.map';
+          const previous = JSON.parse(execFileSync('git', ['show', 'HEAD:' + file], {encoding:'utf8'}));
+          const generated = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const a = previous.mappings, b = generated.mappings;
+          let start = 0, end = 0;
+          while (start < a.length && start < b.length && a[start] === b[start]) start++;
+          while (end < a.length-start && end < b.length-start && a[a.length-1-end] === b[b.length-1-end]) end++;
+          console.log('MAP_PATCH_BEGIN pre=' + start + ' suf=' + end + ' old=' + a.length + ' now=' + b.length);
+          for (let i = 0; i < b.length-start-end; i += 1000)
+            console.log('MAP_PATCH_PART ' + (i/1000) + ' ' + b.slice(start+i, start+i+1000));
+          console.log('MAP_PATCH_END');
+          NODE
+
       - name: Upload browser build diagnostics
         if: failure() && steps.build-web-check.outcome == 'failure'
         uses: actions/upload-artifact@v4
