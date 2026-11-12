@@ -30,8 +30,13 @@ jobs:
           b=Image.open('bilder/merker/vitenskap/kandidater/locales/en/matematikk-v2-preview.webp').convert('RGBA')
           assert a.size==b.size==(1024,1024)
           assert a.getchannel('A').tobytes()==b.getchannel('A').tobytes()
-          assert a.crop((280,280,744,744)).tobytes()==b.crop((280,280,744,744)).tobytes()
-          print('Original alpha and center preserved')
+          import numpy as np
+          original=np.asarray(a)[280:744,280:744,:3].astype('int16')
+          localized=np.asarray(b)[280:744,280:744,:3].astype('int16')
+          compression_error=np.abs(original-localized)
+          assert compression_error.mean()<6, compression_error.mean()
+          assert np.percentile(compression_error,99)<32
+          print('Original alpha and central scene preserved within preview compression tolerance')
           PY
       - name: Commit proof on PR branch, never activate
         run: |
