@@ -185,7 +185,7 @@ function renderBadgeSubcategories(place, badge) {
       <div class="pc-badge-header">
         <strong>${escapeBadgeHtml(badgeName)}</strong>
       </div>
-      <div class="pc-empty">Badge mangler underkategori-data for ${escapeBadgeHtml(badgeName)}</div>
+      <div class="pc-empty">Ingen stedsspesifikke undermerker registrert ennå</div>
     `;
   }
 
