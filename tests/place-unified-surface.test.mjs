@@ -136,6 +136,14 @@ test("standard Places render directly in Place Sheet while Micro keeps the stand
     renderLearningSection: () => '<section class="hg-place-learning-section">Fagverkinnhold</section>'
   };
   window.HTMLElement.prototype.scrollIntoView = function scrollIntoView() {};
+  // JSDOM does not implement Element.scrollTo; model the browser's API rather
+  // than weakening the real mobile/desktop section-visibility assertions.
+  const mockScroller = window.document.querySelector('#placeCard > .pc-body');
+  const scrollCalls = [];
+  mockScroller.scrollTo = function scrollTo({ top = 0, behavior = 'auto' } = {}) {
+    scrollCalls.push({ top, behavior });
+    this.scrollTop = top;
+  };
 
   window.eval(runtime);
   await window.openPlaceCard(standard);
@@ -144,6 +152,8 @@ test("standard Places render directly in Place Sheet while Micro keeps the stand
   readingScroller.scrollTop = 600;
   assert.equal(window.HGPlaceUnifiedSurface.scrollToSection('about'), true);
   assert.equal(readingScroller.scrollTop, 0, 'About returns to the portrait and ingress');
+  assert.deepEqual(scrollCalls.at(-1), { top: 0, behavior: 'instant' },
+    'About jumps instantly to the visible introduction');
 
   const card = window.document.getElementById("placeCard");
   assert.equal(card.classList.contains("is-unified-place"), true);
@@ -177,6 +187,10 @@ test("standard Places render directly in Place Sheet while Micro keeps the stand
   scroller.scrollTop = 500;
   assert.equal(window.HGPlaceUnifiedSurface.scrollToSection("about", { instant: true }), true);
   assert.equal(scroller.scrollTop, 0, "About must restore the full introduction instead of jumping into the long text");
+  card.classList.add('is-section-reading');
+  assert.equal(window.HGPlaceUnifiedSurface.scrollToSection('about'), true);
+  assert.equal(card.classList.contains('is-section-reading'), false,
+    'About must leave reading mode and restore the authentic hero');
 
   await window.HGPlacePopupTabs.openTab(standard, "history");
   assert.equal(window.document.querySelector("body > .hg-popup.place-popup-v2"), null);

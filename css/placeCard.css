@@ -2262,7 +2262,8 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 }
 #placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-photo-caption{
   position:absolute;
-  top:46px;
+  /* Historical provenance must sit above the quiz action, not across it. */
+  top:14px;
   left:14px;
   max-width:min(60%,300px);
   margin:0;
@@ -2419,6 +2420,16 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   }
 }
 
+/* Phone: leave the app logo above the dated source note, while keeping
+   the note clear of the hero's TAKE QUIZ action. */
+@media(max-width:520px){
+  body.hg-app.hg-phone #placeCard .pc-heading-hero.has-photo-source .pc-heading-content .pc-photo-caption{
+    top:24px;
+    font-size:11px;
+    line-height:1.25;
+  }
+}
+
 /* Keep historical photo dates next to the image, also on narrow screens. */
 #placeCard .pc-heading-content .pc-photo-caption {
   order: -1;
@@ -2429,8 +2440,6 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   text-align: left;
   text-shadow: 0 1px 3px #000;
 }
-
-
 
 /* PlaceCard shows the registered place-specific underbadge, not a generic icon. */
 .pc-underbadge-thumb {

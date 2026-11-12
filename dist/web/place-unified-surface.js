@@ -2248,7 +2248,7 @@
       ++readyGeneration;
       restoreLegacyPlaceCardStructure();
       const root2 = card2();
-      root2 == null ? void 0 : root2.classList.remove(CARD_CLASS, "is-place-sheet-direct");
+      root2 == null ? void 0 : root2.classList.remove(CARD_CLASS, "is-place-sheet-direct", "is-section-reading");
       if (root2) {
         delete root2.dataset.hgUnifiedPlaceId;
         delete root2.dataset.hgUnifiedGeneration;
@@ -2276,6 +2276,7 @@
       if (!(root2 instanceof HTMLElement)) return null;
       const shell4 = mountPlaceSheetPhase1(place);
       if (!(shell4 instanceof HTMLElement)) return null;
+      if (_options.refresh) root2.classList.remove("is-section-reading");
       root2.classList.add(CARD_CLASS, "is-place-sheet-direct");
       root2.dataset.hgUnifiedPlaceId = id;
       const generation = ++readyGeneration;
@@ -2289,11 +2290,14 @@
       const section = placeSheetSectionTarget(id);
       if (!(section instanceof HTMLElement)) return false;
       const scroller = (_a = card2()) == null ? void 0 : _a.querySelector(":scope > .pc-body");
+      if (scroller && scroller.parentElement) {
+        scroller.parentElement.classList.toggle("is-section-reading", id !== "about");
+      }
       if (id === "about" && scroller) {
-        scroller.scrollTop = 0;
+        scroller.scrollTo({ top: 0, behavior: "instant" });
       } else {
         try {
-          section.scrollIntoView({ behavior: options.instant ? "auto" : "smooth", block: "start" });
+          section.scrollIntoView({ behavior: "instant", block: "start" });
         } catch {
           (_b = section.scrollIntoView) == null ? void 0 : _b.call(section);
         }
