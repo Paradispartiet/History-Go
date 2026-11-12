@@ -14,6 +14,10 @@ test('PlaceCard renders the complete badge without the former 12% zoom', () => {
   assert.match(badgeRule[1], /object-fit:\s*contain\s*;/);
   assert.match(badgeRule[1], /transform:\s*none\s*;/);
   assert.doesNotMatch(badgeRule[1], /scale\(/);
+  const heroRule = css.match(/#placeCard \.pc-title-row > #pcBadgesIcon > img\.pc-badge-round-img\s*\{([^}]+)\}/);
+  assert.ok(heroRule, 'Badge-specific hero rule must override portrait cover');
+  assert.match(heroRule[1], /object-fit:\s*contain\s*;/);
+  assert.match(heroRule[1], /transform:\s*none\s*;/);
   assert.match(css, /@media \(max-width: 520px\)[\s\S]*?#placeCard \.pc-title-row > #pcBadgesIcon\s*\{[\s\S]*?width:\s*38px/);
   assert.match(css, /#placeCard \.pc-title-row > #pcBadgesIcon\s*\{[\s\S]*?width:\s*52px/);
   assert.match(css, /\.pc-underbadge-thumb\s*\{[\s\S]*?width:\s*38px/);
