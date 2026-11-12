@@ -6,7 +6,9 @@ const { mkdirSync, writeFileSync } = require('node:fs');
 const path = require('node:path');
 const { chromium } = require('playwright');
 const origin = 'http://127.0.0.1:4188';
-const output = path.resolve('reports/civication-renholder-lifestory-browser');
+const spill = process.env.RENHOLDER_CASE === 'soel';
+const thread = spill ? 'soelet_i_fellesarealet' : 'tidsvinduet_krymper';
+const output = path.resolve('reports/civication-renholder-'+(spill?'soel':'lifestory')+'-browser');
 mkdirSync(output, { recursive: true });
 const server = spawn('python3', ['-m', 'http.server', '4188', '--bind', '127.0.0.1'], { stdio: 'ignore' });
 let serverError = null;
@@ -46,7 +48,7 @@ async function startDayTwo(page,label) {
   await page.waitForFunction(()=>globalThis.CivicationLifestoryState?.load?.()?.dag===2,null,{timeout:45000});
   return mode;
 }
-const baseFlags = { ren_tid_plan_bekreftet:false, ren_tid_wc3_spiller:false,
+const baseFlags = spill ? {ren_soel_rengjort:false,ren_soel_aapnet:false,ren_soel_arbeid_venter:false,ren_soel_kontroll_venter:false,ren_soel_kari_mottatt:false,ren_soel_mottak_venter:false,ren_soel_ansvar_bekreftet:false,ren_soel_skilt_kontrollert:false,ren_soel_tralle_utbedret:false,ren_soel_vernerunde_avtalt:false,ren_soel_tiltakskontroll_venter:false} : { ren_tid_plan_bekreftet:false, ren_tid_wc3_spiller:false,
   ren_tid_korridor3_amina:false, ren_tid_kontorer_spiller:false, ren_tid_trapp_spiller:false,
   ren_tid_amina_venter:false, ren_tid_kari_mottatt:false, ren_tid_plan_venter:false,
   ren_tid_egen_oppgave_venter:false, ren_tid_mottak_venter:false };
@@ -79,7 +81,7 @@ async function play(browser, fixture) {
       await button.scrollIntoViewIfNeeded();
       const rect=await button.boundingBox();
       assert.ok(rect&&rect.width>0&&rect.x>=-2&&rect.x+rect.width<=viewport.width+2,label+': button geometry '+id);
-      const focus=id==='tidsvindu_01_telefon'||id.startsWith('tid_')||id==='d2_standard_ekstra_rom'||id==='d2_rolig_formiddag';
+      const focus=spill ? (id.startsWith('soel_')||id==='d2_avvik_fulgt_opp'||id==='d2_glatt_gulv_etterspill') : id==='tidsvindu_01_telefon'||id.startsWith('tid_')||id==='d2_standard_ekstra_rom'||id==='d2_rolig_formiddag';
       if(focus) {
         if(id==='tid_02_kari_prioriterer'||id==='tid_05_kari_mottar') {
           assert.match(await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent(),/Fra Kari/);
@@ -96,6 +98,10 @@ async function play(browser, fixture) {
       const after=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
       assert.equal(after.arkiv.at(-1).sceneId,id);assert.equal(after.arkiv.at(-1).valgId,chosen);
       trace.push([id,chosen]);
+      if(spill && id==='soel_01_krise') {
+        assert.ok(!after.tidligereValg.ren_soel_rengjort&&!after.tidligereValg.ren_soel_aapnet&&!after.tidligereValg.ren_soel_kari_mottatt);
+      }
+      if(spill && id==='d2_avvik_fulgt_opp') assert.ok(!after.tidligereValg.ble_med_vernerunde);
       if(id==='tidsvindu_01_telefon') {
         sawRequest=true;
         assert.ok(!after.tidligereValg.tok_ekstra_rom&&!after.tidligereValg.delte_sonen,
@@ -120,7 +126,7 @@ async function play(browser, fixture) {
     const final=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
     assert.ok(final.dag===2&&final.dagFerdig&&sawRequest&&sawPlan&&dayTransitionMode,label+': completed actual two-day route');
     for(const [k,v] of Object.entries({...baseFlags,...flags})) assert.equal(final.tidligereValg[k]===true,v,label+': evidence '+k);
-    assert.equal(final.threadState.tidsvinduet_krymper.status,status);
+    assert.equal(final.threadState[thread].status,status);
     assert.ok(!final.tidligereValg.ren_tid_korridor3_spiller,label+': Amina retains her work');
     await page.reload({waitUntil:'load',timeout:90000});
     await page.waitForFunction(()=>globalThis.CivicationLifestoryState?.load?.()?.dag===2
@@ -136,7 +142,7 @@ async function play(browser, fixture) {
     const history=page.locator('[data-lifestory-symposium]').first();
     const normalize=x=>String(x).replace(/\s+/g,' ').trim();
     const shown=normalize(await history.textContent());
-    const actual=saved.arkiv.filter(row=>row.threadId==='tidsvinduet_krymper');
+    const actual=saved.arkiv.filter(row=>row.threadId===thread);
     for(const row of actual) {
       assert.ok(shown.includes(normalize(row.valgTekst)),label+': Symposium actual choice '+row.sceneId);
       assert.ok(shown.includes(normalize(row.konsekvensTekst)),label+': Symposium actual result '+row.sceneId);
@@ -156,7 +162,16 @@ async function play(browser, fixture) {
  try {
   await waitForServer();browser=await chromium.launch({headless:true});
   const sizes=[{width:390,height:844},{width:820,height:1180},{width:1180,height:820}];
-  const cases=[
+  const complete={ren_soel_rengjort:true,ren_soel_aapnet:true,ren_soel_kari_mottatt:true,ren_soel_ansvar_bekreftet:true,ren_soel_skilt_kontrollert:true,ren_soel_vernerunde_avtalt:true};
+  const cases=spill ? [
+   {label:'soel-ferdig-mobile',extra:{},flags:complete},
+   {label:'soel-arbeid-venter-ipad',extra:{soel_01_krise:'be_om_hjelp',soel_02_arbeid:'avvent_hjelp'},flags:{...complete,ren_soel_rengjort:false,ren_soel_aapnet:false,ren_soel_arbeid_venter:true,ren_soel_vernerunde_avtalt:false}},
+   {label:'soel-restfukt-ipad',extra:{soel_01_krise:'toerk_og_gaa',soel_03_kontroll:'fortsatt_vaatt'},flags:{...complete,ren_soel_aapnet:false,ren_soel_kontroll_venter:true,ren_soel_vernerunde_avtalt:false}},
+   {label:'soel-mottak-venter-mobile',extra:{soel_04_overlevering:'avvent_mottak'},flags:{...complete,ren_soel_kari_mottatt:false,ren_soel_mottak_venter:true}},
+   {label:'soel-ansvar-venter-ipad',extra:{soel_05_tiltaksansvar:'avvent_ansvar'},flags:{...complete,ren_soel_ansvar_bekreftet:false}},
+   {label:'soel-tiltak-venter-ipad',extra:{soel_06_tiltakskontroll:'avvent_kontroll'},flags:{...complete,ren_soel_skilt_kontrollert:false,ren_soel_tiltakskontroll_venter:true}},
+   {label:'soel-invitasjon-nei-mobile',extra:{d2_avvik_fulgt_opp:'takk_nei'},flags:{...complete,ren_soel_vernerunde_avtalt:false}}
+  ] : [
    {label:'toaletter-mobile',start:'ta_stille',plan:'prioriter_toaletter',flags:{ren_tid_plan_bekreftet:true,ren_tid_wc3_spiller:true,ren_tid_kari_mottatt:true}},
    {label:'delt-ipad-portrait',start:'ja_men_si_fra',plan:'bekreft_deling',flags:{ren_tid_plan_bekreftet:true,ren_tid_wc3_spiller:true,ren_tid_korridor3_amina:true,ren_tid_kari_mottatt:true}},
    {label:'egen-rute-ipad-landscape',start:'sett_grense',plan:'behold_egen_rute',flags:{ren_tid_plan_bekreftet:true,ren_tid_kontorer_spiller:true,ren_tid_trapp_spiller:true,ren_tid_kari_mottatt:true}},
@@ -165,9 +180,9 @@ async function play(browser, fixture) {
    {label:'ugjort-ipad-landscape',start:'ta_stille',plan:'prioriter_toaletter',extra:{tid_03_toaletter:'meld_ikke_utfort',tid_05_kari_mottar:'avvent_mottak'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_egen_oppgave_venter:true,ren_tid_mottak_venter:true}},
    {label:'mottak-dag2-mobile',start:'ta_stille',plan:'prioriter_toaletter',extra:{tid_05_kari_mottar:'avvent_mottak'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_wc3_spiller:true,ren_tid_kari_mottatt:true}}
   ];
-  for(const [i,c] of cases.entries()) results.push(await play(browser,{...c,viewport:sizes[i%3],status:c.status||'active',
-    choices:{tidsvindu_01_telefon:c.start,tid_02_kari_prioriterer:c.plan,...c.extra}}));
-  console.log('PASS: seven real renholder capacity routes, both actors, two days, reload and visible Symposium',JSON.stringify(results));
+  for(const [i,c] of cases.entries()) results.push(await play(browser,{...c,viewport:sizes[i%3],status:c.status||(spill?'escalated':'active'),
+    choices:spill ? {...c.extra} : {tidsvindu_01_telefon:c.start,tid_02_kari_prioriterer:c.plan,...c.extra}}));
+  console.log('PASS: seven real renholder '+(spill?'spill':'capacity')+' routes, two days, reload and visible Symposium',JSON.stringify(results));
  } finally {
   writeFileSync(path.join(output,'results.json'),JSON.stringify(results,null,2)+'\n');
   if(browser) await browser.close();server.kill('SIGTERM');
