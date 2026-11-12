@@ -19,10 +19,16 @@ async function positionQuizCard(page){
    // The navigation is BELOW the reading pane, not an upper sticky header.
    // Position before the first real click as well as after the flip: native
    // auto-scroll can otherwise put the target behind the retained photo.
-   const g=geometry(),top=Math.max(g.body.top,g.hero?.bottom||0)+12;
+   // When the overview is not pinned, it scrolls alongside the QuizCard.
+   // Measuring its moving bottom as an occlusion boundary prevents sufficient
+   // scrolling for a fully visible card when desktop photos are taller.
+   // Keep sticky photo protection, full-card visibility and unforced hit-tests.
+   const heroPinned=()=>document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned')
+     && getComputedStyle(document.querySelector('#placeCard .pc-sheet-hero')).position==='sticky';
+   const g=geometry(),top=Math.max(g.body.top,heroPinned()?(g.hero?.bottom||0):g.body.top)+12;
    body.scrollTop+=g.card.top-top;
    await new Promise(resolve=>setTimeout(resolve,50));
-   const next=geometry(),upper=Math.max(next.body.top,next.hero?.bottom||0);
+   const next=geometry(),upper=Math.max(next.body.top,heroPinned()?(next.hero?.bottom||0):next.body.top);
    const lower=Math.min(next.body.bottom,next.nav?.top??innerHeight,innerHeight);
    const x=next.card.left+20,y=next.card.top+Math.max(24,next.card.height-24);
    const hit=document.elementFromPoint(x,y);
