@@ -25,6 +25,19 @@ async function waitForServer() {
   }
   throw new Error('HTTP server did not start');
 }
+// Profile and next-action events can replace an otherwise unchanged card.
+// Retry only read/scroll/capture operations on a newly resolved Locator.
+// Choice clicks and evidence assertions are never retried here.
+let detachedRetries = 0;
+async function withCurrentElement(operation) {
+  for (let attempt=0; ; attempt++) {
+    try { return await operation(); }
+    catch (error) {
+      if (attempt >= 2 || !/Element is not attached to the DOM/.test(String(error?.message))) throw error;
+      detachedRetries++;
+    }
+  }
+}
 async function openDay(page) {
   const close = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
   if (await close.isVisible().catch(()=>false)) await close.click({timeout:12000});
@@ -82,7 +95,7 @@ async function play(browser, fixture) {
       const button=page.locator('[data-lifestory-scene="'+id+'"][data-lifestory-choice'
         +(wanted?'="'+wanted+'"':'')+']:not([disabled])').first();
       assert.equal(await button.count(),1,label+': visible choice '+id+'/'+wanted);
-      await button.scrollIntoViewIfNeeded();
+      await withCurrentElement(()=>button.scrollIntoViewIfNeeded());
       const rect=await button.boundingBox();
       assert.ok(rect&&rect.width>0&&rect.x>=-2&&rect.x+rect.width<=viewport.width+2,label+': button geometry '+id);
       const focus=complaint ? (id.startsWith('klage')||id==='usynlig_01_melding'||id==='d3_rom_204_klagen'||id==='d2_kveld_verdighet') : training ? (id.startsWith('rygg_')||id.startsWith('opp_')||id==='d2_runde_med_amina') : spill ? (id.startsWith('soel_')||id==='d2_avvik_fulgt_opp'||id==='d2_glatt_gulv_etterspill') : id==='tidsvindu_01_telefon'||id.startsWith('tid_')||id==='d2_standard_ekstra_rom'||id==='d2_rolig_formiddag';
@@ -93,7 +106,7 @@ async function play(browser, fixture) {
         if(id==='tid_04_amina_resultat') {
           assert.match(await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent(),/Fra Amina/);
         }
-        await page.locator('.civi-lifestory-scene').first().screenshot({path:path.join(output,label+'-'+id+'-before.png')});
+        await withCurrentElement(()=>page.locator('.civi-lifestory-scene').first().screenshot({path:path.join(output,label+'-'+id+'-before.png')}));
       }
       const chosen=await button.getAttribute('data-lifestory-choice');
       await button.click({timeout:20000});
@@ -125,8 +138,8 @@ async function play(browser, fixture) {
       }
       if(focus) {
         const consequence=page.locator('.civi-lifestory-konsekvens').first();
-        await consequence.scrollIntoViewIfNeeded();
-        await consequence.screenshot({path:path.join(output,label+'-'+id+'-after.png')});
+        await withCurrentElement(()=>consequence.scrollIntoViewIfNeeded());
+        await withCurrentElement(()=>consequence.screenshot({path:path.join(output,label+'-'+id+'-after.png')}));
       }
     }
     const final=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
@@ -146,7 +159,7 @@ async function play(browser, fixture) {
       assert.equal(ending.id,fixture.ending,label+': factual final ending');
       const box=page.locator('.civi-lifestory-ending').first();
       assert.ok((await box.textContent()).includes(ending.tekst),label+': visible final ending');
-      await box.scrollIntoViewIfNeeded();
+      await withCurrentElement(()=>box.scrollIntoViewIfNeeded());
       // The shell may replace the summary card while refreshing next actions.
       // Capture the visible page after checking the ending, without holding its old DOM node.
       await page.screenshot({path:path.join(output,label+'-ending.png')});
@@ -164,10 +177,10 @@ async function play(browser, fixture) {
       assert.ok(shown.includes(normalize(row.konsekvensTekst)),label+': Symposium actual result '+row.sceneId);
     }
     const result=history.locator('ol > li').filter({hasText:actual.at(-1).valgTekst}).last();
-    await result.scrollIntoViewIfNeeded();
-    await result.screenshot({path:path.join(output,label+'-symposium-result.png')});
+    await withCurrentElement(()=>result.scrollIntoViewIfNeeded());
+    await withCurrentElement(()=>result.screenshot({path:path.join(output,label+'-symposium-result.png')}));
     assert.deepEqual(errors,[],label+': no uncaught browser exceptions');
-    return {label,viewport,dayTransitionMode,days:targetDay,ending:fixture.ending,flags:{...baseFlags,...flags},status,trace,archiveLength:saved.arkiv.length};
+    return {label,viewport,dayTransitionMode,days:targetDay,ending:fixture.ending,flags:{...baseFlags,...flags},status,trace,archiveLength:saved.arkiv.length,detachedRetries};
   } catch(error) {
     await page.screenshot({path:path.join(output,label+'-failure.png'),fullPage:true}).catch(()=>{});
     throw error;
