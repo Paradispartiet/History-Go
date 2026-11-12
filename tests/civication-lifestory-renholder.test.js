@@ -172,3 +172,145 @@ assert.ok(uiSource.includes("lifestoryRole"), "dev-/testparameteren ?lifestoryRo
 assert.ok(uiSource.includes("civication_lifestory_role_v1"), "dev-parameteren persisteres i localStorage");
 
 console.log("civication lifestory renholder ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");
+
+// Capacity replies are not executed rooms. All evidence is earned through real scenes.
+const roomFlag = (s,k) => s.tidligereValg[k] === true;
+function chooseRoom(s,id,choice) {
+  assert.strictEqual(Runner.selectNextScene(s,content)?.id,id,'actual next room case: '+id);
+  return Runner.applyChoice(s,content,id,choice);
+}
+function reachRoom(s,id) {
+  for(let n=0;n<90;n++) {
+    const sc=Runner.selectNextScene(s,content);assert.ok(sc,'reachable scene '+id);
+    if(sc.id===id)return;
+    Runner.applyChoice(s,content,sc.id,sc.valg.find(v=>!v.skills_requirement).id);
+  }
+  assert.fail('failed to reach '+id);
+}
+function roomRequest(id='ta_stille') {
+  const s=State.createInitialState(content);
+  reachRoom(s,'tidsvindu_01_telefon');
+  const relation=s.relasjoner.driftsleder, visibility=s.meters.synlighet;
+  chooseRoom(s,'tidsvindu_01_telefon',id);
+  assert.ok(!roomFlag(s,'tok_ekstra_rom'),'a phone reply is not extra rooms performed');
+  assert.ok(!roomFlag(s,'delte_sonen'),'proposal is not a confirmed division');
+  assert.ok(!roomFlag(s,'ren_tid_wc3_spiller'));
+  if(id==='sett_grense') {
+    assert.ok(s.relasjoner.driftsleder>=relation,'capacity boundary is not automatically punished');
+    assert.ok(s.meters.synlighet>=visibility);
+  }
+  return s;
+}
+const workFlags=['ren_tid_wc3_spiller','ren_tid_korridor3_amina','ren_tid_kontorer_spiller','ren_tid_trapp_spiller'];
+const variants=[
+ ['ta_stille','prioriter_toaletter','tid_03_toaletter','utfor_og_kontroller'],
+ ['ja_men_si_fra','bekreft_deling','tid_03_toaletter','utfor_og_kontroller'],
+ ['sett_grense','behold_egen_rute','tid_03_egen_rute','utfor_og_kontroller'],
+ ['foreslaa_bytte','bekreft_deling','tid_03_toaletter','utfor_og_kontroller']
+];
+for(const [start,plan,execution,action] of variants) {
+ let s=roomRequest(start);
+ chooseRoom(s,'tid_02_kari_prioriterer',plan);
+ assert.ok(roomFlag(s,'ren_tid_plan_bekreftet'));
+ assert.ok(workFlags.every(k=>!roomFlag(s,k)),'a confirmed plan is not performed work');
+ assert.strictEqual(roomFlag(s,'delte_sonen'),plan==='bekreft_deling');
+ chooseRoom(s,execution,action);
+ if(plan==='behold_egen_rute') {
+   assert.ok(roomFlag(s,'ren_tid_kontorer_spiller')&&roomFlag(s,'ren_tid_trapp_spiller'));
+   assert.ok(!roomFlag(s,'tok_ekstra_rom'));
+   assert.ok(!roomFlag(s,'ren_tid_wc3_spiller'));
+ } else {
+   assert.ok(roomFlag(s,'ren_tid_wc3_spiller')&&roomFlag(s,'tok_ekstra_rom'));
+   assert.ok(!roomFlag(s,'ren_tid_kontorer_spiller'));
+   assert.ok(roomFlag(s,'ren_tid_kontorer_utsatt'));
+ }
+ if(plan==='bekreft_deling') {
+   assert.ok(roomFlag(s,'ren_tid_amina_venter'));
+   assert.ok(!roomFlag(s,'ren_tid_korridor3_amina'));
+   chooseRoom(s,'tid_04_amina_resultat','registrer_amina');
+   assert.ok(roomFlag(s,'ren_tid_korridor3_amina'));
+   assert.ok(!roomFlag(s,'ren_tid_amina_venter'));
+   assert.ok(!roomFlag(s,'ren_tid_korridor3_spiller'),'Amina retains her own work');
+ }
+ assert.ok(!roomFlag(s,'ren_tid_kari_mottatt'));
+ chooseRoom(s,'tid_05_kari_mottar','overlever_status');
+ assert.ok(roomFlag(s,'ren_tid_kari_mottatt'));
+ const before=s.arkiv.map(x=>[x.sceneId,x.valgId]);
+ s=JSON.parse(JSON.stringify(s));
+ assert.deepStrictEqual(s.arkiv.map(x=>[x.sceneId,x.valgId]),before);
+ assert.ok(Runner.getSymposium(s,content).tidslinje.some(x=>x.sceneId===execution&&x.valgId===action));
+ // Complete all seven authored days without injecting history or resetting room evidence.
+ let guard=0;
+ while(true) {
+   if(s.dagFerdig) { if(s.dag===7)break; s=Runner.startNextDay(JSON.parse(JSON.stringify(s)),content); }
+   const sc=Runner.selectNextScene(s,content);assert.ok(sc);
+   Runner.applyChoice(s,content,sc.id,sc.valg.find(v=>!v.skills_requirement).id);
+   assert.ok(++guard<220);
+ }
+ assert.ok(roomFlag(s,'ren_tid_kari_mottatt'));
+ assert.strictEqual(new Set(s.arkiv.map(x=>x.sceneId)).size,s.arkiv.length,'no replay across seven days');
+ assert.strictEqual(s.tidligereValg.wa_d_c17_status,'andre_rom_tilbudt','the actual C17 route still ends with the warehouse blocked');
+}
+// Pending plan, work, colleague result and receiver remain distinct.
+let pending=roomRequest('sett_grense');
+chooseRoom(pending,'tid_02_kari_prioriterer','avvent_plan');
+assert.ok(!roomFlag(pending,'ren_tid_plan_bekreftet'));
+assert.ok(workFlags.every(k=>!roomFlag(pending,k)));
+assert.strictEqual(pending.threadState.tidsvinduet_krymper.status,'escalated');
+let undone=roomRequest();
+chooseRoom(undone,'tid_02_kari_prioriterer','prioriter_toaletter');
+chooseRoom(undone,'tid_03_toaletter','meld_ikke_utfort');
+assert.ok(roomFlag(undone,'ren_tid_egen_oppgave_venter'));
+assert.ok(!roomFlag(undone,'ren_tid_wc3_spiller'));
+chooseRoom(undone,'tid_05_kari_mottar','avvent_mottak');
+assert.ok(!roomFlag(undone,'ren_tid_kari_mottatt'));
+let waiting=roomRequest('foreslaa_bytte');
+chooseRoom(waiting,'tid_02_kari_prioriterer','bekreft_deling');
+chooseRoom(waiting,'tid_03_toaletter','utfor_og_kontroller');
+chooseRoom(waiting,'tid_04_amina_resultat','avvent_resultat');
+chooseRoom(waiting,'tid_05_kari_mottar','overlever_status');
+assert.ok(roomFlag(waiting,'ren_tid_amina_venter'));
+assert.ok(!roomFlag(waiting,'ren_tid_korridor3_amina'));
+for(let [s,pendingFlag] of [[pending,'ren_tid_plan_venter'],[undone,'ren_tid_egen_oppgave_venter'],[waiting,'ren_tid_amina_venter']]) {
+ for(let n=0;!s.dagFerdig&&n<90;n++) {
+   const sc=Runner.selectNextScene(s,content);assert.ok(sc);
+   Runner.applyChoice(s,content,sc.id,sc.valg.find(v=>!v.skills_requirement).id);
+ }
+ s=Runner.startNextDay(JSON.parse(JSON.stringify(s)),content);
+ while(!s.dagFerdig) {
+   const sc=Runner.selectNextScene(s,content);assert.ok(sc);
+   Runner.applyChoice(s,content,sc.id,sc.valg.find(v=>!v.skills_requirement).id);
+ }
+ assert.strictEqual(s.threadState.tidsvinduet_krymper.status,'escalated','day-two review cannot resolve pending earlier work');
+ assert.ok(roomFlag(s,pendingFlag),'the specific outstanding step survives review and reload');
+ assert.ok(!roomFlag(s,'ren_tid_korridor3_amina'));
+}
+console.log('Renholder capacity: all four replies, three confirmed plans, both actors, pending variants and actual seven-day persistence OK');
+
+// A later actual receipt can resolve only that missing step, not perform other work.
+let receipt=roomRequest();
+chooseRoom(receipt,'tid_02_kari_prioriterer','prioriter_toaletter');
+chooseRoom(receipt,'tid_03_toaletter','utfor_og_kontroller');
+chooseRoom(receipt,'tid_05_kari_mottar','avvent_mottak');
+assert.ok(roomFlag(receipt,'ren_tid_mottak_venter'));
+assert.ok(!roomFlag(receipt,'ren_tid_kari_mottatt'));
+while(!receipt.dagFerdig) {
+ const sc=Runner.selectNextScene(receipt,content);assert.ok(sc);
+ Runner.applyChoice(receipt,content,sc.id,sc.valg.find(v=>!v.skills_requirement).id);
+}
+receipt=Runner.startNextDay(JSON.parse(JSON.stringify(receipt)),content);
+reachRoom(receipt,'d2_standard_ekstra_rom');
+chooseRoom(receipt,'d2_standard_ekstra_rom','vis_tidsregnskap');
+assert.ok(roomFlag(receipt,'ren_tid_kari_mottatt'));
+assert.ok(!roomFlag(receipt,'ren_tid_mottak_venter'));
+assert.ok(roomFlag(receipt,'ren_tid_wc3_spiller'));
+assert.ok(!roomFlag(receipt,'ren_tid_kontorer_spiller'));
+assert.ok(roomFlag(receipt,'ren_tid_kontorer_utsatt'));
+let separate=roomRequest('foreslaa_bytte');
+chooseRoom(separate,'tid_02_kari_prioriterer','bekreft_deling');
+chooseRoom(separate,'tid_03_toaletter','meld_ikke_utfort');
+chooseRoom(separate,'tid_04_amina_resultat','registrer_amina');
+assert.ok(roomFlag(separate,'ren_tid_korridor3_amina'));
+assert.ok(!roomFlag(separate,'ren_tid_wc3_spiller'));
+assert.ok(roomFlag(separate,'ren_tid_egen_oppgave_venter'));
+console.log('Renholder: later actual receipt and independently completed colleague work remain separate from unfinished own rooms');

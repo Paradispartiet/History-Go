@@ -58,7 +58,7 @@ En synopsis kan bygge på et rom som skifter fra opptatt til ledig i løpet av v
 
 ## Samlet rollegrunnlag og lokal bruk
 
-Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 28 eksisterende Life Story-scenene på dag 1–7. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle scener til godkjent yrkesveiledning.
+Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 33 eksisterende Life Story-scenene på dag 1–7. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle scener til godkjent yrkesveiledning.
 
 ### Stillingsbeskrivelse og en vanlig økt
 
@@ -97,11 +97,27 @@ Ansettelsesform, stillingsprosent, avtalt vakt, pauser og lønnsgrunnlag må avk
 
 Klasse vises gjennom kontroll over arealer, tid, bemanning og rapporter. Følelsen av å ha skyld i et utilgjengelig rom er personens situasjon, ikke bevis på at alle renholdere er maktesløse eller at Kari har truet noen. Arbeidstilsynet beskriver ergonomi som tilpasning av arbeid, utstyr og omgivelser; løsningen kan ikke reduseres til at arbeidstakeren lærer ett løftegrep. [Ergonomisk arbeidsmiljø](https://www.arbeidstilsynet.no/arbeidsmiljo/ergonomi/).
 
+### Revidert arbeidseksempel: et tidsvindu med to romlister
+
+Den eksisterende `tidsvindu_01_telefon` beholder alle fire valg-ID-ene. Svarene avklarer hva spilleren sier til Kari; de fører ikke ekstrarom som utført og gir ikke automatisk straff for å si fra om kapasiteten.
+
+| Bekreftet plan | Spillerens oppgave | Annet arbeid og ansvar |
+| --- | --- | --- |
+| Prioriter toalettene | Utføre og kontrollere toalettene i tredje etasje. | Kontorer, trapp og korridor i tredje er utsatt; Kari tar videre planlegging. |
+| Del med Amina | Utføre og kontrollere toalettene i tredje. | Amina må si ja til korridoren og senere bekrefte egen utførelse og kontroll. Kontorer og trapp er utsatt. |
+| Behold egen rute | Utføre og kontrollere kontorer og trapp på egen liste. | Kari tar ekstrabehovet videre. Ingen annen utfører eller ferdig ekstraetasje er oppdiktet. |
+
+Dette er lokale spillpremisser for kontorbygget, ikke en bestemt arbeidsgivers rutine. Pausen står fortsatt i planen. De fem låste oppfølgingene skiller Karis bekreftelse, egen utførelse, Aminas resultat og Karis mottak. En sendt status er ikke automatisk mottatt. Den som ikke får plan, ikke utfører oppgaven eller venter på svar, har fortsatt et åpent punkt.
+
+Oppfølgingen på dag 2 kan gi faktisk mottaksbekreftelse fra Kari, men overfører ikke arbeid fra Amina til spilleren eller gjør utsatte rom ferdige. En generell eldre registrering om ekstrarom brukes ikke som nytt bevis på detaljert romarbeid. Dag-1-oppgaver må også skilles fra nye romoppgaver i C17 på dag 3–7.
+
+[Den kanoniske testen](../../tests/civication-lifestory-renholder.test.js) følger alle fire svar, tre bekreftede planer og åpne varianter gjennom faktiske valg, lagring og sju dager. [Nettleserkontrollen](../../scripts/verify-civication-renholder-lifestory-browser.cjs) prøver sju faktiske ruter på mobil og to iPad-formater gjennom dag 2, reload og synlig Symposium. Den rapporterer om dagskiftet gikk via UI eller en kanonisk Runner-grense ved skallets innbokskrav. Dette er ikke kontroll av hele normaljobbkalenderen eller fysisk Safari. CI og bilder må gjennomgås før visuell kontroll omtales som bestått.
+
 ### Hva som må gjennomgås i spillinnholdet
 
-| Eksisterende del | Konkret revisjonsbehov |
+| Eksisterende del | Status og konkret revisjonsbehov |
 | --- | --- |
-| `tidsvindu_01_telefon` og `d2_standard_ekstra_rom` | Avklar hvilke oppgaver og rom som omfordeles, hva Kari godkjenner og hva som faktisk utføres. Ikke gjør tap av pause eller automatisk kritikk til eneste følger av å si ja eller nei. |
+| `tidsvindu_01_telefon` og `d2_standard_ekstra_rom` | Revidert sammen med `d2_rolig_formiddag`: bekreftet plan, eget og Aminas arbeid, utsatte oppgaver og mottak føres separat. De øvrige radene nedenfor gjenstår. |
 | `soel_01_krise` og begge dag-2-etterspill | Skill sikring, rengjøring, kontroll, avviksmelding, ansvar og utbedring. At skilt eller reparasjon er planlagt, viser ikke at de er på plass. |
 | `rygg_01_vurdering` og `d2_runde_med_amina` | Avklar hjelpemiddel, belastning og konkret opplæring. Et råd eller en demonstrasjon er ikke bevis på mestret teknikk, og kroppen skal ikke beskrives som et verktøy arbeidstakeren alene må beskytte. |
 | `usynlig_01_melding` og `d3_rom_204_klagen` | Bruk bare den utførte delen av romlista som dokumentasjon. Klokken 07.10, utført arbeid og «forrige uke» må ha et faktisk fortellingsgrunnlag. |
@@ -109,4 +125,4 @@ Klasse vises gjennom kontroll over arealer, tid, bemanning og rapporter. Følels
 | Tilgangsscenene `wave_a_c17` til `wave_d_c17` | Bevar skillet mellom registrert hindring, ny plan, befaring, fri tilkomst og utført renhold. Ingen automatisk flytting av hylla. |
 | Rolleavslutningene | Kontroller hvert utsagn mot faktisk historie. Delvise kriterietreff må ikke gi oppdiktet helseutfall, utført arbeid eller teamlederstatus. |
 
-Dette er dokumentert revisjonsarbeid, ikke nye scener eller en parallell rolle. Profil og synopsis er koblet; de øvrige delene må gjennomgås og testes før hele renholderforløpet kan kalles ferdig.
+Revisjonslista dokumenterer det som fortsatt gjenstår i samme rolle. Tidsvinduoppfølgingene er de fem nye scenene i denne bolken; resten av lista er ikke implementert her. Profil og synopsis er koblet, men de øvrige delene må gjennomgås og testes før hele renholderforløpet kan kalles ferdig.

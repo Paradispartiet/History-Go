@@ -45,7 +45,7 @@
   },
   "collection_review": {
     "people": {
-      "status": "BLOCKED",
+      "status": "BLOCKED_2_OF_5_PHOTOS_3_TEXT_ONLY",
       "verified_direct": [
         {
           "id": "niels_torp",
@@ -57,7 +57,7 @@
           "id": "hans_rasmus_astrup",
           "role": "Founder of museum located at Tjuvholmen since 2012",
           "source": "https://snl.no/Hans_Rasmus_Astrup",
-          "asset": "Existing record uses generic placeholder"
+          "asset": "No portrait asset; generic placeholder removed, text-only pending image rights"
         },
         {
           "id": "hariton_pushwagner",
@@ -71,14 +71,22 @@
           "id": "bjarne_melgaard",
           "role": "2018 group exhibition at Galleri Brandstrup, Tjuvholmen",
           "source": "https://kunstverket.no/kunstneroversikt/mno/bjarne-melgaard",
-          "asset": "Existing image; provenance needs review"
+          "asset": "No portrait asset; broken PNG removed, text-only pending image rights"
         },
         {
           "id": "stephen_butkus",
           "role": "Photography exhibitions at THE THIEF (2015 and 2018) and Tjuvholmen pedestrian bridge, July 2018",
           "source": "https://www.fineart.no/kunstner/stephen-butkus",
           "additional_source": "https://www.fineart.no/galleriobjekt/Stephen_Butkus_-_You_Had_Me_At_Goodbye__10/389908",
-          "asset": "Existing local image; provenance needs verification"
+          "asset": "No portrait asset; broken PNG removed, text-only pending image rights"
+        },
+        {
+          "id": "renzo_piano",
+          "role": "Arkitekten bak Astrup Fearnleys museumsbygning på Tjuvholmen",
+          "source": "https://www.afmuseet.no/en/the-museum-building/",
+          "asset": "bilder/kort/people/renzo_piano.webp",
+          "provenance": "data/people/renzo_piano_image_provenance.json",
+          "imageReview": "PASS: identity-confirmed Cirone-Musi Commons portrait CC BY-SA 2.0; merged PR #7266"
         }
       ],
       "unsupported_existing": [
@@ -99,9 +107,9 @@
           "reason": "Onstad is not source-backed as an actor in Tjuvholmen / Astrup Fearnley development"
         }
       ],
-      "action": "1 av 4 aktive People har nå ekte kildeklart portrett (Pushwagner). Melgaard og Butkus peker fortsatt til ikke-eksisterende PNG-bilder; Hans Rasmus Astrup har generisk placeholder. For Hans Rasmus Astrup må foto vise kunstsamleren (1939–2021), aldri navnebroren, 1800-tallspolitikeren.",
+      "action": "Only Pushwagner and Renzo Piano have verified licensed actual portraits. Melgaard, Butkus and Hans Rasmus Astrup (collector 1939–2021) are shown as text-only until source, identity and redistribution rights are confirmed. No outside requests have been sent.",
       "runtime": {
-        "status": "1_OF_4_VISUAL_APPROVED",
+        "status": "2_OF_5_VISUAL_APPROVED_3_TEXT_ONLY",
         "personId": "hariton_pushwagner",
         "source": "data/people/hariton_pushwagner_image_provenance.json",
         "image": "bilder/kort/people/hariton_pushwagner.webp",
@@ -109,8 +117,18 @@
           "tjuvholmen",
           "aker_brygge",
           "torggata"
+        ],
+        "verifiedIds": [
+          "hariton_pushwagner",
+          "renzo_piano"
+        ],
+        "textOnlyIds": [
+          "bjarne_melgaard",
+          "stephen_butkus",
+          "hans_rasmus_astrup"
         ]
-      }
+      },
+      "portrait_rights_audit": "reports/place-production/tjuvholmen-people-portrait-rights-20261112.json"
     },
     "brands": {
       "status": "GODKJENT",
@@ -156,21 +174,42 @@
       }
     },
     "objects": {
-      "status": "BLOCKED",
-      "note": "No independent, sourced artifact review completed; do not mark reasoned N/A until documented research"
+      "status": "EIGHT_DOCUMENTED_ARTWORK_CANDIDATES_MEDIA_AND_CLASSIFICATION_PENDING",
+      "source": "reports/place-production/tjuvholmen-objects-artworks-audit-20261112.json",
+      "count": 8,
+      "owners": {
+        "Selvaag Art Collection": 6,
+        "Tjuvholmen KS": 2
+      },
+      "verified_claims": [
+        "Eight named public sculptures are documented by Astrup Fearnley Museum.",
+        "The museum explicitly separates park ownership from its own museum collection.",
+        "Ellsworth Kelly's Untitled (Totem) and Fischli & Weiss's Things for a House on an Island belong to Tjuvholmen KS; the other six to Selvaag Art Collection."
+      ],
+      "copyright_gate": "Photo copyright and underlying artwork copyright must each be considered; Norwegian Copyright Act §31 does not automatically authorize commercial close-up reproduction of protected works.",
+      "year_dispute": "Eyes resolved as 1997 via owner Selvaag Art Collection and independent park/SNL; museum 1992 discrepancy retained in audit",
+      "action": "Source audit complete. Do not register any active Objects/Works or isolated artwork photo until classification, individual identity, source license, rights and visual QA are satisfied.",
+      "sources": [
+        "https://www.afmuseet.no/tjuvholmen-skulpturpark/",
+        "https://www.tjuvholmenskulptur.no/",
+        "https://www.selvaagartcollection.com/en/artwork/sculpture",
+        "https://lovdata.no/lov/2018-06-15-40/%C2%A731",
+        "https://www.selvaagartcollection.com/en/artwork/eyes"
+      ]
     },
     "structures": {
-      "status": "BLOCKED",
+      "status": "INTEGRATED_MOBILE_DESKTOP_QA_PASS_FULL_ORIGINALS_PENDING",
       "verified_candidates": [
-        "Tjuvholmen allé / public-space infrastructure",
-        "Astrup Fearnley museum building (owns separate primary Place)",
-        "Skjæret and public waterside park"
+        "Tjuvtitten – genuine tower, not designed by Renzo Piano",
+        "Tjuvholmen bystrand – public beach at Skjæret, not historical 19th-century sjøbad",
+        "Skulpturparken på Skjæret – public sculpture park, not duplicate Astrup Fearnley Place"
       ],
       "sources": [
         "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/tjuvholmen/",
         "https://www.afmuseet.no/en/the-museum-building/"
       ],
-      "action": "Select genuine independent byrom/anlegg entities and source-specific thumbnails; do not duplicate the museum as a second Place."
+      "action": "Three 900px WebP files, 960px authentic Commons preview sources and SHA-256 registered in #7269; canonical Structures and PlaceCard popup integrated with standard click QA (390px mobile/1440px desktop), #7271; GitHub Pages deploy success run #43201300645. Full-resolution originals still 429-blocked.",
+      "provenance": "reports/place-production/tjuvholmen-structures-source-candidates-20261112.json"
     }
   },
   "core": {
@@ -185,7 +224,7 @@
   },
   "vferdig": {
     "editorial_status": "BLOCKED",
-    "reason": "Brands 3/3 GODKJENT. People 1/4: 2 manglende PNG, ett generisk placeholder; Structures uferdig.",
+    "reason": "People portraits 2/5 licensed and identity-confirmed, three text-only pending rights. Structures 3/3 live PlaceCard browser QA PASS, full-resolution Commons originals pending. Eight confirmed park sculptures are research candidates, not active Objects/Works: photo/artwork rights and classification pending. No fillers.",
     "no_filler": true,
     "do_not_mark_complete": true
   },

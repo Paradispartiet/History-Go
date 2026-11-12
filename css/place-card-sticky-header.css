@@ -63,3 +63,10 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   color:#fff !important;
   text-shadow:0 2px 7px #000,0 0 13px rgba(0,0,0,.82);
 }
+
+/* Native focus/scrollIntoView must leave controls below the sticky photograph.
+   Otherwise the QuizCard expand button can scroll behind the title on desktop. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-body {
+  scroll-padding-top: calc(var(--pc-visible-hero-height, 0px) + 12px);
+  scroll-padding-bottom: 16px;
+}

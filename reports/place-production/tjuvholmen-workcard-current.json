@@ -6,7 +6,7 @@
   "status": "editorial_closeout_blocked_by_collection_assets",
   "production_profile": "standard",
   "profile_status": "source_reviewed_pending_collection_acceptance",
-  "active_phase": "Brands GODKJENT, gå videre med People-portretter og autentiske Structures. Ingen filler eller feilstedkoblinger.",
+  "active_phase": "People rights and portrait images 2/5 approved; remaining three People text-only pending licensed identity-confirmed portrait. Structures integrated and deployed; full-resolution source originals still pending.",
   "canonical_source": "data/places/by/oslo/places/tjuvholmen.json",
   "existing_content": {
     "fullquiz_questions": 42,
@@ -40,14 +40,14 @@
     }
   },
   "collection_gate": {
-    "people": "BLOCKED 1/4: Pushwagner ekte Gulosten-portrett GODKJENT og koblet til Tjuvholmen/Aker Brygge/Torggata. Melgaard og Butkus bildefiler mangler; Hans Rasmus Astrup har placeholder.",
+    "people": "BLOCKED 2/5 approved portraits. Melgaard and Butkus: invalid PNG source references cleared; Astrup: generic placeholder not presented as his portrait. Three text-only People entries pending documented rights.",
     "brands": "GODKJENT 3/3: BAHR, Galleri Brandstrup og THE THIEF originalmerker med SHA-256, kildeproveniens, visuell godkjenning og kanoniske Place-open-koblinger.",
-    "objects": "KANDIDATREVIEW: skulpturer i offentlig park, verifiser samlingseier og selvstendig kilde/bilde før opptak",
-    "structures": "BLOCKED: dokumenterte byrom/anlegg finnes, men struktur-entities og samlingsbilder er ikke materialisert",
+    "objects": "KILDEAUDIT 8/8 NAVNGITTE VERK: seks skulpturer tilhører Selvaag Art Collection, to Tjuvholmen KS (Kelly og Fischli/Weiss); ikke del av Astrup Fearnley-samlingen. Ingen enkeltverk-bilder eller Objects aktivert. Rettigheter til både foto og kunstverk, og Works-vs-Objects-klassifisering gjenstår. Eyes godkjent år 1997 etter Selvaags eierkatalog; museets avvikende 1992 er dokumentert.",
+    "structures": "STRUCTURES PLACE CARD LIVE 3/3: Tjuvtitten, Skjæret bystrand and sculpture park have verified CC BY-SA 3.0 Commons 960px source previews, local WebP and canonical/runtime links. Real mobile 390px and desktop 1440px click+popup tests PASS (PR #7271). Full-resolution JPEG originals are pending due to Commons HTTP 429.",
     "filler_forbidden": true,
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
-  "qa": "BAHR/Galleri Brandstrup/THE THIEF logoer 3/3 og runtime PASS. Tjuvholmen image/frontImage/QuizCard Chromium PASS. Pushwagner originalportrett CC BY-SA 3.0 visuelt GODKJENT og runtime synkronisert. 3 People-previews mangler.",
+  "qa": "Brands 3/3 PASS. Structures 3/3 source-backed WebP and real mobile/desktop PlaceCard click+popup PASS (14/14 CI, deployed). People 2/5 authentic portraits; three text-only pending identity and reuse rights.",
   "merged": true,
   "verified_at": "2026-11-12",
   "rule_preflight": {
@@ -122,7 +122,7 @@
   },
   "vferdig": {
     "status": "BLOCKED",
-    "reason": "Brands 3/3 GODKJENT, People 1/4 godkjente dokumenterte portretter, Structures fortsatt åpne.",
+    "reason": "Brands 3/3 GODKJENT; Structures 3/3 dokumenterte WebP og mobil-/desktoptest godkjent, men fulloppløste kildeoriginaler gjenstår pga Wikimedia HTTP 429. People-portretter 2/5 godkjent, tre kildesikrede tekstprofiler venter lisensierte portretter. Objects: åtte navngitte skulptur-/kunstverkskandidater nå kildeverifisert; ingen bilder eller aktive Objects før avklart klassifisering og opphavsrett. vFerdig BLOCKED.",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
   "browser_acceptance": {
@@ -159,11 +159,12 @@
     "workflow": "https://github.com/Paradispartiet/History-Go/actions/runs/43174792564"
   },
   "people_portrait_coverage": {
-    "total_active_people": 4,
-    "pass": 1,
+    "total_active_people": 5,
+    "pass": 2,
     "blocked": 3,
     "verified": {
-      "hariton_pushwagner": "bilder/kort/people/hariton_pushwagner.webp"
+      "hariton_pushwagner": "bilder/kort/people/hariton_pushwagner.webp",
+      "renzo_piano": "bilder/kort/people/renzo_piano.webp"
     },
     "source_provenance": "data/people/hariton_pushwagner_image_provenance.json",
     "unverified": [
@@ -174,7 +175,55 @@
     "runtime": {
       "tjuvholmen": "data/runtime/place-open/tjuvholmen.json",
       "aker_brygge": "data/runtime/place-open/aker_brygge.json",
-      "torggata": "data/runtime/place-open/torggata.json"
-    }
+      "torggata": "data/runtime/place-open/torggata.json",
+      "astrup_fearnley": "data/runtime/place-open/astrup_fearnley.json"
+    },
+    "source_provenance_files": [
+      "data/people/hariton_pushwagner_image_provenance.json",
+      "data/people/renzo_piano_image_provenance.json"
+    ],
+    "renzo_piano_merge": {
+      "pr": 7266,
+      "commit": "2eea038be4bac24d4ed6d7a939e729ab6c10052d"
+    },
+    "additional_source_provenance": "data/people/renzo_piano_image_provenance.json",
+    "source_audit": "reports/place-production/tjuvholmen-people-portrait-rights-20261112.json",
+    "text_only_ids": [
+      "bjarne_melgaard",
+      "stephen_butkus",
+      "hans_rasmus_astrup"
+    ],
+    "broken_references_cleared_in_pr": true
+  },
+  "structure_asset_coverage": {
+    "total": 3,
+    "webp_files": 3,
+    "source_originals_archived": 0,
+    "source_kind": "Wikimedia Commons 960px preview JPEG; full original requests returned HTTP 429",
+    "visual_qa": "PASS",
+    "runtime_candidate_branch": false,
+    "live_browser_qa": "PASS_390px_mobile_1440px_desktop",
+    "provenance": "reports/place-production/tjuvholmen-structures-source-candidates-20261112.json",
+    "paths": [
+      "bilder/kort/structures/tjuvtitten.webp",
+      "bilder/kort/structures/tjuvholmen_bystrand.webp",
+      "bilder/kort/structures/skulpturparken_skjaeret.webp"
+    ],
+    "integrated_pr": 7271,
+    "integrated_commit": "74590ecd35e067851f5308b00ff4664d777128a8",
+    "pages_deploy_run": "https://github.com/Paradispartiet/History-Go/actions/runs/43201300645",
+    "pages_deploy_status": "success"
+  },
+  "object_artwork_review": {
+    "status": "EIGHT_SOURCE_CONFIRMED_NO_IMAGES_OR_RUNTIME_APPROVED",
+    "candidates": 8,
+    "source": "reports/place-production/tjuvholmen-objects-artworks-audit-20261112.json",
+    "owners": {
+      "selvaag_art_collection": 6,
+      "tjuvholmen_ks": 2
+    },
+    "photoRights": "PENDING",
+    "objectsActivated": 0,
+    "yearConflict": "Eyes: accepted 1997 from Selvaag owner's catalogue; museum's 1992 remains documented"
   }
 }

@@ -188,22 +188,15 @@
       "tilgjengelighet": "start",
       "prioritet": 9,
       "tittel": "«Kan du ta tredje etasje også?»",
-      "tekst": "Kari ringer: «Jonas er syk. Kan du ta tredje etasje også? Samme tidsvindu.» Du vet hva det betyr: enten ryker standarden i begge soner, eller så ryker pausen din.",
+      "tekst": "Kari ringer: «En kollega er borte. Kan du ta toalettene og korridoren i tredje etasje også?» Du har kontorer og trapp igjen på din egen liste. Tiden på vakta er ikke utvidet. Før du begynner, må dere avklare hva som prioriteres, hva som utsettes og om Amina kan ta en del. Den avtalte pausen står fortsatt i planen.",
       "valg": [
         {
           "id": "ta_stille",
-          "tekst": "Si ja og løp fortere",
+          "tekst": "Si ja før du har avklart hva som skal utsettes",
           "tone": "pliktoppfyllende",
           "effekter": {
-            "relasjoner": {
-              "driftsleder": 4
-            },
-            "meters": {
-              "energi": -8,
-              "psyke": -3
-            },
             "flagg": {
-              "tok_ekstra_rom": true
+              "ren_tid_svar_uten_avklaring": true
             },
             "threads": {
               "tidsvinduet_krymper": {
@@ -211,22 +204,18 @@
               }
             }
           },
-          "konsekvensTekst": "Du rekker begge soner — så vidt. Kroppen vet allerede at dette blir regningen din, ikke Karis."
+          "konsekvensTekst": "Du sier ja til forespørselen. Ingen ny romfordeling er bekreftet, og du har ikke utført ekstrarenhold. Kari må fortsatt ta stilling til hva du faktisk skal gjøre.",
+          "laaserOpp": [
+            "tid_02_kari_prioriterer"
+          ]
         },
         {
           "id": "ja_men_si_fra",
-          "tekst": "Si ja — men si tydelig at standarden ryker i dag",
+          "tekst": "Si at tiden ikke dekker begge listene, og be Kari prioritere",
           "tone": "ærlig",
           "effekter": {
-            "relasjoner": {
-              "driftsleder": 2
-            },
-            "meters": {
-              "integritet": 5,
-              "energi": -6
-            },
             "flagg": {
-              "tok_ekstra_rom": true,
+              "ren_tid_kapasitet_varslet": true,
               "sa_fra_om_standard": true
             },
             "threads": {
@@ -235,54 +224,49 @@
               }
             }
           },
-          "konsekvensTekst": "«Notert,» sier Kari. Det er ikke mye, men det ligger nå hos henne at dagens standard var et valg — ikke din feil."
+          "konsekvensTekst": "Du beskriver kontorene og trappa som gjenstår på egen liste. Du ber Kari velge hva som skal tas først og hva som kan vente. Det er en kapasitetsavklaring, ikke en ferdig oppgave.",
+          "laaserOpp": [
+            "tid_02_kari_prioriterer"
+          ]
         },
         {
           "id": "sett_grense",
-          "tekst": "Si nei, og forklar nøyaktig hva som ryker hvis du sier ja",
+          "tekst": "Si at du ikke kan ta begge listene innen vakta, og be om en avklart plan",
           "tone": "grensesettende",
           "effekter": {
-            "relasjoner": {
-              "driftsleder": -6
-            },
-            "meters": {
-              "integritet": 6,
-              "psyke": 2
-            },
             "flagg": {
+              "ren_tid_grense_forklart": true,
               "satte_grense": true
             },
             "threads": {
               "tidsvinduet_krymper": {
-                "status": "escalated"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "Det blir stille i telefonen. «Greit. Jeg finner en annen løsning.» Du vet ikke ennå hva det nei-et kommer til å koste."
+          "konsekvensTekst": "Du forklarer grensen for det du rekker og ber Kari avklare bemanningen og oppgavene. Du har ikke lovet ekstra arbeid eller gitt fra deg pausen.",
+          "laaserOpp": [
+            "tid_02_kari_prioriterer"
+          ]
         },
         {
           "id": "foreslaa_bytte",
-          "tekst": "Foreslå å dele: du tar toalettene i tredje, Amina tar resten",
+          "tekst": "Foreslå at du tar toalettene og Amina korridoren, hvis begge og Kari bekrefter",
           "tone": "løsningsorientert",
           "effekter": {
-            "relasjoner": {
-              "driftsleder": 3,
-              "erfaren_kollega": 5
-            },
-            "meters": {
-              "handlingsrom": 3,
-              "energi": -4
-            },
             "flagg": {
-              "delte_sonen": true
+              "ren_tid_delingsforslag": true
             },
             "threads": {
               "tidsvinduet_krymper": {
-                "status": "completed"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "Amina er med umiddelbart: «Toalettene er det viktigste — resten kan vente til i morgen.» Kari hører at dere allerede har prioritert for henne."
+          "konsekvensTekst": "Du foreslår en fordeling. Verken Aminas ja eller Karis godkjenning er avklart ennå. Du fører ikke forslaget som utført arbeid.",
+          "laaserOpp": [
+            "tid_02_kari_prioriterer"
+          ]
         }
       ]
     },
@@ -668,12 +652,12 @@
           "tok_ekstra_rom": true
         }
       },
-      "tittel": "Klage fra tredje etasje",
-      "tekst": "Kari videresender: «Toalettene i tredje var ikke i orden i går.» Det var etasjen du tok ekstra — på halv tid, uten pause.",
+      "tittel": "Hva ble gjort i tredje etasje?",
+      "tekst": "Kari åpner gårsdagens romliste. En generell beskjed om ekstrarenhold er ikke alene en detaljert romlogg. Dere må skille toalettene du eventuelt utførte, korridoren Amina eventuelt har bekreftet og oppgavene som ble utsatt. En tom rute skal ikke fylles med en antakelse om slurv eller tapt pause.",
       "valg": [
         {
           "id": "vis_tidsregnskap",
-          "tekst": "Vis tidsregnskapet: to soner, ett vindu — noe måtte ryke",
+          "tekst": "Vis den dokumenterte romstatusen og avklar restoppgavene med Kari",
           "tone": "saklig",
           "effekter": {
             "relasjoner": {
@@ -684,24 +668,25 @@
               "synlighet": 4
             },
             "flagg": {
-              "viste_tidsregnskap": true
+              "viste_tidsregnskap": true,
+              "ren_tid_status_meldt": true,
+              "ren_tid_kari_mottatt": true,
+              "ren_tid_mottak_venter": false
             },
             "threads": {
               "tidsvinduet_krymper": {
-                "status": "completed"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "Kari leser regnestykket to ganger. «Dette tar jeg videre. Vi kan ikke bemanne sykdom med luft.»"
+          "konsekvensTekst": "Du viser de registrerte handlingene, hvem som utførte dem og hvilke punkter som fortsatt mangler utførelse eller svar. Kari bekrefter at hun har mottatt oversikten og må planlegge restarbeidet. Gjennomgangen gjør ikke uferdige rom ferdige."
         },
         {
           "id": "beklag_og_lov",
-          "tekst": "Beklag og lov å være raskere neste gang",
+          "tekst": "Lov å bli raskere uten å gå gjennom romlista",
           "tone": "føyelig",
           "effekter": {
-            "relasjoner": {
-              "driftsleder": 2
-            },
+            "relasjoner": {},
             "meters": {
               "psyke": -4,
               "integritet": -4
@@ -711,11 +696,11 @@
             },
             "threads": {
               "tidsvinduet_krymper": {
-                "status": "dormant"
+                "status": "escalated"
               }
             }
           },
-          "konsekvensTekst": "Kari nikker fornøyd. Du har nettopp lovet å løse et bemanningsproblem med kroppen din."
+          "konsekvensTekst": "Du lover høyere tempo, men dere har ikke avklart rom, bemanning eller hva som faktisk gjenstår. Løftet er ikke et gjennomført renhold eller en bedre arbeidsplan."
         }
       ]
     },
@@ -735,12 +720,12 @@
           }
         }
       },
-      "tittel": "En formiddag der tiden faktisk strekker til",
-      "tekst": "Ingen ekstra soner i dag. For én gangs skyld rekker du din egen sone i ditt eget tempo — og det er en merkelig følelse å ha et valg.",
+      "tittel": "Avklar dagens romliste",
+      "tekst": "Kari og Amina går gjennom dagens oppgaver før runden. At det ikke er registrert utført ekstrarenhold i går, sier ikke om forespørselen ble avklart. Se etter bekreftet plan, faktisk utførelse og eventuelle åpne svar. Dagens oppgaver må avklares uten å føre gårsdagens restarbeid som ferdig.",
       "valg": [
         {
           "id": "beroeringspunkter_grundig",
-          "tekst": "Bruk tiden på berøringspunktene — gjør sonen hygienisk rent",
+          "tekst": "Avklar dagens runde og utfør berøringspunktene på den avtalte lista",
           "tone": "faglig",
           "effekter": {
             "meters": {
@@ -752,15 +737,15 @@
             },
             "threads": {
               "tidsvinduet_krymper": {
-                "status": "completed"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "Håndtak, brytere, gelendere, stolarmer. Ingen ser forskjell. Alle hadde merket det om to uker hvis du lot være."
+          "konsekvensTekst": "Kari bekrefter dagens runde på egen romliste. Du tar de avtalte håndtakene, bryterne og gelenderne og kontrollerer resultatet. Dette er dagens arbeid, ikke bevis på at gårsdagens ekstrarom ble utført."
         },
         {
           "id": "hjelp_amina",
-          "tekst": "Bli ferdig raskt og hjelp Amina med sonen hennes",
+          "tekst": "Avklar med Kari og Amina, og ta den avtalte avfallsrunden for henne",
           "tone": "kollegial",
           "effekter": {
             "relasjoner": {
@@ -775,11 +760,11 @@
             },
             "threads": {
               "tidsvinduet_krymper": {
-                "status": "completed"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "Amina ser overrasket ut, så glad. «Da rekker jeg legetimen likevel.» Slikt husker folk."
+          "konsekvensTekst": "Kari bekrefter at du kan ta avfallet i de avtalte kontorrommene etter egen runde, og Amina sier ja til fordelingen. Du tømmer beholderne og registrerer bare denne oppgaven som utført. Det avklarer ikke eventuelle åpne ekstrarom fra i går."
         }
       ]
     },
@@ -1637,6 +1622,270 @@
         }
       },
       "avsender": "driftsleder"
+    },
+    {
+      "id": "tid_02_kari_prioriterer",
+      "threadId": "tidsvinduet_krymper",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tilgjengelighet": "laast",
+      "prioritet": 13,
+      "tittel": "Kari avklarer romfordelingen",
+      "tekst": "Kari tar fram lista: kontorer og trapp i egen rute, toaletter og korridor i tredje. Hun kan prioritere toalettene og utsette resten, avklare en deling med Amina eller la deg beholde egen rute mens hun tar ekstrabehovet videre. Ingen av planene betyr at et rom er rengjort. Pausen står i planen.",
+      "valg": [
+        {
+          "id": "prioriter_toaletter",
+          "tekst": "Gjenta at du tar toalettene, og få Kari til å bekrefte hva som utsettes",
+          "konsekvensTekst": "Kari bekrefter at du tar toalettene i tredje innenfor den eksisterende vakta. Kontorene, trappa og korridoren i tredje settes som utsatt. Hun har ansvar for videre planlegging. Du har fått en avgrenset oppgave, ikke gjort den.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_plan_bekreftet": true,
+              "ren_tid_plan_toaletter": true,
+              "ren_tid_kontorer_utsatt": true,
+              "ren_tid_trapp_utsatt": true,
+              "ren_tid_korridor3_utsatt": true
+            }
+          },
+          "laaserOpp": [
+            "tid_03_toaletter"
+          ]
+        },
+        {
+          "id": "bekreft_deling",
+          "tekst": "Få Amina og Kari til å bekrefte at du tar toalettene og Amina korridoren",
+          "konsekvensTekst": "Amina bekrefter at hun tar korridoren i tredje. Kari godkjenner fordelingen: du tar toalettene, Amina korridoren, og kontorer og trapp på din opprinnelige liste utsettes. Den avtalte pausen beholdes. Begge arbeidsoppgavene er fortsatt ugjort.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_plan_bekreftet": true,
+              "ren_tid_plan_deling": true,
+              "delte_sonen": true,
+              "ren_tid_kontorer_utsatt": true,
+              "ren_tid_trapp_utsatt": true,
+              "ren_tid_amina_venter": true
+            }
+          },
+          "laaserOpp": [
+            "tid_03_toaletter"
+          ]
+        },
+        {
+          "id": "behold_egen_rute",
+          "tekst": "Be Kari beholde egen rute og ta ekstrabehovet videre",
+          "konsekvensTekst": "Kari bekrefter at du fortsetter med kontorer og trapp på egen liste. Hun tar behovet i tredje videre til bemanningsavklaring. Ingen annen renholder er registrert som ferdig med ekstrarommene.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_plan_bekreftet": true,
+              "ren_tid_plan_egen_rute": true
+            }
+          },
+          "laaserOpp": [
+            "tid_03_egen_rute"
+          ]
+        },
+        {
+          "id": "avvent_plan",
+          "tekst": "La forespørselen stå åpen til Kari kan avklare fordelingen",
+          "konsekvensTekst": "Du har ikke fått en bekreftet ny plan. Ingen ekstrarom eller delt oppgave er ført som ferdig. Du lar behovet for avklaring stå åpent.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_plan_venter": true
+            },
+            "threads": {
+              "tidsvinduet_krymper": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tid_03_toaletter",
+      "threadId": "tidsvinduet_krymper",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 13,
+      "tittel": "Den avtalte oppgaven er toalettene",
+      "tekst": "Du har fått bekreftet toalettene i tredje som din oppgave. Følg den lokale romlista og den metoden du er lært opp i. Kontorer og trapp er utsatt. Korridoren er en egen oppgave i fordelingen; den skal ikke føres som ditt arbeid.",
+      "valg": [
+        {
+          "id": "utfor_og_kontroller",
+          "tekst": "Utfør den avtalte toalettoppgaven, kontroller resultatet og registrer den",
+          "konsekvensTekst": "Du utfører toalettoppgavene på lista og kontrollerer resultatet mot den avtalte beskrivelsen. Du registrerer toalettene i tredje som ditt utførte arbeid. Du har ikke rengjort korridoren, kontorene eller trappa gjennom denne handlingen.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_wc3_spiller": true,
+              "tok_ekstra_rom": true
+            },
+            "meters": {
+              "energi": -4
+            }
+          },
+          "laaserOpp": [
+            "tid_04_amina_resultat",
+            "tid_05_kari_mottar"
+          ]
+        },
+        {
+          "id": "meld_ikke_utfort",
+          "tekst": "Registrer at oppgaven ikke er utført, og gi status videre",
+          "konsekvensTekst": "Du fører toalettene som ikke utført og melder behovet for ny avklaring. Ingen toalettoppgave eller annen sone er gjort ferdig ved denne meldingen.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_egen_oppgave_venter": true
+            },
+            "threads": {
+              "tidsvinduet_krymper": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "tid_04_amina_resultat",
+            "tid_05_kari_mottar"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tid_03_egen_rute",
+      "threadId": "tidsvinduet_krymper",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 13,
+      "tittel": "Kontorene og trappa på egen liste",
+      "tekst": "Kari har bekreftet egen rute. Du har kontorer og trapp igjen i denne økta. Toaletter og korridor i tredje er ikke lagt til som ditt arbeid. Bruk den avtalte romlista til å føre hva du faktisk gjør.",
+      "valg": [
+        {
+          "id": "utfor_og_kontroller",
+          "tekst": "Utfør kontor- og trappeoppgavene, kontroller dem og før eget arbeid",
+          "konsekvensTekst": "Du gjør oppgavene på kontor- og trappelista, kontrollerer resultatet og fører bare de rommene som utført i denne økta. Toaletter og korridor i tredje blir ikke grønne fordi du ble ferdig med din egen rute.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_kontorer_spiller": true,
+              "ren_tid_trapp_spiller": true
+            },
+            "meters": {
+              "energi": -5
+            }
+          },
+          "laaserOpp": [
+            "tid_05_kari_mottar"
+          ]
+        },
+        {
+          "id": "meld_ikke_utfort",
+          "tekst": "La rommene stå uferdige og gi en konkret reststatus",
+          "konsekvensTekst": "Du fører kontorer og trapp som uferdige og gir Kari oversikten. Det er en melding om restarbeid, ikke utført renhold.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_egen_oppgave_venter": true
+            },
+            "threads": {
+              "tidsvinduet_krymper": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "tid_05_kari_mottar"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tid_04_amina_resultat",
+      "threadId": "tidsvinduet_krymper",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 14,
+      "tittel": "Hva er gjort i korridoren?",
+      "tekst": "Amina tok på seg korridoren i tredje. Før den føres som ferdig, trenger du hennes konkrete resultat. En bekreftet fordeling er ikke bevis på utførelse.",
+      "valg": [
+        {
+          "id": "registrer_amina",
+          "tekst": "Be Amina beskrive hva hun utførte og kontrollerte, og før hennes resultat",
+          "konsekvensTekst": "Amina bekrefter at hun har utført korridoroppgavene på sin liste og kontrollert resultatet mot den avtalte beskrivelsen. Du fører korridoren som utført av Amina, ikke av deg. Kontorer og trapp på din opprinnelige liste står fortsatt utsatt.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_korridor3_amina": true,
+              "ren_tid_amina_venter": false
+            }
+          }
+        },
+        {
+          "id": "avvent_resultat",
+          "tekst": "La korridoren vente på et konkret svar",
+          "konsekvensTekst": "Du har ikke fått bekreftet utførelse og kontroll fra Amina. Korridoren står derfor som avtalt arbeid med ubekreftet resultat, ikke som ferdig renhold.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_amina_venter": true
+            },
+            "threads": {
+              "tidsvinduet_krymper": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_tid_plan_deling": true
+        }
+      }
+    },
+    {
+      "id": "tid_05_kari_mottar",
+      "threadId": "tidsvinduet_krymper",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Har Kari fått den faktiske romstatusen?",
+      "tekst": "Romlista må skille ditt utførte arbeid, Aminas eventuelt bekreftede resultat, utsatte oppgaver og svar som mangler. Før bare det som er dokumentert i denne økta. Kari må bekrefte at hun har mottatt oversikten; en sendt beskjed alene er ikke mottak.",
+      "valg": [
+        {
+          "id": "overlever_status",
+          "tekst": "Send den dokumenterte romstatusen og få Kari til å bekrefte mottak",
+          "konsekvensTekst": "Du sender den førte romstatusen med utfører, utsatte oppgaver og eventuelle ubekreftede svar. Kari bekrefter at hun har mottatt den og tar restarbeidet med i videre planlegging. Hun har ikke dermed fått uferdige rom rengjort eller gjort et ubekreftet Amina-resultat sikkert.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_status_meldt": true,
+              "ren_tid_kari_mottatt": true
+            }
+          }
+        },
+        {
+          "id": "avvent_mottak",
+          "tekst": "Send statusen, men la mottaket stå ubekreftet",
+          "konsekvensTekst": "Du sender den dokumenterte romstatusen, men får ingen uttrykkelig mottaksbekreftelse. Rom som venter på arbeid eller svar står fortsatt åpne.",
+          "effekter": {
+            "flagg": {
+              "ren_tid_status_meldt": true,
+              "ren_tid_mottak_venter": true
+            },
+            "threads": {
+              "tidsvinduet_krymper": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 }
