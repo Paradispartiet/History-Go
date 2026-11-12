@@ -8,7 +8,10 @@ on:
       - 'data/badges/vitenskap_v2_locale_candidates_artwork_20261112.json'
       - 'bilder/merker/vitenskap/kandidater/locales/**'
 permissions:
-  contents: write
+  contents: read
+concurrency:
+  group: vitenskap-v2-localized-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   previews:
     if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'art/vitenskap-v2-translate-bands-20261112'
@@ -22,8 +25,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --quiet pillow numpy
-      - name: Render 20 localized WebP candidate badges with verified manifest
-        run: python scripts/create-vitenskap-v2-textbands.py --all
       - name: Validate each candidate format, artwork center, alpha, hash and registry isolation
         run: |
           python - <<'PY'
@@ -63,12 +64,9 @@ jobs:
           PY
       - name: Create Norwegian + 20-language review contact sheet
         run: python scripts/create-vitenskap-v2-contact-sheet.py
-      - name: Commit only inactive candidates and manifest on PR branch
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add bilder/merker/vitenskap/kandidater/locales data/badges/vitenskap_v2_locale_candidates_artwork_20261112.json bilder/merker/vitenskap/kandidater/contact-sheet-localized-v2.jpg
-          if ! git diff --cached --quiet; then
-            git commit -m 'art(badges): store 20 translated science v2 candidates with binary manifest'
-            git push
-          fi
+      - name: Upload candidate preview contact sheet for visual review
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitenskap-v2-localization-review
+          path: bilder/merker/vitenskap/kandidater/contact-sheet-localized-v2.jpg
+          retention-days: 7
