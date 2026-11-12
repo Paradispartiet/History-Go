@@ -1,0 +1,114 @@
+name: Tjuvholmen official logo source discovery
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/tjuvholmen-logo-scout.yml'
+permissions:
+  contents: read
+concurrency:
+  group: tjuvholmen-logo-source-discovery-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  inspect-official-webpages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - run: python -m pip install --quiet requests beautifulsoup4
+      - name: Extract official source logos and origin metadata
+        run: |
+          python - <<'PY'
+          import os,re,json,hashlib,requests
+          from pathlib import Path
+          from urllib.parse import urljoin,urlparse
+          from bs4 import BeautifulSoup
+          out=Path(".tmp/tjuvholmen-logo-source-discovery");out.mkdir(parents=True,exist_ok=True)
+          urls=[
+            ("bahr_logo","https://bahr.no/logo"),
+            ("bahr_home","https://bahr.no/"),
+            ("bahr_press","https://bahr.no/media-contacts"),
+            ("brandstrup_home","https://www.brandstrup.no/"),
+            ("brandstrup_gallery","https://www.brandstrup.no/gallery1"),
+          ]
+          session=requests.Session();session.headers.update({"User-Agent":"Mozilla/5.0 (compatible; HistoryGoDocumentarySourceAudit/1.0)"})
+          report=[]
+          for name,url in urls:
+            item={"name":name,"url":url,"assets":[],"svg":[],"stylesheet_urls":[],"errors":[]}
+            try:
+              response=session.get(url,timeout=35);response.raise_for_status()
+              body=response.text;item["http_status"]=response.status_code;item["url_final"]=response.url;item["html_size"]=len(response.content)
+              (out/(name+".html")).write_text(body[:1_300_000])
+              soup=BeautifulSoup(body,"html.parser")
+              item["title"]=soup.title.get_text(" ",strip=True) if soup.title else None
+              for t in soup.find_all(["img","source","link","meta","svg","picture"]):
+                attrs={k:str(v)[:450] for k,v in t.attrs.items() if k in ("id","class","src","srcset","href","alt","data-src","data-srcset","rel","content","property","name","style","width","height")}
+                a={"tag":t.name,"attrs":attrs}
+                if t.name=="svg":
+                  i=len(item["svg"]); raw=str(t); fn=f"{name}_inline_{i:02d}.svg"
+                  if len(raw)<150_000:
+                    (out/fn).write_text(raw)
+                    a["svg_file"]=fn
+                  a["svg_text"]=t.get_text(" ",strip=True)[:180]
+                  item["svg"].append(a)
+                else:
+                  if attrs:
+                    item["assets"].append(a)
+              for a in soup.find_all("a",href=True):
+                tag=json.dumps(a.attrs,ensure_ascii=False)
+                if re.search(r"logo|press|brandstrup|bahr",tag,re.I):
+                  item.setdefault("a_links",[]).append({"text":a.get_text(" ",strip=True)[:120],"href":urljoin(response.url,a["href"])})
+              for css in soup.find_all("link",href=True):
+                if "stylesheet" in css.get("rel",[]):
+                  css_url=urljoin(response.url,css["href"]);item["stylesheet_urls"].append(css_url)
+              for tag in soup.find_all(["div","header","a","span"],limit=400):
+                attrs=json.dumps(tag.attrs,ensure_ascii=False)
+                if re.search(r"brand|logo",attrs,re.I):
+                  item.setdefault("logo_dom_nodes",[]).append({"tag":tag.name,"attrs":attrs[:520],"text":tag.get_text(" ",strip=True)[:110],"html":str(tag)[:850]})
+              print(name,"HTML",len(body),"svg_inline",len(item["svg"]),"images",len([a for a in item["assets"] if a["tag"]=="img"]),"css",len(item["stylesheet_urls"]))
+              candidate=set()
+              for a in item["assets"]:
+                attrs=a["attrs"]
+                if a["tag"]=="img" or re.search(r"logo|brand",json.dumps(attrs),re.I):
+                  for key in ("src","data-src"):
+                    if key in attrs and not attrs[key].startswith("data:"): candidate.add(urljoin(response.url,attrs[key]))
+                  if "srcset" in attrs:
+                    for entry in attrs["srcset"].split(",")[:2]:
+                      candidate.add(urljoin(response.url,entry.strip().split()[0]))
+              for style_i, css_url in enumerate(item["stylesheet_urls"][:12]):
+                try:
+                  r=session.get(css_url,timeout=20)
+                  if r.ok and len(r.content)<1_200_000:
+                    css_name=f"{name}_style_{style_i:02d}.css";(out/css_name).write_bytes(r.content)
+                    lines=[x.strip()[:600] for x in r.text.splitlines() if re.search(r"logo|brandstrup|bahr",x,re.I)]
+                    item.setdefault("css_matches",[]).append({"url":css_url,"matches":lines[:30]})
+                    for m in re.findall(r"url\(['\"]?([^\)'\"]+)['\"]?\)",r.text,re.I):
+                      if re.search(r"logo|brandstrup|bahr",m,re.I):candidate.add(urljoin(css_url,m))
+                except Exception as e:item["errors"].append("CSS "+str(e)[:150])
+              for idx, asset in enumerate(list(candidate)[:45]):
+                try:
+                  p=urlparse(asset)
+                  if p.netloc not in {urlparse(response.url).netloc,"www.brandstrup.no","brandstrup.no","bahr.no","www.bahr.no","static.wixstatic.com"}:continue
+                  rr=session.get(asset,timeout=22)
+                  if not rr.ok or not rr.content or len(rr.content)>3_000_000:continue
+                  typ=rr.headers.get("Content-Type","").lower()
+                  if not any(s in typ for s in ("image/","svg","octet-stream")):continue
+                  ext=".svg" if "svg" in typ else ".png" if "png" in typ else ".webp" if "webp" in typ else ".jpg"
+                  filename=f"{name}_candidate_{idx:02d}"+ext
+                  (out/filename).write_bytes(rr.content)
+                  item.setdefault("downloaded_assets",[]).append({"assetUrl":asset,"file":filename,"mime":typ,"size":len(rr.content),"sha256":hashlib.sha256(rr.content).hexdigest()})
+                except Exception as e:item["errors"].append("asset "+asset[:90]+" "+str(e)[:100])
+            except Exception as e:item["errors"].append(str(e)[:400])
+            report.append(item)
+          (out/"report.json").write_text(json.dumps(report,indent=2,ensure_ascii=False))
+          for item in report:
+            print("RESULT",item["name"],"downloads",len(item.get("downloaded_assets",[])),"logo_nodes",len(item.get("logo_dom_nodes",[])),"errors",item.get("errors",[]))
+            for d in item.get("downloaded_assets",[])[:10]:print("FOUND",item["name"],d["file"],d["assetUrl"][:160])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tjuvholmen-official-logo-source-scout
+          path: .tmp/tjuvholmen-logo-source-discovery
+          if-no-files-found: ignore
