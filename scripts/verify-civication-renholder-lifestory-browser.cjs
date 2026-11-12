@@ -146,7 +146,10 @@ async function play(browser, fixture) {
       assert.equal(ending.id,fixture.ending,label+': factual final ending');
       const box=page.locator('.civi-lifestory-ending').first();
       assert.ok((await box.textContent()).includes(ending.tekst),label+': visible final ending');
-      await box.scrollIntoViewIfNeeded();await box.screenshot({path:path.join(output,label+'-ending.png')});
+      await box.scrollIntoViewIfNeeded();
+      // The shell may replace the summary card while refreshing next actions.
+      // Capture the visible page after checking the ending, without holding its old DOM node.
+      await page.screenshot({path:path.join(output,label+'-ending.png')});
     }
     for(const disclosure of ['history','full-history']) {
       const box=page.locator('[data-lifestory-disclosure="'+disclosure+'"]').first();
