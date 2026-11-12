@@ -397,6 +397,7 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
     await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
     assert.equal((await page.evaluate(() => globalThis.CivicationLifestoryState.load())).arkiv.length,
       0, label + ': starts from a fresh player state');
+    const authored = await page.evaluate(async () => (await globalThis.CivicationLifestoryContent.loadContent('ekspeditor')).scenes);
     let sawReturnRequest = false, sawDayChange = false, last = null;
     let dayTransitionMode = null;
     for (let n = 0; n < 130; n++) {
@@ -451,7 +452,11 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
         const sender = await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent();
         assert.match(sender, /Fra Lene/, label + ': authorizing manager speaks for herself');
       }
-      const wanted = choices[sceneId];
+      let wanted = choices[sceneId];
+      if (!wanted && state.dag === 1) {
+        wanted = authored.find(s => s.id === sceneId).valg.filter(c => !c.skills_requirement)
+          .slice().sort((a,b) => (a.effekter?.meters?.energi || 0) - (b.effekter?.meters?.energi || 0))[0].id;
+      }
       const selector = '[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
         + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])';
       const button = page.locator(selector).first();
@@ -553,10 +558,137 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
     }
     assert.ok(authority, label + ': completes actual authority conversation');
     assert.deepEqual(errors, [], label + ': authority continuation has no browser exceptions');
-    return { label, viewport, day: 2, dayTransitionMode, last, status: expected.status, authority, trace };
+    const dayThree = await continueThroughDayThree(page, label, viewport, choices, expected.dayThree, trace);
+    assert.deepEqual(errors, [], label + ': no exceptions through the complete story');
+    return { label, viewport, day: 3, dayTransitionMode, last, status: expected.status, authority, dayThree, trace };
   } finally {
     await context.close();
   }
+}
+
+async function continueThroughDayThree(page, label, viewport, choices, expected, trace) {
+  const openDay = async () => {
+    const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+    if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
+    await page.locator('.civi-footer button[data-category="minDag"]').click({ timeout: 20000 });
+  };
+  let transitionMode = null;
+  let sawPrice = false, sawSupport = false;
+  for (let n = 0; n < 120; n++) {
+    const state = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    await openDay();
+    if (state.dagFerdig) {
+      if (state.dag === 3) break;
+      assert.equal(state.dag, 2, label + ': only genuine completed day two may advance');
+      const next = page.locator('[data-lifestory-next-day]').first();
+      assert.equal(await next.count(), 1);
+      if (await next.isEnabled()) {
+        transitionMode = 'ui';
+        await next.click({ timeout: 20000 });
+      } else {
+        transitionMode = 'runner-fixture';
+        assert.ok(await page.locator('[data-lifestory-next-action]').count());
+        await page.screenshot({ path: path.join(output, label + '-day2-shell-inbox-gate.png'), fullPage: true });
+        await page.evaluate(async () => {
+          const c = await globalThis.CivicationLifestoryContent.loadContent('ekspeditor');
+          const s = globalThis.CivicationLifestoryState.load();
+          if (s.dag !== 2 || !s.dagFerdig) throw new Error('not at actual day-two conclusion');
+          globalThis.CivicationLifestoryRunner.startNextDay(s, c);
+          globalThis.CivicationLifestoryState.save(s);
+        });
+        await page.reload({ waitUntil: 'load', timeout: 90000 });
+      }
+      await page.waitForFunction(() => globalThis.CivicationLifestoryState.load().dag === 3,
+        null, { timeout: 45000 });
+      continue;
+    }
+    const info = await page.evaluate(() => globalThis.CivicationLifestoryUI.getCurrentSceneInfo());
+    const sceneId = info?.sceneId;
+    assert.ok(sceneId, label + ': continuing through actual day-three scenes');
+    const wanted = choices[sceneId];
+    const button = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
+      + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])').first();
+    assert.equal(await button.count(), 1, label + ': chosen day-three action exists ' + sceneId);
+    await button.scrollIntoViewIfNeeded();
+    const bounds = await button.boundingBox();
+    assert.ok(bounds && bounds.width > 0 && bounds.x >= -2 && bounds.x + bounds.width <= viewport.width + 2);
+    const focus = sceneId === 'd3_stamkunden_prismatch' || sceneId === expected.supportScene
+      || sceneId.startsWith('d3_pris_') || sceneId === 'd3_stotte_02_amir_resultat';
+    if (focus) {
+      if (sceneId === expected.supportScene) sawSupport = true;
+      if (sceneId === 'd3_ettermiddag_pause_virket') {
+        assert.match(await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent(), /Fra Lene/);
+      }
+      const scene = page.locator('.civi-lifestory-scene').first();
+      await scene.scrollIntoViewIfNeeded();
+      await scene.screenshot({ path: path.join(output, label + '-' + sceneId + '-before.png') });
+    }
+    const choiceId = await button.getAttribute('data-lifestory-choice');
+    const visibility = state.meters.synlighet;
+    await button.click({ timeout: 20000 });
+    await page.waitForFunction(previous => globalThis.CivicationLifestoryState.load().arkiv.length === previous + 1,
+      state.arkiv.length, { timeout: 20000 });
+    const after = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+    assert.equal(after.arkiv.at(-1).sceneId, sceneId);
+    assert.equal(after.arkiv.at(-1).valgId, choiceId);
+    trace.push([sceneId, choiceId]);
+    if (sceneId === 'd3_stamkunden_prismatch') {
+      sawPrice = true;
+      assert.ok(!after.tidligereValg.fant_lovlig_losning, label + ': request is not a checked member transaction');
+      assert.ok(!after.tidligereValg.d3_pris_lene_avklart, label + ': return authority is not prismatch authority');
+    }
+    if (sceneId === expected.supportScene && choiceId !== 'press_igjen') {
+      assert.ok(after.meters.synlighet >= visibility, label + ': asking for relief does not cost status');
+    }
+    if (focus) {
+      const consequence = page.locator('.civi-lifestory-konsekvens').first();
+      await consequence.scrollIntoViewIfNeeded();
+      await consequence.screenshot({ path: path.join(output, label + '-' + sceneId + '-after.png') });
+    }
+  }
+  const finalState = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+  assert.equal(finalState.dag, 3);
+  assert.ok(finalState.dagFerdig && sawPrice && sawSupport && transitionMode,
+    label + ': actually completes day three after the chosen support history');
+  for (const [flag, value] of Object.entries(expected.flags)) {
+    assert.equal(finalState.tidligereValg[flag] === true, value, label + ': day-three evidence ' + flag);
+  }
+  assert.equal(finalState.threadState.arbeidsrytme_og_overskudd.status, expected.supportStatus);
+  const ending = await page.evaluate(async () => globalThis.CivicationLifestoryEndings.resolveEnding(
+    globalThis.CivicationLifestoryState.load(), await globalThis.CivicationLifestoryContent.loadContent('ekspeditor')));
+  const endingEvidence = { trygg_paa_gulvet: 'eksp_life_pris_etterkontroll_verifisert',
+    faar_ting_unna: 'ekspeditor_gikk_uten_overlevering', nokkelbaerer: 'ekspeditor_disknokkel_utlevert',
+    mistet_tilliten: 'd3_pris_avvik_apent', butikksjef_emne: 'retur_d2_vikar_forstod' };
+  assert.ok(ending.id === 'arbeid_og_restoppgaver' || finalState.tidligereValg[endingEvidence[ending.id]] === true,
+    label + ': ending has its concrete work evidence');
+  if (expected.priceChoice === 'gi_etter_igjen') assert.equal(ending.id, 'mistet_tilliten');
+  const endingBox = page.locator('.civi-lifestory-ending').first();
+  assert.equal(await endingBox.locator('h3').textContent(), ending.navn);
+  await endingBox.scrollIntoViewIfNeeded();
+  await endingBox.screenshot({ path: path.join(output, label + '-day3-ending.png') });
+  await page.reload({ waitUntil: 'load', timeout: 90000 });
+  await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.dagFerdig === true,
+    null, { timeout: 90000 });
+  const restored = await page.evaluate(() => globalThis.CivicationLifestoryState.load());
+  assert.deepEqual(restored.arkiv, finalState.arkiv, label + ': exact complete three-day archive after reload');
+  assert.deepEqual(restored.tidligereValg, finalState.tidligereValg);
+  await openDay();
+  const history = page.locator('[data-lifestory-disclosure="history"]').first();
+  if (!(await history.evaluate(el => el.open))) await history.locator(':scope > summary').click();
+  const symposium = page.locator('[data-lifestory-symposium]').first();
+  if (!(await symposium.evaluate(el => el.open))) await symposium.locator(':scope > summary').click();
+  const normalize = value => String(value).replace(/\s+/g, ' ').trim();
+  const shown = normalize(await symposium.textContent());
+  for (const row of restored.arkiv.filter(x => x.dag === 3)) {
+    assert.ok(shown.includes(normalize(row.valgTekst)), label + ': actual day-three choice in Symposium ' + row.sceneId);
+    assert.ok(shown.includes(normalize(row.konsekvensTekst)), label + ': actual day-three consequence in Symposium ' + row.sceneId);
+  }
+  const priceRow = restored.arkiv.filter(x => x.dag === 3 && x.sceneId.startsWith('d3_pris_')).at(-1);
+  const entry = symposium.locator('ol > li').filter({ hasText: priceRow.valgTekst }).last();
+  await entry.scrollIntoViewIfNeeded();
+  await entry.screenshot({ path: path.join(output, label + '-day3-symposium-result.png') });
+  return { day: 3, transitionMode, priceChoice: expected.priceChoice, supportScene: expected.supportScene,
+    supportStatus: expected.supportStatus, ending, flags: expected.flags, archiveLength: restored.arkiv.length };
 }
 
 (async () => {
@@ -674,6 +806,9 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
       { finalScene: 'ny_kollega_02_avtal_hjelp', status: 'escalated',
         flags: { pant_hjelp_ikke_fulgt_opp: true, pant_vikar_forstod: false, hjalp_ny_kollega: false } }));
     const fullTrainingDayTwo = {
+      d2_morgen_vaktpress_etter_stenging: 'kort_pause',
+      d3_stamkunden_prismatch: 'hold_regelen_vennlig',
+      d3_pris_02_lene_svarer: 'forklar_og_gjennomfor', d3_ettermiddag_pause_virket: 'foresla_felles_pauser',
       ny_kollega_01_midt_i_koen: 'hjelp_kort',
       ny_kollega_02_vis_pantekort: 'vis_en_gang',
       ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen',
@@ -683,6 +818,9 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
       d2_vikar_retur_03_vikar_utforer: 'veiled_og_kontroller_byttet'
     };
     const traineeNotCheckedDayTwo = {
+      d2_morgen_vaktpress_etter_stenging: 'be_om_stotte',
+      d3_stamkunden_prismatch: 'tilby_det_du_kan',
+      d3_pris_02_medlemsvilkar: 'kontroller_og_gjennomfor', d3_ettermiddag_kollegastotten: 'del_med_amir', d3_stotte_02_amir_resultat: 'kontroller_resultatet',
       ny_kollega_01_midt_i_koen: 'hjelp_kort',
       ny_kollega_02_vis_pantekort: 'vis_en_gang',
       ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen',
@@ -693,6 +831,9 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
       d2_vikar_retur_03_vikar_utforer: 'gjør_det_selv'
     };
     const noReturnFollowUpDayTwo = {
+      d2_morgen_vaktpress_etter_stenging: 'press_videre',
+      d3_stamkunden_prismatch: 'gi_etter_igjen',
+      d3_pris_02_meld_avslag: 'meld_avviket', d3_pris_03_lene_bekrefter: 'registrer_mottaket', d3_ettermiddag_presset_sitter: 'press_igjen',
       ny_kollega_01_midt_i_koen: 'hjelp_kort',
       ny_kollega_02_vis_pantekort: 'vis_en_gang',
       ny_kollega_03_vikar_forklarer: 'sjekk_forklaringen',
@@ -701,20 +842,20 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
     };
     results.push(await playDayTwoReturnTraining(browser, 'day2-return-mobile-portrait',
       { width: 390, height: 844 }, fullTrainingDayTwo,
-      { authorityChoice: 'ta_ansvaret', finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'completed',
+      { dayThree: { priceChoice: 'hold_regelen_vennlig', supportScene: 'd3_ettermiddag_pause_virket', supportStatus: 'completed', flags: { d3_pris_lene_avklart: true, d3_pris_handel_avklart: true, d3_pris_medlemspris_brukt: false, ekspeditor_pauser_avtalt: true } }, authorityChoice: 'ta_ansvaret', finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'completed',
         flags: { retur_d2_vilkar_kontrollert: true, retur_d2_lene_godkjent: true,
           retur_d2_bytte_gjennomfort: true, retur_d2_vikar_forstod: true, laerte_bort_metoden: true } }));
     results.push(await playDayTwoReturnTraining(browser, 'day2-return-ipad-portrait',
       { width: 820, height: 1180 }, traineeNotCheckedDayTwo,
-      { authorityChoice: 'en_uke_til', finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'escalated',
+      { dayThree: { priceChoice: 'tilby_det_du_kan', supportScene: 'd3_ettermiddag_kollegastotten', supportStatus: 'completed', flags: { d3_pris_medlemsvilkar_kontrollert: true, d3_pris_medlemspris_brukt: true, d3_pris_handel_avklart: true, d3_stotte_amir_kontroll_bekreftet: true, ekspeditor_stotte_gitt_videre: false } }, authorityChoice: 'en_uke_til', finalScene: 'd2_vikar_retur_03_vikar_utforer', status: 'escalated',
         flags: { retur_d2_lene_godkjent: true, retur_d2_bytte_utfort_av_spiller: true,
           retur_d2_vikar_kontroll_venter: true, retur_d2_vikar_forstod: false, laerte_bort_metoden: false } }));
     results.push(await playDayTwoReturnTraining(browser, 'day2-return-ipad-landscape',
       { width: 1180, height: 820 }, noReturnFollowUpDayTwo,
-      { authorityChoice: 'del_med_vikaren', finalScene: 'd2_vikar_retur_02_kort_svar', status: 'escalated',
+      { dayThree: { priceChoice: 'gi_etter_igjen', supportScene: 'd3_ettermiddag_presset_sitter', supportStatus: 'escalated', flags: { d3_pris_avvik_apent: true, d3_pris_ansvar_bekreftet: true, d3_pris_handel_avklart: false, ekspeditor_oversaa_slitasje: true } }, authorityChoice: 'del_med_vikaren', finalScene: 'd2_vikar_retur_02_kort_svar', status: 'escalated',
         flags: { retur_d2_ikke_fulgt_opp: true, retur_d2_vilkar_kontrollert: false,
           retur_d2_lene_godkjent: false, retur_d2_bytte_gjennomfort: false, laerte_bort_metoden: false } }));
-    console.log('PASS: ekspeditør day-two return instruction plus all earlier Life Story paths on mobile and iPad', JSON.stringify(results));
+    console.log('PASS: ekspeditør three-day price, support, endings and saved Symposium plus all earlier Life Story paths on mobile and iPad', JSON.stringify(results));
   } finally {
     writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2) + '\n');
     if (browser) await browser.close();

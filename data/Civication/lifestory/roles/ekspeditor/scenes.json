@@ -1762,7 +1762,8 @@
               "integritet": -5
             },
             "flagg": {
-              "kuttet_lukkingen": true
+              "kuttet_lukkingen": true,
+              "ekspeditor_gikk_uten_overlevering": true
             },
             "threads": {
               "lukkingen": {
@@ -1797,7 +1798,7 @@
         {
           "id": "kort_pause",
           "tekst": "Si fra og ta en kort pause før du går på gulvet",
-          "konsekvensTekst": "Lene flytter et lite gjøremål til senere. Du får vann, ro og et par minutters oversikt. Oppgavene er der fortsatt, men du møter dem mer samlet.",
+          "konsekvensTekst": "Lene bekrefter at en tralle med emballasje kan stå på avtalt lagerplass til etter kasseovertakelsen. Du setter den der, tar vann og et par minutter i ro før økta. Arbeidet med tralla er utsatt, ikke ferdig.",
           "effekter": {
             "meters": {
               "energi": 4,
@@ -1811,8 +1812,8 @@
         },
         {
           "id": "be_om_stotte",
-          "tekst": "Be Amir dele de tyngste oppgavene den første timen",
-          "konsekvensTekst": "Amir hjelper deg gjennom den første rushen. Det er ikke en fridag, men du slipper å løse alt alene.",
+          "tekst": "Avklar med Amir hvem som tar kassa og hvem som tar varetralla",
+          "konsekvensTekst": "Amir sier ja til å ta varetralla mens du betjener kassa den første timen. Dere fordeler varene og kundene før dere begynner. Du slipper å avbryte hvert salg for å hente varer. Amir har ikke dermed fått lederfullmakt.",
           "effekter": {
             "meters": {
               "energi": 2,
@@ -1828,7 +1829,7 @@
         },
         {
           "id": "press_videre",
-          "tekst": "Ikke si noe og ta hele åpningen alene",
+          "tekst": "Ikke si noe og ta kassa og varetralla alene",
           "konsekvensTekst": "Du kommer i gang, men merker at du reagerer tregere når køen bygger seg opp. Resten av dagen starter med mindre overskudd.",
           "effekter": {
             "meters": {
@@ -2692,62 +2693,51 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "«Du ga meg jo avslag sist»",
-      "tekst": "Stamkunden legger varene på båndet og smiler: «Du matcher jo prisen fra nettbutikken? Du ga meg vel avslag sist — eller?» Køen bak henne vokser, og alle hører på.",
+      "tekst": "Stamkunden legger en matboks på båndet. Kassa viser 179 kroner. Hun viser en nettannonse fra en annen butikk til 149: «Du matcher vel den? Jeg mener du ga meg avslag sist.» Det er hennes påstand, ikke bekreftet historikk. Du har ikke fullmakt til prismatch; returfullmakten endrer ikke det. Du kan undersøke dagens tilbud eller be Lene avgjøre saken. Køen vokser mens hun venter.",
       "valg": [
         {
           "id": "hold_regelen_vennlig",
-          "tekst": "Holde regelen, vennlig: «Det har jeg dessverre ikke fullmakt til»",
+          "tekst": "Forklar fullmaktsgrensen og be Lene avgjøre prismatch",
           "tone": "ryddig",
           "livsstil": [
             "legitimacy"
           ],
           "effekter": {
             "meters": {
-              "integritet": 3
-            },
-            "relasjoner": {
-              "stamkunde": -1
+              "integritet": 2
             },
             "flagg": {
-              "holdt_regelen": true
-            },
-            "threads": {
-              "kunden_som_tror_du_bestemmer": {
-                "stepDelta": 1
-              }
+              "d3_pris_lene_spurt": true
             }
           },
-          "konsekvensTekst": "Hun himler med øynene, men betaler. Køen bak så en som kunne reglene sine — det er også kundeservice."
+          "konsekvensTekst": "Du forteller kunden at du må spørre Lene, og sender henne vare, butikkpris og nettannonsen. Kunden venter på svaret. Du har ikke avslått prismatch på Lenes vegne eller avsluttet handelen.",
+          "laaserOpp": [
+            "d3_pris_02_lene_svarer"
+          ]
         },
         {
           "id": "tilby_det_du_kan",
-          "tekst": "Tilby det du faktisk KAN: medlemsrabatten hun ikke bruker",
+          "tekst": "Undersøk om dagens medlemspris gjelder varen og kunden",
           "tone": "løsningsorientert",
           "livsstil": [
             "craft"
           ],
           "effekter": {
             "meters": {
-              "integritet": 2,
-              "synlighet": 1
-            },
-            "relasjoner": {
-              "stamkunde": 3
+              "integritet": 2
             },
             "flagg": {
-              "fant_lovlig_losning": true
-            },
-            "threads": {
-              "kunden_som_tror_du_bestemmer": {
-                "stepDelta": 1
-              }
+              "d3_pris_medlemsvilkar_etterspurt": true
             }
           },
-          "konsekvensTekst": "«Oi, den visste jeg ikke om!» Hun sparer nesten det samme, og du ga ikke bort noe du ikke eier. Amir nikker fra nabokassa."
+          "konsekvensTekst": "Du henter fram butikkens tilbud og spør kunden om hun vil at du kontrollerer medlemsvilkårene. Hun sier ja. Du har ennå ikke kontrollert varen eller medlemsbeviset, og har ikke lovet et bestemt avslag.",
+          "laaserOpp": [
+            "d3_pris_02_medlemsvilkar"
+          ]
         },
         {
           "id": "gi_etter_igjen",
-          "tekst": "Gi etter — det er raskest, og køen venter",
+          "tekst": "Registrer 149 og avslutt salget uten å kontrollere eller spørre",
           "tone": "ettergivende",
           "livsstil": [
             "shortcut"
@@ -2756,11 +2746,10 @@
             "meters": {
               "integritet": -3
             },
-            "relasjoner": {
-              "stamkunde": 3
-            },
             "flagg": {
-              "ga_etter_igjen": true
+              "ga_etter_igjen": true,
+              "d3_pris_avslag_utfort": true,
+              "d3_pris_avvik_apent": true
             },
             "threads": {
               "kunden_som_tror_du_bestemmer": {
@@ -2768,7 +2757,10 @@
               }
             }
           },
-          "konsekvensTekst": "Hun fikk avslaget. Nå VET hun at du bestemmer — og neste gang står hun der med noe dyrere."
+          "konsekvensTekst": "Du endrer 179 til 149. Kunden betaler, og kvitteringen viser avslaget på 30 kroner. Du har utført en priskorrigering uten dokumentert grunnlag eller fullmakt. Det må meldes og undersøkes. Dette beviser verken at du ga rabatt tidligere eller at kunden vil kreve mer neste gang.",
+          "laaserOpp": [
+            "d3_pris_02_meld_avslag"
+          ]
         }
       ]
     },
@@ -2780,12 +2772,12 @@
         }
       },
       "tittel": "Pausen som ga rom",
-      "tekst": "Lene ser at du holdt oversikten bedre etter den korte pausen i går. Hun vil vite hvordan dere skal få dette til når det blir travelt igjen.",
+      "tekst": "Lene og Amir går gjennom arbeidsfordelingen før ettermiddagsrushet. Du tok et par minutter i ro før gårsdagens økt. Nå må dere avklare avløsning i kassa dersom du trenger en kort pause i dagens rush. En foreslått pause er ikke en bekreftet avløsning.",
       "valg": [
         {
           "id": "foresla_felles_pauser",
-          "tekst": "Foreslå korte, planlagte pauser gjennom vakten",
-          "konsekvensTekst": "Lene prøver en enklere fordeling gjennom neste rush. Du har funnet en måte å ta ansvar uten å ignorere kapasiteten din.",
+          "tekst": "Avtal pausen med Lene og få Amir til å bekrefte avløsningen",
+          "konsekvensTekst": "Lene godkjenner fordelingen. Amir bekrefter at han tar over kassa når du varsler før pausen, og at dere overleverer uferdige kundesaker. Avløsningen er avtalt. Pausen er ikke tatt ennå.",
           "effekter": {
             "meters": {
               "psyke": 2,
@@ -2806,8 +2798,8 @@
         },
         {
           "id": "behold_egen_rutine",
-          "tekst": "Fortsett med å varsle når belastningen blir for høy",
-          "konsekvensTekst": "Lene godtar at du sier fra tidlig. Du har fortsatt ansvaret for arbeidet ditt, men ikke for å tåle alt i stillhet.",
+          "tekst": "Avklar med Lene hvordan du varsler før kapasiteten blir for lav",
+          "konsekvensTekst": "Du beskriver når du mister oversikten. Lene ber deg varsle henne før du forlater kassa, så hun kan sørge for avløsning. Dere har avtalt hvem du kontakter; du er ikke avløst eller på pause nå.",
           "effekter": {
             "meters": {
               "integritet": 2
@@ -2827,7 +2819,7 @@
       "fase": "ettermiddag",
       "dag": 3,
       "visningstype": "samtale",
-      "avsender": "erfaren_kollega",
+      "avsender": "butikksjef",
       "tilgjengelighet": "start",
       "prioritet": 9
     },
@@ -2839,12 +2831,12 @@
         }
       },
       "tittel": "Et ansvar dere deler",
-      "tekst": "Amir fulgte opp støtten du ba om i går. Nå spør han om du kan gjøre det samme for vikaren før ettermiddagsrushet.",
+      "tekst": "Amir tok varetralla mens du betjente kassa i går. Nå spør vikaren om hylleetiketten for juice gjelder én eller halvannen liter. Hun må lære å sammenligne varenummer og størrelse før hun bruker etiketten som prisgrunnlag. Kassa må fortsatt være betjent mens noen viser henne.",
       "valg": [
         {
           "id": "hjelp_vikaren",
-          "tekst": "Del et konkret grep med vikaren",
-          "konsekvensTekst": "Vikaren løser neste oppgave selv. Den hjelpen du fikk i går blir til noe flere kan bruke.",
+          "tekst": "Få Amir til å avløse, vis kontrollen og kontroller vikarens egen sammenligning",
+          "konsekvensTekst": "Amir bekrefter avløsningen og tar kassa. Du viser vikaren varenummer og størrelse på enlitersjuicen. Deretter finner hun selv etiketten for samme nummer og én liter, og forklarer hvorfor etiketten for halvannen liter ikke gjelder. Du sammenligner varen og etiketten med henne før du går tilbake til kassa.",
           "effekter": {
             "meters": {
               "energi": -2,
@@ -2855,7 +2847,8 @@
               "erfaren_kollega": 2
             },
             "flagg": {
-              "ekspeditor_stotte_gitt_videre": true
+              "ekspeditor_stotte_gitt_videre": true,
+              "d3_stotte_vikar_egen_kontroll": true
             },
             "threads": {
               "arbeidsrytme_og_overskudd": {
@@ -2866,8 +2859,8 @@
         },
         {
           "id": "del_med_amir",
-          "tekst": "Be Amir organisere opplæringen mens du holder kassen",
-          "konsekvensTekst": "Amir tar opplæringen. Du setter en grense for egen kapasitet uten å overlate vikaren til seg selv.",
+          "tekst": "Avtal at Amir viser etikettkontrollen mens du betjener kassa",
+          "konsekvensTekst": "Amir bekrefter at han tar gjennomgangen med vikaren. Du blir i kassa. Fordelingen er avtalt, men du har ennå ikke fått vite hva hun gjorde eller forstod.",
           "effekter": {
             "meters": {
               "handlingsrom": 1,
@@ -2877,14 +2870,18 @@
               "erfaren_kollega": 1
             },
             "flagg": {
-              "ekspeditor_opplaering_fordelt": true
+              "ekspeditor_opplaering_fordelt": true,
+              "d3_stotte_amir_opplaering_venter": true
             },
             "threads": {
               "arbeidsrytme_og_overskudd": {
-                "status": "completed"
+                "status": "active"
               }
             }
-          }
+          },
+          "laaserOpp": [
+            "d3_stotte_02_amir_resultat"
+          ]
         }
       ],
       "threadId": "arbeidsrytme_og_overskudd",
@@ -2908,7 +2905,7 @@
         {
           "id": "si_fra_nu",
           "tekst": "Si fra og be om avlastning før du gjør en feil",
-          "konsekvensTekst": "Amir tar over kassen noen minutter. Du mister litt ansikt der og da, men unngår å love noe du ikke kan holde.",
+          "konsekvensTekst": "Du sier at du mister oversikten og ber om avløsning. Amir bekrefter at han tar kassa, og du gir ham de uferdige kundesakene før du går til side noen minutter. Avløsningen er gjennomført. Å si fra om kapasiteten din er en del av forsvarlig arbeid, ikke et tap av ansikt.",
           "effekter": {
             "meters": {
               "energi": 3,
@@ -2931,7 +2928,7 @@
         {
           "id": "press_igjen",
           "tekst": "Fortsett uten pause selv om du mister oversikten",
-          "konsekvensTekst": "Du kommer gjennom vakten, men feilrisikoen og utmattelsen blir større. Det er ikke en varig løsning å presse videre hver dag.",
+          "konsekvensTekst": "Du fortsetter å veksle mellom kassa og andre oppgaver uten å avklare avlastning. Du merker fortsatt at du mister oversikten. Det er ikke registrert en bestemt salgsfeil, men behovet for avlastning står åpent.",
           "effekter": {
             "meters": {
               "energi": -4,
@@ -2943,7 +2940,7 @@
             },
             "threads": {
               "arbeidsrytme_og_overskudd": {
-                "status": "completed"
+                "status": "escalated"
               }
             }
           }
@@ -3544,6 +3541,239 @@
           "laaserOpp": [
             "prisfeil_05_sjekk_selv_d3"
           ]
+        }
+      ]
+    },
+    {
+      "id": "d3_pris_02_lene_svarer",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 25,
+      "tittel": "Lene avgjør nettprisen",
+      "tekst": "Lene svarer: «Jeg godkjenner ikke prismatch til 149 i denne saken. Butikkprisen er 179. Forklar kunden svaret og spør om hun fortsatt vil kjøpe. Et eventuelt medlemstilbud krever sin egen kontroll.» Dette er Lenes avgjørelse i spillbutikken, ikke en generell regel om alle nettpriser.",
+      "valg": [
+        {
+          "id": "forklar_og_gjennomfor",
+          "tekst": "Forklar Lenes svar og gjennomfør salget til 179 hvis kunden sier ja",
+          "konsekvensTekst": "Du forklarer hva Lene har avgjort. Kunden sier at hun vil kjøpe til 179. Du registrerer varen, får godkjent betaling og gir henne kvitteringen. Denne handelen er avklart; hennes påstand om en tidligere rabatt er fortsatt ikke bekreftet.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_lene_avklart": true,
+              "d3_pris_handel_avklart": true,
+              "holdt_regelen": true
+            }
+          }
+        },
+        {
+          "id": "avvent_kunden",
+          "tekst": "Forklar svaret, men la handelen vente mens kunden bestemmer seg",
+          "konsekvensTekst": "Du forklarer Lenes avgjørelse. Kunden vil tenke seg om. Varen er ikke betalt, og du registrerer at kundens valg gjenstår.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_lene_avklart": true,
+              "d3_pris_handel_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_pris_02_medlemsvilkar",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 25,
+      "tittel": "Varen og medlemsvilkårene",
+      "tekst": "Tilbudsbildet i denne fiktive butikken viser medlemspris 159 på matboks MB-04 denne uka. Det gjelder dokumentert medlemskap og riktig variant; ingen må melde seg inn for å få svar på prismatch. Kunden har sagt ja til at du kontrollerer hennes medlemsbevis. At tilbudet finnes, betyr ennå ikke at du har kontrollert hennes vare og bevis.",
+      "valg": [
+        {
+          "id": "kontroller_og_gjennomfor",
+          "tekst": "Sammenlign varen og medlemsbeviset, og gjennomfør kjøpet hvis vilkårene er oppfylt",
+          "konsekvensTekst": "Du finner MB-04 på varen og i tilbudsbildet, kontrollerer gyldig medlemsbevis og at tilbudet gjelder i dag. Kunden godtar 159. Du registrerer medlemsprisen, kontrollerer godkjent betaling og gir henne kvitteringen. Det er et kontrollert medlemstilbud, ikke prismatch til nettpris på 149.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_medlemsvilkar_kontrollert": true,
+              "d3_pris_medlemspris_brukt": true,
+              "d3_pris_handel_avklart": true,
+              "fant_lovlig_losning": true
+            }
+          }
+        },
+        {
+          "id": "be_lene_avgjore",
+          "tekst": "Be Lene avgjøre prismatch i stedet",
+          "konsekvensTekst": "Du lar være å bruke medlemsprisen og sender vare, butikkpris og nettannonse til Lene. Ingen rabatt eller betaling er registrert.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_lene_spurt": true
+            }
+          },
+          "laaserOpp": [
+            "d3_pris_02_lene_svarer"
+          ]
+        },
+        {
+          "id": "avvent_kunden",
+          "tekst": "La kunden bestemme seg før du går videre med kontroll og betaling",
+          "konsekvensTekst": "Kunden vil vente. Du lar varen og betalingen stå uavklart. Du har ikke undersøkt medlemsbeviset eller registrert en rabatt.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_handel_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_pris_02_meld_avslag",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 25,
+      "tittel": "Avslaget mangler grunnlag",
+      "tekst": "Kvitteringen viser MB-04 til 149 i stedet for registrert butikkpris 179. Avslaget på 30 er ikke godkjent av Lene eller knyttet til et kontrollert tilbud. Du må beskrive hva du faktisk gjorde; en melding retter ikke salget eller prisgrunnlaget.",
+      "valg": [
+        {
+          "id": "meld_avviket",
+          "tekst": "Send Lene varenummer, kvitteringsreferanse, begge priser og manglende fullmakt",
+          "konsekvensTekst": "Du sender Lene MB-04, kvitteringsreferansen,179 før korreksjon, 149 betalt og at du manglet godkjenning. Du ber henne undersøke transaksjonen. Meldingen er sendt; mottak og videre oppfølging gjenstår.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_avvik_meldt": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "d3_pris_03_lene_bekrefter"
+          ]
+        },
+        {
+          "id": "utsett_melding",
+          "tekst": "La avviket stå åpent uten å sende meldingen nå",
+          "konsekvensTekst": "Du sender ingen melding. Avslaget er utført, men ingen mottaker har overtatt oppfølgingen. Oppgaven står åpen.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_melding_utsatt": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_pris_03_lene_bekrefter",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "laast",
+      "prioritet": 25,
+      "tittel": "Hvem følger opp prisavviket?",
+      "tekst": "Meldingen om avslaget ligger hos Lene. Du trenger et uttrykkelig svar om hvem som tar undersøkelsen videre. Selv et bekreftet mottak sier ikke om transaksjonen er kontrollert eller rettet.",
+      "valg": [
+        {
+          "id": "registrer_mottaket",
+          "tekst": "Be om bekreftelse og noter hva Lene faktisk overtar",
+          "konsekvensTekst": "Lene bekrefter at hun har mottatt MB-04, kvitteringsreferansen og prisforskjellen. Hun tar undersøkelsen av transaksjonen og fullmakten videre. Ingen retting er dokumentert ennå. Du registrerer mottakeren og lar selve prisavviket stå åpent.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_ansvar_bekreftet": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "avvent_svar",
+          "tekst": "La saken stå åpen uten bekreftet mottak",
+          "konsekvensTekst": "Du har ikke fått et uttrykkelig svar fra Lene. Den sendte meldingen står i historikken; ansvar og retting er fortsatt uavklart.",
+          "effekter": {
+            "flagg": {
+              "d3_pris_mottak_venter": true
+            },
+            "threads": {
+              "kunden_som_tror_du_bestemmer": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_stotte_02_amir_resultat",
+      "threadId": "arbeidsrytme_og_overskudd",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "laast",
+      "prioritet": 25,
+      "tittel": "Hva fikk vikaren til?",
+      "tekst": "Amir kommer tilbake etter den avtalte gjennomgangen. At han tok oppgaven, er ikke alene et resultat om hva vikaren forstod. Du kan be ham beskrive kontrollen før du registrerer den som fulgt opp.",
+      "valg": [
+        {
+          "id": "kontroller_resultatet",
+          "tekst": "Be Amir beskrive vikarens egen kontroll og noter resultatet",
+          "konsekvensTekst": "Amir forteller at han viste varenummer og størrelse på enlitersjuicen. Vikaren fant så selv riktig etikett og forklarte forskjellen fra halvannen liter; han kontrollerte sammenligningen. Du noterer hans gjennomgang og kontroll. Dette er Amirs opplæring, ikke din egen demonstrasjon.",
+          "effekter": {
+            "flagg": {
+              "d3_stotte_amir_kontroll_bekreftet": true,
+              "d3_stotte_amir_opplaering_venter": false
+            },
+            "threads": {
+              "arbeidsrytme_og_overskudd": {
+                "status": "completed"
+              }
+            }
+          }
+        },
+        {
+          "id": "avvent_resultat",
+          "tekst": "La oppfølgingen stå åpen til resultatet er avklart",
+          "konsekvensTekst": "Du har fortsatt bare en bekreftet arbeidsfordeling. Hva vikaren gjorde og forstod er ikke avklart i oppfølgingen.",
+          "effekter": {
+            "flagg": {
+              "d3_stotte_amir_opplaering_venter": true
+            },
+            "threads": {
+              "arbeidsrytme_og_overskudd": {
+                "status": "escalated"
+              }
+            }
+          }
         }
       ]
     }
