@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: '20'
       - run: node scripts/test-fauna-graaspurv-001.mjs
+      - run: node scripts/test-fauna-kraake-002.mjs
       - run: node scripts/test-nature-illustrations.mjs
   approved-fauna-browser:
     runs-on: ubuntu-latest
