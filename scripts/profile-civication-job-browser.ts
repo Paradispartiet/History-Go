@@ -31,7 +31,8 @@ async function observe(message: ConsoleMessage) {
     return;
   }
   if (!text.startsWith('[CivicationNextActionUI] answer perf') || !Array.isArray(value)) return;
-  if (!String(latestDebug.mailId || '').startsWith('kunst_') || latestDebug.actionSource !== 'day_phase') return;
+  if (!/^(publikum_formidling_|kunst_)/.test(String(latestDebug.mailId || ''))
+      || !['day_phase', 'inbox'].includes(String(latestDebug.actionSource))) return;
   const marks = value.filter((row): row is Mark => !!row && typeof row.name === 'string'
     && (row.startTime === null || typeof row.startTime === 'number'));
   const click = marks.find(row => row.name === 'civi-answer-click')?.startTime;
