@@ -5,7 +5,6 @@ Only archives verifiably exact upstream JPEG originals. It NEVER replaces the
 published WebP or its 960px-preview provenance, and NEVER clears vFerdig.
 """
 from __future__ import annotations
-from datetime import datetime, timezone
 from hashlib import md5, sha256
 from io import BytesIO
 import json
@@ -63,14 +62,22 @@ def main():
             result.update(status="VERIFIED_ARCHIVED", size_bytes=len(content), sha256=digest)
             changed = True
         except HTTPError as exc:
+            if item.get("original_archive") and not dest.exists():
+                item.pop("original_archive", None)
+                item["original_file_pending"] = True
+                changed = True
             result.update(status="NOT_ARCHIVED", reason=f"HTTP {exc.code}")
             if exc.code == 429:
                 result["policy"] = "Rate limited; no retry or alternate-host bypass"
         except (URLError, TimeoutError, ValueError, OSError) as exc:
+            if item.get("original_archive") and not dest.exists():
+                item.pop("original_archive", None)
+                item["original_file_pending"] = True
+                changed = True
             result.update(status="NOT_ARCHIVED", reason=str(exc)[:240])
         findings.append(result)
         print(json.dumps(result, ensure_ascii=False), flush=True)
-    n = sum(item.get("original_file_pending") is False for item in manifest["candidates"])
+    n = sum(bool(item.get("original_archive")) and (ROOT / item["original_archive"]["path"]).exists() for item in manifest["candidates"])
     if changed:
         save_json(MANIFEST, manifest)
     save_json(REPORT, {
