@@ -10,8 +10,8 @@ import { chromium } from 'playwright';
 const root = process.cwd();
 const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const worker = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
-assert.match(index, /css\/place-image-framing\.css\?v=20261111-overview-fit1/);
-assert.match(worker, /hg-sw-2026-11-11-place-image-fit1/);
+assert.match(index, /css\/place-image-framing\.css\?v=20261112-overview2/);
+assert.match(worker, /hg-sw-2026-11-12-place-image-fit2/);
 assert.match(worker, /css\/place-image-framing\.css/);
 
 const image = (w, h, color) =>
