@@ -2,6 +2,18 @@
 
 Opprettet: 2026-10-20. Eier: Civication. Status: **aktiv plan; ikke godkjent som ferdig spillerreise**.
 
+## Aktiv samkjøring – 12. november 2026
+
+Prioritet: én vanlig spillerreise med Min dag, reell innboks, kalender og økonomi før flere roller eller mer kartdekor. Målet om 21 faktiske spilldager nedenfor gjelder fortsatt; jobb er frivillig og privatlivet kan fortsette uten jobb eller livsposisjon.
+
+| Arbeid | Etterprøvbart grunnlag | Gjeldende avgrensning |
+| --- | --- | --- |
+| Dagskifte fra innboksen, [#7274](https://github.com/Paradispartiet/History-Go/pull/7274) | Fulltesten [#43016434904](https://github.com/Paradispartiet/History-Go/actions/runs/43016434904) gikk til dag 2, men popupen sperret neste scene i alle 20 arbeidsledig-forløp. Rettelsen bruker bekreftet kalenderfremgang før Min dag vises. | På gren. Åtte målrettede testfiler består; ny organisk nettlesertest venter. Ingen innbokssperre omgås. |
+| Min dag, [#7047](https://github.com/Paradispartiet/History-Go/pull/7047) | Samkjørt med main `df2c08b2` og #7274. Ni fokus-/popup-/karttester og TypeScript web/scripts samt scripts-bygg består lokalt. Forrige head `666b9343` har 16/16 grønne workflows. | Fortsatt Draft. Nye CI-resultater gjelder bare sin eksakte head; forrige grønne kjøring godkjenner ikke samkjøringen. |
+| Organisk akseptanse | Eksisterende `verify-civication-organic-player-browser.ts`: syv dager arbeidsledig → faktiske quizsvar → opptjente meritter → tilbud og egen jobbaksept → samme lagring gjennom dag 21, tre ukeoppgjør og reload. Dagskiftehjelperen krever nå at innbokspopupen faktisk forsvinner uten testomvei. | Ny bekreftelse gjenstår. Transport for kontokopiering er simulert; faktisk ekstern innlogging og fysisk Safari er ikke bevist. |
+
+C6–C11 nedenfor står åpne der hele den kausale spillerreisen ikke er kontrollert. Ingen fullført yrkesverden eller ferdig Civication utledes av målrettede tester. Fysisk iPhone/iPad/Safari, touch og GPU/batteri må fortsatt vurderes separat. Status i de daterte oktoberavsnittene er historikk; PR-enes siste head og faktiske kontroller avgjør publiseringsstatus.
+
 ## Formål og fasit
 Spilleren skal kunne leve 14 ekte spilldager der arbeid, privatliv, relasjoner, økonomi, psyke, energi og integritet henger sammen. Et valg fra dag 2 må kunne få observerbare, kausalt begrunnede følger på dag 14. En grønn unit-test alene beviser ikke at dette skjer i nettleseren.
 
