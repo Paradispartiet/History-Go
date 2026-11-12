@@ -18,6 +18,7 @@ on:
       - 'tests/vitenskap-klima-miljovitenskap-badge.test.mjs'
       - 'tests/vitenskap-legacy-illustrations-review.test.mjs'
       - 'tests/placecard-underbadge-science-v2-candidates.test.mjs'
+      - 'tests/vitenskap-v2-localization-plan.test.mjs'
       - 'bilder/merker/vitenskap/kandidater/*.webp'
       - 'js/ui/badges.js'
       - 'js/ui/place-card.js'
@@ -150,6 +151,7 @@ jobs:
           node --test tests/vitenskap-klima-miljovitenskap-badge.test.mjs
           node --test tests/vitenskap-legacy-illustrations-review.test.mjs
           node --test tests/placecard-underbadge-science-v2-candidates.test.mjs
+          node --test tests/vitenskap-v2-localization-plan.test.mjs
           node --test tests/vitenskap-teknologi-revision-v2.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
           node --test tests/historie-1900-1945-badge.test.mjs
