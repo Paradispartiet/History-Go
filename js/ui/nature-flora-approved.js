@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_blankmispel: Object.freeze({
+      scientificName: "Cotoneaster lucidus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/92_blankmispel_v1.webp",
+      gitBlobSha: "d7404ca56aa5a2cd106ba921efe7c079c1937bcd",
+      reviewedAt: "2026-11-12",
+      stage: "varblomstring_og_morke_hostfrukter_sammenstilling",
+      evidence: "data/natur/flora/illustration-quality-blankmispel-20261112.json"
+    }),
     emne_flora_hostberberis: Object.freeze({
       scientificName: "Berberis thunbergii",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/91_hostberberis_v1.webp",
