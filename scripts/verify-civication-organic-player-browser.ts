@@ -1,7 +1,7 @@
 // End-to-end player acceptance: real History Go quiz completions -> earned
 // merit points -> Civication offer -> accepted role, without seeded progression.
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { nextDayViaUi, queuedPointerFallbacks } from './verify-civication-arbeidsledig-browser.js';
 
@@ -20,6 +20,13 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
   });
   const page = await context.newPage();
   const errors: string[] = [];
+  const pendingRequests = new Map<any, { url: string; type: string; started: number }>();
+  page.on('request', (request: any) => pendingRequests.set(request, {
+    url: request.url(), type: request.resourceType(), started: Date.now()
+  }));
+  for (const event of ['requestfinished', 'requestfailed']) {
+    page.on(event, (request: any) => pendingRequests.delete(request));
+  }
   page.on('pageerror', (error: Error) => errors.push(error.message));
   // This is one continuous, unseeded browser session. Week one is played
   // unemployed through the UI, the museum job is genuinely earned on day 8,
@@ -300,7 +307,10 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifestoryState.load().livsdag),
       privateBefore.day, 'taking a formal job cannot advance or reset the private life clock');
 
-    await page.reload({ waitUntil: 'load' });
+    // Match the same bounded navigation budget used for the initial boot,
+    // museum visit and weekly reloads. Keep the real load event and all saved
+    // job/private-history assertions; a timeout must retain request evidence.
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
     await page.waitForFunction(() => (globalThis as any).CivicationState?.getActivePosition?.()?.career_id === 'kunst', null, { timeout: 90000 });
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('merits_by_category') || '{}').kunst?.points), 5);
     assert.equal(await hasPlayedPrivateChoice(), true,
@@ -405,6 +415,20 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     return { passed: true, completedDays: 21, totalChoices: played.length,
       weeklySettlements: weekSettlements, cloud, quizSets: 5, earnedMerits: 5,
       career: accepted.active.title, browserErrors: errors.length };
+  } catch (error) {
+    const output = join(process.cwd(), 'reports/civication-browser');
+    mkdirSync(output, { recursive: true });
+    const diagnostic = {
+      error: String((error as Error)?.message || error),
+      pageErrors: errors,
+      pendingRequests: [...pendingRequests.values()].map(row => ({
+        url: row.url, type: row.type, ageMs: Date.now() - row.started
+      })),
+      played: played.slice(-20)
+    };
+    writeFileSync(join(output, 'organic-player-failure.json'), JSON.stringify(diagnostic, null, 2) + '\n');
+    await page.screenshot({ path: join(output, 'organic-player-failure.png'), fullPage: true, timeout: 10000 }).catch(() => {});
+    throw error;
   } finally {
     await context.close();
   }
