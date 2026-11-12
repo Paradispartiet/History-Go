@@ -161,3 +161,21 @@ Seks låste oppfølginger er lagt til. [Den kanoniske renholdertesten](../../tes
 | Rolleavslutningene | Revidert: alle kriterier kreves for hver av de fem tidligere avslutningene. Tekstene beskriver konkrete handlinger; nøytral åpen arbeidsstatus brukes uten et helt grunnlag. Ingen helsegaranti, ferdig bygg eller teamlederstatus. |
 
 Tidsvinduet og sølet har fem nye oppfølginger hver; belastning og opplæring har seks. Klagehistorikken har elleve nye scener med separate rombevis, sending og mottak. Den kanoniske testen følger 81 klageruter, eldre uavklarte romlister, lagring, Symposium og sju dager. Avslutningstesten kontrollerer hver renholderavslutning og manglende kriterier, samt uendret kalibrering for de øvrige 14 rollene. Nettlesermodusen `RENHOLDER_CASE=klage` prøver tre ruter gjennom sju dager med synlig avslutning på mobil og to iPad-formater. Visuell CI må gjennomgås før den kalles bestått. Dette sertifiserer fortsatt ikke fysisk Safari eller hele normaljobbkalenderen.
+
+
+## Kalenderkontroll og gjenværende lukking
+
+Den tidligere nettleserkontrollen brukte en uttrykkelig Runner-fixture ved innbokskravet. Streng modus `RENHOLDER_CASE=dagskifte` gjenbruker nå den eksisterende `nextDayViaUi`-hjelperen: spilleren svarer i innboksen, kvitterer for faktiske sammendrag og bruker dagskifteknappene. Modusen krever at kalender og Life Story går fra dag 1 til 7 uten hopp eller omskrevet arkiv. Den kan ikke bruke Runner-reserven. CI-resultat og bilder må være dokumentert på den aktuelle PR-headen før kontrollen omtales som bestått.
+
+Rolleparameteren starter et eksplisitt renholder-Life Story-spor uten å dokumentere opptjent og akseptert jobb. Den strenge kalenderkontrollen beviser derfor ikke alene full ansettelsesflyt, jobbmail eller lønn. [Fellesregisterets reststatus](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md#renholder--samlet-reststatus) eier den samlede oversikten.
+
+### Fysisk iPad/Safari – åpen kontroll
+
+**Ikke utført.** Kjøringsmiljøet har ingen tilkoblet fysisk iPad. Chromium med iPad-størrelse og eventuell WebKit-emulering kan ikke føres som denne testen.
+
+1. Åpne en egen privat Safari-fane på iPaden og start [renholderens testspor](https://paradispartiet.github.io/History-Go/Civication.html?lifestoryRole=renholder). Behold den vanlige spillagringen i ordinær fane.
+2. Spill dag 1. Ved dagslutt: åpne innboksen, svar på utestående meldinger og bruk den synlige knappen for neste dag. Kontroller at både kalenderen og fortellingen viser dag 2; ingen konsollkommando eller direkte tilstandsskriving brukes.
+3. Last siden på nytt. Kontroller at romstatus og utfører fortsatt er riktige. Roter mellom stående og liggende visning og prøv vanlige trykk og scrolling i scene, innboks og Symposium.
+4. Fortsett gjennom dag 7. Kontroller rom 204, valgt klageutfall og at avslutningen bare beskriver registrerte handlinger. Noter eventuelle stopp og siste synlige scene/melding.
+
+Før godkjenning registreres dato, iPad-modell, iPadOS-/Safari-versjon, testet commit, faktisk gjennomførte dager, reload/rotasjon og resultat. En delvis test merkes delvis; «ikke testet» skal ikke omgjøres til «bestått». Ingen fysisk godkjenning er registrert her ennå.
