@@ -199,17 +199,53 @@ try {
    }
    await context.close();
   }
-  // Kjøttmeis remains on the existing SVG until separately approved.
+  // Kjøttmeis #6: new transparent original, complete detail and fallback on mobile and desktop.
+  for(const brokenGreatTit of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenGreatTit)await context.route("**/bilder/natur/fauna/godkjent/06_kjottmeis_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Kjøttmeis");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Kjøttmeis,/i}).first();
+   await card.waitFor();
+   if(brokenGreatTit){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Kjøttmeis: never substitute photos");
+   } else {
+    const img=card.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("06_kjottmeis_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"kjottmeis-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenGreatTit)await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Kjøttmeis detail must fit viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"kjottmeis-detail-"+width+".png")});
+   }
+   await context.close();
+  }
+  // Ringdue retains the existing SVG pending its own approval.
   const context=await browser.newContext({viewport:{width,height:900}});
   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
-  await page.locator("#natureSearch").fill("Kjøttmeis");
-  const other=page.locator("#natureGrid").getByRole("button",{name:/^Kjøttmeis,/i}).first();
+  await page.locator("#natureSearch").fill("Ringdue");
+  const other=page.locator("#natureGrid").getByRole("button",{name:/^Ringdue,/i}).first();
   await other.waitFor();
-  assert((await other.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Kjøttmeis must keep old SVG");
+  assert((await other.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Ringdue retains SVG");
   await context.close();
-  console.log("Finn Fauna 5 approved birds "+width+"px: original, black contain, fallback and SVG OK");
+  console.log("Finn Fauna 6 approved birds "+width+"px: WebP, black contain, failure fallback, dialog and SVG OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
