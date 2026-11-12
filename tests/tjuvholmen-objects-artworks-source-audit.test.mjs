@@ -27,6 +27,15 @@ for(const w of items) {
  assert.ok(w.source_urls.some(x=>x.startsWith("https://www.afmuseet.no/")));
  assert.ok(!w.approved_year || Number.isInteger(w.approved_year));
 }
+assert.equal(audit.classification_policy.entity_routing_decision.status,"CONDITIONAL_ROUTING_RESOLVED_NOT_PUBLISHED");
+assert.equal(audit.classification_policy.entity_routing_decision.category,"by");
+for(const w of items) {
+ assert.equal(w.entity_routing.physical_installation,"BY_OBJECT_CANDIDATE_NOT_APPROVED");
+ assert.equal(w.entity_routing.artwork_as_work,"PRODUCTIONS_LEVEL_CONCEPT_NOT_PLACE_CARD_SLOT");
+ assert.equal(w.entity_routing.structure_relationship,"MEMBER_OF_EXISTING_SCULPTURE_PARK");
+ assert.equal(w.entity_routing.image_clearance,"BLOCKED_BOTH_RIGHTS_LAYERS");
+}
+assert.equal(card.object_artwork_review.classification_status,"CONDITIONAL_BY_OBJECT_ROUTING_RESOLVED_RIGHTS_NOT_CLEARED");
 const eyes=items.find(x=>x.id==="louise_bourgeois_eyes");
 assert.ok(eyes);
 assert.equal(eyes.approved_year,1997);
