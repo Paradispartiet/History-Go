@@ -32,7 +32,7 @@ const reg=env.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=5,"Blåmeis rema
 assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,latin);
 assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
 for(const [p,sha] of [["emne_fauna_svarttrost","61278635c130708fda7e42c958576db5a98040e5"],["emne_fauna_skjaere","e3da752bce1c4f637b80198559b805c98c1d82c7"],["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" must be preserved");
-assert.equal(reg.get("emne_fauna_ringdue"),null,"Ringdue remains SVG until separately approved");
+assert.equal(reg.get("emne_fauna_ringdue")?.gitBlobSha,"643eea93e2803fb1de8fcaaf6fba378aa7d61e74","Ringdue now has an approved original");
 assert(/nature-fauna-approved\.js\?v=20261112-0[5-9]/.test(read("finn-fauna.html")));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"),"Preserve 330 SVGs");
 console.log("Finn Fauna #5 Blåmeis: alpha WebP, species and quiz, original hashes, and 5 originals verified.");

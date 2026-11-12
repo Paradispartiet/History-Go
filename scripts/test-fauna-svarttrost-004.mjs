@@ -30,7 +30,7 @@ const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.j
 const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=4,"Existing Svarttrost must remain approved");
 assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,latin);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
 for(const [p,sha] of [["emne_fauna_skjaere","e3da752bce1c4f637b80198559b805c98c1d82c7"],["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" must be preserved");
-assert.equal(reg.get("emne_fauna_ringdue"),null);
+assert.equal(reg.get("emne_fauna_ringdue")?.gitBlobSha,"643eea93e2803fb1de8fcaaf6fba378aa7d61e74","Ringdue now has an approved original");
 assert(/nature-fauna-approved\.js\?v=20261112-0[4-9]/.test(read("finn-fauna.html")));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #4 Svarttrost: male/female, transparent original, exact binary, pre-existing quiz and four originals OK.");
