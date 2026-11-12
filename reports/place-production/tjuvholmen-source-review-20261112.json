@@ -45,7 +45,7 @@
   },
   "collection_review": {
     "people": {
-      "status": "BLOCKED_2_OF_5",
+      "status": "BLOCKED_2_OF_5_PHOTOS_3_TEXT_ONLY",
       "verified_direct": [
         {
           "id": "niels_torp",
@@ -57,7 +57,7 @@
           "id": "hans_rasmus_astrup",
           "role": "Founder of museum located at Tjuvholmen since 2012",
           "source": "https://snl.no/Hans_Rasmus_Astrup",
-          "asset": "Existing record uses generic placeholder"
+          "asset": "No portrait asset; generic placeholder removed, text-only pending image rights"
         },
         {
           "id": "hariton_pushwagner",
@@ -71,14 +71,14 @@
           "id": "bjarne_melgaard",
           "role": "2018 group exhibition at Galleri Brandstrup, Tjuvholmen",
           "source": "https://kunstverket.no/kunstneroversikt/mno/bjarne-melgaard",
-          "asset": "Existing image; provenance needs review"
+          "asset": "No portrait asset; broken PNG removed, text-only pending image rights"
         },
         {
           "id": "stephen_butkus",
           "role": "Photography exhibitions at THE THIEF (2015 and 2018) and Tjuvholmen pedestrian bridge, July 2018",
           "source": "https://www.fineart.no/kunstner/stephen-butkus",
           "additional_source": "https://www.fineart.no/galleriobjekt/Stephen_Butkus_-_You_Had_Me_At_Goodbye__10/389908",
-          "asset": "Existing local image; provenance needs verification"
+          "asset": "No portrait asset; broken PNG removed, text-only pending image rights"
         },
         {
           "id": "renzo_piano",
@@ -107,9 +107,9 @@
           "reason": "Onstad is not source-backed as an actor in Tjuvholmen / Astrup Fearnley development"
         }
       ],
-      "action": "2/5 aktive personer har nå autentiske og kildeklare portretter: Hariton Pushwagner og Renzo Piano. Bjarne Melgaard og Stephen Butkus peker fortsatt til manglende PNG, mens kunstsamleren Hans Rasmus Astrup (1939–2021) har generisk placeholder. Wikimedia Commons-kategorien Hans Rasmus Astrup gjelder politikeren fra 1800-tallet og må aldri brukes som bildebevis for samleren.",
+      "action": "Only Pushwagner and Renzo Piano have verified licensed actual portraits. Melgaard, Butkus and Hans Rasmus Astrup (collector 1939–2021) are shown as text-only until source, identity and redistribution rights are confirmed. No outside requests have been sent.",
       "runtime": {
-        "status": "2_OF_5_VISUAL_APPROVED",
+        "status": "2_OF_5_VISUAL_APPROVED_3_TEXT_ONLY",
         "personId": "hariton_pushwagner",
         "source": "data/people/hariton_pushwagner_image_provenance.json",
         "image": "bilder/kort/people/hariton_pushwagner.webp",
@@ -121,8 +121,14 @@
         "verifiedIds": [
           "hariton_pushwagner",
           "renzo_piano"
+        ],
+        "textOnlyIds": [
+          "bjarne_melgaard",
+          "stephen_butkus",
+          "hans_rasmus_astrup"
         ]
-      }
+      },
+      "portrait_rights_audit": "reports/place-production/tjuvholmen-people-portrait-rights-20261112.json"
     },
     "brands": {
       "status": "GODKJENT",
@@ -172,7 +178,7 @@
       "note": "No independent, sourced artifact review completed; do not mark reasoned N/A until documented research"
     },
     "structures": {
-      "status": "STAGED_3_WEBP_PREVIEWS_PENDING_FULL_ORIGINALS_AND_BROWSER_QA",
+      "status": "INTEGRATED_MOBILE_DESKTOP_QA_PASS_FULL_ORIGINALS_PENDING",
       "verified_candidates": [
         "Tjuvtitten – genuine tower, not designed by Renzo Piano",
         "Tjuvholmen bystrand – public beach at Skjæret, not historical 19th-century sjøbad",
@@ -182,7 +188,7 @@
         "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/tjuvholmen/",
         "https://www.afmuseet.no/en/the-museum-building/"
       ],
-      "action": "Three 900px WebP previews and 960px Commons sources are committed with creator, CC BY-SA 3.0, SHA-256, and visual PASS in #7269. Canonical Structures and runtime staged in follow-on PR. Full-resolution Commons JPEG originals (HTTP 429) and native PlaceCard mobile/desktop QA remain pending.",
+      "action": "Three 900px WebP files, 960px authentic Commons preview sources and SHA-256 registered in #7269; canonical Structures and PlaceCard popup integrated with standard click QA (390px mobile/1440px desktop), #7271; GitHub Pages deploy success run #43201300645. Full-resolution originals still 429-blocked.",
       "provenance": "reports/place-production/tjuvholmen-structures-source-candidates-20261112.json"
     }
   },
@@ -198,7 +204,7 @@
   },
   "vferdig": {
     "editorial_status": "BLOCKED",
-    "reason": "Brands 3/3; People 2/5; Structures 3 WebP previews staged, full source originals and live app QA pending; Objects and canonical core require honest closeout review.",
+    "reason": "People 2/5 licensed identity-confirmed portraits; three text-only until rights are cleared. Structures 3/3 PlaceCard browser PASS, full source originals pending. Other production gates must be reviewed without filler.",
     "no_filler": true,
     "do_not_mark_complete": true
   },

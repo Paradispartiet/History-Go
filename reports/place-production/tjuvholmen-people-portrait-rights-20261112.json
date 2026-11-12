@@ -1,0 +1,92 @@
+{
+  "schema": "history_go_tjuvholmen_people_portrait_rights_review_v1",
+  "place_id": "tjuvholmen",
+  "reviewed_at": "2026-11-12",
+  "editorial_result": "2 identity-confirmed licensed photographs approved; 3 people remain text-only, NOT portrayed, pending explicit rights and source identity verification",
+  "no_composite_or_synthetic_face_policy": "Do not create identity-asserting synthetic portraits or portray substitute persons. No generic 'portrait' placeholder may be presented as a real person.",
+  "approved": [
+    {
+      "person_id": "hariton_pushwagner",
+      "asset": "bilder/kort/people/hariton_pushwagner.webp",
+      "provenance": "data/people/hariton_pushwagner_image_provenance.json",
+      "license": "CC BY-SA 3.0",
+      "status": "APPROVED"
+    },
+    {
+      "person_id": "renzo_piano",
+      "asset": "bilder/kort/people/renzo_piano.webp",
+      "provenance": "data/people/renzo_piano_image_provenance.json",
+      "license": "CC BY-SA 2.0",
+      "status": "APPROVED"
+    }
+  ],
+  "pending": [
+    {
+      "person_id": "bjarne_melgaard",
+      "old_image": "bilder/kort/people/melgaard_tjuv.PNG",
+      "old_image_problem": "404 missing in main",
+      "current_image": "",
+      "status": "PENDING",
+      "direct_place_evidence": [
+        "https://brandstrup.no/exhibitions/regionalt-norsk-maleri-nanna-og-frigg-microdoserer-og-en-ny-roman",
+        "https://www.brandstrup.no/exhibitions/past/all/2018"
+      ],
+      "visual_identity_candidate": {
+        "source": "https://www.koeniggalerie.com/collections/bjarne-melgaard",
+        "credit": "Ivar Kvaal © courtesy of the artist",
+        "rights": "Copyright stated, no freely reusable license verified",
+        "action": "Do not ingest without specific authorization"
+      },
+      "other_candidate": {
+        "source": "https://snl.no/Bjarne_Melgaard",
+        "rights": "Begrenset gjenbruk; not a CC photo"
+      }
+    },
+    {
+      "person_id": "stephen_butkus",
+      "old_image": "bilder/kort/people/stephen_butkus.PNG",
+      "old_image_problem": "404 missing in main",
+      "current_image": "",
+      "status": "PENDING",
+      "direct_place_evidence": [
+        "https://www.fineart.no/kunstner/stephen_butkus"
+      ],
+      "visual_identity_candidate": {
+        "source": "https://www.othersmagazine.com/interview-stephen-butkus",
+        "rights": "Unverified for downstream image redistribution",
+        "action": "Need an identified photo + photographer release or open license, not an artwork photographed by Butkus"
+      }
+    },
+    {
+      "person_id": "hans_rasmus_astrup",
+      "old_image": "bilder/kort/people/filantrop_placeholder.svg",
+      "old_image_problem": "Generic non-person silhouette, not an authenticated portrait; avoid false real-person imagery",
+      "current_image": "",
+      "status": "PENDING",
+      "identity_constraint": "The subject is the art collector Hans Rasmus Astrup (1939–2021), Wikidata Q11974110; never substitute the 19th-century politician Q1809560.",
+      "direct_place_evidence": [
+        "https://snl.no/Hans_Rasmus_Astrup",
+        "https://www.afmuseet.no/hans-rasmus-astrup-1939-2021/"
+      ],
+      "visual_identity_candidates": [
+        {
+          "source": "https://www.mynewsdesk.com/astrup-fearnley-museet/pressreleases/hans-rasmus-astrup-1939-2021-3093669",
+          "rights": "Media Use only, no broad redistribution license established"
+        },
+        {
+          "source": "https://snl.no/Hans_Rasmus_Astrup",
+          "rights": "Photo limited reuse"
+        }
+      ],
+      "action": "Request explicit photo reuse license; don't ingest press image as CC"
+    }
+  ],
+  "production_rules": [
+    "Do not mark more than 2/5 People portraits visually approved until actual accepted files and proof of identity + reuse exist.",
+    "Text-only People entries remain active and linked to Tjuvholmen/Astrup Fearnley; no 404 requests and no generic portrait presented as the person.",
+    "Each newly cleared photo requires original source bytes, photographer, reuse terms, source URL, SHA-256, 900×1200 uncropped WebP, and in-app QA.",
+    "Brands 3/3 and Structures 3/3 PlaceCard remain unchanged.",
+    "Place vFerdig stays BLOCKED until relevant remaining gates and broader production closeout are satisfied."
+  ],
+  "rights_clearance_status": "NO_PERMISSION_OBTAINED_NO_EXTERNAL_CONTACT_SENT"
+}

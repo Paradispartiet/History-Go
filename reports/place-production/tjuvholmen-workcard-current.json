@@ -6,7 +6,7 @@
   "status": "editorial_closeout_blocked_by_collection_assets",
   "production_profile": "standard",
   "profile_status": "source_reviewed_pending_collection_acceptance",
-  "active_phase": "Structures 3 dokumenterte WebP previews koblet til PlaceCard; kontrollér runtime og mobil/desktop. People-portretter 2/5, tre mangler. Fulloppløste Structure-originaler står åpne.",
+  "active_phase": "People rights and portrait images 2/5 approved; remaining three People text-only pending licensed identity-confirmed portrait. Structures integrated and deployed; full-resolution source originals still pending.",
   "canonical_source": "data/places/by/oslo/places/tjuvholmen.json",
   "existing_content": {
     "fullquiz_questions": 42,
@@ -40,14 +40,14 @@
     }
   },
   "collection_gate": {
-    "people": "BLOCKED 2/5: Pushwagner og Renzo Piano har dokumenterte autentiske portretter; Melgaard og Butkus mangler bildefiler og Hans Rasmus Astrup har generisk placeholder.",
+    "people": "BLOCKED 2/5 approved portraits. Melgaard and Butkus: invalid PNG source references cleared; Astrup: generic placeholder not presented as his portrait. Three text-only People entries pending documented rights.",
     "brands": "GODKJENT 3/3: BAHR, Galleri Brandstrup og THE THIEF originalmerker med SHA-256, kildeproveniens, visuell godkjenning og kanoniske Place-open-koblinger.",
     "objects": "KANDIDATREVIEW: skulpturer i offentlig park, verifiser samlingseier og selvstendig kilde/bilde før opptak",
-    "structures": "STAGED 3/3: Tjuvtitten, Tjuvholmen bystrand og skulpturparken på Skjæret har kildebelagte lokale WebP previews og SHA-256. Fulloppløste JPEG-originaler og faktisk PlaceCard-QA gjenstår.",
+    "structures": "STRUCTURES PLACE CARD LIVE 3/3: Tjuvtitten, Skjæret bystrand and sculpture park have verified CC BY-SA 3.0 Commons 960px source previews, local WebP and canonical/runtime links. Real mobile 390px and desktop 1440px click+popup tests PASS (PR #7271). Full-resolution JPEG originals are pending due to Commons HTTP 429.",
     "filler_forbidden": true,
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
-  "qa": "Brands 3/3 og Pushwagner/Renzo-kildeportretter verifisert. Structures WebP previews 3/3 visuelt inspisert og koblet i kanonisk Place og place-open på PR-gren; live app QA gjenstår.",
+  "qa": "Brands 3/3 PASS. Structures 3/3 source-backed WebP and real mobile/desktop PlaceCard click+popup PASS (14/14 CI, deployed). People 2/5 authentic portraits; three text-only pending identity and reuse rights.",
   "merged": true,
   "verified_at": "2026-11-12",
   "rule_preflight": {
@@ -122,7 +122,7 @@
   },
   "vferdig": {
     "status": "BLOCKED",
-    "reason": "Brands 3/3 GODKJENT; People 2/5 portretter, Structures 3 lokale WebP-kandidater men fulloppløste originaler og appsluttkontroll mangler; Objects og øvrig canonical core må gjennom sluttkontroll.",
+    "reason": "Brands 3/3 GODKJENT; Structures 3/3 dokumenterte WebP og mobil-/desktop-PlaceCard-kontroll bestått, men fulloppløste kildeoriginaler gjenstår etter Wikimedia HTTP 429. People-portretter 2/5 godkjent, tre tekstprofiler venter identitetsbekreftet og lovlig gjenbrukbart foto. Objects og øvrig canonical core må gjennom egen sluttkontroll. vFerdig BLOCKED.",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
   "browser_acceptance": {
@@ -186,7 +186,14 @@
       "pr": 7266,
       "commit": "2eea038be4bac24d4ed6d7a939e729ab6c10052d"
     },
-    "additional_source_provenance": "data/people/renzo_piano_image_provenance.json"
+    "additional_source_provenance": "data/people/renzo_piano_image_provenance.json",
+    "source_audit": "reports/place-production/tjuvholmen-people-portrait-rights-20261112.json",
+    "text_only_ids": [
+      "bjarne_melgaard",
+      "stephen_butkus",
+      "hans_rasmus_astrup"
+    ],
+    "broken_references_cleared_in_pr": true
   },
   "structure_asset_coverage": {
     "total": 3,
@@ -194,13 +201,17 @@
     "source_originals_archived": 0,
     "source_kind": "Wikimedia Commons 960px preview JPEG; full original requests returned HTTP 429",
     "visual_qa": "PASS",
-    "runtime_candidate_branch": true,
-    "live_browser_qa": "PENDING",
+    "runtime_candidate_branch": false,
+    "live_browser_qa": "PASS_390px_mobile_1440px_desktop",
     "provenance": "reports/place-production/tjuvholmen-structures-source-candidates-20261112.json",
     "paths": [
       "bilder/kort/structures/tjuvtitten.webp",
       "bilder/kort/structures/tjuvholmen_bystrand.webp",
       "bilder/kort/structures/skulpturparken_skjaeret.webp"
-    ]
+    ],
+    "integrated_pr": 7271,
+    "integrated_commit": "74590ecd35e067851f5308b00ff4664d777128a8",
+    "pages_deploy_run": "https://github.com/Paradispartiet/History-Go/actions/runs/43201300645",
+    "pages_deploy_status": "success"
   }
 }

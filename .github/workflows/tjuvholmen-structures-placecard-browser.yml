@@ -5,6 +5,12 @@ on:
     paths:
       - 'data/places/by/oslo/places/tjuvholmen.json'
       - 'data/runtime/place-open/tjuvholmen.json'
+      - 'data/runtime/place-open/astrup_fearnley.json'
+      - 'data/people/kunst/oslo/people_kunst_oslo.json'
+      - 'data/people/subkultur/oslo/people_subkultur_oslo.json'
+      - 'data/people/filantroper/oslo/people_filantroper_oslo.json'
+      - 'reports/place-production/tjuvholmen-people-portrait-rights-20261112.json'
+      - 'tests/tjuvholmen-people-portrait-rights.test.mjs'
       - 'bilder/kort/structures/**'
       - 'tests/tjuvholmen-structures-placecard-real-browser.test.mjs'
       - '.github/workflows/tjuvholmen-structures-placecard-browser.yml'
@@ -31,6 +37,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Check exact canonical Place-open parity
         run: npm run place-open:check
+      - name: Verify source-licensed People and honest text-only fallback
+        run: node --test tests/tjuvholmen-people-portrait-rights.test.mjs
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Verify real app collection preview, click, popup and image at phone and desktop width
