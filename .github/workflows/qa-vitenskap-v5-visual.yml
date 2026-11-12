@@ -1,0 +1,64 @@
+name: Science v5 - visual candidate QA
+on:
+  pull_request:
+    paths:
+      - 'scripts/revise-vitenskap-v5-preview.py'
+      - 'scripts/archive-vitenskap-v5-candidates.py'
+      - 'data/badges/vitenskap_v5_candidates_20261112.json'
+      - 'tests/vitenskap-v5-archive.test.mjs'
+      - 'bilder/merker/vitenskap/kandidater/revisjoner/*/*-v5-broderi.webp'
+      - 'bilder/merker/vitenskap/kandidater/contact-sheet-v5-mobile.jpg'
+      - '.github/workflows/qa-vitenskap-v5-visual.yml'
+      - 'data/badges/vitenskap_v4_remaining_four_locales_20261112.json'
+      - 'data/badges/vitenskap_forskning_v4_embroidered_candidates_20261112.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: science-v5-visual-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  candidate-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify archived v5 originals against Git SHAs
+        run: node --test tests/vitenskap-v5-archive.test.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image-processing requirements
+        run: python -m pip install --disable-pip-version-check pillow numpy
+      - name: Build isolated 20-image v5 review with source integrity guards
+        run: python scripts/revise-vitenskap-v5-preview.py
+      - name: Verify review output and untouched active registry
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          from PIL import Image
+          root = Path('out/vitenskap-v5-review')
+          report = json.loads((root / 'manifest.json').read_text())
+          assert report['status'] == 'v5_preview_unapproved_nonactive'
+          assert len(report['items']) == 20
+          assert report['existingActiveUnderbadgesPreserved'] is True
+          assert (root / report['contactSheet']).is_file()
+          for item in report['items']:
+              img = root / item['previewFile']
+              data = img.read_bytes()
+              assert hashlib.sha256(data).hexdigest() == item['sha256']
+              assert item['status'] == 'candidate_not_approved_not_active'
+              with Image.open(img) as im:
+                  assert im.size == (1024, 1024)
+                  assert im.mode == 'RGBA'
+          print('20 v5 candidates verified; no badge activated')
+          PY
+          git diff --exit-code -- data/badges/vitenskap.json bilder/merker/vitenskap/brodert
+      - uses: actions/upload-artifact@v4
+        with:
+          name: science-v5-20-candidates-and-mobile-comparison
+          path: out/vitenskap-v5-review/
+          retention-days: 30
