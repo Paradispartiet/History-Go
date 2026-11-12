@@ -32,27 +32,31 @@ def sha256(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def fetch_original(title):
+def fetch_source(title):
     filename = title.replace(" ", "_")
     md5 = hashlib.md5(filename.encode("utf-8")).hexdigest()
-    url = (
-        f"https://upload.wikimedia.org/wikipedia/commons/"
-        f"{md5[0]}/{md5[:2]}/{quote(filename)}"
-    )
-    error = None
-    for attempt in range(5):
-        try:
-            request = Request(url, headers={"User-Agent": USER_AGENT, "Accept": "image/jpeg"})
-            with urlopen(request, timeout=60) as response:
-                data = response.read(12_000_001)
-            if len(data) > 12_000_000 or not data.startswith(b"\xff\xd8"):
-                raise RuntimeError(f"Not a bounded valid JPEG response for {title}")
-            return url, data
-        except (HTTPError, URLError, TimeoutError) as exc:
-            error = exc
-            print(f"{title}: attempt {attempt + 1}/5 failed: {exc}", flush=True)
-            time.sleep(3 * (attempt + 1))
-    raise RuntimeError(f"Could not download exact Commons file {title}: {error}")
+    folder = f"{md5[0]}/{md5[:2]}"
+    quoted = quote(filename)
+    original = f"https://upload.wikimedia.org/wikipedia/commons/{folder}/{quoted}"
+    preview = f"https://thumb.wikimedia.org/wikipedia/commons/thumb/{folder}/{quoted}/960px-{quoted}"
+    errors = []
+    for kind, url, retries in (("original", original, 2), ("commons_960_preview", preview, 3)):
+        for attempt in range(retries):
+            try:
+                request = Request(url, headers={
+                    "User-Agent": "Mozilla/5.0 (compatible; HistoryGo educational image provenance archive)",
+                    "Accept": "image/jpeg",
+                })
+                with urlopen(request, timeout=45) as response:
+                    data = response.read(12_000_001)
+                if len(data) > 12_000_000 or not data.startswith(b"\xff\xd8"):
+                    raise RuntimeError(f"Not a bounded valid JPEG response for {title}")
+                return url, data, kind
+            except (HTTPError, URLError, TimeoutError) as exc:
+                errors.append(f"{kind}/{attempt + 1}: {exc}")
+                print(f"{title}: {errors[-1]}", flush=True)
+                time.sleep(2 * (attempt + 1))
+    raise RuntimeError(f"No Commons byte source downloaded for {title}: {'; '.join(errors)}")
 
 
 def uncropped_webp(jpeg_data, size):
@@ -87,14 +91,14 @@ def main():
         found.add(id_)
         source_name, dimensions = SOURCES[id_]
         commons_title = candidate["photo_file"]
-        source_url, source_bytes = fetch_original(commons_title)
+        source_url, source_bytes, source_kind = fetch_source(commons_title)
         webp_bytes, source_dimensions = uncropped_webp(source_bytes, dimensions)
-        if list(source_dimensions) != candidate["photo_dimensions"]:
+        if source_kind == "original" and list(source_dimensions) != candidate["photo_dimensions"]:
             raise ValueError(
                 f"Unexpected source dimensions for {id_}: {source_dimensions} "
                 f"vs {candidate['photo_dimensions']}"
             )
-        source_path = SOURCE_DIRECTORY / source_name
+        source_path = SOURCE_DIRECTORY / (source_name if source_kind == "original" else source_name.replace(".jpg", "_commons_960_preview.jpg"))
         webp_path = ROOT / candidate["planned_asset"]
         if source_path.exists() and source_path.read_bytes() != source_bytes:
             raise ValueError(f"Existing source drift: {source_path}")
@@ -108,20 +112,24 @@ def main():
         candidate.update(
             source_asset=source_url,
             source_local_path=source_path.relative_to(ROOT).as_posix(),
+            source_asset_kind=source_kind,
+            source_is_full_original=(source_kind == "original"),
+            source_dimensions_actual=list(source_dimensions),
             photo_sha256=sha256(source_bytes),
             webp_sha256=sha256(webp_bytes),
             webp_dimensions=list(dimensions),
             photo_review_status="SOURCE_AND_BINARY_VERIFIED_PENDING_VISUAL_AND_COLLECTION_REVIEW",
+            original_file_pending=(source_kind != "original"),
             transformation="Original JPEG preserved byte-for-byte; EXIF orientation respected; complete sharp photo fitted without cropping over a blurred background plate.",
         )
         print(
-            f"IMPORTED {id_}: JPEG={len(source_bytes)} SHA256={sha256(source_bytes)} "
+            f"IMPORTED {id_} {source_kind}: JPEG={len(source_bytes)} SHA256={sha256(source_bytes)} "
             f"WebP={len(webp_bytes)} SHA256={sha256(webp_bytes)}; {dimensions}",
             flush=True,
         )
     if found != set(SOURCES):
         raise ValueError("Incomplete candidate import")
-    manifest["status"] = "local_source_and_webp_bytes_verified_pending_visual_and_runtime"
+    manifest["status"] = "local_commons_source_bytes_and_webps_verified_originals_may_be_pending"
     MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
