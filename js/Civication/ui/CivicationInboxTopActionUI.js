@@ -4818,13 +4818,13 @@
       inboxRefreshQueued = true;
       window.setTimeout(function flushInboxRefresh() {
         inboxRefreshQueued = false;
-        refreshInboxWithoutInterruptingDraft();
+        return refreshInboxWithoutInterruptingDraft();
       }, 0);
     }
     if (inboxRefreshTrailing) window.clearTimeout(inboxRefreshTrailing);
     inboxRefreshTrailing = window.setTimeout(function flushTrailingInboxRefresh() {
       inboxRefreshTrailing = 0;
-      refreshInboxWithoutInterruptingDraft();
+      return refreshInboxWithoutInterruptingDraft();
     }, 260);
   }
 
