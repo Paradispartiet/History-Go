@@ -20,6 +20,8 @@ on:
       - 'tests/placecard-underbadge-science-v2-candidates.test.mjs'
       - 'tests/vitenskap-forskning-fr-internal-labels-v3.test.mjs'
       - 'tests/vitenskap-forskning-internal-locales-v3.test.mjs'
+      - 'tests/vitenskap-forskning-v4-embroidery.test.mjs'
+      - 'data/badges/vitenskap_forskning_v4_embroidered_candidates_20261112.json'
       - 'data/badges/vitenskap_forskning_internal_locales_v3_20261112.json'
       - 'bilder/merker/vitenskap/kandidater/revisjoner/en/*.webp'
       - 'bilder/merker/vitenskap/kandidater/revisjoner/es/*.webp'
@@ -161,6 +163,7 @@ jobs:
           node --test tests/placecard-underbadge-science-v2-candidates.test.mjs
           node --test tests/vitenskap-forskning-fr-internal-labels-v3.test.mjs
           node --test tests/vitenskap-forskning-internal-locales-v3.test.mjs
+          node --test tests/vitenskap-forskning-v4-embroidery.test.mjs
           node --test tests/vitenskap-v2-localization-plan.test.mjs
           node --test tests/vitenskap-teknologi-revision-v2.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs
