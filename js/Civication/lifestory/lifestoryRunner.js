@@ -110,7 +110,12 @@
     return true;
   }
   function hasPendingPrivateScenes(state, content) {
+    // A later hook (e.g. life day 26) is not content for an otherwise empty
+    // tomorrow. Use the same canonical time/delay predicate as scene selection,
+    // without advancing the player or replaying any archived choices.
+    const tomorrow = { ...state, livsdag: (state.livsdag || state.dag) + 1 };
     return content.scenes.some(scene => Number.isInteger(scene.livsdagFra)
+      && sceneDue(tomorrow, scene)
       && !content.fortsettelse
       && !state.spilteScener.includes(scene.id)
       && (!scene.etterValgDager || Number.isInteger(state.privatHistorie?.flaggDager?.[scene.etterValgDager.flagg]))
