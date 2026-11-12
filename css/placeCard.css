@@ -1591,14 +1591,18 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   overflow: hidden;
 }
 
+/* Show the complete embroidered badge, including its category-coloured sewn rim.
+   The icon is 38px on mobile: zooming the artwork would clip the very edge
+   and cannot make its tiny arc text readable. The accessible name is provided
+   by the badge label and the expanded badge panel. */
 #placeCard #pcBadgesIcon .pc-badge-round-img{
   width: 100%;
   height: 100%;
   display: block;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
-  transform: scale(1.12);
+  transform: none;
 }
 
 /* =========================
@@ -1976,6 +1980,12 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   display: block;
   object-fit: cover;
   border-radius: 50%;
+}
+/* The general portrait rule above must not crop an embroidered badge. */
+#placeCard .pc-title-row > #pcBadgesIcon > img.pc-badge-round-img {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
 }
 
 @media (max-width: 520px) {

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<style>html:not(.hg-auth-verified) body{visibility:hidden!important}</style>
+<script src="js/aha.js"></script>
+<script src="js/auth/require-login.js?v=20261027-1"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>History Go – Vitenskap v5, visuell kontroll</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--accent:#a98efc;--surface:#1c1a31;--ink:#f5f2ff}
+*{box-sizing:border-box}
+body{margin:0;background:#111020;color:var(--ink);line-height:1.5}
+main{width:min(1200px,100%);margin:auto;padding:clamp(14px,3vw,36px)}
+h1{font-size:clamp(24px,4.5vw,36px);line-height:1.2;margin:0 0 10px}
+h2{font-size:21px;margin:0 0 6px}
+p{margin:0 0 14px}
+a{color:#cebfff}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid #d5c7ff;outline-offset:3px}
+.intro{max-width:840px;color:#d9d2eb}
+.notice{border-left:3px solid var(--accent);padding-left:13px;margin:17px 0 20px;color:#f2e8ff}
+.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin:20px 0}
+.filters label{display:grid;gap:4px;color:#f1e5ff;font-size:14px;font-weight:600}
+.filters select{min-height:44px;padding:9px 12px;border-radius:8px;border:1px solid #6f668c;color:var(--ink);background:#29233f;font:inherit}
+.stats{color:#bcb4d1;font-size:14px;margin-bottom:15px}
+#results{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,490px),1fr));gap:18px}
+article{background:var(--surface);border:1px solid #403757;border-radius:13px;padding:17px;min-width:0}
+.card-head{display:flex;gap:6px 12px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+.card-head small{color:#bdb1de}
+.subhead{color:#d0c3ef;font-size:14px}
+.compare{display:flex;align-items:start;gap:15px;padding:10px 0 16px;overflow-x:auto;overscroll-behavior-x:contain}
+figure{flex:0 0 auto;margin:0;min-width:max(105px,var(--review-size,38px));text-align:center}
+figure img{display:block;width:var(--review-size,38px);height:var(--review-size,38px);object-fit:contain;max-width:none;border-radius:50%;margin:0 auto 8px}
+figure figcaption{font-size:13px;color:#f1ebff;font-weight:650;white-space:nowrap}
+figure small{display:block;font-size:12px;color:#b8aecf}
+figure button{margin-top:6px;min-height:36px;border:1px solid #8d7bba;background:#2f2745;color:var(--ink);border-radius:8px;padding:5px 9px;cursor:pointer}
+.card-note{font-size:13px;color:#c1b7d6;margin-top:4px}
+dialog{color:var(--ink);background:#151225;border:1px solid #8d7bba;border-radius:13px;padding:20px;width:min(95vw,980px);max-height:95dvh}
+dialog::backdrop{background:rgba(0,0,0,.82)}
+.dialog-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dialog-top button{font:inherit;border:1px solid #a89ac9;border-radius:8px;background:#342b48;color:var(--ink);padding:8px 12px;cursor:pointer}
+dialog img{display:block;width:min(80vw,780px);height:auto;max-height:75dvh;object-fit:contain;margin:10px auto}
+footer{border-top:1px solid #453a5c;padding:17px 0;margin-top:30px;color:#afa6c5;font-size:13px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Vitenskap &amp; teknologi – v5-gjennomgang</h1>
+<p class="intro">Sammenlign den norske broderioriginalen med oversatt v4 og v5. Alle bilder hentes direkte fra de lagrede WebP-filene i History Go – ingen illustrasjoner er rekonstruert i denne visningen.</p>
+<p class="notice"><strong>Ikke aktive merker.</strong> Dette er en separat forhåndsvisning for visuell kontroll. Kartprikker og PlaceCard bruker fortsatt de eksisterende godkjente merketøyene. Designgodkjenning og aktivering krever en egen beslutning.</p>
+</header>
+<form class="filters" onsubmit="return false" aria-label="Velg merker for sammenligning">
+<label>Underkategori
+<select id="topic" aria-label="Underkategori"><option value="all">Alle fem</option></select></label>
+<label>Språk
+<select id="language" aria-label="Språk"><option value="all">Alle fire språk</option><option value="en">Engelsk</option><option value="es">Spansk</option><option value="pt">Portugisisk</option><option value="fr">Fransk</option></select></label>
+<label>Virkelig bildestørrelse
+<select id="size" aria-label="Bildestørrelse"><option value="38">38 px · mobil PlaceCard</option><option value="52">52 px · desktop PlaceCard</option><option value="96">96 px</option><option value="160" selected>160 px</option><option value="320">320 px</option></select></label>
+</form>
+<p class="stats" id="stats" role="status">Henter de 20 kandidatene …</p>
+<section id="results" aria-label="Bildesammenligninger"></section>
+<dialog id="zoom" aria-label="Originalillustrasjon i full størrelse">
+<div class="dialog-top"><strong id="zoom-title"></strong><button type="button" id="zoom-close">Lukk</button></div>
+<img id="zoom-image" alt="" width="1024" height="1024">
+<p><a id="zoom-link" rel="noopener" href="#">Åpne original WebP</a></p>
+</dialog>
+<footer>Felles designkrav: lilla sydd ytterkant, korrekt oversatt underkategorinavn øverst og fullt hovedkategorinavn nederst. Gjennomgå spesielt de lange tekstene ved 38 og 52 px.</footer>
+</main>
+<script>
+'use strict';
+(() => {
+  const $ = id => document.getElementById(id);
+  const knownLocales = Object.freeze({en:'Engelsk',es:'Spansk',pt:'Portugisisk',fr:'Fransk'});
+  const sourcePaths = [
+    'data/badges/vitenskap_v5_candidates_20261112.json',
+    'data/badges/vitenskap_v2_localization_20261112.json'
+  ];
+  const topic = $('topic');
+  const language = $('language');
+  const size = $('size');
+  const results = $('results');
+  const dialog = $('zoom');
+  let records = [];
+  let plans = new Map();
+
+  function openZoom(src, title) {
+    $('zoom-title').textContent = title;
+    $('zoom-image').src = src;
+    $('zoom-image').alt = title;
+    $('zoom-link').href = src;
+    dialog.showModal();
+  }
+
+  function figure(src, label, subtitle, alt) {
+    const el = document.createElement('figure');
+    const img = document.createElement('img');
+    img.src = src;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.alt = alt;
+    img.width = Number(size.value);
+    img.height = Number(size.value);
+    const caption = document.createElement('figcaption');
+    caption.textContent = label;
+    const sub = document.createElement('small');
+    sub.textContent = subtitle;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = 'Vis i full størrelse';
+    button.setAttribute('aria-label', 'Vis ' + alt + ' i full størrelse');
+    button.addEventListener('click', () => openZoom(src, alt));
+    caption.append(sub);
+    el.append(img,caption,button);
+    return el;
+  }
+
+  function render() {
+    results.replaceChildren();
+    results.style.setProperty('--review-size',size.value + 'px');
+    const selected = records.filter(r =>
+      (topic.value === 'all' || r.id === topic.value) &&
+      (language.value === 'all' || r.locale === language.value));
+    $('stats').textContent = selected.length + ' av 20 lagrede kandidater vises. ' +
+      'Ved liten størrelse leses underkategorinavnet i kortteksten, ikke på selve merket.';
+    for(const row of selected) {
+      const p = plans.get(row.id);
+      const variants = p?.variants || {};
+      const localized = variants[row.locale] || {};
+      const nor = variants.nb || {};
+      const title = p?.name || row.id.replaceAll('_',' ');
+      const article = document.createElement('article');
+      const head = document.createElement('div');
+      head.className = 'card-head';
+      const h2 = document.createElement('h2');
+      h2.textContent = title;
+      const lang = document.createElement('small');
+      lang.textContent = knownLocales[row.locale] || row.locale;
+      head.append(h2,lang);
+      const subhead = document.createElement('p');
+      subhead.className = 'subhead';
+      subhead.textContent = localized.heading || row.id;
+      const area = document.createElement('div');
+      area.className = 'compare';
+      area.append(
+        figure(nor.path, 'Norsk v2', 'Stilreferanse', (nor.heading || title) + ' – norsk original'),
+        figure(row.source, 'Oversatt v4', 'Forrige kandidat', (localized.heading || title) + ' – v4'),
+        figure(row.path, 'Oversatt v5', 'Ny kandidat', (localized.heading || title) + ' – v5')
+      );
+      const note = document.createElement('p');
+      note.className = 'card-note';
+      note.textContent = 'Nedre kategori: ' + (localized.footer || 'Vitenskap og teknologi') +
+        '. V5 er bare lagret kandidat.';
+      article.append(head,subhead,area,note);
+      results.append(article);
+    }
+  }
+
+  $('zoom-close').addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('close',()=>{ $('zoom-image').removeAttribute('src'); });
+  [topic,language,size].forEach(control=>control.addEventListener('change',render));
+
+  Promise.all(sourcePaths.map(async path => {
+    const response = await fetch(path,{cache:'no-store'});
+    if(!response.ok) throw Error('HTTP '+response.status+' for '+path);
+    return response.json();
+  })).then(([manifest,localization])=>{
+    if(manifest.status !== 'twenty_v5_candidates_stored_not_approved_or_active'
+      || manifest.items.length !== 20) throw Error('Kandidatmanifest har uventet status');
+    records = manifest.items;
+    plans = new Map(localization.items.map(r=>[r.id,r]));
+    const used = new Set();
+    for(const row of records) {
+      if(used.has(row.id)) continue;
+      used.add(row.id);
+      const opt = document.createElement('option');
+      opt.value = row.id;
+      opt.textContent = (row.id.replaceAll('_',' ')).replace(/^./, c=>c.toUpperCase());
+      topic.append(opt);
+    }
+    topic.value = 'all';
+    render();
+  }).catch(error=>{
+    $('stats').textContent = 'Kunne ikke laste kandidatenes kontrollmanifest.';
+    const p = document.createElement('p');
+    p.textContent = String(error);
+    results.replaceChildren(p);
+  });
+})();
+</script>
+</body>
+</html>
