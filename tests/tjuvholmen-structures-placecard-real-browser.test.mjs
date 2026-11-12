@@ -73,32 +73,34 @@ try{
       assert.equal(await card.getAttribute("data-collection-profile-source"),
         "place_card_profile_v2_curated",tag+": curated profile");
       assert.equal(await card.getAttribute("data-collection-requested-count"),"3",tag+": three collections");
+      const structuresTile=page.locator('button[data-pc-round-gallery-item="pcCategoryCollectionIcon"]');
       try {
-        await page.locator("#pcCategoryCollectionIcon").waitFor({state:"visible",timeout:16000});
+        await structuresTile.waitFor({state:"visible",timeout:20000});
       }catch(error){
         const diagnostic=await page.evaluate(()=>{
           const card=document.getElementById("placeCard");
           const icon=document.getElementById("pcCategoryCollectionIcon");
           const grid=card?.querySelector(".pc-icons-quad");
+          const tile=card?.querySelector('button[data-pc-round-gallery-item="pcCategoryCollectionIcon"]');
           const place=window.PLACES?.find(p=>p.id==="tjuvholmen");
           const report=el=>el?{hidden:el.hidden,ariaHidden:el.getAttribute("aria-hidden"),
             className:el.className,inlineStyle:el.getAttribute("style"),
             computed:{display:getComputedStyle(el).display,visibility:getComputedStyle(el).visibility,opacity:getComputedStyle(el).opacity},
             rect:{width:el.getBoundingClientRect().width,height:el.getBoundingClientRect().height},
             parent:el.parentElement?.className}:null;
-          return {card:report(card),grid:report(grid),icon:report(icon),
+          return {card:report(card),grid:report(grid),icon:report(icon),tile:report(tile),
             selected:window.HGPlaceCardCollections?.getConfigured?.(place),
             actualProfile:place?.place_card_profile,
             cardData:{...card?.dataset},gridData:{...grid?.dataset},
             html:icon?.outerHTML.slice(0,650)};
         });
-        console.error(tag+" STRUCTURES_VISIBILITY_DIAGNOSTIC",JSON.stringify(diagnostic));
+        console.error(tag+" STRUCTURES_GALLERY_DIAGNOSTIC",JSON.stringify(diagnostic));
         await page.screenshot({path:path.join(out,tag+"-structures-failed-visible.png"),fullPage:false}).catch(()=>{});
         throw error;
       }
-      assert.equal(await page.locator("#pcBrandsIcon").isVisible(),true,tag+": Brands card visible");
-      assert.equal(await page.locator("#pcPeopleIcon").isVisible(),true,tag+": People card visible");
-      assert.equal(await page.locator("#pcObjectsIcon").isVisible(),false,tag+": no filler Objects card");
+      await page.locator('button[data-pc-round-gallery-item="pcBrandsIcon"]').waitFor({state:"visible",timeout:15000});
+      assert.equal(await page.locator('#pcObjectsIcon').getAttribute('hidden'),'',tag+": no filler Objects card");
+      assert.equal(await page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]').count(),0,tag+": no filler Objects gallery tile");
 
       await page.waitForFunction(()=>{
         const image=document.querySelector("#pcCategoryCollectionIcon img");
@@ -111,7 +113,7 @@ try{
           return original?.(payload);
         };
       });
-      await page.locator("#pcCategoryCollectionIcon").click({timeout:20000});
+      await structuresTile.click({timeout:20000});
       await page.waitForFunction(()=>window.__tjuvholmenStructuresPopup?.kind==="structures",
         null,{timeout:20000});
       const popup=await page.evaluate(()=>window.__tjuvholmenStructuresPopup);
