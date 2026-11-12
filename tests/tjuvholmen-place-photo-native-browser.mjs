@@ -74,7 +74,29 @@ try{
    assert.ok(bounds&&bounds.width>40&&bounds.height>40,"QuizCard flip front missing");
    await quiz.click({position:{x:20,y:Math.max(20,bounds.height-24)},timeout:8000});
    await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("is-flipped"),{timeout:7000});
+   // Class toggling is NOT sufficient: mobile can visually dismiss the entire
+   // PlaceCard while leaving is-flipped on a detached/hidden DOM node.
+   await page.waitForTimeout(650);
+   const afterFlip=await page.evaluate(()=>{
+     const card=document.querySelector("#placeCard");
+     const flip=document.querySelector("#pcFrontCardFlip");
+     const qr=flip?.getBoundingClientRect(),r=card?.getBoundingClientRect();
+     const s=card?getComputedStyle(card):null;
+     const quiz=document.querySelector("#pcQuizCardContent");
+     const isOpen=card?.classList.contains("is-open")&&!card.classList.contains("is-hidden");
+     const cardVisible=!!r && r.width>60 && r.height>100 && r.top<innerHeight && r.bottom>0 && s?.display!=="none" && s?.visibility!=="hidden";
+     const flipVisible=!!qr&&qr.width>30&&qr.height>30&&qr.top<innerHeight&&qr.bottom>0;
+     return{isOpen,cardVisible,flipVisible,flipped:flip?.classList.contains("is-flipped"),
+       cardClasses:card?.className,ariaHidden:card?.getAttribute("aria-hidden"),
+       cardRect:r?{top:r.top,bottom:r.bottom,width:r.width,height:r.height}:null,
+       flipRect:qr?{top:qr.top,bottom:qr.bottom,width:qr.width,height:qr.height}:null,
+       quizTextLength:quiz?.textContent?.trim().length||0};
+   });
+   console.log("TJUVHOLMEN_POST_FLIP",width,JSON.stringify(afterFlip));
    await page.screenshot({path:`${out}/quiz-${width}.png`,animations:"disabled",timeout:15000});
+   assert.ok(afterFlip.isOpen&&afterFlip.cardVisible&&afterFlip.flipVisible,
+     "QuizCard flip visually dismissed PlaceCard: "+JSON.stringify(afterFlip));
+   assert.ok(afterFlip.quizTextLength>50,"QuizCard back content missing after flip");
    assert.deepEqual(pageErrors,[],"Uncaught page errors");
    results.push({width,status:"PASS",hero:data.hero,front:data.front,flip:true});
    console.log("TJUVHOLMEN",width,"PASS",JSON.stringify({heroFit:data.hero.fit,frontFit:data.front.fit,flip:true}));
