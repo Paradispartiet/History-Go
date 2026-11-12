@@ -100,18 +100,24 @@
       "action": "Verified Tjuvholmen People relations should be retained. Remove unsupported links for other actors through canonical source records; only use original, rights-clear preview images. No placeholder portraits."
     },
     "brands": {
-      "status": "BLOCKED",
+      "status": "GODKJENT",
       "verified_direct": [
         {
           "id": "bahr",
           "source": "https://bahr.no/how-to-find-us",
-          "address": "Tjuvholmen allé 16"
+          "address": "Tjuvholmen allé 16",
+          "logo": "bilder/kort/brands/bahr.webp",
+          "provenance": "data/brands/bahr_logo_provenance.json",
+          "logoReview": "VISUAL_PASS"
         },
         {
           "id": "galleri_brandstrup",
           "source": "https://www.brandstrup.no/gallery1",
-          "since": "Established gallery move to Tjuvholmen in March 2010; exact departure from Tjuvholmen unverified",
-          "temporal_scope": "historical 2010–end date not yet verified; current official contact address Briskebyveien 72, not Tjuvholmen"
+          "since": "Flyttet til Tjuvholmen mars 2010; opphør av Tjuvholmen-adresse ikke presist datert",
+          "temporal_scope": "historisk fra mars 2010; i 2026 oppgir galleriet Briskebyveien 72 og Brønnøysund 72A som nåværende adresse",
+          "logo": "bilder/kort/brands/galleri_brandstrup.webp",
+          "provenance": "data/brands/galleri_brandstrup_logo_provenance.json",
+          "logoReview": "VISUAL_PASS"
         },
         {
           "id": "the_thief",
@@ -123,7 +129,18 @@
           "logoReview": "PASS – visually inspected official THE THIEF current mark, complete and uncropped"
         }
       ],
-      "action": "1 av 3 autentiske logoer ferdig og aktiv i Place-open: THE THIEF. BAHR og Galleri Brandstrup krever fortsatt verifiserte lokale logoer/ordmerker og kildeangivelse; Galleri Brandstrup har historisk Tjuvholmen-tilknytning."
+      "action": "3/3 kildedokumenterte ekte originalmerker i canonical repo og Place-open runtime: BAHR, Galleri Brandstrup og THE THIEF. Offisielle originaler og SHA-256 bevart. Brandstrups stedsrelasjon er historisk fra mars 2010; i 2026 Briskebyveien 72/72A.",
+      "runtime": {
+        "status": "PASS",
+        "path": "data/runtime/place-open/tjuvholmen.json",
+        "contract": "tests/tjuvholmen-brand-logo-contract.mjs",
+        "qa_run": "https://github.com/Paradispartiet/History-Go/actions/runs/43174792564",
+        "verified_ids": [
+          "bahr",
+          "galleri_brandstrup",
+          "the_thief"
+        ]
+      }
     },
     "objects": {
       "status": "BLOCKED",
@@ -155,7 +172,7 @@
   },
   "vferdig": {
     "editorial_status": "BLOCKED",
-    "reason": "Browser and screenshot PASS; authentic THE THIEF Brand logo PASS; BAHR and Galleri Brandstrup logos, People and Structures remain blocked.",
+    "reason": "Brands 3/3 GODKJENT og PlaceCard foto/QuizCard PASS. People har fortsatt ett placeholderportrett uten kildeklar original og øvrige portrettbevis må gjennomgås; Structures har ikke materialiserte dokumenterte egne kort. Ikke vFerdig.",
     "no_filler": true,
     "do_not_mark_complete": true
   },

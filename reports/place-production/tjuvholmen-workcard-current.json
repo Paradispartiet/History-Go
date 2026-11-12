@@ -6,7 +6,7 @@
   "status": "editorial_closeout_blocked_by_collection_assets",
   "production_profile": "standard",
   "profile_status": "source_reviewed_pending_collection_acceptance",
-  "active_phase": "Stedskort: historisk kildekontroll, korrekte By-undermerker og bildeproveniens; samlinger kan ikke gis PASS før originale bilder, logoer og stedsrelasjoner er verifisert",
+  "active_phase": "Brands GODKJENT, gå videre med People-portretter og autentiske Structures. Ingen filler eller feilstedkoblinger.",
   "canonical_source": "data/places/by/oslo/places/tjuvholmen.json",
   "existing_content": {
     "fullquiz_questions": 42,
@@ -41,13 +41,13 @@
   },
   "collection_gate": {
     "people": "BLOCKED: 4 kandidater har direkte kildekobling; tre gamle generiske portretter og noen udokumenterte stedsrelasjoner kan ikke telle i ferdig samling",
-    "brands": "BLOCKED 2/3: THE THIEF offisiell logo er kildekontrollert og aktiv i Place-open; BAHR og Galleri Brandstrup mangler autentiske, lokale og visuelt godkjente logoer.",
+    "brands": "GODKJENT 3/3: BAHR, Galleri Brandstrup og THE THIEF originalmerker med SHA-256, kildeproveniens, visuell godkjenning og kanoniske Place-open-koblinger.",
     "objects": "KANDIDATREVIEW: skulpturer i offentlig park, verifiser samlingseier og selvstendig kilde/bilde før opptak",
     "structures": "BLOCKED: dokumenterte byrom/anlegg finnes, men struktur-entities og samlingsbilder er ikke materialisert",
     "filler_forbidden": true,
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
-  "qa": "Foto og QuizCard-browser PASS (390/1440). THE THIEF 900x520 offisiell SVG-avledet logo og Place-open-binding PASS; BAHR/Galleri Brandstrup, People og Structures gjenstår.",
+  "qa": "Mobil/desktop foto/QuizCard-browser PASS (390/1440). Brands-logoer 3/3 godkjent og Place-open-runtime verifisert mot originalsha. People og Structures er fortsatt åpne.",
   "merged": true,
   "verified_at": "2026-11-12",
   "rule_preflight": {
@@ -122,7 +122,7 @@
   },
   "vferdig": {
     "status": "BLOCKED",
-    "reason": "THE THIEF logo PASS, men to Brand-logoer og People/Structures-samlingene er ikke godkjent; vFerdig fortsatt BLOCKED.",
+    "reason": "Brands 3/3 GODKJENT og foto/QuizCard PASS. Personsamlingen mangler kildeklarhet for portretter og Structures har ikke egne autentiske dokumenterte kort.",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
   "browser_acceptance": {
@@ -140,10 +140,22 @@
   },
   "brand_logo_coverage": {
     "total": 3,
-    "pass": 1,
-    "blocked": 2,
-    "verified_logo": "bilder/kort/brands/the_thief.webp",
-    "source": "data/brands/the_thief_logo_provenance.json",
-    "runtime": "data/runtime/place-open/tjuvholmen.json"
+    "pass": 3,
+    "blocked": 0,
+    "logos": {
+      "bahr": "bilder/kort/brands/bahr.webp",
+      "galleri_brandstrup": "bilder/kort/brands/galleri_brandstrup.webp",
+      "the_thief": "bilder/kort/brands/the_thief.webp"
+    },
+    "provenance_files": [
+      "data/brands/bahr_logo_provenance.json",
+      "data/brands/galleri_brandstrup_logo_provenance.json",
+      "data/brands/the_thief_logo_provenance.json"
+    ],
+    "runtime": "data/runtime/place-open/tjuvholmen.json",
+    "status": "GODKJENT",
+    "runtime_verified": true,
+    "test": "tests/tjuvholmen-brand-logo-contract.mjs",
+    "workflow": "https://github.com/Paradispartiet/History-Go/actions/runs/43174792564"
   }
 }
