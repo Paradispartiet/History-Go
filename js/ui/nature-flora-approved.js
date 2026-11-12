@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_kirsebaerlaurbaer: Object.freeze({
+      scientificName: "Prunus laurocerasus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/90_kirsebaerlaurbaer_v1.webp",
+      gitBlobSha: "098124b91e5ef0557b5b3bcea8dfe38e157179ce",
+      reviewedAt: "2026-11-11",
+      stage: "varblomstring_og_sensommerfrukt_sammenstilt",
+      evidence: "data/natur/flora/illustration-quality-kirsebaerlaurbaer-20261111.json"
+    }),
     emne_flora_legepestrot: Object.freeze({
       scientificName: "Petasites hybridus",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/89_legepestrot_v1.webp",
