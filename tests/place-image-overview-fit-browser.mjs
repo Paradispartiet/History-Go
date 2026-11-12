@@ -33,7 +33,7 @@ const fixture = `<!doctype html><html><head>
 <style>
 body{margin:0;background:#0d121a;color:white}
 #placeCard{position:relative!important;display:block!important;top:auto!important;left:auto!important;width:100%!important;max-width:900px!important;margin:auto}
-.pc-heading-hero{height:200px;min-height:200px!important}
+.pc-heading-hero{height:auto}
 .pc-sheet-hero-media .pc-frontcard{float:none!important;width:240px!important;max-width:240px!important}
 .hg-place-popup-v2{position:relative!important;visibility:visible!important;display:block!important;opacity:1!important;width:100%!important;max-width:900px!important}
 .hg-place-hero-media{height:200px!important;min-height:200px!important}
@@ -101,6 +101,21 @@ try{
      assert.equal(values.fit,expected,selector+' fit at '+width);
      assert.ok(values.ready,selector+' should load at '+width);
      assert.ok(values.box[0]>0&&values.box[1]>0,selector+' must occupy real layout at '+width);
+   }
+   // A complete panorama must remain usefully sized, not merely uncropped
+   // inside the old extremely shallow desktop banner.
+   if(width>=900){
+     const overview=await page.locator('#pcHeaderHero').evaluate(hero=>{
+       const img=hero.querySelector('#pcHeaderImage');
+       const r=img.getBoundingClientRect();
+       const fitScale=Math.min(r.width/img.naturalWidth,r.height/img.naturalHeight);
+       return {height:hero.getBoundingClientRect().height,
+         sharpWidth:img.naturalWidth*fitScale,boxWidth:r.width};
+     });
+     assert.ok(overview.height>=width*.36,
+       'desktop overview hero should be proportional, not a 205px strip at '+width);
+     assert.ok(overview.sharpWidth/overview.boxWidth>=.78,
+       'sharp overview occupies most of its landscape frame at '+width);
    }
    const badgeFit=await page.locator('#roundBadge').evaluate(img=>getComputedStyle(img).objectFit);
    assert.notEqual(badgeFit,'contain','round badges remain independently governed');
