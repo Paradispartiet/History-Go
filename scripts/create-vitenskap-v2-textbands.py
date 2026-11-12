@@ -6,6 +6,7 @@ The original Norwegian source and its transparent outside are retained.
 The decorated central motif is never redrawn or substituted.
 """
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -44,7 +45,21 @@ def textile_band(source):
     feather = np.where(upper,upper_feather,np.where(lower,lower_feather,0))
     blend = np.where(mask, np.clip(feather/3.0,0,1),0)[...,None]
     a[...,:3] = np.uint8(np.clip(a[...,:3]*(1-blend) + new*blend,0,255))
-    return Image.fromarray(a, "RGBA")
+    out = Image.fromarray(a, "RGBA")
+    # Gold stitched boundaries reinforce the badge's original textile identity.
+    d=ImageDraw.Draw(out,"RGBA")
+    for angle_start,angle_end,inner,outer in [(-147,-33,350,457),(31,149,344,457)]:
+        for radius,color,width in [
+            (inner,(178,105,33,210),2),
+            (inner+3,(113,50,146,210),2),
+            (outer-2,(210,151,61,170),2)
+        ]:
+            coords=[]
+            for step in range(201):
+                angle=math.radians(angle_start+(angle_end-angle_start)*step/200)
+                coords.append((512+radius*math.cos(angle),512+radius*math.sin(angle)))
+            d.line(coords,fill=color,width=width,joint="curve")
+    return out
 
 def gold_glyph(char,font):
     length = max(130,font.size*3)
@@ -62,7 +77,7 @@ def gold_glyph(char,font):
     return stamp
 
 def add_arch_text(img, label, upper):
-    r=399 if upper else 389
+    r=405 if upper else 389
     limit=math.radians(119)
     size=65
     while size>35:
@@ -109,10 +124,13 @@ def make_one(item,locale):
     dst=ROOT/"bilder/merker/vitenskap/kandidater/locales"/locale/(item["id"]+"-v2.webp")
     dst.parent.mkdir(parents=True,exist_ok=True)
     out.save(dst, "WEBP",quality=95,method=6)
+    data=dst.read_bytes()
+    git_sha=hashlib.sha1(b"blob "+str(len(data)).encode()+b"\\0"+data).hexdigest()
     return {"id":item["id"],"locale":locale,"path":str(dst.relative_to(ROOT)),
             "heading":variant["heading"],"footer":variant["footer"],
             "upperFontSize":upper_size,"lowerFontSize":lower_size,
-            "bytes":dst.stat().st_size}
+            "bytes":len(data),"sha256":hashlib.sha256(data).hexdigest(),
+            "gitBlobSha":git_sha}
 
 if __name__=="__main__":
     ap=argparse.ArgumentParser()
@@ -124,4 +142,17 @@ if __name__=="__main__":
        (x,args.locale) for x in PLAN["items"] if x["id"]==args.id]
     if not plan:
         raise SystemExit("Unknown badge id")
-    print(json.dumps([make_one(item,locale) for item,locale in plan],ensure_ascii=False,indent=2))
+    produced=[make_one(item,locale) for item,locale in plan]
+    if args.all:
+        manifest={
+            "schemaVersion":1,"categoryId":"vitenskap",
+            "status":"candidate_visual_review_required_not_active",
+            "sourcePlan":"data/badges/vitenskap_v2_localization_20261112.json",
+            "activeBadgeImagesUnchanged":True,
+            "candidateOnly":True,
+            "notes":"Machine-generated text-band localization; preserve original motif, not approved for production until each of 20 images passes human visual/text review and center artwork comparison.",
+            "items":produced
+        }
+        path=ROOT/"data/badges/vitenskap_v2_locale_candidates_artwork_20261112.json"
+        path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\\n",encoding="utf8")
+    print(json.dumps(produced,ensure_ascii=False,indent=2))
