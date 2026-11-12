@@ -2,9 +2,15 @@
 // UI – MERKER / BADGES
 // ==============================
 
-let __badgesLoadPromise = null;
-let __placeCardBadgePatchApplied = false;
-let __placeCardBadgeToggleBound = false;
+// Scripts may be loaded more than once by legacy and post-ready loaders.
+// Store mutable state on window to survive a repeated classic-script evaluation.
+// Use var (not top-level let/const), so a second evaluation cannot trigger a
+// SyntaxError before the idempotency guards have a chance to run.
+var __hgBadgeRuntimeState = window.__hgBadgeRuntimeState || (window.__hgBadgeRuntimeState = {
+  loadPromise: null,
+  patchApplied: false,
+  toggleBound: false
+});
 
 function pulseBadge(cat) {
   const cards = document.querySelectorAll(".badge-mini");
@@ -40,11 +46,11 @@ async function ensureBadgesLoaded() {
     return window.BADGES;
   }
 
-  if (__badgesLoadPromise) {
-    return __badgesLoadPromise;
+  if (__hgBadgeRuntimeState.loadPromise) {
+    return __hgBadgeRuntimeState.loadPromise;
   }
 
-  __badgesLoadPromise = loadBadgesFromDataHub()
+  __hgBadgeRuntimeState.loadPromise = loadBadgesFromDataHub()
     .then((badges) => {
       window.BADGES = Array.isArray(badges) ? badges : [];
       return /** @type {any} */ (window.BADGES);
@@ -55,10 +61,10 @@ async function ensureBadgesLoaded() {
       return /** @type {any} */ (window.BADGES);
     })
     .finally(() => {
-      __badgesLoadPromise = null;
+      __hgBadgeRuntimeState.loadPromise = null;
     });
 
-  return __badgesLoadPromise;
+  return __hgBadgeRuntimeState.loadPromise;
 }
 
 function getBadgesList() {
@@ -214,8 +220,8 @@ function applyPlaceCardBadgeRound(place) {
 }
 
 function bindPlaceCardBadgeToggle() {
-  if (__placeCardBadgeToggleBound) return;
-  __placeCardBadgeToggleBound = true;
+  if (__hgBadgeRuntimeState.toggleBound) return;
+  __hgBadgeRuntimeState.toggleBound = true;
 
   document.addEventListener("click", (e) => {
     const badgeIcon = /** @type {Element|null} */ (e.target)?.closest?.("#pcBadgesIcon");
@@ -231,10 +237,10 @@ function bindPlaceCardBadgeToggle() {
 }
 
 function patchPlaceCardBadgeRound() {
-  if (__placeCardBadgePatchApplied) return;
+  if (__hgBadgeRuntimeState.patchApplied) return;
   if (typeof window.openPlaceCard !== "function") return;
 
-  __placeCardBadgePatchApplied = true;
+  __hgBadgeRuntimeState.patchApplied = true;
   bindPlaceCardBadgeToggle();
 
   const originalOpenPlaceCard = window.openPlaceCard;
