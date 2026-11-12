@@ -48,9 +48,38 @@ test('Vitenskap: sju eldre originaler bevares til en ferdig godkjent enkeltmerke
       const actual = createHash('sha1')
         .update(Buffer.from('blob ' + bytes.length + '\0')).update(bytes).digest('hex');
       assert.equal(actual, item.baselineGitBlobSha, item.id + ': original updated before approved revision');
+    } else if (item.revisionStatus === 'integrated_v2') {
+      assert.equal(item.id, 'naturvitenskap');
+      const previous = read(item.previousOriginalArchivePath);
+      const previousGitBlob = createHash('sha1')
+        .update(Buffer.from('blob ' + previous.length + '\0')).update(previous).digest('hex');
+      assert.equal(previousGitBlob, item.baselineGitBlobSha, 'Archived original must be preserved');
+      const revision = json(item.fiveLanguageManifestPath);
+      assert.equal(revision.status, 'integrated');
+      assert.equal(revision.categoryId, 'vitenskap');
+      assert.equal(revision.id, item.id);
+      assert.equal(revision.quality.binaryVerifiedInRepository, true);
+      assert.equal(revision.design.fullParentCategoryAtBottom, true);
+      assert.deepEqual(Object.keys(revision.variants).sort(), ['en','es','fr','nb','pt']);
+      for (const [lang,variant] of Object.entries(revision.variants)) {
+        assert.equal(variant.footer, audit.footerTranslation[lang], lang);
+        const bytes = read(variant.path);
+        assert.equal(bytes.toString('ascii',0,4), 'RIFF', lang);
+        assert.equal(bytes.toString('ascii',8,12), 'WEBP', lang);
+        assert.equal(bytes.toString('ascii',12,16), 'VP8X', lang);
+        assert.equal(bytes.readUIntLE(24,3)+1, 1024, lang);
+        assert.equal(bytes.readUIntLE(27,3)+1, 1024, lang);
+        assert.ok((bytes[20]&16)!==0, lang+' must have alpha');
+        assert.equal(bytes.length, variant.bytes, lang);
+        assert.equal(createHash('sha256').update(bytes).digest('hex'), variant.sha256, lang);
+        const actualBlob = createHash('sha1')
+          .update(Buffer.from('blob '+bytes.length+'\0')).update(bytes).digest('hex');
+        assert.equal(actualBlob, variant.gitBlobSha, lang);
+      }
+      assert.equal(registry.subBadgeImages[item.id], revision.variants.nb.path);
+      assert.equal(item.newActiveGitBlobSha, revision.variants.nb.gitBlobSha);
     } else {
-      // An intentionally revised badge requires a separately updated review contract.
-      assert.fail(item.id + ': update the upgrade contract before changing the revision status');
+      assert.fail(item.id + ': revision state is not recognized');
     }
   }
 });

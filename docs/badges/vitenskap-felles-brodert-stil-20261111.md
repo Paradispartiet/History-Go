@@ -27,11 +27,12 @@
 ## Oppdatert produksjonsstatus – 12. november 2026
 
 - **16 av 16** Vitenskap-undermerker er registrert i `data/badges/vitenskap.json`, med norske originaler; de ni nyere merkene er produsert i den godkjente, detaljrike broderistilen.
-- **Sju eldre merkeillustrasjoner må oppgraderes enkeltvis:** Naturvitenskap, Teknologi, Informasjonsteknologi, Matematikk, Forskning og metode, Astronomi og fysikk, Kjemi og materialvitenskap.
+- **Naturvitenskap v2 er produsert:** Fem WebP-originaler med botanikk, dyreliv, geologi og laboratorieforskning, full hovedkategoritekst og arkivert v1-original. **Seks** eldre merker gjenstår.
+- **Revisjonsseriens sju opprinnelige merker:** Naturvitenskap, Teknologi, Informasjonsteknologi, Matematikk, Forskning og metode, Astronomi og fysikk, Kjemi og materialvitenskap.
 - Det er verifisert at alle sju eldre bildene har en enkel symbolkomposisjon på lys bunn og **mangler den obligatoriske nedre teksten «VITENSKAP & TEKNOLOGI»**.
 - De sju eksisterende originalene og SHA-ene er låst for etterprøvbar revisjon i `data/badges/vitenskap_legacy_illustration_review_20261112.json`. **Ingen av originalene erstattes før et nytt enkelt, rundt merke er visuelt kontrollert**, med fem språkvarianter, korrekt underkategoritittel øverst og fullt kategorinavn nederst.
 - En poster, statusgrafikk, et kontaktark eller utsnitt av et helt galleri er **ikke** en gyldig produksjonsfil. Feilaktige bildegenereringer skal forkastes; bildet må være ett enkelt brodert merke i kvadratisk 1024 × 1024 WebP med transparent utside.
-- **Første kandidat i revisjonsrekkefølgen er Naturvitenskap.** Den skal vise flere naturvitenskapelige grener (botanikk, dyreliv, geologi og laboratorieforskning), ikke bare én laboratoriekolbe.
+- **Naturvitenskap v2:** Motiv med gaupe, botanikk, geologi, fossiler, mineraler og laboratorieforskning. Original fra før revisjonen bevart under `bilder/merker/vitenskap/arkiv/naturvitenskap-v1.webp`. Neste revisjonskandidat: Teknologi.
 - GitHub Pages publiserte sluttversjonen av 16-merkeserien fra commit `092db11a9ae807e9d4c638514e854d35817aca5a` med `success`.
 
 Denne stilstandarden utfyller [undermerke-typografi-standard.md](undermerke-typografi-standard.md).
