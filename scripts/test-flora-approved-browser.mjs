@@ -25,6 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"hostberberis",label:"Høstberberis",term:"Høstberberis",path:"b09/91_hostberberis_v1.webp"},
     {name:"kirsebaerlaurbaer",label:"Kirsebærlaurbær",term:"Kirsebærlaurbær",path:"b09/90_kirsebaerlaurbaer_v1.webp"},
     {name:"legepestrot",label:"Legepestrot",term:"Legepestrot",path:"b09/89_legepestrot_v1.webp"},
     {name:"russesvalerot",label:"Russesvalerot",term:"Russesvalerot",path:"b09/88_russesvalerot_v1.webp"},
