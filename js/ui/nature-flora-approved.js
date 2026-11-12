@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_amerikahagtorn: Object.freeze({
+      scientificName: "Crataegus spp.",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/93_hagtorn_v1.webp",
+      gitBlobSha: "fd7c6eae8e1c7a4e6faadbb9568ad6c554b30300",
+      reviewedAt: "2026-11-12",
+      stage: "varblomstring_og_rod_hostfrukt_sammenstilling",
+      evidence: "data/natur/flora/illustration-quality-hagtorn-20261112.json"
+    }),
     emne_flora_blankmispel: Object.freeze({
       scientificName: "Cotoneaster lucidus",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/92_blankmispel_v1.webp",

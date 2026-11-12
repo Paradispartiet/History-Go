@@ -25,6 +25,7 @@ const photoStub=Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0l
 try{
   browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
   const subjects=[
+    {name:"hagtorn",label:"Hagtorn \\(ofte plantet / treform\\)",term:"Hagtorn (ofte plantet",path:"b09/93_hagtorn_v1.webp"},
     {name:"blankmispel",label:"Blankmispel",term:"Blankmispel",path:"b09/92_blankmispel_v1.webp"},
     {name:"hostberberis",label:"Høstberberis",term:"Høstberberis",path:"b09/91_hostberberis_v1.webp"},
     {name:"kirsebaerlaurbaer",label:"Kirsebærlaurbær",term:"Kirsebærlaurbær",path:"b09/90_kirsebaerlaurbaer_v1.webp"},
