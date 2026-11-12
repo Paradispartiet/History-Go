@@ -5,6 +5,14 @@
 (function () {
   "use strict";
   const images = Object.freeze({
+    emne_flora_myksiv: Object.freeze({
+      scientificName: "Juncus effusus",
+      src: "bilder/natur/flora/illustrasjonskandidater/b09/95_myksiv_v1.webp",
+      gitBlobSha: "0aaa462e4cd5923a29c8c903521abe76f3169a1d",
+      reviewedAt: "2026-11-12",
+      stage: "sideblomsterstand_og_frokapsler_sommersammenstilling",
+      evidence: "data/natur/flora/illustration-quality-myksiv-20261112.json"
+    }),
     emne_flora_rynkesurbaer: Object.freeze({
       scientificName: "Aronia melanocarpa",
       src: "bilder/natur/flora/illustrasjonskandidater/b09/94_svartsurbaer_v1.webp",

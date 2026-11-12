@@ -18,6 +18,19 @@ on:
       - 'tests/vitenskap-klima-miljovitenskap-badge.test.mjs'
       - 'tests/vitenskap-legacy-illustrations-review.test.mjs'
       - 'tests/placecard-underbadge-science-v2-candidates.test.mjs'
+      - 'tests/vitenskap-forskning-fr-internal-labels-v3.test.mjs'
+      - 'tests/vitenskap-forskning-internal-locales-v3.test.mjs'
+      - 'tests/vitenskap-forskning-v4-embroidery.test.mjs'
+      - 'tests/vitenskap-v4-remaining-four.test.mjs'
+      - 'data/badges/vitenskap_v4_remaining_four_locales_20261112.json'
+      - 'bilder/merker/vitenskap/kandidater/contact-sheet-v4-remaining-four.jpg'
+      - 'data/badges/vitenskap_forskning_v4_embroidered_candidates_20261112.json'
+      - 'data/badges/vitenskap_forskning_internal_locales_v3_20261112.json'
+      - 'bilder/merker/vitenskap/kandidater/revisjoner/en/*.webp'
+      - 'bilder/merker/vitenskap/kandidater/revisjoner/es/*.webp'
+      - 'bilder/merker/vitenskap/kandidater/revisjoner/pt/*.webp'
+      - 'bilder/merker/vitenskap/kandidater/revisjoner/fr/*.webp'
+      - 'data/badges/vitenskap_forskning_fr_internal_labels_v3.json'
       - 'tests/vitenskap-v2-localization-plan.test.mjs'
       - 'bilder/merker/vitenskap/kandidater/*.webp'
       - 'js/ui/badges.js'
@@ -151,6 +164,10 @@ jobs:
           node --test tests/vitenskap-klima-miljovitenskap-badge.test.mjs
           node --test tests/vitenskap-legacy-illustrations-review.test.mjs
           node --test tests/placecard-underbadge-science-v2-candidates.test.mjs
+          node --test tests/vitenskap-forskning-fr-internal-labels-v3.test.mjs
+          node --test tests/vitenskap-forskning-internal-locales-v3.test.mjs
+          node --test tests/vitenskap-forskning-v4-embroidery.test.mjs
+          node --test tests/vitenskap-v4-remaining-four.test.mjs
           node --test tests/vitenskap-v2-localization-plan.test.mjs
           node --test tests/vitenskap-teknologi-revision-v2.test.mjs
           node --test tests/historie-samtidshistorie-badge-contract.test.mjs

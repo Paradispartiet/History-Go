@@ -280,22 +280,16 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Vått gulv i fellesarealet — og du er på vei videre",
-      "tekst": "Noen har veltet en kaffetralle i fellesarealet. Gulvet er vått akkurat der alle går. Du er allerede bak skjema, og det finnes ikke noe «Vått gulv»-skilt i nærheten.",
+      "tekst": "En kaffetralle har veltet i fellesarealet. Du ser kaffe på gulvet i ganglinja og finner ikke et varselskilt ved sølstedet. Folk er på vei forbi. Du må håndtere tilkomsten før arbeidet fortsetter. Årsaken til at tralla veltet, er ikke undersøkt.",
       "valg": [
         {
           "id": "meld_avvik",
-          "tekst": "Sperr av, hent skilt og meld avviket formelt",
-          "tone": "faglig",
+          "tekst": "Avgrens sølstedet og meld plasseringen, sølet og manglende skilt",
+          "konsekvensTekst": "Du avgrenser sølstedet med tilgjengelig sperreutstyr og leder folk utenom. Du sender avviket i den lokale kanalen: kaffe i ganglinja og manglende skilt ved stedet. Ingen har bekreftet mottak, rengjøring eller feilårsak ennå.",
           "effekter": {
-            "relasjoner": {
-              "verneombud": 8
-            },
-            "meters": {
-              "synlighet": 4,
-              "energi": -4
-            },
             "flagg": {
-              "meldte_avvik": true
+              "meldte_avvik": true,
+              "ren_soel_sikret": true
             },
             "threads": {
               "soelet_i_fellesarealet": {
@@ -303,50 +297,47 @@
               }
             }
           },
-          "konsekvensTekst": "Ole svarer på avviket i løpet av en time: «Endelig en som melder. Det er tredje gang den trallen velter.» Du visste ikke at det var et mønster."
+          "laaserOpp": [
+            "soel_02_arbeid"
+          ]
         },
         {
           "id": "toerk_og_gaa",
-          "tekst": "Tørk det verste og gå videre — du er bak skjema",
-          "tone": "presset",
+          "tekst": "Tørk det synlige sølet og gjør deg klar til å gå videre",
+          "konsekvensTekst": "Du tørker opp noe av kaffen, men har ikke rengjort hele sølstedet eller kontrollert resultatet. Gulvet er ikke bekreftet klart for ferdsel. Før du går, må området sikres og restarbeidet avklares.",
           "effekter": {
-            "meters": {
-              "energi": -2,
-              "integritet": -4
-            },
             "flagg": {
-              "toerket_og_gikk": true
+              "toerket_og_gikk": true,
+              "ren_soel_delvis_torket": true
             },
             "threads": {
               "soelet_i_fellesarealet": {
-                "stepDelta": 1
+                "status": "escalated"
               }
             }
           },
-          "konsekvensTekst": "Gulvet ser tørt ut. Det er det ikke, helt. Du rekker resten av sonen og prøver å ikke tenke på skoene som gikk over flekken bak deg."
+          "laaserOpp": [
+            "soel_02_arbeid"
+          ]
         },
         {
           "id": "be_om_hjelp",
-          "tekst": "Be Sindre holde folk unna mens du henter utstyr",
-          "tone": "samarbeidende",
+          "tekst": "Be Sindre lede folk utenom mens du henter sperre- og renholdsutstyr",
+          "konsekvensTekst": "Sindre sier ja og stiller seg slik at han kan lede folk utenom sølstedet. Du henter utstyret. Hans hjelp er bekreftet, men gulvet er verken rengjort eller kontrollert gjennom dette.",
           "effekter": {
-            "relasjoner": {
-              "kontorbruker": 4
-            },
-            "meters": {
-              "energi": -3,
-              "synlighet": 2
-            },
             "flagg": {
-              "fikk_hjelp_av_bruker": true
+              "fikk_hjelp_av_bruker": true,
+              "ren_soel_sindre_hjelper": true
             },
             "threads": {
               "soelet_i_fellesarealet": {
-                "stepDelta": 1
+                "status": "escalated"
               }
             }
           },
-          "konsekvensTekst": "Sindre stiller seg faktisk der og vinker folk rundt. «Jeg ante ikke at dere måtte hente utstyr helt nede i kjelleren,» sier han etterpå."
+          "laaserOpp": [
+            "soel_02_arbeid"
+          ]
         }
       ]
     },
@@ -521,55 +512,46 @@
           "meldte_avvik": true
         }
       },
-      "tittel": "Ole vil ha deg med på vernerunden",
-      "tekst": "Ole tar deg i gangen: «Avviket ditt ble tatt opp i morges. Trallen får ny lås, og det kommer skilt-stasjon i fellesarealet. Blir du med på vernerunden neste uke? Du ser ting vi ikke ser.»",
+      "tittel": "Ole har lest avviket – vernerunden er neste uke",
+      "tekst": "Ole sier at han har lest meldingen om kaffetralle og manglende skilt. «Jeg følger opp arbeidsmiljøspørsmålet med Kari. Vil du være med på vernerunden neste uke?» Ole har ikke bekreftet reparasjon eller levering av skilt. Gårsdagens gulvstatus må leses fra de faktiske registreringene.",
       "valg": [
         {
           "id": "bli_med",
-          "tekst": "Si ja til vernerunden",
-          "tone": "engasjert",
+          "tekst": "Avtal å delta på vernerunden neste uke",
+          "konsekvensTekst": "Du sier ja, og Ole avtaler å følge opp tidspunktet med deg. Vernerunden er framtidig. Du har ikke deltatt på den, og avtalen endrer verken gulvstatus eller tralla.",
           "effekter": {
-            "relasjoner": {
-              "verneombud": 6
-            },
-            "meters": {
-              "synlighet": 5,
-              "handlingsrom": 3,
-              "energi": -2
-            },
             "flagg": {
-              "ble_med_vernerunde": true
+              "ren_soel_ole_lest": true,
+              "ren_soel_vernerunde_avtalt": true
             },
             "threads": {
               "soelet_i_fellesarealet": {
-                "status": "completed"
+                "status": "escalated"
               }
             }
           },
-          "konsekvensTekst": "«Bra,» sier Ole. «Det er de som vasker som vet hvor bygget faktisk er farlig.»"
+          "laaserOpp": [
+            "soel_05_tiltaksansvar"
+          ]
         },
         {
           "id": "takk_nei",
-          "tekst": "Takk nei — du vil ikke stikke deg fram",
-          "tone": "forsiktig",
+          "tekst": "Takk nei til denne vernerunden",
+          "konsekvensTekst": "Ole tar imot svaret og følger fortsatt opp avviket med Kari. Du har ikke deltatt på vernerunden. At du takker nei, fullfører ikke tiltak og gir ingen automatisk reaksjon fra Ole.",
           "effekter": {
-            "relasjoner": {
-              "verneombud": -2
-            },
-            "meters": {
-              "energi": 2,
-              "synlighet": -2
-            },
             "flagg": {
+              "ren_soel_ole_lest": true,
               "takket_nei_vernerunde": true
             },
             "threads": {
               "soelet_i_fellesarealet": {
-                "status": "completed"
+                "status": "escalated"
               }
             }
           },
-          "konsekvensTekst": "Ole nikker uten å presse. «Tilbudet står.» Du lurer et øyeblikk på hva runden hadde vist deg."
+          "laaserOpp": [
+            "soel_05_tiltaksansvar"
+          ]
         }
       ]
     },
@@ -589,52 +571,45 @@
           }
         }
       },
-      "tittel": "«Noen skled nesten i fellesarealet i går»",
-      "tekst": "Kari ser opp fra skjermen: «En fra fjerde skled nesten i fellesarealet i går ettermiddag. Vet du noe om det? Det står ingenting i avvikssystemet.»",
+      "tittel": "Kari trenger statusen fra sølstedet",
+      "tekst": "Kari ber om opplysningene fra gårsdagens sølsted. Det mangler en formell avviksmelding fra første håndtering. Skill delvis tørking, eventuell rengjøring, resultatkontroll og overlevering. Dere har ingen dokumentasjon på en nestenulykke eller på hvorfor tralla veltet.",
       "valg": [
         {
           "id": "fortell_aerlig",
-          "tekst": "Fortell ærlig om sølet og hva du rakk å gjøre",
-          "tone": "ærlig",
+          "tekst": "Gå gjennom de registrerte handlingene og de åpne punktene",
+          "konsekvensTekst": "Du viser hva som faktisk er registrert fra sølstedet. Kari leser oversikten. Gjennomgangen er mottatt nå, men gir ikke en tidligere melding nytt mottak eller uferdig rengjøring et kontrollresultat. Hun må også avklare tralle og skilt.",
           "effekter": {
-            "relasjoner": {
-              "driftsleder": -2,
-              "verneombud": 3
-            },
-            "meters": {
-              "integritet": 6,
-              "psyke": 2
-            },
             "flagg": {
-              "fortalte_aerlig_om_soel": true
+              "fortalte_aerlig_om_soel": true,
+              "ren_soel_dag2_status_mottatt": true
             },
             "threads": {
               "soelet_i_fellesarealet": {
-                "status": "completed"
+                "status": "escalated"
               }
             }
           },
-          "konsekvensTekst": "Kari sukker: «Neste gang: meld det, uansett hvor travelt det er. Det er ryggen din jeg dekker med det skjemaet.»"
+          "laaserOpp": [
+            "soel_05_tiltaksansvar"
+          ]
         },
         {
           "id": "tone_ned",
-          "tekst": "Tone det ned — det var jo nesten tørt",
-          "tone": "unnvikende",
+          "tekst": "Si at det så greit ut uten å gå gjennom registreringene",
+          "konsekvensTekst": "Du gir en generell vurdering uten å vise arbeids- og kontrollstatusen. Kari kan ikke bruke dette som bevis på et kontrollert gulv eller utbedret utstyr. De dokumenterte åpne punktene står fortsatt åpne.",
           "effekter": {
-            "meters": {
-              "integritet": -5,
-              "psyke": -3
-            },
             "flagg": {
               "tonet_ned_soelet": true
             },
             "threads": {
               "soelet_i_fellesarealet": {
-                "status": "dormant"
+                "status": "escalated"
               }
             }
           },
-          "konsekvensTekst": "«Ok,» sier Kari, og ser på deg et sekund for lenge. Du er ikke sikker på om hun trodde deg."
+          "laaserOpp": [
+            "soel_05_tiltaksansvar"
+          ]
         }
       ]
     },
@@ -1880,6 +1855,254 @@
             },
             "threads": {
               "tidsvinduet_krymper": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "soel_02_arbeid",
+      "threadId": "soelet_i_fellesarealet",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Hva gjenstår på sølstedet?",
+      "tekst": "Sølstedet må være avgrenset mens arbeidet pågår. Hvis Sindre hjelper, må han få beskjed før han går tilbake til sitt arbeid. Bruk sperreutstyret og renholdsmetoden du er opplært i for denne flata. Delvis tørking er ikke hele oppgaven.",
+      "valg": [
+        {
+          "id": "rengjor",
+          "tekst": "Sikre området, rengjør hele sølstedet og registrer arbeidet",
+          "konsekvensTekst": "Du setter sperreutstyret på plass og leder ferdselen utenom. Sindre kan gå tilbake dersom han har hjulpet. Du rengjør sølstedet med innlært metode og registrerer arbeidet. Sperringen blir stående til resultatet er kontrollert.",
+          "effekter": {
+            "flagg": {
+              "ren_soel_sikret": true,
+              "ren_soel_rengjort": true,
+              "ren_soel_kontroll_venter": true
+            },
+            "threads": {
+              "soelet_i_fellesarealet": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "soel_03_kontroll",
+            "soel_04_overlevering"
+          ]
+        },
+        {
+          "id": "avvent_hjelp",
+          "tekst": "Sikre området og meld at rengjøringen trenger hjelp",
+          "konsekvensTekst": "Du setter sperreutstyret på plass og gir beskjed til Kari om at rengjøringen ikke er utført. Sindre kan gå tilbake dersom han har hjulpet. Sperringen blir stående, og du registrerer behovet for hjelp. Meldingen beviser ikke at noen har overtatt eller gjort arbeidet.",
+          "effekter": {
+            "flagg": {
+              "ren_soel_sikret": true,
+              "ren_soel_arbeid_venter": true
+            },
+            "threads": {
+              "soelet_i_fellesarealet": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "soel_04_overlevering"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "soel_03_kontroll",
+      "threadId": "soelet_i_fellesarealet",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 14,
+      "tittel": "Kan sperringen tas bort?",
+      "tekst": "Du har registrert rengjøring, men ikke kontrollresultatet. Undersøk hele sølstedet etter lokal rutine før ferdselen slippes tilbake. Et raskt blikk fra døra er ikke denne kontrollen.",
+      "valg": [
+        {
+          "id": "kontroller_og_aapne",
+          "tekst": "Kontroller sølstedet og åpne når det er klart etter lokal rutine",
+          "konsekvensTekst": "Du kontrollerer hele det rengjorte sølstedet etter den lokale rutinen. Det er ikke synlig kafferest eller gjenværende fukt fra sølet. Du registrerer kontrollresultatet og tar bort sperringen. Dette gjelder dette sølstedet nå, ikke en garanti mot all framtidig fallfare.",
+          "effekter": {
+            "flagg": {
+              "ren_soel_kontrollert": true,
+              "ren_soel_kontroll_venter": false,
+              "ren_soel_aapnet": true
+            },
+            "threads": {
+              "soelet_i_fellesarealet": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "fortsatt_vaatt",
+          "tekst": "Registrer gjenværende fukt og behold sperringen",
+          "konsekvensTekst": "Kontrollen viser gjenværende fukt ved kanten av sølstedet. Du lar sperringen stå og registrerer behovet for videre arbeid og ny kontroll. Utført rengjøring er ikke det samme som et godkjent resultat.",
+          "effekter": {
+            "flagg": {
+              "ren_soel_kontroll_venter": true,
+              "ren_soel_fukt_funnet": true
+            },
+            "threads": {
+              "soelet_i_fellesarealet": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ren_soel_rengjort": true
+        }
+      }
+    },
+    {
+      "id": "soel_04_overlevering",
+      "threadId": "soelet_i_fellesarealet",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Har Kari fått riktig status?",
+      "tekst": "Gi Kari den registrerte statusen: sikring, delvis eller full rengjøring, kontrollresultat og eventuell fortsatt sperring. Ta med tralla og manglende skilt som separate oppfølgingspunkter. Før bare handlingene som faktisk er dokumentert.",
+      "valg": [
+        {
+          "id": "kari_mottar",
+          "tekst": "Send oversikten og få Kari til å bekrefte mottak",
+          "konsekvensTekst": "Du sender den dokumenterte oversikten. Kari bekrefter at hun har lest den og vil avklare videre oppfølging. Mottaket utfører ikke rengjøring, åpner ikke et ukontrollert gulv og reparerer ikke tralla.",
+          "effekter": {
+            "flagg": {
+              "ren_soel_status_sendt": true,
+              "ren_soel_kari_mottatt": true
+            },
+            "threads": {
+              "soelet_i_fellesarealet": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "avvent_mottak",
+          "tekst": "Send oversikten og la mottaket stå ubekreftet",
+          "konsekvensTekst": "Du sender den dokumenterte statusen, men har ikke fått et svar fra Kari. Mottaket står ubekreftet. Registrert arbeid, kontrollresultat og sperring endres ikke av at meldingen er sendt.",
+          "effekter": {
+            "flagg": {
+              "ren_soel_status_sendt": true,
+              "ren_soel_mottak_venter": true
+            },
+            "threads": {
+              "soelet_i_fellesarealet": {
+                "status": "escalated"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "soel_05_tiltaksansvar",
+      "threadId": "soelet_i_fellesarealet",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "tilgjengelighet": "laast",
+      "prioritet": 12,
+      "tittel": "Hvem følger opp tralla og skiltene?",
+      "tekst": "Kari har to ulike punkter å avklare: tilgjengelige varselskilt og vurdering av kaffetralla. Et varselskilt erstatter ikke sikring og rengjøring. Ole kan følge opp arbeidsmiljøet, men er ikke den som automatisk reparerer tralla.",
+      "valg": [
+        {
+          "id": "bekreft_ansvar",
+          "tekst": "Be Kari bekrefte hvem som koordinerer de to tiltakene",
+          "konsekvensTekst": "Kari bekrefter at hun koordinerer levering av varselskilt og teknisk vurdering av tralla. Hun ber om at tralla holdes ute av bruk til den er vurdert. Hun har ingen bekreftet ferdigfrist eller reparasjonskvittering. Dette er ansvar og plan, ikke utførte tiltak.",
+          "effekter": {
+            "flagg": {
+              "ren_soel_ansvar_bekreftet": true,
+              "ren_soel_tralle_stopp_bedt": true
+            },
+            "threads": {
+              "soelet_i_fellesarealet": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "soel_06_tiltakskontroll"
+          ]
+        },
+        {
+          "id": "avvent_ansvar",
+          "tekst": "La ansvar og tidspunkt stå uavklart til du får konkret svar",
+          "konsekvensTekst": "Du registrerer at ansvar og tidspunkt ikke er bekreftet. Ingen skiltlevering eller reparasjon er dermed utført. Behovet for avklaring står fortsatt åpent hos Kari.",
+          "effekter": {
+            "flagg": {
+              "ren_soel_ansvar_venter": true
+            },
+            "threads": {
+              "soelet_i_fellesarealet": {
+                "status": "escalated"
+              }
+            }
+          },
+          "laaserOpp": [
+            "soel_06_tiltakskontroll"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "soel_06_tiltakskontroll",
+      "threadId": "soelet_i_fellesarealet",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "laast",
+      "prioritet": 14,
+      "tittel": "Hva er faktisk på plass?",
+      "tekst": "Undersøk skiltpunktet og innhent trallas faktiske status. Hold dette atskilt fra gårsdagens gulvkontroll. Et tilgjengelig skilt sier ingenting om en feil på tralla er rettet.",
+      "valg": [
+        {
+          "id": "kontroller_skilt",
+          "tekst": "Kontroller skiltpunktet og registrer tralla separat",
+          "konsekvensTekst": "Du finner varselskilt i utstyrsrommet og kontrollerer at de er tilgjengelige. Kari bekrefter at tralla fortsatt holdes ute av bruk; teknisk vurdering og eventuell utbedring er ikke bekreftet. Du registrerer skiltpunktet som kontrollert og lar trallepunktet stå åpent. Gårsdagens gulvstatus endres ikke.",
+          "effekter": {
+            "flagg": {
+              "ren_soel_skilt_kontrollert": true,
+              "ren_soel_tralle_ute_av_bruk": true
+            },
+            "threads": {
+              "soelet_i_fellesarealet": {
+                "status": "escalated"
+              }
+            }
+          }
+        },
+        {
+          "id": "avvent_kontroll",
+          "tekst": "La tiltakene stå uten resultat til de er kontrollert",
+          "konsekvensTekst": "Du har ikke kontrollert at skiltene er på plass, og har ingen bekreftelse på utbedret tralle. Tiltakskontrollen står åpen. En plan eller et mulig leveringstidspunkt er ikke et kontrollresultat.",
+          "effekter": {
+            "flagg": {
+              "ren_soel_tiltakskontroll_venter": true
+            },
+            "threads": {
+              "soelet_i_fellesarealet": {
                 "status": "escalated"
               }
             }
