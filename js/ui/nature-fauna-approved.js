@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_kjottmeis:Object.freeze({
+   scientificName:"Parus major",
+   src:"bilder/natur/fauna/godkjent/06_kjottmeis_v1.webp",
+   gitBlobSha:"3cb439a66db0b59072f13413fd9d2b2c01e4d816",
+   reviewedAt:"2026-11-12",
+   stage:"adult_male_broad_black_belly_stripe_and_female_narrow_stripe",
+   evidence:"data/natur/fauna/illustration-quality-kjottmeis-20261112.json"
+  }),
   emne_fauna_blaameis:Object.freeze({
    scientificName:"Cyanistes caeruleus",
    src:"bilder/natur/fauna/godkjent/05_blaameis_v1.webp",
