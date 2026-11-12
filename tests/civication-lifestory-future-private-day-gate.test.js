@@ -35,13 +35,16 @@ for (let day = 1; day <= 21; day++) {
 const future = content.scenes.find(scene => scene.id === 'wave_g_c05_arkivet_og_middagen');
 assert.ok(future && future.livsdagFra === 26, 'the real later archive/dinner scene remains authored');
 assert.ok(!state.spilteScener.includes(future.id));
-assert.equal(R.hasPendingPrivateScenes(state, content), false,
-  'a day-26 hook alone cannot grant a content-free day 22');
-const saved = JSON.stringify(state);
-assert.throws(() => R.startNextDay(state, content), /neste kapittel/);
-assert.equal(JSON.stringify(state), saved, 'refusal preserves the completed day, meters and archive');
+assert.equal(R.hasPendingPrivateScenes(state, content), true,
+  'an authored day-26 hook must remain pending beyond the day-21 milestone');
+const archive = JSON.stringify(state.arkiv);
+R.startNextDay(state, content);
+assert.equal(state.livsdag, 22, 'the life clock can reach the actual future event');
+assert.equal(state.dagFerdig, true, 'a day without a due story ends safely');
+assert.equal(JSON.stringify(state.arkiv), archive, 'waiting creates no fictional scene or player choice');
+assert.ok(!state.spilteScener.includes(future.id), 'the future hook has not been played early');
 // Readiness is read-only and uses the same canonical time predicate. This
 // observation does not advance the player or award the future event.
 assert.equal(R.sceneDue({ ...state, livsdag: 22 }, future), false);
 assert.equal(R.sceneDue({ ...state, livsdag: 26 }, future), true);
-console.log('PASS: real 21-day private story, ordinary day 8/21 preserved, no invented day 22 from day-26 content');
+console.log('PASS: real 21-day private story, ordinary day 8/21 preserved, pending day-26 event survives day 22 without fictional choices');
