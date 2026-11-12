@@ -70,6 +70,15 @@ for (const file of profiles) {
   assert.ok(md.includes('[Profil]' + link), 'Symposium role/profile link missing ' + file);
 }
 
+// Profile coverage and synopsis coverage must remain separate table fields.
+const cells = line => line.split('|').slice(1, -1).map(cell => cell.trim());
+for (const [key, line] of rows) {
+  const fields = cells(line);
+  assert.equal(fields.length, 4, 'distinct profile and synopsis columns: ' + key);
+  assert.ok(fields[3] === 'Ikke koblet' || /^\[Rollesynopsis\]\([^)]+\)$/.test(fields[3]),
+    'explicit synopsis link or an honest unlinked status: ' + key);
+}
+
 // These layers are separate: career scope, voluntary life position, Life
 // Story narrative, editorial synopsis, and livelihood are not synonyms.
 const lifeBlock = section('## Life Stories – alle 15 aktive rollespor', '## Livsposisjoner');
@@ -79,6 +88,37 @@ for (const [name, item] of Object.entries(life.roles)) {
     assert.ok(lifeBlock.includes('](../' + source + ')'), 'Life Story source not linked ' + source);
 }
 assert.equal(Object.keys(life.roles).length, 15);
+for (const [id] of Object.entries(life.roles)) {
+  const line = lifeBlock.split('\n').find(line => line.startsWith('| `' + id + '` |'));
+  const fields = cells(line);
+  assert.equal(fields.length, 5, 'Life Story separates source profile from synopsis: ' + id);
+  assert.ok(fields[4] === 'Ikke koblet' || /^\[Rollesynopsis\]\([^)]+\)$/.test(fields[4]),
+    'Life Story synopsis status is explicit: ' + id);
+}
+const linkedRoleSynopses = [...rows.values()].filter(line => cells(line)[3].startsWith('[Rollesynopsis]')).length;
+const linkedLifeSynopses = lifeBlock.split('\n').filter(line => line.startsWith('| `')
+  && cells(line)[4].startsWith('[Rollesynopsis]')).length;
+assert.ok(md.includes(linkedRoleSynopses + ' av ' + rows.size + ' rolleoppføringer'),
+  'summary must match current role synopsis coverage');
+assert.ok(md.includes(linkedLifeSynopses + ' av ' + Object.keys(life.roles).length + ' Life Story-spor'),
+  'summary must match current Life Story synopsis coverage');
+const retailSynopsis = '(civication-synopsis/ekspeditor.md)';
+assert.ok(rows.get('naeringsliv/ekspeditor').includes('[Rollesynopsis]' + retailSynopsis));
+assert.ok(lifeBlock.split('\n').find(line => line.startsWith('| `ekspeditor` |'))
+  .includes('[Rollesynopsis]' + retailSynopsis), 'same canonical synopsis in both overlapping layers');
+const retailDoc = read('docs/civication-synopsis/ekspeditor.md');
+for (const rel of [life.roles.ekspeditor.role, life.roles.ekspeditor.threads, life.roles.ekspeditor.scenes]) {
+  assert.ok(retailDoc.includes('](../../' + rel + ')'), 'synopsis links its actual canonical input: ' + rel);
+}
+for (const doc of ['docs/civication-synopsis/ekspeditor.md', 'docs/civication-symposium/ekspeditor.md']) {
+  const body = read(doc);
+  for (const match of body.matchAll(/\]\(([^)]+)\)/g)) {
+    const url = match[1].split('#')[0];
+    if (!url || /^(https?:|mailto:)/.test(url)) continue;
+    assert.ok(fs.existsSync(path.resolve(ROOT, path.dirname(doc), url)), 'broken synopsis/profile link: ' + doc + ' -> ' + url);
+  }
+}
+
 
 const positionsBlock = section('## Livsposisjoner – alle 199 kanoniske valg', '## Leveveier');
 assert.equal(positions.positions.length, taxonomy.canonical_counts.selectable_life_positions_total);
@@ -130,5 +170,6 @@ console.log('Symposium register PASS: ' + rows.size + ' scope/pack identities, '
   + modelManifest.files.length + ' models, ' + worlds.roles.length + ' worlds, '
   + packs.roles.length + ' role packs, ' + positions.positions.length + ' life positions, '
   + Object.keys(life.roles).length + ' Life Stories, ' + synopsis.entries.length
-  + ' synopses, ' + livelihoods.kinds.length + ' livelihood contexts, '
+  + ' thematic synopses, ' + linkedRoleSynopses + ' linked role synopsis, '
+  + linkedLifeSynopses + ' linked Life Story synopsis, ' + livelihoods.kinds.length + ' livelihood contexts, '
   + profiles.length + ' source profiles');

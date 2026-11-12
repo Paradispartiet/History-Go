@@ -67,6 +67,14 @@ Bøker og filmer kan gi mennesker, miljøer og konflikter å arbeide med. Dokume
 
 Sjekk en yrkesbeskrivelse eller fagkilde og minst to relevante arbeidsgiver- eller praksiskilder der de finnes. Registrer arbeidssted eller sektor, hvilken påstand kilden dekker og datoen den ble sjekket. For livsposisjoner og private roller brukes relevante fagkilder, undersøkelser eller dokumenterte praksiseksempler. Marker hva som er lokal praksis, hva som er et forslag til spillverdenen, og hva som fortsatt mangler belegg. I en privat rolle kan yrkesgruppe og arbeidstøy falle bort. Undersøk hvilke materielle og sosiale vilkår som faktisk betyr noe i situasjonen.
 
+## Synopsis kreves for hver rolle og hvert Life Story-spor
+
+Hver jobb, rolle, privat relasjon og Life Story skal ha både profil og en koblet synopsis. Profilen eier yrkes- eller hverdagsgrunnlaget. Synopsisen må vise hvem vi følger, hva personen prøver å få til, hvilke konkrete oppgaver eller situasjoner historien kommer fra, hvem andre vil noe, og hvilke hensyn og fullmakter som begrenser valgene. Skriv et sammenhengende hovedforløp med plausible svar, faktiske følger og tydelige restoppgaver.
+
+En synopsis kan ligge i en egen fil eller en avgrenset seksjon. Den må ha en uttrykkelig kobling til rolleidentiteten, relevante profiler og eksisterende spillinnhold. En tematisk bok-/filmsynopsis kan brukes som inspirasjon, men teller ikke automatisk som synopsis for alle deltakerne. En Life Story som går gjennom flere roller skal vise koblingene og overgangene; én yrkesprofil dekker ikke hele livet.
+
+[Ekspeditørens sammenhengende synopsis](civication-synopsis/ekspeditor.md) viser formen med tre eksisterende dager, ulike ansvar og åpne revisjonsbehov. [Det felles registeret](CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md#profil-og-synopsis-føres-hver-for-seg) fører profil og synopsis separat. Manglende kobling skal stå synlig til eksisterende tekst er undersøkt eller en ny synopsis er skrevet. Ingen av dokumentene skal finne på spillerhistorikk for å fylle et hull.
+
 ## Slik brukes dokumentene sammen
 
 1. **Rolleprofilen** eier beskrivelsen av hverdagen og kildene. Arbeidsgrammatikken eller rollemodellen eier de strukturerte reglene og oppgavene som allerede finnes.
