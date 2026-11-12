@@ -191,6 +191,13 @@ function advancePhase() {
 
   function initDayCalendarBridge() {
     patchCalendar();
+    // Min dag may have rendered its label before this day layer was loaded.
+    // Notify read-only consumers that the authoritative phase order exists;
+    // this does not advance, reset, or persist the calendar.
+    if (window.CivicationCalendar?.__dayPhasePatched
+      && typeof window.dispatchEvent === "function" && typeof window.Event === "function") {
+      window.dispatchEvent(new window.Event("civi:dayCalendarReady"));
+    }
   }
 
   if (document.readyState === "loading") {

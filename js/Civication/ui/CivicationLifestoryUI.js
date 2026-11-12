@@ -83,6 +83,14 @@
   // Jobbresolver og oppstart kan laste innhold samtidig. Siste rolle vinner.
   let roleLoadSequence = 0;
   let dayAdvancePending = false;
+  // Compare generated markup with generated markup, not browser-serialized
+  // DOM (which normalizes entities and includes open/focus attributes).
+  // Weak keys keep this read-only view cache tied to the mounted summary.
+  /** @type {WeakMap<Element, string>} */
+  const summaryMarkup = new WeakMap();
+  /** @type {WeakMap<Element, string>} */
+  const choiceRoles = new WeakMap();
+  let choiceActionDepth = 0;
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
   /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }>, dramatisert: boolean }|null} */ let sisteKonsekvens = null;
 
@@ -422,12 +430,56 @@
     const view = Runner.getView(state, content);
     if (!view?.dagFerdig) return;
     const html = renderSummaryHtml(view);
-    if (summary.outerHTML !== html) {
+    if (summaryMarkup.get(summary) !== html) {
+      // Live inbox changes replace this summary. Preserve keyboard focus when
+      // a start-day/inbox control is replaced; do not scroll or touch the day.
+      // If the focused action disappears, prefer the other enabled action,
+      // then the summary heading as a safe reading position.
+      const active = document.activeElement;
+      const hasSummaryFocus = summary.contains(active) && !document.body.classList.contains("civi-mapmode");
+      const focusedAction = hasSummaryFocus
+        ? (active?.matches?.("[data-lifestory-next-action]") ? "[data-lifestory-next-action]"
+          : active?.matches?.("[data-lifestory-next-day]") ? "[data-lifestory-next-day]" : null)
+        : null;
+      const focusedRecap = hasSummaryFocus
+        && active?.matches?.('details[data-lifestory-disclosure="day-recap"] > summary');
+      const focusedReading = hasSummaryFocus
+        ? (active?.matches?.("[data-lifestory-day-blocker]") ? "[data-lifestory-day-blocker]"
+          : active === summary.querySelector("h3") ? "h3" : null)
+        : null;
       const expandedRecap = !!summary.querySelector?.('details[data-lifestory-disclosure="day-recap"][open]');
       summary.outerHTML = html;
+      const refreshed = getPanel()?.querySelector?.(".civi-lifestory-summary");
+      if (refreshed) summaryMarkup.set(refreshed, html);
       if (expandedRecap) {
-        const recap = getPanel()?.querySelector?.('details[data-lifestory-disclosure="day-recap"]');
+        const recap = refreshed?.querySelector?.('details[data-lifestory-disclosure="day-recap"]');
         if (recap) /** @type {HTMLDetailsElement} */ (recap).open = true;
+      }
+      if (focusedAction && refreshed) {
+        const same = refreshed.querySelector(focusedAction);
+        const alternative = focusedAction === "[data-lifestory-next-action]"
+          ? "[data-lifestory-next-day]" : "[data-lifestory-next-action]";
+        const target = (same && !same.disabled ? same : null)
+          || refreshed.querySelector(alternative + ":not(:disabled)")
+          || refreshed.querySelector("h3");
+        if (target) {
+          if (target.tagName === "H3") target.setAttribute("tabindex", "-1");
+          /** @type {HTMLElement} */ (target).focus({ preventScroll: true });
+        }
+      } else if (focusedRecap && refreshed) {
+        // Opening the day recap is a keyboard reading task, too. Keep its
+        // disclosure and focus when an unrelated inbox update refreshes data.
+        const recapSummary = refreshed.querySelector('details[data-lifestory-disclosure="day-recap"] > summary');
+        if (recapSummary) /** @type {HTMLElement} */ (recapSummary).focus({ preventScroll: true });
+      } else if (focusedReading && refreshed) {
+        // Refused day transitions and unavailable actions can put reading
+        // focus on a message/heading. A later inbox refresh must preserve
+        // that position too, without moving the player to a new action.
+        const readingTarget = refreshed.querySelector(focusedReading) || refreshed.querySelector("h3");
+        if (readingTarget) {
+          readingTarget.setAttribute("tabindex", "-1");
+          /** @type {HTMLElement} */ (readingTarget).focus({ preventScroll: true });
+        }
       }
     }
   }
@@ -488,6 +540,7 @@
     // Refresh shared facts before running an ordinary work choice, including
     // when the private-story event occurred while this view was not listening.
     syncSharedPrivateState(persisted);
+    choiceActionDepth += 1;
     try {
       const scene = content.scenes.find((s) => s.id === sceneId);
       const valg = scene ? (scene.valg || []).find((c) => c.id === choiceId) : null;
@@ -552,15 +605,18 @@
       }
     } catch (error) {
       console.error("[CivicationLifestoryUI] valg feilet", error);
+    } finally {
+      try { render(); } finally { choiceActionDepth -= 1; }
     }
-    render();
     return accepted;
   }
 
-  async function onNextDay() {
+  async function onNextDay(keyboardActivated = false) {
     if (shellStoryUnavailable() || dayAdvancePending || !state || !state.dagFerdig) return;
     dayAdvancePending = true;
     const previousState = state;
+    const previousCalendarDay = getShellDay();
+    const previousStoryDay = Number(state.livsdag || state.dag);
     try {
       if (getShellDay() === null) {
         // Min dag fungerer fremdeles uavhengig på sider uten Civication-shell.
@@ -576,9 +632,22 @@
       }
     } catch (error) {
       console.error("[CivicationLifestoryUI] neste dag feilet", error);
+      continuationError = "Dagskiftet kunne ikke fullføres. Kontroller dagens oppgaver og prøv igjen.";
     } finally {
       dayAdvancePending = false;
       render();
+      // The summary's "Start neste dag" button is removed by the render.
+      // Reveal the next narrative only after an actual canonical day change.
+      // Never jump on a blocked transition or steal focus from map mode.
+      const nextCalendarDay = getShellDay();
+      const nextStoryDay = Number(state?.livsdag || state?.dag);
+      const dayAdvanced = nextStoryDay > previousStoryDay
+        || (previousCalendarDay !== null && nextCalendarDay !== null
+          && nextCalendarDay > previousCalendarDay);
+      if (state === previousState && !document.body.classList.contains("civi-mapmode")) {
+        if (dayAdvanced) revealNextDay(getPanel(), keyboardActivated);
+        else if (continuationError) revealBlockedDay(getPanel(), keyboardActivated);
+      }
     }
   }
 
@@ -727,11 +796,12 @@
           + (status.measured ? status.score + " / 100" : "ikke målt Skills");
       return "<button class=\"civi-lifestory-choice\" type=\"button\" data-lifestory-scene=\"" + escapeHtml(scene.id) + "\""
         + " data-lifestory-choice=\"" + escapeHtml(valg.id) + "\""
+        + (valg.handling ? " data-lifestory-navigates=\"true\"" : "")
         + (status.available ? "" : " disabled aria-disabled=\"true\"") + ">"
         + "<span>" + escapeHtml(valg.tekst) + "</span>"
-        + (valg.tone ? "<small>" + escapeHtml(valg.tone) + "</small>" : "")
-        + (required ? "<small class=\"civi-lifestory-skill-hint\">" + escapeHtml(detail) + "</small>" : "")
-        + (/** @type {any} */ (valg).handling ? "<small class=\"civi-lifestory-action-hint\">→ "
+        + (valg.tone ? " <small>" + escapeHtml(valg.tone) + "</small>" : "")
+        + (required ? " <small class=\"civi-lifestory-skill-hint\">" + escapeHtml(detail) + "</small>" : "")
+        + (/** @type {any} */ (valg).handling ? " <small class=\"civi-lifestory-action-hint\">→ "
           + escapeHtml(/** @type {any} */ (window).CivicationLifestoryActions?.HANDLING_LABELS?.[/** @type {any} */ (valg).handling.type] || "utfører handlingen")
           + "</small>" : "")
         + "</button>";
@@ -906,14 +976,41 @@
       + '</div></section>';
     // A pending mail needs a reachable player action in Min dag, even when
     // there is no active job or visible top-action card.
-    const pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.();
+    // The action selector is a read-only hint, not the canonical day gate.
+    // A transient selector error must never hide the playable day summary.
+    let pendingDayAction = null;
+    try {
+      pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.() || null;
+    } catch (_) { /* DayProgression still owns the real day transition. */ }
     const needsInboxFirst = !!pendingDayAction && !pendingDayAction.canStartNewDay;
-    const pendingDayActionHtml = needsInboxFirst
+    // The day controller can know about queued or unanswered mail before the
+    // action selector has a card. Give the player a read-only inbox shortcut
+    // proactively rather than making them try a failed day rollover first.
+    // No new gating here: only the canonical progression can block a new day.
+    let pendingPhaseMail = null;
+    try {
+      const inspection = window.CivicationDayProgression?.inspect?.();
+      if (inspection && [
+        inspection.openItemsInPhase, inspection.queuedItemsInPhase,
+        inspection.deliveredItemsInPhase, inspection.openInboxItems
+      ].some((count) => Number(count) > 0)) pendingPhaseMail = inspection;
+    } catch (_) { /* the existing shell remains authoritative */ }
+    const inboxAvailable = typeof window.CivicationNextActionUI?.open === "function";
+    const canInspectPendingMail = !!pendingPhaseMail && inboxAvailable;
+    const canInspectBlockedDay = !!continuationError && inboxAvailable;
+    const pendingDayActionHtml = inboxAvailable && (needsInboxFirst || canInspectPendingMail || canInspectBlockedDay)
       ? '<button class="civi-btn" type="button" data-lifestory-next-action>Åpne innboksen</button>'
       : "";
-    const blockedDayNote = needsInboxFirst
-      ? '<p class="muted" role="status">Du har fortsatt en melding eller oppgave i dag. Åpne innboksen og fullfør den før du starter neste dag.</p>'
+    const pendingPhaseNote = canInspectPendingMail && !needsInboxFirst && !continuationError
+      ? '<p class="muted civi-lifestory-pending-phase" role="status">Du har noe å følge opp i fasen '
+        + escapeHtml(pendingPhaseMail.phaseLabel || "dagens fase")
+        + '. Åpne innboksen for å se hva som gjenstår.</p>'
       : "";
+    const blockedDayNote = needsInboxFirst
+      ? '<p class="muted" role="status">Du har fortsatt en melding eller oppgave i dag. '
+        + (inboxAvailable ? 'Åpne innboksen og fullfør den' : 'Fullfør den i Civication')
+        + ' før du starter neste dag.</p>'
+      : pendingPhaseNote;
     const nextDayDisabled = needsInboxFirst ? ' disabled title="Fullfør dagens meldinger først"' : '';
     const chapterReadyToSettle = sisteDag && !pendingPrivate && state.livsdag >= 21
       && getShellDay() === state.livsdag && state.kalenderDag === state.livsdag;
@@ -949,7 +1046,7 @@
       + (traadHtml ? "<h4>Tråder som endret status</h4><ul>" + traadHtml + "</ul>" : "")
       + "<h4>Viktige valg i dag</h4><ul>" + valgHtml + "</ul></details>"
       + endingHtml
-      + (continuationError ? '<p role="alert">' + escapeHtml(continuationError) + '</p>' : "")
+      + (continuationError ? '<p class="civi-lifestory-day-blocker" data-lifestory-day-blocker role="alert" tabindex="-1">' + escapeHtml(continuationError) + '</p>' : "")
       + handlingsHtml
       + "</section>";
   }
@@ -1262,9 +1359,38 @@
       + '</section>';
   }
 
+  /** @param {HTMLElement} panel @param {string} role */
+  function rememberChoiceFocus(panel, role) {
+    const active = document.activeElement;
+    if (!active || !panel.contains(active) || !active.matches("[data-lifestory-choice]")
+        || choiceRoles.get(active) !== role || document.body.classList.contains("civi-mapmode")) return null;
+    return { role, sceneId: active.getAttribute("data-lifestory-scene"),
+      choiceId: active.getAttribute("data-lifestory-choice") };
+  }
+
+  /**
+   * @param {HTMLElement} panel
+   * @param {string} role
+   * @param {{role: string, sceneId: string|null, choiceId: string|null}|null} previous
+   */
+  function restoreChoiceFocus(panel, role, previous) {
+    const buttons = /** @type {HTMLButtonElement[]} */ (Array.from(panel.querySelectorAll("[data-lifestory-choice]")));
+    if (!previous || previous.role !== role || document.body.classList.contains("civi-mapmode")) return;
+    // A dialog or another surface may deliberately acquire focus during render.
+    // Only repair the focus that fell to body when the old button disappeared.
+    if (document.activeElement && document.activeElement !== document.body) return;
+    // A profile refresh can replace the unchanged scene. Restore only that
+    // exact choice in the same role; real scene/role transitions own focus.
+    const same = buttons.find(button => !button.disabled
+      && button.getAttribute("data-lifestory-scene") === previous.sceneId
+      && button.getAttribute("data-lifestory-choice") === previous.choiceId);
+    same?.focus({ preventScroll: true });
+  }
+
   function render() {
     const panel = getPanel();
     if (!panel || !content || !state) return;
+    const focusedChoice = choiceActionDepth === 0 ? rememberChoiceFocus(panel, String(state.rolle)) : null;
 
     if (shellStoryUnavailable()) {
       panel.innerHTML = renderShellStoryHtml();
@@ -1281,6 +1407,8 @@
       .map((detail) => detail.getAttribute("data-lifestory-disclosure")));
 
     renderHeaderStatus(view);
+    const paused = Runner.isContinuationPaused?.(state, content);
+    const summaryHtml = view.dagFerdig && !paused ? renderSummaryHtml(view) : "";
     const personalBanner = shellStory?.status === "private-only"
       ? '<section class="civi-lifestory-personal-mode" data-lifestory-personal-only>'
         + '<h3>Privatlivet ditt fortsetter</h3>'
@@ -1289,18 +1417,68 @@
         + 'arbeidsoppgaver og meldinger finner du i innboksen.</p></section>'
       : "";
     panel.innerHTML = personalBanner + renderKonsekvensHtml()
-      + (Runner.isContinuationPaused?.(state, content)
+      + (paused
         ? '<section data-lifestory-paused><h3>Historien er satt på pause</h3><p>Velg ' + escapeHtml(continuationRole) + ' som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
-        : (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : renderEmptyPhaseHtml())))
+        : (view.dagFerdig ? summaryHtml : (view.scene ? renderSceneHtml(view.scene) : renderEmptyPhaseHtml())))
       + renderPreviousChoiceHtml(view)
       + renderStatusHtml(view)
       + renderPanelsHtml(view);
+    const summary = panel.querySelector(".civi-lifestory-summary");
+    if (summary) summaryMarkup.set(summary, summaryHtml);
     panel.querySelectorAll?.("details[data-lifestory-disclosure]").forEach((detail) => {
       if (expanded.has(detail.getAttribute("data-lifestory-disclosure"))) /** @type {HTMLDetailsElement} */ (detail).open = true;
     });
+    panel.querySelectorAll("[data-lifestory-choice]").forEach(button => choiceRoles.set(button, String(state.rolle)));
     // When an asynchronous role adoption finishes, retire the prior role\x27s
     // unanswerable inbox projection and expose this role\x27s current scene.
     window.CivicationWaveAInboxBridge?.sync?.();
+    restoreChoiceFocus(panel, String(state.rolle), focusedChoice);
+  }
+
+  // A choice replaces its own button with a consequence/new scene. On phones,
+  // keep the outcome in view; for keyboard/screen-reader activation also give
+  // focus a meaningful landing point instead of letting it fall to <body>.
+  // Navigation choices intentionally skip this: their destination owns focus.
+  function revealChoiceOutcome(panel, keyboardActivated) {
+    const outcome = panel.querySelector(".civi-lifestory-konsekvens")
+      || panel.querySelector(".civi-lifestory-scene")
+      || panel.querySelector(".civi-lifestory-summary");
+    if (!outcome) return false;
+    if (keyboardActivated) {
+      const focusTarget = outcome.querySelector(".civi-lifestory-section-label, h3") || outcome;
+      focusTarget.setAttribute("tabindex", "-1");
+      focusTarget.focus({ preventScroll: true });
+    }
+    if (typeof outcome.scrollIntoView === "function") {
+      outcome.scrollIntoView({ block: "start", behavior: "auto" });
+    }
+    return true;
+  }
+
+  function revealNextDay(panel, keyboardActivated) {
+    // New scene, next-day summary or a deliberately paused day: each is
+    // preferable to the now-removed previous day's start button.
+    const destination = panel?.querySelector(".civi-lifestory-scene")
+      || panel?.querySelector(".civi-lifestory-summary");
+    if (!destination) return false;
+    if (keyboardActivated) {
+      const heading = destination.querySelector("h3") || destination;
+      heading.setAttribute("tabindex", "-1");
+      heading.focus({ preventScroll: true });
+    }
+    destination.scrollIntoView?.({ block: "start", behavior: "auto" });
+    return true;
+  }
+
+  function revealBlockedDay(panel, keyboardActivated) {
+    // A refused day transition keeps the current summary and scroll position.
+    // The old next-day button is replaced by render(), so keyboard activation
+    // must have an accessible landing point. role=alert announces the reason
+    // for touch users without moving focus or altering the calendar.
+    const warning = panel?.querySelector("[data-lifestory-day-blocker]");
+    if (!warning) return false;
+    if (keyboardActivated) warning.focus({ preventScroll: true });
+    return true;
   }
 
   function bindDelegation(panel) {
@@ -1310,10 +1488,15 @@
       const target = /** @type {HTMLElement} */ (event.target);
       const choiceBtn = target.closest("[data-lifestory-choice]");
       if (choiceBtn) {
-        onChoose(
-          choiceBtn.getAttribute("data-lifestory-scene") || "",
-          choiceBtn.getAttribute("data-lifestory-choice") || ""
-        );
+        const sceneId = choiceBtn.getAttribute("data-lifestory-scene") || "";
+        const choiceId = choiceBtn.getAttribute("data-lifestory-choice") || "";
+        const scene = content?.scenes?.find((item) => item.id === sceneId);
+        const choice = scene?.valg?.find((item) => item.id === choiceId);
+        const staysInMinDag = !choice?.handling;
+        const accepted = onChoose(sceneId, choiceId);
+        if (accepted && staysInMinDag && !document.body.classList.contains("civi-mapmode")) {
+          revealChoiceOutcome(panel, event.detail === 0);
+        }
         return;
       }
       const threadBtn = target.closest("[data-wave-a-thread][data-wave-a-command]");
@@ -1355,7 +1538,7 @@
         window.CivicationLifestoryActions?.perform?.({ type: "gaa_til_byen" });
         return;
       }
-      if (target.closest("[data-lifestory-next-day]")) { onNextDay(); return; }
+      if (target.closest("[data-lifestory-next-day]")) { onNextDay(event.detail === 0); return; }
       const continueBtn = target.closest("[data-lifestory-continue]");
       if (continueBtn) { onContinue(continueBtn.getAttribute("data-lifestory-continue") || ""); return; }
       if (target.closest("[data-lifestory-life-profile]")) {
@@ -1510,4 +1693,6 @@
     getPendingWaveAEvent, answerWaveAChoice
   };
 })();
+
+
 

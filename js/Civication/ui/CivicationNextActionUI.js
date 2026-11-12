@@ -26,6 +26,7 @@
   let modalEl = null;
   let bodyEl = null;
   let answerInFlight = false;
+  let dayAdvanceInFlight = false;
   let pendingRefresh = false;
   let answerDebugContext = null;
   let lastAnswerOutcome = null;
@@ -683,7 +684,8 @@
       // button is still usable: rebuild it so real retries remain possible.
       const queuedNeedsReset = !!disabledQueued && !queuedDeliveryInFlight;
       const answerNeedsReset = !!disabledAnswer && !answerInFlight;
-      if (!queuedNeedsReset && !answerNeedsReset) return;
+      const advanceNeedsReset = !!body.querySelector?.("[data-civi-next-action-advance]:disabled") && !dayAdvanceInFlight;
+      if (!queuedNeedsReset && !answerNeedsReset && !advanceNeedsReset) return;
     }
     body.innerHTML = markup;
     lastRenderedBody = body;
@@ -1087,11 +1089,18 @@
   }
 
   function advancePhase() {
+    if (dayAdvanceInFlight) return;
+    dayAdvanceInFlight = true;
     const current = getCurrentAction();
+    const previousDay = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+    const sourceModal = modalEl;
+    const sourcePopup = sourceModal?.closest?.("#civiSectionPopup.is-open");
     const runner = current?.canStartNewDay === true
-      ? Promise.resolve(window.CivicationDayProgression?.advancePhaseIfReady?.()).then(function (result) {
+      ? new Promise(function (resolve) {
+        resolve(window.CivicationDayProgression?.advancePhaseIfReady?.());
+      }).then(function (result) {
         dispatchNextActionUpdates();
-        return { advanced: result?.advanced !== false, action: getCurrentAction(), reason: result?.reason };
+        return { advanced: result?.advanced === true, action: getCurrentAction(), reason: result?.reason };
       })
       : advanceUntilNextRealAction();
 
@@ -1101,9 +1110,33 @@
         const next = progressResult?.action || getCurrentAction();
         if (next) render();
         else close();
+        // An answered inbox remains open for reading. Explicitly starting a
+        // NEW day is different: reveal Min dag after the calendar confirms it.
+        // Never dismiss a different popup/map the player opened while waiting.
+        const nextDay = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+        const stillOwnsSurface = sourcePopup
+          ? sourcePopup.classList.contains("is-open") && sourcePopup.contains(sourceModal)
+          : sourceModal?.classList.contains("is-open");
+        if (current?.canStartNewDay === true && progressResult?.advanced === true
+            && nextDay > previousDay && stillOwnsSurface
+            && !document.body.classList.contains("civi-mapmode")) {
+          if (sourcePopup) window.CivicationMiniSectionsUI?.closePopup?.();
+          else close();
+          const dayButton = /** @type {HTMLButtonElement|null} */ (document.querySelector('.civi-footer button[data-category="minDag"]'));
+          dayButton?.click();
+          const heading = /** @type {HTMLElement|null} */ (document.querySelector("#civiLifestoryPanel h3"));
+          if (heading) {
+            heading.setAttribute("tabindex", "-1");
+            heading.focus({ preventScroll: true });
+          }
+        }
       })
       .catch(function (error) {
-        if (window.DEBUG) console.warn("[CivicationNextActionUI] Kunne ikke gå til neste fase", error);
+        notifyFailure("Dagskiftet kunne ikke fullføres. Prøv igjen.", error);
+      })
+      .finally(function () {
+        dayAdvanceInFlight = false;
+        render(); // Refused/failed transitions must leave a usable retry.
       });
   }
 

@@ -1,7 +1,7 @@
 // End-to-end player acceptance: real History Go quiz completions -> earned
 // merit points -> Civication offer -> accepted role, without seeded progression.
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { nextDayViaUi, queuedPointerFallbacks } from './verify-civication-arbeidsledig-browser.js';
 
@@ -20,6 +20,13 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
   });
   const page = await context.newPage();
   const errors: string[] = [];
+  const pendingRequests = new Map<any, { url: string; type: string; started: number }>();
+  page.on('request', (request: any) => pendingRequests.set(request, {
+    url: request.url(), type: request.resourceType(), started: Date.now()
+  }));
+  for (const event of ['requestfinished', 'requestfailed']) {
+    page.on(event, (request: any) => pendingRequests.delete(request));
+  }
   page.on('pageerror', (error: Error) => errors.push(error.message));
   // This is one continuous, unseeded browser session. Week one is played
   // unemployed through the UI, the museum job is genuinely earned on day 8,
@@ -85,6 +92,7 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     assert.ok(actions > 0 || day === 8, 'every ordinary day has at least one real choice');
   }
   const weekSettlements: { completedDay: number; balance: number; lastSettledDay: number }[] = [];
+  let completedDay21ArchiveSize = 0;
   async function advanceAndAudit(day: number) {
     const before = await readEconomy();
     assert.equal(before.day, day);
@@ -300,7 +308,10 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifestoryState.load().livsdag),
       privateBefore.day, 'taking a formal job cannot advance or reset the private life clock');
 
-    await page.reload({ waitUntil: 'load' });
+    // Match the same bounded navigation budget used for the initial boot,
+    // museum visit and weekly reloads. Keep the real load event and all saved
+    // job/private-history assertions; a timeout must retain request evidence.
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
     await page.waitForFunction(() => (globalThis as any).CivicationState?.getActivePosition?.()?.career_id === 'kunst', null, { timeout: 90000 });
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('merits_by_category') || '{}').kunst?.points), 5);
     assert.equal(await hasPlayedPrivateChoice(), true,
@@ -319,13 +330,20 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
         assert.ok(pendingPayroll.completed.every(r => r.day >= (day === 14 ? 8 : 15)),
           'earned salary begins in its correct played week');
       }
+      if (day === 21) completedDay21ArchiveSize = (await readStory()).arkiv.length;
       await advanceAndAudit(day);
     }
     assert.equal(weekSettlements.length, 3, 'three real calendar-week settlements completed');
     assert.deepEqual(weekSettlements.map(r => [r.completedDay, r.lastSettledDay]),
       [[7, 8], [14, 15], [21, 22]]);
     const ending = await readStory();
-    assert.equal(ending.livsdag, 21, 'the final authored Life Story day stays completed, without a fabricated chapter');
+    // Day 21 is a milestone, not the end of all private life: current authored
+    // content includes a pending day-26 hook. The normal clock must be able to
+    // reach it without inventing any intervening choices or playing it early.
+    assert.equal(ending.livsdag, 22, 'private life follows the real calendar while later authored events wait');
+    assert.equal(ending.arkiv.length, completedDay21ArchiveSize, 'day rollover invents no story or player choice');
+    assert.ok(!ending.spilteScener.includes('wave_g_c05_arkivet_og_middagen'),
+      'the authored day-26 archive/dinner hook has not fired on day 22');
     assert.equal(ending.kalenderDag, 22, '21 completed shell days roll the economic clock to day 22');
     assert.ok(ending.arkiv.some((row: any) => row.sceneId === 'wave_e_life21_d21_skape_veien'
       && row.valgId === 'skaper' && row.livsdag === 21),
@@ -405,6 +423,20 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     return { passed: true, completedDays: 21, totalChoices: played.length,
       weeklySettlements: weekSettlements, cloud, quizSets: 5, earnedMerits: 5,
       career: accepted.active.title, browserErrors: errors.length };
+  } catch (error) {
+    const output = join(process.cwd(), 'reports/civication-browser');
+    mkdirSync(output, { recursive: true });
+    const diagnostic = {
+      error: String((error as Error)?.message || error),
+      pageErrors: errors,
+      pendingRequests: [...pendingRequests.values()].map(row => ({
+        url: row.url, type: row.type, ageMs: Date.now() - row.started
+      })),
+      played: played.slice(-20)
+    };
+    writeFileSync(join(output, 'organic-player-failure.json'), JSON.stringify(diagnostic, null, 2) + '\n');
+    await page.screenshot({ path: join(output, 'organic-player-failure.png'), fullPage: true, timeout: 10000 }).catch(() => {});
+    throw error;
   } finally {
     await context.close();
   }

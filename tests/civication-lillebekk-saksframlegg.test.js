@@ -1319,9 +1319,9 @@ const draftBeforeRefresh = '<div data-unsent-player-note="1">Begrunnelse under a
 host.innerHTML = draftBeforeRefresh;
 assert.ok(inboxWindowEvents['civi:inboxChanged']?.length,'real inbox change event was wired');
 inboxWindowEvents['civi:inboxChanged'][0]();
-const autoInboxRenders = queuedAuto.filter(item=>item.callback.name==='refreshInboxWithoutInterruptingDraft');
-assert.equal(autoInboxRenders.length,3,'background redraw uses the guarded scheduler');
-assert.deepEqual(Array.from(autoInboxRenders.map(item=>item.delay)),[0,80,260]);
+const autoInboxRenders = queuedAuto.filter(item=>['flushInboxRefresh','flushTrailingInboxRefresh'].includes(item.callback.name));
+assert.equal(autoInboxRenders.length,2,'coalesced leading and trailing redraws use the guarded scheduler');
+assert.deepEqual(Array.from(autoInboxRenders.map(item=>item.delay)),[0,260]);
 for (const item of autoInboxRenders) {
  assert.equal(item.callback(),false,'editing the Lillebekk note suppresses an automatic redraw');
 }

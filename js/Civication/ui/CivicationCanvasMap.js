@@ -20,12 +20,19 @@
 
   const ZOOM_STEP = 1.25;
   const MAX_DPR = 2;
+  // Samme nærmere kartopplevelse når WebGL faller tilbake til Canvas.
+  const START_ZOOM = 1.22;
+  const MOBILE_START_ZOOM = 1.34;
+  function recommendedStartZoom(width) {
+    const w = Number(width);
+    return Number.isFinite(w) && w > 0 && w <= 640 ? MOBILE_START_ZOOM : START_ZOOM;
+  }
 
   // ---------------------------------------------------------------------------
   // Transform-state (world-koordinater er normalisert 0–1)
   // ---------------------------------------------------------------------------
   const state = {
-    zoom: 1,
+    zoom: START_ZOOM,
     minZoom: 1,
     maxZoom: 7.5,
     cx: 0.5,
@@ -789,7 +796,8 @@
 
   function zoomIn() { zoomAt(state.zoom * ZOOM_STEP, W / 2, H / 2); }
   function zoomOut() { zoomAt(state.zoom / ZOOM_STEP, W / 2, H / 2); }
-  function reset() { state.zoom = 1; state.cx = 0.5; state.cy = 0.5; clampPan(); scheduleFrame(); scheduleTransformEmit(); }
+  function reset() { state.zoom = recommendedStartZoom(W || host?.clientWidth || window.innerWidth); state.cx = 0.5; state.cy = 0.5; clampPan(); scheduleFrame(); scheduleTransformEmit(); }
+  function overview() { state.zoom = state.minZoom; state.cx = 0.5; state.cy = 0.5; clampPan(); scheduleFrame(); scheduleTransformEmit(); }
   function getZoom() { return state.zoom; }
 
   // ---------------------------------------------------------------------------
@@ -928,11 +936,13 @@
     box.className = "civi-map-zoom-controls";
     box.innerHTML =
       '<button type="button" class="civi-map-zoom-btn" data-civi-canvas-zoom-in aria-label="Zoom inn">+</button>' +
-      '<button type="button" class="civi-map-zoom-btn" data-civi-canvas-zoom-reset aria-label="Nullstill zoom">⤢</button>' +
+      '<button type="button" class="civi-map-zoom-btn" data-civi-canvas-zoom-reset aria-label="Tilbake til byutsnitt">⤢</button>' +
+      '<button type="button" class="civi-map-zoom-btn civi-map-overview-btn" data-civi-canvas-overview aria-label="Vis hele Oslo" title="Hele Oslo">Oslo</button>' +
       '<button type="button" class="civi-map-zoom-btn" data-civi-canvas-zoom-out aria-label="Zoom ut">−</button>';
     box.querySelector("[data-civi-canvas-zoom-in]").addEventListener("click", (e) => { e.preventDefault(); zoomIn(); });
     box.querySelector("[data-civi-canvas-zoom-out]").addEventListener("click", (e) => { e.preventDefault(); zoomOut(); });
     box.querySelector("[data-civi-canvas-zoom-reset]").addEventListener("click", (e) => { e.preventDefault(); reset(); });
+    box.querySelector("[data-civi-canvas-overview]").addEventListener("click", (e) => { e.preventDefault(); overview(); });
     host.appendChild(box);
   }
 
@@ -964,6 +974,7 @@
     if (_inited) { resize(); return; }
     if (!ensureCanvases()) { fallbackToSvgMap("2d context unavailable"); return; }
     _inited = true;
+    state.zoom = recommendedStartZoom(host?.clientWidth || window.innerWidth);
     console.info("[CivicationCanvasMap] Canvas map active");
     ensureControls();
     bindEvents();
@@ -1035,9 +1046,11 @@
     init,
     render,
     reset,
+    overview,
     zoomIn,
     zoomOut,
     getZoom,
+    recommendedStartZoom,
     getVisiblePlaces: () => visiblePlaces.slice(),
     getHitTargets: () => hitTargets.slice(),
     // Groundhopper-visning (speiler CivicationThreeMap).
