@@ -1,0 +1,44 @@
+name: Vitenskap v2 – one-language artwork proof
+on:
+  pull_request:
+    paths:
+      - 'scripts/vitenskap-v2-localize-proof.py'
+      - '.github/workflows/vitenskap-v2-artwork-proof.yml'
+permissions:
+  contents: write
+jobs:
+  make-artwork-proof:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'chore/vitenskap-v2-locales-ready-20261112'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet pillow numpy opencv-python-headless
+      - name: Render only English Mathematics as unapproved proof
+        run: python scripts/vitenskap-v2-localize-proof.py
+      - name: Check same alpha and unchanged central artwork
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          a=Image.open('bilder/merker/vitenskap/kandidater/matematikk-v2.webp').convert('RGBA')
+          b=Image.open('bilder/merker/vitenskap/kandidater/locales/en/matematikk-v2-preview.webp').convert('RGBA')
+          assert a.size==b.size==(1024,1024)
+          assert a.getchannel('A').tobytes()==b.getchannel('A').tobytes()
+          assert a.crop((280,280,744,744)).tobytes()==b.crop((280,280,744,744)).tobytes()
+          print('Original alpha and center preserved')
+          PY
+      - name: Commit proof on PR branch, never activate
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/merker/vitenskap/kandidater/locales/en/matematikk-v2-preview.webp
+          if ! git diff --cached --quiet; then
+            git commit -m 'art(badges): English mathematics text localization proof (unapproved)'
+            git push
+          fi
