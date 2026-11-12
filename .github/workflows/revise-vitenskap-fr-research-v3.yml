@@ -1,0 +1,53 @@
+name: One-off French science internal-label prototype
+on:
+  push:
+    branches:
+      - art/vitenskap-v2-translate-bands-20261112
+    paths:
+      - scripts/revise-vitenskap-fr-research-v3.py
+      - .github/workflows/revise-vitenskap-fr-research-v3.yml
+permissions:
+  contents: write
+concurrency:
+  group: science-fr-research-v3-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  render:
+    if: github.repository == 'Paradispartiet/History-Go' && github.ref == 'refs/heads/art/vitenskap-v2-translate-bands-20261112'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: art/vitenskap-v2-translate-bands-20261112
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet pillow numpy opencv-python-headless
+      - name: Render only French research revised candidate
+        run: python scripts/revise-vitenskap-fr-research-v3.py
+      - name: Validate WebP and source alpha
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          from PIL import Image
+          meta=json.loads(Path('data/badges/vitenskap_forskning_fr_internal_labels_v3.json').read_text())
+          data=Path(meta['path']).read_bytes()
+          assert data[:4]==b'RIFF' and data[8:12]==b'WEBP'
+          assert hashlib.sha256(data).hexdigest()==meta['sha256']
+          with Image.open(meta['source']) as img: a=img.convert('RGBA')
+          with Image.open(meta['path']) as img: b=img.convert('RGBA')
+          assert a.size==b.size==(1024,1024)
+          assert a.getchannel('A').tobytes()==b.getchannel('A').tobytes()
+          print('French research isolated preview binary checked, NOT approved.')
+          PY
+      - name: Commit only isolated French candidate and report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/merker/vitenskap/kandidater/revisjoner/fr/forskning_og_metode-v3.webp data/badges/vitenskap_forskning_fr_internal_labels_v3.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'art(science): one French research internal-label revision candidate'
+            git push
+          fi
