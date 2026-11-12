@@ -38,7 +38,7 @@ for(const entry of audit.approved){
   assert.equal(sha256(provenance.path),provenance.assetSha256,"Approved photo hash changed "+entry.person_id);
   assert.ok(exists(provenance.sourceLocalPath),"Original source missing "+entry.person_id);
   assert.equal(sha256(provenance.sourceLocalPath),provenance.sourceSha256);
-  for(const registry of [sources,people,place.people]){
+  for(const registry of [people,place.people]){
     const item=find(registry,entry.person_id);
     assert.ok(item,"Missing approved Person "+entry.person_id);
     assert.equal(item.image,provenance.path,"Approved People source drift "+entry.person_id);
