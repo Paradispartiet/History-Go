@@ -115,6 +115,10 @@ try{
     const flip=page.locator('#pcFrontCardFlip');
     item.phase='quizcard-position-before-click';
     item.quizBeforeClick=await positionQuizCard(page);
+    if(!mobile){
+     assert.equal(await page.locator('#placeCard .pc-sheet-hero').evaluate(el=>getComputedStyle(el).position),'relative',
+       id+' desktop QuizCard must not sit under a sticky hero while reading');
+    }
     const rect=await flip.boundingBox();
     assert.ok(rect?.height>75,'QuizCard zero height');
     item.phase='quizcard-flip';
