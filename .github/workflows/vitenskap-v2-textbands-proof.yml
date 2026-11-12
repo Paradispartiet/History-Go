@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'scripts/create-vitenskap-v2-textbands.py'
+      - 'scripts/create-vitenskap-v2-contact-sheet.py'
       - '.github/workflows/vitenskap-v2-textbands-proof.yml'
       - 'data/badges/vitenskap_v2_locale_candidates_artwork_20261112.json'
       - 'bilder/merker/vitenskap/kandidater/locales/**'
@@ -60,11 +61,13 @@ jobs:
               assert np.percentile(diff,99)<32,(v['id'],v['locale'])
           print('Verified 20 candidate originals, hashes, and unchanged 16 active subbadges')
           PY
+      - name: Create Norwegian + 20-language review contact sheet
+        run: python scripts/create-vitenskap-v2-contact-sheet.py
       - name: Commit only inactive candidates and manifest on PR branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add bilder/merker/vitenskap/kandidater/locales data/badges/vitenskap_v2_locale_candidates_artwork_20261112.json
+          git add bilder/merker/vitenskap/kandidater/locales data/badges/vitenskap_v2_locale_candidates_artwork_20261112.json bilder/merker/vitenskap/kandidater/contact-sheet-localized-v2.jpg
           if ! git diff --cached --quiet; then
             git commit -m 'art(badges): store 20 translated science v2 candidates with binary manifest'
             git push
