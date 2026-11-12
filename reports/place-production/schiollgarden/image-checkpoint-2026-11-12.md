@@ -16,6 +16,7 @@ The portrait was manually selected from the original at x=450,y=90,w=600,h=900. 
 - The index builder also synchronizes a pre-existing missing `imageMeta` projection for Tjuvholmen. Its canonical source, photos, crop and content are unchanged. This is deterministic generator output, not another place-production job.
 - Browser runner covers real application hydration, the actual local portrait image, visible dimensions, image credits, source link data and card overflow at 390, 1024 and 1440 pixels. It records screenshots and page errors. It does not certify quiz/flip, Fagverk or full production.
 - Local Chromium could not start: its ProcessSingleton socket is denied by this runtime. Therefore no local app/browser PASS is claimed. A narrowly scoped GitHub Actions job is included to run the same real-app QA and publish screenshots.
+- Epoch index regenerated from six explicitly dated, source-backed building milestones (1881 twice, 1899, 1972, 2014, 2019). The 1815–1816 lodging interval belongs to the demolished predecessor and remains contextual instead of becoming an invented exact building event. 39/39 existing epoch tests PASS. Fagverk release manifest rebuilt and already current.
 - Full production remains open: Fagverk, candidate collections, Språkleksikon, fullquiz/Knowledge, dedicated QuizCard and full final UI review.
 
 ## Quality assessment of the whole requested Place
