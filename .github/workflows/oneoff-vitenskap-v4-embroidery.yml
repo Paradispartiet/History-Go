@@ -24,8 +24,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --quiet pillow numpy
-      - name: Enhance only French lettering bands and keep the central illustration
-        run: python scripts/revise-vitenskap-v4-embroidery.py --lang fr
+      - name: Enhance all four localized lettering bands and preserve every central illustration
+        run: python scripts/revise-vitenskap-v4-embroidery.py --all
       - name: Verify WebP and checksum against generated manifest
         run: |
           python - <<'PY'
@@ -33,24 +33,28 @@ jobs:
           from pathlib import Path
           from PIL import Image
           m=json.loads(Path('data/badges/vitenskap_forskning_v4_embroidered_candidates_20261112.json').read_text())
-          assert len(m['items'])==1
-          v=m['items'][0]
-          assert v['locale']=='fr'
-          data=Path(v['path']).read_bytes()
-          assert data[:4]==b'RIFF' and data[8:12]==b'WEBP'
-          assert hashlib.sha256(data).hexdigest()==v['sha256']
-          with Image.open(v['path']) as im:
-            assert im.size==(1024,1024)
-          print('Validated candidate',v['gitBlobSha'])
+          assert len(m['items'])==4
+          assert {v['locale'] for v in m['items']}=={'fr','en','es','pt'}
+          for v in m['items']:
+            data=Path(v['path']).read_bytes()
+            assert data[:4]==b'RIFF' and data[8:12]==b'WEBP'
+            assert hashlib.sha256(data).hexdigest()==v['sha256']
+            assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\\0'+data).hexdigest()==v['gitBlobSha']
+            with Image.open(v['path']) as im:
+              assert im.size==(1024,1024)
+            print('Validated candidate',v['locale'],v['gitBlobSha'])
           PY
       - name: Commit only non-active French candidate and audit report
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add bilder/merker/vitenskap/kandidater/revisjoner/fr/forskning_og_metode-v4-broderi.webp
+          git add bilder/merker/vitenskap/kandidater/revisjoner/en/forskning_og_metode-v4-broderi.webp
+          git add bilder/merker/vitenskap/kandidater/revisjoner/es/forskning_og_metode-v4-broderi.webp
+          git add bilder/merker/vitenskap/kandidater/revisjoner/pt/forskning_og_metode-v4-broderi.webp
           git add bilder/merker/vitenskap/kandidater/revisjoner/fr/forskning_og_metode-v4-comparison.jpg
           git add data/badges/vitenskap_forskning_v4_embroidered_candidates_20261112.json
           if ! git diff --cached --quiet; then
-            git commit -m 'art(science): French research v4 thread-relief preview candidate'
+            git commit -m 'art(science): Four language research v4 thread-relief preview candidates'
             git push
           fi
