@@ -6,7 +6,7 @@
   "status": "editorial_closeout_blocked_by_collection_assets",
   "production_profile": "standard",
   "profile_status": "source_reviewed_pending_collection_acceptance",
-  "active_phase": "Brands GODKJENT, gå videre med People-portretter og autentiske Structures. Ingen filler eller feilstedkoblinger.",
+  "active_phase": "Brands GODKJENT 3/3, People-portretter 2/5 GODKJENT. Fullfør Melgaard, Butkus og Hans Rasmus Astrup, samt autentiske Structures. Ingen filler eller feilstedkoblinger.",
   "canonical_source": "data/places/by/oslo/places/tjuvholmen.json",
   "existing_content": {
     "fullquiz_questions": 42,
@@ -40,14 +40,14 @@
     }
   },
   "collection_gate": {
-    "people": "BLOCKED 1/4: Pushwagner ekte Gulosten-portrett GODKJENT og koblet til Tjuvholmen/Aker Brygge/Torggata. Melgaard og Butkus bildefiler mangler; Hans Rasmus Astrup har placeholder.",
+    "people": "BLOCKED 2/5: Pushwagner og Renzo Piano har autentiske, lisensierte og visuelt godkjente portretter. Piano er koblet til Tjuvholmen og Astrup Fearnley. Melgaard og Butkus bildefiler mangler; Hans Rasmus Astrup har placeholder.",
     "brands": "GODKJENT 3/3: BAHR, Galleri Brandstrup og THE THIEF originalmerker med SHA-256, kildeproveniens, visuell godkjenning og kanoniske Place-open-koblinger.",
     "objects": "KANDIDATREVIEW: skulpturer i offentlig park, verifiser samlingseier og selvstendig kilde/bilde før opptak",
     "structures": "BLOCKED: dokumenterte byrom/anlegg finnes, men struktur-entities og samlingsbilder er ikke materialisert",
     "filler_forbidden": true,
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
-  "qa": "BAHR/Galleri Brandstrup/THE THIEF logoer 3/3 og runtime PASS. Tjuvholmen image/frontImage/QuizCard Chromium PASS. Pushwagner originalportrett CC BY-SA 3.0 visuelt GODKJENT og runtime synkronisert. 3 People-previews mangler.",
+  "qa": "BAHR/Galleri Brandstrup/THE THIEF logoer 3/3 og runtime PASS. Tjuvholmen image/frontImage/QuizCard Chromium PASS. Pushwagner CC BY-SA 3.0 og Renzo Piano CC BY-SA 2.0 har visuelt godkjente portretter, verifiserte SHA-256 og synkronisert runtime. Renzo Piano integrert i PR #7266 (2eea038be4bac24d4ed6d7a939e729ab6c10052d). Tre People-portretter gjenstår.",
   "merged": true,
   "verified_at": "2026-11-12",
   "rule_preflight": {
@@ -122,7 +122,7 @@
   },
   "vferdig": {
     "status": "BLOCKED",
-    "reason": "Brands 3/3 GODKJENT, People 1/4 godkjente dokumenterte portretter, Structures fortsatt åpne.",
+    "reason": "Brands 3/3 GODKJENT, People 2/5 godkjente dokumenterte portretter, tre People-portretter og Structures fortsatt åpne.",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
   "browser_acceptance": {
@@ -159,11 +159,12 @@
     "workflow": "https://github.com/Paradispartiet/History-Go/actions/runs/43174792564"
   },
   "people_portrait_coverage": {
-    "total_active_people": 4,
-    "pass": 1,
+    "total_active_people": 5,
+    "pass": 2,
     "blocked": 3,
     "verified": {
-      "hariton_pushwagner": "bilder/kort/people/hariton_pushwagner.webp"
+      "hariton_pushwagner": "bilder/kort/people/hariton_pushwagner.webp",
+      "renzo_piano": "bilder/kort/people/renzo_piano.webp"
     },
     "source_provenance": "data/people/hariton_pushwagner_image_provenance.json",
     "unverified": [
@@ -174,7 +175,16 @@
     "runtime": {
       "tjuvholmen": "data/runtime/place-open/tjuvholmen.json",
       "aker_brygge": "data/runtime/place-open/aker_brygge.json",
-      "torggata": "data/runtime/place-open/torggata.json"
+      "torggata": "data/runtime/place-open/torggata.json",
+      "astrup_fearnley": "data/runtime/place-open/astrup_fearnley.json"
+    },
+    "source_provenance_files": [
+      "data/people/hariton_pushwagner_image_provenance.json",
+      "data/people/renzo_piano_image_provenance.json"
+    ],
+    "renzo_piano_merge": {
+      "pr": 7266,
+      "commit": "2eea038be4bac24d4ed6d7a939e729ab6c10052d"
     }
   }
 }
