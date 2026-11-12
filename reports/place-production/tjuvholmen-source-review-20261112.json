@@ -1,0 +1,190 @@
+{
+  "schema": "history_go_tjuvholmen_editorial_source_review_v1",
+  "place_id": "tjuvholmen",
+  "category": "by",
+  "reviewed_at": "2026-11-12",
+  "identity": {
+    "status": "PASS",
+    "scope": "Entire modern harbor-to-fjord redevelopment, not duplicate museum/hotel Places",
+    "sources": [
+      "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/tjuvholmen/",
+      "https://snl.no/Tjuvholmen"
+    ]
+  },
+  "media": {
+    "status": "PASS_SOURCE_AND_BINARIES",
+    "image": "bilder/places/tjuvholmen_main_2026_waterfront.webp",
+    "frontImage": "bilder/places/tjuvholmen_front_2026.webp",
+    "provenance": "Two different Wikimedia Commons CC0 photographs by Leonhard Lenz; SHA-256 stored in canonical imageMeta/frontImageMeta; source thumbnails preserved",
+    "source": "https://commons.wikimedia.org/wiki/File:Tjuvholmen_Oslo_2026-01-14_02.jpg",
+    "remaining": "Nettleser og manuell skjermbildegjennomgang PASS på 390/1440; åpne People/Brands/Structures samlinger krever egne bilde- og kildesjekker.",
+    "native_browser": {
+      "status": "PASS",
+      "run": "https://github.com/Paradispartiet/History-Go/actions/runs/43170454014",
+      "artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/43170454014/artifacts/13922520197",
+      "viewports": [
+        390,
+        1440
+      ],
+      "image": "contain",
+      "frontImage": "contain",
+      "quizcard_flip": true,
+      "strict_visible_card": true,
+      "manual_visual_review": "PASS (inspected real screenshots after strict check) - sharp source fully shown, reversed quiz visible at both widths. First earlier run had a transient map-only mobile screenshot, not reproduced under strict test."
+    }
+  },
+  "badge": {
+    "status": "SOURCE_CORRECTED",
+    "primary": "by",
+    "underbadge_ids": [
+      "samtidsarkitektur",
+      "byplanlegging",
+      "bolig_og_bomiljo"
+    ],
+    "note": "Removed art-category-only and noncanonical underbadge IDs from By; art terms remain in tags and kunst layer"
+  },
+  "collection_review": {
+    "people": {
+      "status": "BLOCKED",
+      "verified_direct": [
+        {
+          "id": "niels_torp",
+          "role": "Winning masterplan Utsyn / Tjuvholmen design",
+          "source": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/tjuvholmen/",
+          "asset": "Missing local source-approved portrait; existing canonical person belongs to Aker Brygge"
+        },
+        {
+          "id": "hans_rasmus_astrup",
+          "role": "Founder of museum located at Tjuvholmen since 2012",
+          "source": "https://snl.no/Hans_Rasmus_Astrup",
+          "asset": "Existing record uses generic placeholder"
+        },
+        {
+          "id": "hariton_pushwagner",
+          "role": "Galleri Pushwagner at Tjuvholmen allé 25",
+          "source": "https://www.pushwagner.no/",
+          "asset": "Existing image; provenance needs review"
+        },
+        {
+          "id": "bjarne_melgaard",
+          "role": "2018 group exhibition at Galleri Brandstrup, Tjuvholmen",
+          "source": "https://kunstverket.no/kunstneroversikt/mno/bjarne-melgaard",
+          "asset": "Existing image; provenance needs review"
+        },
+        {
+          "id": "stephen_butkus",
+          "role": "Photography exhibitions at THE THIEF (2015 and 2018) and Tjuvholmen pedestrian bridge, July 2018",
+          "source": "https://www.fineart.no/kunstner/stephen-butkus",
+          "additional_source": "https://www.fineart.no/galleriobjekt/Stephen_Butkus_-_You_Had_Me_At_Goodbye__10/389908",
+          "asset": "Existing local image; provenance needs verification"
+        }
+      ],
+      "unsupported_existing": [
+        {
+          "id": "sverre_fehn",
+          "reason": "No source found establishing Tjuvholmen as an actual architectural commission"
+        },
+        {
+          "id": "geir_grung",
+          "reason": "Corrected in canonical People source to source-backed 1955 Økern aldershjem; Geir Grung died before Tjuvholmen's 2000s redevelopment"
+        },
+        {
+          "id": "rolf_stenersen",
+          "reason": "Direct association belongs to Villa Stenersen, not the Tjuvholmen development"
+        },
+        {
+          "id": "niels_onstad",
+          "reason": "Onstad is not source-backed as an actor in Tjuvholmen / Astrup Fearnley development"
+        }
+      ],
+      "action": "Verified Tjuvholmen People relations should be retained. Remove unsupported links for other actors through canonical source records; only use original, rights-clear preview images. No placeholder portraits."
+    },
+    "brands": {
+      "status": "GODKJENT",
+      "verified_direct": [
+        {
+          "id": "bahr",
+          "source": "https://bahr.no/how-to-find-us",
+          "address": "Tjuvholmen allé 16",
+          "logo": "bilder/kort/brands/bahr.webp",
+          "provenance": "data/brands/bahr_logo_provenance.json",
+          "logoReview": "VISUAL_PASS"
+        },
+        {
+          "id": "galleri_brandstrup",
+          "source": "https://www.brandstrup.no/gallery1",
+          "since": "Flyttet til Tjuvholmen mars 2010; opphør av Tjuvholmen-adresse ikke presist datert",
+          "temporal_scope": "historisk fra mars 2010; i 2026 oppgir galleriet Briskebyveien 72 og Brønnøysund 72A som nåværende adresse",
+          "logo": "bilder/kort/brands/galleri_brandstrup.webp",
+          "provenance": "data/brands/galleri_brandstrup_logo_provenance.json",
+          "logoReview": "VISUAL_PASS"
+        },
+        {
+          "id": "the_thief",
+          "source": "https://thethief.com/",
+          "since": "Opened in 2013",
+          "address": "Landgangen 1",
+          "logo": "bilder/kort/brands/the_thief.webp",
+          "provenance": "data/brands/the_thief_logo_provenance.json",
+          "logoReview": "PASS – visually inspected official THE THIEF current mark, complete and uncropped"
+        }
+      ],
+      "action": "3/3 kildedokumenterte ekte originalmerker i canonical repo og Place-open runtime: BAHR, Galleri Brandstrup og THE THIEF. Offisielle originaler og SHA-256 bevart. Brandstrups stedsrelasjon er historisk fra mars 2010; i 2026 Briskebyveien 72/72A.",
+      "runtime": {
+        "status": "PASS",
+        "path": "data/runtime/place-open/tjuvholmen.json",
+        "contract": "tests/tjuvholmen-brand-logo-contract.mjs",
+        "qa_run": "https://github.com/Paradispartiet/History-Go/actions/runs/43174792564",
+        "verified_ids": [
+          "bahr",
+          "galleri_brandstrup",
+          "the_thief"
+        ]
+      }
+    },
+    "objects": {
+      "status": "BLOCKED",
+      "note": "No independent, sourced artifact review completed; do not mark reasoned N/A until documented research"
+    },
+    "structures": {
+      "status": "BLOCKED",
+      "verified_candidates": [
+        "Tjuvholmen allé / public-space infrastructure",
+        "Astrup Fearnley museum building (owns separate primary Place)",
+        "Skjæret and public waterside park"
+      ],
+      "sources": [
+        "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/tjuvholmen/",
+        "https://www.afmuseet.no/en/the-museum-building/"
+      ],
+      "action": "Select genuine independent byrom/anlegg entities and source-specific thumbnails; do not duplicate the museum as a second Place."
+    }
+  },
+  "core": {
+    "fullquiz_questions": 42,
+    "quiz_sets": 6,
+    "fagverk": "curated",
+    "lesespor": 3,
+    "story": "No standalone Story in current place-open",
+    "language": "Check a real stedsspesifikt språkspor",
+    "quizcard": "Confirm ten-item existing QuizCard and live flip",
+    "runtime": "Regenerate place-open and places index after source changes"
+  },
+  "vferdig": {
+    "editorial_status": "BLOCKED",
+    "reason": "Brands 3/3 GODKJENT og PlaceCard foto/QuizCard PASS. People har fortsatt ett placeholderportrett uten kildeklar original og øvrige portrettbevis må gjennomgås; Structures har ikke materialiserte dokumenterte egne kort. Ikke vFerdig.",
+    "no_filler": true,
+    "do_not_mark_complete": true
+  },
+  "sources": [
+    "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/tjuvholmen/",
+    "https://www.aspelinreitan.no/tidligere-prosjekter/tjuvholmen",
+    "https://snl.no/Tjuvholmen",
+    "https://snl.no/Hans_Rasmus_Astrup",
+    "https://www.brandstrup.no/gallery1",
+    "https://bahr.no/how-to-find-us",
+    "https://thethief.com/",
+    "https://www.pushwagner.no/",
+    "https://www.afmuseet.no/en/the-museum-building/"
+  ]
+}

@@ -102,20 +102,40 @@ assert.ok(md.includes(linkedRoleSynopses + ' av ' + rows.size + ' rolleoppførin
   'summary must match current role synopsis coverage');
 assert.ok(md.includes(linkedLifeSynopses + ' av ' + Object.keys(life.roles).length + ' Life Story-spor'),
   'summary must match current Life Story synopsis coverage');
-const retailSynopsis = '(civication-synopsis/ekspeditor.md)';
-assert.ok(rows.get('naeringsliv/ekspeditor').includes('[Rollesynopsis]' + retailSynopsis));
-assert.ok(lifeBlock.split('\n').find(line => line.startsWith('| `ekspeditor` |'))
-  .includes('[Rollesynopsis]' + retailSynopsis), 'same canonical synopsis in both overlapping layers');
-const retailDoc = read('docs/civication-synopsis/ekspeditor.md');
-for (const rel of [life.roles.ekspeditor.role, life.roles.ekspeditor.threads, life.roles.ekspeditor.scenes]) {
-  assert.ok(retailDoc.includes('](../../' + rel + ')'), 'synopsis links its actual canonical input: ' + rel);
-}
-for (const doc of ['docs/civication-synopsis/ekspeditor.md', 'docs/civication-symposium/ekspeditor.md']) {
-  const body = read(doc);
-  for (const match of body.matchAll(/\]\(([^)]+)\)/g)) {
+// Every linked Life Story synopsis binds back to the actual profile and inputs.
+function localLinks(doc) {
+  const result = new Set();
+  for (const match of read(doc).matchAll(/\]\(([^)]+)\)/g)) {
     const url = match[1].split('#')[0];
     if (!url || /^(https?:|mailto:)/.test(url)) continue;
-    assert.ok(fs.existsSync(path.resolve(ROOT, path.dirname(doc), url)), 'broken synopsis/profile link: ' + doc + ' -> ' + url);
+    const abs = path.resolve(ROOT, path.dirname(doc), url);
+    assert.ok(fs.existsSync(abs), 'broken synopsis/profile link: ' + doc + ' -> ' + url);
+    result.add(abs);
+  }
+  return result;
+}
+for (const [id, item] of Object.entries(life.roles)) {
+  const line = lifeBlock.split('\n').find(line => line.startsWith('| `' + id + '` |'));
+  const fields = cells(line);
+  const linked = fields[4].match(/^\[Rollesynopsis\]\(([^)]+)\)$/);
+  if (!linked) continue;
+  const profile = fields[3].match(/^\[Profil\]\(([^)]+)\)$/);
+  assert.ok(profile, 'linked Life Story synopsis needs its own source profile: ' + id);
+  if (item.badge_id && item.role_scope) {
+    const owner = rows.get(item.badge_id + '/' + item.role_scope);
+    assert.ok(owner, 'linked Life Story has its registered role identity: ' + id);
+    assert.equal(cells(owner)[3], fields[4], 'role and Life Story must share their canonical synopsis: ' + id);
+    assert.equal(cells(owner)[2], fields[3], 'role and Life Story must share their source profile: ' + id);
+  }
+  const synopsisDoc = path.join('docs', linked[1].split('#')[0]);
+  const profileDoc = path.join('docs', profile[1].split('#')[0]);
+  const links = localLinks(synopsisDoc);
+  for (const source of [item.role, item.threads, item.scenes]) {
+    assert.ok(links.has(path.resolve(ROOT, source)), 'synopsis must link actual canonical input: ' + id + '/' + source);
+  }
+  if (synopsisDoc !== profileDoc) {
+    assert.ok(links.has(path.resolve(ROOT, profileDoc)), 'synopsis links its own profile: ' + id);
+    assert.ok(localLinks(profileDoc).has(path.resolve(ROOT, synopsisDoc)), 'profile links back to its synopsis: ' + id);
   }
 }
 

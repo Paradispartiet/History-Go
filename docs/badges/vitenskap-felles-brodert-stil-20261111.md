@@ -24,10 +24,15 @@
 - Før aktivering: visuell godkjenning av øvre/nedre tekst og motiv, riktig kategori-ID, verifisert SHA-256/Git-blob-hash og målrettet CI.
 - Bevar History Go-hovedlogo, Vitenskap-hovedmerke og alle gjeldende godkjente bildefiler uendret **inntil** en korrekt, kontrollert erstatning er laget. Den nye stilen gjelder også disse som revisjonsmål, men dokumentvedtaket er ikke en automatisk masseutskifting.
 
-## Produksjonsstatus ved vedtaket
+## Oppdatert produksjonsstatus – 12. november 2026
 
-- **10 av 16** undermerker har aktive bildefiler i `data/badges/vitenskap.json`.
-- **6 av 16** mangler aktivt undermerke: `elektronikk_robotikk_og_automatisering`, `medisin`, `psykologi_og_hjerne`, `vitenskapshistorie`, `vitenskaps_og_teknologihistorie`, `klima_og_miljovitenskap`.
-- De ti eldre aktive bildene skal vurderes mot denne felles, godkjente stilen og ved behov reproduseres **ett for ett**, med alle fem språk og uten å bryte eksisterende bildekoblinger.
+- **16 av 16** Vitenskap-undermerker er registrert i `data/badges/vitenskap.json`, med norske originaler; de ni nyere merkene er produsert i den godkjente, detaljrike broderistilen.
+- **Naturvitenskap v2 er produsert:** Fem WebP-originaler med botanikk, dyreliv, geologi og laboratorieforskning, full hovedkategoritekst og arkivert v1-original. **Seks** eldre merker gjenstår.
+- **Revisjonsseriens sju opprinnelige merker:** Naturvitenskap, Teknologi, Informasjonsteknologi, Matematikk, Forskning og metode, Astronomi og fysikk, Kjemi og materialvitenskap.
+- Det er verifisert at alle sju eldre bildene har en enkel symbolkomposisjon på lys bunn og **mangler den obligatoriske nedre teksten «VITENSKAP & TEKNOLOGI»**.
+- De sju eksisterende originalene og SHA-ene er låst for etterprøvbar revisjon i `data/badges/vitenskap_legacy_illustration_review_20261112.json`. **Ingen av originalene erstattes før et nytt enkelt, rundt merke er visuelt kontrollert**, med fem språkvarianter, korrekt underkategoritittel øverst og fullt kategorinavn nederst.
+- En poster, statusgrafikk, et kontaktark eller utsnitt av et helt galleri er **ikke** en gyldig produksjonsfil. Feilaktige bildegenereringer skal forkastes; bildet må være ett enkelt brodert merke i kvadratisk 1024 × 1024 WebP med transparent utside.
+- **Naturvitenskap v2:** Motiv med gaupe, botanikk, geologi, fossiler, mineraler og laboratorieforskning. Original fra før revisjonen bevart under `bilder/merker/vitenskap/arkiv/naturvitenskap-v1.webp`. Neste revisjonskandidat: Teknologi.
+- GitHub Pages publiserte sluttversjonen av 16-merkeserien fra commit `092db11a9ae807e9d4c638514e854d35817aca5a` med `success`.
 
 Denne stilstandarden utfyller [undermerke-typografi-standard.md](undermerke-typografi-standard.md).
