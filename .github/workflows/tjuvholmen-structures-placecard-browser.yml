@@ -15,6 +15,9 @@ on:
       - 'tests/tjuvholmen-people-portrait-rights.test.mjs'
       - 'tests/tjuvholmen-generated-people-illustrations-candidates.test.mjs'
       - 'reports/place-production/tjuvholmen-generated-people-illustration-candidates-20261112.json'
+      - 'scripts/stage-tjuvholmen-people-illustrations.py'
+      - 'tests/tjuvholmen-people-illustration-importer.test.mjs'
+      - 'docs/TJUVHOLMEN_ILLUSTRATION_STAGING.md'
       - 'bilder/kort/structures/**'
       - 'tests/tjuvholmen-structures-placecard-real-browser.test.mjs'
       - '.github/workflows/tjuvholmen-structures-placecard-browser.yml'
@@ -45,6 +48,8 @@ jobs:
         run: node --test tests/tjuvholmen-people-portrait-rights.test.mjs
       - name: Validate original illustrated People candidates without activating them
         run: node tests/tjuvholmen-generated-people-illustrations-candidates.test.mjs
+      - name: Verify illustration importer has no implicit activation
+        run: node tests/tjuvholmen-people-illustration-importer.test.mjs
       - name: Verify eight source-backed sculptures without publishing unlicensed Objects
         run: node tests/tjuvholmen-objects-artworks-source-audit.test.mjs
       - name: Install Chromium
