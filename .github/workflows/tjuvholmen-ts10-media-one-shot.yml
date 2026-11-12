@@ -141,12 +141,10 @@ jobs:
         run: |
           npm run place-open:build
           npm run places:index:build
-          node scripts/build-quiz-production-context.mjs --category by --target tjuvholmen --output data/quiz/production_context/by/tjuvholmen.json
           node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/tjuvholmen-workcard-current.json --place-id tjuvholmen --category by
           node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/tjuvholmen-workcard-current.json
           npm run place-open:check
           npm run places:index:check
-          node scripts/build-quiz-production-context.mjs --category by --target tjuvholmen --output data/quiz/production_context/by/tjuvholmen.json --check
           node scripts/check-distinct-place-photos.mjs --place data/places/by/oslo/places/tjuvholmen.json --require-both
       - name: Commit only Tjuvholmen media and deterministic projections
         run: |
@@ -156,7 +154,6 @@ jobs:
           git add bilder/places/tjuvholmen_main_2026_waterfront.webp bilder/places/tjuvholmen_front_2026.webp
           git add data/places/by/oslo/places/tjuvholmen.json
           git add data/runtime/place-open/tjuvholmen.json data/places/places_index.json
-          git add data/quiz/production_context/by/tjuvholmen.json
           git add reports/place-production/tjuvholmen-workcard-current.json
           git diff --cached --check
           if ! git diff --cached --quiet; then
