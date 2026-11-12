@@ -1,0 +1,35 @@
+name: Minneparken generated data sync (temporary)
+on:
+  push:
+    branches:
+      - content/minneparken-kildebasert-leksikon-20261103
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install tools
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical outputs
+        run: |
+          npm run place-open:build
+          npm run epoker:places:build
+      - name: Commit only expected generated files
+        run: |
+          git add data/epoker/epoke-place-index.json
+          git add data/runtime/stories-all/part-004.json data/runtime/stories-all/part-005.json data/runtime/stories-all/part-006.json
+          if git diff --cached --quiet; then
+            echo 'Generated files already synchronized'
+            exit 0
+          fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Sync generated Minneparken and Tjuvholmen indexes'
+          git push origin HEAD:content/minneparken-kildebasert-leksikon-20261103
