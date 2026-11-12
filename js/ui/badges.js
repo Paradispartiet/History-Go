@@ -146,6 +146,29 @@ function normalizeBadgeSubcategory(sub) {
   return { id, name, image, icon, description };
 }
 
+function relevantPlaceSubBadgeIds(place, badge) {
+  if (!badge || !place) return [];
+  const available = badge.subBadgeImages && typeof badge.subBadgeImages === "object" ? badge.subBadgeImages : {};
+  const canonical = window.HGPlaceBadgeRelevantSubcategories;
+  if (typeof canonical === "function") {
+    return canonical(place, badge).filter(id => badgeImagePath(available[id]));
+  }
+  const fields = [place.subcategory, place.subcategory_id, place.subcategoryId, place.subcategoryIds,
+    place.secondaryBadgeIds, place.secondary_badge_ids, place.underbadge_ids, place.sub_badges,
+    place.subBadges, place.badge_subcategories, place.badgeSubcategories, place.underbadges,
+    place.underBadges, place.merke_sub, place.merkeSub];
+  const valid = new Set((Array.isArray(badge.sub) ? badge.sub : []).map(sub =>
+    String(typeof sub === "string" ? sub : sub?.id || "").trim().toLowerCase().replace(/[\s-]+/g, "_")));
+  const ids = new Set();
+  const visit = value => {
+    if (Array.isArray(value)) return value.forEach(visit);
+    if (value && typeof value === "object") return visit(value.id || value.slug || value.key || value.value || value.label);
+    const id = String(value || "").trim().toLowerCase().replace(/[\s-]+/g, "_");
+    if (valid.has(id) && badgeImagePath(available[id])) ids.add(id);
+  };
+  fields.forEach(visit);
+  return [...ids];
+}
 function renderBadgeSubcategories(place, badge) {
   const categoryId = runtimeCategoryId(place?.category) || "ukjent";
 
@@ -154,14 +177,15 @@ function renderBadgeSubcategories(place, badge) {
   }
 
   const badgeName = badgeText(badge.name || badge.title || badge.id) || "Badge";
-  const subs = Array.isArray(badge.sub) ? badge.sub.map(normalizeBadgeSubcategory).filter(Boolean) : [];
+  const matching = new Set(relevantPlaceSubBadgeIds(place, badge));
+  const subs = Array.isArray(badge.sub) ? badge.sub.map(normalizeBadgeSubcategory).filter(sub => sub && matching.has(String(sub.id || "").trim())) : [];
 
   if (!subs.length) {
     return `
       <div class="pc-badge-header">
         <strong>${escapeBadgeHtml(badgeName)}</strong>
       </div>
-      <div class="pc-empty">Badge mangler underkategori-data for ${escapeBadgeHtml(badgeName)}</div>
+      <div class="pc-empty">Ingen stedsspesifikke undermerker registrert ennå</div>
     `;
   }
 
@@ -171,7 +195,7 @@ function renderBadgeSubcategories(place, badge) {
     </div>
     ${subs.map(sub => `
       <div class="pc-badge pc-badge-subcategory" data-badge-sub="${escapeBadgeHtml(sub.id || sub.name)}">
-        ${sub.image ? `<img src="${escapeBadgeHtml(sub.image)}" alt="">` : ``}
+        ${badgeImagePath(badge.subBadgeImages?.[sub.id]) ? `<img class="pc-underbadge-thumb" src="${escapeBadgeHtml(badgeImagePath(badge.subBadgeImages[sub.id]))}" alt="">` : sub.image ? `<img class="pc-underbadge-thumb" src="${escapeBadgeHtml(sub.image)}" alt="">` : ``}
         ${sub.icon ? `<span class="pc-badge-sub-icon">${escapeBadgeHtml(sub.icon)}</span>` : ``}
         <span>${escapeBadgeHtml(sub.name)}</span>
         ${sub.description ? `<div class="pc-badge-sub-desc">${escapeBadgeHtml(sub.description)}</div>` : ``}
@@ -190,18 +214,23 @@ function applyPlaceCardBadgeRound(place) {
   const incomingPlaceId = String(place?.id || "").trim();
   if (incomingPlaceId && currentPlaceId && incomingPlaceId !== currentPlaceId) return;
 
-  const badge = /** @type {any} */ (getBadgeForPlace(place));
+  const hydrated = window.HGPlaceOpen?.getPlace?.(currentPlaceId);
+  const cardPlace = hydrated && typeof hydrated === "object" ? { ...place, ...hydrated } : place;
+  const badge = /** @type {any} */ (getBadgeForPlace(cardPlace));
   const badgeName = badgeText(badge?.name || badge?.title || badge?.id) || "Badge";
-  const img = badgeImagePath(badge?.image || badge?.icon);
+  const selectedId = relevantPlaceSubBadgeIds(cardPlace, badge)[0] || "";
+  const selectedImage = selectedId ? badgeImagePath(badge?.subBadgeImages?.[selectedId]) : "";
+  const selectedLabel = selectedId ? formatSubcategoryLabel(selectedId) : badgeName;
+  const img = selectedImage || badgeImagePath(badge?.image || badge?.icon);
   const emojiIcon = !img ? badgeText(badge?.icon) : "";
 
-  badgesEl.innerHTML = renderBadgeSubcategories(place, badge);
+  badgesEl.innerHTML = renderBadgeSubcategories(cardPlace, badge);
 
-  badgesIcon.setAttribute("aria-label", badge ? badgeName : "Badge mangler");
-  badgesIcon.title = badge ? badgeName : `Badge mangler for ${runtimeCategoryId(place?.category) || "ukjent kategori"}`;
+  badgesIcon.setAttribute("aria-label", badge ? selectedLabel : "Badge mangler");
+  badgesIcon.title = badge ? selectedLabel : `Badge mangler for ${runtimeCategoryId(cardPlace?.category) || "ukjent kategori"}`;
 
   if (img) {
-    badgesIcon.innerHTML = `<img src="${escapeBadgeHtml(img)}" class="pc-badge-round-img" alt="${escapeBadgeHtml(badgeName)}" title="${escapeBadgeHtml(badgeName)}">`;
+    badgesIcon.innerHTML = `<img src="${escapeBadgeHtml(img)}" class="pc-badge-round-img" alt="${escapeBadgeHtml(selectedLabel)}" title="${escapeBadgeHtml(selectedLabel)}">`;
     return;
   }
 
@@ -241,6 +270,7 @@ function patchPlaceCardBadgeRound() {
 
   window.openPlaceCard = async function patchedOpenPlaceCard(place) {
     const result = await originalOpenPlaceCard.apply(this, arguments);
+    if (!result) return result;
     await ensureBadgesLoaded();
     applyPlaceCardBadgeRound(place);
     return result;
