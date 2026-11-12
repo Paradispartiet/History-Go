@@ -6,7 +6,7 @@
   "status": "editorial_closeout_blocked_by_collection_assets",
   "production_profile": "standard",
   "profile_status": "source_reviewed_pending_collection_acceptance",
-  "active_phase": "Stories 2 and Språkleksikon 3 integrated in review branch; People 2/5 portrait rights and Objects sculpture rights remain BLOCKED; Structures 3/3 live.",
+  "active_phase": "Stories 2 og Språkleksikon 3 er merget (#7279); Objects 8/8 kildeverifisert og klassifisert betinget (#7280), ingen aktiverte Object-bilder; People 2/5 foto; Structures 3/3 publisert med 960px kilder, fulloppløste originaler 0/3 pga Commons HTTP 429 (dokumentert i PR #7285).",
   "canonical_source": "data/places/by/oslo/places/tjuvholmen.json",
   "existing_content": {
     "fullquiz_questions": 42,
@@ -42,7 +42,7 @@
   "collection_gate": {
     "people": "BLOCKED 2/5 approved portraits. Melgaard and Butkus: invalid PNG source references cleared; Astrup: generic placeholder not presented as his portrait. Three text-only People entries pending documented rights.",
     "brands": "GODKJENT 3/3: BAHR, Galleri Brandstrup og THE THIEF originalmerker med SHA-256, kildeproveniens, visuell godkjenning og kanoniske Place-open-koblinger.",
-    "objects": "KILDEAUDIT 8/8 NAVNGITTE VERK: seks skulpturer tilhører Selvaag Art Collection, to Tjuvholmen KS (Kelly og Fischli/Weiss); ikke del av Astrup Fearnley-samlingen. Ingen enkeltverk-bilder eller Objects aktivert. Rettigheter til både foto og kunstverk, og Works-vs-Objects-klassifisering gjenstår. Eyes godkjent år 1997 etter Selvaags eierkatalog; museets avvikende 1992 er dokumentert.",
+    "objects": "KILDEAUDIT 8/8 NAVNGITTE VERK: seks skulpturer tilhører Selvaag Art Collection, to Tjuvholmen KS (Kelly og Fischli/Weiss); ikke del av Astrup Fearnley-samlingen. Ingen enkeltverk-bilder eller Objects aktivert. Rettigheter til både foto og kunstverk, og Works-vs-Objects-klassifisering dokumentert i merget #7280, men ikke billed- eller verksrettighetsgodkjent. Eyes godkjent år 1997 etter Selvaags eierkatalog; museets avvikende 1992 er dokumentert.",
     "structures": "STRUCTURES PLACE CARD LIVE 3/3: Tjuvtitten, Skjæret bystrand and sculpture park have verified CC BY-SA 3.0 Commons 960px source previews, local WebP and canonical/runtime links. Real mobile 390px and desktop 1440px click+popup tests PASS (PR #7271). Full-resolution JPEG originals are pending due to Commons HTTP 429.",
     "filler_forbidden": true,
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
@@ -122,7 +122,7 @@
   },
   "vferdig": {
     "status": "BLOCKED",
-    "reason": "Brands 3/3 GODKJENT; Structures 3/3 dokumenterte WebP og mobil-/desktoptest godkjent, men fulloppløste kildeoriginaler gjenstår pga Wikimedia HTTP 429. People-portretter 2/5 godkjent, tre kildesikrede tekstprofiler venter lisensierte portretter. Objects: åtte navngitte skulptur-/kunstverkskandidater nå kildeverifisert; ingen bilder eller aktive Objects før avklart klassifisering og opphavsrett. vFerdig BLOCKED.",
+    "reason": "Stories 2/2 og Språkleksikon 3/3 merget; Brands 3/3 og Structures 3/3 publiserte med godkjente WebP og mobil-/desktop-QA, men 0/3 fulloppløste Commons-originaler arkivert (HTTP 429). People har 2/5 identitetssikrede lisensportretter, tre profiler er tekstbaserte. Objects har åtte kildeverifiserte skulpturer og betinget By-Objects-klassifisering, men ingen godkjente enkeltverksbilder eller avklarte verk-/fotorettigheter. vFerdig BLOCKED.",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
   "browser_acceptance": {
@@ -212,7 +212,9 @@
     "integrated_pr": 7271,
     "integrated_commit": "74590ecd35e067851f5308b00ff4664d777128a8",
     "pages_deploy_run": "https://github.com/Paradispartiet/History-Go/actions/runs/43201300645",
-    "pages_deploy_status": "success"
+    "pages_deploy_status": "success",
+    "originals_retrieval_report": "reports/place-production/tjuvholmen-structure-originals-retrieval-20261112.json",
+    "originals_retrieval_result": "0/3 full-originals archived; Wikimedia Commons HTTP 429 for all three on last branch-scoped attempt; existing licensed previews/WebPs unaffected."
   },
   "object_artwork_review": {
     "status": "EIGHT_SOURCE_CONFIRMED_NO_IMAGES_OR_RUNTIME_APPROVED",
