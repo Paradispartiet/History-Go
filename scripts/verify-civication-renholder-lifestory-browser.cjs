@@ -7,8 +7,9 @@ const path = require('node:path');
 const { chromium } = require('playwright');
 const origin = 'http://127.0.0.1:4188';
 const spill = process.env.RENHOLDER_CASE === 'soel';
-const thread = spill ? 'soelet_i_fellesarealet' : 'tidsvinduet_krymper';
-const output = path.resolve('reports/civication-renholder-'+(spill?'soel':'lifestory')+'-browser');
+const training = process.env.RENHOLDER_CASE === 'opplaering';
+const thread = training ? 'ryggen_sier_fra' : spill ? 'soelet_i_fellesarealet' : 'tidsvinduet_krymper';
+const output = path.resolve('reports/civication-renholder-'+(training?'opplaering':spill?'soel':'lifestory')+'-browser');
 mkdirSync(output, { recursive: true });
 const server = spawn('python3', ['-m', 'http.server', '4188', '--bind', '127.0.0.1'], { stdio: 'ignore' });
 let serverError = null;
@@ -48,7 +49,7 @@ async function startDayTwo(page,label) {
   await page.waitForFunction(()=>globalThis.CivicationLifestoryState?.load?.()?.dag===2,null,{timeout:45000});
   return mode;
 }
-const baseFlags = spill ? {ren_soel_rengjort:false,ren_soel_aapnet:false,ren_soel_arbeid_venter:false,ren_soel_kontroll_venter:false,ren_soel_kari_mottatt:false,ren_soel_mottak_venter:false,ren_soel_ansvar_bekreftet:false,ren_soel_skilt_kontrollert:false,ren_soel_tralle_utbedret:false,ren_soel_vernerunde_avtalt:false,ren_soel_tiltakskontroll_venter:false} : { ren_tid_plan_bekreftet:false, ren_tid_wc3_spiller:false,
+const baseFlags = training ? {ren_bel_plan_bekreftet:false,ren_bel_transport_utfort:false,ren_bel_mottatt:false,ren_bel_plan_venter:false,ren_bel_arbeid_venter:false,ren_bel_mottak_venter:false,ren_opp_demo_sett:false,ren_opp_demo_venter:false,ren_opp_ovelse_utfort:false,ren_opp_ovelse_avbrutt:false,ren_opp_tilbakemelding:false,ren_opp_tilbakemelding_venter:false,ren_opp_avklaring_venter:false,laerte_soneprioritering:false,laerte_teknikk:false} : spill ? {ren_soel_rengjort:false,ren_soel_aapnet:false,ren_soel_arbeid_venter:false,ren_soel_kontroll_venter:false,ren_soel_kari_mottatt:false,ren_soel_mottak_venter:false,ren_soel_ansvar_bekreftet:false,ren_soel_skilt_kontrollert:false,ren_soel_tralle_utbedret:false,ren_soel_vernerunde_avtalt:false,ren_soel_tiltakskontroll_venter:false} : { ren_tid_plan_bekreftet:false, ren_tid_wc3_spiller:false,
   ren_tid_korridor3_amina:false, ren_tid_kontorer_spiller:false, ren_tid_trapp_spiller:false,
   ren_tid_amina_venter:false, ren_tid_kari_mottatt:false, ren_tid_plan_venter:false,
   ren_tid_egen_oppgave_venter:false, ren_tid_mottak_venter:false };
@@ -81,7 +82,7 @@ async function play(browser, fixture) {
       await button.scrollIntoViewIfNeeded();
       const rect=await button.boundingBox();
       assert.ok(rect&&rect.width>0&&rect.x>=-2&&rect.x+rect.width<=viewport.width+2,label+': button geometry '+id);
-      const focus=spill ? (id.startsWith('soel_')||id==='d2_avvik_fulgt_opp'||id==='d2_glatt_gulv_etterspill') : id==='tidsvindu_01_telefon'||id.startsWith('tid_')||id==='d2_standard_ekstra_rom'||id==='d2_rolig_formiddag';
+      const focus=training ? (id.startsWith('rygg_')||id.startsWith('opp_')||id==='d2_runde_med_amina') : spill ? (id.startsWith('soel_')||id==='d2_avvik_fulgt_opp'||id==='d2_glatt_gulv_etterspill') : id==='tidsvindu_01_telefon'||id.startsWith('tid_')||id==='d2_standard_ekstra_rom'||id==='d2_rolig_formiddag';
       if(focus) {
         if(id==='tid_02_kari_prioriterer'||id==='tid_05_kari_mottar') {
           assert.match(await page.locator('.civi-lifestory-scene .civi-lifestory-kicker').textContent(),/Fra Kari/);
@@ -98,6 +99,8 @@ async function play(browser, fixture) {
       const after=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
       assert.equal(after.arkiv.at(-1).sceneId,id);assert.equal(after.arkiv.at(-1).valgId,chosen);
       trace.push([id,chosen]);
+      if(training && id==='rygg_01_vurdering') assert.ok(!after.tidligereValg.laerte_teknikk&&!after.tidligereValg.ren_bel_transport_utfort);
+      if(training && (id==='d2_runde_med_amina'||id==='opp_02_demonstrasjon'||id==='opp_03_egen_ovelse')) assert.ok(!after.tidligereValg.laerte_soneprioritering);
       if(spill && id==='soel_01_krise') {
         assert.ok(!after.tidligereValg.ren_soel_rengjort&&!after.tidligereValg.ren_soel_aapnet&&!after.tidligereValg.ren_soel_kari_mottatt);
       }
@@ -142,7 +145,7 @@ async function play(browser, fixture) {
     const history=page.locator('[data-lifestory-symposium]').first();
     const normalize=x=>String(x).replace(/\s+/g,' ').trim();
     const shown=normalize(await history.textContent());
-    const actual=saved.arkiv.filter(row=>row.threadId===thread);
+    const actual=saved.arkiv.filter(row=>row.threadId===thread || (training && (row.sceneId==='d2_runde_med_amina'||row.sceneId.startsWith('opp_'))));
     for(const row of actual) {
       assert.ok(shown.includes(normalize(row.valgTekst)),label+': Symposium actual choice '+row.sceneId);
       assert.ok(shown.includes(normalize(row.konsekvensTekst)),label+': Symposium actual result '+row.sceneId);
@@ -163,7 +166,18 @@ async function play(browser, fixture) {
   await waitForServer();browser=await chromium.launch({headless:true});
   const sizes=[{width:390,height:844},{width:820,height:1180},{width:1180,height:820}];
   const complete={ren_soel_rengjort:true,ren_soel_aapnet:true,ren_soel_kari_mottatt:true,ren_soel_ansvar_bekreftet:true,ren_soel_skilt_kontrollert:true,ren_soel_vernerunde_avtalt:true};
-  const cases=spill ? [
+  const trained={ren_bel_plan_bekreftet:true,ren_bel_transport_utfort:true,ren_bel_mottatt:true,ren_opp_demo_sett:true,ren_opp_ovelse_utfort:true,ren_opp_tilbakemelding:true,laerte_soneprioritering:true};
+  const cases=training ? [
+   {label:'opplaering-utfort-mobile',extra:{},flags:trained},
+   {label:'opplaering-ole-forslag-ipad',extra:{rygg_01_vurdering:'spor_ole',d2_runde_med_amina:'foreslaa_forbedring'},flags:trained},
+   {label:'opplaering-plan-venter-ipad',extra:{rygg_01_vurdering:'press_gjennom',rygg_02_plan:'avvent_plan'},flags:{...trained,ren_bel_plan_bekreftet:false,ren_bel_transport_utfort:false,ren_bel_plan_venter:true}},
+   {label:'opplaering-rute-hindret-mobile',extra:{rygg_03_transport:'stopp_og_meld'},flags:{...trained,ren_bel_transport_utfort:false,ren_bel_arbeid_venter:true}},
+   {label:'opplaering-mottak-venter-ipad',extra:{rygg_04_mottak:'avvent_mottak'},flags:{...trained,ren_bel_mottatt:false,ren_bel_mottak_venter:true}},
+   {label:'opplaering-demo-venter-ipad',extra:{opp_02_demonstrasjon:'utsett_demonstrasjon'},flags:{...trained,ren_opp_demo_sett:false,ren_opp_demo_venter:true,ren_opp_ovelse_utfort:false,ren_opp_tilbakemelding:false,laerte_soneprioritering:false}},
+   {label:'opplaering-avbrutt-mobile',extra:{opp_03_egen_ovelse:'avbryt_og_spor'},flags:{...trained,ren_opp_ovelse_utfort:false,ren_opp_ovelse_avbrutt:true,ren_opp_tilbakemelding:false,laerte_soneprioritering:false}},
+   {label:'opplaering-vurdering-venter-ipad',extra:{opp_04_tilbakemelding:'avvent_tilbakemelding'},flags:{...trained,ren_opp_tilbakemelding:false,ren_opp_tilbakemelding_venter:true,laerte_soneprioritering:false}},
+   {label:'opplaering-avslatt-ipad',extra:{d2_runde_med_amina:'bare_jobbe'},flags:{...trained,ren_opp_demo_sett:false,ren_opp_ovelse_utfort:false,ren_opp_tilbakemelding:false,ren_opp_avklaring_venter:true,laerte_soneprioritering:false}}
+  ] : spill ? [
    {label:'soel-ferdig-mobile',extra:{},flags:complete},
    {label:'soel-arbeid-venter-ipad',extra:{soel_01_krise:'be_om_hjelp',soel_02_arbeid:'avvent_hjelp'},flags:{...complete,ren_soel_rengjort:false,ren_soel_aapnet:false,ren_soel_arbeid_venter:true,ren_soel_vernerunde_avtalt:false}},
    {label:'soel-restfukt-ipad',extra:{soel_01_krise:'toerk_og_gaa',soel_03_kontroll:'fortsatt_vaatt'},flags:{...complete,ren_soel_aapnet:false,ren_soel_kontroll_venter:true,ren_soel_vernerunde_avtalt:false}},
@@ -180,9 +194,9 @@ async function play(browser, fixture) {
    {label:'ugjort-ipad-landscape',start:'ta_stille',plan:'prioriter_toaletter',extra:{tid_03_toaletter:'meld_ikke_utfort',tid_05_kari_mottar:'avvent_mottak'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_egen_oppgave_venter:true,ren_tid_mottak_venter:true}},
    {label:'mottak-dag2-mobile',start:'ta_stille',plan:'prioriter_toaletter',extra:{tid_05_kari_mottar:'avvent_mottak'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_wc3_spiller:true,ren_tid_kari_mottatt:true}}
   ];
-  for(const [i,c] of cases.entries()) results.push(await play(browser,{...c,viewport:sizes[i%3],status:c.status||(spill?'escalated':'active'),
-    choices:spill ? {...c.extra} : {tidsvindu_01_telefon:c.start,tid_02_kari_prioriterer:c.plan,...c.extra}}));
-  console.log('PASS: seven real renholder '+(spill?'spill':'capacity')+' routes, two days, reload and visible Symposium',JSON.stringify(results));
+  for(const [i,c] of cases.entries()) results.push(await play(browser,{...c,viewport:sizes[i%3],status:c.status||(training||spill?'escalated':'active'),
+    choices:training||spill ? {...c.extra} : {tidsvindu_01_telefon:c.start,tid_02_kari_prioriterer:c.plan,...c.extra}}));
+  console.log('PASS: '+cases.length+' real renholder '+(training?'training':spill?'spill':'capacity')+' routes, two days, reload and visible Symposium',JSON.stringify(results));
  } finally {
   writeFileSync(path.join(output,'results.json'),JSON.stringify(results,null,2)+'\n');
   if(browser) await browser.close();server.kill('SIGTERM');

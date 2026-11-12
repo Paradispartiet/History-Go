@@ -21,7 +21,11 @@ concurrency:
 
 jobs:
   renholder-browser:
-    name: Renholder romstatus – mobil og iPad
+    name: Renholder mobil og iPad (${{ matrix.case }})
+    strategy:
+      fail-fast: false
+      matrix:
+        case: [lifestory, soel, opplaering]
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -39,15 +43,13 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Play actual room-status choices and Symposium
-        run: |
-          node scripts/verify-civication-renholder-lifestory-browser.cjs
-          RENHOLDER_CASE=soel node scripts/verify-civication-renholder-lifestory-browser.cjs
+        env:
+          RENHOLDER_CASE: ${{ matrix.case }}
+        run: node scripts/verify-civication-renholder-lifestory-browser.cjs
       - name: Upload screenshots and trace
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: renholder-lifestory-mobile-ipad
-          path: |
-            reports/civication-renholder-lifestory-browser/
-            reports/civication-renholder-soel-browser/
+          name: renholder-mobile-ipad-${{ matrix.case }}
+          path: reports/civication-renholder-${{ matrix.case }}-browser/
           if-no-files-found: error
