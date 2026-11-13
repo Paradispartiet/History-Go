@@ -13,14 +13,12 @@ permissions:
   contents: read
 concurrency:
   group: schiollgarden-learning-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   learning:
     if: github.event_name == 'pull_request' && github.repository == 'Paradispartiet/History-Go' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'codex/schiollgarden-quiz-20261113'
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -58,22 +56,7 @@ jobs:
           node scripts/build-quiz-production-context.mjs --category by --target schiollgarden_prinsens_gate_26 --output data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json --check
       - name: Check committed generated outputs
         run: |
-          git diff --exit-code -- data/quiz/by/schiollgarden_prinsens_gate_26_sets.json data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json reports/knowledge-id-backfill.json
-      - name: Stage generated Knowledge blob without moving refs
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          node --input-type=module <<'JS'
-          import fs from 'node:fs';
-          import {execFileSync} from 'node:child_process';
-          const path='data/knowledge/knowledge_units.generated.json';
-          const expected=execFileSync('git',['hash-object',path],{encoding:'utf8'}).trim();
-          fs.writeFileSync('/tmp/schioll-knowledge-blob.json',JSON.stringify({content:fs.readFileSync(path).toString('base64'),encoding:'base64'}));
-          const blob=JSON.parse(execFileSync('gh',['api','--method','POST','repos/Paradispartiet/History-Go/git/blobs','--input','/tmp/schioll-knowledge-blob.json'],{encoding:'utf8'}));
-          if(blob.sha!==expected) throw Error('Knowledge blob hash mismatch');
-          console.log('SCHIOLL_KNOWLEDGE_BLOB '+blob.sha);
-          console.log('No ref was moved; integration requires an explicit expected-head lease.');
-          JS
+          git diff --exit-code -- data/quiz/by/schiollgarden_prinsens_gate_26_sets.json data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
       - run: npx playwright install --with-deps chromium
       - run: node tests/schiollgarden-learning-contract.test.mjs
       - run: node tests/schiollgarden-quizcard-browser.mjs
