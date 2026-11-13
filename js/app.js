@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Leksikon-hubben rendrer Wonderkammer-rader med data-wonderkammer-entry;
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
-    await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20261018-footer-actions2"));
+    await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20261113-people-illustration-label1"));
     await safeRun("loadPlaceCardReader", () => loadScriptOnce("js/ui/place-card-reader.js?v=20261102-visible-layout6"));
     await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20261027-about-image-inset1"));
     await safeRun("loadMicroPlaceCard", () => loadScriptOnce("js/ui/micro-place-card.js"));
