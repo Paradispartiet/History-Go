@@ -1,0 +1,80 @@
+{
+  "schema": "history_go_tjuvholmen_illustrated_people_visual_qa_v1",
+  "place_id": "tjuvholmen",
+  "reviewed_at": "2026-11-13",
+  "reference_policy": "Public source photos used only as reference for editorial assessment; not copied into the repository or reproduced as derived photos.",
+  "result": "ZERO_OF_THREE_ILLUSTRATIONS_APPROVED_FOR_PEOPLE_ACTIVATION",
+  "previous_pr": 7306,
+  "candidate_manifest": "reports/place-production/tjuvholmen-generated-people-illustration-candidates-20261112.json",
+  "qa_scope": "Review of v1 900x1200 images staged in GitHub quarantine; one newer locally exported Melgaard v2 pending asset import and separate identity approval",
+  "entries": [
+    {
+      "person_id": "bjarne_melgaard",
+      "v1_path": "bilder/kort/people/candidates/tjuvholmen/bjarne_melgaard_illustrasjon_v1.webp",
+      "v1_decision": "REJECT_FOR_ACTIVE_PERSON_PORTRAIT",
+      "reason": "In comparison with published Melgaard portraits, v1 has unsupported long swept-back hair, very heavy beard, decorative jacket, earrings and prominent neck tattoo; risks creating an unverified likeness.",
+      "reference_pages": [
+        "https://ropac.net/artists/61-bjarne-melgaard/",
+        "https://subjekt.no/2023/10/20/solgte-for-atte-millioner-pa-24-timer/"
+      ],
+      "alternative": {
+        "status": "NEW_LOCAL_V2_CANDIDATE_NOT_COMMITTED_NOT_IDENTITY_APPROVED",
+        "delivery_filename": "bjarne_melgaard_illustrasjon_v2_kandidat.webp",
+        "expected_staged_path": "bilder/kort/people/candidates/tjuvholmen/bjarne_melgaard_illustrasjon_v2.webp",
+        "dimensions": [
+          900,
+          1200
+        ],
+        "byte_size": 200640,
+        "sha256": "96cd6cd61ce0e827c11b23c1107a138e2821149b4e58871219dafa6a65d67e04",
+        "git_blob_sha_if_uploaded": "555687b24290abca310830397a7456bcd6ca0244",
+        "generation_id": "81d16c6d-ffe2-4d43-aa2e-91224e7e0291",
+        "note": "New original painted illustration has shorter cropped hair and an understated jacket. Still requires verified byte import, face review and visible 'Illustrasjon' label before publishing."
+      }
+    },
+    {
+      "person_id": "stephen_butkus",
+      "v1_path": "bilder/kort/people/candidates/tjuvholmen/stephen_butkus_illustrasjon_v1.webp",
+      "v1_decision": "HOLD_IDENTITY_REVIEW",
+      "reason": "Generic male illustration not verified as a recognizable portrait of photographer Stephen Butkus; must not be conflated with people who appear in photographs he made.",
+      "reference_pages": [
+        "https://styletalkmagazine.com/2019/02/24/norsk-fotograf-gjor-suksess-pa-bali/",
+        "https://www.othersmagazine.com/interview-stephen-butkus"
+      ],
+      "reference_note": "Styletalk credits Daniel Nærbø for photos of Stephen Butkus, but that photographer credit itself does not license photographic reuse."
+    },
+    {
+      "person_id": "hans_rasmus_astrup",
+      "v1_path": "bilder/kort/people/candidates/tjuvholmen/hans_rasmus_astrup_illustrasjon_v1.webp",
+      "v1_decision": "HOLD_IDENTITY_REVIEW",
+      "reason": "The v1 portrait conveys an elderly white-haired collector but lacks sufficient facial similarity to be certified as Hans Rasmus Astrup (1939–2021). Do not confuse with 19th-century politician.",
+      "reference_pages": [
+        "https://snl.no/Hans_Rasmus_Astrup",
+        "https://www.theartnewspaper.com/2021/04/26/hans-rasmus-astrupthe-intensely-private-founder-of-oslos-astrup-fearnley-museethas-died-aged-82"
+      ],
+      "identity_key": "art_collector_1939_2021",
+      "excluded_identity": "politician_Q1809560"
+    }
+  ],
+  "rejected_other_candidate": {
+    "kind": "generated_triptych_with_unsupported_names_and_biographical_data",
+    "status": "REJECTED_NEVER_COMMITTED",
+    "reason": "An exploratory triptych mislabeled Stephen Butkus as a property developer and applied false dates to Hans Rasmus Astrup. It must never enter History Go or be used as an identification source."
+  },
+  "publication_gates": {
+    "v1_illustrations_approved": 0,
+    "photographic_portraits_approved": 2,
+    "candidate_webps_already_committed": 3,
+    "new_v2_webps_committed": 0,
+    "people_image_links_changed": false,
+    "place_card_illustrations_active": 0,
+    "vferdig": "BLOCKED",
+    "require_before_activation": [
+      "Confirmed independently sourced likeness",
+      "Authentic binary file in git matching SHA-256",
+      "Asset metadata declaring illustration not photograph",
+      "Visible 'Illustrasjon' label in actual People UI",
+      "390px/1440px real PlaceCard browser QA"
+    ]
+  }
+}
