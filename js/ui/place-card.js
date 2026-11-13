@@ -1886,7 +1886,7 @@ if (peopleEl) {
       // eies av personpopupen og skal ikke brukes som teaser her.
       const personDesc = String(p.desc || "").trim();
       const personImage = String(p.cardImage || p.imageCard || p.image || "").trim();
-      const isIllustration = p?.imageMeta?.mediaType === "editorial_illustration" || p?.imageMeta?.source === "history_go_editorial_illustration";
+      const isIllustration = Boolean(personImage) && (p?.imageMeta?.assetKind === "illustration" || p?.imageKind === "illustration" || p?.imageMeta?.mediaType === "editorial_illustration" || p?.imageMeta?.source === "history_go_editorial_illustration");
       const imageAlt = isIllustration ? `Illustrasjon av ${p.name || "person"}` : (p.name || "");
 
       return `
@@ -1931,7 +1931,7 @@ window.HG_SocialDemoAdapter?.attachToPlaceCard?.(peopleEl || card, place);
 if (peopleIcon) {
   const p0 = persons?.find(person => person?.cardImage || person?.imageCard || person?.image) || persons?.[0];
   const previewImage = p0?.cardImage || p0?.imageCard || p0?.image || "";
-  const isIllustration = p0?.imageMeta?.mediaType === "editorial_illustration" || p0?.imageMeta?.source === "history_go_editorial_illustration";
+  const isIllustration = Boolean(previewImage) && (p0?.imageMeta?.assetKind === "illustration" || p0?.imageKind === "illustration" || p0?.imageMeta?.mediaType === "editorial_illustration" || p0?.imageMeta?.source === "history_go_editorial_illustration");
   const previewAlt = isIllustration ? `Illustrasjon av ${p0?.name || "person"}` : (p0?.name || "");
   setRoundPreview(peopleIcon, previewImage, previewAlt, "👥", persons.length);
 }
