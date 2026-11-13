@@ -119,7 +119,7 @@
       description:s(item.description || item.desc || item.summary || item.placeSpecificDetail || item.whatToNotice || item.whereToFind || item.why_here || item.why),
       image:imageFor(item),
       imageAlt:s(item.imageAlt || title),
-      imageKind:s(item.imageKind || item.imageMeta?.assetKind || item.imageMeta?.kind || (item.imageMeta?.mediaType === "editorial_illustration" ? "illustration" : "")),
+      imageKind:s(item.imageKind || item.imageMeta?.kind),
       imageCredit:s(item.imageMeta?.credit),
       imageLicense:s(item.imageMeta?.license),
       imageDisclosure:s(item.imageMeta?.disclosure),
@@ -474,7 +474,7 @@
       }).join("");
     }
     return items.length
-      ? items.map(item => `<button type="button" class="pc-person pc-visual-round-item" data-visual-round-item="${esc(item.id)}">${item.image ? `<img src="${esc(item.image)}" class="pc-person-img" alt="">` : ""}<span class="pc-person-meta"><span class="pc-person-name">${esc(item.title)}</span>${def.id === "people" && item.image && item.imageKind === "illustration" ? '<small class="pc-visual-people-image-kind">Illustrasjon</small>' : ""}${item.description ? `<span class="pc-person-desc">${esc(item.description)}</span>` : ""}</span></button>`).join("")
+      ? items.map(item => `<button type="button" class="pc-person pc-visual-round-item" data-visual-round-item="${esc(item.id)}">${item.image ? `<img src="${esc(item.image)}" class="pc-person-img" alt="">` : ""}<span class="pc-person-meta"><span class="pc-person-name">${esc(item.title)}</span>${item.description ? `<span class="pc-person-desc">${esc(item.description)}</span>` : ""}</span></button>`).join("")
       : `<div class="pc-empty">Ingen ${esc(def.label.toLowerCase())} registrert ennå</div>`;
   }
 
