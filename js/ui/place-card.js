@@ -424,13 +424,26 @@ function hidePlaceCardUntilReady() {
   }
 }
 
-function forcePlaceCardOpenState(card, placeId) {
+function forcePlaceCardOpenState(card, placeId, preserveCollapsed = false) {
   if (!card) return;
 
+  card.dataset.currentPlaceId = String(placeId || "").trim();
+  // Hydration and language changes can repaint the same place after a user
+  // minimizes it. Do not let that late repaint override an explicit collapse.
+  if (preserveCollapsed) {
+    card.classList.remove("is-open");
+    card.classList.add("is-collapsed");
+    card.setAttribute("aria-hidden", "true");
+    window.bottomSheetController?.hide?.();
+    setPlaceCardMiniVisible(true);
+    return;
+  }
+
+  document.body.classList.remove("pc-collapsed");
+  setPlaceCardMiniVisible(false);
   card.classList.remove("is-hidden", "is-collapsed");
   card.classList.add("is-open");
   card.setAttribute("aria-hidden", "false");
-  card.dataset.currentPlaceId = String(placeId || "").trim();
 
   if (window.bottomSheetController?.open) {
     window.bottomSheetController.open();
@@ -2712,7 +2725,8 @@ requestAnimationFrame(() => {
   card.classList.remove("is-switching");
 });
 
-forcePlaceCardOpenState(card, nextPlaceId);
+forcePlaceCardOpenState(card, nextPlaceId,
+  Boolean(samePlace && document.body.classList.contains("pc-collapsed")));
 window.__HG_LAST_FOOTER_PLACE = place;
 placeCardPerfMark(placeId, "first paint", pcStart);
 return true;
@@ -2829,7 +2843,7 @@ function bindFooterActionsOnce() {
         window.showToast?.("Kunne ikke åpne observasjonen.");
       });
     }
-  });
+  }, true); // Capture footer taps before other layers can stop bubbling.
 }
 bindFooterActionsOnce();
 
