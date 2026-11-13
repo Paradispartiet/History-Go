@@ -40,7 +40,7 @@ for(const [p,sha] of [
  ["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],
  ["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]
 ])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" original must remain byte-identical");
-assert.equal(reg.get("emne_fauna_graamaake"),null,"Gråmåke stays on existing SVG until its own approval");
+assert.equal(reg.get("emne_fauna_fiskemaake"),null,"Fiskemåke stays on SVG pending its own original");
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Approved fauna registry must use versioned URL");
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Stokkand")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));

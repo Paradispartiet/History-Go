@@ -308,17 +308,54 @@ try {
    }
    await context.close();
   }
-  // Gråmåke stays on the legacy SVG until the next species is approved.
+  // Gråmåke #9: individually approved adult gull, 390/1440px, black background, image-failure fallback.
+  for(const brokenHerring of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenHerring)await context.route("**/bilder/natur/fauna/godkjent/09_graamaake_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Gråmåke");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Gråmåke,/i}).first();
+   await card.waitFor();
+   if(brokenHerring){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Gråmåke: never substitute photographs");
+   } else {
+    const img=card.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("09_graamaake_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"graamaake-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenHerring){
+    await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   } else {
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Gråmåke detail fits viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"graamaake-detail-"+width+".png")});
+   }
+   await context.close();
+  }
+  // Fiskemåke stays on the legacy SVG until its own original is approved.
   const context=await browser.newContext({viewport:{width,height:900}});
   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
-  await page.locator("#natureSearch").fill("Gråmåke");
-  const next=page.locator("#natureGrid").getByRole("button",{name:/^Gråmåke,/i}).first();
+  await page.locator("#natureSearch").fill("Fiskemåke");
+  const next=page.locator("#natureGrid").getByRole("button",{name:/^Fiskemåke,/i}).first();
   await next.waitFor();
-  assert((await next.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Gråmåke retains SVG fallback");
+  assert((await next.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Fiskemåke retains SVG fallback");
   await context.close();
-  console.log("Finn Fauna 8 approved birds "+width+"px: WebP, black contain, failure fallback, dialog and SVG OK");
+  console.log("Finn Fauna 9 approved birds "+width+"px: WebP, black contain, failure fallback, dialog and SVG OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}

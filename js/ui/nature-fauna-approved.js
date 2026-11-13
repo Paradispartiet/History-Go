@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_graamaake:Object.freeze({
+   scientificName:"Larus argentatus",
+   src:"bilder/natur/fauna/godkjent/09_graamaake_v1.webp",
+   gitBlobSha:"775189e54b00b13a6859670401da027ebb766cc9",
+   reviewedAt:"2026-11-13",
+   stage:"adult_perched_and_flying_summer_pink_legs_red_gonys_spot",
+   evidence:"data/natur/fauna/illustration-quality-graamaake-20261113.json"
+  }),
   emne_fauna_stokkand:Object.freeze({
    scientificName:"Anas platyrhynchos",
    src:"bilder/natur/fauna/godkjent/08_stokkand_v1.webp",
