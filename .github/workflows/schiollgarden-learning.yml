@@ -13,7 +13,7 @@ permissions:
   contents: read
 concurrency:
   group: schiollgarden-learning-${{ github.event.pull_request.number }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   learning:
     if: github.event_name == 'pull_request' && github.repository == 'Paradispartiet/History-Go' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'codex/schiollgarden-quiz-20261113'
