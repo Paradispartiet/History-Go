@@ -2968,7 +2968,7 @@ function initPlaceCardCollapse() {
       collapsed = (localStorage.getItem("hg_placecard_collapsed_v1") === "1");
     } catch {}
 
-    if (collapsed) collapsePlaceCard(false);
+    if (collapsed) collapsePlaceCard(Boolean(pc.dataset.userCollapsedPlaceId && pc.dataset.userCollapsedPlaceId === currentPlaceId));
     else expandPlaceCard();
   }
 
