@@ -2848,6 +2848,19 @@ function bindFooterActionsOnce() {
 }
 bindFooterActionsOnce();
 
+// The mini preview may be replaced during PlaceCard hydration or language
+// rerenders. Bind through document capture instead of holding a stale node.
+if (!window.__HG_PC_MINI_DELEGATED_BOUND__) {
+  window.__HG_PC_MINI_DELEGATED_BOUND__ = true;
+  document.addEventListener("click", (event) => {
+    const mini = event.target instanceof Element ? event.target.closest("#pcMini") : null;
+    if (!mini) return;
+    event.preventDefault();
+    event.stopPropagation();
+    expandPlaceCard();
+  }, true);
+}
+
 // ============================================================
 // PLACE CARD – bottom sheet bridge (engine-controlled)
 // ============================================================
@@ -2993,14 +3006,6 @@ function initPlaceCardCollapse() {
     });
   }
 
-  const mini = document.getElementById("pcMini");
-  if (mini) {
-    mini.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      expandPlaceCard();
-    });
-  }
 }
 
 window.initPlaceCardCollapse = initPlaceCardCollapse;
