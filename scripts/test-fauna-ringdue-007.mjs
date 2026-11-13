@@ -27,7 +27,7 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0,"Transparent WebP required");
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const env={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),env);
-const reg=env.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,7);
+const reg=env.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=7,"Ringdue must remain approved after later Fauna species");
 assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,latin);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
 for(const [p,sha] of [
  ["emne_fauna_kjottmeis","3cb439a66db0b59072f13413fd9d2b2c01e4d816"],
@@ -37,7 +37,7 @@ for(const [p,sha] of [
  ["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],
  ["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]
 ])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" preserved original");
-assert.equal(reg.get("emne_fauna_stokkand"),null,"Stokkand keeps original SVG until individually approved");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261112-07"));
+assert.equal(reg.get("emne_fauna_stokkand")?.gitBlobSha,"b16e4e48f6264a0a318f2b20128bc8d2e559505c","Stokkand adds a new original without replacing Ringdue");
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Approved fauna registry must use versioned URL");
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #7 Ringdue: approved binary, bird identity, quiz, seven originals and SVG fallback verified.");
