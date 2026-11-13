@@ -38,7 +38,15 @@ for (const id of ["bjarne_melgaard","stephen_butkus","hans_rasmus_astrup"]) {
 assert.equal(audit.approved.length,2);
 assert.equal(manifest.new_published_portrait_count,0);
 assert.equal(visual.publication_gates.place_card_illustrations_active,0);
-assert.equal(visual.entries[0].additional_candidate_v3.status,"NEW_LOCAL_V3_CANDIDATE_NOT_COMMITTED_NOT_IDENTITY_APPROVED");
+assert.equal(visual.entries[0].additional_candidate_v3.status,"STAGED_IN_GIT_NOT_IDENTITY_APPROVED_NOT_ACTIVE");
+const v3=visual.entries[0].additional_candidate_v3;
+const v3Bytes=fs.readFileSync(v3.staged_path);
+assert.equal(v3Bytes.length,189842);
+assert.equal((await import("node:crypto")).createHash("sha256").update(v3Bytes).digest("hex"),v3.sha256);
+assert.equal(v3Bytes.toString("ascii",0,4),"RIFF");
+assert.equal(v3Bytes.toString("ascii",8,12),"WEBP");
+assert.equal(v3Bytes.toString("ascii",12,16),"VP8 ");
+assert.deepEqual([v3Bytes.readUInt16LE(26)&0x3fff,v3Bytes.readUInt16LE(28)&0x3fff],[900,1200]);
 assert.equal(visual.entries[0].additional_candidate_v3.sha256,"e287e2b2db58b38a6187a24b2c74ebe7175316fea5ce1dbc9c5eba1e036b81b1");
 assert.equal(parse("reports/place-production/tjuvholmen-workcard-current.json").vferdig.status,"BLOCKED");
-console.log("TJUVHOLMEN_ILLUSTRATION_UI_DISCLOSURE_PASS: assetKind supported; visual labels required; 0 People candidates activated");
+console.log("TJUVHOLMEN_ILLUSTRATION_UI_DISCLOSURE_PASS: v3 bytes, 900x1200, SHA256 verified; visual labels required; 0 People candidates activated");
