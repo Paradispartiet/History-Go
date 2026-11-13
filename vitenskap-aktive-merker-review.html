@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<style>html:not(.hg-auth-verified) body { visibility: hidden !important; }</style>
+<script src="js/aha.js"></script>
+<script src="js/auth/require-login.js?v=20261027-1"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>History Go – Vitenskap: skrift og merker</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#131022;color:#f4f0ff}
+*{box-sizing:border-box}
+body{margin:0}
+main{max-width:1160px;margin:0 auto;padding:clamp(14px,4vw,38px)}
+h1{font-size:clamp(25px,4vw,36px);margin:0 0 10px;line-height:1.18}
+h2{font-size:18px;margin:0}
+p{margin:0 0 13px}
+.intro{max-width:850px;color:#ded6ee}
+.notice{padding:0 0 0 13px;border-left:3px solid #a389ff;color:#ddd6f2;margin:17px 0}
+.controls{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:20px 0}
+.controls label{display:grid;gap:5px;font-size:14px;font-weight:650}
+select{padding:10px 12px;min-height:44px;border:1px solid #8373aa;background:#29203f;color:#fff;border-radius:8px;font:inherit}
+.summary{font-size:14px;color:#e4d8ff}
+#cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,350px),1fr));gap:15px}
+article{background:#211a36;border:1px solid #554572;border-radius:13px;padding:17px;min-width:0}
+article.high{border-color:#dbb261}
+.tag{font-size:12px;font-weight:700;border:1px solid #b69dd8;padding:3px 8px;border-radius:100px;color:#ebdfff;display:inline-block}
+article.high .tag{border-color:#d6aa56;color:#fbe3a1}
+h2{margin:9px 0 2px;overflow-wrap:anywhere}
+.id{font-size:12px;color:#c1b4db;overflow-wrap:anywhere}
+.image-area{display:flex;gap:22px;align-items:center;overflow-x:auto;padding:17px 0 8px}
+.figure{flex:0 0 auto;text-align:center}
+.figure img{width:var(--primary-size,160px);height:var(--primary-size,160px);object-fit:contain;display:block;margin:0 auto}
+.figure.small img{width:38px;height:38px}
+.figure figcaption{font-size:12px;color:#ddd0fa;padding-top:6px}
+.figure button{cursor:pointer;background:#352749;color:#fff;border:1px solid #8d79b1;border-radius:7px;padding:8px 10px;font:inherit;min-height:38px}
+.requirement{font-size:13px;line-height:1.5;color:#ddd4ec;margin:8px 0 0}
+.requirement strong{color:#fff}
+.flag{color:#ffdf9c}
+footer{font-size:13px;color:#c1b2d8;border-top:1px solid #51436e;padding:22px 0;margin-top:28px}
+dialog{color:#fff;background:#211a36;border:1px solid #a386db;border-radius:12px;padding:17px;max-height:95dvh;width:min(95vw,960px)}
+dialog::backdrop{background:rgba(0,0,0,.86)}
+dialog img{width:min(82vw,820px);max-height:78dvh;height:auto;object-fit:contain;display:block;margin:10px auto}
+.dialog-bar{display:flex;align-items:center;justify-content:space-between;gap:14px}
+button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #e5d2ff;outline-offset:3px}
+a{color:#d2bbff}
+@media(max-width:420px){.image-area{gap:11px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Vitenskap – skriftkontroll av alle aktive merker</h1>
+<p class="intro">Her er alle de 16 faktiske WebP-merkene fra hovedregisteret. Sammenlign lesbarhet ved mobilens 38 px og større størrelser, og se om begge kategorititlene er synlige. Bildene hentes direkte fra History Go-repoet.</p>
+<p class="notice"><strong>Ingen endring av merker.</strong> Tre originaler har manglende eller ufullstendig hovedkategorinavn nederst. De er markert for ny illustrasjon, men er ikke erstattet. Fullstendig kategorinavn skal alltid stå nederst på selve merket: <strong>VITENSKAP &amp; TEKNOLOGI</strong>.</p>
+</header>
+<div class="controls">
+<label>Vis
+<select id="filter" aria-label="Filtrer merker"><option value="high">Tre merker som må revideres</option><option value="all">Alle 16 merker</option><option value="review">Andre merker til lesbarhetsvurdering</option></select>
+</label>
+<label>Størrelse på hovedbilde
+<select id="size" aria-label="Størrelse på hovedbilde"><option value="38">38 px (mobil PlaceCard)</option><option value="52">52 px (desktop PlaceCard)</option><option value="96">96 px</option><option value="160" selected>160 px</option><option value="320">320 px</option></select>
+</label>
+</div>
+<p class="summary" id="summary" role="status">Henter de aktive merkene …</p>
+<section id="cards" aria-label="Aktive Vitenskap-merker"></section>
+<dialog id="zoom" aria-label="Åpne merke i full størrelse">
+<div class="dialog-bar"><strong id="zoom-label"></strong><button type="button" id="zoom-close">Lukk</button></div>
+<img id="zoom-image" alt="" width="1024" height="1024">
+</dialog>
+<footer>Dette er en manuell visuell gjennomgang, ikke en automatisert skriftgjenkjenning. Topptekst kan bli uleselig ved 38 px selv når originalen er korrekt. Full kategoriidentitet må dessuten være tilgjengelig som vanlig tekst i PlaceCard.</footer>
+</main>
+<script>
+'use strict';
+(() => {
+  const $ = id => document.getElementById(id);
+  const frame = $('cards');
+  let items = [];
+
+  function figure(source, label, sizeClass, item) {
+    const f = document.createElement('figure');
+    f.className = 'figure' + (sizeClass === 'small' ? ' small' : '');
+    const im = document.createElement('img');
+    im.src = source;
+    im.alt = item.label + ', aktivt brodert undermerke';
+    im.loading = 'lazy';
+    im.decoding = 'async';
+    const cap = document.createElement('figcaption');
+    cap.textContent = label;
+    f.append(im,cap);
+    if (sizeClass !== 'small') {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = 'Forstørr';
+      button.addEventListener('click', () => {
+        $('zoom-label').textContent = item.label;
+        $('zoom-image').src = source;
+        $('zoom-image').alt = im.alt;
+        $('zoom').showModal();
+      });
+      f.append(button);
+    }
+    return f;
+  }
+
+  function render() {
+    const wanted = $('filter').value;
+    const shown = items.filter(item =>
+      wanted === 'all' || (wanted === 'high' ? item.priority === 'high' : item.priority !== 'high'));
+    frame.replaceChildren();
+    frame.style.setProperty('--primary-size',$('size').value + 'px');
+    $('summary').textContent = shown.length + ' av 16 merker vises. ' +
+      items.filter(item => item.priority === 'high').length + ' har manglende eller ufullstendig hovedkategoritekst.';
+    for (const item of shown) {
+      const article = document.createElement('article');
+      article.className = item.priority === 'high' ? 'high' : '';
+      const label = document.createElement('span');
+      label.className = 'tag';
+      label.textContent = item.priority === 'high' ? 'Må tegnes på nytt' : 'Lesbarhetsvurdering';
+      const title = document.createElement('h2');
+      title.textContent = item.label;
+      const id = document.createElement('div');
+      id.className = 'id';
+      id.textContent = item.id;
+      const media = document.createElement('div');
+      media.className = 'image-area';
+      media.append(figure(item.image, 'Valgt størrelse', 'normal', item),
+                   figure(item.image, '38 px PlaceCard', 'small', item));
+      const requirement = document.createElement('p');
+      requirement.className = 'requirement';
+      const status = document.createElement('strong');
+      status.textContent = item.footerStatus === 'complete' ? 'Nedre tekst: fullstendig.' :
+        item.footerStatus === 'partial' ? 'Nedre tekst: ufullstendig.' : 'Nedre tekst: mangler.';
+      if (item.footerStatus !== 'complete') status.className = 'flag';
+      requirement.append(status, ' ' + item.notes);
+      article.append(label,title,id,media,requirement);
+      frame.append(article);
+    }
+  }
+  $('zoom-close').addEventListener('click', () => $('zoom').close());
+  $('zoom').addEventListener('close', () => $('zoom-image').removeAttribute('src'));
+  ['filter','size'].forEach(id => $(id).addEventListener('change', render));
+
+  Promise.all([
+    fetch('data/badges/vitenskap.json',{cache:'no-store'}),
+    fetch('data/badges/vitenskap_active_typography_audit_20261113.json',{cache:'no-store'})
+  ].map(async request => {
+    const response = await request;
+    if (!response.ok) throw Error('HTTP ' + response.status);
+    return response.json();
+  })).then(([catalog,audit]) => {
+    if (catalog.id !== 'vitenskap' || audit.categoryId !== 'vitenskap' ||
+        audit.status !== 'manual_visual_audit_unapproved_not_activating' ||
+        audit.items.length !== 16) throw Error('Kontrollmanifest er ugyldig');
+    for (const item of audit.items) {
+      if (catalog.subBadgeImages[item.id] !== item.image) throw Error('Merkeavvik: ' + item.id);
+    }
+    items = audit.items;
+    render();
+  }).catch(err => {
+    $('summary').textContent = 'Kunne ikke hente merkelisten: ' + String(err);
+  });
+})();
+</script>
+</body>
+</html>
