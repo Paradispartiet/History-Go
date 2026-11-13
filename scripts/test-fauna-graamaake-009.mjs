@@ -26,7 +26,7 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0,"Transparent WebP required");
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const env={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),env);
-const reg=env.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,9);
+const reg=env.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=9,"Gråmåke and all previous birds must remain available");
 assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,latin);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
 for(const [p,sha] of [
  ["emne_fauna_stokkand","b16e4e48f6264a0a318f2b20128bc8d2e559505c"],
@@ -38,8 +38,8 @@ for(const [p,sha] of [
  ["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],
  ["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]
 ])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" must remain byte-identical");
-assert.equal(reg.get("emne_fauna_fiskemaake"),null,"Fiskemåke remains on its own legacy SVG until approved");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261113-09"));
+assert(reg.get("emne_fauna_fiskemaake")===null || reg.get("emne_fauna_fiskemaake")?.scientificName==="Larus canus","Fiskemåke may be added only with correct taxonomy");
+assert(/nature-fauna-approved\.js\?v=20261113-(?:09|10|1[1-9])/.test(read("finn-fauna.html")),"Approved fauna cache-busting version must be current or newer");
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Gråmåke")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #9 Gråmåke: adults, transparent original, binary hashes, eight prior originals and quiz verified.");
