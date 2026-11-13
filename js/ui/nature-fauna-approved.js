@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_fiskemaake:Object.freeze({
+   scientificName:"Larus canus",
+   src:"bilder/natur/fauna/godkjent/10_fiskemaake_v1.webp",
+   gitBlobSha:"6a0895456fbd3d990c291b1c14f108b1695d0494",
+   reviewedAt:"2026-11-13",
+   stage:"adult_perched_and_flying_yellow_green_legs_dark_eyes_no_red_bill_spot",
+   evidence:"data/natur/fauna/illustration-quality-fiskemaake-20261113.json"
+  }),
   emne_fauna_graamaake:Object.freeze({
    scientificName:"Larus argentatus",
    src:"bilder/natur/fauna/godkjent/09_graamaake_v1.webp",
