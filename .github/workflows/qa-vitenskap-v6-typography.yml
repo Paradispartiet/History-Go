@@ -3,6 +3,11 @@ on:
   pull_request:
     paths:
       - 'scripts/revise-vitenskap-v6-typography.py'
+      - 'scripts/archive-vitenskap-v6-typography.py'
+      - 'tests/vitenskap-v6-typography-archive.test.mjs'
+      - 'data/badges/vitenskap_v6_typography_candidates_20261113.json'
+      - 'bilder/merker/vitenskap/kandidater/revisjoner/*/*-v6-two-line.webp'
+      - 'bilder/merker/vitenskap/kandidater/contact-sheet-v6-larger-typography.jpg'
       - '.github/workflows/qa-vitenskap-v6-typography.yml'
       - 'data/badges/vitenskap_v5_candidates_20261112.json'
       - 'data/badges/vitenskap_v2_localization_20261112.json'
@@ -17,6 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check archived v6 WebPs and unchanged active badge registry
+        run: node --test tests/vitenskap-v6-typography-archive.test.mjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
