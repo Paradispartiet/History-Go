@@ -3006,6 +3006,16 @@ function initPlaceCardCollapse() {
     });
   }
 
+  // Direct fallback remains for legacy/isolated controller instances.
+  // Document capture above handles real remounted footer thumbnails first.
+  const mini = document.getElementById("pcMini");
+  if (mini) {
+    mini.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      expandPlaceCard();
+    });
+  }
 }
 
 window.initPlaceCardCollapse = initPlaceCardCollapse;
