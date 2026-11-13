@@ -6,6 +6,9 @@ on:
       - 'data/quiz/by/schiollgarden_prinsens_gate_26_sets.json'
       - 'data/quiz/production_briefs/by/schiollgarden_prinsens_gate_26.json'
       - 'data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json'
+      - 'data/quizcards/by/schiollgarden_prinsens_gate_26_quizcard_v1.json'
+      - 'tests/schiollgarden-quizcard-browser.mjs'
+      - 'tests/schiollgarden-learning-contract.test.mjs'
 permissions:
   contents: read
 concurrency:
@@ -15,7 +18,7 @@ jobs:
   learning:
     if: github.event_name == 'pull_request' && github.repository == 'Paradispartiet/History-Go' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'codex/schiollgarden-quiz-20261113'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     permissions:
       contents: write
     steps:
@@ -58,22 +61,33 @@ jobs:
           npm run audit:quiz-theory-binding
           npm run test:quiz-content-audit
           node scripts/build-quiz-production-context.mjs --category by --target schiollgarden_prinsens_gate_26 --output data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json --check
-      - name: Export generated blobs for leased connector integration
+      - name: Check committed generated outputs
+        run: |
+          git diff --exit-code -- data/quiz/by/schiollgarden_prinsens_gate_26_sets.json data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json reports/knowledge-id-backfill.json
+      - name: Stage generated Knowledge blob without moving refs
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           node --input-type=module <<'JS'
           import fs from 'node:fs';
           import {execFileSync} from 'node:child_process';
-          const names=[...new Set([...execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n'),...execFileSync('git',['ls-files','--others','--exclude-standard'],{encoding:'utf8'}).trim().split('\n')])].filter(Boolean);
-          const allowed=/^(data\/quiz\/(by\/schiollgarden_prinsens_gate_26_sets|production_context\/by\/schiollgarden_prinsens_gate_26)\.json|data\/knowledge\/[a-z_]+\.generated\.json|data\/runtime\/place-open\/schiollgarden_prinsens_gate_26\.json|reports\/knowledge-(id-backfill|contract-audit|universe-readers)\.json)$/;
-          const files=names.filter(p=>!p.startsWith('artifacts/'));
-          for(const p of files) if(!allowed.test(p)) throw Error('Unexpected generated change: '+p);
-          for(const p of files){
-            const bytes=fs.readFileSync(p);
-            fs.writeFileSync('/tmp/hg-generated-blob.json',JSON.stringify({content:bytes.toString('base64'),encoding:'base64'}));
-            const blob=JSON.parse(execFileSync('gh',['api','--method','POST','repos/Paradispartiet/History-Go/git/blobs','--input','/tmp/hg-generated-blob.json'],{encoding:'utf8',maxBuffer:1024*1024}));
-            console.log('HG_GENERATED_BLOB '+JSON.stringify({path:p,sha:blob.sha,bytes:bytes.length}));
-          }
-          console.log('No branch or main ref was moved. Generated blobs require connector integration with an expected head SHA.');
+          const path='data/knowledge/knowledge_units.generated.json';
+          const expected=execFileSync('git',['hash-object',path],{encoding:'utf8'}).trim();
+          fs.writeFileSync('/tmp/schioll-knowledge-blob.json',JSON.stringify({content:fs.readFileSync(path).toString('base64'),encoding:'base64'}));
+          const blob=JSON.parse(execFileSync('gh',['api','--method','POST','repos/Paradispartiet/History-Go/git/blobs','--input','/tmp/schioll-knowledge-blob.json'],{encoding:'utf8'}));
+          if(blob.sha!==expected) throw Error('Knowledge blob hash mismatch');
+          console.log('SCHIOLL_KNOWLEDGE_BLOB '+blob.sha);
+          console.log('No ref was moved; integration requires an explicit expected-head lease.');
           JS
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/schiollgarden-learning-contract.test.mjs
+      - run: node tests/schiollgarden-quizcard-browser.mjs
+      - run: node scripts/verify-place-quiz-browser.mjs schiollgarden_prinsens_gate_26 --ipad
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: schiollgarden-learning-browser
+          path: |
+            artifacts/schiollgarden-quizcard-browser
+            artifacts/place-quiz/schiollgarden_prinsens_gate_26
+          if-no-files-found: warn

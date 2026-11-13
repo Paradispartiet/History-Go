@@ -2,42 +2,12 @@
   "targetId": "schiollgarden_prinsens_gate_26",
   "categoryId": "by",
   "sources": {
-    "archive": {
-      "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
-      "source_type": "institutional_archive",
-      "review_status": "reviewed",
-      "review_note": "Stortingsarkivet, sider 1, 4 og 5: kjøp, kontorbehov, arkitekter og konditori. Oppføring skilles fra senere kjøp og ombygging."
-    },
-    "heritage": {
-      "url": "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/",
-      "source_type": "heritage_organization",
-      "review_status": "reviewed",
-      "review_note": "Rev mindre bygårder, Norsk monumentalarkitektur og Grenseløs overflod: to leiegårder, kapasitet og Østerskjelleren. Keiserhistorien gjelder et annet konditori og brukes ikke."
-    },
-    "municipal": {
-      "url": "https://www.oppdagkvadraturen.no/stoppesteder/stortingsrepresentantene",
-      "source_type": "official_municipal",
-      "review_status": "reviewed",
-      "review_note": "Ingress og Hvor bodde de første stortingsmennene: Hals/Borchsenius og revet forgjengerhus."
-    },
-    "project": {
-      "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/",
-      "source_type": "official_project_report",
-      "review_status": "reviewed",
-      "review_note": "Sluttmelding 29.11.2019: bevart fasade, moderne indre, teknisk etasje og mottak. Historisk prosjektstatus, ikke befaring i 2026."
-    },
-    "charter": {
-      "url": "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf",
-      "source_type": "professional_charter",
-      "review_status": "reviewed",
-      "review_note": "Artikkel 9, 11 og 16. Normative verneprinsipper, ikke bevis for at Schiøllgården oppfyller charteret."
-    },
-    "riegl": {
-      "url": "https://diglib.tugraz.at/der-moderne-denkmalkultus-1903",
-      "source_type": "digitized_primary_work",
-      "review_status": "reviewed",
-      "review_note": "TU Graz: forfatter, år og originalverkets kapittelinndeling mellom aldersverdi, historisk verdi og bruksverdi. Ikke brukt som biografikilde om Schiøllgården."
-    }
+    "archive": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+    "heritage": "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/",
+    "municipal": "https://www.oppdagkvadraturen.no/stoppesteder/stortingsrepresentantene",
+    "project": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/",
+    "charter": "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf",
+    "riegl": "https://diglib.tugraz.at/der-moderne-denkmalkultus-1903"
   },
   "production_context": {
     "manifest_category": "by",
@@ -87,9 +57,10 @@
     "method_start_phase": "final",
     "existing_quiz_audit": {
       "searched_paths": [
-        "data/quiz/manifest.json",
-        "data/fag/fag_manifest.json#by.quizProduction.targets",
-        "GitHub default-branch code search: schiollgarden"
+        "data/quiz/** at baseline 204744a1cd201bee08c712ac91d30d1fb1cb27da (active, archived and alternate JSON)",
+        "data/knowledge/** at same baseline",
+        "data/quizcards/** at same baseline",
+        "bilder/QuizCards/** filenames"
       ],
       "active_before": {
         "files": [],
@@ -99,10 +70,10 @@
       "decisions": [
         {
           "action": "create",
-          "reason": "Ingen aktiv manifestoppføring eller tidligere registrert produksjonsmål. Arkiv-/Knowledge-scan kjøres i sikringsjobben før pakken kan godkjennes."
+          "reason": "Full baseline content scan found no target/name match in quiz or Knowledge. No dedicated QuizCard or prior registered target found."
         }
       ],
-      "knowledge_migration": "Ingen eksisterende spørsmål eller KU-ID-er overskrives. Canonical builder skal opprette koblinger fra de nye spørsmålene."
+      "knowledge_migration": "22 nye kildekoblede Knowledge-enheter, 0 eksisterende enheter endret; ingen gamle quiz-ID-er eller KU-ID-er erstattes."
     },
     "profile_decision": {
       "profile": "narrow",
@@ -157,7 +128,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_1",
-          "claim_basis": "Henrik Nissen tegnet gården; Christian Reuter tegnet det senere mansardpåbygget."
+          "claim_basis": "Henrik Nissen tegnet gården; Christian Reuter tegnet det senere mansardpåbygget.",
+          "primary_knowledge_unit_id": "ku_by_henrik_nissen_tegnet_gar_0acebb341e",
+          "knowledge_unit_ids": [
+            "ku_by_henrik_nissen_tegnet_gar_0acebb341e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf"
+          ],
+          "sources": [
+            {
+              "title": "Stortingsarkivet – byggekomiteenes historikk",
+              "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+              "source_type": "institutional_archive",
+              "claim_basis": "Henrik Nissen tegnet gården; Christian Reuter tegnet det senere mansardpåbygget."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_2",
@@ -183,7 +173,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_2",
-          "claim_basis": "Oscar Schjøll var byggherre for gården som ble reist i 1881."
+          "claim_basis": "Oscar Schjøll var byggherre for gården som ble reist i 1881.",
+          "primary_knowledge_unit_id": "ku_by_oscar_schj_ll_var_bygghe_1302d66e41",
+          "knowledge_unit_ids": [
+            "ku_by_oscar_schj_ll_var_bygghe_1302d66e41"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf"
+          ],
+          "sources": [
+            {
+              "title": "Stortingsarkivet – byggekomiteenes historikk",
+              "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+              "source_type": "institutional_archive",
+              "claim_basis": "Oscar Schjøll var byggherre for gården som ble reist i 1881."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_3",
@@ -209,7 +218,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_3",
-          "claim_basis": "To leiegårder med hvert sitt gårdsrom lå bak en felles, symmetrisk fasade."
+          "claim_basis": "To leiegårder med hvert sitt gårdsrom lå bak en felles, symmetrisk fasade.",
+          "primary_knowledge_unit_id": "ku_by_to_leiegarder_med_hvert__98ab8a4ba2",
+          "knowledge_unit_ids": [
+            "ku_by_to_leiegarder_med_hvert__98ab8a4ba2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/"
+          ],
+          "sources": [
+            {
+              "title": "Fortidsminneforeningen – Halvorsens Conditori",
+              "url": "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/",
+              "source_type": "heritage_organization",
+              "claim_basis": "To leiegårder med hvert sitt gårdsrom lå bak en felles, symmetrisk fasade."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_4",
@@ -235,7 +263,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_4",
-          "claim_basis": "Hans Halvorsen åpnet konditoriet i 1881, i den nye leiegården."
+          "claim_basis": "Hans Halvorsen åpnet konditoriet i 1881, i den nye leiegården.",
+          "primary_knowledge_unit_id": "ku_by_hans_halvorsen_apnet_kon_7d91b250c5",
+          "knowledge_unit_ids": [
+            "ku_by_hans_halvorsen_apnet_kon_7d91b250c5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf"
+          ],
+          "sources": [
+            {
+              "title": "Stortingsarkivet – byggekomiteenes historikk",
+              "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+              "source_type": "institutional_archive",
+              "claim_basis": "Hans Halvorsen åpnet konditoriet i 1881, i den nye leiegården."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_5",
@@ -261,7 +308,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_5",
-          "claim_basis": "Det historiske konditoriet hadde plass til opptil 150 gjester; tallet beskriver ikke dagens sitteplasser."
+          "claim_basis": "Det historiske konditoriet hadde plass til opptil 150 gjester; tallet beskriver ikke dagens sitteplasser.",
+          "primary_knowledge_unit_id": "ku_by_det_historiske_konditori_ba5abcbfff",
+          "knowledge_unit_ids": [
+            "ku_by_det_historiske_konditori_ba5abcbfff"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/"
+          ],
+          "sources": [
+            {
+              "title": "Fortidsminneforeningen – Halvorsens Conditori",
+              "url": "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/",
+              "source_type": "heritage_organization",
+              "claim_basis": "Det historiske konditoriet hadde plass til opptil 150 gjester; tallet beskriver ikke dagens sitteplasser."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_6",
@@ -287,7 +353,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_6",
-          "claim_basis": "Christian Reuter tegnet mansardetasjen i 1899; den var ikke del av husets første utforming."
+          "claim_basis": "Christian Reuter tegnet mansardetasjen i 1899; den var ikke del av husets første utforming.",
+          "primary_knowledge_unit_id": "ku_by_christian_reuter_tegnet__eb3c379dc7",
+          "knowledge_unit_ids": [
+            "ku_by_christian_reuter_tegnet__eb3c379dc7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf"
+          ],
+          "sources": [
+            {
+              "title": "Stortingsarkivet – byggekomiteenes historikk",
+              "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+              "source_type": "institutional_archive",
+              "claim_basis": "Christian Reuter tegnet mansardetasjen i 1899; den var ikke del av husets første utforming."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_7",
@@ -313,7 +398,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_7",
-          "claim_basis": "Huset hadde fire etasjer før mansardpåbygget ga det en femte."
+          "claim_basis": "Huset hadde fire etasjer før mansardpåbygget ga det en femte.",
+          "primary_knowledge_unit_id": "ku_by_huset_hadde_fire_etasjer_b71868acb6",
+          "knowledge_unit_ids": [
+            "ku_by_huset_hadde_fire_etasjer_b71868acb6"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf"
+          ],
+          "sources": [
+            {
+              "title": "Stortingsarkivet – byggekomiteenes historikk",
+              "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+              "source_type": "institutional_archive",
+              "claim_basis": "Huset hadde fire etasjer før mansardpåbygget ga det en femte."
+            }
+          ]
         }
       ]
     },
@@ -348,7 +452,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_8",
-          "claim_basis": "Laurentius Borchsenius representerte Akershus og bodde i den eldre bebyggelsen på adressen."
+          "claim_basis": "Laurentius Borchsenius representerte Akershus og bodde i den eldre bebyggelsen på adressen.",
+          "primary_knowledge_unit_id": "ku_by_laurentius_borchsenius_r_5e890dcbe4",
+          "knowledge_unit_ids": [
+            "ku_by_laurentius_borchsenius_r_5e890dcbe4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/stortingsrepresentantene"
+          ],
+          "sources": [
+            {
+              "title": "Oslo kommune – Stortingsmennene i byen",
+              "url": "https://www.oppdagkvadraturen.no/stoppesteder/stortingsrepresentantene",
+              "source_type": "official_municipal",
+              "claim_basis": "Laurentius Borchsenius representerte Akershus og bodde i den eldre bebyggelsen på adressen."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_9",
@@ -374,7 +497,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_9",
-          "claim_basis": "Jomfru Hals leide ut rom til Borchsenius; private utleiere skaffet representantene losji."
+          "claim_basis": "Jomfru Hals leide ut rom til Borchsenius; private utleiere skaffet representantene losji.",
+          "primary_knowledge_unit_id": "ku_by_jomfru_hals_leide_ut_rom_616de6b728",
+          "knowledge_unit_ids": [
+            "ku_by_jomfru_hals_leide_ut_rom_616de6b728"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/stortingsrepresentantene"
+          ],
+          "sources": [
+            {
+              "title": "Oslo kommune – Stortingsmennene i byen",
+              "url": "https://www.oppdagkvadraturen.no/stoppesteder/stortingsrepresentantene",
+              "source_type": "official_municipal",
+              "claim_basis": "Jomfru Hals leide ut rom til Borchsenius; private utleiere skaffet representantene losji."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_10",
@@ -383,24 +525,43 @@
           "placeId": "schiollgarden_prinsens_gate_26",
           "targetId": "schiollgarden_prinsens_gate_26",
           "question_scope": "place",
-          "question": "Hva skjedde med huset der Borchsenius bodde?",
+          "question": "Hvorfor kan ikke Borchsenius’ losji fra 1815–1816 ha vært et rom i dagens Schiøllgård?",
           "options": [
-            "Det ble flyttet til Wessels plass",
-            "Det ble revet før Schiøllgården ble reist",
-            "Det ble bygd inn i mansardetasjen"
+            "Losjiet ble flyttet til kjelleren ved mansardpåbygget",
+            "Losjihuset ble revet før dagens gård ble oppført",
+            "Losjiet var et midlertidig rom i et uferdig nybygg"
           ],
-          "answer": "Det ble revet før Schiøllgården ble reist",
+          "answer": "Losjihuset ble revet før dagens gård ble oppført",
           "answerIndex": 1,
           "knowledge": "Losjihuset ble revet før gården fra 1881; samme adresse betyr ikke samme bygning.",
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "context",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
             "municipal"
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_10",
-          "claim_basis": "Losjihuset ble revet før gården fra 1881; samme adresse betyr ikke samme bygning."
+          "claim_basis": "Losjihuset ble revet før gården fra 1881; samme adresse betyr ikke samme bygning.",
+          "primary_knowledge_unit_id": "ku_by_losjihuset_ble_revet_f_r_9fc0d7210c",
+          "knowledge_unit_ids": [
+            "ku_by_losjihuset_ble_revet_f_r_9fc0d7210c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://www.oppdagkvadraturen.no/stoppesteder/stortingsrepresentantene"
+          ],
+          "sources": [
+            {
+              "title": "Oslo kommune – Stortingsmennene i byen",
+              "url": "https://www.oppdagkvadraturen.no/stoppesteder/stortingsrepresentantene",
+              "source_type": "official_municipal",
+              "claim_basis": "Losjihuset ble revet før gården fra 1881; samme adresse betyr ikke samme bygning."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_11",
@@ -426,7 +587,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_11",
-          "claim_basis": "Østerskjelleren lå i kjelleren frem til 1950-årene og var ikke selve konditoriet."
+          "claim_basis": "Østerskjelleren lå i kjelleren frem til 1950-årene og var ikke selve konditoriet.",
+          "primary_knowledge_unit_id": "ku_by_sterskjelleren_la_i_kjel_9cf5ecd94c",
+          "knowledge_unit_ids": [
+            "ku_by_sterskjelleren_la_i_kjel_9cf5ecd94c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/"
+          ],
+          "sources": [
+            {
+              "title": "Fortidsminneforeningen – Halvorsens Conditori",
+              "url": "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/",
+              "source_type": "heritage_organization",
+              "claim_basis": "Østerskjelleren lå i kjelleren frem til 1950-årene og var ikke selve konditoriet."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_12",
@@ -452,7 +632,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_12",
-          "claim_basis": "Kjøpet skjedde 2. juni 1972; senere ombygging må dateres for seg."
+          "claim_basis": "Kjøpet skjedde 2. juni 1972; senere ombygging må dateres for seg.",
+          "primary_knowledge_unit_id": "ku_by_kj_pet_skjedde_2_juni_19_3c0fd6f3e2",
+          "knowledge_unit_ids": [
+            "ku_by_kj_pet_skjedde_2_juni_19_3c0fd6f3e2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf"
+          ],
+          "sources": [
+            {
+              "title": "Stortingsarkivet – byggekomiteenes historikk",
+              "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+              "source_type": "institutional_archive",
+              "claim_basis": "Kjøpet skjedde 2. juni 1972; senere ombygging må dateres for seg."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_13",
@@ -478,7 +677,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_13",
-          "claim_basis": "Representanter, komiteer og administrasjon trengte flere kontorrom; dette ble undersøkt av Kontorplassutvalget."
+          "claim_basis": "Representanter, komiteer og administrasjon trengte flere kontorrom; dette ble undersøkt av Kontorplassutvalget.",
+          "primary_knowledge_unit_id": "ku_by_representanter_komiteer__565b0bcb98",
+          "knowledge_unit_ids": [
+            "ku_by_representanter_komiteer__565b0bcb98"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf"
+          ],
+          "sources": [
+            {
+              "title": "Stortingsarkivet – byggekomiteenes historikk",
+              "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+              "source_type": "institutional_archive",
+              "claim_basis": "Representanter, komiteer og administrasjon trengte flere kontorrom; dette ble undersøkt av Kontorplassutvalget."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_14",
@@ -504,7 +722,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_14",
-          "claim_basis": "Underetasjen rommet tekniske installasjoner for varme, vann og elektrisitet; mottaket var en tilknyttet funksjon."
+          "claim_basis": "Underetasjen rommet tekniske installasjoner for varme, vann og elektrisitet; mottaket var en tilknyttet funksjon.",
+          "primary_knowledge_unit_id": "ku_by_underetasjen_rommet_tekn_acc66040d1",
+          "knowledge_unit_ids": [
+            "ku_by_underetasjen_rommet_tekn_acc66040d1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/"
+          ],
+          "sources": [
+            {
+              "title": "Stortinget – prosjektet sluttført i 2019",
+              "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/",
+              "source_type": "official_project_report",
+              "claim_basis": "Underetasjen rommet tekniske installasjoner for varme, vann og elektrisitet; mottaket var en tilknyttet funksjon."
+            }
+          ]
         }
       ]
     },
@@ -539,7 +776,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_15",
-          "claim_basis": "Fasaden ble beholdt mens innsiden ble modernisert; det dokumenterer ikke bevaring av hele interiøret."
+          "claim_basis": "Fasaden ble beholdt mens innsiden ble modernisert; det dokumenterer ikke bevaring av hele interiøret.",
+          "primary_knowledge_unit_id": "ku_by_fasaden_ble_beholdt_mens_0e60176f26",
+          "knowledge_unit_ids": [
+            "ku_by_fasaden_ble_beholdt_mens_0e60176f26"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/"
+          ],
+          "sources": [
+            {
+              "title": "Stortinget – prosjektet sluttført i 2019",
+              "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/",
+              "source_type": "official_project_report",
+              "claim_basis": "Fasaden ble beholdt mens innsiden ble modernisert; det dokumenterer ikke bevaring av hele interiøret."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_16",
@@ -565,7 +821,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_16",
-          "claim_basis": "To leiegårder lå bak én fasade; utsidens komposisjon avslører derfor ikke alene den innvendige delingen."
+          "claim_basis": "To leiegårder lå bak én fasade; utsidens komposisjon avslører derfor ikke alene den innvendige delingen.",
+          "primary_knowledge_unit_id": "ku_by_to_leiegarder_la_bak_en__1636679492",
+          "knowledge_unit_ids": [
+            "ku_by_to_leiegarder_la_bak_en__1636679492"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/"
+          ],
+          "sources": [
+            {
+              "title": "Fortidsminneforeningen – Halvorsens Conditori",
+              "url": "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/",
+              "source_type": "heritage_organization",
+              "claim_basis": "To leiegårder lå bak én fasade; utsidens komposisjon avslører derfor ikke alene den innvendige delingen."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_17",
@@ -577,11 +852,11 @@
           "question": "Hvor kom etasjetilleggene i 1899 og under rehabiliteringen fra 2014?",
           "options": [
             "To nye etasjer over den opprinnelige takflaten",
-            "En mansardetasje øverst og en teknisk etasje under bakken",
-            "En ny bakgårdsetasje og en etasje over gateplanet"
+            "En ny bakgårdsetasje og en etasje over gateplanet",
+            "En mansardetasje øverst og en teknisk etasje under bakken"
           ],
           "answer": "En mansardetasje øverst og en teknisk etasje under bakken",
-          "answerIndex": 1,
+          "answerIndex": 2,
           "knowledge": "Mansardetasjen ble føyd til øverst i 1899; rehabiliteringen fra 2014 omfattet en ny teknisk underetasje.",
           "difficulty": 3,
           "question_type": "context",
@@ -592,7 +867,33 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_17",
-          "claim_basis": "Mansardetasjen ble føyd til øverst i 1899; rehabiliteringen fra 2014 omfattet en ny teknisk underetasje."
+          "claim_basis": "Mansardetasjen ble føyd til øverst i 1899; rehabiliteringen fra 2014 omfattet en ny teknisk underetasje.",
+          "primary_knowledge_unit_id": "ku_by_mansardetasjen_ble_f_yd__b5846336d1",
+          "knowledge_unit_ids": [
+            "ku_by_mansardetasjen_ble_f_yd__b5846336d1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+            "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/"
+          ],
+          "sources": [
+            {
+              "title": "Stortingsarkivet – byggekomiteenes historikk",
+              "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+              "source_type": "institutional_archive",
+              "claim_basis": "Mansardetasjen ble føyd til øverst i 1899; rehabiliteringen fra 2014 omfattet en ny teknisk underetasje."
+            },
+            {
+              "title": "Stortinget – prosjektet sluttført i 2019",
+              "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/",
+              "source_type": "official_project_report",
+              "claim_basis": "Mansardetasjen ble føyd til øverst i 1899; rehabiliteringen fra 2014 omfattet en ny teknisk underetasje."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_18",
@@ -619,7 +920,29 @@
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_18",
           "claim_basis": "Plantegninger og bygningsdokumentasjon fra før og etter trengs for å undersøke rominndeling; charterets artikkel 16 anbefaler dokumentasjon.",
-          "method_id": "met_for_etter"
+          "method_id": "met_for_etter",
+          "primary_knowledge_unit_id": "ku_by_plantegninger_og_bygning_3b59a6d69c",
+          "knowledge_unit_ids": [
+            "ku_by_plantegninger_og_bygning_3b59a6d69c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf"
+          ],
+          "sources": [
+            {
+              "title": "ICOMOS – Veneziacharteret",
+              "url": "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf",
+              "source_type": "professional_charter",
+              "claim_basis": "Plantegninger og bygningsdokumentasjon fra før og etter trengs for å undersøke rominndeling; charterets artikkel 16 anbefaler dokumentasjon."
+            }
+          ],
+          "guidance_basis": [
+            "data/fag/by/methods_by.json#met_for_etter"
+          ]
         },
         {
           "id": "schiollgarden_quiz_19",
@@ -645,7 +968,26 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_19",
-          "claim_basis": "Artikkel 9 setter grensen der antakelser begynner, og fremhever autentiske dokumenter fremfor gjetning."
+          "claim_basis": "Artikkel 9 setter grensen der antakelser begynner, og fremhever autentiske dokumenter fremfor gjetning.",
+          "primary_knowledge_unit_id": "ku_by_artikkel_9_setter_grense_4290208ca0",
+          "knowledge_unit_ids": [
+            "ku_by_artikkel_9_setter_grense_4290208ca0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf"
+          ],
+          "sources": [
+            {
+              "title": "ICOMOS – Veneziacharteret",
+              "url": "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf",
+              "source_type": "professional_charter",
+              "claim_basis": "Artikkel 9 setter grensen der antakelser begynner, og fremhever autentiske dokumenter fremfor gjetning."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_20",
@@ -672,7 +1014,33 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_20",
-          "claim_basis": "Artikkel 11 krever respekt for verdifulle bidrag fra flere perioder; stilistisk enhet er ikke restaureringens mål."
+          "claim_basis": "Artikkel 11 krever respekt for verdifulle bidrag fra flere perioder; stilistisk enhet er ikke restaureringens mål.",
+          "primary_knowledge_unit_id": "ku_by_artikkel_11_krever_respe_2641d29cab",
+          "knowledge_unit_ids": [
+            "ku_by_artikkel_11_krever_respe_2641d29cab"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf",
+            "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf"
+          ],
+          "sources": [
+            {
+              "title": "ICOMOS – Veneziacharteret",
+              "url": "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf",
+              "source_type": "professional_charter",
+              "claim_basis": "Artikkel 11 krever respekt for verdifulle bidrag fra flere perioder; stilistisk enhet er ikke restaureringens mål."
+            },
+            {
+              "title": "Stortingsarkivet – byggekomiteenes historikk",
+              "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+              "source_type": "institutional_archive",
+              "claim_basis": "Artikkel 11 krever respekt for verdifulle bidrag fra flere perioder; stilistisk enhet er ikke restaureringens mål."
+            }
+          ]
         },
         {
           "id": "schiollgarden_quiz_21",
@@ -681,7 +1049,7 @@
           "placeId": "schiollgarden_prinsens_gate_26",
           "targetId": "schiollgarden_prinsens_gate_26",
           "question_scope": "place",
-          "question": "Hvem skiller mellom aldersverdi, historisk verdi og bruksverdi i verket fra 1903?",
+          "question": "Når Schiøllgården vurderes som både historisk bygning og brukshus, hvem sitt verk fra 1903 skiller mellom aldersverdi, historisk verdi og bruksverdi?",
           "options": [
             "Kevin Lynch",
             "Alois Riegl",
@@ -689,7 +1057,7 @@
           ],
           "answer": "Alois Riegl",
           "answerIndex": 1,
-          "knowledge": "Alois Riegl skiller aldersverdi, historisk verdi og bruksverdi i verket fra 1903; verdiene gir forskjellige bevaringsspørsmål.",
+          "knowledge": "Alois Riegl skiller disse verdiene i verket fra 1903. Gårdens bevarte fasade og moderniserte indre gir en konkret anledning til å vurdere ulike hensyn.",
           "difficulty": 3,
           "question_type": "concept",
           "emne_id": "em_by_historiske_lag_i_hverdagsrom",
@@ -699,7 +1067,7 @@
           ],
           "source_origin": "external",
           "claim_id": "schiollgarden_quiz_claim_21",
-          "claim_basis": "Alois Riegl skiller aldersverdi, historisk verdi og bruksverdi i verket fra 1903; verdiene gir forskjellige bevaringsspørsmål.",
+          "claim_basis": "Alois Riegl skiller disse verdiene i verket fra 1903. Gårdens bevarte fasade og moderniserte indre gir en konkret anledning til å vurdere ulike hensyn.",
           "topic_hook_id": "his_bevaring",
           "thinker_id": "alois_riegl",
           "thinker_name": "Alois Riegl",
@@ -709,7 +1077,34 @@
             "thinker_id": "alois_riegl",
             "work": "The Modern Cult of Monuments",
             "why_it_helps": "Skillet mellom verdityper hindrer at fasadens alder forveksles med dokumentert historisk tilstand eller muligheten for ny bruk."
-          }
+          },
+          "primary_knowledge_unit_id": "ku_by_alois_riegl_skiller_alde_7c228397e7",
+          "knowledge_unit_ids": [
+            "ku_by_alois_riegl_skiller_alde_7c228397e7",
+            "ku_by_gardens_bevarte_fasade_o_0a36ae99b8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "source_urls": [
+            "https://diglib.tugraz.at/der-moderne-denkmalkultus-1903",
+            "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/"
+          ],
+          "sources": [
+            {
+              "title": "Alois Riegl – Der moderne Denkmalkultus (1903)",
+              "url": "https://diglib.tugraz.at/der-moderne-denkmalkultus-1903",
+              "source_type": "digitized_primary_work",
+              "claim_basis": "Riegls kapittelinndeling mellom verdier."
+            },
+            {
+              "title": "Stortinget – prosjektet sluttført i 2019",
+              "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/",
+              "source_type": "official_project_report",
+              "claim_basis": "Fasaden ble bevart, innsiden modernisert."
+            }
+          ]
         }
       ]
     }

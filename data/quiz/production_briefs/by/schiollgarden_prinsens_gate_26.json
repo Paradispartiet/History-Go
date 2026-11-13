@@ -66,9 +66,10 @@
   },
   "existing_quiz_audit": {
     "searched_paths": [
-      "data/quiz/manifest.json",
-      "data/fag/fag_manifest.json#by.quizProduction.targets",
-      "GitHub default-branch code search: schiollgarden"
+      "data/quiz/** at baseline 204744a1cd201bee08c712ac91d30d1fb1cb27da (active, archived and alternate JSON)",
+      "data/knowledge/** at same baseline",
+      "data/quizcards/** at same baseline",
+      "bilder/QuizCards/** filenames"
     ],
     "active_before": {
       "files": [],
@@ -78,10 +79,10 @@
     "decisions": [
       {
         "action": "create",
-        "reason": "Ingen aktiv manifestoppføring eller tidligere registrert produksjonsmål. Arkiv-/Knowledge-scan kjøres i sikringsjobben før pakken kan godkjennes."
+        "reason": "Full baseline content scan found no target/name match in quiz or Knowledge. No dedicated QuizCard or prior registered target found."
       }
     ],
-    "knowledge_migration": "Ingen eksisterende spørsmål eller KU-ID-er overskrives. Canonical builder skal opprette koblinger fra de nye spørsmålene."
+    "knowledge_migration": "22 nye kildekoblede Knowledge-enheter, 0 eksisterende enheter endret; ingen gamle quiz-ID-er eller KU-ID-er erstattes."
   },
   "profile_decision": {
     "profile": "narrow",
@@ -216,7 +217,7 @@
       "claim_id": "schiollgarden_quiz_claim_10",
       "order": 10,
       "planned_phase": "bridge",
-      "family": "fact",
+      "family": "context",
       "statement": "Losjihuset ble revet før gården fra 1881; samme adresse betyr ikke samme bygning.",
       "source_ids": [
         "municipal"
@@ -352,7 +353,7 @@
       "order": 21,
       "planned_phase": "final",
       "family": "concept_theory",
-      "statement": "Alois Riegl skiller aldersverdi, historisk verdi og bruksverdi i verket fra 1903; verdiene gir forskjellige bevaringsspørsmål.",
+      "statement": "Alois Riegl skiller disse verdiene i verket fra 1903. Gårdens bevarte fasade og moderniserte indre gir en konkret anledning til å vurdere ulike hensyn.",
       "source_ids": [
         "riegl",
         "project"
@@ -364,5 +365,5 @@
       "work": "The Modern Cult of Monuments"
     }
   ],
-  "balance_justification": "Tre sett med absolutt 14-spørsmålsåpning gir 13 fakta, 4 sammenheng og 4 metode/begrep/teori. Den svakt høyere faktaandelen (61,9 %) beholdes fremfor fyll eller kunstig omklassifisering."
+  "balance_justification": "Tolv faktaspørsmål, fem konkrete sammenhengsspørsmål og fire metode-/begreps-/teorispørsmål (57,1/23,8/19,0 %). De første fjorten har to kildebaserte hvorfor-spørsmål og ingen eksplisitt metode- eller teoribinding."
 }
