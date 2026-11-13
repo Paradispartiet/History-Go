@@ -1,0 +1,716 @@
+{
+  "targetId": "schiollgarden_prinsens_gate_26",
+  "categoryId": "by",
+  "sources": {
+    "archive": {
+      "url": "https://arkivportalen.no/api/digital-asset/download/no-STA_arkiv_000000006566-2.pdf",
+      "source_type": "institutional_archive",
+      "review_status": "reviewed",
+      "review_note": "Stortingsarkivet, sider 1, 4 og 5: kjøp, kontorbehov, arkitekter og konditori. Oppføring skilles fra senere kjøp og ombygging."
+    },
+    "heritage": {
+      "url": "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/",
+      "source_type": "heritage_organization",
+      "review_status": "reviewed",
+      "review_note": "Rev mindre bygårder, Norsk monumentalarkitektur og Grenseløs overflod: to leiegårder, kapasitet og Østerskjelleren. Keiserhistorien gjelder et annet konditori og brukes ikke."
+    },
+    "municipal": {
+      "url": "https://www.oppdagkvadraturen.no/stoppesteder/stortingsrepresentantene",
+      "source_type": "official_municipal",
+      "review_status": "reviewed",
+      "review_note": "Ingress og Hvor bodde de første stortingsmennene: Hals/Borchsenius og revet forgjengerhus."
+    },
+    "project": {
+      "url": "https://www.stortinget.no/no/Hva-skjer-pa-Stortinget/Nyhetsarkiv/Hva-skjer-nyheter/2019-2020/stortingets-byggeprosjekt-er-gjennomfort/",
+      "source_type": "official_project_report",
+      "review_status": "reviewed",
+      "review_note": "Sluttmelding 29.11.2019: bevart fasade, moderne indre, teknisk etasje og mottak. Historisk prosjektstatus, ikke befaring i 2026."
+    },
+    "charter": {
+      "url": "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf",
+      "source_type": "professional_charter",
+      "review_status": "reviewed",
+      "review_note": "Artikkel 9, 11 og 16. Normative verneprinsipper, ikke bevis for at Schiøllgården oppfyller charteret."
+    },
+    "riegl": {
+      "url": "https://diglib.tugraz.at/der-moderne-denkmalkultus-1903",
+      "source_type": "digitized_primary_work",
+      "review_status": "reviewed",
+      "review_note": "TU Graz: forfatter, år og originalverkets kapittelinndeling mellom aldersverdi, historisk verdi og bruksverdi. Ikke brukt som biografikilde om Schiøllgården."
+    }
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/by/schiollgarden_prinsens_gate_26.json",
+    "context_artifact": "data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_04_historiske_lag_og_transformasjon"
+    ],
+    "emne_ids": [
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_transformasjon_ombruk"
+    ],
+    "topic_hook_ids": [
+      "his_bevaring"
+    ],
+    "method_ids": [
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "alois_riegl"
+    ],
+    "works": [
+      "The Modern Cult of Monuments"
+    ],
+    "source_review_status": "reviewed",
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/fag/fag_manifest.json#by.quizProduction.targets",
+        "GitHub default-branch code search: schiollgarden"
+      ],
+      "active_before": {
+        "files": [],
+        "sets": 0,
+        "questions": 0
+      },
+      "decisions": [
+        {
+          "action": "create",
+          "reason": "Ingen aktiv manifestoppføring eller tidligere registrert produksjonsmål. Arkiv-/Knowledge-scan kjøres i sikringsjobben før pakken kan godkjennes."
+        }
+      ],
+      "knowledge_migration": "Ingen eksisterende spørsmål eller KU-ID-er overskrives. Canonical builder skal opprette koblinger fra de nye spørsmålene."
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Avgrenset bygning, ikke hele Stortingskvartalet. 14 konkrete historiske spørsmål og ett sluttsett om dokumentasjon/bevaring bæres av de leste kildene. Flere sett ville repetere arkitekter, losji og ombygging. Historiske personer gir ikke i seg selv flere selvstendige sett; samtidige driftsforhold og byggeprosjektets økonomi er ikke tilstrekkelig undersøkt."
+    },
+    "held_back_candidates": [
+      {
+        "candidate": "Byggeprosjektets økonomi og beslutningskonflikter",
+        "reason": "Ikke kontrollert kildegrunnlag for selvstendig sett."
+      },
+      {
+        "candidate": "Samtidig serveringsdrift og fysisk tilstand",
+        "reason": "2019/2020-kilder dokumenterer ikke 2026-status."
+      },
+      {
+        "candidate": "Bred parlamentarisk historie",
+        "reason": "Ville flytte målet fra denne bygningen til Stortinget som institusjon."
+      }
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "by_schiollgarden_prinsens_gate_26_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "schiollgarden_quiz_1",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_1_q1",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvem tegnet Schiøllgården?",
+          "options": [
+            "Christian Reuter",
+            "Henrik Nissen",
+            "Nils Holter"
+          ],
+          "answer": "Henrik Nissen",
+          "answerIndex": 1,
+          "knowledge": "Henrik Nissen tegnet gården; Christian Reuter tegnet det senere mansardpåbygget.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "archive"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_1",
+          "claim_basis": "Henrik Nissen tegnet gården; Christian Reuter tegnet det senere mansardpåbygget."
+        },
+        {
+          "id": "schiollgarden_quiz_2",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_1_q2",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvem ble Schiøllgården oppført for?",
+          "options": [
+            "Hans Halvorsen",
+            "Laurentius Borchsenius",
+            "Oscar Schjøll"
+          ],
+          "answer": "Oscar Schjøll",
+          "answerIndex": 2,
+          "knowledge": "Oscar Schjøll var byggherre for gården som ble reist i 1881.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "archive"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_2",
+          "claim_basis": "Oscar Schjøll var byggherre for gården som ble reist i 1881."
+        },
+        {
+          "id": "schiollgarden_quiz_3",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_1_q3",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hva skjulte den felles fasaden opprinnelig?",
+          "options": [
+            "To leiegårder med hvert sitt gårdsrom",
+            "Ett hotell med en felles glassgård",
+            "Tre kontorfløyer rundt en åpen plass"
+          ],
+          "answer": "To leiegårder med hvert sitt gårdsrom",
+          "answerIndex": 0,
+          "knowledge": "To leiegårder med hvert sitt gårdsrom lå bak en felles, symmetrisk fasade.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "heritage"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_3",
+          "claim_basis": "To leiegårder med hvert sitt gårdsrom lå bak en felles, symmetrisk fasade."
+        },
+        {
+          "id": "schiollgarden_quiz_4",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_1_q4",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvem grunnla Halvorsens Conditori i bygningen?",
+          "options": [
+            "Oscar Schjøll",
+            "Oluf Tengberg",
+            "Hans Halvorsen"
+          ],
+          "answer": "Hans Halvorsen",
+          "answerIndex": 2,
+          "knowledge": "Hans Halvorsen åpnet konditoriet i 1881, i den nye leiegården.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "archive"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_4",
+          "claim_basis": "Hans Halvorsen åpnet konditoriet i 1881, i den nye leiegården."
+        },
+        {
+          "id": "schiollgarden_quiz_5",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_1_q5",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvor mange gjester kunne det opprinnelige konditoriet romme?",
+          "options": [
+            "Opptil 75",
+            "Opptil 150",
+            "Opptil 250"
+          ],
+          "answer": "Opptil 150",
+          "answerIndex": 1,
+          "knowledge": "Det historiske konditoriet hadde plass til opptil 150 gjester; tallet beskriver ikke dagens sitteplasser.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "heritage"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_5",
+          "claim_basis": "Det historiske konditoriet hadde plass til opptil 150 gjester; tallet beskriver ikke dagens sitteplasser."
+        },
+        {
+          "id": "schiollgarden_quiz_6",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_1_q6",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvem tegnet mansardetasjen som kom til i 1899?",
+          "options": [
+            "Christian Reuter",
+            "Henrik Nissen",
+            "Arnstein Arneberg"
+          ],
+          "answer": "Christian Reuter",
+          "answerIndex": 0,
+          "knowledge": "Christian Reuter tegnet mansardetasjen i 1899; den var ikke del av husets første utforming.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "archive"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_6",
+          "claim_basis": "Christian Reuter tegnet mansardetasjen i 1899; den var ikke del av husets første utforming."
+        },
+        {
+          "id": "schiollgarden_quiz_7",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_1_q7",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvor mange etasjer hadde Schiøllgården før mansardpåbygget?",
+          "options": [
+            "Tre",
+            "Fire",
+            "Fem"
+          ],
+          "answer": "Fire",
+          "answerIndex": 1,
+          "knowledge": "Huset hadde fire etasjer før mansardpåbygget ga det en femte.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "archive"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_7",
+          "claim_basis": "Huset hadde fire etasjer før mansardpåbygget ga det en femte."
+        }
+      ]
+    },
+    {
+      "set_id": "by_schiollgarden_prinsens_gate_26_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "schiollgarden_quiz_8",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_2_q1",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvilken stortingsrepresentant leide rom her i 1815–1816?",
+          "options": [
+            "Laurentius Borchsenius",
+            "Johan Herman Wessel",
+            "Leif Granli"
+          ],
+          "answer": "Laurentius Borchsenius",
+          "answerIndex": 0,
+          "knowledge": "Laurentius Borchsenius representerte Akershus og bodde i den eldre bebyggelsen på adressen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "municipal"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_8",
+          "claim_basis": "Laurentius Borchsenius representerte Akershus og bodde i den eldre bebyggelsen på adressen."
+        },
+        {
+          "id": "schiollgarden_quiz_9",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_2_q2",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvem leide ut rom til Borchsenius?",
+          "options": [
+            "Fru Clausen",
+            "Søstrene Scheen",
+            "Jomfru Hals"
+          ],
+          "answer": "Jomfru Hals",
+          "answerIndex": 2,
+          "knowledge": "Jomfru Hals leide ut rom til Borchsenius; private utleiere skaffet representantene losji.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "municipal"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_9",
+          "claim_basis": "Jomfru Hals leide ut rom til Borchsenius; private utleiere skaffet representantene losji."
+        },
+        {
+          "id": "schiollgarden_quiz_10",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_2_q3",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hva skjedde med huset der Borchsenius bodde?",
+          "options": [
+            "Det ble flyttet til Wessels plass",
+            "Det ble revet før Schiøllgården ble reist",
+            "Det ble bygd inn i mansardetasjen"
+          ],
+          "answer": "Det ble revet før Schiøllgården ble reist",
+          "answerIndex": 1,
+          "knowledge": "Losjihuset ble revet før gården fra 1881; samme adresse betyr ikke samme bygning.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "municipal"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_10",
+          "claim_basis": "Losjihuset ble revet før gården fra 1881; samme adresse betyr ikke samme bygning."
+        },
+        {
+          "id": "schiollgarden_quiz_11",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_2_q4",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hva het spisestedet i kjelleren mot Nedre Vollgate?",
+          "options": [
+            "Østerskjelleren",
+            "Alliance Conditori",
+            "Carstens hotell"
+          ],
+          "answer": "Østerskjelleren",
+          "answerIndex": 0,
+          "knowledge": "Østerskjelleren lå i kjelleren frem til 1950-årene og var ikke selve konditoriet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "heritage"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_11",
+          "claim_basis": "Østerskjelleren lå i kjelleren frem til 1950-årene og var ikke selve konditoriet."
+        },
+        {
+          "id": "schiollgarden_quiz_12",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_2_q5",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvilket år kjøpte staten Prinsens gate 26 til Stortingets bruk?",
+          "options": [
+            "1977",
+            "1981",
+            "1972"
+          ],
+          "answer": "1972",
+          "answerIndex": 2,
+          "knowledge": "Kjøpet skjedde 2. juni 1972; senere ombygging må dateres for seg.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "archive"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_12",
+          "claim_basis": "Kjøpet skjedde 2. juni 1972; senere ombygging må dateres for seg."
+        },
+        {
+          "id": "schiollgarden_quiz_13",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_2_q6",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvorfor ønsket Stortinget mer plass i denne perioden?",
+          "options": [
+            "Stortingssalen skulle erstattes av en ny sal i gården",
+            "Hele bygningen skulle bli et offentlig bibliotek",
+            "Representanter, komiteer og administrasjon trengte flere kontorrom"
+          ],
+          "answer": "Representanter, komiteer og administrasjon trengte flere kontorrom",
+          "answerIndex": 2,
+          "knowledge": "Representanter, komiteer og administrasjon trengte flere kontorrom; dette ble undersøkt av Kontorplassutvalget.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "archive"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_13",
+          "claim_basis": "Representanter, komiteer og administrasjon trengte flere kontorrom; dette ble undersøkt av Kontorplassutvalget."
+        },
+        {
+          "id": "schiollgarden_quiz_14",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_2_q7",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hva ble den nye underetasjen brukt til ved rehabiliteringen fra 2014?",
+          "options": [
+            "Tekniske installasjoner for blant annet varme, vann og strøm",
+            "Nytt bakeri for det historiske konditoriet",
+            "Ny offentlig utstillingssal for Stortingsarkivet"
+          ],
+          "answer": "Tekniske installasjoner for blant annet varme, vann og strøm",
+          "answerIndex": 0,
+          "knowledge": "Underetasjen rommet tekniske installasjoner for varme, vann og elektrisitet; mottaket var en tilknyttet funksjon.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "project"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_14",
+          "claim_basis": "Underetasjen rommet tekniske installasjoner for varme, vann og elektrisitet; mottaket var en tilknyttet funksjon."
+        }
+      ]
+    },
+    {
+      "set_id": "by_schiollgarden_prinsens_gate_26_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "schiollgarden_quiz_15",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_3_q1",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hva ble beholdt utvendig da gården fikk et moderne indre?",
+          "options": [
+            "De to opprinnelige gårdsrommene",
+            "Fasaden",
+            "Alle de opprinnelige rominndelingene"
+          ],
+          "answer": "Fasaden",
+          "answerIndex": 1,
+          "knowledge": "Fasaden ble beholdt mens innsiden ble modernisert; det dokumenterer ikke bevaring av hele interiøret.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "project"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_15",
+          "claim_basis": "Fasaden ble beholdt mens innsiden ble modernisert; det dokumenterer ikke bevaring av hele interiøret."
+        },
+        {
+          "id": "schiollgarden_quiz_16",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_3_q2",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvorfor kan ikke den felles fasaden alene fortelle hvordan den opprinnelige gården var delt?",
+          "options": [
+            "Alle inngangene ble tegnet som vinduer",
+            "To leiegårder lå bak samme sammenhengende utside",
+            "Mansardetasjen lå opprinnelig under bakken"
+          ],
+          "answer": "To leiegårder lå bak samme sammenhengende utside",
+          "answerIndex": 1,
+          "knowledge": "To leiegårder lå bak én fasade; utsidens komposisjon avslører derfor ikke alene den innvendige delingen.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "heritage"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_16",
+          "claim_basis": "To leiegårder lå bak én fasade; utsidens komposisjon avslører derfor ikke alene den innvendige delingen."
+        },
+        {
+          "id": "schiollgarden_quiz_17",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_3_q3",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvilke to hendelser må holdes fra hverandre i gårdens tidslinje?",
+          "options": [
+            "Oppføringen i 1972 og statens kjøp i 1881",
+            "Oppføringen i 1899 og statens kjøp i 2014",
+            "Oppføringen i 1881 og statens kjøp i 1972"
+          ],
+          "answer": "Oppføringen i 1881 og statens kjøp i 1972",
+          "answerIndex": 2,
+          "knowledge": "Oppføringen i 1881 og kjøpet i 1972 beskriver forskjellige endringer ved adressen.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "archive"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_17",
+          "claim_basis": "Oppføringen i 1881 og kjøpet i 1972 beskriver forskjellige endringer ved adressen."
+        },
+        {
+          "id": "schiollgarden_quiz_18",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_3_q4",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Du vil undersøke om rominndelingen overlevde ombyggingen. Hvilket materiale trengs i tillegg til et fasadefoto?",
+          "options": [
+            "Plantegninger og bygningsdokumentasjon fra før og etter",
+            "Flere utsnitt av den samme ytterveggen",
+            "En liste over andre bygninger ved plassen"
+          ],
+          "answer": "Plantegninger og bygningsdokumentasjon fra før og etter",
+          "answerIndex": 0,
+          "knowledge": "Plantegninger og bygningsdokumentasjon fra før og etter trengs for å undersøke rominndeling; charterets artikkel 16 anbefaler dokumentasjon.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_by_transformasjon_ombruk",
+          "source": [
+            "charter"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_18",
+          "claim_basis": "Plantegninger og bygningsdokumentasjon fra før og etter trengs for å undersøke rominndeling; charterets artikkel 16 anbefaler dokumentasjon.",
+          "method_id": "met_for_etter"
+        },
+        {
+          "id": "schiollgarden_quiz_19",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_3_q5",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvor skal en restaurering ifølge Veneziacharteret stoppe når eldre deler mangler?",
+          "options": [
+            "Der fasaden ikke lenger får et enhetlig uttrykk",
+            "Der nyere bruk krever et annet romprogram",
+            "Der antakelser erstatter dokumentert kunnskap"
+          ],
+          "answer": "Der antakelser erstatter dokumentert kunnskap",
+          "answerIndex": 2,
+          "knowledge": "Artikkel 9 setter grensen der antakelser begynner, og fremhever autentiske dokumenter fremfor gjetning.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "charter"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_19",
+          "claim_basis": "Artikkel 9 setter grensen der antakelser begynner, og fremhever autentiske dokumenter fremfor gjetning."
+        },
+        {
+          "id": "schiollgarden_quiz_20",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_3_q6",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Schiøllgården fikk et påbygg i 1899. Hva sier Veneziacharteret om verdifulle bidrag fra forskjellige perioder?",
+          "options": [
+            "De skal respekteres; én enhetlig stil er ikke målet",
+            "Bare det eldste laget kan ha bevaringsverdi",
+            "Alle senere lag skal tilbakeføres til byggeåret"
+          ],
+          "answer": "De skal respekteres; én enhetlig stil er ikke målet",
+          "answerIndex": 0,
+          "knowledge": "Artikkel 11 krever respekt for verdifulle bidrag fra flere perioder; stilistisk enhet er ikke restaureringens mål.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "charter",
+            "archive"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_20",
+          "claim_basis": "Artikkel 11 krever respekt for verdifulle bidrag fra flere perioder; stilistisk enhet er ikke restaureringens mål."
+        },
+        {
+          "id": "schiollgarden_quiz_21",
+          "quiz_id": "by_schiollgarden_prinsens_gate_26_set_3_q7",
+          "categoryId": "by",
+          "placeId": "schiollgarden_prinsens_gate_26",
+          "targetId": "schiollgarden_prinsens_gate_26",
+          "question_scope": "place",
+          "question": "Hvem skiller mellom aldersverdi, historisk verdi og bruksverdi i verket fra 1903?",
+          "options": [
+            "Kevin Lynch",
+            "Alois Riegl",
+            "Pierre Nora"
+          ],
+          "answer": "Alois Riegl",
+          "answerIndex": 1,
+          "knowledge": "Alois Riegl skiller aldersverdi, historisk verdi og bruksverdi i verket fra 1903; verdiene gir forskjellige bevaringsspørsmål.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
+          "source": [
+            "riegl",
+            "project"
+          ],
+          "source_origin": "external",
+          "claim_id": "schiollgarden_quiz_claim_21",
+          "claim_basis": "Alois Riegl skiller aldersverdi, historisk verdi og bruksverdi i verket fra 1903; verdiene gir forskjellige bevaringsspørsmål.",
+          "topic_hook_id": "his_bevaring",
+          "thinker_id": "alois_riegl",
+          "thinker_name": "Alois Riegl",
+          "work": "The Modern Cult of Monuments",
+          "theory_ref": {
+            "topic_hook_id": "his_bevaring",
+            "thinker_id": "alois_riegl",
+            "work": "The Modern Cult of Monuments",
+            "why_it_helps": "Skillet mellom verdityper hindrer at fasadens alder forveksles med dokumentert historisk tilstand eller muligheten for ny bruk."
+          }
+        }
+      ]
+    }
+  ]
+}

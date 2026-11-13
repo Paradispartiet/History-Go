@@ -1,0 +1,78 @@
+name: Schiollgarden learning QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/schiollgarden-learning.yml'
+      - 'data/quiz/by/schiollgarden_prinsens_gate_26_sets.json'
+      - 'data/quiz/production_briefs/by/schiollgarden_prinsens_gate_26.json'
+      - 'data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json'
+permissions:
+  contents: read
+concurrency:
+  group: schiollgarden-learning-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  learning:
+    if: github.event_name == 'pull_request' && github.repository == 'Paradispartiet/History-Go' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'codex/schiollgarden-quiz-20261113'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Audit previous target and discover QuizCard owners
+        run: |
+          git ls-files | rg -i 'quiz.?card' | rg '\.(md|mjs|js|json|ts)$' | head -60 || true
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          const paths=execFileSync('git',['ls-tree','-r','--name-only','204744a1cd201bee08c712ac91d30d1fb1cb27da'],{encoding:'utf8'}).trim().split('\n').filter(p=>/^data\/(quiz|knowledge)\//.test(p)&&p.endsWith('.json'));
+          const hits=[];
+          for(const p of paths){
+            const text=execFileSync('git',['show','204744a1cd201bee08c712ac91d30d1fb1cb27da:'+p],{encoding:'utf8',maxBuffer:100*1024*1024});
+            if(/schiollgarden|schiøllgården|schjøllgården/i.test(text)) hits.push(p);
+          }
+          console.log('PREVIOUS_QUIZ_KNOWLEDGE_MATCHES '+JSON.stringify(hits));
+          if(hits.length) throw Error('Prior quiz or Knowledge candidate needs review before activation');
+          JS
+      - name: Build authoritative context and Knowledge
+        run: |
+          node scripts/build-quiz-production-context.mjs --category by --target schiollgarden_prinsens_gate_26 --output data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          node scripts/build-place-open-payloads.mjs
+      - name: Validate quiz learning content
+        run: |
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
+          node scripts/build-quiz-production-context.mjs --category by --target schiollgarden_prinsens_gate_26 --output data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json --check
+      - name: Export generated blobs for leased connector integration
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          const names=[...new Set([...execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n'),...execFileSync('git',['ls-files','--others','--exclude-standard'],{encoding:'utf8'}).trim().split('\n')])].filter(Boolean);
+          const allowed=/^(data\/quiz\/(by\/schiollgarden_prinsens_gate_26_sets|production_context\/by\/schiollgarden_prinsens_gate_26)\.json|data\/knowledge\/[a-z_]+\.generated\.json|data\/runtime\/place-open\/schiollgarden_prinsens_gate_26\.json|reports\/knowledge-(id-backfill|contract-audit|universe-readers)\.json)$/;
+          const files=names.filter(p=>!p.startsWith('artifacts/'));
+          for(const p of files) if(!allowed.test(p)) throw Error('Unexpected generated change: '+p);
+          for(const p of files){
+            const bytes=fs.readFileSync(p);
+            fs.writeFileSync('/tmp/hg-generated-blob.json',JSON.stringify({content:bytes.toString('base64'),encoding:'base64'}));
+            const blob=JSON.parse(execFileSync('gh',['api','--method','POST','repos/Paradispartiet/History-Go/git/blobs','--input','/tmp/hg-generated-blob.json'],{encoding:'utf8',maxBuffer:1024*1024}));
+            console.log('HG_GENERATED_BLOB '+JSON.stringify({path:p,sha:blob.sha,bytes:bytes.length}));
+          }
+          console.log('No branch or main ref was moved. Generated blobs require connector integration with an expected head SHA.');
+          JS
