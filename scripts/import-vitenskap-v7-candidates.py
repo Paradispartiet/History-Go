@@ -41,7 +41,8 @@ def main():
     assert len(intake["expected"]) == 3
     assert not ARCHIVE.exists(), "Refusing to replace already archived v7 candidate manifest"
     catalog_path = ROOT / "data/badges/vitenskap.json"
-    catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+    original_catalog_bytes = catalog_path.read_bytes()
+    catalog = json.loads(original_catalog_bytes.decode("utf-8"))
     assert len(catalog["subBadgeImages"]) == 16
 
     targets = []
@@ -80,9 +81,7 @@ def main():
             "status": "stored_unapproved_nonactive",
             "visualSignoffRequired": True,
         })
-    assert catalog_path.read_text(encoding="utf-8") == (
-        ROOT / "data/badges/vitenskap.json"
-    ).read_text(encoding="utf-8")
+    assert catalog_path.read_bytes() == original_catalog_bytes, "Active registry changed"
     report = {
         "schemaVersion": 1,
         "categoryId": "vitenskap",
