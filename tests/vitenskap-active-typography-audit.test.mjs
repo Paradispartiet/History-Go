@@ -56,7 +56,7 @@ test('review webpage is an authenticated read-only renderer with mobile-size and
   assert.ok(page.includes("item.priority === 'high'"));
   assert.ok(page.includes('catalog.subBadgeImages[item.id] !== item.image'));
   for(const size of [38,52,96,160,320]) assert.ok(page.includes('value="' + size + '"'));
-  assert.ok(page.includes("dialog").valueOf());
+  assert.ok(page.includes('<dialog'));
   const inline = page.match(/<script>([\s\S]*?)<\/script>/);
   assert.ok(inline, 'Missing renderer script');
   assert.doesNotThrow(() => new Script(inline[1], { filename: 'vitenskap-aktive-merker-review.html' }));
