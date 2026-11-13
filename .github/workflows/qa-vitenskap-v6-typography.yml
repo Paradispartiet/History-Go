@@ -1,0 +1,61 @@
+name: Science v6 larger embroidered headings - review only
+on:
+  pull_request:
+    paths:
+      - 'scripts/revise-vitenskap-v6-typography.py'
+      - '.github/workflows/qa-vitenskap-v6-typography.yml'
+      - 'data/badges/vitenskap_v5_candidates_20261112.json'
+      - 'data/badges/vitenskap_v2_localization_20261112.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vitenskap-v6-typography-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  visual-candidates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image dependencies
+        run: python -m pip install --disable-pip-version-check pillow numpy
+      - name: Render 16 review-only v6 badge candidates
+        run: python scripts/revise-vitenskap-v6-typography.py
+      - name: Verify candidate manifest and untouched active badges
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          from PIL import Image
+          out = Path('out/vitenskap-v6-typography')
+          manifest = json.loads((out / 'manifest.json').read_text())
+          assert manifest['status'] == '16_typography_v6_candidates_unapproved_nonactive'
+          assert manifest['activeRegisterUnchanged'] is True
+          assert manifest['norwegianV2OriginalsPreserved'] is True
+          assert len(manifest['items']) == 16
+          pairs = {(x['id'], x['locale']) for x in manifest['items']}
+          assert len(pairs) == 16
+          for item in manifest['items']:
+              data = (out / item['previewFile']).read_bytes()
+              assert hashlib.sha256(data).hexdigest() == item['sha256']
+              with Image.open(out / item['previewFile']) as image:
+                  assert image.size == (1024, 1024)
+                  assert image.mode == 'RGBA'
+              assert item['status'] == 'v6_unapproved_nonactive'
+              assert item['footer']
+              assert ' '.join(item['split']) == item['title']
+              assert item['firstLineSize'] >= 45
+              assert item['secondLineSize'] >= 42
+          assert (out / manifest['sheet']).is_file()
+          print('16 large-print candidate originals verified')
+          PY
+          git diff --exit-code -- data/badges/vitenskap.json bilder/merker/vitenskap/brodert
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vitenskap-v6-storre-skrift-16-merker
+          path: out/vitenskap-v6-typography/
+          retention-days: 30
