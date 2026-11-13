@@ -1,0 +1,44 @@
+name: Science v6 – one-shot branch archive
+on:
+  push:
+    branches:
+      - science-v6-large-embroidered-labels-20261113
+    paths:
+      - '.github/workflows/archive-vitenskap-v6-typography.yml'
+      - 'scripts/archive-vitenskap-v6-typography.py'
+permissions:
+  contents: write
+concurrency:
+  group: science-v6-archive-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  archive-v6-only:
+    if: ${{ github.ref == 'refs/heads/science-v6-large-embroidered-labels-20261113' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: science-v6-large-embroidered-labels-20261113
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image requirements
+        run: python -m pip install --disable-pip-version-check pillow numpy
+      - name: Generate checked, non-active v6 candidates
+        run: python scripts/revise-vitenskap-v6-typography.py
+      - name: Archive 16 WebPs, original hashes, and contact sheet
+        run: |
+          python scripts/archive-vitenskap-v6-typography.py
+          git diff --exit-code -- data/badges/vitenskap.json bilder/merker/vitenskap/brodert
+          git add bilder/merker/vitenskap/kandidater/revisjoner/
+          git add bilder/merker/vitenskap/kandidater/contact-sheet-v6-larger-typography.jpg
+          git add data/badges/vitenskap_v6_typography_candidates_20261113.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --cached --quiet; then
+            git commit -m "Science: archive 16 large-heading v6 candidates without activation"
+            git push origin HEAD:science-v6-large-embroidered-labels-20261113
+          else
+            echo "V6 revision already present"
+          fi
