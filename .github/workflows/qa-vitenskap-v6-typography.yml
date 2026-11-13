@@ -5,6 +5,8 @@ on:
       - 'scripts/revise-vitenskap-v6-typography.py'
       - 'scripts/archive-vitenskap-v6-typography.py'
       - 'tests/vitenskap-v6-typography-archive.test.mjs'
+      - 'tests/vitenskap-v6-typography-review.test.mjs'
+      - 'vitenskap-v6-review.html'
       - 'data/badges/vitenskap_v6_typography_candidates_20261113.json'
       - 'bilder/merker/vitenskap/kandidater/revisjoner/*/*-v6-two-line.webp'
       - 'bilder/merker/vitenskap/kandidater/contact-sheet-v6-larger-typography.jpg'
@@ -26,7 +28,7 @@ jobs:
         with:
           node-version: '22'
       - name: Check archived v6 WebPs and unchanged active badge registry
-        run: node --test tests/vitenskap-v6-typography-archive.test.mjs
+        run: node --test tests/vitenskap-v6-typography-archive.test.mjs tests/vitenskap-v6-typography-review.test.mjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
