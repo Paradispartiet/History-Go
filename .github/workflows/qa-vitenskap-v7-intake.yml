@@ -1,0 +1,26 @@
+name: Science v7 candidate intake integrity
+on:
+  pull_request:
+    paths:
+      - 'data/badges/vitenskap_v7_candidate_intake_20261113.json'
+      - 'scripts/import-vitenskap-v7-candidates.py'
+      - 'tests/vitenskap-v7-intake.test.mjs'
+      - '.github/workflows/qa-vitenskap-v7-intake.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vitenskap-v7-intake-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  candidate-intake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify v7 file hashes and no active badge replacement
+        run: node --test tests/vitenskap-v7-intake.test.mjs
+      - name: Confirm active badge image references unchanged
+        run: git diff --exit-code -- data/badges/vitenskap.json bilder/merker/vitenskap/brodert/
