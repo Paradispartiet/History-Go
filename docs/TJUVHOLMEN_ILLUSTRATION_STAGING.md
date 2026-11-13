@@ -2,7 +2,7 @@
 
 Denne delen ferdigstiller **importverktøyet**, ikke ansiktslikhet eller publikasjon.
 De tre ekte 900×1200 WebP-filene finnes i ChatGPT-vedlegget
-`tjuvholmen_people_webp_importpakke.zip`. De er ikke publisert i repoet.
+`tjuvholmen_people_webp_importpakke.zip`. De er nå lagret i GitHub-repoets **separate kandidatarkiv**, ikke publisert på noen People-/PlaceCard-profil. GitHub-rapporten med ekte SHA-256 ligger i `reports/place-production/tjuvholmen-generated-people-illustration-import.json`.
 
 ## Kontroll og staging
 
@@ -14,7 +14,7 @@ python3 scripts/stage-tjuvholmen-people-illustrations.py --package /sti/til/tjuv
 python3 scripts/stage-tjuvholmen-people-illustrations.py --package /sti/til/tjuvholmen_people_webp_importpakke.zip --stage
 ```
 
-Den første kommandoen kontrollerer bare. Den andre kopierer **kun de tre
+Den første kommandoen kontrollerer bare. Den andre kan ved behov kontrollere og kopiere **kun de tre
 SHA-256-verifiserte WebP-filene** til
 `bilder/kort/people/candidates/tjuvholmen/` og oppretter
 `reports/place-production/tjuvholmen-generated-people-illustration-import.json`.
