@@ -439,6 +439,7 @@ function forcePlaceCardOpenState(card, placeId, preserveCollapsed = false) {
     return;
   }
 
+  delete card.dataset.userCollapsedPlaceId;
   document.body.classList.remove("pc-collapsed");
   setPlaceCardMiniVisible(false);
   card.classList.remove("is-hidden", "is-collapsed");
@@ -2726,7 +2727,7 @@ requestAnimationFrame(() => {
 });
 
 forcePlaceCardOpenState(card, nextPlaceId,
-  Boolean(samePlace && document.body.classList.contains("pc-collapsed")));
+  Boolean(samePlace && nextPlaceId && card.dataset.userCollapsedPlaceId === nextPlaceId));
 window.__HG_LAST_FOOTER_PLACE = place;
 placeCardPerfMark(placeId, "first paint", pcStart);
 return true;
@@ -2884,9 +2885,12 @@ function requestMapResize() {}
 /**
  * @returns {void}
  */
-function collapsePlaceCard() {
+function collapsePlaceCard(explicitUserAction = true) {
   const pc = getPlaceCardEl();
   if (!pc) return;
+  // Only user clicks, not init-time restored collapse, prevent late same-place repaints.
+  if (explicitUserAction) pc.dataset.userCollapsedPlaceId = String(pc.dataset.currentPlaceId || "").trim();
+  else delete pc.dataset.userCollapsedPlaceId;
 
   // Kompatibilitet: behold flagg + body-hook (hvis andre steder bruker det)
   pc.classList.add("is-collapsed");
@@ -2914,6 +2918,7 @@ function expandPlaceCard() {
   const pc = getPlaceCardEl();
   if (!pc) return;
 
+  delete pc.dataset.userCollapsedPlaceId;
   pc.classList.remove("is-collapsed");
   document.body.classList.remove("pc-collapsed");
 
@@ -2963,7 +2968,7 @@ function initPlaceCardCollapse() {
       collapsed = (localStorage.getItem("hg_placecard_collapsed_v1") === "1");
     } catch {}
 
-    if (collapsed) collapsePlaceCard();
+    if (collapsed) collapsePlaceCard(false);
     else expandPlaceCard();
   }
 
