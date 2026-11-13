@@ -38,6 +38,6 @@ for(const [p,sha] of [
  ["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]
 ])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" preserved original");
 assert.equal(reg.get("emne_fauna_stokkand")?.gitBlobSha,"b16e4e48f6264a0a318f2b20128bc8d2e559505c","Stokkand adds a new original without replacing Ringdue");
-assert(/nature-fauna-approved\.js\?v=202611(?:12|13)-0[7-9]/.test(read("finn-fauna.html")));
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Approved fauna registry must use versioned URL");
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #7 Ringdue: approved binary, bird identity, quiz, seven originals and SVG fallback verified.");

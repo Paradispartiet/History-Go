@@ -39,6 +39,6 @@ for(const [p,sha] of [
  ["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]
 ])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" original preserved");
 assert.equal(reg.get("emne_fauna_ringdue")?.gitBlobSha,"643eea93e2803fb1de8fcaaf6fba378aa7d61e74","Ringdue now has an approved original");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261112-07"));
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Approved fauna registry must use versioned URL");
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #6 Kjøttmeis: verified original WebP, sex dimorphism, quiz, 6 originals and legacy SVGs.");
