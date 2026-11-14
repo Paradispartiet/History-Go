@@ -58,7 +58,9 @@ test('review webpage is an authenticated read-only renderer with mobile-size and
   assert.ok(page.includes('data/badges/vitenskap.json'));
   assert.ok(page.includes('data/badges/vitenskap_active_typography_audit_20261113.json'));
   assert.ok(page.includes("item.priority === 'high'"));
-  assert.ok(page.includes('catalog.subBadgeImages[item.id] !== item.image'));
+  assert.ok(page.includes('!catalog.subBadgeImages[item.id]'));
+  assert.ok(page.includes('activeBadgeImages[item.id]'));
+  assert.ok(page.includes('Registrert nyere merke'));
   for(const size of [38,52,96,160,320]) assert.ok(page.includes('value="' + size + '"'));
   assert.ok(page.includes('<dialog'));
   const inline = page.match(/<script>([\s\S]*?)<\/script>/);
