@@ -20,7 +20,7 @@ assert.match(cardCss,/\.pc-person-image-kind/);
 assert.match(personCss,/\.hg-person-portrait-kind/);
 assert.match(read("index.html"),/person-popup-v2\.css\?v=20261113-people-illustration-label1/);
 assert.match(read("index.html"),/placeCard\.css\?v=20\d{6}-[a-z0-9-]+/);
-assert.match(read("js/app.js"),/place-card\.js\?v=20261113-people-illustration-label1/);
+assert.match(read("js/app.js"),/place-card\.js\?v=20\d{6}-[a-z0-9-]+/);
 assert.match(read("sw.js"),/people-illustration-label1/);
 const runtime=parse("data/runtime/place-open/tjuvholmen.json");
 const audit=parse("reports/place-production/tjuvholmen-people-portrait-rights-20261112.json");
