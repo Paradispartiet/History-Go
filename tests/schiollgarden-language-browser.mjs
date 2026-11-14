@@ -35,7 +35,7 @@ try{
    await page.goto(base+'/index.html?hgTest=1#/place/'+placeId,{waitUntil:'domcontentloaded'});
    await page.waitForFunction(id=>window.__HG_APP_READY__===true&&document.querySelector('#placeCard')?.dataset.currentPlaceId===id,placeId,{timeout:60000});
    const shell=page.locator('#placeCard [data-hg-place-sheet-shell="1"]');
-   await shell.locator('[data-hg-place-sheet-jump="language"]').click();
+   await page.locator('#placeCard [data-hg-place-sheet-jump="language"]').click();
    const panel=shell.locator('[data-hg-place-sheet-section="language"]');
    await panel.locator('[data-language-entry]').first().waitFor({state:'visible',timeout:15000});
    assert.equal(await panel.locator('[data-language-entry]').count(),4);
