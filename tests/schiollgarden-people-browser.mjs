@@ -29,8 +29,9 @@ try{
   try{
    await page.goto(url+'/index.html?hgTest=1#/place/'+ID,{waitUntil:'domcontentloaded'});
    await page.waitForFunction(id=>window.__HG_APP_READY__===true&&document.querySelector('#placeCard')?.dataset.currentPlaceId===id,ID,{timeout:90000});
+   await page.waitForFunction(()=>document.getElementById('pcPeopleIcon')?.dataset.collectionItemCount==='1'&&(window.getPeopleForPlace?.('schiollgarden_prinsens_gate_26')||[]).some(p=>p.id==='henrik_nissen'),null,{timeout:60000});
    await page.locator('#pcPeopleIcon').click();
-   await page.locator('#pcPeopleList [data-person="henrik_nissen"]').click();
+   await page.locator('.placecard-round-popup [data-person="henrik_nissen"]').click();
    const popup=page.locator('.person-popup-v2').last();
    await popup.waitFor({state:'visible'});
    const img=popup.locator('[data-person-hero-image]');
