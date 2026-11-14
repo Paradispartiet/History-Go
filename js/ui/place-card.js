@@ -424,13 +424,27 @@ function hidePlaceCardUntilReady() {
   }
 }
 
-function forcePlaceCardOpenState(card, placeId) {
+function forcePlaceCardOpenState(card, placeId, preserveCollapsed = false) {
   if (!card) return;
 
+  card.dataset.currentPlaceId = String(placeId || "").trim();
+  // Hydration and language changes can repaint the same place after a user
+  // minimizes it. Do not let that late repaint override an explicit collapse.
+  if (preserveCollapsed) {
+    card.classList.remove("is-open");
+    card.classList.add("is-collapsed");
+    card.setAttribute("aria-hidden", "true");
+    window.bottomSheetController?.hide?.();
+    setPlaceCardMiniVisible(true);
+    return;
+  }
+
+  delete card.dataset.userCollapsedPlaceId;
+  document.body.classList.remove("pc-collapsed");
+  setPlaceCardMiniVisible(false);
   card.classList.remove("is-hidden", "is-collapsed");
   card.classList.add("is-open");
   card.setAttribute("aria-hidden", "false");
-  card.dataset.currentPlaceId = String(placeId || "").trim();
 
   if (window.bottomSheetController?.open) {
     window.bottomSheetController.open();
@@ -1886,7 +1900,7 @@ if (peopleEl) {
       // eies av personpopupen og skal ikke brukes som teaser her.
       const personDesc = String(p.desc || "").trim();
       const personImage = String(p.cardImage || p.imageCard || p.image || "").trim();
-      const isIllustration = p?.imageMeta?.mediaType === "editorial_illustration" || p?.imageMeta?.source === "history_go_editorial_illustration";
+      const isIllustration = Boolean(personImage) && (p?.imageMeta?.assetKind === "illustration" || p?.imageKind === "illustration" || p?.imageMeta?.mediaType === "editorial_illustration" || p?.imageMeta?.source === "history_go_editorial_illustration");
       const imageAlt = isIllustration ? `Illustrasjon av ${p.name || "person"}` : (p.name || "");
 
       return `
@@ -1931,7 +1945,7 @@ window.HG_SocialDemoAdapter?.attachToPlaceCard?.(peopleEl || card, place);
 if (peopleIcon) {
   const p0 = persons?.find(person => person?.cardImage || person?.imageCard || person?.image) || persons?.[0];
   const previewImage = p0?.cardImage || p0?.imageCard || p0?.image || "";
-  const isIllustration = p0?.imageMeta?.mediaType === "editorial_illustration" || p0?.imageMeta?.source === "history_go_editorial_illustration";
+  const isIllustration = Boolean(previewImage) && (p0?.imageMeta?.assetKind === "illustration" || p0?.imageKind === "illustration" || p0?.imageMeta?.mediaType === "editorial_illustration" || p0?.imageMeta?.source === "history_go_editorial_illustration");
   const previewAlt = isIllustration ? `Illustrasjon av ${p0?.name || "person"}` : (p0?.name || "");
   setRoundPreview(peopleIcon, previewImage, previewAlt, "👥", persons.length);
 }
@@ -2712,7 +2726,8 @@ requestAnimationFrame(() => {
   card.classList.remove("is-switching");
 });
 
-forcePlaceCardOpenState(card, nextPlaceId);
+forcePlaceCardOpenState(card, nextPlaceId,
+  Boolean(samePlace && nextPlaceId && card.dataset.userCollapsedPlaceId === nextPlaceId));
 window.__HG_LAST_FOOTER_PLACE = place;
 placeCardPerfMark(placeId, "first paint", pcStart);
 return true;
@@ -2829,9 +2844,22 @@ function bindFooterActionsOnce() {
         window.showToast?.("Kunne ikke åpne observasjonen.");
       });
     }
-  });
+  }, true); // Capture footer taps before other layers can stop bubbling.
 }
 bindFooterActionsOnce();
+
+// The mini preview may be replaced during PlaceCard hydration or language
+// rerenders. Bind through document capture instead of holding a stale node.
+if (!window.__HG_PC_MINI_DELEGATED_BOUND__) {
+  window.__HG_PC_MINI_DELEGATED_BOUND__ = true;
+  document.addEventListener("click", (event) => {
+    const mini = event.target instanceof Element ? event.target.closest("#pcMini") : null;
+    if (!mini) return;
+    event.preventDefault();
+    event.stopPropagation();
+    expandPlaceCard();
+  }, true);
+}
 
 // ============================================================
 // PLACE CARD – bottom sheet bridge (engine-controlled)
@@ -2870,9 +2898,12 @@ function requestMapResize() {}
 /**
  * @returns {void}
  */
-function collapsePlaceCard() {
+function collapsePlaceCard(explicitUserAction = true) {
   const pc = getPlaceCardEl();
   if (!pc) return;
+  // Only user clicks, not init-time restored collapse, prevent late same-place repaints.
+  if (explicitUserAction) pc.dataset.userCollapsedPlaceId = String(pc.dataset.currentPlaceId || "").trim();
+  else delete pc.dataset.userCollapsedPlaceId;
 
   // Kompatibilitet: behold flagg + body-hook (hvis andre steder bruker det)
   pc.classList.add("is-collapsed");
@@ -2900,6 +2931,7 @@ function expandPlaceCard() {
   const pc = getPlaceCardEl();
   if (!pc) return;
 
+  delete pc.dataset.userCollapsedPlaceId;
   pc.classList.remove("is-collapsed");
   document.body.classList.remove("pc-collapsed");
 
@@ -2949,7 +2981,7 @@ function initPlaceCardCollapse() {
       collapsed = (localStorage.getItem("hg_placecard_collapsed_v1") === "1");
     } catch {}
 
-    if (collapsed) collapsePlaceCard();
+    if (collapsed) collapsePlaceCard(Boolean(pc.dataset.userCollapsedPlaceId && pc.dataset.userCollapsedPlaceId === currentPlaceId));
     else expandPlaceCard();
   }
 
@@ -2974,6 +3006,8 @@ function initPlaceCardCollapse() {
     });
   }
 
+  // Direct fallback remains for legacy/isolated controller instances.
+  // Document capture above handles real remounted footer thumbnails first.
   const mini = document.getElementById("pcMini");
   if (mini) {
     mini.addEventListener("click", (e) => {

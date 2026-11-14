@@ -17,6 +17,12 @@ on:
       - 'reports/place-production/tjuvholmen-generated-people-illustration-candidates-20261112.json'
       - 'reports/place-production/tjuvholmen-people-illustration-visual-qa-20261113.json'
       - 'tests/tjuvholmen-people-illustration-visual-qa.test.mjs'
+      - 'tests/tjuvholmen-people-illustration-ui-disclosure.test.mjs'
+      - 'js/ui/person-popup-v2.js'
+      - 'js/ui/place-card.js'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - 'css/person-popup-v2.css'
+      - 'css/placeCard.css'
       - 'scripts/stage-tjuvholmen-people-illustrations.py'
       - 'tests/tjuvholmen-people-illustration-importer.test.mjs'
       - 'docs/TJUVHOLMEN_ILLUSTRATION_STAGING.md'
@@ -54,6 +60,8 @@ jobs:
         run: node tests/tjuvholmen-generated-people-illustrations-candidates.test.mjs
       - name: Check resemblance QA rejects unpublished portraits
         run: node tests/tjuvholmen-people-illustration-visual-qa.test.mjs
+      - name: Verify illustrations carry visible People UI disclosures without activation
+        run: node tests/tjuvholmen-people-illustration-ui-disclosure.test.mjs
       - name: Verify illustration importer has no implicit activation
         run: node tests/tjuvholmen-people-illustration-importer.test.mjs
       - name: Verify eight source-backed sculptures without publishing unlicensed Objects

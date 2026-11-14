@@ -2460,3 +2460,20 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   margin-right: 8px;
   flex: 0 0 38px;
 }
+
+/* Keep illustrated People clearly labelled in their actual PlaceCard lists.
+   Labels are text as well as accessible image alt text, including on phones. */
+body.hg-app #placeCard #pcPeopleList .pc-person-image-kind{
+  display: block;
+  width: fit-content;
+  margin-top: 5px;
+  padding: 3px 7px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 5px;
+  background: rgba(20,25,33,.9);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: .015em;
+}

@@ -114,7 +114,8 @@
   }
 
   function isEditorialIllustration(person) {
-    return firstText(person?.imageMeta?.mediaType, person?.imageMeta?.source) === "editorial_illustration"
+    return firstText(person?.imageMeta?.assetKind, person?.imageKind).toLowerCase() === "illustration"
+      || firstText(person?.imageMeta?.mediaType) === "editorial_illustration"
       || firstText(person?.imageMeta?.source) === "history_go_editorial_illustration";
   }
 
