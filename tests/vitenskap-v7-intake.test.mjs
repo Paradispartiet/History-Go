@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { Script } from 'node:vm';
 
 const bytes = path => readFileSync(new URL('../' + path, import.meta.url));
 const read = path => bytes(path).toString('utf8');
@@ -79,4 +80,22 @@ test('idempotent importer verifies exact bytes and never overwrites approved art
   assert.match(script, /activationRequiresSeparatePR/);
   assert.match(script, /if ARCHIVE\.exists\(\):/);
   assert.ok(!script.includes('data/badges/vitenskap.json", "w"'));
+});
+
+
+test('read-only v7 review is gated and compares stored originals at 38-320px', () => {
+  const html = read('vitenskap-v7-review.html');
+  assert.ok(html.includes('html:not(.hg-auth-verified) body'));
+  assert.ok(html.includes('src="js/aha.js"'));
+  assert.ok(html.includes('src="js/auth/require-login.js'));
+  assert.ok(html.includes('vitenskap_v7_archived_candidates_20261113.json'));
+  assert.ok(html.includes('data/badges/vitenskap.json'));
+  assert.ok(html.includes("original:active.subBadgeImages[item.id]"));
+  assert.ok(html.includes("candidate:item.path"));
+  for (const size of [38, 52, 96, 160, 320]) {
+    assert.ok(html.includes('value="' + size + '"'));
+  }
+  const inline = html.match(/<script>([\s\S]*?)<\/script>/);
+  assert.ok(inline, 'Missing inline visual reviewer');
+  assert.doesNotThrow(() => new Script(inline[1], {filename:'vitenskap-v7-review.html'}));
 });
