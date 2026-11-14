@@ -34,10 +34,9 @@ try{
   async function openLanguage(){
    await page.goto(base+'/index.html?hgTest=1#/place/'+placeId,{waitUntil:'domcontentloaded'});
    await page.waitForFunction(id=>window.__HG_APP_READY__===true&&document.querySelector('#placeCard')?.dataset.currentPlaceId===id,placeId,{timeout:60000});
-   await page.locator('#pcInfo').click();
-   const popup=page.locator('.hg-popup.place-popup-v2').last();
-   await popup.locator('[data-place-tab="language"]').click();
-   const panel=popup.locator('[data-place-panel="language"]');
+   const shell=page.locator('#placeCard [data-hg-place-sheet-shell="1"]');
+   await shell.locator('[data-hg-place-sheet-jump="language"]').click();
+   const panel=shell.locator('[data-hg-place-sheet-section="language"]');
    await panel.locator('[data-language-entry]').first().waitFor({state:'visible',timeout:15000});
    assert.equal(await panel.locator('[data-language-entry]').count(),4);
    return panel;
