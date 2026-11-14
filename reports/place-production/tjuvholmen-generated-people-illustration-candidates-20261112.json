@@ -2,7 +2,7 @@
   "schema": "history_go_people_generated_illustration_candidate_manifest_v1",
   "place_id": "tjuvholmen",
   "created_at": "2026-11-12",
-  "status": "THREE_WEBP_CANDIDATES_STAGED_IN_GIT_QUARANTINE_NOT_ACTIVE",
+  "status": "THREE_V1_CANDIDATES_IN_QUARANTINE_MELGAARD_V3_EDITORIAL_ACTIVE",
   "created_for": "History Go PlaceCard People illustration alternative",
   "asset_kind": "illustration",
   "creator": "OpenAI image generation",
@@ -12,18 +12,18 @@
     1200
   ],
   "source_note": "Original generative portraits, based on editorial descriptions; no third-party photographic source bytes imported",
-  "identity_approval": "PENDING_INDIVIDUAL_SOURCE_REFERENCED_VISUAL_REVIEW",
-  "source_package_note": "Three exact SHA-256 verified original WebP bytes are committed to GitHub quarantine bilder/kort/people/candidates/tjuvholmen; no active People image, portrait identity approval or published illustration.",
+  "identity_approval": "MELGAARD_V3_USER_APPROVED_AS_EDITORIAL_ILLUSTRATION_OTHERS_PENDING",
+  "source_package_note": "Three v1 candidate WebPs remain in quarantine; one separate Melgaard v3 original WebP byte-for-byte duplicated to active editorial illustration path. Butkus/Astrup remain inactive; authentic portrait photos 2/5.",
   "photographs_already_approved": 2,
   "new_candidate_count": 3,
-  "new_published_portrait_count": 0,
+  "new_published_portrait_count": 1,
   "people": [
     {
       "person_id": "bjarne_melgaard",
       "candidate_path": "bilder/kort/people/bjarne_melgaard_illustrasjon_v1.webp",
       "asset_sha256": "f15758bed93b71a5a1da8ff3fa56f92cac2621af974cc72f49e5b0429a670bdc",
       "generation_id": "e5aed242-719d-4ff3-9b64-5dbc4375d1ad",
-      "review_status": "CANDIDATE_NOT_IDENTITY_APPROVED",
+      "review_status": "V1_REJECTED_V3_USER_APPROVED_EDITORIAL_ACTIVE",
       "identity_note": "Heavy beard and long dark hair: validate resemblance against multiple independent portraits; generated image is not documentary photography.",
       "reference_urls": [
         "https://ropac.net/artists/61-bjarne-melgaard/",
@@ -40,6 +40,13 @@
           1200
         ],
         "status": "NOT_COMMITTED_NOT_APPROVED"
+      },
+      "active_v3": {
+        "path": "bilder/kort/people/bjarne_melgaard_illustrasjon_v3.webp",
+        "sha256": "e287e2b2db58b38a6187a24b2c74ebe7175316fea5ce1dbc9c5eba1e036b81b1",
+        "user_approved_at": "2026-11-14",
+        "kind": "illustration",
+        "not_a_photograph": true
       }
     },
     {
@@ -75,7 +82,7 @@
   ],
   "rules": [
     "Candidate images do not count toward approved photographic portrait coverage.",
-    "No image paths become active in canonical People or runtime before actual binary WebP commit, verified SHA, likeness review and real app QA.",
+    "Only explicit editorial-approved illustration paths may become active after real WebP commit, verified SHA, clearly visible illustration disclosure and browser QA; unapproved v1 candidates remain quarantined.",
     "Never claim illustrated portraits are licensed authentic photographs.",
     "On integration use imageMeta.assetKind=illustration, visible label Illustrasjon and person-specific identity QA.",
     "Do not modify approved Pushwagner and Renzo Piano portrait files or three Brands/Structures."
@@ -84,5 +91,16 @@
   "staged_report": "reports/place-production/tjuvholmen-generated-people-illustration-import.json",
   "visual_qa_report": "reports/place-production/tjuvholmen-people-illustration-visual-qa-20261113.json",
   "visual_qa_reviewed_at": "2026-11-13",
-  "visual_qa_result": "ZERO_OF_THREE_APPROVED_V1_MELGAARD_REJECTED_OTHERS_HELD"
+  "visual_qa_result": "ZERO_OF_THREE_APPROVED_V1_MELGAARD_REJECTED_OTHERS_HELD",
+  "published_illustrations": [
+    {
+      "person_id": "bjarne_melgaard",
+      "path": "bilder/kort/people/bjarne_melgaard_illustrasjon_v3.webp",
+      "kind": "editorial_illustration",
+      "userApproval": "2026-11-14",
+      "sha256": "e287e2b2db58b38a6187a24b2c74ebe7175316fea5ce1dbc9c5eba1e036b81b1",
+      "width": 900,
+      "height": 1200
+    }
+  ]
 }

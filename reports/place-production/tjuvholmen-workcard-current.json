@@ -6,7 +6,7 @@
   "status": "editorial_closeout_blocked_by_collection_assets",
   "production_profile": "standard",
   "profile_status": "source_reviewed_pending_collection_acceptance",
-  "active_phase": "Stories 2 og Språkleksikon 3 er merget (#7279); Objects 8/8 kildeverifisert og klassifisert betinget (#7280), ingen aktiverte Object-bilder; People 2/5 foto; Structures 3/3 publisert med 960px kilder, fulloppløste originaler 0/3 pga Commons HTTP 429 (dokumentert i PR #7285).",
+  "active_phase": "Stories 2 og Språkleksikon 3 merget, Objects 8/8 kildeverifisert uten klarerte bilder, People 2/5 foto + 1 illustrert Melgaard v3 (Butkus og Astrup tekstbasert), Structures 3/3 publisert med 960px kilder, 0/3 fulloppløste originaler.",
   "canonical_source": "data/places/by/oslo/places/tjuvholmen.json",
   "existing_content": {
     "fullquiz_questions": 42,
@@ -122,7 +122,7 @@
   },
   "vferdig": {
     "status": "BLOCKED",
-    "reason": "Stories 2/2 og Språkleksikon 3/3 merget; Brands 3/3 og Structures 3/3 publiserte med godkjente WebP og mobil-/desktop-QA, men 0/3 fulloppløste Commons-originaler arkivert (HTTP 429). People har 2/5 identitetssikrede lisensportretter, tre profiler er tekstbaserte. Objects har åtte kildeverifiserte skulpturer og betinget By-Objects-klassifisering, men ingen godkjente enkeltverksbilder eller avklarte verk-/fotorettigheter. vFerdig BLOCKED.",
+    "reason": "Tjuvholmen har publiserbare Stories, Språkleksikon, Brands og Structures. People: 2/5 autentiske CC-lisensportretter + 1 bruker-godkjent, synlig merket KI-illustrasjon av Bjarne Melgaard; 2 People fortsatt uten bilder og 3 fotograflisenser ikke innhentet. Skulpturparkens 8 kunstverk har fortsatt ingen godkjente enkeltverksbilder og uavklarte foto-/verksrettigheter. Fulloppløste Commons-originaler for Structures: 0/3 (HTTP 429). Formell vFerdig fortsatt BLOCKED.",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
   "browser_acceptance": {
@@ -189,11 +189,17 @@
     "additional_source_provenance": "data/people/renzo_piano_image_provenance.json",
     "source_audit": "reports/place-production/tjuvholmen-people-portrait-rights-20261112.json",
     "text_only_ids": [
-      "bjarne_melgaard",
       "stephen_butkus",
       "hans_rasmus_astrup"
     ],
-    "broken_references_cleared_in_pr": true
+    "broken_references_cleared_in_pr": true,
+    "active_illustrations": 1,
+    "active_illustration_ids": [
+      "bjarne_melgaard"
+    ],
+    "active_visual_people": 3,
+    "remaining_text_only_people": 2,
+    "note": "2/5 documented licensed photos + 1 user-approved original opaque editorial AI portrait of Melgaard. The original is preserved; distinct generated-image source and rightsBasis validated. Butkus and Astrup remain text-only."
   },
   "structure_asset_coverage": {
     "total": 3,

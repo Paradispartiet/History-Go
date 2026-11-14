@@ -7,6 +7,7 @@ const read = p => fs.readFileSync(p,"utf8");
 const parse = p => JSON.parse(read(p));
 const card=read("js/ui/place-card.js");
 const popup=read("js/ui/person-popup-v2.js");
+
 const cardCss=read("css/placeCard.css");
 const personCss=read("css/person-popup-v2.css");
 assert.match(card,/imageMeta\?\.assetKind === "illustration"/);
@@ -26,16 +27,23 @@ const audit=parse("reports/place-production/tjuvholmen-people-portrait-rights-20
 const manifest=parse("reports/place-production/tjuvholmen-generated-people-illustration-candidates-20261112.json");
 const visual=parse("reports/place-production/tjuvholmen-people-illustration-visual-qa-20261113.json");
 assert.equal(runtime.people.length,5);
-for (const id of ["bjarne_melgaard","stephen_butkus","hans_rasmus_astrup"]) {
+for (const id of ["stephen_butkus","hans_rasmus_astrup"]) {
  const person=runtime.people.find(p=>p.id===id);
  assert.ok(person,id);
  assert.equal(person.image,"");
  assert.equal(person.cardImage,"");
 }
 assert.equal(audit.approved.length,2);
-assert.equal(manifest.new_published_portrait_count,0);
-assert.equal(visual.publication_gates.place_card_illustrations_active,0);
-assert.equal(visual.entries[0].additional_candidate_v3.status,"STAGED_IN_GIT_NOT_IDENTITY_APPROVED_NOT_ACTIVE");
+assert.equal(manifest.new_published_portrait_count,1);
+assert.equal(visual.publication_gates.place_card_illustrations_active,1);
+const melgaard=runtime.people.find(p=>p.id==="bjarne_melgaard");
+assert.equal(melgaard.image,"bilder/kort/people/bjarne_melgaard_illustrasjon_v3.webp");
+assert.equal(melgaard.cardImage,melgaard.image);
+assert.equal(melgaard.imageMeta.assetKind,"illustration");
+assert.equal(melgaard.imageMeta.visibleDisclosure,"Illustrasjon");
+assert.equal(melgaard.imageMeta.assetSha256,visual.entries[0].additional_candidate_v3.sha256);
+assert.equal(visual.entries[0].additional_candidate_v3.status,"USER_APPROVED_EDITORIAL_ILLUSTRATION_ACTIVE_IN_PEOPLE");
+assert.equal(fs.existsSync(melgaard.image),true);
 const v3=visual.entries[0].additional_candidate_v3;
 const v3Bytes=fs.readFileSync(v3.staged_path);
 assert.equal(v3Bytes.length,189842);
@@ -46,4 +54,4 @@ assert.equal(v3Bytes.toString("ascii",12,16),"VP8 ");
 assert.deepEqual([v3Bytes.readUInt16LE(26)&0x3fff,v3Bytes.readUInt16LE(28)&0x3fff],[900,1200]);
 assert.equal(visual.entries[0].additional_candidate_v3.sha256,"e287e2b2db58b38a6187a24b2c74ebe7175316fea5ce1dbc9c5eba1e036b81b1");
 assert.equal(parse("reports/place-production/tjuvholmen-workcard-current.json").vferdig.status,"BLOCKED");
-console.log("TJUVHOLMEN_ILLUSTRATION_UI_DISCLOSURE_PASS: v3 bytes, 900x1200, SHA256 verified; visual labels required; 0 People candidates activated");
+console.log("TJUVHOLMEN_ILLUSTRATION_UI_DISCLOSURE_PASS: Melgaard v3 active and visibly disclosed; Butkus/Astrup held; 2 authentic photo rights approved");

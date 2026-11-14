@@ -1,12 +1,12 @@
 {
   "schema": "history_go_tjuvholmen_illustrated_people_visual_qa_v1",
   "place_id": "tjuvholmen",
-  "reviewed_at": "2026-11-13",
+  "reviewed_at": "2026-11-14",
   "reference_policy": "Public source photos used only as reference for editorial assessment; not copied into the repository or reproduced as derived photos.",
-  "result": "ZERO_OF_THREE_ILLUSTRATIONS_APPROVED_FOR_PEOPLE_ACTIVATION",
+  "result": "ONE_OF_THREE_ILLUSTRATIONS_EDITORIAL_USER_APPROVED_ONE_ACTIVE_TWO_HELD",
   "previous_pr": 7306,
   "candidate_manifest": "reports/place-production/tjuvholmen-generated-people-illustration-candidates-20261112.json",
-  "qa_scope": "Review of v1 900x1200 images staged in GitHub quarantine; one newer locally exported Melgaard v2 pending asset import and separate identity approval; Melgaard v3 candidate staged as exact Git binary with SHA-256; no identity approval or activation",
+  "qa_scope": "Melgaard v3 accepted by user for use as visibly disclosed editorial illustration 2026-11-14; does not constitute independently verified photographic identity. Butkus and Astrup v1 remain held. All original v1 decisions retained.",
   "entries": [
     {
       "person_id": "bjarne_melgaard",
@@ -32,7 +32,7 @@
         "note": "New original painted illustration has shorter cropped hair and an understated jacket. Still requires verified byte import, face review and visible 'Illustrasjon' label before publishing."
       },
       "additional_candidate_v3": {
-        "status": "STAGED_IN_GIT_NOT_IDENTITY_APPROVED_NOT_ACTIVE",
+        "status": "USER_APPROVED_EDITORIAL_ILLUSTRATION_ACTIVE_IN_PEOPLE",
         "delivery_filename": "bjarne_melgaard_illustrasjon_v3_kandidat.webp",
         "expected_staged_path": "bilder/kort/people/candidates/tjuvholmen/bjarne_melgaard_illustrasjon_v3.webp",
         "dimensions": [
@@ -43,9 +43,16 @@
         "sha256": "e287e2b2db58b38a6187a24b2c74ebe7175316fea5ce1dbc9c5eba1e036b81b1",
         "source_png_sha256": "bf7b78d83f5ecdd3d385de1bbf64d8dc44f00df68319514fd644d98267fd1505",
         "generation_id": "9e598859-257d-493d-88d4-56f8c2c97e55",
-        "note": "Exact 900x1200 WebP archived as a binary Git object and staged in the PR candidate directory. Original PNG is still a conversation artifact; no approved likeness, no People photo status, no runtime activation.",
+        "note": "Exact 900×1200 generated WebP copied byte-for-byte to active path; visually disclosed as Illustrasjon in PlaceCard and person popup. Approval is for editorial illustration, not an authentic photographic identity or third-party photograph license.",
         "staged_path": "bilder/kort/people/candidates/tjuvholmen/bjarne_melgaard_illustrasjon_v3.webp",
-        "git_blob_sha": "4d6cf697f4217a79e504f61a5e5a9588e7826284"
+        "git_blob_sha": "4d6cf697f4217a79e504f61a5e5a9588e7826284",
+        "approved_path": "bilder/kort/people/bjarne_melgaard_illustrasjon_v3.webp",
+        "approved_as": "KI-generert portrettillustrasjon, ikke autentisk fotografi",
+        "editorialApproval": "User: «Fullfør, det ser bra ut» (2026-11-14), interpreted for Melgaard v3 only",
+        "usageRights": "user_authorized_history_go_publication_only",
+        "background": "opaque_painted",
+        "pipeline": "history_go_original_generated_editorial_portrait; exact binary parity with candidate; no Creative Commons license claimed",
+        "photoLicenseClarification": "This is original generated editorial artwork, not a photograph; original opaque background retained as user-approved"
       }
     },
     {
@@ -83,15 +90,22 @@
     "candidate_webps_already_committed": 3,
     "new_v2_webps_committed": 0,
     "people_image_links_changed": false,
-    "place_card_illustrations_active": 0,
+    "place_card_illustrations_active": 1,
     "vferdig": "BLOCKED",
     "require_before_activation": [
-      "Confirmed independently sourced likeness",
-      "Authentic binary file in git matching SHA-256",
-      "Asset metadata declaring illustration not photograph",
-      "Visible 'Illustrasjon' label in actual People UI",
-      "390px/1440px real PlaceCard browser QA"
+      "User/editorial likeness approval for each proposed person",
+      "Byte-for-byte identical generated media, SHA-256 and dimension contract",
+      "imageMeta.assetKind=illustration and visible illustration disclosure",
+      "390px and 1440px PlaceCard browser QA"
     ],
-    "new_v3_webps_committed": 1
+    "new_v3_webps_committed": 1,
+    "active_editorial_illustration_ids": [
+      "bjarne_melgaard"
+    ],
+    "other_people_illustrations_held": [
+      "stephen_butkus",
+      "hans_rasmus_astrup"
+    ],
+    "photo_licenses_for_missing_people_not_obtained": true
   }
 }
