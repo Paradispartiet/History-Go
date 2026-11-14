@@ -39,7 +39,8 @@ for(const [p,sha] of [
  ["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]
 ])assert.equal(reg.get(p)?.gitBlobSha,sha,p+" must remain byte-identical");
 assert(reg.get("emne_fauna_fiskemaake")===null || reg.get("emne_fauna_fiskemaake")?.scientificName==="Larus canus","Fiskemåke may be added only with correct taxonomy");
-assert(/nature-fauna-approved\.js\?v=20261113-(?:09|10|1[1-9])/.test(read("finn-fauna.html")),"Approved fauna cache-busting version must be current or newer");
+const version=read("finn-fauna.html").match(/nature-fauna-approved\.js\?v=(\d{8})-(\d{2})/);
+assert(version && (Number(version[1])>20261113 || (Number(version[1])===20261113 && Number(version[2])>=9)),"Approved fauna cache-busting version must be current or newer");
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Gråmåke")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #9 Gråmåke: adults, transparent original, binary hashes, eight prior originals and quiz verified.");
