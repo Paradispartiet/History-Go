@@ -7,6 +7,10 @@ const read = p => fs.readFileSync(p,"utf8");
 const parse = p => JSON.parse(read(p));
 const card=read("js/ui/place-card.js");
 const popup=read("js/ui/person-popup-v2.js");
+const collections=read("js/ui/place-rounds-visual-collections.js");
+assert.match(collections,/illustratedPerson/);
+assert.match(collections,/pc-person-image-kind/);
+
 const cardCss=read("css/placeCard.css");
 const personCss=read("css/person-popup-v2.css");
 assert.match(card,/imageMeta\?\.assetKind === "illustration"/);
