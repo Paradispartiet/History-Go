@@ -474,7 +474,11 @@
       }).join("");
     }
     return items.length
-      ? items.map(item => `<button type="button" class="pc-person pc-visual-round-item" data-visual-round-item="${esc(item.id)}">${item.image ? `<img src="${esc(item.image)}" class="pc-person-img" alt="">` : ""}<span class="pc-person-meta"><span class="pc-person-name">${esc(item.title)}</span>${item.description ? `<span class="pc-person-desc">${esc(item.description)}</span>` : ""}</span></button>`).join("")
+      ? items.map(item => {
+        const illustratedPerson = def.id === "people" && Boolean(item.image) && item.imageKind === "illustration";
+        const alt = illustratedPerson ? "Illustrasjon av " + item.title : item.title;
+        return `<button type="button" class="pc-person pc-visual-round-item" data-visual-round-item="${esc(item.id)}">${item.image ? `<img src="${esc(item.image)}" class="pc-person-img" alt="${esc(alt)}">` : ""}<span class="pc-person-meta"><span class="pc-person-name">${esc(item.title)}</span>${illustratedPerson ? '<span class="pc-person-image-kind">Illustrasjon</span>' : ""}${item.description ? `<span class="pc-person-desc">${esc(item.description)}</span>` : ""}</span></button>`;
+      }).join("")
       : `<div class="pc-empty">Ingen ${esc(def.label.toLowerCase())} registrert ennå</div>`;
   }
 
