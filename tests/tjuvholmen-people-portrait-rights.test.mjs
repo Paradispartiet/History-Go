@@ -51,8 +51,17 @@ for(const entry of audit.pending){
   for(const registry of [sources,people,place.people]){
     const item=find(registry,entry.person_id);
     assert.ok(item,"Missing Person "+entry.person_id);
-    assert.equal(item.image,"","Non-cleared photo displayed "+entry.person_id);
-    assert.equal(item.cardImage,"","Non-cleared card image displayed "+entry.person_id);
+    if(entry.person_id==="bjarne_melgaard") {
+      assert.equal(item.image,"bilder/kort/people/bjarne_melgaard_illustrasjon_v3.webp","User-approved generated illustration path missing");
+      assert.equal(item.cardImage,item.image);
+      assert.equal(item.imageMeta.assetKind,"illustration");
+      assert.equal(item.imageMeta.visibleDisclosure,"Illustrasjon");
+      assert.ok(exists(item.image));
+      assert.equal(sha256(item.image),item.imageMeta.assetSha256);
+    } else {
+      assert.equal(item.image,"","Non-cleared photo displayed "+entry.person_id);
+      assert.equal(item.cardImage,"","Non-cleared card image displayed "+entry.person_id);
+    }
     assert.ok(item.name&&item.desc,"Text-only Person details lost "+entry.person_id);
   }
 }
@@ -62,4 +71,4 @@ assert.equal(astrup.image,"");
 assert.equal(astrup.cardImage,"");
 assert.equal(audit.rights_clearance_status,"NO_PERMISSION_OBTAINED_NO_EXTERNAL_CONTACT_SENT");
 
-console.log("TJUVHOLMEN_PEOPLE_IMAGE_RIGHTS_PASS 2 approved authentic 3 text-only pending");
+console.log("TJUVHOLMEN_PEOPLE_IMAGE_RIGHTS_PASS 2 licensed photos, one visibly disclosed approved editorial illustration, two text-only");
