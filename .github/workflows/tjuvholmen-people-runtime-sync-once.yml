@@ -1,0 +1,34 @@
+name: Tjuvholmen v2 final shard regeneration
+on:
+  push:
+    branches:
+      - content/tjuvholmen-people-illustrations-v2-20261114
+    paths:
+      - .github/workflows/tjuvholmen-people-runtime-sync-once.yml
+permissions:
+  contents: write
+jobs:
+  sync:
+    if: github.repository == 'Paradispartiet/History-Go' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: content/tjuvholmen-people-illustrations-v2-20261114
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run place-open:build
+      - run: npm run place-open:check
+      - name: Stage ALL generated People shards, not only modified identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          git add -- data/runtime/people-all/ data/runtime/place-open/tjuvholmen.json data/runtime/place-open/astrup_fearnley.json
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'build(tjuvholmen): retain all remapped People shards'
+          git push origin HEAD:content/tjuvholmen-people-illustrations-v2-20261114
