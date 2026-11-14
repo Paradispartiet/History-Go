@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_graagas:Object.freeze({
+   scientificName:"Anser anser",
+   src:"bilder/natur/fauna/godkjent/12_graagaas_v1.webp",
+   gitBlobSha:"63289e4f9134a0b0e959b52c59a543e85476f556",
+   reviewedAt:"2026-11-14",
+   stage:"adult_standing_and_in_flight_grey_brown_plumage_orange_bill_pink_legs",
+   evidence:"data/natur/fauna/illustration-quality-graagaas-20261114.json"
+  }),
   emne_fauna_knoppsvane:Object.freeze({
    scientificName:"Cygnus olor",
    src:"bilder/natur/fauna/godkjent/11_knoppsvane_v1.webp",
