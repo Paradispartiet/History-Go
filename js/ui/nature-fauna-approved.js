@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_knoppsvane:Object.freeze({
+   scientificName:"Cygnus olor",
+   src:"bilder/natur/fauna/godkjent/11_knoppsvane_v1.webp",
+   gitBlobSha:"dc1692279b0c32f955dadd3a33a48faaf3615f9e",
+   reviewedAt:"2026-11-13",
+   stage:"adult_white_s_curved_neck_orange_bill_black_knob_and_grey_cygnet",
+   evidence:"data/natur/fauna/illustration-quality-knoppsvane-20261113.json"
+  }),
   emne_fauna_fiskemaake:Object.freeze({
    scientificName:"Larus canus",
    src:"bilder/natur/fauna/godkjent/10_fiskemaake_v1.webp",
