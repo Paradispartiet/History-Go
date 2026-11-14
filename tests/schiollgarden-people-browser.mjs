@@ -49,6 +49,7 @@ try{
     const h=el.querySelector('.hg-person-popup-header'),r=h.getBoundingClientRect();
     return {popup:read(el),ancestors:[read(el.parentElement),read(el.parentElement?.parentElement)],place:read(document.querySelector('#placeCard')),header:read(h),hits:document.elementsFromPoint(r.x+r.width/2,r.y+r.height/2).slice(0,8).map(read)};
    })));
+   assert.equal(await popup.evaluate(el=>el.parentElement===document.body),true,'Viewport-framed People must not be moved into the scaled app shell');
    const onTop=await popup.locator('.hg-person-popup-header').evaluate(el=>{const r=el.getBoundingClientRect();return !!document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.closest('.person-popup-v2');});
    assert.equal(onTop,true,'Person profile must be above the active PlaceCard');
    await popup.locator('.hg-popup-close').click({trial:true});
