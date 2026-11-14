@@ -30,12 +30,42 @@ def digest(data):
     }
 
 
+def verify_archived(intake, catalog_path, original_catalog_bytes):
+    report = json.loads(ARCHIVE.read_text(encoding="utf-8"))
+    assert report["status"] == "three_exact_v7_binary_candidate_artworks_archived_not_active"
+    assert report["visualSignoffRequired"] is True
+    assert report["activeRegisterUnchanged"] is True
+    assert len(report["items"]) == len(intake["expected"]) == 3
+    actual = {item["id"]: item for item in report["items"]}
+    for source in intake["expected"]:
+        item = actual[source["id"]]
+        expected_path = (
+            ROOT / "bilder/merker/vitenskap/kandidater/revisjoner/nb" /
+            f'{source["id"]}-v7-brodert.webp'
+        )
+        assert item["path"] == str(expected_path.relative_to(ROOT))
+        data = expected_path.read_bytes()
+        assert digest(data) == {
+            key: source[key] for key in ("bytes", "sha256", "gitBlobSha")
+        }
+        with Image.open(expected_path) as image:
+            assert image.mode == "RGBA" and image.size == (1024, 1024)
+            assert all(image.getpixel(p)[3] == 0 for p in (
+                (0, 0), (0, 1023), (1023, 0), (1023, 1023)
+            ))
+    assert catalog_path.read_bytes() == original_catalog_bytes
+    return True
+
+
 def main():
-    if len(sys.argv) != 2:
-        raise SystemExit("Provide directory containing the actual three exported v7 WebPs.")
-    folder = Path(sys.argv[1]).resolve()
+    if len(sys.argv) > 2:
+        raise SystemExit("Optional argument: original v7 source folder.")
+    folder = Path(sys.argv[1]).resolve() if len(sys.argv) == 2 else None
     intake = json.loads(INTAKE.read_text(encoding="utf-8"))
-    assert intake["status"] == "three_candidate_previews_created_outside_repo_binary_transfer_pending"
+    assert intake["status"] in (
+        "three_candidate_previews_created_outside_repo_binary_transfer_pending",
+        "three_exact_v7_binary_candidates_archived_unapproved_nonactive",
+    )
     assert intake["activation"] == "not_approved_not_active"
     assert intake["requiredFooter"] == "VITENSKAP & TEKNOLOGI"
     assert len(intake["expected"]) == 3
@@ -44,6 +74,12 @@ def main():
     original_catalog_bytes = catalog_path.read_bytes()
     catalog = json.loads(original_catalog_bytes.decode("utf-8"))
     assert len(catalog["subBadgeImages"]) == 16
+    if ARCHIVE.exists():
+        verify_archived(intake, catalog_path, original_catalog_bytes)
+        print("All three exact v7 candidate originals are already archived and verified.")
+        return
+    if folder is None:
+        raise SystemExit("Provide original v7 source folder for first-time import.")
 
     targets = []
     for item in intake["expected"]:
