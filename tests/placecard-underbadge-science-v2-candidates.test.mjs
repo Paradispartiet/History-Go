@@ -66,6 +66,7 @@ test('PlaceCard live badge render uses the no-crop embroidered class and legible
   const badgeHelper = read('js/ui/badges.js').toString('utf8');
   const css = read('css/placeCard.css').toString('utf8');
   const index = read('index.html').toString('utf8');
+  const loader = read('js/app.js').toString('utf8');
   const sw = read('sw.js').toString('utf8');
   // The helper already uses this class; the live PlaceCard renderer must not
   // silently replace it with the generic portrait class.
@@ -79,5 +80,6 @@ test('PlaceCard live badge render uses the no-crop embroidered class and legible
   assert.match(css, /#placeCard \.pc-title-row > #pcBadgesIcon > img\.pc-badge-round-img\s*\{[^}]*transform:\s*none/);
   assert.match(index, /css\/placeCard\.css\?v=20261114-badge-rim-class1/);
   assert.match(index, /js\/app\.js\?v=20261114-badge-rim-class1/);
+  assert.match(loader, /js\/ui\/place-card\.js\?v=20261114-badge-rim-class1/);
   assert.match(sw, /hg-sw-2026-11-14-[^"]*badge-rim-class1/);
 });
