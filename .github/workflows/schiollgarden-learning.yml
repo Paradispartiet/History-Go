@@ -1,0 +1,71 @@
+name: Schiollgarden learning QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/schiollgarden-learning.yml'
+      - 'data/quiz/by/schiollgarden_prinsens_gate_26_sets.json'
+      - 'data/quiz/production_briefs/by/schiollgarden_prinsens_gate_26.json'
+      - 'data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json'
+      - 'data/quizcards/by/schiollgarden_prinsens_gate_26_quizcard_v1.json'
+      - 'tests/schiollgarden-quizcard-browser.mjs'
+      - 'tests/schiollgarden-learning-contract.test.mjs'
+permissions:
+  contents: read
+concurrency:
+  group: schiollgarden-learning-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  learning:
+    if: github.event_name == 'pull_request' && github.repository == 'Paradispartiet/History-Go' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'codex/schiollgarden-quiz-20261113'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Audit previous target and discover QuizCard owners
+        run: |
+          git fetch --no-tags --depth=1 origin 204744a1cd201bee08c712ac91d30d1fb1cb27da
+          git ls-files | rg -i 'quiz.?card' | rg '\.(md|mjs|js|json|ts)$' | head -60 || true
+          node --input-type=module <<'JS'
+          import {spawnSync} from 'node:child_process';
+          const result=spawnSync('git',['grep','-i','-l','-E','schiollgarden|schiøllgården|schjøllgården','204744a1cd201bee08c712ac91d30d1fb1cb27da','--','data/quiz','data/knowledge','data/quizcards'],{encoding:'utf8'});
+          if(result.error) throw result.error;
+          console.log('PREVIOUS_QUIZ_KNOWLEDGE_MATCHES '+(result.stdout.trim()||'none'));
+          if(result.status!==1) throw Error('Existing target match or failed baseline scan: '+result.stderr);
+          JS
+      - name: Build authoritative context and Knowledge
+        run: |
+          node scripts/build-quiz-production-context.mjs --category by --target schiollgarden_prinsens_gate_26 --output data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          node scripts/build-place-open-payloads.mjs
+      - name: Validate quiz learning content
+        run: |
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
+          node scripts/build-quiz-production-context.mjs --category by --target schiollgarden_prinsens_gate_26 --output data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json --check
+      - name: Check committed generated outputs
+        run: |
+          git diff --exit-code -- data/quiz/by/schiollgarden_prinsens_gate_26_sets.json data/quiz/production_context/by/schiollgarden_prinsens_gate_26.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/schiollgarden-learning-contract.test.mjs
+      - run: node tests/schiollgarden-quizcard-browser.mjs
+      - run: node scripts/verify-place-quiz-browser.mjs schiollgarden_prinsens_gate_26 --ipad
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: schiollgarden-learning-browser
+          path: |
+            artifacts/schiollgarden-quizcard-browser
+            artifacts/place-quiz/schiollgarden_prinsens_gate_26
+          if-no-files-found: warn
