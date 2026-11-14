@@ -1,0 +1,26 @@
+name: PlaceCard full badge rim - round image class
+on:
+  pull_request:
+    paths:
+      - 'js/ui/place-card.js'
+      - 'css/placeCard.css'
+      - 'index.html'
+      - 'sw.js'
+      - 'tests/placecard-badge-full-rim-class.test.mjs'
+      - '.github/workflows/qa-placecard-full-badge-rim.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: placecard-full-badge-rim-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  badge-full-rim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Assert correct badge icon markup, cover override, cache version, and unchanged active badge sources
+        run: node --test tests/placecard-badge-full-rim-class.test.mjs
