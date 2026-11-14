@@ -8,7 +8,7 @@ const json = path => JSON.parse(bytes(path).toString('utf8'));
 const active = json('data/badges/vitenskap.json');
 const audit = json('data/badges/vitenskap_active_typography_audit_20261113.json');
 
-test('all 16 currently active science underbadges have genuine unchanged image references', () => {
+test('all 16 original science badges remain retrievable after proposed v7 activation', () => {
   assert.equal(active.id, 'vitenskap');
   assert.equal(audit.categoryId, 'vitenskap');
   assert.equal(audit.status, 'manual_visual_audit_unapproved_not_activating');
@@ -20,8 +20,9 @@ test('all 16 currently active science underbadges have genuine unchanged image r
   assert.equal(new Set(audit.items.map(x => x.id)).size, 16);
   assert.equal(audit.requiredMainTitle, 'VITENSKAP & TEKNOLOGI');
   for(const item of audit.items) {
-    assert.equal(item.image, active.subBadgeImages[item.id]);
+    assert.ok(active.subBadgeImages[item.id], 'Missing active underbadge: ' + item.id);
     assert.ok(item.image.startsWith('bilder/merker/vitenskap/brodert/'));
+    assert.ok(active.subBadgeImages[item.id].startsWith('bilder/merker/vitenskap/brodert/'));
     assert.ok(item.label);
     assert.ok(item.notes);
     assert.ok(['high', 'review'].includes(item.priority));
@@ -33,7 +34,7 @@ test('all 16 currently active science underbadges have genuine unchanged image r
   }
 });
 
-test('exactly three original illustrations need full parent category text, not activation', () => {
+test('exactly three historical originals had missing parent-title text, now safely replaceable', () => {
   const flagged = audit.items.filter(x => x.priority === 'high');
   assert.deepEqual(new Set(flagged.map(x => x.id)), new Set([
     'teknologi_og_ingeniorfag',
@@ -44,6 +45,9 @@ test('exactly three original illustrations need full parent category text, not a
   assert.equal(flagged.filter(x => x.footerStatus === 'missing').length, 1);
   assert.ok(flagged.every(x => x.footerVisible !== audit.requiredMainTitle));
   assert.ok(audit.decision.includes('do not overwrite or autoactivate'));
+  const revised = audit.items.filter(item => active.subBadgeImages[item.id] !== item.image);
+  assert.deepEqual(new Set(revised.map(item => item.id)), new Set(flagged.map(item => item.id)));
+  assert.ok(revised.every(item => active.subBadgeImages[item.id].endsWith('_v7.webp')));
 });
 
 test('review webpage is an authenticated read-only renderer with mobile-size and full-size views', () => {
@@ -54,7 +58,9 @@ test('review webpage is an authenticated read-only renderer with mobile-size and
   assert.ok(page.includes('data/badges/vitenskap.json'));
   assert.ok(page.includes('data/badges/vitenskap_active_typography_audit_20261113.json'));
   assert.ok(page.includes("item.priority === 'high'"));
-  assert.ok(page.includes('catalog.subBadgeImages[item.id] !== item.image'));
+  assert.ok(page.includes('!catalog.subBadgeImages[item.id]'));
+  assert.ok(page.includes('activeBadgeImages[item.id]'));
+  assert.ok(page.includes('Registrert nyere merke'));
   for(const size of [38,52,96,160,320]) assert.ok(page.includes('value="' + size + '"'));
   assert.ok(page.includes('<dialog'));
   const inline = page.match(/<script>([\s\S]*?)<\/script>/);

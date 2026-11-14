@@ -17,7 +17,7 @@ const previous = {
   teknologi_og_ingeniorfag:'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag.webp',
   data_programvare_og_algoritmer:'bilder/merker/vitenskap/brodert/data_programvare_og_algoritmer.webp'
 };
-test('Network badge integrates with the established science family without changing prior art', () => {
+test('Network badge preserves the established science family and old originals during v7 proposal', () => {
   assert.equal(manifest.categoryId, 'vitenskap');
   assert.equal(manifest.id, 'nettverk_og_digital_infrastruktur');
   assert.equal(manifest.status, 'integrated');
@@ -27,11 +27,15 @@ test('Network badge integrates with the established science family without chang
   assert.equal(badge.sub.length, 16);
   assert.ok(badge.sub.includes(manifest.id));
   for (const [id, path] of Object.entries(previous)) {
-    assert.equal(badge.subBadgeImages[id], path, id + ' changed');
-    assert.ok(existsSync(new URL(path, root)), id + ' asset missing');
+    const replacement = ['teknologi_og_ingeniorfag','data_programvare_og_algoritmer'].includes(id)
+      ? 'bilder/merker/vitenskap/brodert/' + id + '_v7.webp' : path;
+    assert.equal(badge.subBadgeImages[id], replacement, id + ' changed unexpectedly');
+    assert.ok(existsSync(new URL(path, root)), id + ' previous original is missing');
   }
   assert.ok(Object.keys(badge.subBadgeImages).length >= 10);
-  assert.equal(badge.subBadgeImages[manifest.id], manifest.variants.nb.path);
+  assert.equal(badge.subBadgeImages[manifest.id],
+    'bilder/merker/vitenskap/brodert/nettverk_og_digital_infrastruktur_v7.webp');
+  assert.ok(existsSync(new URL(manifest.variants.nb.path,root)), 'Previous network badge must remain for rollback');
   assert.equal(manifest.quality.binaryVerifiedInRepository, true);
   assert.equal(manifest.quality.integrated, true);
 });

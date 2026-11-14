@@ -17,7 +17,7 @@ const previouslyActive = {
   teknologi_og_ingeniorfag:'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag.webp'
 };
 
-test('Data/programvare/algoritmer: previous science badges are preserved exactly',()=>{
+test('Data/programvare/algoritmer: previous originals remain intact, v7 activation is explicit',()=>{
   assert.equal(manifest.categoryId,'vitenskap');
   assert.equal(manifest.id,'data_programvare_og_algoritmer');
   assert.ok(badge.sub.includes(manifest.id));
@@ -25,11 +25,15 @@ test('Data/programvare/algoritmer: previous science badges are preserved exactly
   assert.equal(badge.color,'#6A5AE0');
   assert.equal(badge.secondaryColor,'#FFFFFF');
   for (const [id,path] of Object.entries(previouslyActive)) {
-    assert.equal(badge.subBadgeImages[id],path,id+' was changed');
-    assert.ok(existsSync(new URL(path,root)),id+' existing asset missing');
+    const expected = id === 'teknologi_og_ingeniorfag'
+      ? 'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag_v7.webp' : path;
+    assert.equal(badge.subBadgeImages[id],expected,id+' changed unexpectedly');
+    assert.ok(existsSync(new URL(path,root)),id+' older original must remain intact');
   }
   assert.ok(Object.keys(badge.subBadgeImages).length >= (manifest.status==='integrated'?9:8));
-  assert.equal(badge.subBadgeImages[manifest.id],manifest.status==='integrated'?manifest.variants.nb.path:undefined);
+  assert.equal(badge.subBadgeImages[manifest.id],manifest.status==='integrated'
+    ? 'bilder/merker/vitenskap/brodert/data_programvare_og_algoritmer_v7.webp' : undefined);
+  assert.ok(existsSync(new URL(manifest.variants.nb.path,root)), 'The former data badge must remain for rollback');
 });
 
 test('Five translated science originals, no progress counter and locked hashes',()=>{
