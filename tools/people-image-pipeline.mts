@@ -1,5 +1,6 @@
 import { readFile, writeFile, mkdir, rename, rm, access } from 'node:fs/promises';
 import { createWriteStream } from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import { fileURLToPath } from 'node:url';
@@ -41,7 +42,53 @@ export function isAllowedLicense(license: unknown): boolean {
   return /public domain|\bpd\b|\bcc0\b|cc by(?!.*\b(?:nc|nd)\b)|creative commons attribution(?!.*noncommercial|.*no derivatives)/.test(l);
 }
 
+// Original AI-generated, user-authorized opaque editorial paintings are not
+// third-party photographs and must not be falsely relabeled as CC-licensed.
+// This separate, strict pathway leaves the legacy transparent/CC contract intact.
+const GENERATED_EDITORIAL_SOURCE = 'history_go_original_generated_editorial_portrait';
+export function validateOriginalGeneratedEditorialMeta(meta: unknown): string[] {
+  if (!isObj(meta) || reqStr(meta.source) !== GENERATED_EDITORIAL_SOURCE) return [];
+  const errors: string[] = [];
+  if (reqStr(meta.assetKind) !== 'illustration') errors.push('assetKind');
+  if (reqStr(meta.mediaType) !== 'editorial_illustration') errors.push('mediaType');
+  if (reqStr(meta.background) !== 'opaque_painted') errors.push('background');
+  if (!reqStr(meta.personId)) errors.push('personId');
+  if (!reqStr(meta.creator) || !reqStr(meta.credit)) errors.push('credit');
+  if (reqStr(meta.license) !== 'user_authorized_history_go_publication_only') errors.push('license');
+  if (reqStr(meta.rightsBasis) !== 'original_openai_generated_output_user_authorized_publication') errors.push('rightsBasis');
+  if (reqStr(meta.reviewStatus) !== 'user_approved_original_editorial_portrait') errors.push('reviewStatus');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(reqStr(meta.approvedAt))) errors.push('approvedAt');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(reqStr(meta.generatedAt))) errors.push('generatedAt');
+  if (!/illustrasjon/i.test(reqStr(meta.disclosure)) || !/ikke fotografi/i.test(reqStr(meta.disclosure))) errors.push('disclosure');
+  if (!/^[a-f0-9]{64}$/.test(reqStr(meta.assetSha256))) errors.push('assetSha256');
+  if (!reqStr(meta.generationId)) errors.push('generationId');
+  if (!/^bilder\/kort\/people\/candidates\/tjuvholmen\/[a-z0-9_-]+\.webp$/.test(reqStr(meta.sourceCandidate))) errors.push('sourceCandidate');
+  if (!Array.isArray(meta.referencePages) || meta.referencePages.length < 2 || meta.referencePages.some(url => !/^https:\/\//.test(reqStr(url)))) errors.push('referencePages');
+  if (!reqStr(meta.approvalEvidence)) errors.push('approvalEvidence');
+  return errors;
+}
+
+export async function validateOriginalGeneratedEditorialFile(filePath: string, meta: Record<string, unknown>): Promise<string[]> {
+  const errors: string[] = [];
+  try {
+    if (!/\.webp$/i.test(filePath)) errors.push('format');
+    const actual = await readFile(filePath);
+    const dimensions = await sharp(actual, { animated:false, pages:1, failOn:'error' }).metadata();
+    if (dimensions.format !== 'webp' || dimensions.width !== 900 || dimensions.height !== 1200) errors.push('dimensions');
+    const actualSha = createHash('sha256').update(actual).digest('hex');
+    if (actualSha !== reqStr(meta.assetSha256)) errors.push('assetSha256');
+    const rel = reqStr(meta.sourceCandidate);
+    if (!/^bilder\/kort\/people\/candidates\/tjuvholmen\/[a-z0-9_-]+\.webp$/.test(rel)) errors.push('sourceCandidate');
+    else {
+      const candidate = await readFile(path.join(ROOT(),rel));
+      if (createHash('sha256').update(candidate).digest('hex') !== actualSha) errors.push('sourceByteParity');
+    }
+  } catch { errors.push('decodeOrCandidateMissing'); }
+  return [...new Set(errors)];
+}
+
 export function validateEditorialIllustrationMeta(meta: unknown): string[] {
+  if (isObj(meta) && reqStr(meta.source) === GENERATED_EDITORIAL_SOURCE) return validateOriginalGeneratedEditorialMeta(meta);
   if (!isObj(meta) || reqStr(meta.source) !== 'history_go_editorial_illustration') return [];
   const errors: string[] = [];
   if (reqStr(meta.mediaType) !== 'editorial_illustration') errors.push('mediaType');
@@ -444,7 +491,7 @@ async function download(url: string, destBase: string, fetcher: Fetcher): Promis
     throw e;
   }
 }
-export async function regenerateAttributions(entries?: Entry[], write = false): Promise<void> { const sourceEntries = entries ?? await loadPeople(); const rows = sourceEntries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl), ...(reqStr(e.person.imageMeta?.modification) ? { modification: reqStr(e.person.imageMeta?.modification) } : {}) })).filter(r => ['wikimedia_commons', 'sceneweb', 'history_go_editorial_illustration'].includes(r.source)).sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
+export async function regenerateAttributions(entries?: Entry[], write = false): Promise<void> { const sourceEntries = entries ?? await loadPeople(); const rows = sourceEntries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl), ...(reqStr(e.person.imageMeta?.modification) ? { modification: reqStr(e.person.imageMeta?.modification) } : {}) })).filter(r => ['wikimedia_commons', 'sceneweb', 'history_go_editorial_illustration', GENERATED_EDITORIAL_SOURCE].includes(r.source)).sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
 export async function applyCandidates(args: string[], fetcher: Fetcher = fetch): Promise<void> {
   const write = args.includes('--write');
   const candidateJson = await readJson(CANDIDATES());
@@ -500,13 +547,18 @@ export async function auditPeople(): Promise<number> {
     }
     if (!isObj(e.person.imageMeta)) noMeta++;
     else {
-      if (!isAllowedLicense(e.person.imageMeta.license)) badLic++;
-      if (validateEditorialIllustrationMeta(e.person.imageMeta).length) badEditorial++;
-      if (reqStr(e.person.imageMeta.source) === 'history_go_editorial_illustration') {
+      const source = reqStr(e.person.imageMeta.source);
+      const originalGenerated = source === GENERATED_EDITORIAL_SOURCE;
+      const issues = validateEditorialIllustrationMeta(e.person.imageMeta);
+      if (!isAllowedLicense(e.person.imageMeta.license) && !(originalGenerated && issues.length === 0)) badLic++;
+      if (issues.length || (originalGenerated && reqStr(e.person.imageMeta.personId) !== reqStr(e.person.id))) badEditorial++;
+      if (source === 'history_go_editorial_illustration' || originalGenerated) {
         for (const rel of new Set([img, reqStr(e.person.cardImage)])) {
           if (!rel || /^https?:/.test(rel)) { badEditorialFiles++; continue; }
           const abs = path.join(ROOT(), rel);
-          if (!(await exists(abs)) || (await validateEditorialIllustrationFile(abs)).length) badEditorialFiles++;
+          if (!(await exists(abs)) || (originalGenerated
+            ? (await validateOriginalGeneratedEditorialFile(abs,e.person.imageMeta)).length
+            : (await validateEditorialIllustrationFile(abs)).length)) badEditorialFiles++;
         }
       }
     }
@@ -517,7 +569,7 @@ export async function auditPeople(): Promise<number> {
   return external || noMeta || badLic || badEditorial || badEditorialFiles || missing || dup ? 1 : 0;
 }
 export async function auditEditorialIllustrations(): Promise<number> {
-  const entries = (await loadPeople()).filter(e => reqStr(e.person.imageMeta?.source) === 'history_go_editorial_illustration');
+  const entries = (await loadPeople()).filter(e => ['history_go_editorial_illustration', GENERATED_EDITORIAL_SOURCE].includes(reqStr(e.person.imageMeta?.source)));
   let invalidMetadata = 0;
   let invalidFiles = 0;
   for (const e of entries) {
@@ -528,7 +580,10 @@ export async function auditEditorialIllustrations(): Promise<number> {
     }
     for (const rel of new Set([reqStr(e.person.image), reqStr(e.person.cardImage)])) {
       const abs = rel && !/^https?:/.test(rel) ? path.join(ROOT(), rel) : '';
-      const fileIssues = !abs ? ['missingLocalPath'] : !(await exists(abs)) ? ['missingFile'] : await validateEditorialIllustrationFile(abs);
+      const fileIssues = !abs ? ['missingLocalPath'] : !(await exists(abs)) ? ['missingFile'] :
+        reqStr(e.person.imageMeta?.source) === GENERATED_EDITORIAL_SOURCE
+          ? await validateOriginalGeneratedEditorialFile(abs,e.person.imageMeta || {})
+          : await validateEditorialIllustrationFile(abs);
       if (fileIssues.length) {
         invalidFiles++;
         console.error(`Invalid People editorial image: ${reqStr(e.person.id)} (${rel || 'no path'}): ${fileIssues.join(', ')}`);
