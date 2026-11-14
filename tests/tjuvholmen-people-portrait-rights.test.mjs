@@ -51,24 +51,23 @@ for(const entry of audit.pending){
   for(const registry of [sources,people,place.people]){
     const item=find(registry,entry.person_id);
     assert.ok(item,"Missing Person "+entry.person_id);
-    if(entry.person_id==="bjarne_melgaard") {
-      assert.equal(item.image,"bilder/kort/people/bjarne_melgaard_illustrasjon_v3.webp","User-approved generated illustration path missing");
-      assert.equal(item.cardImage,item.image);
-      assert.equal(item.imageMeta.assetKind,"illustration");
-      assert.equal(item.imageMeta.visibleDisclosure,"Illustrasjon");
-      assert.ok(exists(item.image));
-      assert.equal(sha256(item.image),item.imageMeta.assetSha256);
-    } else {
-      assert.equal(item.image,"","Non-cleared photo displayed "+entry.person_id);
-      assert.equal(item.cardImage,"","Non-cleared card image displayed "+entry.person_id);
-    }
+    const image=entry.person_id==="bjarne_melgaard"?"bilder/kort/people/bjarne_melgaard_illustrasjon_v3.webp":`bilder/kort/people/${entry.person_id}_illustrasjon_v2.webp`;
+    assert.equal(item.image,image,"Missing expected original illustration "+entry.person_id);
+    assert.equal(item.cardImage,item.image);
+    assert.equal(item.imageMeta.assetKind,"illustration");
+    assert.equal(item.imageMeta.visibleDisclosure,"Illustrasjon");
+    assert.equal(item.imageMeta.license,"user_authorized_history_go_publication_only");
+    assert.ok(exists(item.image));
+    assert.equal(sha256(item.image),item.imageMeta.assetSha256);
+    assert.ok(!audit.approved.some(photo=>photo.person_id===entry.person_id),"Synthetic image must not be counted as licensed photo");
     assert.ok(item.name&&item.desc,"Text-only Person details lost "+entry.person_id);
   }
 }
 const astrup=find(museum.people,"hans_rasmus_astrup");
 assert.ok(astrup,"Collector missing in museum runtime");
-assert.equal(astrup.image,"");
-assert.equal(astrup.cardImage,"");
+assert.equal(astrup.image,"bilder/kort/people/hans_rasmus_astrup_illustrasjon_v2.webp");
+assert.equal(astrup.cardImage,astrup.image);
+assert.equal(astrup.imageMeta.assetKind,"illustration");
 assert.equal(audit.rights_clearance_status,"NO_PERMISSION_OBTAINED_NO_EXTERNAL_CONTACT_SENT");
 
-console.log("TJUVHOLMEN_PEOPLE_IMAGE_RIGHTS_PASS 2 licensed photos, one visibly disclosed approved editorial illustration, two text-only");
+console.log("TJUVHOLMEN_PEOPLE_IMAGE_RIGHTS_PASS: 2 licensed photos, 3 visible original editorial illustrations, original third-party photographic rights still pending");
