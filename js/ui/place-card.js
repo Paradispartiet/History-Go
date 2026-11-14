@@ -2266,7 +2266,7 @@ if (badgesEl) {
       const label = preferredSubBadgeId
         ? formatSubcategoryLabel(preferredSubBadgeId, placeBadge)
         : (placeBadge?.name || placeBadge?.title || placeBadge?.id || "Badge");
-      badgesIcon.innerHTML = `<img src="${escapePlaceCardHTML(img)}" class="pc-person-img" alt="${escapePlaceCardHTML(label)}" title="${escapePlaceCardHTML(label)}">`;
+      badgesIcon.innerHTML = `<img src="${escapePlaceCardHTML(img)}" class="pc-person-img pc-badge-round-img" alt="${escapePlaceCardHTML(label)}" title="${escapePlaceCardHTML(label)}">`;
     } else {
       const badgeCount = placeBadge ? (1 + relevantSubcategories.length) : 0;
       setRoundLabel(badgesIcon, "🏅", badgeCount);
