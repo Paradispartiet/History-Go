@@ -3,7 +3,7 @@
    Compact biography surface with safe media fallback.
    ============================================================ */
 
-/* People has the same framed map geometry and layer order as #placeCard.
+/* People uses the PlaceCard frame, above the active card and below the app chrome.
    Override the legacy .hg-popup.person-popup full-screen dark overlay. */
 body.hg-app .hg-popup.person-popup.person-popup-v2{
   position: fixed;
@@ -19,7 +19,7 @@ body.hg-app .hg-popup.person-popup.person-popup-v2{
   margin-inline: auto;
   padding: 0;
   box-sizing: border-box;
-  z-index: var(--hg-z-placecard, 100);
+  z-index: calc(var(--hg-z-placecard, 100) + 1);
   display: flex;
   align-items: stretch;
   justify-content: stretch;

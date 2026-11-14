@@ -1,0 +1,41 @@
+name: Schiollgarden People browser QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/schiollgarden-people.yml'
+      - 'tests/schiollgarden-people-browser.mjs'
+      - 'data/people/by/oslo/schiollgarden_prinsens_gate_26/**'
+      - 'data/people/claims/by/oslo/schiollgarden_prinsens_gate_26/**'
+      - 'bilder/kort/people/henrik_nissen.jpg'
+      - 'css/person-popup-v2.css'
+      - 'js/ui/interactions.js'
+      - 'tests/person-popup-placecard-layout-browser.test.mjs'
+      - 'tests/person-popup-v2.test.js'
+permissions:
+  contents: read
+concurrency:
+  group: schiollgarden-people-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  people:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node --test --test-name-pattern="person surface follows" tests/person-popup-v2.test.js
+      - run: node tests/schiollgarden-people-browser.mjs
+      - run: node tests/person-popup-placecard-layout-browser.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: schiollgarden-people-browser
+          path: artifacts/schiollgarden-people-browser
+          if-no-files-found: warn
