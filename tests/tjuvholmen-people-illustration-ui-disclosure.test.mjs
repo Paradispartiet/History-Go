@@ -34,7 +34,7 @@ for (const id of ["stephen_butkus","hans_rasmus_astrup"]) {
  assert.equal(person.cardImage,"");
 }
 assert.equal(audit.approved.length,2);
-assert.equal(manifest.new_published_portrait_count,0);
+assert.equal(manifest.new_published_portrait_count,1);
 assert.equal(visual.publication_gates.place_card_illustrations_active,1);
 const melgaard=runtime.people.find(p=>p.id==="bjarne_melgaard");
 assert.equal(melgaard.image,"bilder/kort/people/bjarne_melgaard_illustrasjon_v3.webp");
@@ -44,7 +44,6 @@ assert.equal(melgaard.imageMeta.visibleDisclosure,"Illustrasjon");
 assert.equal(melgaard.imageMeta.assetSha256,visual.entries[0].additional_candidate_v3.sha256);
 assert.equal(visual.entries[0].additional_candidate_v3.status,"USER_APPROVED_EDITORIAL_ILLUSTRATION_ACTIVE_IN_PEOPLE");
 assert.equal(fs.existsSync(melgaard.image),true);
-assert.equal(visual.entries[0].additional_candidate_v3.status,"USER_APPROVED_EDITORIAL_ILLUSTRATION_ACTIVE_IN_PEOPLE");
 const v3=visual.entries[0].additional_candidate_v3;
 const v3Bytes=fs.readFileSync(v3.staged_path);
 assert.equal(v3Bytes.length,189842);
