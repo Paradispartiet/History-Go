@@ -44,7 +44,15 @@ try{
    assert.ok((await popup.innerText()).includes('Schiøllgården'));
    assert.ok(await popup.locator('a[href="https://nbl.snl.no/Henrik_Nissen"]').count());
    assert.equal(await img.getAttribute('src'),p.image);
-   await page.screenshot({path:`${output}/person-${width}.png`,fullPage:true});
+   const onTop=await popup.locator('.hg-person-popup-header').evaluate(el=>{const r=el.getBoundingClientRect();return !!document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.closest('.person-popup-v2');});
+   assert.equal(onTop,true,'Person profile must be above the active PlaceCard');
+   await popup.locator('.hg-popup-close').click({trial:true});
+   await page.screenshot({path:`${output}/person-${width}.png`,fullPage:true,animations:'disabled'});
+   await popup.locator('.hg-person-longread').scrollIntoViewIfNeeded();
+   await page.screenshot({path:`${output}/biography-${width}.png`,fullPage:true,animations:'disabled'});
+   await popup.locator('.hg-popup-close').click();
+   assert.equal(await page.locator('.person-popup-v2').count(),0);
+   assert.equal(await page.locator('#placeCard').isVisible(),true);
    assert.deepEqual(errors,[]);
    results.push({width,person:p.id,portraitLoaded:true,fullBiography:true,errors});
    console.log('PASS Schiollgarden canonical person popup '+width);
