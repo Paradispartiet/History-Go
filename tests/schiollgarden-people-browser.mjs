@@ -44,6 +44,11 @@ try{
    assert.ok((await popup.innerText()).includes('Schiøllgården'));
    assert.ok(await popup.locator('a[href="https://nbl.snl.no/Henrik_Nissen"]').count());
    assert.equal(await img.getAttribute('src'),p.image);
+   console.log('PEOPLE_LAYER',JSON.stringify(await popup.evaluate(el=>{
+    const read=n=>{if(!n)return null;const s=getComputedStyle(n),r=n.getBoundingClientRect();return {tag:n.tagName,id:n.id,class:n.className,z:s.zIndex,position:s.position,transform:s.transform,opacity:s.opacity,pointerEvents:s.pointerEvents,rect:{x:r.x,y:r.y,width:r.width,height:r.height}};};
+    const h=el.querySelector('.hg-person-popup-header'),r=h.getBoundingClientRect();
+    return {popup:read(el),ancestors:[read(el.parentElement),read(el.parentElement?.parentElement)],place:read(document.querySelector('#placeCard')),header:read(h),hits:document.elementsFromPoint(r.x+r.width/2,r.y+r.height/2).slice(0,8).map(read)};
+   })));
    const onTop=await popup.locator('.hg-person-popup-header').evaluate(el=>{const r=el.getBoundingClientRect();return !!document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.closest('.person-popup-v2');});
    assert.equal(onTop,true,'Person profile must be above the active PlaceCard');
    await popup.locator('.hg-popup-close').click({trial:true});
