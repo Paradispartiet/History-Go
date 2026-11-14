@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_toppand:Object.freeze({
+   scientificName:"Aythya fuligula",
+   src:"bilder/natur/fauna/godkjent/13_toppand_v1.webp",
+   gitBlobSha:"9069d83c932b0ae316f03b367b7f3ce95a1788b1",
+   reviewedAt:"2026-11-14",
+   stage:"adult_male_black_white_flanks_long_crest_female_brown_short_crest_yellow_eyes",
+   evidence:"data/natur/fauna/illustration-quality-toppand-20261114.json"
+  }),
   emne_fauna_graagas:Object.freeze({
    scientificName:"Anser anser",
    src:"bilder/natur/fauna/godkjent/12_graagaas_v1.webp",
