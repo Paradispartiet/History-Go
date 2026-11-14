@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_sothone:Object.freeze({
+   scientificName:"Fulica atra",
+   src:"bilder/natur/fauna/godkjent/14_sothone_v1.webp",
+   gitBlobSha:"b9bffe1eaed401a4e21fbe959f50464ac95bca57",
+   reviewedAt:"2026-11-14",
+   stage:"adult_black_head_slate_body_white_frontal_shield_bill_red_iris_lobed_toes",
+   evidence:"data/natur/fauna/illustration-quality-sothone-20261114.json"
+  }),
   emne_fauna_toppand:Object.freeze({
    scientificName:"Aythya fuligula",
    src:"bilder/natur/fauna/godkjent/13_toppand_v1.webp",
