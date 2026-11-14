@@ -59,3 +59,25 @@ test('Map retains main badge, PlaceCard prefers place-specific underbadge with f
   assert.match(icon.innerHTML, /vitenskap\.webp/);
   assert.doesNotMatch(icon.innerHTML, /matematikk\.webp/);
 });
+
+
+test('PlaceCard live badge render uses the no-crop embroidered class and legible text labels', () => {
+  const code = read('js/ui/place-card.js').toString('utf8');
+  const badgeHelper = read('js/ui/badges.js').toString('utf8');
+  const css = read('css/placeCard.css').toString('utf8');
+  const index = read('index.html').toString('utf8');
+  const sw = read('sw.js').toString('utf8');
+  // The helper already uses this class; the live PlaceCard renderer must not
+  // silently replace it with the generic portrait class.
+  assert.match(badgeHelper, /class="pc-badge-round-img"/);
+  assert.match(code, /badgesIcon\.innerHTML\s*=\s*`<img[^\n]+class="pc-person-img pc-badge-round-img"/);
+  assert.match(code, /alt="\$\{escapePlaceCardHTML\(label\)\}"/);
+  assert.match(code, /title="\$\{escapePlaceCardHTML\(label\)\}"/);
+  assert.match(code, /pc-badges-chip[^\n]+formatSubcategoryLabel\(sub, placeBadge\)/);
+  assert.match(css, /#placeCard #pcBadgesIcon \.pc-badge-round-img\s*\{[^}]*object-fit:\s*contain/);
+  assert.match(css, /#placeCard \.pc-title-row > #pcBadgesIcon > img\.pc-badge-round-img\s*\{[^}]*object-fit:\s*contain/);
+  assert.match(css, /#placeCard \.pc-title-row > #pcBadgesIcon > img\.pc-badge-round-img\s*\{[^}]*transform:\s*none/);
+  assert.match(index, /css\/placeCard\.css\?v=20261114-badge-rim-class1/);
+  assert.match(index, /js\/app\.js\?v=20261114-badge-rim-class1/);
+  assert.match(sw, /hg-sw-2026-11-14-[^"]*badge-rim-class1/);
+});
