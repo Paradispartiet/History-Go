@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import sharp from 'sharp';
-import { isAllowedLicense, loadPeople, applyCandidates, candidateIdFor, rankCandidates, validateEditorialIllustrationMeta, validateEditorialIllustrationFile } from '../dist/tools/people-image-pipeline.mjs';
+import { isAllowedLicense, loadPeople, applyCandidates, candidateIdFor, rankCandidates, validateEditorialIllustrationMeta, validateEditorialIllustrationFile, validateOriginalGeneratedEditorialMeta, validateOriginalGeneratedEditorialFile } from '../dist/tools/people-image-pipeline.mjs';
 
 assert.equal(isAllowedLicense('Public Domain'), true);
 assert.equal(isAllowedLicense('CC0'), true);
@@ -41,6 +41,27 @@ assert.deepEqual(validateEditorialIllustrationMeta(validEditorialMeta), []);
 assert.deepEqual(validateEditorialIllustrationMeta({ ...validEditorialMeta, background: '' }), ['background']);
 assert.deepEqual(validateEditorialIllustrationMeta({ ...validEditorialMeta, disclosure: '' }), ['disclosure']);
 assert.deepEqual(validateEditorialIllustrationMeta({ ...validEditorialMeta, reviewStatus: 'pending' }), ['reviewStatus']);
+ 
+// Separately audit original, user-authorized opaque AI paintings. The
+// transparent/Creative Commons branch remains strict and unchanged above.
+{
+  const generated = JSON.parse(await readFile('data/people/kunst/oslo/people_kunst_oslo.json','utf8'))
+    .find(person=>person.id==='bjarne_melgaard');
+  const meta=generated?.imageMeta;
+  assert.equal(meta?.source,'history_go_original_generated_editorial_portrait');
+  assert.equal(meta?.background,'opaque_painted');
+  assert.equal(isAllowedLicense(meta.license),false,'Project-specific usage permission is not a CC license');
+  assert.deepEqual(validateOriginalGeneratedEditorialMeta(meta),[]);
+  assert.deepEqual(validateEditorialIllustrationMeta(meta),[]);
+  assert.deepEqual(await validateOriginalGeneratedEditorialFile(generated.image,meta),[]);
+  assert.ok(validateOriginalGeneratedEditorialMeta({...meta,approvalEvidence:''}).includes('approvalEvidence'));
+  assert.ok(validateOriginalGeneratedEditorialMeta({...meta,license:'CC BY 4.0'}).includes('license'));
+  assert.ok(validateOriginalGeneratedEditorialMeta({...meta,referencePages:[]}).includes('referencePages'));
+  assert.ok(validateOriginalGeneratedEditorialMeta({...meta,sourceCandidate:'../../other.webp'}).includes('sourceCandidate'));
+  assert.ok((await validateOriginalGeneratedEditorialFile(generated.image,{...meta,assetSha256:'0'.repeat(64)})).includes('assetSha256'));
+  assert.ok((await validateOriginalGeneratedEditorialFile(generated.image,{...meta,sourceCandidate:'bilder/kort/people/candidates/tjuvholmen/not-found.webp'})).includes('decodeOrCandidateMissing'));
+}
+
 
 async function missing(p){ try { await access(p); return false; } catch { return true; } }
 async function fixture(){
