@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<style>html:not(.hg-auth-verified) body{visibility:hidden!important}</style>
+<script src="js/aha.js"></script>
+<script src="js/auth/require-login.js?v=20261027-1"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>History Go – Vitenskap v7 sammenligning</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--ink:#f4efff;--muted:#c6b6e0}
+*{box-sizing:border-box}
+body{background:#13101f;color:var(--ink);margin:0;line-height:1.45}
+main{max-width:1050px;margin:0 auto;padding:clamp(15px,3vw,34px)}
+h1{font-size:clamp(24px,4.5vw,34px);line-height:1.2;margin:0 0 12px}
+h2{font-size:20px;line-height:1.2}
+p{margin:0 0 13px}.intro{max-width:840px;color:var(--muted)}
+.notice{border-left:3px solid #b497f0;padding-left:12px;color:#f5eafa}
+.controls{display:flex;gap:14px;flex-wrap:wrap;align-items:end;margin:22px 0}
+.controls label{display:grid;gap:5px;font-size:14px;font-weight:600}
+select{min-height:44px;padding:9px 12px;font:inherit;color:var(--ink);background:#2e2445;border:1px solid #917cb8;border-radius:8px}
+#status{font-size:14px;color:var(--muted)}
+#list{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr))}
+article{border:1px solid #544471;border-radius:12px;background:#211931;padding:18px}
+article h2{margin:0 0 6px}
+.images{display:flex;gap:18px;overflow-x:auto;align-items:start;padding:12px 0}
+figure{margin:0;flex:0 0 auto;text-align:center;min-width:max(100px,var(--size,160px))}
+figure img{display:block;margin:0 auto 6px;width:var(--size,160px);height:var(--size,160px);object-fit:contain;max-width:none}
+figcaption{font-weight:700;font-size:13px}
+.figure-caption{font-size:12px;color:var(--muted)}
+button{color:var(--ink);background:#35264d;border:1px solid #8d78b3;border-radius:8px;font:inherit;padding:8px 10px;cursor:pointer}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #d2beff;outline-offset:3px}
+.requirement{font-size:13px;color:var(--muted);margin:8px 0}
+dialog{width:min(94vw,940px);max-height:94dvh;background:#211931;color:var(--ink);border:1px solid #a88ad9;border-radius:12px;padding:16px}
+dialog::backdrop{background:rgba(0,0,0,.85)}
+dialog img{display:block;margin:12px auto;width:min(80vw,780px);max-height:78dvh;object-fit:contain}
+.dialoghead{display:flex;justify-content:space-between;gap:10px;align-items:center}
+footer{border-top:1px solid #534369;color:var(--muted);padding:20px 0;margin-top:24px;font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<h1>Vitenskap v7 – tre merker med større tekst</h1>
+<p class="intro">Sammenlign de tre aktive originalene med de eksakte v7-WebP-kandidatene som nå er arkivert i GitHub. Kontroller særlig toppskrift, lilla broderikant og hele «VITENSKAP &amp; TEKNOLOGI» nederst.</p>
+<p class="notice"><strong>Utkast – ikke aktive merker.</strong> Dette galleriet endrer ingen PlaceCard eller kartprikker. En egen designgodkjenning må til før eventuell aktivering.</p>
+<div class="controls">
+<label>Emne<select id="topic" aria-label="Velg underkategori"><option value="all">Alle tre undermerker</option></select></label>
+<label>Størrelse<select id="size" aria-label="Velg faktisk visningsstørrelse">
+<option value="38">38 px – mobil PlaceCard</option>
+<option value="52">52 px – desktop PlaceCard</option>
+<option value="96">96 px</option>
+<option value="160" selected>160 px</option>
+<option value="320">320 px</option></select></label>
+</div>
+<p id="status" role="status">Henter kandidater …</p>
+<section id="list" aria-label="Før- og etterbilder"></section>
+<dialog id="zoom" aria-label="WebP i full størrelse">
+<div class="dialoghead"><strong id="zoom-title"></strong><button type="button" id="zoom-close">Lukk</button></div>
+<img id="zoom-image" width="1024" height="1024" alt="">
+</dialog>
+<footer>Merket i 38 px er for lite til at lange broderte navn kan leses sikkert. PlaceCard må også vise hele kategorinavnet som vanlig tilgjengelig tekst.</footer>
+</main>
+<script>
+'use strict';
+(() => {
+  const $ = id => document.getElementById(id);
+  const dialog = $('zoom');
+  let records = [];
+  function createFigure(src, title, desc) {
+    const figure = document.createElement('figure');
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = desc;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    const caption = document.createElement('figcaption');
+    caption.textContent = title;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = 'Forstørr';
+    btn.addEventListener('click', () => {
+      $('zoom-title').textContent = desc;
+      $('zoom-image').src = src;
+      $('zoom-image').alt = desc;
+      dialog.showModal();
+    });
+    figure.append(img,caption,btn);
+    return figure;
+  }
+  function render() {
+    $('list').replaceChildren();
+    $('list').style.setProperty('--size',$('size').value + 'px');
+    const selection = records.filter(item => $('topic').value === 'all' || item.id === $('topic').value);
+    $('status').textContent = selection.length + ' av 3 kandidater vises. Originalmerket er til venstre, v7 til høyre.';
+    for(const item of selection) {
+      const article = document.createElement('article');
+      const h2 = document.createElement('h2');
+      h2.textContent = item.name;
+      const images = document.createElement('div');
+      images.className = 'images';
+      images.append(
+        createFigure(item.original,'Aktiv original',item.name + ' – gjeldende merke'),
+        createFigure(item.candidate,'V7 · kandidat',item.name + ' – ny originalillustrasjon')
+      );
+      const p = document.createElement('p');
+      p.className = 'requirement';
+      p.textContent = 'Obligatorisk nederst: VITENSKAP & TEKNOLOGI. Kandidaten er ennå ikke designgodkjent.';
+      article.append(h2,images,p);
+      $('list').append(article);
+    }
+  }
+  $('zoom-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => $('zoom-image').removeAttribute('src'));
+  $('topic').addEventListener('change',render);
+  $('size').addEventListener('change',render);
+  Promise.all([
+    fetch('data/badges/vitenskap_v7_archived_candidates_20261113.json',{cache:'no-store'}),
+    fetch('data/badges/vitenskap.json',{cache:'no-store'})
+  ].map(async p => {
+    const r = await p;
+    if(!r.ok) throw Error('HTTP '+r.status);
+    return r.json();
+  })).then(([archive,active]) => {
+    if (archive.status !== 'three_exact_v7_binary_candidate_artworks_archived_not_active' ||
+        archive.items.length !== 3 || active.id !== 'vitenskap') {
+      throw Error('Uventet arkiv- eller aktivregister');
+    }
+    records = archive.items.map(item => ({
+      id:item.id,
+      name:item.name,
+      original:active.subBadgeImages[item.id],
+      candidate:item.path
+    }));
+    for(const item of records) {
+      if (!item.original || !item.candidate || item.original === item.candidate) {
+        throw Error('Ugyldig bildepar: '+item.id);
+      }
+      const option = document.createElement('option');
+      option.value = item.id;
+      option.textContent = item.name;
+      $('topic').append(option);
+    }
+    render();
+  }).catch(err => {
+    $('status').textContent = 'Kunne ikke laste sammenligningen: ' + String(err);
+  });
+})();
+</script>
+</body>
+</html>
