@@ -5,6 +5,8 @@ on:
       - '.github/workflows/schiollgarden-images.yml'
       - 'tests/schiollgarden-images-browser.mjs'
       - 'tests/schiollgarden-fagverk-browser.mjs'
+      - 'tests/schiollgarden-language-browser.mjs'
+      - 'data/leksikon/sprak/places/europe/norway/oslo/schiollgarden_prinsens_gate_26.json'
       - 'bilder/places/schiollgarden/**'
       - 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02/schiollgarden_prinsens_gate_26.json'
       - 'data/runtime/place-open/schiollgarden_prinsens_gate_26.json'
@@ -30,6 +32,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node tests/schiollgarden-images-browser.mjs
       - run: node tests/schiollgarden-fagverk-browser.mjs
+      - run: node tests/schiollgarden-language-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -37,4 +40,5 @@ jobs:
           path: |
             artifacts/schiollgarden-images
             artifacts/schiollgarden-fagverk-browser
+            artifacts/schiollgarden-language-browser
           if-no-files-found: warn
