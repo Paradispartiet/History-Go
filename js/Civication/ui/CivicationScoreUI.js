@@ -7,7 +7,8 @@
   const nice = (id) => String(id || "").replace(/[_:.-]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
   function getModel(options = {}) {
-    const canonical = /** @type {any} */ (root).CivicationState?.getState?.() || {};
+    const stateApi = /** @type {any} */ (root).CivicationState;
+    const canonical = stateApi?.getState?.() || {};
     const life = options.state || root.CivicationLifestoryState?.load?.() || null;
     const groups = [];
     function add(name, rows) {
@@ -72,6 +73,8 @@
       ? Math.round(scored.reduce((sum,item) => sum + item.score, 0) / scored.length)
       : null;
     const currency = life?.meters && isScore(life.meters.penger) ? life.meters.penger : null;
+    const wallet = stateApi?.getWallet?.();
+    const pcBalance = isScore(wallet?.balance) ? wallet.balance : null;
     // One overview for the header and the dialog. Never mix currency into the
     // measured 0–100 average or invent a career from a story/demo role.
     const activeRole = root.CivicationDashboardUI?.getCanonicalActiveRoleTitle?.() || "";
@@ -90,7 +93,8 @@
       ["Fase", phase],
       ["Psyke", life?.meters?.psyke],
       ["Energi", life?.meters?.energi],
-      ["Fortellingsøkonomi", currency]
+      ["Fortellingspenger", currency],
+      ["PC-saldo", pcBalance === null ? null : pcBalance + " PC"]
     ].filter(([,value]) => value !== null && value !== undefined && value !== "");
     try {
       const stamp = root.HG_Lifestyle?.getStamp?.();
@@ -101,7 +105,7 @@
     return { score, count: scored.length, groups, status,
       // Money is unbounded and does not belong to an arithmetic mean of capabilities.
       excluded: ["PC-saldo", "Fortellingspenger"],
-      currency };
+      currency, pcBalance };
   }
 
   let lastOptions = {};
@@ -179,8 +183,8 @@
     if (!model.groups.length) panel.appendChild(element("p", "", "Ingen målte verdier ennå."));
     panel.appendChild(element("p", "civi-score-explain",
       "Penger er en saldo og ikke en 0–100-verdi. Ukjente Skills holdes utenfor snittet. Visningen endrer ikke spillprogresjonen."));
-    if (model.currency !== null) panel.appendChild(element("p", "civi-score-explain",
-      "Fortellingspenger: " + model.currency + " (ikke inkludert i score)."));
+    if (model.currency !== null || model.pcBalance !== null) panel.appendChild(element("p", "civi-score-explain",
+      "Fortellingspenger følger valgene i historien. PC er en egen saldo for inntekter og kjøp. Ingen av beløpene inngår i scoren."));
     const close = element("button", "civi-score-close", "Lukk");
     close.type = "button";
     close.addEventListener("click", closeDialog);

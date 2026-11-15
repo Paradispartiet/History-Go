@@ -10,11 +10,15 @@ const dom = new JSDOM('<!doctype html><html><body class="civi-app"><header><div 
   { url: "http://localhost/Civication.html", runScripts: "outside-only" });
 const { window } = dom;
 const canonical = { social_standing: { by_audience: { "team:local": -100, "public:city": 100 } } };
+const wallet = { balance: 12500, last_tick_day_index: 8 };
+const beforeWallet = JSON.stringify(wallet);
 const life = { dag: 3, fase: "morgen", meters: { psyke: 60, energi: 80, integritet: 100,
   synlighet: 20, handlingsrom: 40, penger: -50000 },
   relasjoner: { venn: 90, familie: 10 } };
 window.CivicationState = {
   getState: () => canonical,
+  getWallet: () => wallet,
+  updateWallet: () => { throw new Error("status display must not write money"); },
   getActivePosition: () => ({ title: "Museumsvert", career_id: "kunst" })
 };
 window.CivicationSkills = {
@@ -45,6 +49,7 @@ assert.equal(model.groups.find(g => g.name === "Skills").rows[2].score, null,
 // Array.from produces a host-realm array (the model was created in JSDOM).
 assert.deepEqual(Array.from(model.groups.find(g => g.name === "Omdømme").rows, x => x.score), [0, 100]);
 assert.equal(model.currency, -50000, "unbounded money stays an amount and is excluded");
+assert.equal(model.pcBalance, 12500, "PC comes from the canonical wallet, not story money or capital");
 assert.equal(model.groups.find(g => g.name === "Kapital").rows[0].score, 100,
   "capital above 100 is visually capped without migrating the underlying game state");
 assert.equal(window.localStorage.getItem("hg_capital_v1"), beforeCapital,
@@ -82,6 +87,23 @@ assert.ok(dialog.textContent.includes("Livssituasjon") && dialog.textContent.inc
 assert.ok(dialog.textContent.includes("Psyke") && dialog.textContent.includes("Energi"));
 assert.ok(dialog.textContent.includes("Dag") && dialog.textContent.includes("Fase"));
 assert.ok(dialog.textContent.includes("-50000"), "currency remains visible without entering score");
+const shown = () => Object.fromEntries(Array.from(dialog.querySelectorAll(".civi-score-overview-item"),
+  item => [item.querySelector("dt").textContent, item.querySelector("dd").textContent]));
+assert.equal(shown()["PC-saldo"], "12500 PC");
+assert.equal(shown()["Fortellingspenger"], "-50000");
+assert.equal(JSON.stringify(wallet), beforeWallet, "opening the dialog preserves the actual wallet");
+assert.equal(JSON.stringify(life), beforeLife, "opening the dialog preserves narrative money and history");
+for (const amount of [0, -25, 250000]) {
+  wallet.balance = amount;
+  window.CivicationDashboardUI.updateHeaderStatus();
+  assert.equal(shown()["PC-saldo"], amount + " PC", "open dialog reads a fresh, unbounded wallet amount");
+  assert.equal(window.CivicationScoreUI.getModel({ state: life }).score, model.score,
+    "neither wallet debt nor wealth changes the capability average");
+  assert.equal(shown()["Fortellingspenger"], "-50000", "PC changes never overwrite story money");
+}
+wallet.balance = NaN;
+window.CivicationDashboardUI.updateHeaderStatus();
+assert.equal(shown()["PC-saldo"], undefined, "an unreadable balance is not invented as zero PC");
 dialog.querySelector(".civi-score-close").click();
 assert.equal(dialog.hasAttribute("open"), false, "dialog close works");
 
@@ -91,6 +113,8 @@ window.localStorage.removeItem("hg_capital_v1");
 window.CivicationSkills = null;
 window.CivicationPsyche = null;
 window.CivicationState = { getState: () => ({}), getActivePosition: () => null };
+assert.equal(window.CivicationScoreUI.getModel({ state: life }).pcBalance, null,
+  "an isolated story without a wallet does not fabricate PC");
 assert.equal(window.CivicationScoreUI.getModel({ state: {}, lifeRole: "Arbeidsledig" }).status[0][1], "Arbeidsledig");
 assert.equal(window.CivicationScoreUI.getModel({ state: {} }).score, null,
   "missing capability measurements are not quietly reported as a real zero");
