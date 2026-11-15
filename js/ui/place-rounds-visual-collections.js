@@ -122,8 +122,10 @@
       imageKind:s(item.imageKind || item.imageMeta?.kind),
       imageCredit:s(item.imageMeta?.credit),
       imageLicense:s(item.imageMeta?.license),
+      imageLicenseUrl:s(item.imageMeta?.licenseUrl),
+      imageTransformation:s(item.imageMeta?.transformation),
       imageDisclosure:s(item.imageMeta?.disclosure),
-      imageSource:s(item.imageMeta?.sourceUrl),
+      imageSource:s(item.imageMeta?.sourceUrl || item.imageMeta?.sourcePage),
       sourceUrls:arr(item.source_urls).filter(url => /^https:\/\//i.test(s(url))),
       sourceKind
     };
@@ -471,6 +473,29 @@
             ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">Se historisk kilde og bildeopphav</a>` : ""}
           </div>
         </article>`;
+      }).join("");
+    }
+    if (def.id === "structures" && items.length) {
+      // A licensed documentary Structure image must display its creator,
+      // license, source and non-cropping transformation in the actual popup.
+      // Keep the existing member button for legacy click/keyboard behavior.
+      return items.map(item => {
+        const source = [item.imageSource, ...item.sourceUrls].find(url => /^https:\/\//i.test(url));
+        const license = /^https:\/\//i.test(item.imageLicenseUrl) ? item.imageLicenseUrl : "";
+        const credit = item.image && item.imageCredit ? item.imageCredit : "";
+        const changed = Boolean(item.imageTransformation) && /background|fitted|blurred|crop|scale/i.test(item.imageTransformation);
+        return `<div class="pc-structure-visual-row">
+          <button type="button" class="pc-person pc-visual-round-item" data-visual-round-item="${esc(item.id)}">
+            ${item.image ? `<img src="${esc(item.image)}" class="pc-person-img" alt="${esc(item.imageAlt)}" loading="lazy" decoding="async">` : ""}
+            <span class="pc-person-meta"><span class="pc-person-name">${esc(item.title)}</span>${item.description ? `<span class="pc-person-desc">${esc(item.description)}</span>` : ""}</span>
+          </button>
+          ${(credit || source || license) ? `<p class="pc-structure-attribution">
+            ${credit ? `<span>Foto: ${esc(credit)}</span>` : ""}
+            ${license ? ` · <a href="${esc(license)}" target="_blank" rel="noopener noreferrer">${esc(item.imageLicense || "Fotolisens")}</a>` : (item.imageLicense ? ` · ${esc(item.imageLicense)}` : "")}
+            ${source ? ` · <a href="${esc(source)}" target="_blank" rel="noopener noreferrer">Fotokilde</a>` : ""}
+            ${changed ? ` · <span>Formattilpasset uten å kutte hovedmotivet</span>` : ""}
+          </p>` : ""}
+        </div>`;
       }).join("");
     }
     return items.length
