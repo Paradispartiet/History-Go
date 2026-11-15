@@ -11,7 +11,7 @@ test("favorittvelgeren er aktiv bare i kartdock ved badgevelgeren", () => {
   const picker = read("js/ui/home-favorite-map-picker.js");
   const css = read("css/home-favorite-map-picker.css");
   assert.match(html, /css\/home-favorite-map-picker\.css\?v=20261111-safe-map1/);
-  assert.match(html, /js\/app\.js\?v=20261111-safe-map1/);
+  assert.match(html, /js\/app\.js\?v=20261114-badge-rim-class1/);
   assert.match(app, /loadHomeFavoriteMapPicker/);
   assert.match(app, /HGHomeFavoriteMapPicker\?\.init\?\.\(\)/);
   assert.match(app, /optional control unavailable/);
