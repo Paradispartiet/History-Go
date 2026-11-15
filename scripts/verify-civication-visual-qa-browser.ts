@@ -137,6 +137,8 @@ export async function verifySummaryInboxFocus(page: any) {
       const section = doc.createElement('section');
       section.id = 'civiQaPopupSection';
       section.innerHTML = '<div class="civi-section-body"><button>Første kontroll</button>'
+        + '<details open id="civiQaDocuments"><summary id="civiQaDocumentsSummary">Dokumentmottak</summary>'
+        + '<input id="civiQaReceipt" aria-label="Kildereferanse"></details>'
         + '<button disabled>Sperret kontroll</button><button id="civiQaPopupLast">Siste kontroll</button></div>';
       doc.body.appendChild(section);
       trigger.focus({ preventScroll: true });
@@ -151,6 +153,20 @@ export async function verifySummaryInboxFocus(page: any) {
     assert.ok(await isFocused('#civiSectionPopup button[data-civi-popup-close]'), 'Tab wraps inside dialog');
     await page.keyboard.press('Shift+Tab');
     assert.ok(await isFocused('#civiQaPopupLast'), 'Shift+Tab wraps inside dialog');
+    await page.locator('#civiQaDocumentsSummary').focus();
+    await page.keyboard.press('Tab');
+    assert.ok(await isFocused('#civiQaReceipt'), 'Tab from expanded native summary reaches document field');
+    await page.keyboard.press('Shift+Tab');
+    assert.ok(await isFocused('#civiQaDocumentsSummary'), 'Shift+Tab returns to native summary');
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('#civiQaDocuments').evaluate((el: any) => el.open), false);
+    await page.keyboard.press('Tab');
+    assert.ok(await isFocused('#civiQaPopupLast'), 'closed disclosure skips hidden document field');
+    await page.keyboard.press('Shift+Tab');
+    assert.ok(await isFocused('#civiQaDocumentsSummary'), 'closed disclosure summary stays keyboard reachable');
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Tab');
+    assert.ok(await isFocused('#civiQaReceipt'), 'reopened disclosure restores native field navigation');
     await page.keyboard.press('Escape');
     assert.ok(await isFocused('#civiQaPopupReturn'), 'Escape returns focus to the Min dag trigger');
     await page.evaluate(() => {
@@ -169,7 +185,8 @@ export async function verifySummaryInboxFocus(page: any) {
     await page.keyboard.press('Escape');
     assert.ok(await isFocused('#civiLifestorySection h2'), 'a removed trigger falls back to the current Min dag heading');
     result.popupFocus = { fixture: 'controlled content in real shared dialog', entry: true,
-      forwardWrap: true, backwardWrap: true, escapeReturn: true, backdropReturn: true, removedTriggerFallback: true };
+      forwardWrap: true, backwardWrap: true, expandedDisclosure: true, collapsedDisclosure: true,
+      escapeReturn: true, backdropReturn: true, removedTriggerFallback: true };
   } finally {
     await page.evaluate(() => {
       const app = globalThis as any;

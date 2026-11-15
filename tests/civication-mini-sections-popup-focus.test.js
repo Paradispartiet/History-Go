@@ -18,7 +18,11 @@ const { document } = window;
 // jsdom has no layout engine. Give visible controls a rectangle so the real
 // visibility guard can still exclude hidden controls in this DOM regression.
 window.HTMLElement.prototype.getClientRects = function () {
-  return this.closest("[hidden]") ? [] : [{ width: 100, height: 44 }];
+  if (this.closest("[hidden]")) return [];
+  for (let ancestor = this.parentElement; ancestor; ancestor = ancestor.parentElement) {
+    if (ancestor.matches("details:not([open])") && !ancestor.querySelector("summary")?.contains(this)) return [];
+  }
+  return [{ width: 100, height: 44 }];
 };
 window.setTimeout = () => 0;
 window.eval(fs.readFileSync(path.join(__dirname, "../js/Civication/ui/CivicationMiniSectionsUI.js"), "utf8"));
@@ -51,6 +55,30 @@ assert.equal(key("Tab", true).defaultPrevented, true);
 assert.equal(document.activeElement, last, "Shift+Tab wraps to the last visible enabled control");
 first.focus();
 assert.equal(key("Tab").defaultPrevented, false, "interior tab movement remains native");
+// Native disclosure headers are keyboard controls even without tabindex.
+const disclosure = document.createElement("details");
+disclosure.open = true;
+disclosure.innerHTML = '<summary id="documents">Dokumentmottak</summary><input id="receipt" aria-label="Kildereferanse">';
+last.before(disclosure);
+const summary = disclosure.querySelector("summary");
+const receipt = disclosure.querySelector("input");
+summary.focus();
+assert.equal(key("Tab").defaultPrevented, false, "Tab from an expanded summary reaches its document fields natively");
+receipt.focus();
+assert.equal(key("Tab", true).defaultPrevented, false, "Shift+Tab from a document field can return to its summary");
+disclosure.open = false;
+last.after(disclosure);
+title.focus();
+key("Tab", true);
+assert.equal(document.activeElement, summary, "closed disclosure summary is the last visible control, not its hidden field");
+assert.equal(key("Tab").defaultPrevented, true);
+assert.equal(document.activeElement, close, "closed summary wraps at the dialog boundary");
+disclosure.open = true;
+close.focus();
+key("Tab", true);
+assert.equal(document.activeElement, receipt, "opening a disclosure makes its document field reachable at the boundary");
+disclosure.remove();
+first.focus();
 const scrollY = window.scrollY;
 assert.equal(key("Escape").defaultPrevented, true);
 assert.equal(document.activeElement, opener, "Escape returns focus to the Min dag shortcut");

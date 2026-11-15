@@ -35,7 +35,7 @@ assert((b[20]&16)!==0,"WebP transparency required");
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
 const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,14,"Exactly 14 original fauna drawings must be approved");
+assert(reg.count>=14,"Sothøne must remain approved after subsequent illustrations");
 assert.equal(reg.get(id)?.src,item.src);
 assert.equal(reg.get(id)?.scientificName,latin);
 assert.equal(reg.get(id)?.gitBlobSha,item.gitBlobSha);
@@ -56,7 +56,7 @@ const prior={
 };
 for(const [priorId,sha] of Object.entries(prior))
  assert.equal(reg.get(priorId)?.gitBlobSha,sha,priorId+" prior approved image must be retained");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261114-14"));
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-sothone-014.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Sothøne")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));

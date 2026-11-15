@@ -945,7 +945,8 @@
     return /** @type {HTMLElement[]} */ (Array.from(modal.querySelectorAll(
       '.civi-section-popup-panel button:not(:disabled), .civi-section-popup-panel a[href], '
       + '.civi-section-popup-panel input:not(:disabled), .civi-section-popup-panel select:not(:disabled), '
-      + '.civi-section-popup-panel textarea:not(:disabled), .civi-section-popup-panel [tabindex]'
+      + '.civi-section-popup-panel textarea:not(:disabled), .civi-section-popup-panel summary, '
+      + '.civi-section-popup-panel [tabindex]'
     ))).filter((element) => element.tabIndex >= 0 && !element.matches(":disabled") && element.getClientRects().length > 0
       && !element.closest('[inert], [aria-hidden="true"]'));
   }

@@ -2,7 +2,7 @@
   "schema": "history_go_people_generated_illustration_candidate_manifest_v1",
   "place_id": "tjuvholmen",
   "created_at": "2026-11-12",
-  "status": "THREE_V1_CANDIDATES_IN_QUARANTINE_MELGAARD_V3_EDITORIAL_ACTIVE",
+  "status": "THREE_V1_CANDIDATES_QUARANTINED_THREE_EDITORIAL_ILLUSTRATIONS_ACTIVE",
   "created_for": "History Go PlaceCard People illustration alternative",
   "asset_kind": "illustration",
   "creator": "OpenAI image generation",
@@ -12,11 +12,11 @@
     1200
   ],
   "source_note": "Original generative portraits, based on editorial descriptions; no third-party photographic source bytes imported",
-  "identity_approval": "MELGAARD_V3_USER_APPROVED_AS_EDITORIAL_ILLUSTRATION_OTHERS_PENDING",
-  "source_package_note": "Three v1 candidate WebPs remain in quarantine; one separate Melgaard v3 original WebP byte-for-byte duplicated to active editorial illustration path. Butkus/Astrup remain inactive; authentic portrait photos 2/5.",
+  "identity_approval": "THREE_USER_AUTHORIZED_EDITORIAL_ILLUSTRATIONS_NOT_AUTHENTIC_PHOTOS",
+  "source_package_note": "3 legacy v1 WebPs remain in quarantine; Melgaard v3, Butkus v2 and collector Astrup v2 are now source-reviewed, user-authorized editorial illustrations with explicit disclosure. Two authentic CC portraits remain. Photo and sculpture rights are independent.",
   "photographs_already_approved": 2,
   "new_candidate_count": 3,
-  "new_published_portrait_count": 1,
+  "new_published_portrait_count": 3,
   "people": [
     {
       "person_id": "bjarne_melgaard",
@@ -54,7 +54,7 @@
       "candidate_path": "bilder/kort/people/stephen_butkus_illustrasjon_v1.webp",
       "asset_sha256": "f733ee056ba52046c0c189cb0efa00d89203557ebd7c15bca6661f869e347b13",
       "generation_id": "273b3e64-086b-4ac5-9cd1-f72fe0e79b02",
-      "review_status": "CANDIDATE_NOT_IDENTITY_APPROVED",
+      "review_status": "V1_HELD_V2_USER_APPROVED_EDITORIAL_ACTIVE",
       "identity_note": "Similarity to authenticated Stephen Butkus portrait is not verified. Do not infer identity from styling or other photographer's work.",
       "reference_urls": [
         "https://styletalkmagazine.com/2019/02/24/norsk-fotograf-gjor-suksess-pa-bali/",
@@ -62,14 +62,21 @@
       ],
       "staged_path": "bilder/kort/people/candidates/tjuvholmen/stephen_butkus_illustrasjon_v1.webp",
       "staged_byte_count": 297306,
-      "visual_qa_v1": "HOLD_IDENTITY_REVIEW"
+      "visual_qa_v1": "HOLD_IDENTITY_REVIEW",
+      "active_v2": {
+        "path": "bilder/kort/people/stephen_butkus_illustrasjon_v2.webp",
+        "sha256": "24d2aaba3859f891fd94c0e40b39dc1f4ddbe2ce7af733c664c494abf8f9c732",
+        "kind": "editorial_illustration",
+        "user_approved_at": "2026-11-14",
+        "not_a_photograph": true
+      }
     },
     {
       "person_id": "hans_rasmus_astrup",
       "candidate_path": "bilder/kort/people/hans_rasmus_astrup_illustrasjon_v1.webp",
       "asset_sha256": "d6ab90b49d26a8245ef6c3f72f4034eb85f32d36fd42626439bb6d24a6337faa",
       "generation_id": "1a5ea548-869c-4232-a6f5-25912628a4f6",
-      "review_status": "CANDIDATE_NOT_IDENTITY_APPROVED",
+      "review_status": "V1_HELD_V2_USER_APPROVED_EDITORIAL_ACTIVE",
       "identity_note": "Art collector born 1939, died 2021, not politician Q1809560. Verify face against correctly identified collector reference.",
       "reference_urls": [
         "https://snl.no/Hans_Rasmus_Astrup",
@@ -77,7 +84,14 @@
       ],
       "staged_path": "bilder/kort/people/candidates/tjuvholmen/hans_rasmus_astrup_illustrasjon_v1.webp",
       "staged_byte_count": 241458,
-      "visual_qa_v1": "HOLD_IDENTITY_REVIEW"
+      "visual_qa_v1": "HOLD_IDENTITY_REVIEW",
+      "active_v2": {
+        "path": "bilder/kort/people/hans_rasmus_astrup_illustrasjon_v2.webp",
+        "sha256": "db7c22366883135cb84eee59e3afc1c0c16da403ea9d9b212457fe17a38d0e14",
+        "kind": "editorial_illustration",
+        "user_approved_at": "2026-11-14",
+        "not_a_photograph": true
+      }
     }
   ],
   "rules": [
@@ -91,7 +105,7 @@
   "staged_report": "reports/place-production/tjuvholmen-generated-people-illustration-import.json",
   "visual_qa_report": "reports/place-production/tjuvholmen-people-illustration-visual-qa-20261113.json",
   "visual_qa_reviewed_at": "2026-11-13",
-  "visual_qa_result": "ZERO_OF_THREE_APPROVED_V1_MELGAARD_REJECTED_OTHERS_HELD",
+  "visual_qa_result": "THREE_EDITORIAL_ILLUSTRATIONS_ACTIVE_TWO_APPROVED_CC_PHOTOS",
   "published_illustrations": [
     {
       "person_id": "bjarne_melgaard",
@@ -99,6 +113,24 @@
       "kind": "editorial_illustration",
       "userApproval": "2026-11-14",
       "sha256": "e287e2b2db58b38a6187a24b2c74ebe7175316fea5ce1dbc9c5eba1e036b81b1",
+      "width": 900,
+      "height": 1200
+    },
+    {
+      "person_id": "stephen_butkus",
+      "path": "bilder/kort/people/stephen_butkus_illustrasjon_v2.webp",
+      "kind": "editorial_illustration",
+      "userApproval": "2026-11-14",
+      "sha256": "24d2aaba3859f891fd94c0e40b39dc1f4ddbe2ce7af733c664c494abf8f9c732",
+      "width": 900,
+      "height": 1200
+    },
+    {
+      "person_id": "hans_rasmus_astrup",
+      "path": "bilder/kort/people/hans_rasmus_astrup_illustrasjon_v2.webp",
+      "kind": "editorial_illustration",
+      "userApproval": "2026-11-14",
+      "sha256": "db7c22366883135cb84eee59e3afc1c0c16da403ea9d9b212457fe17a38d0e14",
       "width": 900,
       "height": 1200
     }
