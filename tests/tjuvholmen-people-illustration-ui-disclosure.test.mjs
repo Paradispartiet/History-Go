@@ -29,13 +29,18 @@ const visual=parse("reports/place-production/tjuvholmen-people-illustration-visu
 assert.equal(runtime.people.length,5);
 for (const id of ["stephen_butkus","hans_rasmus_astrup"]) {
  const person=runtime.people.find(p=>p.id===id);
- assert.ok(person,id);
- assert.equal(person.image,"");
- assert.equal(person.cardImage,"");
+ const candidate=visual.entries.find(e=>e.person_id===id).additional_candidate_v2;
+ assert.ok(person&&candidate,id);
+ assert.equal(person.image,candidate.approved_path);
+ assert.equal(person.cardImage,person.image);
+ assert.equal(person.imageMeta.assetKind,"illustration");
+ assert.equal(person.imageMeta.visibleDisclosure,"Illustrasjon");
+ assert.equal(person.imageMeta.assetSha256,candidate.sha256);
+ assert.deepEqual(fs.readFileSync(candidate.staged_path),fs.readFileSync(candidate.approved_path));
 }
 assert.equal(audit.approved.length,2);
-assert.equal(manifest.new_published_portrait_count,1);
-assert.equal(visual.publication_gates.place_card_illustrations_active,1);
+assert.equal(manifest.new_published_portrait_count,3);
+assert.equal(visual.publication_gates.place_card_illustrations_active,3);
 const melgaard=runtime.people.find(p=>p.id==="bjarne_melgaard");
 assert.equal(melgaard.image,"bilder/kort/people/bjarne_melgaard_illustrasjon_v3.webp");
 assert.equal(melgaard.cardImage,melgaard.image);
@@ -54,4 +59,4 @@ assert.equal(v3Bytes.toString("ascii",12,16),"VP8 ");
 assert.deepEqual([v3Bytes.readUInt16LE(26)&0x3fff,v3Bytes.readUInt16LE(28)&0x3fff],[900,1200]);
 assert.equal(visual.entries[0].additional_candidate_v3.sha256,"e287e2b2db58b38a6187a24b2c74ebe7175316fea5ce1dbc9c5eba1e036b81b1");
 assert.equal(parse("reports/place-production/tjuvholmen-workcard-current.json").vferdig.status,"BLOCKED");
-console.log("TJUVHOLMEN_ILLUSTRATION_UI_DISCLOSURE_PASS: Melgaard v3 active and visibly disclosed; Butkus/Astrup held; 2 authentic photo rights approved");
+console.log("TJUVHOLMEN_ILLUSTRATION_UI_DISCLOSURE_PASS: three editorial illustrations visibly disclosed, 2 authentic photo rights approved; no false photos");

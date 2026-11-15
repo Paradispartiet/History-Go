@@ -3,10 +3,10 @@
   "place_id": "tjuvholmen",
   "reviewed_at": "2026-11-14",
   "reference_policy": "Public source photos used only as reference for editorial assessment; not copied into the repository or reproduced as derived photos.",
-  "result": "ONE_OF_THREE_ILLUSTRATIONS_EDITORIAL_USER_APPROVED_ONE_ACTIVE_TWO_HELD",
+  "result": "THREE_EDITORIAL_ILLUSTRATIONS_ACTIVE_TWO_APPROVED_CC_PHOTOS",
   "previous_pr": 7306,
   "candidate_manifest": "reports/place-production/tjuvholmen-generated-people-illustration-candidates-20261112.json",
-  "qa_scope": "Melgaard v3 accepted by user for use as visibly disclosed editorial illustration 2026-11-14; does not constitute independently verified photographic identity. Butkus and Astrup v1 remain held. All original v1 decisions retained.",
+  "qa_scope": "Five People now have images: Renzo Piano and Pushwagner licensed photos; Melgaard v3, Butkus v2 and collector Astrup v2 original editorial illustrations. v1 candidate rejection/holds remain. Not forensic identity proof and no third-party photograph rights implied.",
   "entries": [
     {
       "person_id": "bjarne_melgaard",
@@ -64,7 +64,24 @@
         "https://styletalkmagazine.com/2019/02/24/norsk-fotograf-gjor-suksess-pa-bali/",
         "https://www.othersmagazine.com/interview-stephen-butkus"
       ],
-      "reference_note": "Styletalk credits Daniel Nærbø for photos of Stephen Butkus, but that photographer credit itself does not license photographic reuse."
+      "reference_note": "Styletalk credits Daniel Nærbø for photos of Stephen Butkus, but that photographer credit itself does not license photographic reuse.",
+      "additional_candidate_v2": {
+        "status": "USER_APPROVED_EDITORIAL_ILLUSTRATION_ACTIVE_IN_PEOPLE",
+        "staged_path": "bilder/kort/people/candidates/tjuvholmen/stephen_butkus_illustrasjon_v2.webp",
+        "approved_path": "bilder/kort/people/stephen_butkus_illustrasjon_v2.webp",
+        "sha256": "24d2aaba3859f891fd94c0e40b39dc1f4ddbe2ce7af733c664c494abf8f9c732",
+        "git_blob_sha": "341ff08c3a6a82bd1bd12c5e3efb7e60f25a19ba",
+        "bytes": 104918,
+        "dimensions": [
+          900,
+          1200
+        ],
+        "generationId": "8f77b848-38a5-457d-b010-ead1736a961d",
+        "reviewed_at": "2026-11-14",
+        "editorialReview": "Source-reviewed generated depiction; blonde hair, temple and neck tattoos, referenced against Daniel Nærbø photo, but not a photographic reproduction.",
+        "approvalBasis": "User explicitly requested recognizable original illustrations and instructed full completion on 2026-11-14; never an authenticated photograph",
+        "license": "user_authorized_history_go_publication_only"
+      }
     },
     {
       "person_id": "hans_rasmus_astrup",
@@ -76,7 +93,24 @@
         "https://www.theartnewspaper.com/2021/04/26/hans-rasmus-astrupthe-intensely-private-founder-of-oslos-astrup-fearnley-museethas-died-aged-82"
       ],
       "identity_key": "art_collector_1939_2021",
-      "excluded_identity": "politician_Q1809560"
+      "excluded_identity": "politician_Q1809560",
+      "additional_candidate_v2": {
+        "status": "USER_APPROVED_EDITORIAL_ILLUSTRATION_ACTIVE_IN_PEOPLE",
+        "staged_path": "bilder/kort/people/candidates/tjuvholmen/hans_rasmus_astrup_illustrasjon_v2.webp",
+        "approved_path": "bilder/kort/people/hans_rasmus_astrup_illustrasjon_v2.webp",
+        "sha256": "db7c22366883135cb84eee59e3afc1c0c16da403ea9d9b212457fe17a38d0e14",
+        "git_blob_sha": "44bb42b7794558aac4699013dca4f1da5993792b",
+        "bytes": 84790,
+        "dimensions": [
+          900,
+          1200
+        ],
+        "generationId": "99a93f9a-b197-4a99-84fa-2148caeb8583",
+        "reviewed_at": "2026-11-14",
+        "editorialReview": "Original painted depiction cropped from generated composite. Reference: art collector 1939–2021, never confused with namesake 19th-century politician; not a photograph.",
+        "approvalBasis": "User explicitly requested recognizable original illustrations and instructed full completion on 2026-11-14; never an authenticated photograph",
+        "license": "user_authorized_history_go_publication_only"
+      }
     }
   ],
   "rejected_other_candidate": {
@@ -88,9 +122,9 @@
     "v1_illustrations_approved": 0,
     "photographic_portraits_approved": 2,
     "candidate_webps_already_committed": 3,
-    "new_v2_webps_committed": 0,
+    "new_v2_webps_committed": 2,
     "people_image_links_changed": false,
-    "place_card_illustrations_active": 1,
+    "place_card_illustrations_active": 3,
     "vferdig": "BLOCKED",
     "require_before_activation": [
       "User/editorial likeness approval for each proposed person",
@@ -100,12 +134,12 @@
     ],
     "new_v3_webps_committed": 1,
     "active_editorial_illustration_ids": [
-      "bjarne_melgaard"
-    ],
-    "other_people_illustrations_held": [
+      "bjarne_melgaard",
       "stephen_butkus",
       "hans_rasmus_astrup"
     ],
-    "photo_licenses_for_missing_people_not_obtained": true
+    "other_people_illustrations_held": [],
+    "photo_licenses_for_missing_people_not_obtained": true,
+    "people_with_images": 5
   }
 }

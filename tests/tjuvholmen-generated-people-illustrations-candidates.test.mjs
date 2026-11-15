@@ -14,18 +14,18 @@ assert.equal(manifest.place_id,"tjuvholmen");
 assert.equal(manifest.asset_kind,"illustration");
 assert.equal(manifest.visible_disclosure,"Illustrasjon");
 assert.deepEqual(manifest.dimensions,[900,1200]);
-assert.equal(manifest.status,"THREE_V1_CANDIDATES_IN_QUARANTINE_MELGAARD_V3_EDITORIAL_ACTIVE");
+assert.equal(manifest.status,"THREE_V1_CANDIDATES_QUARANTINED_THREE_EDITORIAL_ILLUSTRATIONS_ACTIVE");
 assert.equal(manifest.committed_candidate_binary_count,3);
 assert.equal(manifest.people.length,3);
 assert.deepEqual(manifest.people.map(x=>x.person_id).sort(),names.slice().sort());
-assert.equal(audit.illustration_alternative.approved_illustrations,1);
-assert.equal(audit.illustration_alternative.media_paths_committed,3);
-assert.equal(audit.illustration_alternative.active_published_illustrations,1);
+assert.equal(audit.illustration_alternative.approved_illustrations,3);
+assert.equal(audit.illustration_alternative.media_paths_committed,6);
+assert.equal(audit.illustration_alternative.active_published_illustrations,3);
 assert.equal(audit.illustration_alternative.candidate_manifest,"reports/place-production/tjuvholmen-generated-people-illustration-candidates-20261112.json");
 assert.equal(audit.approved.length,2);
 assert.equal(audit.pending.length,3);
 for(const entry of manifest.people){
- assert.equal(entry.review_status,entry.person_id==="bjarne_melgaard"?"V1_REJECTED_V3_USER_APPROVED_EDITORIAL_ACTIVE":"CANDIDATE_NOT_IDENTITY_APPROVED");
+ assert.equal(entry.review_status,entry.person_id==="bjarne_melgaard"?"V1_REJECTED_V3_USER_APPROVED_EDITORIAL_ACTIVE":"V1_HELD_V2_USER_APPROVED_EDITORIAL_ACTIVE");
  assert.match(entry.asset_sha256,/^[a-f0-9]{64}$/);
  assert.ok(entry.generation_id && entry.identity_note && entry.reference_urls.length>=1);
  assert.ok(entry.candidate_path.endsWith("_illustrasjon_v1.webp"));
@@ -40,7 +40,7 @@ for(const entry of manifest.people){
  assert.equal(buffer.readUInt32LE(4)+8,buffer.length);
  assert.equal(buffer.readUInt8(23),0x9d);assert.equal(buffer.readUInt8(24),0x01);assert.equal(buffer.readUInt8(25),0x2a);
  assert.deepEqual([buffer.readUInt16LE(26)&0x3fff,buffer.readUInt16LE(28)&0x3fff],[900,1200]);
- assert.equal(manifest.new_published_portrait_count,1);
+ assert.equal(manifest.new_published_portrait_count,3);
  const original=runtime.people.find(x=>x.id===entry.person_id);
  assert.ok(original);
  if (entry.person_id==="bjarne_melgaard") {
@@ -50,12 +50,24 @@ for(const entry of manifest.people){
    const approved=fs.readFileSync(path.join(root,original.image));
    assert.equal(crypto.createHash("sha256").update(approved).digest("hex"),original.imageMeta.assetSha256);
  } else {
-   assert.equal(original.image,"","Identity-uncleared image must not be active "+entry.person_id);
-   assert.equal(original.cardImage,"","Identity-uncleared cardImage must not be active "+entry.person_id);
+   const v2=entry.active_v2;
+   assert.ok(v2,"Original v2 approval absent "+entry.person_id);
+   assert.equal(original.image,v2.path);
+   assert.equal(original.cardImage,original.image);
+   assert.equal(original.imageMeta.assetKind,"illustration");
+   assert.equal(original.imageMeta.visibleDisclosure,"Illustrasjon");
+   assert.equal(original.imageMeta.assetSha256,v2.sha256);
+   const active=fs.readFileSync(path.join(root,original.image));
+   const candidate=fs.readFileSync(path.join(root,"bilder/kort/people/candidates/tjuvholmen/"+entry.person_id+"_illustrasjon_v2.webp"));
+   assert.deepEqual(active,candidate,"Approved and source bytes differ "+entry.person_id);
+   assert.equal(crypto.createHash("sha256").update(active).digest("hex"),v2.sha256);
+   assert.equal(active.toString("ascii",0,4),"RIFF");
+   assert.equal(active.toString("ascii",8,12),"WEBP");
+   assert.deepEqual([active.readUInt16LE(26)&0x3fff,active.readUInt16LE(28)&0x3fff],[900,1200]);
  }
 }
 assert.equal(runtime.people.length,5);
 assert.equal(runtime.brands.length,3);
 assert.equal(runtime.place.structures.length,3);
 assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","brands","structures"]);
-console.log("TJUVHOLMEN_ORIGINAL_ILLUSTRATIONS_CANDIDATES_PASS 3 v1 binaries quarantined; only user-approved Melgaard v3 editorial active");
+console.log("TJUVHOLMEN_ORIGINAL_ILLUSTRATIONS_CANDIDATES_PASS: 3 v1 binaries quarantined, three distinct approved editorial illustrations active, authentic photos untouched");

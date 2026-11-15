@@ -111,6 +111,11 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
     }
     if (before.day === day + 1) {
       assert.equal(before.story.kalenderDag, day + 1, `${scenarioId}: calendar/story day remain synchronized`);
+      // The calendar updates before next-day queue delivery finishes. The
+      // actual Start ny dag handler must dismiss its inbox and reveal Min dag;
+      // never repair this in the test by closing the popup or force-clicking.
+      await page.locator('#civiSectionPopup.is-open').waitFor({ state: 'hidden', timeout: 30000 });
+      await page.locator('#civiLifestoryPanel').waitFor({ state: 'visible', timeout: 10000 });
       return;
     }
     assert.equal(before.day, day, `${scenarioId}: only one calendar rollover`);
