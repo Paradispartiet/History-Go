@@ -4,6 +4,10 @@ on:
     paths:
       - '.github/workflows/schiollgarden-images.yml'
       - 'tests/schiollgarden-images-browser.mjs'
+      - 'tests/schiollgarden-brands-browser.mjs'
+      - 'tests/brands-place-context.test.mjs'
+      - 'js/brands/brands_loader.js'
+      - 'data/brands/actors_by_place.json'
       - 'tests/schiollgarden-fagverk-browser.mjs'
       - 'tests/schiollgarden-language-browser.mjs'
       - 'data/leksikon/sprak/places/europe/norway/oslo/schiollgarden_prinsens_gate_26.json'
@@ -30,6 +34,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      - run: node --test tests/brands-place-context.test.mjs
+      - run: node tests/schiollgarden-brands-browser.mjs
       - run: node tests/schiollgarden-images-browser.mjs
       - run: node tests/schiollgarden-fagverk-browser.mjs
       - run: node --test tests/place-sheet-language-renderer.test.mjs
@@ -39,6 +45,7 @@ jobs:
         with:
           name: schiollgarden-image-browser-qa
           path: |
+            artifacts/schiollgarden-brands-browser
             artifacts/schiollgarden-images
             artifacts/schiollgarden-fagverk-browser
             artifacts/schiollgarden-language-browser
