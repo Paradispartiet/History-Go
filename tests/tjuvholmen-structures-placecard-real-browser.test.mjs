@@ -128,7 +128,12 @@ try{
       for(const structure of canonical.structures){
         assert.ok(popup.html.includes(structure.name),tag+": missing "+structure.name);
         assert.ok(popup.html.includes(structure.image),tag+": missing image for "+structure.id);
+        assert.ok(popup.html.includes(structure.imageMeta.credit),tag+": missing photographer for "+structure.id);
+        assert.ok(popup.html.includes(structure.imageMeta.licenseUrl),tag+": missing CC license link for "+structure.id);
+        assert.ok(popup.html.includes(structure.imageMeta.sourcePage),tag+": missing Wikimedia file source for "+structure.id);
       }
+      assert.equal(await page.locator("#pcCategoryCollectionList .pc-structure-credit").count(),3,
+        tag+": visible licensed Structure photo credits");
       assert.equal(await page.locator("#pcCategoryCollectionList [data-visual-round-item]").count(),3,
         tag+": three actual Structures in popup");
       const title=String(popup.title);
