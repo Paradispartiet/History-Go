@@ -14,6 +14,14 @@ Prioritet: én vanlig spillerreise med Min dag, innboks, kalender og økonomi f�
 
 C6–C11 nedenfor beholdes som historisk kontrollregister. Denne leveransen beviser det beskrevne 21-dagersløpet og UI-flyten, men lukker ikke automatisk bred økonomikalibrering, alle sosiale etterspill, ekte konto-/enhetsbytte eller hele Civication. Kvalitetsvurdering for avgrenset UI-/handoff-arbeid: korrekthet 5, dekning 5, visuell kvalitet 4, teknisk integritet 4, ansvarlighet 5 og vedlikeholdbarhet 4: **27/30**. Resultater på eksakt samkjørt head registreres i PR-en før merge.
 
+## Økonomioppfølging – 15. november 2026
+
+`CIVICATION_DATA_LAYERS.md` og `civication-life-story-system.md` skiller fortellingspenger fra PC-saldoen. Life Story skriver ikke direkte til PC-wallet; dokumenterte leveveimuligheter må fortsatt aksepteres og avregnes av den eksisterende økonomien. C6 er derfor ikke en bestilling på 1:1-konvertering mellom de to beløpene.
+
+«Status og verdier» viser nå begge beløp med egne etiketter: fortellingspenger fra Life Story og PC-saldo fra `CivicationState.getWallet()`. Manglende wallet-API eller ugyldig beløp fra eieren blir ikke fremstilt som 0 PC; en gyldig nullsaldo vises. Begge beløp holdes utenfor 0–100-scoren. Dialogen åpnes ved overskriften og bevarer fokus og leseposisjon når verdiene oppdateres. Visningen endrer ingen transaksjon, historikk eller lagring.
+
+Avgrenset kontroll: `civication-score-header.test.js` verifiserer riktige kilder, uavhengige beløp, fersk saldo ved oppdatering, gjeld/null/store beløp og uendret score. Browserens mobilkontroll åpner den faktiske dialogen og kontrollerer begge beløp og at begge lagringer er uendret etter lukking. Bred kalibrering av fortellingsbudsjett og samtlige inntekts-/utgiftsløp står fortsatt åpne under C6.
+
 ## Formål og fasit
 Spilleren skal kunne leve 14 ekte spilldager der arbeid, privatliv, relasjoner, økonomi, psyke, energi og integritet henger sammen. Et valg fra dag 2 må kunne få observerbare, kausalt begrunnede følger på dag 14. En grønn unit-test alene beviser ikke at dette skjer i nettleseren.
 
@@ -76,7 +84,7 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 | C3 | Psyke | Små, forutsigbare utslag med synlige følger | Implementert i #6437 (main); bred balansekalibrering mangler |
 | C4 | Jobbbytte | Personlige målere bevares; rollespesifikke verdier isoleres | Merget i #6437; komplett spillreise må regresjonstestes |
 | C5 | Etterspill | Dag 2-valg endrer dag 3-hendelse | Oppfølgingsscene merget; full nettlesergjennomspilling mangler |
-| C6 | Økonomi | Fortellingstransaksjoner og faktisk lommebok samstemmer | Åpent |
+| C6 | Økonomi | Fortellingstransaksjoner og faktisk lommebok samstemmer | Separate pengebegreper følger eierkontraktene; statusdialogen viser faktiske beløp hver for seg. Bred budsjett-/transaksjonskalibrering er fortsatt åpen; se økonomioppfølgingen over. |
 | C7 | Kalender | Livsdager og økonomiuker gir forventet progresjon | #6481, #6490, #6498 og #6504 merget; lønn og tilbud følger spilluker, full E2E ikke godkjent |
 | C8 | Relasjoner | Personer reagerer senere på tidligere valg | NPC-relasjoner, sosiale svar og samtaler sikkerhetskopieres gjennom #6500 (merget); faktisk senere sosialt etterspill ikke bevist |
 | C9 | Skylagring | Samme progresjon etter reload/ny enhet | #6395/#6496/#6500 merget; mock restore av Life Story, jobb og NPC-minne testet. Spillerens egne fasesnapshots undersøkes separat; fysisk konto-/enhetsbytte ikke godkjent |
