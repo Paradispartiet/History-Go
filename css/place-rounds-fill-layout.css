@@ -231,3 +231,14 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   .pc-object-member > img.pc-person-img.pc-object-member-image{max-width:100% !important;}
   #placeCard .pc-object-preview-disclosure{font-size:10px;padding:4px;}
 }
+/* Licensed documentary Structure photos: show credits in the collection
+   itself; never tuck source and CC BY-SA obligations away in repo metadata. */
+.pc-structure-visual-row{min-width:0;display:flex;flex-direction:column;margin:0 0 8px;}
+.pc-structure-visual-row > .pc-person{width:100%;min-width:0;}
+.pc-structure-attribution{
+  margin:2px 0 8px;padding:1px 10px 6px;font-size:12px;
+  line-height:1.45;white-space:normal;overflow-wrap:anywhere;
+  color:inherit;opacity:.84;
+}
+.pc-structure-attribution a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
+.pc-structure-attribution a:focus-visible{outline:2px solid currentColor;outline-offset:3px;}
