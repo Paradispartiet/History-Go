@@ -73,9 +73,14 @@ try {
   assert.equal(hash(await requireExactMedia(museum.asset_path,"licensed-costume-webp")),museum.asset_sha256);
   await requireExactMedia(place.objects[1].image,"curtain-illustration-svg");
   await requireExactMedia(painting.new_photo.asset,"foyer-documentary-photo");
-  const runtimeJs=await requireExactMedia("js/ui/place-rounds-visual-collections.js","live-Objects-renderer");
+  // A pull request changes the renderer/CSS before the public site can deploy
+  // it. C51 is a LIVE-site acceptance test, not a pre-merge file identity test.
+  // Verify that the public deployed bytes still implement the DNT contract;
+  // exact equality against the repository is reserved for post-merge runs.
+  const deployedMedia = process.env.GITHUB_EVENT_NAME === "pull_request" ? get : requireExactMedia;
+  const runtimeJs=await deployedMedia("js/ui/place-rounds-visual-collections.js","live-Objects-renderer");
   assert.match(runtimeJs.toString("utf8"),/pc-object-preview-disclosure/);
-  const css=await requireExactMedia("css/place-rounds-fill-layout.css","live-Objects-css");
+  const css=await deployedMedia("css/place-rounds-fill-layout.css","live-Objects-css");
   assert.match(css.toString("utf8"),/pc-object-member-image/);
   const index=await get("index.html","public-index");
   assert.match(index.toString("utf8"),/History Go/i);
