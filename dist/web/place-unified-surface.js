@@ -927,12 +927,19 @@
     const id = text9((_a = event.detail) == null ? void 0 : _a.placeId);
     if (id) adoptCanonicalLanguage(id);
   }
+  function adoptActivePlaceLanguage() {
+    var _a;
+    const id = text9((_a = placeSheetShell()) == null ? void 0 : _a.dataset.placeId);
+    if (id) adoptCanonicalLanguage(id);
+  }
   ensureStylesheet2();
   runtime9.addEventListener("hg:place-unified-ready", onUnifiedReady3);
+  runtime9.addEventListener("hg:language-layer-ready", adoptActivePlaceLanguage);
   runtime9.HGPlaceSheetSections = {
     ...runtime9.HGPlaceSheetSections || {},
     language: { adopt: adoptCanonicalLanguage }
   };
+  if (runtime9.HGLanguageLayer) adoptActivePlaceLanguage();
 
   // js/ui/place-sheet/sections/sources.ts
   var runtime10 = window;

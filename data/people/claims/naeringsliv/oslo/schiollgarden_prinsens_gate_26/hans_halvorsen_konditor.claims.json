@@ -1,0 +1,161 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "hans_halvorsen_konditor",
+  "profile_file": "data/people/naeringsliv/oslo/schiollgarden_prinsens_gate_26/hans_halvorsen_konditor.json",
+  "identity": {
+    "canonical_identity": "Hans Halvorsen (1840–1915), konditoren som grunnla Halvorsens Conditori i Prinsens gate 26.",
+    "name_variants": [
+      "Hans Halvorsen"
+    ],
+    "not": [
+      "Navnelike personer uten dokumentert tilknytning til dette konditoriet"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity",
+      "claim": "Hans Halvorsen (1840–1915) var konditor.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Halvorsens_Conditori",
+      "source_location": "Første avsnitt",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-15",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "training",
+      "claim": "Gikk i lære hos konditor Baumann.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Halvorsens_Conditori",
+      "source_location": "Første setning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-15",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "foundation",
+      "claim": "Grunnla Halvorsens Conditori i Prinsens gate 26 i 1881; lokalet lå i Schiøllgården.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Halvorsens_Conditori",
+      "source_location": "Første og andre avsnitt",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-15",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "residence",
+      "claim": "Bodde i Prinsens gate 26 i 1885.",
+      "status": "verified",
+      "source_url": "https://lokalhistoriewiki.no/wiki/Hans_Halvorsen_(1840%E2%80%931915)",
+      "source_location": "Avsnittet om driften og adressen i 1885",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-15",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "partnership",
+      "claim": "Medarbeideren Olaf Johannessen ble kompanjong i 1892.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Halvorsens_Conditori",
+      "source_location": "Første avsnitt",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-15",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity"
+    ],
+    "kindLabel": [
+      "identity"
+    ],
+    "birth_date": [
+      "identity"
+    ],
+    "death_date": [
+      "identity"
+    ],
+    "role": [
+      "foundation"
+    ],
+    "year": [
+      "foundation"
+    ],
+    "placeId": [
+      "foundation"
+    ],
+    "places[schiollgarden_prinsens_gate_26]": [
+      "foundation"
+    ],
+    "works[id=halvorsens_conditori_1881].title": [
+      "foundation"
+    ],
+    "works[id=halvorsens_conditori_1881].year": [
+      "foundation"
+    ],
+    "works[id=halvorsens_conditori_1881].role": [
+      "foundation"
+    ],
+    "works[id=halvorsens_conditori_1881].location": [
+      "foundation"
+    ],
+    "education[0]": [
+      "training"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity",
+          "foundation"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity",
+          "training"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "foundation"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "residence"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "partnership"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "5/5",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-11-15",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
