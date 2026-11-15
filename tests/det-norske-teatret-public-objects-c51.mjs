@@ -131,10 +131,14 @@ try {
         const img=document.querySelector("#pcObjectsIcon img.pc-person-img");
         return img?.complete && img.naturalWidth===800 && img.getAttribute("src")===src;
       },place.objects[0].image,{timeout:15000});
+      // After Place Sheet hydration, the source icon may be visually hidden
+      // behind a curated gallery tile. Exercise the visitor-visible control.
+      const objectTile=page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]');
+      await objectTile.waitFor({state:"visible",timeout:20000});
       const previewShot=path.join(artifactPath,name+"-public-objects-preview.png");
-      await icon.screenshot({path:previewShot,timeout:20000});
+      await objectTile.screenshot({path:previewShot,timeout:20000});
       phase="click-objects";
-      await icon.click({timeout:15000});
+      await objectTile.click({timeout:15000});
       phase="objects-members";
       await page.waitForFunction(()=>{
         const visible=[...document.querySelectorAll(".pc-round-popup-objects .pc-object-member")];
