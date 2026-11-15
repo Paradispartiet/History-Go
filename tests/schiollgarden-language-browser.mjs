@@ -61,6 +61,10 @@ try{
    assert.deepEqual(errors,[]);
    results.push({width,entries:4,autoCollected:0,collected:entries.map(e=>({id:e.id,subject:e.subject_id,source:e.source})),reloadPreserved:true,errors});
    console.log('PASS Schiollgarden language '+width+': four entries, filters, explicit Knowledge V2 capture and persistence');
+  }catch(e){
+   await page.screenshot({path:path.join(output,`failure-${width}.png`),fullPage:true});
+   const state=await page.evaluate(()=>({ready:window.__HG_APP_READY__,languageRuntime:!!window.HGLanguageLayer,placeId:document.querySelector('#placeCard')?.dataset.currentPlaceId,slot:document.querySelector('[data-hg-place-sheet-section="language"]')?.outerHTML,nav:document.querySelector('[data-hg-place-sheet-jump="language"]')?.outerHTML}));
+   fs.writeFileSync(path.join(output,`failure-${width}.json`),JSON.stringify({state,errors},null,2));throw e;
   }finally{await context.close();}
  }
 }finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}

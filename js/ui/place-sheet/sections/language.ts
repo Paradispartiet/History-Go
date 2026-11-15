@@ -142,10 +142,20 @@ function onUnifiedReady(event: Event): void {
   if (id) adoptCanonicalLanguage(id);
 }
 
+function adoptActivePlaceLanguage(): void {
+  const id = text(placeSheetShell()?.dataset.placeId);
+  if (id) adoptCanonicalLanguage(id);
+}
+
 ensureStylesheet();
 runtime.addEventListener("hg:place-unified-ready", onUnifiedReady);
+runtime.addEventListener("hg:language-layer-ready", adoptActivePlaceLanguage);
 
 runtime.HGPlaceSheetSections = {
   ...(runtime.HGPlaceSheetSections || {}),
   language: { adopt: adoptCanonicalLanguage }
 };
+
+// Cover the reverse load order: the language runtime may already be available
+// when the direct owner is registered for a Place that is already open.
+if (runtime.HGLanguageLayer) adoptActivePlaceLanguage();

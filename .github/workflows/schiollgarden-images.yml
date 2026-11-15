@@ -32,6 +32,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node tests/schiollgarden-images-browser.mjs
       - run: node tests/schiollgarden-fagverk-browser.mjs
+      - run: node --test tests/place-sheet-language-renderer.test.mjs
       - run: node tests/schiollgarden-language-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
