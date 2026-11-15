@@ -6,7 +6,7 @@
   "status": "editorial_closeout_blocked_by_collection_assets",
   "production_profile": "standard",
   "profile_status": "source_reviewed_pending_collection_acceptance",
-  "active_phase": "Stories 2 og Språkleksikon 3 er merget (#7279); Objects 8/8 kildeverifisert og klassifisert betinget (#7280), ingen aktiverte Object-bilder; People 2/5 foto; Structures 3/3 publisert med 960px kilder, fulloppløste originaler 0/3 pga Commons HTTP 429 (dokumentert i PR #7285).",
+  "active_phase": "People 5/5 med bilde (2 CC-foto + 3 originale merkede illustrasjoner), Stories 2, Språkleksikon 3, Brands 3, Structures 3. Skulpturverksbilder og 0/3 fulloppløste Commons-originaler gjenstår som separate vFerdig-porter.",
   "canonical_source": "data/places/by/oslo/places/tjuvholmen.json",
   "existing_content": {
     "fullquiz_questions": 42,
@@ -122,7 +122,7 @@
   },
   "vferdig": {
     "status": "BLOCKED",
-    "reason": "Stories 2/2 og Språkleksikon 3/3 merget; Brands 3/3 og Structures 3/3 publiserte med godkjente WebP og mobil-/desktop-QA, men 0/3 fulloppløste Commons-originaler arkivert (HTTP 429). People har 2/5 identitetssikrede lisensportretter, tre profiler er tekstbaserte. Objects har åtte kildeverifiserte skulpturer og betinget By-Objects-klassifisering, men ingen godkjente enkeltverksbilder eller avklarte verk-/fotorettigheter. vFerdig BLOCKED.",
+    "reason": "Publiserbart Tjuvholmen-innhold ferdig; People 5/5 har bilde (2 autentiske CC-foto og 3 tydelig merkede originalillustrasjoner). De åtte individuelle skulpturene mangler fortsatt godkjente verks-/fotorettigheter, og 0/3 fulloppløste Commons-originaler for Structures er arkivert (HTTP 429). Formell vFerdig fortsatt BLOCKED på disse to portene.",
     "source_review": "reports/place-production/tjuvholmen-source-review-20261112.json"
   },
   "browser_acceptance": {
@@ -188,12 +188,17 @@
     },
     "additional_source_provenance": "data/people/renzo_piano_image_provenance.json",
     "source_audit": "reports/place-production/tjuvholmen-people-portrait-rights-20261112.json",
-    "text_only_ids": [
+    "text_only_ids": [],
+    "broken_references_cleared_in_pr": true,
+    "active_illustrations": 3,
+    "active_illustration_ids": [
       "bjarne_melgaard",
       "stephen_butkus",
       "hans_rasmus_astrup"
     ],
-    "broken_references_cleared_in_pr": true
+    "active_visual_people": 5,
+    "remaining_text_only_people": 0,
+    "note": "All 5 People have image: 2 authentic licensed photos + 3 visibly disclosed, user-authorized original editorial illustrations. 3 third-party photographic licences still not obtained, but no third-party photos used."
   },
   "structure_asset_coverage": {
     "total": 3,
@@ -229,5 +234,14 @@
     "yearConflict": "Eyes: accepted 1997 from Selvaag owner's catalogue; museum's 1992 remains documented",
     "classification_status": "CONDITIONAL_BY_OBJECT_ROUTING_RESOLVED_RIGHTS_NOT_CLEARED",
     "classification_note": "Åtte fysisk stedfestede skulpturer kan vurderes som By-Objects (monument-/kunstemner), mens verkidentiteten hører hjemme i Works/Productions. Ingen av de åtte er akseptert som Object uten rettighetsklarert medlemsbilde og proveniens. Skulpturparken forblir én Structure."
+  },
+  "people_illustration_candidates": {
+    "count": 3,
+    "staged_binary_count": 3,
+    "approved_illustrations": 0,
+    "active_illustrations": 0,
+    "staging_report": "reports/place-production/tjuvholmen-generated-people-illustration-import.json",
+    "status": "QUARANTINE_FILES_IN_REPO_NOT_IDENTITY_APPROVED_NOT_VISIBLE",
+    "note": "Original generated candidate WebP bytes staged under bilder/kort/people/candidates/tjuvholmen, not connected to People or runtime. Existing two approved photo portraits remain unchanged."
   }
 }

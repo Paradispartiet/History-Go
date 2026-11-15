@@ -12,9 +12,20 @@ Alle jobber, roller, private roller og Life Stories skal ha både kildeprofil og
 
 Kolonnen **Synopsis** er nå ført for alle 446 registrerte rolle-/rollepakkeoppføringer og alle 15 Life Story-spor. **Ikke koblet** betyr at registeret ennå ikke peker til en gjennomgått rollesynopsis for denne identiteten. Det betyr ikke at alt fortellingsmateriale mangler; eksisterende tekst og innfelte synopser må undersøkes og gjenbrukes. Flere identiteter kan dele et dokument når ansvars- og forløpsforskjellene er uttrykkelig beskrevet. Dokumentet trenger ikke være en egen fil hvis en tydelig avgrenset seksjon dekker kravene.
 
-[Ekspeditørens synopsis](civication-synopsis/ekspeditor.md) og [renholderens synopsis](civication-synopsis/renholder.md) er koblede, sammenhengende eksempler i denne kolonnen: **2 av 446 rolleoppføringer og 2 av 15 Life Story-spor har koblet synopsis**. Dette er de samme to dokumentene i overlappende lag, ikke fire ferdige historier. Profil, synopsis, kildekontroll, scenerevisjon og spilltest er forskjellige statuser. Oppføringene her godkjenner ikke automatisk hele rolleforløpet. Renholderens synopsis er en sammenhengende innholdsoversikt med uttrykkelige revisjonsbehov, ikke godkjente scener.
+[Ekspeditørens synopsis](civication-synopsis/ekspeditor.md) og [renholderens synopsis](civication-synopsis/renholder.md) er koblede, sammenhengende eksempler i denne kolonnen: **2 av 446 rolleoppføringer og 2 av 15 Life Story-spor har koblet synopsis**. Dette er de samme to dokumentene i overlappende lag, ikke fire ferdige historier. Profil, synopsis, kildekontroll, scenerevisjon og spilltest er forskjellige statuser. Oppføringene her godkjenner ikke automatisk hele rolleforløpet. Renholderens arbeidsfordeling, søl, belastning/opplæring og klager/avslutninger er revidert sammen med synopsisen. Rollepakken har totalt 55 scener. Dette godkjenner ikke automatisk fysisk Safari eller hele ansettelses- og kalenderflyten. Se den samlede reststatusen nedenfor.
 
 De 199 livsposisjonene skal behandles etter samme krav gjennom sin faktiske rolle eller relasjon. At 40 ikke har en selvstendig rolleverden er ikke fritak fra dokumentasjon, og er heller ikke grunn til å opprette en ny jobb. De ni leveveiformene er økonomiske kontekster, ikke ni nye rolleidentiteter.
+
+## Renholder – samlet reststatus
+
+| Del | Dokumentert status / kontrollport |
+| --- | --- |
+| Kildeprofil, ordliste og synopsis | Koblet til samme rolle og Life Story. [Profil](civication-symposium/renholder.md) · [Synopsis](civication-synopsis/renholder.md). |
+| Arbeidsfordeling, søl, belastning/opplæring og klager/avslutninger | Revidert og merget i [#7272](https://github.com/Paradispartiet/History-Go/pull/7272), [#7277](https://github.com/Paradispartiet/History-Go/pull/7277), [#7283](https://github.com/Paradispartiet/History-Go/pull/7283) og [#7289](https://github.com/Paradispartiet/History-Go/pull/7289). 55 scener over sju fortellingsdager; siste innholdsrevisjon bestod 763/763 testfiler og 26 nettleserruter. |
+| Innboks og faktisk UI-dagskifte | Egen streng kontroll: `RENHOLDER_CASE=dagskifte` i [nettleserskriptet](../scripts/verify-civication-renholder-lifestory-browser.cjs). Tre ruter gjennom sju dager ved mobil og to iPad-størrelser. Kontrollporten krever faktiske innbokssvar og dagskifteknapper, nøyaktig ett kalenderdøgn og bevart arkiv. Ingen Runner-reserve i denne modusen. **Bestått på head `609d9d4b`**: tre ruter, 18 faktiske UI-dagskifter, dag 7 i både kalender og fortelling, bevart arkiv og riktige avslutninger. 40 bilder er gjennomgått. [PR #7295](https://github.com/Paradispartiet/History-Go/pull/7295) · [CI-bevis](https://github.com/Paradispartiet/History-Go/actions/runs/43277637032). |
+| Faktisk renholderansettelse, jobbmail og lønn | Ikke fullstendig kontrollert av Life Story-rolleparameteren. Kalenderkontrollen må ikke omtales som opptjent/akseptert ansettelse eller komplett arbeidsuke med jobbmail og lønn. |
+| Fysisk iPad/Safari | **Åpen – ikke utført.** En emulert skjermstørrelse er ikke fysisk Safari. [Manuell sjekkliste og registreringskrav](civication-symposium/renholder.md#fysisk-ipadsafari--åpen-kontroll). |
+| Samlet lukking | **Fortsatt åpen** til de gjenværende kontrollene har konkret bevis. Profil- og synopsiskoblingene er ført; dette oppretter ikke en ny parallell rolleliste. |
 
 ## Hvordan listen brukes
 
@@ -53,7 +64,7 @@ Tabellen viser alle 24 synopsisene i den eksisterende matrisen. En synopsis kan 
 | [C14 Ryktet løper fra deg](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c14--ryktet-løper-fra-deg) | sosiale medier / kollegarelasjon | Må kartlegges i rolleprofil |
 | [C15 Det digitale dobbeltlivet](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c15--det-digitale-dobbeltlivet) | digital identitet / privatliv | Må kartlegges i rolleprofil |
 | [C16 Klassereisen og kodene](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c16--klassereisen-og-kodene) | Daniel / kulturmiljø | Må kartlegges i rolleprofil |
-| [C17 Å arbeide seg tom](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c17--å-arbeide-seg-tom) | renholder / driftsleder | Må kartlegges i rolleprofil |
+| [C17 Å arbeide seg tom](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c17--å-arbeide-seg-tom) | renholder / driftsleder | Koblet til renholderens profil og synopsis; plan, befaring, tilkomst og utførelse holdes atskilt. |
 | [C18 Ensom midt blant folk](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c18--ensom-midt-blant-folk) | Jonas / Daniel / sosialt liv | Må kartlegges i rolleprofil |
 | [C19 Å begynne på nytt](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c19--å-begynne-på-nytt) | arbeidsledig / opplæringsspor | Må kartlegges i rolleprofil |
 | [C20 Fellesskapet uten helt](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c20--fellesskapet-uten-helt) | Sara og Nora / lokalt fellesskap | Må kartlegges i rolleprofil |

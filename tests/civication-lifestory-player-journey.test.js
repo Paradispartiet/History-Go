@@ -163,6 +163,12 @@ async function main() {
   quiet.panel.querySelector("[data-lifestory-next-day]").click();
   assert.equal(quiet.current().dag, 2);
   assert.ok(quiet.panel.querySelector("[data-lifestory-choice]"), "next authored day remains playable");
+  const nextSceneHeading = quiet.panel.querySelector(".civi-lifestory-scene h3");
+  assert.ok(nextSceneHeading, "the next day has a readable heading");
+  assert.equal(quiet.w.document.activeElement, nextSceneHeading,
+    "the removed Start neste dag button transfers keyboard focus to day 2");
+  assert.equal(nextSceneHeading.getAttribute("tabindex"), "-1",
+    "programmatic heading focus must not insert a new tab stop");
   quiet.close();
 
   // Pausing a real Wave scene must survive load-time empty-phase recovery.
