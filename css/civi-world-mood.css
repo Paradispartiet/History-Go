@@ -1,0 +1,22 @@
+/* Civication: minimal tonal change on the existing scene card.
+   One miniature illustration lives in civi-miniature-world.css; no duplicate banner. */
+body.civi-app #civiLifestoryPanel .civi-lifestory-scene {
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+body.civi-app[data-civi-visual-period="morning"] #civiLifestoryPanel .civi-lifestory-scene {
+  border-color: rgba(185, 166, 139, 0.21);
+}
+body.civi-app[data-civi-visual-period="day"] #civiLifestoryPanel .civi-lifestory-scene {
+  border-color: rgba(133, 170, 155, 0.20);
+}
+body.civi-app[data-civi-visual-period="evening"] #civiLifestoryPanel .civi-lifestory-scene {
+  border-color: rgba(166, 137, 127, 0.22);
+}
+body.civi-app[data-civi-visual-period="night"] #civiLifestoryPanel .civi-lifestory-scene {
+  border-color: rgba(127, 148, 168, 0.22);
+}
+@media (prefers-reduced-motion: reduce) {
+  body.civi-app #civiLifestoryPanel .civi-lifestory-scene {
+    transition: none;
+  }
+}

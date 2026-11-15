@@ -93,6 +93,21 @@ setup();
 const M = global.window.CivicationThreeMap;
 assert.ok(M, "window.CivicationThreeMap skal være registrert");
 
+check("Civication 3D-kart starter nærmere byen og bruker mobiltilpasset zoom", () => {
+  assert.strictEqual(M.recommendedStartZoom(1200), 1.56);
+  assert.strictEqual(M.recommendedStartZoom(390), 1.72);
+  assert.strictEqual(M.recommendedStartZoom(640), 1.72);
+  assert.strictEqual(M.recommendedStartZoom(641), 1.56);
+  M.setStateForTesting({ active: true, THREE: FAKE_THREE, camera: makeCamera(), renderer: {}, W: 390, H: 844 });
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.72, "mobile reset should frame the city closer");
+  M.setStateForTesting({ W: 1200, H: 800 });
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.56, "desktop reset should frame the city closer");
+  M.zoomOut();
+  assert.ok(M.getZoom() < 1.56, "kartoversikten må fortsatt kunne zoomes ut");
+});
+
 console.log("CivicationThreeMap – projeksjons-API (Del A)");
 
 [
@@ -136,6 +151,52 @@ check("projectWorldToScreen returnerer null ved ugyldig input/viewport/renderer"
   assert.strictEqual(M.projectWorldToScreen("x", 0.5), null);
   M.setStateForTesting({ W: 0, H: 0 });
   assert.strictEqual(M.projectWorldToScreen(0.5, 0.5), null);
+});
+
+
+check("zoom med finger eller mus holder samme miniatyrpunkt under pekeren", () => {
+  const width = 390, height = 844;
+  const base = { x: 0.22, y: 24.75, z: 21.3 };
+  const horizontal = Math.hypot(base.x, base.z);
+  const distance = Math.hypot(base.x, base.y, base.z);
+  const worldPointAt = (px, py) => {
+    const state = M.getTransformState();
+    const units = 2 * 15.9 / (height * state.zoom);
+    const dx = px - width / 2, dy = py - height / 2;
+    return {
+      x: state.panX + units * (dx * base.z / horizontal + dy * base.x / horizontal * distance / base.y),
+      z: state.panZ + units * (-dx * base.x / horizontal + dy * base.z / horizontal * distance / base.y)
+    };
+  };
+  M.setStateForTesting({ active: true, THREE: FAKE_THREE, camera: makeCamera(), renderer: {}, W: width, H: height });
+  M.reset();
+  for (const [px, py, next] of [[70, 145, 2.5], [0, 0, 3.6], [390, 844, 1.8]]) {
+    const before = worldPointAt(px, py);
+    M.zoomAt(next, px, py);
+    const after = worldPointAt(px, py);
+    assert.ok(Math.hypot(before.x - after.x, before.z - after.z) < 1e-9,
+      "bakkeankeret må ikke flytte seg ved " + px + "," + py);
+  }
+});
+
+
+check("Oslo-oversikt gir hele 3D-brettet på smale skjermer og kan gå tilbake", () => {
+  const width = 390, height = 844;
+  M.setStateForTesting({ active: true, THREE: FAKE_THREE, camera: makeCamera(), renderer: {}, W: width, H: height });
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.72);
+  M.overview();
+  const fitted = M.recommendedOverviewZoom(width, height);
+  assert.strictEqual(M.getZoom(), fitted);
+  assert.ok(fitted < 0.5, "smalt mobilutsnitt trenger mer utzoom enn gammel nedre grense");
+  const state = M.getTransformState();
+  assert.strictEqual(state.panX, 0);
+  assert.strictEqual(state.panZ, 0);
+  const boardWidth = 30 + 3.4;
+  const visibleWidth = 2 * 15.9 * (width / height) / fitted;
+  assert.ok(visibleWidth >= boardWidth, "hele brettbredden må være synlig");
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.72);
 });
 
 console.log("CivicationThreeMap – transform-event (Del B)");

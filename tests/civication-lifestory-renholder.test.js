@@ -394,3 +394,61 @@ for(const scene of raw.roleScenes.scenes.filter(x=>x.id==='d2_runde_med_amina'||
  const text=[scene.tekst,...scene.valg.flatMap(v=>[v.tekst,v.konsekvensTekst])].join(' ');
  assert.doesNotMatch(text,/læringsmarkør|tidligereValg|ren_opp_|ren_bel_/i,'technical implementation leaked into scene '+scene.id);
 }
+
+// Room 204 must have an actual work route before the complaint can cite it.
+assert.ok(content.scenes.some(s=>s.id==='klage204_01_arbeid'&&s.dag===3&&s.fase==='morgen'),'room-204 complaint needs a playable morning work record');
+assert.doesNotMatch(content.scenes.find(s=>s.id==='d3_rom_204_klagen').tekst,/07:10|klokka sju|forrige uke/,'no fabricated timestamp or prior week');
+
+// Every complaint proof is earned through actual choices, including pending replies.
+let complaintRoutes=0;
+for(const [initial,variant] of [['beroeringspunkter','full'],['synlig_runde','delvis'],['spor_amina','delt']])
+for(const reply of ['dokumenter','si_fra_tydelig','la_ligge'])
+for(const delivery of ['wait','sent','received'])
+for(const [work,room204] of [['utfor_hele_lista','full'],['utfor_delvis','delvis'],['ingen_tilgang','stengt']]) {
+ let s=State.createInitialState(content);reachRoom(s,'rommet_01_melding');chooseRoom(s,'rommet_01_melding',initial);
+ reachRoom(s,'usynlig_01_melding');chooseRoom(s,'usynlig_01_melding',reply);
+ assert.ok(!roomFlag(s,'ren_log2_sendt')&&!roomFlag(s,'ren_log2_mottatt'),'reply is not sent evidence');
+ if(reply!=='la_ligge'){
+  chooseRoom(s,'klage2_02_'+variant,delivery==='wait'?'avvent_status':'send_status');
+  if(delivery!=='wait')chooseRoom(s,'klage2_03_mottak',delivery==='received'?'bekreft_mottak':'avvent_mottak');
+ }
+ const sent=reply!=='la_ligge'&&delivery!=='wait';
+ assert.equal(roomFlag(s,'ren_log2_sendt'),sent);assert.equal(roomFlag(s,'ren_log2_mottatt'),sent&&delivery==='received');
+ finishLearningDay(s);s=Runner.startNextDay(s,content);
+ if(sent){reachRoom(s,'d2_kveld_verdighet');chooseRoom(s,'d2_kveld_verdighet',work==='ingen_tilgang'?'hold_avstand':'ta_imot');}
+ finishLearningDay(s);s=Runner.startNextDay(s,content);
+ reachRoom(s,'klage204_01_arbeid');assert.ok(!roomFlag(s,'ren_log204_full'));
+ chooseRoom(s,'klage204_01_arbeid',work);
+ reachRoom(s,'d3_rom_204_klagen');chooseRoom(s,'d3_rom_204_klagen',reply==='la_ligge'?'la_det_passere':reply==='dokumenter'?'vis_loggen_rolig':'meld_til_kari');
+ assert.ok(!roomFlag(s,'ren_log204_sendt')&&!roomFlag(s,'viste_loggen'));
+ if(reply!=='la_ligge'){
+  chooseRoom(s,'klage204_03_'+room204,delivery==='wait'?'avvent_status':'send_status');
+  if(delivery!=='wait')chooseRoom(s,'klage204_04_mottak',delivery==='received'?'bekreft_mottak':'avvent_mottak');
+ }
+ assert.equal(roomFlag(s,'ren_log204_sendt'),sent);assert.equal(roomFlag(s,'ren_log204_mottatt'),sent&&delivery==='received');
+ assert.equal(roomFlag(s,'ren_log204_full'),work==='utfor_hele_lista');
+ const proof=JSON.parse(JSON.stringify(s.tidligereValg));const archive=JSON.parse(JSON.stringify(s.arkiv));
+ s=JSON.parse(JSON.stringify(s));assert.deepEqual(s.arkiv,archive);
+ for(const row of archive.filter(x=>x.sceneId.startsWith('klage'))){assert.ok(Runner.getSymposium(s,content).tidslinje.some(x=>x.sceneId===row.sceneId&&x.valgId===row.valgId&&x.konsekvensTekst===row.konsekvensTekst));}
+ finishLearningDay(s);while(s.dag<7){s=Runner.startNextDay(s,content);finishLearningDay(s);}
+ for(const k of Object.keys(proof).filter(k=>k.startsWith('ren_log')))assert.equal(s.tidligereValg[k],proof[k]);
+ assert.equal(s.tidligereValg.wa_d_c17_status,'andre_rom_tilbudt');complaintRoutes++;
+}
+assert.equal(complaintRoutes,81);
+// Explicit legacy fixture: simulate a save made before the new room proofs existed.
+for(const [target,oldFlags,prefix] of [['usynlig_01_melding',{dokumenterte_runden:true},'klage2_02_'],['d3_rom_204_klagen',{viste_loggen:true},'klage204_03_']]){
+ let s=State.createInitialState(content);
+ while(s.dag<(target.startsWith('d3')?3:1)){finishLearningDay(s);s=Runner.startNextDay(s,content);}
+ reachRoom(s,target);
+ for(const k of Object.keys(s.tidligereValg).filter(k=>k.startsWith('ren_log')))delete s.tidligereValg[k];
+ Object.assign(s.tidligereValg,oldFlags);const oldArchive=JSON.parse(JSON.stringify(s.arkiv));
+ s=JSON.parse(JSON.stringify(s));assert.deepEqual(s.arkiv,oldArchive);
+ chooseRoom(s,target,target.startsWith('d3')?'vis_loggen_rolig':'dokumenter');
+ chooseRoom(s,prefix+'ukjent','send_status');
+ assert.ok(!roomFlag(s,'ren_log2_kjent')&&!roomFlag(s,'ren_log204_full'));
+ assert.deepEqual(s.arkiv.slice(0,oldArchive.length),oldArchive,'historical archive is never rewritten');
+}
+for(const sc of raw.roleScenes.scenes.filter(x=>x.id.startsWith('klage'))){
+ assert.doesNotMatch([sc.tekst,...sc.valg.flatMap(v=>[v.tekst,v.konsekvensTekst])].join(' '),/lagring|markør|ren_log|tidligereValg/i,'player text describes work '+sc.id);
+}
+console.log('Renholder complaints: 81 actual routes, both room lists, pending delivery/receipt, legacy uncertainty, exact Symposium and seven days OK');
