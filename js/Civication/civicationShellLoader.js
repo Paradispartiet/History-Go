@@ -49,6 +49,7 @@
     "js/Civication/systems/civicationBrandEmployerBridge.js",
     "js/Civication/merits-and-jobs.js",
     "js/Civication/core/civicationCalendar.js",
+    "js/Civication/ui/CivicationWorldMood.js",
     "js/Civication/core/civicationTaskEngine.js",
     "js/Civication/core/civicationChoiceAffordance.js",
     "js/Civication/core/civicationWorkRhythm.js",
@@ -175,6 +176,8 @@
   const RICH_MAP_SCRIPTS = [
     "js/Civication/ui/CivicationOsloMapCalibration.js",
     "js/Civication/ui/CivicationCanvasMap.js",
+    "js/Civication/ui/CivicationMicroWorldDistricts.js",
+    "js/Civication/ui/CivicationMapMicroWorld.js",
     "js/Civication/ui/CivicationThreeMap.js"
   ];
 
