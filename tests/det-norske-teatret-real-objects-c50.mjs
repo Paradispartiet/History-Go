@@ -98,9 +98,14 @@ try {
         const img=document.querySelector('#pcObjectsIcon img.pc-person-img');
         return img?.getAttribute("src")===src && img.complete && img.naturalWidth===800;
       },place.objects[0].image,{timeout:15000});
-      await objectIcon.screenshot({path:artifactPath+"/"+name+"-objects-preview.png"});
+      // Place Sheet can move the source icon into a curated gallery tile
+      // after the preview decodes. Click what the visitor actually sees,
+      // rather than screenshotting/clicking the now-hidden source icon.
+      const objectTile=page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]');
+      await objectTile.waitFor({state:"visible",timeout:20000});
+      await objectTile.screenshot({path:artifactPath+"/"+name+"-objects-preview.png",timeout:15000});
       phase="objects-click";
-      await objectIcon.click({timeout:15000});
+      await objectTile.click({timeout:15000});
       phase="popup-member-rows";
       await page.waitForFunction(()=>{
         const rows=[...document.querySelectorAll(".pc-object-member")];
