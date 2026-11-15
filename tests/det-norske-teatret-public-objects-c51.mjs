@@ -73,6 +73,26 @@ try {
   assert.equal(hash(await requireExactMedia(museum.asset_path,"licensed-costume-webp")),museum.asset_sha256);
   await requireExactMedia(place.objects[1].image,"curtain-illustration-svg");
   await requireExactMedia(painting.new_photo.asset,"foyer-documentary-photo");
+  // A main push races GitHub Pages; wait for exact public renderer and CSS
+  // bytes before asserting that the deployed site reflects this commit.
+  // No content assertion is skipped, and Pages must deploy both files.
+  if (process.env.GITHUB_EVENT_NAME === "push" || process.env.GITHUB_EVENT_NAME === "workflow_dispatch") {
+    const files=["js/ui/place-rounds-visual-collections.js","css/place-rounds-fill-layout.css"];
+    let deployed=false;
+    for(let attempt=0;attempt<24;attempt++){
+      try {
+        const live=await Promise.all(files.map(async file=>{
+          const response=await api.get(urlOf(file),{headers:{"cache-control":"no-cache"},timeout:20000});
+          return response.ok() ? hash(await response.body())===hash(fs.readFileSync(file)) : false;
+        }));
+        if(live.every(Boolean)){deployed=true;break;}
+      }catch(error){
+        report.errors.push("Public bundle readiness attempt "+(attempt+1)+": "+String(error));
+      }
+      if(attempt<23)await new Promise(resolve=>setTimeout(resolve,10000));
+    }
+    assert.equal(deployed,true,"GitHub Pages has not deployed matching renderer and CSS bytes");
+  }
   // A pull request changes the renderer/CSS before the public site can deploy
   // it. C51 is a LIVE-site acceptance test, not a pre-merge file identity test.
   // Verify that the public deployed bytes still implement the DNT contract;
