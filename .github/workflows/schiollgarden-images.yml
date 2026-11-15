@@ -5,6 +5,11 @@ on:
       - '.github/workflows/schiollgarden-images.yml'
       - 'tests/schiollgarden-images-browser.mjs'
       - 'tests/schiollgarden-brands-browser.mjs'
+      - 'tests/schiollgarden-reading-browser.mjs'
+      - 'data/lesespor/manifest.json'
+      - 'data/leksikon/manifest.json'
+      - 'data/leksikon/places/oslo/by/leksikon_schiollgarden_nyhet_byggeprosjekt_2019.json'
+      - 'data/lesespor/schiollgarden/**'
       - 'tests/brands-place-context.test.mjs'
       - 'js/brands/brands_loader.js'
       - 'data/brands/actors_by_place.json'
@@ -36,6 +41,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node --test tests/brands-place-context.test.mjs
       - run: node tests/schiollgarden-brands-browser.mjs
+      - run: node tests/schiollgarden-reading-browser.mjs
       - run: node tests/schiollgarden-images-browser.mjs
       - run: node tests/schiollgarden-fagverk-browser.mjs
       - run: node --test tests/place-sheet-language-renderer.test.mjs
@@ -45,6 +51,7 @@ jobs:
         with:
           name: schiollgarden-image-browser-qa
           path: |
+            artifacts/schiollgarden-reading-browser
             artifacts/schiollgarden-brands-browser
             artifacts/schiollgarden-images
             artifacts/schiollgarden-fagverk-browser
