@@ -702,12 +702,6 @@
       grid.style.removeProperty("grid-template-columns");
       grid.style.removeProperty("grid-template-rows");
     }
-    // Hydration can reapply the core collection renderer after the curated
-    // grid has already mounted. Preserve the profile's final visible state
-    // synchronously, instead of leaving a transient generic source marker.
-    if (source === "place_card_profile_v2") {
-      global.HGPlaceRoundsFillLayout?.applyCuratedVisibility?.();
-    }
   }
 
   function scheduleApply() {
