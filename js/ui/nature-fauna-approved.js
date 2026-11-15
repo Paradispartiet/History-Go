@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_hettemaake:Object.freeze({
+   scientificName:"Chroicocephalus ridibundus",
+   src:"bilder/natur/fauna/godkjent/16_hettemaake_v1.webp",
+   gitBlobSha:"111882da9a8bf94e18f8eb942901cdfa7c5faef0",
+   reviewedAt:"2026-11-15",
+   stage:"breeding_adult_chocolate_brown_hood_white_eye_crescents_red_bill_legs_pale_grey_wings_black_primary_tips_standing_and_in_flight",
+   evidence:"data/natur/fauna/illustration-quality-hettemaake-20261115.json"
+  }),
   emne_fauna_storskarv:Object.freeze({
    scientificName:"Phalacrocorax carbo",
    src:"bilder/natur/fauna/godkjent/15_storskarv_v1.webp",

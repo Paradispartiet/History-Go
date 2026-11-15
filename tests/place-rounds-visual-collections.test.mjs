@@ -256,3 +256,28 @@ test("missing or broken front media keeps a branded visual surface instead of a 
   assert.match(placeCardCss, /\.pc-card-face-front\{[\s\S]*linear-gradient/);
   assert.match(placeCardCss, /content:"HISTORY GO"/);
 });
+
+
+test("Tjuvholmen Structures show source-linked photo attribution without changing Objects", async () => {
+  const place = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/places/by/oslo/places/tjuvholmen.json"), "utf8"));
+  const w = make(place);
+  await w.HGPlaceCardCollections.apply(place);
+  const list = w.document.getElementById("pcCategoryCollectionList");
+  assert.equal(list.querySelectorAll(".pc-structure-member").length, 3);
+  assert.equal(list.querySelectorAll(".pc-structure-member button[data-visual-round-item]").length, 3);
+  assert.equal(list.querySelectorAll(".pc-structure-credit .pc-structure-license-link").length, 3);
+  assert.equal(list.querySelectorAll(".pc-structure-credit .pc-structure-source-link").length, 3);
+  for (const item of list.querySelectorAll(".pc-structure-member")) {
+    assert.match(item.textContent, /Foto: Helge Høifødt/);
+    assert.match(item.textContent, /CC BY-SA 3\.0/);
+    assert.match(item.textContent, /Tilpasset WebP uten beskjæring/);
+    const license = item.querySelector("a.pc-structure-license-link");
+    const source = item.querySelector("a.pc-structure-source-link");
+    assert.equal(license.href, "https://creativecommons.org/licenses/by-sa/3.0/");
+    assert.ok(source.href.startsWith("https://commons.wikimedia.org/wiki/File:"));
+    assert.equal(license.rel, "noopener noreferrer");
+    assert.equal(source.rel, "noopener noreferrer");
+  }
+  assert.equal(w.HGPlaceCardCollections.getItems(place, "objects").length, 0);
+});
+

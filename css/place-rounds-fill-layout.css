@@ -231,3 +231,31 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   .pc-object-member > img.pc-person-img.pc-object-member-image{max-width:100% !important;}
   #placeCard .pc-object-preview-disclosure{font-size:10px;padding:4px;}
 }
+
+/* Attribution is visible on each licensed Structure member, without changing
+   the existing clickable member button or cropping the image. */
+.pc-structure-member{
+  margin:0 0 12px;
+  padding:0 0 12px;
+  border-bottom:1px solid rgba(128,128,128,.25);
+}
+.pc-structure-member > .pc-person{width:100%;}
+.pc-structure-credit{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px 12px;
+  padding:6px 9px 0;
+  font-size:12px;
+  line-height:1.5;
+  color:inherit;
+}
+.pc-structure-credit a{
+  color:inherit;
+  text-decoration:underline;
+  text-underline-offset:2px;
+  overflow-wrap:anywhere;
+}
+.pc-structure-credit a:focus-visible{
+  outline:2px solid currentColor;
+  outline-offset:2px;
+}

@@ -122,8 +122,10 @@
       imageKind:s(item.imageKind || item.imageMeta?.kind),
       imageCredit:s(item.imageMeta?.credit),
       imageLicense:s(item.imageMeta?.license),
+      imageLicenseUrl:s(item.imageMeta?.licenseUrl),
+      imageTransformation:s(item.imageMeta?.transformation),
       imageDisclosure:s(item.imageMeta?.disclosure),
-      imageSource:s(item.imageMeta?.sourceUrl),
+      imageSource:s(item.imageMeta?.sourceUrl || item.imageMeta?.sourcePage),
       sourceUrls:arr(item.source_urls).filter(url => /^https:\/\//i.test(s(url))),
       sourceKind
     };
@@ -452,7 +454,36 @@
     ensureQuizAction();
   }
 
+  // Show the actual Commons attribution where the visitor views each image.
+  // Keep external links outside the clickable legacy member button.
+  function structureAttributionHtml(item) {
+    const credit = s(item.imageCredit);
+    const license = s(item.imageLicense);
+    const source = [item.imageSource, ...item.sourceUrls].find(url => /^https:\/\//i.test(url));
+    const licenseUrl = s(item.imageLicenseUrl);
+    if (!credit && !license) return "";
+    const photoCredit = credit ? '<span>Foto: ' + esc(credit) + '</span>' : "";
+    const linkedLicense = /^https:\/\//i.test(licenseUrl)
+      ? '<a class="pc-structure-license-link" href="' + esc(licenseUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(license || "Lisens") + '</a>'
+      : (license ? '<span>' + esc(license) + '</span>' : "");
+    const linkedSource = source
+      ? '<a class="pc-structure-source-link" href="' + esc(source) + '" target="_blank" rel="noopener noreferrer">Bildekilde</a>'
+      : "";
+    const adapted = /without crop|without cropping/i.test(s(item.imageTransformation))
+      ? '<span>Tilpasset WebP uten beskjæring</span>'
+      : "";
+    return '<div class="pc-structure-credit">' + photoCredit + linkedLicense + linkedSource + adapted + '</div>';
+  }
+
   function renderRows(items, def) {
+    if (def.id === "structures" && items.length) {
+      return items.map(item => '<div class="pc-structure-member">' +
+        '<button type="button" class="pc-person pc-visual-round-item" data-visual-round-item="' + esc(item.id) + '">' +
+        (item.image ? '<img src="' + esc(item.image) + '" class="pc-person-img" alt="' + esc(item.imageAlt) + '">' : "") +
+        '<span class="pc-person-meta"><span class="pc-person-name">' + esc(item.title) + '</span>' +
+        (item.description ? '<span class="pc-person-desc">' + esc(item.description) + '</span>' : '') +
+        '</span></button>' + structureAttributionHtml(item) + '</div>').join("");
+    }
     if (def.id === "objects" && items.length) {
       // A verified physical Object owns its story, sources and image disclosure.
       // The same popup works for all places; nothing is hard-coded to the theatre.
