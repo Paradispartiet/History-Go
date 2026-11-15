@@ -57,6 +57,14 @@
     return { score, flagHits };
   }
 
+  // Opt-in factual endings use the same gate for ranking and fallback.
+  function meetsRequiredCriteria(ending, state, score = scoreEnding(ending, state).score) {
+    if (ending.kreverAlleKriterier !== true) return true;
+    const maximum = Object.entries(WEIGHTS).reduce((sum, [group, weight]) =>
+      sum + Object.keys(ending.kriterier?.[group] || {}).length * weight, 0);
+    return score === maximum;
+  }
+
   /**
    * Er dette den siste dagen med innhold? (Ingen scene finnes for en senere
    * dag.) Da skal uka kåres en slutt i stedet for å tilby «Start neste dag».
@@ -83,12 +91,15 @@
     let best = null;
     for (const e of endings) {
       const { score, flagHits } = scoreEnding(e, state);
+      if (!meetsRequiredCriteria(e, state, score)) continue;
       if (flagHits > 0 && (!best || score > best.score)) best = { ending: e, score };
     }
     if (best) {
       return presentEnding(best.ending, best.score, false, state, content);
     }
-    const std = endings.find((e) => e.standard) || endings[0];
+    const std = endings.find((e) => e.standard && meetsRequiredCriteria(e, state))
+      || endings.find((e) => meetsRequiredCriteria(e, state));
+    if (!std) return null;
     return presentEnding(std, 0, true, state, content);
   }
 

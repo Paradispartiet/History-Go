@@ -60,6 +60,19 @@ setup();
 const M = global.window.CivicationCanvasMap;
 assert.ok(M, "window.CivicationCanvasMap skal være registrert");
 
+check("Canvas-kartet får også nærmere utsnitt ved normal start/nullstilling", () => {
+  assert.strictEqual(M.recommendedStartZoom(1200), 1.22);
+  assert.strictEqual(M.recommendedStartZoom(390), 1.34);
+  M.setTransformForTesting({ zoom: 1, cx: 0.5, cy: 0.5, width: 390, height: 844 });
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.34, "mobil fallback må forstørre kartet");
+  M.setTransformForTesting({ width: 1200, height: 800 });
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.22, "desktop fallback må forstørre kartet");
+  M.zoomOut();
+  assert.ok(M.getZoom() < 1.22, "full oversikt må fortsatt være tilgjengelig");
+});
+
 console.log("CivicationCanvasMap – projeksjons-API (Del A)");
 
 [
@@ -120,6 +133,17 @@ check("projectPlaceToWorld bruker kalibrert Oslo-projeksjon for lat/lon", () => 
 check("projectPlaceToWorld/Screen returnerer null når koordinater mangler (gjetter ikke)", () => {
   assert.strictEqual(M.projectPlaceToWorld({ id: "no_coords" }), null);
   assert.strictEqual(M.projectPlaceToScreen({ id: "no_coords" }), null);
+});
+
+
+check("Oslo-oversikt og byutsnitt fungerer også i Canvas-fallback", () => {
+  M.setTransformForTesting({ width: 390, height: 844, zoom: 3, cx: 0.7, cy: 0.7 });
+  M.overview();
+  assert.strictEqual(M.getZoom(), 1);
+  assert.strictEqual(M.getTransformState().cx, 0.5);
+  assert.strictEqual(M.getTransformState().cy, 0.5);
+  M.reset();
+  assert.strictEqual(M.getZoom(), 1.34);
 });
 
 console.log("CivicationCanvasMap – transform-event (Del A)");
