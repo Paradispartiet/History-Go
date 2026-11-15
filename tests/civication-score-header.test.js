@@ -81,6 +81,8 @@ assert.strictEqual(header.querySelector("#civiScoreTrigger"), btn,
 btn.click();
 const dialog = window.document.getElementById("civiScoreDialog");
 assert.ok(dialog?.hasAttribute("open"), "score breakdown opens on click");
+assert.equal(window.document.activeElement.id, "civiScoreHeading", "dialog opens at the readable heading, not the last close control");
+assert.equal(dialog.scrollTop, 0, "opening the overview starts at the money and life situation");
 assert.ok(dialog.textContent.includes("Skills") && dialog.textContent.includes("Ikke målt"));
 assert.ok(dialog.textContent.includes("Omdømme") && dialog.textContent.includes("Fortellingspenger"));
 assert.ok(dialog.textContent.includes("Livssituasjon") && dialog.textContent.includes("Museumsvert"));
@@ -96,13 +98,18 @@ assert.equal(JSON.stringify(life), beforeLife, "opening the dialog preserves nar
 for (const amount of [0, -25, 250000]) {
   wallet.balance = amount;
   window.CivicationDashboardUI.updateHeaderStatus();
+  assert.equal(window.document.activeElement.id, "civiScoreHeading", "fresh amounts preserve reading focus");
   assert.equal(shown()["PC-saldo"], amount + " PC", "open dialog reads a fresh, unbounded wallet amount");
   assert.equal(window.CivicationScoreUI.getModel({ state: life }).score, model.score,
     "neither wallet debt nor wealth changes the capability average");
   assert.equal(shown()["Fortellingspenger"], "-50000", "PC changes never overwrite story money");
 }
 wallet.balance = NaN;
+dialog.querySelector(".civi-score-close").focus();
+dialog.scrollTop = 250;
 window.CivicationDashboardUI.updateHeaderStatus();
+assert.equal(window.document.activeElement.className, "civi-score-close", "refresh preserves a focused close control");
+assert.equal(dialog.scrollTop, 250, "refresh preserves dialog reading position");
 assert.equal(shown()["PC-saldo"], undefined, "an unreadable balance is not invented as zero PC");
 dialog.querySelector(".civi-score-close").click();
 assert.equal(dialog.hasAttribute("open"), false, "dialog close works");

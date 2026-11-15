@@ -136,9 +136,13 @@
   }
   function fillDialog(model) {
     const panel = ensureDialog();
+    const focused = panel.open && panel.contains(document.activeElement) ? document.activeElement : null;
+    const restoreClose = focused?.classList.contains("civi-score-close");
+    const previousScroll = panel.scrollTop;
     panel.replaceChildren();
     const heading = element("h2", "", "Status og verdier");
     heading.id = "civiScoreHeading";
+    heading.tabIndex = -1;
     panel.appendChild(heading);
     const situation = element("section", "civi-score-overview");
     situation.appendChild(element("h3", "", "Livssituasjon"));
@@ -189,6 +193,10 @@
     close.type = "button";
     close.addEventListener("click", closeDialog);
     panel.appendChild(close);
+    if (focused) {
+      (restoreClose ? close : heading).focus({ preventScroll: true });
+      panel.scrollTop = previousScroll;
+    }
   }
   function renderHeader(host, options) {
     if (!host) return;
@@ -206,6 +214,8 @@
         fillDialog(snapshot);
         if (typeof dialog.showModal === "function") dialog.showModal();
         else dialog.setAttribute("open", "");
+        /** @type {HTMLElement|null} */ (dialog.querySelector("#civiScoreHeading"))?.focus({ preventScroll: true });
+        dialog.scrollTop = 0;
       });
       host.appendChild(trigger);
     }

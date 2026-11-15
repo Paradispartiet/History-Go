@@ -18,7 +18,7 @@ C6–C11 nedenfor beholdes som historisk kontrollregister. Denne leveransen bevi
 
 `CIVICATION_DATA_LAYERS.md` og `civication-life-story-system.md` skiller fortellingspenger fra PC-saldoen. Life Story skriver ikke direkte til PC-wallet; dokumenterte leveveimuligheter må fortsatt aksepteres og avregnes av den eksisterende økonomien. C6 er derfor ikke en bestilling på 1:1-konvertering mellom de to beløpene.
 
-«Status og verdier» viser nå begge beløp med egne etiketter: fortellingspenger fra Life Story og PC-saldo fra `CivicationState.getWallet()`. Manglende wallet-API eller ugyldig beløp fra eieren blir ikke fremstilt som 0 PC; en gyldig nullsaldo vises. Begge beløp holdes utenfor 0–100-scoren. Visningen endrer ingen transaksjon, historikk eller lagring.
+«Status og verdier» viser nå begge beløp med egne etiketter: fortellingspenger fra Life Story og PC-saldo fra `CivicationState.getWallet()`. Manglende wallet-API eller ugyldig beløp fra eieren blir ikke fremstilt som 0 PC; en gyldig nullsaldo vises. Begge beløp holdes utenfor 0–100-scoren. Dialogen åpnes ved overskriften og bevarer fokus og leseposisjon når verdiene oppdateres. Visningen endrer ingen transaksjon, historikk eller lagring.
 
 Avgrenset kontroll: `civication-score-header.test.js` verifiserer riktige kilder, uavhengige beløp, fersk saldo ved oppdatering, gjeld/null/store beløp og uendret score. Browserens mobilkontroll åpner den faktiske dialogen og kontrollerer begge beløp og at begge lagringer er uendret etter lukking. Bred kalibrering av fortellingsbudsjett og samtlige inntekts-/utgiftsløp står fortsatt åpne under C6.
 
