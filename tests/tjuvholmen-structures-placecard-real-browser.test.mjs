@@ -131,6 +131,24 @@ try{
       }
       assert.equal(await page.locator("#pcCategoryCollectionList [data-visual-round-item]").count(),3,
         tag+": three actual Structures in popup");
+      const structureRows=page.locator("#pcCategoryCollectionList .pc-structure-visual-row");
+      assert.equal(await structureRows.count(),3,tag+": three credited Structures");
+      for(let i=0;i<canonical.structures.length;i++){
+        const member=structureRows.nth(i);
+        const metadata=canonical.structures[i].imageMeta;
+        assert.equal(await member.locator(".pc-person").getAttribute("data-visual-round-item"),
+          canonical.structures[i].id,tag+": same member id and interactive button preserved");
+        const attribution=member.locator(".pc-structure-attribution");
+        assert.match(await attribution.innerText(),/Helge Høifødt/,tag+": actual photographer");
+        const links=attribution.locator("a");
+        assert.equal(await links.count(),2,tag+": source and license linked");
+        assert.equal(await links.first().getAttribute("href"),metadata.licenseUrl,tag+": exact CC license");
+        assert.equal(await links.nth(1).getAttribute("href"),metadata.sourceUrl,tag+": actual source page");
+        assert.match(await attribution.innerText(),/Formattilpasset uten å kutte hovedmotivet/,
+          tag+": transformation disclosed");
+        assert.equal(metadata.fullResolutionOriginalPending,true,
+          tag+": do not misreport 960px Commons preview as original");
+      }
       const title=String(popup.title);
       assert.match(title,/Bygg|byrom|anlegg/i,tag+": category title");
 
