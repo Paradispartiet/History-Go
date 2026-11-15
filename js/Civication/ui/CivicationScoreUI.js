@@ -151,6 +151,8 @@
     }
     situation.appendChild(overview);
     panel.appendChild(situation);
+    if (model.currency !== null || model.pcBalance !== null) panel.appendChild(element("p", "civi-score-explain",
+      "Fortellingspenger følger valgene i historien. PC er en egen saldo for inntekter og kjøp. Ingen av beløpene inngår i scoren."));
     panel.appendChild(element("p", "civi-score-explain",
       "Samlet score: " + (model.score === null ? "ikke beregnet" : model.score + " / 100")
       + ". Gjennomsnitt av " + model.count + " målte verdier, med lik vekt per verdi."));
@@ -183,8 +185,6 @@
     if (!model.groups.length) panel.appendChild(element("p", "", "Ingen målte verdier ennå."));
     panel.appendChild(element("p", "civi-score-explain",
       "Penger er en saldo og ikke en 0–100-verdi. Ukjente Skills holdes utenfor snittet. Visningen endrer ikke spillprogresjonen."));
-    if (model.currency !== null || model.pcBalance !== null) panel.appendChild(element("p", "civi-score-explain",
-      "Fortellingspenger følger valgene i historien. PC er en egen saldo for inntekter og kjøp. Ingen av beløpene inngår i scoren."));
     const close = element("button", "civi-score-close", "Lukk");
     close.type = "button";
     close.addEventListener("click", closeDialog);
