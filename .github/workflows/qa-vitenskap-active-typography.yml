@@ -1,0 +1,27 @@
+name: Science active badges - typography audit
+on:
+  pull_request:
+    paths:
+      - 'vitenskap-aktive-merker-review.html'
+      - 'data/badges/vitenskap_active_typography_audit_20261113.json'
+      - 'tests/vitenskap-active-typography-audit.test.mjs'
+      - '.github/workflows/qa-vitenskap-active-typography.yml'
+      - 'data/badges/vitenskap.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: science-active-typography-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  audit-read-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify 16 active images and 3 explicitly incomplete footers
+        run: node --test tests/vitenskap-active-typography-audit.test.mjs
+      - name: Assert badge catalog and images are untouched
+        run: git diff --exit-code -- data/badges/vitenskap.json bilder/merker/vitenskap/brodert

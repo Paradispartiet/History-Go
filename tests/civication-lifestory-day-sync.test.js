@@ -90,6 +90,59 @@ async function main() {
   assert.equal(calendar.getClock().dayIndex, 1);
   assert.equal(app.current().kalenderDag, 1, "checkpoint initializes against shell calendar");
 
+  // Button labels and their tone/skill/action hints need an actual text
+  // separator. Otherwise textContent (and copied/accessibility text in some
+  // environments) fuses the words, e.g. "dagenomsorg".
+  const firstDayChoices = Array.from(panel.querySelectorAll(".civi-lifestory-choice"));
+  assert.ok(firstDayChoices.some(button => button.querySelector(":scope > small")),
+    "the first scene contains a choice with a secondary label");
+  for (const button of firstDayChoices) {
+    const label = button.querySelector(":scope > span")?.textContent;
+    const hint = button.querySelector(":scope > small")?.textContent;
+    if (label && hint) assert.ok(button.textContent.includes(label + " " + hint),
+      "the secondary label is separated from the choice text");
+  }
+
+  // A profile update redraws Min dag while the player is still reading a
+  // choice. Keep its keyboard position without selecting it or moving time.
+  const originalChoice = panel.querySelector("[data-lifestory-choice]:not(:disabled)");
+  const choiceId = originalChoice.getAttribute("data-lifestory-choice");
+  const sceneId = originalChoice.getAttribute("data-lifestory-scene");
+  const choicesBeforeRefresh = JSON.stringify(app.current().tidligereValg);
+  originalChoice.focus();
+  window.dispatchEvent(new window.Event("updateProfile"));
+  const refreshedChoice = Array.from(panel.querySelectorAll("[data-lifestory-choice]")).find(button =>
+    button.getAttribute("data-lifestory-choice") === choiceId && button.getAttribute("data-lifestory-scene") === sceneId);
+  assert.notEqual(refreshedChoice, originalChoice, "profile refresh really replaces the choice DOM");
+  assert.equal(window.document.activeElement, refreshedChoice, "the unchanged choice keeps keyboard focus");
+  window.CivicationLifestoryUI.refresh();
+  assert.notEqual(window.document.activeElement, refreshedChoice, "a subsequent background render also replaces the DOM");
+  assert.equal(window.document.activeElement.getAttribute("data-lifestory-choice"), choiceId,
+    "the subsequent render preserves the same active choice");
+  assert.equal(window.document.activeElement.getAttribute("data-lifestory-scene"), sceneId);
+  const outsideChoiceControl = window.document.createElement("button");
+  window.document.body.append(outsideChoiceControl);
+  outsideChoiceControl.focus();
+  window.dispatchEvent(new window.Event("updateProfile"));
+  assert.equal(window.document.activeElement, outsideChoiceControl, "profile refresh does not steal external focus");
+  const previousInboxBridge = window.CivicationWaveAInboxBridge;
+  window.CivicationWaveAInboxBridge = { sync: () => outsideChoiceControl.focus() };
+  panel.querySelector("[data-lifestory-choice]:not(:disabled)").focus();
+  window.dispatchEvent(new window.Event("updateProfile"));
+  assert.equal(window.document.activeElement, outsideChoiceControl,
+    "a surface that takes focus during rendering retains it");
+  window.CivicationWaveAInboxBridge = previousInboxBridge;
+  window.document.body.classList.add("civi-mapmode");
+  panel.querySelector("[data-lifestory-choice]:not(:disabled)").focus();
+  window.dispatchEvent(new window.Event("updateProfile"));
+  assert.equal(window.document.activeElement.closest?.("[data-lifestory-choice]"), null,
+    "map mode never restores focus into the hidden story");
+  window.document.body.classList.remove("civi-mapmode");
+  outsideChoiceControl.remove();
+  assert.equal(calendar.getClock().dayIndex, 1, "choice focus recovery cannot advance the calendar");
+  assert.equal(app.current().dag, 1, "choice focus recovery cannot advance the story");
+  assert.equal(JSON.stringify(app.current().tidligereValg), choicesBeforeRefresh, "focus recovery cannot choose a story action");
+
   // The mail day cannot roll over while a Life Story choice is incomplete.
   calendar.setPhase("day_end");
   const blocked = await window.CivicationDayProgression.advancePhaseIfReady();
@@ -104,6 +157,20 @@ async function main() {
   const archived = app.current().arkiv.length;
   assert.ok(archived > 0, "day one choices are stored");
 
+  // A transient read failure in the optional action selector must not
+  // replace the playable summary with a UI error or move the calendar.
+  window.CivicationNextActionSelector = {
+    getCurrent: () => { throw Error("selector is temporarily unavailable"); }
+  };
+  window.CivicationLifestoryUI.render();
+  assert.ok(panel.querySelector(".civi-lifestory-summary"),
+    "Min dag summary remains visible when the optional selector throws");
+  assert.ok(panel.querySelector("[data-lifestory-next-day]"),
+    "the existing canonical next-day action remains available to try");
+  assert.equal(calendar.getClock().dayIndex, 1,
+    "read-only selector failure cannot move the game day");
+  delete window.CivicationNextActionSelector;
+
   // The blocked-player answer link is a real UI action, not an engine
   // bypass: opening the modal must not move the shared calendar.
   let openedAnswerSurface = 0;
@@ -113,12 +180,76 @@ async function main() {
   window.CivicationNextActionUI = {
     open: () => { openedAnswerSurface++; return true; }
   };
-  window.CivicationLifestoryUI.render();
+  // A live inbox update may replace the summary while keyboard focus is on
+  // Start neste dag. Restore focus to the real alternative, without moving
+  // the calendar, and restore the original action when it returns.
+  panel.querySelector("[data-lifestory-next-day]").focus();
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, panel.querySelector("[data-lifestory-next-action]"),
+    "newly required inbox action receives focus when the old day button becomes disabled");
+  assert.equal(calendar.getClock().dayIndex, 1, "inbox refresh never rolls the calendar");
+  window.CivicationNextActionSelector = { getCurrent: () => null };
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, panel.querySelector("[data-lifestory-next-day]"),
+    "focus returns to Start neste dag if the inbox shortcut disappears");
+  window.CivicationNextActionSelector = {
+    getCurrent: () => ({ id: "required-morning", canStartNewDay: false })
+  };
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, panel.querySelector("[data-lifestory-next-action]"),
+    "focus follows the restored inbox route, rather than falling to body");
+  // A player reading the expanded recap must not lose their keyboard position
+  // when the shell refreshes the inbox during the finished-day summary.
+  const dayRecap = panel.querySelector('details[data-lifestory-disclosure="day-recap"]');
+  dayRecap.open = true;
+  dayRecap.querySelector("summary").focus();
+  const unchangedSummary = panel.querySelector(".civi-lifestory-summary");
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(panel.querySelector(".civi-lifestory-summary"), unchangedSummary,
+    "an unchanged inbox notification preserves the mounted summary despite open/focus attributes");
+  assert.equal(window.document.activeElement, dayRecap.querySelector("summary"),
+    "unchanged updates preserve the original focused disclosure node");
+  // A real inbox change still replaces the summary and restores its reading state.
+  window.CivicationNextActionSelector = { getCurrent: () => null };
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  const refreshedRecap = panel.querySelector('details[data-lifestory-disclosure="day-recap"]');
+  assert.notEqual(panel.querySelector(".civi-lifestory-summary"), unchangedSummary,
+    "changed inbox state still updates the summary");
+  assert.equal(refreshedRecap.open, true, "expanded recap survives a live inbox refresh");
+  assert.equal(window.document.activeElement, refreshedRecap.querySelector("summary"),
+    "keyboard focus remains on the refreshed recap disclosure");
+  assert.equal(calendar.getClock().dayIndex, 1, "reading recap does not advance the shell day");
+  refreshedRecap.open = false;
+  window.CivicationNextActionSelector = {
+    getCurrent: () => ({ id: "required-morning", canStartNewDay: false })
+  };
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
   assert.ok(panel.querySelector("[data-lifestory-next-action]"), "pending mail reachable from Min dag");
   assert.equal(panel.querySelector("[data-lifestory-next-day]")?.disabled, true,
     "Start neste dag is disabled while a current mail needs an answer");
   assert.match(panel.textContent, /Åpne innboksen og fullfør/,
     "the player sees why the next day is blocked");
+  // A selector can signal mandatory mail before the inbox UI is loaded.
+  // Never offer a dead shortcut or falsely allow the next day.
+  const inboxOpener = window.CivicationNextActionUI;
+  panel.querySelector("[data-lifestory-next-action]").focus();
+  delete window.CivicationNextActionUI;
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, panel.querySelector(".civi-lifestory-summary h3"),
+    "when both day and inbox actions are unavailable, focus stays on the summary heading");
+  assert.equal(panel.querySelectorAll("[data-lifestory-next-action]").length, 0,
+    "no inert inbox button when the inbox UI is unavailable");
+  assert.match(panel.textContent, /Fullfør den i Civication før du starter neste dag/,
+    "blocked day retains actionable guidance without a broken shortcut");
+  assert.equal(panel.querySelector("[data-lifestory-next-day]").disabled, true,
+    "missing inbox UI does not bypass canonical pending-work gate");
+  assert.equal(calendar.getClock().dayIndex, 1, "rendering without the inbox cannot advance the day");
+  window.CivicationNextActionUI = inboxOpener;
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, panel.querySelector(".civi-lifestory-summary h3"),
+    "reading focus remains on the summary heading when the inbox becomes available again");
+  assert.equal(panel.querySelectorAll("[data-lifestory-next-action]").length, 1,
+    "inbox shortcut returns exactly once when the real opener is ready");
   panel.querySelector("[data-lifestory-next-action]").click();
   assert.equal(openedAnswerSurface, 1);
   assert.equal(calendar.getClock().dayIndex, 1);
@@ -129,11 +260,92 @@ async function main() {
   // An unemployed player can skip empty phases, but may not skip an
   // unanswered required morning mail.
   app.setQueue([{ id: "required-morning", phase: "morning", status: "queued", required: true }]);
+  let openedPendingInbox = 0;
+  window.CivicationNextActionUI = {
+    open: () => { openedPendingInbox++; return true; }
+  };
+  window.CivicationLifestoryUI.render();
+  assert.match(panel.textContent, /Du har noe å følge opp i fasen Morgen/,
+    "Min dag shows a phase-specific prompt before a rejected day transition");
+  const earlyInbox = panel.querySelectorAll("[data-lifestory-next-action]");
+  assert.equal(earlyInbox.length, 1, "one inbox shortcut even without a selected mail card");
+  assert.equal(panel.querySelector("[data-lifestory-next-day]").disabled, false,
+    "read-only inbox hint does not change the canonical day gate");
+  earlyInbox[0].click();
+  assert.equal(openedPendingInbox, 1, "early shortcut delegates to the real inbox");
+  assert.equal(calendar.getClock().dayIndex, 1, "opening pending mail cannot move the day");
+  assert.equal(app.current().dag, 1, "opening pending mail cannot advance the story");
+  delete window.CivicationNextActionUI;
   panel.querySelector("[data-lifestory-next-day]").click();
   await delay();
   assert.equal(app.current().dag, 1);
   assert.equal(calendar.getClock().dayIndex, 1);
   assert.match(panel.textContent, /Fullfør dagens jobb/);
+  const blockedWarning = panel.querySelector("[data-lifestory-day-blocker]");
+  assert.ok(blockedWarning, "the refused rollover has an accessible explanation");
+  assert.equal(blockedWarning.getAttribute("role"), "alert");
+  assert.equal(blockedWarning.getAttribute("tabindex"), "-1");
+  assert.equal(window.document.activeElement, blockedWarning,
+    "keyboard-activated Start neste dag restores focus to the rendered refusal");
+
+  // Focus outside Min dag must remain untouched when an inbox update refreshes
+  // the day summary. A focused blocked-day explanation must, in contrast,
+  // keep its reading position if its warning still exists after the refresh.
+  const outsideButton = window.document.createElement("button");
+  outsideButton.type = "button";
+  outsideButton.textContent = "External navigation";
+  window.document.body.appendChild(outsideButton);
+  outsideButton.focus();
+  window.CivicationNextActionUI = { open: () => true };
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, outsideButton,
+    "inbox refresh never steals keyboard focus from a control outside Min dag");
+  const warningBeforeRefresh = panel.querySelector("[data-lifestory-day-blocker]");
+  warningBeforeRefresh.focus();
+  delete window.CivicationNextActionUI;
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  const warningAfterRefresh = panel.querySelector("[data-lifestory-day-blocker]");
+  assert.notEqual(warningAfterRefresh, warningBeforeRefresh,
+    "the inbox refresh really replaced a changed summary");
+  assert.equal(window.document.activeElement, warningAfterRefresh,
+    "a visible blocked-day explanation keeps keyboard focus after refresh");
+  assert.equal(calendar.getClock().dayIndex, 1,
+    "focus recovery cannot move the canonical calendar");
+
+  // Queued required mail can block the canonical calendar before the
+  // selector offers a current card. A refusal must still offer a route to
+  // the real inbox, without fabricating an answer or advancing the day.
+  let openedBlockedInbox = 0;
+  window.CivicationNextActionUI = {
+    open: () => { openedBlockedInbox++; return true; }
+  };
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.notEqual(panel.querySelector("[data-lifestory-day-blocker]"), blockedWarning,
+    "restored inbox shortcut causes a real summary update");
+  assert.equal(window.document.activeElement, panel.querySelector("[data-lifestory-day-blocker]"),
+    "a player reading the refusal keeps focus on the replacement explanation");
+  const outsideControl = window.document.createElement("button");
+  window.document.body.append(outsideControl);
+  outsideControl.focus();
+  delete window.CivicationNextActionUI;
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.equal(window.document.activeElement, outsideControl,
+    "an inbox refresh never steals focus from outside the summary");
+  window.CivicationNextActionUI = { open: () => { openedBlockedInbox++; return true; } };
+  window.document.body.classList.add("civi-mapmode");
+  panel.querySelector("[data-lifestory-day-blocker]").focus();
+  window.dispatchEvent(new window.Event("civi:inboxChanged"));
+  assert.notEqual(window.document.activeElement, panel.querySelector("[data-lifestory-day-blocker]"),
+    "map mode does not restore focus into the hidden Min dag summary");
+  window.document.body.classList.remove("civi-mapmode");
+  outsideControl.remove();
+  const recoverInbox = panel.querySelector("[data-lifestory-next-action]");
+  assert.ok(recoverInbox, "blocked day offers inbox recovery even without a selected card");
+  recoverInbox.click();
+  assert.equal(openedBlockedInbox, 1, "recovery delegates to the actual inbox surface");
+  assert.equal(calendar.getClock().dayIndex, 1, "opening inbox must not advance the calendar");
+  assert.equal(app.current().dag, 1, "opening inbox must not consume the story day");
+  delete window.CivicationNextActionUI;
   app.setQueue([]);
 
   // Even at day_end the queue must be empty; an undelivered mandatory
@@ -241,3 +453,5 @@ async function main() {
   console.log("civication lifestory day sync ok (shell blocks, calendar rolls once, workday idempotent)");
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });
+
+

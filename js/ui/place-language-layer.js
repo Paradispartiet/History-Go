@@ -1109,6 +1109,11 @@ for (const place of list(global.PLACES)) {
     decoratePopup: decorateLanguage
   };
 
+  // The direct Place Sheet can be ready before this deferred legacy module.
+  if (typeof global.CustomEvent === "function") {
+    global.dispatchEvent?.(new global.CustomEvent("hg:language-layer-ready"));
+  }
+
   if (document.querySelector("[data-sprakatlas-page]")) {
     void initStandaloneAtlasPage();
   } else if (!install()) {

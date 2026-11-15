@@ -6,6 +6,11 @@ on:
       - 'scripts/archive-vitenskap-v5-candidates.py'
       - 'data/badges/vitenskap_v5_candidates_20261112.json'
       - 'tests/vitenskap-v5-archive.test.mjs'
+      - 'tests/vitenskap-v5-mobile-visual-review.test.mjs'
+      - 'vitenskap-v5-review.html'
+      - 'css/placeCard.css'
+      - 'index.html'
+      - 'sw.js'
       - 'bilder/merker/vitenskap/kandidater/revisjoner/*/*-v5-broderi.webp'
       - 'bilder/merker/vitenskap/kandidater/contact-sheet-v5-mobile.jpg'
       - '.github/workflows/qa-vitenskap-v5-visual.yml'
@@ -26,7 +31,7 @@ jobs:
         with:
           node-version: '22'
       - name: Verify archived v5 originals against Git SHAs
-        run: node --test tests/vitenskap-v5-archive.test.mjs
+        run: node --test tests/vitenskap-v5-archive.test.mjs tests/vitenskap-v5-mobile-visual-review.test.mjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'

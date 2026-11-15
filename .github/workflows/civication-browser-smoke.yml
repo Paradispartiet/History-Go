@@ -13,6 +13,12 @@ on:
       - 'scripts/verify-civication-21-day-browser.ts'
       - 'scripts/verify-civication-organic-player-browser.ts'
       - 'scripts/verify-civication-people-browser.cjs'
+      - 'scripts/verify-civication-visual-qa-browser.ts'
+      - 'scripts/verify-civication-webkit-mobile.ts'
+      - 'scripts/run-civication-visual-qa-browser.ts'
+      - 'css/civi-miniature-world.css'
+      - 'css/civi-world-mood.css'
+      - 'css/civi-three-map.css'
       - 'scripts/civication-source-http-gate.cjs'
       - 'tests/civication-*map*.test.js'
       - 'tests/civication-place-mapping-split-manifest.test.mjs'
@@ -44,6 +50,11 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - name: Fast Min dag choice and day-transition regression
+        run: |
+          node --test tests/civication-lifestory-choice-outcome-focus.test.js tests/civication-lifestory-next-day-focus.test.js
+          node tests/civication-lifestory-day-sync.test.js
+          node tests/civication-mini-sections-popup-focus.test.js
       - name: Run Civication map tests
         run: npm run test:civication-map
       - name: Audit Civication place mappings
@@ -52,8 +63,8 @@ jobs:
       - name: Audit Civication city map entries
         continue-on-error: true
         run: npm run audit:civication-city-map-entries
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Install Playwright Chromium and WebKit
+        run: npx playwright install --with-deps chromium webkit
       - name: Select PR browser acceptance depth
         id: coverage
         shell: bash
@@ -66,7 +77,7 @@ jobs:
             exit 0
           fi
           changed="$(gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files?per_page=100" --jq '.[].filename')"
-          if grep -Fxq 'scripts/verify-civication-organic-player-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-21-day-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-boot-smoke.ts' <<< "$changed"; then
+          if grep -Fxq 'scripts/verify-civication-arbeidsledig-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-organic-player-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-21-day-browser.ts' <<< "$changed" || grep -Fxq 'scripts/verify-civication-boot-smoke.ts' <<< "$changed"; then
             echo "depth=organic" >> "$GITHUB_OUTPUT"
           else
             echo "depth=smoke" >> "$GITHUB_OUTPUT"
@@ -104,9 +115,19 @@ jobs:
             echo "Acceptance depth: ${CIVICATION_BROWSER_DEPTH}." >> "$GITHUB_STEP_SUMMARY"
           fi
           exit "${result}"
+      - name: Capture Min dag, WebKit, and map mobile QA
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p reports/civication-browser
+          # Separate process and port: a stalled 3D screenshot cannot consume
+          # the full 85-minute functional acceptance-test budget.
+          timeout --signal=TERM --kill-after=30s 8m node dist/scripts/run-civication-visual-qa-browser.js \
+            2>&1 | tee reports/civication-browser/visual-qa-output.log
       - name: Upload browser diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: civication-browser-diagnostics
           path: reports/civication-browser/
+

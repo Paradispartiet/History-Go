@@ -591,3 +591,27 @@ body.hg-app .hg-person-popup-v2 .hg-person-knowledge-group ul{
     border-radius: 19px;
   }
 }
+
+/* Media honesty: identify generated or commissioned editorial portraits in the
+   actual People popup, never as a documentary photograph. */
+body.hg-app .hg-person-popup-v2 .hg-person-portrait-kind{
+  position: absolute;
+  z-index: 3;
+  right: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  max-width: calc(100% - 20px);
+  padding: 6px 9px;
+  border: 1px solid rgba(255,255,255,.62);
+  border-radius: 7px;
+  background: rgba(10,14,19,.90);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: .025em;
+  pointer-events: none;
+}
+body.hg-app .hg-person-popup-v2 .hg-person-hero-media.is-missing .hg-person-portrait-kind{
+  display: none;
+}

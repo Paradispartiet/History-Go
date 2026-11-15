@@ -1,0 +1,29 @@
+name: Science v7 exact archived candidates integrity
+on:
+  pull_request:
+    paths:
+      - 'data/badges/vitenskap_v7_candidate_intake_20261113.json'
+      - 'data/badges/vitenskap_v7_archived_candidates_20261113.json'
+      - 'bilder/merker/vitenskap/kandidater/revisjoner/nb/*-v7-brodert.webp'
+      - 'scripts/import-vitenskap-v7-candidates.py'
+      - 'tests/vitenskap-v7-intake.test.mjs'
+      - '.github/workflows/qa-vitenskap-v7-intake.yml'
+      - 'vitenskap-v7-review.html'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vitenskap-v7-intake-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  candidate-intake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify all three archived v7 WebP binary hashes, formats and non-activation
+        run: node --test tests/vitenskap-v7-intake.test.mjs
+      - name: Confirm active badge image references unchanged
+        run: git diff --exit-code -- data/badges/vitenskap.json bilder/merker/vitenskap/brodert/

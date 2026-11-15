@@ -2,6 +2,18 @@
 
 Opprettet: 2026-10-20. Eier: Civication. Status: **aktiv plan; ikke godkjent som ferdig spillerreise**.
 
+## Verifisert samkjøring – 15. november 2026
+
+Prioritet: én vanlig spillerreise med Min dag, innboks, kalender og økonomi før flere roller eller mer kartdekor. Jobb er frivillig; privatlivet kan fortsette uten jobb eller livsposisjon.
+
+| Arbeid | Kontrollert resultat | Avgrensning |
+| --- | --- | --- |
+| Dagskifte og innboks, [#7274](https://github.com/Paradispartiet/History-Go/pull/7274) | Merget som `f0ff7a58`. Innboksen lukkes etter bekreftet kalenderfremgang; avslag og feil gir nytt forsøk. Fersk aktiv handling velges én gang per visning, og varsler samles. [766/766 tester](https://github.com/Paradispartiet/History-Go/actions/runs/43229026416) og [organisk nettleserløp](https://github.com/Paradispartiet/History-Go/actions/runs/43229026107) bestått. | Fem målte museumssvar gav tre opptegninger per svar mot tretten før. Målekjøringen er diagnostikk, ikke en erstatning for akseptansetesten. |
+| Min dag, mobilfokus og kart, [#7047](https://github.com/Paradispartiet/History-Go/pull/7047) | Funksjonell head `c9cdf93f`: [772/772 tester](https://github.com/Paradispartiet/History-Go/actions/runs/43229087256), 17/17 workflows og [Chromium/WebKit-mobilkontroll](https://github.com/Paradispartiet/History-Go/actions/runs/43229087360) bestått. Alle elleve skjermbilder gjennomgått. | Publiseringsstatus følger PR-en. Samkjøringen beholder både mobilskript og profileringsskript i bygglisten; ingen spillerlogikk endres av konfliktløsningen. |
+| Organisk akseptanse | Samme lagring gjennom 21 ekte dager: syv dager arbeidsledig, fem faktiske quizsett/meritter, selvvalgt jobb på dag 8, tre ukeoppgjør, 79 private valg, reload og kontogjenoppretting. Null browserfeil. Samkjørt kjøring fullførte på 17m51s. Uendret Runner bevarer senere dag-26-innhold. | Kontotransport er simulert. Fysisk Safari, faktisk ekstern innlogging og andre yrkesløp er ikke godkjent av dette scenarioet. |
+
+C6–C11 nedenfor beholdes som historisk kontrollregister. Denne leveransen beviser det beskrevne 21-dagersløpet og UI-flyten, men lukker ikke automatisk bred økonomikalibrering, alle sosiale etterspill, ekte konto-/enhetsbytte eller hele Civication. Kvalitetsvurdering for avgrenset UI-/handoff-arbeid: korrekthet 5, dekning 5, visuell kvalitet 4, teknisk integritet 4, ansvarlighet 5 og vedlikeholdbarhet 4: **27/30**. Resultater på eksakt samkjørt head registreres i PR-en før merge.
+
 ## Formål og fasit
 Spilleren skal kunne leve 14 ekte spilldager der arbeid, privatliv, relasjoner, økonomi, psyke, energi og integritet henger sammen. Et valg fra dag 2 må kunne få observerbare, kausalt begrunnede følger på dag 14. En grønn unit-test alene beviser ikke at dette skjer i nettleseren.
 

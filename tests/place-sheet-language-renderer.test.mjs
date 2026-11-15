@@ -111,3 +111,38 @@ test("direct language compatibility root has explicit Place Sheet layout overrid
   assert.match(css, /position:static !important/);
   assert.match(css, /overflow:visible/);
 });
+
+for (const order of ["owner-first", "language-first"]) {
+  test(`late language availability hydrates an already open Place (${order})`, async () => {
+    const dom = new JSDOM(`<!doctype html><html><head></head><body>
+      <div id="placeCard"><div class="pc-body"><section data-hg-place-sheet-shell="1" data-place-id="sted"></section></div></div>
+    </body></html>`, {url:"https://history-go.test/", runScripts:"outside-only"});
+    const {window}=dom;
+    window.PLACES=[{id:"sted",name:"Sted",category:"by"}];
+    window.CSS={escape:value=>String(value)};
+    window.showPlacePopup=()=>{};
+    window.showPlacePopup.__hgPlacePopupTabs=true;
+    window.fetch=async url=>({ok:true,json:async()=>String(url).endsWith("manifest.json")
+      ? {place_files:{sted:"data/test-language.json"}}
+      : String(url).endsWith("norge_atlas_v1.json") ? {macro_regions:[]}
+      : {place_id:"sted",subject_id:"by",entries:[{id:"ord",type:"term",term:"Dobbeltleiegård",meaning:"To gårder i én bygning."}]}});
+    try {
+      if(order==="owner-first") {
+        window.eval(runtimeSource);
+        window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready",{detail:{placeId:"sted"}}));
+        assert.equal(window.document.querySelector('[data-hg-place-sheet-owner="language"]'),null);
+        window.eval(languageSource);
+      } else {
+        window.eval(languageSource);
+        window.eval(runtimeSource);
+      }
+      await waitFor(()=>Boolean(window.document.querySelector('[data-hg-place-sheet-owner="language"]')));
+      const slot=window.document.querySelector('[data-hg-place-sheet-section="language"]');
+      assert.equal(slot.hidden,false);
+      assert.equal(slot.dataset.placeId,"sted");
+      assert.match(slot.textContent,/Dobbeltleiegård/);
+      assert.equal(slot.querySelectorAll('[data-language-entry]').length,1);
+      assert.equal(slot.querySelector('[data-hg-place-sheet-language-scaffold]'),null);
+    } finally {dom.window.close();}
+  });
+}
