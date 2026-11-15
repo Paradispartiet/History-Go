@@ -70,6 +70,14 @@ try{
         document.getElementById("pcCategoryCollectionIcon")?.dataset.collectionId==="structures",
         null,{timeout:40000});
       const card=page.locator("#placeCard");
+      // Place Sheet and the curated fill layout finish asynchronously after
+      // canonical place-open hydration. Assert the stable user-visible state,
+      // not the intermediate core collection profile marker.
+      await page.waitForFunction(()=>{
+        const card=document.getElementById("placeCard");
+        return card?.dataset.collectionProfileSource==="place_card_profile_v2_curated"
+          && card?.dataset.collectionRequestedCount==="3";
+      },null,{timeout:30000});
       assert.equal(await card.getAttribute("data-collection-profile-source"),
         "place_card_profile_v2_curated",tag+": curated profile");
       assert.equal(await card.getAttribute("data-collection-requested-count"),"3",tag+": three collections");

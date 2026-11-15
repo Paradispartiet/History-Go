@@ -172,3 +172,283 @@ assert.ok(uiSource.includes("lifestoryRole"), "dev-/testparameteren ?lifestoryRo
 assert.ok(uiSource.includes("civication_lifestory_role_v1"), "dev-parameteren persisteres i localStorage");
 
 console.log("civication lifestory renholder ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");
+
+// Capacity replies are not executed rooms. All evidence is earned through real scenes.
+const roomFlag = (s,k) => s.tidligereValg[k] === true;
+function chooseRoom(s,id,choice) {
+  assert.strictEqual(Runner.selectNextScene(s,content)?.id,id,'actual next room case: '+id);
+  return Runner.applyChoice(s,content,id,choice);
+}
+function reachRoom(s,id) {
+  for(let n=0;n<90;n++) {
+    const sc=Runner.selectNextScene(s,content);assert.ok(sc,'reachable scene '+id);
+    if(sc.id===id)return;
+    Runner.applyChoice(s,content,sc.id,sc.valg.find(v=>!v.skills_requirement).id);
+  }
+  assert.fail('failed to reach '+id);
+}
+function roomRequest(id='ta_stille') {
+  const s=State.createInitialState(content);
+  reachRoom(s,'tidsvindu_01_telefon');
+  const relation=s.relasjoner.driftsleder, visibility=s.meters.synlighet;
+  chooseRoom(s,'tidsvindu_01_telefon',id);
+  assert.ok(!roomFlag(s,'tok_ekstra_rom'),'a phone reply is not extra rooms performed');
+  assert.ok(!roomFlag(s,'delte_sonen'),'proposal is not a confirmed division');
+  assert.ok(!roomFlag(s,'ren_tid_wc3_spiller'));
+  if(id==='sett_grense') {
+    assert.ok(s.relasjoner.driftsleder>=relation,'capacity boundary is not automatically punished');
+    assert.ok(s.meters.synlighet>=visibility);
+  }
+  return s;
+}
+const workFlags=['ren_tid_wc3_spiller','ren_tid_korridor3_amina','ren_tid_kontorer_spiller','ren_tid_trapp_spiller'];
+const variants=[
+ ['ta_stille','prioriter_toaletter','tid_03_toaletter','utfor_og_kontroller'],
+ ['ja_men_si_fra','bekreft_deling','tid_03_toaletter','utfor_og_kontroller'],
+ ['sett_grense','behold_egen_rute','tid_03_egen_rute','utfor_og_kontroller'],
+ ['foreslaa_bytte','bekreft_deling','tid_03_toaletter','utfor_og_kontroller']
+];
+for(const [start,plan,execution,action] of variants) {
+ let s=roomRequest(start);
+ chooseRoom(s,'tid_02_kari_prioriterer',plan);
+ assert.ok(roomFlag(s,'ren_tid_plan_bekreftet'));
+ assert.ok(workFlags.every(k=>!roomFlag(s,k)),'a confirmed plan is not performed work');
+ assert.strictEqual(roomFlag(s,'delte_sonen'),plan==='bekreft_deling');
+ chooseRoom(s,execution,action);
+ if(plan==='behold_egen_rute') {
+   assert.ok(roomFlag(s,'ren_tid_kontorer_spiller')&&roomFlag(s,'ren_tid_trapp_spiller'));
+   assert.ok(!roomFlag(s,'tok_ekstra_rom'));
+   assert.ok(!roomFlag(s,'ren_tid_wc3_spiller'));
+ } else {
+   assert.ok(roomFlag(s,'ren_tid_wc3_spiller')&&roomFlag(s,'tok_ekstra_rom'));
+   assert.ok(!roomFlag(s,'ren_tid_kontorer_spiller'));
+   assert.ok(roomFlag(s,'ren_tid_kontorer_utsatt'));
+ }
+ if(plan==='bekreft_deling') {
+   assert.ok(roomFlag(s,'ren_tid_amina_venter'));
+   assert.ok(!roomFlag(s,'ren_tid_korridor3_amina'));
+   chooseRoom(s,'tid_04_amina_resultat','registrer_amina');
+   assert.ok(roomFlag(s,'ren_tid_korridor3_amina'));
+   assert.ok(!roomFlag(s,'ren_tid_amina_venter'));
+   assert.ok(!roomFlag(s,'ren_tid_korridor3_spiller'),'Amina retains her own work');
+ }
+ assert.ok(!roomFlag(s,'ren_tid_kari_mottatt'));
+ chooseRoom(s,'tid_05_kari_mottar','overlever_status');
+ assert.ok(roomFlag(s,'ren_tid_kari_mottatt'));
+ const before=s.arkiv.map(x=>[x.sceneId,x.valgId]);
+ s=JSON.parse(JSON.stringify(s));
+ assert.deepStrictEqual(s.arkiv.map(x=>[x.sceneId,x.valgId]),before);
+ assert.ok(Runner.getSymposium(s,content).tidslinje.some(x=>x.sceneId===execution&&x.valgId===action));
+ // Complete all seven authored days without injecting history or resetting room evidence.
+ let guard=0;
+ while(true) {
+   if(s.dagFerdig) { if(s.dag===7)break; s=Runner.startNextDay(JSON.parse(JSON.stringify(s)),content); }
+   const sc=Runner.selectNextScene(s,content);assert.ok(sc);
+   Runner.applyChoice(s,content,sc.id,sc.valg.find(v=>!v.skills_requirement).id);
+   assert.ok(++guard<220);
+ }
+ assert.ok(roomFlag(s,'ren_tid_kari_mottatt'));
+ assert.strictEqual(new Set(s.arkiv.map(x=>x.sceneId)).size,s.arkiv.length,'no replay across seven days');
+ assert.strictEqual(s.tidligereValg.wa_d_c17_status,'andre_rom_tilbudt','the actual C17 route still ends with the warehouse blocked');
+}
+// Pending plan, work, colleague result and receiver remain distinct.
+let pending=roomRequest('sett_grense');
+chooseRoom(pending,'tid_02_kari_prioriterer','avvent_plan');
+assert.ok(!roomFlag(pending,'ren_tid_plan_bekreftet'));
+assert.ok(workFlags.every(k=>!roomFlag(pending,k)));
+assert.strictEqual(pending.threadState.tidsvinduet_krymper.status,'escalated');
+let undone=roomRequest();
+chooseRoom(undone,'tid_02_kari_prioriterer','prioriter_toaletter');
+chooseRoom(undone,'tid_03_toaletter','meld_ikke_utfort');
+assert.ok(roomFlag(undone,'ren_tid_egen_oppgave_venter'));
+assert.ok(!roomFlag(undone,'ren_tid_wc3_spiller'));
+chooseRoom(undone,'tid_05_kari_mottar','avvent_mottak');
+assert.ok(!roomFlag(undone,'ren_tid_kari_mottatt'));
+let waiting=roomRequest('foreslaa_bytte');
+chooseRoom(waiting,'tid_02_kari_prioriterer','bekreft_deling');
+chooseRoom(waiting,'tid_03_toaletter','utfor_og_kontroller');
+chooseRoom(waiting,'tid_04_amina_resultat','avvent_resultat');
+chooseRoom(waiting,'tid_05_kari_mottar','overlever_status');
+assert.ok(roomFlag(waiting,'ren_tid_amina_venter'));
+assert.ok(!roomFlag(waiting,'ren_tid_korridor3_amina'));
+for(let [s,pendingFlag] of [[pending,'ren_tid_plan_venter'],[undone,'ren_tid_egen_oppgave_venter'],[waiting,'ren_tid_amina_venter']]) {
+ for(let n=0;!s.dagFerdig&&n<90;n++) {
+   const sc=Runner.selectNextScene(s,content);assert.ok(sc);
+   Runner.applyChoice(s,content,sc.id,sc.valg.find(v=>!v.skills_requirement).id);
+ }
+ s=Runner.startNextDay(JSON.parse(JSON.stringify(s)),content);
+ while(!s.dagFerdig) {
+   const sc=Runner.selectNextScene(s,content);assert.ok(sc);
+   Runner.applyChoice(s,content,sc.id,sc.valg.find(v=>!v.skills_requirement).id);
+ }
+ assert.strictEqual(s.threadState.tidsvinduet_krymper.status,'escalated','day-two review cannot resolve pending earlier work');
+ assert.ok(roomFlag(s,pendingFlag),'the specific outstanding step survives review and reload');
+ assert.ok(!roomFlag(s,'ren_tid_korridor3_amina'));
+}
+console.log('Renholder capacity: all four replies, three confirmed plans, both actors, pending variants and actual seven-day persistence OK');
+
+// A later actual receipt can resolve only that missing step, not perform other work.
+let receipt=roomRequest();
+chooseRoom(receipt,'tid_02_kari_prioriterer','prioriter_toaletter');
+chooseRoom(receipt,'tid_03_toaletter','utfor_og_kontroller');
+chooseRoom(receipt,'tid_05_kari_mottar','avvent_mottak');
+assert.ok(roomFlag(receipt,'ren_tid_mottak_venter'));
+assert.ok(!roomFlag(receipt,'ren_tid_kari_mottatt'));
+while(!receipt.dagFerdig) {
+ const sc=Runner.selectNextScene(receipt,content);assert.ok(sc);
+ Runner.applyChoice(receipt,content,sc.id,sc.valg.find(v=>!v.skills_requirement).id);
+}
+receipt=Runner.startNextDay(JSON.parse(JSON.stringify(receipt)),content);
+reachRoom(receipt,'d2_standard_ekstra_rom');
+chooseRoom(receipt,'d2_standard_ekstra_rom','vis_tidsregnskap');
+assert.ok(roomFlag(receipt,'ren_tid_kari_mottatt'));
+assert.ok(!roomFlag(receipt,'ren_tid_mottak_venter'));
+assert.ok(roomFlag(receipt,'ren_tid_wc3_spiller'));
+assert.ok(!roomFlag(receipt,'ren_tid_kontorer_spiller'));
+assert.ok(roomFlag(receipt,'ren_tid_kontorer_utsatt'));
+let separate=roomRequest('foreslaa_bytte');
+chooseRoom(separate,'tid_02_kari_prioriterer','bekreft_deling');
+chooseRoom(separate,'tid_03_toaletter','meld_ikke_utfort');
+chooseRoom(separate,'tid_04_amina_resultat','registrer_amina');
+assert.ok(roomFlag(separate,'ren_tid_korridor3_amina'));
+assert.ok(!roomFlag(separate,'ren_tid_wc3_spiller'));
+assert.ok(roomFlag(separate,'ren_tid_egen_oppgave_venter'));
+console.log('Renholder: later actual receipt and independently completed colleague work remain separate from unfinished own rooms');
+
+// A request for ergonomic support is not demonstrated or learned technique.
+let support=State.createInitialState(content);
+reachRoom(support,'rygg_01_vurdering');
+chooseRoom(support,'rygg_01_vurdering','spor_ole');
+assert.ok(!support.tidligereValg.laerte_teknikk,'asking Ole cannot establish learned technique');
+
+const learnedFlag=(s,k)=>s.tidligereValg[k]===true;
+function finishLearningDay(s){
+ for(let n=0;!s.dagFerdig;n++){
+  assert.ok(n<130,'learning route terminates');
+  const scene=Runner.selectNextScene(s,content);assert.ok(scene);
+  Runner.applyChoice(s,content,scene.id,scene.valg.find(v=>!v.skills_requirement).id);
+ }
+ return s;
+}
+const burdenRoutes=[['bekreft_plan','utfor_transport'],['bekreft_plan','stopp_og_meld'],['avvent_plan',null]];
+const learningRoutes=[
+ ['bare_jobbe',null,null,null],
+ ...['laer_metoden','foreslaa_forbedring'].flatMap(start=>[
+  [start,'utsett_demonstrasjon',null,null],
+  [start,'se_demonstrasjon','avbryt_og_spor',null],
+  [start,'se_demonstrasjon','utfor_ovelsen','faa_tilbakemelding'],
+  [start,'se_demonstrasjon','utfor_ovelsen','avvent_tilbakemelding']
+ ])
+];
+let learningRouteCount=0;
+for(const initial of ['ta_pausen','press_gjennom','spor_ole'])for(const [plan,work] of burdenRoutes)for(const receipt of ['bekreft_mottak','avvent_mottak'])for(const [learn,demo,practice,feedback] of learningRoutes){
+ let s=State.createInitialState(content);reachRoom(s,'rygg_01_vurdering');chooseRoom(s,'rygg_01_vurdering',initial);
+ assert.equal(learnedFlag(s,'tok_pausen'),initial==='ta_pausen');
+ assert.ok(!learnedFlag(s,'laerte_teknikk')&&!learnedFlag(s,'ren_bel_transport_utfort'));
+ assert.notEqual(s.threadState.ryggen_sier_fra.status,'completed');
+ chooseRoom(s,'rygg_02_plan',plan);assert.ok(!learnedFlag(s,'ren_bel_transport_utfort'),'plan is not transport');
+ if(work)chooseRoom(s,'rygg_03_transport',work);
+ assert.equal(learnedFlag(s,'ren_bel_transport_utfort'),work==='utfor_transport');
+ chooseRoom(s,'rygg_04_mottak',receipt);
+ assert.equal(learnedFlag(s,'ren_bel_mottatt'),receipt==='bekreft_mottak');
+ assert.equal(learnedFlag(s,'ren_bel_transport_utfort'),work==='utfor_transport','receipt cannot move bags');
+ assert.ok(!learnedFlag(s,'ren_soel_tralle_utbedret'),'renholdsvogn does not repair kaffetralle');
+ finishLearningDay(s);s=Runner.startNextDay(JSON.parse(JSON.stringify(s)),content);reachRoom(s,'d2_runde_med_amina');
+ const relation=s.relasjoner.erfaren_kollega;
+ chooseRoom(s,'d2_runde_med_amina',learn);
+ assert.ok(!learnedFlag(s,'laerte_soneprioritering')&&!learnedFlag(s,'ren_opp_demo_sett')&&!learnedFlag(s,'ren_opp_ovelse_utfort'),'reply/proposal is not learning');
+ if(learn==='bare_jobbe')assert.equal(s.relasjoner.erfaren_kollega,relation,'deferring training is not automatically punished');
+ if(demo){chooseRoom(s,'opp_02_demonstrasjon',demo);assert.ok(!learnedFlag(s,'laerte_soneprioritering')&&!learnedFlag(s,'ren_opp_ovelse_utfort'),'watching is not own practice');}
+ if(practice){chooseRoom(s,'opp_03_egen_ovelse',practice);assert.ok(!learnedFlag(s,'laerte_soneprioritering'),'practice still needs feedback');}
+ if(feedback)chooseRoom(s,'opp_04_tilbakemelding',feedback);
+ assert.equal(learnedFlag(s,'ren_opp_demo_sett'),demo==='se_demonstrasjon');
+ assert.equal(learnedFlag(s,'ren_opp_ovelse_utfort'),practice==='utfor_ovelsen');
+ assert.equal(learnedFlag(s,'ren_opp_tilbakemelding'),feedback==='faa_tilbakemelding');
+ assert.equal(learnedFlag(s,'laerte_soneprioritering'),feedback==='faa_tilbakemelding');
+ assert.ok(!learnedFlag(s,'laerte_teknikk'),'no general lifting qualification');
+ assert.ok(!learnedFlag(s,'ren_tid_korridor3_spiller'),'Amina retains her earlier room work');
+ const proof=JSON.parse(JSON.stringify(s.tidligereValg));const archive=JSON.parse(JSON.stringify(s.arkiv));
+ s=JSON.parse(JSON.stringify(s));assert.deepEqual(s.arkiv,archive);
+ for(const row of archive.filter(x=>x.sceneId.startsWith('rygg_')||x.sceneId.startsWith('opp_'))){
+  assert.ok(Runner.getSymposium(s,content).tidslinje.some(x=>x.sceneId===row.sceneId&&x.valgId===row.valgId&&x.konsekvensTekst===row.konsekvensTekst));
+ }
+ finishLearningDay(s);
+ while(s.dag<7){s=Runner.startNextDay(JSON.parse(JSON.stringify(s)),content);finishLearningDay(s);}
+ for(const k of Object.keys(proof).filter(k=>k.startsWith('ren_bel_')||k.startsWith('ren_opp_')))assert.equal(s.tidligereValg[k],proof[k],'specific evidence survives seven days '+k);
+ assert.equal(s.tidligereValg.wa_d_c17_status,'andre_rom_tilbudt');
+ learningRouteCount++;
+}
+assert.equal(learningRouteCount,162);
+console.log('Renholder learning: 162 actual routes; plan/work/receipt, demo/practice/feedback, deferred and interrupted variants, exact Symposium and seven-day persistence OK');
+// Compatibility fixture: a legacy save can contain historical learning flags,
+// but those flags are not new demonstration/practice/feedback events.
+let legacyLearning=State.createInitialState(content);
+legacyLearning.tidligereValg.laerte_teknikk=true;
+legacyLearning.tidligereValg.laerte_soneprioritering=true;
+legacyLearning=JSON.parse(JSON.stringify(legacyLearning));
+assert.ok(!legacyLearning.tidligereValg.ren_opp_demo_sett&&!legacyLearning.tidligereValg.ren_opp_ovelse_utfort&&!legacyLearning.tidligereValg.ren_opp_tilbakemelding);
+assert.ok(!Runner.getCandidateScenes(legacyLearning,content).some(x=>x.id.startsWith('opp_')),'legacy learning does not unlock new training scenes');
+assert.equal(Runner.getSymposium(legacyLearning,content).tidslinje.length,0,'no invented archive from old flags');
+// Player-facing training feedback must explain the observed result, not storage flags.
+for(const scene of raw.roleScenes.scenes.filter(x=>x.id==='d2_runde_med_amina'||x.id.startsWith('opp_')||x.id.startsWith('rygg_'))){
+ const text=[scene.tekst,...scene.valg.flatMap(v=>[v.tekst,v.konsekvensTekst])].join(' ');
+ assert.doesNotMatch(text,/læringsmarkør|tidligereValg|ren_opp_|ren_bel_/i,'technical implementation leaked into scene '+scene.id);
+}
+
+// Room 204 must have an actual work route before the complaint can cite it.
+assert.ok(content.scenes.some(s=>s.id==='klage204_01_arbeid'&&s.dag===3&&s.fase==='morgen'),'room-204 complaint needs a playable morning work record');
+assert.doesNotMatch(content.scenes.find(s=>s.id==='d3_rom_204_klagen').tekst,/07:10|klokka sju|forrige uke/,'no fabricated timestamp or prior week');
+
+// Every complaint proof is earned through actual choices, including pending replies.
+let complaintRoutes=0;
+for(const [initial,variant] of [['beroeringspunkter','full'],['synlig_runde','delvis'],['spor_amina','delt']])
+for(const reply of ['dokumenter','si_fra_tydelig','la_ligge'])
+for(const delivery of ['wait','sent','received'])
+for(const [work,room204] of [['utfor_hele_lista','full'],['utfor_delvis','delvis'],['ingen_tilgang','stengt']]) {
+ let s=State.createInitialState(content);reachRoom(s,'rommet_01_melding');chooseRoom(s,'rommet_01_melding',initial);
+ reachRoom(s,'usynlig_01_melding');chooseRoom(s,'usynlig_01_melding',reply);
+ assert.ok(!roomFlag(s,'ren_log2_sendt')&&!roomFlag(s,'ren_log2_mottatt'),'reply is not sent evidence');
+ if(reply!=='la_ligge'){
+  chooseRoom(s,'klage2_02_'+variant,delivery==='wait'?'avvent_status':'send_status');
+  if(delivery!=='wait')chooseRoom(s,'klage2_03_mottak',delivery==='received'?'bekreft_mottak':'avvent_mottak');
+ }
+ const sent=reply!=='la_ligge'&&delivery!=='wait';
+ assert.equal(roomFlag(s,'ren_log2_sendt'),sent);assert.equal(roomFlag(s,'ren_log2_mottatt'),sent&&delivery==='received');
+ finishLearningDay(s);s=Runner.startNextDay(s,content);
+ if(sent){reachRoom(s,'d2_kveld_verdighet');chooseRoom(s,'d2_kveld_verdighet',work==='ingen_tilgang'?'hold_avstand':'ta_imot');}
+ finishLearningDay(s);s=Runner.startNextDay(s,content);
+ reachRoom(s,'klage204_01_arbeid');assert.ok(!roomFlag(s,'ren_log204_full'));
+ chooseRoom(s,'klage204_01_arbeid',work);
+ reachRoom(s,'d3_rom_204_klagen');chooseRoom(s,'d3_rom_204_klagen',reply==='la_ligge'?'la_det_passere':reply==='dokumenter'?'vis_loggen_rolig':'meld_til_kari');
+ assert.ok(!roomFlag(s,'ren_log204_sendt')&&!roomFlag(s,'viste_loggen'));
+ if(reply!=='la_ligge'){
+  chooseRoom(s,'klage204_03_'+room204,delivery==='wait'?'avvent_status':'send_status');
+  if(delivery!=='wait')chooseRoom(s,'klage204_04_mottak',delivery==='received'?'bekreft_mottak':'avvent_mottak');
+ }
+ assert.equal(roomFlag(s,'ren_log204_sendt'),sent);assert.equal(roomFlag(s,'ren_log204_mottatt'),sent&&delivery==='received');
+ assert.equal(roomFlag(s,'ren_log204_full'),work==='utfor_hele_lista');
+ const proof=JSON.parse(JSON.stringify(s.tidligereValg));const archive=JSON.parse(JSON.stringify(s.arkiv));
+ s=JSON.parse(JSON.stringify(s));assert.deepEqual(s.arkiv,archive);
+ for(const row of archive.filter(x=>x.sceneId.startsWith('klage'))){assert.ok(Runner.getSymposium(s,content).tidslinje.some(x=>x.sceneId===row.sceneId&&x.valgId===row.valgId&&x.konsekvensTekst===row.konsekvensTekst));}
+ finishLearningDay(s);while(s.dag<7){s=Runner.startNextDay(s,content);finishLearningDay(s);}
+ for(const k of Object.keys(proof).filter(k=>k.startsWith('ren_log')))assert.equal(s.tidligereValg[k],proof[k]);
+ assert.equal(s.tidligereValg.wa_d_c17_status,'andre_rom_tilbudt');complaintRoutes++;
+}
+assert.equal(complaintRoutes,81);
+// Explicit legacy fixture: simulate a save made before the new room proofs existed.
+for(const [target,oldFlags,prefix] of [['usynlig_01_melding',{dokumenterte_runden:true},'klage2_02_'],['d3_rom_204_klagen',{viste_loggen:true},'klage204_03_']]){
+ let s=State.createInitialState(content);
+ while(s.dag<(target.startsWith('d3')?3:1)){finishLearningDay(s);s=Runner.startNextDay(s,content);}
+ reachRoom(s,target);
+ for(const k of Object.keys(s.tidligereValg).filter(k=>k.startsWith('ren_log')))delete s.tidligereValg[k];
+ Object.assign(s.tidligereValg,oldFlags);const oldArchive=JSON.parse(JSON.stringify(s.arkiv));
+ s=JSON.parse(JSON.stringify(s));assert.deepEqual(s.arkiv,oldArchive);
+ chooseRoom(s,target,target.startsWith('d3')?'vis_loggen_rolig':'dokumenter');
+ chooseRoom(s,prefix+'ukjent','send_status');
+ assert.ok(!roomFlag(s,'ren_log2_kjent')&&!roomFlag(s,'ren_log204_full'));
+ assert.deepEqual(s.arkiv.slice(0,oldArchive.length),oldArchive,'historical archive is never rewritten');
+}
+for(const sc of raw.roleScenes.scenes.filter(x=>x.id.startsWith('klage'))){
+ assert.doesNotMatch([sc.tekst,...sc.valg.flatMap(v=>[v.tekst,v.konsekvensTekst])].join(' '),/lagring|markør|ren_log|tidligereValg/i,'player text describes work '+sc.id);
+}
+console.log('Renholder complaints: 81 actual routes, both room lists, pending delivery/receipt, legacy uncertainty, exact Symposium and seven days OK');

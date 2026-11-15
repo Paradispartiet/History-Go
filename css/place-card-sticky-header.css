@@ -13,11 +13,17 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   isolation: isolate;
 }
 
-/* Native focus/scrollIntoView must leave controls below the sticky photograph.
-   Otherwise the QuizCard expand button can scroll behind the title on desktop. */
-body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-body {
-  scroll-padding-top: calc(var(--pc-visible-hero-height, 0px) + 12px);
-  scroll-padding-bottom: 16px;
+/* On larger screens a tall, uncropped Place overview remains pinned while
+   reading. Once a QuizCard is flipped, its expand button lives farther down
+   the same scroll pane; a sticky hero can cover that real pointer target.
+   Let the authentic hero scroll out with the content during QuizCard reading.
+   Do not disable hit testing or simulate clicks through the photograph. */
+@media (min-width: 721px) {
+  body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned.is-quizcard-reading .pc-sheet-hero,
+  body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned:has(#pcFrontCardFlip.is-flipped) .pc-sheet-hero {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 /* Retain the original image's object-fit geometry while the outer wrapper
@@ -56,4 +62,21 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
 #placeCard .pc-heading-hero.has-image #pcTitle{
   color:#fff !important;
   text-shadow:0 2px 7px #000,0 0 13px rgba(0,0,0,.82);
+}
+
+/* Native focus/scrollIntoView must leave controls below the sticky photograph.
+   Otherwise the QuizCard expand button can scroll behind the title on desktop. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-body {
+  scroll-padding-top: calc(var(--pc-visible-hero-height, 0px) + 12px);
+  scroll-padding-bottom: 16px;
+}
+
+/* Reading navigation yields the real sticky photo, including on phones.
+   This lets the selected section actually appear above the bottom dock. */
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned.is-section-reading .pc-sheet-hero {
+  position: relative;
+  z-index: 1;
+}
+body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned.is-section-reading .pc-body {
+  scroll-padding-top: 12px;
 }

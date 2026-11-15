@@ -271,9 +271,11 @@ jobs:
         if: needs.scope.outputs.shared_ui == 'true'
         run: node tests/nextup-progressive-placecard-state.test.js
 
-      - name: People background loading regression
+      - name: People background loading and badge runtime regression
         if: needs.scope.outputs.shared_ui == 'true'
-        run: node tests/background-boot-pacing.test.js
+        run: |
+          node tests/background-boot-pacing.test.js
+          node --test tests/badges-runtime-double-load.test.mjs
 
       - name: Hyperfast place-open payload regression
         if: needs.scope.outputs.shared_ui == 'true'

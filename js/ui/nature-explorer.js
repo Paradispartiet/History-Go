@@ -9,6 +9,7 @@ const drawings = window.HG_NATURE_ILLUSTRATIONS;
 // Documented source photos are for research only: never load them into the public atlas.
 // Only individually verified illustrations are eligible for public flora artwork.
 const approvedFloraIllustrations = kind === "flora" ? window.HG_NATURE_FLORA_APPROVED : null;
+const approvedFaunaIllustrations = kind === "fauna" ? window.HG_NATURE_FAUNA_APPROVED : null;
 const grid=document.getElementById("natureGrid"),stats=document.getElementById("natureStats"),count=document.getElementById("natureCount"),
  search=/** @type {HTMLInputElement} */ (document.getElementById("natureSearch")),message=document.getElementById("natureMessage"),more=document.getElementById("natureMore"),
  dialog=/** @type {HTMLDialogElement} */ (document.getElementById("natureDialog")),details=document.getElementById("natureDetails");
@@ -27,6 +28,8 @@ function media(a){
   const art=approvedFloraIllustrations?.get(id)?.src;
   return art ? {src:art,type:"illustration"} : null;
  }
+ const verified=approvedFaunaIllustrations?.get(id)?.src;
+ if(verified)return {src:verified,type:"illustration",approved:true};
  const art=drawings?.resolve(id);
  if(art)return {src:art,type:"illustration"};
  const src=a.image || a.imageCard || a.img;
@@ -36,16 +39,16 @@ function media(a){
 function illustrated(a){
  if(kind==="flora")return Boolean(approvedFloraIllustrations?.has(String(a.id)));
  const src=a.image || a.imageCard || a.img;
- return Boolean(drawings?.has(String(a.id))||(typeof src==="string"&&/^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src)));
+ return Boolean(approvedFaunaIllustrations?.has(String(a.id))||drawings?.has(String(a.id))||(typeof src==="string"&&/^(https:\/\/|\.?\.?\/|bilder\/|assets\/)/.test(src)));
 }
-function fallback(parent){parent.replaceChildren(node("span","ne-image-fallback",kind==="flora"?"Illustrasjon utilgjengelig":icon));}
+function fallback(parent,source){parent.replaceChildren(node("span","ne-image-fallback",kind==="flora"||source?.approved?"Illustrasjon utilgjengelig":icon));}
 function appendImage(parent,source,alt){
  const img=node("img");img.alt=alt;img.loading="lazy";
- if(kind==="flora"&&source.type==="illustration"){
+ if((kind==="flora"&&source.type==="illustration")||source.approved){
   img.classList.add("ne-transparent-art");
   parent.classList.add("ne-art-transparent-stage");
  }
- img.addEventListener("error",()=>fallback(parent));
+ img.addEventListener("error",()=>fallback(parent,source));
  parent.appendChild(img);img.src=source.src;
 }
 function section(title,values){
@@ -68,7 +71,7 @@ function openArt(a){
   appendImage(wrap,imageInfo,name(a));
   if(wrap.firstChild?.tagName==="IMG")wrap.firstChild.classList.add("ne-dialog-image");
   if(imageInfo.type==="illustration"){
-   wrap.appendChild(node("p","ne-image-credit",kind==="flora"?"Individuelt kvalitetsgodkjent botanisk illustrasjon":"Forenklet originalillustrasjon · ikke et artsbestemmelsesfoto"));
+   wrap.appendChild(node("p","ne-image-credit",kind==="flora"?"Individuelt kvalitetsgodkjent botanisk illustrasjon":imageInfo.approved?"Individuelt kvalitetsgodkjent faunaillustrasjon":"Forenklet originalillustrasjon · ikke et artsbestemmelsesfoto"));
   }
   details.appendChild(wrap);
  }else if(kind==="flora"){

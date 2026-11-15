@@ -14,15 +14,32 @@ async function positionQuizCard(page){
   if(!body)throw new Error('QuizCard has no scroll body');
   const rect=e=>{const r=e?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,left:r.left,width:r.width,height:r.height}:null;};
   const geometry=()=>({card:rect(el),hero:rect(document.querySelector('#placeCard .pc-sheet-hero')),body:rect(body),nav:rect(document.querySelector('#placeCard > [data-hg-place-sheet-nav="1"]')),scrollTop:body.scrollTop});
+  // Model a real downward scroll into the reading area. A twelve-pixel
+  // auto-adjustment against the moving sticky-hero boundary can converge
+  // without ever revealing the full QuizCard. Keep the subsequent real
+  // non-forced pointer click and hit-testing assertions unchanged.
+  if(innerWidth>=721 && document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned')){
+   const hero=document.querySelector('#placeCard .pc-sheet-hero');
+   const releaseScroll=Math.min(body.scrollHeight-body.clientHeight,
+     Math.max(300,Math.min(360,Math.ceil((hero?.offsetHeight||0)*0.6))));
+   if(body.scrollTop<releaseScroll) body.scrollTo({top:releaseScroll,behavior:'instant'});
+   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  }
   const before=geometry();
   for(let i=0;i<15;i++){
    // The navigation is BELOW the reading pane, not an upper sticky header.
    // Position before the first real click as well as after the flip: native
    // auto-scroll can otherwise put the target behind the retained photo.
-   const g=geometry(),top=Math.max(g.body.top,g.hero?.bottom||0)+12;
-   body.scrollTop+=g.card.top-top;
+   // When the overview is not pinned, it scrolls alongside the QuizCard.
+   // Measuring its moving bottom as an occlusion boundary prevents sufficient
+   // scrolling for a fully visible card when desktop photos are taller.
+   // Keep sticky photo protection, full-card visibility and unforced hit-tests.
+   const heroPinned=()=>document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned')
+     && getComputedStyle(document.querySelector('#placeCard .pc-sheet-hero')).position==='sticky';
+   const g=geometry(),top=Math.max(g.body.top,heroPinned()?(g.hero?.bottom||0):g.body.top)+12;
+   body.scrollBy({top:g.card.top-top,behavior:'instant'});
    await new Promise(resolve=>setTimeout(resolve,50));
-   const next=geometry(),upper=Math.max(next.body.top,next.hero?.bottom||0);
+   const next=geometry(),upper=Math.max(next.body.top,heroPinned()?(next.hero?.bottom||0):next.body.top);
    const lower=Math.min(next.body.bottom,next.nav?.top??innerHeight,innerHeight);
    const x=next.card.left+20,y=next.card.top+Math.max(24,next.card.height-24);
    const hit=document.elementFromPoint(x,y);
@@ -98,6 +115,10 @@ try{
     const flip=page.locator('#pcFrontCardFlip');
     item.phase='quizcard-position-before-click';
     item.quizBeforeClick=await positionQuizCard(page);
+    if(!mobile){
+     assert.equal(await page.locator('#placeCard .pc-sheet-hero').evaluate(el=>getComputedStyle(el).position),'relative',
+       id+' desktop QuizCard must not sit under a sticky hero while reading');
+    }
     const rect=await flip.boundingBox();
     assert.ok(rect?.height>75,'QuizCard zero height');
     item.phase='quizcard-flip';

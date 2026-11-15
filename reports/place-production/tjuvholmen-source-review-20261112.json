@@ -45,7 +45,7 @@
   },
   "collection_review": {
     "people": {
-      "status": "BLOCKED_2_OF_5",
+      "status": "BLOCKED_2_OF_5_PHOTOS_3_TEXT_ONLY",
       "verified_direct": [
         {
           "id": "niels_torp",
@@ -57,7 +57,7 @@
           "id": "hans_rasmus_astrup",
           "role": "Founder of museum located at Tjuvholmen since 2012",
           "source": "https://snl.no/Hans_Rasmus_Astrup",
-          "asset": "Existing record uses generic placeholder"
+          "asset": "No portrait asset; generic placeholder removed, text-only pending image rights"
         },
         {
           "id": "hariton_pushwagner",
@@ -71,14 +71,14 @@
           "id": "bjarne_melgaard",
           "role": "2018 group exhibition at Galleri Brandstrup, Tjuvholmen",
           "source": "https://kunstverket.no/kunstneroversikt/mno/bjarne-melgaard",
-          "asset": "Existing image; provenance needs review"
+          "asset": "No portrait asset; broken PNG removed, text-only pending image rights"
         },
         {
           "id": "stephen_butkus",
           "role": "Photography exhibitions at THE THIEF (2015 and 2018) and Tjuvholmen pedestrian bridge, July 2018",
           "source": "https://www.fineart.no/kunstner/stephen-butkus",
           "additional_source": "https://www.fineart.no/galleriobjekt/Stephen_Butkus_-_You_Had_Me_At_Goodbye__10/389908",
-          "asset": "Existing local image; provenance needs verification"
+          "asset": "No portrait asset; broken PNG removed, text-only pending image rights"
         },
         {
           "id": "renzo_piano",
@@ -107,9 +107,9 @@
           "reason": "Onstad is not source-backed as an actor in Tjuvholmen / Astrup Fearnley development"
         }
       ],
-      "action": "2/5 aktive personer har nå autentiske og kildeklare portretter: Hariton Pushwagner og Renzo Piano. Bjarne Melgaard og Stephen Butkus peker fortsatt til manglende PNG, mens kunstsamleren Hans Rasmus Astrup (1939–2021) har generisk placeholder. Wikimedia Commons-kategorien Hans Rasmus Astrup gjelder politikeren fra 1800-tallet og må aldri brukes som bildebevis for samleren.",
+      "action": "Only Pushwagner and Renzo Piano have verified licensed actual portraits. Melgaard, Butkus and Hans Rasmus Astrup (collector 1939–2021) are shown as text-only until source, identity and redistribution rights are confirmed. No outside requests have been sent.",
       "runtime": {
-        "status": "2_OF_5_VISUAL_APPROVED",
+        "status": "2_OF_5_VISUAL_APPROVED_3_TEXT_ONLY",
         "personId": "hariton_pushwagner",
         "source": "data/people/hariton_pushwagner_image_provenance.json",
         "image": "bilder/kort/people/hariton_pushwagner.webp",
@@ -121,8 +121,14 @@
         "verifiedIds": [
           "hariton_pushwagner",
           "renzo_piano"
+        ],
+        "textOnlyIds": [
+          "bjarne_melgaard",
+          "stephen_butkus",
+          "hans_rasmus_astrup"
         ]
-      }
+      },
+      "portrait_rights_audit": "reports/place-production/tjuvholmen-people-portrait-rights-20261112.json"
     },
     "brands": {
       "status": "GODKJENT",
@@ -168,11 +174,32 @@
       }
     },
     "objects": {
-      "status": "BLOCKED",
-      "note": "No independent, sourced artifact review completed; do not mark reasoned N/A until documented research"
+      "status": "EIGHT_DOCUMENTED_ARTWORK_CANDIDATES_MEDIA_AND_CLASSIFICATION_PENDING",
+      "source": "reports/place-production/tjuvholmen-objects-artworks-audit-20261112.json",
+      "count": 8,
+      "owners": {
+        "Selvaag Art Collection": 6,
+        "Tjuvholmen KS": 2
+      },
+      "verified_claims": [
+        "Eight named public sculptures are documented by Astrup Fearnley Museum.",
+        "The museum explicitly separates park ownership from its own museum collection.",
+        "Ellsworth Kelly's Untitled (Totem) and Fischli & Weiss's Things for a House on an Island belong to Tjuvholmen KS; the other six to Selvaag Art Collection."
+      ],
+      "copyright_gate": "Photo copyright and underlying artwork copyright must each be considered; Norwegian Copyright Act §31 does not automatically authorize commercial close-up reproduction of protected works.",
+      "year_dispute": "Eyes resolved as 1997 via owner Selvaag Art Collection and independent park/SNL; museum 1992 discrepancy retained in audit",
+      "action": "Klassifisert betinget som fysisk By-Object versus kunstverk som Works/Productions (#7280, merget), uten publiserte Objects. Park-Structure inneholder nå en faktabasert, kildehenvist tekstoversikt over de åtte verkene. Ikke aktiver nærbilder før både fotolisens og verksrettigheter er avklart.",
+      "sources": [
+        "https://www.afmuseet.no/tjuvholmen-skulpturpark/",
+        "https://www.tjuvholmenskulptur.no/",
+        "https://www.selvaagartcollection.com/en/artwork/sculpture",
+        "https://lovdata.no/lov/2018-06-15-40/%C2%A731",
+        "https://www.selvaagartcollection.com/en/artwork/eyes"
+      ],
+      "entity_routing": "CONDITIONAL: fysisk stedfestede installasjoner kan etter canonical By-regelen vurderes som Objects; kunstverket som intellektuelt verk hører til Productions/kulturspor. Parken beholdes som eksisterende Structure. Ingen aktive Objects eller verkbilder før særskilt fotolisens + rett til avbildning av kunstverket."
     },
     "structures": {
-      "status": "STAGED_3_WEBP_PREVIEWS_PENDING_FULL_ORIGINALS_AND_BROWSER_QA",
+      "status": "INTEGRATED_MOBILE_DESKTOP_QA_PASS_FULL_ORIGINALS_PENDING",
       "verified_candidates": [
         "Tjuvtitten – genuine tower, not designed by Renzo Piano",
         "Tjuvholmen bystrand – public beach at Skjæret, not historical 19th-century sjøbad",
@@ -182,7 +209,7 @@
         "https://www.oslo.kommune.no/slik-bygger-vi-oslo/fjordbyen/tjuvholmen/",
         "https://www.afmuseet.no/en/the-museum-building/"
       ],
-      "action": "Three 900px WebP previews and 960px Commons sources are committed with creator, CC BY-SA 3.0, SHA-256, and visual PASS in #7269. Canonical Structures and runtime staged in follow-on PR. Full-resolution Commons JPEG originals (HTTP 429) and native PlaceCard mobile/desktop QA remain pending.",
+      "action": "Three 900px WebP files, 960px authentic Commons preview sources and SHA-256 registered in #7269; canonical Structures and PlaceCard popup integrated with standard click QA (390px mobile/1440px desktop), #7271; GitHub Pages deploy success run #43201300645. Full-resolution originals still 429-blocked. Nytt nøkternt park-Structure-tekstfelt nevner de åtte kildeverifiserte verkene og eierskapet, uten isolerte verkbilder. Full original-arkivforsøk 0/3 HTTP 429; rapport: reports/place-production/tjuvholmen-structure-originals-retrieval-20261112.json.",
       "provenance": "reports/place-production/tjuvholmen-structures-source-candidates-20261112.json"
     }
   },
@@ -191,14 +218,14 @@
     "quiz_sets": 6,
     "fagverk": "curated",
     "lesespor": 3,
-    "story": "No standalone Story in current place-open",
-    "language": "Check a real stedsspesifikt språkspor",
+    "story": "Two source-backed Tjuvholmen historical episodes merged to main in PR #7279: Toftes Gave (1844) and socialist public meetings (1874).",
+    "language": "Three place-specific entries merged to main in PR #7279: Tjuvholmen, Tyveholmen and rombeporfyr.",
     "quizcard": "Confirm ten-item existing QuizCard and live flip",
-    "runtime": "Regenerate place-open and places index after source changes"
+    "runtime": "Synced canonical stories, Språkleksikon, place-open and stories-all shards; full CI pending"
   },
   "vferdig": {
     "editorial_status": "BLOCKED",
-    "reason": "Brands 3/3; People 2/5; Structures 3 WebP previews staged, full source originals and live app QA pending; Objects and canonical core require honest closeout review.",
+    "reason": "People portraits 2/5 licensed and identity-confirmed, three text-only pending rights. Structures 3/3 live PlaceCard browser QA PASS, full-resolution Commons originals pending. Eight confirmed park sculptures are research candidates, not active Objects/Works: photo/artwork rights and classification pending. No fillers.",
     "no_filler": true,
     "do_not_mark_complete": true
   },

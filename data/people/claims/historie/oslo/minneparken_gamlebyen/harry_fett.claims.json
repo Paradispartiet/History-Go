@@ -1,0 +1,126 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "harry_fett",
+  "profile_file": "data/people/historie/oslo/minneparken_gamlebyen/harry_fett.json",
+  "identity": {
+    "canonical_identity": "Harry Fett, den norske kunsthistoriker og riksantikvar med dokumentert rolle ved Minneparken.",
+    "name_variants": [
+      "Harry Fett"
+    ],
+    "not": [
+      "navnelike personer"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "profession",
+      "claim": "Harry Fett var norsk kunsthistoriker og riksantikvar 1913–1946.",
+      "source_url": "https://snl.no/Harry_Fett",
+      "source_location": "Innledning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-11",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "opening",
+      "claim": "Riksantikvar Harry Fett holdt tale ved åpningen av Minneparken i 1932.",
+      "source_url": "https://oslobyleksikon.no/side/Minneparken",
+      "source_location": "Avslutning om parkåpningen",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-11",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "career",
+      "claim": "Fett forsket på middelalderkunst og arbeidet for konservering og vern av bygninger.",
+      "source_url": "https://snl.no/Harry_Fett",
+      "source_location": "Innledning og Riksantikvar",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-11",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "background",
+      "claim": "Fett var amanuensis ved Norsk Folkemuseum i 1901–1911 og disputerte på middelalderskulptur i 1908.",
+      "source_url": "https://snl.no/Harry_Fett",
+      "source_location": "Innledning",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-11-11",
+      "status": "verified",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "profession"
+    ],
+    "kindLabel": [
+      "profession"
+    ],
+    "year": [
+      "opening"
+    ],
+    "placeId": [
+      "opening"
+    ],
+    "places[minneparken_gamlebyen]": [
+      "opening"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "profession",
+          "opening",
+          "career"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "profession"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "opening"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "career"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "4/4",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-11-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

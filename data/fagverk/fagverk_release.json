@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.17.15",
     "updated_at": "2026-10-28",
-    "content_sha256": "3d71964425332b6139b79a213a600231f47a49055e73488b983f282ddac28364"
+    "content_sha256": "a2b5bdb28c11da3ed1d1c549304ecf9236a196427ef198ccb531925223c758df"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "f6de5ebb66499b946a574b9e9683e1fc8e810f876407186fda85bd38c60259f4"
+    "content_sha256": "02ac226d848f66a46efaa925d92f438997b764c260716916e86d488b3de462ba"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 540,
+    "package_file_count": 543,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1404,
+    "referenced_file_count": 1407,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2812,9 +2812,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 149,
+      "package_file_count": 152,
       "required_package_file_count": 4,
-      "optional_package_file_count": 145,
+      "optional_package_file_count": 148,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -3223,6 +3223,18 @@
           ],
           "exists": true,
           "content_sha256": "d12675fa162c02e7e4fe93a5f6719650b2ccead8bfd85f1978f70694d707fd3b"
+        },
+        {
+          "path": "data/quiz/historie/minneparken_gamlebyen_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.minneparken_gamlebyen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "86516166c63ab9db4eb26eb1d4f8b0fc3f68247ae6dae5328e340b6ae78fb612"
         },
         {
           "path": "data/quiz/historie/mollergata_19_sets.json",
@@ -3753,6 +3765,18 @@
           "content_sha256": "46d3c66b234a36b2ad1986a8e81782e49221e049ecbaea12549bc8462a06c835"
         },
         {
+          "path": "data/quiz/production_briefs/historie/minneparken_gamlebyen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.minneparken_gamlebyen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "d708957a20ec975f7665e36ac11a4cdc0f6e6c06537efbcfc145fa4753375f86"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/mollergata_19.json",
           "required": false,
           "fields": [
@@ -4281,6 +4305,18 @@
           "content_sha256": "bf4a48085a25f2be7ddf257e3d4637c00056067f4a62b280087b9823c7241ac6"
         },
         {
+          "path": "data/quiz/production_context/historie/minneparken_gamlebyen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.minneparken_gamlebyen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "678c7193e8a07fdf5389d6128673cc6bfdbc7b3329be278fb441c6a8873e88d3"
+        },
+        {
           "path": "data/quiz/production_context/historie/mollergata_19.json",
           "required": false,
           "fields": [
@@ -4605,20 +4641,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "a802fd3077202d64a7347d748e9d947ae983e3012dc8e5aae75c20529890898e",
+      "package_content_sha256": "9d75d64cfffcd68bccab9bdb840a60d7acb9d356ed80eb022402705c3ae5de14",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 241,
+      "referenced_file_count": 244,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "037560c2626e2a198ff03ae26c404618a9b183f4307f97bc354375b383facd5e",
-      "content_sha256": "3c29689e737912f4ab5513d1678709d06473bb19bcacf4db3f26036b65a2aa1a",
+      "structure_sha256": "2deedcbfb16d579f58195c93676b4c0131e4c1b4e67cffe2c9253d35ac5da22c",
+      "content_sha256": "6f979ee9bc2c25f989f1b9144802a17890f8d8a2ebb6c95c9eae38fce8dd6e6f",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -9201,5 +9237,5 @@
       ]
     }
   },
-  "release_sha256": "c7c469303e66e12202251942084bb9f71932abb484fa056fadb1f916d5b1d5b2"
+  "release_sha256": "6b5407aa91bee73d8543ee84afe43b1532a3b75a994d75dc1ce0292d5daf5145"
 }

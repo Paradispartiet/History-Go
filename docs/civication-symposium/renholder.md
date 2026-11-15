@@ -58,7 +58,7 @@ En synopsis kan bygge på et rom som skifter fra opptatt til ledig i løpet av v
 
 ## Samlet rollegrunnlag og lokal bruk
 
-Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 28 eksisterende Life Story-scenene på dag 1–7. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle scener til godkjent yrkesveiledning.
+Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 55 eksisterende Life Story-scenene på dag 1–7. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle scener til godkjent yrkesveiledning.
 
 ### Stillingsbeskrivelse og en vanlig økt
 
@@ -97,16 +97,85 @@ Ansettelsesform, stillingsprosent, avtalt vakt, pauser og lønnsgrunnlag må avk
 
 Klasse vises gjennom kontroll over arealer, tid, bemanning og rapporter. Følelsen av å ha skyld i et utilgjengelig rom er personens situasjon, ikke bevis på at alle renholdere er maktesløse eller at Kari har truet noen. Arbeidstilsynet beskriver ergonomi som tilpasning av arbeid, utstyr og omgivelser; løsningen kan ikke reduseres til at arbeidstakeren lærer ett løftegrep. [Ergonomisk arbeidsmiljø](https://www.arbeidstilsynet.no/arbeidsmiljo/ergonomi/).
 
+### Revidert arbeidseksempel: et tidsvindu med to romlister
+
+Den eksisterende `tidsvindu_01_telefon` beholder alle fire valg-ID-ene. Svarene avklarer hva spilleren sier til Kari; de fører ikke ekstrarom som utført og gir ikke automatisk straff for å si fra om kapasiteten.
+
+| Bekreftet plan | Spillerens oppgave | Annet arbeid og ansvar |
+| --- | --- | --- |
+| Prioriter toalettene | Utføre og kontrollere toalettene i tredje etasje. | Kontorer, trapp og korridor i tredje er utsatt; Kari tar videre planlegging. |
+| Del med Amina | Utføre og kontrollere toalettene i tredje. | Amina må si ja til korridoren og senere bekrefte egen utførelse og kontroll. Kontorer og trapp er utsatt. |
+| Behold egen rute | Utføre og kontrollere kontorer og trapp på egen liste. | Kari tar ekstrabehovet videre. Ingen annen utfører eller ferdig ekstraetasje er oppdiktet. |
+
+Dette er lokale spillpremisser for kontorbygget, ikke en bestemt arbeidsgivers rutine. Pausen står fortsatt i planen. De fem låste oppfølgingene skiller Karis bekreftelse, egen utførelse, Aminas resultat og Karis mottak. En sendt status er ikke automatisk mottatt. Den som ikke får plan, ikke utfører oppgaven eller venter på svar, har fortsatt et åpent punkt.
+
+Oppfølgingen på dag 2 kan gi faktisk mottaksbekreftelse fra Kari, men overfører ikke arbeid fra Amina til spilleren eller gjør utsatte rom ferdige. En generell eldre registrering om ekstrarom brukes ikke som nytt bevis på detaljert romarbeid. Dag-1-oppgaver må også skilles fra nye romoppgaver i C17 på dag 3–7.
+
+[Den kanoniske testen](../../tests/civication-lifestory-renholder.test.js) følger alle fire svar, tre bekreftede planer og åpne varianter gjennom faktiske valg, lagring og sju dager. [Nettleserkontrollen](../../scripts/verify-civication-renholder-lifestory-browser.cjs) prøver sju faktiske ruter på mobil og to iPad-formater gjennom dag 2, reload og synlig Symposium. Den rapporterer om dagskiftet gikk via UI eller en kanonisk Runner-grense ved skallets innbokskrav. Dette er ikke kontroll av hele normaljobbkalenderen eller fysisk Safari. CI og bilder må gjennomgås før visuell kontroll omtales som bestått.
+
+### Revidert arbeidseksempel: kaffe i ganglinja
+
+Dette er den eksisterende fiktive kaffetrallehendelsen, ikke en dokumentert arbeidsulykke eller en generell prosedyre. Metodevalg, opplæring, kontroll og dokumentasjon følger yrkesgrunnlaget over; lokal instruks avgjør utstyr og framgangsmåte.
+
+| Del av arbeidet | Hva spillet fører som faktisk hendelse | Hva det ikke fullfører |
+| --- | --- | --- |
+| Første håndtering | Avgrensning og sendt avvik, delvis tørking eller Sindres bekreftede hjelp. | Full rengjøring, kontroll og Karis mottak. |
+| Rengjøring | Sikret område og utført oppgave med innlært metode, eller behov for hjelp. | Åpning av gulvet før kontroll. |
+| Resultatkontroll | Kontrollert sølsted og åpning etter lokal rutine, eller observert restfukt med fortsatt sperring. | Garanti mot all framtidig fallfare eller utbedret tralle. |
+| Overlevering | Sendt dokumentert oversikt og eventuelt uttrykkelig mottak fra Kari. | Uferdig arbeid, ubekreftet kontroll eller teknisk reparasjon. |
+| Tiltak | Bekreftet koordineringsansvar hos Kari og separat kontroll av tilgjengelige skilt. | Teknisk vurdering og eventuell utbedring av tralla. Trallepunktet står åpent. |
+
+De fem nye låste oppfølgingene ligger i samme søltråd. Begge dag-2-etterspill leser registreringene uten å finne på en nestenulykke eller tidligere gjentakelser. Oles invitasjon gjelder neste uke: ja blir en avtale, nei gir ingen automatisk straff. Ingen av svarene gir gjennomført deltakelse. Historiske flagg brukes ikke som ny dokumentasjon på utført arbeid.
+
+[Den kanoniske søltesten](../../tests/civication-lifestory-renholder-soel.test.js) følger 36 faktiske kombinasjoner, begge invitasjonssvar, åpne tiltak gjennom sju dager, lagring og Symposium. Nettleserkontrollen kjøres med `RENHOLDER_CASE=soel`; den skiller normalt UI-dagskifte fra en eksplisitt Runner-fixture ved innboksgrensen. Fysisk Safari og hele normaljobbkalenderen er ikke sertifisert.
+
+### Revidert arbeidseksempel: belastning og en konkret øvingsoppgave
+
+Kildekontroll 12. november 2026: Arbeidstilsynet beskriver ergonomi som tilpasning av oppgaver, utstyr og arbeidssted, med arbeidsgiveransvar for tilrettelegging. Dette støtter at Kari må avklare oppgaven og hjelpemidlene; det dokumenterer ikke et bestemt helseutfall for spillpersonen. [Ergonomisk arbeidsmiljø](https://www.arbeidstilsynet.no/arbeidsmiljo/ergonomi/).
+
+Arbeidstilsynets opplæringsgrunnlag skiller informasjon, demonstrasjon og trening og krever tilpasning til oppgaven og arbeidstakeren. Udir knytter renholdsarbeid til planlegging, metodevalg, ergonomi og kvalitetsvurdering. Derfor registrerer spillet de ulike trinnene separat. [Generelle krav til opplæring](https://www.arbeidstilsynet.no/arbeidstid-og-organisering/generelle-krav-til-opplaring) · [Udir, ROF03-01](https://www.udir.no/lk20/rof03-01/kompetansemaal-og-vurdering/kv319?lang=nob).
+
+| Del | Lokalt spillpremiss og faktisk resultat | Åpent uten neste handling |
+| --- | --- | --- |
+| Belastning | Spilleren tar avtalt pause, forsøker å fortsette eller spør Ole om oppfølging. | Ingen ferdig sone, lært teknikk, diagnose eller lovet bedring. |
+| Avfallsoppgave | Kari bekrefter oppgaven og kjent renholdsvogn/rute. Spilleren må kontrollere forutsetningene og faktisk transportere sekkene. | Uavklart plan eller blokkert rute gir fortsatt restarbeid. Renholdsvogna er ikke kaffetralla. |
+| Overlevering | Dokumentert plan, transport og hindring sendes og kan bekreftes mottatt av Kari. | Mottak utfører ikke transport og fjerner ikke belastningsproblemet. |
+| Demonstrasjon | Amina viser ett punkt på dagens lokale liste i møterom 4. | Hennes demonstrerte punkt er ikke spillerens øvelse. |
+| Egen øvelse | Spilleren utfører og egenkontrollerer de øvrige avtalte håndtakene og bryterne mens Amina følger med. | Avbrutt øvelse eller manglende tilbakemelding er ikke bekreftet vurdering. |
+| Tilbakemelding | Amina bekrefter det hun faktisk observerte i denne øvingsoppgaven. | Ingen generell godkjenning av all renholdskompetanse, løfteteknikk, teamrutine eller lederrolle. |
+
+Møterommet, sekkene, personene og lokale avklaringer er fiktive spillpremisser. Ingen bestemt dosering, generell løfteoppskrift eller medisinsk behandling fastsettes her. Den gamle markøren `laerte_soneprioritering` settes først ved faktisk tilbakemelding og betyr nå bare bekreftet gjennomføring av denne avgrensede øvelsen. Gamle lagrede markører gjøres ikke om til nye arbeidsbevis. `laerte_teknikk` gis ikke ved spørsmål til Ole.
+
+Seks låste oppfølginger er lagt til. [Den kanoniske renholdertesten](../../tests/civication-lifestory-renholder.test.js) følger 162 faktiske kombinasjoner, lagring, Symposium og sju dager. Nettlesermodusen `RENHOLDER_CASE=opplaering` dekker de konkrete lærings- og venteutfallene på mobil og to iPad-formater. Dagskifte ved innboksgrensen må fortsatt erklæres som Runner-fixture når det brukes.
+
 ### Hva som må gjennomgås i spillinnholdet
 
-| Eksisterende del | Konkret revisjonsbehov |
+| Eksisterende del | Status og konkret revisjonsbehov |
 | --- | --- |
-| `tidsvindu_01_telefon` og `d2_standard_ekstra_rom` | Avklar hvilke oppgaver og rom som omfordeles, hva Kari godkjenner og hva som faktisk utføres. Ikke gjør tap av pause eller automatisk kritikk til eneste følger av å si ja eller nei. |
-| `soel_01_krise` og begge dag-2-etterspill | Skill sikring, rengjøring, kontroll, avviksmelding, ansvar og utbedring. At skilt eller reparasjon er planlagt, viser ikke at de er på plass. |
-| `rygg_01_vurdering` og `d2_runde_med_amina` | Avklar hjelpemiddel, belastning og konkret opplæring. Et råd eller en demonstrasjon er ikke bevis på mestret teknikk, og kroppen skal ikke beskrives som et verktøy arbeidstakeren alene må beskytte. |
-| `usynlig_01_melding` og `d3_rom_204_klagen` | Bruk bare den utførte delen av romlista som dokumentasjon. Klokken 07.10, utført arbeid og «forrige uke» må ha et faktisk fortellingsgrunnlag. |
-| `d2_avvik_fulgt_opp` | En invitasjon til vernerunde neste uke er en avtale, ikke gjennomført deltakelse. |
+| `tidsvindu_01_telefon` og `d2_standard_ekstra_rom` | Revidert sammen med `d2_rolig_formiddag`: bekreftet plan, eget og Aminas arbeid, utsatte oppgaver og mottak føres separat. Tilgangssporets skille mellom plan og utførelse beholdes. |
+| `soel_01_krise` og begge dag-2-etterspill | Revidert med fem låste oppfølginger: sikring, rengjøring, kontroll, mottak, tiltaksansvar og skiltkontroll føres hver for seg. Tralla er ikke registrert utbedret. |
+| `rygg_01_vurdering` og `d2_runde_med_amina` | Revidert med seks oppfølginger: avklart avfallsoppgave, faktisk transport og mottak; deretter demonstrasjon, egen øvelse og konkret tilbakemelding. Ingen medisinsk garanti eller generell kompetansegodkjenning. |
+| `usynlig_01_melding` og `d3_rom_204_klagen` | Revidert: faktisk romarbeid, riktig utfører, sendt oversikt og Karis mottak føres separat. Rom 204 har en morgenoppgave; ukjent eldre romstatus fylles ikke inn. Sindres svar gjør ikke restarbeid ferdig. |
+| `d2_avvik_fulgt_opp` | Revidert: ja gir framtidig avtale; ingen av svarene gir gjennomført deltakelse eller lukket utstyrssak. |
 | Tilgangsscenene `wave_a_c17` til `wave_d_c17` | Bevar skillet mellom registrert hindring, ny plan, befaring, fri tilkomst og utført renhold. Ingen automatisk flytting av hylla. |
-| Rolleavslutningene | Kontroller hvert utsagn mot faktisk historie. Delvise kriterietreff må ikke gi oppdiktet helseutfall, utført arbeid eller teamlederstatus. |
+| Rolleavslutningene | Revidert: alle kriterier kreves for hver av de fem tidligere avslutningene. Tekstene beskriver konkrete handlinger; nøytral åpen arbeidsstatus brukes uten et helt grunnlag. Ingen helsegaranti, ferdig bygg eller teamlederstatus. |
 
-Dette er dokumentert revisjonsarbeid, ikke nye scener eller en parallell rolle. Profil og synopsis er koblet; de øvrige delene må gjennomgås og testes før hele renholderforløpet kan kalles ferdig.
+Tidsvinduet og sølet har fem nye oppfølginger hver; belastning og opplæring har seks. Klagehistorikken har elleve nye scener med separate rombevis, sending og mottak. Den kanoniske testen følger 81 klageruter, eldre uavklarte romlister, lagring, Symposium og sju dager. Avslutningstesten kontrollerer hver renholderavslutning og manglende kriterier, samt uendret kalibrering for de øvrige 14 rollene. Nettlesermodusen `RENHOLDER_CASE=klage` prøver tre ruter gjennom sju dager med synlig avslutning på mobil og to iPad-formater. Visuell CI må gjennomgås før den kalles bestått. Dette sertifiserer fortsatt ikke fysisk Safari eller hele normaljobbkalenderen.
+
+
+## Kalenderkontroll og gjenværende lukking
+
+Den tidligere nettleserkontrollen brukte en uttrykkelig Runner-fixture ved innbokskravet. Streng modus `RENHOLDER_CASE=dagskifte` gjenbruker nå den eksisterende `nextDayViaUi`-hjelperen: spilleren svarer i innboksen, kvitterer for faktiske sammendrag og bruker dagskifteknappene. Modusen krever at kalender og Life Story går fra dag 1 til 7 uten hopp eller omskrevet arkiv. Den kan ikke bruke Runner-reserven. Kontrollen bestod på head `609d9d4b`: tre ruter med 18 faktiske UI-dagskifter, dag 7 i både kalender og fortelling, bevart arkiv og riktige avslutninger. Alle 40 bilder er gjennomgått. [PR #7295](https://github.com/Paradispartiet/History-Go/pull/7295) · [CI-bevis](https://github.com/Paradispartiet/History-Go/actions/runs/43277637032).
+
+Rolleparameteren starter et eksplisitt renholder-Life Story-spor uten å dokumentere opptjent og akseptert jobb. Den strenge kalenderkontrollen beviser derfor ikke alene full ansettelsesflyt, jobbmail eller lønn. [Fellesregisterets reststatus](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md#renholder--samlet-reststatus) eier den samlede oversikten.
+
+### Fysisk iPad/Safari – åpen kontroll
+
+**Ikke utført.** Kjøringsmiljøet har ingen tilkoblet fysisk iPad. Chromium med iPad-størrelse og eventuell WebKit-emulering kan ikke føres som denne testen.
+
+1. Åpne en egen privat Safari-fane på iPaden og start [renholderens testspor](https://paradispartiet.github.io/History-Go/Civication.html?lifestoryRole=renholder). Behold den vanlige spillagringen i ordinær fane.
+2. Spill dag 1. Ved dagslutt: åpne innboksen, svar på utestående meldinger og bruk den synlige knappen for neste dag. Kontroller at både kalenderen og fortellingen viser dag 2; ingen konsollkommando eller direkte tilstandsskriving brukes.
+3. Last siden på nytt. Kontroller at romstatus og utfører fortsatt er riktige. Roter mellom stående og liggende visning og prøv vanlige trykk og scrolling i scene, innboks og Symposium.
+4. Fortsett gjennom dag 7. Kontroller rom 204, valgt klageutfall og at avslutningen bare beskriver registrerte handlinger. Noter eventuelle stopp og siste synlige scene/melding.
+
+Før godkjenning registreres dato, iPad-modell, iPadOS-/Safari-versjon, testet commit, faktisk gjennomførte dager, reload/rotasjon og resultat. En delvis test merkes delvis; «ikke testet» skal ikke omgjøres til «bestått». Ingen fysisk godkjenning er registrert her ennå.

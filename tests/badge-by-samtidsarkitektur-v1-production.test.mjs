@@ -9,7 +9,20 @@ const sha='147c5114f96cd883343bca5f45931a78de25d8070f795f9d77696daa316fbb88';
 test('Samtidsarkitektur is sixth original 1024px embroidered By image',()=>{
  const by=read('data/badges/by.json'),plan=read('data/badges/underbadge_batch01_production.json');
  assert.equal(by.sub.length,10);
- assert.equal(Object.keys(by.subBadgeImages).length,7);
+ // The sixth original survives each approved stage of the By 6/10 -> 10/10 rollout.
+ // Later originals are accepted only in canonical order and at exact pinned paths.
+ assert.equal(by.sub[5],'samtidsarkitektur');
+ const later=[
+  ['byplanlegging','bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp'],
+  ['infrastruktur','bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'],
+  ['monumenter_og_landemerker','bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'],
+  ['bolig_og_bomiljo','bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v1.webp']
+ ];
+ assert.deepEqual(by.sub.slice(6),later.map(([id])=>id));
+ const present=later.filter(([id])=>Object.hasOwn(by.subBadgeImages,id));
+ assert.deepEqual(present,later.slice(0,present.length),'By originals must be integrated in order');
+ for(const [id,expected] of present)assert.equal(by.subBadgeImages[id],expected,id+' pinned original');
+ assert.equal(Object.keys(by.subBadgeImages).length,6+present.length,'no unknown active By originals');
  assert.equal(by.subBadgeImages.samtidsarkitektur,source);
  const a=plan.families.by.assets.find(x=>x.id==='samtidsarkitektur');
  assert.equal(a.status,'integrated');
@@ -24,7 +37,7 @@ test('Samtidsarkitektur is sixth original 1024px embroidered By image',()=>{
  assert.equal(b.readUIntLE(27,3)+1,1024);
  assert.ok(b[20]&0x10);
  assert.equal(createHash('sha256').update(b).digest('hex'),sha);
- for(const id of by.sub.slice(7))assert.equal(by.subBadgeImages[id],undefined);
+ for(const id of by.sub.slice(6+present.length))assert.equal(by.subBadgeImages[id],undefined);
 });
 test('Samtidsarkitektur EN ES PT FR variants are stored but inactive',()=>{
  const manifest=read('data/badges/badge_locale_images_candidates.json');
@@ -38,9 +51,19 @@ test('Samtidsarkitektur EN ES PT FR variants are stored but inactive',()=>{
   assert.equal(b.length,e.bytes);
   assert.equal(b.toString('ascii',0,4),'RIFF');
   assert.equal(b.toString('ascii',8,12),'WEBP');
-  assert.equal(b.readUIntLE(24,3)+1,1024);
-  assert.equal(b.readUIntLE(27,3)+1,1024);
-  assert.ok(b[20]&0x10);
+  const encoding=b.toString('ascii',12,16);
+  assert.ok(['VP8X','VP8L'].includes(encoding),'valid extended or lossless WebP');
+  if(encoding==='VP8X'){
+   assert.equal(b.readUIntLE(24,3)+1,1024);
+   assert.equal(b.readUIntLE(27,3)+1,1024);
+   assert.ok(b[20]&0x10,'extended alpha present');
+  }else{
+   assert.equal(b[20],0x2f,'lossless WebP signature');
+   const bits=b.readUInt32LE(21);
+   assert.equal((bits&0x3fff)+1,1024);
+   assert.equal(((bits>>>14)&0x3fff)+1,1024);
+   assert.ok((bits>>>28)&1,'lossless alpha present');
+  }
   assert.equal(createHash('sha256').update(b).digest('hex'),e.sha256);
  }
  assert.equal(manifest.status,'review_required_not_active');

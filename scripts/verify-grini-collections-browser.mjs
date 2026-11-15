@@ -130,6 +130,7 @@ try {
       placeId,
       { timeout: 60_000 },
     );
+    try {
     await page.waitForFunction(
       ({ count, collections }) => {
         const card = document.getElementById('placeCard');
@@ -142,6 +143,18 @@ try {
           if (!(el instanceof HTMLElement)) return false;
           const rect = el.getBoundingClientRect();
           if (el.hidden || el.getAttribute('aria-hidden') === 'true' || el.dataset.collectionId !== id) return false;
+          if (editorial && (id === 'objects' || id === 'historical_events')) {
+            // Place Sheet Direct deliberately hides original round icons.
+            // Require their real editorial gallery buttons in the proper
+            // section, then exercise those buttons below after scrolling.
+            const section = id === 'objects' ? 'history' : 'about';
+            const button = card.querySelector('[data-pc-round-gallery-section="'+section+'"] [data-pc-round-gallery-item="'+iconId+'"]');
+            const image = button?.querySelector('img');
+            return getComputedStyle(el).display === 'none'
+              && el.dataset.pcRoundGallerySource === '1'
+              && button instanceof HTMLButtonElement
+              && image instanceof HTMLImageElement && Boolean(image.getAttribute('src'));
+          }
           if (id === 'brands' && editorial) {
             // The canonical Brands action remains in the old grid, while the
             // visible, uncropped logo belongs at the end of the About section.
@@ -149,9 +162,12 @@ try {
             const button = gallery?.querySelector('button');
             const image = button?.querySelector('img');
             const box = button?.getBoundingClientRect();
+            // The About-section brand is below long prose and its image is
+            // intentionally loading="lazy". Check that the real preview exists
+            // here, then scroll it into view before requiring decoded pixels.
             return getComputedStyle(el).display === 'none'
               && box?.width > 0 && box?.height > 0
-              && image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0;
+              && image instanceof HTMLImageElement && Boolean(image.getAttribute('src'));
           }
           return rect.width > 0 && rect.height > 0;
         });
@@ -159,6 +175,38 @@ try {
       { count: expectedUiCollections.length, collections: expectedUiCollections },
       { timeout: 60_000 },
     );
+    } catch (error) {
+      const diagnostic = await page.evaluate((collections) => {
+        const card = document.getElementById('placeCard');
+        const brand = card?.querySelector('.pc-sheet-canonical-about [data-pc-round-gallery-brand="1"]');
+        const button = brand?.querySelector('button');
+        const img = button?.querySelector('img');
+        const box = button?.getBoundingClientRect();
+        return {
+          currentPlaceId: card?.dataset.currentPlaceId,
+          collectionMode: card?.dataset.collectionMode,
+          collectionCount: card?.dataset.collectionCount,
+          classes: card?.className,
+          editorials: card?.querySelectorAll('.pc-sheet-canonical-about').length ?? 0,
+          brand: { exists: Boolean(brand), button: Boolean(button), width: box?.width ?? 0, height: box?.height ?? 0,
+            image: img instanceof HTMLImageElement ? {src: img.getAttribute('src'), loading: img.loading, complete: img.complete, naturalWidth: img.naturalWidth} : null },
+          icons: collections.map(({id,iconId}) => {
+            const el=document.getElementById(iconId),rect=el?.getBoundingClientRect();
+            return {id,iconId,exists:Boolean(el),actualId:el?.dataset.collectionId,hidden:el?.hidden,
+              ariaHidden:el?.getAttribute('aria-hidden'),display:el?getComputedStyle(el).display:null,
+              width:rect?.width??0,height:rect?.height??0,roundReady:el?.dataset.roundReady,
+              imageSource:el?.querySelector('img')?.getAttribute('src')};
+          })
+        };
+      }, expectedUiCollections);
+      const full={message:String(error),diagnostic,pageErrors};
+      fs.writeFileSync(path.join(outDir,profile.name+'-collection-preflight.json'),JSON.stringify(full,null,2)+'\n');
+      console.error('Grini collections preflight diagnostics:',JSON.stringify(full));
+      throw error;
+    }
+    // Do not scroll to the bottom-of-About Brands logo before clicking the
+    // People round in the hero. Every editorial image is scrolled into view
+    // and checked for actual loaded pixels at its own popup step below.
     await page.waitForFunction(
       () => {
         const flip = document.getElementById('pcFrontCardFlip');
@@ -212,10 +260,44 @@ try {
     const popupChecks = [];
     for (const expected of expectedUiCollections) {
       const before = await page.evaluate(() => window.__HG_PLACE_CLOSEOUT_POPUPS__?.length || 0);
-      // The visible About-section Brands button delegates to the canonical popup.
-      const action = expected.id === 'brands'
-        ? page.locator('#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button')
-        : page.locator(`#${expected.iconId}`);
+      // The canonical source rounds are CSS-hidden under Place Sheet Direct.
+      // Select their real editorial section and click the visible gallery
+      // button, which forwards to the original popup handler.
+      const section = expected.id === 'objects' ? 'history'
+        : expected.id === 'historical_events' || expected.id === 'brands' ? 'about' : null;
+      if (section) {
+        await page.locator('#placeCard > [data-hg-place-sheet-nav="1"] [data-hg-place-sheet-jump="'+section+'"]').press('Enter');
+        await page.locator('#placeCard [data-hg-place-sheet-section="'+section+'"]').first().waitFor({state:'visible',timeout:15_000});
+      }
+      const gallerySelector = expected.id === 'brands'
+        ? '#placeCard .pc-sheet-canonical-about [data-pc-round-gallery-brand="1"] button'
+        : section
+          ? '#placeCard [data-pc-round-gallery-section="'+section+'"] [data-pc-round-gallery-item="'+expected.iconId+'"]'
+          : null;
+      const action = page.locator(gallerySelector || `#${expected.iconId}`);
+      if (gallerySelector) {
+        // The gallery can be re-rendered during editorial section activation.
+        // Re-resolve the real locator after a transient DOM detach, rather
+        // than bypassing the visible button or forcing a click.
+        for (let attempt = 0; attempt < 3; attempt++) {
+          try {
+            await action.scrollIntoViewIfNeeded({timeout: 15000});
+            break;
+          } catch (error) {
+            if (!/not attached to the DOM/i.test(String(error)) || attempt === 2) throw error;
+            await action.waitFor({state:'visible',timeout:15000});
+          }
+        }
+        await page.waitForFunction((selector) => {
+          const button = document.querySelector(selector);
+          const image = button?.querySelector('img');
+          const rect = button?.getBoundingClientRect();
+          return button instanceof HTMLButtonElement
+            && rect?.width > 0 && rect?.height > 0
+            && image instanceof HTMLImageElement
+            && image.complete && image.naturalWidth > 0;
+        }, gallerySelector, {timeout:30_000});
+      }
       await action.click();
       await page.waitForFunction(
         (count) => (window.__HG_PLACE_CLOSEOUT_POPUPS__?.length || 0) > count,

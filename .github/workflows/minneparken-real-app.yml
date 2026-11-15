@@ -1,0 +1,77 @@
+name: Minneparken actual app acceptance
+on:
+  pull_request:
+    paths:
+      - '**/*minneparken*'
+      - 'data/people/historie/oslo/minneparken_gamlebyen/**'
+      - 'bilder/kort/people/gerhard_fischer.jpg'
+      - 'bilder/kort/people/harry_fett.jpg'
+      - '.github/workflows/minneparken-real-app.yml'
+permissions:
+  contents: read
+concurrency:
+  group: minneparken-app-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  actual-mobile-desktop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Use installed Chrome
+        run: echo "CHROME_BIN=$(command -v google-chrome || command -v chromium)" >> "$GITHUB_ENV"
+      - name: Check candidate contracts
+        run: node --test tests/minneparken-quiz-source-parity.test.mjs tests/minneparken-story-candidate.test.mjs tests/minneparken-historical-photo-provenance.test.mjs tests/minneparken-knowledge-registry.test.mjs
+      - name: Actual mobile and desktop app, collections, QuizCard and full quiz
+        id: app
+        run: node scripts/verify-minneparken-candidate-browser.mjs
+      - uses: actions/upload-artifact@v4
+        id: artifact
+        if: always()
+        continue-on-error: true
+        timeout-minutes: 3
+        with:
+          name: minneparken-actual-app
+          path: artifacts/
+          retention-days: 14
+      - name: Preserve screenshot evidence in logs if artifact service fails
+        id: log_evidence
+        if: always() && steps.app.outcome == 'success' && steps.artifact.outcome == 'failure'
+        env:
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          python - <<'PY'
+          import base64, hashlib, io, json, os, pathlib, zipfile
+          root = pathlib.Path('artifacts')
+          for profile in ['desktop', 'mobile']:
+              for collection in ['people', 'objects', 'historical_events']:
+                  p = root / 'minneparken-closeout/minneparken_gamlebyen' / f'{profile}-collection-{collection}.png'
+                  assert p.is_file() and p.stat().st_size > 1000, f'Missing screenshot: {p}'
+          files = sorted(p for p in root.rglob('*') if p.is_file())
+          assert files, 'No evidence files'
+          buffer = io.BytesIO()
+          with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_STORED) as archive:
+              for p in files:
+                  archive.write(p, str(p.relative_to(root)))
+              archive.writestr('candidate.json', json.dumps({'head_sha': os.environ['CANDIDATE_SHA'], 'files': len(files)}))
+          payload = buffer.getvalue()
+          encoded = base64.b64encode(payload).decode('ascii')
+          print('HG_MINNE_QA_ARCHIVE_START:' + hashlib.sha256(payload).hexdigest() + ':' + str(len(payload)))
+          for index, offset in enumerate(range(0, len(encoded), 32768)):
+              print('HG_MINNE_QA_CHUNK:' + str(index) + ':' + encoded[offset:offset+32768])
+          print('HG_MINNE_QA_ARCHIVE_END')
+          PY
+      - name: Require successful app and recoverable evidence
+        if: always()
+        env:
+          APP_OUTCOME: ${{ steps.app.outcome }}
+          ARTIFACT_OUTCOME: ${{ steps.artifact.outcome }}
+          LOG_OUTCOME: ${{ steps.log_evidence.outcome }}
+        run: |
+          test "$APP_OUTCOME" = success
+          test "$ARTIFACT_OUTCOME" = success || test "$LOG_OUTCOME" = success
