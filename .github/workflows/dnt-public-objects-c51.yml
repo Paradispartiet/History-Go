@@ -1,6 +1,8 @@
 name: Det Norske Teatret C51 deployed Objects QA
 on:
-  pull_request:
+  push:
+    branches:
+      - main
     paths:
       - '.github/workflows/dnt-public-objects-c51.yml'
       - 'tests/det-norske-teatret-public-objects-c51.mjs'
