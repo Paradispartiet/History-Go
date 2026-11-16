@@ -131,7 +131,7 @@ try {
         assert.ok((await page.locator('#fagverkPlaceLenses a').count()) >= 2,
           'Curated Fagverk must expose operational learning lenses');
       } else {
-        assert.equal((await page.locator('#fagverkPlaceCoverageStatus').innerText()).trim(),
+        assert.equal((await page.locator('#fagverkPlaceCoverageStatus').textContent()).trim(),
           'Fagverk under produksjon');
         assert.equal(await page.locator('#fagverkPlaceUnfinished').isVisible(), true,
           'Draft Fagverk must be transparently marked unfinished');
