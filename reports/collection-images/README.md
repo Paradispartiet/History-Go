@@ -67,3 +67,11 @@ Dette er en **binærintegritetskontroll**, ikke en redaksjonell godkjenning.
 - **Brands:** ikke generer eller rekonstruer logoer. Autentiske merker må kilde- og rettighetsverifiseres før de kan fylle en ferdig Brand-runde.
 
 Et **PASS fra importskriptet gjelder bare bildefilens integritet**, ikke historisk korrekthet, redaksjonell kvalitet, lisens eller PlaceCard-visning. Disse kontrollene gjennomføres separat før noe kan publiseres.
+
+## Kontinuerlig kildeaudit av Brands
+
+Bruk `node scripts/audit-linked-brand-images.mjs --check` for å kontrollere alle Brands med `place_ids` eller `place_id` i `data/brands/brands_master.json`. Testfilen er `tests/linked-brand-image-audit.test.mjs`.
+
+Auditen sjekker at eksisterende Brand-bilder er virkelige filer under `bilder/`, ikke stier utenfor prosjektet eller stagingfiler. Den avviser også eksplisitt genererte logoer. Manglende logoer samles i en **arbeidskø** i stedet for å automatisk generere falske merkeidentiteter; `--check` feiler bare ved usikre/ødelagte eksisterende bildefelt.
+
+Foreløpig ved første kjøring: 94 stedstilknyttede Brands; 79 med et bildefelt, 15 uten. Alle de 79 må fremdeles vurderes for historisk riktig logo, lisens og lesbarhet før endelig visuell godkjenning. Verken `logo`-felt eller eksisterende fil er i seg selv en kvalitetserklæring.
