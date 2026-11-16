@@ -56,6 +56,18 @@ def verify(root: Path = ROOT) -> dict:
         metadata = json.loads(path.read_text(encoding="utf-8"))
         if metadata.get("publishable") is not False:
             raise ValueError(f"{filename}: candidate must not be publishable")
+        if metadata.get("editorialApproval") is not False:
+            raise ValueError(f"{filename}: candidate lacks explicit unapproved editorial status")
+        if metadata.get("imageKind") != "illustration":
+            raise ValueError(f"{filename}: imageKind must accurately disclose illustration")
+        if not isinstance(metadata.get("rightsBasis"), str) or not metadata["rightsBasis"].strip():
+            raise ValueError(f"{filename}: illustration provenance/rightsBasis missing")
+        if metadata.get("sourcePhotoNotReproduced") is not True:
+            raise ValueError(f"{filename}: must disclose no archival source photo was reproduced")
+        if not metadata.get("sourcePage") and not metadata.get("visualReferences"):
+            raise ValueError(f"{filename}: visual evidence/sourcePage missing")
+        if "/candidates/" in str(metadata.get("canonicalCurrentAsset", "")):
+            raise ValueError(f"{filename}: canonical image must never be a staged candidate")
         if metadata.get("stagingStatus") != "STAGED_BINARY_IN_GITHUB_NOT_PUBLISHED":
             raise ValueError(f"{filename}: staging status must be unpublished")
         relative = metadata.get("stagedAssetPath", "")
