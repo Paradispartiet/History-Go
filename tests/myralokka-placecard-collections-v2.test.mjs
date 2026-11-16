@@ -43,7 +43,12 @@ test("Myraløkka retains 42 stable quiz IDs, 40 linked Knowledge units and ten s
   assert.equal(questions.filter(q => q.knowledge_link_status === "linked" && q.primary_knowledge_unit_id).length, 40);
   const pending = questions.filter(q => q.knowledge_link_status === "editorial_review_required" && q.primary_knowledge_unit_id);
   assert.deepEqual(pending.map(q => q.id), ["myralokka_s2_q5", "myralokka_s2_q6"]);
-  assert.equal(questions.filter(q => q.knowledge_link_evidence?.reviewedAt === "2026-11-16").length, 19);
+  assert.equal(questions.filter(q => q.knowledge_link_evidence?.reviewedAt === "2026-11-16").length, 26);
+  const canonicalKnowledge = load("data/knowledge/knowledge_units.generated.json").units;
+  const unitsById = new Map(canonicalKnowledge.map(unit => [unit.knowledge_unit_id, unit]));
+  const reviewQueue = load("data/knowledge/knowledge_emne_review_queue.generated.json").items;
+  assert.deepEqual(reviewQueue.filter(item => item.target_id === id).map(item => item.question_id),
+    ["natur_myralokka_set_2_q5", "natur_myralokka_set_2_q6"]);
   const reviewedSet5 = Array.from({ length: 7 }, (_, index) => `myralokka_s5_q${index + 1}`);
   const expectedEmner = {
     myralokka_s5_q1: ["em_natur_arter_habitat_mangfold"],
@@ -64,6 +69,10 @@ test("Myraløkka retains 42 stable quiz IDs, 40 linked Knowledge units and ten s
     assert.equal(row.options[row.answerIndex], row.answer);
     assert.equal(row.knowledge_link_status, "linked");
     assert.ok(row.primary_knowledge_unit_id);
+    const unit = unitsById.get(row.primary_knowledge_unit_id);
+    assert.ok(unit, `Missing generated Knowledge unit for ${qid}`);
+    assert.deepEqual(unit.emne_ids, row.emne_ids,
+      `Generated Knowledge emne drift for ${qid}`);
     assert.ok(row.source.length > 0);
     assert.ok(!row.emne_ids.includes("em_natur_dyreatferd_formering_tilpasning"));
   }
