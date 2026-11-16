@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_spettmeis:Object.freeze({
+   scientificName:"Sitta europaea",
+   src:"bilder/natur/fauna/godkjent/24_spettmeis_v1.webp",
+   gitBlobSha:"70244f32ad0ce67ac7f3e9a469e25aeadba62d3e",
+   reviewedAt:"2026-11-16",
+   stage:"adult_blue_grey_upperparts_black_eye_stripe_white_throat_buff_orange_flanks_short_tail_pointed_bill_headfirst_down_tree",
+   evidence:"data/natur/fauna/illustration-quality-spettmeis-20261116.json"
+  }),
   emne_fauna_linerle:Object.freeze({
    scientificName:"Motacilla alba",
    src:"bilder/natur/fauna/godkjent/23_linerle_v1.webp",
