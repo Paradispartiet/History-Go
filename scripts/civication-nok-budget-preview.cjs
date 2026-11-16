@@ -20,4 +20,29 @@ function preview(config, { employed = false, employmentPercent = 100, approvedSu
     weeklyAccrualNet: (annualGross - annualTax) / 52,
     note: 'Annualised illustrative estimate, not a tax card; no holiday-pay, interest or personal deductions.' };
 }
-module.exports = { preview };
+// Projection only: each row is an independent monthly scenario, not a payment.
+// Taxes are annualised per scenario; this is not a cumulative tax assessment.
+function projectMonths(config, scenarios, openingBalanceNok = 0) {
+  if (!Array.isArray(scenarios) || !Number.isFinite(openingBalanceNok)) throw new RangeError('Invalid projection');
+  const cents = value => {
+    const amount = Math.round(value * 100);
+    if (!Number.isSafeInteger(amount)) throw new RangeError('Amount outside supported range');
+    return amount;
+  };
+  let balance = cents(openingBalanceNok);
+  return scenarios.map((scenario, index) => {
+    const view = preview(config, scenario);
+    const net = cents(view.monthlyNet);
+    const support = cents(view.approvedSupportNok);
+    const expenses = cents(view.monthlyExpenses);
+    const opening = balance;
+    balance += net + support - expenses;
+    if (!Number.isSafeInteger(balance)) throw new RangeError('Balance outside supported range');
+    return { month: index + 1, openingBalanceNok: opening / 100,
+      netSalaryNok: net / 100, approvedSupportNok: support / 100,
+      expensesNok: expenses / 100, closingBalanceNok: balance / 100,
+      uncoveredNeedNok: Math.max(0, -balance) / 100 };
+  });
+}
+module.exports = { preview, projectMonths };
+

@@ -1,6 +1,6 @@
 'use strict';
 const assert = require('node:assert/strict');
-const { preview } = require('../scripts/civication-nok-budget-preview.cjs');
+const { preview, projectMonths } = require('../scripts/civication-nok-budget-preview.cjs');
 const c = require('../data/Civication/economy/nok-budget-prototype-2026.json');
 const before = JSON.stringify(c);
 const job = preview(c, { employed: true });
@@ -18,3 +18,17 @@ assert.throws(() => preview(c, { approvedSupportNok: -1 }), RangeError);
 assert.equal(JSON.stringify(c), before);
 assert.equal(c.migration.activated, false);
 console.log('PASS: sourced NOK budget preview, annual tax arithmetic, part time, support and immutable inputs');
+const scenarios = [{ approvedSupportNok: 9406 }, { employed: true }, { employed: true }];
+const saved = JSON.stringify(scenarios);
+const months = projectMonths(c, scenarios, 15000);
+assert.deepEqual(months.map(m => m.closingBalanceNok), [2910, 7243.6, 11577.2]);
+assert.equal(months[1].openingBalanceNok, months[0].closingBalanceNok);
+assert.equal(months[0].netSalaryNok, 0);
+assert.equal(months[1].approvedSupportNok, 0, 'support never carries automatically into a job month');
+assert.deepEqual(projectMonths(c, [{}, {}, {}]).map(m => m.uncoveredNeedNok), [21496, 42992, 64488]);
+assert.deepEqual(projectMonths(c, scenarios, 15000), months, 'repeated preview is deterministic');
+assert.equal(JSON.stringify(scenarios), saved);
+assert.equal(JSON.stringify(c), before);
+assert.throws(() => projectMonths(c, [], Infinity), RangeError);
+console.log('PASS: three-month projection, job transition, no automatic benefits, cents and unmet need');
+

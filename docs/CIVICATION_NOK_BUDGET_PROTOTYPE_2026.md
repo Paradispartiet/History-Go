@@ -18,6 +18,14 @@ Støttescenarioet er ikke et løfte om NAV-utbetaling. Arbeidsledighet alene utl
 
 ## Videre implementasjon før aktivering
 
+### Tre måneders kontrollgrunnlag
+
+`projectMonths` beregner separate månedsscenarier i hele øre. Testen bruker eksplisitte sparepenger på 15 000 kroner, én måned med illustrert innvilget støtte på 9406 og deretter to måneder i butikkjobb. Sluttsaldo blir 2910, 7243,60 og 11577,20 kroner. Støtte videreføres ikke automatisk. Uten inntekt vises udekket behov; negativ prosjektert saldo er ikke en innvilget kreditt eller en faktisk wallet-transaksjon. Skatt årsberegnes separat per scenario og må ikke fremstilles som samlet skatteoppgjør for et år med jobbskifte.
+
+Statisk boliggjennomgang: `CivicationHome.applyRentTick` bruker virkelige kalenderuker, mens `applyMonthlyRent` bruker virkelige kalendermåneder. Begge belaster økonomisk kapital. Ny kroneintegrasjon må eksplisitt overta boligbetaling for versjonerte spillere og deaktivere begge gamle betalingsveier for dem; forhåndsvisningen endrer ingen av disse funksjonene. Dette funnet beviser ikke at begge funksjoner faktisk er kjørt for samme spiller.
+
+### Gjenstående runtimearbeid
+
 - Koble konkret jobb og stillingsprosent til eksisterende dagsopptjening. Badge-nivå alene skal ikke fastsette realistisk yrkeslønn.
 - Bruk 12 måneder eller faktisk kalender; fire uker er ikke en måned. Ukentlig opptjening kan vises med år/52, men er ikke en ekstra månedslønn.
 - Avklar én eier av bolig, andre utgifter og skatt; boligmodulen belaster i dag kapital, som ikke må dobbelbelastes fra wallet ved ny kobling.
@@ -27,3 +35,4 @@ Støttescenarioet er ikke et løfte om NAV-utbetaling. Arbeidsledighet alene utl
 - Kontroller tre spillmåneder med jobbskifte, deltid, kjøp, støttevedtak, reload og ingen doble trekk.
 
 Kjørbar kontroll: node tests/civication-nok-budget-preview.test.js. Beregningen bruker ingen nettverk eller brukerdata. Prototype og aktiveringskrav må ikke omtales som publisert kroneøkonomi.
+
