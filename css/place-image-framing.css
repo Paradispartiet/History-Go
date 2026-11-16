@@ -1,7 +1,8 @@
-/* History Go — Place photography framing.
-   PlaceCard image/frontImage fill their visible frames edge-to-edge.
-   Legacy popup, miniature and documentary before/after preserve full photos.
-   QuizCard backs, People, brands and badges are unaffected. */
+/* History Go — documentary Place photography framing.
+   Full photographic source remains visible in PlaceCard image/frontImage.
+   Quiet dark letterboxing is preferable to cropping architecture and evidence.
+   Legacy popup, miniature, and before/after photographs use containment.
+   QuizCard backs, People, brands and badges remain untouched. */
 
 /* The landscape Place.image under the heading. */
 body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
@@ -31,16 +32,4 @@ body.hg-app #placeCard .pc-sheet-canonical-before-after figure img {
     .pc-heading-hero.has-photo-source:not(.is-collapsed) {
     min-height: clamp(340px, 48vw, 530px);
   }
-}
-
-/* Photo areas in PlaceCard must never show letterbox gutters.
-   The main landscape hero and the collectible card's photo face fill the
-   actual frame on iPad, phone and desktop. The QuizCard back is unchanged.
-   This intentionally supersedes the historical 'contain' rule above. */
-body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
-body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage{
-  width:100%;
-  height:100%;
-  object-fit:cover !important;
-  object-position:center center !important;
 }
