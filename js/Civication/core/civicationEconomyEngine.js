@@ -830,6 +830,19 @@ function getEconomySnapshot() {
 
   
 window.CivicationEconomyEngine = {
+  // Explicit scenario preview. A selected budget job is not an actual job,
+  // nor permission to pay salary or support into the player's wallet.
+  /** @param {CiviEconomyRecord} config @param {CiviEconomyRecord} scenario */
+  getNokBudgetPreview(config, scenario = {}) {
+    const calculator = /** @type {any} */ (window).CivicationNokBudget;
+    if (!calculator?.preview) return null;
+    const result = calculator.preview(config, scenario);
+    const wallet = window.CivicationState?.getWallet?.();
+    return { ...result, mode: "scenario_preview", activated: false,
+      actualBalance: typeof wallet?.balance === "number" && Number.isFinite(wallet.balance)
+        ? wallet.balance : null,
+      gameMonth: window.CivicationCalendar?.getMonthPeriod?.() || null };
+  },
   tickWeekly: tickPCIncomeWeekly,
   recordCompletedDay: recordCompletedGameDay,
   getEconomySnapshot
