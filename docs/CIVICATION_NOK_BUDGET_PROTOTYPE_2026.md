@@ -236,3 +236,34 @@ kontobackup og tremånedersreisen består. Forrige eksakte head 2e9121b hadde al
 Dette er fire enkeltvarer, ikke et fullstendig matbudsjett, automatisk ernærings-
 eller forbruksmodell. Oslo-proxyen i budsjettet belastes ikke i tillegg til kjøpene.
 Flere varegrupper, daglig forbruk, visuell QA og produksjonsaktivering gjenstår.
+
+### Bruk av matvarer og åpne pakninger
+
+Vareprofilene beskriver nå faktisk pakningsmengde i g/ml: melk 1 000 ml,
+havregryn 1 100 g, brød 750 g og spaghetti 500 g. «Matvarer hjemme» kan registrere
+et eksplisitt forbruk. Standardknappene bruker henholdsvis 250 ml / 100 g / 100 g /
+100 g, som valgte spillmengder, ikke ernæringsnormer. En mindre siste rest brukes
+med sin faktiske mengde. Ingen automatisk kostholds- eller sultmodell innføres.
+
+`consumeNokProduct` leser fersk beholdning, åpner pakninger ved behov og lagrer
+uåpnede pakninger, åpen rest og forbrukshistorikk samlet i canonical wallet. Saldo,
+lønn, utgifter og gamle eiendeler endres ikke. Eksempel: to literpakninger minus
+250 ml blir én uåpnet pakning og 750 ml åpen rest. Et nytt kjøp legger til én ny
+pakning uten å miste resten. Innkjøp og forbruk deler en konfliktkontrollert
+handlings-ID: gjentatt forbrukssignal skriver ikke igjen, og en kjøps-ID kan ikke
+brukes til å forbruke eller omvendt. Tom beholdning eller ugyldige lagringsdata
+avvises før write.
+
+Eide varer finnes i hjemmets matvareliste uavhengig av senere butikktilgang;
+endret tilgang åpner fortsatt ikke nye kjøp. Begge butikkvisningene viser også
+åpnet rest. Forbruksknappen beholder fokus eller flytter det til panelets overskrift
+når varen er brukt opp. Forbruk belastes ikke som et ekstra pengetrekk.
+
+`civication-nok-consumption.test.js` kontrollerer mengder/rest, tømming, siste
+brødrest på 50 g, nytt kjøp, delt handlings-ID, fersk beholdning ved gammelt klikk,
+bruk etter tapt butikktilgang, fokus, ugyldig åpen rest og innlasting. Den eksisterende
+butikktesten og legacy-testen består også. 90-dagersreisen registrerer nå fire
+forbrukshandlinger og gjenoppretter én uåpnet melk + 500 ml åpen rest og 900 g åpen
+havregrynrest. Gjentatt tidligere forbruk etter gjenoppretting endrer ingenting.
+Saldoene er fortsatt 9 376,56 / 13 723,26 / 12 451,26 kr; forbruk gir ingen ny betaling.
+Dette er manuell bruk av fire varer, ikke en komplett daglig livsoppholdsmodell.

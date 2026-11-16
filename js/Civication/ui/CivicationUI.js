@@ -495,7 +495,7 @@ async function renderCivicationShop() {
         <div><strong>${escapeOfferHtml(title)}</strong></div>
         <div>Pris: ${packRecord.nok_product ? Number(price).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : formatCiviShopPc(price)} ${packRecord.nok_product ? "kr" : "PC"}</div>
         ${packRecord.nok_product ? `<div>${escapeOfferHtml(packRecord.unitLabel)} · ${escapeOfferHtml(packRecord.retailer)} · Kontrollert: ${escapeOfferHtml(packRecord.checkedOn)}</div>
-          <div>På lager: ${Number(nokShopping?.shopping?.quantities?.[packId] || 0)} pakninger</div>` : ""}
+          <div>På lager: ${Number(nokShopping?.shopping?.quantities?.[packId] || 0)} pakninger${nokShopping?.shopping?.openedUnits?.[packId] ? ` + ${Number(nokShopping.shopping.openedUnits[packId])} ${escapeOfferHtml(packRecord.baseUnit)} i åpnet pakning` : ""}</div>` : ""}
         <div>${isOwned ? "Kjøpt" : `<button type="button" data-civi-buy-pack="${escapeOfferHtml(packId)}">Kjøp</button>`}</div>
       </div>
     `;

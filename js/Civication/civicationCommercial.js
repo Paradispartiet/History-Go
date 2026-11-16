@@ -441,6 +441,74 @@
     return window.crypto?.randomUUID?.() || `purchase:${Date.now()}:${Math.random()}:${++purchaseSequence}`;
   }
 
+  /** @param {string} productId @param {CiviCommercialWallet} [wallet] @returns {CiviCommercialRecord} */
+  function getNokProductStock(productId, wallet = window.CivicationState?.getWallet?.()) {
+    const nok = wallet?.nok_v1;
+    if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+    const products = Array.isArray(nok.config?.shopProducts) ? nok.config.shopProducts : [];
+    const matches = products.filter(p => p?.id === productId);
+    const product = matches[0];
+    if (matches.length !== 1 || product.category !== "food" || product.repeatable !== true
+        || !Number.isSafeInteger(product.packageQuantity) || product.packageQuantity <= 0
+        || !["g", "ml"].includes(product.baseUnit) || !Number.isSafeInteger(product.consumptionStep)
+        || product.consumptionStep <= 0 || product.consumptionStep > product.packageQuantity)
+      return { ok: false, reason: "CONSUMPTION_NOT_MAPPED" };
+    const shopping = nok.shopping || {};
+    if (typeof shopping !== "object" || Array.isArray(shopping)
+        || (shopping.quantities != null && (typeof shopping.quantities !== "object" || Array.isArray(shopping.quantities)))
+        || (shopping.openedUnits != null && (typeof shopping.openedUnits !== "object" || Array.isArray(shopping.openedUnits))))
+      return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    const packages = shopping.quantities?.[productId] ?? 0;
+    const opened = shopping.openedUnits?.[productId] ?? 0;
+    const available = packages * product.packageQuantity + opened;
+    if (!Number.isSafeInteger(packages) || packages < 0 || !Number.isSafeInteger(opened)
+        || opened < 0 || opened >= product.packageQuantity || !Number.isSafeInteger(available))
+      return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    return { ok: true, product, packages, opened, available };
+  }
+
+  function getNokPantry() {
+    const wallet = window.CivicationState?.getWallet?.();
+    const products = wallet?.nok_v1?.config?.shopProducts;
+    if (!Array.isArray(products)) return [];
+    return products.map(p => getNokProductStock(p?.id, wallet)).filter(s => s.ok && s.available > 0);
+  }
+
+  /** @param {string} productId @param {string} requestId @returns {CiviCommercialRecord} */
+  function consumeNokProduct(productId, requestId) {
+    const owner = window.CivicationState;
+    const wallet = owner?.getWallet?.();
+    const stock = getNokProductStock(productId, wallet);
+    if (!stock.ok) return stock;
+    if (typeof requestId !== "string" || !requestId.trim() || requestId.length > 128)
+      return { ok: false, reason: "CONSUMPTION_REQUEST_REQUIRED" };
+    const shopping = wallet.nok_v1.shopping || { purchases: [], quantities: {} };
+    const used = shopping.consumptions ?? [];
+    if (!Array.isArray(used) || used.some(c => !c || typeof c.requestId !== "string")
+        || new Set(used.map(c => c.requestId)).size !== used.length
+        || !Array.isArray(shopping.purchases) || shopping.purchases.some(p => !p || typeof p.requestId !== "string")
+        || new Set(shopping.purchases.map(p => p.requestId)).size !== shopping.purchases.length
+        || !shopping.quantities || Array.isArray(shopping.quantities)
+        || (shopping.openedUnits != null && (typeof shopping.openedUnits !== "object" || Array.isArray(shopping.openedUnits))))
+      return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    if (shopping.purchases.some(p => !p || p.requestId === requestId)) return { ok: false, reason: "ACTION_REQUEST_CONFLICT" };
+    const previous = used.find(c => c.requestId === requestId);
+    if (previous) return previous.productId === productId ? { ok: true, skipped: true }
+      : { ok: false, reason: "ACTION_REQUEST_CONFLICT" };
+    const product = stock.product;
+    if (stock.available <= 0) return { ok: false, reason: "NOT_ENOUGH_STOCK" };
+    const amount = Math.min(stock.available, product.consumptionStep);
+    const date = window.CivicationCalendar?.getGameDate?.();
+    if (!date) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+    const remaining = stock.available - amount;
+    owner.updateWallet({ ...wallet, nok_v1: { ...wallet.nok_v1, shopping: { ...shopping,
+      quantities: { ...shopping.quantities, [productId]: Math.floor(remaining / product.packageQuantity) },
+      openedUnits: { ...(shopping.openedUnits || {}), [productId]: remaining % product.packageQuantity },
+      consumptions: [...used, { requestId, productId, amount,
+        baseUnit: product.baseUnit, gameDateISO: date, kind: product.consumptionKind }] } } });
+    return { ok: true, productId, remaining, amount, baseUnit: product.baseUnit };
+  }
+
   /** @param {string} packId @param {string} [requestId] @returns {CiviCommercialRecord} */
   function buyNokProduct(packId, requestId) {
     const owner = window.CivicationState;
@@ -470,6 +538,13 @@
     if (!Array.isArray(shopping.purchases) || !shopping.quantities || typeof shopping.quantities !== "object"
         || Array.isArray(shopping.quantities) || shopping.purchases.some(p => !p || typeof p.requestId !== "string")
         || new Set(shopping.purchases.map(p => p.requestId)).size !== shopping.purchases.length)
+      return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    const consumed = shopping.consumptions ?? [];
+    if (!Array.isArray(consumed) || consumed.some(c => !c || typeof c.requestId !== "string")
+        || new Set(consumed.map(c => c.requestId)).size !== consumed.length)
+      return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    if (consumed.some(c => c.requestId === requestId)) return { ok: false, reason: "ACTION_REQUEST_CONFLICT" };
+    if (product.packageQuantity != null && !getNokProductStock(packId, wallet).ok)
       return { ok: false, reason: "INVALID_SHOPPING_STATE" };
     const previous = shopping.purchases.find(p => p.requestId === requestId);
     if (previous) return previous.productId === packId ? { ok: true, skipped: true, packId }
@@ -569,6 +644,9 @@
 
   window.HG_CiviShop = {
     createPurchaseRequest,
+    getNokProductStock,
+    getNokPantry,
+    consumeNokProduct,
     getWallet,
     getInv,
     getPacks,

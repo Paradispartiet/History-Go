@@ -27,7 +27,9 @@
         row.appendChild(node("strong", String(pack.title || "Vare")));
         row.appendChild(node("p", String(pack.unitLabel || "") + " · " + formatNok(pack.priceNok) + " kr"));
         row.appendChild(node("p", "Priskilde: " + String(pack.retailer || "") + " · Kontrollert: " + String(pack.checkedOn || "")));
-        row.appendChild(node("p", "På lager: " + String(wallet.nok_v1.shopping?.quantities?.[pack.id] || 0) + " pakninger"));
+        const opened = wallet.nok_v1.shopping?.openedUnits?.[pack.id] || 0;
+        row.appendChild(node("p", "På lager: " + String(wallet.nok_v1.shopping?.quantities?.[pack.id] || 0) + " pakninger"
+          + (opened ? " + " + opened + " " + String(pack.baseUnit) + " i åpnet pakning" : "")));
         const button = /** @type {HTMLButtonElement} */ (node("button", "Kjøp én pakning"));
         button.type = "button"; button.className = "btn";
         button.setAttribute("data-buy-pack", String(pack.id));
@@ -48,6 +50,29 @@
       }
     }
     if (!packs.length) panel.appendChild(node("p", "Ingen dokumenterte varepriser er tilgjengelige her ennå."));
+    const pantry = shop.getNokPantry?.() || [];
+    panel.appendChild(node("h4", "Matvarer hjemme"));
+    if (!pantry.length) panel.appendChild(node("p", "Ingen registrerte matvarer igjen."));
+    for (const stock of pantry) {
+      const product = stock.product;
+      const row = node("div", "");
+      row.appendChild(node("p", String(product.title) + " · Igjen: " + stock.available + " " + String(product.baseUnit)));
+      const use = /** @type {HTMLButtonElement} */ (node("button", "Bruk " + Math.min(stock.available, product.consumptionStep) + " " + product.baseUnit));
+      use.type = "button"; use.className = "btn"; use.setAttribute("data-consume-product", product.id);
+      const requestId = shop.createPurchaseRequest();
+      use.addEventListener("click", async () => {
+        use.disabled = true;
+        try {
+          const result = shop.consumeNokProduct(product.id, requestId);
+          purchaseMessage = result?.ok ? "Forbruket er registrert."
+            : result?.reason === "NOT_ENOUGH_STOCK" ? "Varen er brukt opp." : "Forbruket kunne ikke registreres.";
+        } catch { purchaseMessage = "Forbruket kunne ikke bekreftes. Sjekk beholdningen før nytt forsøk."; }
+        await renderStorePanel();
+        const next = /** @type {HTMLButtonElement|undefined} */ (Array.from(host.querySelectorAll("[data-consume-product]")).find(b => b.getAttribute("data-consume-product") === product.id));
+        (next || host.querySelector("h3"))?.focus({ preventScroll: true });
+      });
+      row.appendChild(use); panel.appendChild(row);
+    }
     const status = node("p", purchaseMessage); status.setAttribute("role", "status"); panel.appendChild(status);
     host.replaceChildren(panel);
   }

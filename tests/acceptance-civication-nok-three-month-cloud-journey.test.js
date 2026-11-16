@@ -85,6 +85,11 @@ async function checkpoint(w) {
   const before = JSON.stringify(restored.CivicationState.getWallet());
   restored.CivicationEconomyEngine.tickWeekly();
   assert.equal(JSON.stringify(restored.CivicationState.getWallet()), before, 'restore cannot pay salary or rent again');
+  const consumed = restored.CivicationState.getWallet().nok_v1.shopping?.consumptions?.[0];
+  if (consumed) {
+    assert.equal(restored.HG_CiviShop.consumeNokProduct(consumed.productId, consumed.requestId).skipped, true);
+    assert.equal(JSON.stringify(restored.CivicationState.getWallet()), before, 'restore cannot consume the same portion twice');
+  }
   const writes = db.writes;
   await restored.CivicationCloudSave.flush();
   assert.equal(db.writes, writes, 'unchanged restored account does not rewrite backup');
@@ -115,6 +120,10 @@ async function checkpoint(w) {
       assert.equal(w.CivicationState.getWallet().balance, 125.25, 'no acceptance bonus');
       await w.HG_CiviShop.buyPack('tine-milk-1l', 'journey-milk-1');
       await w.HG_CiviShop.buyPack('tine-milk-1l', 'journey-milk-2');
+    }
+    if ([9, 10, 33, 34].includes(day)) {
+      const productId = day < 30 ? 'tine-milk-1l' : 'axa-oats-1100g';
+      assert.equal(w.HG_CiviShop.consumeNokProduct(productId, 'journey-use-' + day).ok, true);
     }
     if (day === 60) { // March is entirely unemployed, after February salary was settled.
       w.CivicationState.setActivePosition(null);
@@ -148,9 +157,12 @@ async function checkpoint(w) {
   assert.equal(wallet.nok_v1.payrollLedger.length, 3);
   assert.equal(wallet.nok_v1.payrollLedger[2].grossCents, 0, 'job loss creates no automatic NAV or wages');
   assert.equal(wallet.nok_v1.transportPasses.length, 2);
-  assert.equal(wallet.nok_v1.shopping.quantities['tine-milk-1l'], 2);
-  assert.equal(wallet.nok_v1.shopping.quantities['axa-oats-1100g'], 1);
+  assert.equal(wallet.nok_v1.shopping.quantities['tine-milk-1l'], 1);
+  assert.equal(wallet.nok_v1.shopping.quantities['axa-oats-1100g'], 0);
   assert.equal(wallet.nok_v1.shopping.purchases.length, 3);
+  assert.equal(wallet.nok_v1.shopping.openedUnits['tine-milk-1l'], 500);
+  assert.equal(wallet.nok_v1.shopping.openedUnits['axa-oats-1100g'], 900);
+  assert.equal(wallet.nok_v1.shopping.consumptions.length, 4);
   assert.equal(JSON.parse(w.localStorage.getItem('hg_pc_inventory_v1')).packs.streetwear_basic, true);
   assert.equal(wallet.nok_v1.invoices.filter(i => i.status === 'paid' && i.estimatedConsumptionKwh === 500).length, 3);
   assert.equal(wallet.nok_v1.invoices.filter(i => i.status === 'paid' && !i.estimatedConsumptionKwh).length, 3);
@@ -171,5 +183,5 @@ async function checkpoint(w) {
     assert.equal(other.localStorage.getItem(key), local);
     assert.equal(db.record.payload.state[key], remote);
   }
-  console.log('PASS: 30 published quiz answers -> sourced offer/acceptance -> 90 played days, 3 rents, 3 electricity bills, 2 tickets, 3 grocery purchases, job loss, 3 fresh-device restores; balances ' + checkpoints.join(', '));
+  console.log('PASS: 30 published quiz answers -> sourced offer/acceptance -> 90 played days, 3 rents, 3 electricity bills, 2 tickets, 3 grocery purchases, 4 consumption actions, job loss, 3 fresh-device restores; balances ' + checkpoints.join(', '));
 })().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => windows.forEach(dom => dom.window.close()));
