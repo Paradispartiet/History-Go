@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 import {createHash} from "node:crypto";
 const read = path => JSON.parse(readFileSync(new URL("../" + path, import.meta.url), "utf8"));
-const imagePath = "bilder/merker/by/undermerker/modernisme-brodert-v1.webp";
-const sha = "39d0403eb18789c1526c1f1825fa0caccca199958784c479039fb3cf152aaa5e";
+const imagePath = "bilder/merker/by/undermerker/modernisme-brodert-v2.webp";
+const sha = "55334d30bd8f0f8312518276a8fb39db44b90dae3566d72ea319df5460b35c61";
 test("By Modernisme badge has exact 1024px gray embroidered image, correct routing and intact previous art", () => {
   const by = read("data/badges/by.json");
   const plan = read("data/badges/underbadge_batch01_production.json");
@@ -20,20 +20,20 @@ test("By Modernisme badge has exact 1024px gray embroidered image, correct routi
   assert.deepEqual(by.subBadgeImages,{
     klassisk_arkitektur:"bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp",
     modernisme:imagePath,
-    funksjonalisme:"bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp",
+    funksjonalisme:"bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp",
     brutalisme:"bilder/merker/by/undermerker/brutalisme-brodert-v1.webp",
     postmodernisme:"bilder/merker/by/undermerker/postmodernisme-brodert-v1.webp",
     samtidsarkitektur:"bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp",byplanlegging:"bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp",
     ...(infrastructureActive?{infrastruktur:"bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp"}:{}),
     ...(by.subBadgeImages.monumenter_og_landemerker?{monumenter_og_landemerker:"bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp"}:{}),
-    ...(by.subBadgeImages.bolig_og_bomiljo?{bolig_og_bomiljo:"bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v1.webp"}:{})
+    ...(by.subBadgeImages.bolig_og_bomiljo?{bolig_og_bomiljo:"bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp"}:{})
   });
   assert.equal(by.sub.length,10);
   assert.equal(asset.status,"integrated");
   assert.equal(asset.selectedImage,imagePath);
   assert.deepEqual(asset.quality,{visualApproved:true,technicalApproved:true});
-  assert.equal(asset.bytes,540416);
-  assert.equal(img.length,540416);
+  assert.equal(asset.bytes,620110);
+  assert.equal(img.length,620110);
   assert.equal(img.toString("ascii",0,4),"RIFF");
   assert.equal(img.toString("ascii",8,12),"WEBP");
   assert.equal(img.toString("ascii",12,16),"VP8X");
@@ -41,6 +41,8 @@ test("By Modernisme badge has exact 1024px gray embroidered image, correct routi
   assert.equal(img.readUIntLE(27,3)+1,1024);
   assert.ok(img[20]&0x10,"image must retain alpha");
   assert.equal(createHash("sha256").update(img).digest("hex"),sha);
+  const prior=readFileSync(new URL("../bilder/merker/by/undermerker/modernisme-brodert-v1.webp",import.meta.url));
+  assert.equal(createHash("sha256").update(prior).digest("hex"),asset.previousActive.sha256,"v1 original retained");
 });
 test("other By candidates are inactive and 12 Film & TV plus 7 Scenekunst remain active",()=>{
   const by=read("data/badges/by.json"),film=read("data/badges/film_tv.json"),scene=read("data/badges/scenekunst.json");
