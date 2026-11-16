@@ -63,6 +63,8 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
 body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-body {
   scroll-padding-top: calc(var(--pc-visible-hero-height, 0px) + 12px);
   scroll-padding-bottom: 16px;
+  /* The runway is zero when existing content already provides enough scroll. */
+  padding-bottom: calc(16px + var(--pc-reader-runway, 0px));
 }
 
 /* Reading navigation yields the real sticky photo, including on phones.
