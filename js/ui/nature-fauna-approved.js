@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_graatrost:Object.freeze({
+   scientificName:"Turdus pilaris",
+   src:"bilder/natur/fauna/godkjent/22_graatrost_v1.webp",
+   gitBlobSha:"c3d967ffa6afe2b384ff1433a7af7beec4829bdb",
+   reviewedAt:"2026-11-16",
+   stage:"adult_grey_head_chestnut_mantle_grey_rump_black_tail_yellow_black_tipped_bill_black_spotted_orange_buff_breast_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-graatrost-20261116.json"
+  }),
   emne_fauna_rodstrupe:Object.freeze({
    scientificName:"Erithacus rubecula",
    src:"bilder/natur/fauna/godkjent/21_rodstrupe_v1.webp",

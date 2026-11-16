@@ -27,7 +27,7 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0,"Transparent WebP required");
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
-const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,21);
+const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=21,"Rødstrupe stays approved after future birds");
 assert.equal(reg.get(id)?.src,item.src);assert.equal(reg.get(id)?.scientificName,latin);assert.equal(reg.get(id)?.gitBlobSha,item.gitBlobSha);
 const prev={
   "emne_fauna_gronnfink": "4e6ee9392ca010aad7a06e23a0191fc5f89432cc",
@@ -53,9 +53,9 @@ const prev={
 };
 assert.equal(Object.keys(prev).length,20);
 for(const [priorId,sha] of Object.entries(prev))assert.equal(reg.get(priorId)?.gitBlobSha,sha,priorId+" previous original must remain untouched");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261116-21"));
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-rodstrupe-021.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Rødstrupe")'));
-assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Gråtrost")'));
+assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Linerle")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #21 Rødstrupe: transparent WebP, 20 original hashes, species ID, quiz ID and responsive browser contract OK.");
