@@ -1,0 +1,20 @@
+name: Tjuvholmen one-time final published-content acceptance
+on:
+  push:
+    branches:
+      - content/tjuvholmen-published-closeout-20261116
+    paths:
+      - .github/workflows/tjuvholmen-final-acceptance-once.yml
+permissions:
+  contents: read
+jobs:
+  final-tjuvholmen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check canonical and published media SHA-256 plus remaining external gates
+        run: node tests/tjuvholmen-final-published-acceptance.test.mjs
