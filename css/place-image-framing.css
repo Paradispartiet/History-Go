@@ -57,3 +57,28 @@ body.hg-app #placeCard.is-unified-place #pcFrontImage {
     min-height: clamp(340px, 48vw, 530px);
   }
 }
+
+/* Photo areas in PlaceCard must never show letterbox gutters.
+   The main landscape hero and the collectible card's photo face fill the
+   actual frame on iPad, phone and desktop. The QuizCard back is unchanged.
+   This intentionally supersedes the historical 'contain' rule above. */
+body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
+body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage{
+  width:100%;
+  height:100%;
+  object-fit:cover !important;
+  object-position:center center !important;
+}
+
+/* Editorial documentary-photo exception, intentionally after the full-bleed
+   default above. A Place.image or frontImage must preserve the *entire*
+   photograph, including its dateable buildings and surroundings. The default
+   full-bleed treatment still applies to other media, not these two exact
+   canonical image nodes. These selectors match the full-bleed selectors
+   at equal specificity, and their later position establishes precedence. */
+body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
+body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage {
+  object-fit: contain !important;
+  object-position: center center !important;
+  background-color: #15212b;
+}
