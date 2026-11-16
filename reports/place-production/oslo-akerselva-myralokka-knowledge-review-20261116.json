@@ -398,7 +398,7 @@
     "Active repository species maps represent mapped species, not verified sightings at every visit.",
     "Data/knowledge canonical generated registries and review queue must be rebuilt and checked on the exact branch head after this quiz edit.",
     "QuizCard manifest/parity and iPad browser quality still require separate verification.",
-    "Some older automatically-linked questions have semantically weak emne assignment and will be audited separately; do not count them as human reviewed."
+    "Seven known incorrect legacy Natur-emne links in set 5 have been explicitly reviewed and revised; other historical automatically-linked questions may still be semantically weak and are not counted as fully human-reviewed."
   ],
   "appliedConceptPass": {
     "date": "2026-11-16",
@@ -425,5 +425,75 @@
       "knowledge_link_status"
     ],
     "caution": "Forbedret spørsmålstekst er ikke bevis for fullt kvalitetssikrede kilder, tidligere automatiske emnekoblinger eller godkjent V1."
+  },
+  "legacyEmneCuration": {
+    "date": "2026-11-16",
+    "status": "source_reviewed_question_links_regeneration_pending",
+    "previouslyWrongEmneId": "em_natur_dyreatferd_formering_tilpasning",
+    "revised": [
+      {
+        "id": "myralokka_s5_q1",
+        "emne_ids": [
+          "em_natur_arter_habitat_mangfold"
+        ],
+        "evidence": "Aktivt kartlagt flora – gullstjerne"
+      },
+      {
+        "id": "myralokka_s5_q2",
+        "emne_ids": [
+          "em_natur_arter_habitat_mangfold"
+        ],
+        "evidence": "Kartkoblet artsliste er ikke personlig dagens observasjon"
+      },
+      {
+        "id": "myralokka_s5_q3",
+        "emne_ids": [
+          "em_natur_arter_habitat_mangfold"
+        ],
+        "evidence": "Artsoversikt over to aktive kart uten dobbelttelling"
+      },
+      {
+        "id": "myralokka_s5_q4",
+        "emne_ids": [
+          "em_natur_urban_okologi_byrom"
+        ],
+        "evidence": "Fra industrielt leiruttak til offentlig park"
+      },
+      {
+        "id": "myralokka_s5_q5",
+        "emne_ids": [
+          "em_natur_urban_okologi_byrom"
+        ],
+        "evidence": "Arbeiderboliger og fabrikkmiljø rundt byrommet"
+      },
+      {
+        "id": "myralokka_s5_q6",
+        "emne_ids": [
+          "em_natur_jord_sediment_mikroliv",
+          "em_natur_urban_okologi_byrom"
+        ],
+        "evidence": "Jordpakking og slitasje – mulig virkning, ikke målt skade"
+      },
+      {
+        "id": "myralokka_s5_q7",
+        "emne_ids": [
+          "em_natur_urban_okologi_byrom",
+          "em_natur_geologi_landskapsform"
+        ],
+        "evidence": "Industriform, terrengspor og parkens natur"
+      }
+    ],
+    "editorialScope": "Fjerning av automatisk feilfaglig dyreatferdsmapping; to interne appspørsmål omformulert som naturfaglig kartforståelse; siste spørsmål som stedlig kunnskapsoppgave.",
+    "identityGuarantee": "id, quiz_id, primary_knowledge_unit_id, knowledge_unit_ids and knowledge-claim strings unchanged in all seven; user learning history must remain stable.",
+    "verificationGates": [
+      "Regenerate canonical Knowledge on exact branch head",
+      "Verify quiz and generated Knowledge ID parity",
+      "Rerun QuizCard and mobile/iPad/desktop browser quality",
+      "Audit remaining weak source/emne assignments, do not claim V1"
+    ],
+    "unresolvedHeld": [
+      "myralokka_s2_q5",
+      "myralokka_s2_q6"
+    ]
   }
 }
