@@ -39,3 +39,11 @@
 **Første bildebunke:** Skanska og Veidekke (offisielle ressurser funnet), deretter Rambøll; HENT og KORO trenger videre rettighets-/filavklaring. De øvrige sju er satt til **source-needed**, ikke «ferdige».
 
 **Publiseringsstatus:** 0 av disse 12 Brand-logoene er innført i denne runden. De inngår fortsatt i de totalt 15 manglende stedstilknyttede Brands-bildene i audit-en.
+
+## Supplerende rettighetskontroll, 16.11.2026
+
+- **Skanska:** Presserommet tilbyr en originalfil for Skanskas logo. Det er **ikke tilstrekkelig dokumentasjon på at den kan gjenpubliseres fritt**. Skanska Digital har en egen vilkårsside, https://digital.skanska.no/vilkar/, som uttrykkelig verner logoer og varemerker, men denne siden gjelder Skanska Digital og kan **ikke uten videre** brukes som rettighetsbevis for Skanska Norges presserom. Korrekt status: `original_available_rights_uncleared`, ingen automatisk import.
+- **Veidekke:** https://www.veidekke.no/aktuelt/pressemeldinger/veidekkeveidekke-far-ny-logo/ dokumenterer lanseringen av den nye merkeidentiteten **13. januar 2025**, mens selskapet oppgir forrige logoendring i 1997. Historiske Brands må skille periode **1997–12.01.2025** fra **13.01.2025–**, og en logoressurs må kontrollere lisens og akkurat den filvarianten som brukes.
+- **Rambøll:** Offisiell medieside https://www.ramboll.com/news-media henviser til Brand Central, men tilgangen til profilmateriale er ikke det samme som dokumentert fri gjenpublisering. Status: `source_found_rights_uncleared`.
+
+**Ingen endring i de 15 manglende bildene:** Dette er ny proveniens og rettighetskunnskap, ikke nye publiserte logoer.
