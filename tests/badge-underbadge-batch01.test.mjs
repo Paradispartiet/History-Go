@@ -40,7 +40,7 @@ test('legacy candidates and the activated Scenekunst and Film underbadges are re
   assert.deepEqual(family.assets.map(a=>a.id),parent.sub);
   if(id==='scenekunst') assert.deepEqual(parent.subBadgeImages,activated);
   else if(id==='film_tv') assert.deepEqual(parent.subBadgeImages,{spillefilm:'bilder/merker/film_tv/undermerker/spillefilm-brodert-v2.webp',kortfilm:'bilder/merker/film_tv/undermerker/kortfilm-brodert-v1.webp',dokumentarfilm:'bilder/merker/film_tv/undermerker/dokumentarfilm-brodert-v1.webp',tv_serier:'bilder/merker/film_tv/undermerker/tv_serier-brodert-v1.webp',nyheter_og_reportasje:'bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp',klassikere:'bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp',norsk_film_og_tv:'bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp',filmfestivaler:'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp',filmlocations:'bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp',film_og_tv_produksjon:'bilder/merker/film_tv/undermerker/film_og_tv_produksjon-brodert-v1.webp',arkiv_og_kanon:'bilder/merker/film_tv/undermerker/arkiv_og_kanon-brodert-v1.webp',visningssteder:'bilder/merker/film_tv/undermerker/visningssteder-brodert-v1.webp'});
-  else if(id==='by') assert.deepEqual(parent.subBadgeImages,{klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp',modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v2.webp',funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp',brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v1.webp',postmodernisme:'bilder/merker/by/undermerker/postmodernisme-brodert-v1.webp',samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp',byplanlegging:'bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp',...(infrastructureActive?{infrastruktur:'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'}:{}),...(monumentActive?{monumenter_og_landemerker:'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'}:{}),...(boligActive?{bolig_og_bomiljo:'bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp'}:{})});
+  else if(id==='by') assert.deepEqual(parent.subBadgeImages,{klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v3.webp',modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v2.webp',funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp',brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v2.webp',postmodernisme:'bilder/merker/by/undermerker/postmodernisme-brodert-v2.webp',samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v2.webp',byplanlegging:'bilder/merker/by/undermerker/byplanlegging-brodert-v2.webp',...(infrastructureActive?{infrastruktur:'bilder/merker/by/undermerker/infrastruktur-brodert-v2.webp'}:{}),...(monumentActive?{monumenter_og_landemerker:'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v2.webp'}:{}),...(boligActive?{bolig_og_bomiljo:'bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp'}:{})});
   else assert.equal(parent.subBadgeImages,undefined,id+' other underbadges remain inactive');
   for(const asset of family.assets){
    const path='bilder/merker/'+id+'/undermerker/'+asset.id+'-brodert-v1.webp';
@@ -195,5 +195,61 @@ test('Scenekunst v3 images are traceable, activated, and verified',()=>{
   assert.equal(height,1024,id+' height');
   assert.ok(hasAlpha,id+' WebP alpha channel');
   assert.equal(createHash('sha256').update(buf).digest('hex'),digest,id+' file SHA-256');
+ }
+});
+
+
+test('By v2/v3 batch: seven exact active assets, alpha, 10/10 and all prior originals retained',()=>{
+ const by=read('data/badges/by.json');
+ const plan=read('data/badges/underbadge_batch01_production.json');
+ const expected={
+  klassisk_arkitektur:{version:3,bytes:546280,sha256:'a025663a651be7dc8b0c7aa87680cc25b75a1d41351d9f54cfad818590db192c'},
+  brutalisme:{version:2,bytes:575512,sha256:'658909e24c8a7724aed0e9eeef2d533f3838fc52f6e6e1c372856a576220bc13'},
+  postmodernisme:{version:2,bytes:643864,sha256:'fa3e30f3ce81fd2ac9bde8646546a989045100bbd72b537cb0f96d366754c703'},
+  samtidsarkitektur:{version:2,bytes:586336,sha256:'8ff150f6b664b0ae9cbbad474d44bfd1e27980928930e1c66cac40eea3c81c3d'},
+  byplanlegging:{version:2,bytes:636642,sha256:'8529dcf9861a4780ad4bb26809502ccbf73091bec2d836ec6714b3d7c7b8aec5'},
+  infrastruktur:{version:2,bytes:1768320,sha256:'ea779090970c8e38f0b0ef6ac37198f9dd09e1b934c132eee1f1cced12b8f9ac'},
+  monumenter_og_landemerker:{version:2,bytes:557058,sha256:'28f9824cc3d79954b4604a08b32057da0bb1a3370f7ac0ec5957da7ea41938dc'}
+ };
+ assert.deepEqual(Object.keys(by.subBadgeImages),by.sub,'exactly ten canonical underbadges');
+ assert.equal(by.image,'bilder/merker/by-brodert-v6.webp','main badge retained');
+ const others={
+  modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v2.webp',
+  funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp',
+  bolig_og_bomiljo:'bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp'
+ };
+ for(const [id,p] of Object.entries(others))assert.equal(by.subBadgeImages[id],p,id+' previously active v2 unchanged');
+ const digest=buf=>createHash('sha256').update(buf).digest('hex');
+ for(const [id,s] of Object.entries(expected)){
+  const path='bilder/merker/by/undermerker/'+id+'-brodert-v'+s.version+'.webp';
+  const rec=plan.families.by.assets.find(a=>a.id===id);
+  assert.ok(rec,id+' manifest entry');
+  assert.equal(by.subBadgeImages[id],path,id+' route');
+  assert.equal(rec.selectedImage,path,id+' selected');
+  assert.equal(rec.bytes,s.bytes,id+' size manifest');
+  assert.equal(rec.sha256,s.sha256,id+' manifest SHA-256');
+  assert.equal(rec.replacementCandidate.status,'active',id+' active production state');
+  const b=readFileSync(resolve(root,path));
+  assert.equal(b.length,s.bytes,id+' bytes');
+  assert.equal(digest(b),s.sha256,id+' actual SHA-256');
+  assert.equal(b.toString('ascii',0,4),'RIFF',id+' RIFF');
+  assert.equal(b.readUInt32LE(4)+8,b.length,id+' RIFF size');
+  assert.equal(b.toString('ascii',8,12),'WEBP',id+' WEBP');
+  const mode=b.toString('ascii',12,16);
+  if(mode==='VP8X'){
+   assert.equal(b.readUIntLE(24,3)+1,1024,id+' width');
+   assert.equal(b.readUIntLE(27,3)+1,1024,id+' height');
+   assert.ok(b[20]&0x10,id+' alpha');
+  }else if(mode==='VP8L'){
+   assert.equal(b[20],0x2f,id+' VP8L signature');
+   const bits=b.readUInt32LE(21);
+   assert.equal((bits&0x3fff)+1,1024,id+' width');
+   assert.equal(((bits>>>14)&0x3fff)+1,1024,id+' height');
+   assert.ok((bits>>>28)&1,id+' alpha');
+  }else assert.fail(id+' unsupported WebP format: '+mode);
+  assert.ok(rec.previousActive.path.endsWith('-brodert-v'+(s.version-1)+'.webp'),id+' previous original path');
+  const previous=readFileSync(resolve(root,rec.previousActive.path));
+  assert.equal(previous.length,rec.previousActive.bytes,id+' previous bytes');
+  assert.equal(digest(previous),rec.previousActive.sha256,id+' previous SHA-256');
  }
 });

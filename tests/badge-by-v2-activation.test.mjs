@@ -29,24 +29,24 @@ function assertTransparent1024WebP(bytes, id) {
   } else assert.fail(id+' unsupported WebP mode '+mode);
 }
 
-test('By v2 activates exactly three large-type original images while preserving seven other badges',()=>{
+test('By v2 preserves exact original images for first three activated badges alongside newer active versions',()=>{
   const by=readJson('data/badges/by.json');
   const prod=readJson('data/badges/underbadge_batch01_production.json');
   assert.equal(by.image,'bilder/merker/by-brodert-v6.webp');
   assert.equal(by.sub.length,10);
   assert.deepEqual(Object.keys(by.subBadgeImages),by.sub);
   assert.equal(Object.keys(by.subBadgeImages).length,10);
-  const unmodified = {
-    klassisk_arkitektur: 'klassisk_arkitektur-brodert-v2.webp',
-    brutalisme: 'brutalisme-brodert-v1.webp',
-    postmodernisme: 'postmodernisme-brodert-v1.webp',
-    samtidsarkitektur: 'samtidsarkitektur-brodert-v1.webp',
-    byplanlegging: 'byplanlegging-brodert-v1.webp',
-    infrastruktur: 'infrastruktur-brodert-v1.webp',
-    monumenter_og_landemerker: 'monumenter_og_landemerker-brodert-v1.webp'
+  const laterActivated = {
+    klassisk_arkitektur: 'klassisk_arkitektur-brodert-v3.webp',
+    brutalisme: 'brutalisme-brodert-v2.webp',
+    postmodernisme: 'postmodernisme-brodert-v2.webp',
+    samtidsarkitektur: 'samtidsarkitektur-brodert-v2.webp',
+    byplanlegging: 'byplanlegging-brodert-v2.webp',
+    infrastruktur: 'infrastruktur-brodert-v2.webp',
+    monumenter_og_landemerker: 'monumenter_og_landemerker-brodert-v2.webp'
   };
-  for(const [id,file] of Object.entries(unmodified)) {
-    assert.equal(by.subBadgeImages[id],prefix+file,id+' must be unchanged');
+  for(const [id,file] of Object.entries(laterActivated)) {
+    assert.equal(by.subBadgeImages[id],prefix+file,id+' separately activated artwork');
   }
   for(const [id,spec] of Object.entries(specs)) {
     const file=prefix+id+'-brodert-v2.webp';

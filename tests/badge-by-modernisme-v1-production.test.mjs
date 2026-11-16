@@ -18,14 +18,14 @@ test("By Modernisme badge has exact 1024px gray embroidered image, correct routi
   assert.equal(oslo.image,"bilder/merker/by/oslo-brodert-v1.webp");
   const infrastructureActive=read('data/badges/infrastruktur_candidate_v1.json').status==='integrated';
   assert.deepEqual(by.subBadgeImages,{
-    klassisk_arkitektur:"bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp",
+    klassisk_arkitektur:"bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v3.webp",
     modernisme:imagePath,
     funksjonalisme:"bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp",
-    brutalisme:"bilder/merker/by/undermerker/brutalisme-brodert-v1.webp",
-    postmodernisme:"bilder/merker/by/undermerker/postmodernisme-brodert-v1.webp",
-    samtidsarkitektur:"bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp",byplanlegging:"bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp",
-    ...(infrastructureActive?{infrastruktur:"bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp"}:{}),
-    ...(by.subBadgeImages.monumenter_og_landemerker?{monumenter_og_landemerker:"bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp"}:{}),
+    brutalisme:"bilder/merker/by/undermerker/brutalisme-brodert-v2.webp",
+    postmodernisme:"bilder/merker/by/undermerker/postmodernisme-brodert-v2.webp",
+    samtidsarkitektur:"bilder/merker/by/undermerker/samtidsarkitektur-brodert-v2.webp",byplanlegging:"bilder/merker/by/undermerker/byplanlegging-brodert-v2.webp",
+    ...(infrastructureActive?{infrastruktur:"bilder/merker/by/undermerker/infrastruktur-brodert-v2.webp"}:{}),
+    ...(by.subBadgeImages.monumenter_og_landemerker?{monumenter_og_landemerker:"bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v2.webp"}:{}),
     ...(by.subBadgeImages.bolig_og_bomiljo?{bolig_og_bomiljo:"bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp"}:{})
   });
   assert.equal(by.sub.length,10);

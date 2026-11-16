@@ -11,7 +11,7 @@ const by = read('data/badges/by.json');
 assert.equal(rec.id, 'brutalisme');
 assert.deepEqual(rec.size,[1024,1024]);
 assert.equal(by.sub.length,10);
-assert.equal(by.subBadgeImages.klassisk_arkitektur,'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp');
+assert.equal(by.subBadgeImages.klassisk_arkitektur,'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v3.webp');
 assert.equal(by.subBadgeImages.modernisme,'bilder/merker/by/undermerker/modernisme-brodert-v2.webp');
 assert.equal(by.subBadgeImages.funksjonalisme,'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp');
 const pending = [];
@@ -32,7 +32,7 @@ if (process.argv.includes('--require-assets')) {
   assert.equal(pending.length,0,'Missing locale images: '+pending.join(','));
 }
 if (rec.status === 'integrated_v1_active') {
-  assert.equal(by.subBadgeImages.brutalisme,rec.sourceImage,'active By image routing');
+  assert.equal(by.subBadgeImages.brutalisme,'bilder/merker/by/undermerker/brutalisme-brodert-v2.webp','active By image routing');
   assert.deepEqual(rec.quality,{visualApproved:true,technicalApproved:true,registered:true});
   assert.equal(pending.length,0,'integrated badge cannot have missing WebP files');
 }

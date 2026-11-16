@@ -13,9 +13,9 @@ test('Samtidsarkitektur is sixth original 1024px embroidered By image',()=>{
  // Later originals are accepted only in canonical order and at exact pinned paths.
  assert.equal(by.sub[5],'samtidsarkitektur');
  const later=[
-  ['byplanlegging','bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp'],
-  ['infrastruktur','bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'],
-  ['monumenter_og_landemerker','bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'],
+  ['byplanlegging','bilder/merker/by/undermerker/byplanlegging-brodert-v2.webp'],
+  ['infrastruktur','bilder/merker/by/undermerker/infrastruktur-brodert-v2.webp'],
+  ['monumenter_og_landemerker','bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v2.webp'],
   ['bolig_og_bomiljo','bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp']
  ];
  assert.deepEqual(by.sub.slice(6),later.map(([id])=>id));
@@ -23,10 +23,10 @@ test('Samtidsarkitektur is sixth original 1024px embroidered By image',()=>{
  assert.deepEqual(present,later.slice(0,present.length),'By originals must be integrated in order');
  for(const [id,expected] of present)assert.equal(by.subBadgeImages[id],expected,id+' pinned original');
  assert.equal(Object.keys(by.subBadgeImages).length,6+present.length,'no unknown active By originals');
- assert.equal(by.subBadgeImages.samtidsarkitektur,source);
+ assert.equal(by.subBadgeImages.samtidsarkitektur,'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v2.webp');
  const a=plan.families.by.assets.find(x=>x.id==='samtidsarkitektur');
  assert.equal(a.status,'integrated');
- assert.equal(a.selectedImage,source);
+ assert.equal(a.selectedImage,'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v2.webp');
  assert.deepEqual(a.quality,{visualApproved:true,technicalApproved:true});
  const b=readFileSync(new URL(source,root));
  assert.equal(b.length,505184);

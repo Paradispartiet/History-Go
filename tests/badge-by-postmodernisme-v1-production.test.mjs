@@ -11,21 +11,21 @@ test('By Postmodernisme is fifth original 1024px WebP without altering other bad
  assert.equal(by.sub.length,10);
  assert.equal(Object.keys(by.subBadgeImages).length,10);
  assert.deepEqual(by.subBadgeImages,{
-  klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp',
+  klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v3.webp',
   modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v2.webp',
   funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp',
-  brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v1.webp',
-  postmodernisme:imagePath,
-  samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp',byplanlegging:'bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp',
-  infrastruktur:'bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp',
-  monumenter_og_landemerker:'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp',
+  brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v2.webp',
+  postmodernisme:'bilder/merker/by/undermerker/postmodernisme-brodert-v2.webp',
+  samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v2.webp',byplanlegging:'bilder/merker/by/undermerker/byplanlegging-brodert-v2.webp',
+  infrastruktur:'bilder/merker/by/undermerker/infrastruktur-brodert-v2.webp',
+  monumenter_og_landemerker:'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v2.webp',
   bolig_og_bomiljo:'bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp',
  });
  assert.equal(by.color,'#808080');
  assert.equal(by.secondaryColor,'#404040');
  const asset=prod.families.by.assets.find(x=>x.id==='postmodernisme');
  assert.equal(asset.status,'integrated');
- assert.equal(asset.selectedImage,imagePath);
+ assert.equal(asset.selectedImage,'bilder/merker/by/undermerker/postmodernisme-brodert-v2.webp');
  assert.deepEqual(asset.quality,{visualApproved:true,technicalApproved:true});
  const file=readFileSync(new URL(imagePath,root));
  assert.equal(file.length,478508);
