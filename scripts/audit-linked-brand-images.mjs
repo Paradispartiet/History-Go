@@ -42,8 +42,8 @@ export function auditLinkedBrandAssets(root = PROJECT_ROOT) {
       } else if (!fs.existsSync(target) || !fs.statSync(target).isFile()) {
         issues.push('declared_asset_file_missing');
       }
-      if (!source) review.push('source_page_missing');
-      if (!rights) review.push('rights_basis_missing');
+      if (!source) issues.push('source_page_missing');
+      if (!rights) issues.push('rights_basis_missing');
       if (meta.generated === true || /openai_imagegen|ai_generated_logo/i.test(value(meta.source))) {
         issues.push('generated_brandmark_not_allowed');
       }
