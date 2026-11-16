@@ -70,16 +70,18 @@ try{
         document.getElementById("pcCategoryCollectionIcon")?.dataset.collectionId==="structures",
         null,{timeout:40000});
       const card=page.locator("#placeCard");
-      // Place Sheet and the curated fill layout finish asynchronously after
-      // canonical place-open hydration. Assert the stable user-visible state,
-      // not the intermediate core collection profile marker.
+      // The core renderer and Place Sheet use different valid source markers.
+      // Hydration may alternate those markers between reads; validate the
+      // canonical selection and visible gallery instead of a transient alias.
       await page.waitForFunction(()=>{
         const card=document.getElementById("placeCard");
-        return card?.dataset.collectionProfileSource==="place_card_profile_v2_curated"
-          && card?.dataset.collectionRequestedCount==="3";
+        const place=window.PLACES?.find(item=>item.id==="tjuvholmen");
+        return /^place_card_profile_v2(?:_curated)?$/.test(card?.dataset.collectionProfileSource||"")
+          && card?.dataset.collectionRequestedCount==="3"
+          && JSON.stringify(place?.place_card_profile?.collection_ids)===JSON.stringify(["people","brands","structures"]);
       },null,{timeout:30000});
-      assert.equal(await card.getAttribute("data-collection-profile-source"),
-        "place_card_profile_v2_curated",tag+": curated profile");
+      assert.deepEqual(await page.evaluate(()=>window.PLACES.find(item=>item.id==="tjuvholmen").place_card_profile.collection_ids),
+        ["people","brands","structures"],tag+": canonical selection in hydrated app");
       assert.equal(await card.getAttribute("data-collection-requested-count"),"3",tag+": three collections");
       const structuresTile=page.locator('button[data-pc-round-gallery-item="pcCategoryCollectionIcon"]');
       try {
