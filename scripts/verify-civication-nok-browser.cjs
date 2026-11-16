@@ -42,7 +42,7 @@ async function scenario(engine, width, height) {
     return filename;
   }
   async function openSection(category, id) {
-    const close = page.locator('#civiSectionPopup.is-open [data-civi-popup-close]').first();
+    const close = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
     if (await close.isVisible().catch(() => false)) await close.click();
     await page.locator('.civi-footer [data-category="' + category + '"]').click();
     await page.locator('#' + id + ' > .civi-mini-card [data-civi-mini-open]').click();
