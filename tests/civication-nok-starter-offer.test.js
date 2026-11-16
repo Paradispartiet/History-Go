@@ -26,7 +26,7 @@ assert.equal(jobs.ensureNokStarterOffer().reason, 'JOB_GATE_BLOCKED');
 state.setState({ career_reentry_locks: { naeringsliv: null } });
 assert.equal(jobs.ensureNokStarterOffer().ok, true);
 const offer = jobs.getLatestPendingOffer();
-assert.equal(offer.title, 'Butikkmedarbeider');
+assert.equal(offer.title, config.job.roleTitle);
 assert.equal(jobs.getOffers().length, 1, 'profile dispatch does not recursively duplicate offers');
 assert.equal(state.getActivePosition(), null);
 assert.equal(state.getWallet().balance, 123);

@@ -26,6 +26,7 @@ async function scenario(engine, width, height) {
       localStorage.setItem('hg_civi_wallet_v1', JSON.stringify({ balance: 20000, last_tick_day_index: 1 }));
       localStorage.setItem('merits_by_category', JSON.stringify({ naeringsliv: { points: 5 } }));
       localStorage.setItem('quiz_progress', JSON.stringify({ naeringsliv: { completed } }));
+      localStorage.setItem('visited_places', JSON.stringify({ tronsmo_bokhandel: true }));
       localStorage.setItem('nok_browser_fixture_initialized', '1');
     }
   }, { completed });
@@ -63,7 +64,7 @@ async function scenario(engine, width, height) {
     await page.locator('[data-civi-nok-offer-terms]').scrollIntoViewIfNeeded();
     const screenshots = [await capture('salary-terms')];
     await page.locator('#civiOfferAccept').click();
-    await page.waitForFunction(() => window.CivicationState.getActivePosition()?.title === 'Butikkmedarbeider');
+    await page.waitForFunction(title => window.CivicationState.getActivePosition()?.title === title, profile.job.roleTitle);
     assert.equal((await wallet()).balance, 20000, 'acceptance does not pay salary');
     await openSection('personlig', 'civiHomeStatus');
     const housingText = await page.locator('#homeStatusContent').textContent();
@@ -104,6 +105,11 @@ async function scenario(engine, width, height) {
     assert.deepEqual(errors, [], 'no uncaught page errors');
     return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750 };
   } catch (error) {
+    console.error('CIVI_NOK_FAILURE_STATE:' + JSON.stringify(await page.evaluate(() => ({
+      wallet: window.CivicationState?.getWallet?.(), active: window.CivicationState?.getActivePosition?.(),
+      offers: window.CivicationJobs?.getOffers?.(), merits: localStorage.getItem('merits_by_category'),
+      brands: window.CivicationBrandAccess?.inspect?.({ career_id: 'naeringsliv', role_scope: 'ekspeditor' })
+    })).catch(() => null)));
     await capture('failure').catch(() => {});
     throw new Error(name + ': ' + (error.stack || error));
   } finally { await context.close(); await browser.close(); }

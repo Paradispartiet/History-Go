@@ -787,6 +787,7 @@ async function renderCivication() {
           ? `
             <div><strong>🧾 Jobbtilbud</strong></div>
             <div>${offer.career_name || offer.career_id || ""}</div>
+            <div><strong>${escapeOfferHtml(offer.title || "")}</strong></div>
             <div>Terskel: ${offer.threshold}</div>
             <div>Utløper: ${offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—"}</div>
             ${buildOfferEligibilityHtml(offer)}
