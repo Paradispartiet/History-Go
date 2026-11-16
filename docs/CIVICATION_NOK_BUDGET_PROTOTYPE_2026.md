@@ -194,3 +194,45 @@ Marsstrømmen betales på aprilforfallet ved siste kontroll; aprilhusleien står
 fortsatt ubetalt utenfor de tre kontrollerte månedene. Oslo-normen på 9 406 kr er
 fortsatt en livsoppholdsproxy i budsjettet, ikke handlekurv, stønad eller automatisk
 faktura. Faktiske varer/forbruk og visuell nettleserkontroll gjenstår før aktivering.
+
+### Dagligvarer med kilde, pakningsstørrelse og gjentatte kjøp
+
+NOK-profilen har en egen datert vareliste i den eksisterende HG_CiviShop-eieren.
+Gamle generiske pakkepriser brukes ikke som kronepriser: aktive NOK-spillere får
+bare profilens dokumenterte produkter/butikker. De gamle katalogene, eiendelene
+og prisene beholdes for legacy-spillere. Følgende prisreferanser er kontrollert
+på Odas produktsider 16.11.2026, uten å love sanntidspris eller faktisk levering:
+
+| Vare | Pakning | Kr | Kilde |
+| --- | --- | ---: | --- |
+| Tine Lettmelk 1 % | 1 l | 19,40 | https://oda.com/no/products/430-tine-tine-lettmelk-1-fett/ |
+| AXA Bjørn Havregryn Store | 1,1 kg | 30,90 | https://oda.com/no/products/5953-axa-bjorn-havregryn-store/ |
+| R Grovbrød, lettstekt | 750 g | 43,60 | https://oda.com/no/products/13753-r-grovbrod-lettstekt/ |
+| Sopps Spaghetti | 500 g | 17,90 | https://oda.com/no/products/693-sopps-spaghetti/ |
+
+Hvert eksplisitt kjøp gjelder én pakning. Kjøps-ID, produkt, mengde, pris, kilde,
+priskontrolldato og spilldato lagres sammen med saldo og beholdning i canonical
+wallet. Ingen separat legacy-saldospeiling eller stilbelønning gis for mat. Samme
+kjøps-ID gjentas uten nytt trekk; en ny kjøps-ID kan kjøpe samme vare igjen.
+Bruk av samme ID for en annen vare, ugyldig pris, utilstrekkelig fersk saldo eller
+manglende faktisk butikktilgang avvises uten kjøp. Begge eksisterende butikkvisninger
+bruker disse kjøpene, viser pakning/kilde/dato og beholdning, og gjengir tekst inert.
+
+Den eldre inventory-nøkkelen `hg_pc_inventory_v1` er også lagt til CloudSaves
+uttrykkelige tillatelsesliste. Dermed gjenopprettes faktiske tidligere eiendeler,
+ikke bare et testfelt i wallet-historikken. Konflikt i inventory blokkerer fortsatt
+opplasting og bevarer begge kopier. Nye matvarer/kvitteringer følger allerede den
+versjonerte walleten som ett samlet lagringsobjekt.
+
+`civication-nok-shop.test.js` kontrollerer begge UI-kjøp, samtidige like kjøps-ID-er,
+legitime gjentatte kjøp, fersk saldo/tilgang, ukjente gamle priser, ugyldige priser,
+beholdning, fokus, inert tekst og uendret legacy-inventory. Den oppdaterte 90-dagers-
+reisen kjøper to melk og én havregrynpakke (69,70 kr totalt) og gjenoppretter dem
+sammen med gamle eiendeler ved hvert månedsskifte. Kontrollsaldoer er nå
+9 376,56 / 13 723,26 / 12 451,26 kr. Legacy-shop, electricity, display-integration,
+kontobackup og tremånedersreisen består. Forrige eksakte head 2e9121b hadde alle
+åtte workflows grønne før denne utvidelsen.
+
+Dette er fire enkeltvarer, ikke et fullstendig matbudsjett, automatisk ernærings-
+eller forbruksmodell. Oslo-proxyen i budsjettet belastes ikke i tillegg til kjøpene.
+Flere varegrupper, daglig forbruk, visuell QA og produksjonsaktivering gjenstår.

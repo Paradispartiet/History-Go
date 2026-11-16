@@ -476,7 +476,10 @@ async function renderCivicationShop() {
     return;
   }
 
-  hintEl.textContent = "Tilgjengelige pakker følger merker, steder og nabolag du har låst opp.";
+  const nokShopping = window.CivicationState?.getWallet?.()?.nok_v1;
+  hintEl.textContent = nokShopping?.active === true
+    ? "Daterte varepriser. Spillkjøp uten levering eller automatisk månedsbelastning."
+    : "Tilgjengelige pakker følger merker, steder og nabolag du har låst opp.";
 
   const ownedPacks = civiShopRecord(inv.packs);
   const ownedItems = civiShopRecord(/** @type {any} */ (inv).ownedItems);
@@ -484,13 +487,15 @@ async function renderCivicationShop() {
     const packRecord = civiShopRecord(pack);
     const packId = String(packRecord.id || "").trim();
     const title = String(packRecord.title || packRecord.name || packId || "Pakke");
-    const price = packRecord.price_pc ?? packRecord.price ?? 0;
+    const price = packRecord.nok_product ? packRecord.priceNok : (packRecord.price_pc ?? packRecord.price ?? 0);
     const isOwned = !!ownedPacks[packId] || !!ownedItems[packId];
 
     return `
       <div class="civi-shop-pack">
         <div><strong>${escapeOfferHtml(title)}</strong></div>
-        <div>Pris: ${formatCiviShopPc(price)} PC</div>
+        <div>Pris: ${packRecord.nok_product ? Number(price).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : formatCiviShopPc(price)} ${packRecord.nok_product ? "kr" : "PC"}</div>
+        ${packRecord.nok_product ? `<div>${escapeOfferHtml(packRecord.unitLabel)} · ${escapeOfferHtml(packRecord.retailer)} · Kontrollert: ${escapeOfferHtml(packRecord.checkedOn)}</div>
+          <div>På lager: ${Number(nokShopping?.shopping?.quantities?.[packId] || 0)} pakninger</div>` : ""}
         <div>${isOwned ? "Kjøpt" : `<button type="button" data-civi-buy-pack="${escapeOfferHtml(packId)}">Kjøp</button>`}</div>
       </div>
     `;
@@ -498,6 +503,7 @@ async function renderCivicationShop() {
 
   packsEl.querySelectorAll("[data-civi-buy-pack]").forEach(function (btn) {
     const buyBtn = /** @type {HTMLButtonElement} */ (btn);
+    const requestId = shop.createPurchaseRequest?.();
     buyBtn.addEventListener("click", async function () {
       const packId = buyBtn.getAttribute("data-civi-buy-pack");
       if (!packId || !shop?.buyPack) return;
@@ -505,7 +511,7 @@ async function renderCivicationShop() {
       buyBtn.disabled = true;
       let res = /** @type {{ ok?: boolean, reason?: string }} */ ({ ok: false });
       try {
-        res = /** @type {{ ok?: boolean, reason?: string }} */ (await shop.buyPack(packId));
+        res = /** @type {{ ok?: boolean, reason?: string }} */ (await shop.buyPack(packId, requestId));
       } catch {
         res = { ok: false };
       } finally {

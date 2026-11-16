@@ -9,6 +9,49 @@
     return Number.isFinite(num) ? num.toLocaleString("no-NO") : "0";
   }
 
+  const formatNok = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  let purchaseMessage = "";
+  /** @param {HTMLElement} host @param {any[]} stores @param {any[]} packs @param {any} wallet @param {any} shop */
+  function renderNokStore(host, stores, packs, wallet, shop) {
+    const node = (/** @type {string} */ tag, /** @type {string} */ text) => {
+      const el = document.createElement(tag); el.textContent = text; return el;
+    };
+    const panel = node("div", "");
+    const heading = node("h3", "Dagligvarer"); heading.tabIndex = -1; panel.appendChild(heading);
+    panel.appendChild(node("p", "Saldo: " + formatNok(wallet.balance) + " kr"));
+    panel.appendChild(node("p", "Daterte prisreferanser. Spillkjøp uten levering. Varer kan kjøpes flere ganger; ingen automatisk månedlig belastning."));
+    for (const store of stores) {
+      panel.appendChild(node("h4", String(store.name || "Butikk")));
+      for (const pack of packs.filter(p => p.store_id === store.id)) {
+        const row = node("div", "");
+        row.appendChild(node("strong", String(pack.title || "Vare")));
+        row.appendChild(node("p", String(pack.unitLabel || "") + " · " + formatNok(pack.priceNok) + " kr"));
+        row.appendChild(node("p", "Priskilde: " + String(pack.retailer || "") + " · Kontrollert: " + String(pack.checkedOn || "")));
+        row.appendChild(node("p", "På lager: " + String(wallet.nok_v1.shopping?.quantities?.[pack.id] || 0) + " pakninger"));
+        const button = /** @type {HTMLButtonElement} */ (node("button", "Kjøp én pakning"));
+        button.type = "button"; button.className = "btn";
+        button.setAttribute("data-buy-pack", String(pack.id));
+        button.disabled = !Number.isFinite(pack.priceNok) || pack.priceNok <= 0 || !Number.isFinite(wallet.balance) || wallet.balance < pack.priceNok;
+        const requestId = shop.createPurchaseRequest();
+        button.addEventListener("click", async () => {
+          button.disabled = true;
+          try {
+            const result = await shop.buyPack(pack.id, requestId);
+            purchaseMessage = result?.ok ? (result.skipped ? "Kjøpet var allerede registrert." : "Varen er kjøpt.")
+              : result?.reason === "NOT_ENOUGH_PC" ? "Ikke nok penger. Ingen vare er kjøpt." : "Varen kunne ikke kjøpes.";
+          } catch { purchaseMessage = "Kjøpet kunne ikke bekreftes. Sjekk saldo og beholdning før nytt forsøk."; }
+          await renderStorePanel();
+          const next = /** @type {HTMLButtonElement|undefined} */ (Array.from(host.querySelectorAll("[data-buy-pack]")).find(b => b.getAttribute("data-buy-pack") === String(pack.id)));
+          (next && !next.disabled ? next : host.querySelector("h3"))?.focus({ preventScroll: true });
+        });
+        row.appendChild(button); panel.appendChild(row);
+      }
+    }
+    if (!packs.length) panel.appendChild(node("p", "Ingen dokumenterte varepriser er tilgjengelige her ennå."));
+    const status = node("p", purchaseMessage); status.setAttribute("role", "status"); panel.appendChild(status);
+    host.replaceChildren(panel);
+  }
+
   async function renderStorePanel() {
     const host = document.getElementById("civiStorePanel");
     if (!host) return;
@@ -27,6 +70,10 @@
     const rawWallet = /** @type {any} */ (window.CivicationState?.getWallet?.()
       ?? (typeof window.getPCWallet === "function" ? window.getPCWallet() : null));
     const wallet = typeof rawWallet === "number" ? { balance: rawWallet } : rawWallet;
+    if (wallet?.nok_v1?.active === true) {
+      renderNokStore(host, stores, packs, wallet, shop);
+      return;
+    }
     const inv = /** @type {{ packs?: Record<string, unknown> }} */ (shop.getInv?.() || {});
     const owned = inv.packs || {};
 

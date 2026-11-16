@@ -17,7 +17,7 @@ assert.equal(entries.length, 5);
 const db = { record: null, writes: 0 };
 const windows = [];
 async function boot(seed = {}) {
-  const dom = new JSDOM('<body><div id="civiEconomyPanel"></div><div id="activeJobCard"></div><div id="civiSalaryLine"></div><div id="homeStatusContent"></div><div id="districtList"></div></body>',
+  const dom = new JSDOM('<body><div id="civiEconomyPanel"></div><div id="civiStorePanel"></div><div id="activeJobCard"></div><div id="civiSalaryLine"></div><div id="homeStatusContent"></div><div id="districtList"></div></body>',
     { url: 'https://example.test/Civication.html', runScripts: 'outside-only' });
   windows.push(dom);
   const w = dom.window;
@@ -40,8 +40,8 @@ async function boot(seed = {}) {
     return { ok: true, json: async () => data };
   };
   for (const path of ['core/civicationState.js', 'core/civicationCalendar.js', 'core/civicationNokBudget.js',
-    'core/civicationEconomyEngine.js', 'core/civicationJobs.js', 'systems/civicationJobEligibilityRuntime.js',
-    'systems/civicationCareerRoleResolver.js', 'ui/CivicationHome.js', 'ui/CivicationUI.js', 'ui/CivicationEconomyUI.js'])
+    'core/civicationEconomyEngine.js', 'core/civicationJobs.js', 'civicationCommercial.js', 'systems/civicationJobEligibilityRuntime.js',
+    'systems/civicationCareerRoleResolver.js', 'ui/CivicationHome.js', 'ui/CivicationUI.js', 'ui/CivicationEconomyUI.js', 'ui/CivicationStoreUI.js'])
     w.eval(source('js/Civication/' + path));
   w.CivicationJobEligibilityRuntime.registerKnowledgeRequirements(read('data/Civication/jobKnowledgeRequirements.json'));
   w.CivicationJobEligibilityRuntime.patchJobsPushOffer();
@@ -75,7 +75,7 @@ async function earnFiveSets(w) {
 async function checkpoint(w) {
   await w.CivicationCloudSave.flush();
   const keys = ['hg_civi_wallet_v1', 'hg_active_position_v1', 'hg_civi_calendar_v1',
-    'hg_job_offers_v1', 'merits_by_category', 'hg_quiz_sets_v1', 'quiz_progress', 'hg_learning_log_v1'];
+    'hg_job_offers_v1', 'hg_pc_inventory_v1', 'merits_by_category', 'hg_quiz_sets_v1', 'quiz_progress', 'hg_learning_log_v1'];
   for (const key of keys) {
     const raw = w.localStorage.getItem(key);
     assert.equal(db.record.payload.state[key] ?? null, raw === 'null' ? null : raw, key + ' is backed up');
@@ -92,7 +92,7 @@ async function checkpoint(w) {
 }
 (async () => {
   let w = await boot({ hg_civi_wallet_v1: JSON.stringify({ balance: 125.25, last_tick_day_index: 1,
-    history: [{ id: 'old-purchase' }] }) });
+    history: [{ id: 'old-purchase' }] }), hg_pc_inventory_v1: '{"packs":{"streetwear_basic":true},"ownedItems":["streetwear_basic"],"style_counts":{"street":1}}' });
   w.document.querySelector('[data-nok-activate]').click();
   assert.equal(w.CivicationState.getWallet().nok_v1.active, true);
   assert.equal(w.CivicationState.getWallet().balance, 125.25);
@@ -113,6 +113,8 @@ async function checkpoint(w) {
       assert.equal(w.CivicationState.getActivePosition().title, config.job.roleTitle);
       assert.equal(w.CivicationCareerRoleResolver.resolveCareerRoleScope(w.CivicationState.getActivePosition()), 'ekspeditor');
       assert.equal(w.CivicationState.getWallet().balance, 125.25, 'no acceptance bonus');
+      await w.HG_CiviShop.buyPack('tine-milk-1l', 'journey-milk-1');
+      await w.HG_CiviShop.buyPack('tine-milk-1l', 'journey-milk-2');
     }
     if (day === 60) { // March is entirely unemployed, after February salary was settled.
       w.CivicationState.setActivePosition(null);
@@ -122,6 +124,7 @@ async function checkpoint(w) {
       w.CivicationEconomyUI.render();
       w.document.querySelector('[data-nok-transport]').click();
       assert.ok(w.CivicationEconomyEngine.getNokTransportStatus().current);
+      if (day === 32) await w.HG_CiviShop.buyPack('axa-oats-1100g', 'journey-oats');
     }
     w.CivicationCalendar.advanceByMinutes(1440);
     w.CivicationEconomyEngine.recordCompletedDay(day);
@@ -141,19 +144,23 @@ async function checkpoint(w) {
     }
   }
   const wallet = w.CivicationState.getWallet();
-  assert.deepEqual(checkpoints, [9415.36, 13792.96, 12520.96]);
+  assert.deepEqual(checkpoints, [9376.56, 13723.26, 12451.26]);
   assert.equal(wallet.nok_v1.payrollLedger.length, 3);
   assert.equal(wallet.nok_v1.payrollLedger[2].grossCents, 0, 'job loss creates no automatic NAV or wages');
   assert.equal(wallet.nok_v1.transportPasses.length, 2);
+  assert.equal(wallet.nok_v1.shopping.quantities['tine-milk-1l'], 2);
+  assert.equal(wallet.nok_v1.shopping.quantities['axa-oats-1100g'], 1);
+  assert.equal(wallet.nok_v1.shopping.purchases.length, 3);
+  assert.equal(JSON.parse(w.localStorage.getItem('hg_pc_inventory_v1')).packs.streetwear_basic, true);
   assert.equal(wallet.nok_v1.invoices.filter(i => i.status === 'paid' && i.estimatedConsumptionKwh === 500).length, 3);
   assert.equal(wallet.nok_v1.invoices.filter(i => i.status === 'paid' && !i.estimatedConsumptionKwh).length, 3);
   assert.equal(wallet.history[0].id, 'old-purchase');
   assert.equal(wallet.last_tick_day_index, 1);
-  assert.equal(wallet.balance, (12525 + wallet.nok_v1.payrollLedger.reduce((n, p) => n + p.grossCents - p.taxCents, 0) - 3 * 1009000 - 2 * 65500 - 3 * 61700) / 100);
+  assert.equal(wallet.balance, (12525 + wallet.nok_v1.payrollLedger.reduce((n, p) => n + p.grossCents - p.taxCents, 0) - 3 * 1009000 - 2 * 65500 - 3 * 61700 - 6970) / 100);
   assert.equal(w.CivicationState.getActivePosition(), null);
   assert.equal(w.CivicationJobs.getOffers().length, 1);
   assert.equal(w.CivicationJobs.getOffers()[0].status, 'accepted', 'restored accepted offers never respawn after job loss');
-  for (const key of ['hg_job_offers_v1', 'quiz_progress', 'hg_learning_log_v1']) {
+  for (const key of ['hg_job_offers_v1', 'quiz_progress', 'hg_learning_log_v1', 'hg_pc_inventory_v1']) {
     const remote = db.record.payload.state[key];
     const local = JSON.stringify({ conflict: key });
     const writes = db.writes;
@@ -164,5 +171,5 @@ async function checkpoint(w) {
     assert.equal(other.localStorage.getItem(key), local);
     assert.equal(db.record.payload.state[key], remote);
   }
-  console.log('PASS: 30 published quiz answers -> sourced offer/acceptance -> 90 played days, 3 rents, 3 electricity bills, 2 tickets, job loss, 3 fresh-device restores; balances ' + checkpoints.join(', '));
+  console.log('PASS: 30 published quiz answers -> sourced offer/acceptance -> 90 played days, 3 rents, 3 electricity bills, 2 tickets, 3 grocery purchases, job loss, 3 fresh-device restores; balances ' + checkpoints.join(', '));
 })().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => windows.forEach(dom => dom.window.close()));

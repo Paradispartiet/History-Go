@@ -162,6 +162,7 @@
     }
 
     const fresh = { packs: {}, ownedItems: [], style_counts: {} };
+    if (window.CivicationState?.getWallet?.()?.nok_v1?.active === true) return fresh;
     writeJSON(LS_INV, fresh);
     return fresh;
   }
@@ -250,6 +251,9 @@
    * @returns {Promise<CiviCommercialPack[]>}
    */
   function getPacks() {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true) return Promise.resolve(nok.version === 1 && Array.isArray(nok.config?.shopProducts)
+      ? nok.config.shopProducts.map(p => ({ ...p, nok_product: true })) : []);
     if (!_packsPromise) {
       _packsPromise = tryLoadPacks();
     }
@@ -260,6 +264,8 @@
    * @returns {Promise<CiviCommercialStore[]>}
    */
   function getStores() {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true) return Promise.resolve(nok.version === 1 && Array.isArray(nok.config?.shopStores) ? nok.config.shopStores : []);
     if (!_storesPromise) {
       _storesPromise = tryLoadStores();
     }
@@ -322,6 +328,7 @@
     const storeId = String(store?.id || "").trim();
 
     const mapping = {
+      grocery_reference: ["food", "home"],
       street_shop_generic: ["clothing"],
       work_shop_generic: ["equipment", "clothing"],
       hifi_shop_generic: ["audio"],
@@ -429,15 +436,70 @@
     });
   }
 
+  let purchaseSequence = 0;
+  function createPurchaseRequest() {
+    return window.crypto?.randomUUID?.() || `purchase:${Date.now()}:${Math.random()}:${++purchaseSequence}`;
+  }
+
+  /** @param {string} packId @param {string} [requestId] @returns {CiviCommercialRecord} */
+  function buyNokProduct(packId, requestId) {
+    const owner = window.CivicationState;
+    const wallet = owner?.getWallet?.();
+    const nok = wallet?.nok_v1;
+    if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+    if (typeof requestId !== "string" || !requestId.trim() || requestId.length > 128)
+      return { ok: false, reason: "PURCHASE_REQUEST_REQUIRED" };
+    const products = Array.isArray(nok.config?.shopProducts) ? nok.config.shopProducts : [];
+    const matches = products.filter(p => p?.id === packId);
+    if (matches.length !== 1) return { ok: false, reason: "NOK_PRICE_NOT_MAPPED" };
+    const product = matches[0];
+    const stores = Array.isArray(nok.config?.shopStores) ? nok.config.shopStores : [];
+    const store = stores.find(s => s?.id === product.store_id);
+    if (!store || !storeMatchesHistoryGoAccess(store) || !hasRequiredBadgeAccess(store)
+        || !hasRequiredNeighborhoodAccess(product) || !hasRequiredBadgeAccess(product))
+      return { ok: false, reason: "PACK_NOT_FOUND" };
+    const price = product.priceNok;
+    const priceCents = Math.round(price * 100);
+    if (typeof price !== "number" || !Number.isFinite(price) || price <= 0 || !Number.isSafeInteger(priceCents)
+        || Math.abs(price * 100 - priceCents) > 0.000001 || typeof product.sourceId !== "string"
+        || !product.sourceId.startsWith("https://") || typeof product.unitLabel !== "string" || !product.unitLabel.trim()
+        || typeof product.checkedOn !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(product.checkedOn)
+        || product.repeatable !== true || product.category !== "food")
+      return { ok: false, reason: "NOK_PRICE_NOT_MAPPED" };
+    const shopping = nok.shopping || { purchases: [], quantities: {} };
+    if (!Array.isArray(shopping.purchases) || !shopping.quantities || typeof shopping.quantities !== "object"
+        || Array.isArray(shopping.quantities) || shopping.purchases.some(p => !p || typeof p.requestId !== "string")
+        || new Set(shopping.purchases.map(p => p.requestId)).size !== shopping.purchases.length)
+      return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    const previous = shopping.purchases.find(p => p.requestId === requestId);
+    if (previous) return previous.productId === packId ? { ok: true, skipped: true, packId }
+      : { ok: false, reason: "PURCHASE_REQUEST_CONFLICT" };
+    const cents = Math.round(wallet.balance * 100);
+    const quantity = shopping.quantities[packId] ?? 0;
+    if (typeof wallet.balance !== "number" || !Number.isFinite(wallet.balance) || !Number.isSafeInteger(cents)
+        || Math.abs(wallet.balance * 100 - cents) > 0.000001 || !Number.isSafeInteger(quantity) || quantity < 0
+        || !Number.isSafeInteger(quantity + 1)) return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    if (cents < priceCents) return { ok: false, reason: "NOT_ENOUGH_PC", balance: wallet.balance, price };
+    const date = window.CivicationCalendar?.getGameDate?.();
+    if (!date) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+    const purchase = { requestId, productId: packId, title: product.title, unitLabel: product.unitLabel,
+      sourceId: product.sourceId, priceCheckedOn: product.checkedOn, amountNok: price, quantity: 1, gameDateISO: date };
+    owner.updateWallet({ ...wallet, balance: (cents - priceCents) / 100, nok_v1: { ...nok,
+      shopping: { ...shopping, purchases: [...shopping.purchases, purchase],
+        quantities: { ...shopping.quantities, [packId]: quantity + 1 } } } });
+    return { ok: true, packId, newBalance: (cents - priceCents) / 100 };
+  }
+
   // ============================================================
   // BUY PACK
   // ============================================================
 
   /**
    * @param {string} packId
+   * @param {string} [requestId]
    * @returns {Promise<CiviCommercialRecord>}
    */
-  async function buyPack(packId) {
+  async function buyPack(packId, requestId) {
 
     const packs = await getVisiblePacks();
     const pack = packs.find(p => String(p.id) === String(packId));
@@ -446,6 +508,8 @@
       return { ok: false, reason: "PACK_NOT_FOUND" };
     }
 
+    if (window.CivicationState?.getWallet?.()?.nok_v1?.active === true) return buyNokProduct(packId, requestId);
+    if (pack.nok_product) return { ok: false, reason: "NOK_NOT_ACTIVE" };
     const price = Number(pack.price_pc ?? pack.price ?? 0);
 
     const wallet = getWallet();
@@ -504,6 +568,7 @@
   // ============================================================
 
   window.HG_CiviShop = {
+    createPurchaseRequest,
     getWallet,
     getInv,
     getPacks,
