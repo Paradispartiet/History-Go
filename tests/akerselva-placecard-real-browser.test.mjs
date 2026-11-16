@@ -94,9 +94,9 @@ try {
         };
         return {
           front: {src:front.currentSrc,fit:getComputedStyle(front).objectFit,
-            width:front.naturalWidth,height:front.naturalHeight, box:bounds(front)},
+            width:front.naturalWidth,height:front.naturalHeight, box:bounds(front), frame:bounds(front.parentElement)},
           hero: {src:hero.currentSrc,fit:getComputedStyle(hero).objectFit,
-            width:hero.naturalWidth,height:hero.naturalHeight,box:bounds(hero)}
+            width:hero.naturalWidth,height:hero.naturalHeight,box:bounds(hero), frame:bounds(hero.parentElement)}
         };
       });
       const framingDiagnostics = await page.evaluate(() => {
@@ -139,10 +139,17 @@ try {
           })
         };
       });
-      assert.equal(media.front.fit, 'contain',
-        tag + ': portrait photo not fully visible; CSS diagnostic ' + JSON.stringify(framingDiagnostics));
-      assert.equal(media.hero.fit, 'contain',
-        tag + ': landscape source photo not fully visible; CSS diagnostic ' + JSON.stringify(framingDiagnostics));
+      assert.equal(media.front.fit, 'cover',
+        tag + ': portrait photo must fill the card without letterbox gutters; CSS diagnostic ' + JSON.stringify(framingDiagnostics));
+      assert.equal(media.hero.fit, 'cover',
+        tag + ': landscape hero must fill the frame without letterbox gutters; CSS diagnostic ' + JSON.stringify(framingDiagnostics));
+      for (const surface of ['front', 'hero']) {
+        const {box, frame} = media[surface];
+        assert.ok(Math.abs(box.width - frame.width) <= 1,
+          tag + ': ' + surface + ' image must reach both edges of the frame');
+        assert.ok(Math.abs(box.height - frame.height) <= 1,
+          tag + ': ' + surface + ' image must occupy the frame height without gutters');
+      }
       assert.ok(media.front.height > media.front.width, tag + ': front photo is natively portrait');
       assert.ok(media.hero.width > media.hero.height, tag + ': header photo is landscape');
       assert.notEqual(media.front.src, media.hero.src, tag + ': independent front and header photos');
