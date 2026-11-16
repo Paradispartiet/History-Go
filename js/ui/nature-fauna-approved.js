@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_graahegre:Object.freeze({
+   scientificName:"Ardea cinerea",
+   src:"bilder/natur/fauna/godkjent/18_graahegre_v1.webp",
+   gitBlobSha:"0c0a153a98ad3a9ac830ca255ecb171020675faa",
+   reviewedAt:"2026-11-16",
+   stage:"adult_slate_grey_white_black_head_plumes_yellow_bill_grey_yellow_legs_standing_and_neck_retracted_in_flight",
+   evidence:"data/natur/fauna/illustration-quality-graahegre-20261116.json"
+  }),
   emne_fauna_sildemaake:Object.freeze({
    scientificName:"Larus fuscus",
    src:"bilder/natur/fauna/godkjent/17_sildemaake_v1.webp",
