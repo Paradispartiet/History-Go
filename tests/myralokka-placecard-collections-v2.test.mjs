@@ -55,7 +55,7 @@ test("Myraløkka retains 42 stable quiz IDs, 40 linked Knowledge units and ten s
   assert.equal(questions.filter(q => q.knowledge_link_status === "linked" && q.primary_knowledge_unit_id).length, 42);
   const pending = questions.filter(q => q.knowledge_link_status === "editorial_review_required" && q.primary_knowledge_unit_id);
   assert.deepEqual(pending, [], "No active Myraløkka question may remain editorially unlinked");
-  assert.equal(questions.filter(q => q.knowledge_link_evidence?.reviewedAt === "2026-11-16").length, 28);
+  assert.equal(questions.filter(q => q.knowledge_link_evidence?.reviewedAt === "2026-11-16").length, 42);
   const canonicalKnowledge = load("data/knowledge/knowledge_units.generated.json").units;
   const unitsById = new Map(canonicalKnowledge.map(unit => [unit.knowledge_unit_id, unit]));
   const reviewQueue = load("data/knowledge/knowledge_emne_review_queue.generated.json").items;
@@ -78,6 +78,65 @@ test("Myraløkka retains 42 stable quiz IDs, 40 linked Knowledge units and ten s
     assert.ok(unitsById.has(q.primary_knowledge_unit_id));
     assert.equal(q.options[q.answerIndex], q.answer);
   }
+  const expectedExplicitEmner = {
+  "myralokka_s1_q1": [
+    "em_natur_geologi_landskapsform"
+  ],
+  "myralokka_s1_q2": [
+    "em_natur_gronnstruktur_korridorer",
+    "em_natur_urban_okologi_byrom"
+  ],
+  "myralokka_s1_q3": [
+    "em_natur_geologi_landskapsform"
+  ],
+  "myralokka_s1_q4": [
+    "em_natur_urban_okologi_byrom",
+    "em_natur_geologi_landskapsform"
+  ],
+  "myralokka_s1_q5": [
+    "em_natur_urban_okologi_byrom"
+  ],
+  "myralokka_s1_q6": [
+    "em_natur_arter_habitat_mangfold"
+  ],
+  "myralokka_s1_q7": [
+    "em_natur_geologi_landskapsform",
+    "em_natur_friluftsliv_helse"
+  ],
+  "myralokka_s6_q1": [
+    "em_natur_geologi_landskapsform",
+    "em_natur_urban_okologi_byrom"
+  ],
+  "myralokka_s6_q2": [
+    "em_natur_gronnstruktur_korridorer"
+  ],
+  "myralokka_s6_q3": [
+    "em_natur_elver_bekker_vassdrag"
+  ],
+  "myralokka_s6_q4": [
+    "em_natur_arter_habitat_mangfold"
+  ],
+  "myralokka_s6_q5": [
+    "em_natur_urban_okologi_byrom"
+  ],
+  "myralokka_s6_q6": [
+    "em_natur_arter_habitat_mangfold"
+  ],
+  "myralokka_s6_q7": [
+    "em_natur_urban_okologi_byrom",
+    "em_natur_geologi_landskapsform"
+  ]
+};
+  for (const [qid, expected] of Object.entries(expectedExplicitEmner)) {
+    const q = originals.get(qid);
+    assert.ok(q, "Missing editorially reviewed question " + qid);
+    assert.deepEqual(q.emne_ids, expected);
+    assert.equal(q.knowledge_link_evidence?.method, "explicit");
+    assert.equal(q.knowledge_link_status, "linked");
+    assert.ok(q.source.length > 0 && q.options[q.answerIndex] === q.answer);
+  }
+  assert.ok(!originals.get("myralokka_s1_q7").question.includes("observasjonsspørsmål"),
+    "Generic meta-quiz prompt must be replaced by actual place observation");
   const reviewedSet5 = Array.from({ length: 7 }, (_, index) => `myralokka_s5_q${index + 1}`);
   const expectedEmner = {
     myralokka_s5_q1: ["em_natur_arter_habitat_mangfold"],
