@@ -78,6 +78,10 @@ export default async function verifyRenholderEmployment(browser:any,origin:strin
       assert.equal(await page.evaluate(()=>Number(JSON.parse(localStorage.getItem('merits_by_category')||'{}').naeringsliv?.points||0)),earned,'no injected merits');
       await page.evaluate(()=>{const app=globalThis as any;app.TEST_MODE=false;app.QuizEngine.init({quizFeedbackMs:120});});
       await page.locator('#pcQuiz').click({timeout:20000});
+      // Cold start indexes the complete canonical manifest (over 1,100 set entries)
+      // before the first real question appears. Keep the strict per-question bound
+      // below; only the one-time, data-heavy modal startup gets a longer budget.
+      await page.locator('#quizModal #quizQuestion').waitFor({state:'visible',timeout:180000});
       for(const [index,set] of quiz.sets.entries()){
         for(const question of set.questions){
           await page.waitForFunction((text:string)=>(globalThis as any).document.querySelector('#quizQuestion')?.textContent?.trim()===text,question.question,{timeout:25000});
