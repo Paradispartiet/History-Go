@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_maaltrost:Object.freeze({
+   scientificName:"Turdus philomelos",
+   src:"bilder/natur/fauna/godkjent/25_maaltrost_v1.webp",
+   gitBlobSha:"428e21d71d9c16a0718f330775fec34c25040aba",
+   reviewedAt:"2026-11-16",
+   stage:"adult_warm_brown_upperparts_creamy_white_belly_dark_heart_arrowhead_breast_spots_brown_yellow_bill_pink_legs_perched_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-maaltrost-20261116.json"
+  }),
   emne_fauna_spettmeis:Object.freeze({
    scientificName:"Sitta europaea",
    src:"bilder/natur/fauna/godkjent/24_spettmeis_v1.webp",
