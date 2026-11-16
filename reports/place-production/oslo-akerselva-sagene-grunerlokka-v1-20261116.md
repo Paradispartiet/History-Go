@@ -39,13 +39,13 @@
 
 ## Gjennomført på denne grenen
 
-1. `frysjadammen`: ny `desc`/`popupDesc` og egen historiefaglig Fagverk-tekst om slusemekanismen, regulering og forskjellen mot Oset anleggsbru.
-2. `frysja_33_brekke_kraftstasjon`: fortelling om kraftstasjonen fra 1892, Brekke Bruks nedleggelse og gjenbruk som Frysja 33; eget næringslivsfaglig Fagverk-utkast.
-3. `seilduksfabrikken_nydalen`: tydelig riktig sted (Øvre spinneri, **ikke** Christiania Seildugsfabrik), fabrikkanlegget og kulverten; eget historiefaglig Fagverk-utkast.
-4. `stilla_nydalen`: stedstekst uten teknisk utviklerspråk, eksplisitt skille fra det historiske Stilla; eget naturfaglig Fagverk-utkast.
-5. Fire indeksoppføringer i `data/fagverk/fagverk_registry.json`, alle med status `in_production`. Det hevdes **ikke** at de er `curated` eller ferdig V1.
+1. `frysjadammen`, `frysja_33_brekke_kraftstasjon`, `seilduksfabrikken_nydalen` og `stilla_nydalen` har fått **hver sin Place-eide Fagverk-blokk** med separate stedsartikler, kildelinker, linser og observasjonsoppgaver. Alle fire er korrekt merket `status: in_production` og registrert i Fagverk-indeksen.
+2. Historiske ingress-/artikkelutkast for de samme fire stedene er bevart som **ikke-publiserte redaksjonelle utkast** i `reports/place-production/oslo-akerselva-v1-description-drafts-20261116.json`. De aktive `desc` og `popupDesc` i Place-filer er **tilbakestilt til gjeldende main-tekst** til obligatorisk v4.2 source→claim→sentence→hash→review er utført. Dette korrigerer den første grenens uautoriserte tekststatus, uten å kaste det nye redaksjonelle arbeidet.
+3. **40 distinkte kildekoblede quizkandidater** (10 per sted), med tre distraktorer, forklaring og kilder, er lagret i `reports/place-production/oslo-akerselva-v1-quiz-candidates-20261116.json`. Dette er *ikke* runtime-fullquiz, QuizCard, Knowledge eller godkjent V1.
+4. Frysja 33 har tre nye, navngitte referanser i `externalLinks`, blant annet NVEs historiske rapport fra 2013 og lokale adressehistoriske kilder, samt samsvarende lenker i Fagverk-utkastet. `year: 1892` og det eksisterende bygningsankeret i Kjelsåsveien 151C er bevart.
+5. Bilde- og kildearbeid er igangsatt; et presist Commons-foto av Brekke kraftstasjon med CC BY-SA 4.0 er verifisert som kandidat, men **ingen ny bildefil er lagt inn i appen**.
 
-Kildefakta for de fire tekstene er kontrollert mot eksisterende `externalLinks` og relevante sider fra Oslo byleksikon, SNL / NBL og Oslo kommune. `verified_at` i de nye Fagverk-blokkene er 2026-11-16, men det erstatter **ikke** krav om fullstendig kilde-/claim-audit.
+Disse tiltakene dokumenterer faktisk utført arbeid, ikke ferdigstatus. Ordinær V1 krever bilder, validerte fullquizer, QuizCards, Knowledge, ferdige Fagverk-sider og runtime-/browser-QA.
 
 ## Neste faktiske produksjonsporter (uten snarveier)
 
@@ -63,7 +63,7 @@ Kildefakta for de fire tekstene er kontrollert mot eksisterende `externalLinks` 
 **Nye Fagverk-utkast:** 4.
 **Nye verifiserte v1:** 0.
 **Nye verifiserte vFerdig:** 0.
-**Gjenstår:** 16 stedsspesifikke Fagverk, bilder på 18 steder samt ett manglende stående Deichman-bilde, komplett quiz-/QuizCard-/Knowledge-review og kvalitetssikring for hele bolken.
+**Gjenstår:** 16 stedsspesifikke Fagverk, bilder på 18 steder samt ett manglende stående Deichman-bilde, fullt kildebasert 4.2-godkjente stedsbeskrivelser, runtime-fullquiz/QuizCard/Knowledge og kvalitetssikring for hele bolken. **40 kandidatspørsmål er skrevet, men ennå ikke integrert.**
 **Bilde-/rettighetskø:** minst 18 steder uten `image` + én manglende `frontImage` i main, og eventuelle manglende `cardImage` etter audit.
 **Merge:** ikke klar; ingen påstand om at CI eller browser-QA er bestått.
 
@@ -71,7 +71,7 @@ Avhengigheter og risiko: `frysjadammen` er Oset slusebru, ikke Brekkedammen. `st
 
 ## Kildeavvik oppdaget under kontrollen 16. november
 
-**Frysja 33 må kildeavklares før v1:** Oslo kommunes *Turguide Akerselva* (s. 6–7) daterer den bevarte kraftstasjonen til **1892** og siste sagbruksdrift til **1965**. Frysja 33s egen hjemmeside omtaler i stedet kraftstasjonen som bygd i **1850** og viser en annen sluttdatering for sagbruksdriften. Kommuneartikkelen bekrefter at bygget er eneste bevarte del av Brekke Bruk og senere ble aktivitetshus. Behold foreløpig kommunens historiske kilde som grunnlag for draft-teksten, men **ikke** godkjenn dateringsclaim eller fullquiz uten dokumentert avklaring. Kilder: https://www.oslo.kommune.no/get-file/797618/378151321f5e4a09d64bac2406e9a8fd9c861c3c3473fd933860da92c2cd5082/ ; https://www.frysja33.no/ .
+**Frysja 33 – mer presis kildekonklusjon:** Kraftstasjonens byggeår **1892** er uavhengig dokumentert av NVE i *Kulturminner i norsk kraftproduksjon* (2013, s. 71), basert på opplysninger fra Byantikvaren, og av lokal adressehistorie for Kjelsåsveien 151C. Kildene gir dermed grunnlag for å beholde byggeår 1892. Oslo kommunes kulturhistorie oppgir nedleggelse av sagbruket i **1965**, mens historielagets oversikt oppgir **1962**; sluttdatoen har altså fortsatt et konkret kildeavvik og må merkes med kilde hvis brukt i quiz. Dette er dokumentert, men **full 4.2 claim-/review-port er ikke gjennomført**. https://publikasjoner.nve.no/rapport/2013/rapport2013_52.pdf ; https://lokalhistoriewiki.no/wiki/Kjels%C3%A5sveien_%28Oslo%29 ; https://gknhistorie.no/Tillegg/Brekke%20kraftstasjon.html . Kilder: https://www.oslo.kommune.no/get-file/797618/378151321f5e4a09d64bac2406e9a8fd9c861c3c3473fd933860da92c2cd5082/ ; https://www.frysja33.no/ .
 
 **Besøksadresse/anker:** Kommunens Frysja 33-side oppgir Kjelsåsveien 145, mens den eksisterende Place-filen dokumenterer sitt koordinatvalg med adressehistorisk grunnlag for Kjelsåsveien 151C. Ingen geometri er endret. Kontroller eiendom/tilkomst mot primærkilder før denne Place kan ferdigmeldes. Kilde: https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/frysja-33/ .
 
@@ -85,3 +85,11 @@ Avhengigheter og risiko: `frysjadammen` er Oset slusebru, ikke Brekkedammen. `st
 - **Elvepartiet nedenfor Nydalsdammen:** ingen godkjent stedsspesifikk bildefil identifisert i denne kontrollen. Unngå foto fra de historiske Stilla-kulpene lenger nord.
 
 **Bildestatus for delbolken er fortsatt 0 publiserte nye bilder.** Etter motiv- og kildevalg må tre faktiske utsnitt lages og testes.
+
+
+## CI-nullmåling ved siste kontroll (før de nyeste korrigeringene)
+
+Fra commit `86a98d043a5e47c6a325925461b1334f3666a33e` ble 11 GitHub Actions-jobber kjørt: 5 PASS, 6 FAIL. Feilene var (1) fire manglende bilder i `audit-place-images`, (2) utdatert `place-open`-payload, (3) manglende Historie-produksjonsrapporter ved endret `desc/popupDesc`, (4) manglende v4.2-claimpakker ved endret `desc/popupDesc`, (5) utdatert Fagverk release-manifest og (6) eldre naturkartreferanse `trikk_17_18`. Det siste er et annet scope.
+
+Etter at **de aktive historietekstene ble tilbakestilt til main**, skal feil (3) og (4) kontrolleres på nytt på siste PR-head; de er **ikke dokumentert grønne** før ferske jobber er fullført. Bilde-, Place-open- og Fagverk-release-feilene er fortsatt åpne. Ingen påstander om grønn CI eller mergeklarhet.
+
