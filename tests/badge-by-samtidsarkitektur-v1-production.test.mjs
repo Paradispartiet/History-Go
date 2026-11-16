@@ -16,7 +16,7 @@ test('Samtidsarkitektur is sixth original 1024px embroidered By image',()=>{
   ['byplanlegging','bilder/merker/by/undermerker/byplanlegging-brodert-v1.webp'],
   ['infrastruktur','bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'],
   ['monumenter_og_landemerker','bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'],
-  ['bolig_og_bomiljo','bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v1.webp']
+  ['bolig_og_bomiljo','bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp']
  ];
  assert.deepEqual(by.sub.slice(6),later.map(([id])=>id));
  const present=later.filter(([id])=>Object.hasOwn(by.subBadgeImages,id));
