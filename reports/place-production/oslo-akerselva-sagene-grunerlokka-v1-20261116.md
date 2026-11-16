@@ -176,3 +176,12 @@ Se `reports/place-production/oslo-akerselva-v1-quiz-audit-20261116.json` for mas
 - **CI-retting:** Første nykjøring etter forrige testretting kom gjennom QuizCard og fullquiz, men feilet på et rent presentasjonsavvik: CSS rendrer `FAGVERK UNDER PRODUKSJON`, mens `innerText()` ble sammenlignet med `Fagverk under produksjon`. Nettlesertesten bruker nå `textContent()` for den semantiske statusen; ingen app-CSS ble endret. At de ikke-godkjente Fagverk-linsene er skjult, er fortsatt riktig oppførsel.
 - **Kvalitetsgrense:** Seks spørsmål har fått bedre spillertekst, men det innebærer **ikke** kildegodkjenning av alle 42 spørsmål. Eldre automatisk emnevalg, særlig spørsmål med brede/feilaktige naturfagsemner og intern kilde, må gjennomgås før V1. Myragårdens to rene byggeår-/arkitektspørsmål forblir i redaksjonell kø (40/42). Fagverk forblir `in_production`; kort og fullquiz kan derfor ikke alene gi V1.
 - **Endringscommitter:** `75cd0ff5` nettlesertestens CSS-presisering, `02ded149` seks konseptspørsmål, `f458d816` regresjonstest og `9efde8bf` oppdatert Knowledge-review. **Ny CI og visuell QA må verifiseres på endelig PR-head.**
+
+
+## Myraløkka – kanonisk Knowledge etter emnekorreksjon (16.11.2026)
+
+- De syv tidligere feilklassifiserte spørsmålene `myralokka_s5_q1`–`s5_q7` har fått eksplisitt gjennomgåtte Natur-emner. Den gamle koblingen til dyreatferd er fjernet. Eksamens-/bruker-ID-ene (`id`, `quiz_id`, `primary_knowledge_unit_id`, `knowledge_unit_ids`) og Knowledge-tekstene er bevart.
+- Kanonisk `knowledge:canonical:write` og `knowledge:canonical:check` ble gjennomført i engangs-Action #43880694557, med grønn identitets- og omfangskontroll; commit `f1d2fb40c44681ae1f3aafa4b6d29131f289917e` oppdaterte `data/knowledge/knowledge_units.generated.json` og `reports/knowledge-id-backfill.json`. Engangsworkflowen fjernet seg selv.
+- Myraløkka står fremdeles på **40/42 Knowledge-koblinger**. `myralokka_s2_q5` og `myralokka_s2_q6` gjelder henholdsvis Myragårdens byggeår og arkitekter. De er kildebare, men rene historie-/byromsspørsmål og må ikke binds til et irrelevant Natur-emne for å øke telleverket.
+- PR-CI på bot-commit `f1d2fb40` ble returnert som `action_required` ved kontroll, uten testutførelse. Dette er **ikke** bestått Myraløkka browser-/iPad-QA; kontroller ny kjøring på en senere faktisk PR-head. Full innholdsgjennomgang og Fagverk-kuratering gjenstår.
+- **0 nye V1**, Myraløkka fortsatt `in_production`; PR #7342 fortsatt **draft**, ikke mergeklar.
