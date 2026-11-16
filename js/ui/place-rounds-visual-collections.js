@@ -733,6 +733,15 @@
       grid.style.removeProperty("grid-template-columns");
       grid.style.removeProperty("grid-template-rows");
     }
+
+    // The async collection renderer may finish after the curated 1–3-item
+    // layout (for example after a late image decode or Place-open hydration).
+    // Reconcile its visibility and source markers *after* every core apply.
+    // Otherwise a late core write flips a curated Place back to the generic
+    // "place_card_profile_v2" state between consecutive browser assertions.
+    if (s(card.dataset.currentPlaceId) === s(place.id)) {
+      global.HGPlaceRoundsFillLayout?.applyCuratedVisibility?.();
+    }
   }
 
   function scheduleApply() {
