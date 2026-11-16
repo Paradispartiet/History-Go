@@ -108,6 +108,15 @@ async function scenario(engine, width, height) {
     assert.equal((await wallet()).balance, 9890.6, 'consumption never charges again');
     const focused = await page.evaluate(() => document.activeElement?.getAttribute('data-consume-product'));
     assert.equal(focused, 'tine-milk-1l');
+    const addedStock = {};
+    for (const [id, remaining] of [['carrots-second-sort-1kg', 900], ['bananas-1kg', 900], ['sevan-red-lentils-dry-900g', 800]]) {
+      await page.locator('[data-buy-pack="' + id + '"]').click();
+      await page.waitForFunction(productId => window.CivicationState.getWallet().nok_v1.shopping.quantities[productId] === 1, id);
+      await page.locator('[data-consume-product="' + id + '"]').click();
+      await page.waitForFunction(({ id, remaining }) => window.HG_CiviShop.getNokProductStock(id).available === remaining, { id, remaining });
+      addedStock[id] = remaining;
+    }
+    assert.equal((await wallet()).balance, 9800.9, 'three added packs cost 89.70 with no extra consumption charge');
     await page.locator('[data-consume-product="tine-milk-1l"]').scrollIntoViewIfNeeded();
     screenshots.push(await capture('pantry'));
     const geometry = await page.evaluate(() => {
@@ -130,7 +139,7 @@ async function scenario(engine, width, height) {
     await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), saved, 'reload neither buys, consumes nor pays again');
     assert.deepEqual(errors, [], 'no uncaught page errors');
-    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750 };
+    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock };
   } catch (error) {
     console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors }));
     console.error('CIVI_NOK_FAILURE_STATE:' + JSON.stringify(await page.evaluate(() => ({

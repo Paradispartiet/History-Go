@@ -16,7 +16,7 @@ const legacy = '{"packs":{"streetwear_basic":true},"ownedItems":["streetwear_bas
 w.localStorage.setItem('hg_pc_inventory_v1', legacy);
 w.localStorage.setItem('hg_pc_wallet_v1', '{"balance":9999}');
 state.updateWallet({ balance: 100, last_tick_day_index: 8, nok_v1: { active: true, version: 1, config } });
-assert.equal((await shop.getVisiblePacks()).length, 4);
+assert.equal((await shop.getVisiblePacks()).length, 7);
 assert.equal((await shop.getPacks()).some(p => p.id === 'streetwear_basic'), false);
 const before = JSON.stringify(state.getWallet());
 assert.equal((await shop.buyPack('streetwear_basic', 'old-price')).ok, false);
@@ -61,6 +61,37 @@ w.document.querySelector('[data-civi-buy-pack="axa-oats-1100g"]').click();
 await new Promise(r => setTimeout(r, 5));
 assert.equal(state.getWallet().balance, 49.7);
 assert.equal(state.getWallet().nok_v1.shopping.quantities['axa-oats-1100g'], 2);
+// Buy the added produce/pulse references through both real shop UIs. Consume
+// package weight, not inferred edible yield, cooked weight or nutritional portions.
+state.updateWallet({ ...state.getWallet(), balance: 100 });
+const added = [
+  ['carrots-second-sort-1kg', 19.9, 1000],
+  ['bananas-1kg', 24.9, 1000],
+  ['sevan-red-lentils-dry-900g', 44.9, 900]
+];
+for (const [index, [id, price, quantity]] of added.entries()) {
+  if (index === 1) {
+    await w.CivicationUI.renderCivicationShop();
+    w.document.querySelector('[data-civi-buy-pack="' + id + '"]').click();
+  } else {
+    await w.CivicationStoreUI.render();
+    w.document.querySelector('[data-buy-pack="' + id + '"]').click();
+  }
+  await new Promise(r => setTimeout(r, 5));
+  const receipt = state.getWallet().nok_v1.shopping.purchases.at(-1);
+  assert.equal(receipt.productId, id);
+  assert.equal(receipt.amountNok, price);
+  assert.equal(receipt.sourceId, config.shopProducts.find(p => p.id === id).sourceId);
+  assert.equal(receipt.priceCheckedOn, '2026-11-16');
+  assert.equal(shop.getNokProductStock(id).available, quantity);
+  assert.equal(shop.consumeNokProduct(id, 'new-food-use-' + id).remaining, quantity - 100);
+}
+assert.equal(state.getWallet().balance, 10.3, 'three sourced packs total 89.70; consumption adds no payment');
+const purchased = JSON.stringify(state.getWallet());
+w.eval(fs.readFileSync('js/Civication/civicationCommercial.js', 'utf8'));
+assert.equal(JSON.stringify(state.getWallet()), purchased);
+for (const [id, , quantity] of added) assert.equal(w.HG_CiviShop.getNokProductStock(id).available, quantity - 100);
+assert.equal(w.localStorage.getItem('hg_pc_inventory_v1'), legacy);
 for (const badPrice of [-1, 1.001, '19.4']) {
   const bad = JSON.parse(JSON.stringify(config)); bad.shopProducts[0].priceNok = badPrice;
   state.updateWallet({ ...state.getWallet(), balance: 100, nok_v1: { ...state.getWallet().nok_v1, config: bad } });
