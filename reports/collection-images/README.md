@@ -10,7 +10,7 @@ Tre kildeavgrensede bildekandidater finnes i én samlet, SHA-låst ZIP-pakke, el
 - `historygo_toyen_trafo_objects_2_kandidater.zip`: Tøyen apparatpult 1916 og transformator-/motorkjerne 1918.
 - `historygo_freiaparken_structure_v2_candidates.zip`: revidert illustrasjon av Freiaparken.
 
-**Binærfilene ligger ikke i GitHub ennå.** Manifester og import-/testkode ligger her. Ikke erstatt canonical bildefiler før kildetro, rettigheter og visning er kontrollert.
+**Alle tre WebP-filene er nå lagt i kandidatmapper på PR #7348.** Manifester, SHA-256, Git-blob-SHA, import-/testkode og binære filer ligger i samme GitHub-gren. Dette er bare staging; ikke erstatt canonical bildefiler før kildetro, rettigheter og visning er kontrollert.
 
 Importerens kontrollgrunnlag er filnavn, SHA-256, WebP-header og dimensjoner (900×520) fra `*-candidate.json`. Den er bevisst begrenset til disse tre bildene, og avviser overskriving med avvikende bytes.
 
@@ -45,6 +45,19 @@ python3 -m unittest discover -s tests -p 'test_stage_collection_image_candidates
 ```
 
 Det er tre grunnleggende testtilfeller: verifiser/stage, avvis ZIP-traversering og SHA-endring, og avvis overskriving med ulike kandidatbytes.
+
+## Kontinuerlig integritetstest
+
+GitHub-workflowen `.github/workflows/collection-image-candidates.yml` kjører følgende:
+
+```bash
+python3 -m unittest discover -s tests -p 'test_stage_collection_image_candidates.py' -v
+python3 scripts/check-collection-image-candidates.py
+```
+
+Den kontrollerer SHA-256, Git-blob-SHA, WebP-format, dimensjoner, størrelser, trygg stiplassering og `publishable: false`. Den sikrer også at kandidatstiene ikke brukes som canonical Structure-/Object-bilder.
+
+Dette er en **binærintegritetskontroll**, ikke en redaksjonell godkjenning.
 
 ## Redaksjonell port
 
