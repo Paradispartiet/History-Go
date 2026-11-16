@@ -18,7 +18,7 @@ test('French research revision v3 remains a separate inactive science candidate'
  assert.equal(fr3.locale,'fr');
  assert.equal(fr3.source,source);
  assert.notEqual(fr3.path,source);
- assert.equal(b.subBadgeImages[fr3.id],'bilder/merker/vitenskap/brodert/forskning_og_metode.webp');
+ assert.equal(b.subBadgeImages[fr3.id],'bilder/merker/vitenskap/brodert/forskning_og_metode_v2.webp');
  assert.equal(b.sub.length,16);
  assert.equal(Object.keys(b.subBadgeImages).length,16);
  assert.equal(originals.items.length,5);
