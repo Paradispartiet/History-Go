@@ -2,7 +2,7 @@
 
 Status: arbeidsutkast, ikke aktivert. Kontrollerte kilder 16.11.2026.
 
-1 PC skal tilsvare 1 NOK. Denne første leveransen er et kjørbart, frakoblet beregningsgrunnlag for én voksen aleneboende i Oslo og én butikkjobb. Den er ikke en ny økonomimotor: ingen spillstate leses, ingen penger utbetales, og eksisterende økonomimotor skal eie senere integrasjon.
+1 PC skal tilsvare 1 NOK. Beregningsgrunnlaget gjelder én voksen aleneboende i Oslo og én butikkjobb. Beregningene er delt mellom testverktøy og eksisterende økonomimotor. Forhåndsvisning kan lese faktisk saldo, men utbetaler ikke penger. Kroneøkonomien er ikke aktivert for spillere.
 
 Kilder og forutsetninger finnes per felt i JSON-filen. Virkes trinn 1 fra april 2026 gir 31 694 kroner brutto månedlig ved heltid; tariff er ikke universell minstelønn for alle butikker. Skattemodellen bruker årsinntekt, standardfradrag, trinnskatt og trygdeavgift for ordinær voksen lønnstaker. Den illustrerer gjennomsnittlig årsskatt, ikke faktisk månedlig skattekorttrekk. Feriepenger, trekkfrie perioder, gjeldsrenter, fagforening, formue, andre inntekter og individuelle fradrag er ikke modellert.
 
@@ -25,6 +25,10 @@ Støttescenarioet er ikke et løfte om NAV-utbetaling. Arbeidsledighet alene utl
 Statisk boliggjennomgang: `CivicationHome.applyRentTick` bruker virkelige kalenderuker, mens `applyMonthlyRent` bruker virkelige kalendermåneder. Begge belaster økonomisk kapital. Ny kroneintegrasjon må eksplisitt overta boligbetaling for versjonerte spillere og deaktivere begge gamle betalingsveier for dem; forhåndsvisningen endrer ingen av disse funksjonene. Dette funnet beviser ikke at begge funksjoner faktisk er kjørt for samme spiller.
 
 ### Gjenstående runtimearbeid
+
+Regningsgrensen `CivicationEconomyEngine.payNokInvoice(id)` er implementert på grenen. Den krever `wallet.nok_v1.active === true` og `version === 1`, én entydig lagret regning med kilde-ID, gyldig spillforfall og et ikke-negativt beløp med ørepresisjon. Beløp kan ikke leveres fra UI til betalingskallet. Saldo og regningens betalt-status skrives sammen gjennom eksisterende `CivicationState.updateWallet`. Ubetalte regninger uten dekning beholdes; betaling oppretter ingen kreditt. Opptjente dager og tidligere uke-/leveveisoppgjør bevares. Testene bruker eksplisitte versjonerte wallet-fixturer og beviser betaling/reload/avslag, ikke produksjonsaktivering eller faktisk bokostnad.
+
+Automatisk regningsopprettelse fra avtaler, UI-handling, konto-migrasjon og avvikling av gamle boligtrekk er fortsatt ikke implementert. Ingen produksjonskode oppretter aktiveringsmarkøren ennå.
 
 - Koble konkret jobb og stillingsprosent til eksisterende dagsopptjening. Badge-nivå alene skal ikke fastsette realistisk yrkeslønn.
 - Bruk 12 måneder eller faktisk kalender; fire uker er ikke en måned. Ukentlig opptjening kan vises med år/52, men er ikke en ekstra månedslønn.

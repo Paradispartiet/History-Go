@@ -829,7 +829,51 @@ function getEconomySnapshot() {
 
 
   
+// A payment consumes an existing, source-bound invoice. It cannot invent a
+// charge from a UI amount, activate NOK mode or grant an overdraft.
+/** @param {string} invoiceId @returns {CiviEconomyRecord} */
+function payNokInvoice(invoiceId) {
+  if (typeof invoiceId !== "string" || !invoiceId.trim()) return { ok: false, reason: "INVALID_INVOICE_ID" };
+  const owner = window.CivicationState;
+  const wallet = owner?.getWallet?.();
+  const nok = wallet?.nok_v1;
+  if (nok?.active !== true || nok?.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+  const invoices = /** @type {CiviEconomyRecord[]} */ (Array.isArray(nok.invoices) ? nok.invoices : []);
+  const matches = invoices.filter((invoice) => invoice?.id === invoiceId);
+  if (matches.length !== 1) return { ok: false, reason: "INVOICE_NOT_UNIQUE" };
+  const invoice = matches[0];
+  if (invoice.status === "paid") return { ok: true, skipped: true, reason: "ALREADY_PAID" };
+  if (invoice.status !== "pending" || typeof invoice.sourceId !== "string" || !invoice.sourceId.trim()) {
+    return { ok: false, reason: "INVALID_INVOICE" };
+  }
+  const date = window.CivicationCalendar?.getGameDate?.();
+  const due = String(invoice.dueDateISO || "");
+  const parsed = /^\d{4}-\d{2}-\d{2}$/.test(due) ? new Date(due + "T00:00:00.000Z") : null;
+  if (!date || !parsed || !Number.isFinite(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== due) {
+    return { ok: false, reason: "INVALID_DATE" };
+  }
+  if (date < due) return { ok: false, reason: "NOT_DUE" };
+  const amount = invoice.amountNok;
+  const balance = wallet.balance;
+  if (typeof amount !== "number" || typeof balance !== "number" || !Number.isFinite(amount)
+      || !Number.isFinite(balance) || amount < 0
+      || !Number.isSafeInteger(Math.round(amount * 100)) || !Number.isSafeInteger(Math.round(balance * 100))
+      || Math.abs(balance * 100 - Math.round(balance * 100)) > 0.000001
+      || Math.abs(amount * 100 - Math.round(amount * 100)) > 0.000001) {
+    return { ok: false, reason: "INVALID_AMOUNT" };
+  }
+  const amountCents = Math.round(amount * 100);
+  const balanceCents = Math.round(balance * 100);
+  if (balanceCents < amountCents) return { ok: false, reason: "NOT_ENOUGH_PC", amountNok: amount };
+  const nextBalance = (balanceCents - amountCents) / 100;
+  owner.updateWallet({ ...wallet, balance: nextBalance, nok_v1: { ...nok,
+    invoices: invoices.map((entry) => entry === invoice
+      ? { ...entry, status: "paid", paidDateISO: date } : entry) } });
+  return { ok: true, invoiceId, paidNok: amount, balance: nextBalance };
+}
+
 window.CivicationEconomyEngine = {
+  payNokInvoice,
   // Explicit scenario preview. A selected budget job is not an actual job,
   // nor permission to pay salary or support into the player's wallet.
   /** @param {CiviEconomyRecord} config @param {CiviEconomyRecord} scenario */
