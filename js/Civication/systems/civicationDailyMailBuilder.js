@@ -771,12 +771,22 @@
     const sourceId = norm(sourceMail?.id);
     const date = todayKey();
     const privateScope = isPrivatePhase(phaseId);
+    const sourceThread = norm(sourceMail?.thread_key);
+    const canonicalThread = sourceThread || threadKeyForMail(sourceMail);
+    const gameDay = calendarDay();
+    // Ordinary source mails can legitimately recur on different *game* days
+    // during one real-world date. Keep a shared thread inside each game day,
+    // but do not let an older, still-active daily instance suppress the new
+    // day's required mail. Explicit/case threads keep their canonical key.
+    const dailyThread = gameDay != null && !sourceThread && !isCaseThreadKey(canonicalThread)
+      ? `${canonicalThread}.day.${gameDay}`
+      : canonicalThread;
 
     return {
       ...sourceMail,
       id: `${sourceId}__daily_${date}_${phaseId}_${slotId}_${index}${runtimeInstanceKey}`,
       source_mail_id: sourceId,
-      thread_key: norm(sourceMail?.thread_key) || threadKeyForMail(sourceMail),
+      thread_key: dailyThread,
       source_type: "daily_extra",
       mail_class: privateScope ? PRIVATE_MAIL_CLASS : WORK_MAIL_CLASS,
       channel: privateScope ? "private" : "job",
