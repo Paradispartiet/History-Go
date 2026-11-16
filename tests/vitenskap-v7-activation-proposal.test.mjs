@@ -29,7 +29,8 @@ test('v7 activation proposal points to the exact three verified WebP Git blobs',
   assert.equal(historical.items.length,16);
   const originals = Object.fromEntries(historical.items.map(x=>[x.id,x.image]));
   const changed = Object.keys(badge.subBadgeImages).filter(id=>badge.subBadgeImages[id]!==originals[id]);
-  assert.deepEqual(new Set(changed),new Set(ids));
+  const v2Ids = ["informasjonsteknologi","forskning_og_metode","astronomi_og_fysikk","kjemi_og_materialvitenskap"];
+  assert.deepEqual(new Set(changed),new Set([...ids,...v2Ids]));
   for(const item of archive.items){
     const path = 'bilder/merker/vitenskap/brodert/' + item.id + '_v7.webp';
     assert.equal(badge.subBadgeImages[item.id],path);
@@ -50,7 +51,7 @@ test('v7 activation proposal points to the exact three verified WebP Git blobs',
     assert.ok(original.length>3000);
   }
   for(const item of historical.items){
-    if(ids.includes(item.id))continue;
+    if(ids.includes(item.id) || v2Ids.includes(item.id))continue;
     assert.equal(badge.subBadgeImages[item.id],item.image,'Unrelated science underbadge changed: '+item.id);
   }
 });

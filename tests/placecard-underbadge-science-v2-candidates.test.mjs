@@ -9,13 +9,17 @@ const data = path => JSON.parse(read(path).toString('utf8'));
 const manifest = data('data/badges/vitenskap_v2_candidates_20261112.json');
 const badge = data('data/badges/vitenskap.json');
 
-test('Five Norwegian v2 images are real, byte-verified, nonactive WebP candidates', () => {
+test('Five Norwegian v2 source originals remain byte-verified; four are versioned for activation', () => {
   assert.equal(manifest.items.length, 5);
   assert.equal(manifest.state, 'stored_candidate_not_active');
   assert.equal(Object.keys(badge.subBadgeImages).length, 16);
   for (const art of manifest.items) {
     assert.ok(badge.subBadgeImages[art.id], art.id);
-    assert.notEqual(badge.subBadgeImages[art.id], art.path, 'Candidate cannot replace an active badge yet');
+    assert.notEqual(badge.subBadgeImages[art.id], art.path, 'source archive must remain separate');
+    const expected = art.id === 'matematikk'
+      ? 'bilder/merker/vitenskap/brodert/matematikk.webp'
+      : 'bilder/merker/vitenskap/brodert/' + art.id + '_v2.webp';
+    assert.equal(badge.subBadgeImages[art.id], expected, 'only reviewed v2 artwork should be active');
     const bytes = read(art.path);
     assert.equal(bytes.length, art.bytes);
     assert.equal(bytes.toString('ascii',0,4), 'RIFF');

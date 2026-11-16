@@ -24,7 +24,11 @@ test('All five science v2 candidates have a complete localized text plan but rem
     assert.ok(original, item.id + ' has no original');
     assert.equal(item.sourceNorwegianCandidate.path, original.path);
     assert.equal(item.sourceNorwegianCandidate.gitBlobSha, original.gitBlobSha);
-    assert.equal(item.activeNorwegianPath, active.subBadgeImages[item.id]);
+    const activatedV2 = new Set(["informasjonsteknologi","forskning_og_metode","astronomi_og_fysikk","kjemi_og_materialvitenskap"]);
+    const expected = activatedV2.has(item.id)
+      ? 'bilder/merker/vitenskap/brodert/' + item.id + '_v2.webp'
+      : item.activeNorwegianPath;
+    assert.equal(expected, active.subBadgeImages[item.id]);
     assert.notEqual(original.path, active.subBadgeImages[item.id]);
     assert.deepEqual(Object.keys(item.variants).sort(), [...plan.languageOrder].sort());
     assert.equal(item.variants.nb.path, original.path);

@@ -20,10 +20,10 @@ test('Vitenskap: ingeniørfag bevarer hovedmerke, eldre originaler og alle øvri
     naturvitenskap:'bilder/merker/vitenskap/brodert/naturvitenskap.webp',
     teknologi:'bilder/merker/vitenskap/brodert/teknologi.webp',
     matematikk:'bilder/merker/vitenskap/brodert/matematikk.webp',
-    informasjonsteknologi:'bilder/merker/vitenskap/brodert/informasjonsteknologi.webp',
-    forskning_og_metode:'bilder/merker/vitenskap/brodert/forskning_og_metode.webp',
-    astronomi_og_fysikk:'bilder/merker/vitenskap/brodert/astronomi_og_fysikk.webp',
-    kjemi_og_materialvitenskap:'bilder/merker/vitenskap/brodert/kjemi_og_materialvitenskap.webp'
+    informasjonsteknologi:'bilder/merker/vitenskap/brodert/informasjonsteknologi_v2.webp',
+    forskning_og_metode:'bilder/merker/vitenskap/brodert/forskning_og_metode_v2.webp',
+    astronomi_og_fysikk:'bilder/merker/vitenskap/brodert/astronomi_og_fysikk_v2.webp',
+    kjemi_og_materialvitenskap:'bilder/merker/vitenskap/brodert/kjemi_og_materialvitenskap_v2.webp'
   };
   for (const [id, path] of Object.entries(originalSeven)) {
     assert.equal(parent.subBadgeImages[id],path,id+' existing badge path unchanged');

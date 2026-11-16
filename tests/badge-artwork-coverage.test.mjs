@@ -126,7 +126,9 @@ test('Vitenskap har registrert lilla, sydd hovedmerke og minst ti fungerende und
   for(const asset of manifest.assets){
     assert.ok(badge.sub.includes(asset.id));
     assert.equal(asset.parentBadgeId,'vitenskap');
-    assert.equal(badge.subBadgeImages[asset.id],asset.image);
+    const activatedV2 = new Set(['informasjonsteknologi','forskning_og_metode','astronomi_og_fysikk','kjemi_og_materialvitenskap']);
+    assert.equal(badge.subBadgeImages[asset.id], activatedV2.has(asset.id)
+      ? asset.image.replace('.webp','_v2.webp') : asset.image);
     checkImage(asset.image,asset.svg);
   }
 });

@@ -24,9 +24,11 @@ test('Data/programvare/algoritmer: previous originals remain intact, v7 activati
   assert.equal(badge.image,manifest.baseCategoryImage);
   assert.equal(badge.color,'#6A5AE0');
   assert.equal(badge.secondaryColor,'#FFFFFF');
+  const activatedV2 = new Set(["informasjonsteknologi","forskning_og_metode","astronomi_og_fysikk","kjemi_og_materialvitenskap"]);
   for (const [id,path] of Object.entries(previouslyActive)) {
     const expected = id === 'teknologi_og_ingeniorfag'
-      ? 'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag_v7.webp' : path;
+      ? 'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag_v7.webp'
+      : activatedV2.has(id) ? 'bilder/merker/vitenskap/brodert/' + id + '_v2.webp' : path;
     assert.equal(badge.subBadgeImages[id],expected,id+' changed unexpectedly');
     assert.ok(existsSync(new URL(path,root)),id+' older original must remain intact');
   }

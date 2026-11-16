@@ -43,7 +43,11 @@ test('Vitenskap: sju eldre originaler bevares til en ferdig godkjent enkeltmerke
     assert.ok(item.topTextNB.length > 5);
     assert.ok(item.newIllustrationMotif.length > 20);
     if (item.revisionStatus === 'awaiting_correct_single_badge_artwork') {
-      assert.equal(registry.subBadgeImages[item.id], item.currentPath);
+      const activatedV2 = new Set(["informasjonsteknologi","forskning_og_metode","astronomi_og_fysikk","kjemi_og_materialvitenskap"]);
+      const expected = activatedV2.has(item.id)
+        ? 'bilder/merker/vitenskap/brodert/' + item.id + '_v2.webp'
+        : item.currentPath;
+      assert.equal(registry.subBadgeImages[item.id], expected);
       const bytes = read(item.currentPath);
       const actual = createHash('sha1')
         .update(Buffer.from('blob ' + bytes.length + '\0')).update(bytes).digest('hex');
