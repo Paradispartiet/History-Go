@@ -1105,7 +1105,70 @@ function acceptNokHousing(districtId) {
   return { ok: true, contractId };
 }
 
+// A prepaid ticket is a purchase, never a calendar-month bill or automatic renewal.
+/** @param {CiviEconomyWallet} [wallet] @returns {CiviEconomyRecord} */
+function getNokTransportStatus(wallet = window.CivicationState?.getWallet?.()) {
+  const nok = wallet?.nok_v1;
+  if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+  const offer = nok.config?.budget?.transport;
+  if (!offer || typeof offer.id !== "string" || !offer.id.trim()
+      || typeof offer.source !== "string" || !offer.source.trim()
+      || offer.periodDays !== 30 || offer.purchaseMode !== "optional_prepaid_no_auto_renewal"
+      || typeof offer.priceNok !== "number" || !Number.isFinite(offer.priceNok) || offer.priceNok <= 0
+      || !Number.isSafeInteger(Math.round(offer.priceNok * 100))
+      || Math.abs(offer.priceNok * 100 - Math.round(offer.priceNok * 100)) > 0.000001)
+    return { ok: false, reason: "TRANSPORT_PRICE_NOT_MAPPED" };
+  const calendar = window.CivicationCalendar;
+  const clock = calendar?.getClock?.();
+  if (!Number.isSafeInteger(nok.startedDayIndex) || nok.startedDayIndex < 1
+      || !Number.isSafeInteger(clock?.dayIndex) || clock.dayIndex < nok.startedDayIndex
+      || !Number.isSafeInteger(clock.currentMinutes) || clock.currentMinutes < 0 || clock.currentMinutes >= 1440)
+    return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+  const now = clock.dayIndex * 1440 + clock.currentMinutes;
+  if (!Number.isSafeInteger(now + 30 * 1440) || !calendar.getGameDate(clock.dayIndex + 30))
+    return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+  const passes = nok.transportPasses || [];
+  if (!Array.isArray(passes) || passes.some(p => !p || typeof p.id !== "string"
+      || !Number.isSafeInteger(p.startsAtGameMinute) || !Number.isSafeInteger(p.expiresAtGameMinute)
+      || p.expiresAtGameMinute - p.startsAtGameMinute !== 30 * 1440)
+      || new Set(passes.map(p => p.id)).size !== passes.length)
+    return { ok: false, reason: "INVALID_TRANSPORT_HISTORY" };
+  const current = passes.filter(p => p.expiresAtGameMinute > now);
+  if (current.length > 1 || current.some(p => p.startsAtGameMinute > now))
+    return { ok: false, reason: "INVALID_TRANSPORT_HISTORY" };
+  return { ok: true, offer, current: current[0] || null, now,
+    validUntilDateISO: current[0] ? calendar.getGameDate(Math.floor(current[0].expiresAtGameMinute / 1440)) : null,
+    validUntilTime: current[0] ? calendar.minutesToLabel(current[0].expiresAtGameMinute % 1440) : null };
+}
+
+/** @returns {CiviEconomyRecord} */
+function purchaseNokTransportPass() {
+  const owner = window.CivicationState;
+  const wallet = owner?.getWallet?.();
+  const status = getNokTransportStatus(wallet);
+  if (!status.ok) return status;
+  if (status.current) return { ok: true, skipped: true, reason: "TRANSPORT_PASS_ACTIVE" };
+  const balance = wallet.balance;
+  const cents = Math.round(balance * 100);
+  const priceCents = Math.round(status.offer.priceNok * 100);
+  if (typeof balance !== "number" || !Number.isFinite(balance) || !Number.isSafeInteger(cents)
+      || Math.abs(balance * 100 - cents) > 0.000001) return { ok: false, reason: "INVALID_OPENING_BALANCE" };
+  if (cents < priceCents) return { ok: false, reason: "NOT_ENOUGH_PC" };
+  const nok = wallet.nok_v1;
+  const passes = nok.transportPasses || [];
+  const id = "transport:" + status.offer.id + ":" + status.now;
+  if (passes.some(p => p.id === id)) return { ok: false, reason: "DUPLICATE_TRANSPORT_PURCHASE" };
+  const pass = { id, offerId: status.offer.id, sourceId: status.offer.source,
+    amountNok: status.offer.priceNok, startsAtGameMinute: status.now,
+    expiresAtGameMinute: status.now + status.offer.periodDays * 1440 };
+  owner.updateWallet({ ...wallet, balance: (cents - priceCents) / 100,
+    nok_v1: { ...nok, transportPasses: [...passes, pass] } });
+  return { ok: true, pass, balance: (cents - priceCents) / 100 };
+}
+
 window.CivicationEconomyEngine = {
+  getNokTransportStatus,
+  purchaseNokTransportPass,
   acceptNokHousing,
   migrateNokEconomy,
   payNokInvoice,

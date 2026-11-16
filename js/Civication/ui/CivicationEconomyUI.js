@@ -85,6 +85,33 @@
       const last = ledger[ledger.length - 1];
       if (last) panel.appendChild(node("p", "Siste lønnsoppgjør (" + last.monthId + "): "
         + money((last.grossCents - last.taxCents) / 100) + " kr netto"));
+      const transport = root.CivicationEconomyEngine?.getNokTransportStatus?.();
+      if (transport?.ok) {
+        panel.appendChild(node("h4", "Transport"));
+        panel.appendChild(node("p", String(transport.offer.label || "30-dagersbillett") + " · " + money(transport.offer.priceNok) + " kr"));
+        if (transport.current) {
+          panel.appendChild(node("p", "Billett gyldig frem til " + transport.validUntilDateISO + " kl. " + transport.validUntilTime + " i spillet."));
+        } else {
+          panel.appendChild(node("p", "Gjelder fra kjøpet og i 30 spilldøgn. Ingen automatisk fornyelse."));
+          const buy = /** @type {HTMLButtonElement} */ (node("button", "Kjøp 30-dagersbillett"));
+          buy.type = "button";
+          buy.className = "btn";
+          buy.setAttribute("data-nok-transport", "");
+          buy.disabled = typeof wallet?.balance !== "number" || !Number.isFinite(wallet.balance)
+            || wallet.balance < transport.offer.priceNok;
+          buy.addEventListener("click", () => {
+            buy.disabled = true;
+            try {
+              const result = root.CivicationEconomyEngine.purchaseNokTransportPass();
+              message = result?.ok ? (result.skipped ? "Du har allerede en gyldig billett." : "Billetten er kjøpt og aktiv i spillet.")
+                : result?.reason === "NOT_ENOUGH_PC" ? "Ikke nok penger til billetten." : "Billetten kunne ikke kjøpes.";
+              if (result?.ok) root.dispatchEvent(new Event("updateProfile"));
+            } catch { message = "Kjøpet kunne ikke bekreftes. Sjekk billett og saldo før nytt forsøk."; }
+            render();
+          });
+          panel.appendChild(buy);
+        }
+      }
       panel.appendChild(node("h4", "Regninger"));
       const invoices = /** @type {Array<Record<string, any>>} */ (Array.isArray(nok.invoices) ? nok.invoices : []);
       if (!invoices.length) panel.appendChild(node("p", "Ingen registrerte regninger."));

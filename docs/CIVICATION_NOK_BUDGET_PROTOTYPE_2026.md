@@ -105,3 +105,26 @@ ustøttet jobb stopper, saldo/historikk/kjøp bevares, gjentatt klikk gjentar ik
 overgangen og fokus beholdes. Produksjonsfilen forblir inaktiv i samme test.
 Aktiverings-UI er dermed implementert; datagrunnlag, organisk ende-til-ende-reise
 og visuell mobilkontroll må avklares før profilen kan gjøres aktiv.
+
+### Transport: faktisk 30-dagerskjøp
+
+Ruters offisielle prisoversikt er kontrollert 16.11.2026: voksen sone 1 koster
+655 kr for 30 dager (oppdatert 16.09.2026). Transportprofilen har nå produkt-ID,
+kontrolldato og eksplisitt valgfritt forhåndsbetalt kjøp uten automatisk fornyelse.
+Budsjettets 664,10 kr/mnd er fortsatt bare en årsekvivalent, aldri en belastning.
+
+`purchaseNokTransportPass` leser pris og kilde fra spillerens frosne profil,
+kontrollerer fersk saldo og gyldig spillklokke og lagrer saldo/kvittering samlet.
+Billetten starter ved kjøpet og utløper etter nøyaktig 30 × 1440 spillminutter.
+Aktiv billett sperrer et nytt kjøp; utløp, månedsskifte og innlasting trekker ingenting.
+Gyldighet og kjøpsknapp vises under Transport i økonomipanelet. Dette registrerer
+billettens kjøp/gyldighet i spillet, men innfører ingen nye porter for kartreiser.
+Prisgrunnlaget er et datert 2026-scenario; det er ikke historiske billettpriser for
+hver dato på spillkalenderen. Prisreduksjonen må kontrolleres på nytt før april 2027.
+
+`civication-nok-transport-pass.test.js` kjører faktiske State/Calendar/Engine/UI:
+31. januar til 2. mars ved samme klokkeslett, grenseminutt, skuddår, tre separate
+kjøp uten månedsregning, dobbeltkjøp, manglende dekning, endret saldo etter tegning,
+ugyldige priser, bevart gammel historikk og innlasting. Eksisterende økonomi-UI,
+aktivering, månedlige regninger, 90-dagers lønn og budsjettberegning består også.
+Produksjonsaktivering er fortsatt av.
