@@ -6,7 +6,20 @@ const assert = require('assert');
 
 const repoRoot = path.resolve(__dirname, '..');
 function makeStorage() { const store = new Map(); return { getItem:k=>store.has(k)?store.get(k):null, setItem:(k,v)=>store.set(String(k),String(v)), removeItem:k=>store.delete(String(k)), clear:()=>store.clear() }; }
-function makeFetch(rootDir) { return async function fetchMock(url) { const clean = String(url || '').split('?')[0].replace(/^\/+/, ''); const fullPath = path.resolve(rootDir, clean); if (!fullPath.startsWith(rootDir)) return { ok:false, status:400, async json(){return null;} }; try { const body = await fs.promises.readFile(fullPath, 'utf8'); return { ok:true, status:200, async json(){return JSON.parse(body);} }; } catch { return { ok:false, status:404, async json(){return null;} }; } }; }
+function makeFetch(rootDir) { return async function fetchMock(url) { const clean = String(url || '').split('?')[0].replace(/^\/+/, ''); const fullPath = path.resolve(rootDir, clean); if (!fullPath.startsWith(rootDir)) return { ok:false, status:400, async json(){return null;} }; try { const body = await fs.promises.readFile(fullPath, 'utf8'); return { ok:true, status:200, async json(){
+  const payload = JSON.parse(body);
+  // Reproduce an upstream default-key stamp. A normal non-case source mail
+  // is still a separate daily action when the player starts another game day.
+  if (clean.startsWith('data/Civication/mailFamilies/naeringsliv/') && clean.includes('/controller_')) {
+    for (const family of payload.families || []) for (const mail of family.mails || []) {
+      const type = String(mail.mail_type || payload.mail_type || '');
+      if (mail.id && !['micro','followup','knowledge','consequence'].includes(type)) {
+        mail.thread_key = 'controller.mail.' + mail.id;
+      }
+    }
+  }
+  return payload;
+} }; } catch { return { ok:false, status:404, async json(){return null;} }; } }; }
 function loadScript(relPath) { vm.runInThisContext(fs.readFileSync(path.join(repoRoot, relPath), 'utf8'), { filename: relPath }); }
 function setup() {
   global.window = global;
@@ -68,6 +81,8 @@ async function run() {
   const eligible = forcedA.items.find(row => row.event?.source_type === 'daily_extra'
     && row.event?.source_mail_id && String(row.event?.thread_key || '').includes('.day.'));
   assert(eligible, 'day queue should include an ordinary source mail with a game-day thread');
+  assert.match(eligible.event.thread_key, /^controller\\.mail\\..+\\.day\\.1$/,
+    'even a previously stamped non-case thread must be scoped to game day 1');
   const sibling = forcedB.items.find(row => row.event?.source_mail_id === eligible.event.source_mail_id);
   assert(sibling, 'force-new same-day queue should include the same source for comparison');
   assert.strictEqual(eligible.event.thread_key, sibling.event.thread_key,
