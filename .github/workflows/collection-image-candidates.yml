@@ -1,0 +1,45 @@
+name: Collection image candidate integrity
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/collection-image-candidates.yml'
+      - 'bilder/kort/objects/candidates/**'
+      - 'bilder/kort/structures/candidates/**'
+      - 'reports/collection-images/**'
+      - 'scripts/stage-collection-image-candidates.py'
+      - 'scripts/check-collection-image-candidates.py'
+      - 'tests/test_stage_collection_image_candidates.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-unpublished-assets:
+    name: Hash, size and staging safety
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test candidate importer
+        run: python3 -m unittest discover -s tests -p 'test_stage_collection_image_candidates.py' -v
+      - name: Validate staged WebP assets against manifests
+        run: python3 scripts/check-collection-image-candidates.py
+      - name: Verify canonical image paths are not candidate paths
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for file in (
+              Path('data/places/naeringsliv/oslo/places_naeringsliv/freia_fabrikken.json'),
+              Path('data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04/toyen_trafo.json')
+          ):
+              place = json.loads(file.read_text(encoding='utf-8'))
+              for group in ('objects', 'structures'):
+                  for member in place.get(group, []):
+                      image = str(member.get('image', ''))
+                      if '/candidates/' in image:
+                          raise SystemExit(f'Candidate leaked into {file}: {group}/{member.get("id")}')
+          print('Canonical structure/object image paths remain unchanged by candidate staging')
+          PY
