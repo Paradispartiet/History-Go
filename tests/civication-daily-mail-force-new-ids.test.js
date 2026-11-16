@@ -81,7 +81,7 @@ async function run() {
   const eligible = forcedA.items.find(row => row.event?.source_type === 'daily_extra'
     && row.event?.source_mail_id && String(row.event?.thread_key || '').includes('.day.'));
   assert(eligible, 'day queue should include an ordinary source mail with a game-day thread');
-  assert.match(eligible.event.thread_key, /^controller\\.mail\\..+\\.day\\.1$/,
+  assert.match(eligible.event.thread_key, /^controller\.mail\..+\.day\.1$/,
     'even a previously stamped non-case thread must be scoped to game day 1');
   const sibling = forcedB.items.find(row => row.event?.source_mail_id === eligible.event.source_mail_id);
   assert(sibling, 'force-new same-day queue should include the same source for comparison');
@@ -95,6 +95,29 @@ async function run() {
     'new game day must not be suppressed by a prior day active source thread');
   assert.strictEqual(repeated.event.source_mail_id, eligible.event.source_mail_id,
     'canonical source ID is preserved across the game-day thread boundary');
+
+  // A new queue can also start before Calendar.getClock is ready in the app.
+  // A persisted Life Story day must still scope the ordinary source thread.
+  global.CivicationCalendar.getClock = () => ({ dayIndex: null });
+  global.CivicationLifestoryState = { load: () => ({ kalenderDag: 5 }) };
+  const storyFallback = await global.CivicationDailyMailBuilder.buildQueue(active, { date, forceNew: true });
+  const fromStory = storyFallback.items.find(row => row.event?.source_mail_id === eligible.event.source_mail_id);
+  assert(fromStory, 'source mail should remain in queue when clock is unavailable');
+  assert.strictEqual(fromStory.event.thread_key, eligible.event.thread_key.replace(/\.day\.1$/, '.day.5'),
+    'saved Life Story calendar day must scope the daily mail');
+
+  // If neither clock nor Life Story is initialized yet, a new forceNew runtime
+  // still must not collide with an earlier pending or planned inbox thread.
+  delete global.CivicationLifestoryState;
+  const runtimeFallback = await global.CivicationDailyMailBuilder.buildQueue(active, { date, forceNew: true });
+  const fromRuntime = runtimeFallback.items.find(row => row.event?.source_mail_id === eligible.event.source_mail_id);
+  assert(fromRuntime, 'source mail should remain in queue without a loaded game day');
+  assert.ok(fromRuntime.event.thread_key.startsWith('controller.mail.'),
+    'fallback keeps the canonical source thread prefix');
+  assert.ok(fromRuntime.event.thread_key.includes('.runtime.run_'),
+    'unique daily runtime must scope the thread when no game day is available');
+  assert.notStrictEqual(fromRuntime.event.thread_key, eligible.event.thread_key,
+    'uninitialized clock must not reproduce a previous active thread');
 
   console.log('civication-daily-mail-force-new-ids.test.js passed');
 }
