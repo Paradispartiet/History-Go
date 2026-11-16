@@ -116,8 +116,8 @@ try{
     item.phase='quizcard-position-before-click';
     item.quizBeforeClick=await positionQuizCard(page);
     if(!mobile){
-     assert.equal(await page.locator('#placeCard .pc-sheet-hero').evaluate(el=>getComputedStyle(el).position),'relative',
-       id+' desktop QuizCard must not sit under a sticky hero while reading');
+     assert.equal(await page.locator('#placeCard .pc-sheet-hero').evaluate(el=>getComputedStyle(el).position),'sticky',
+       id+' desktop QuizCard must fit below the stable collapsed photo heading');
     }
     const rect=await flip.boundingBox();
     assert.ok(rect?.height>75,'QuizCard zero height');
