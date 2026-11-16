@@ -6,7 +6,7 @@ const entry = fs.readFileSync("js/ui/psychology-room-entry.js", "utf8");
 assert.match(room, /id="psychologyRoomAhaShareForm"/);
 assert.match(room, /name="selected_insight"/);
 assert.match(room, /name="aha_share_confirm" required/);
-assert.match(room, /ahaShareForm\.elements\.aha_share_confirm\.checked/);
+assert.match(room, /ahaShareConsent\?\.checked/);
 assert.match(room, /type: "historygo\.psychology\.selection\.v1"/);
 assert.match(room, /schema_version: "aha_psychology_selection_v1"/);
 assert.match(room, /message\.source !== destination/);
