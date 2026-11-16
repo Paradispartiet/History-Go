@@ -35,6 +35,7 @@ const KNOWLEDGE_ROOT = path.join(ROOT, 'data/knowledge');
  */
 const PRESERVED_QUIZ_KNOWLEDGE_SOURCES = [
   'data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json',
+  'data/knowledge/preserved_quiz_sources/myralokka_myragarden_legacy_20261116.json',
 ];
 
 /**

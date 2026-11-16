@@ -519,12 +519,14 @@
     {
       "id": "myralokka_s2_q5",
       "question": "Når stod Myragården ferdig?",
-      "reason": "Correctly sourceable, but pure date memorization about worker housing is not justified as Natur-science Knowledge. Needs replacement or subject-boundary editorial decision before linked."
+      "reason": "Correctly sourceable, but pure date memorization about worker housing is not justified as Natur-science Knowledge. Needs replacement or subject-boundary editorial decision before linked.",
+      "disposition": "retired_from_active_natur_quiz_knowledge_only_preserved"
     },
     {
       "id": "myralokka_s2_q6",
       "question": "Hvem tegnet Myragården?",
-      "reason": "Correctly sourceable, but naming architects is a By/history fact, not a Natur learning objective. Must not be mapped to an unrelated Natur emne to force a green audit."
+      "reason": "Correctly sourceable, but naming architects is a By/history fact, not a Natur learning objective. Must not be mapped to an unrelated Natur emne to force a green audit.",
+      "disposition": "retired_from_active_natur_quiz_knowledge_only_preserved"
     }
   ],
   "limitations": [
@@ -532,7 +534,8 @@
     "Active repository species maps represent mapped species, not verified sightings at every visit.",
     "Canonical Knowledge registry and review queue were regenerated and checked on commit f1d2fb40; rerun check whenever the quiz source changes.",
     "QuizCard manifest/parity and iPad browser quality still require separate verification.",
-    "Seven known incorrect legacy Natur-emne links in set 5 have been explicitly reviewed and revised; other historical automatically-linked questions may still be semantically weak and are not counted as fully human-reviewed."
+    "Seven known incorrect legacy Natur-emne links in set 5 have been explicitly reviewed and revised; other historical automatically-linked questions may still be semantically weak and are not counted as fully human-reviewed.",
+    "Historical 40/2 measurement predates editorial replacement. New active 42/42 requires canonical generator and real-app QA; preserved legacy quiz IDs and Knowledge units must remain readable without reactivation."
   ],
   "appliedConceptPass": {
     "date": "2026-11-16",
@@ -639,5 +642,49 @@
     "editorialReviewRequired": 2,
     "linked": 40,
     "sourceReviewScope": "26 manually reviewed emne associations (19 earlier + seven corrected legacy links), not blanket V1 editorial approval"
+  },
+  "afterNatureReplacement": {
+    "date": "2026-11-16",
+    "sets": 6,
+    "playableQuestions": 42,
+    "activeLinked": 42,
+    "activeEditorialReviewRequired": 0,
+    "retiredHistoryQuestions": [
+      "myralokka_s2_q5",
+      "myralokka_s2_q6"
+    ],
+    "preservedKnowledgeSource": "data/knowledge/preserved_quiz_sources/myralokka_myragarden_legacy_20261116.json",
+    "newNaturQuestions": [
+      {
+        "id": "myralokka_s2_q5_natur_20261116",
+        "quiz_id": "natur_myralokka_set_2_q5_natur_20261116",
+        "question": "Hva kan kantvegetasjonen langs Akerselva ved Myraløkka gi fugler og insekter?",
+        "answer": "Mat, skjul og forbindelse mellom leveområder",
+        "emne_ids": [
+          "em_natur_arter_habitat_mangfold",
+          "em_natur_gronnstruktur_korridorer"
+        ],
+        "sources": [
+          "https://oslobyleksikon.no/side/Myral%C3%B8kka",
+          "https://veiledere.nve.no/skjotsel-av-kantvegetasjon-langs-vassdrag/kantvegetasjonens-viktige-funksjoner/"
+        ]
+      },
+      {
+        "id": "myralokka_s2_q6_natur_20261116",
+        "quiz_id": "natur_myralokka_set_2_q6_natur_20261116",
+        "question": "Hvorfor kan røtter fra trær og busker være viktige ved Akerselvas bredde nedenfor Myraløkka?",
+        "answer": "De kan binde jord og redusere erosjon ved elva",
+        "emne_ids": [
+          "em_natur_elver_bekker_vassdrag",
+          "em_natur_jord_sediment_mikroliv"
+        ],
+        "sources": [
+          "https://oslobyleksikon.no/side/Myral%C3%B8kka",
+          "https://veiledere.nve.no/skjotsel-av-kantvegetasjon-langs-vassdrag/kantvegetasjonens-viktige-funksjoner/"
+        ]
+      }
+    ],
+    "rationale": "Two dated worker housing/architect quiz prompts are historical facts, not Natur learning objectives; retired claims remain Knowledge-only with unchanged IDs and new Nature questions receive new IDs, with NVE source and explicit general-principle limitation.",
+    "generatorStatus": "pending canonical regeneration and CI verification"
   }
 }

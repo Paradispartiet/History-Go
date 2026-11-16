@@ -38,7 +38,7 @@ assert.ok(fs.existsSync(path.join(root, sourcePlace.cardImage)));
 assert.equal(quiz.sets.length, 6);
 const questions = quiz.sets.flatMap(set => set.questions);
 assert.equal(questions.length, 42);
-assert.equal(questions.filter(q => q.knowledge_link_status === 'linked').length, 40);
+assert.equal(questions.filter(q => q.knowledge_link_status === 'linked').length, 42);
 assert.equal(card.questions.length, 10);
 const byId = new Map(questions.map(q => [q.id, q]));
 for (const q of card.questions) {

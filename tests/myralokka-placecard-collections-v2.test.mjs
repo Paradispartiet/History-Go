@@ -52,15 +52,32 @@ test("Myraløkka retains 42 stable quiz IDs, 40 linked Knowledge units and ten s
   assert.equal(quiz.sets.length, 6);
   assert.equal(questions.length, 42);
   assert.equal(originals.size, 42);
-  assert.equal(questions.filter(q => q.knowledge_link_status === "linked" && q.primary_knowledge_unit_id).length, 40);
+  assert.equal(questions.filter(q => q.knowledge_link_status === "linked" && q.primary_knowledge_unit_id).length, 42);
   const pending = questions.filter(q => q.knowledge_link_status === "editorial_review_required" && q.primary_knowledge_unit_id);
-  assert.deepEqual(pending.map(q => q.id), ["myralokka_s2_q5", "myralokka_s2_q6"]);
-  assert.equal(questions.filter(q => q.knowledge_link_evidence?.reviewedAt === "2026-11-16").length, 26);
+  assert.deepEqual(pending, [], "No active Myraløkka question may remain editorially unlinked");
+  assert.equal(questions.filter(q => q.knowledge_link_evidence?.reviewedAt === "2026-11-16").length, 28);
   const canonicalKnowledge = load("data/knowledge/knowledge_units.generated.json").units;
   const unitsById = new Map(canonicalKnowledge.map(unit => [unit.knowledge_unit_id, unit]));
   const reviewQueue = load("data/knowledge/knowledge_emne_review_queue.generated.json").items;
-  assert.deepEqual(reviewQueue.filter(item => item.target_id === id).map(item => item.question_id),
-    ["natur_myralokka_set_2_q5", "natur_myralokka_set_2_q6"]);
+  assert.deepEqual(reviewQueue.filter(item => item.target_id === id && item.file === "data/quiz/natur/myralokka_sets.json"), [],
+    "Retired historical questions must not be counted as open in active Natur quiz");
+  const preserved = load("data/knowledge/preserved_quiz_sources/myralokka_myragarden_legacy_20261116.json");
+  assert.equal(preserved.status, "preserved_legacy_knowledge_only_not_playable");
+  assert.deepEqual(preserved.questions.map(q => q.id), ["myralokka_s2_q5", "myralokka_s2_q6"]);
+  for (const legacy of preserved.questions) {
+    assert.ok(!originals.has(legacy.id), "Retired question is still playable");
+    assert.ok(unitsById.has(legacy.primary_knowledge_unit_id), "Retired Knowledge memory disappeared");
+  }
+  const newIds = ["myralokka_s2_q5_natur_20261116", "myralokka_s2_q6_natur_20261116"];
+  for (const qid of newIds) {
+    const q = originals.get(qid);
+    assert.ok(q, "Missing reviewed nature replacement");
+    assert.equal(q.knowledge_link_status, "linked");
+    assert.ok(q.source.some(source => source.includes("veiledere.nve.no")));
+    assert.ok(q.primary_knowledge_unit_id);
+    assert.ok(unitsById.has(q.primary_knowledge_unit_id));
+    assert.equal(q.options[q.answerIndex], q.answer);
+  }
   const reviewedSet5 = Array.from({ length: 7 }, (_, index) => `myralokka_s5_q${index + 1}`);
   const expectedEmner = {
     myralokka_s5_q1: ["em_natur_arter_habitat_mangfold"],
