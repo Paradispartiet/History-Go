@@ -46,7 +46,7 @@ test("Myraløkka retains 42 stable quiz IDs, 40 linked Knowledge units and ten s
   assert.equal(questions.filter(q => q.knowledge_link_evidence?.reviewedAt === "2026-11-16").length, 19);
   assert.equal(card?.questions.length, 10);
   assert.equal(card.questionCount, 10);
-  assert.equal(card.questions.filter(q => /^(?:Når|Hvilket år)\\b/u.test(q.question)).length, 1);
+  assert.equal(card.questions.filter(q => /^(?:Når|Hvilket år)\b/u.test(q.question)).length, 1);
   for (const item of card.questions) {
     const original = originals.get(item.sourceQuestionId);
     assert.ok(original, `Missing original question ${item.sourceQuestionId}`);
@@ -56,7 +56,7 @@ test("Myraløkka retains 42 stable quiz IDs, 40 linked Knowledge units and ten s
     assert.deepEqual(item.options, original.options);
     assert.equal(item.answer, original.answer);
     assert.equal(item.answerIndex, original.answerIndex);
-    assert.deepEqual(item.source_urls, original.source.filter(s => /^https?:\\/\\//u.test(s)));
+    assert.deepEqual(item.source_urls, original.source.filter(s => /^https?:\/\//u.test(s)));
     assert.deepEqual(item.source_refs, original.source);
   }
   assert.deepEqual(card.answerKey, card.questions.map(({ number, answer, answerIndex }) => ({ number, answer, answerIndex })));
