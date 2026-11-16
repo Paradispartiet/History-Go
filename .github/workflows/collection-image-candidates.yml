@@ -11,6 +11,9 @@ on:
       - 'scripts/check-collection-image-candidates.py'
       - 'tests/test_stage_collection_image_candidates.py'
       - 'tests/test_collection_image_integrity_gate.py'
+      - 'scripts/audit-linked-brand-images.mjs'
+      - 'tests/linked-brand-image-audit.test.mjs'
+      - 'data/brands/brands_master.json'
   workflow_dispatch:
 
 concurrency:
@@ -33,6 +36,10 @@ jobs:
           python3 -m unittest discover -s tests -p 'test_collection_image_integrity_gate.py' -v
       - name: Validate staged WebP assets against manifests
         run: python3 scripts/check-collection-image-candidates.py
+      - name: Audit linked Brands for missing, unsafe or synthetic logos
+        run: |
+          node --test tests/linked-brand-image-audit.test.mjs
+          node scripts/audit-linked-brand-images.mjs --check
       - name: Verify canonical image paths are not candidate paths
         run: |
           python3 - <<'PY'
