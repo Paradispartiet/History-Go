@@ -86,21 +86,27 @@ try {
         return icon && !icon.hidden && icon.dataset.collectionItemCount==="2"
           && icon.dataset.previewStatus==="member-image";
       },null,{timeout:15000});
-      const objectIcon=page.locator("#pcObjectsIcon");
-      assert.equal(await objectIcon.getAttribute("data-collection-id"),"objects");
-      const cardPreview=objectIcon.locator("img.pc-person-img");
+      const objectSource=page.locator("#pcObjectsIcon");
+      assert.equal(await objectSource.getAttribute("data-collection-id"),"objects");
+      // Direct Place Sheet intentionally hides the original collection icon
+      // once its image has been promoted into a full-size gallery button.
+      // Use the visible, real user control; its click forwards to the same
+      // canonical Objects popup, never a mock or forced hidden-element click.
+      const objectButton=page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]');
       phase="preview-visible";
+      await objectButton.waitFor({state:"visible",timeout:15000});
+      const cardPreview=objectButton.locator("img");
       await cardPreview.waitFor({state:"visible",timeout:15000});
       const previewSrc=await cardPreview.getAttribute("src");
       assert.equal(previewSrc,place.objects[0].image);
       phase="preview-decoded";
       await page.waitForFunction(src=>{
-        const img=document.querySelector('#pcObjectsIcon img.pc-person-img');
+        const img=document.querySelector('button[data-pc-round-gallery-item="pcObjectsIcon"] > img');
         return img?.getAttribute("src")===src && img.complete && img.naturalWidth===800;
       },place.objects[0].image,{timeout:15000});
-      await objectIcon.screenshot({path:artifactPath+"/"+name+"-objects-preview.png"});
+      await objectButton.screenshot({path:artifactPath+"/"+name+"-objects-preview.png"});
       phase="objects-click";
-      await objectIcon.click({timeout:15000});
+      await objectButton.click({timeout:15000});
       phase="popup-member-rows";
       await page.waitForFunction(()=>{
         const rows=[...document.querySelectorAll(".pc-object-member")];
