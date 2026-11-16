@@ -168,6 +168,7 @@ function recordCompletedGameDay(rawDay) {
   const state = window.CivicationState;
   if (!state?.getWallet || !state?.updateWallet) return;
   const wallet = normalizeWallet(state.getWallet());
+  if (wallet.nok_v1?.active === true) return recordNokPayrollDay(day, wallet);
   let start = Number(wallet.last_tick_day_index);
   if (!Number.isSafeInteger(start) || start < 1 || start > day) {
     // Old saves start here without creating back-pay for earlier days.
@@ -224,6 +225,7 @@ function tickPCIncomeWeekly() {
   let wallet = normalizeWallet(
     window.CivicationState.getWallet()
   );
+  if (wallet.nok_v1?.active === true) return settleNokPayroll(wallet);
 
   /** @type {CiviEconomyCareer | null} */
   const active =
@@ -829,6 +831,82 @@ function getEconomySnapshot() {
 
 
   
+// NOK payroll remains inside the canonical economy owner. Activation and job
+// contracts are supplied by the future migration/job integration, never by a
+// badge or this calculation. No completed day means no earned salary.
+/** @param {number} day @param {CiviEconomyWallet} wallet */
+function recordNokPayrollDay(day, wallet) {
+  const nok = wallet.nok_v1;
+  const calendar = window.CivicationCalendar;
+  const currentDay = Number(calendar?.getClock?.()?.dayIndex);
+  const last = nok.lastRecordedDayIndex ?? (nok.startedDayIndex - 1);
+  const period = calendar?.getMonthPeriod?.(day);
+  if (nok.version !== 1 || !Number.isSafeInteger(last) || day !== last + 1
+      || !Number.isSafeInteger(currentDay) || day >= currentDay || !period) return;
+  const active = window.CivicationState.getActivePosition?.();
+  const contract = active?.nok_salary_contract;
+  let gross = 0;
+  let tax = 0;
+  let sourceId = null;
+  if (active?.career_id && contract) {
+    if (!nok.config || contract.jobId !== nok.config.job?.id
+        || contract.sourceId !== nok.config.job?.source
+        || typeof contract.employmentPercent !== "number"
+        || !Number.isFinite(contract.employmentPercent)
+        || contract.employmentPercent < 0 || contract.employmentPercent > 100) return;
+    const calculator = /** @type {any} */ (window).CivicationNokBudget;
+    if (!calculator?.preview) return;
+    const preview = calculator.preview(nok.config, { employed: true, employmentPercent: contract.employmentPercent });
+    gross = Math.round(preview.monthlyGross * 100);
+    tax = Math.round(preview.monthlyTax * 100);
+    sourceId = contract.sourceId;
+  } else if (active?.career_id) return; // Unmapped jobs must not receive fabricated pay.
+  if (!Number.isSafeInteger(gross) || !Number.isSafeInteger(tax) || gross < tax || tax < 0) return;
+  // Allocate the month's integer cents across its actual days, with no lost
+  // rounding cents when all 28/29/30/31 days are completed.
+  const share = (/** @type {number} */ amount) => Math.floor(amount * period.dayOfMonth / period.daysInMonth)
+    - Math.floor(amount * (period.dayOfMonth - 1) / period.daysInMonth);
+  window.CivicationState.updateWallet({ ...wallet, nok_v1: { ...nok,
+    lastRecordedDayIndex: day, earnedDays: [...(nok.earnedDays || []), {
+      dayIndex: day, monthId: period.id, grossCents: share(gross), taxCents: share(tax), sourceId
+    }] } });
+}
+
+/** @param {CiviEconomyWallet} wallet @returns {CiviEconomyRecord} */
+function settleNokPayroll(wallet) {
+  const nok = wallet.nok_v1;
+  const period = window.CivicationCalendar?.getMonthPeriod?.();
+  if (nok.version !== 1 || !period) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+  const days = /** @type {CiviEconomyRecord[]} */ (nok.earnedDays || []);
+  const due = days.filter(d => d.monthId < period.id);
+  if (!due.length) return { ok: true, skipped: true };
+  if (new Set(due.map(d => d.dayIndex)).size !== due.length || due.some(d =>
+      !Number.isSafeInteger(d.grossCents) || !Number.isSafeInteger(d.taxCents)
+      || d.taxCents < 0 || d.grossCents < d.taxCents
+      || window.CivicationCalendar?.getMonthPeriod?.(d.dayIndex)?.id !== d.monthId)) {
+    return { ok: false, reason: "INVALID_EARNED_DAYS" };
+  }
+  const months = [...new Set(due.map(d => d.monthId))].sort();
+  const ledger = /** @type {CiviEconomyRecord[]} */ (nok.payrollLedger || []);
+  if (months.some(id => ledger.some(entry => entry.monthId === id))) return { ok: false, reason: "DUPLICATE_PAYROLL" };
+  const entries = months.map(monthId => {
+    const rows = due.filter(d => d.monthId === monthId);
+    return { monthId, grossCents: rows.reduce((sum, d) => sum + d.grossCents, 0),
+      taxCents: rows.reduce((sum, d) => sum + d.taxCents, 0), paidDateISO: period.dateISO };
+  });
+  const net = entries.reduce((sum, entry) => sum + entry.grossCents - entry.taxCents, 0);
+  const before = wallet.balance;
+  if (typeof before !== "number" || !Number.isFinite(before)
+      || Math.abs(before * 100 - Math.round(before * 100)) > 0.000001
+      || !Number.isSafeInteger(net) || net < 0 || !Number.isSafeInteger(Math.round(before * 100) + net)) {
+    return { ok: false, reason: "INVALID_PAYROLL_AMOUNT" };
+  }
+  const balance = (Math.round(before * 100) + net) / 100;
+  window.CivicationState.updateWallet({ ...wallet, balance, nok_v1: { ...nok,
+    earnedDays: days.filter(d => d.monthId >= period.id), payrollLedger: [...ledger, ...entries] } });
+  return { ok: true, netNok: net / 100, balance };
+}
+
 // A payment consumes an existing, source-bound invoice. It cannot invent a
 // charge from a UI amount, activate NOK mode or grant an overdraft.
 /** @param {string} invoiceId @returns {CiviEconomyRecord} */

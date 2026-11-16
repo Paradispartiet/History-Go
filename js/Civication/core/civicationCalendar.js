@@ -169,10 +169,10 @@
 
   // Calendar dates follow played days. Reading a date never advances time,
   // charges rent or uses the computer's current month.
-  function getGameDate() {
+  function getGameDate(dayIndex = getClock().dayIndex) {
     const clock = getClock();
     const anchor = String(clock.startDateISO || "");
-    const day = Number(clock.dayIndex);
+    const day = Number(dayIndex);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(anchor) || !Number.isSafeInteger(day) || day < 1) return null;
     const start = new Date(anchor + "T00:00:00.000Z");
     if (!Number.isFinite(start.getTime()) || start.toISOString().slice(0, 10) !== anchor) return null;
@@ -181,8 +181,8 @@
     return date.toISOString().slice(0, 10);
   }
 
-  function getMonthPeriod() {
-    const iso = getGameDate();
+  function getMonthPeriod(dayIndex = getClock().dayIndex) {
+    const iso = getGameDate(dayIndex);
     if (!iso) return null;
     const date = new Date(iso + "T00:00:00.000Z");
     const year = date.getUTCFullYear();

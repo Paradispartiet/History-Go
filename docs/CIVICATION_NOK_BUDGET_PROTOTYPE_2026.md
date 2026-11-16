@@ -30,6 +30,10 @@ Regningsgrensen `CivicationEconomyEngine.payNokInvoice(id)` er implementert på 
 
 Automatisk regningsopprettelse fra avtaler, UI-handling, konto-migrasjon og avvikling av gamle boligtrekk er fortsatt ikke implementert. Ingen produksjonskode oppretter aktiveringsmarkøren ennå.
 
+Månedslønn er koblet til eksisterende `recordCompletedDay` og `tickWeekly` på grenen for eksplisitt aktive `nok_v1`-lommebøker. Hver fullførte dag lagrer sin andel av brutto og estimert skatt fra en kildebundet `activePosition.nok_salary_contract` som matcher budsjettets jobb-ID og kilde. Stillingsprosent er eksplisitt. Månedens øre fordeles over dens faktiske antall dager; samlet måned er nøyaktig lik månedsbeløpet. Lønnsledger og saldo skrives samlet først etter månedsskiftet. Dobbelt dagskall, tick og reload gir ingen ny opptjening eller utbetaling. Ukjente jobber uten kontrakt stoppes i stedet for å få antatt lønn.
+
+`tests/civication-nok-payroll.test.js` bruker eksplisitt aktiverings-/jobbfixture og spiller 90 kalenderdager: januar heltid, fjorten lønnsdager i februar og arbeidsledighet resten. Fra 125,25 kroner blir saldoene 25 954,85, 38 869,65 og 38 869,65. Dette er en økonomisk runtime-test, ikke en organisk jobb-/brukerreise. Den gamle ukelønnen og automatiske NAV-grenen kjøres ikke i NOK-modus. Gamle oppgjørsmarkører bevares, så dagens leveveisbro utbetaler heller ikke gamle småbeløp automatisk; levevei trenger egen kronekontrakt før aktivering. Jobbtilbud/aksept, lønnskontrakt-generering og produksjonsaktivering gjenstår.
+
 - Koble konkret jobb og stillingsprosent til eksisterende dagsopptjening. Badge-nivå alene skal ikke fastsette realistisk yrkeslønn.
 - Bruk 12 måneder eller faktisk kalender; fire uker er ikke en måned. Ukentlig opptjening kan vises med år/52, men er ikke en ekstra månedslønn.
 - Avklar én eier av bolig, andre utgifter og skatt; boligmodulen belaster i dag kapital, som ikke må dobbelbelastes fra wallet ved ny kobling.
