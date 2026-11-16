@@ -148,7 +148,7 @@ try {
         assert.ok(Math.abs(box.width - frame.width) <= 1,
           tag + ': ' + surface + ' image must reach both edges of the frame');
         assert.ok(Math.abs(box.height - frame.height) <= 1,
-          tag + ': ' + surface + ' image must occupy the frame height without gutters');
+          tag + ': ' + surface + ' image must occupy the frame height without gutters: ' + JSON.stringify({box, frame}));
       }
       assert.ok(media.front.height > media.front.width, tag + ': front photo is natively portrait');
       assert.ok(media.hero.width > media.hero.height, tag + ': header photo is landscape');
