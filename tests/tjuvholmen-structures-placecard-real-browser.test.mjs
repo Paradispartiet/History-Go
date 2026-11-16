@@ -81,6 +81,22 @@ try{
       assert.equal(await card.getAttribute("data-collection-profile-source"),
         "place_card_profile_v2_curated",tag+": curated profile");
       assert.equal(await card.getAttribute("data-collection-requested-count"),"3",tag+": three collections");
+      // Reproduce the late asynchronous core render explicitly. The source
+      // marker must already be curated when apply() resolves; waiting for
+      // another animation frame would hide the regression.
+      const afterCoreReapply=await page.evaluate(async()=>{
+        const card=document.getElementById("placeCard");
+        const current=window.PLACES?.find(p=>p.id==="tjuvholmen");
+        await window.HGPlaceCardCollections.apply(current);
+        return {
+          source:card?.dataset.collectionProfileSource,
+          requested:card?.dataset.collectionRequestedCount,
+          gridSource:card?.querySelector(".pc-icons-quad")?.dataset.collectionProfileSource
+        };
+      });
+      assert.equal(afterCoreReapply.source,"place_card_profile_v2_curated",tag+": curated survives core reapply");
+      assert.equal(afterCoreReapply.gridSource,"place_card_profile_v2_curated",tag+": grid survives core reapply");
+      assert.equal(afterCoreReapply.requested,"3",tag+": requested collection count survives reapply");
       const structuresTile=page.locator('button[data-pc-round-gallery-item="pcCategoryCollectionIcon"]');
       try {
         await structuresTile.waitFor({state:"visible",timeout:20000});
