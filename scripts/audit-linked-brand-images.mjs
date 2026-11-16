@@ -12,7 +12,7 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const IMAGE_EXT = /\.(?:webp|png|jpe?g|svg)$/i;
+const IMAGE_EXT = /\.(?:webp|png|jpe?g|svg|gif)$/i;
 
 const list = (x) => Array.isArray(x) ? x : [];
 const value = (x) => typeof x === 'string' ? x.trim() : '';
