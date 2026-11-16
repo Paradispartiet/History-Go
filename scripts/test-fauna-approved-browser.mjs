@@ -713,6 +713,42 @@ try {
    }
    await context.close();
   }
+  // Grønnfink #20: adult male/female with yellow wing edges; black-background WebP and safe fallback.
+  for(const brokenGreenfinch of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenGreenfinch)await context.route("**/bilder/natur/fauna/godkjent/20_gronnfink_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Grønnfink");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Grønnfink,/i}).first();
+   await card.waitFor();
+   if(brokenGreenfinch){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Grønnfink: never substitute photographs");
+   }else{
+    const img=card.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("20_gronnfink_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"gronnfink-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenGreenfinch)await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Grønnfink detail must fit viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"gronnfink-detail-"+width+".png")});
+   }
+   await context.close();
+  }
   // Unapproved fauna must retain a separate legacy SVG fallback.
   const context=await browser.newContext({viewport:{width,height:900}});
   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
@@ -724,6 +760,6 @@ try {
   await unapproved.waitFor();
   assert((await unapproved.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Unapproved Rødstrupe retains original SVG");
   await context.close();
-  console.log("Finn Fauna 19 approved birds "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
+  console.log("Finn Fauna 20 approved birds "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
