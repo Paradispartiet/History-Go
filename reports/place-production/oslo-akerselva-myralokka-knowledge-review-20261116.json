@@ -685,11 +685,11 @@
       }
     ],
     "rationale": "Two dated worker housing/architect quiz prompts are historical facts, not Natur learning objectives; retired claims remain Knowledge-only with unchanged IDs and new Nature questions receive new IDs, with NVE source and explicit general-principle limitation.",
-    "generatorStatus": "pending canonical regeneration and CI verification"
+    "generatorStatus": "canonical_generated_and_checked"
   },
   "fullSourceEmneReview": {
     "date": "2026-11-16",
-    "status": "edited_pending_canonical_regeneration",
+    "status": "canonical_generated_and_checked",
     "questionCount": 42,
     "previousExplicitReviewed": 28,
     "additionalReviewed": 14,
@@ -841,6 +841,40 @@
     },
     "integrity": "Existing quiz IDs and primary KU IDs retained; two editorial clarifications in first-set Knowledge preserve original learning meaning and correct geographic imprecision. No new observations or place images asserted.",
     "internalSourcePolicy": "Active repo species maps are authoritative for app species mapping but do not prove a field observation on the day of visit.",
-    "limitation": "Verification requires regenerated canonical Knowledge and updated browser test on final PR head; editorial acceptance of distractor quality still checked separately."
+    "limitation": "Verification requires regenerated canonical Knowledge and updated browser test on final PR head; editorial acceptance of distractor quality still checked separately.",
+    "canonicalEvidence": {
+      "commit": "12d65622ab46d05f21647116bb8a14d3afcd8310",
+      "actionRun": 43910111477,
+      "actionConclusion": "success",
+      "knowledgeWriteCheck": "pass",
+      "activeQuestions": 42,
+      "activeLinked": 42,
+      "explicitlyReviewed": 42
+    }
+  },
+  "qualityChecks": {
+    "sourceQuiz": "data/quiz/natur/myralokka_sets.json",
+    "reviewedAll42": true,
+    "activeKnowledgeUnitsLinked": 42,
+    "retiredKnowledgeQuestionCount": 2,
+    "retiredSource": "data/knowledge/preserved_quiz_sources/myralokka_myragarden_legacy_20261116.json",
+    "retiredQuestionsPlayable": false,
+    "legacyUnitIdsRetained": true,
+    "browserRun": 43910110983,
+    "browserConclusion": "success",
+    "browserModes": [
+      "phone Chromium",
+      "iPad-sized WebKit",
+      "desktop Chromium"
+    ],
+    "browserNote": "iPad WebKit simulation, not physical Safari",
+    "peopleSecondaryRelation": [
+      "arne_eide",
+      "christian_morgenstierne"
+    ],
+    "peoplePrimaryPlace": "folketeateret",
+    "regeneratedOn": "2026-11-16",
+    "prStillDraft": true,
+    "remainingBlockers": "Whole 20-place PR still has unrelated image/nature-map CI errors. V1 publication not approved until aggregate gates and merge."
   }
 }
