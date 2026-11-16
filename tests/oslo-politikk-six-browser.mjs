@@ -36,10 +36,18 @@ async function positionQuizCard(page){
    // Keep sticky photo protection, full-card visibility and unforced hit-tests.
    const heroPinned=()=>document.querySelector('#placeCard')?.classList.contains('is-original-photo-pinned')
      && getComputedStyle(document.querySelector('#placeCard .pc-sheet-hero')).position==='sticky';
-   const g=geometry(),top=Math.max(g.body.top,heroPinned()?(g.hero?.bottom||0):g.body.top)+12;
+   // The hero retains its full layout box; only the lower edge is clipped.
+   const visibleHeroBottom=()=>{
+    const hero=document.querySelector('#placeCard .pc-sheet-hero');
+    const rect=hero?.getBoundingClientRect();
+    const raw=document.querySelector('#placeCard')?.style.getPropertyValue('--pc-visible-hero-height');
+    const visible=Number.parseFloat(raw||'');
+    return (rect?.top||0)+(Number.isFinite(visible)&&visible>0?visible:(rect?.height||0));
+   };
+   const g=geometry(),top=Math.max(g.body.top,heroPinned()?visibleHeroBottom():g.body.top)+12;
    body.scrollBy({top:g.card.top-top,behavior:'instant'});
    await new Promise(resolve=>setTimeout(resolve,50));
-   const next=geometry(),upper=Math.max(next.body.top,heroPinned()?(next.hero?.bottom||0):next.body.top);
+   const next=geometry(),upper=Math.max(next.body.top,heroPinned()?visibleHeroBottom():next.body.top);
    const lower=Math.min(next.body.bottom,next.nav?.top??innerHeight,innerHeight);
    const x=next.card.left+20,y=next.card.top+Math.max(24,next.card.height-24);
    const hit=document.elementFromPoint(x,y);
