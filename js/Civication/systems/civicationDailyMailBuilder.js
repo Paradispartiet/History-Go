@@ -162,9 +162,12 @@
     const byThread = new Map();
     for (const mail of (Array.isArray(pool) ? pool : [])) {
       const key = threadKeyForMail(mail);
+      // Do not turn a derived default into an apparently explicit author key.
+      // Ordinary daily extras need to distinguish game days later in toDailyExtraMail;
+      // canonical case threads keep the shared source key for case deduplication.
       const stamped = norm(mail?.thread_key) ? mail : { ...mail, thread_key: key };
       if (!isCaseThreadKey(key)) {
-        rest.push(stamped);
+        rest.push(mail);
         continue;
       }
       if (excludedThreadKeys?.has?.(key)) continue;
