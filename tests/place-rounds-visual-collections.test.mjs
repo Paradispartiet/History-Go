@@ -281,3 +281,26 @@ test("Tjuvholmen Structures show source-linked photo attribution without changin
   assert.equal(w.HGPlaceCardCollections.getItems(place, "objects").length, 0);
 });
 
+
+test("Schiøllgården reception uses dated documentary evidence and source terms", async () => {
+  const place = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02/schiollgarden_prinsens_gate_26.json"), "utf8"));
+  const w = make(place);
+  await w.HGPlaceCardCollections.apply(place);
+  const members = w.HGPlaceCardCollections.getItems(place, "structures");
+  assert.equal(members.length, 1);
+  assert.equal(members[0].id, "stortingets_post_og_varemottak");
+  const list = w.document.getElementById("pcCategoryCollectionList");
+  assert.match(list.textContent, /mai 2016/);
+  assert.match(list.textContent, /Foto: Stortinget/);
+  assert.match(list.textContent, /Redaksjonell bruk/);
+  assert.doesNotMatch(list.textContent, /Illustrasjon|CC BY/);
+  assert.equal(list.querySelector(".pc-structure-source-link").href, "https://mediearkiv.stortinget.no/1516303/Detail/Index/7071931");
+  assert.ok(list.querySelector("img").getAttribute("src").endsWith("post-varemottak-byggefase-2016.jpg"));
+  const raw = place.structures[0];
+  assert.equal(raw.imageMeta.aiAdaptationAllowed, false);
+  assert.equal(raw.imageMeta.historicalOnly, true);
+  assert.equal(raw.imageMeta.sourceIsFullOriginal, false);
+  const { createHash } = await import("node:crypto");
+  const bytes = fs.readFileSync(path.join(__dirname, "..", raw.image));
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), raw.imageMeta.assetSha256);
+});

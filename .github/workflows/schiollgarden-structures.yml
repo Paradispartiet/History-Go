@@ -1,0 +1,39 @@
+name: Schiollgarden Structures browser QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/schiollgarden-structures.yml'
+      - 'tests/schiollgarden-structures-browser.mjs'
+      - 'tests/place-rounds-visual-collections.test.mjs'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - 'bilder/kort/structures/schiollgarden/**'
+      - 'data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_hovedstaden_batch_02/schiollgarden_prinsens_gate_26.json'
+      - 'data/runtime/place-open/schiollgarden_prinsens_gate_26.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: schiollgarden-structures-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  structures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node --test tests/place-rounds-visual-collections.test.mjs
+      - run: node tests/schiollgarden-structures-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: schiollgarden-structures-browser-qa
+          path: artifacts/schiollgarden-structures-browser
+          if-no-files-found: warn
