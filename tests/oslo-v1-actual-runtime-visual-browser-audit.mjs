@@ -98,9 +98,11 @@ try{
        const x=document.querySelector(sel);
        if(!x)return null;
        const st=getComputedStyle(x),rect=x.getBoundingClientRect();
+       const frame=x.parentElement?.getBoundingClientRect();
        return{source:x.getAttribute("src")||"",decoded:x.complete&&x.naturalWidth>0,
         naturalWidth:x.naturalWidth,naturalHeight:x.naturalHeight,fit:st.objectFit,
-        position:st.objectPosition,width:Math.round(rect.width),height:Math.round(rect.height)};
+        position:st.objectPosition,width:rect.width,height:rect.height,
+        frameWidth:frame?.width||0,frameHeight:frame?.height||0};
       };
       const title=document.querySelector("#pcTitle")?.getBoundingClientRect();
       const hero=document.querySelector("#pcHeaderHero")?.getBoundingClientRect();
@@ -118,14 +120,18 @@ try{
      if(!media.titleVisible)problems.push("PlaceCard title clipped inside hero after place switch");
      if(!media.hero?.decoded||!media.hero?.source.endsWith(place.image))problems.push("Real hero image did not decode");
      if(!media.portrait?.decoded||!media.portrait?.source.endsWith(place.frontImage))problems.push("Real portrait did not decode");
-     // The canonical Place image-framing contract requires complete documentary
-     // images; legacy per-place crop focus points must not override containment.
-     // Keep image decoding, on-screen geometry and QuizCard interaction checks.
-     if(media.hero?.fit!=="contain")problems.push("Hero overview crops the source photo");
-     if(media.portrait?.fit!=="contain")problems.push("PlaceCard portrait crops the source photo");
+     // Main PlaceCard's hero and collectible photo are full bleed; separate
+     // documentary-source images and QuizCard reverse remain uncropped.
+     // Require actual decoded images fully occupying each displayed frame.
      for(const [image,label] of [[media.hero,"Hero"],[media.portrait,"Portrait"]]){
+      if(image?.fit!=="cover")problems.push(label+" image does not use full-bleed framing");
       if(!["50% 50%","center center"].includes(image?.position))
-       problems.push(label+" image not centered in its uncropped frame");
+       problems.push(label+" image not centered in its frame");
+      if(!image?.decoded||image.width<=0||image.height<=0||
+         image.frameWidth<=0||image.frameHeight<=0||
+         Math.abs(image.width-image.frameWidth)>1||
+         Math.abs(image.height-image.frameHeight)>1)
+       problems.push(label+" image does not fill its visible frame");
      }
      if(media.visible){
       for(const [selector,label] of [["#pcHeaderHero","hero"],["#pcFrontCardFlip","front"]]){
