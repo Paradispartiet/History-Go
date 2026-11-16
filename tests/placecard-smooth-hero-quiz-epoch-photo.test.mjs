@@ -11,6 +11,9 @@ test("PlaceCard sticky header never jumps to ordinary flow on passive iPad scrol
   assert.doesNotMatch(script, /classList\.toggle\("is-quizcard-reading"/);
   assert.doesNotMatch(css, /:has\(#pcFrontCardFlip\.is-flipped\)/);
   assert.match(script, /naturalHeight \* 0\.46/);
+  assert.match(script, /--pc-reader-runway/);
+  assert.match(css, /clip-path:\s*inset\(0 0 var\(--pc-hero-collapse-offset/);
+  assert.match(css, /padding-bottom:\s*calc\(16px \+ var\(--pc-reader-runway/);
   assert.match(css, /\.pc-sheet-hero\s*\{\s*position:\s*sticky/);
   assert.match(css, /\.is-section-reading \.pc-sheet-hero\s*\{\s*position:\s*relative/);
 });
