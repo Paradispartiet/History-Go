@@ -128,3 +128,37 @@ kjøp uten månedsregning, dobbeltkjøp, manglende dekning, endret saldo etter t
 ugyldige priser, bevart gammel historikk og innlasting. Eksisterende økonomi-UI,
 aktivering, månedlige regninger, 90-dagers lønn og budsjettberegning består også.
 Produksjonsaktivering er fortsatt av.
+
+### Sammenhengende 90-dagers kvalifikasjon/økonomi/gjenoppretting
+
+`acceptance-civication-nok-three-month-cloud-journey.test.js` besvarer alle 30
+spørsmål i fem publiserte næringslivssett for Akerselva gjennom den faktiske
+QuizEngine og svarenes DOM-knapper. Ingen meritter, tilbud eller aktiv jobb
+forhåndsinnsettes. Faktisk eligibility gir `knowledge_gate: passed`; aksept via
+jobbkortet oppretter butikkontrakten og resolver til eksisterende ekspeditørrolle.
+Manifestet avgrenses til de fem faktiske publiserte settene i denne testen.
+
+Testen aktiverer via UI med eksplisitt godkjenningsfixture, begynner med 125,25 kr
+i eksisterende saldo og velger Sagene-leieprofilen via Home. Syv arbeidsledige dager
+følges av jobb fra dag åtte, lønn ved månedsskifte, tre betalte husleier, to kjøpte
+30-dagersbilletter og jobbtap fra mars. Saldo etter kontrollpunktene er henholdsvis
+10 032,36 / 15 026,96 / 14 371,96 kr. Aprilregningen genereres ved siste overgang,
+men betales ikke som del av de tre kontrollerte månedene. Mars gir null lønn/stønad.
+Dette er faktisk wallet-kontantstrøm for implementerte leie-/billettkjøp; scenarioets
+livsoppholds- og strømbeløp er ikke handlet eller fakturert i denne testen.
+
+Ved hvert månedsskifte lastes en helt tom enhet fra canonical CloudSave og brukes
+videre i reisen. Lønn/regninger gjentas ikke, kvalifikasjoner, akseptert tilbud,
+leieavtale, billettkvitteringer og gammel kjøpshistorikk bevares. Testen avdekket at
+`hg_job_offers_v1`, `quiz_progress` og `hg_learning_log_v1` manglet i den eksplisitte
+backup-listen; disse tre er nå inkludert. Ulike lokale/skybaserte verdier for hver
+av de tre sperrer fortsatt opplasting og bevarer begge kopier. Aksepterte tilbud
+kommer ikke tilbake som nye tilbud etter gjenoppretting og jobbtap.
+
+Avgrensninger: besøkt geografi, godkjent aktiveringsprofil og inngående saldo er
+fixtures. Spilledager fullføres ved kalender-/økonomigrensen, ikke ved 90 dagers
+private handlingsvalg. Backend er en minnemodell bak faktisk CloudSave; det er ikke
+en produksjonskonto eller nettverks-/enhetstest. Visuell mobil/WebKit-QA gjenstår.
+Reisen og eksisterende account-cloud-save-tester er lagt inn som egne CI-steg.
+Lokalt består også alle 21 eksisterende kontobackup-tester og syv CI-scope-tester.
+Forrige head b0da5c1 hadde samtlige seks automatiske workflows grønne før denne endringen.
