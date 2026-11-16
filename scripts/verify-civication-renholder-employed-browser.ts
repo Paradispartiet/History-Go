@@ -83,9 +83,9 @@ export default async function verifyRenholderEmployment(browser:any,origin:strin
       // before the first actual question appears. Require the expected first
       // question (not just an empty visible modal); later questions stay strict.
       await page.waitForFunction((expected:string)=>{
-        const modal=document.querySelector('#quizModal');
+        const modal=(globalThis as any).document.querySelector('#quizModal');
         const question=modal?.querySelector('#quizQuestion');
-        return !!modal&&!!question&&getComputedStyle(modal).display!=='none'&&question.textContent?.trim()===expected;
+        return !!modal&&!!question&&(globalThis as any).getComputedStyle(modal).display!=='none'&&question.textContent?.trim()===expected;
       },quiz.sets[0].questions[0].question,{timeout:180000});
       quizStartups.push({targetId:quiz.targetId,firstQuestionMs:Date.now()-quizStartAt});
       console.log('Quiz startup '+quiz.targetId+': '+quizStartups.at(-1).firstQuestionMs+'ms to actual first question');
