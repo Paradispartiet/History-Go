@@ -4,8 +4,9 @@ Denne mappen inneholder kilde-, bilde- og rettighetskontroller for **Brands, Str
 
 ## Første WebP-bolk
 
-Tre kildeavgrensede bildekandidater finnes som to ChatGPT-eksporterte ZIP-pakker:
+Tre kildeavgrensede bildekandidater finnes i én samlet, SHA-låst ZIP-pakke, eller i to separate ZIP-pakker:
 
+- `historygo_collection_images_batch1_stage_package.zip`: **samlet anbefalt pakke** med alle tre WebP-bildene.
 - `historygo_toyen_trafo_objects_2_kandidater.zip`: Tøyen apparatpult 1916 og transformator-/motorkjerne 1918.
 - `historygo_freiaparken_structure_v2_candidates.zip`: revidert illustrasjon av Freiaparken.
 
@@ -19,16 +20,14 @@ Kjør fra rotmappen i `Paradispartiet/History-Go`, med ZIP-filene i din lokale `
 
 ```bash
 python3 scripts/stage-collection-image-candidates.py \
-  --package /path/to/historygo_toyen_trafo_objects_2_kandidater.zip \
-  --package /path/to/historygo_freiaparken_structure_v2_candidates.zip
+  --package /path/to/historygo_collection_images_batch1_stage_package.zip
 ```
 
 Uten `--stage` blir ingenting skrevet. Etter bestått kontroll kan filene legges i **kandidatmapper**:
 
 ```bash
 python3 scripts/stage-collection-image-candidates.py \
-  --package /path/to/historygo_toyen_trafo_objects_2_kandidater.zip \
-  --package /path/to/historygo_freiaparken_structure_v2_candidates.zip \
+  --package /path/to/historygo_collection_images_batch1_stage_package.zip \
   --stage
 ```
 
