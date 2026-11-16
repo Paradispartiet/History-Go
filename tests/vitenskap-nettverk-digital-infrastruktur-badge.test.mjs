@@ -27,8 +27,10 @@ test('Network badge preserves the established science family and old originals d
   assert.equal(badge.sub.length, 16);
   assert.ok(badge.sub.includes(manifest.id));
   for (const [id, path] of Object.entries(previous)) {
+    const v2ids = ["informasjonsteknologi","matematikk","forskning_og_metode","astronomi_og_fysikk","kjemi_og_materialvitenskap"];
     const replacement = ['teknologi_og_ingeniorfag','data_programvare_og_algoritmer'].includes(id)
-      ? 'bilder/merker/vitenskap/brodert/' + id + '_v7.webp' : path;
+      ? 'bilder/merker/vitenskap/brodert/' + id + '_v7.webp'
+      : v2ids.includes(id) ? 'bilder/merker/vitenskap/brodert/'+id+'_v2.webp' : path;
     assert.equal(badge.subBadgeImages[id], replacement, id + ' changed unexpectedly');
     assert.ok(existsSync(new URL(path, root)), id + ' previous original is missing');
   }

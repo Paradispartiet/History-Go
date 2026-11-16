@@ -25,8 +25,11 @@ test('Vitenskap: ingeniørfag bevarer hovedmerke, eldre originaler og alle øvri
     astronomi_og_fysikk:'bilder/merker/vitenskap/brodert/astronomi_og_fysikk.webp',
     kjemi_og_materialvitenskap:'bilder/merker/vitenskap/brodert/kjemi_og_materialvitenskap.webp'
   };
+  const v2ids = new Set(['matematikk','informasjonsteknologi','forskning_og_metode','astronomi_og_fysikk','kjemi_og_materialvitenskap']);
   for (const [id, path] of Object.entries(originalSeven)) {
-    assert.equal(parent.subBadgeImages[id],path,id+' existing badge path unchanged');
+    const expected = v2ids.has(id) ? 'bilder/merker/vitenskap/brodert/'+id+'_v2.webp' : path;
+    assert.equal(parent.subBadgeImages[id],expected,id+' expected versioned art');
+    assert.ok(existsSync(new URL(path,root)),id+' historical original is preserved');
   }
   assert.equal(candidate.parentBadgeReference.path, parent.image);
   assert.equal(candidate.palette.primary, parent.color);
