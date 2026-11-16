@@ -145,7 +145,8 @@ try {
       // errors. Keep app-error checks strict, but do not fail on that isolated
       // optional external basemap-font fetch. Do not silence other map/app errors.
       const externalFontError = error =>
-        /Fetch API cannot load https:\\s*:\\s*\\/tiles\\.basemaps\\.cartocdn\\.com\\/.*\\.pbf due to access control checks\\./u.test(error);
+        error.includes('Fetch API cannot load https: /tiles.basemaps.cartocdn.com/') &&
+        error.includes('.pbf due to access control checks.');
       const actualAppErrors = errors.filter(error => !externalFontError(error));
       if (errors.length !== actualAppErrors.length) {
         console.warn(mode.name, 'external CARTO basemap font unavailable in test runner');
