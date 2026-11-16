@@ -198,5 +198,5 @@ try {
 } finally{
   await browser?.close();await api?.dispose();
   fs.writeFileSync(path.join(artifactPath,"result.json"),JSON.stringify(report,null,2)+"\n");
-  console.log("DNT C51 "+report.status,JSON.stringify({attempts:report.deployment_attempts,cases:report.cases.map(x=>({name:x.name,outcome:x.outcome,phase:x.phase,error:x.error}))}));
+  console.log("DNT C51 "+report.status,JSON.stringify({attempts:report.deployment_attempts,errors:report.errors,cases:report.cases.map(x=>({name:x.name,outcome:x.outcome,phase:x.phase,error:x.error}))}));
 }
