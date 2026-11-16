@@ -43,7 +43,9 @@
     state.home ||= {};
     state.objects ||= [];
 
-    const currentDistrictId = state.currentDistrictId || state.home.district || null;
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    const currentDistrictId = (nok?.active === true && nok.version === 1 ? nok.housing?.districtId : null)
+      || state.currentDistrictId || state.home.district || null;
     const unlockedDistrictIds = uniqueStrings([
       ...(state.unlockedDistrictIds || []),
       ...(state.home.unlockedDistrictIds || []),
@@ -234,6 +236,14 @@
   }
 
   function formatRent(district) {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true && nok.version === 1) {
+      const offers = Array.isArray(nok.config?.housingOffers) ? nok.config.housingOffers : [];
+      const matched = offers.filter(o => o?.districtId === district?.id);
+      const price = matched.length === 1 ? matched[0].monthlyRentNok : null;
+      return typeof price === "number" && Number.isFinite(price) && price >= 0
+        ? price.toLocaleString("nb-NO") + " kr / måned" : "Leiepris mangler";
+    }
     const rent = Number(district?.rent || 0);
     return rent <= 0 ? "Ingen husleie" : `${rent} PC / periode`;
   }
@@ -398,6 +408,13 @@
   function canMoveToDistrict(districtId) {
     const district = getDistrict(districtId);
     if (!district) return { ok: false, reason: "Ukjent nabolag" };
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true) {
+      const offers = Array.isArray(nok.config?.housingOffers) ? nok.config.housingOffers : [];
+      if (offers.filter(o => o?.districtId === district.id).length !== 1) {
+        return { ok: false, reason: "Dokumentert leieavtale mangler" };
+      }
+    }
     const state = ensure(load());
     const unlocked = state.unlockedDistrictIds.includes(district.id);
     const lockReason = unlocked ? "" : getDistrictLockReason(district);
@@ -411,6 +428,11 @@
     if (!access.ok) return false;
     const state = ensure(load());
     const from = state.currentDistrictId || null;
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true) {
+      const result = window.CivicationEconomyEngine?.acceptNokHousing?.(district.id);
+      if (!result?.ok) return false;
+    }
     if (from === district.id) return true;
     state.currentDistrictId = district.id;
     state.unlockedDistrictIds = uniqueStrings(state.unlockedDistrictIds.concat(district.id));

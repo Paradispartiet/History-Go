@@ -75,7 +75,8 @@
           row.appendChild(button);
           if (!due) row.appendChild(node("p", "Ikke forfalt ennå."));
           else if (!affordable) row.appendChild(node("p", "Ikke nok penger til å betale."));
-        } else row.appendChild(node("p", "Regningsstatus er ukjent."));
+        } else if (invoice.status === "cancelled") row.appendChild(node("p", "Regningen er avsluttet."));
+        else row.appendChild(node("p", "Regningsstatus er ukjent."));
         panel.appendChild(row);
       }
     }

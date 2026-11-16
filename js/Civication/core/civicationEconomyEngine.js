@@ -1017,7 +1017,97 @@ function payNokInvoice(invoiceId) {
   return { ok: true, invoiceId, paidNok: amount, balance: nextBalance };
 }
 
+/** @param {CiviEconomyRecord} config @returns {CiviEconomyRecord} */
+function migrateNokEconomy(config) {
+  if (config?.status !== "active" || config?.migration?.activated !== true
+      || config?.currency?.id !== "PC" || config?.currency?.nokPerPC !== 1) {
+    return { ok: false, reason: "NOK_CONFIG_NOT_APPROVED" };
+  }
+  const owner = window.CivicationState;
+  const wallet = owner?.getWallet?.();
+  if (!wallet || typeof wallet.balance !== "number" || !Number.isFinite(wallet.balance)
+      || !Number.isSafeInteger(Math.round(wallet.balance * 100))
+      || Math.abs(wallet.balance * 100 - Math.round(wallet.balance * 100)) > 0.000001) {
+    return { ok: false, reason: "INVALID_OPENING_BALANCE" };
+  }
+  if (wallet.nok_v1 != null) {
+    return wallet.nok_v1.active === true && wallet.nok_v1.version === 1
+      ? { ok: true, skipped: true, reason: "ALREADY_MIGRATED" }
+      : { ok: false, reason: "UNKNOWN_NOK_STATE" };
+  }
+  if (wallet.completed_game_days_v1 != null && (!Array.isArray(wallet.completed_game_days_v1)
+      || wallet.completed_game_days_v1.length > 0)) return { ok: false, reason: "UNSETTLED_LEGACY_PAYROLL" };
+  const active = owner.getActivePosition?.();
+  const contract = active?.nok_salary_contract;
+  if (active?.career_id && (!contract || contract.jobId !== config.job?.id
+      || contract.sourceId !== config.job?.source || typeof contract.employmentPercent !== "number"
+      || !Number.isFinite(contract.employmentPercent) || contract.employmentPercent <= 0
+      || contract.employmentPercent > 100)) return { ok: false, reason: "ACTIVE_JOB_NOT_MAPPED" };
+  const clock = window.CivicationCalendar?.getClock?.();
+  const date = window.CivicationCalendar?.getGameDate?.();
+  if (!Number.isSafeInteger(clock?.dayIndex) || clock.dayIndex < 1 || !date) {
+    return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+  }
+  let frozenConfig;
+  try {
+    frozenConfig = JSON.parse(JSON.stringify(config));
+    const calculator = /** @type {any} */ (window).CivicationNokBudget;
+    if (!calculator?.preview) return { ok: false, reason: "NOK_CALCULATOR_UNAVAILABLE" };
+    const sample = calculator.preview(frozenConfig, { employed: true });
+    if (!Number.isFinite(sample.monthlyNet) || sample.monthlyNet < 0) return { ok: false, reason: "INVALID_NOK_CONFIG" };
+  } catch { return { ok: false, reason: "INVALID_NOK_CONFIG" }; }
+  // All older wallet fields remain intact. No multiplied balance, retroactive
+  // salary, benefits, new purchases or housing agreement are fabricated here.
+  owner.updateWallet({ ...wallet, nok_v1: { active: true, version: 1,
+    startedDayIndex: clock.dayIndex, activatedDateISO: date, openingBalanceNok: wallet.balance,
+    lastRecordedDayIndex: clock.dayIndex - 1, config: frozenConfig,
+    earnedDays: [], payrollLedger: [], recurringBills: [], invoices: [] } });
+  return { ok: true, balance: wallet.balance, startedDayIndex: clock.dayIndex };
+}
+
+/** @param {string} districtId @returns {CiviEconomyRecord} */
+function acceptNokHousing(districtId) {
+  const owner = window.CivicationState;
+  const wallet = owner?.getWallet?.();
+  const nok = wallet?.nok_v1;
+  if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+  const offers = /** @type {CiviEconomyRecord[]} */ (Array.isArray(nok.config?.housingOffers) ? nok.config.housingOffers : []);
+  const matching = offers.filter(o => o?.districtId === districtId);
+  if (matching.length !== 1) return { ok: false, reason: "HOUSING_PRICE_NOT_MAPPED" };
+  const offer = matching[0];
+  if (typeof offer.id !== "string" || !offer.id.trim() || typeof offer.sourceId !== "string" || !offer.sourceId.trim()
+      || typeof offer.monthlyRentNok !== "number" || !Number.isFinite(offer.monthlyRentNok) || offer.monthlyRentNok < 0
+      || !Number.isSafeInteger(Math.round(offer.monthlyRentNok * 100))
+      || Math.abs(offer.monthlyRentNok * 100 - Math.round(offer.monthlyRentNok * 100)) > 0.000001) {
+    return { ok: false, reason: "INVALID_HOUSING_OFFER" };
+  }
+  if (nok.housing?.districtId === districtId && nok.housing?.offerId === offer.id) return { ok: true, skipped: true };
+  const date = window.CivicationCalendar?.getGameDate?.();
+  if (!date || typeof nok.activatedDateISO !== "string" || date < nok.activatedDateISO) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+  const sequence = Number(nok.housingSequence || 0) + 1;
+  if (!Number.isSafeInteger(sequence) || sequence < 1) return { ok: false, reason: "INVALID_HOUSING_SEQUENCE" };
+  const contractId = "rent:" + offer.id + ":" + sequence;
+  if ((nok.recurringBills != null && !Array.isArray(nok.recurringBills))
+      || (nok.invoices != null && !Array.isArray(nok.invoices))) return { ok: false, reason: "INVALID_HOUSING_STATE" };
+  const contracts = /** @type {CiviEconomyRecord[]} */ (Array.isArray(nok.recurringBills) ? nok.recurringBills : []);
+  if (contracts.some(c => !c || typeof c !== "object")) return { ok: false, reason: "INVALID_HOUSING_STATE" };
+  if (contracts.some(c => c.id === contractId)) return { ok: false, reason: "DUPLICATE_HOUSING_CONTRACT" };
+  const previousId = nok.housing?.contractId;
+  const invoices = /** @type {CiviEconomyRecord[]} */ (Array.isArray(nok.invoices) ? nok.invoices : []);
+  if (invoices.some(i => !i || typeof i !== "object")) return { ok: false, reason: "INVALID_HOUSING_STATE" };
+  owner.updateWallet({ ...wallet, nok_v1: { ...nok, housingSequence: sequence,
+    housing: { districtId, offerId: offer.id, contractId, acceptedDateISO: date },
+    recurringBills: [...contracts.map(c => c.id === previousId
+      ? { ...c, endsOnISO: c.endsOnISO && c.endsOnISO < date ? c.endsOnISO : date } : c),
+      { id: contractId, sourceId: offer.sourceId, districtId, amountNok: offer.monthlyRentNok, firstDueDateISO: date }],
+    invoices: invoices.map(i => i.contractId === previousId && i.status === "pending" && i.dueDateISO >= date
+      ? { ...i, status: "cancelled", cancellationReason: "housing_changed" } : i) } });
+  return { ok: true, contractId };
+}
+
 window.CivicationEconomyEngine = {
+  acceptNokHousing,
+  migrateNokEconomy,
   payNokInvoice,
   // Explicit scenario preview. A selected budget job is not an actual job,
   // nor permission to pay salary or support into the player's wallet.
