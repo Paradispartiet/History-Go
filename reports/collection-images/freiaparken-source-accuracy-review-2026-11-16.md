@@ -37,3 +37,11 @@ Freiaparken på Rodeløkka i Oslo er en klassisistisk, geometrisk fabrikkhage ut
 6. Ved publisering: sjekk History GO Structures-kortet, innramming og bildeutsnitt på både mobil og desktop. Krev navngitt redaksjonell godkjenning og rettighetskontroll.
 
 **NB:** Et vellykket CI-resultat for WebP-kandidaten attesterer kun bit-identitet, filbane og metadatafelt, ikke skulptur- eller bygningslikhet.
+
+## Oppfølging: tredje prøveillustrasjon (v3)
+
+En tredje, lokalt generert prøveillustrasjon fra 16. november ble også vurdert. Den har mer behersket arkitektur og avlangt vannbasseng, men inneholder **fortsatt en oppdiktet dekorativ urne i fondmotivet**. Riksantikvarens fotografi viser i stedet særpregede, figurative/abstrakte skulpturer ved bassenget. Også benker, blomster, murverk og kameravinkel er frie tolkninger.
+
+**Beslutning: v3 heller ikke godkjent.** Lokal kandidat skal ikke løftes til GitHub eller erstatte den publiserte Structure-filen uten ytterligere kildebundet revisjon. Siden ingen originale bildepiksler er gjenbrukt, er dette fortsatt en illustrasjon, ikke historisk fotografi eller verifisert rekonstruksjon.
+
+Prioriter neste produksjonsrunde med enten et reelt kildefoto med dokumentert lisens, eller en illustrasjon der den særpregede skulpturen, bassengets geometri og synsvinkelen er direkte sammenlignet med en datert bildekilde.
