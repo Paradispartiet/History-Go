@@ -31,7 +31,7 @@ test("Myraløkka does not surface park names, historic factories or agencies as 
   assert.ok(source.civication_store.every(p => p.kind === "physical_object"));
 });
 
-test("Myraløkka retains all 42 original questions, editorial flags and ten QuizCard links", () => {
+test("Myraløkka retains 42 stable quiz IDs, 40 linked Knowledge units and ten sourced QuizCard links", () => {
   const quiz = load("data/quiz/natur/myralokka_sets.json");
   const cards = load("data/quizcards/natur/topp10_natur_akerselva_v1_batch02.json");
   const card = cards.cards.find(c => c.targetId === id);
@@ -40,16 +40,26 @@ test("Myraløkka retains all 42 original questions, editorial flags and ten Quiz
   assert.equal(quiz.sets.length, 6);
   assert.equal(questions.length, 42);
   assert.equal(originals.size, 42);
-  assert.equal(questions.filter(q => q.knowledge_link_status === "linked" && q.primary_knowledge_unit_id).length, 21);
-  assert.equal(questions.filter(q => q.knowledge_link_status === "editorial_review_required" && q.primary_knowledge_unit_id).length, 21);
+  assert.equal(questions.filter(q => q.knowledge_link_status === "linked" && q.primary_knowledge_unit_id).length, 40);
+  const pending = questions.filter(q => q.knowledge_link_status === "editorial_review_required" && q.primary_knowledge_unit_id);
+  assert.deepEqual(pending.map(q => q.id), ["myralokka_s2_q5", "myralokka_s2_q6"]);
+  assert.equal(questions.filter(q => q.knowledge_link_evidence?.reviewedAt === "2026-11-16").length, 19);
   assert.equal(card?.questions.length, 10);
+  assert.equal(card.questionCount, 10);
+  assert.equal(card.questions.filter(q => /^(?:Når|Hvilket år)\\b/u.test(q.question)).length, 1);
   for (const item of card.questions) {
     const original = originals.get(item.sourceQuestionId);
     assert.ok(original, `Missing original question ${item.sourceQuestionId}`);
+    assert.equal(original.knowledge_link_status, "linked", `Unreviewed QuizCard source: ${item.sourceQuestionId}`);
+    assert.equal(item.sourceQuizId, original.quiz_id);
     assert.equal(item.question, original.question);
     assert.deepEqual(item.options, original.options);
     assert.equal(item.answer, original.answer);
+    assert.equal(item.answerIndex, original.answerIndex);
+    assert.deepEqual(item.source_urls, original.source.filter(s => /^https?:\\/\\//u.test(s)));
+    assert.deepEqual(item.source_refs, original.source);
   }
+  assert.deepEqual(card.answerKey, card.questions.map(({ number, answer, answerIndex }) => ({ number, answer, answerIndex })));
 });
 
 test("Myraløkka preserves approved history, photo attribution, coordinates and runtime parity", () => {
