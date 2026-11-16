@@ -50,7 +50,7 @@ export default async function verifyRenholderEmployment(browser:any,origin:strin
       });
     },true);
   });
-  const page=await context.newPage();const errors:string[]=[];const browserLog:string[]=[];const trace:any[]=[];let earned=0;
+  const page=await context.newPage();const errors:string[]=[];const browserLog:string[]=[];const trace:any[]=[];const quizStartups:any[]=[];let earned=0;
   page.on('pageerror',(e:Error)=>errors.push(e.message));
   page.on('console',(m:any)=>{if(['log','warning','error'].includes(m.type()))browserLog.push(m.type()+': '+m.text());});
   page.on('requestfailed',(r:any)=>browserLog.push('requestfailed '+r.url()+' '+r.failure()?.errorText));
@@ -77,6 +77,7 @@ export default async function verifyRenholderEmployment(browser:any,origin:strin
       },quiz.targetId,{timeout:90000});
       assert.equal(await page.evaluate(()=>Number(JSON.parse(localStorage.getItem('merits_by_category')||'{}').naeringsliv?.points||0)),earned,'no injected merits');
       await page.evaluate(()=>{const app=globalThis as any;app.TEST_MODE=false;app.QuizEngine.init({quizFeedbackMs:120});});
+      const quizStartAt=Date.now();
       await page.locator('#pcQuiz').click({timeout:20000});
       // Cold start indexes the complete canonical manifest (over 1,100 set entries)
       // before the first actual question appears. Require the expected first
@@ -86,6 +87,8 @@ export default async function verifyRenholderEmployment(browser:any,origin:strin
         const question=modal?.querySelector('#quizQuestion');
         return !!modal&&!!question&&getComputedStyle(modal).display!=='none'&&question.textContent?.trim()===expected;
       },quiz.sets[0].questions[0].question,{timeout:180000});
+      quizStartups.push({targetId:quiz.targetId,firstQuestionMs:Date.now()-quizStartAt});
+      console.log('Quiz startup '+quiz.targetId+': '+quizStartups.at(-1).firstQuestionMs+'ms to actual first question');
       for(const [index,set] of quiz.sets.entries()){
         for(const question of set.questions){
           await page.waitForFunction((text:string)=>(globalThis as any).document.querySelector('#quizQuestion')?.textContent?.trim()===text,question.question,{timeout:25000});
@@ -168,10 +171,10 @@ export default async function verifyRenholderEmployment(browser:any,origin:strin
     assert.deepEqual(errors,[]);
     await minDag();await page.screenshot({path:join(output,'renholder-employed-paid-reloaded.png'),fullPage:true});
     console.log('PASS: 8 actual quiz sets, earned Renholder accepted, 7 employed days, resolved role mail, exact once-only payroll and reload');
-    return {passed:true,quizSets:8,earnedMerits:8,employedDays:7,calendarDay:8,roleMailProof,days,payout,trace};
+    return {passed:true,quizSets:8,earnedMerits:8,employedDays:7,calendarDay:8,quizStartups,roleMailProof,days,payout,trace};
   }catch(error){
     await page.screenshot({path:join(output,'renholder-employed-failure.png'),fullPage:true}).catch(()=>{});
     const diagnostic=await page.evaluate(async()=>{const app=globalThis as any;return {quizSummary:await Promise.race([app.QuizEngine?.getTargetSummary?.('grand_hotel'),new Promise(r=>setTimeout(()=>r('summary-timeout'),3000))]),placeCount:app.PLACES?.length,place:app.PLACES?.find((p:any)=>p.id==='grand_hotel'),url:app.location.href,bodyClass:app.document.body.className,question:app.document.querySelector('#quizQuestion')?.textContent,footerBound:app.__HG_FOOTER_ACTIONS_BOUND__,quizApiBound:app.__HG_QUIZ_ENGINE_APP_API_BOUND__,digitalAccess:app.QuizEngine?.__HG_DIGITAL_QUIZ_ACCESS_PATCHED__,openMode:app.OPEN_MODE,visibleText:app.document.body.innerText.slice(-12000),resources:app.performance.getEntriesByType('resource').filter((r:any)=>/quiz|manifest/.test(r.name)).map((r:any)=>({url:r.name,duration:r.duration})),clock:app.CivicationCalendar?.getClock?.(),active:app.CivicationState?.getActivePosition?.(),offer:app.CivicationJobs?.getLatestPendingOffer?.(),story:app.CivicationLifestoryState?.load?.(),next:app.CivicationNextActionSelector?.getCurrent?.(),inspection:app.CivicationDayProgression?.inspect?.(),audit:app.__renholderAudit};}).catch(()=>null);
-    writeFileSync(join(output,'renholder-employed-diagnostic.json'),JSON.stringify({earned,trace,errors,browserLog,diagnostic},null,2));throw error;
+    writeFileSync(join(output,'renholder-employed-diagnostic.json'),JSON.stringify({earned,quizStartups,trace,errors,browserLog,diagnostic},null,2));throw error;
   }finally{await context.close();}
 }
