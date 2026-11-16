@@ -42,6 +42,18 @@ async function scenario(engine, width, height) {
     console.log('CIVI_NOK_IMAGE:' + filename + ':' + data.toString('base64'));
     return filename;
   }
+  async function completeSourceLoading() {
+    await page.waitForFunction(() => typeof window.CivicationSocialPlaceResolver?.loadPlaces === 'function');
+    const count = await page.evaluate(async () => {
+      let timer;
+      try {
+        const places = await Promise.race([window.CivicationSocialPlaceResolver.loadPlaces(),
+          new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('NOK source loading timed out')), 90000); })]);
+        return places.length;
+      } finally { clearTimeout(timer); }
+    });
+    assert.ok(count > 0, 'required place sources finish before navigation, avoiding cancelled WebKit fetches');
+  }
   async function openSection(category, id) {
     const close = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
     if (await close.isVisible().catch(() => false)) await close.click();
@@ -53,6 +65,7 @@ async function scenario(engine, width, height) {
     await page.goto(origin + '/Civication.html', { waitUntil: 'load', timeout: 90000 });
     await page.waitForFunction(() => !!window.CivicationEconomyUI?.render && !!window.HG_CiviShop?.consumeNokProduct && window.HGBrands?.ready === true
       && document.querySelector('#civiStoreSection > .civi-mini-card'), null, { timeout: 90000 });
+    await completeSourceLoading();
     await openSection('kommers', 'civiStoreSection');
     await page.locator('[data-nok-activate]').click();
     await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1?.active === true);
@@ -72,8 +85,10 @@ async function scenario(engine, width, height) {
     await page.locator('[data-civi-district-select="sagene"]').filter({ visible: true }).first().click();
     await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1?.housing?.districtId === 'sagene');
     // A normal reload must keep the accepted offer, home and opening balance.
+    await completeSourceLoading();
     await page.reload({ waitUntil: 'load', timeout: 90000 });
     await page.waitForFunction(() => !!window.HG_CiviShop?.consumeNokProduct && document.querySelector('#civiStoreSection > .civi-mini-card'), null, { timeout: 90000 });
+    await completeSourceLoading();
     await openSection('kommers', 'civiStoreSection');
     await page.locator('[data-nok-invoice]').first().click();
     await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1.invoices.some(i => i.status === 'paid'));
@@ -99,8 +114,10 @@ async function scenario(engine, width, height) {
     assert.ok(geometry.fits, 'economy popup has no horizontal overflow');
     assert.ok(geometry.controls.length > 0 && geometry.controls.every(r => r.height >= 44 && r.left >= -1 && r.right <= width + 1), 'NOK controls fit and have 44px touch targets');
     const saved = JSON.stringify(await wallet());
+    await completeSourceLoading();
     await page.reload({ waitUntil: 'load', timeout: 90000 });
     await page.waitForFunction(() => !!window.HG_CiviShop?.getNokProductStock);
+    await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), saved, 'reload neither buys, consumes nor pays again');
     assert.deepEqual(errors, [], 'no uncaught page errors');
     return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750 };
