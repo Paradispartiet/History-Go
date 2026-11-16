@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_gronnfink:Object.freeze({
+   scientificName:"Chloris chloris",
+   src:"bilder/natur/fauna/godkjent/20_gronnfink_v1.webp",
+   gitBlobSha:"4e6ee9392ca010aad7a06e23a0191fc5f89432cc",
+   reviewedAt:"2026-11-16",
+   stage:"adult_male_olive_yellow_green_female_muted_brown_olive_both_stout_pale_bills_yellow_wing_and_tail_edges_perched",
+   evidence:"data/natur/fauna/illustration-quality-gronnfink-20261116.json"
+  }),
   emne_fauna_flaggspett:Object.freeze({
    scientificName:"Dendrocopos major",
    src:"bilder/natur/fauna/godkjent/19_flaggspett_v1.webp",
