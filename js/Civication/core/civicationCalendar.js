@@ -3,6 +3,7 @@
 
   const DEFAULT_CLOCK = {
     dayIndex: 1,
+    startDateISO: "2026-01-01",
     currentMinutes: 8 * 60,
     shiftStartMinutes: 8 * 60,
     shiftEndMinutes: 16 * 60,
@@ -166,10 +167,36 @@
     };
   }
 
+  // Calendar dates follow played days. Reading a date never advances time,
+  // charges rent or uses the computer's current month.
+  function getGameDate() {
+    const clock = getClock();
+    const anchor = String(clock.startDateISO || "");
+    const day = Number(clock.dayIndex);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(anchor) || !Number.isSafeInteger(day) || day < 1) return null;
+    const start = new Date(anchor + "T00:00:00.000Z");
+    if (!Number.isFinite(start.getTime()) || start.toISOString().slice(0, 10) !== anchor) return null;
+    const date = new Date(start.getTime() + (day - 1) * 86400000);
+    if (!Number.isFinite(date.getTime())) return null;
+    return date.toISOString().slice(0, 10);
+  }
+
+  function getMonthPeriod() {
+    const iso = getGameDate();
+    if (!iso) return null;
+    const date = new Date(iso + "T00:00:00.000Z");
+    const year = date.getUTCFullYear();
+    const month = date.getUTCMonth();
+    return { id: iso.slice(0, 7), dateISO: iso, dayOfMonth: date.getUTCDate(),
+      daysInMonth: new Date(Date.UTC(year, month + 1, 0)).getUTCDate() };
+  }
+
   window.CivicationCalendar = {
     getClock,
     setClock,
     getDisplayModel,
+    getGameDate,
+    getMonthPeriod,
     minutesToLabel,
     getWindow,
     advanceByMinutes,
