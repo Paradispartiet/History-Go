@@ -117,19 +117,24 @@ try {
         const icon=document.querySelector("#pcObjectsIcon");
         return icon && !icon.hidden && icon.dataset.collectionItemCount==="2" && icon.dataset.previewStatus==="member-image";
       },null,{timeout:30000});
-      const icon=page.locator("#pcObjectsIcon");
-      assert.equal(await icon.getAttribute("data-collection-id"),"objects");
-      const preview=icon.locator("img.pc-person-img");
+      const sourceIcon=page.locator("#pcObjectsIcon");
+      assert.equal(await sourceIcon.getAttribute("data-collection-id"),"objects");
+      // The direct Place Sheet intentionally hides the source round after
+      // promoting its preview into a visible gallery button. This is the
+      // actual pointer-accessible user control in both viewport sizes.
+      const button=page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]');
+      await button.waitFor({state:"visible",timeout:15000});
+      const preview=button.locator("img");
       await preview.waitFor({state:"visible",timeout:15000});
       assert.equal(await preview.getAttribute("src"),place.objects[0].image);
       await page.waitForFunction(src=>{
-        const img=document.querySelector("#pcObjectsIcon img.pc-person-img");
+        const img=document.querySelector('button[data-pc-round-gallery-item="pcObjectsIcon"] > img');
         return img?.complete && img.naturalWidth===800 && img.getAttribute("src")===src;
       },place.objects[0].image,{timeout:15000});
       const previewShot=path.join(artifactPath,name+"-public-objects-preview.png");
-      await icon.screenshot({path:previewShot,timeout:20000});
+      await button.screenshot({path:previewShot,timeout:20000});
       phase="click-objects";
-      await icon.click({timeout:15000});
+      await button.click({timeout:15000});
       phase="objects-members";
       await page.waitForFunction(()=>{
         const visible=[...document.querySelectorAll(".pc-round-popup-objects .pc-object-member")];
