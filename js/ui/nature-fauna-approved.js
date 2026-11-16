@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_notteskrike:Object.freeze({
+   scientificName:"Garrulus glandarius",
+   src:"bilder/natur/fauna/godkjent/26_notteskrike_v1.webp",
+   gitBlobSha:"a0ae529e88ba334447fb5a4a3e0efceb4cc050fd",
+   reviewedAt:"2026-11-16",
+   stage:"adult_pink_brown_black_moustache_streaked_crown_bright_blue_black_barred_wing_dark_tail_oak_branch_acorns",
+   evidence:"data/natur/fauna/illustration-quality-notteskrike-20261116.json"
+  }),
   emne_fauna_maaltrost:Object.freeze({
    scientificName:"Turdus philomelos",
    src:"bilder/natur/fauna/godkjent/25_maaltrost_v1.webp",
