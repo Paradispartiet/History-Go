@@ -36,13 +36,13 @@ Kontrollert kilde: https://commons.wikimedia.org/wiki/File:Munchmaleriene_i_Frei
 2. `toyen_trafo_transformatorkjerne_1918`: original visuell kandidat registrert i `reports/collection-images/toyen-trafo-transformatorkjerne-1918-candidate.json`.
    Arkiv: https://oslobilder.no/BAR/A-20138/Ua/0004/091
 
-Begge bildene er nye, maleriske tolkninger, ikke kildefaste tekniske rekonstruksjoner. De bruker mer materiell og dybde enn de eksisterende skjematiske SVG-ene. **Antall måleinstrumenter, viklinger, farger, fasonger, rom og detaljer er ikke verifisert mot arkivfotografiene.** Bildepakken er generert som ChatGPT-vedlegg. De to binære WebP-filene er **ikke** lagret i GitHub og er **ikke** koblet til runtime. Ingen kan kalles publisert.
+Begge bildene er nye, maleriske tolkninger, ikke kildefaste tekniske rekonstruksjoner. De bruker mer materiell og dybde enn de eksisterende skjematiske SVG-ene. **Antall måleinstrumenter, viklinger, farger, fasonger, rom og detaljer er ikke verifisert mot arkivfotografiene.** Bildepakken er først generert som ChatGPT-vedlegg, og de to binære WebP-kandidatene er nå **lagt inn i GitHub på PR #7348** under `bilder/kort/objects/candidates/toyen_trafo/`. Manifestene har eksakte SHA-256- og blob-hasher. Filene er **ikke** koblet til runtime, og ingen er publisert.
 
 ## Kvalitetsport før kandidat blir et ekte samlingsbilde
 
 - Sammenhold den nye illustrasjonen med originalarkivfoto. Hvis det ligner for lite på dokumentert gjenstand, korriger eller forkast den.
 - For Structures: bruk korrekt, dokumentert bygg og epoke. For Brands: kun ekte logo-/ordmerke uten KI-generert rekonstruksjon.
-- Lagre egen binær bildefil og oppdatert metadata på samme branch, med kontrollsum og `sourcePage`, lisens/rettighetsgrunnlag, bildetype og representasjonsgrenser.
+- **Gjennomført:** Binære bildekandidater og oppdaterte manifester ligger i GitHub-kandidatmapper med kontrollsummer. **Gjenstår:** Uavhengig visuell kildekontroll og full kontroll av `sourcePage`, lisens/rettighetsgrunnlag og representasjonsgrenser.
 - Kjøre relevant bilde- og PlaceCard-kontroll på mobil og desktop, også bildeutsnitt, synlig illustrasjonsmerking og kreditering.
 - Kun når alle porter består: oppdater canonical bildereferanser. Inntil da brukes fortsatt eksisterende originalbilder.
 
@@ -58,3 +58,9 @@ Begge bildene er nye, maleriske tolkninger, ikke kildefaste tekniske rekonstruks
 | Vedlikeholdbarhet | 4 | Egen kandidatmetadata, isolert gren, etterprøvbart utvalg |
 | **Sum** | **19/30** | **Ikke ferdig / PR forblir draft** |
 
+
+## Oppdatering etter binær staging
+
+2026-11-16: De tre WebP-kandidatene, inkludert Freiaparken v2, er lagt direkte i PR-grenen som egne filer, uten å endre canonical bildefelter. Integritetskontroll på SHA-256, Git-blob-SHA, filstørrelse, WebP-dimensjoner og kandidatbaner er lagt til som `scripts/check-collection-image-candidates.py` og egen GitHub-workflow.
+
+`data/runtime/place-open/freia_fabrikken.json` er regenerert/synkronisert mot oppdatert Structure-metadata, for å rette tidligere Place-open payload mismatch. Denne oppdateringen er ikke en visuell godkjenning.
