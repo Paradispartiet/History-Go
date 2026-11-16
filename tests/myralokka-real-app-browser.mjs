@@ -141,7 +141,16 @@ try {
           'Draft Fagverk must still expose documented emne navigation');
       }
       await page.screenshot({path:`${outDir}/${mode.name}-fagverk.png`});
-      assert.deepEqual(errors,[],mode.name + ': page errors');
+      // Some WebKit runners report third-party CARTO glyph CORS failures as page
+      // errors. Keep app-error checks strict, but do not fail on that isolated
+      // optional external basemap-font fetch. Do not silence other map/app errors.
+      const externalFontError = error =>
+        /Fetch API cannot load https:\\s*:\\s*\\/tiles\\.basemaps\\.cartocdn\\.com\\/.*\\.pbf due to access control checks\\./u.test(error);
+      const actualAppErrors = errors.filter(error => !externalFontError(error));
+      if (errors.length !== actualAppErrors.length) {
+        console.warn(mode.name, 'external CARTO basemap font unavailable in test runner');
+      }
+      assert.deepEqual(actualAppErrors,[],mode.name + ': page errors');
       console.log('PASS', mode.name, 'PlaceCard photo, QuizCard flip/expand, fullquiz route, Fagverk');
     } finally {
       await context.close();
