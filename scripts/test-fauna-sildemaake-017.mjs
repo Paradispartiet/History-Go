@@ -28,7 +28,7 @@ assert.equal(bytes.toString("ascii",0,4),"RIFF");assert.equal(bytes.toString("as
 assert.equal(bytes.toString("ascii",12,16),"VP8X");assert((bytes[20]&16)!==0,"True alpha required");
 assert.deepEqual([bytes.readUIntLE(24,3)+1,bytes.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
-const images=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert.equal(images.count,17);
+const images=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert(images.count>=17,"Sildemåke remains approved after later birds");
 assert.equal(images.get(id)?.src,item.src);assert.equal(images.get(id)?.scientificName,latin);
 assert.equal(images.get(id)?.gitBlobSha,item.gitBlobSha);
 for(const [priorId,sha] of [
@@ -49,7 +49,7 @@ for(const [priorId,sha] of [
  ["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],
  ["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]
 ])assert.equal(images.get(priorId)?.gitBlobSha,sha,priorId+" must remain unchanged");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261116-17"));
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-sildemaake-017.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Sildemåke")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
