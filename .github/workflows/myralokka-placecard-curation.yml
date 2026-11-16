@@ -10,6 +10,7 @@ on:
       - "data/quiz/natur/myralokka_sets.json"
       - "data/quizcards/natur/topp10_natur_akerselva_v1_batch02.json"
       - "tests/myralokka-placecard-collections-v2.test.mjs"
+      - "tests/myralokka-real-app-browser.mjs"
       - "reports/place-production/myralokka-placecard-curation-v1.md"
       - ".github/workflows/myralokka-placecard-curation.yml"
   workflow_dispatch:
@@ -25,7 +26,7 @@ jobs:
   myralokka-collections:
     name: Verify Myraløkka Brands, Knowledge flags, QuizCard and photo parity
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -33,3 +34,21 @@ jobs:
           node-version: "22"
       - name: Run focused Myraløkka regression
         run: node --test tests/myralokka-placecard-collections-v2.test.mjs
+      - name: Install browser test dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Rebuild generated place data for real-app QA
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+      - name: Install Chromium and WebKit browser engines
+        run: npx playwright install --with-deps chromium webkit
+      - name: Verify phone, iPad-sized WebKit and desktop PlaceCard flip and quiz
+        run: node tests/myralokka-real-app-browser.mjs
+      - name: Upload Myraløkka real-app screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: myralokka-real-app-browser
+          path: artifacts/myralokka-real-app/
+          if-no-files-found: warn
+          retention-days: 14
