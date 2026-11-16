@@ -7,7 +7,7 @@ const raw = path => readFileSync(new URL('../'+path,import.meta.url));
 const json = path => JSON.parse(raw(path).toString('utf8'));
 const active = json('data/badges/vitenskap.json');
 const src = json('data/badges/vitenskap_v2_candidates_20261112.json');
-const review = json('data/badges/vitenskap_v2_four_activation_review_20261116.json');
+const review = json('reports/badges/vitenskap_v2_four_activation_review_20261116.json');
 const old = json('data/badges/vitenskap_active_typography_audit_20261113.json');
 const revised = Object.keys(review.proposedVersions);
 const gitBlob = b => createHash('sha1').update(Buffer.from('blob '+b.length+'\0')).update(b).digest('hex');
