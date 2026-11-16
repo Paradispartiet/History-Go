@@ -1,0 +1,32 @@
+name: Vitenskap v2 - five original illustration activations
+on:
+  pull_request:
+    paths:
+      - 'data/badges/vitenskap.json'
+      - 'data/badges/vitenskap_underbadge_artwork.json'
+      - 'bilder/merker/vitenskap/brodert/*_v2.webp'
+      - 'tests/vitenskap-v2-five-activation.test.mjs'
+      - '.github/workflows/qa-science-v2-five-activation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vitenskap-v2-five-activation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-artwork-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify five original WebP files, previous files, registry and PlaceCard
+        run: |
+          node --test \
+            tests/vitenskap-v2-five-activation.test.mjs \
+            tests/vitenskap-v7-activation-proposal.test.mjs \
+            tests/vitenskap-active-typography-audit.test.mjs \
+            tests/placecard-underbadge-science-v2-candidates.test.mjs \
+            tests/vitenskap-v2-localization-plan.test.mjs \
+            tests/badge-artwork-coverage.test.mjs
