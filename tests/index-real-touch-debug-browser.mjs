@@ -13,7 +13,14 @@ const server=http.createServer((req,res)=>{
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const base='http://127.0.0.1:'+server.address().port;
 const results=[];
-async function ready(page){await page.waitForFunction(()=>window.__HG_APP_READY__===true,null,{timeout:90000});}
+async function ready(page){
+ // A mounted app is not necessarily a routed app. On a direct Place link,
+ // the router may still be finalizing the first render while the footer is tappable.
+ // Require both real production readiness signals; never mock or force the menu.
+ await page.waitForFunction(()=>
+   window.__HG_APP_READY__===true && window.__HG_ROUTER_STARTED__===true,
+   null,{timeout:90000});
+}
 async function tap(page,selector){
  const hit=await page.locator(selector).evaluate(el=>{
   const r=el.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;
