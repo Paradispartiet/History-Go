@@ -187,6 +187,25 @@ export async function nextDayViaUi(page: any, scenarioId: string, day: number) {
           null,
           { timeout: 30000 }
         );
+        if (scenarioId === 'earned-renholder-week') {
+          // The earned-job acceptance must not silently retry the same rejected
+          // mail dozens of times. Observe the real UI/runtime; never mark it
+          // answered or advance the day on behalf of the player.
+          const result = await page.evaluate(() => {
+            const app = globalThis as any;
+            const outcome = app.CivicationNextActionUI?.getLastAnswerOutcome?.() || null;
+            if (outcome?.ok !== false) return null;
+            const id = String(outcome.mailId || '');
+            const row = app.CivicationDailyMailBuilder?.inspect?.()?.runtime?.items?.find(
+              (item:any) => String(item?.event?.id || '') === id
+            );
+            return {outcome,day:app.CivicationCalendar?.getClock?.()?.dayIndex,
+              current:app.CivicationNextActionSelector?.getCurrent?.()?.id,
+              runtimeStatus:row?.status,threadKey:row?.event?.thread_key,
+              inboxPresent:!!app.CivicationMailEngine?.getMail?.(id)};
+          });
+          if (result) throw Error(`${scenarioId}: rejected real UI mail answer: ${JSON.stringify(result)}`);
+        }
       }
       else throw Error(`${scenarioId}: no player answer for ${JSON.stringify(before.next)}`);
       await page.waitForTimeout(160);
