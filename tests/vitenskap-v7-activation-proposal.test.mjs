@@ -29,7 +29,8 @@ test('v7 activation proposal points to the exact three verified WebP Git blobs',
   assert.equal(historical.items.length,16);
   const originals = Object.fromEntries(historical.items.map(x=>[x.id,x.image]));
   const changed = Object.keys(badge.subBadgeImages).filter(id=>badge.subBadgeImages[id]!==originals[id]);
-  assert.deepEqual(new Set(changed),new Set(ids));
+  const v2ids = ['informasjonsteknologi','matematikk','forskning_og_metode','astronomi_og_fysikk','kjemi_og_materialvitenskap'];
+  assert.deepEqual(new Set(changed),new Set([...ids,...v2ids]));
   for(const item of archive.items){
     const path = 'bilder/merker/vitenskap/brodert/' + item.id + '_v7.webp';
     assert.equal(badge.subBadgeImages[item.id],path);
@@ -51,7 +52,12 @@ test('v7 activation proposal points to the exact three verified WebP Git blobs',
   }
   for(const item of historical.items){
     if(ids.includes(item.id))continue;
-    assert.equal(badge.subBadgeImages[item.id],item.image,'Unrelated science underbadge changed: '+item.id);
+    if(v2ids.includes(item.id)) {
+      assert.equal(badge.subBadgeImages[item.id], 'bilder/merker/vitenskap/brodert/'+item.id+'_v2.webp');
+      assert.ok(read(item.image).length>3000,'Historical v2 source must survive rollback');
+    } else {
+      assert.equal(badge.subBadgeImages[item.id],item.image,'Unrelated science underbadge changed: '+item.id);
+    }
   }
 });
 

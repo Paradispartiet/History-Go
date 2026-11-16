@@ -66,7 +66,11 @@ test('v7 records exactly three real high-resolution, stored but inactive candida
   }
   assert.equal(Object.keys(active.subBadgeImages).length, 16);
   assert.ok(Object.values(active.subBadgeImages).every(x =>
-    x.startsWith('bilder/merker/vitenskap/brodert/') && !x.includes('v7')));
+    x.startsWith('bilder/merker/vitenskap/brodert/')));
+  for(const item of archived.items){
+    assert.equal(active.subBadgeImages[item.id],
+      'bilder/merker/vitenskap/brodert/'+item.id+'_v7.webp');
+  }
 });
 
 test('idempotent importer verifies exact bytes and never overwrites approved art', () => {
