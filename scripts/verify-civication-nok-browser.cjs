@@ -51,7 +51,7 @@ async function scenario(engine, width, height) {
   }
   try {
     await page.goto(origin + '/Civication.html', { waitUntil: 'load', timeout: 90000 });
-    await page.waitForFunction(() => !!window.CivicationEconomyUI?.render && !!window.HG_CiviShop?.consumeNokProduct
+    await page.waitForFunction(() => !!window.CivicationEconomyUI?.render && !!window.HG_CiviShop?.consumeNokProduct && window.HGBrands?.ready === true
       && document.querySelector('#civiStoreSection > .civi-mini-card'), null, { timeout: 90000 });
     await openSection('kommers', 'civiStoreSection');
     await page.locator('[data-nok-activate]').click();
@@ -108,6 +108,7 @@ async function scenario(engine, width, height) {
     console.error('CIVI_NOK_FAILURE_STATE:' + JSON.stringify(await page.evaluate(() => ({
       wallet: window.CivicationState?.getWallet?.(), active: window.CivicationState?.getActivePosition?.(),
       offers: window.CivicationJobs?.getOffers?.(), merits: localStorage.getItem('merits_by_category'),
+      brandsReady: window.HGBrands?.ready, brandCount: window.HGBrands?.all?.length,
       brands: window.CivicationBrandAccess?.inspect?.({ career_id: 'naeringsliv', role_scope: 'ekspeditor' })
     })).catch(() => null)));
     await capture('failure').catch(() => {});
