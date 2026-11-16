@@ -7,6 +7,8 @@ on:
       - 'data/fagverk/psykologi/**'
       - 'data/fag/psykologi/**'
       - 'js/psychologyRoom.js'
+      - 'js/ui/psychology-room-entry.js'
+      - 'tests/psychology-room-aha-bridge.test.js'
       - 'css/psychologyRoom.css'
       - 'tests/civication-psychology-room-theory.test.js'
       - 'tests/civication-psychology-room-coverage.test.js'
@@ -38,5 +40,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Check Psykologrommet runtime syntax
         run: node --check js/psychologyRoom.js
+      - name: Check private AHA text transfer boundary
+        run: node tests/psychology-room-aha-bridge.test.js
       - name: Validate theory coverage, read-only navigation and competence boundaries
         run: npm run test:psychology

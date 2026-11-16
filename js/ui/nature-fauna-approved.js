@@ -2,6 +2,54 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_kaie:Object.freeze({
+   scientificName:"Coloeus monedula",
+   src:"bilder/natur/fauna/godkjent/29_kaie_v1.webp",
+   gitBlobSha:"20e8714069a9bbd29100b1aaa73e4f497ab0bdcd",
+   reviewedAt:"2026-11-16",
+   stage:"adult_black_cap_silvery_grey_nape_pale_ice_blue_eye_short_black_bill_dark_iridescent_wings_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-kaie-20261116.json"
+  }),
+  emne_fauna_stillits:Object.freeze({
+   scientificName:"Carduelis carduelis",
+   src:"bilder/natur/fauna/godkjent/28_stillits_v1.webp",
+   gitBlobSha:"c73db3e8a990927dbc03da3d9df884a9b77f50e9",
+   reviewedAt:"2026-11-16",
+   stage:"adult_red_face_mask_black_white_head_bright_yellow_wing_bar_cream_breast_black_white_tail_perched_on_thistle",
+   evidence:"data/natur/fauna/illustration-quality-stillits-20261116.json"
+  }),
+  emne_fauna_pilfink:Object.freeze({
+   scientificName:"Passer montanus",
+   src:"bilder/natur/fauna/godkjent/27_pilfink_v1.webp",
+   gitBlobSha:"6337492c57f28ef5d640336fc72db29f0dbe0bc9",
+   reviewedAt:"2026-11-16",
+   stage:"adult_chestnut_crown_white_cheeks_black_cheek_spots_small_black_bib_white_collar_brown_streaked_wings_perched",
+   evidence:"data/natur/fauna/illustration-quality-pilfink-20261116.json"
+  }),
+  emne_fauna_notteskrike:Object.freeze({
+   scientificName:"Garrulus glandarius",
+   src:"bilder/natur/fauna/godkjent/26_notteskrike_v1.webp",
+   gitBlobSha:"a0ae529e88ba334447fb5a4a3e0efceb4cc050fd",
+   reviewedAt:"2026-11-16",
+   stage:"adult_pink_brown_black_moustache_streaked_crown_bright_blue_black_barred_wing_dark_tail_oak_branch_acorns",
+   evidence:"data/natur/fauna/illustration-quality-notteskrike-20261116.json"
+  }),
+  emne_fauna_maaltrost:Object.freeze({
+   scientificName:"Turdus philomelos",
+   src:"bilder/natur/fauna/godkjent/25_maaltrost_v1.webp",
+   gitBlobSha:"428e21d71d9c16a0718f330775fec34c25040aba",
+   reviewedAt:"2026-11-16",
+   stage:"adult_warm_brown_upperparts_creamy_white_belly_dark_heart_arrowhead_breast_spots_brown_yellow_bill_pink_legs_perched_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-maaltrost-20261116.json"
+  }),
+  emne_fauna_spettmeis:Object.freeze({
+   scientificName:"Sitta europaea",
+   src:"bilder/natur/fauna/godkjent/24_spettmeis_v1.webp",
+   gitBlobSha:"70244f32ad0ce67ac7f3e9a469e25aeadba62d3e",
+   reviewedAt:"2026-11-16",
+   stage:"adult_blue_grey_upperparts_black_eye_stripe_white_throat_buff_orange_flanks_short_tail_pointed_bill_headfirst_down_tree",
+   evidence:"data/natur/fauna/illustration-quality-spettmeis-20261116.json"
+  }),
   emne_fauna_linerle:Object.freeze({
    scientificName:"Motacilla alba",
    src:"bilder/natur/fauna/godkjent/23_linerle_v1.webp",
