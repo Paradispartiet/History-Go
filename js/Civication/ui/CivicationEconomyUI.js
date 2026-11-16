@@ -1,6 +1,26 @@
 (function (/** @type {any} */ root) {
   "use strict";
   let message = "";
+  /** @type {any} */
+  let activationConfig = null;
+  /** @type {Promise<void>|null} */
+  let activationLoad = null;
+  function loadActivationConfig() {
+    if (activationLoad) return activationLoad;
+    activationLoad = (async function () {
+      if (typeof root.fetch !== "function") return;
+      try {
+        const response = await root.fetch("data/Civication/economy/nok-budget-prototype-2026.json");
+        if (!response.ok) return;
+        const config = await response.json();
+        // Loading a profile is read-only. Only reviewed release data can expose activation.
+        if (config?.status === "active" && config?.migration?.activated === true
+            && config?.currency?.id === "PC" && config?.currency?.nokPerPC === 1) activationConfig = config;
+      } catch { /* Existing economy remains available if the profile cannot load. */ }
+      render();
+    })();
+    return activationLoad;
+  }
   const money = (/** @type {unknown} */ value) => typeof value === "number" && Number.isFinite(value)
     ? value.toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "Ukjent";
   function node(/** @type {string} */ tag, text = "") {
@@ -24,6 +44,30 @@
     panel.appendChild(node("p", "Saldo: " + money(wallet?.balance) + (active ? " kr (PC)" : " PC")));
     if (!active) {
       panel.appendChild(node("p", "Kroneøkonomien er ikke aktivert. Eksisterende saldo og kjøp beholdes."));
+      if (activationConfig && root.CivicationEconomyEngine?.migrateNokEconomy) {
+        panel.appendChild(node("p", "1 PC får samme kjøpekraft som 1 krone. Saldoen endres ikke. Nye lønns- og leieavtaler gjelder fra overgangen, uten etterbetaling."));
+        const activate = /** @type {HTMLButtonElement} */ (node("button", "Ta i bruk kroneøkonomi"));
+        activate.type = "button";
+        activate.className = "btn";
+        activate.setAttribute("data-nok-activate", "");
+        activate.addEventListener("click", () => {
+          activate.disabled = true;
+          try {
+            const result = root.CivicationEconomyEngine.migrateNokEconomy(activationConfig);
+            if (result?.ok) {
+              message = "Kroneøkonomien er aktiv. Saldoen er beholdt.";
+              root.CivicationJobs?.ensureNokStarterOffer?.();
+              root.dispatchEvent(new Event("updateProfile"));
+            } else if (result?.reason === "UNSETTLED_LEGACY_PAYROLL") {
+              message = "Tidligere opptjent lønn må gjøres opp før overgangen. Økonomien er uendret.";
+            } else if (result?.reason === "ACTIVE_JOB_NOT_MAPPED") {
+              message = "Den aktive jobben mangler lønnsvilkår i kroner. Økonomien er uendret.";
+            } else message = "Overgangen kunne ikke gjennomføres. Økonomien er uendret.";
+          } catch { message = "Overgangen kunne ikke bekreftes. Sjekk økonomistatus før du prøver igjen."; }
+          render();
+        });
+        panel.appendChild(activate);
+      }
     } else {
       const month = root.CivicationCalendar?.getMonthPeriod?.();
       panel.appendChild(node("p", "Spillmåned: " + (month?.id || "Ukjent")));
@@ -90,8 +134,12 @@
       (next && !next.disabled ? next : heading).focus({ preventScroll: true });
     }
   }
-  root.CivicationEconomyUI = { render };
-  document.addEventListener("DOMContentLoaded", render);
+  root.CivicationEconomyUI = { render, loadActivationConfig };
+  document.addEventListener("DOMContentLoaded", function () {
+    render();
+    void loadActivationConfig();
+  });
+  if (document.readyState !== "loading") { render(); void loadActivationConfig(); }
   root.addEventListener("updateProfile", render);
   root.addEventListener("civi:dayPhaseChanged", render);
 })(typeof window !== "undefined" ? window : globalThis);

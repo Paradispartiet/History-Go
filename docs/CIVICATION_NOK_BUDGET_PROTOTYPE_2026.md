@@ -89,3 +89,19 @@ Home og UI i JSDOM: vilkår før aksept, faktisk aksept uten utbetaling, deltids
 legacy-snapshot som ikke overstyrer, begge boliginnsteg og legacy-fallback.
 Start-prices, housing-contract, home-charge-owner og starter-offer består også.
 Nettleserens visuelle sluttkontroll og produksjonsaktivering gjenstår.
+
+### Eksplisitt aktiveringsflyt
+
+Økonomipanelet laster profilen uten å skrive spillerdata. Bare en profil med både
+`status: active`, `migration.activated: true` og 1 PC = 1 NOK kan vise «Ta i bruk
+kroneøkonomi». Repoets nåværende prototype er fortsatt sperret og viser ingen
+aktiveringsknapp. Knappen bruker den eksisterende migreringsfunksjonen, forklarer
+uavregnet gammel lønn eller manglende lønnskontrakt og oppdaterer øvrige paneler
+etter vellykket overgang. Ingen aktivering skjer ved oppstart eller innlasting.
+
+`civication-nok-activation-ui.test.js` bruker faktiske State/Calendar/Budget/Engine/UI
+med en uttrykkelig godkjenningsfixture: ingen writes ved lasting, gammel lønn og
+ustøttet jobb stopper, saldo/historikk/kjøp bevares, gjentatt klikk gjentar ikke
+overgangen og fokus beholdes. Produksjonsfilen forblir inaktiv i samme test.
+Aktiverings-UI er dermed implementert; datagrunnlag, organisk ende-til-ende-reise
+og visuell mobilkontroll må avklares før profilen kan gjøres aktiv.
