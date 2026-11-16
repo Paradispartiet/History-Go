@@ -48,7 +48,7 @@ test('All 16 science v4 candidates are traceable and remain outside the active r
     assert.notEqual(original.path, item.path);
     assert.ok(raw(item.source).length > 100_000);
     assert.equal(item.status, 'candidate_pending_individual_visual_review_not_active');
-    assert.equal(active.subBadgeImages[item.id], 'bilder/merker/vitenskap/brodert/' + item.id + '.webp');
+    assert.equal(active.subBadgeImages[item.id], 'bilder/merker/vitenskap/brodert/' + item.id + '_v2.webp');
     assert.ok(!Object.values(active.subBadgeImages).includes(item.path));
     const localized = plan.items.find(p => p.id === item.id).variants[item.locale];
     assert.equal(item.heading, localized.heading);
