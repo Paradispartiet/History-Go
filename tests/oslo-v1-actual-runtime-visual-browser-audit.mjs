@@ -118,14 +118,12 @@ try{
      if(!media.titleVisible)problems.push("PlaceCard title clipped inside hero after place switch");
      if(!media.hero?.decoded||!media.hero?.source.endsWith(place.image))problems.push("Real hero image did not decode");
      if(!media.portrait?.decoded||!media.portrait?.source.endsWith(place.frontImage))problems.push("Real portrait did not decode");
-     // The canonical Place image-framing contract requires complete documentary
-     // images; legacy per-place crop focus points must not override containment.
-     // Keep image decoding, on-screen geometry and QuizCard interaction checks.
-     if(media.hero?.fit!=="contain")problems.push("Hero overview crops the source photo");
-     if(media.portrait?.fit!=="contain")problems.push("PlaceCard portrait crops the source photo");
+     // Full-bleed PlaceCard photographs fill their frames. The original source
+     // remains separately credited, and QuizCard back keeps its uncropped fit.
+     if(media.hero?.fit!=="cover")problems.push("Hero overview has letterbox gutters");
+     if(media.portrait?.fit!=="cover")problems.push("PlaceCard portrait has letterbox gutters");
      for(const [image,label] of [[media.hero,"Hero"],[media.portrait,"Portrait"]]){
-      if(!["50% 50%","center center"].includes(image?.position))
-       problems.push(label+" image not centered in its uncropped frame");
+      if(!image?.position)problems.push(label+" image missing composition focal point");
      }
      if(media.visible){
       for(const [selector,label] of [["#pcHeaderHero","hero"],["#pcFrontCardFlip","front"]]){
