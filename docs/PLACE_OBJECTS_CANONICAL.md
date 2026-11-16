@@ -8,7 +8,7 @@ Denne kontrakten eier hvilke fysiske gjenstander som kan bli canonical Objects h
 
 ## 1. Grunndefinisjon
 
-Et Object er en fysisk, identifiserbar gjenstand med dokumentert tilknytning til det konkrete stedet. Gjenstanden må ha en egen historisk funksjon eller forklaringsverdi og kunne vises med et kildebundet visuelt medlemsbilde. Når et dokumentarisk foto ikke kan gjenbrukes, kan en **tydelig merket illustrasjon** brukes som representasjon, uten at illustrasjonen dermed beviser gjenstandens faktiske utseende.
+Et Object er en fysisk, identifiserbar gjenstand med dokumentert tilknytning til det konkrete stedet. Gjenstanden må ha en egen historisk funksjon eller forklaringsverdi og kunne vises med et kildebundet visuelt medlemsbilde. Når et dokumentarisk foto ikke kan gjenbrukes, kan en **stedstro, tydelig merket illustrasjon** brukes etter manuell kontroll mot en visuell referanse av den faktiske gjenstanden.
 
 Observasjonstekst, bygningsdeler uten selvstendig objektidentitet, generiske illustrasjoner og løse temaord er ikke Objects.
 
@@ -94,8 +94,8 @@ Previewet skal representere den **identifiserte fysiske gjenstanden**. Et autent
 **Ikke la manglende gjenbrukbart fotografi stanse arbeidet med en ellers godt dokumentert fysisk gjenstand.** Produser en kildebasert, original og kildekritisk illustrasjon i stedet. Fotokvalitet er ikke et mål i seg selv; kravet er at brukerens historieforståelse ivaretas.
 
 1. Gjenstandens identitet, historiske funksjon og faktiske stedstilknytning må være dokumentert **uavhengig av illustrasjonen**. Generiske fantasiobjekter kan aldri oppgraderes til canonical Objects.
-2. Bruk først autentisk foto med riktig gjenbruksgrunnlag når det finnes. Mangler det, kan en original illustrasjon vise gjenstandstypen eller dokumenterte hovedtrekk. Ikke kopier et uavklart fotografi eller vernet kunstverk gjennom «rekonstruksjon».
-3. Registrer `imageKind: "illustration"`, navngitt kilde, opprinnelse/produksjon og eventuelle usikre eller skjematiske detaljer. Bruk **«Illustrasjon – ikke fotografi»** synlig i selve bildet og i kort-/listevisning og tilgjengelig tekst; ikke bare gjemt i en arbeidsrapport.
+2. Bruk autentisk foto med riktig gjenbruksgrunnlag når det finnes. Ellers kan en original illustrasjon brukes, men den skal være stedstro og bygge på en kontrollert visuell referanse av den faktiske gjenstanden. En generisk bil, et antatt interiør eller en vanlig gjenstandstype erstatter ikke dokumentert utseende. Ikke kopier et uavklart fotografi eller vernet kunstverk gjennom «rekonstruksjon».
+3. Registrer `imageKind: "illustration"`, navngitt visuell referanse, opprinnelse/produksjon og usikkerhet. Merk bildefilen diskret nederst til høyre med bare **«Illustrasjon»**. Ikke legg «ikke fotografi» eller lange forbehold inn i motivet. Tilgjengelig tekst og metadata skal fortsatt skille illustrasjonen fra dokumentarfoto.
 4. Ikke beskriv antatt farge, komposisjon, form, tekst eller detaljer som kilden ikke støtter. En stilisert sceneskisse er aldri bevis på originalrommets utforming eller verkets eksakte motiv.
 5. Den illustrerte forhåndsvisningen er én representasjon av **én dokumentert fysisk gjenstand**, ikke et nytt selvstendig Object. Samlingskoherens, uavhengige kildekrav, runtime-synk og faktisk PlaceCard-test gjelder fortsatt.
 6. Manglende autentisk foto er **ikke i seg selv** en Objects-`BLOCKED`-grunn etter at en kildebasert og korrekt merket illustrasjon er klar. Reell manglende identitet, stedstilknytning eller uferdig canonical publisering kan fortsatt blokkere.

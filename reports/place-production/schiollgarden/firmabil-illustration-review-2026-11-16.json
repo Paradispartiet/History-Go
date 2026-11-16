@@ -2,7 +2,7 @@
   "schema": "history_go_source_bound_object_illustration_review_v1",
   "place_id": "schiollgarden_prinsens_gate_26",
   "candidate": "Halvorsens firmabil fotografert ved Prinsens gate 26 omkring 1925",
-  "status": "illustration_ready_collection_selection_pending",
+  "status": "rejected_unverified_visual_fidelity",
   "imageKind": "illustration",
   "asset": {
     "path": "bilder/objects/schiollgarden/halvorsens-firmabil-illustrasjon-v1.webp",
@@ -24,7 +24,9 @@
     "alt": "Illustrasjon – ikke fotografi. En stilisert varebil fra 1920-årene representerer Halvorsens dokumenterte firmabil; bilmerke, registrering, farger og nøyaktig utforming er ikke fastslått.",
     "generatedAt": "2026-11-16",
     "transformation": "Original 1254x1254 PNG retained in generation output; entire uncropped composition resized to1000x1000 and encoded WebP quality92. No reconstructed source photograph.",
-    "originalGenerationFile": "exec-bfc0e97a-6c4d-4f0c-985c-0ec4dd31ed59.png"
+    "originalGenerationFile": "exec-bfc0e97a-6c4d-4f0c-985c-0ec4dd31ed59.png",
+    "approved": false,
+    "publication_allowed": false
   },
   "sourceEvidence": {
     "sourcePage": "https://oslobilder.no/OMU/OB.Z06453",
@@ -53,12 +55,20 @@
     "visual": "Original PNG and final WebP both visually inspected; clearly illustrated, complete vehicle silhouette, legible disclosure, no legible brand or registration text.",
     "bytes": "Actual WebP dimensions and SHA-256 recorded; remote Git blob SHA matched local git hash-object.",
     "copyrightBoundary": "An illustration resolves the missing reusable photograph. It does not authorize a reconstructed Halvorsens logo or substitute an invented person portrait.",
-    "collectionBoundary": "Secondary confectionery/distribution history. This one vehicle does not by itself satisfy the architectural place's Objects group coherence or signature-object rule. No filler member or completed collection is created."
+    "collectionBoundary": "Secondary confectionery/distribution history. This one vehicle does not by itself satisfy the architectural place's Objects group coherence or signature-object rule. No filler member or completed collection is created.",
+    "fidelity_review": "Rejected after user clarification: the image was generated without a visual reference of the actual vehicle. A documented vehicle type is not a verified likeness. Retain the file as a rejected generation record, not a candidate for runtime use."
   },
   "publication": {
-    "asset": "local_project_asset_in_draft",
+    "asset": "rejected_draft_asset_do_not_publish",
     "runtime_changed": false,
     "canonical_object_created": false,
     "whole_place_closeout": false
+  },
+  "superseding_image_policy": {
+    "authority": "docs/PLACE_IMAGE_FRAMING.md — Stedstro illustrasjoner",
+    "required_visual_reference": true,
+    "required_mark": "Illustrasjon",
+    "mark_position": "small_bottom_right",
+    "old_embedded_labels": "Historical rejected output; do not reproduce the old labels in future assets."
   }
 }
