@@ -1,0 +1,70 @@
+{
+  "schema": "history_go_tjuvholmen_published_closeout_v1",
+  "place_id": "tjuvholmen",
+  "audited_on": "2026-11-16",
+  "release_status": "ALL_SUPPORTED_PUBLISHABLE_CONTENT_COMPLETE",
+  "formal_vferdig": "BLOCKED",
+  "approved": {
+    "placecard_real_browser": "PASS_MOBILE_390_DESKTOP_1440",
+    "fullquiz_questions": 42,
+    "people": {
+      "total": 5,
+      "with_approved_images": 5,
+      "licensed_photo": 2,
+      "visible_original_illustration": 3
+    },
+    "brands": {
+      "approved": 3,
+      "total": 3
+    },
+    "structures": {
+      "approved_preview_webp": 3,
+      "total": 3,
+      "source_preview_binary_verified": 3
+    },
+    "stories": 2,
+    "sprakleksikon": 3,
+    "artwork_reference": {
+      "documented_titles": 8,
+      "documented_artists": 8,
+      "park_structure_text": "PUBLISHED"
+    }
+  },
+  "publishing": {
+    "people_images_pr": 7322,
+    "people_images_merge": "906f60571f94bed7cb619cd5912fb3c43d887d49",
+    "people_images_pages": "https://github.com/Paradispartiet/History-Go/actions/runs/43743075566",
+    "source_credits_pr": 7329,
+    "source_credits_merge": "65e7e113b1023bb8ae669502d7b105b1d69e8817",
+    "source_credits_pages": "https://github.com/Paradispartiet/History-Go/actions/runs/43748925594",
+    "all_deployments_verified_success": true
+  },
+  "blocked_external_gates": [
+    {
+      "gate": "THREE_COMMONS_FULL_RES_SOURCES",
+      "archived": 0,
+      "required": 3,
+      "source": "reports/place-production/tjuvholmen-structures-source-candidates-20261112.json",
+      "explanation": "Legitimate 960px Wikimedia Commons source previews and derived WebP have been published with photographer and CC attribution; exact full-resolution JPEG bytes remain unarchived after prior rate-limit/DNS failure. Preview is never claimed as original."
+    },
+    {
+      "gate": "EIGHT_SEPARATE_SCULPTURE_MEDIA_RIGHTS",
+      "approved": 0,
+      "total": 8,
+      "source": "reports/place-production/tjuvholmen-objects-artworks-audit-20261112.json",
+      "explanation": "Artwork-focused images may require clearance for both photographer and underlying work; no rights were obtained; no invented media or new active Objects. Eight artist/title/year/owner entries remain in the existing park Structure's source-backed text."
+    }
+  ],
+  "legal_sources": [
+    "https://lovdata.no/nav/lov/2018-06-15-40/kap3"
+  ],
+  "decision": "Do not mark formal vFerdig PASS until external rights and original-byte gates are evidenced. No additional quiz, People, Brands, Structure, Stories or Language production is pending.",
+  "evidence": {
+    "workcard": "reports/place-production/tjuvholmen-workcard-current.json",
+    "historical_source_audit": "reports/place-production/tjuvholmen-source-review-20261112.json",
+    "runtime": "data/runtime/place-open/tjuvholmen.json",
+    "structure_media_manifest": "reports/place-production/tjuvholmen-structures-source-candidates-20261112.json",
+    "retrieval_log": "reports/place-production/tjuvholmen-structure-originals-retrieval-20261112.json",
+    "issue": "https://github.com/Paradispartiet/History-Go/issues/7290"
+  }
+}

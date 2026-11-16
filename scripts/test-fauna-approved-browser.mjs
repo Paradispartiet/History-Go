@@ -602,6 +602,117 @@ try {
    }
    await context.close();
   }
+  // Sildemåke #17: original adult standing and flying, both responsive layouts and graceful fallback.
+  for(const brokenLesserBlackBackedGull of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenLesserBlackBackedGull)await context.route("**/bilder/natur/fauna/godkjent/17_sildemaake_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Sildemåke");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Sildemåke,/i}).first();
+   await card.waitFor();
+   if(brokenLesserBlackBackedGull){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Sildemåke: never replace with a photo");
+   }else{
+    const img=card.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("17_sildemaake_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"sildemaake-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenLesserBlackBackedGull){
+    await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   }else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Sildemåke detail must fit viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"sildemaake-detail-"+width+".png")});
+   }
+   await context.close();
+  }
+  // Gråhegre #18: original adult standing and flying with retracted neck, both responsive layouts and graceful fallback.
+  for(const brokenGreyHeron of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenGreyHeron)await context.route("**/bilder/natur/fauna/godkjent/18_graahegre_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Gråhegre");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Gråhegre,/i}).first();
+   await card.waitFor();
+   if(brokenGreyHeron){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Gråhegre: never replace with a photo");
+   }else{
+    const img=card.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("18_graahegre_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"graahegre-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenGreyHeron){
+    await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   }else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Gråhegre detail must fit viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"graahegre-detail-"+width+".png")});
+   }
+   await context.close();
+  }
+  // Flaggspett #19: male with red nape, female without, original alpha WebP in mobile and desktop and safe fallback.
+  for(const brokenWoodpecker of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenWoodpecker)await context.route("**/bilder/natur/fauna/godkjent/19_flaggspett_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Flaggspett");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Flaggspett,/i}).first();
+   await card.waitFor();
+   if(brokenWoodpecker){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Flaggspett: do not fall back to photographs");
+   }else{
+    const img=card.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("19_flaggspett_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"flaggspett-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenWoodpecker){
+    await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   }else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Flaggspett dialog fits viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"flaggspett-detail-"+width+".png")});
+   }
+   await context.close();
+  }
   // Unapproved fauna must retain a separate legacy SVG fallback.
   const context=await browser.newContext({viewport:{width,height:900}});
   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
@@ -613,6 +724,6 @@ try {
   await unapproved.waitFor();
   assert((await unapproved.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Unapproved Rødstrupe retains original SVG");
   await context.close();
-  console.log("Finn Fauna 16 approved birds "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
+  console.log("Finn Fauna 19 approved birds "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}

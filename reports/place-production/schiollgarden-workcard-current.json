@@ -73,7 +73,7 @@
       ]
     }
   },
-  "active_checkpoint": "reading_and_historical_news",
+  "active_checkpoint": "source_qualified_collection_assets",
   "production_profile": "standard",
   "profile_rationale": "Dokumenterte lag: dobbeltleiegård, konditori og parlamentarisk ombygging. Egen standard-Fagverk er obligatorisk; ingen samlinger eller fullførtstatus utledes av profilvalget.",
   "underbadge_ids": [
@@ -90,14 +90,15 @@
     "limitations": [
       "Ingen befaring eller verifisert fysisk tilstand i 2026.",
       "Byggherrens sluttmelding dokumenterer prosjektet, ikke uavhengig bevaringskvalitet.",
-      "Historiske bilder fra 2008 og 2020 er ikke nåbilder."
+      "Historiske bilder fra 2008 og 2020 er ikke nåbilder.",
+      "FMF identifies Hans Halvorsen at the top of an owners-portrait display photographed by Jiri Havran; no reuse license or approved local portrait crop has been verified."
     ]
   },
   "remaining": [
     "Source-qualified Brands and Structures require canonical member data, verified visual assets and app QA.",
     "People portrait coverage and remaining directly relevant identities require source/asset resolution.",
     "Objects candidates require final source-bounded identity audit; no generic or invented members.",
-    "Before/after, news, reading trails, chronology viewer and full popup/player-state closeout remain unverified."
+    "Before/after, chronology viewer and full popup/player-state closeout remain unverified."
   ],
   "verified_checkpoints": {
     "fagverk": "Browser QA passed in PR #7298; source head 204744a.",
@@ -105,7 +106,8 @@
     "people_profiles": "Nissen and Halvorsen targeted browser PASS on 7e6bf3f, run 43744285772; portrait coverage remains incomplete.",
     "language": "PASS on 7e6bf3f, run 43744285681: four entries, filters, Knowledge V2 collection and persistence at 390/820/1440.",
     "images_and_fagverk": "PASS on 7e6bf3f, run 43744285681.",
-    "media_regression": "PASS on 7e6bf3f, run 43744285714."
+    "media_regression": "PASS on 7e6bf3f, run 43744285714.",
+    "reading_and_historical_news": "PASS on isolated release head ab92945e0a9e0d1177275930eef2d908647e9843, run43841966473; six captures in artifact14213571503 inspected; actual external clicks and news text geometry pass at390/820/1440."
   },
   "collection_contract_clarification": {
     "authority": "docs/PLACE_PRODUCTION_CHECKLIST.md sections 3, 4, 19; docs/PLACE_PRODUCTION_PROFILES.md; data/places/README_place_rounds.md",
@@ -115,7 +117,7 @@
   "closeout_allowed": false,
   "evidence_report": "reports/place-production/schiollgarden/closeout-review-2026-11-15.json",
   "modules_in_review": {
-    "reading": "Two source-read, open, link-only texts; manifest/runtime integrated; exact app replay pending.",
-    "news": "One explicitly historical 2019 primary-source item; exact app replay pending."
+    "reading": "PASS: both source-read link-only texts, visible metadata and actual external navigation on390/820/1440.",
+    "news": "PASS: one historical2019 item; direct/legacy sole-news regressions, all text and source links within card bounds on390/820/1440."
   }
 }

@@ -1,0 +1,32 @@
+name: Science v7 proposed activation - 3 real badges
+on:
+  pull_request:
+    paths:
+      - 'data/badges/vitenskap.json'
+      - 'bilder/merker/vitenskap/brodert/*_v7.webp'
+      - 'tests/vitenskap-v7-activation-proposal.test.mjs'
+      - 'tests/vitenskap-active-typography-audit.test.mjs'
+      - 'tests/badge-artwork-coverage.test.mjs'
+      - 'vitenskap-aktive-merker-review.html'
+      - '.github/workflows/qa-science-v7-activation-proposal.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: science-v7-activation-proposal-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify v7 originals, rollback, map and PlaceCard without activation
+        run: |
+          node --test \
+            tests/vitenskap-v7-activation-proposal.test.mjs \
+            tests/vitenskap-active-typography-audit.test.mjs \
+            tests/badge-artwork-coverage.test.mjs \
+            tests/placecard-underbadge-science-v2-candidates.test.mjs

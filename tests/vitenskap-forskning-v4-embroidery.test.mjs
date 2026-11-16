@@ -23,7 +23,7 @@ test('Research v4 preserves the active registry and all four v3 originals', () =
   assert.equal(Object.keys(active.subBadgeImages).length, 16);
   assert.equal(
     active.subBadgeImages.forskning_og_metode,
-    'bilder/merker/vitenskap/brodert/forskning_og_metode.webp'
+    'bilder/merker/vitenskap/brodert/forskning_og_metode_v2.webp'
   );
   assert.equal(v4.items.length, 4);
   assert.deepEqual(v4.items.map(item => item.locale).sort(), expectedLocales);

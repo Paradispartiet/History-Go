@@ -445,6 +445,39 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       result.afterChoice = afterChoice;
       result.choiceRefreshFocus = choiceRefreshFocus;
       result.screenshots.push('min-dag-mobile-after-choice.png');
+      const moneyBefore = await decisionPage.evaluate(() => ({
+        wallet: JSON.stringify((globalThis as any).CivicationState.getWallet()),
+        life: JSON.stringify((globalThis as any).CivicationLifestoryState.load())
+      }));
+      await decisionPage.locator('#civiScoreTrigger').click();
+      const moneyOverview = await decisionPage.locator('#civiScoreDialog').evaluate((dialog: any) => {
+        const app = globalThis as any;
+        const shown = Object.fromEntries(Array.from(dialog.querySelectorAll('.civi-score-overview-item'),
+          (item: any) => [item.querySelector('dt').textContent, item.querySelector('dd').textContent]));
+        const viewport = dialog.getBoundingClientRect();
+        const moneyRows = Array.from(dialog.querySelectorAll('.civi-score-overview-item')) as any[];
+        const moneyVisible = ['PC-saldo', 'Fortellingspenger'].every(name => {
+          const row = moneyRows.find(item => item.querySelector('dt').textContent === name);
+          const rect = row?.getBoundingClientRect();
+          return !!rect && rect.width > 0 && rect.top >= viewport.top && rect.bottom <= viewport.bottom;
+        });
+        return { shown, pc: app.CivicationState.getWallet().balance,
+          story: app.CivicationLifestoryState.load().meters.penger,
+          headingFocused: app.document.activeElement.id === 'civiScoreHeading', moneyVisible };
+      });
+      assert.equal(moneyOverview.shown['PC-saldo'], moneyOverview.pc + ' PC', 'dialog displays canonical PC balance');
+      assert.equal(moneyOverview.shown['Fortellingspenger'], String(moneyOverview.story), 'dialog labels actual story money separately');
+      assert.ok(moneyOverview.headingFocused && moneyOverview.moneyVisible,
+        'dialog opens at its heading with both actual money amounts in the viewport');
+      await decisionPage.screenshot({ path: join(outputDir, 'status-money-mobile.png'),
+        fullPage: false, animations: 'disabled' });
+      await decisionPage.locator('#civiScoreDialog .civi-score-close').click();
+      assert.deepEqual(await decisionPage.evaluate(() => ({
+        wallet: JSON.stringify((globalThis as any).CivicationState.getWallet()),
+        life: JSON.stringify((globalThis as any).CivicationLifestoryState.load())
+      })), moneyBefore, 'opening and closing money overview cannot mutate either money store');
+      result.moneyOverview = moneyOverview;
+      result.screenshots.push('status-money-mobile.png');
       result.summaryInboxFocus = await verifySummaryInboxFocus(decisionPage);
     } finally {
       await decisionPage.close();

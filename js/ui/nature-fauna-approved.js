@@ -2,6 +2,30 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_flaggspett:Object.freeze({
+   scientificName:"Dendrocopos major",
+   src:"bilder/natur/fauna/godkjent/19_flaggspett_v1.webp",
+   gitBlobSha:"4c43cdf4db47f2c652d43128d030189b300d1604",
+   reviewedAt:"2026-11-16",
+   stage:"adult_male_red_nape_female_black_nape_both_large_white_shoulder_patches_crimson_undertail_clinging_to_trunk",
+   evidence:"data/natur/fauna/illustration-quality-flaggspett-20261116.json"
+  }),
+  emne_fauna_graahegre:Object.freeze({
+   scientificName:"Ardea cinerea",
+   src:"bilder/natur/fauna/godkjent/18_graahegre_v1.webp",
+   gitBlobSha:"0c0a153a98ad3a9ac830ca255ecb171020675faa",
+   reviewedAt:"2026-11-16",
+   stage:"adult_slate_grey_white_black_head_plumes_yellow_bill_grey_yellow_legs_standing_and_neck_retracted_in_flight",
+   evidence:"data/natur/fauna/illustration-quality-graahegre-20261116.json"
+  }),
+  emne_fauna_sildemaake:Object.freeze({
+   scientificName:"Larus fuscus",
+   src:"bilder/natur/fauna/godkjent/17_sildemaake_v1.webp",
+   gitBlobSha:"b89f8cc442174a9d0ea5be345c29c91c7e0ad68f",
+   reviewedAt:"2026-11-16",
+   stage:"adult_breeding_slate_dark_back_white_head_yellow_legs_yellow_bill_red_gonys_black_primary_mirrors_standing_and_flying",
+   evidence:"data/natur/fauna/illustration-quality-sildemaake-20261116.json"
+  }),
   emne_fauna_hettemaake:Object.freeze({
    scientificName:"Chroicocephalus ridibundus",
    src:"bilder/natur/fauna/godkjent/16_hettemaake_v1.webp",

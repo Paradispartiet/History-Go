@@ -108,11 +108,11 @@ test('Vitenskap har registrert lilla, sydd hovedmerke og minst ti fungerende und
   assert.equal(manifest.assets.length,7);
   assert.ok(Object.keys(badge.subBadgeImages).length >= 10);
   assert.equal(badge.subBadgeImages.data_programvare_og_algoritmer,
-    'bilder/merker/vitenskap/brodert/data_programvare_og_algoritmer.webp');
+    'bilder/merker/vitenskap/brodert/data_programvare_og_algoritmer_v7.webp');
   assert.equal(badge.subBadgeImages.teknologi_og_ingeniorfag,
-    'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag.webp');
+    'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag_v7.webp');
   const checkImage=(imagePath,svgPath)=>{
-    assert.match(imagePath,/^bilder\/merker\/vitenskap\/brodert\/[a-z_]+\.webp$/);
+    assert.match(imagePath,/^bilder\/merker\/vitenskap\/brodert\/[a-z_0-9]+\.webp$/);
     const bytes=readFileSync(resolve(root,imagePath));
     assert.ok(bytes.length>3000,imagePath + ': empty artwork');
     assert.equal(bytes.toString('ascii',0,4),'RIFF');

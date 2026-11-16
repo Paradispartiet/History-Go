@@ -76,8 +76,13 @@ test('Science v5 mobile review gallery has exact provenance and remains non-acti
   assert.equal(active.sub.length, 16);
   assert.equal(Object.keys(active.subBadgeImages).length, 16);
   for (const [id, path] of Object.entries(active.subBadgeImages)) {
-    assert.equal(path, 'bilder/merker/vitenskap/brodert/' + id + '.webp');
+    const v2ids = ['informasjonsteknologi','matematikk','forskning_og_metode','astronomi_og_fysikk','kjemi_og_materialvitenskap'];
+    const v7ids = ['teknologi_og_ingeniorfag','data_programvare_og_algoritmer','nettverk_og_digital_infrastruktur'];
+    const expected = 'bilder/merker/vitenskap/brodert/' + id +
+      (v2ids.includes(id) ? '_v2.webp' : v7ids.includes(id) ? '_v7.webp' : '.webp');
+    assert.equal(path, expected);
     assert.ok(!path.includes('-v5-'));
+    assert.ok(file('bilder/merker/vitenskap/brodert/'+id+'.webp').length>3000, 'original remains');
   }
   assert.equal(v5.mapUsesMainBadge, true);
   assert.equal(v5.placeCardUsesActiveUnderbadgeWithMainFallback, true);

@@ -10,14 +10,14 @@ const badge = json('data/badges/vitenskap.json');
 const existing = {
   naturvitenskap:'bilder/merker/vitenskap/brodert/naturvitenskap.webp',
   teknologi:'bilder/merker/vitenskap/brodert/teknologi.webp',
-  matematikk:'bilder/merker/vitenskap/brodert/matematikk.webp',
-  informasjonsteknologi:'bilder/merker/vitenskap/brodert/informasjonsteknologi.webp',
-  forskning_og_metode:'bilder/merker/vitenskap/brodert/forskning_og_metode.webp',
-  astronomi_og_fysikk:'bilder/merker/vitenskap/brodert/astronomi_og_fysikk.webp',
-  kjemi_og_materialvitenskap:'bilder/merker/vitenskap/brodert/kjemi_og_materialvitenskap.webp',
-  teknologi_og_ingeniorfag:'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag.webp',
-  data_programvare_og_algoritmer:'bilder/merker/vitenskap/brodert/data_programvare_og_algoritmer.webp',
-  nettverk_og_digital_infrastruktur:'bilder/merker/vitenskap/brodert/nettverk_og_digital_infrastruktur.webp'
+  matematikk:'bilder/merker/vitenskap/brodert/matematikk_v2.webp',
+  informasjonsteknologi:'bilder/merker/vitenskap/brodert/informasjonsteknologi_v2.webp',
+  forskning_og_metode:'bilder/merker/vitenskap/brodert/forskning_og_metode_v2.webp',
+  astronomi_og_fysikk:'bilder/merker/vitenskap/brodert/astronomi_og_fysikk_v2.webp',
+  kjemi_og_materialvitenskap:'bilder/merker/vitenskap/brodert/kjemi_og_materialvitenskap_v2.webp',
+  teknologi_og_ingeniorfag:'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag_v7.webp',
+  data_programvare_og_algoritmer:'bilder/merker/vitenskap/brodert/data_programvare_og_algoritmer_v7.webp',
+  nettverk_og_digital_infrastruktur:'bilder/merker/vitenskap/brodert/nettverk_og_digital_infrastruktur_v7.webp'
 };
 
 test('Robotikk: Vitenskap-original og ti tidligere undermerker bevares', () => {
