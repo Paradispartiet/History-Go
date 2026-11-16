@@ -100,3 +100,18 @@ Etter at **de aktive historietekstene ble tilbakestilt til main**, skal feil (3)
 **Øvre spinneri – Nydalens Compagnie:** Place-feltet `image` er nå koblet til Commons-filen https://commons.wikimedia.org/wiki/File:Nydalens_Compagnie,_%C3%98vre_Spinderi_og_V%C3%A6veriet_OB.F04310i.jpg (Per Adolf Thorén, Oslo Museum **OB.F04310i**, fotografert *antagelig 1878*, **CC BY-SA 3.0**). Oslo Museums katalog bekrefter motivet Øvre spinneri og veveriet sett fra vannrennen. Bildet er tydelig markert **historisk foto**, ikke dagens fabrikkutsikt. Selve originalfilen er brukt uten bearbeiding; stående bilde og kortvariant mangler.
 
 **Felles presisering:** Det er **2 nye `image`-bindinger på denne PR-grenen**, ikke to ferdig produserte tredelte bildepakker og ikke to verifiserte V1-steder. **Oset slusebru** og **elvepunktet nedenfor Nydalsdammen** har fortsatt ikke publiserbar bildebinding. Oset-bildet i Oslo byleksikon er ikke gjenbruksklarert. Et nærliggende, men feilplassert, elvebilde skal ikke brukes til å oppnå kvote. Commons-foto må testes i faktisk PlaceCard/popup før noe kalles publisert.
+
+## Fullquiz-nullmåling 16. november: 102 eksisterende spørsmål kontrollert strukturelt
+
+Se `reports/place-production/oslo-akerselva-v1-quiz-audit-20261116.json` for maskinlesbart stedsnivå. Gjeldende `data/quiz/manifest.json` kobler de tre stedene nedenfor til faktiske settfiler, som er inspisert uten endringer:
+
+| Sted | Sett × spørsmål | Spørsmål | Knowledge `editorial_review_required` | Intern «History Go»-kilde |
+|---|---:|---:|---:|---:|
+| Oset slusebru, teknisk ID `frysjadammen` | 6 × 7 | 42 | 14 | 33 |
+| Øvre spinneri | 6 × 3 | 18 | 12 | 12 |
+| Elvepartiet nedenfor Nydalsdammen | 6 × 7 | 42 | 13 | 34 |
+| Frysja 33 | ingen direkte aktiv target funnet | 0 direkte | ikke målt | ikke målt |
+
+**Sum:** 102 eksisterende spørsmål i tre direkte manifestkoblede quizfiler; 39 spørsmål med `editorial_review_required` og 79 med intern History Go-kilde. Tabellen er en strukturell nullmåling, ikke en faktagjennomgang av alle fasiter. Oset-quizen har **24 treff på gamle «Frysjadammen»** i spørsmål eller forklaringer. Øvre spinneri har feilaktig **seks sett à tre** og må bygges til en gyldig profil, ikke bare få ti QuizCard-spørsmål. Frysja 33 må først ha legacy-/omnibus-audit før vi konkluderer med at fullquiz ikke finnes. Unngå å endre stabile quiz- eller progresjons-ID-er uten migreringskontroll.
+
+**40 nye spørsmål ligger som separate kildebelagte kandidater**, ikke runtime. Noen kandidatspørsmål vil måtte justeres ved review før de erstatter svake aktive spørsmål. Ingen aktiv fullquiz, QuizCard eller Knowledge er endret i denne PR-en.
