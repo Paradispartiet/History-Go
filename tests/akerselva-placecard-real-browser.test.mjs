@@ -99,8 +99,50 @@ try {
             width:hero.naturalWidth,height:hero.naturalHeight,box:bounds(hero)}
         };
       });
-      assert.equal(media.front.fit, 'contain', tag + ': photo must not be cropped on portrait card');
-      assert.equal(media.hero.fit, 'contain', tag + ': uncropped landscape overview must preserve the source photo');
+      const framingDiagnostics = await page.evaluate(() => {
+        const targets = ['pcFrontImage', 'pcHeaderImage'];
+        const matchedRules = (element) => {
+          const matches = [];
+          function visit(rules, origin) {
+            for (const rule of rules) {
+              if (rule.selectorText && rule.style?.getPropertyValue('object-fit')) {
+                try {
+                  if (element.matches(rule.selectorText)) {
+                    matches.push({
+                      origin,
+                      selector: rule.selectorText.slice(0, 220),
+                      value: rule.style.getPropertyValue('object-fit'),
+                      priority: rule.style.getPropertyPriority('object-fit')
+                    });
+                  }
+                } catch {}
+              }
+              if (rule.cssRules) visit(rule.cssRules, origin);
+            }
+          }
+          for (const sheet of document.styleSheets) {
+            try { visit(sheet.cssRules, sheet.href || 'inline'); } catch {}
+          }
+          return matches.slice(-24);
+        };
+        return {
+          currentPlaceId: document.getElementById('placeCard')?.dataset.currentPlaceId,
+          bodyClass: document.body.className,
+          styles: targets.map(id => {
+            const el = document.getElementById(id);
+            return {
+              id,
+              style: el?.getAttribute('style'),
+              fit: el ? getComputedStyle(el).objectFit : '(missing)',
+              rules: el ? matchedRules(el) : []
+            };
+          })
+        };
+      });
+      assert.equal(media.front.fit, 'contain',
+        tag + ': portrait photo not fully visible; CSS diagnostic ' + JSON.stringify(framingDiagnostics));
+      assert.equal(media.hero.fit, 'contain',
+        tag + ': landscape source photo not fully visible; CSS diagnostic ' + JSON.stringify(framingDiagnostics));
       assert.ok(media.front.height > media.front.width, tag + ': front photo is natively portrait');
       assert.ok(media.hero.width > media.hero.height, tag + ': header photo is landscape');
       assert.notEqual(media.front.src, media.hero.src, tag + ': independent front and header photos');
