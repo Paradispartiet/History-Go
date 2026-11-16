@@ -24,9 +24,9 @@
       shop.getVisiblePacks()
     ]));
 
-    const wallet = /** @type {{ balance?: number }} */ (typeof window.getPCWallet === "function"
-      ? window.getPCWallet()
-      : { balance: 0 });
+    const rawWallet = /** @type {any} */ (window.CivicationState?.getWallet?.()
+      ?? (typeof window.getPCWallet === "function" ? window.getPCWallet() : null));
+    const wallet = typeof rawWallet === "number" ? { balance: rawWallet } : rawWallet;
     const inv = /** @type {{ packs?: Record<string, unknown> }} */ (shop.getInv?.() || {});
     const owned = inv.packs || {};
 
