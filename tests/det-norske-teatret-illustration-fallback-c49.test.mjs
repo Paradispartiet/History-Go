@@ -34,7 +34,8 @@ test("C49 candidate remains the independently sourced 1985 physical stage curtai
 test("C49 fallback policy allows illustrations but forbids documentary impersonation and unverified objects",()=>{
  assert.match(policy,/Illustrert representasjon når foto mangler/);
  assert.match(policy,/imageKind: "illustration"/);
- assert.match(policy,/«Illustrasjon – ikke fotografi»/);
+ assert.match(policy,/nederst til høyre med bare \*\*«Illustrasjon»\*\*/);
+ assert.match(policy,/kontrollert visuell referanse av den faktiske gjenstanden/);
  assert.match(policy,/Manglende autentisk foto er \*\*ikke i seg selv\*\*/);
  assert.match(policy,/uavhengig av illustrasjonen/);
  assert.equal(report.fallback_requirements.only_for_verified_physical_objects,true);

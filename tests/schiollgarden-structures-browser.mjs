@@ -4,7 +4,7 @@ import http from 'node:http';
 import path from 'node:path';
 import {chromium} from 'playwright';
 const root=process.cwd(),id='schiollgarden_prinsens_gate_26';
-const member=JSON.parse(fs.readFileSync(`data/runtime/place-open/${id}.json`)).structures[0];
+const member=JSON.parse(fs.readFileSync(`data/runtime/place-open/${id}.json`)).place.structures[0];
 assert.equal(member.id,'stortingets_post_og_varemottak');
 const output='artifacts/schiollgarden-structures-browser';fs.mkdirSync(output,{recursive:true});
 const mime={'.html':'text/html','.js':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.woff2':'font/woff2'};
