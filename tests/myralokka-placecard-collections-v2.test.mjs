@@ -44,6 +44,17 @@ test("Myraløkka retains 42 stable quiz IDs, 40 linked Knowledge units and ten s
   const pending = questions.filter(q => q.knowledge_link_status === "editorial_review_required" && q.primary_knowledge_unit_id);
   assert.deepEqual(pending.map(q => q.id), ["myralokka_s2_q5", "myralokka_s2_q6"]);
   assert.equal(questions.filter(q => q.knowledge_link_evidence?.reviewedAt === "2026-11-16").length, 19);
+  const revisedConceptIds = Array.from({ length: 6 }, (_, index) => `myralokka_s6_q${index + 1}`);
+  for (const questionId of revisedConceptIds) {
+    const question = originals.get(questionId);
+    assert.ok(question, `Missing revised concept question ${questionId}`);
+    assert.match(question.question, /Myraløkk|Akerselva/u,
+      `Concept prompt is not anchored to the actual place: ${questionId}`);
+    assert.equal(question.options[question.answerIndex], question.answer);
+    assert.equal(new Set(question.options).size, 3);
+    assert.equal(question.knowledge_link_status, "linked");
+    assert.ok(question.primary_knowledge_unit_id);
+  }
   assert.equal(card?.questions.length, 10);
   assert.equal(card.questionCount, 10);
   assert.equal(card.questions.filter(q => /^(?:Når|Hvilket år)\b/u.test(q.question)).length, 1);
