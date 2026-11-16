@@ -1,0 +1,62 @@
+name: Myralokka Knowledge canonical regenerate (one-time PR)
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/myralokka-knowledge-regenerate-once-20261116.yml"
+permissions:
+  contents: write
+jobs:
+  canonical-regenerate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.number == 7342
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install repo dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Save Myralokka progress IDs before regeneration
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const q = require('./data/quiz/natur/myralokka_sets.json').sets.flatMap(s => s.questions);
+          fs.writeFileSync('/tmp/myralokka-ids.json', JSON.stringify(q.map(x => ({id:x.id,quiz_id:x.quiz_id,primary_knowledge_unit_id:x.primary_knowledge_unit_id,knowledge_unit_ids:x.knowledge_unit_ids,knowledge:x.knowledge}))));
+          NODE
+      - name: Run canonical Knowledge generator and strict check
+        run: |
+          npm run knowledge:canonical:write
+          npm run knowledge:canonical:check
+      - name: Validate exact scope and preserve history IDs
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const assert = require('node:assert/strict');
+          const before = JSON.parse(fs.readFileSync('/tmp/myralokka-ids.json', 'utf8'));
+          const after = require('./data/quiz/natur/myralokka_sets.json').sets.flatMap(s => s.questions);
+          assert.deepEqual(after.map(x => ({id:x.id,quiz_id:x.quiz_id,primary_knowledge_unit_id:x.primary_knowledge_unit_id,knowledge_unit_ids:x.knowledge_unit_ids,knowledge:x.knowledge})), before, 'User progression IDs or canonical claim text changed');
+          assert.equal(after.filter(x => x.knowledge_link_status === 'linked').length, 40);
+          assert.deepEqual(after.filter(x => x.knowledge_link_status === 'editorial_review_required').map(x => x.id), ['myralokka_s2_q5','myralokka_s2_q6']);
+          NODE
+          changes="$(git diff --name-only)"
+          printf 'Generated file changes:\n%s\n' "$changes"
+          unexpected="$(printf '%s\n' "$changes" | grep -vE '^(data/knowledge/knowledge_units\.generated\.json|data/knowledge/knowledge_emne_review_queue\.generated\.json|reports/knowledge-id-backfill\.json)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected generator changes; refusing automatic update: $unexpected"
+            exit 1
+          fi
+      - name: Commit canonical output and self-remove one-off workflow
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/knowledge/knowledge_units.generated.json data/knowledge/knowledge_emne_review_queue.generated.json reports/knowledge-id-backfill.json
+          git rm .github/workflows/myralokka-knowledge-regenerate-once-20261116.yml
+          git commit -m "chore(myralokka): regenerate canonical Knowledge after explicit emne curation"
+          git push origin "HEAD:refs/heads/$HEAD_REF"
