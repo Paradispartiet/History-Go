@@ -44,6 +44,29 @@ test("Myraløkka retains 42 stable quiz IDs, 40 linked Knowledge units and ten s
   const pending = questions.filter(q => q.knowledge_link_status === "editorial_review_required" && q.primary_knowledge_unit_id);
   assert.deepEqual(pending.map(q => q.id), ["myralokka_s2_q5", "myralokka_s2_q6"]);
   assert.equal(questions.filter(q => q.knowledge_link_evidence?.reviewedAt === "2026-11-16").length, 19);
+  const reviewedSet5 = Array.from({ length: 7 }, (_, index) => `myralokka_s5_q${index + 1}`);
+  const expectedEmner = {
+    myralokka_s5_q1: ["em_natur_arter_habitat_mangfold"],
+    myralokka_s5_q2: ["em_natur_arter_habitat_mangfold"],
+    myralokka_s5_q3: ["em_natur_arter_habitat_mangfold"],
+    myralokka_s5_q4: ["em_natur_urban_okologi_byrom"],
+    myralokka_s5_q5: ["em_natur_urban_okologi_byrom"],
+    myralokka_s5_q6: ["em_natur_jord_sediment_mikroliv", "em_natur_urban_okologi_byrom"],
+    myralokka_s5_q7: ["em_natur_urban_okologi_byrom", "em_natur_geologi_landskapsform"]
+  };
+  for (const qid of reviewedSet5) {
+    const row = originals.get(qid);
+    assert.ok(row, `Missing reviewed set-5 question ${qid}`);
+    assert.deepEqual(row.emne_ids, expectedEmner[qid],
+      `Inaccurate Natur ownership for ${qid}`);
+    assert.equal(row.knowledge_link_evidence?.method, "explicit");
+    assert.equal(row.knowledge_link_evidence?.reviewedAt, "2026-11-16");
+    assert.equal(row.options[row.answerIndex], row.answer);
+    assert.equal(row.knowledge_link_status, "linked");
+    assert.ok(row.primary_knowledge_unit_id);
+    assert.ok(row.source.length > 0);
+    assert.ok(!row.emne_ids.includes("em_natur_dyreatferd_formering_tilpasning"));
+  }
   const revisedConceptIds = Array.from({ length: 6 }, (_, index) => `myralokka_s6_q${index + 1}`);
   for (const questionId of revisedConceptIds) {
     const question = originals.get(questionId);
