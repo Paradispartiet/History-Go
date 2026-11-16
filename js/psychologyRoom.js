@@ -439,7 +439,7 @@
     const ahaShareStatus = document.getElementById("psychologyRoomAhaShareStatus");
     const ahaShareText = ahaShareForm?.elements?.selected_insight;
     const ahaShareTarget = "https://aha-echonet.vercel.app/psykologi.html";
-    const ahaTrustedOrigins = ["https://aha-echonet.vercel.app", "https://paradispartiet.github.io"];
+    const ahaTrustedOrigins = ["https://aha-echonet.vercel.app"];
     function selectedAhaText() {
       const text = String(ahaShareText?.value || "").trim();
       return text.length > 0 && text.length <= 1500 ? text : null;
