@@ -14,7 +14,9 @@
   /** @param {HTMLElement} host @param {any[]} stores @param {any[]} packs @param {any} wallet @param {any} shop */
   function renderNokStore(host, stores, packs, wallet, shop) {
     const node = (/** @type {string} */ tag, /** @type {string} */ text) => {
-      const el = document.createElement(tag); el.textContent = text; return el;
+      const el = document.createElement(tag); el.textContent = text;
+      if (tag === "button") el.style.minHeight = "44px";
+      return el;
     };
     const panel = node("div", "");
     const heading = node("h3", "Dagligvarer"); heading.tabIndex = -1; panel.appendChild(heading);

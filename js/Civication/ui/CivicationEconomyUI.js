@@ -26,6 +26,7 @@
   function node(/** @type {string} */ tag, text = "") {
     const el = document.createElement(tag);
     el.textContent = text;
+    if (tag === "button") el.style.minHeight = "44px";
     return el;
   }
   function render() {

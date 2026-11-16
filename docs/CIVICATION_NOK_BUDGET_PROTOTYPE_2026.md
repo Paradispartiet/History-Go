@@ -267,3 +267,23 @@ forbrukshandlinger og gjenoppretter én uåpnet melk + 500 ml åpen rest og 900 
 havregrynrest. Gjentatt tidligere forbruk etter gjenoppretting endrer ingenting.
 Saldoene er fortsatt 9 376,56 / 13 723,26 / 12 451,26 kr; forbruk gir ingen ny betaling.
 Dette er manuell bruk av fire varer, ikke en komplett daglig livsoppholdsmodell.
+
+### Mobil nettleserport for NOK-profilen
+
+`scripts/verify-civication-nok-browser.cjs` er en egen avgrenset nettleserreise i
+faktisk Civication.html: Chromium 390 px og WebKit 390/820 px. Den bruker vanlig
+footer, seksjonskort, popup og handlingsknapper for aktivering, lønnsvilkår før
+jobbaksept, boligvalg, regningsbetaling, innkjøp, forbruk og innlasting. Den tar
+skjermbilder og kontrollerer horisontal plass, minst 44 px trykkhøyde, fokus etter
+forbruk, saldo og bevart beholdning etter innlasting. De nye NOK-knappene har
+uttrykkelig minimumshøyde på 44 px.
+
+Testgrenser: godkjent profil leveres gjennom en interceptet konfigurasjonsrespons;
+produksjonsfilen forblir inaktiv. Inngående sparepenger og fem opptjente
+kvalifikasjoner er fixtures ved tilbudsgrensen; nettleserreisen hevder ikke organisk
+quizopptjening eller virkelig skylagring. Den eksisterende Node/JSDOM-reisen tester
+faktiske quizsvar og kontogjenoppretting separat. Nettleserscenarioet kjøres før
+den eksisterende brede browser-smoken, med egen seksminuttersgrense og beholdte
+feilbilder/rapport. Skjermbilder i CI-logg er kun testdata for etterprøvbar visuell
+kontroll; grønn automatikk alene regnes ikke som manuell visuell godkjenning.
+Dette avsnittet beskriver testporten; utført resultat registreres etter CI.

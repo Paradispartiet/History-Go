@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'js/Civication/**'
+      - 'data/Civication/economy/**'
+      - 'scripts/verify-civication-nok-browser.cjs'
       - 'data/Civication/roleWorlds/**'
       - 'data/Civication/cityMaps/**'
       - 'data/Civication/maps/**'
@@ -65,6 +67,8 @@ jobs:
         run: npm run audit:civication-city-map-entries
       - name: Install Playwright Chromium and WebKit
         run: npx playwright install --with-deps chromium webkit
+      - name: Verify NOK economy through mobile browser controls
+        run: timeout --signal=TERM --kill-after=30s 6m node scripts/verify-civication-nok-browser.cjs
       - name: Select PR browser acceptance depth
         id: coverage
         shell: bash
