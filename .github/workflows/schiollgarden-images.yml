@@ -41,6 +41,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node --test tests/brands-place-context.test.mjs
       - run: node tests/schiollgarden-brands-browser.mjs
+      - run: node --test tests/place-sheet-news-renderer.test.mjs
       - run: node tests/schiollgarden-reading-browser.mjs
       - run: node tests/schiollgarden-images-browser.mjs
       - run: node tests/schiollgarden-fagverk-browser.mjs
