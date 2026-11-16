@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "status": "prototype_not_activated",
+  "currency": {
+    "id": "PC",
+    "nokPerPC": 1
+  },
+  "referenceYear": 2026,
+  "job": {
+    "id": "retail_assistant_tariff_1",
+    "label": "Butikkmedarbeider, tarifftrinn 1",
+    "employmentPercent": 100,
+    "grossMonthlyNok": 31694,
+    "source": "https://www.virke.no/tariff-og-lonn/finn-tariffavtale/landsoverenskomsten-hk/"
+  },
+  "tax": {
+    "ordinaryRate": 0.22,
+    "personalAllowance": 114540,
+    "minimumDeductionRate": 0.46,
+    "minimumDeductionCap": 95700,
+    "nationalInsuranceRate": 0.076,
+    "nationalInsuranceThreshold": 99650,
+    "nationalInsuranceRamp": 0.25,
+    "brackets": [
+      [
+        226100,
+        0.017
+      ],
+      [
+        318300,
+        0.04
+      ],
+      [
+        725050,
+        0.137
+      ],
+      [
+        980100,
+        0.168
+      ],
+      [
+        1467200,
+        0.178
+      ]
+    ],
+    "source": "https://www.skatteetaten.no/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/"
+  },
+  "budget": {
+    "rent": {
+      "monthlyNok": 10090,
+      "kind": "statistical_reference_2025_not_listing",
+      "source": "https://www.ssb.no/statbank/table/09895",
+      "scope": "Oslo/Bærum ettroms"
+    },
+    "living": {
+      "monthlyNok": 9406,
+      "kind": "Oslo_guideline_proxy_not_itemised_consumption",
+      "source": "https://www.oslo.kommune.no/bolig-og-sosiale-tjenester/sosiale-tjenester/okonomisk-sosialhjelp/"
+    },
+    "electricity": {
+      "monthlyNok": 1000,
+      "kind": "scenario_assumption_not_verified_price"
+    },
+    "transport": {
+      "monthlyNok": 1000,
+      "kind": "scenario_assumption_not_verified_price"
+    }
+  },
+  "unemployed": {
+    "automaticIncomeNok": 0,
+    "approvedSupportRequired": true,
+    "osloSingleLivingGuidelineNok": 9406,
+    "dagpenger": "requires_separate_eligibility_and_prior_income"
+  },
+  "migration": {
+    "activated": false,
+    "policy": "preserve_existing_balance_no_multiplier",
+    "activationRequires": [
+      "versioned_wallet",
+      "job_specific_salary_mapping",
+      "single_expense_owner",
+      "monthly_due_dates",
+      "no_duplicate_tax_or_rent",
+      "UI_breakdown",
+      "three_month_acceptance"
+    ]
+  }
+}
