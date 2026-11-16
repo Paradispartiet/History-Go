@@ -126,7 +126,20 @@ try {
       await page.waitForFunction(() => document.querySelector('#fagverkPlaceContent')?.hidden === false,
         null,{timeout:45000});
       assert.match(await page.locator('#fagverkPlaceTitle').innerText(), /Myraløkka/u);
-      assert.ok((await page.locator('#fagverkPlaceLenses a').count()) >= 2);
+      // Draft Fagverk intentionally hides unapproved lessons; curated Fagverk must expose them.
+      if (sourcePlace.fagverk.status === 'curated') {
+        assert.ok((await page.locator('#fagverkPlaceLenses a').count()) >= 2,
+          'Curated Fagverk must expose operational learning lenses');
+      } else {
+        assert.equal((await page.locator('#fagverkPlaceCoverageStatus').innerText()).trim(),
+          'Fagverk under produksjon');
+        assert.equal(await page.locator('#fagverkPlaceUnfinished').isVisible(), true,
+          'Draft Fagverk must be transparently marked unfinished');
+        assert.equal(await page.locator('#fagverkPlaceLensesSection').isVisible(), false,
+          'Draft Fagverk must not display unapproved learning lenses');
+        assert.ok((await page.locator('#fagverkPlaceEmner a').count()) >= 2,
+          'Draft Fagverk must still expose documented emne navigation');
+      }
       await page.screenshot({path:`${outDir}/${mode.name}-fagverk.png`});
       assert.deepEqual(errors,[],mode.name + ': page errors');
       console.log('PASS', mode.name, 'PlaceCard photo, QuizCard flip/expand, fullquiz route, Fagverk');
