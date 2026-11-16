@@ -37,6 +37,16 @@ body.hg-app #placeCard.is-unified-place #pcFrontImage {
   background: #15212b;
 }
 
+/* First-visit and legacy PlaceCard may render before the is-unified-place
+   class is applied. Keep its two documentary images uncropped in *both*
+   render paths. These IDs never refer to collection badges or QuizCard. */
+#placeCard #pcHeaderImage,
+#placeCard #pcFrontImage {
+  object-fit: contain !important;
+  object-position: center center !important;
+  background-color: #15212b;
+}
+
 /* Give wide overview photographs enough height on tablet/desktop.
    At the old 205px cap, a complete 16:9 source could shrink into a tiny
    center strip. Keep mobile layout and the sticky header's own measured
