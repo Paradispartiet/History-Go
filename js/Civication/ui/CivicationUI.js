@@ -582,6 +582,21 @@ function getCivicationProfileSnapshot() {
 /**
  * @returns {void}
  */
+/** Contract monthly estimate; null preserves the legacy display path. */
+function getNokSalaryText() {
+  const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+  if (nok?.active !== true) return null;
+  const active = window.CivicationState?.getActivePosition?.();
+  if (!active) return "Lønn: 0 kr per måned · Ingen aktiv jobb";
+  const contract = active.nok_salary_contract;
+  if (!contract || contract.jobId !== nok.config?.job?.id || contract.sourceId !== nok.config?.job?.source)
+    return "Lønnsvilkår mangler for den aktive rollen";
+  const terms = window.CivicationJobs?.getNokOfferTerms?.({ ...active, nok_employment_percent: contract.employmentPercent });
+  if (!terms?.supported) return "Lønnsvilkår mangler for den aktive rollen";
+  const money = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { maximumFractionDigits: 2 });
+  return `Lønn: ${money(terms.monthlyGross)} kr brutto per måned · Estimert skatt: ${money(terms.monthlyTax)} kr · Estimert netto: ${money(terms.monthlyNet)} kr · ${money(terms.employmentPercent)} % stilling`;
+}
+
 function renderCivicationSummary() {
   const title = document.getElementById("civiRoleTitle");
   const details = document.getElementById("civiRoleDetails");
@@ -604,7 +619,9 @@ function renderCivicationSummary() {
     details.textContent = active ? `Status: ${status} · Felt: ${field}` : "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
   }
 
-  if (salaryLn) {
+  if (salaryLn && getNokSalaryText() !== null) {
+    salaryLn.textContent = getNokSalaryText();
+  } else if (salaryLn) {
     let weekly = NaN;
     try {
       const points = Number(activeCareerId ? merits?.[activeCareerId]?.points || 0 : 0);
@@ -748,6 +765,8 @@ async function renderCivication() {
       salaryTxt = `Lønn: ${salary} PC / uke · Utgifter: ${expenses} · Husleie: ${rent} · Netto: ${net}`;
     }
   } catch {}
+
+  salaryTxt = getNokSalaryText() ?? salaryTxt;
 
   host.innerHTML = `
     <div>
@@ -920,6 +939,10 @@ window.CivicationConflicts
 // ============================================================
 
 function renderHomeStatus() {
+  if (window.CivicationState?.getWallet?.()?.nok_v1?.active === true) {
+    window.CivicationHome?.render?.();
+    return;
+  }
   const el = document.getElementById("homeStatusContent");
   if (!el) return;
 
@@ -1069,6 +1092,9 @@ function openDistrictSelector() {
   /** @type {Record<string, { id?: string, name?: string, baseCost?: number, modifiers?: Record<string, number>, quizRequirements?: Record<string, unknown> }>} */
   const districts = civiHome.DISTRICTS || {};
 
+  if (window.CivicationState?.getWallet?.()?.nok_v1?.active === true) {
+    civiHome.renderDistrictList?.();
+  } else {
   list.innerHTML = "";
 
   Object.values(districts).forEach(function (d) {
@@ -1109,6 +1135,8 @@ function openDistrictSelector() {
 
     list.appendChild(card);
   });
+
+  }
 
   // Når nabolagsvelgeren åpnes mens en seksjons-popup er aktiv, skal listen
   // vises som et innebygd panel inni popupen. Ellers havner #districtModal bak

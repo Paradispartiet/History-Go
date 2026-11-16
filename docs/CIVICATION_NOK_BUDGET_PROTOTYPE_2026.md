@@ -71,3 +71,21 @@ Målrettet kontroll: `node tests/civication-nok-starter-offer.test.js`, eksister
 jobbkontrakttest, pris-/budsjettkontroller og JavaScript-syntaks. Starttilbudstesten
 bruker faktisk jobbport og lagrede kategorilåser; den beviser ikke organisk quizopptjening
 eller visuell godkjenning i nettleser. Disse akseptansesjekkene gjenstår.
+
+### Sammenheng mellom jobb- og boligvisningene
+
+Den gamle UI-oppsummeringen og jobbkortet viser nå kontraktens månedlige brutto,
+estimert skatt/netto og stillingsprosent for NOK-spillere. Et eldre weekly-snapshot
+kan ikke overstyre dette. Manglende kontrakt vises eksplisitt, og arbeidsledighet
+viser null lønn uten å etablere noen stønad. Legacy-spillere beholder ukebeløpene.
+
+UI-innstegene for hjem/nabolagsvelger delegerer til CivicationHome i NOK-modus;
+leievilkår og sperrede prisprofiler overlever dermed også den gamle popupflyten.
+NOK-boligkort viser ikke kapitalpris/gratis eller råd beregnet fra gammel kapital.
+Valgt bolig peker til regningene under Kommers fremfor den gamle husleieknappen.
+
+`civication-nok-display-integration.test.js` kjører State, Jobs, delt beregning,
+Home og UI i JSDOM: vilkår før aksept, faktisk aksept uten utbetaling, deltidslønn,
+legacy-snapshot som ikke overstyrer, begge boliginnsteg og legacy-fallback.
+Start-prices, housing-contract, home-charge-owner og starter-offer består også.
+Nettleserens visuelle sluttkontroll og produksjonsaktivering gjenstår.

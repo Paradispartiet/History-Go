@@ -805,11 +805,11 @@
           ${isCurrent ? `<span style="font-size:0.82rem;opacity:0.8;">Valgt</span>` : ""}
         </div>
         <div style="margin-top:8px;line-height:1.45;">${district.shortDesc || ""}</div>
-        <div style="font-size:0.86rem;opacity:0.82;margin-top:8px;">Pris: ${formatCost(district)} · Husleie: ${formatRent(district)} · Prestige: ${Number(district.prestige || 0)}</div>
+        <div style="font-size:0.86rem;opacity:0.82;margin-top:8px;">${nok?.active === true ? `Husleie: ${formatRent(district)}` : `Pris: ${formatCost(district)} · Husleie: ${formatRent(district)} · Prestige: ${Number(district.prestige || 0)}`}</div>
         ${referenceNote ? `<p>${referenceNote}</p>` : ""}
         ${nok?.active === true && housingOffer ? `<p>Første hele leieperiode forfaller ved innflytting. Depositum er ikke modellert. Velg bare hvis du vil inngå leieavtalen.</p>` : ""}
         <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Krav: ${requirementText(district)}</div>
-        <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Råd: ${affordability}</div>
+        <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">${nok?.active === true ? "Sjekk saldo og regninger under Kommers før du velger." : `Råd: ${affordability}`}</div>
         ${storeText ? `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Butikktilgang: ${storeText}</div>` : ""}
         ${tagText ? `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Valgtagger: ${tagText}</div>` : ""}
         ${!canSelect && reason ? `<div style="font-size:0.82rem;opacity:0.78;margin-top:6px;">Låst: ${reason}</div>` : `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Låst opp: ${district.isStartOption ? "Startnabolag" : "Krav oppfylt"}</div>`}
@@ -841,6 +841,8 @@
 
     const state = ensure(load());
     const current = getDistrict(state?.home?.district);
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    const nokActive = nok?.active === true;
 
     if (!current) {
       const startDistricts = getStartDistricts().slice(0, 3);
@@ -848,7 +850,7 @@
       host.innerHTML = `
         <div class="latest-knowledge-box">
           <div class="lk-topic">Velg nabolag</div>
-          <div class="lk-category">Tre gratis alternativer fra start</div>
+          <div class="lk-category">${nokActive ? "Velg blant dokumenterte leieprofiler" : "Tre gratis alternativer fra start"}</div>
           <div class="lk-text">Nabolaget setter hjemfølelse, hverdag, butikktilgang, boligspor, husleie og prestige i Civication.</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
@@ -861,6 +863,16 @@
       return;
     }
 
+    if (nokActive) {
+      host.innerHTML = `
+        <div class="latest-knowledge-box"><div class="lk-topic">Hjem</div>
+          <div class="lk-category">${current.name}</div></div>
+        <div>Husleie: ${formatRent(current)}</div>
+        <div>Leieavtalen og regningene vises under Kommers. Betaling skjer der ved forfall.</div>
+        <button class="btn" data-civi-open-districts>Bytt nabolag</button>`;
+      renderDistrictList();
+      return;
+    }
     const access = getSelectedDistrictAccess();
     const capital = getCapital();
     const influence = getHomeInfluence();
@@ -1163,6 +1175,7 @@
     hasVisitedDistrict,
     applyHousingPeriodCosts,
     render: renderHomeStatus,
+    renderDistrictList,
     boot,
     DISTRICTS
   });
