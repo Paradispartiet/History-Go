@@ -13,31 +13,32 @@ const hashes={
  fr:'223dc2d0d99cef6c374af45a67f72643f9148a6ba082bf9f0d08e22eafbe428b'
 };
 const previous={
- klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp',
+ klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v3.webp',
  modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v2.webp',
  funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp',
- brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v1.webp',
- postmodernisme:'bilder/merker/by/undermerker/postmodernisme-brodert-v1.webp',
- samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp'
+ brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v2.webp',
+ postmodernisme:'bilder/merker/by/undermerker/postmodernisme-brodert-v2.webp',
+ samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v2.webp'
 };
 test('Byplanlegging 7/10 is registered without replacing six protected By originals',()=>{
  const by=read('data/badges/by.json'),plan=read('data/badges/underbadge_batch01_production.json');
  assert.equal(by.sub.length,10);
  const later=[
-  ['infrastruktur','bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'],
-  ['monumenter_og_landemerker','bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'],
+  ['infrastruktur','bilder/merker/by/undermerker/infrastruktur-brodert-v2.webp'],
+  ['monumenter_og_landemerker','bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v2.webp'],
   ['bolig_og_bomiljo','bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp']
  ];
  assert.deepEqual(by.sub.slice(7),later.map(([id])=>id));
  const present=later.filter(([id])=>Object.hasOwn(by.subBadgeImages,id));
  assert.deepEqual(present,later.slice(0,present.length),'new By originals must be sequential');
- assert.deepEqual(by.subBadgeImages,{...previous,byplanlegging:image,...Object.fromEntries(present)});
+ assert.deepEqual(by.subBadgeImages,{...previous,byplanlegging:'bilder/merker/by/undermerker/byplanlegging-brodert-v2.webp',...Object.fromEntries(present)});
  assert.deepEqual(Object.keys(by.subBadgeImages),[...Object.keys(previous),'byplanlegging',...present.map(([id])=>id)]);
  const a=plan.families.by.assets.find(x=>x.id==='byplanlegging');
  assert.equal(a.status,'integrated');
- assert.equal(a.selectedImage,image);
+ assert.equal(a.selectedImage,'bilder/merker/by/undermerker/byplanlegging-brodert-v2.webp');
  assert.deepEqual(a.quality,{visualApproved:true,technicalApproved:true});
- assert.equal(a.sha256,hashes.nb);
+ assert.equal(a.sha256,'8529dcf9861a4780ad4bb26809502ccbf73091bec2d836ec6714b3d7c7b8aec5');
+ assert.equal(a.previousActive.sha256,hashes.nb,'v1 preserved');
  for(const id of by.sub.slice(7+present.length))assert.equal(by.subBadgeImages[id],undefined);
 });
 test('Byplanlegging exact WebP plus four translated files have verified transparent headers and hashes',()=>{
