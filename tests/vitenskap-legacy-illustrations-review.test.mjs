@@ -43,7 +43,7 @@ test('Vitenskap: sju eldre originaler bevares til en ferdig godkjent enkeltmerke
     assert.ok(item.topTextNB.length > 5);
     assert.ok(item.newIllustrationMotif.length > 20);
     if (item.revisionStatus === 'awaiting_correct_single_badge_artwork') {
-      assert.equal(registry.subBadgeImages[item.id], 'bilder/merker/vitenskap/brodert/'+item.id+'_v2.webp');
+      assert.equal(registry.subBadgeImages[item.id], 'bilder/merker/vitenskap/brodert/'+item.id+(item.id==='matematikk'?'_v3.webp':'_v2.webp'));
       // The audit records the earlier state; its original asset and exact SHA remain immutable.
       const bytes = read(item.currentPath);
       const actual = createHash('sha1')

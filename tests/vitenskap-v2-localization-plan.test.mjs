@@ -25,7 +25,7 @@ test('All five science v2 candidates have a complete localized text plan but rem
     assert.equal(item.sourceNorwegianCandidate.path, original.path);
     assert.equal(item.sourceNorwegianCandidate.gitBlobSha, original.gitBlobSha);
     assert.equal(item.activeNorwegianPath, 'bilder/merker/vitenskap/brodert/'+item.id+'.webp', 'historical active path is immutable');
-    assert.equal(active.subBadgeImages[item.id], 'bilder/merker/vitenskap/brodert/'+item.id+'_v2.webp');
+    assert.equal(active.subBadgeImages[item.id], 'bilder/merker/vitenskap/brodert/'+item.id+(item.id==='matematikk'?'_v3.webp':'_v2.webp'));
     assert.notEqual(original.path, active.subBadgeImages[item.id]);
     assert.deepEqual(Object.keys(item.variants).sort(), [...plan.languageOrder].sort());
     assert.equal(item.variants.nb.path, original.path);

@@ -12,8 +12,8 @@ assert.equal(rec.id, 'brutalisme');
 assert.deepEqual(rec.size,[1024,1024]);
 assert.equal(by.sub.length,10);
 assert.equal(by.subBadgeImages.klassisk_arkitektur,'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp');
-assert.equal(by.subBadgeImages.modernisme,'bilder/merker/by/undermerker/modernisme-brodert-v1.webp');
-assert.equal(by.subBadgeImages.funksjonalisme,'bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp');
+assert.equal(by.subBadgeImages.modernisme,'bilder/merker/by/undermerker/modernisme-brodert-v2.webp');
+assert.equal(by.subBadgeImages.funksjonalisme,'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp');
 const pending = [];
 for (const [lang, v] of Object.entries(rec.variants)) {
   const path = new URL(v.path, root);

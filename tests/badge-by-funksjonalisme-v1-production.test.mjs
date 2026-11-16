@@ -4,8 +4,8 @@ import {readFileSync} from "node:fs";
 import {createHash} from "node:crypto";
 const root = new URL("../",import.meta.url);
 const read = path => JSON.parse(readFileSync(new URL(path,root),"utf8"));
-const expectedPath = "bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp";
-const expectedSha = "207af148f525ca0c767d06b1cf84b87b05ec89b87dde35fc9f232a844b74b6f1";
+const expectedPath = "bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp";
+const expectedSha = "d3bc62261a9705fb6c3eff142df53e45cd8a29d31c93e19a7ac9a391bfbcdf7f";
 test("By Funksjonalisme is the third registered badge and preserves canonical embroidery",()=>{
   const by=read("data/badges/by.json");
   const manifest=read("data/badges/underbadge_batch01_production.json");
@@ -21,7 +21,7 @@ test("By Funksjonalisme is the third registered badge and preserves canonical em
   assert.equal(asset.status,"integrated");
   assert.equal(asset.selectedImage,expectedPath);
   const image=readFileSync(new URL(expectedPath,root));
-  assert.equal(image.length,517496);
+  assert.equal(image.length,570028);
   assert.equal(asset.bytes,image.length);
   assert.equal(image.toString("ascii",0,4),"RIFF");
   assert.equal(image.toString("ascii",8,12),"WEBP");
@@ -31,5 +31,7 @@ test("By Funksjonalisme is the third registered badge and preserves canonical em
   assert.ok(image[20]&0x10);
   assert.equal(createHash("sha256").update(image).digest("hex"),expectedSha);
   assert.equal(asset.sha256,expectedSha);
+  const prior=readFileSync(new URL("bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp",root));
+  assert.equal(createHash("sha256").update(prior).digest("hex"),asset.previousActive.sha256,"v1 original retained");
   for(const id of by.sub.slice(activeCount)) assert.equal(by.subBadgeImages[id],undefined);
 });

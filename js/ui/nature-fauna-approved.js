@@ -2,6 +2,54 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_maaltrost:Object.freeze({
+   scientificName:"Turdus philomelos",
+   src:"bilder/natur/fauna/godkjent/25_maaltrost_v1.webp",
+   gitBlobSha:"428e21d71d9c16a0718f330775fec34c25040aba",
+   reviewedAt:"2026-11-16",
+   stage:"adult_warm_brown_upperparts_creamy_white_belly_dark_heart_arrowhead_breast_spots_brown_yellow_bill_pink_legs_perched_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-maaltrost-20261116.json"
+  }),
+  emne_fauna_spettmeis:Object.freeze({
+   scientificName:"Sitta europaea",
+   src:"bilder/natur/fauna/godkjent/24_spettmeis_v1.webp",
+   gitBlobSha:"70244f32ad0ce67ac7f3e9a469e25aeadba62d3e",
+   reviewedAt:"2026-11-16",
+   stage:"adult_blue_grey_upperparts_black_eye_stripe_white_throat_buff_orange_flanks_short_tail_pointed_bill_headfirst_down_tree",
+   evidence:"data/natur/fauna/illustration-quality-spettmeis-20261116.json"
+  }),
+  emne_fauna_linerle:Object.freeze({
+   scientificName:"Motacilla alba",
+   src:"bilder/natur/fauna/godkjent/23_linerle_v1.webp",
+   gitBlobSha:"a8a23c43089d3624a0630397ca2bba28e120370f",
+   reviewedAt:"2026-11-16",
+   stage:"alba_summer_black_crown_and_bib_white_face_grey_mantle_wing_bars_long_white_edged_tail_stone_and_walking",
+   evidence:"data/natur/fauna/illustration-quality-linerle-20261116.json"
+  }),
+  emne_fauna_graatrost:Object.freeze({
+   scientificName:"Turdus pilaris",
+   src:"bilder/natur/fauna/godkjent/22_graatrost_v1.webp",
+   gitBlobSha:"c3d967ffa6afe2b384ff1433a7af7beec4829bdb",
+   reviewedAt:"2026-11-16",
+   stage:"adult_grey_head_chestnut_mantle_grey_rump_black_tail_yellow_black_tipped_bill_black_spotted_orange_buff_breast_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-graatrost-20261116.json"
+  }),
+  emne_fauna_rodstrupe:Object.freeze({
+   scientificName:"Erithacus rubecula",
+   src:"bilder/natur/fauna/godkjent/21_rodstrupe_v1.webp",
+   gitBlobSha:"f867a24c8608f1a3d8b8ec50fb47d54375738f1b",
+   reviewedAt:"2026-11-16",
+   stage:"adult_orange_red_face_breast_grey_side_band_brown_back_pale_belly_dark_eye_fine_bill_perched_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-rodstrupe-20261116.json"
+  }),
+  emne_fauna_gronnfink:Object.freeze({
+   scientificName:"Chloris chloris",
+   src:"bilder/natur/fauna/godkjent/20_gronnfink_v1.webp",
+   gitBlobSha:"4e6ee9392ca010aad7a06e23a0191fc5f89432cc",
+   reviewedAt:"2026-11-16",
+   stage:"adult_male_olive_yellow_green_female_muted_brown_olive_both_stout_pale_bills_yellow_wing_and_tail_edges_perched",
+   evidence:"data/natur/fauna/illustration-quality-gronnfink-20261116.json"
+  }),
   emne_fauna_flaggspett:Object.freeze({
    scientificName:"Dendrocopos major",
    src:"bilder/natur/fauna/godkjent/19_flaggspett_v1.webp",

@@ -15,7 +15,7 @@ test('Five historical Norwegian v2 candidates remain archived after activating e
   assert.equal(Object.keys(badge.subBadgeImages).length, 16);
   for (const art of manifest.items) {
     assert.ok(badge.subBadgeImages[art.id], art.id);
-    assert.equal(badge.subBadgeImages[art.id], 'bilder/merker/vitenskap/brodert/'+art.id+'_v2.webp');
+    assert.equal(badge.subBadgeImages[art.id], 'bilder/merker/vitenskap/brodert/'+art.id+(art.id==='matematikk'?'_v3.webp':'_v2.webp'));
     assert.notEqual(badge.subBadgeImages[art.id], art.path, 'Archived source remains outside active image directory');
     const bytes = read(art.path);
     assert.equal(bytes.length, art.bytes);
@@ -50,15 +50,15 @@ test('Map retains main badge, PlaceCard prefers place-specific underbadge with f
   context.document={getElementById(id){return ({placeCard:card,pcBadgesIcon:icon,pcBadgesList:panel})[id]||null;}};
   context.window.HGPlaceOpen={getPlace(){return place;}};
   context.applyPlaceCardBadgeRound(place);
-  assert.match(icon.innerHTML, /matematikk_v2\.webp/);
-  assert.match(panel.innerHTML, /matematikk_v2\.webp/);
+  assert.match(icon.innerHTML, /matematikk_v3\.webp/);
+  assert.match(panel.innerHTML, /matematikk_v3\.webp/);
   assert.doesNotMatch(icon.innerHTML, /vitenskap\.webp/);
   const unknown={id:'unmapped-science', category:'vitenskap'};
   card.dataset.currentPlaceId=unknown.id;
   context.window.HGPlaceOpen={getPlace(){return unknown;}};
   context.applyPlaceCardBadgeRound(unknown);
   assert.match(icon.innerHTML, /vitenskap\.webp/);
-  assert.doesNotMatch(icon.innerHTML, /matematikk_v2\.webp/);
+  assert.doesNotMatch(icon.innerHTML, /matematikk_v3\.webp/);
 });
 
 
