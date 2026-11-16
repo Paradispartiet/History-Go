@@ -52,17 +52,18 @@ GitHub-workflowen `.github/workflows/collection-image-candidates.yml` kjører f�
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_stage_collection_image_candidates.py' -v
+python3 -m unittest discover -s tests -p 'test_collection_image_integrity_gate.py' -v
 python3 scripts/check-collection-image-candidates.py
 ```
 
-Den kontrollerer SHA-256, Git-blob-SHA, WebP-format, dimensjoner, størrelser, trygg stiplassering og `publishable: false`. Den sikrer også at kandidatstiene ikke brukes som canonical Structure-/Object-bilder.
+Den kontrollerer SHA-256, Git-blob-SHA, WebP-format, dimensjoner, størrelser og trygg stiplassering. I tillegg kreves `publishable: false`, `editorialApproval: false`, `imageKind: illustration`, dokumentert kildegrunnlag, `rightsBasis` og eksplisitt opplysning om at kildens fotografi ikke er gjengitt. Ekstra tester håndhever disse publiseringsportene. Den sikrer også at kandidatstiene ikke brukes som canonical Structure-/Object-bilder.
 
 Dette er en **binærintegritetskontroll**, ikke en redaksjonell godkjenning.
 
 ## Redaksjonell port
 
 - **Tøyen trafo:** kildebildene hos Oslo byarkiv må inspiseres visuelt. Genererte tekniske detaljer kan være feil.
-- **Freiaparken:** dokumentert langstrakt basseng, parkrom og paviljong, men nøyaktige skulpturer og utsyn må kontrolleres. V2 er **mer representativ**, ikke godkjent som eksakt stedsgjengivelse.
+- **Freiaparken:** kildesammenligning i `freiaparken-source-accuracy-review-2026-11-16.md` dokumenterer avvik i arkitektur/skulpturer. V2 er eksplisitt **holdt tilbake fra canonical erstatning**, selv om den består binærintegritetskontroll. Den senere v3-illustrasjonen er foreløpig kun en separat ChatGPT-kandidat, ikke lagt inn i PR.
 - **Brands:** ikke generer eller rekonstruer logoer. Autentiske merker må kilde- og rettighetsverifiseres før de kan fylle en ferdig Brand-runde.
 
 Et **PASS fra importskriptet gjelder bare bildefilens integritet**, ikke historisk korrekthet, redaksjonell kvalitet, lisens eller PlaceCard-visning. Disse kontrollene gjennomføres separat før noe kan publiseres.
