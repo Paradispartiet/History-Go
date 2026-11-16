@@ -437,7 +437,8 @@
     bindBack();
     const ahaShareForm = /** @type {HTMLFormElement | null} */ (document.getElementById("psychologyRoomAhaShareForm"));
     const ahaShareStatus = document.getElementById("psychologyRoomAhaShareStatus");
-    const ahaShareText = ahaShareForm?.elements?.selected_insight;
+    const ahaShareText = /** @type {HTMLTextAreaElement | null} */ (ahaShareForm?.querySelector('textarea[name="selected_insight"]') || null);
+    const ahaShareConsent = /** @type {HTMLInputElement | null} */ (ahaShareForm?.querySelector('input[name="aha_share_confirm"]') || null);
     const ahaShareTarget = "https://aha-echonet.vercel.app/psykologi.html";
     const ahaTrustedOrigins = ["https://aha-echonet.vercel.app"];
     function selectedAhaText() {
@@ -447,7 +448,7 @@
     ahaShareForm?.addEventListener("submit", (event) => {
       event.preventDefault();
       const selected = selectedAhaText();
-      if (!selected || !ahaShareForm.elements.aha_share_confirm.checked) {
+      if (!selected || !ahaShareConsent?.checked) {
         ahaShareStatus.textContent = "Skriv en valgt tekst og bekreft overføringen.";
         return;
       }
