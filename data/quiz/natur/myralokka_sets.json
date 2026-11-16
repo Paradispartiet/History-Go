@@ -1411,11 +1411,14 @@
           ],
           "claim_basis": "active_repo_nature_map",
           "emne_ids": [
-            "em_natur_dyreatferd_formering_tilpasning"
+            "em_natur_arter_habitat_mangfold"
           ],
           "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-16",
+            "reviewNote": "Gullstjerne står i det aktive florakartet for Myraløkka; spørsmålet gjelder artsmangfold og kartlagt flora, ikke dyreatferd.",
+            "claimIds": []
           },
           "primary_knowledge_unit_id": "ku_natur_gullstjerne_skal_vises_s_3bd878a99e",
           "knowledge_unit_ids": [
@@ -1433,13 +1436,13 @@
           "placeId": "myralokka",
           "targetId": "myralokka",
           "question_scope": "emne",
-          "question": "Hva viser de ni artskortene metodisk?",
+          "question": "Hva betyr det at Myraløkkas artskort viser gullstjerne og åtte fuglearter?",
           "options": [
-            "At aktive kartdata kan avgrense hva rundingen påstår finnes på stedet",
-            "At alle Oslo-arter må legges inn",
-            "At observasjonstidspunkt er irrelevant"
+            "Artene er knyttet til stedets kart, ikke nødvendigvis synlige under besøket",
+            "Alle ni artene må være synlige samtidig",
+            "Artene er funnet av spilleren i dag"
           ],
-          "answer": "At aktive kartdata kan avgrense hva rundingen påstår finnes på stedet",
+          "answer": "Artene er knyttet til stedets kart, ikke nødvendigvis synlige under besøket",
           "answerIndex": 0,
           "knowledge": "Rundingen bruker den dokumenterte kartunionen, ikke gjetning.",
           "difficulty": 3,
@@ -1450,15 +1453,20 @@
             "metode"
           ],
           "source": [
+            "data/natur/nature_oslo_expansion_place_map.json",
+            "data/natur/nature_bird_place_map.json",
             "js/nature_place_map_bridge.js"
           ],
           "claim_basis": "runtime_data_method",
           "emne_ids": [
-            "em_natur_dyreatferd_formering_tilpasning"
+            "em_natur_arter_habitat_mangfold"
           ],
           "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-16",
+            "reviewNote": "Arter i stedets naturkart er dokumenterte kartkoblinger, ikke en garanti for samtidig feltobservasjon.",
+            "claimIds": []
           },
           "primary_knowledge_unit_id": "ku_natur_rundingen_bruker_den_dok_0037043e1a",
           "knowledge_unit_ids": [
@@ -1476,13 +1484,13 @@
           "placeId": "myralokka",
           "targetId": "myralokka",
           "question_scope": "emne",
-          "question": "Hvorfor skal direkte flora- og faunafelt ikke legges i stedfilen?",
+          "question": "Hvorfor bør du sammenholde fugle- og florakartene før du lager en artsoversikt for Myraløkka?",
           "options": [
-            "Fordi naturbroen allerede henter og slår sammen aktive artskart",
-            "Fordi arter ikke skal vises",
-            "Fordi bare quiz kan ha arter"
+            "For å samle opplysningene og unngå å telle de samme artene flere ganger",
+            "For å anta at alle kartførte arter er observert i dag",
+            "For å utelate planter når fugler er registrert"
           ],
-          "answer": "Fordi naturbroen allerede henter og slår sammen aktive artskart",
+          "answer": "For å samle opplysningene og unngå å telle de samme artene flere ganger",
           "answerIndex": 0,
           "knowledge": "Dette unngår duplikater og holder artskildene samlet.",
           "difficulty": 3,
@@ -1493,15 +1501,20 @@
             "datamodell"
           ],
           "source": [
+            "data/natur/nature_oslo_expansion_place_map.json",
+            "data/natur/nature_bird_place_map.json",
             "js/nature_place_map_bridge.js"
           ],
           "claim_basis": "runtime_contract",
           "emne_ids": [
-            "em_natur_dyreatferd_formering_tilpasning"
+            "em_natur_arter_habitat_mangfold"
           ],
           "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-16",
+            "reviewNote": "En samlet artsoversikt forebygger dobbelttelling fra ulike aktive naturkart; emnet gjelder forsvarlig artsoversikt, ikke kodearkitektur.",
+            "claimIds": []
           },
           "primary_knowledge_unit_id": "ku_natur_dette_unngar_duplikater__e9a143358e",
           "knowledge_unit_ids": [
@@ -1541,11 +1554,17 @@
           ],
           "claim_basis": "sourced_place_fact",
           "emne_ids": [
-            "em_natur_dyreatferd_formering_tilpasning"
+            "em_natur_urban_okologi_byrom"
           ],
           "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-16",
+            "reviewNote": "Historisk leiruttak og senere offentlig park er en dokumentert arealbruksendring og del av bynaturens utvikling.",
+            "claimIds": [
+              "claim_myralokka_05",
+              "claim_myralokka_21"
+            ]
           },
           "primary_knowledge_unit_id": "ku_natur_terrengformen_bestar_men_9002a7894e",
           "knowledge_unit_ids": [
@@ -1585,11 +1604,17 @@
           ],
           "claim_basis": "sourced_place_analysis",
           "emne_ids": [
-            "em_natur_dyreatferd_formering_tilpasning"
+            "em_natur_urban_okologi_byrom"
           ],
           "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-16",
+            "reviewNote": "Arbeiderboliger, industrimiljø og parkens sosiale rom er byromshistorie, ikke dyreadferd.",
+            "claimIds": [
+              "claim_myralokka_18",
+              "claim_myralokka_21"
+            ]
           },
           "primary_knowledge_unit_id": "ku_natur_parken_ma_forstas_som_de_5f3946d37c",
           "knowledge_unit_ids": [
@@ -1624,15 +1649,20 @@
             "forvaltning"
           ],
           "source": [
-            "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json"
+            "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch3.json",
+            "https://www.nlr.no/kunnskap/fagartikler/jord/sor/losning-av-jordpakkeskader"
           ],
           "claim_basis": "place_article_concept",
           "emne_ids": [
-            "em_natur_dyreatferd_formering_tilpasning"
+            "em_natur_jord_sediment_mikroliv",
+            "em_natur_urban_okologi_byrom"
           ],
           "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-16",
+            "reviewNote": "Tråkk og jordpakking påvirker jordstruktur og vegetasjon; mulig effekt er ikke dokumentert måling akkurat her.",
+            "claimIds": []
           },
           "primary_knowledge_unit_id": "ku_natur_robuste_ganglinjer_besky_35f3111fc5",
           "knowledge_unit_ids": [
@@ -1650,13 +1680,13 @@
           "placeId": "myralokka",
           "targetId": "myralokka",
           "question_scope": "emne",
-          "question": "Hva gjør Myraløkka til et godt History Go-sted?",
+          "question": "Hva kan du lære ved å sammenholde Myraløkkas leirgrop, pipehaug og artskart?",
           "options": [
-            "Fysisk terreng, industrihistorie, bynatur og arter kan leses på samme sted",
-            "Stedet krever ingen observasjon",
-            "Bare navnet har betydning"
+            "Hvordan industrihistorie, terreng og bynatur henger sammen",
+            "At dette er en urørt naturlig dal",
+            "At alle kartførte arter alltid er til stede"
           ],
-          "answer": "Fysisk terreng, industrihistorie, bynatur og arter kan leses på samme sted",
+          "answer": "Hvordan industrihistorie, terreng og bynatur henger sammen",
           "answerIndex": 0,
           "knowledge": "Stedet gjør abstrakte begreper konkrete gjennom synlige og skjulte spor.",
           "difficulty": 3,
@@ -1666,18 +1696,25 @@
             "stedbasert_læring"
           ],
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "https://oslobyleksikon.no/side/Myral%C3%B8kka",
+            "https://www.industrimuseum.no/bedrifter/en_industriell_gravhaug",
+            "data/natur/nature_oslo_expansion_place_map.json",
+            "data/natur/nature_bird_place_map.json"
           ],
           "claim_basis": "generator_rule",
           "emne_ids": [
-            "em_natur_dyreatferd_formering_tilpasning"
+            "em_natur_urban_okologi_byrom",
+            "em_natur_geologi_landskapsform"
           ],
           "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.81,
-            "score": 6,
-            "matched": [
-              "l ring"
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-16",
+            "reviewNote": "Observerbare industriformede terrengspor og dagens park- og artsrom gir stedlig naturforståelse; en app-teknisk vurdering er ikke et eget naturfag.",
+            "claimIds": [
+              "claim_myralokka_05",
+              "claim_myralokka_21",
+              "claim_myralokka_26"
             ]
           },
           "primary_knowledge_unit_id": "ku_natur_stedet_gj_r_abstrakte_be_34d4ef698b",
