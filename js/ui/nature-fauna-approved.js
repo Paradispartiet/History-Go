@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_flaggspett:Object.freeze({
+   scientificName:"Dendrocopos major",
+   src:"bilder/natur/fauna/godkjent/19_flaggspett_v1.webp",
+   gitBlobSha:"4c43cdf4db47f2c652d43128d030189b300d1604",
+   reviewedAt:"2026-11-16",
+   stage:"adult_male_red_nape_female_black_nape_both_large_white_shoulder_patches_crimson_undertail_clinging_to_trunk",
+   evidence:"data/natur/fauna/illustration-quality-flaggspett-20261116.json"
+  }),
   emne_fauna_graahegre:Object.freeze({
    scientificName:"Ardea cinerea",
    src:"bilder/natur/fauna/godkjent/18_graahegre_v1.webp",
