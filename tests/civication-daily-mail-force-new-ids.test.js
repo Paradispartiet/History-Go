@@ -17,7 +17,8 @@ function setup() {
   global.addEventListener = () => {};
   global.dispatchEvent = () => {};
   global.fetch = makeFetch(repoRoot);
-  global.CivicationCalendar = { getPhase: () => 'morning', setPhase() {}, advanceByMinutes() {} };
+  global.__civiTestGameDay = 1;
+  global.CivicationCalendar = { getClock: () => ({ dayIndex: global.__civiTestGameDay }), getPhase: () => 'morning', setPhase() {}, advanceByMinutes() {} };
   global.HG_CapitalMaintenance = { maintain: () => null };
   global.HG_Lifestyle = { addTags: () => null };
   global.CivicationPsyche = { getAutonomy: () => 50, updateIntegrity() {}, updateVisibility() {}, updateEconomicRoom() {}, updateTrust() {}, checkBurnout() {}, processCollapse() {} };
@@ -60,6 +61,25 @@ async function run() {
   assert(wrapped, 'forceNew day should include a source-backed daily extra mail');
   assert(wrapped.event.id.includes(wrapped.event.source_mail_id), 'daily wrapper id should remain traceable to source_mail_id');
   assert.strictEqual(wrapped.event.daily_mail_meta?.source_mail_id, wrapped.event.source_mail_id, 'daily metadata should preserve source_mail_id');
+
+  // Regression: a repeated non-case source can recur on consecutive game days
+  // even when both days happen on the same real date. Case/explicit threads
+  // retain their existing deduplication contract.
+  const eligible = forcedA.items.find(row => row.event?.source_type === 'daily_extra'
+    && row.event?.source_mail_id && String(row.event?.thread_key || '').includes('.day.'));
+  assert(eligible, 'day queue should include an ordinary source mail with a game-day thread');
+  const sibling = forcedB.items.find(row => row.event?.source_mail_id === eligible.event.source_mail_id);
+  assert(sibling, 'force-new same-day queue should include the same source for comparison');
+  assert.strictEqual(eligible.event.thread_key, sibling.event.thread_key,
+    'same source on one game day must keep one deduplication thread');
+  global.__civiTestGameDay = 2;
+  const nextGameDay = await global.CivicationDailyMailBuilder.buildQueue(active, { date, forceNew: true });
+  const repeated = nextGameDay.items.find(row => row.event?.source_mail_id === eligible.event.source_mail_id);
+  assert(repeated, 'next game day should retain the recurring source mail');
+  assert.notStrictEqual(eligible.event.thread_key, repeated.event.thread_key,
+    'new game day must not be suppressed by a prior day active source thread');
+  assert.strictEqual(repeated.event.source_mail_id, eligible.event.source_mail_id,
+    'canonical source ID is preserved across the game-day thread boundary');
 
   console.log('civication-daily-mail-force-new-ids.test.js passed');
 }
