@@ -56,6 +56,6 @@ for(const [priorId,sha] of Object.entries(prev))assert.equal(reg.get(priorId)?.g
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-rodstrupe-021.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Rødstrupe")'));
-assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Linerle")'));
+assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Spettmeis")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #21 Rødstrupe: transparent WebP, 20 original hashes, species ID, quiz ID and responsive browser contract OK.");

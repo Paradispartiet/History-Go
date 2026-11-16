@@ -27,7 +27,7 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0,"Transparent WebP required");
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
-const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,22);
+const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=22,"Gråtrost remains approved after future species");
 assert.equal(reg.get(id)?.src,item.src);assert.equal(reg.get(id)?.scientificName,latin);
 assert.equal(reg.get(id)?.gitBlobSha,item.gitBlobSha);
 const prev={
@@ -55,9 +55,9 @@ const prev={
 };
 assert.equal(Object.keys(prev).length,21);
 for(const [olderId,olderSha] of Object.entries(prev))assert.equal(reg.get(olderId)?.gitBlobSha,olderSha,olderId+" previously approved original must be preserved");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261116-22"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261116-23"));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-graatrost-022.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Gråtrost")'));
-assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Linerle")'));
+assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Spettmeis")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #22 Gråtrost: original WebP, alpha, checksum, 21 earlier originals, species and quiz OK.");

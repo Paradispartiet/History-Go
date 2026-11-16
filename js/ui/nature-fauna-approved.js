@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_linerle:Object.freeze({
+   scientificName:"Motacilla alba",
+   src:"bilder/natur/fauna/godkjent/23_linerle_v1.webp",
+   gitBlobSha:"a8a23c43089d3624a0630397ca2bba28e120370f",
+   reviewedAt:"2026-11-16",
+   stage:"alba_summer_black_crown_and_bib_white_face_grey_mantle_wing_bars_long_white_edged_tail_stone_and_walking",
+   evidence:"data/natur/fauna/illustration-quality-linerle-20261116.json"
+  }),
   emne_fauna_graatrost:Object.freeze({
    scientificName:"Turdus pilaris",
    src:"bilder/natur/fauna/godkjent/22_graatrost_v1.webp",
