@@ -24,6 +24,19 @@ body.hg-app #placeCard .pc-sheet-canonical-before-after figure img {
 /* The photo's aspect ratio is preserved. QuizCard and round collection badges
    intentionally do not inherit this documentary-photo policy. */
 
+
+/* The direct Place Sheet may wrap the hero and front image differently from
+   the older heading/front-card DOM selectors above. Their IDs are unique to
+   the two documentary Place media fields: keep the complete photographs
+   visible even if a wrapper/class changes during hydration. Never apply this
+   to QuizCard or collection thumbnails, which have separate framing rules. */
+body.hg-app #placeCard.is-unified-place #pcHeaderImage,
+body.hg-app #placeCard.is-unified-place #pcFrontImage {
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #15212b;
+}
+
 /* Give wide overview photographs enough height on tablet/desktop.
    At the old 205px cap, a complete 16:9 source could shrink into a tiny
    center strip. Keep mobile layout and the sticky header's own measured
