@@ -1,0 +1,111 @@
+{
+  "schema": "history_go_v1_existing_quiz_audit",
+  "date": "2026-11-16",
+  "status": "DRAFT_AUDIT_NOT_PUBLISHED",
+  "scope": "Four first V1 Places in the Akerselva-Sagene-Grünerløkka batch",
+  "method": "Read canonical data/quiz/manifest.json and inspect each manifest-loaded quiz sets file on main. Counts are direct data checks, not CI/Knowledge runtime results.",
+  "places": [
+    {
+      "id": "frysjadammen",
+      "canonicalName": "Oset slusebru – damanlegget ved Maridalsoset",
+      "existingQuiz": "data/quiz/historie/frysjadammen_sets.json",
+      "sets": 6,
+      "questionCount": 42,
+      "perSet": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "knowledgeEditorialReviewRequired": 14,
+      "questionSourceInternalHistoryGo": 33,
+      "legacyNameMentions": 24,
+      "genericQuestionCandidates": 4,
+      "issues": [
+        "Quiz still treats the place as 'Frysjadammen' (old technical ID), rather than the currently resolved Oset slusebru identity.",
+        "Most questions cite internal History Go place text rather than independently inspectable source references.",
+        "Multiple Knowledge links marked editorial_review_required.",
+        "Some generic instructional questions with implausible distractors."
+      ],
+      "retentionRule": "Keep all stable quiz and progression IDs where valid; selectively revise, source, link, or replace weak questions instead of wholesale truncation."
+    },
+    {
+      "id": "seilduksfabrikken_nydalen",
+      "canonicalName": "Øvre spinneri (Nydalens Compagnie)",
+      "existingQuiz": "data/quiz/historie/seilduksfabrikken_nydalen_sets.json",
+      "sets": 6,
+      "questionCount": 18,
+      "perSet": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "knowledgeEditorialReviewRequired": 12,
+      "questionSourceInternalHistoryGo": 12,
+      "genericQuestionCandidates": 5,
+      "issues": [
+        "Six sets with only three questions each do not meet the regular narrow/normal/rich/major minimum of seven questions per set; cannot call current fullquiz V1-ready.",
+        "Unresolved Knowledge links and internal-only source references.",
+        "Generic questions about abstract learning rather than the specific spinneri, 1856, 14000 spindles, culvert, correct site identity."
+      ],
+      "retentionRule": "Use currently active IDs carefully, convert to a valid profile only after per-set and Knowledge/QuizCard/manifest validation. Do not mistake the technical ID for Christiania Seildugsfabrik."
+    },
+    {
+      "id": "stilla_nydalen",
+      "canonicalName": "Elvepartiet nedenfor Nydalsdammen",
+      "existingQuiz": "data/quiz/natur/stilla_nydalen_sets.json",
+      "sets": 6,
+      "questionCount": 42,
+      "perSet": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "knowledgeEditorialReviewRequired": 13,
+      "questionSourceInternalHistoryGo": 34,
+      "genericQuestionCandidates": 5,
+      "issues": [
+        "Questions repeatedly describe 'stille vannspeil' even though this is the river segment below Nydalsdammen, not historical Stilla pools.",
+        "Many source references are only internal History Go text.",
+        "Knowledge editorial links pending, generic instructional quiz patterns."
+      ],
+      "retentionRule": "Audit each specific question against the named river segment and source before changes; do not use historic Stilla pool claims here."
+    },
+    {
+      "id": "frysja_33_brekke_kraftstasjon",
+      "canonicalName": "Brekke kraftstasjon / Frysja 33",
+      "existingQuiz": null,
+      "sets": 0,
+      "questionCount": 0,
+      "perSet": [],
+      "knowledgeEditorialReviewRequired": null,
+      "questionSourceInternalHistoryGo": null,
+      "issues": [
+        "No direct target entry found in current data/quiz/manifest.json; no canonical per-place sets file found at the conventional path.",
+        "Preexisting omnibus/legacy quiz and QuizCard still require repository-level audit before treating this as genuinely missing."
+      ],
+      "retentionRule": "First audit any legacy or omnibus questions; build a correctly profiled fullquiz and matching ten QuizCard items from sourced candidates."
+    }
+  ],
+  "candidatesDocument": "reports/place-production/oslo-akerselva-v1-quiz-candidates-20261116.json",
+  "candidatesCount": 40,
+  "gatesStillOpen": [
+    "Complete legacy/omnibus quiz audit",
+    "Source-claim parity of each question",
+    "Canonical quiz profile and validator",
+    "Retain validated existing IDs and progression",
+    "Knowledge concept and unit links",
+    "QuizCard 10-question parity",
+    "Real playable fullquiz in mobile/iPad/desktop",
+    "CI and PR integration"
+  ],
+  "note": "This audit does NOT approve candidates or change any active quiz files. Existing sets and progression preserved."
+}
