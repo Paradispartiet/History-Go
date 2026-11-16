@@ -1,14 +1,18 @@
 {
   "schema": "history_go_place_collection_candidate_review_v1",
   "place_id": "schiollgarden_prinsens_gate_26",
-  "reviewed_at": "2026-11-14",
+  "reviewed_at": "2026-11-16",
   "status": "research_in_progress_not_closeout",
   "scope": "Candidate discovery only; no final population or production-profile change.",
   "sources": {
     "fmf": "https://fortidsminneforeningen.no/aktuelt/nyrenoverte-halvorsens-conditori/",
     "nbl": "https://nbl.snl.no/Henrik_Nissen",
     "bylex": "https://oslobyleksikon.no/side/Halvorsens_Conditori",
-    "project": "https://www.stortinget.no/no/Saker-og-publikasjoner/Publikasjoner/Innstillinger/Stortinget/2016-2017/inns-201617-486s/?m=0"
+    "project": "https://www.stortinget.no/no/Saker-og-publikasjoner/Publikasjoner/Innstillinger/Stortinget/2016-2017/inns-201617-486s/?m=0",
+    "museum_delivery_car": "https://oslobilder.no/OMU/OB.Z06453",
+    "museum_bakery": "https://oslobilder.no/OMU/OB.Z06455",
+    "museum_interior": "https://oslobilder.no/OMU/OB.Z06454",
+    "image_terms": "https://oslobilder.no/terms"
   },
   "people": [
     {
@@ -16,13 +20,19 @@
       "source": "nbl",
       "relationship": "Architect of Schiøllgården",
       "identity_boundary": "Not Henrik Nissen d.y. (1888–1953).",
-      "status": "direct_candidate_claims_and_portrait_review_pending"
+      "status": "profile_claims_and_historical_portrait_materialized_in_draft"
     },
     {
       "name": "Hans Halvorsen (1840–1915)",
       "source": "bylex",
       "relationship": "Founder of the confectionery",
-      "status": "direct_candidate_claims_and_portrait_review_pending"
+      "status": "profile_claims_materialized_portrait_rights_pending",
+      "portrait_lead": {
+        "source": "fmf",
+        "description": "Owners-portrait display: source caption identifies Hans Halvorsen at the top. Photograph credited to Jiri Havran.",
+        "rights": "No inspected reuse license; no crop imported.",
+        "not_a_portrait": "The image on the Lokalhistoriewiki biography is the building, not Hans Halvorsen."
+      }
     },
     {
       "name": "Oscar Schjøll",
@@ -43,7 +53,18 @@
       "name": "Halvorsens Conditori",
       "source": "bylex",
       "status": "candidate_not_published",
-      "remaining": "Canonical identity/aliases, criteria, dated relationship, authentic local wordmark/logo and rights review."
+      "remaining": "Canonical identity/aliases, criteria, dated relationship, authentic local wordmark/logo and rights review.",
+      "visual_lead": {
+        "record": "OB.Z06453",
+        "owner": "Oslo Museum",
+        "photographer": "Herson",
+        "date": "1925 (ca.)",
+        "evidence": "Museum indexed metadata identifies the confectionery, business vehicle and Prinsens gate 26/Wessels plass. The official business-site image search also shows a historic delivery scene with name lettering.",
+        "original_image_lead": "https://halvorsens.no/images/Halvorsens-Conditori-forside-gml.jpg",
+        "record_image_parity": "Not yet visually verified against the museum original; do not assume two copies are identical.",
+        "status": "source_identified_asset_and_license_not_verified",
+        "next": "Inspect the original image, record its actual license, and crop only a legible authentic wordmark. Do not redraw the name."
+      }
     },
     {
       "name": "Norsk Alliance",
@@ -144,6 +165,17 @@
         "decision": "research_lead_only",
         "source_url": "https://www.oslobilder.no/OMU/OMu.A20182",
         "reason": "Search metadata names both Prinsens gate 26 and Akersgata 18. Full museum record could not be opened; camera position must not be mistaken for the sign’s location. No publication or rights approval."
+      },
+      {
+        "candidate": "Halvorsens business vehicle photographed outside Prinsens gate 26, about 1925",
+        "decision": "identified_archive_lead_not_collection_approval",
+        "source": "museum_delivery_car",
+        "record": "OB.Z06453",
+        "identity_evidence": "Museum metadata explicitly names firmabil, Halvorsens Conditori, Prinsens gate 26 and Wessels plass.",
+        "identity_limits": "Vehicle make, registration and surviving object identity are not established. No identification of the pictured men is made; the 1925 scene is not a Hans Halvorsen portrait.",
+        "temporal_scope": "Historical depiction only; no claim that the vehicle survives or stands at this place today.",
+        "collection_boundary": "Secondary confectionery-work history; architectural main function remains primary. Qualification and ownership must be reviewed before selecting an Objects collection.",
+        "asset_and_rights": "No local image or item-level license verified; not published."
       }
     ],
     "not_na": true,
@@ -151,7 +183,19 @@
   },
   "closeout": {
     "allowed": false,
-    "reason": "Four required collections have not been materialized and verified. In particular Objects remains source-bounded holdback, not N/A.",
-    "next_evidence": "Identified physical objects with direct location, function, dating/status and a rights-cleared photo or explicitly labelled illustration."
+    "reason": "Real qualified candidates and their images remain unfinished. Ordinary Places use one to four PASS collections, not a mandatory four-slot quota. This audit neither creates filler nor turns missing assets into N/A.",
+    "next_evidence": "Inspectable item-level image license and actual original for OB.Z06453; legible authentic wordmark crop and object-identity review if appropriate; licensed Hans portrait."
+  },
+  "rights_review_2026_11_16": {
+    "indexed_metadata_read": [
+      "OB.Z06453",
+      "OB.Z06454",
+      "OB.Z06455"
+    ],
+    "live_record_access": "Museum image records returned403 through the active retrieval tools; indexed print metadata could be inspected.",
+    "institution_boundary": "These three records belong to Oslo Museum, not Oslo byarkiv. The Byarkiv general free-use statement is not treated as an Oslo Museum license.",
+    "terms": "Oslobilder directs users to each image license and each institution terms; a record without an inspected license is not automatically approved.",
+    "fallback_1995": "DigitaltMuseum021018510546, Stein Marienborg,31May1995, Arbark: separate owner and no verified license in this review. Not imported.",
+    "no_asset_materialized": true
   }
 }
