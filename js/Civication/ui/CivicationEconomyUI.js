@@ -120,6 +120,8 @@
         row.style.overflowWrap = "anywhere";
         row.appendChild(node("p", String(invoice.title || invoice.contractId || invoice.id || "Regning")
           + " · " + money(invoice.amountNok) + " kr · Forfall: " + String(invoice.dueDateISO || "Ukjent")));
+        if (invoice.priceKind === "effective_statistical_unit_price_with_assumed_consumption")
+          row.appendChild(node("p", "Antatt forbruk: " + money(invoice.estimatedConsumptionKwh) + " kWh. Statistisk prisgrunnlag inkluderer nettleie, avgifter og fratrukket støtte."));
         if (invoice.status === "paid") row.appendChild(node("p", "Betalt " + String(invoice.paidDateISO || "")));
         else if (invoice.status === "pending") {
           const button = /** @type {HTMLButtonElement} */ (node("button", "Betal"));

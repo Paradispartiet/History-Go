@@ -162,3 +162,35 @@ en produksjonskonto eller nettverks-/enhetstest. Visuell mobil/WebKit-QA gjenst�
 Reisen og eksisterende account-cloud-save-tester er lagt inn som egne CI-steg.
 Lokalt består også alle 21 eksisterende kontobackup-tester og syv CI-scope-tester.
 Forrige head b0da5c1 hadde samtlige seks automatiske workflows grønne før denne endringen.
+
+### Strøm: dokumentert enhetspris og dagbasert forbruksscenario
+
+Strømanslaget på 1 000 kr uten prisgrunnlag er erstattet med SSBs publisering
+16.11.2026 for tredje kvartal 2026: 123,4 øre/kWh i samlet pris etter støtte,
+inkludert nettleie og avgifter. Dette er et landsdekkende statistisk gjennomsnitt,
+ikke en strømavtale i Oslo eller en historisk tariff for hver dato på spillkalenderen.
+500 kWh per hel måned er en eksplisitt forbruksantakelse, ikke målerdata.
+Kombinasjonen gir 617 kr per hel måned. Ingen ekstra nettleie, avgift, støtte-
+utbetaling eller Norgespris-fradrag legges oppå denne effektive prisen.
+
+Startboligens tilbud viser strømprofilen før valg og knytter den valgte profilen
+til boligtilstanden. For hver fullført spilledag med bolig fordeles månedens
+forbruks-/øreanslag over faktisk 28/29/30/31 dager og lagres sammen med eksisterende
+opptjeningsdager. Ved månedsskifte opprettes en kildebundet strømregning for forrige
+måneds registrerte dager. Forfall er den første i måneden etter forbruket, også ved
+forsinket kjøring. Selve faktureringen trekker ingenting; eksisterende Betal-handling
+brukes. Før boligvalg påløper ingen strøm, og gamle NOK-profiler uten eksplisitt
+strømkobling får ingen nye eller retroaktive trekk.
+
+Den særskilte electricity-testen kontrollerer 10. januar-innflytting: 437,88 kr /
+354,839 kWh i første regning, deretter 617 kr / 500 kWh i februar og mars. Den
+kontrollerer informasjon før boligvalg, etterskuddsforfall, bevaring etter innlasting,
+ugyldig prisberegning og betaling én gang. Housing-contract, activation-ui,
+start-prices, eksisterende lønn og budsjettberegning består også.
+
+90-dagersreisen betaler nå også tre strømregninger. Nye kontrollsaldoer erstatter
+de tidligere rent-/billettbaserte eksemplene: 9 415,36 / 13 792,96 / 12 520,96 kr.
+Marsstrømmen betales på aprilforfallet ved siste kontroll; aprilhusleien står
+fortsatt ubetalt utenfor de tre kontrollerte månedene. Oslo-normen på 9 406 kr er
+fortsatt en livsoppholdsproxy i budsjettet, ikke handlekurv, stønad eller automatisk
+faktura. Faktiske varer/forbruk og visuell nettleserkontroll gjenstår før aktivering.

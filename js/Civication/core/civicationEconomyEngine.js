@@ -838,7 +838,7 @@ function getEconomySnapshot() {
 
   
 // NOK payroll remains inside the canonical economy owner. Activation and job
-// contracts are supplied by the future migration/job integration, never by a
+// contracts are supplied by explicit migration/job acceptance, never by a
 // badge or this calculation. No completed day means no earned salary.
 /** @param {number} day @param {CiviEconomyWallet} wallet */
 function recordNokPayrollDay(day, wallet) {
@@ -872,9 +872,16 @@ function recordNokPayrollDay(day, wallet) {
   // rounding cents when all 28/29/30/31 days are completed.
   const share = (/** @type {number} */ amount) => Math.floor(amount * period.dayOfMonth / period.daysInMonth)
     - Math.floor(amount * (period.dayOfMonth - 1) / period.daysInMonth);
+  let electricity = null;
+  if (nok.housing?.electricityProfileId && nok.housing.acceptedDateISO <= period.dateISO) {
+    try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(nok.config); } catch { return; }
+    if (!electricity || electricity.id !== nok.housing.electricityProfileId) return;
+  }
   window.CivicationState.updateWallet({ ...wallet, nok_v1: { ...nok,
     lastRecordedDayIndex: day, earnedDays: [...(nok.earnedDays || []), {
-      dayIndex: day, monthId: period.id, grossCents: share(gross), taxCents: share(tax), sourceId
+      dayIndex: day, monthId: period.id, grossCents: share(gross), taxCents: share(tax), sourceId,
+      ...(electricity ? { electricityCents: share(electricity.monthlyCents),
+        electricitySourceId: electricity.source, electricityMilliKwh: share(electricity.monthlyConsumptionMilliKwh) } : {})
     }] } });
 }
 
@@ -889,6 +896,9 @@ function settleNokPayroll(wallet) {
   if (new Set(due.map(d => d.dayIndex)).size !== due.length || due.some(d =>
       !Number.isSafeInteger(d.grossCents) || !Number.isSafeInteger(d.taxCents)
       || d.taxCents < 0 || d.grossCents < d.taxCents
+      || (d.electricityCents != null && (!Number.isSafeInteger(d.electricityCents) || d.electricityCents < 0
+        || typeof d.electricitySourceId !== "string" || !d.electricitySourceId.trim()
+        || !Number.isSafeInteger(d.electricityMilliKwh) || d.electricityMilliKwh < 0))
       || window.CivicationCalendar?.getMonthPeriod?.(d.dayIndex)?.id !== d.monthId)) {
     return { ok: false, reason: "INVALID_EARNED_DAYS" };
   }
@@ -900,6 +910,26 @@ function settleNokPayroll(wallet) {
     return { monthId, grossCents: rows.reduce((sum, d) => sum + d.grossCents, 0),
       taxCents: rows.reduce((sum, d) => sum + d.taxCents, 0), paidDateISO: period.dateISO };
   });
+  if (nok.invoices != null && !Array.isArray(nok.invoices)) return { ok: false, reason: "INVALID_INVOICES" };
+  const invoices = /** @type {CiviEconomyRecord[]} */ (nok.invoices || []);
+  const electricityInvoices = [];
+  for (const monthId of months) {
+    const rows = due.filter(d => d.monthId === monthId && d.electricityCents != null);
+    if (!rows.length) continue;
+    const sources = [...new Set(rows.map(d => d.electricitySourceId))];
+    if (sources.length !== 1) return { ok: false, reason: "ELECTRICITY_SOURCE_CONFLICT" };
+    const amountCents = rows.reduce((sum, d) => sum + d.electricityCents, 0);
+    const milliKwh = rows.reduce((sum, d) => sum + d.electricityMilliKwh, 0);
+    if (!Number.isSafeInteger(amountCents) || !Number.isSafeInteger(milliKwh))
+      return { ok: false, reason: "INVALID_ELECTRICITY_AMOUNT" };
+    const id = "electricity:" + encodeURIComponent(sources[0]) + ":" + monthId;
+    if (invoices.some(i => !i || i.id === id)) return { ok: false, reason: "DUPLICATE_ELECTRICITY_INVOICE" };
+    const dueDateISO = new Date(Date.UTC(Number(monthId.slice(0, 4)), Number(monthId.slice(5, 7)), 1)).toISOString().slice(0, 10);
+    electricityInvoices.push({ id, contractId: "electricity:" + sources[0], sourceId: sources[0],
+      title: "Strøm (" + monthId + ") – estimert forbruk", monthId, dueDateISO,
+      amountNok: amountCents / 100, estimatedConsumptionKwh: milliKwh / 1000,
+      priceKind: "effective_statistical_unit_price_with_assumed_consumption", status: "pending" });
+  }
   const net = entries.reduce((sum, entry) => sum + entry.grossCents - entry.taxCents, 0);
   const before = wallet.balance;
   if (typeof before !== "number" || !Number.isFinite(before)
@@ -909,7 +939,8 @@ function settleNokPayroll(wallet) {
   }
   const balance = (Math.round(before * 100) + net) / 100;
   window.CivicationState.updateWallet({ ...wallet, balance, nok_v1: { ...nok,
-    earnedDays: days.filter(d => d.monthId >= period.id), payrollLedger: [...ledger, ...entries] } });
+    earnedDays: days.filter(d => d.monthId >= period.id), payrollLedger: [...ledger, ...entries],
+    ...(electricityInvoices.length ? { invoices: [...invoices, ...electricityInvoices] } : {}) } });
   return { ok: true, netNok: net / 100, balance };
 }
 
@@ -1081,6 +1112,11 @@ function acceptNokHousing(districtId) {
       || Math.abs(offer.monthlyRentNok * 100 - Math.round(offer.monthlyRentNok * 100)) > 0.000001) {
     return { ok: false, reason: "INVALID_HOUSING_OFFER" };
   }
+  if (offer.electricityProfileId) {
+    let electricity;
+    try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(nok.config); } catch {}
+    if (!electricity || electricity.id !== offer.electricityProfileId) return { ok: false, reason: "ELECTRICITY_PRICE_NOT_MAPPED" };
+  }
   if (nok.housing?.districtId === districtId && nok.housing?.offerId === offer.id) return { ok: true, skipped: true };
   const date = window.CivicationCalendar?.getGameDate?.();
   if (!date || typeof nok.activatedDateISO !== "string" || date < nok.activatedDateISO) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
@@ -1096,7 +1132,8 @@ function acceptNokHousing(districtId) {
   const invoices = /** @type {CiviEconomyRecord[]} */ (Array.isArray(nok.invoices) ? nok.invoices : []);
   if (invoices.some(i => !i || typeof i !== "object")) return { ok: false, reason: "INVALID_HOUSING_STATE" };
   owner.updateWallet({ ...wallet, nok_v1: { ...nok, housingSequence: sequence,
-    housing: { districtId, offerId: offer.id, contractId, acceptedDateISO: date },
+    housing: { districtId, offerId: offer.id, contractId, acceptedDateISO: date,
+      ...(offer.electricityProfileId ? { electricityProfileId: offer.electricityProfileId } : {}) },
     recurringBills: [...contracts.map(c => c.id === previousId
       ? { ...c, endsOnISO: c.endsOnISO && c.endsOnISO < date ? c.endsOnISO : date } : c),
       { id: contractId, sourceId: offer.sourceId, districtId, amountNok: offer.monthlyRentNok, firstDueDateISO: date }],

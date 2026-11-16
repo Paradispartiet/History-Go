@@ -787,6 +787,10 @@
       ? nok.config.housingOffers.find(o => o?.districtId === district.id) : null;
     const referenceNote = nok?.active === true && housingOffer?.priceKind === "statistical_reference_not_listing"
       ? "Statistisk startprofil for Oslo/Bærum. Ikke en boligannonse eller dokumentert bydelspris." : "";
+    let electricity = null;
+    if (nok?.active === true && housingOffer?.electricityProfileId) {
+      try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(nok.config); } catch {}
+    }
     const tagText = normalizeList(district.choice_tags).join(" · ");
     const storeText = normalizeList(district.store_access).join(" · ");
     const classes = ["civi-district-card"];
@@ -807,6 +811,7 @@
         <div style="margin-top:8px;line-height:1.45;">${district.shortDesc || ""}</div>
         <div style="font-size:0.86rem;opacity:0.82;margin-top:8px;">${nok?.active === true ? `Husleie: ${formatRent(district)}` : `Pris: ${formatCost(district)} · Husleie: ${formatRent(district)} · Prestige: ${Number(district.prestige || 0)}`}</div>
         ${referenceNote ? `<p>${referenceNote}</p>` : ""}
+        ${electricity ? `<p>Strømanslag: ${electricity.monthlyNok} kr per hel måned, med ${electricity.monthlyConsumptionKwh} kWh antatt forbruk. Landsgjennomsnitt fra SSB, inkludert nettleie, avgifter og fratrukket støtte. Dager i boligen faktureres etter månedsslutt.</p>` : ""}
         ${nok?.active === true && housingOffer ? `<p>Første hele leieperiode forfaller ved innflytting. Depositum er ikke modellert. Velg bare hvis du vil inngå leieavtalen.</p>` : ""}
         <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Krav: ${requirementText(district)}</div>
         <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">${nok?.active === true ? "Sjekk saldo og regninger under Kommers før du velger." : `Råd: ${affordability}`}</div>

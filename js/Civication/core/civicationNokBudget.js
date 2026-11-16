@@ -1,10 +1,26 @@
 (/** @param {any} root */ function (root) {
 'use strict';
-// Offline design preview only. Never reads/writes player state or pays money.
+// Pure estimates shared by previews, salary contracts and electricity billing.
+// Never reads/writes player state or pays money.
+/** @param {any} config */
+function getElectricityProfile(config) {
+  const profile = config?.budget?.electricity;
+  if (profile?.kind !== 'effective_statistical_unit_price_with_assumed_consumption') return null;
+  if (typeof profile.id !== 'string' || !profile.id.trim() || typeof profile.source !== 'string' || !profile.source.trim()
+      || !Number.isFinite(profile.monthlyConsumptionKwh) || profile.monthlyConsumptionKwh <= 0
+      || !Number.isFinite(profile.unitPriceNokPerKwh) || profile.unitPriceNokPerKwh <= 0)
+    throw new RangeError('Invalid electricity profile');
+  const cents = Math.round(profile.monthlyConsumptionKwh * profile.unitPriceNokPerKwh * 100);
+  if (!Number.isSafeInteger(cents) || cents < 0 || profile.monthlyNok !== cents / 100
+      || !Number.isSafeInteger(profile.monthlyConsumptionKwh * 1000))
+    throw new RangeError('Inconsistent electricity estimate');
+  return { ...profile, monthlyCents: cents, monthlyConsumptionMilliKwh: profile.monthlyConsumptionKwh * 1000 };
+}
 /** @param {any} config */
 function preview(config, { employed = false, employmentPercent = 100, approvedSupportNok = 0 } = {}) {
   if (!Number.isFinite(employmentPercent) || employmentPercent < 0 || employmentPercent > 100
       || !Number.isFinite(approvedSupportNok) || approvedSupportNok < 0) throw new RangeError('Invalid scenario');
+  getElectricityProfile(config);
   const annualGross = employed ? config.job.grossMonthlyNok * 12 * employmentPercent / 100 : 0;
   const t = config.tax;
   const deduction = Math.min(annualGross * t.minimumDeductionRate, t.minimumDeductionCap);
@@ -47,7 +63,7 @@ function projectMonths(config, scenarios, openingBalanceNok = 0) {
       uncoveredNeedNok: Math.max(0, -balance) / 100 };
   });
 }
-const api = { preview, projectMonths };
+const api = { preview, projectMonths, getElectricityProfile };
 if (typeof module !== 'undefined' && module.exports) module.exports = api;
 else /** @type {any} */ (root).CivicationNokBudget = api;
 

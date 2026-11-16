@@ -134,21 +134,22 @@ async function checkpoint(w) {
       w.CivicationEconomyUI.render();
       for (const button of [...w.document.querySelectorAll('[data-nok-invoice]:not([disabled])')]) {
         const invoice = w.CivicationState.getWallet().nok_v1.invoices.find(i => i.id === button.getAttribute('data-nok-invoice'));
-        if (invoice.dueDateISO <= '2026-03-31') button.click();
+        if (invoice.dueDateISO <= '2026-03-31' || (invoice.estimatedConsumptionKwh && invoice.monthId <= '2026-03')) button.click();
       }
       checkpoints.push(w.CivicationState.getWallet().balance);
       w = await checkpoint(w);
     }
   }
   const wallet = w.CivicationState.getWallet();
-  assert.deepEqual(checkpoints, [10032.36, 15026.96, 14371.96]);
+  assert.deepEqual(checkpoints, [9415.36, 13792.96, 12520.96]);
   assert.equal(wallet.nok_v1.payrollLedger.length, 3);
   assert.equal(wallet.nok_v1.payrollLedger[2].grossCents, 0, 'job loss creates no automatic NAV or wages');
   assert.equal(wallet.nok_v1.transportPasses.length, 2);
-  assert.equal(wallet.nok_v1.invoices.filter(i => i.status === 'paid').length, 3);
+  assert.equal(wallet.nok_v1.invoices.filter(i => i.status === 'paid' && i.estimatedConsumptionKwh === 500).length, 3);
+  assert.equal(wallet.nok_v1.invoices.filter(i => i.status === 'paid' && !i.estimatedConsumptionKwh).length, 3);
   assert.equal(wallet.history[0].id, 'old-purchase');
   assert.equal(wallet.last_tick_day_index, 1);
-  assert.equal(wallet.balance, (12525 + wallet.nok_v1.payrollLedger.reduce((n, p) => n + p.grossCents - p.taxCents, 0) - 3 * 1009000 - 2 * 65500) / 100);
+  assert.equal(wallet.balance, (12525 + wallet.nok_v1.payrollLedger.reduce((n, p) => n + p.grossCents - p.taxCents, 0) - 3 * 1009000 - 2 * 65500 - 3 * 61700) / 100);
   assert.equal(w.CivicationState.getActivePosition(), null);
   assert.equal(w.CivicationJobs.getOffers().length, 1);
   assert.equal(w.CivicationJobs.getOffers()[0].status, 'accepted', 'restored accepted offers never respawn after job loss');
@@ -163,5 +164,5 @@ async function checkpoint(w) {
     assert.equal(other.localStorage.getItem(key), local);
     assert.equal(db.record.payload.state[key], remote);
   }
-  console.log('PASS: 30 published quiz answers -> sourced offer/acceptance -> 90 played days, 3 rents, 2 tickets, job loss, 3 fresh-device restores; balances ' + checkpoints.join(', '));
+  console.log('PASS: 30 published quiz answers -> sourced offer/acceptance -> 90 played days, 3 rents, 3 electricity bills, 2 tickets, job loss, 3 fresh-device restores; balances ' + checkpoints.join(', '));
 })().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => windows.forEach(dom => dom.window.close()));

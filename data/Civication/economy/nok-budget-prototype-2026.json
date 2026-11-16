@@ -63,8 +63,16 @@
       "source": "https://www.oslo.kommune.no/bolig-og-sosiale-tjenester/sosiale-tjenester/okonomisk-sosialhjelp/"
     },
     "electricity": {
-      "monthlyNok": 1000,
-      "kind": "scenario_assumption_not_verified_price"
+      "id": "ssb-q3-2026-electricity-500kwh",
+      "monthlyNok": 617,
+      "kind": "effective_statistical_unit_price_with_assumed_consumption",
+      "monthlyConsumptionKwh": 500,
+      "unitPriceNokPerKwh": 1.234,
+      "pricePeriod": "2026-Q3",
+      "includes": "power_grid_taxes_less_public_support",
+      "consumptionKind": "scenario_assumption_not_meter_reading",
+      "source": "https://www.ssb.no/energi-og-industri/energi/statistikk/elektrisitetspriser/artikler/noe-lavere-strompris-for-husholdninger",
+      "checkedOn": "2026-11-16"
     },
     "transport": {
       "monthlyNok": 664.1,
@@ -111,7 +119,8 @@
       "sourceYear": 2025,
       "priceScope": "Oslo og Bærum, ettroms",
       "placementKind": "fictional_game_location",
-      "checkedOn": "2026-11-16"
+      "checkedOn": "2026-11-16",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
     }
   ]
 }
