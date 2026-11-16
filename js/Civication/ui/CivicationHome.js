@@ -310,6 +310,11 @@
 
   function getDistrictLockReason(district) {
     if (!district) return "Ukjent nabolag";
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true) {
+      const offers = Array.isArray(nok.config?.housingOffers) ? nok.config.housingOffers : [];
+      if (offers.filter(o => o?.districtId === district.id).length !== 1) return "Dokumentert leiepris mangler";
+    }
 
     const capital = getCapital();
     if ((capital.economic || 0) < Number(district.baseCost || 0)) return "For lite kapital";
@@ -572,7 +577,7 @@
         title: getDistrictTitle(district),
         isCurrent,
         isStartOption: district.isStartOption === true,
-        canSelect: unlocked || !lockReason || isCurrent,
+        canSelect: (unlocked || !lockReason || isCurrent) && canMoveToDistrict(district.id).ok,
         unlockReason,
         lockReason: (unlocked || isCurrent) ? "" : lockReason,
         cost: Number(district.baseCost || 0),
@@ -776,7 +781,12 @@
   function renderDistrictCard(district, currentId) {
     const isCurrent = String(currentId || "") === String(district.id || "");
     const reason = getDistrictLockReason(district);
-    const canSelect = !reason || isCurrent;
+    const canSelect = (!reason || isCurrent) && canMoveToDistrict(district.id).ok;
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    const housingOffer = Array.isArray(nok?.config?.housingOffers)
+      ? nok.config.housingOffers.find(o => o?.districtId === district.id) : null;
+    const referenceNote = nok?.active === true && housingOffer?.priceKind === "statistical_reference_not_listing"
+      ? "Statistisk startprofil for Oslo/Bærum. Ikke en boligannonse eller dokumentert bydelspris." : "";
     const tagText = normalizeList(district.choice_tags).join(" · ");
     const storeText = normalizeList(district.store_access).join(" · ");
     const classes = ["civi-district-card"];
@@ -796,6 +806,8 @@
         </div>
         <div style="margin-top:8px;line-height:1.45;">${district.shortDesc || ""}</div>
         <div style="font-size:0.86rem;opacity:0.82;margin-top:8px;">Pris: ${formatCost(district)} · Husleie: ${formatRent(district)} · Prestige: ${Number(district.prestige || 0)}</div>
+        ${referenceNote ? `<p>${referenceNote}</p>` : ""}
+        ${nok?.active === true && housingOffer ? `<p>Første hele leieperiode forfaller ved innflytting. Depositum er ikke modellert. Velg bare hvis du vil inngå leieavtalen.</p>` : ""}
         <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Krav: ${requirementText(district)}</div>
         <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Råd: ${affordability}</div>
         ${storeText ? `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Butikktilgang: ${storeText}</div>` : ""}

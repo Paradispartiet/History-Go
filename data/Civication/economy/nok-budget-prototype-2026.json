@@ -64,8 +64,15 @@
       "kind": "scenario_assumption_not_verified_price"
     },
     "transport": {
-      "monthlyNok": 1000,
-      "kind": "scenario_assumption_not_verified_price"
+      "monthlyNok": 664.1,
+      "priceNok": 655,
+      "periodDays": 30,
+      "kind": "annualised_monthly_equivalent_not_invoice",
+      "scope": "Voksen, Ruter sone 1",
+      "source": "https://ruter.no/aktuelt/produkter/prisen-gar-ned",
+      "validFrom": "2026-05-03",
+      "reviewBy": "2027-04-01",
+      "conversion": "655 * 365 / 30 / 12, rounded to cents; not a monthly ticket"
     }
   },
   "unemployed": {
@@ -86,5 +93,18 @@
       "UI_breakdown",
       "three_month_acceptance"
     ]
-  }
+  },
+  "housingOffers": [
+    {
+      "id": "oslo-1room-ssb2025-sagene-start",
+      "districtId": "sagene",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "sourceYear": 2025,
+      "priceScope": "Oslo og Bærum, ettroms",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-16"
+    }
+  ]
 }
