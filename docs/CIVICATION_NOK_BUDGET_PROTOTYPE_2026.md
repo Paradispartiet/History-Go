@@ -56,3 +56,18 @@ Månedslønn er koblet til eksisterende `recordCompletedDay` og `tickWeekly` på
 
 Kjørbar kontroll: node tests/civication-nok-budget-preview.test.js. Beregningen bruker ingen nettverk eller brukerdata. Prototype og aktiveringskrav må ikke omtales som publisert kroneøkonomi.
 
+
+### Starttilbud og vilkår før aksept
+
+NOK-profilen kan produsere et eget butikkmedarbeidertilbud etter fem faktisk lagrede
+næringslivsmeritter, med eksisterende jobbport tilgjengelig og åpen. Terskelen følger
+første inngang i karrierekatalogen; dette er spillprogresjon, ikke en yrkeskvalifikasjon.
+Tilbudet har egen stabil nøkkel og gjenskapes ikke etter avslag. Meritter og jobbport
+kontrolleres igjen ved aksept. Aksept oppretter kontrakten uten å betale lønn.
+Stillingsprosent, brutto, årsberegnet skatteanslag og netto vises foran akseptknappen.
+Ukjente lønnsvilkår sperrer aksept i NOK-modus. Produksjonsaktivering er fortsatt av.
+
+Målrettet kontroll: `node tests/civication-nok-starter-offer.test.js`, eksisterende
+jobbkontrakttest, pris-/budsjettkontroller og JavaScript-syntaks. Starttilbudstesten
+bruker jobbportens grensesnitt som fixture; den beviser ikke organisk quizopptjening
+eller visuell godkjenning i nettleser. Disse akseptansesjekkene gjenstår.

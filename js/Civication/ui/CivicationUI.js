@@ -705,6 +705,16 @@ async function renderCivication() {
     window.CivicationJobs?.getLatestPendingOffer?.()
   );
 
+  const nokTerms = window.CivicationJobs?.getNokOfferTerms?.(offer);
+  const formatNok = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { maximumFractionDigits: 2 });
+  const nokTermsHtml = nokTerms ? (nokTerms.supported
+    ? `<div data-civi-nok-offer-terms><strong>Lønnsvilkår: ${formatNok(nokTerms.employmentPercent)} % stilling</strong>
+        <div>Brutto: ${formatNok(nokTerms.monthlyGross)} kr per måned</div>
+        <div>Estimert skatt: ${formatNok(nokTerms.monthlyTax)} kr per måned</div>
+        <div>Estimert netto: ${formatNok(nokTerms.monthlyNet)} kr per måned</div>
+        <div>Årsberegnet skatteanslag, ikke skattekort. Lønn opptjenes etter jobbstart og utbetales ved månedsskifte i spillet.</div></div>`
+    : `<div data-civi-nok-offer-terms>Lønnsvilkår mangler for denne rollen. Tilbudet kan foreløpig ikke aksepteres.</div>`) : "";
+
   // Lønn (best effort)
   let salaryTxt = "Lønn: —";
   if (active?.career_id && typeof window.calculateWeeklySalary === "function") {
@@ -756,9 +766,10 @@ async function renderCivication() {
             <div>Utløper: ${offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—"}</div>
             ${buildOfferEligibilityHtml(offer)}
             ${buildOfferPackDepthHtml(offer)}
+            ${nokTermsHtml}
 
             <div style="display:flex;gap:10px;margin-top:10px;">
-              <button class="civi-btn primary" id="civiOfferAccept">Aksepter</button>
+              <button class="civi-btn primary" id="civiOfferAccept" ${nokTerms && !nokTerms.supported ? "disabled" : ""}>Aksepter</button>
               <button class="civi-btn" id="civiOfferDecline">Ikke nå</button>
             </div>
           `

@@ -686,6 +686,7 @@
    *   place_id?: unknown,
    *   employer_context?: unknown
    *   nok_employment_percent?: unknown
+   *   nok_job_id?: unknown
    * }} offerInput
    */
   function pushOffer({
@@ -701,7 +702,8 @@
     sector,
     place_id,
     employer_context,
-    nok_employment_percent
+    nok_employment_percent,
+    nok_job_id
   }) {
     if (!canReceiveNewOffers()) {
       return { ok: false, reason: "active_job" };
@@ -715,7 +717,13 @@
       return { ok: false, reason: "invalid_offer" };
     }
 
-    const offer_key = `${badgeId}:${thr}`;
+    const nokJobId = typeof nok_job_id === "string" ? nok_job_id.trim() : "";
+    if (nokJobId) {
+      const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+      if (nok?.active !== true || nok.version !== 1 || nok.config?.job?.id !== nokJobId
+          || nok.config.job.careerId !== badgeId || nok.config.job.roleTitle !== ttl) return { ok: false, reason: "invalid_nok_offer" };
+    }
+    const offer_key = `${badgeId}:${thr}` + (nokJobId ? `:nok:${nokJobId}` : "");
     const offers = getOffers();
 
     if (offers.some(function (o) {
@@ -742,6 +750,7 @@
       place_id: String(place_id || "").trim() || null,
       employer_context: employer_context && typeof employer_context === "object" ? employer_context : null,
       nok_employment_percent: nok_employment_percent,
+      ...(nokJobId ? { nok_job_id: nokJobId } : {}),
       status: "pending",
       created_iso: now.toISOString(),
       expires_iso: expires.toISOString()
@@ -782,6 +791,10 @@
           || offer.career_id !== job.careerId || offer.title !== job.roleTitle
           || typeof percent !== "number" || !Number.isFinite(percent) || percent <= 0 || percent > 100) {
         return { ok: false, reason: "NOK_SALARY_NOT_MAPPED" };
+      }
+      if (offer.nok_job_id) {
+        const eligibility = checkNokStarterEligibility(offer);
+        if (!eligibility.ok) return eligibility;
       }
       nokContract = { jobId: job.id, sourceId: job.source, employmentPercent: percent,
         offerKey: offer.offer_key };
@@ -889,6 +902,52 @@
     return { ok: true, offer: nextOffers[idx] };
   }
 
+  // Game progression only; quiz merits are not a real professional qualification.
+  /** @param {any} offer */
+  function checkNokStarterEligibility(offer) {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    const job = nok?.config?.job;
+    if (nok?.active !== true || nok.version !== 1 || !job || offer.nok_job_id !== job.id)
+      return { ok: false, reason: "NOK_SALARY_NOT_MAPPED" };
+    const threshold = job.minimumOfferThreshold;
+    const merits = safeParse(localStorage.getItem("merits_by_category") || "{}", {});
+    const points = merits?.[job.careerId]?.points;
+    if (!Number.isFinite(threshold) || threshold <= 0 || typeof points !== "number"
+        || !Number.isFinite(points) || points < threshold)
+      return { ok: false, reason: "NOK_MERITS_REQUIRED" };
+    const gate = window.CivicationJobEligibilityRuntime?.getJobOfferEligibility;
+    if (typeof gate !== "function") return { ok: false, reason: "JOB_GATE_NOT_READY" };
+    const eligibility = gate(window.CivicationState.getState(), offer, { active: null });
+    return eligibility?.eligible === true ? { ok: true } : { ok: false, reason: "JOB_GATE_BLOCKED" };
+  }
+
+  function ensureNokStarterOffer() {
+    if (hasActiveEmployment()) return { ok: false, reason: "active_job" };
+    const job = window.CivicationState?.getWallet?.()?.nok_v1?.config?.job;
+    if (!job) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+    const offer = { career_id: job.careerId, career_name: "Næringsliv", title: job.roleTitle,
+      threshold: job.minimumOfferThreshold, nok_job_id: job.id,
+      nok_employment_percent: job.offerEmploymentPercent,
+      points_at_offer: safeParse(localStorage.getItem("merits_by_category") || "{}", {})?.[job.careerId]?.points };
+    const eligibility = checkNokStarterEligibility(offer);
+    if (!eligibility.ok) return eligibility;
+    return window.CivicationJobs.pushOffer(offer);
+  }
+
+  /** @param {any} offer */
+  function getNokOfferTerms(offer) {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active !== true) return null;
+    const job = nok.config?.job;
+    const percent = offer?.nok_employment_percent;
+    if (nok.version !== 1 || offer?.career_id !== job?.careerId || offer?.title !== job?.roleTitle
+        || typeof percent !== "number" || !Number.isFinite(percent) || percent <= 0 || percent > 100
+        || typeof window.CivicationNokBudget?.preview !== "function") return { supported: false };
+    const view = window.CivicationNokBudget.preview(nok.config, { employed: true, employmentPercent: percent });
+    return { supported: true, employmentPercent: percent, monthlyGross: view.monthlyGross,
+      monthlyTax: view.monthlyTax, monthlyNet: view.monthlyNet };
+  }
+
   function declineOffer(offer_key) {
     const offers = expireOffers();
     const idx = offers.findIndex(function (o) {
@@ -918,6 +977,8 @@
 
   window.CivicationJobs = {
     getOffers,
+    ensureNokStarterOffer,
+    getNokOfferTerms,
     setOffers,
     expireOffers,
     getLatestPendingOffer,
@@ -938,6 +999,9 @@
     advanceRecoveryArc
   };
 
+  ["updateProfile", "civi:booted", "civi:dataReady"].forEach(function (eventName) {
+    window.addEventListener?.(eventName, ensureNokStarterOffer);
+  });
   window.hgGetJobOffers = getOffers;
   window.hgSetJobOffers = setOffers;
 })();
