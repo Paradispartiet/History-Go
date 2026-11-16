@@ -14,7 +14,7 @@ test('Infrastruktur is an unactivated 8/10 candidate preserving all seven existi
     'klassisk_arkitektur','modernisme','funksjonalisme','brutalisme',
     'postmodernisme','samtidsarkitektur','byplanlegging'
   ]);
-  assert.equal(by.subBadgeImages.infrastruktur,c.status==='integrated'?c.sourceImage:undefined);
+  assert.equal(by.subBadgeImages.infrastruktur,c.status==='integrated'?'bilder/merker/by/undermerker/infrastruktur-brodert-v2.webp':undefined);
   assert.ok(['produced_awaiting_binary_transfer','binary_verified_awaiting_approval','integrated'].includes(c.status));
   assert.equal(c.quality.registered,c.status==='integrated');
   if(c.status==='integrated'){
