@@ -34,6 +34,10 @@ async function scenario(engine, width, height) {
     route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(approved) }));
   const page = await context.newPage();
   const errors = []; page.on('pageerror', error => errors.push(error.message));
+  const navigations = [];
+  page.on('framenavigated', frame => { if (frame === page.mainFrame()) navigations.push(frame.url()); });
+  page.on('crash', () => errors.push('NOK browser renderer crashed'));
+  const reloads = [];
   const wallet = () => page.evaluate(() => window.CivicationState.getWallet());
   async function capture(stage) {
     const filename = 'nok-' + name + '-' + stage + '.jpg';
@@ -86,7 +90,10 @@ async function scenario(engine, width, height) {
     await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1?.housing?.districtId === 'sagene');
     // A normal reload must keep the accepted offer, home and opening balance.
     await completeSourceLoading();
-    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    reloads.push({ before: page.url() });
+    const reloadResponse = await page.reload({ waitUntil: 'load', timeout: 90000 });
+    reloads[reloads.length - 1].after = page.url();
+    reloads[reloads.length - 1].status = reloadResponse?.status();
     await page.waitForFunction(() => !!window.HG_CiviShop?.consumeNokProduct && document.querySelector('#civiStoreSection > .civi-mini-card'), null, { timeout: 90000 });
     await completeSourceLoading();
     await openSection('kommers', 'civiStoreSection');
@@ -115,14 +122,20 @@ async function scenario(engine, width, height) {
     assert.ok(geometry.controls.length > 0 && geometry.controls.every(r => r.height >= 44 && r.left >= -1 && r.right <= width + 1), 'NOK controls fit and have 44px touch targets');
     const saved = JSON.stringify(await wallet());
     await completeSourceLoading();
-    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    reloads.push({ before: page.url() });
+    const finalResponse = await page.reload({ waitUntil: 'load', timeout: 90000 });
+    reloads[reloads.length - 1].after = page.url();
+    reloads[reloads.length - 1].status = finalResponse?.status();
     await page.waitForFunction(() => !!window.HG_CiviShop?.getNokProductStock);
     await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), saved, 'reload neither buys, consumes nor pays again');
     assert.deepEqual(errors, [], 'no uncaught page errors');
     return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750 };
   } catch (error) {
+    console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors }));
     console.error('CIVI_NOK_FAILURE_STATE:' + JSON.stringify(await page.evaluate(() => ({
+      url: location.href, origin: location.origin, readyState: document.readyState, title: document.title,
+      body: document.body?.textContent?.slice(0, 500),
       wallet: window.CivicationState?.getWallet?.(), active: window.CivicationState?.getActivePosition?.(),
       offers: window.CivicationJobs?.getOffers?.(), merits: localStorage.getItem('merits_by_category'),
       brandsReady: window.HGBrands?.ready, brandCount: window.HGBrands?.all?.length,

@@ -316,7 +316,7 @@ function buildOfferPackDepthHtml(offer) {
   if (!vm) return "";
   return "<div class=\"civi-offer-pack-depth\" data-pack-depth=\"" + escapeOfferHtml(vm.level) + "\">"
     + "<span class=\"civi-offer-eligibility-label\">" + escapeOfferHtml(vm.label) + "</span>"
-    + "<span class=\"civi-offer-eligibility-muted\">" + escapeOfferHtml(vm.description) + "</span>"
+    + " <span class=\"civi-offer-eligibility-muted\">" + escapeOfferHtml(vm.description) + "</span>"
     + "</div>";
 }
 
@@ -599,8 +599,8 @@ function getNokSalaryText() {
     return "Lønnsvilkår mangler for den aktive rollen";
   const terms = window.CivicationJobs?.getNokOfferTerms?.({ ...active, nok_employment_percent: contract.employmentPercent });
   if (!terms?.supported) return "Lønnsvilkår mangler for den aktive rollen";
-  const money = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { maximumFractionDigits: 2 });
-  return `Lønn: ${money(terms.monthlyGross)} kr brutto per måned · Estimert skatt: ${money(terms.monthlyTax)} kr · Estimert netto: ${money(terms.monthlyNet)} kr · ${money(terms.employmentPercent)} % stilling`;
+  const money = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return `Lønn: ${money(terms.monthlyGross)} kr brutto per måned · Estimert skatt: ${money(terms.monthlyTax)} kr · Estimert netto: ${money(terms.monthlyNet)} kr · ${Number(terms.employmentPercent).toLocaleString("nb-NO", { maximumFractionDigits: 2 })} % stilling`;
 }
 
 function renderCivicationSummary() {
@@ -729,9 +729,9 @@ async function renderCivication() {
   );
 
   const nokTerms = window.CivicationJobs?.getNokOfferTerms?.(offer);
-  const formatNok = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { maximumFractionDigits: 2 });
+  const formatNok = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const nokTermsHtml = nokTerms ? (nokTerms.supported
-    ? `<div data-civi-nok-offer-terms><strong>Lønnsvilkår: ${formatNok(nokTerms.employmentPercent)} % stilling</strong>
+    ? `<div data-civi-nok-offer-terms><strong>Lønnsvilkår: ${Number(nokTerms.employmentPercent).toLocaleString("nb-NO", { maximumFractionDigits: 2 })} % stilling</strong>
         <div>Brutto: ${formatNok(nokTerms.monthlyGross)} kr per måned</div>
         <div>Estimert skatt: ${formatNok(nokTerms.monthlyTax)} kr per måned</div>
         <div>Estimert netto: ${formatNok(nokTerms.monthlyNet)} kr per måned</div>
