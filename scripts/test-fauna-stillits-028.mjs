@@ -26,7 +26,7 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0,"True-alpha WebP required");
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
-const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,28);
+const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=28,"Stillits remains approved after later species");
 assert.equal(reg.get(id)?.src,item.src);assert.equal(reg.get(id)?.scientificName,latin);assert.equal(reg.get(id)?.gitBlobSha,item.gitBlobSha);
 const previous={
  "emne_fauna_pilfink": "6337492c57f28ef5d640336fc72db29f0dbe0bc9",
@@ -59,8 +59,8 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,27);
 for(const [olderId,olderSha] of Object.entries(previous))assert.equal(reg.get(olderId)?.gitBlobSha,olderSha,olderId+" original unchanged");
-assert.equal(reg.get("emne_fauna_kaie"),null,"Unapproved Kaie remains on SVG fallback");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261116-28"));
+assert.equal(reg.get("emne_fauna_staer"),null,"Unapproved Stær remains on SVG fallback");
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Versioned approved register required");
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-stillits-028.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Stillits")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Bokfink")'));

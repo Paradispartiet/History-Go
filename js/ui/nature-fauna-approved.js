@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_kaie:Object.freeze({
+   scientificName:"Coloeus monedula",
+   src:"bilder/natur/fauna/godkjent/29_kaie_v1.webp",
+   gitBlobSha:"20e8714069a9bbd29100b1aaa73e4f497ab0bdcd",
+   reviewedAt:"2026-11-16",
+   stage:"adult_black_cap_silvery_grey_nape_pale_ice_blue_eye_short_black_bill_dark_iridescent_wings_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-kaie-20261116.json"
+  }),
   emne_fauna_stillits:Object.freeze({
    scientificName:"Carduelis carduelis",
    src:"bilder/natur/fauna/godkjent/28_stillits_v1.webp",
