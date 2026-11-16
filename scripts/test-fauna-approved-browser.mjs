@@ -934,17 +934,54 @@ try {
    }
    await context.close();
   }
+  // Nøtteskrike #26: final approved WebP, black presentation, mobile/desktop and safe fallback.
+  for(const brokenJay of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenJay)await context.route("**/bilder/natur/fauna/godkjent/26_notteskrike_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Nøtteskrike");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Nøtteskrike,/i}).first();
+   await card.waitFor();
+   if(brokenJay){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Nøtteskrike must not substitute a photograph");
+   }else{
+    const img=card.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("26_notteskrike_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"notteskrike-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenJay){
+    await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   }else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Nøtteskrike detail fits viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"notteskrike-detail-"+width+".png")});
+   }
+   await context.close();
+  }
   // Unapproved fauna must retain a separate legacy SVG fallback.
   const context=await browser.newContext({viewport:{width,height:900}});
   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
-  await page.locator("#natureSearch").fill("Nøtteskrike");
-  const unapproved=page.locator("#natureGrid").getByRole("button",{name:/^Nøtteskrike,/i}).first();
+  await page.locator("#natureSearch").fill("Bokfink");
+  const unapproved=page.locator("#natureGrid").getByRole("button",{name:/^Bokfink,/i}).first();
   await unapproved.waitFor();
-  assert((await unapproved.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Unapproved Nøtteskrike retains original SVG");
+  assert((await unapproved.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Unapproved Bokfink retains original SVG");
   await context.close();
-  console.log("Finn Fauna 25 approved birds "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
+  console.log("Finn Fauna 26 approved birds "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
