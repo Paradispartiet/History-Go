@@ -14,8 +14,8 @@ const hashes={
 };
 const previous={
  klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp',
- modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v1.webp',
- funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp',
+ modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v2.webp',
+ funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp',
  brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v1.webp',
  postmodernisme:'bilder/merker/by/undermerker/postmodernisme-brodert-v1.webp',
  samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v1.webp'
@@ -26,7 +26,7 @@ test('Byplanlegging 7/10 is registered without replacing six protected By origin
  const later=[
   ['infrastruktur','bilder/merker/by/undermerker/infrastruktur-brodert-v1.webp'],
   ['monumenter_og_landemerker','bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v1.webp'],
-  ['bolig_og_bomiljo','bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v1.webp']
+  ['bolig_og_bomiljo','bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp']
  ];
  assert.deepEqual(by.sub.slice(7),later.map(([id])=>id));
  const present=later.filter(([id])=>Object.hasOwn(by.subBadgeImages,id));

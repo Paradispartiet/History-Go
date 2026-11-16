@@ -29,8 +29,8 @@ test('Brutalisme 4/10 exact original and EN ES PT FR variants are registered wit
   assert.deepEqual(Object.keys(by.subBadgeImages),by.sub.slice(0,activeCount));
   assert.equal(by.subBadgeImages.brutalisme,rec.sourceImage);
   assert.equal(by.subBadgeImages.klassisk_arkitektur,'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v2.webp');
-  assert.equal(by.subBadgeImages.modernisme,'bilder/merker/by/undermerker/modernisme-brodert-v1.webp');
-  assert.equal(by.subBadgeImages.funksjonalisme,'bilder/merker/by/undermerker/funksjonalisme-brodert-v1.webp');
+  assert.equal(by.subBadgeImages.modernisme,'bilder/merker/by/undermerker/modernisme-brodert-v2.webp');
+  assert.equal(by.subBadgeImages.funksjonalisme,'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp');
   for(const id of by.sub.slice(activeCount)) assert.equal(by.subBadgeImages[id],undefined);
   assert.equal(Object.keys(scene.subBadgeImages).length,7);
   assert.equal(Object.keys(film.subBadgeImages).length,12);
