@@ -108,17 +108,31 @@
         7,
         7
       ],
-      "knowledgeEditorialReviewRequired": 21,
+      "knowledgeEditorialReviewRequired": 2,
       "questionSourceInternalHistoryGo": 0,
-      "questionsWithExternalSource": 19,
+      "questionsWithExternalSource": 26,
       "genericQuestionCandidates": 6,
       "issues": [
-        "Full bildepakke exists (image/frontImage/cardImage), canonical description is source-claim-v4.2 ready; this place is a better first V1 completion target within the same 20-place batch.",
-        "21 quiz questions have knowledge_link_status editorial_review_required and cannot be counted as Knowledge-reviewed.",
-        "Six candidates are generic definition/learning prompts, while the place offers concrete industrial-historic landscape, hidden chimney and nine mapped species.",
-        "Only 19 of 42 active questions have at least one direct external URL. Remaining questions require source ownership or verifiable concept provenance."
+        "Three source-backed Place photo roles image/frontImage/cardImage were already present and unchanged; source-claim-v4.2 place description is ready.",
+        "19 of the formerly 21 unresolved Knowledge associations now have explicit source-review emne ownership; canonical generator rebuilt registry and review queue.",
+        "Only two historical minutiae are held: Myragården completed 1914 and architects Morgenstierne/Eide; do not force them into unrelated Natur emner.",
+        "26 of 42 active questions have direct external URL; remaining sourced internal naturkart or workflow need additional independent editorial review for full V1.",
+        "10 QuizCard questions are directly linked to linked fullquiz questions and answer key, with one year question. Browser flip and touch must be verified.",
+        "Six original generic definition-type questions in the fullquiz still need a later content quality pass; do not claim V1 just from Knowledge IDs."
       ],
-      "retentionRule": "Keep all six active seven-question sets and current progression IDs; review Knowledge and source ownership question by question, then verify QuizCard and browser. The nine mapped species are from active nature maps, not a promise of sightings."
+      "retentionRule": "Preserve all six active 7-question sets and IDs; preserve original Knowledge unit IDs. Two historical extra questions remain editorial_review_required until reworked. QuizCard now curates linked questions only. Confirm actual mobile/iPad flip and full quiz in browser before V1.",
+      "knowledgeLinked": 40,
+      "explicitKnowledgeLinksReviewed20261116": 19,
+      "quizCard": {
+        "path": "data/quizcards/natur/topp10_natur_akerselva_v1_batch02.json",
+        "cardId": "natur_v1_myralokka",
+        "questions": 10,
+        "allLinked": true,
+        "directUrlPerQuestion": true,
+        "yearCount": 1,
+        "sourceQuizIdParity": "test_required_on_exact_head"
+      },
+      "reviewDocument": "reports/place-production/oslo-akerselva-myralokka-knowledge-review-20261116.json"
     }
   ],
   "candidatesDocument": "reports/place-production/oslo-akerselva-v1-quiz-candidates-20261116.json",
@@ -132,7 +146,7 @@
     "QuizCard 10-question parity",
     "Real playable fullquiz in mobile/iPad/desktop",
     "CI and PR integration",
-    "Myraløkka: 21 Knowledge reviews and 23 non-direct-source quiz prompts before V1"
+    "Myraløkka: 2 out-of-domain Knowledge questions, 16 non-direct-URL questions, 6 generic fullquiz questions, browser flip and quiz QA before V1"
   ],
   "note": "This audit does NOT approve candidates or change any active quiz files. Existing sets and progression preserved."
 }
