@@ -1781,6 +1781,31 @@
     return inbox.some(item => norm(item?.event?.id || item?.id) === id);
   }
 
+  // The inbox is the delivery boundary. A daily extra can have its thread
+  // rewritten by an upstream source adapter after the original queue build.
+  // Re-scope from the current authoritative game day *when it is delivered*,
+  // before MailEngine's active-thread dedupe can reject the playable action.
+  // Real case threads retain their shared identity across the whole story.
+  function scopeDailyExtraForDelivery(event, runtime) {
+    if (!event || norm(event.source_type) !== "daily_extra") return event;
+    const original = norm(event.thread_key) || threadKeyForMail(event);
+    if (!original || isCaseThreadKey(original)) return event;
+
+    const runtimeDay = Number(runtime?.calendar_day);
+    const storyDay = Number(window.CivicationLifestoryState?.load?.()?.kalenderDag);
+    const gameDay = calendarDay()
+      ?? (Number.isInteger(runtimeDay) && runtimeDay > 0 ? runtimeDay : null)
+      ?? (Number.isInteger(storyDay) && storyDay > 0 ? storyDay : null);
+    const runKey = norm(runtime?.runtime_instance_key).replace(/^_+/, "");
+    const fallbackId = norm(event.id).replace(/[^a-z0-9_-]/gi, "_");
+    const suffix = gameDay != null
+      ? `day.${gameDay}`
+      : (runKey ? `runtime.${runKey}` : `event.${fallbackId}`);
+    const canonical = original.replace(/\.(?:day\.\d+|runtime\.run_[a-z0-9_]+|event\.[a-z0-9_-]+)$/i, "");
+    const scoped = `${canonical}.${suffix}`;
+    return scoped === original ? event : { ...event, thread_key: scoped };
+  }
+
   function deliverRuntimeItemToInbox(runtimeRow, engine) {
     const row = runtimeRow && typeof runtimeRow === "object" ? runtimeRow : null;
     const event = row?.event && typeof row.event === "object" ? row.event : null;
@@ -1893,9 +1918,9 @@
     const now = new Date().toISOString();
     const nextItems = runtime.items.map((row, index) => {
       if (!queuedIndexes.some(q => q.index === index)) return row;
-      let event = row?.event || null;
+      const event = scopeDailyExtraForDelivery(row?.event || null, runtime);
       if (event) delivered.push(event);
-      return { ...row, status: "delivered", delivered_at: now };
+      return { ...row, event, status: "delivered", delivered_at: now };
     });
     const deliveredIds = delivered.map(event => norm(event?.id)).filter(Boolean);
     const nextRuntime = {
@@ -1973,6 +1998,9 @@
       }
     }
 
+    // Repair a stale/default daily-extra thread at the actual delivery
+    // boundary, not only when the queue was originally built.
+    event = scopeDailyExtraForDelivery(event, runtimeWithBlock);
     // Leveringsraden må bære det (eventuelt regenererte) eventet, slik at inbox, runtime og
     // markAnswered refererer til samme event.id.
     const deliveredRow = event === item?.event ? item : { ...item, event };
