@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// Regression: canonical Place.image and Place.frontImage never lose their
-// overview to object-fit:cover, at phone/tablet/desktop widths.
+// Regression: canonical Place.image and Place.frontImage fill their frames
+// without letterbox gutters. Documentary, QuizCard and badge media retain
+// their separate no-crop framing policy, at phone/tablet/desktop widths.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -10,8 +11,8 @@ import { chromium } from 'playwright';
 const root = process.cwd();
 const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const worker = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
-assert.match(index, /css\/place-image-framing\.css\?v=20261112-overview2/);
-assert.match(worker, /const SW_VERSION = "hg-sw-2026-11-\d{2}-place-image-fit2/);
+assert.match(index, /css\/place-image-framing\.css\?v=20261116-full-bleed1/);
+assert.match(worker, /const SW_VERSION = "hg-sw-2026-11-\d{2}-place-image-fit2[^\"]*pc-photo-full-bleed1"/);
 assert.match(worker, /css\/place-image-framing\.css/);
 
 const image = (w, h, color) =>
@@ -88,7 +89,7 @@ try{
    const page=await browser.newPage({viewport:{width,height:1000}});
    await page.goto(url,{waitUntil:'load',timeout:30000});
    for(const [selector,expected] of [
-     ['#pcHeaderImage','contain'],['#pcFrontImage','contain'],
+     ['#pcHeaderImage','cover'],['#pcFrontImage','cover'],
      ['#legacyHero','contain'],['#beforePhoto','contain'],
      ['#quizArtwork','contain']
    ]){
@@ -108,18 +109,18 @@ try{
      const overview=await page.locator('#pcHeaderHero').evaluate(hero=>{
        const img=hero.querySelector('#pcHeaderImage');
        const r=img.getBoundingClientRect();
-       const fitScale=Math.min(r.width/img.naturalWidth,r.height/img.naturalHeight);
+       const coverScale=Math.max(r.width/img.naturalWidth,r.height/img.naturalHeight);
        return {height:hero.getBoundingClientRect().height,
-         sharpWidth:img.naturalWidth*fitScale,boxWidth:r.width};
+         coveredWidth:img.naturalWidth*coverScale,boxWidth:r.width};
      });
      assert.ok(overview.height>=width*.36,
        'desktop overview hero should be proportional, not a 205px strip at '+width);
-     assert.ok(overview.sharpWidth/overview.boxWidth>=.78,
-       'sharp overview occupies most of its landscape frame at '+width);
+     assert.ok(overview.coveredWidth>=overview.boxWidth-1,
+       'landscape hero must cover the entire width without letterbox gutters at '+width);
    }
    const badgeFit=await page.locator('#roundBadge').evaluate(img=>getComputedStyle(img).objectFit);
    assert.notEqual(badgeFit,'contain','round badges remain independently governed');
-   console.log(width+'px: full Place.image, frontImage, popup, comparison and QuizCard fit PASS');
+   console.log(width+'px: edge-to-edge hero/front, uncropped documentary/QuizCard and badge fit PASS');
    await page.close();
  }
 } finally {
