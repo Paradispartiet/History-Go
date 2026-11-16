@@ -465,6 +465,8 @@
   }
 
   function applyRentTick(force = false) {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true && nok.version === 1) return { ok: true, skipped: true, reason: "NOK_WALLET_BILLING" };
     const state = ensure(load());
     const district = getDistrict(state.currentDistrictId);
     if (!district) return { ok: false, reason: "no_district" };
@@ -605,6 +607,8 @@
   }
 
   function applyHousingPeriodCosts(force = false) {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true && nok.version === 1) return { ok: true, skipped: true, reason: "NOK_WALLET_BILLING" };
     const state = ensure(load());
     const district = getDistrict(state?.home?.district);
     if (!district) return { ok: false, reason: "no_district" };

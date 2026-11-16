@@ -685,6 +685,7 @@
    *   sector?: unknown,
    *   place_id?: unknown,
    *   employer_context?: unknown
+   *   nok_employment_percent?: unknown
    * }} offerInput
    */
   function pushOffer({
@@ -699,7 +700,8 @@
     brand_group,
     sector,
     place_id,
-    employer_context
+    employer_context,
+    nok_employment_percent
   }) {
     if (!canReceiveNewOffers()) {
       return { ok: false, reason: "active_job" };
@@ -739,6 +741,7 @@
       sector: String(sector || "").trim() || null,
       place_id: String(place_id || "").trim() || null,
       employer_context: employer_context && typeof employer_context === "object" ? employer_context : null,
+      nok_employment_percent: nok_employment_percent,
       status: "pending",
       created_iso: now.toISOString(),
       expires_iso: expires.toISOString()
@@ -768,6 +771,20 @@
     const offer = offers[idx];
     if (offer.status !== "pending") {
       return { ok: false, reason: "not_pending" };
+    }
+
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    let nokContract = null;
+    if (nok?.active === true) {
+      const job = nok.config?.job;
+      const percent = offer.nok_employment_percent;
+      if (nok.version !== 1 || !job?.careerId || !job?.roleTitle || !job?.id || !job?.source
+          || offer.career_id !== job.careerId || offer.title !== job.roleTitle
+          || typeof percent !== "number" || !Number.isFinite(percent) || percent <= 0 || percent > 100) {
+        return { ok: false, reason: "NOK_SALARY_NOT_MAPPED" };
+      }
+      nokContract = { jobId: job.id, sourceId: job.source, employmentPercent: percent,
+        offerKey: offer.offer_key };
     }
 
     const nowIso = new Date().toISOString();
@@ -804,6 +821,7 @@
       title: offer.title,
       threshold: offer.threshold ?? null,
       achieved_at: nowIso,
+      ...(nokContract ? { nok_salary_contract: nokContract } : {}),
       role_key: role_key,
       brand_id: String(offer.brand_id || "").trim() || null,
       brand_name: String(offer.brand_name || "").trim() || null,
