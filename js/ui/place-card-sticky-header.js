@@ -35,6 +35,7 @@
       card.style.removeProperty("--pc-original-hero-height");
       card.style.removeProperty("--pc-visible-hero-height");
       card.style.removeProperty("--pc-hero-collapse-offset");
+      card.style.removeProperty("--pc-reader-runway");
       shellHero = null;
       naturalHeight = 0;
       minimumHeight = 0;
@@ -128,6 +129,24 @@
       ));
       card.style.setProperty("--pc-original-hero-height", height + "px");
       card.classList.add("is-original-photo-pinned");
+      // On a short Place Sheet the initial hero + 3:4 QuizCard may be taller
+      // than the scroll pane. Provide only the missing scroll range needed to
+      // reveal the *entire* card below the compact sticky heading. Preserve
+      // the original content height to prevent scrollTop feedback and jumps.
+      const flip = card.querySelector("#pcFrontCardFlip");
+      if (window.innerWidth >= 721 && flip instanceof HTMLElement && flip.getBoundingClientRect().height > 0) {
+        const previousRunway = parseFloat(card.style.getPropertyValue("--pc-reader-runway")) || 0;
+        const topInScrollContent = flip.getBoundingClientRect().top -
+          scroller.getBoundingClientRect().top + scroller.scrollTop;
+        const targetScroll = Math.max(0, Math.ceil(topInScrollContent - minimumHeight - 14));
+        const ordinaryMaxScroll = Math.max(0, scroller.scrollHeight - scroller.clientHeight - previousRunway);
+        const requiredRunway = Math.max(0, targetScroll - ordinaryMaxScroll);
+        if (Math.abs(requiredRunway - previousRunway) > 1) {
+          card.style.setProperty("--pc-reader-runway", requiredRunway + "px");
+        }
+      } else {
+        card.style.removeProperty("--pc-reader-runway");
+      }
       updateTitleContrast();
       scheduleScroll();
     }
