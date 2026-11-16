@@ -2,7 +2,7 @@
   "schema": "history_go_v1_existing_quiz_audit",
   "date": "2026-11-16",
   "status": "DRAFT_AUDIT_NOT_PUBLISHED",
-  "scope": "Four first V1 Places in the Akerselva-Sagene-Grünerløkka batch",
+  "scope": "First five V1 production places in 20-place Akerselva–Sagene–Grünerløkka batch",
   "method": "Read canonical data/quiz/manifest.json and inspect each manifest-loaded quiz sets file on main. Counts are direct data checks, not CI/Knowledge runtime results.",
   "places": [
     {
@@ -93,6 +93,32 @@
         "Preexisting omnibus/legacy quiz and QuizCard still require repository-level audit before treating this as genuinely missing."
       ],
       "retentionRule": "First audit any legacy or omnibus questions; build a correctly profiled fullquiz and matching ten QuizCard items from sourced candidates."
+    },
+    {
+      "id": "myralokka",
+      "canonicalName": "Myraløkka – industriformet parkdal på Sagene",
+      "existingQuiz": "data/quiz/natur/myralokka_sets.json",
+      "sets": 6,
+      "questionCount": 42,
+      "perSet": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "knowledgeEditorialReviewRequired": 21,
+      "questionSourceInternalHistoryGo": 0,
+      "questionsWithExternalSource": 19,
+      "genericQuestionCandidates": 6,
+      "issues": [
+        "Full bildepakke exists (image/frontImage/cardImage), canonical description is source-claim-v4.2 ready; this place is a better first V1 completion target within the same 20-place batch.",
+        "21 quiz questions have knowledge_link_status editorial_review_required and cannot be counted as Knowledge-reviewed.",
+        "Six candidates are generic definition/learning prompts, while the place offers concrete industrial-historic landscape, hidden chimney and nine mapped species.",
+        "Only 19 of 42 active questions have at least one direct external URL. Remaining questions require source ownership or verifiable concept provenance."
+      ],
+      "retentionRule": "Keep all six active seven-question sets and current progression IDs; review Knowledge and source ownership question by question, then verify QuizCard and browser. The nine mapped species are from active nature maps, not a promise of sightings."
     }
   ],
   "candidatesDocument": "reports/place-production/oslo-akerselva-v1-quiz-candidates-20261116.json",
@@ -105,7 +131,8 @@
     "Knowledge concept and unit links",
     "QuizCard 10-question parity",
     "Real playable fullquiz in mobile/iPad/desktop",
-    "CI and PR integration"
+    "CI and PR integration",
+    "Myraløkka: 21 Knowledge reviews and 23 non-direct-source quiz prompts before V1"
   ],
   "note": "This audit does NOT approve candidates or change any active quiz files. Existing sets and progression preserved."
 }
