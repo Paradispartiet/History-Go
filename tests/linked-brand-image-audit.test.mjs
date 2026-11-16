@@ -37,6 +37,21 @@ test('reports missing brands rather than inventing artwork', () => {
   });
 });
 
+test('allows source-backed legacy GIF logos without changing the original asset', () => {
+  withFixture([
+    {id: 'legacy-gif', name: 'Legacy wordmark', place_ids: ['p'],
+      logo: 'bilder/kort/brands/authentic.gif',
+      imageMeta: {sourcePage: source, rightsBasis: 'public_domain_textlogo', reviewStatus: 'manually_approved'}}
+  ], root => {
+    const dst = path.join(root, 'bilder/kort/brands/authentic.gif');
+    fs.mkdirSync(path.dirname(dst), {recursive: true});
+    fs.writeFileSync(dst, Buffer.from('GIF89a', 'ascii'));
+    const result = auditLinkedBrandAssets(root);
+    assert.equal(result.invalidDeclaredAssets, 0);
+    assert.equal(result.withAnyImage, 1);
+  });
+});
+
 test('hard-fails unsafe, missing, or generated brandmark assets', () => {
   withFixture([
     {id:'unsafe', name:'Unsafe', place_ids:['x'], logo:'bilder/../../secret.svg'},
