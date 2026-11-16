@@ -5,7 +5,11 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   position: sticky;
   top: 0;
   z-index: 9;
-  height: var(--pc-visible-hero-height);
+  /* Keep the layout slot at its original height. A dynamically shrinking
+     sticky box changes scrollHeight while the user scrolls, making the card
+     underneath jump behind the hero. Only clip its visible lower edge. */
+  height: var(--pc-original-hero-height);
+  clip-path: inset(0 0 var(--pc-hero-collapse-offset, 0px) 0);
   box-sizing: border-box;
   overflow: hidden;
   background: #101721;
