@@ -776,13 +776,19 @@
     const privateScope = isPrivatePhase(phaseId);
     const sourceThread = norm(sourceMail?.thread_key);
     const canonicalThread = sourceThread || threadKeyForMail(sourceMail);
-    const gameDay = calendarDay();
-    // Ordinary daily mails may recur on a new *game* day during the same
-    // calendar date. Scope every non-case daily extra to that game day,
-    // including sources whose default thread key was already stamped upstream.
-    // True case threads (.case.) continue to deduplicate across days.
-    const dailyThread = gameDay != null && !isCaseThreadKey(canonicalThread)
-      ? `${canonicalThread}.day.${gameDay}`
+    const clockDay = calendarDay();
+    const storyDayRaw = window.CivicationLifestoryState?.load?.()?.kalenderDag;
+    const storyDay = Number(storyDayRaw);
+    const gameDay = clockDay ?? (Number.isInteger(storyDay) && storyDay > 0 ? storyDay : null);
+    // During a real day rollover, the daily queue may be created before the
+    // clock is available. Prefer the saved Life Story calendar day; otherwise
+    // the fresh daily runtime key still distinguishes this playable mail from
+    // an earlier instance or a parallel planned mail with the same source.
+    // Case threads must keep their existing shared canonical identity.
+    const fallbackRun = norm(runtimeInstanceKey).replace(/^_+/, "");
+    const dailyScope = gameDay != null ? `day.${gameDay}` : (fallbackRun ? `runtime.${fallbackRun}` : "");
+    const dailyThread = !isCaseThreadKey(canonicalThread) && dailyScope
+      ? `${canonicalThread}.${dailyScope}`
       : canonicalThread;
 
     return {
