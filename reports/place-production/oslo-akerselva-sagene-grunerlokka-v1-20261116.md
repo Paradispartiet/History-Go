@@ -64,7 +64,7 @@ Disse tiltakene dokumenterer faktisk utført arbeid, ikke ferdigstatus. Ordinær
 **Nye verifiserte v1:** 0.
 **Nye verifiserte vFerdig:** 0.
 **Gjenstår:** 16 stedsspesifikke Fagverk, bilder på 18 steder samt ett manglende stående Deichman-bilde, fullt kildebasert 4.2-godkjente stedsbeskrivelser, runtime-fullquiz/QuizCard/Knowledge og kvalitetssikring for hele bolken. **40 kandidatspørsmål er skrevet, men ennå ikke integrert.**
-**Bilde-/rettighetskø:** minst 18 steder uten `image` + én manglende `frontImage` i main, og eventuelle manglende `cardImage` etter audit.
+**Bilde-/rettighetskø:** opprinnelig minst 18 steder uten `image` + én manglende `frontImage` i main. På PR-grenen er 2 av de 18 nå gitt eksterne, lisensierte originalbildebindinger; 16 i bolken mangler fortsatt `image`. Separate stående `frontImage` / `cardImage` og faktisk bildevisning gjenstår.
 **Merge:** ikke klar; ingen påstand om at CI eller browser-QA er bestått.
 
 Avhengigheter og risiko: `frysjadammen` er Oset slusebru, ikke Brekkedammen. `stilla_nydalen` er elvepunktet nedenfor Nydalsdammen, ikke de historiske Stilla-kulpene. `seilduksfabrikken_nydalen` er Øvre spinneri, ikke Christiania Seildugsfabrik. `frysja_33_brekke_kraftstasjon` er enkeltbygningen, ikke hele Frysja industriområde.
@@ -84,7 +84,7 @@ Avhengigheter og risiko: `frysjadammen` er Oset slusebru, ikke Brekkedammen. `st
 - **Oset slusebru:** Oslo byleksikon har et stedsriktig bilde, men fotokreditering alene gir ikke gjenbruksrett. **Ikke bruk før lisens eller egen kilde er klarert.**
 - **Elvepartiet nedenfor Nydalsdammen:** ingen godkjent stedsspesifikk bildefil identifisert i denne kontrollen. Unngå foto fra de historiske Stilla-kulpene lenger nord.
 
-**Bildestatus for delbolken er fortsatt 0 publiserte nye bilder.** Etter motiv- og kildevalg må tre faktiske utsnitt lages og testes.
+**Historisk status for første nullmåling:** 0 nye bildebindinger på den tidlige grenen. **Oppdatert status nedenfor:** 2 nye originale Commons-`image`-bindinger i nåværende PR-head; verken tredelt bildepakke eller browserpublisering er utført.
 
 
 ## CI-nullmåling ved siste kontroll (før de nyeste korrigeringene)
@@ -93,3 +93,10 @@ Fra commit `86a98d043a5e47c6a325925461b1334f3666a33e` ble 11 GitHub Actions-jobb
 
 Etter at **de aktive historietekstene ble tilbakestilt til main**, skal feil (3) og (4) kontrolleres på nytt på siste PR-head; de er **ikke dokumentert grønne** før ferske jobber er fullført. Bilde-, Place-open- og Fagverk-release-feilene er fortsatt åpne. Ingen påstander om grønn CI eller mergeklarhet.
 
+## Bildestatus 16. november – to dokumenterte bildebindingsoppdateringer (ingen full V1)
+
+**Frysja 33 – Brekke kraftstasjon:** Place-feltet `image` er nå koblet til det umodifiserte, stedskontrollerte Commons-originalbildet https://commons.wikimedia.org/wiki/File:Brekke_kraftstasjon_p%C3%A5_Frysja.jpg (2018, Helge Høifødt, **CC BY-SA 4.0**). `imageMeta` dokumenterer originalmål 6000 × 4000, kilde, fotograf, lisens, opptakstidspunkt og at ingen bearbeiding er utført. Visuell nettleser-QA og egne faktiske `frontImage` / `cardImage` mangler fortsatt.
+
+**Øvre spinneri – Nydalens Compagnie:** Place-feltet `image` er nå koblet til Commons-filen https://commons.wikimedia.org/wiki/File:Nydalens_Compagnie,_%C3%98vre_Spinderi_og_V%C3%A6veriet_OB.F04310i.jpg (Per Adolf Thorén, Oslo Museum **OB.F04310i**, fotografert *antagelig 1878*, **CC BY-SA 3.0**). Oslo Museums katalog bekrefter motivet Øvre spinneri og veveriet sett fra vannrennen. Bildet er tydelig markert **historisk foto**, ikke dagens fabrikkutsikt. Selve originalfilen er brukt uten bearbeiding; stående bilde og kortvariant mangler.
+
+**Felles presisering:** Det er **2 nye `image`-bindinger på denne PR-grenen**, ikke to ferdig produserte tredelte bildepakker og ikke to verifiserte V1-steder. **Oset slusebru** og **elvepunktet nedenfor Nydalsdammen** har fortsatt ikke publiserbar bildebinding. Oset-bildet i Oslo byleksikon er ikke gjenbruksklarert. Et nærliggende, men feilplassert, elvebilde skal ikke brukes til å oppnå kvote. Commons-foto må testes i faktisk PlaceCard/popup før noe kalles publisert.
