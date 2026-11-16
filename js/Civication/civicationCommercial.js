@@ -17,6 +17,7 @@
 
   const LS_INV = "hg_pc_inventory_v1";
   const LS_WALLET = "hg_pc_wallet_v1";
+  const LS_CANONICAL_WALLET = "hg_civi_wallet_v1";
 
   /**
    * @param {string} k
@@ -63,6 +64,7 @@
     }
 
     return {
+      ...wallet,
       balance: normalizeBalance(wallet.balance ?? wallet.pc ?? 0),
       last_tick_iso: wallet.last_tick_iso || null
     };
@@ -86,9 +88,11 @@
 
     if (state && typeof state.getWallet === "function") {
       const stateWallet = normalizeWallet(state.getWallet());
-      const legacyWallet = getLegacyWallet();
-
-      if (stateWallet.balance === 0 && legacyWallet.balance > 0) {
+      // Zero is a real balance, not evidence of an unmigrated wallet.
+      // Import old savings only before the canonical owner has persisted state.
+      if (localStorage.getItem(LS_CANONICAL_WALLET) === null) {
+        const legacyWallet = getLegacyWallet();
+        if (legacyWallet.balance <= 0) return stateWallet;
         stateWallet.balance = legacyWallet.balance;
         if (typeof state.updateWallet === "function") {
           state.updateWallet(stateWallet);
@@ -106,8 +110,15 @@
    * @returns {void}
    */
   function setWallet(wallet) {
-    const next = normalizeWallet(wallet);
     const state = window.CivicationState;
+    const current = state && typeof state.getWallet === "function"
+      ? state.getWallet() : getLegacyWallet();
+    // Compatibility callers may pass a number or just { balance }. Neither
+    // may erase payroll days, settlement anchors or livelihood idempotency.
+    const patch = wallet && typeof wallet === "object"
+      ? { ...wallet, balance: wallet.balance ?? wallet.pc ?? current?.balance }
+      : { balance: wallet };
+    const next = normalizeWallet({ ...normalizeWallet(current), ...patch });
 
     if (state && typeof state.updateWallet === "function") {
       state.updateWallet(next);
