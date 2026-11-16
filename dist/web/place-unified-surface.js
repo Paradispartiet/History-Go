@@ -420,7 +420,8 @@
     return list(value).map(text6).filter(Boolean);
   }
   function mainArticle(articles, place) {
-    const rows2 = list(articles);
+    const newsTypes = /* @__PURE__ */ new Set(["historical_news", "gamle_nyheter", "gamle nyheter", "avisnotis", "newspaper", "old_news", "news_note", "nyere_notis", "nyere notis"]);
+    const rows2 = list(articles).filter((article) => ![article == null ? void 0 : article.type, article == null ? void 0 : article.kind, article == null ? void 0 : article.category].some((value) => newsTypes.has(text6(value).toLowerCase())));
     const placeName = text6(place == null ? void 0 : place.name).toLowerCase();
     return rows2.find((article) => text6((article == null ? void 0 : article.title) || (article == null ? void 0 : article.name)).toLowerCase() === placeName) || rows2.find((article) => /hoved|main|primary/.test([article == null ? void 0 : article.id, article == null ? void 0 : article.type, article == null ? void 0 : article.kind].map((value) => text6(value).toLowerCase()).join(" "))) || rows2[0] || null;
   }
@@ -927,12 +928,19 @@
     const id = text9((_a = event.detail) == null ? void 0 : _a.placeId);
     if (id) adoptCanonicalLanguage(id);
   }
+  function adoptActivePlaceLanguage() {
+    var _a;
+    const id = text9((_a = placeSheetShell()) == null ? void 0 : _a.dataset.placeId);
+    if (id) adoptCanonicalLanguage(id);
+  }
   ensureStylesheet2();
   runtime9.addEventListener("hg:place-unified-ready", onUnifiedReady3);
+  runtime9.addEventListener("hg:language-layer-ready", adoptActivePlaceLanguage);
   runtime9.HGPlaceSheetSections = {
     ...runtime9.HGPlaceSheetSections || {},
     language: { adopt: adoptCanonicalLanguage }
   };
+  if (runtime9.HGLanguageLayer) adoptActivePlaceLanguage();
 
   // js/ui/place-sheet/sections/sources.ts
   var runtime10 = window;

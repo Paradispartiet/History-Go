@@ -9,13 +9,14 @@ const data = path => JSON.parse(read(path).toString('utf8'));
 const manifest = data('data/badges/vitenskap_v2_candidates_20261112.json');
 const badge = data('data/badges/vitenskap.json');
 
-test('Five Norwegian v2 images are real, byte-verified, nonactive WebP candidates', () => {
+test('Five historical Norwegian v2 candidates remain archived after activating exact copies', () => {
   assert.equal(manifest.items.length, 5);
   assert.equal(manifest.state, 'stored_candidate_not_active');
   assert.equal(Object.keys(badge.subBadgeImages).length, 16);
   for (const art of manifest.items) {
     assert.ok(badge.subBadgeImages[art.id], art.id);
-    assert.notEqual(badge.subBadgeImages[art.id], art.path, 'Candidate cannot replace an active badge yet');
+    assert.equal(badge.subBadgeImages[art.id], 'bilder/merker/vitenskap/brodert/'+art.id+(art.id==='matematikk'?'_v3.webp':'_v2.webp'));
+    assert.notEqual(badge.subBadgeImages[art.id], art.path, 'Archived source remains outside active image directory');
     const bytes = read(art.path);
     assert.equal(bytes.length, art.bytes);
     assert.equal(bytes.toString('ascii',0,4), 'RIFF');
@@ -49,13 +50,37 @@ test('Map retains main badge, PlaceCard prefers place-specific underbadge with f
   context.document={getElementById(id){return ({placeCard:card,pcBadgesIcon:icon,pcBadgesList:panel})[id]||null;}};
   context.window.HGPlaceOpen={getPlace(){return place;}};
   context.applyPlaceCardBadgeRound(place);
-  assert.match(icon.innerHTML, /matematikk\.webp/);
-  assert.match(panel.innerHTML, /matematikk\.webp/);
+  assert.match(icon.innerHTML, /matematikk_v3\.webp/);
+  assert.match(panel.innerHTML, /matematikk_v3\.webp/);
   assert.doesNotMatch(icon.innerHTML, /vitenskap\.webp/);
   const unknown={id:'unmapped-science', category:'vitenskap'};
   card.dataset.currentPlaceId=unknown.id;
   context.window.HGPlaceOpen={getPlace(){return unknown;}};
   context.applyPlaceCardBadgeRound(unknown);
   assert.match(icon.innerHTML, /vitenskap\.webp/);
-  assert.doesNotMatch(icon.innerHTML, /matematikk\.webp/);
+  assert.doesNotMatch(icon.innerHTML, /matematikk_v3\.webp/);
+});
+
+
+test('PlaceCard live badge render uses the no-crop embroidered class and legible text labels', () => {
+  const code = read('js/ui/place-card.js').toString('utf8');
+  const badgeHelper = read('js/ui/badges.js').toString('utf8');
+  const css = read('css/placeCard.css').toString('utf8');
+  const index = read('index.html').toString('utf8');
+  const loader = read('js/app.js').toString('utf8');
+  const sw = read('sw.js').toString('utf8');
+  // The helper already uses this class; the live PlaceCard renderer must not
+  // silently replace it with the generic portrait class.
+  assert.match(badgeHelper, /class="pc-badge-round-img"/);
+  assert.match(code, /badgesIcon\.innerHTML\s*=\s*`<img[^\n]+class="pc-person-img pc-badge-round-img"/);
+  assert.match(code, /alt="\$\{escapePlaceCardHTML\(label\)\}"/);
+  assert.match(code, /title="\$\{escapePlaceCardHTML\(label\)\}"/);
+  assert.match(code, /pc-badges-chip[^\n]+formatSubcategoryLabel\(sub, placeBadge\)/);
+  assert.match(css, /#placeCard #pcBadgesIcon \.pc-badge-round-img\s*\{[^}]*object-fit:\s*contain/);
+  assert.match(css, /#placeCard \.pc-title-row > #pcBadgesIcon > img\.pc-badge-round-img\s*\{[^}]*object-fit:\s*contain/);
+  assert.match(css, /#placeCard \.pc-title-row > #pcBadgesIcon > img\.pc-badge-round-img\s*\{[^}]*transform:\s*none/);
+  assert.match(index, /css\/placeCard\.css\?v=20261114-badge-rim-class1/);
+  assert.match(index, /js\/app\.js\?v=20261114-badge-rim-class1/);
+  assert.match(loader, /js\/ui\/place-card\.js\?v=20261114-badge-rim-class1/);
+  assert.match(sw, /hg-sw-2026-11-14-[^"]*badge-rim-class1/);
 });

@@ -22,8 +22,10 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - '.github/workflows/civication.yml'
+      - 'scripts/ci-civication-scope.mjs'
+      - 'tests/ci-civication-scope.test.mjs'
   workflow_dispatch:
-  # Full suite still executes daily, and on any relevant Civication PR.
+  # Full suite still executes daily; badge artwork-only PRs use lightweight scope QA.
   schedule:
     - cron: '17 3 * * *'
 
@@ -35,7 +37,38 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  scope:
+    name: Route Civication CI changes
+    runs-on: ubuntu-latest
+    outputs:
+      regression: ${{ steps.classify.outputs.regression }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test scope classification
+        run: node --test tests/ci-civication-scope.test.mjs
+      - id: classify
+        name: Detect relevant Civication changes
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" != "pull_request" ]]; then
+            echo 'regression=true' >> "$GITHUB_OUTPUT"
+          else
+            node scripts/ci-civication-scope.mjs "$BASE_SHA" "$HEAD_SHA" >> "$GITHUB_OUTPUT"
+          fi
+
   regression:
+    needs: scope
+    if: needs.scope.outputs.regression == 'true'
     name: Civication regression suite
     runs-on: ubuntu-latest
     steps:

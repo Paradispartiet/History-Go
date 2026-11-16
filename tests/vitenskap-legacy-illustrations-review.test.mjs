@@ -19,7 +19,7 @@ test('Vitenskap: alle 16 undermerker er aktive med ekte WebP-filer', () => {
   for (const id of registry.sub) {
     const image = registry.subBadgeImages[id];
     assert.ok(image, id + ': manglende bildefilregistrering');
-    assert.match(image, /^bilder\/merker\/vitenskap\/brodert\/[a-z_]+\.webp$/);
+    assert.match(image, /^bilder\/merker\/vitenskap\/brodert\/[a-z_0-9]+\.webp$/);
     const bytes = read(image);
     assert.ok(bytes.length > 3000, image + ': tom bildefil');
     assert.equal(bytes.toString('ascii', 0, 4), 'RIFF');
@@ -43,7 +43,8 @@ test('Vitenskap: sju eldre originaler bevares til en ferdig godkjent enkeltmerke
     assert.ok(item.topTextNB.length > 5);
     assert.ok(item.newIllustrationMotif.length > 20);
     if (item.revisionStatus === 'awaiting_correct_single_badge_artwork') {
-      assert.equal(registry.subBadgeImages[item.id], item.currentPath);
+      assert.equal(registry.subBadgeImages[item.id], 'bilder/merker/vitenskap/brodert/'+item.id+(item.id==='matematikk'?'_v3.webp':'_v2.webp'));
+      // The audit records the earlier state; its original asset and exact SHA remain immutable.
       const bytes = read(item.currentPath);
       const actual = createHash('sha1')
         .update(Buffer.from('blob ' + bytes.length + '\0')).update(bytes).digest('hex');

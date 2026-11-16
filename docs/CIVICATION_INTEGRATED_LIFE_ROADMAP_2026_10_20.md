@@ -2,6 +2,34 @@
 
 Opprettet: 2026-10-20. Eier: Civication. Status: **aktiv plan; ikke godkjent som ferdig spillerreise**.
 
+## Verifisert samkjøring – 15. november 2026
+
+Prioritet: én vanlig spillerreise med Min dag, innboks, kalender og økonomi før flere roller eller mer kartdekor. Jobb er frivillig; privatlivet kan fortsette uten jobb eller livsposisjon.
+
+| Arbeid | Kontrollert resultat | Avgrensning |
+| --- | --- | --- |
+| Dagskifte og innboks, [#7274](https://github.com/Paradispartiet/History-Go/pull/7274) | Merget som `f0ff7a58`. Innboksen lukkes etter bekreftet kalenderfremgang; avslag og feil gir nytt forsøk. Fersk aktiv handling velges én gang per visning, og varsler samles. [766/766 tester](https://github.com/Paradispartiet/History-Go/actions/runs/43229026416) og [organisk nettleserløp](https://github.com/Paradispartiet/History-Go/actions/runs/43229026107) bestått. | Fem målte museumssvar gav tre opptegninger per svar mot tretten før. Målekjøringen er diagnostikk, ikke en erstatning for akseptansetesten. |
+| Min dag, mobilfokus og kart, [#7047](https://github.com/Paradispartiet/History-Go/pull/7047) | Funksjonell head `c9cdf93f`: [772/772 tester](https://github.com/Paradispartiet/History-Go/actions/runs/43229087256), 17/17 workflows og [Chromium/WebKit-mobilkontroll](https://github.com/Paradispartiet/History-Go/actions/runs/43229087360) bestått. Alle elleve skjermbilder gjennomgått. | Publiseringsstatus følger PR-en. Samkjøringen beholder både mobilskript og profileringsskript i bygglisten; ingen spillerlogikk endres av konfliktløsningen. |
+| Organisk akseptanse | Samme lagring gjennom 21 ekte dager: syv dager arbeidsledig, fem faktiske quizsett/meritter, selvvalgt jobb på dag 8, tre ukeoppgjør, 79 private valg, reload og kontogjenoppretting. Null browserfeil. Samkjørt kjøring fullførte på 17m51s. Uendret Runner bevarer senere dag-26-innhold. | Kontotransport er simulert. Fysisk Safari, faktisk ekstern innlogging og andre yrkesløp er ikke godkjent av dette scenarioet. |
+
+C6–C11 nedenfor beholdes som historisk kontrollregister. Denne leveransen beviser det beskrevne 21-dagersløpet og UI-flyten, men lukker ikke automatisk bred økonomikalibrering, alle sosiale etterspill, ekte konto-/enhetsbytte eller hele Civication. Kvalitetsvurdering for avgrenset UI-/handoff-arbeid: korrekthet 5, dekning 5, visuell kvalitet 4, teknisk integritet 4, ansvarlighet 5 og vedlikeholdbarhet 4: **27/30**. Resultater på eksakt samkjørt head registreres i PR-en før merge.
+
+## Økonomioppfølging – 15. november 2026
+
+`CIVICATION_DATA_LAYERS.md` og `civication-life-story-system.md` skiller fortellingspenger fra PC-saldoen. Life Story skriver ikke direkte til PC-wallet; dokumenterte leveveimuligheter må fortsatt aksepteres og avregnes av den eksisterende økonomien. C6 er derfor ikke en bestilling på 1:1-konvertering mellom de to beløpene.
+
+«Status og verdier» viser nå begge beløp med egne etiketter: fortellingspenger fra Life Story og PC-saldo fra `CivicationState.getWallet()`. Manglende wallet-API eller ugyldig beløp fra eieren blir ikke fremstilt som 0 PC; en gyldig nullsaldo vises. Begge beløp holdes utenfor 0–100-scoren. Dialogen åpnes ved overskriften og bevarer fokus og leseposisjon når verdiene oppdateres. Visningen endrer ingen transaksjon, historikk eller lagring.
+
+Avgrenset kontroll: `civication-score-header.test.js` verifiserer riktige kilder, uavhengige beløp, fersk saldo ved oppdatering, gjeld/null/store beløp og uendret score. Browserens mobilkontroll åpner den faktiske dialogen og kontrollerer begge beløp og at begge lagringer er uendret etter lukking. Bred kalibrering av fortellingsbudsjett og samtlige inntekts-/utgiftsløp står fortsatt åpne under C6.
+
+## Kjøp og ukeoppgjør – 16. november 2026
+
+Gjennomgangen av økonomiflyten avdekket to konkrete butikkavvik: `civicationCommercial.js` fjernet lommebokens spilldagsanker, opptjente dagsopplysninger og leveveisoppgjør ved kjøp, og kunne importere en gammel positiv saldo på nytt når den kanoniske saldoen var nøyaktig null. Rettelsen bevarer lommebokens øvrige felt ved kjøp og kompatibilitetsskriving. Gammel saldo importeres bare når `hg_civi_wallet_v1` faktisk mangler; en lagret nullsaldo eller gjeld er autoritativ.
+
+`tests/civication-shop-wallet.test.js` bruker de faktiske State-, butikk- og økonomimodulene. Den dekker et katalogkjøp, avvist kjøp uten dekning, gyldig null/gjeld, engangsmigrering og eldre tall-/objektbaserte wallet-kall. En separat 21-dagers økonomisekvens bruker katalogens musikkjobb (4 PC brutto minus 2 PC arbeidsutgifter per uke) og `streetwear_basic` (1200 PC), med kjøp etter ti fullførte dager. Eksisterende sparepenger på 1198 PC og én musikkmeritt er uttrykkelige testfixturer, ikke opptjent History Go-progresjon. Ukeoppgjørene gir saldo 1200, 2 og 4 PC etter kjøpet; dagsdata, oppgjørsanker og saldo bevares ved reload. Dette er en runtime-integrasjonstest, ikke en ny organisk nettleserreise.
+
+Katalogbalansen er fortsatt et reelt åpent punkt: første musikktrinn gir 2 PC netto per uke før bolig og andre utgifter, mens den billigste katalogpakken koster 1200 PC. Uten eksisterende sparepenger, jobbskifte eller annen inntekt tilsvarer dette 600 spilluker. Denne feilrettingen endrer ikke lønn eller priser og lukker derfor ikke C6s balansekalibrering. Endelig CI-, merge- og publiseringsbevis registreres i den tilhørende PR-en.
+
 ## Formål og fasit
 Spilleren skal kunne leve 14 ekte spilldager der arbeid, privatliv, relasjoner, økonomi, psyke, energi og integritet henger sammen. Et valg fra dag 2 må kunne få observerbare, kausalt begrunnede følger på dag 14. En grønn unit-test alene beviser ikke at dette skjer i nettleseren.
 
@@ -64,7 +92,7 @@ Dette er **arbeidsplan og akseptansekriterier**, ikke en ny runtime-kontrakt. F�
 | C3 | Psyke | Små, forutsigbare utslag med synlige følger | Implementert i #6437 (main); bred balansekalibrering mangler |
 | C4 | Jobbbytte | Personlige målere bevares; rollespesifikke verdier isoleres | Merget i #6437; komplett spillreise må regresjonstestes |
 | C5 | Etterspill | Dag 2-valg endrer dag 3-hendelse | Oppfølgingsscene merget; full nettlesergjennomspilling mangler |
-| C6 | Økonomi | Fortellingstransaksjoner og faktisk lommebok samstemmer | Åpent |
+| C6 | Økonomi | Fortellingstransaksjoner og faktisk lommebok samstemmer | Separate pengebegreper følger eierkontraktene; statusdialogen viser faktiske beløp hver for seg. Bred budsjett-/transaksjonskalibrering er fortsatt åpen; se økonomioppfølgingen over. |
 | C7 | Kalender | Livsdager og økonomiuker gir forventet progresjon | #6481, #6490, #6498 og #6504 merget; lønn og tilbud følger spilluker, full E2E ikke godkjent |
 | C8 | Relasjoner | Personer reagerer senere på tidligere valg | NPC-relasjoner, sosiale svar og samtaler sikkerhetskopieres gjennom #6500 (merget); faktisk senere sosialt etterspill ikke bevist |
 | C9 | Skylagring | Samme progresjon etter reload/ny enhet | #6395/#6496/#6500 merget; mock restore av Life Story, jobb og NPC-minne testet. Spillerens egne fasesnapshots undersøkes separat; fysisk konto-/enhetsbytte ikke godkjent |

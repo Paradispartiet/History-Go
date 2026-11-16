@@ -2,6 +2,150 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_linerle:Object.freeze({
+   scientificName:"Motacilla alba",
+   src:"bilder/natur/fauna/godkjent/23_linerle_v1.webp",
+   gitBlobSha:"a8a23c43089d3624a0630397ca2bba28e120370f",
+   reviewedAt:"2026-11-16",
+   stage:"alba_summer_black_crown_and_bib_white_face_grey_mantle_wing_bars_long_white_edged_tail_stone_and_walking",
+   evidence:"data/natur/fauna/illustration-quality-linerle-20261116.json"
+  }),
+  emne_fauna_graatrost:Object.freeze({
+   scientificName:"Turdus pilaris",
+   src:"bilder/natur/fauna/godkjent/22_graatrost_v1.webp",
+   gitBlobSha:"c3d967ffa6afe2b384ff1433a7af7beec4829bdb",
+   reviewedAt:"2026-11-16",
+   stage:"adult_grey_head_chestnut_mantle_grey_rump_black_tail_yellow_black_tipped_bill_black_spotted_orange_buff_breast_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-graatrost-20261116.json"
+  }),
+  emne_fauna_rodstrupe:Object.freeze({
+   scientificName:"Erithacus rubecula",
+   src:"bilder/natur/fauna/godkjent/21_rodstrupe_v1.webp",
+   gitBlobSha:"f867a24c8608f1a3d8b8ec50fb47d54375738f1b",
+   reviewedAt:"2026-11-16",
+   stage:"adult_orange_red_face_breast_grey_side_band_brown_back_pale_belly_dark_eye_fine_bill_perched_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-rodstrupe-20261116.json"
+  }),
+  emne_fauna_gronnfink:Object.freeze({
+   scientificName:"Chloris chloris",
+   src:"bilder/natur/fauna/godkjent/20_gronnfink_v1.webp",
+   gitBlobSha:"4e6ee9392ca010aad7a06e23a0191fc5f89432cc",
+   reviewedAt:"2026-11-16",
+   stage:"adult_male_olive_yellow_green_female_muted_brown_olive_both_stout_pale_bills_yellow_wing_and_tail_edges_perched",
+   evidence:"data/natur/fauna/illustration-quality-gronnfink-20261116.json"
+  }),
+  emne_fauna_flaggspett:Object.freeze({
+   scientificName:"Dendrocopos major",
+   src:"bilder/natur/fauna/godkjent/19_flaggspett_v1.webp",
+   gitBlobSha:"4c43cdf4db47f2c652d43128d030189b300d1604",
+   reviewedAt:"2026-11-16",
+   stage:"adult_male_red_nape_female_black_nape_both_large_white_shoulder_patches_crimson_undertail_clinging_to_trunk",
+   evidence:"data/natur/fauna/illustration-quality-flaggspett-20261116.json"
+  }),
+  emne_fauna_graahegre:Object.freeze({
+   scientificName:"Ardea cinerea",
+   src:"bilder/natur/fauna/godkjent/18_graahegre_v1.webp",
+   gitBlobSha:"0c0a153a98ad3a9ac830ca255ecb171020675faa",
+   reviewedAt:"2026-11-16",
+   stage:"adult_slate_grey_white_black_head_plumes_yellow_bill_grey_yellow_legs_standing_and_neck_retracted_in_flight",
+   evidence:"data/natur/fauna/illustration-quality-graahegre-20261116.json"
+  }),
+  emne_fauna_sildemaake:Object.freeze({
+   scientificName:"Larus fuscus",
+   src:"bilder/natur/fauna/godkjent/17_sildemaake_v1.webp",
+   gitBlobSha:"b89f8cc442174a9d0ea5be345c29c91c7e0ad68f",
+   reviewedAt:"2026-11-16",
+   stage:"adult_breeding_slate_dark_back_white_head_yellow_legs_yellow_bill_red_gonys_black_primary_mirrors_standing_and_flying",
+   evidence:"data/natur/fauna/illustration-quality-sildemaake-20261116.json"
+  }),
+  emne_fauna_hettemaake:Object.freeze({
+   scientificName:"Chroicocephalus ridibundus",
+   src:"bilder/natur/fauna/godkjent/16_hettemaake_v1.webp",
+   gitBlobSha:"111882da9a8bf94e18f8eb942901cdfa7c5faef0",
+   reviewedAt:"2026-11-15",
+   stage:"breeding_adult_chocolate_brown_hood_white_eye_crescents_red_bill_legs_pale_grey_wings_black_primary_tips_standing_and_in_flight",
+   evidence:"data/natur/fauna/illustration-quality-hettemaake-20261115.json"
+  }),
+  emne_fauna_storskarv:Object.freeze({
+   scientificName:"Phalacrocorax carbo",
+   src:"bilder/natur/fauna/godkjent/15_storskarv_v1.webp",
+   gitBlobSha:"9eff35583a3797062cb579e5e072de9736022ff4",
+   reviewedAt:"2026-11-15",
+   stage:"adult_breeding_dark_iridescent_wing_drying_hooked_bill_white_thigh_patches_webbed_feet",
+   evidence:"data/natur/fauna/illustration-quality-storskarv-20261115.json"
+  }),
+  emne_fauna_sothone:Object.freeze({
+   scientificName:"Fulica atra",
+   src:"bilder/natur/fauna/godkjent/14_sothone_v1.webp",
+   gitBlobSha:"b9bffe1eaed401a4e21fbe959f50464ac95bca57",
+   reviewedAt:"2026-11-14",
+   stage:"adult_black_head_slate_body_white_frontal_shield_bill_red_iris_lobed_toes",
+   evidence:"data/natur/fauna/illustration-quality-sothone-20261114.json"
+  }),
+  emne_fauna_toppand:Object.freeze({
+   scientificName:"Aythya fuligula",
+   src:"bilder/natur/fauna/godkjent/13_toppand_v1.webp",
+   gitBlobSha:"9069d83c932b0ae316f03b367b7f3ce95a1788b1",
+   reviewedAt:"2026-11-14",
+   stage:"adult_male_black_white_flanks_long_crest_female_brown_short_crest_yellow_eyes",
+   evidence:"data/natur/fauna/illustration-quality-toppand-20261114.json"
+  }),
+  emne_fauna_graagas:Object.freeze({
+   scientificName:"Anser anser",
+   src:"bilder/natur/fauna/godkjent/12_graagaas_v1.webp",
+   gitBlobSha:"63289e4f9134a0b0e959b52c59a543e85476f556",
+   reviewedAt:"2026-11-14",
+   stage:"adult_standing_and_in_flight_grey_brown_plumage_orange_bill_pink_legs",
+   evidence:"data/natur/fauna/illustration-quality-graagaas-20261114.json"
+  }),
+  emne_fauna_knoppsvane:Object.freeze({
+   scientificName:"Cygnus olor",
+   src:"bilder/natur/fauna/godkjent/11_knoppsvane_v1.webp",
+   gitBlobSha:"dc1692279b0c32f955dadd3a33a48faaf3615f9e",
+   reviewedAt:"2026-11-13",
+   stage:"adult_white_s_curved_neck_orange_bill_black_knob_and_grey_cygnet",
+   evidence:"data/natur/fauna/illustration-quality-knoppsvane-20261113.json"
+  }),
+  emne_fauna_fiskemaake:Object.freeze({
+   scientificName:"Larus canus",
+   src:"bilder/natur/fauna/godkjent/10_fiskemaake_v1.webp",
+   gitBlobSha:"6a0895456fbd3d990c291b1c14f108b1695d0494",
+   reviewedAt:"2026-11-13",
+   stage:"adult_perched_and_flying_yellow_green_legs_dark_eyes_no_red_bill_spot",
+   evidence:"data/natur/fauna/illustration-quality-fiskemaake-20261113.json"
+  }),
+  emne_fauna_graamaake:Object.freeze({
+   scientificName:"Larus argentatus",
+   src:"bilder/natur/fauna/godkjent/09_graamaake_v1.webp",
+   gitBlobSha:"775189e54b00b13a6859670401da027ebb766cc9",
+   reviewedAt:"2026-11-13",
+   stage:"adult_perched_and_flying_summer_pink_legs_red_gonys_spot",
+   evidence:"data/natur/fauna/illustration-quality-graamaake-20261113.json"
+  }),
+  emne_fauna_stokkand:Object.freeze({
+   scientificName:"Anas platyrhynchos",
+   src:"bilder/natur/fauna/godkjent/08_stokkand_v1.webp",
+   gitBlobSha:"b16e4e48f6264a0a318f2b20128bc8d2e559505c",
+   reviewedAt:"2026-11-13",
+   stage:"adult_breeding_male_and_female_woodland_pond_both_blue_specula",
+   evidence:"data/natur/fauna/illustration-quality-stokkand-20261113.json"
+  }),
+  emne_fauna_ringdue:Object.freeze({
+   scientificName:"Columba palumbus",
+   src:"bilder/natur/fauna/godkjent/07_ringdue_v1.webp",
+   gitBlobSha:"643eea93e2803fb1de8fcaaf6fba378aa7d61e74",
+   reviewedAt:"2026-11-12",
+   stage:"adult_perched_and_flying_white_neck_and_wing_bars",
+   evidence:"data/natur/fauna/illustration-quality-ringdue-20261112.json"
+  }),
+  emne_fauna_kjottmeis:Object.freeze({
+   scientificName:"Parus major",
+   src:"bilder/natur/fauna/godkjent/06_kjottmeis_v1.webp",
+   gitBlobSha:"3cb439a66db0b59072f13413fd9d2b2c01e4d816",
+   reviewedAt:"2026-11-12",
+   stage:"adult_male_broad_black_belly_stripe_and_female_narrow_stripe",
+   evidence:"data/natur/fauna/illustration-quality-kjottmeis-20261112.json"
+  }),
   emne_fauna_blaameis:Object.freeze({
    scientificName:"Cyanistes caeruleus",
    src:"bilder/natur/fauna/godkjent/05_blaameis_v1.webp",

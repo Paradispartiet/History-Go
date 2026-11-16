@@ -826,7 +826,9 @@ body.hg-app #placeCard .pc-sheet-news:not([hidden]){
   margin-top:18px;
 }
 body.hg-app #placeCard .pc-sheet-canonical-news{
+  min-width:0;
   display:grid;
+  grid-template-columns:minmax(0,1fr);
   gap:14px;
 }
 body.hg-app #placeCard .pc-sheet-canonical-news > h3{
@@ -838,13 +840,27 @@ body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-list{
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
 }
+body.hg-app #placeCard .pc-sheet-canonical-news .hg-place-tab-section{
+  min-width:0;
+}
 body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-card{
+  min-width:0;
+  width:100%;
+  box-sizing:border-box;
   display:grid;
+  grid-template-columns:minmax(0,1fr);
   gap:7px;
   padding:14px;
   border:1px solid rgba(255,255,255,.11);
   border-radius:16px;
   background:rgba(255,255,255,.035);
+}
+/* Long titles and source labels wrap inside the grid instead of setting
+   an intrinsic column wider than the card or the mobile reading viewport. */
+body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-card > *{
+  min-width:0;
+  max-width:100%;
+  overflow-wrap:anywhere;
 }
 body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-card > span{
   opacity:.72;
@@ -855,7 +871,7 @@ body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-card > p{
   line-height:1.5;
 }
 body.hg-app #placeCard .pc-sheet-canonical-news .hg-place-news-source{
-  width:max-content;
+  width:fit-content;
   max-width:100%;
 }
 @media (max-width:720px){
