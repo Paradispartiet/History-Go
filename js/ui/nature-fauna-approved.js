@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_rodstrupe:Object.freeze({
+   scientificName:"Erithacus rubecula",
+   src:"bilder/natur/fauna/godkjent/21_rodstrupe_v1.webp",
+   gitBlobSha:"f867a24c8608f1a3d8b8ec50fb47d54375738f1b",
+   reviewedAt:"2026-11-16",
+   stage:"adult_orange_red_face_breast_grey_side_band_brown_back_pale_belly_dark_eye_fine_bill_perched_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-rodstrupe-20261116.json"
+  }),
   emne_fauna_gronnfink:Object.freeze({
    scientificName:"Chloris chloris",
    src:"bilder/natur/fauna/godkjent/20_gronnfink_v1.webp",
