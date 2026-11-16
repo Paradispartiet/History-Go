@@ -22,7 +22,7 @@
 | `stilla_nydalen` | Elvepartiet nedenfor Nydalsdammen | `places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json` | nei | nei | utkast |
 | `bjoelsenfossen` | Bjølsenfossen | `places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenfossen.json` | nei | nei | mangler |
 | `bjoelsenparken_elvenaer` | Advokat Dehlis plass | `places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenparken_elvenaer.json` | nei | nei | mangler |
-| `myralokka` | Myraløkka | `places/natur/oslo/places_oslo_natur_akerselvarute/myralokka.json` | ja | ja | mangler |
+| `myralokka` | Myraløkka | `places/natur/oslo/places_oslo_natur_akerselvarute/myralokka.json` | ja | ja | **nytt Fagverk-utkast, `in_production`** |
 | `beierbrua` | Beierbrua | `places/natur/oslo/places_oslo_natur_akerselvarute/beierbrua.json` | nei | nei | mangler |
 | `sagene_festivitetshus` | Sagene festivitetshus | `places/historie/oslo/places_historie_oslo_kultureiendommer_batch_05/sagene_festivitetshus.json` | nei | nei | mangler |
 | `kuba_parken` | Kuba-parken | `places/natur/oslo/places_oslo_natur_akerselvarute/kuba_parken.json` | nei | nei | mangler |
@@ -60,10 +60,10 @@ Disse tiltakene dokumenterer faktisk utført arbeid, ikke ferdigstatus. Ordinær
 ## Status 2026-11-16
 
 **Kandidater:** 20.
-**Nye Fagverk-utkast:** 4.
+**Nye Fagverk-utkast:** 5 (første fire + Myraløkka).
 **Nye verifiserte v1:** 0.
 **Nye verifiserte vFerdig:** 0.
-**Gjenstår:** 16 stedsspesifikke Fagverk, bilder på 18 steder samt ett manglende stående Deichman-bilde, fullt kildebasert 4.2-godkjente stedsbeskrivelser, runtime-fullquiz/QuizCard/Knowledge og kvalitetssikring for hele bolken. **40 kandidatspørsmål er skrevet, men ennå ikke integrert.**
+**Gjenstår:** 15 stedsspesifikke Fagverk, fortsatt 16 steder uten bildebinding på PR-grenen og ett manglende stående Deichman-bilde, fullt kildebasert 4.2-godkjente stedsbeskrivelser, runtime-fullquiz/QuizCard/Knowledge og kvalitetssikring for hele bolken. **40 kandidatspørsmål er skrevet, men ennå ikke integrert.**
 **Bilde-/rettighetskø:** opprinnelig minst 18 steder uten `image` + én manglende `frontImage` i main. På PR-grenen er 2 av de 18 nå gitt eksterne, lisensierte originalbildebindinger; 16 i bolken mangler fortsatt `image`. Separate stående `frontImage` / `cardImage` og faktisk bildevisning gjenstår.
 **Merge:** ikke klar; ingen påstand om at CI eller browser-QA er bestått.
 
@@ -127,7 +127,7 @@ Se `reports/place-production/oslo-akerselva-v1-quiz-audit-20261116.json` for mas
 
 6. **Fortsatt blokkerende:** ingen sikker bildebinding for Oset slusebru eller for det presise elvepunktet nedenfor Nydalsdammen; alle fire mangler fullstendig `frontImage/cardImage`-pakke og gjenstående bilde/quiz/Knowledge/browser-porter. *Nature data validation* feiler på urelatert eksisterende `trikk_17_18`-referanse; hold dette utenfor denne steds-PR-en.
 
-**Aktuell status:** 4 Fagverk-utkast, 2 lisensierte `image`-bindinger, 40 quizkandidater, 1 forbedret kildegodkjent 4.2-stedsbeskrivelse, 0 ferdige V1, 0 ferdige vFerdig. PR #7342 er **draft og ikke merget**. Opplysningene om CI er for angitte committer; alle kontroller for aller siste head må kontrolleres selvstendig.
+**Historisk status før Myraløkka-oppdateringen:** 4 Fagverk-utkast, 2 lisensierte `image`-bindinger, 40 quizkandidater, 1 forbedret kildegodkjent 4.2-stedsbeskrivelse, 0 ferdige V1, 0 ferdige vFerdig. PR #7342 er **draft og ikke merget**. Opplysningene om CI er for angitte committer; alle kontroller for aller siste head må kontrolleres selvstendig.
 
 
 ## Næringsliv-rapport, oppdaterte kontroller og kildeavgrensning
@@ -137,3 +137,16 @@ Se `reports/place-production/oslo-akerselva-v1-quiz-audit-20261116.json` for mas
 - **Følgende CI var grønne på denne head:** Data checks, Epoch viewer quality, Place description governance, Fagverk release feed, Place production READ-FIRST, Place production closeout, Repository hygiene, Map place area LOD checks og Rockefeller historical Story correction. **Fagverk and place learning feiler fortsatt på bildekrav**; **Nature data validation** feiler på urelatert `trikk_17_18`. Place-open- og Oslo-browser-kontroll var ennå i arbeid ved denne statusføringen.
 - **Foto Oset:** Søk bekrefter at Oslo byleksikon og Akerselvas Venner viser riktig Oset slusebru og krediterer fotograf Kjell Egil Sterten, men det finnes ingen påvist publiserbar gjenbrukslisens for de konkrete bildene. Ingen kopiering uten rettigheter. Foto av Maridalsvannet/Maridalsoset alene er ikke et dokumentarisk bilde av selve slusebrua.
 - **Bilder ved Nydalsdammen:** Commons har bilder av selve dammen, Gullhaug bru og andre elvepartier, men de er ikke dokumentert å vise nettopp kartpunktet *nedenfor Nydalsdammen*. Ingen feil geografisk bildesubstitusjon er utført.
+
+
+## Myraløkka – femte Fagverk-sted, eksisterende bilder beholdt
+
+- **Sted:** `myralokka`, kategori Natur med stedets eksisterende By-emnekoblinger. Fagverk-feltet har nå en fireavsnitts fagartikkel, tre naturfaglige linser, fem undersøkelsesspørsmål, to synlige spor og fem steds-/kildespesifikke referanser. `status: in_production` og registeroppføringen peker til samme Place-eide Fagverk.
+- **Fakta og hensyn:** Myraløkka er en amfilignende leirgrop fra Bentse teglverk, ikke en naturlig elvedal. Fabrikkpipa er nedgravd under haugen og må *ikke* inspiseres ved å grave. Myragårdens arbeiderboliger fra 1914 og Myrens Verksted på motsatt bredd holdes geografisk adskilt fra teglverket. Ingen får oppfordring om å gå i bratte skråninger eller forstyrre fugler. Historisk identitet støttes av Oslo byleksikon, lokalhistoriewiki og kommunens turguide.
+- **Natur:** Det aktive Natur-kartet fører ni arter for stedet: gullstjerne og åtte fugler. Feltobservasjoner skal skille faktisk observerte arter fra kartregistrerte arter; alle ni kan ikke forutsettes til stede samtidig. Ingen nye artsfunn er lagt inn.
+- **Media:** `image`, `frontImage` og `cardImage` var allerede på plass og ble beholdt. Ingen unødvendig bildegenerering eller erstatning av godkjente eksisterende foto.
+- **Fullquiz:** `data/quiz/natur/myralokka_sets.json` har 6 × 7 = **42** faktiske spørsmål. **21** har `knowledge_link_status: editorial_review_required`; **19/42** har minst én direkte ekstern kilde-URL. Seks definisjonsspørsmål fremstår for generiske og trenger stofflig review. Disse avvikene er ført i `reports/place-production/oslo-akerselva-v1-quiz-audit-20261116.json`. Aktive quiz/QuizCards er **ikke** endret uten full Knowledge-/manifestkontroll.
+- **Runtime/registrering:** `data/runtime/place-open/myralokka.json` er synkronisert med den nye Fagverk-blokken. `data/fagverk/fagverk_registry.json` har nå 298 Place-links og versjon `3.17.16`; canonical `data/fagverk/fagverk_release.json` er oppdatert med nytt innholds- og release-SHA256. CI på siste commit kreves som faktisk aksept.
+- **V1:** enda **ikke godkjent**. Fagverk-visning, quiz-/Knowledge-koblinger, QuizCard-paritet og nettleser-QA må fortsatt godkjennes.
+
+**Oppdatert totalt for 20-stedersbolken:** **5 Fagverk-utkast under produksjon, 15 Fagverk mangler, 2 nye eksterne bilder i de første fire, 0 verifiserte V1, 0 vFerdig.** PR #7342 forblir utkast, ikke merget.
