@@ -25,7 +25,19 @@ test("Myraløkka does not surface park names, historic factories or agencies as 
   assert.equal(brands.filter(b => Array.isArray(b.place_ids) && b.place_ids.includes(id)).length, 0);
   assert.equal(source.place_card_profile, undefined);
   assert.equal(runtime.place.place_card_profile, undefined);
-  assert.deepEqual(runtime.people, []);
+  // Architect profiles belong primarily to Folketeateret. They appear here
+  // solely through sourced work on Myragården, the housing beside the park.
+  const expectedPeople = ["arne_eide", "christian_morgenstierne"];
+  assert.deepEqual(runtime.people.map(person => person.id).sort(), expectedPeople);
+  for (const person of runtime.people) {
+    assert.equal(person.placeId, "folketeateret", "Do not move the architect's primary Place");
+    assert.ok(person.places.includes(id), "Missing documented secondary place relation");
+    assert.match(person.popupDesc, /Myragården/u);
+    assert.match(person.popupDesc, /ikke parken eller Bentse teglverk/u);
+    assert.ok(person.externalLinks.some(link => link.url === "https://oslobyleksikon.no/side/Arendalsgata"),
+      "Missing specific Arendalsgata citation");
+    assert.ok(person.imageMeta?.reviewStatus === "manually_approved", "Existing portrait provenance must be preserved");
+  }
   // Interpretive store models are not authenticated physical Objects in the park.
   assert.equal(source.civication_store.length, 4);
   assert.ok(source.civication_store.every(p => p.kind === "physical_object"));
