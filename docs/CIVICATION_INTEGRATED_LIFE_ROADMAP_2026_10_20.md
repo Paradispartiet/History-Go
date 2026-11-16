@@ -22,6 +22,14 @@ C6–C11 nedenfor beholdes som historisk kontrollregister. Denne leveransen bevi
 
 Avgrenset kontroll: `civication-score-header.test.js` verifiserer riktige kilder, uavhengige beløp, fersk saldo ved oppdatering, gjeld/null/store beløp og uendret score. Browserens mobilkontroll åpner den faktiske dialogen og kontrollerer begge beløp og at begge lagringer er uendret etter lukking. Bred kalibrering av fortellingsbudsjett og samtlige inntekts-/utgiftsløp står fortsatt åpne under C6.
 
+## Kjøp og ukeoppgjør – 16. november 2026
+
+Gjennomgangen av økonomiflyten avdekket to konkrete butikkavvik: `civicationCommercial.js` fjernet lommebokens spilldagsanker, opptjente dagsopplysninger og leveveisoppgjør ved kjøp, og kunne importere en gammel positiv saldo på nytt når den kanoniske saldoen var nøyaktig null. Rettelsen bevarer lommebokens øvrige felt ved kjøp og kompatibilitetsskriving. Gammel saldo importeres bare når `hg_civi_wallet_v1` faktisk mangler; en lagret nullsaldo eller gjeld er autoritativ.
+
+`tests/civication-shop-wallet.test.js` bruker de faktiske State-, butikk- og økonomimodulene. Den dekker et katalogkjøp, avvist kjøp uten dekning, gyldig null/gjeld, engangsmigrering og eldre tall-/objektbaserte wallet-kall. En separat 21-dagers økonomisekvens bruker katalogens musikkjobb (4 PC brutto minus 2 PC arbeidsutgifter per uke) og `streetwear_basic` (1200 PC), med kjøp etter ti fullførte dager. Eksisterende sparepenger på 1198 PC og én musikkmeritt er uttrykkelige testfixturer, ikke opptjent History Go-progresjon. Ukeoppgjørene gir saldo 1200, 2 og 4 PC etter kjøpet; dagsdata, oppgjørsanker og saldo bevares ved reload. Dette er en runtime-integrasjonstest, ikke en ny organisk nettleserreise.
+
+Katalogbalansen er fortsatt et reelt åpent punkt: første musikktrinn gir 2 PC netto per uke før bolig og andre utgifter, mens den billigste katalogpakken koster 1200 PC. Uten eksisterende sparepenger, jobbskifte eller annen inntekt tilsvarer dette 600 spilluker. Denne feilrettingen endrer ikke lønn eller priser og lukker derfor ikke C6s balansekalibrering. Endelig CI-, merge- og publiseringsbevis registreres i den tilhørende PR-en.
+
 ## Formål og fasit
 Spilleren skal kunne leve 14 ekte spilldager der arbeid, privatliv, relasjoner, økonomi, psyke, energi og integritet henger sammen. Et valg fra dag 2 må kunne få observerbare, kausalt begrunnede følger på dag 14. En grønn unit-test alene beviser ikke at dette skjer i nettleseren.
 
