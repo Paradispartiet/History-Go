@@ -19,7 +19,7 @@ test('Vitenskap: alle 16 undermerker er aktive med ekte WebP-filer', () => {
   for (const id of registry.sub) {
     const image = registry.subBadgeImages[id];
     assert.ok(image, id + ': manglende bildefilregistrering');
-    assert.match(image, /^bilder\/merker\/vitenskap\/brodert\/[a-z_]+\.webp$/);
+    assert.match(image, /^bilder\/merker\/vitenskap\/brodert\/[a-z_0-9]+\.webp$/);
     const bytes = read(image);
     assert.ok(bytes.length > 3000, image + ': tom bildefil');
     assert.equal(bytes.toString('ascii', 0, 4), 'RIFF');

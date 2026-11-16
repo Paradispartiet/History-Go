@@ -8,7 +8,7 @@ const json = path => JSON.parse(readFileSync(new URL(path, root), 'utf8'));
 const candidate = json('data/badges/vitenskap_teknologi_og_ingeniorfag_candidate_v1.json');
 const parent = json('data/badges/vitenskap.json');
 
-test('Vitenskap: ingeniørfag beholder hovedmerke og eksisterende undermerker', () => {
+test('Vitenskap: ingeniørfag bevarer hovedmerke, eldre originaler og alle øvrige undermerker', () => {
   assert.equal(parent.id, 'vitenskap');
   assert.equal(parent.color, '#6A5AE0');
   assert.equal(parent.secondaryColor, '#FFFFFF');
@@ -36,7 +36,10 @@ test('Vitenskap: ingeniørfag beholder hovedmerke og eksisterende undermerker', 
     assert.equal(candidate.quality.integrated, false);
     assert.equal(candidate.binaryTransfer.verifiedInRepository, false);
   } else {
-    assert.equal(parent.subBadgeImages[candidate.id], candidate.sourceImage);
+    const v7 = json('data/badges/vitenskap_v7_archived_candidates_20261113.json').items.find(item => item.id === candidate.id);
+    assert.ok(v7, 'The v7 approval candidate must have an immutable manifest entry');
+    assert.equal(parent.subBadgeImages[candidate.id], 'bilder/merker/vitenskap/brodert/' + candidate.id + '_v7.webp');
+    assert.equal(existsSync(new URL(candidate.sourceImage, root)), true, 'Older v1 artwork must remain for rollback');
     assert.equal(candidate.quality.integrated, true);
     assert.equal(candidate.binaryTransfer.verifiedInRepository, true);
   }

@@ -51,9 +51,9 @@ a{color:#d2bbff}
 <body>
 <main>
 <header>
-<h1>Vitenskap – skriftkontroll av alle aktive merker</h1>
-<p class="intro">Her er alle de 16 faktiske WebP-merkene fra hovedregisteret. Sammenlign lesbarhet ved mobilens 38 px og større størrelser, og se om begge kategorititlene er synlige. Bildene hentes direkte fra History Go-repoet.</p>
-<p class="notice"><strong>Ingen endring av merker.</strong> Tre originaler har manglende eller ufullstendig hovedkategorinavn nederst. De er markert for ny illustrasjon, men er ikke erstattet. Fullstendig kategorinavn skal alltid stå nederst på selve merket: <strong>VITENSKAP &amp; TEKNOLOGI</strong>.</p>
+<h1>Vitenskap – originalarkiv og skriftkontroll</h1>
+<p class="intro">Her vises de 16 originale WebP-merkene fra gjennomgangen 13. november 2026. Sammenlign dem med eventuelle nyere registrerte versjoner i 38 px og større format. Originalene bevares som dokumentasjon og mulighet for tilbakeføring.</p>
+<p class="notice"><strong>Historisk kontroll.</strong> Tre originaler manglet hele eller deler av hovedkategorinavnet nederst. V7-kandidater er produsert som mulige erstatninger, mens de gamle originalene er bevart. Fullstendig kategorinavn skal alltid stå nederst på selve merket: <strong>VITENSKAP &amp; TEKNOLOGI</strong>.</p>
 </header>
 <div class="controls">
 <label>Vis
@@ -63,8 +63,8 @@ a{color:#d2bbff}
 <select id="size" aria-label="Størrelse på hovedbilde"><option value="38">38 px (mobil PlaceCard)</option><option value="52">52 px (desktop PlaceCard)</option><option value="96">96 px</option><option value="160" selected>160 px</option><option value="320">320 px</option></select>
 </label>
 </div>
-<p class="summary" id="summary" role="status">Henter de aktive merkene …</p>
-<section id="cards" aria-label="Aktive Vitenskap-merker"></section>
+<p class="summary" id="summary" role="status">Henter de arkiverte originalmerkene …</p>
+<section id="cards" aria-label="Historiske originale Vitenskap-merker"></section>
 <dialog id="zoom" aria-label="Åpne merke i full størrelse">
 <div class="dialog-bar"><strong id="zoom-label"></strong><button type="button" id="zoom-close">Lukk</button></div>
 <img id="zoom-image" alt="" width="1024" height="1024">
@@ -77,13 +77,14 @@ a{color:#d2bbff}
   const $ = id => document.getElementById(id);
   const frame = $('cards');
   let items = [];
+  let activeBadgeImages = {};
 
   function figure(source, label, sizeClass, item) {
     const f = document.createElement('figure');
     f.className = 'figure' + (sizeClass === 'small' ? ' small' : '');
     const im = document.createElement('img');
     im.src = source;
-    im.alt = item.label + ', aktivt brodert undermerke';
+    im.alt = item.label + ', brodert original eller registrert nyere versjon';
     im.loading = 'lazy';
     im.decoding = 'async';
     const cap = document.createElement('figcaption');
@@ -125,8 +126,12 @@ a{color:#d2bbff}
       id.textContent = item.id;
       const media = document.createElement('div');
       media.className = 'image-area';
-      media.append(figure(item.image, 'Valgt størrelse', 'normal', item),
-                   figure(item.image, '38 px PlaceCard', 'small', item));
+      media.append(figure(item.image, 'Arkivert original', 'normal', item),
+                   figure(item.image, '38 px original', 'small', item));
+      const current = activeBadgeImages[item.id];
+      if (current && current !== item.image) {
+        media.append(figure(current, 'Registrert nyere merke', 'normal', item));
+      }
       const requirement = document.createElement('p');
       requirement.className = 'requirement';
       const status = document.createElement('strong');
@@ -154,9 +159,10 @@ a{color:#d2bbff}
         audit.status !== 'manual_visual_audit_unapproved_not_activating' ||
         audit.items.length !== 16) throw Error('Kontrollmanifest er ugyldig');
     for (const item of audit.items) {
-      if (catalog.subBadgeImages[item.id] !== item.image) throw Error('Merkeavvik: ' + item.id);
+      if (!catalog.subBadgeImages[item.id]) throw Error('Mangler merke: ' + item.id);
     }
     items = audit.items;
+    activeBadgeImages = catalog.subBadgeImages;
     render();
   }).catch(err => {
     $('summary').textContent = 'Kunne ikke hente merkelisten: ' + String(err);
