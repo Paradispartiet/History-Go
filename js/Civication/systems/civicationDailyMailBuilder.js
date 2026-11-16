@@ -777,11 +777,11 @@
     const sourceThread = norm(sourceMail?.thread_key);
     const canonicalThread = sourceThread || threadKeyForMail(sourceMail);
     const gameDay = calendarDay();
-    // Ordinary source mails can legitimately recur on different *game* days
-    // during one real-world date. Keep a shared thread inside each game day,
-    // but do not let an older, still-active daily instance suppress the new
-    // day's required mail. Explicit/case threads keep their canonical key.
-    const dailyThread = gameDay != null && !sourceThread && !isCaseThreadKey(canonicalThread)
+    // Ordinary daily mails may recur on a new *game* day during the same
+    // calendar date. Scope every non-case daily extra to that game day,
+    // including sources whose default thread key was already stamped upstream.
+    // True case threads (.case.) continue to deduplicate across days.
+    const dailyThread = gameDay != null && !isCaseThreadKey(canonicalThread)
       ? `${canonicalThread}.day.${gameDay}`
       : canonicalThread;
 
