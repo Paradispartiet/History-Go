@@ -9,13 +9,14 @@ const data = path => JSON.parse(read(path).toString('utf8'));
 const manifest = data('data/badges/vitenskap_v2_candidates_20261112.json');
 const badge = data('data/badges/vitenskap.json');
 
-test('Five Norwegian v2 images are real, byte-verified, nonactive WebP candidates', () => {
+test('Five historical Norwegian v2 candidates remain archived after activating exact copies', () => {
   assert.equal(manifest.items.length, 5);
   assert.equal(manifest.state, 'stored_candidate_not_active');
   assert.equal(Object.keys(badge.subBadgeImages).length, 16);
   for (const art of manifest.items) {
     assert.ok(badge.subBadgeImages[art.id], art.id);
-    assert.notEqual(badge.subBadgeImages[art.id], art.path, 'Candidate cannot replace an active badge yet');
+    assert.equal(badge.subBadgeImages[art.id], 'bilder/merker/vitenskap/brodert/'+art.id+'_v2.webp');
+    assert.notEqual(badge.subBadgeImages[art.id], art.path, 'Archived source remains outside active image directory');
     const bytes = read(art.path);
     assert.equal(bytes.length, art.bytes);
     assert.equal(bytes.toString('ascii',0,4), 'RIFF');
@@ -49,15 +50,15 @@ test('Map retains main badge, PlaceCard prefers place-specific underbadge with f
   context.document={getElementById(id){return ({placeCard:card,pcBadgesIcon:icon,pcBadgesList:panel})[id]||null;}};
   context.window.HGPlaceOpen={getPlace(){return place;}};
   context.applyPlaceCardBadgeRound(place);
-  assert.match(icon.innerHTML, /matematikk\.webp/);
-  assert.match(panel.innerHTML, /matematikk\.webp/);
+  assert.match(icon.innerHTML, /matematikk_v2\.webp/);
+  assert.match(panel.innerHTML, /matematikk_v2\.webp/);
   assert.doesNotMatch(icon.innerHTML, /vitenskap\.webp/);
   const unknown={id:'unmapped-science', category:'vitenskap'};
   card.dataset.currentPlaceId=unknown.id;
   context.window.HGPlaceOpen={getPlace(){return unknown;}};
   context.applyPlaceCardBadgeRound(unknown);
   assert.match(icon.innerHTML, /vitenskap\.webp/);
-  assert.doesNotMatch(icon.innerHTML, /matematikk\.webp/);
+  assert.doesNotMatch(icon.innerHTML, /matematikk_v2\.webp/);
 });
 
 
