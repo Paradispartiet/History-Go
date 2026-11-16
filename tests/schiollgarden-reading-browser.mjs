@@ -47,6 +47,18 @@ try{
    const newsPanel=page.locator('#placeCard [data-hg-place-sheet-owner="news"]');await newsPanel.waitFor({state:'visible'});
    assert.equal(await newsPanel.locator('.pc-sheet-news-card').count(),1);
    const newsText=await newsPanel.innerText();assert.ok(newsText.includes('Gamle nyheter'));assert.ok(newsText.includes(news.title));assert.ok(newsText.includes(news.date));assert.ok(newsText.includes(news.summary.one_liner));
+   const geometry=await newsPanel.evaluate(panel=>{
+    const card=panel.querySelector('.pc-sheet-news-card'),owner=document.querySelector('#placeCard');
+    const bounds=card.getBoundingClientRect(),outer=owner.getBoundingClientRect();
+    const overflowingText=[...card.children].flatMap(el=>{
+     const range=document.createRange();range.selectNodeContents(el);
+     return [...range.getClientRects()].filter(r=>r.left<bounds.left-1||r.right>bounds.right+1).map(r=>({left:r.left,right:r.right}));
+    });
+    return {scrollWidth:card.scrollWidth,clientWidth:card.clientWidth,left:bounds.left,right:bounds.right,outerLeft:outer.left,outerRight:outer.right,overflowingText};
+   });
+   assert.ok(geometry.scrollWidth<=geometry.clientWidth+1,'News card has horizontal text overflow: '+JSON.stringify(geometry));
+   assert.ok(geometry.left>=geometry.outerLeft-1&&geometry.right<=geometry.outerRight+1,'News card leaves PlaceCard bounds');
+   assert.deepEqual(geometry.overflowingText,[],'Every title, paragraph and source label must wrap inside the card');
    const sourceLink=newsPanel.locator(`a[href="${news.sources[0].url}"]`);await sourceLink.click({trial:true});
    await newsPanel.scrollIntoViewIfNeeded();await page.screenshot({path:`${output}/news-${width}.png`,fullPage:true,animations:'disabled'});
    assert.deepEqual(errors,[]);results.push({width,items:source.items.map(x=>x.id),visibleMetadata:true,historicalNews:news.id,externalDestinations:true,externalResponse:'deterministic navigation probe; availability is not certified by this test',errors});
