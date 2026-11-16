@@ -139,7 +139,10 @@
   }
 
   function mainArticle(articles, place) {
-    const rows = list(articles).filter(Boolean);
+    // Explicit news records must never be consumed as the main place article.
+    const newsTypes = new Set(["historical_news", "gamle_nyheter", "gamle nyheter", "avisnotis", "newspaper", "old_news", "news_note", "nyere_notis", "nyere notis"]);
+    const rows = list(articles).filter(article => ![article?.type, article?.kind, article?.category]
+      .some(value => newsTypes.has(text(value).toLowerCase())));
     const placeName = text(place?.name).toLowerCase();
     return rows.find(article => text(article?.title || article?.name).toLowerCase() === placeName)
       || rows.find(article => /hoved|main|primary/.test([article?.id, article?.type, article?.kind].map(value => text(value).toLowerCase()).join(" ")))

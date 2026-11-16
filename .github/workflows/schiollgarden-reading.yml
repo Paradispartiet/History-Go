@@ -1,0 +1,43 @@
+name: Schiollgarden reading and historical news QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/schiollgarden-reading.yml'
+      - 'tests/schiollgarden-reading-browser.mjs'
+      - 'tests/place-sheet-news-renderer.test.mjs'
+      - 'js/ui/place-popup-tabs.js'
+      - 'js/ui/place-sheet/place-section-context.ts'
+      - 'css/place-sheet.css'
+      - 'data/lesespor/manifest.json'
+      - 'data/leksikon/manifest.json'
+      - 'data/runtime/place-open/schiollgarden_prinsens_gate_26.json'
+      - 'data/lesespor/schiollgarden/**'
+      - 'data/leksikon/places/oslo/by/leksikon_schiollgarden_nyhet_byggeprosjekt_2019.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: schiollgarden-reading-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  reading:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node --test tests/place-sheet-news-renderer.test.mjs tests/place-sheet-language-renderer.test.mjs
+      - run: node tests/schiollgarden-reading-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: schiollgarden-reading-browser
+          path: artifacts/schiollgarden-reading-browser
+          if-no-files-found: warn
