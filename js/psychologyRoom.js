@@ -435,7 +435,7 @@
       </section>
     `));
     bindBack();
-    const ahaShareForm = document.getElementById("psychologyRoomAhaShareForm");
+    const ahaShareForm = /** @type {HTMLFormElement | null} */ (document.getElementById("psychologyRoomAhaShareForm"));
     const ahaShareStatus = document.getElementById("psychologyRoomAhaShareStatus");
     const ahaShareText = ahaShareForm?.elements?.selected_insight;
     const ahaShareTarget = "https://aha-echonet.vercel.app/psykologi.html";
