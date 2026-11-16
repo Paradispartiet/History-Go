@@ -49,7 +49,7 @@ test('exactly three historical originals had missing parent-title text, now safe
   const v2ids = ['informasjonsteknologi','matematikk','forskning_og_metode','astronomi_og_fysikk','kjemi_og_materialvitenskap'];
   assert.deepEqual(new Set(revised.map(item => item.id)), new Set([...flagged.map(item => item.id), ...v2ids]));
   assert.ok(revised.every(item => active.subBadgeImages[item.id].endsWith(
-    v2ids.includes(item.id) ? '_v2.webp' : '_v7.webp')));
+    item.id==='matematikk' ? '_v3.webp' : v2ids.includes(item.id) ? '_v2.webp' : '_v7.webp')));
 });
 
 test('review webpage is an authenticated read-only renderer with mobile-size and full-size views', () => {

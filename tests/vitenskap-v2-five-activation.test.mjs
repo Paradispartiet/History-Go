@@ -18,7 +18,7 @@ const ids = [
 ];
 const root = 'bilder/merker/vitenskap/brodert/';
 
-test('exact five v2 originals activated with original Git blobs and no recompression', () => {
+test('all five v2 source originals retained, four remain activated without recompression', () => {
   assert.equal(registry.id, 'vitenskap');
   assert.equal(registry.image, 'bilder/merker/vitenskap/brodert/vitenskap.webp');
   assert.equal(registry.color, '#6A5AE0');
@@ -28,7 +28,7 @@ test('exact five v2 originals activated with original Git blobs and no recompres
   for(const entry of archive.items) {
     const activePath = root+entry.id+'_v2.webp';
     const oldPath = root+entry.id+'.webp';
-    assert.equal(registry.subBadgeImages[entry.id], activePath);
+    assert.equal(registry.subBadgeImages[entry.id], entry.id==='matematikk' ? root+'matematikk_v3.webp' : activePath);
     const bytes = read(activePath);
     assert.deepEqual(bytes,read(entry.path),'v2 must match archived candidate bytes');
     assert.equal(bytes.length,entry.bytes);
@@ -43,7 +43,7 @@ test('exact five v2 originals activated with original Git blobs and no recompres
     const old = read(oldPath);
     assert.equal(old.toString('ascii',8,12),'WEBP','old asset must survive rollback');
     const manifest = artwork.assets.find(x=>x.id===entry.id);
-    assert.equal(manifest.image,activePath);
+    assert.equal(manifest.image, entry.id==='matematikk' ? root+'matematikk_v3.webp' : activePath);
     assert.equal(manifest.previousOriginalImage,oldPath);
     assert.equal(manifest.archivedV2Source,entry.path);
   }
@@ -57,7 +57,7 @@ test('other 11 active underbadges and all historical originals remain unchanged'
   for(const item of historical.items) {
     const active = registry.subBadgeImages[item.id];
     assert.ok(active);
-    if(special.has(item.id)) assert.equal(active,root+item.id+'_v2.webp');
+    if(special.has(item.id)) assert.equal(active,root+item.id+(item.id==='matematikk'?'_v3.webp':'_v2.webp'));
     else if(v7ids.has(item.id)) assert.equal(active,root+item.id+'_v7.webp');
     else assert.equal(active,item.image,'unrelated badge path changed');
     assert.ok(read(item.image).length>3000,'historical original must survive');
