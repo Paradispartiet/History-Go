@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_pilfink:Object.freeze({
+   scientificName:"Passer montanus",
+   src:"bilder/natur/fauna/godkjent/27_pilfink_v1.webp",
+   gitBlobSha:"6337492c57f28ef5d640336fc72db29f0dbe0bc9",
+   reviewedAt:"2026-11-16",
+   stage:"adult_chestnut_crown_white_cheeks_black_cheek_spots_small_black_bib_white_collar_brown_streaked_wings_perched",
+   evidence:"data/natur/fauna/illustration-quality-pilfink-20261116.json"
+  }),
   emne_fauna_notteskrike:Object.freeze({
    scientificName:"Garrulus glandarius",
    src:"bilder/natur/fauna/godkjent/26_notteskrike_v1.webp",
