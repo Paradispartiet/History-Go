@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_stillits:Object.freeze({
+   scientificName:"Carduelis carduelis",
+   src:"bilder/natur/fauna/godkjent/28_stillits_v1.webp",
+   gitBlobSha:"c73db3e8a990927dbc03da3d9df884a9b77f50e9",
+   reviewedAt:"2026-11-16",
+   stage:"adult_red_face_mask_black_white_head_bright_yellow_wing_bar_cream_breast_black_white_tail_perched_on_thistle",
+   evidence:"data/natur/fauna/illustration-quality-stillits-20261116.json"
+  }),
   emne_fauna_pilfink:Object.freeze({
    scientificName:"Passer montanus",
    src:"bilder/natur/fauna/godkjent/27_pilfink_v1.webp",

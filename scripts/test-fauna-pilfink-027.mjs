@@ -28,7 +28,7 @@ assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0,"Transparen
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
 const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,27);
+assert(reg.count>=27,"Pilfink remains approved after subsequent species");
 assert.equal(reg.get(id)?.src,item.src);assert.equal(reg.get(id)?.scientificName,latin);assert.equal(reg.get(id)?.gitBlobSha,item.gitBlobSha);
 const previous={
   "emne_fauna_notteskrike": "a0ae529e88ba334447fb5a4a3e0efceb4cc050fd",
@@ -60,8 +60,8 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,26);
 for(const [prevId,prevSha]of Object.entries(previous))assert.equal(reg.get(prevId)?.gitBlobSha,prevSha,prevId+" must be preserved");
-assert.equal(reg.get("emne_fauna_stillits"),null,"Next species retains legacy SVG fallback");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261116-27"));
+assert.equal(reg.get("emne_fauna_kaie"),null,"Unapproved Kaie keeps original SVG fallback");
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Versioned fauna registry must load");
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-pilfink-027.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Pilfink")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Bokfink")'));
