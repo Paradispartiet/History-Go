@@ -26,7 +26,7 @@ try{
    await page.goto(`http://127.0.0.1:${server.address().port}/index.html?hgTest=1#/place/${id}`,{waitUntil:'domcontentloaded'});
    await page.waitForFunction(id=>window.__HG_APP_READY__===true&&document.querySelector('#placeCard')?.dataset.currentPlaceId===id,id,{timeout:90000});
    await page.waitForFunction(()=>window.HGPlaceCardCollections?.getItems(window.PLACES.find(p=>p.id==='schiollgarden_prinsens_gate_26'),'structures').length===1);
-   const icon=page.locator('#pcCategoryCollectionIcon');
+   const icon=page.locator('button[data-pc-round-gallery-item="pcCategoryCollectionIcon"]');
    await icon.waitFor({state:'visible'});await icon.click();
    const popup=page.locator('.placecard-round-popup.visible');await popup.waitFor({state:'visible'});
    assert.match(await popup.innerText(),/mai 2016/);
