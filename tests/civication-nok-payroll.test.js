@@ -5,7 +5,8 @@ const vm = require('node:vm');
 const config = require('../data/Civication/economy/nok-budget-prototype-2026.json');
 let wallet = { balance: 125.25, last_tick_day_index: 1, livelihood_settled_weeks: ['legacy-marker'],
   nok_v1: { active: true, version: 1, startedDayIndex: 1, config,
-    earnedDays: [], payrollLedger: [] } };
+    earnedDays: [], payrollLedger: [], recurringBills: [{ id: 'rent-fixture',
+      sourceId: 'lease-fixture', amountNok: 10090, firstDueDateISO: '2026-01-01' }] } };
 let clockRaw = null;
 let active = { career_id: 'retail-fixture', nok_salary_contract: {
   jobId: config.job.id, sourceId: config.job.source, employmentPercent: 100 } };
@@ -50,6 +51,11 @@ assert.equal(wallet.nok_v1.payrollLedger[2].grossCents, 0, 'no automatic NAV or 
 assert.equal(wallet.last_tick_day_index, 1, 'NOK payroll never advances the old weekly settlement marker');
 assert.deepEqual(wallet.livelihood_settled_weeks, ['legacy-marker']);
 assert.deepEqual(wallet.nok_v1.earnedDays, []);
+assert.deepEqual(wallet.nok_v1.invoices.map(i => i.monthId), ['2026-01', '2026-02', '2026-03', '2026-04'],
+  'new-month billing survives the same tick that writes the payroll ledger');
+assert.ok(wallet.nok_v1.invoices.every(i => i.status === 'pending'));
+assert.equal(app.CivicationEconomyEngine.payNokInvoice(wallet.nok_v1.invoices[0].id).balance, 28779.65,
+  'issued rent uses the canonical balance after actual earned salary');
 const saved = JSON.stringify(wallet);
 app = boot();
 app.CivicationEconomyEngine.tickWeekly();

@@ -225,7 +225,13 @@ function tickPCIncomeWeekly() {
   let wallet = normalizeWallet(
     window.CivicationState.getWallet()
   );
-  if (wallet.nok_v1?.active === true) return settleNokPayroll(wallet);
+  if (wallet.nok_v1?.active === true) {
+    const billing = generateNokInvoices(wallet);
+    if (!billing.ok) return billing;
+    // Billing may have persisted invoices; do not overwrite them with the
+    // older wallet snapshot when paying earned salary.
+    return settleNokPayroll(normalizeWallet(window.CivicationState.getWallet()));
+  }
 
   /** @type {CiviEconomyCareer | null} */
   const active =
@@ -905,6 +911,67 @@ function settleNokPayroll(wallet) {
   window.CivicationState.updateWallet({ ...wallet, balance, nok_v1: { ...nok,
     earnedDays: days.filter(d => d.monthId >= period.id), payrollLedger: [...ledger, ...entries] } });
   return { ok: true, netNok: net / 100, balance };
+}
+
+/** @param {CiviEconomyWallet} wallet @returns {CiviEconomyRecord} */
+function generateNokInvoices(wallet) {
+  const nok = wallet.nok_v1;
+  if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+  if (nok.recurringBills != null && !Array.isArray(nok.recurringBills)) return { ok: false, reason: "INVALID_BILLING_CONTRACT" };
+  const contracts = /** @type {CiviEconomyRecord[]} */ (nok.recurringBills || []);
+  if (!contracts.length) return { ok: true, skipped: true };
+  if (contracts.some(c => !c || typeof c !== "object")) return { ok: false, reason: "INVALID_BILLING_CONTRACT" };
+  const calendar = window.CivicationCalendar;
+  const current = calendar?.getMonthPeriod?.();
+  const start = calendar?.getMonthPeriod?.(nok.startedDayIndex);
+  if (!Number.isSafeInteger(nok.startedDayIndex) || !start || !current || start.dateISO > current.dateISO) {
+    return { ok: false, reason: "INVALID_BILLING_PERIOD" };
+  }
+  const validDate = (/** @type {unknown} */ value) => {
+    if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+    const date = new Date(value + "T00:00:00.000Z");
+    return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
+  };
+  if (new Set(contracts.map(c => c.id)).size !== contracts.length || contracts.some(c =>
+      typeof c.id !== "string" || !c.id.trim() || typeof c.sourceId !== "string" || !c.sourceId.trim()
+      || !validDate(c.firstDueDateISO) || (c.endsOnISO != null && (!validDate(c.endsOnISO) || c.endsOnISO < c.firstDueDateISO))
+      || typeof c.amountNok !== "number" || !Number.isFinite(c.amountNok) || c.amountNok < 0
+      || !Number.isSafeInteger(Math.round(c.amountNok * 100))
+      || Math.abs(c.amountNok * 100 - Math.round(c.amountNok * 100)) > 0.000001)) {
+    return { ok: false, reason: "INVALID_BILLING_CONTRACT" };
+  }
+  const firstMonth = Number(start.id.slice(0, 4)) * 12 + Number(start.id.slice(5, 7)) - 1;
+  const lastMonth = Number(current.id.slice(0, 4)) * 12 + Number(current.id.slice(5, 7)) - 1;
+  if (lastMonth - firstMonth > 1200) return { ok: false, reason: "BILLING_PERIOD_TOO_LONG" };
+  if (nok.invoices != null && !Array.isArray(nok.invoices)) return { ok: false, reason: "INVALID_INVOICES" };
+  const invoices = /** @type {CiviEconomyRecord[]} */ (nok.invoices || []);
+  if (invoices.some(i => !i || typeof i !== "object")) return { ok: false, reason: "INVALID_INVOICES" };
+  if (new Set(invoices.map(i => i.id)).size !== invoices.length) return { ok: false, reason: "INVOICE_NOT_UNIQUE" };
+  const added = [];
+  for (let index = firstMonth; index <= lastMonth; index++) {
+    const year = Math.floor(index / 12);
+    const month = index % 12;
+    const period = String(year).padStart(4, "0") + "-" + String(month + 1).padStart(2, "0");
+    const monthDays = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+    for (const contract of contracts) {
+      const day = Math.min(Number(contract.firstDueDateISO.slice(8, 10)), monthDays);
+      const due = period + "-" + String(day).padStart(2, "0");
+      if (due < contract.firstDueDateISO || due < start.dateISO || (contract.endsOnISO && due > contract.endsOnISO)) continue;
+      const id = "nok:" + encodeURIComponent(contract.id) + ":" + period;
+      const existing = invoices.find(i => i.id === id);
+      if (existing) {
+        if (existing.sourceId !== contract.sourceId || existing.amountNok !== contract.amountNok || existing.dueDateISO !== due) {
+          return { ok: false, reason: "BILLING_CONTRACT_CONFLICT" };
+        }
+        continue;
+      }
+      added.push({ id, contractId: contract.id, sourceId: contract.sourceId,
+        amountNok: contract.amountNok, dueDateISO: due, monthId: period, status: "pending" });
+    }
+  }
+  if (!added.length) return { ok: true, skipped: true };
+  window.CivicationState.updateWallet({ ...wallet, nok_v1: { ...nok, invoices: [...invoices, ...added] } });
+  return { ok: true, created: added.length };
 }
 
 // A payment consumes an existing, source-bound invoice. It cannot invent a
