@@ -54,6 +54,22 @@ test('hard-fails unsafe, missing, or generated brandmark assets', () => {
   });
 });
 
+test('declared logo requires source and reuse rights', () => {
+  withFixture([
+    {id:'no-rights', name:'Incomplete attribution', place_ids:['x'], logo:img,
+      imageMeta:{sourcePage:source}},
+    {id:'no-source', name:'Unidentified logo', place_ids:['x'], logo:img,
+      imageMeta:{rightsBasis:'Permission granted'}}
+  ], root => {
+    fs.mkdirSync(path.join(root,'bilder/kort/brands'), {recursive:true});
+    fs.writeFileSync(path.join(root,img), '<svg/>');
+    const result=auditLinkedBrandAssets(root);
+    assert.equal(result.invalidDeclaredAssets,2);
+    assert.ok(result.hardFailures.some(x => x.issues.includes('rights_basis_missing')));
+    assert.ok(result.hardFailures.some(x => x.issues.includes('source_page_missing')));
+  });
+});
+
 test('image-only identities remain flagged for authentic-logo review', () => {
   withFixture([
     {id:'image-only', name:'Uses photograph', place_id:'p', image:img,
