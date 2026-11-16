@@ -119,6 +119,48 @@ async function run() {
   assert.notStrictEqual(fromRuntime.event.thread_key, eligible.event.thread_key,
     'uninitialized clock must not reproduce a previous active thread');
 
+  // The real day-5 browser regression was not at queue construction but at
+  // MailEngine delivery: an older unscoped source is already active and the
+  // stale queued wrapper unexpectedly carries the same bare thread key.
+  // Delivery must restore its own game-day thread before deduplication.
+  loadScript('js/Civication/systems/civicationMailEngine.js');
+  global.__civiTestGameDay = 5;
+  global.CivicationCalendar.getClock = () => ({ dayIndex: 5 });
+  global.CivicationCalendar.getPhase = () => 'forenoon';
+  delete global.CivicationLifestoryState;
+  const sourceId = eligible.event.source_mail_id;
+  const unscopedKey = 'controller.mail.' + sourceId;
+  const oldMail = global.CivicationMailEngine.sendMail({
+    status: 'pending', event: {
+      id: sourceId, role_scope: 'controller', mail_type: 'people',
+      thread_key: unscopedKey, choices: [{ id: 'A', label: 'Svar' }]
+    }
+  });
+  assert.strictEqual(oldMail.ok, true, 'older canonical source is present in inbox');
+  const staleEvent = {
+    ...eligible.event,
+    id: sourceId + '__daily_regression_5',
+    thread_key: unscopedKey,
+    source_type: 'daily_extra'
+  };
+  const queuedRuntime = {
+    ...forcedA, date, calendar_day: 5,
+    current_index: 0, runtime_instance_key: '__run_regression_5',
+    items: [{status: 'queued', phase: 'forenoon', slot: 'people_ping', event: staleEvent}]
+  };
+  global.CivicationState.setState({ [global.CivicationDailyMailBuilder.DAY_RUNTIME_KEY]: queuedRuntime });
+  const delivered = await global.CivicationDailyMailBuilder.enqueueNext(null, {
+    active, ignorePending: true, queuedEventId: staleEvent.id
+  });
+  assert.strictEqual(delivered.enqueued, true, 'new day 5 mail must be delivered via real MailEngine');
+  assert.strictEqual(global.CivicationMailEngine.getMail(staleEvent.id)?.event?.thread_key,
+    unscopedKey + '.day.5', 'delivered inbox mail must carry the game-day-scoped thread key');
+  const canonical = global.CivicationDailyMailBuilder.inspect().runtime.items[0];
+  assert.strictEqual(canonical.event.thread_key, unscopedKey + '.day.5',
+    'canonical day runtime must use the same delivered thread key');
+  assert.strictEqual(canonical.status, 'delivered',
+    'daily runtime may be delivered only for its actual inbox event');
+
   console.log('civication-daily-mail-force-new-ids.test.js passed');
 }
 run().catch(error => { console.error(error); process.exit(1); });
