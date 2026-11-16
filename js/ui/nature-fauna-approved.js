@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_sildemaake:Object.freeze({
+   scientificName:"Larus fuscus",
+   src:"bilder/natur/fauna/godkjent/17_sildemaake_v1.webp",
+   gitBlobSha:"b89f8cc442174a9d0ea5be345c29c91c7e0ad68f",
+   reviewedAt:"2026-11-16",
+   stage:"adult_breeding_slate_dark_back_white_head_yellow_legs_yellow_bill_red_gonys_black_primary_mirrors_standing_and_flying",
+   evidence:"data/natur/fauna/illustration-quality-sildemaake-20261116.json"
+  }),
   emne_fauna_hettemaake:Object.freeze({
    scientificName:"Chroicocephalus ridibundus",
    src:"bilder/natur/fauna/godkjent/16_hettemaake_v1.webp",

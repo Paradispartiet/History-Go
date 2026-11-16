@@ -28,7 +28,7 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0,"WebP transparency required");
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
-const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,16);
+const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=16,"Hettemåke must stay approved after later releases");
 assert.equal(reg.get(id)?.src,item.src);assert.equal(reg.get(id)?.scientificName,latin);assert.equal(reg.get(id)?.gitBlobSha,item.gitBlobSha);
 for(const [priorId,expected] of Object.entries({
  emne_fauna_storskarv:"9eff35583a3797062cb579e5e072de9736022ff4",
@@ -36,7 +36,7 @@ for(const [priorId,expected] of Object.entries({
  emne_fauna_toppand:"9069d83c932b0ae316f03b367b7f3ce95a1788b1",
  emne_fauna_graagas:"63289e4f9134a0b0e959b52c59a543e85476f556"
 }))assert.equal(reg.get(priorId)?.gitBlobSha,expected,"Earlier fauna original must be preserved");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261115-16"));
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-hettemaake-016.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Hettemåke")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
