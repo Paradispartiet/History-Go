@@ -10,6 +10,7 @@ on:
       - 'scripts/stage-collection-image-candidates.py'
       - 'scripts/check-collection-image-candidates.py'
       - 'tests/test_stage_collection_image_candidates.py'
+      - 'tests/test_collection_image_integrity_gate.py'
   workflow_dispatch:
 
 concurrency:
@@ -26,8 +27,10 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Test candidate importer
-        run: python3 -m unittest discover -s tests -p 'test_stage_collection_image_candidates.py' -v
+      - name: Test candidate importer and editorial hold gates
+        run: |
+          python3 -m unittest discover -s tests -p 'test_stage_collection_image_candidates.py' -v
+          python3 -m unittest discover -s tests -p 'test_collection_image_integrity_gate.py' -v
       - name: Validate staged WebP assets against manifests
         run: python3 scripts/check-collection-image-candidates.py
       - name: Verify canonical image paths are not candidate paths
