@@ -68,3 +68,11 @@ Kildefakta for de fire tekstene er kontrollert mot eksisterende `externalLinks` 
 **Merge:** ikke klar; ingen påstand om at CI eller browser-QA er bestått.
 
 Avhengigheter og risiko: `frysjadammen` er Oset slusebru, ikke Brekkedammen. `stilla_nydalen` er elvepunktet nedenfor Nydalsdammen, ikke de historiske Stilla-kulpene. `seilduksfabrikken_nydalen` er Øvre spinneri, ikke Christiania Seildugsfabrik. `frysja_33_brekke_kraftstasjon` er enkeltbygningen, ikke hele Frysja industriområde.
+
+## Kildeavvik oppdaget under kontrollen 16. november
+
+**Frysja 33 må kildeavklares før v1:** Oslo kommunes *Turguide Akerselva* (s. 6–7) daterer den bevarte kraftstasjonen til **1892** og siste sagbruksdrift til **1965**. Frysja 33s egen hjemmeside omtaler i stedet kraftstasjonen som bygd i **1850** og viser en annen sluttdatering for sagbruksdriften. Kommuneartikkelen bekrefter at bygget er eneste bevarte del av Brekke Bruk og senere ble aktivitetshus. Behold foreløpig kommunens historiske kilde som grunnlag for draft-teksten, men **ikke** godkjenn dateringsclaim eller fullquiz uten dokumentert avklaring. Kilder: https://www.oslo.kommune.no/get-file/797618/378151321f5e4a09d64bac2406e9a8fd9c861c3c3473fd933860da92c2cd5082/ ; https://www.frysja33.no/ .
+
+**Besøksadresse/anker:** Kommunens Frysja 33-side oppgir Kjelsåsveien 145, mens den eksisterende Place-filen dokumenterer sitt koordinatvalg med adressehistorisk grunnlag for Kjelsåsveien 151C. Ingen geometri er endret. Kontroller eiendom/tilkomst mot primærkilder før denne Place kan ferdigmeldes. Kilde: https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/frysja-33/ .
+
+**Oset:** Både slusebrua og den nyere anleggsbrua er nå ført med kildeetiketter i stedets `externalLinks`, ikke bare som skjulte Fagverk-URL-er.
