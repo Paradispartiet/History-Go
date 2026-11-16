@@ -55,7 +55,7 @@ const prev={
 };
 assert.equal(Object.keys(prev).length,21);
 for(const [olderId,olderSha] of Object.entries(prev))assert.equal(reg.get(olderId)?.gitBlobSha,olderSha,olderId+" previously approved original must be preserved");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261116-23"));
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Versioned approved fauna registry must load");
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-graatrost-022.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Gråtrost")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Spettmeis")'));
