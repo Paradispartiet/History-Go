@@ -107,14 +107,19 @@ async function scenario(engine, width, height) {
       }
     }
     assert.equal((await wallet()).balance, 20000, 'reviewing six offers never pays or changes balance');
-    await selectJob(profile.job, 100);
+    const acceptedJob = engine === 'chromium' ? profile.job : profile.jobs[width === 390 ? 0 : 1];
+    const acceptedPercent = engine === 'webkit' && width === 390 ? 50 : 100;
+    await selectJob(acceptedJob, acceptedPercent);
     await page.locator('[data-civi-nok-offer-terms]').waitFor({ state: 'visible' });
     const terms = await page.locator('[data-civi-nok-offer-terms]').textContent();
-    assert.ok(terms.includes('Brutto:') && terms.includes('Estimert netto:') && terms.includes('100 %'));
+    assert.ok(terms.includes('Brutto:') && terms.includes('Estimert netto:') && terms.includes(acceptedPercent + ' %'));
     await page.locator('[data-civi-nok-offer-terms]').scrollIntoViewIfNeeded();
     const screenshots = [...jobScreenshots, await capture('salary-terms')];
     await page.locator('#civiOfferAccept').click();
-    await page.waitForFunction(title => window.CivicationState.getActivePosition()?.title === title, profile.job.roleTitle);
+    await page.waitForFunction(title => window.CivicationState.getActivePosition()?.title === title, acceptedJob.roleTitle);
+    const acceptedContract = await page.evaluate(() => window.CivicationState.getActivePosition().nok_salary_contract);
+    assert.equal(acceptedContract.jobId, acceptedJob.id);
+    assert.equal(acceptedContract.employmentPercent, acceptedPercent);
     assert.equal((await wallet()).balance, 20000, 'acceptance does not pay salary');
     await openSection('personlig', 'civiHomeStatus');
     const housingText = await page.locator('#homeStatusContent').textContent();
@@ -185,7 +190,7 @@ async function scenario(engine, width, height) {
     assert.equal(JSON.stringify(await wallet()), saved, 'reload neither buys, consumes nor pays again');
     assert.deepEqual(errors, [], 'no uncaught page errors');
     return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock,
-      monthlyPaidCents: cashFlow.expenseCents, jobVariants };
+      monthlyPaidCents: cashFlow.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };
   } catch (error) {
     console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors }));
     console.error('CIVI_NOK_FAILURE_STATE:' + JSON.stringify(await page.evaluate(() => ({

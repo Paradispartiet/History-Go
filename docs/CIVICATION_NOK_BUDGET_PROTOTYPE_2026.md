@@ -246,8 +246,9 @@ Meritter, quizprogresjon, geografi og åpningssaldo er uttrykkelige testgrenser;
 dette er ikke organisk quizopptjening eller 31 dagers private handlingsvalg.
 Eksisterende starter-, wrapped-offer-, kontrakt-, migrering-, budsjett- og lønns-
 kontroller brukes som regresjon. Nettleserreisen prøver alle seks tilbud gjennom
-velgeren i hvert oppsett, tar renhold-/lagerbilder i 50 % og aksepterer deretter
-den opprinnelige butikkjobben. Ti meritter er nå en eksplisitt nettleserfixture.
+velgeren i hvert oppsett og tar renhold-/lagerbilder i 50 %. Chromium aksepterer
+butikk 100 %, WebKit 390 renhold 50 % og WebKit 820 lager 100 %, før resten av
+bolig-/butikk-/reload-reisen. Ti meritter er en eksplisitt nettleserfixture.
 Ny nettleser-/CI-status må registreres for den faktiske headen.
 
 
