@@ -60,6 +60,7 @@ async function scenario(engine, width, height) {
       const active = window.CivicationState?.getActivePosition?.();
       if (active) await window.CivicationRoleModelRuntime?.loadRoleModel?.(active);
     });
+    await page.waitForLoadState('networkidle', { timeout: 90000 });
     assert.ok(count > 0, 'required place sources finish before navigation, avoiding cancelled WebKit fetches');
   }
   async function openSection(category, id) {
