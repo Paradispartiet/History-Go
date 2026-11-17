@@ -137,7 +137,7 @@ try{
       [media.hero,"Hero",composition.heroPosition],
       [media.portrait,"Portrait",composition.portraitPosition]
      ]){
-      if(!/^\\d{1,3}%\\s+\\d{1,3}%$/.test(expected||""))
+      if(!/^\d{1,3}%\s+\d{1,3}%$/.test(expected||""))
        problems.push(label+" has no valid authored focus point");
       else if(image?.position!==expected)
        problems.push(label+" ignores authored focus "+expected+" (actual: "+image?.position+")");
