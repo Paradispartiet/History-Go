@@ -1164,7 +1164,7 @@
         </div>
         <button type="button" class="psychology-room-continue-button" data-psych-action="profile">Min oversikt →</button>
       </section>
-      <section class="psychology-room-utility-row">
+      <section class="psychology-room-utility-row psychology-room-utility-row--three">
         <button type="button" data-psych-action="journal">Fri refleksjon <span aria-hidden="true">↗</span></button>
         <button type="button" data-psych-action="paths">7-dagersløp <span aria-hidden="true">↗</span></button>
         <button type="button" data-psych-action="inner-map">Mitt indre kart <span aria-hidden="true">↗</span></button>
