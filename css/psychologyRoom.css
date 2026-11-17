@@ -1195,3 +1195,13 @@
   .psychology-room-inner-case-head button { justify-self: start; }
   .psychology-room-inner-actions { display: grid; }
 }
+
+/* Three compact paths on wide screens; one full-width tap target on mobile. */
+.psychology-room-utility-row:has([data-psych-action="inner-map"]) {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 670px) {
+  .psychology-room-utility-row:has([data-psych-action="inner-map"]) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
