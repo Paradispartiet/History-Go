@@ -56,7 +56,11 @@
   }
   function setHome(raw) {
     const data = read();
-    data.home = place(raw, "home");
+    const next = place(raw, "home");
+    const changed = JSON.stringify(next) !== JSON.stringify(data.home);
+    data.home = next;
+    // Old routes embed precise former home coordinates. Remove them when edited.
+    if (changed) data.routes = {};
     write(data);
     return copy(data.home);
   }
@@ -64,9 +68,16 @@
     const key = jobKey(active);
     if (!key) throw new Error("Active job is required");
     const data = read();
-    data.workplaces[key] = place(raw, "work");
+    const next = place(raw, "work");
+    if (JSON.stringify(next) !== JSON.stringify(data.workplaces[key])) {
+      // Invalidate only this employer's routes; other jobs remain untouched.
+      for (const id of Object.keys(data.routes)) {
+        if (data.routes[id]?.jobKey === key) delete data.routes[id];
+      }
+    }
+    data.workplaces[key] = next;
     write(data);
-    return copy(data.workplaces[key]);
+    return copy(next);
   }
   function getWorkplace(active) {
     const key = jobKey(active);
@@ -90,11 +101,16 @@
     } catch (_) { return null; }
   }
   function getHome() { return copy(read().home); }
-  function clearHome() { const data = read(); data.home = null; write(data); }
+  function clearHome() { const data = read(); data.home = null; data.routes = {}; write(data); }
   function clearWorkplace(active) {
     const key = jobKey(active);
     const data = read();
-    if (key) delete data.workplaces[key];
+    if (key) {
+      delete data.workplaces[key];
+      for (const id of Object.keys(data.routes)) {
+        if (data.routes[id]?.jobKey === key) delete data.routes[id];
+      }
+    }
     write(data);
   }
   function planCommute(options) {
