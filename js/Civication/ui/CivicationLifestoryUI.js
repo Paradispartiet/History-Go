@@ -941,7 +941,13 @@
     // Uten endings-modulen vises den vanlige dagsoppsummeringen.
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
     const sisteDag = !!(Endings && Endings.isFinalDay(state, content));
-    const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
+    // A new authored week can follow an already-completed one. Show the
+    // original factual week-one ending on its declared boundary while
+    // retaining the ordinary next-day action. Only the last authored day
+    // terminates the entire role; a milestone never blocks progression.
+    const ukeslutt = state.dagFerdig && Array.isArray(content.role.ukesluttDager)
+      && content.role.ukesluttDager.includes(state.dag);
+    const ending = (sisteDag || ukeslutt) ? Endings.resolveEnding(state, content) : null;
     const authoredEnding = ending && (content.role.endings || []).find(e => e.id === ending.id);
     const onOriginalFinalDay = !content.role.symposium || state.dag === content.role.symposium.sisteDag;
     const endingHtml = ending && onOriginalFinalDay
