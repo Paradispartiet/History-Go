@@ -78,6 +78,10 @@ assert.ok(source.includes("escapeHtml(field.text)"), "all user-authored map fiel
 assert.ok(source.includes("escapeHtml(entry.situation.slice(0, 110))"),
   "picker previews must escape user-authored text");
 assert.ok(css.includes("psychology-room-inner-chain"), "responsive diagram styles must exist");
+assert.ok(source.includes("localStorage.removeItem(STORAGE_KEYS.innerMap)"),
+  "deleting all private reflections must also clear the map selection key");
+assert.ok(source.includes("GitHub Pages deler nettleserlagring"),
+  "users must be warned about the shared GitHub Pages storage origin");
 
 assert.equal(room.toggleInnerMap("entry-1").selected, false);
 assert.deepEqual(Array.from(room.getInnerMapIds()), []);
