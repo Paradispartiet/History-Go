@@ -1,0 +1,522 @@
+{
+  "schema_version": "1.0",
+  "status": "partial",
+  "categoryId": "historie",
+  "targetId": "frysjadammen",
+  "scope": "oset_slusebru_municipal_water_history",
+  "reviewed_at": "2026-11-17",
+  "review_note": "De fire navngitte eksterne kildesidene er åpnet og gjennomgått. De 28 etterprøvbare påstandene er et oppdatert, stedsspesifikt grunnlag for en ny 4x7-plan, ikke dokumentasjon for at de 42 allerede aktive spørsmålene er godkjente. Hele autoritative fagpakken, individuell quiz/Knowledge-migrering og tester gjenstår.",
+  "sources": {
+    "oset_byleks": {
+      "url": "https://oslobyleksikon.no/side/Oset_slusebru",
+      "source_type": "historical_local_reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-17",
+      "review_note": "Lest hele oppslaget: beliggenhet nedenfor Oset anleggsbru, gangbru i tre fra 1859, Engebret Soot/1854, sluse plassert midt i brua, håndratt, bevarte mekanismedeler og VAV-eierskap. Oppslaget er sist redigert i 2021; ikke kilde til dagens driftsstatus."
+    },
+    "oset_anlegg_byleks": {
+      "url": "https://oslobyleksikon.no/side/Oset_anleggsbru",
+      "source_type": "historical_local_reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-17",
+      "review_note": "Lest hele oppslaget: anleggsbru av betongelementer 2003/2004, kjørebru, pumpestasjon/renseanlegg i fjell, 2 km anleggsvei, avlasting Kjelsås, opprinnelig midlertidig men beholdt, tidligere armert betong-bru fra 1965 revet 1997. Historisk Oset slusebru er nedenfor, ikke samme konstruksjon."
+    },
+    "oslo_vav_150": {
+      "url": "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/",
+      "source_type": "official_municipal_water_history",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-17",
+      "review_note": "Lest Oslo kommunes historiske gjennomgang: etatsdannelse 1876, vannkraft/industriinteresser, Brugseierforeningen/Baronkontrakten, Maridalssyken 1888, klorering 1929, Oset-anlegg 1971 og 2008. Byhistorisk kontekst; ikke kilde til operativ sluseføring i dag."
+    },
+    "akerselvas_venner_oset": {
+      "url": "https://www.akerselvasvenner.no/2016/01/01/oset-slusebru/",
+      "source_type": "local_heritage_association",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-17",
+      "review_note": "Lest artikkelen om Oset slusebru av Kjell Egil Sterten via Akerselvas Venner. Bekrefter bro- og mekanismedata, men bygger på samme forfatter/kildegrunnlag som Oslo byleksikon og teller derfor ikke som uavhengig dobbelbekreftelse."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_industri_produksjon_energi",
+      "em_his_kulturminner_bevaring",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_styring_krise_kontinuitet",
+      "em_his_spor_materialitet"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [],
+    "works": []
+  },
+  "curriculum_selection_status": "provisional_source_relevance_only_pending_full_fagpakke_resolver",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/frysjadammen_sets.json",
+      "data/quizcards/historie/manifest.json",
+      "data/fag/fag_manifest.json",
+      "reports/place-production/oslo-akerselva-v1-quiz-candidates-20261116.json"
+    ],
+    "active_before": {
+      "set_count": 6,
+      "question_count": 42,
+      "linked_knowledge": 33,
+      "editorial_review_required": 9
+    },
+    "classification": {
+      "source_reviewed_opening": "10 existing active questions from set 1 and set 2 questions 1-3; source-backed but retained original stable IDs.",
+      "needs_review": "Remaining 32 active questions, many generic, repeated, or written about the incorrect name Frysjadammen instead of Oset slusebru.",
+      "duplicates_or_generic_examples": [
+        "frysjadammen_s3_q2 vs frysjadammen_s6_q2: question about definition of vannføring repeated",
+        "frysjadammen_s3_q4 vs frysjadammen_s6_q4: definition of blågrønn struktur repeated",
+        "frysjadammen_s2_q7: asks what produces the app's History Go atmosphere",
+        "frysjadammen_s4_q2 and frysjadammen_s5_q5: asks how quiz should be written",
+        "frysjadammen_s4_q7 and frysjadammen_s5_q7: questions about the quiz instead of the historic site"
+      ]
+    },
+    "decisions": [
+      "Existing live six-set quiz is NOT empty. Do not create a duplicate target or rewrite manifest against original IDs.",
+      "Preserve existing quiz_id and Knowledge-unit ID wherever the historical learning claim stays materially unchanged.",
+      "For a substantially new historical claim, retire the original question from playable rotation and preserve its old Knowledge claim in the existing canonical preserved-source archive procedure before assigning new question and Knowledge IDs.",
+      "Future 4x7 profile is an evidence-based candidate replacing weak six-set padding, not a deployed/merged change. Do not cut active six-set quiz until complete migration and canonical regeneration.",
+      "Do not activate draft QuizCard or Fagverk until source-claim-answer/Knowledge parity, browser QA, and all tests pass."
+    ],
+    "knowledge_migration": "Preserve historically earned KU IDs for 33 previously linked and 9 pending existing questions as appropriate, including explicit archived source data for materially replaced objectives; do not silently reassign legacy KU IDs to unrelated claims."
+  },
+  "held_back_candidates": [
+    "Dagens driftsstatus for den gamle manuelt styrte slusen, historisk vannføring eller hydrologiske måleresultater uten datert primærkilde.",
+    "Fysisk tilgang til betjeningshjul, slusebruas bærende tilstand eller vedlikeholdstiltak som ikke er dokumentert av kildene.",
+    "Feilplassering av 1965-betongbrua eller nyere anleggsbru som om de var trebrua fra 1859.",
+    "Fiktive personprofiler, tekniske mål på slusemekanismen eller artsregistreringer.",
+    "Dagens andel drikkevann fra Oset uten en fersk offisiell tidsfestet kilde."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_oset_slusebru_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oset slusebru ligger ved Maridalsvannet like nedstrøms Oset anleggsbru.",
+      "source_ids": [
+        "oset_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oset slusebru er ei gangbru, ikke den nyere kjørebrua.",
+      "source_ids": [
+        "oset_byleks",
+        "oset_anlegg_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den historiske Oset slusebrua er en trebru bygd i 1859.",
+      "source_ids": [
+        "oset_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Reguleringsslusen var montert midt på trebrua.",
+      "source_ids": [
+        "oset_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Reguleringsmekanismen ble tidligere styrt manuelt med et ratt.",
+      "source_ids": [
+        "oset_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Slusen i Oset slusebru regulerte vannstanden i Akerselva.",
+      "source_ids": [
+        "oset_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Rester av den historiske slusemekanismen er bevart.",
+      "source_ids": [
+        "oset_byleks",
+        "akerselvas_venner_oset"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den første Maridalsdammen ble anlagt i 1854 av Engebret Soot, før slusebrua fra 1859.",
+      "source_ids": [
+        "oset_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oset slusebru eies av Oslo kommunes Vann- og avløpsetat.",
+      "source_ids": [
+        "oset_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_styring_krise_kontinuitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den nyere Oset anleggsbru er en kjørebru bygget av betongelementer ved årsskiftet 2003/2004.",
+      "source_ids": [
+        "oset_anlegg_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Anleggsbrua ble reist for trafikk under byggingen av en ny pumpe- og rensestasjon.",
+      "source_ids": [
+        "oset_anlegg_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Den nye pumpe- og rensestasjonen som anleggsbrua betjente ligger i et fjellanlegg på Kjelsås.",
+      "source_ids": [
+        "oset_anlegg_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Sammen med anleggsbrua ble det laget en anleggsvei på om lag to kilometer fra Maridalen.",
+      "source_ids": [
+        "oset_anlegg_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "context",
+      "statement": "Anleggsbruas primære trafikkformål var annerledes enn slusebruas historiske reguleringsfunksjon.",
+      "source_ids": [
+        "oset_byleks",
+        "oset_anlegg_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Anleggsveien og den nye brua skulle redusere anleggstrafikk gjennom bebyggelsen på Kjelsås.",
+      "source_ids": [
+        "oset_anlegg_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_styring_krise_kontinuitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Oset anleggsbru var planlagt som midlertidig i byggeperioden, men ble stående permanent.",
+      "source_ids": [
+        "oset_anlegg_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Omtrent på samme sted som dagens Oset anleggsbru sto tidligere en annen bru oppført i 1965 og revet i 1997.",
+      "source_ids": [
+        "oset_anlegg_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "comparison",
+      "statement": "Brua fra 1965 var en armert betong-bjelkebru på 21 meter; den må ikke forveksles med trebrua fra 1859.",
+      "source_ids": [
+        "oset_anlegg_byleks",
+        "oset_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Vannkraft fra Akerselva bidro til sterk industriutbygging etter 1840.",
+      "source_ids": [
+        "oslo_vav_150"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fabrikkeiernes Akerselven Brugseierforening mente offentlig vannuttak kunne true industriens vannressurser.",
+      "source_ids": [
+        "oslo_vav_150"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_styring_krise_kontinuitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "I 1876 fikk Brugseierforeningen disposisjonsrett over dammer i Nordmarka gjennom Baronkontrakten.",
+      "source_ids": [
+        "oslo_vav_150"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_styring_krise_kontinuitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Kristiania vand- og kloakvæsen ble opprettet i 1876 for å møte økende behov for vann- og avløpsinfrastruktur.",
+      "source_ids": [
+        "oslo_vav_150"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_styring_krise_kontinuitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Maridalssyken i 1888 var et smitteutbrudd knyttet til forurensning av byens vannforsyning fra Maridalen.",
+      "source_ids": [
+        "oslo_vav_150"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_styring_krise_kontinuitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Fra 1929 ble det tilsatt klor ved vannrenseanleggene på Oset og Sognsvann.",
+      "source_ids": [
+        "oslo_vav_150"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Oset pumpe- og renseanlegg ble ferdigstilt i 1971.",
+      "source_ids": [
+        "oslo_vav_150"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Et nytt Oset vannbehandlingsanlegg ble åpnet i 2008.",
+      "source_ids": [
+        "oslo_vav_150"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Slusebruas treverk og bevarte mekanismedeler er et eldre teknisk kulturspor; anleggsbrua og vannbehandlingen representerer senere utbyggingsfaser.",
+      "source_ids": [
+        "oset_byleks",
+        "oset_anlegg_byleks",
+        "oslo_vav_150"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "method_id": "met_sporlesning",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json"
+      ]
+    },
+    {
+      "claim_id": "claim_oset_slusebru_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Et foto av det bevarte sluserattet dokumenterer en historisk mekanisme, men gir ikke alene sikker kunnskap om dagens operasjon eller vannmengder.",
+      "source_ids": [
+        "oset_byleks"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations",
+      "method_id": "met_kildekritikk",
+      "topic_hook_id": "his_kildekritikk",
+      "guidance_basis": [
+        "data/fag/historie/methods_historie_canonical_v4_5.json"
+      ]
+    }
+  ],
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Fire faglig selvstendige sett er mulig med 28 kildefestede påstander fordelt på 1) selve slusebrua, 2) historiske/nye broanlegg, 3) anleggstrafikk, industriers vanninteresser og regulering, 4) kommunal vannforsyning og kritisk kildebruk. Å videreføre seks sett med generiske definisjons- og produksjonsspørsmål er ikke kildeforsvarlig.",
+    "status": "editorial_preproduction_only",
+    "opening_policy": "first_2_sets_7_normal_questions_no_theory"
+  },
+  "note": "Dette kildegrunnlaget er ment for den kanoniske quizproduksjonens resolver og skal ikke alene brukes til å endre manifest, aktiv quiz, generert Knowledge eller QuizCard. Dokumentert review av eksterne kilder, men full intern fagpakkegjennomgang gjenstår."
+}
