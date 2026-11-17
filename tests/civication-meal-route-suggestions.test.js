@@ -94,3 +94,78 @@ assert.equal(select({places:[food("lunch",720,"lunch")],now:new Date("2026-11-19
 const storageAccess = /\blocalStorage\b|\bfetch\s*\(|\bsetInterval\s*\(|\bgeolocation\b|\bdispatchEvent\s*\(/;
 assert(!storageAccess.test(script),"the recommender must remain read-only with no tracking");
 console.log("PASS: verified routed meals, grocery lead time, dedupe, shift hours, expiry, privacy");
+
+
+// Integration of already-selected weekly meals, *private* saved routes and
+// externally verified public places. No restaurant/store is invented.
+const BRIDGE_ROOT = path.join(__dirname, "..", "js/Civication/systems");
+const storage = new Map();
+const localStorage = {
+  getItem: key => storage.get(key) ?? null,
+  setItem: (key, value) => storage.set(key, String(value))
+};
+globalWindow.CivicationCalendar = { getClock: () => ({ dayIndex: 1 }) };
+globalWindow.CivicationState = {
+  getActivePosition: () => ({ career_id: "naeringsliv", brand_id: "demo-employer", role_id: "test-job" })
+};
+const context = { window: globalWindow, localStorage };
+for (const file of ["civicationMealPlan.js", "civicationPersonalRoutes.js", "civicationMealRouteBridge.js"]) {
+  vm.runInNewContext(fs.readFileSync(path.join(BRIDGE_ROOT, file), "utf8"), context);
+}
+const menu = globalWindow.CivicationMealPlan;
+const privateRoutes = globalWindow.CivicationPersonalRoutes;
+const bridge = globalWindow.CivicationMealRouteBridge;
+const noPlan = bridge.build({ gameDayIndex: 1, now: NOW, places: [] });
+assert.equal(noPlan.status, "weekly_menu_not_selected");
+
+menu.applyTemplate("varied");
+assert.deepEqual(Array.from(menu.getIngredientIdsByMeal(1).dinner),["pasta", "tomat", "lok"]);
+assert.deepEqual(Array.from(menu.getIngredientIdsByMeal(1).lunch),["tortilla", "bonner", "salat"]);
+assert.equal(bridge.build({ gameDayIndex: 1, now: NOW, places: [] }).status,"active_job_required" === "xyz" ? "" : "verified_commute_required");
+
+privateRoutes.setHome({ name: "Syntetisk hjem", address: "Testadresse 1", latitude: 59.9, longitude: 10.7 });
+privateRoutes.setWorkplace({ name: "Syntetisk arbeidssted", address: "Testadresse 2", latitude: 59.91, longitude: 10.8 });
+const planned = privateRoutes.planCommute({ weekDay: 0, travelMode: "walking" });
+assert.equal(planned.ok, true);
+const realRoute = privateRoutes.saveResolvedRoute(planned.route.id, {
+  ok: true, routeId: planned.route.id, routingStatus: "verified_route",
+  roadGeometry: route.roadGeometry, geometryRevision: "ors-geometry-v1-123abcde",
+  distanceMeters: 1200, durationMinutes: 16,
+  routeEvidence: { ...evidence, sourceUrl:"https://api.openrouteservice.org/v2/directions/foot-walking/geojson" }
+});
+assert.equal(bridge.build({ gameDayIndex: 1, now: NOW, places: [] }).status, "verified_venues_required");
+const matchProof = passMinutes => ({
+  routeId: realRoute.id, geometryRevision: realRoute.geometryRevision,
+  passMinutes, detourMinutes: 3, evidence
+});
+const verifiedLunch = {
+  ...food("on-commute-lunch",720,"lunch"),
+  routeProof: matchProof(720)
+};
+const verifiedGroceries = {
+  ...grocery(930),
+  routeProof: matchProof(930)
+};
+const inputs={gameDayIndex:1, now:NOW, places:[verifiedLunch,verifiedGroceries]};
+const joined=bridge.build(inputs);
+assert.equal(joined.status,"verified_offers_found");
+assert.equal(joined.routesConsidered,1);
+assert.deepEqual(Array.from(joined.offers, offer=>offer.meal).sort(),["dinner","lunch"]);
+assert.equal(joined.offers.find(offer=>offer.meal==="dinner").kind,"grocery");
+assert.equal(joined.offers.find(offer=>offer.meal==="lunch").kind,"restaurant");
+assert.equal(bridge.build({...inputs,optedOut:true}).offers.length,0);
+assert.equal(bridge.build({...inputs,gameDayIndex:2}).offers.length,0,"wrong weekday cannot use commute");
+assert.equal(bridge.build({...inputs,pantry:{pasta:200000}}).offers.some(offer=>offer.kind==="grocery"),false,
+  "already owned ingredient must not trigger shop suggestions");
+menu.setMeal(0,"dinner","salmon");
+assert.equal(bridge.build(inputs).offers.some(offer=>offer.kind==="grocery"),false,
+  "shop must match the NEW selected meal");
+privateRoutes.clearWorkplace();
+assert.equal(bridge.build(inputs).status,"verified_commute_required");
+assert.deepEqual(Array.from(storage.keys()).sort(),["hg_civi_meal_plans_v1","hg_civi_personal_routes_v1"]);
+assert(!storage.has("aha_import_payload_v1"), "no inferred AHA export");
+assert(!storage.has("hg_civi_wallet_v1"), "read-only proposals never spend money");
+const bridgeSource=fs.readFileSync(path.join(BRIDGE_ROOT,"civicationMealRouteBridge.js"),"utf8");
+assert(!/\bfetch\s*\(|\bgeolocation\b|\blocalStorage\b/.test(bridgeSource.replace(/^\/\/.*$/gm,"")),
+  "bridge must not read or transmit private coordinates");
+console.log("PASS: weekly menu ingredients join only matching verified private commutes and public places");
