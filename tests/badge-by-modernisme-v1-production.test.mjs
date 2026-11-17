@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 import {createHash} from "node:crypto";
 const read = path => JSON.parse(readFileSync(new URL("../" + path, import.meta.url), "utf8"));
-const imagePath = "bilder/merker/by/undermerker/modernisme-brodert-v2.webp";
-const sha = "55334d30bd8f0f8312518276a8fb39db44b90dae3566d72ea319df5460b35c61";
+const imagePath = "bilder/merker/by/undermerker/modernisme-brodert-v3.webp";
+const sha = "712ff6f0d6d66870890e5d91fb2fbb93b797b06fc02b1430a1a30ec7601a03c1";
 test("By Modernisme badge has exact 1024px gray embroidered image, correct routing and intact previous art", () => {
   const by = read("data/badges/by.json");
   const plan = read("data/badges/underbadge_batch01_production.json");
@@ -32,8 +32,8 @@ test("By Modernisme badge has exact 1024px gray embroidered image, correct routi
   assert.equal(asset.status,"integrated");
   assert.equal(asset.selectedImage,imagePath);
   assert.deepEqual(asset.quality,{visualApproved:true,technicalApproved:true});
-  assert.equal(asset.bytes,620110);
-  assert.equal(img.length,620110);
+  assert.equal(asset.bytes,563400);
+  assert.equal(img.length,563400);
   assert.equal(img.toString("ascii",0,4),"RIFF");
   assert.equal(img.toString("ascii",8,12),"WEBP");
   assert.equal(img.toString("ascii",12,16),"VP8X");
@@ -41,8 +41,11 @@ test("By Modernisme badge has exact 1024px gray embroidered image, correct routi
   assert.equal(img.readUIntLE(27,3)+1,1024);
   assert.ok(img[20]&0x10,"image must retain alpha");
   assert.equal(createHash("sha256").update(img).digest("hex"),sha);
+  const v2=readFileSync(new URL("../bilder/merker/by/undermerker/modernisme-brodert-v2.webp",import.meta.url));
+  assert.equal(asset.previousActive.path,"bilder/merker/by/undermerker/modernisme-brodert-v2.webp");
+  assert.equal(createHash("sha256").update(v2).digest("hex"),asset.previousActive.sha256,"v2 previous active retained");
   const prior=readFileSync(new URL("../bilder/merker/by/undermerker/modernisme-brodert-v1.webp",import.meta.url));
-  assert.equal(createHash("sha256").update(prior).digest("hex"),asset.previousActive.sha256,"v1 original retained");
+  assert.equal(createHash("sha256").update(prior).digest("hex"),asset.originalActiveV1.sha256,"v1 original retained");
 });
 test("other By candidates are inactive and 12 Film & TV plus 7 Scenekunst remain active",()=>{
   const by=read("data/badges/by.json"),film=read("data/badges/film_tv.json"),scene=read("data/badges/scenekunst.json");

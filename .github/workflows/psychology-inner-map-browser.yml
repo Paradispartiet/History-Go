@@ -1,0 +1,33 @@
+name: Psykologirommet 2.0 browser UI
+
+on:
+  pull_request:
+    paths:
+      - "js/psychologyRoom.js"
+      - "css/psychologyRoom.css"
+      - "tests/psychology-inner-map.browser.cjs"
+      - ".github/workflows/psychology-inner-map-browser.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: psychology-inner-map-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inner-map-browser:
+    name: Chromium and iPad WebKit map interactions
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Exercise local-only personal map in both browsers
+        run: node tests/psychology-inner-map.browser.cjs
