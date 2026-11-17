@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_staer:Object.freeze({
+   scientificName:"Sturnus vulgaris",
+   src:"bilder/natur/fauna/godkjent/30_staer_v1.webp",
+   gitBlobSha:"6e90951b0ee9b22674b0e9556013f09fbc87c2fd",
+   reviewedAt:"2026-11-16",
+   stage:"adult_transition_iridescent_purple_green_plumage_white_speckled_feather_tips_yellow_bill_pink_legs_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-staer-20261116.json"
+  }),
   emne_fauna_kaie:Object.freeze({
    scientificName:"Coloeus monedula",
    src:"bilder/natur/fauna/godkjent/29_kaie_v1.webp",
