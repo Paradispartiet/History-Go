@@ -1,0 +1,32 @@
+name: Tøyen archive photo offline review safety
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/toyen-archive-photo-review.yml'
+      - 'scripts/stage_toyen_archive_for_review.py'
+      - 'tests/test_toyen_archive_review_import.py'
+      - 'reports/collection-images/toyen-trafo-apparatpult-1916-photo-source.json'
+      - 'reports/collection-images/toyen-trafo-transformatorkjerne-1918-photo-source.json'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  offline-import-safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned image inspector
+        run: python -m pip install Pillow==11.3.0
+      - name: Test two offline archive review paths and publication holds
+        run: python -m unittest discover -s tests -p 'test_toyen_archive_review_import.py' -v
