@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Regression: canonical Place.image and Place.frontImage never lose their
-// overview to object-fit:cover, at phone/tablet/desktop widths.
+// Regression: current full-bleed Place.image and Place.frontImage use cover,
+// while legacy/documentary photos keep contain, at phone/tablet/desktop widths.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -88,7 +88,7 @@ try{
    const page=await browser.newPage({viewport:{width,height:1000}});
    await page.goto(url,{waitUntil:'load',timeout:30000});
    for(const [selector,expected] of [
-     ['#pcHeaderImage','contain'],['#pcFrontImage','contain'],
+     ['#pcHeaderImage','cover'],['#pcFrontImage','cover'],
      ['#legacyHero','contain'],['#beforePhoto','contain'],
      ['#quizArtwork','contain']
    ]){
