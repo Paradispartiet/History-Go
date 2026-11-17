@@ -30,9 +30,10 @@ jobs:
       - name: Test safe source fetch without network
         run: python -m unittest discover -s tests -p 'test_freiaparken_photo_review_fetch.py' -v
       - name: Fetch exact Commons photo and verify source SHA-1, dimensions and byte count
+        if: github.event_name == 'workflow_dispatch'
         run: python scripts/fetch-freiaparken-photo-for-review.py --out artifacts/freiaparken-photo-source-review
       - name: Upload unapproved review files without publishing to History GO
-        if: success()
+        if: github.event_name == 'workflow_dispatch' && success()
         uses: actions/upload-artifact@v4
         with:
           name: freiaparken-2024-source-photo-UNAPPROVED
