@@ -35,6 +35,12 @@ SOURCE_CATALOG = {
     ),
 }
 MAX_BYTES = 25_000_000
+MAX_PIXELS = 40_000_000
+MAX_SIDE = 20_000
+ARCHIVE_ASSETS = {
+    "A-20138/Ua/0004/054": ("toyen_trafo_apparatpult_1916", 1916),
+    "A-20138/Ua/0004/091": ("toyen_trafo_transformatorkjerne_1918", 1918),
+}
 ALLOWED_FORMATS = {"JPEG", "PNG", "TIFF"}
 
 
@@ -52,6 +58,11 @@ def stage_for_review(source: dict, archive_id: str, input_file: Path,
             or source.get("publishable") is not False
             or source.get("editorialApproval") is not False):
         raise ValueError("unexpected source identity or publication state")
+    if archive_id not in ARCHIVE_ASSETS:
+        raise ValueError("unknown Tøyen archival identifier")
+    expected_asset, expected_year = ARCHIVE_ASSETS[archive_id]
+    if source.get("asset") != expected_asset or source.get("recordedYear") != expected_year:
+        raise ValueError("asset identity and recorded year must match exact archive number")
     if (source.get("archivalCatalogTitle"), source.get("archivalCatalogMotif")) != SOURCE_CATALOG[archive_id]:
         raise ValueError("catalog title/motif mismatch for this archive item")
     expected_canonical = f'bilder/objects/{source["asset"]}_illustrasjon.svg'
@@ -83,8 +94,11 @@ def stage_for_review(source: dict, archive_id: str, input_file: Path,
                 raise ValueError("not a supported unmodified archival image format")
             fmt = im.format
             original_dimensions = list(im.size)
-            if original_dimensions[0] <= 0 or original_dimensions[1] <= 0:
+            width, height = original_dimensions
+            if width <= 0 or height <= 0:
                 raise ValueError("invalid archive image dimensions")
+            if width > MAX_SIDE or height > MAX_SIDE or width * height > MAX_PIXELS:
+                raise ValueError("archive image exceeds safe pixel limits")
             display = ImageOps.exif_transpose(im).convert("RGB")
     except (UnidentifiedImageError, OSError, ValueError) as exc:
         raise ValueError("not a valid JPEG, PNG or TIFF source image") from exc
