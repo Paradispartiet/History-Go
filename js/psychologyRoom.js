@@ -439,8 +439,8 @@
     const ahaShareStatus = document.getElementById("psychologyRoomAhaShareStatus");
     const ahaShareText = /** @type {HTMLTextAreaElement | null} */ (ahaShareForm?.querySelector('textarea[name="selected_insight"]') || null);
     const ahaShareConsent = /** @type {HTMLInputElement | null} */ (ahaShareForm?.querySelector('input[name="aha_share_confirm"]') || null);
-    const ahaShareTarget = "https://aha-echonet.vercel.app/psykologi.html";
-    const ahaTrustedOrigins = ["https://aha-echonet.vercel.app"];
+    const ahaShareTarget = "https://aha-echo-net.vercel.app/psykologi.html";
+    const ahaTrustedOrigins = ["https://aha-echo-net.vercel.app"];
     function selectedAhaText() {
       const text = String(ahaShareText?.value || "").trim();
       return text.length > 0 && text.length <= 1500 ? text : null;
