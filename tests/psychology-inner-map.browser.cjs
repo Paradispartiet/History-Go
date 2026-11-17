@@ -90,6 +90,21 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
     assert.equal(await page.locator(".psychology-room-inner-case").count(), 0);
     assert.deepEqual(await page.evaluate(() =>
       JSON.parse(localStorage.getItem("hg_psychology_inner_map_v1")).selected_ids), []);
+
+    // Reselect a note and verify "delete all" clears both the source record
+    // and its map references. Neither must survive in this browser profile.
+    await page.locator('[data-psych-map-add="synthetic-map-one"]').click();
+    await page.locator('[data-psych-nav="profile"]').click();
+    page.once("dialog", dialog => dialog.accept());
+    await page.locator('[data-psych-clear-workbench]').click();
+    const cleared = await page.evaluate(() => ({
+      workbench: localStorage.getItem("hg_psychology_workbench_v1"),
+      map: localStorage.getItem("hg_psychology_inner_map_v1"),
+      aha: localStorage.getItem("aha_insight_chamber_v1")
+    }));
+    assert.equal(cleared.workbench, null, "deleting notes removes the source data");
+    assert.equal(cleared.map, null, "deleting notes removes selected map references");
+    assert.equal(cleared.aha, null, "the map must never create regular AHA insights");
     await context.close();
     console.log(engineName + ": psychology inner-map UI, escaping and responsive layout passed");
   } finally {
@@ -99,5 +114,6 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
 
 (async () => {
   await browserSmoke("Chromium", chromium, devices["Desktop Chrome"]);
+  await browserSmoke("Phone Chromium", chromium, devices["Pixel 5"]);
   await browserSmoke("iPad WebKit", webkit, devices["iPad Pro 11"]);
 })().catch(err => { console.error(err); process.exitCode = 1; });
