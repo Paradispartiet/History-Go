@@ -42,10 +42,17 @@
     return Object.keys(windows).find(meal =>
       minutes >= windows[meal][0] && minutes < windows[meal][1]) || null;
   }
+  function validGeometry(geometry) {
+    return geometry?.type === "LineString" && Array.isArray(geometry.coordinates) &&
+      geometry.coordinates.length >= 2 && geometry.coordinates.length <= 10000 &&
+      geometry.coordinates.every(pair => Array.isArray(pair) && pair.length >= 2 &&
+        Number.isFinite(pair[0]) && pair[0] >= -180 && pair[0] <= 180 &&
+        Number.isFinite(pair[1]) && pair[1] >= -90 && pair[1] <= 90);
+  }
   function validRoute(route, gameDayIndex, nowMillis) {
     if (!route || route.kind !== "commute" || route.status !== "planned" ||
       route.visibility !== "private" || route.routingStatus !== "verified_route" ||
-      !route.roadGeometry || !fresh(route.routeEvidence, nowMillis) ||
+      !validGeometry(route.roadGeometry) || !fresh(route.routeEvidence, nowMillis) ||
       !Array.isArray(route.waypoints) || route.waypoints.length < 2) return false;
     const day = Number(gameDayIndex);
     return Number.isSafeInteger(day) && day >= 1 &&
