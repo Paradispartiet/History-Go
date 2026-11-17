@@ -102,7 +102,9 @@
     if (params.optedOut === true || params.recentlyAte === true ||
       !Array.isArray(params.places)) return [];
     const dayIndex = params.gameDayIndex;
-    const nowMillis = params.now instanceof Date ? params.now.getTime() : Number(params.nowMillis);
+    // Dates supplied by Civication's VM/test contexts have a different Date prototype.
+    const nowMillis = params.now && typeof params.now.getTime === "function"
+      ? Number(params.now.getTime()) : Number(params.nowMillis);
     if (!Number.isFinite(nowMillis)) return [];
     const route = params.route;
     if (!validRoute(route, dayIndex, nowMillis)) return [];
