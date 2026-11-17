@@ -1,9 +1,7 @@
-/* History Go — shared photographic overview framing contract.
-   Apply to the canonical Place.image landscape heading, Place.frontImage portrait,
-   legacy Place popup hero, and the before/after documentary pair.
-   A subject is never cropped just to fill its frame: any unused space is a
-   quiet dark mat. The reverse QuizCard, People, brands and badges are untouched.
-   Scoped to Place surfaces so other image families preserve their own geometry. */
+/* History Go — Place photography framing.
+   PlaceCard image/frontImage fill their visible frames edge-to-edge.
+   Legacy popup, miniature and documentary before/after preserve full photos.
+   QuizCard backs, People, brands and badges are unaffected. */
 
 /* The landscape Place.image under the heading. */
 body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
@@ -33,4 +31,16 @@ body.hg-app #placeCard .pc-sheet-canonical-before-after figure img {
     .pc-heading-hero.has-photo-source:not(.is-collapsed) {
     min-height: clamp(340px, 48vw, 530px);
   }
+}
+
+/* Photo areas in PlaceCard must never show letterbox gutters.
+   The main landscape hero and the collectible card's photo face fill the
+   actual frame on iPad, phone and desktop. The QuizCard back is unchanged.
+   This intentionally supersedes the historical 'contain' rule above. */
+body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
+body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage{
+  width:100%;
+  height:100%;
+  object-fit:cover !important;
+  object-position:center center !important;
 }

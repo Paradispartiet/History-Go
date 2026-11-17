@@ -31,7 +31,7 @@ test('Psykologi: eksisterende tolv originalmerker bevares og kandidat aktiveres 
     const oldOriginal = 'bilder/merker/vitenskap/brodert/' + oldId + '.webp';
     const expected = revisedIds.has(oldId)
       ? 'bilder/merker/vitenskap/brodert/' + oldId + '_v7.webp'
-      : v2ids.has(oldId) ? 'bilder/merker/vitenskap/brodert/' + oldId + '_v2.webp' : oldOriginal;
+      : oldId === 'matematikk' ? 'bilder/merker/vitenskap/brodert/matematikk_v3.webp' : v2ids.has(oldId) ? 'bilder/merker/vitenskap/brodert/' + oldId + '_v2.webp' : oldOriginal;
     assert.equal(science.subBadgeImages[oldId], expected, oldId + ' changed unexpectedly');
     assert.ok(existsSync(new URL(expected, root)), oldId + ' registered file missing');
     assert.ok(existsSync(new URL(oldOriginal, root)), oldId + ' historical original missing');

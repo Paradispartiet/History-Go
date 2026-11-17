@@ -27,7 +27,7 @@ test('Vitenskap: ingeniørfag bevarer hovedmerke, eldre originaler og alle øvri
   };
   const v2ids = new Set(['matematikk','informasjonsteknologi','forskning_og_metode','astronomi_og_fysikk','kjemi_og_materialvitenskap']);
   for (const [id, path] of Object.entries(originalSeven)) {
-    const expected = v2ids.has(id) ? 'bilder/merker/vitenskap/brodert/'+id+'_v2.webp' : path;
+    const expected = id === 'matematikk' ? 'bilder/merker/vitenskap/brodert/matematikk_v3.webp' : v2ids.has(id) ? 'bilder/merker/vitenskap/brodert/'+id+'_v2.webp' : path;
     assert.equal(parent.subBadgeImages[id],expected,id+' expected versioned art');
     assert.ok(existsSync(new URL(path,root)),id+' historical original is preserved');
   }

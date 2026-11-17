@@ -9,7 +9,8 @@ test('Bolig og bomiljø completes By 10/10, with nine previous badges preserved'
  assert.equal(by.sub.length,10);
  assert.equal(Object.keys(by.subBadgeImages).length,10);
  assert.deepEqual(Object.keys(by.subBadgeImages),by.sub);
- assert.equal(by.subBadgeImages.bolig_og_bomiljo,spec.sourceImage);
+ assert.equal(by.subBadgeImages.bolig_og_bomiljo,"bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp");
+ assert.equal(spec.sourceImage,"bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v1.webp","original source preserved");
  assert.equal(spec.quality.registered,true);
  assert.equal(spec.quality.repositoryBinaryVerified,true);
  assert.equal(spec.localesActive,false);

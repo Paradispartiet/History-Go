@@ -106,7 +106,7 @@
     const link = document.createElement("link");
     link.id = "psychology-room-css";
     link.rel = "stylesheet";
-    link.href = "css/psychologyRoom.css?v=20261027-compact-dialog-back1";
+    link.href = "css/psychologyRoom.css?v=20261116-aha-bridge1";
     document.head.appendChild(link);
   }
 
@@ -126,7 +126,7 @@
 
       const script = document.createElement("script");
       script.id = "psychology-room-script";
-      script.src = "js/psychologyRoom.js?v=20261027-compact-dialog-back1";
+      script.src = "js/psychologyRoom.js?v=20261116-aha-bridge1";
       script.onload = () => resolve();
       script.onerror = reject;
       document.body.appendChild(script);
@@ -162,14 +162,21 @@
 
   function init() {
     const button = document.getElementById("btnOpenPsychologyRoom");
-    if (!button || button.dataset.hgPsychologyRoomBound === "1") return;
+    if (button && button.dataset.hgPsychologyRoomBound !== "1") {
+      button.dataset.hgPsychologyRoomBound = "1";
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openRoom();
+      });
+    }
 
-    button.dataset.hgPsychologyRoomBound = "1";
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
+    // Direkte inngang fra AHA. Det åpner bare rommet, aldri private data.
+    if (new URLSearchParams(window.location.search).get("room") === "psychology"
+        && !window.__HG_PSYCHOLOGY_DEEPLINK_OPENED__) {
+      window.__HG_PSYCHOLOGY_DEEPLINK_OPENED__ = true;
       openRoom();
-    });
+    }
   }
 
   if (document.readyState === "loading") {

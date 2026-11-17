@@ -28,7 +28,7 @@ assert.equal(b.toString("ascii",0,4),"RIFF");assert.equal(b.toString("ascii",8,1
 assert.equal(b.toString("ascii",12,16),"VP8X");assert((b[20]&16)!==0,"Transparent WebP required");
 assert.deepEqual([b.readUIntLE(24,3)+1,b.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
-const images=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert.equal(images.count,19);
+const images=sandbox.window.HG_NATURE_FAUNA_APPROVED;assert(images.count>=19,"Flaggspett stays approved after additional birds");
 assert.equal(images.get(id)?.src,item.src);assert.equal(images.get(id)?.scientificName,latin);
 assert.equal(images.get(id)?.gitBlobSha,item.gitBlobSha);
 const prev={
@@ -53,7 +53,7 @@ const prev={
 };
 for(const [prevId,expectedSha] of Object.entries(prev))assert.equal(images.get(prevId)?.gitBlobSha,expectedSha,prevId+" earlier approved original must remain unchanged");
 assert.equal(Object.keys(prev).length,18);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261116-19"));
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-flaggspett-019.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Flaggspett")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));

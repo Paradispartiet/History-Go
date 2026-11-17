@@ -2,6 +2,94 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_staer:Object.freeze({
+   scientificName:"Sturnus vulgaris",
+   src:"bilder/natur/fauna/godkjent/30_staer_v1.webp",
+   gitBlobSha:"6e90951b0ee9b22674b0e9556013f09fbc87c2fd",
+   reviewedAt:"2026-11-16",
+   stage:"adult_transition_iridescent_purple_green_plumage_white_speckled_feather_tips_yellow_bill_pink_legs_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-staer-20261116.json"
+  }),
+  emne_fauna_kaie:Object.freeze({
+   scientificName:"Coloeus monedula",
+   src:"bilder/natur/fauna/godkjent/29_kaie_v1.webp",
+   gitBlobSha:"20e8714069a9bbd29100b1aaa73e4f497ab0bdcd",
+   reviewedAt:"2026-11-16",
+   stage:"adult_black_cap_silvery_grey_nape_pale_ice_blue_eye_short_black_bill_dark_iridescent_wings_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-kaie-20261116.json"
+  }),
+  emne_fauna_stillits:Object.freeze({
+   scientificName:"Carduelis carduelis",
+   src:"bilder/natur/fauna/godkjent/28_stillits_v1.webp",
+   gitBlobSha:"c73db3e8a990927dbc03da3d9df884a9b77f50e9",
+   reviewedAt:"2026-11-16",
+   stage:"adult_red_face_mask_black_white_head_bright_yellow_wing_bar_cream_breast_black_white_tail_perched_on_thistle",
+   evidence:"data/natur/fauna/illustration-quality-stillits-20261116.json"
+  }),
+  emne_fauna_pilfink:Object.freeze({
+   scientificName:"Passer montanus",
+   src:"bilder/natur/fauna/godkjent/27_pilfink_v1.webp",
+   gitBlobSha:"6337492c57f28ef5d640336fc72db29f0dbe0bc9",
+   reviewedAt:"2026-11-16",
+   stage:"adult_chestnut_crown_white_cheeks_black_cheek_spots_small_black_bib_white_collar_brown_streaked_wings_perched",
+   evidence:"data/natur/fauna/illustration-quality-pilfink-20261116.json"
+  }),
+  emne_fauna_notteskrike:Object.freeze({
+   scientificName:"Garrulus glandarius",
+   src:"bilder/natur/fauna/godkjent/26_notteskrike_v1.webp",
+   gitBlobSha:"a0ae529e88ba334447fb5a4a3e0efceb4cc050fd",
+   reviewedAt:"2026-11-16",
+   stage:"adult_pink_brown_black_moustache_streaked_crown_bright_blue_black_barred_wing_dark_tail_oak_branch_acorns",
+   evidence:"data/natur/fauna/illustration-quality-notteskrike-20261116.json"
+  }),
+  emne_fauna_maaltrost:Object.freeze({
+   scientificName:"Turdus philomelos",
+   src:"bilder/natur/fauna/godkjent/25_maaltrost_v1.webp",
+   gitBlobSha:"428e21d71d9c16a0718f330775fec34c25040aba",
+   reviewedAt:"2026-11-16",
+   stage:"adult_warm_brown_upperparts_creamy_white_belly_dark_heart_arrowhead_breast_spots_brown_yellow_bill_pink_legs_perched_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-maaltrost-20261116.json"
+  }),
+  emne_fauna_spettmeis:Object.freeze({
+   scientificName:"Sitta europaea",
+   src:"bilder/natur/fauna/godkjent/24_spettmeis_v1.webp",
+   gitBlobSha:"70244f32ad0ce67ac7f3e9a469e25aeadba62d3e",
+   reviewedAt:"2026-11-16",
+   stage:"adult_blue_grey_upperparts_black_eye_stripe_white_throat_buff_orange_flanks_short_tail_pointed_bill_headfirst_down_tree",
+   evidence:"data/natur/fauna/illustration-quality-spettmeis-20261116.json"
+  }),
+  emne_fauna_linerle:Object.freeze({
+   scientificName:"Motacilla alba",
+   src:"bilder/natur/fauna/godkjent/23_linerle_v1.webp",
+   gitBlobSha:"a8a23c43089d3624a0630397ca2bba28e120370f",
+   reviewedAt:"2026-11-16",
+   stage:"alba_summer_black_crown_and_bib_white_face_grey_mantle_wing_bars_long_white_edged_tail_stone_and_walking",
+   evidence:"data/natur/fauna/illustration-quality-linerle-20261116.json"
+  }),
+  emne_fauna_graatrost:Object.freeze({
+   scientificName:"Turdus pilaris",
+   src:"bilder/natur/fauna/godkjent/22_graatrost_v1.webp",
+   gitBlobSha:"c3d967ffa6afe2b384ff1433a7af7beec4829bdb",
+   reviewedAt:"2026-11-16",
+   stage:"adult_grey_head_chestnut_mantle_grey_rump_black_tail_yellow_black_tipped_bill_black_spotted_orange_buff_breast_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-graatrost-20261116.json"
+  }),
+  emne_fauna_rodstrupe:Object.freeze({
+   scientificName:"Erithacus rubecula",
+   src:"bilder/natur/fauna/godkjent/21_rodstrupe_v1.webp",
+   gitBlobSha:"f867a24c8608f1a3d8b8ec50fb47d54375738f1b",
+   reviewedAt:"2026-11-16",
+   stage:"adult_orange_red_face_breast_grey_side_band_brown_back_pale_belly_dark_eye_fine_bill_perched_on_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-rodstrupe-20261116.json"
+  }),
+  emne_fauna_gronnfink:Object.freeze({
+   scientificName:"Chloris chloris",
+   src:"bilder/natur/fauna/godkjent/20_gronnfink_v1.webp",
+   gitBlobSha:"4e6ee9392ca010aad7a06e23a0191fc5f89432cc",
+   reviewedAt:"2026-11-16",
+   stage:"adult_male_olive_yellow_green_female_muted_brown_olive_both_stout_pale_bills_yellow_wing_and_tail_edges_perched",
+   evidence:"data/natur/fauna/illustration-quality-gronnfink-20261116.json"
+  }),
   emne_fauna_flaggspett:Object.freeze({
    scientificName:"Dendrocopos major",
    src:"bilder/natur/fauna/godkjent/19_flaggspett_v1.webp",

@@ -28,7 +28,7 @@ test('Data/programvare/algoritmer: previous originals remain intact, v7 activati
     const v2ids = ["informasjonsteknologi","matematikk","forskning_og_metode","astronomi_og_fysikk","kjemi_og_materialvitenskap"];
     const expected = id === 'teknologi_og_ingeniorfag'
       ? 'bilder/merker/vitenskap/brodert/teknologi_og_ingeniorfag_v7.webp'
-      : v2ids.includes(id) ? 'bilder/merker/vitenskap/brodert/'+id+'_v2.webp' : path;
+      : id === 'matematikk' ? 'bilder/merker/vitenskap/brodert/matematikk_v3.webp' : v2ids.includes(id) ? 'bilder/merker/vitenskap/brodert/'+id+'_v2.webp' : path;
     assert.equal(badge.subBadgeImages[id],expected,id+' changed unexpectedly');
     assert.ok(existsSync(new URL(path,root)),id+' older original must remain intact');
   }

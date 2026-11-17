@@ -341,7 +341,28 @@
   function syncToShellCalendar() {
     if (shellStoryUnavailable()) return false;
     const day = ensureCalendarCheckpoint();
-    if (!state || !content || day === null || day <= state.kalenderDag || !state.dagFerdig) return false;
+    if (!state || !content || day === null || day <= state.kalenderDag) return false;
+    if (!state.dagFerdig) {
+      // A completed workday can end with a real layoff during the canonical
+      // day-end rollover. The shell adopts the newly unemployed Life Story
+      // before (or while) the calendar turns. Its first authored day is not
+      // finished, so startNextDay must NOT skip it, but the player's shared
+      // calendar/lifetime still needs to advance exactly once.
+      const lastSwitch = (state.rolleBytter || []).at(-1);
+      const completedFormerRole = state.rolleTilstander?.[lastSwitch?.fra];
+      const justSwitchedFromCompletedDay =
+        lastSwitch?.til === state.rolle &&
+        Number(lastSwitch?.livsdag) === Number(state.livsdag) &&
+        completedFormerRole?.dagFerdig === true &&
+        day === state.kalenderDag + 1;
+      if (!justSwitchedFromCompletedDay) return false;
+      state.kalenderDag = day;
+      state.livsdag += 1;
+      /** @type {any} */ (window).CivicationLifestoryState.save(state);
+      window.dispatchEvent(new Event("civi:lifestoryChanged"));
+      render();
+      return true;
+    }
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
     // A fully authored three-week chapter can end while Civication's work
