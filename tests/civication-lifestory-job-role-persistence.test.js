@@ -191,12 +191,12 @@ async function main() {
   layoff.setCalendarDay(8);
   await waitUntil(() => layoff.current()?.kalenderDag === 8, "role switch follows actual day-8 shell rollover");
   const afterRollover = layoff.current();
-  assert.equal(afterRollo.livsdag, 8, "global lifetime advances exactly once");
-  assert.equal(afterRollo.dag, unemployed.dag, "unemployed authored progress is not skipped or reset");
-  assert.equal(afterRollo.dagFerdig, false, "unemployed scenes remain playable");
-  assert.equal(afterRollo.rolleTilstander.renholder.dag, 7, "completed cleaner role remains archived");
-  assert.equal(afterRollo.rolleTilstander.renholder.dagFerdig, true);
-  assert.equal(afterRollo.rolleBytter.at(-1).til, "arbeidsledig");
+  assert.equal(afterRollover.livsdag, 8, "global lifetime advances exactly once");
+  assert.equal(afterRollover.dag, unemployed.dag, "unemployed authored progress is not skipped or reset");
+  assert.equal(afterRollover.dagFerdig, false, "unemployed scenes remain playable");
+  assert.equal(afterRollover.rolleTilstander.renholder.dag, 7, "completed cleaner role remains archived");
+  assert.equal(afterRollover.rolleTilstander.renholder.dagFerdig, true);
+  assert.equal(afterRollover.rolleBytter.at(-1).til, "arbeidsledig");
   layoff.setCalendarDay(8);
   assert.equal(layoff.current().livsdag, 8, "repeat update cannot award a second lifetime day");
   layoff.dom.window.close();
