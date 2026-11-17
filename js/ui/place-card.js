@@ -1598,10 +1598,14 @@ if (!card) return;
   };
   if (frontImgEl) {
     frontImgEl.style.objectPosition = mediaPosition(imageComposition.portraitPosition);
+    frontImgEl.style.setProperty("--hg-place-media-position", mediaPosition(imageComposition.portraitPosition));
     // Only opt-in portrait crops use cover. Reset when switching places.
     frontImgEl.style.objectFit = imageComposition.portraitFit === "cover" ? "cover" : "";
   }
-  if (headerImgEl) headerImgEl.style.objectPosition = mediaPosition(imageComposition.heroPosition);
+  if (headerImgEl) {
+    headerImgEl.style.objectPosition = mediaPosition(imageComposition.heroPosition);
+    headerImgEl.style.setProperty("--hg-place-media-position", mediaPosition(imageComposition.heroPosition));
+  }
   setPlaceCardImgSrcStable(frontImgEl, place.frontImage || place.cardImage || place.image || "");
   setPlaceCardQuizImage(frontCardFlipEl, quizCardImgEl, place);
   const quizStart = performance.now();
