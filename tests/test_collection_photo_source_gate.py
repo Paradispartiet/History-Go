@@ -72,6 +72,9 @@ class OsloByarkivSourceGateTests(unittest.TestCase):
             ("rightsPolicyUrl", "https://example.org/"),
             ("archivalIdentifier","A-20138/Ua/0004/055"),
             ("sourcePage","https://oslobilder.no/BAR/A-20138/Ua/0004/055"),
+            ("archivalCatalogTitle","Askim transformatorstasjon, apparatpult"),
+            ("archivalCatalogMotif","three instruments visible"),
+            ("canonicalCurrentAsset","bilder/objects/askim_apparatpult_1916.svg"),
             ("proposedCredit","Foto: Ukjent / Oslo byarkiv, A-20138/Ua/0004/055"),
             ("photographer","Anders Beer Wilse"),
             ("sourceImageDimensions",[1200, 800]),
@@ -88,6 +91,25 @@ class OsloByarkivSourceGateTests(unittest.TestCase):
                 modified[field]=bad
                 with self.assertRaises(ValueError):
                     module.verify_oslo_archive_source(modified,Path(temp),expected)
+
+
+    def test_1918_must_retain_person_shows_motor_motif(self):
+        filename = "toyen-trafo-transformatorkjerne-1918-photo-source.json"
+        original = json.loads((MANIFEST.parent / filename).read_text(encoding="utf8"))
+        expected = module.ARCHIVE_SOURCES[filename]
+        with tempfile.TemporaryDirectory() as temp:
+            module.verify_oslo_archive_source(original, Path(temp), expected)
+        for field, value in [
+            ("archivalCatalogTitle", "Tøyen transformatorstasjon, apparatus"),
+            ("archivalCatalogMotif", None),
+            ("archivalCatalogMotif", "motor without person"),
+            ("canonicalCurrentAsset", "bilder/objects/unverified_motor.webp"),
+        ]:
+            with self.subTest(field=field, value=value), tempfile.TemporaryDirectory() as temp:
+                changed = copy.deepcopy(original)
+                changed[field] = value
+                with self.assertRaises(ValueError):
+                    module.verify_oslo_archive_source(changed, Path(temp), expected)
 
 
 if __name__ == "__main__":
