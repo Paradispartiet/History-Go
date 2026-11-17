@@ -66,9 +66,12 @@ def stage_for_review(source: dict, archive_id: str, input_file: Path,
         raise ValueError("image file missing or too large")
     out = output_dir.resolve()
     repository = repo_root.resolve()
-    permitted = (repository / "artifacts").resolve()
-    if out.is_relative_to(repository) and not out.is_relative_to(permitted):
-        raise ValueError("inside repository, review output is allowed only under artifacts/")
+    permitted = (repository / "artifacts" / "toyen-archive-review").resolve()
+    # Other artifacts/ directories might be tracked; only this review folder is git-ignored.
+    # Reject paths outside the repository, symlink escapes and the review root itself.
+    if (not permitted.is_relative_to(repository)
+            or not out.is_relative_to(permitted) or out == permitted):
+        raise ValueError("review output must be a subfolder of artifacts/toyen-archive-review/")
     if out.exists():
         raise FileExistsError("review output exists; refusing overwrite")
     payload = input_file.read_bytes()
@@ -133,7 +136,7 @@ def main() -> None:
     parser.add_argument("--original", type=Path, required=True,
                         help="Local file supplied by reviewer; not fetched or authenticated here")
     parser.add_argument("--out", type=Path, required=True,
-                        help="New, unused review directory under artifacts/ or outside repository")
+                        help="New, unused subfolder of artifacts/toyen-archive-review/ (git-ignored)")
     args = parser.parse_args()
     manifest_name, archive_id = SOURCES[args.asset]
     source = json.loads((ROOT / "reports/collection-images" / manifest_name).read_text(encoding="utf8"))
