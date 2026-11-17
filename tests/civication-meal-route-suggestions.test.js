@@ -53,6 +53,9 @@ assert.equal(select({gameDayIndex:2}).length,0,"wrong weekday must not claim ano
 assert.equal(select({route:{...route,routingStatus:"awaiting_road_router",roadGeometry:null}}).length,0,
   "endpoints are not a route");
 assert.equal(select({route:{...route,routeEvidence:null}}).length,0);
+assert.equal(select({route:{...route,roadGeometry:{}}}).length,0, "a truthy placeholder is not a routed line");
+assert.equal(select({route:{...route,roadGeometry:{type:"LineString",coordinates:[[999,59.9],[10.8,59.91]]}}}).length,0,
+  "invalid geographic coordinates must not authorize suggestions");
 assert.equal(select({route:{...route,geometryRevision:null}}).length,0);
 assert.equal(select({places:[{...food("bad-route",720,"lunch"),routeProof:{...proof(720),routeId:"another"}}]}).length,0);
 assert.equal(select({places:[{...food("bad-revision",720,"lunch"),routeProof:{...proof(720),geometryRevision:"stale"}}]}).length,0);
