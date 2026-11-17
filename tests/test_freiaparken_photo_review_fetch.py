@@ -61,6 +61,20 @@ class PhotoImportTests(unittest.TestCase):
                 self.assertEqual(image.size,(900,600))
             self.assertEqual(len(list((Path(temp)/"review").iterdir())),3)
 
+    def test_offline_original_avoids_network_and_keeps_hash_lock(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            source=root/"original-from-commons.jpg"
+            source.write_bytes(self.data)
+            with patch.object(module.urllib.request,"urlopen",side_effect=AssertionError("no network allowed")):
+                result=module.import_for_review(self.manifest,root/"review",source)
+            self.assertEqual(result["sourceOriginalSha1"],hashlib.sha1(self.data).hexdigest())
+            self.assertFalse(result["publishable"])
+            source.write_bytes(self.data[:-2]+b"XX")
+            with patch.object(module.urllib.request,"urlopen",side_effect=AssertionError("no network allowed")):
+                with self.assertRaisesRegex(ValueError,"source original mismatch"):
+                    module.import_for_review(self.manifest,root/"other",source)
+
     def test_blocks_changed_source_or_premature_approval(self):
         for key,value,expected in [
             ("sourceArchiveSha1","0"*40,"source original mismatch"),
