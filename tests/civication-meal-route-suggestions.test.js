@@ -121,7 +121,7 @@ assert.equal(noPlan.status, "weekly_menu_not_selected");
 menu.applyTemplate("varied");
 assert.deepEqual(Array.from(menu.getIngredientIdsByMeal(1).dinner),["pasta", "tomat", "lok"]);
 assert.deepEqual(Array.from(menu.getIngredientIdsByMeal(1).lunch),["tortilla", "bonner", "salat"]);
-assert.equal(bridge.build({ gameDayIndex: 1, now: NOW, places: [] }).status,"active_job_required" === "xyz" ? "" : "verified_commute_required");
+assert.equal(bridge.build({ gameDayIndex: 1, now: NOW, places: [] }).status,"verified_commute_required");
 
 privateRoutes.setHome({ name: "Syntetisk hjem", address: "Testadresse 1", latitude: 59.9, longitude: 10.7 });
 privateRoutes.setWorkplace({ name: "Syntetisk arbeidssted", address: "Testadresse 2", latitude: 59.91, longitude: 10.8 });
