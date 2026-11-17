@@ -1,0 +1,23 @@
+name: Oset sourced quiz migration draft guard
+on:
+  pull_request:
+    paths:
+      - "data/quiz/production_briefs/historie/frysjadammen.json"
+      - "data/quiz/historie/frysjadammen_sets.json"
+      - "data/quiz/manifest.json"
+      - "data/places/natur/oslo/places_oslo_natur_akerselvarute/frysjadammen.json"
+      - "tests/oset-quiz-migration-draft-guard.test.mjs"
+      - ".github/workflows/oset-quiz-migration-draft-guard.yml"
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify source claims, saved quiz IDs, and staged-only 28-question draft
+        run: node --test tests/oset-quiz-migration-draft-guard.test.mjs
