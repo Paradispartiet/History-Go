@@ -128,6 +128,45 @@
     write(data);
     return { ok: true, route: copy(route) };
   }
+  function saveResolvedRoute(routeId, result) {
+    if (!result || result.ok !== true || result.routeId !== routeId ||
+      result.routingStatus !== "verified_route") throw new Error("Invalid routing result");
+    const data = read();
+    const existing = data.routes[routeId];
+    if (!existing || existing.kind !== "commute" || existing.status !== "planned" ||
+        existing.visibility !== "private") throw new Error("Unknown private planned route");
+    const coordinates = result.roadGeometry?.coordinates;
+    if (result.roadGeometry?.type !== "LineString" || !Array.isArray(coordinates) ||
+      coordinates.length < 2 || coordinates.length > 10000 ||
+      !coordinates.every(pair => Array.isArray(pair) && pair.length === 2 &&
+        Number.isFinite(pair[0]) && pair[0] >= -180 && pair[0] <= 180 &&
+        Number.isFinite(pair[1]) && pair[1] >= -90 && pair[1] <= 90)) {
+      throw new Error("Invalid routed coordinates");
+    }
+    const evidence = result.routeEvidence || {};
+    const checked = Date.parse(evidence.checkedAt || "");
+    const until = Date.parse(evidence.validUntil || "");
+    if (!/^https:\/\/api\.openrouteservice\.org\/v2\/directions\/[^/]+\/geojson$/.test(evidence.sourceUrl || "") ||
+        !Number.isFinite(checked) || !Number.isFinite(until) || until <= checked ||
+        !Number.isFinite(result.distanceMeters) || result.distanceMeters < 0 ||
+        !Number.isFinite(result.durationMinutes) || result.durationMinutes < 0 ||
+        typeof result.geometryRevision !== "string" || !/^ors-geometry-v1-[a-f0-9]{8}$/.test(result.geometryRevision)) {
+      throw new Error("Missing route proof");
+    }
+    const next = {
+      ...existing,
+      routingStatus: "verified_route",
+      roadGeometry: { type: "LineString", coordinates: coordinates.map(pair => [pair[0], pair[1]]) },
+      distanceMeters: result.distanceMeters,
+      durationMinutes: result.durationMinutes,
+      geometryRevision: result.geometryRevision,
+      routeEvidence: { sourceUrl: evidence.sourceUrl, checkedAt: evidence.checkedAt, validUntil: evidence.validUntil },
+      realWorldTravelConfirmed: false
+    };
+    data.routes[routeId] = next;
+    write(data);
+    return copy(next);
+  }
   function listRoutes() { return Object.values(read().routes).map(copy); }
   function deleteRoute(id) {
     const data = read();
@@ -138,6 +177,6 @@
   }
   W.CivicationPersonalRoutes = Object.freeze({
     jobKey, setHome, getHome, clearHome, setWorkplace, getWorkplace,
-    clearWorkplace, planCommute, listRoutes, deleteRoute
+    clearWorkplace, planCommute, saveResolvedRoute, listRoutes, deleteRoute
   });
 })();

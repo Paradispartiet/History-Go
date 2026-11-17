@@ -110,7 +110,47 @@
         feedback.textContent = messages[result.reason] || "Ruten kunne ikke lagres.";
       }
     });
-    make("p", "Oppgitt adresse er ikke automatisk geokodet eller verifisert. Ingen GPS-sporing, deling med AHA eller økonomiske handlinger.", host).className = "muted";
+    const routeAction = make("button", "Beregn veirute med OpenRouteService", trip);
+    routeAction.className = "btn";
+    routeAction.type = "button";
+    routeAction.addEventListener("click", async () => {
+      const provider = W.CivicationRoadRouter;
+      if (!provider) { feedback.textContent = "Rutetjenesten er ikke tilgjengelig."; return; }
+      const planned = api.planCommute({
+        active, travelMode: mode.value, direction: destination.value, weekDay: Number(day.value)
+      });
+      if (!planned.ok) {
+        feedback.textContent = planned.reason === "COORDINATES_REQUIRED"
+          ? "Legg inn koordinater for begge stedene."
+          : planned.reason === "WORK_ADDRESS_REQUIRED" ? "Arbeidsadresse mangler."
+          : "Lagre gyldig hjem og arbeidssted før du beregner ruten.";
+        return;
+      }
+      routeAction.disabled = true;
+      feedback.textContent = "Beregner veirute. Bare ved dette valget sendes hjem- og jobbkoordinater til OpenRouteService.";
+      try {
+        const result = await provider.calculate(planned.route, { consent: true });
+        if (!result.ok) {
+          const reasons = {
+            ROUTER_NOT_CONFIGURED: "Rutetjenesten er ikke konfigurert.",
+            UNSUPPORTED_TRAVEL_MODE: "Kollektivruter støttes ikke av denne rutetjenesten.",
+            ROUTING_UNAVAILABLE: "Rutetjenesten kunne ikke beregne ruten.",
+            INVALID_ROUTING_RESPONSE: "Ugyldig rutesvar. Ingen veirute ble lagret."
+          };
+          feedback.textContent = reasons[result.reason] || "Ruten ble ikke beregnet.";
+        } else {
+          const saved = api.saveResolvedRoute(planned.route.id, result);
+          feedback.textContent = "Veirute beregnet: " +
+            (saved.distanceMeters / 1000).toFixed(1) + " km · omtrent " +
+            Math.round(saved.durationMinutes) + " min. Lagret privat som planlagt reise, ikke gjennomført besøk.";
+        }
+      } catch (_) {
+        feedback.textContent = "Kunne ikke lagre den beregnede veiruten.";
+      } finally {
+        routeAction.disabled = false;
+      }
+    });
+    make("p", "Adresse og koordinater er brukeroppgitt, ikke automatisk verifisert. Et klikk på «Beregn veirute» sender koordinatene til OpenRouteService. Ingen GPS-sporing, automatisk AHA-deling eller økonomiske handlinger.", host).className = "muted";
   }
   W.CivicationPersonalRoutesUI = Object.freeze({ render });
   W.addEventListener("civi:booted", render);
