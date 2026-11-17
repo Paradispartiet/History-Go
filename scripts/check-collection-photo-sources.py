@@ -69,14 +69,15 @@ def verify_oslo_archive_source(manifest: dict, root: Path, expected: tuple[str, 
         raise ValueError("rights policy does not point to Oslo kommune's actual terms")
     if manifest.get("license") != "usage_terms_oslo_byarkiv_downloadable_resolution":
         raise ValueError("do not invent a CC license for this archive photo")
-    if not str(manifest.get("proposedCredit","")).startswith("Foto: Ukjent / Oslo byarkiv"):
-        raise ValueError("archive photographer/institution credit absent")
+    if manifest.get("photographer") != "Ukjent" or manifest.get("proposedCredit") != f"Foto: Ukjent / Oslo byarkiv, {archive_id}":
+        raise ValueError("archive photographer/institution credit must match exact archival identifier")
     if manifest.get("publishable") is not False or manifest.get("editorialApproval") is not False:
         raise ValueError("unviewed archive image cannot be approved for publication")
     if manifest.get("sourceOriginalDownloaded") is not False or manifest.get("archivedPhotoPersonallyViewed") is not False:
         raise ValueError("archive photo must remain explicitly uninspected")
-    if manifest.get("sourceImageBytesSha256") is not None or manifest.get("stagedAssetPath") is not None or manifest.get("exactDownloadURL") is not None:
-        raise ValueError("cannot claim image bytes, download URL or staging before inspection")
+    if (manifest.get("sourceImageBytesSha256") is not None or manifest.get("sourceImageDimensions") is not None
+            or manifest.get("stagedAssetPath") is not None or manifest.get("exactDownloadURL") is not None):
+        raise ValueError("cannot claim image bytes, dimensions, download URL or staging before inspection")
     if manifest.get("reviewStatus") != "CATALOG_AND_RIGHTS_POLICY_VERIFIED_PHOTO_BYTES_NOT_INSPECTED":
         raise ValueError("source-only archive status changed without QA")
     if "/candidates/" in str(manifest.get("canonicalCurrentAsset","")):
