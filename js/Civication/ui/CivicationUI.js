@@ -740,7 +740,7 @@ async function renderCivication() {
       `<option value="${escapeOfferHtml(o.offer_key)}" ${o.offer_key === offer?.offer_key ? "selected" : ""}>${escapeOfferHtml(o.title)} · ${escapeOfferHtml(o.nok_employment_percent)} %</option>`).join("")}</select>` : "";
 
   const nokConfig = window.CivicationState?.getWallet?.()?.nok_v1;
-  if (active) delete host.dataset.nokApplicationMessage;
+  if (active && host.dataset) delete host.dataset.nokApplicationMessage;
   const searchOptions = nokConfig?.active === true && !active && !nokOffers.length
     ? (window.CivicationNokBudget?.getSalaryJobs?.(nokConfig.config) || []).flatMap(job =>
       (job.offerEmploymentPercents || [job.offerEmploymentPercent]).map(percent => ({ jobId: job.id, percent,
@@ -828,7 +828,7 @@ async function renderCivication() {
           : `<div>Ingen aktive jobbtilbud.</div>`
       }
       ${searchHtml}
-      <div role="status" data-civi-application-status>${escapeOfferHtml(host.dataset.nokApplicationMessage || "")}</div>
+      ${nokConfig?.active === true ? `<div role="status" data-civi-application-status>${escapeOfferHtml(host.dataset?.nokApplicationMessage || "")}</div>` : ""}
       <div data-civi-career-knowledge-description></div>
     </div>
   `;
