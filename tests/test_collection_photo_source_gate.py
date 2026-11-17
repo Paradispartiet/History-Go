@@ -53,5 +53,38 @@ class PhotoSourceGateTests(unittest.TestCase):
                 module.verify_photo_source(self.original, root)
 
 
+
+class OsloByarkivSourceGateTests(unittest.TestCase):
+    def test_both_real_archive_sources_are_unpublished(self):
+        for filename, expected in module.ARCHIVE_SOURCES.items():
+            with self.subTest(filename=filename), tempfile.TemporaryDirectory() as temp:
+                payload=json.loads((MANIFEST.parent / filename).read_text(encoding="utf8"))
+                module.verify_oslo_archive_source(payload, Path(temp), expected)
+                self.assertIsNone(payload["sourceImageBytesSha256"])
+                self.assertFalse(payload["publishable"])
+
+    def test_cannot_forge_rights_photo_or_ready_status(self):
+        filename="toyen-trafo-apparatpult-1916-photo-source.json"
+        original=json.loads((MANIFEST.parent / filename).read_text(encoding="utf8"))
+        expected=module.ARCHIVE_SOURCES[filename]
+        for field,bad in [
+            ("license", "CC BY 4.0"),
+            ("rightsPolicyUrl", "https://example.org/"),
+            ("archivalIdentifier","A-20138/Ua/0004/055"),
+            ("sourceOriginalDownloaded",True),
+            ("archivedPhotoPersonallyViewed",True),
+            ("editorialApproval",True),
+            ("publishable",True),
+            ("sourceImageBytesSha256", "0"*64),
+            ("stagedAssetPath","bilder/kort/objects/candidates/unsafe.webp"),
+            ("reviewStatus","READY"),
+        ]:
+            with self.subTest(field=field),tempfile.TemporaryDirectory() as temp:
+                modified=copy.deepcopy(original)
+                modified[field]=bad
+                with self.assertRaises(ValueError):
+                    module.verify_oslo_archive_source(modified,Path(temp),expected)
+
+
 if __name__ == "__main__":
     unittest.main()
