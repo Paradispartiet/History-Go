@@ -72,6 +72,31 @@
     } else {
       const month = root.CivicationCalendar?.getMonthPeriod?.();
       panel.appendChild(node("p", "Spillmåned: " + (month?.id || "Ukjent")));
+      const cashFlow = root.CivicationNokBudget?.monthlyCashFlow?.(wallet, month?.id,
+        (/** @type {number} */ dayIndex) => root.CivicationCalendar?.getGameDate?.(dayIndex));
+      const statement = node("section");
+      statement.setAttribute("data-nok-monthly-statement", "");
+      statement.appendChild(node("h4", "Betalinger denne spillmåneden"));
+      if (cashFlow?.ok) {
+        statement.appendChild(node("p", "Utbetalt lønn: " + money(cashFlow.incomeCents / 100) + " kr"));
+        statement.appendChild(node("p", "Betalte regninger: " + money(cashFlow.invoiceCents / 100) + " kr"));
+        statement.appendChild(node("p", "Varekjøp: " + money(cashFlow.groceryCents / 100) + " kr"));
+        statement.appendChild(node("p", "Billettkjøp: " + money(cashFlow.transportCents / 100) + " kr"));
+        statement.appendChild(node("p", "Utbetalt totalt: " + money(cashFlow.expenseCents / 100) + " kr"));
+        statement.appendChild(node("p", "Inn minus ut: " + money(cashFlow.netCents / 100) + " kr"));
+        statement.appendChild(node("p", "Lønn føres på utbetalingsdatoen. Varekjøp føres ved kjøp; bruk av varen endrer bare beholdningen. Budsjettanslag inngår ikke som betalinger."));
+        const details = node("details");
+        details.appendChild(node("summary", "Se betalingene (" + cashFlow.entries.length + ")"));
+        if (!cashFlow.entries.length) details.appendChild(node("p", "Ingen registrerte betalinger denne spillmåneden."));
+        for (const entry of cashFlow.entries) {
+          const row = node("p", entry.dateISO + " · " + entry.label + " · "
+            + (entry.category === "salary" ? "+" : "−") + money(entry.amountCents / 100) + " kr");
+          row.style.overflowWrap = "anywhere";
+          details.appendChild(row);
+        }
+        statement.appendChild(details);
+      } else statement.appendChild(node("p", "Betalingsoversikten er ikke tilgjengelig. Lagret historikk eller spillmåned kunne ikke bekreftes."));
+      panel.appendChild(statement);
       const days = /** @type {Array<Record<string, any>>} */ (Array.isArray(nok.earnedDays) ? nok.earnedDays : []);
       const earned = days.filter(d => d.monthId === month?.id);
       const sum = (/** @type {string} */ key) => earned.every(d => Number.isSafeInteger(d[key]))
@@ -173,3 +198,4 @@
   root.addEventListener("updateProfile", render);
   root.addEventListener("civi:dayPhaseChanged", render);
 })(typeof window !== "undefined" ? window : globalThis);
+

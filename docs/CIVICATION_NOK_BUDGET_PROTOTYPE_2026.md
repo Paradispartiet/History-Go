@@ -163,5 +163,38 @@ og alle tre nettleseroppsett. Seks skjermbilder ble manuelt inspisert. En tidlig
 tom WebKit 820-side lot seg ikke gjenskape; årsaken er ikke entydig avklart.
 Den utvidede nettleserreisen kjøper også de tre nye varene, bruker 100 g av hver og
 forventer 9 800,90 kr, 750 ml melk og 900/900/800 g rest etter siste reload.
-Dette siste resultatet må bekreftes på ny head i CI; tidligere grønn head beviser
-ikke en senere endring. Produksjonsaktivering er fortsatt av.
+På head 2fcf255 bestod også alle åtte workflows og alle tre utvidede nettleseroppsett
+med forventet saldo og beholdning. Alle seks lønns-/beholdningsbilder ble inspisert.
+Produksjonsaktivering er fortsatt av. Tidligere grønn head beviser ikke en senere endring.
+
+## Faktiske betalinger per spillmåned
+
+`CivicationNokBudget.monthlyCashFlow` leser bare eksisterende kvitteringer og
+oppgjør. Økonomipanelet viser utbetalt nettolønn, betalte regninger, varekjøp,
+billettkjøp, samlet utgift og inn minus ut i gjeldende spillmåned. En sammenleggbar
+liste viser betalingsdato, tekst og beløp per post. Dette er registrert kontantstrøm,
+ikke en ny belastning eller beregnet inngående/utgående kontosaldo.
+
+Lønn plasseres etter `paidDateISO`, selv når opptjeningsmåneden er en annen.
+Regninger inngår bare når status er betalt, etter faktisk betalingsdato. Varer
+føres etter kjøpskvitteringens spilldato og transport etter kjøpets spillminutt,
+omregnet med samme spillkalender. Billettens utløpsdato bestemmer ikke kjøpsmåneden.
+Opptjent, ubetalt lønn, ventende/kansellerte regninger, Oslo-proxyen, anslått
+månedstransport og manuelt vareforbruk legges ikke til som ekstra betalinger.
+
+Summer beregnes i hele øre. Ugyldig dato/beløp, doble oppgjørs-/kvitteringsnøkler,
+ugyldige historikklister og overløp gir utilgjengelig oversikt uten delsummer.
+Rendring endrer ingen spillerdata, og lagret tekst settes som tekst, ikke HTML.
+
+`civication-nok-monthly-cash-flow.test.js` bruker faktiske State, Calendar, Engine,
+Shop og EconomyUI med uttrykkelige historikk-/åpningssaldo-fixturer. Januaropptjening
+utbetalt 3. februar vises i februar. Faktisk Betal-klikk, varekjøp og billettkjøp
+gir 11 381,40 kr betalt og 14 448,20 kr inn minus ut i testens februar; forbruk,
+ny tegning og modulinnlasting gjentar ingenting. Tidligere måneder, ugyldige data,
+duplikater, ørepresisjon, overløp og inert tekst kontrolleres også.
+
+Nettleserreisen er utvidet til å kontrollere 10 199,10 kr betalt (10 090 kr leie
+og 109,10 kr varer) samt null utbetalt lønn på første spilledag. Den tar et eget
+bilde av månedsoversikten i hvert nettleseroppsett. Resultat og visuell kontroll må
+registreres for denne endringens faktiske head; 2fcf255 dekker ikke den nye visningen.
+

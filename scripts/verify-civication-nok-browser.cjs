@@ -117,6 +117,18 @@ async function scenario(engine, width, height) {
       addedStock[id] = remaining;
     }
     assert.equal((await wallet()).balance, 9800.9, 'three added packs cost 89.70 with no extra consumption charge');
+    const cashFlow = await page.evaluate(() => window.CivicationNokBudget.monthlyCashFlow(
+      window.CivicationState.getWallet(), window.CivicationCalendar.getMonthPeriod().id,
+      window.CivicationCalendar.getGameDate));
+    assert.equal(cashFlow.ok, true);
+    assert.equal(cashFlow.incomeCents, 0, 'accepted job and earned days are not paid salary');
+    assert.equal(cashFlow.invoiceCents, 1009000);
+    assert.equal(cashFlow.groceryCents, 10910);
+    assert.equal(cashFlow.expenseCents, 1019910);
+    const statement = page.locator('[data-nok-monthly-statement]');
+    assert.ok((await statement.textContent()).includes('Varekjøp:'));
+    await statement.locator('h4').scrollIntoViewIfNeeded();
+    screenshots.push(await capture('monthly-statement'));
     await page.locator('[data-consume-product="tine-milk-1l"]').scrollIntoViewIfNeeded();
     screenshots.push(await capture('pantry'));
     const geometry = await page.evaluate(() => {
@@ -139,7 +151,8 @@ async function scenario(engine, width, height) {
     await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), saved, 'reload neither buys, consumes nor pays again');
     assert.deepEqual(errors, [], 'no uncaught page errors');
-    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock };
+    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock,
+      monthlyPaidCents: cashFlow.expenseCents };
   } catch (error) {
     console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors }));
     console.error('CIVI_NOK_FAILURE_STATE:' + JSON.stringify(await page.evaluate(() => ({
@@ -171,3 +184,4 @@ async function scenario(engine, width, height) {
   } catch (error) { report.status = 'failed'; report.error = String(error.stack || error); throw error; }
   finally { server.kill('SIGTERM'); fs.writeFileSync(path.join(outputDir, 'nok-browser-report.json'), JSON.stringify(report, null, 2)); }
 })().catch(error => { console.error(error); process.exitCode = 1; });
+

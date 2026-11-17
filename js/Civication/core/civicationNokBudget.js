@@ -63,9 +63,83 @@ function projectMonths(config, scenarios, openingBalanceNok = 0) {
       uncoveredNeedNok: Math.max(0, -balance) / 100 };
   });
 }
-const api = { preview, projectMonths, getElectricityProfile };
+// Read-only cash flow: use payment dates, never earning periods or budget proxies.
+// All amounts remain integer cents until display; invalid history has no partial total.
+/** @param {any} wallet @param {string} monthId @param {(dayIndex: number) => string|null} gameDateForDayIndex */
+function monthlyCashFlow(wallet, monthId, gameDateForDayIndex) {
+  const nok = wallet?.nok_v1;
+  if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: 'NOK_NOT_ACTIVE' };
+  const validDate = (/** @type {any} */ value) => {
+    if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+    const date = new Date(value + 'T00:00:00.000Z');
+    return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
+  };
+  if (typeof monthId !== 'string' || !/^\d{4}-\d{2}$/.test(monthId) || !validDate(monthId + '-01'))
+    return { ok: false, reason: 'INVALID_MONTH' };
+  try {
+    if (nok.shopping != null && (typeof nok.shopping !== 'object' || Array.isArray(nok.shopping)))
+      throw new Error('Invalid shopping history');
+    const list = (/** @type {any} */ value, /** @type {string} */ key) => {
+      const rows = value ?? [];
+      if (!Array.isArray(rows) || rows.some(r => !r || typeof r[key] !== 'string' || !r[key].trim())
+          || new Set(rows.map(r => r[key])).size !== rows.length) throw new Error('Invalid history');
+      return rows;
+    };
+    const cents = (/** @type {any} */ amount) => {
+      const result = Math.round(amount * 100);
+      if (typeof amount !== 'number' || !Number.isFinite(amount) || amount < 0
+          || !Number.isSafeInteger(result) || Math.abs(amount * 100 - result) > 0.000001)
+        throw new Error('Invalid amount');
+      return result;
+    };
+    /** @type {Array<{id: string, dateISO: string, category: string, label: string, amountCents: number}>} */
+    const entries = [];
+    const add = (/** @type {string} */ id, /** @type {string} */ dateISO, /** @type {string} */ category,
+      /** @type {string} */ label, /** @type {number} */ amountCents) => {
+      if (!validDate(dateISO) || !Number.isSafeInteger(amountCents) || amountCents < 0) throw new Error('Invalid payment');
+      if (dateISO.slice(0, 7) === monthId) entries.push({ id, dateISO, category, label, amountCents });
+    };
+    for (const row of list(nok.payrollLedger, 'monthId')) {
+      if (!validDate(row.monthId + '-01') || !Number.isSafeInteger(row.grossCents)
+          || !Number.isSafeInteger(row.taxCents) || row.taxCents < 0 || row.grossCents < row.taxCents)
+        throw new Error('Invalid payroll');
+      add('salary:' + row.monthId, row.paidDateISO, 'salary', 'Lønn opptjent ' + row.monthId, row.grossCents - row.taxCents);
+    }
+    for (const row of list(nok.invoices, 'id')) {
+      if (row.status === 'paid') add('invoice:' + row.id, row.paidDateISO, 'invoices',
+        String(row.title || 'Regning'), cents(row.amountNok));
+    }
+    for (const row of list(nok.shopping?.purchases, 'requestId')) {
+      add('grocery:' + row.requestId, row.gameDateISO, 'groceries', String(row.title || 'Varekjøp'), cents(row.amountNok));
+    }
+    for (const row of list(nok.transportPasses, 'id')) {
+      if (!Number.isSafeInteger(row.startsAtGameMinute) || row.startsAtGameMinute < 1440
+          || typeof gameDateForDayIndex !== 'function') throw new Error('Invalid transport date');
+      const date = gameDateForDayIndex(Math.floor(row.startsAtGameMinute / 1440));
+      if (!date) throw new Error('Invalid transport date');
+      add('transport:' + row.id, date, 'transport', '30-dagersbillett', cents(row.amountNok));
+    }
+    const sum = (/** @type {string} */ category) => entries.filter(e => e.category === category)
+      .reduce((total, e) => {
+        const next = total + e.amountCents;
+        if (!Number.isSafeInteger(next)) throw new Error('Total outside supported range');
+        return next;
+      }, 0);
+    const incomeCents = sum('salary');
+    const invoiceCents = sum('invoices');
+    const groceryCents = sum('groceries');
+    const transportCents = sum('transport');
+    const expenseCents = invoiceCents + groceryCents + transportCents;
+    const netCents = incomeCents - expenseCents;
+    if (!Number.isSafeInteger(expenseCents) || !Number.isSafeInteger(netCents)) throw new Error('Total outside supported range');
+    entries.sort((a, b) => a.dateISO.localeCompare(b.dateISO) || a.id.localeCompare(b.id));
+    return { ok: true, monthId, incomeCents, invoiceCents, groceryCents, transportCents, expenseCents, netCents, entries };
+  } catch { return { ok: false, reason: 'INVALID_PAYMENT_HISTORY' }; }
+}
+const api = { preview, projectMonths, getElectricityProfile, monthlyCashFlow };
 if (typeof module !== 'undefined' && module.exports) module.exports = api;
 else /** @type {any} */ (root).CivicationNokBudget = api;
 
 
 })(typeof window !== 'undefined' ? window : globalThis);
+
