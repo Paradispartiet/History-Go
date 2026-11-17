@@ -739,6 +739,18 @@ async function renderCivication() {
     ? `<label for="civiNokOfferSelect">Velg jobbtilbud</label><select id="civiNokOfferSelect" style="min-height:44px;width:100%;max-width:100%;min-width:0;">${nokOffers.map(o =>
       `<option value="${escapeOfferHtml(o.offer_key)}" ${o.offer_key === offer?.offer_key ? "selected" : ""}>${escapeOfferHtml(o.title)} · ${escapeOfferHtml(o.nok_employment_percent)} %</option>`).join("")}</select>` : "";
 
+  const nokConfig = window.CivicationState?.getWallet?.()?.nok_v1;
+  if (active) delete host.dataset.nokApplicationMessage;
+  const searchOptions = nokConfig?.active === true && !active && !nokOffers.length
+    ? (window.CivicationNokBudget?.getSalaryJobs?.(nokConfig.config) || []).flatMap(job =>
+      (job.offerEmploymentPercents || [job.offerEmploymentPercent]).map(percent => ({ jobId: job.id, percent,
+        label: `${job.roleTitle} · ${percent} % · ${job.minimumOfferThreshold} meritter` }))) : [];
+  const searchHtml = searchOptions.length ? `<div><label for="civiNokSearch">Søk på jobb</label>
+    <select id="civiNokSearch" style="min-height:44px;width:100%;min-width:0;">${searchOptions.map((o, i) =>
+      `<option value="${i}">${escapeOfferHtml(o.label)}</option>`).join("")}</select>
+    <button class="civi-btn" id="civiNokApply" style="min-height:44px;">Be om nytt jobbtilbud</button>
+    <div>Meritter, kunnskapskrav og eventuelle sperrer gjelder fortsatt. Du må akseptere tilbudet før du starter i jobben.</div></div>` : "";
+
   const nokTerms = window.CivicationJobs?.getNokOfferTerms?.(offer);
   const formatNok = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const nokTermsHtml = nokTerms ? (nokTerms.supported
@@ -815,6 +827,8 @@ async function renderCivication() {
           `
           : `<div>Ingen aktive jobbtilbud.</div>`
       }
+      ${searchHtml}
+      <div role="status" data-civi-application-status>${escapeOfferHtml(host.dataset.nokApplicationMessage || "")}</div>
       <div data-civi-career-knowledge-description></div>
     </div>
   `;
@@ -825,6 +839,27 @@ async function renderCivication() {
   offerSelect?.addEventListener("change", () => {
     host.dataset.nokOfferKey = offerSelect.value;
     void renderCivication().then(() => /** @type {HTMLElement|null} */ (host.querySelector("#civiNokOfferSelect"))?.focus({ preventScroll: true }));
+  });
+
+  const applyButton = /** @type {HTMLButtonElement|null} */ (host.querySelector("#civiNokApply"));
+  const applicationId = applyButton ? window.CivicationJobs?.createNokApplicationRequest?.() : null;
+  applyButton?.addEventListener("click", () => {
+    if (!applyButton.isConnected || applyButton.disabled) return;
+    const select = /** @type {HTMLSelectElement|null} */ (host.querySelector("#civiNokSearch"));
+    const choice = searchOptions[Number(select?.value)];
+    if (!choice) return;
+    applyButton.disabled = true;
+    const result = window.CivicationJobs?.applyForNokJob?.(choice.jobId, choice.percent, applicationId);
+    if (result?.offer?.status === "pending") {
+      host.dataset.nokOfferKey = result.offer.offer_key;
+      host.dataset.nokApplicationMessage = "Tilbudet er klart. Les lønnsvilkårene før du svarer.";
+    } else {
+      host.dataset.nokApplicationMessage = result?.reason === "NOK_MERITS_REQUIRED"
+        ? "Du mangler meritter til denne jobben."
+        : "Tilbudet kunne ikke opprettes. Kontroller jobbkrav, sperrer og tilgang til arbeidsgiver.";
+    }
+    void renderCivication().then(() => /** @type {HTMLElement|null} */ (
+      host.querySelector("#civiOfferAccept, #civiNokApply"))?.focus({ preventScroll: true }));
   });
 
   if (offer?.offer_key) {

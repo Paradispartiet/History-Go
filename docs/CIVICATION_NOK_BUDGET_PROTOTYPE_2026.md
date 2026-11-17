@@ -251,4 +251,28 @@ butikk 100 %, WebKit 390 renhold 50 % og WebKit 820 lager 100 %, før resten av
 bolig-/butikk-/reload-reisen. Ti meritter er en eksplisitt nettleserfixture.
 Ny nettleser-/CI-status må registreres for den faktiske headen.
 
+## Ny søknad etter avsluttet tilbud eller jobbtap
 
+Når spilleren er uten jobb og uten støttede ventende tilbud, viser jobbkortet
+«Søk på jobb». Spilleren velger en profil og stillingsprosent fra sin frosne
+konfigurasjon og ber uttrykkelig om et nytt tilbud. Tidligere aksepterte, avslåtte,
+utløpte og tilbaketrukne tilbud beholdes; de automatiske starttilbudene gjenskapes
+fortsatt ikke. En ny søknad gir ikke jobb, lønn, bonus eller stønad. Vanlig aksept
+må skje etter visning av lønnsvilkårene.
+
+`applyForNokJob(jobId, percent, requestId)` bruker ferske meritter og eksisterende
+kunnskaps-/reentry-porter, og sender videre gjennom den offentlige tilbudsprodusenten
+med karriere-/arbeidsgiverkontroll. Samme søknads-ID gir samme historiske resultat;
+ID brukt med andre vilkår avvises. Et annet ventende tilbud for samme profil og
+prosent sperrer en ny søknad. Ingen sperre eller arbeidsgiverkrav fjernes.
+Gamle frosne profiler uten prosentliste tilbyr bare sin opprinnelige prosent.
+
+Den utvidede multiple-jobs-testen kontrollerer faktisk søknads- og aksept-UI,
+avslag, ny søknad, ID-gjentakelse og konflikt, meritt-/reentry-sperre, tom-enhet-
+gjenoppretting og en blandet januar: syv dager butikk 100 %, syv dager uten jobb
+og sytten dager lager 50 %. Uavhengige heltallsreferanser kontrollerer brutto,
+skatt og utbetaling; arbeidsledige dager gir ingen opptjening. Jobbtapet er en
+uttrykkelig tilstandsgrense, ikke en test av hele oppsigelses-/gjenoppbyggingsløpet.
+Nettleserreisen bruker samme uttrykkelige grense og prøver ny søknad og aksept
+via vanlige knapper i alle tre oppsett, med historikk og saldo bevart ved reload.
+Resultat for ny head må kontrolleres før nettleserreisen kan regnes som bestått.

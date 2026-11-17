@@ -7,11 +7,12 @@ const config = read('data/Civication/economy/nok-budget-prototype-2026.json');
 const profiles = [config.job, ...config.jobs];
 const grossReferences = { retail_assistant_tariff_1: [31694, 15847],
   cleaner_day_virke_2026: [40184.63, 20092.32], warehouse_virke_2026: [45617, 22808.5] };
-async function boot(points = 10, visited = true) {
+async function boot(points = 10, visited = true, seed = null) {
   const dom = new JSDOM('<body><div id="activeJobCard"></div><div id="civiSalaryLine"></div></body>',
     { url: 'https://example.test', runScripts: 'outside-only' });
   const w = dom.window;
   await new Promise(resolve => setTimeout(resolve, 0));
+  if (seed) for (const [key, value] of Object.entries(seed)) w.localStorage.setItem(key, value);
   w.fetch = async path => ({ ok: true, json: async () => read(path) });
   for (const path of ['core/civicationState.js', 'core/civicationCalendar.js', 'core/civicationNokBudget.js',
     'core/civicationJobs.js', 'systems/civicationJobEligibilityRuntime.js', 'merits-and-jobs.js'])
@@ -24,12 +25,14 @@ async function boot(points = 10, visited = true) {
   for (const path of ['systems/civicationCareerRealityGuard.js', 'systems/civicationBrandAccess.js',
     'systems/civicationBrandEmployerBridge.js', 'core/civicationEconomyEngine.js', 'ui/CivicationUI.js'])
     w.eval(fs.readFileSync('js/Civication/' + path, 'utf8'));
+  if (!seed) {
   w.localStorage.setItem('merits_by_category', JSON.stringify({ naeringsliv: { points } }));
   w.localStorage.setItem('quiz_progress', '{"naeringsliv":{"completed":["explicit-knowledge-boundary"]}}');
   if (visited) w.localStorage.setItem('visited_places', '{"tronsmo_bokhandel":true}');
   w.CivicationState.updateWallet({ balance: 125.25, old: { preserved: true }, nok_v1: {
     active: true, version: 1, config, startedDayIndex: 1, lastRecordedDayIndex: 0,
     earnedDays: [], payrollLedger: [], recurringBills: [], invoices: [] } });
+  }
   return { dom, w };
 }
 (async () => {
@@ -100,5 +103,78 @@ async function boot(points = 10, visited = true) {
     assert.equal(state.getWallet().old.preserved, true);
     dom.window.close();
   }
+  // Job loss is an explicit state boundary here; reentry/knowledge gates remain real.
+  app = await boot();
+  let w = app.w;
+  const retail = w.CivicationJobs.getOffers().find(o => o.nok_job_id === config.job.id && o.nok_employment_percent === 100);
+  assert.equal(w.CivicationJobs.acceptOffer(retail.offer_key).ok, true);
+  for (let day = 1; day <= 7; day++) {
+    w.CivicationCalendar.setClock({ dayIndex: day + 1 });
+    w.CivicationEconomyEngine.recordCompletedDay(day);
+  }
+  w.CivicationState.setActivePosition(null);
+  w.CivicationState.setState({ career: { activeJob: null } });
+  for (let day = 8; day <= 14; day++) {
+    w.CivicationCalendar.setClock({ dayIndex: day + 1 });
+    w.CivicationEconomyEngine.recordCompletedDay(day);
+  }
+  assert.equal(w.CivicationJobs.getOffers().length, 6, 'no automatic reapplication');
+  const historical = JSON.stringify(w.CivicationJobs.getOffers());
+  const warehouse = config.jobs.find(j => j.id === 'warehouse_virke_2026');
+  w.localStorage.setItem('merits_by_category', '{"naeringsliv":{"points":9}}');
+  assert.equal(w.CivicationJobs.applyForNokJob(warehouse.id, 50, 'blocked-merits').reason, 'NOK_MERITS_REQUIRED');
+  w.localStorage.setItem('merits_by_category', '{"naeringsliv":{"points":10}}');
+  w.CivicationState.setState({ career_reentry_locks: { naeringsliv: { status: 'locked' } } });
+  assert.equal(w.CivicationJobs.applyForNokJob(warehouse.id, 50, 'blocked-lock').reason, 'JOB_GATE_BLOCKED');
+  w.CivicationState.setState({ career_reentry_locks: { naeringsliv: null } });
+  await w.CivicationUI.render();
+  async function requestThroughUi(win) {
+    const select = win.document.getElementById('civiNokSearch');
+    const choice = Array.from(select.options).find(o => o.textContent.includes(warehouse.roleTitle + ' · 50 %'));
+    select.value = choice.value;
+    win.document.getElementById('civiNokApply').click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+    return win.CivicationJobs.getOffers()[0];
+  }
+  const first = await requestThroughUi(w);
+  assert.ok(first.nok_application_id);
+  assert.equal(w.CivicationJobs.getOffers().length, 7);
+  assert.equal(JSON.stringify(w.CivicationJobs.getOffers().slice(1)), historical);
+  assert.equal(w.CivicationState.getWallet().balance, 125.25);
+  assert.equal(w.CivicationJobs.applyForNokJob(warehouse.id, 50, first.nok_application_id).skipped, true);
+  assert.equal(w.CivicationJobs.applyForNokJob(warehouse.id, 100, first.nok_application_id).reason, 'NOK_APPLICATION_CONFLICT');
+  assert.equal(w.CivicationJobs.applyForNokJob(warehouse.id, 50, 'another-pending').reason, 'NOK_APPLICATION_PENDING');
+  assert.equal(w.CivicationJobs.declineOffer(first.offer_key).ok, true);
+  assert.equal(w.CivicationJobs.applyForNokJob(warehouse.id, 50, first.nok_application_id).offer.status, 'declined');
+  await w.CivicationUI.render();
+  const second = await requestThroughUi(w);
+  assert.notEqual(second.nok_application_id, first.nok_application_id);
+  const seed = Object.fromEntries(Array.from({ length: w.localStorage.length }, (_, i) => {
+    const key = w.localStorage.key(i); return [key, w.localStorage.getItem(key)];
+  }));
+  app.dom.window.close();
+  app = await boot(10, true, seed); w = app.w;
+  assert.equal(w.CivicationJobs.applyForNokJob(warehouse.id, 50, second.nok_application_id).skipped, true);
+  await w.CivicationUI.render();
+  w.document.getElementById('civiOfferAccept').click();
+  assert.equal(w.CivicationState.getActivePosition().nok_salary_contract.jobId, warehouse.id);
+  assert.equal(w.CivicationState.getWallet().balance, 125.25, 'new acceptance has no signing bonus');
+  assert.equal(w.CivicationJobs.getOffers().length, 8);
+  assert.equal(w.CivicationJobs.applyForNokJob(warehouse.id, 50, 'while-employed').reason, 'active_job');
+  for (let day = 15; day <= 31; day++) {
+    w.CivicationCalendar.setClock({ dayIndex: day + 1 });
+    w.CivicationEconomyEngine.recordCompletedDay(day);
+    w.CivicationEconomyEngine.tickWeekly();
+  }
+  const mixedGross = Math.floor(3169400 * 7 / 31) + 2280850 - Math.floor(2280850 * 14 / 31);
+  const mixedTax = Math.floor(586440 * 7 / 31) + 296435 - Math.floor(296435 * 14 / 31);
+  const wallet = w.CivicationState.getWallet();
+  assert.equal(wallet.nok_v1.payrollLedger[0].grossCents, mixedGross);
+  assert.equal(wallet.nok_v1.payrollLedger[0].taxCents, mixedTax);
+  assert.equal(Math.round(wallet.balance * 100), 12525 + mixedGross - mixedTax, 'unemployed days earn nothing');
+  const savedWallet = JSON.stringify(wallet);
+  w.CivicationEconomyEngine.tickWeekly(); await w.CivicationUI.render();
+  assert.equal(JSON.stringify(w.CivicationState.getWallet()), savedWallet);
+  app.dom.window.close();
   console.log('PASS: all 3 sourced jobs × 2 fractions through canonical gates, real selector/acceptance, 31-day pay, exact cents and no duplicate money');
 })().catch(error => { console.error(error); process.exitCode = 1; });

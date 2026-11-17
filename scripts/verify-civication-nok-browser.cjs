@@ -188,6 +188,40 @@ async function scenario(engine, width, height) {
     await page.waitForFunction(() => !!window.HG_CiviShop?.getNokProductStock);
     await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), saved, 'reload neither buys, consumes nor pays again');
+    // Explicit job-loss boundary; application and acceptance use real controls.
+    await page.evaluate(() => {
+      window.CivicationState.setActivePosition(null);
+      window.CivicationState.setState({ career: { activeJob: null } });
+      window.dispatchEvent(new Event('updateProfile'));
+    });
+    await openSection('karriere', 'activeJobSection');
+    await page.locator('#civiNokSearch').waitFor({ state: 'visible' });
+    const reapplyJob = profile.jobs[1];
+    const searchValue = await page.locator('#civiNokSearch option').evaluateAll((options, title) =>
+      options.find(o => o.textContent.includes(title + ' · 50 %')).value, reapplyJob.roleTitle);
+    await page.locator('#civiNokSearch').selectOption(searchValue);
+    screenshots.push(await capture('new-application'));
+    await page.locator('#civiNokApply').click();
+    await page.locator('#civiOfferAccept').waitFor({ state: 'visible' });
+    const newOffer = await page.evaluate(() => window.CivicationJobs.getOffers()[0]);
+    assert.equal(newOffer.nok_job_id, reapplyJob.id);
+    assert.equal(newOffer.nok_employment_percent, 50);
+    assert.ok(newOffer.nok_application_id);
+    assert.equal((await page.evaluate(() => window.CivicationJobs.getOffers())).length, 7);
+    assert.equal(JSON.stringify(await wallet()), saved, 'application never pays or mutates wallet');
+    screenshots.push(await capture('new-application-terms'));
+    await page.locator('#civiOfferAccept').click();
+    await page.waitForFunction(key => window.CivicationState.getActivePosition()?.nok_salary_contract?.offerKey === key, newOffer.offer_key);
+    assert.equal(JSON.stringify(await wallet()), saved, 'reacceptance gives no money');
+    await completeSourceLoading();
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!window.CivicationJobs?.applyForNokJob);
+    await completeSourceLoading();
+    assert.equal(JSON.stringify(await wallet()), saved);
+    const restored = await page.evaluate(() => ({ active: window.CivicationState.getActivePosition(), offers: window.CivicationJobs.getOffers() }));
+    assert.equal(restored.active.nok_salary_contract.offerKey, newOffer.offer_key);
+    assert.equal(restored.offers.length, 7);
+    assert.equal(restored.offers.filter(o => o.status === 'accepted').length, 2, 'prior accepted offer remains historical');
     assert.deepEqual(errors, [], 'no uncaught page errors');
     return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock,
       monthlyPaidCents: cashFlow.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };

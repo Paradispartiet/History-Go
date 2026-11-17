@@ -704,6 +704,7 @@
    *   place_id?: unknown,
    *   employer_context?: unknown
    *   nok_employment_percent?: unknown
+   *   nok_application_id?: unknown
    *   nok_job_id?: unknown
    * }} offerInput
    */
@@ -721,7 +722,8 @@
     place_id,
     employer_context,
     nok_employment_percent,
-    nok_job_id
+    nok_job_id,
+    nok_application_id
   }) {
     if (!canReceiveNewOffers()) {
       return { ok: false, reason: "active_job" };
@@ -744,8 +746,12 @@
           || nok_employment_percent <= 0 || nok_employment_percent > 100)
         return { ok: false, reason: "invalid_nok_offer" };
     }
+    const applicationId = typeof nok_application_id === "string" ? nok_application_id.trim() : "";
+    if (nok_application_id !== undefined && (!nokJobId || !applicationId || applicationId.length > 128))
+      return { ok: false, reason: "invalid_application_id" };
     const offer_key = `${badgeId}:${thr}` + (nokJobId ? `:nok:${nokJobId}`
-      + (nok_employment_percent === 100 ? "" : `:pct:${nok_employment_percent}`) : "");
+      + (nok_employment_percent === 100 ? "" : `:pct:${nok_employment_percent}`) : "")
+      + (applicationId ? `:application:${encodeURIComponent(applicationId)}` : "");
     const offers = getOffers();
 
     if (offers.some(function (o) {
@@ -773,6 +779,7 @@
       employer_context: employer_context && typeof employer_context === "object" ? employer_context : null,
       nok_employment_percent: nok_employment_percent,
       ...(nokJobId ? { nok_job_id: nokJobId } : {}),
+      ...(applicationId ? { nok_application_id: applicationId } : {}),
       status: "pending",
       created_iso: now.toISOString(),
       expires_iso: expires.toISOString()
@@ -974,6 +981,40 @@
     } finally { producingNokOffers = false; }
   }
 
+  // An explicit application preserves closed offers and traverses the public
+  // producer, including its career, knowledge and real-employer wrappers.
+  function createNokApplicationRequest() {
+    return window.crypto?.randomUUID?.() || `application_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  }
+
+  function applyForNokJob(jobId, percent, requestId) {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+    if (typeof requestId !== "string" || !requestId.trim() || requestId.trim().length > 128)
+      return { ok: false, reason: "invalid_application_id" };
+    requestId = requestId.trim();
+    const job = window.CivicationNokBudget?.resolveSalaryJob?.(nok.config, { jobId });
+    const fractions = job?.offerEmploymentPercents || [job?.offerEmploymentPercent];
+    if (!job || !fractions.includes(percent)) return { ok: false, reason: "NOK_SALARY_NOT_MAPPED" };
+    const previous = getOffers().filter(o => o?.nok_application_id === requestId);
+    if (previous.length) {
+      if (previous.length !== 1 || previous[0].nok_job_id !== jobId || previous[0].nok_employment_percent !== percent)
+        return { ok: false, reason: "NOK_APPLICATION_CONFLICT" };
+      return { ok: true, skipped: true, offer: previous[0] };
+    }
+    if (hasActiveEmployment()) return { ok: false, reason: "active_job" };
+    const offer = { career_id: job.careerId, career_name: job.careerName || "Næringsliv", title: job.roleTitle,
+      threshold: job.minimumOfferThreshold, nok_job_id: job.id, nok_employment_percent: percent,
+      nok_application_id: requestId,
+      points_at_offer: safeParse(localStorage.getItem("merits_by_category") || "{}", {})?.[job.careerId]?.points };
+    const gate = checkNokStarterEligibility(offer);
+    if (!gate.ok) return gate;
+    const pending = expireOffers().find(o => o?.status === "pending" && o.nok_job_id === jobId
+      && o.nok_employment_percent === percent);
+    if (pending) return { ok: false, reason: "NOK_APPLICATION_PENDING", offer: pending };
+    return window.CivicationJobs.pushOffer(offer);
+  }
+
   /** @param {any} offer */
   function getNokOfferTerms(offer) {
     const nok = window.CivicationState?.getWallet?.()?.nok_v1;
@@ -1021,6 +1062,8 @@
   window.CivicationJobs = {
     getOffers,
     ensureNokStarterOffer,
+    createNokApplicationRequest,
+    applyForNokJob,
     getNokOfferTerms,
     setOffers,
     expireOffers,
