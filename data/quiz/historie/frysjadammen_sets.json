@@ -1,27 +1,729 @@
 {
   "targetId": "frysjadammen",
   "categoryId": "historie",
-  "generator_version": "chatgpt_history_go_manual_v1_compact",
-  "generated_from": [
-    "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
-    "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json",
-    "data/quiz/regler/SET_MAL_README_v3.md"
-  ],
+  "title": "Oset slusebru – brohistorie og vannforsyning",
+  "generator_version": "history_go_source_review_20261117",
+  "sources": {
+    "oset_byleks": "https://oslobyleksikon.no/side/Oset_slusebru",
+    "oset_anlegg_byleks": "https://oslobyleksikon.no/side/Oset_anleggsbru",
+    "oslo_vav_150": "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/",
+    "akerselvas_venner_oset": "https://www.akerselvasvenner.no/2016/01/01/oset-slusebru/"
+  },
   "manual_production_notes": {
-    "quality_direction": "sted → observasjon → emne → forståelse",
-    "hold_back": [
-      "Ingen presise tekniske konstruksjonsdetaljer uten kilde.",
-      "Ingen dagsaktuelle driftstall eller flomdata.",
-      "Ingen usikre personrelasjoner.",
-      "Ingen detaljerte artsfunn uten kilde."
+    "quality_direction": "sted → historie → vannrettigheter → kritisk kildebruk",
+    "knowledge_migration": "10 live IDs unchanged; 32 old archived Knowledge-only; 18 new IDs",
+    "held_back": [
+      "Operativ vannføring uten driftskilder",
+      "Sammenblanding av gammel slusebru og anleggsbru"
+    ]
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/frysjadammen.json",
+    "context_artifact": "data/quiz/production_context/historie/frysjadammen.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
     ],
-    "oset_review_20261117": "Ti eksisterende spørsmål (s1_q1–q7 og s2_q1–q3) kildegransket mot Oslo byleksikon og erstattet med dokumenterte stedsfakta. Stabile quiz- og Knowledge-ID-er er bevart. Resterende 32 trenger egen redaksjonell gjennomgang før V1."
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_industri_produksjon_energi",
+      "em_his_kulturminner_bevaring",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_styring_krise_kontinuitet",
+      "em_his_spor_materialitet"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie/frysjadammen_sets.json",
+        "data/quizcards/historie/manifest.json",
+        "data/fag/fag_manifest.json",
+        "reports/place-production/oslo-akerselva-v1-quiz-candidates-20261116.json"
+      ],
+      "active_before": {
+        "set_count": 6,
+        "question_count": 42,
+        "linked_knowledge": 33,
+        "editorial_review_required": 9
+      },
+      "classification": {
+        "source_reviewed_opening": "10 existing active questions from set 1 and set 2 questions 1-3; source-backed but retained original stable IDs.",
+        "needs_review": "Remaining 32 active questions, many generic, repeated, or written about the incorrect name Frysjadammen instead of Oset slusebru.",
+        "duplicates_or_generic_examples": [
+          "frysjadammen_s3_q2 vs frysjadammen_s6_q2: question about definition of vannføring repeated",
+          "frysjadammen_s3_q4 vs frysjadammen_s6_q4: definition of blågrønn struktur repeated",
+          "frysjadammen_s2_q7: asks what produces the app's History Go atmosphere",
+          "frysjadammen_s4_q2 and frysjadammen_s5_q5: asks how quiz should be written",
+          "frysjadammen_s4_q7 and frysjadammen_s5_q7: questions about the quiz instead of the historic site"
+        ]
+      },
+      "decisions": [
+        "Existing live six-set quiz is NOT empty. Do not create a duplicate target or rewrite manifest against original IDs.",
+        "Preserve existing quiz_id and Knowledge-unit ID wherever the historical learning claim stays materially unchanged.",
+        "For a substantially new historical claim, retire the original question from playable rotation and preserve its old Knowledge claim in the existing canonical preserved-source archive procedure before assigning new question and Knowledge IDs.",
+        "Future 4x7 profile is an evidence-based candidate replacing weak six-set padding, not a deployed/merged change. Do not cut active six-set quiz until complete migration and canonical regeneration.",
+        "Do not activate draft QuizCard or Fagverk until source-claim-answer/Knowledge parity, browser QA, and all tests pass."
+      ],
+      "knowledge_migration": "Ten unchanged quiz question/Knowledge IDs remain active; original other 32 source questions with their earned KU IDs archived as non-playable; 18 new distinct quiz and KU IDs generated.",
+      "legacy_id_knowledge_ledger": [
+        {
+          "ordinal": 1,
+          "legacy_id": "frysjadammen_s1_q1",
+          "legacy_quiz_id": "historie_frysjadammen_set_1_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_frysjadammen_markerer_ov_1a1a804133",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_frysjadammen_markerer_ov_1a1a804133"
+          ],
+          "current_question": "Hvilken vannflate ligger rett ovenfor Oset slusebru?",
+          "current_answer": "Maridalsvannet",
+          "knowledge_link_status": "linked",
+          "disposition": "retain_and_verify_claim_parity"
+        },
+        {
+          "ordinal": 2,
+          "legacy_id": "frysjadammen_s1_q2",
+          "legacy_quiz_id": "historie_frysjadammen_set_1_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_stedet_kan_leses_gjennom_bb726433bd",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_stedet_kan_leses_gjennom_bb726433bd"
+          ],
+          "current_question": "Hvilken funksjon hadde slusen på Oset slusebru?",
+          "current_answer": "Regulere vannstanden i Akerselva",
+          "knowledge_link_status": "linked",
+          "disposition": "retain_and_verify_claim_parity"
+        },
+        {
+          "ordinal": 3,
+          "legacy_id": "frysjadammen_s1_q3",
+          "legacy_quiz_id": "historie_frysjadammen_set_1_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_ruta_b_r_begyn_dfbacc4bc4",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_akerselva_ruta_b_r_begyn_dfbacc4bc4"
+          ],
+          "current_question": "Hvilket materiale er den historiske Oset slusebrua bygd i?",
+          "current_answer": "Tre",
+          "knowledge_link_status": "linked",
+          "disposition": "retain_and_verify_claim_parity"
+        },
+        {
+          "ordinal": 4,
+          "legacy_id": "frysjadammen_s1_q4",
+          "legacy_quiz_id": "historie_frysjadammen_set_1_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_dammen_viser_at_elva_ikk_fc3395def7",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_dammen_viser_at_elva_ikk_fc3395def7"
+          ],
+          "current_question": "Hvordan ble slusen på Oset slusebru betjent?",
+          "current_answer": "Med et hånddrevet ratt",
+          "knowledge_link_status": "linked",
+          "disposition": "retain_and_verify_claim_parity"
+        },
+        {
+          "ordinal": 5,
+          "legacy_id": "frysjadammen_s1_q5",
+          "legacy_quiz_id": "historie_frysjadammen_set_1_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_stille_vann_ved_en_dam_k_90949c2a9e",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_stille_vann_ved_en_dam_k_90949c2a9e"
+          ],
+          "current_question": "Hva kan fortsatt sees av sluseanlegget?",
+          "current_answer": "Rester av reguleringsmekanismen",
+          "knowledge_link_status": "linked",
+          "disposition": "retain_and_verify_claim_parity"
+        },
+        {
+          "ordinal": 6,
+          "legacy_id": "frysjadammen_s1_q6",
+          "legacy_quiz_id": "historie_frysjadammen_set_1_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_frysjadammen_og_nydalsda_0f8412d395",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_frysjadammen_og_nydalsda_0f8412d395"
+          ],
+          "current_question": "Hvilken bru ligger like ovenfor den gamle Oset slusebrua?",
+          "current_answer": "Oset anleggsbru",
+          "knowledge_link_status": "linked",
+          "disposition": "retain_and_verify_claim_parity"
+        },
+        {
+          "ordinal": 7,
+          "legacy_id": "frysjadammen_s1_q7",
+          "legacy_quiz_id": "historie_frysjadammen_set_1_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_sp_rsmalet_kobler_direkt_24becb37b7",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_sp_rsmalet_kobler_direkt_24becb37b7"
+          ],
+          "current_question": "Hvorfor ble den nyere Oset anleggsbrua bygget?",
+          "current_answer": "For anleggstrafikk til rense- og pumpeanlegget",
+          "knowledge_link_status": "linked",
+          "disposition": "retain_and_verify_claim_parity"
+        },
+        {
+          "ordinal": 8,
+          "legacy_id": "frysjadammen_s2_q1",
+          "legacy_quiz_id": "historie_frysjadammen_set_2_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_dammen_peker_mot_vannf_r_deb1c94171",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_dammen_peker_mot_vannf_r_deb1c94171"
+          ],
+          "current_question": "Hvilken Oslo-etat eier Oset slusebru?",
+          "current_answer": "Vann- og avløpsetaten i Oslo",
+          "knowledge_link_status": "linked",
+          "disposition": "retain_and_verify_claim_parity"
+        },
+        {
+          "ordinal": 9,
+          "legacy_id": "frysjadammen_s2_q2",
+          "legacy_quiz_id": "historie_frysjadammen_set_2_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_vannstand_og_dam_viser_f_df2edb830e",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_vannstand_og_dam_viser_f_df2edb830e"
+          ],
+          "current_question": "Hva skiller de to bruene ved Oset?",
+          "current_answer": "Den gamle hadde en håndbetjent reguleringssluse",
+          "knowledge_link_status": "linked",
+          "disposition": "retain_and_verify_claim_parity"
+        },
+        {
+          "ordinal": 10,
+          "legacy_id": "frysjadammen_s2_q3",
+          "legacy_quiz_id": "historie_frysjadammen_set_2_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_trygg_quizdata_bruker_si_56fe05aaba",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_trygg_quizdata_bruker_si_56fe05aaba"
+          ],
+          "current_question": "Når ble Oset slusebru reist?",
+          "current_answer": "1859",
+          "knowledge_link_status": "linked",
+          "disposition": "retain_and_verify_claim_parity"
+        },
+        {
+          "ordinal": 11,
+          "legacy_id": "frysjadammen_s2_q4",
+          "legacy_quiz_id": "historie_frysjadammen_set_2_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_dammen_viser_at_byutvikl_63a3616e27",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_dammen_viser_at_byutvikl_63a3616e27"
+          ],
+          "current_question": "Hva kan Frysjadammen si om byens avhengighet av vann?",
+          "current_answer": "At vann må styres før det kan bli ressurs, risiko og byrom",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 12,
+          "legacy_id": "frysjadammen_s2_q5",
+          "legacy_quiz_id": "historie_frysjadammen_set_2_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_stedet_apner_for_a_forst_04dc15edde",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_stedet_apner_for_a_forst_04dc15edde"
+          ],
+          "current_question": "Hvorfor er Frysjadammen relevant for flomforståelse?",
+          "current_answer": "Fordi regulering av vannføring er del av hvordan byen håndterer vann",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 13,
+          "legacy_id": "frysjadammen_s2_q6",
+          "legacy_quiz_id": "historie_frysjadammen_set_2_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_vi_kan_l_re_mye_uten_a_g_207229c686",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_vi_kan_l_re_mye_uten_a_g_207229c686"
+          ],
+          "current_question": "Hvorfor bør usikre tekniske detaljer holdes ute?",
+          "current_answer": "Fordi hovedlæringen kan bygges trygt på dam, vannføring og regulering",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 14,
+          "legacy_id": "frysjadammen_s2_q7",
+          "legacy_quiz_id": "historie_frysjadammen_set_2_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_stedet_gj_r_et_stort_sys_70525434fe",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_stedet_gj_r_et_stort_sys_70525434fe"
+          ],
+          "current_question": "Hva gir Frysjadammen sin History Go-stemning?",
+          "current_answer": "Møtet mellom stille vann, teknisk styring og starten på byelva",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 15,
+          "legacy_id": "frysjadammen_s3_q1",
+          "legacy_quiz_id": "historie_frysjadammen_set_3_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_frysjadammen_kan_brukes__f0419adc6a",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_frysjadammen_kan_brukes__f0419adc6a"
+          ],
+          "current_question": "Hva er en reguleringsdam?",
+          "current_answer": "En dam som hjelper til med å styre vannstand og vannføring",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 16,
+          "legacy_id": "frysjadammen_s3_q2",
+          "legacy_quiz_id": "historie_frysjadammen_set_3_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_vannf_ring_er_sentralt_n_79d7df1347",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_vannf_ring_er_sentralt_n_79d7df1347"
+          ],
+          "current_question": "Hva betyr vannføring?",
+          "current_answer": "Hvor mye vann som renner i elva over tid",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 17,
+          "legacy_id": "frysjadammen_s3_q3",
+          "legacy_quiz_id": "historie_frysjadammen_set_3_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_frysjadammen_gj_r_dette__941a4b191c",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_frysjadammen_gj_r_dette__941a4b191c"
+          ],
+          "current_question": "Hva betyr vann som infrastruktur?",
+          "current_answer": "At vann organiseres og styres som del av byens tekniske og romlige systemer",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 18,
+          "legacy_id": "frysjadammen_s3_q4",
+          "legacy_quiz_id": "historie_frysjadammen_set_3_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_kan_leses_som__9fe54a8fa3",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_akerselva_kan_leses_som__9fe54a8fa3"
+          ],
+          "current_question": "Hva betyr blågrønn struktur?",
+          "current_answer": "Sammenheng mellom vann, vegetasjon, ferdsel og byrom",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 19,
+          "legacy_id": "frysjadammen_s3_q5",
+          "legacy_quiz_id": "historie_frysjadammen_set_3_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_regulering_av_vann_gj_r__6f826ec5ce",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_regulering_av_vann_gj_r__6f826ec5ce"
+          ],
+          "current_question": "Hva betyr klimatilpasning i en byelv?",
+          "current_answer": "Tiltak og forståelse som hjelper byen å håndtere vann, nedbør og flom",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 20,
+          "legacy_id": "frysjadammen_s3_q6",
+          "legacy_quiz_id": "historie_frysjadammen_set_3_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_frysjadammen_viser_natur_01ea13b3cb",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_frysjadammen_viser_natur_01ea13b3cb"
+          ],
+          "current_question": "Hva er et naturgrunnlag?",
+          "current_answer": "De fysiske naturforholdene som byutvikling bygger på",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 21,
+          "legacy_id": "frysjadammen_s3_q7",
+          "legacy_quiz_id": "historie_frysjadammen_set_3_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_frysjadammen_trener_sted_0620fb82b8",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_frysjadammen_trener_sted_0620fb82b8"
+          ],
+          "current_question": "Hva betyr stedlesning?",
+          "current_answer": "Å bruke observasjoner på stedet til å forstå større sammenhenger",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 22,
+          "legacy_id": "frysjadammen_s4_q1",
+          "legacy_quiz_id": "historie_frysjadammen_set_4_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_avansert_stedlesning_kob_466a6ac40c",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_avansert_stedlesning_kob_466a6ac40c"
+          ],
+          "current_question": "Hva er en avansert observasjon ved Frysjadammen?",
+          "current_answer": "Å se hvordan dam, vannstand, elveløp og byens behov henger sammen",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 23,
+          "legacy_id": "frysjadammen_s4_q2",
+          "legacy_quiz_id": "historie_frysjadammen_set_4_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_trygg_quizdata_skiller_h_3d2bebbe22",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_trygg_quizdata_skiller_h_3d2bebbe22"
+          ],
+          "current_question": "Hva bør holdes ute av en trygg Frysjadammen-quiz?",
+          "current_answer": "Presise konstruksjonsdata, tekniske detaljer og usikre årstall uten kilde",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 24,
+          "legacy_id": "frysjadammen_s4_q3",
+          "legacy_quiz_id": "historie_frysjadammen_set_4_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_dammen_gj_r_vannsystemet_21d646de2c",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_dammen_gj_r_vannsystemet_21d646de2c"
+          ],
+          "current_question": "Hvordan kan spilleren lese vann som system her?",
+          "current_answer": "Ved å se hvor vann holdes, slippes og ledes videre nedover elva",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 25,
+          "legacy_id": "frysjadammen_s4_q4",
+          "legacy_quiz_id": "historie_frysjadammen_set_4_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_sammen_viser_de_at_akers_ac054ccf6f",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_sammen_viser_de_at_akers_ac054ccf6f"
+          ],
+          "current_question": "Hva gjør Frysjadammen til et godt startpunkt før Nydalsdammen?",
+          "current_answer": "Frysjadammen markerer øvre regulering; Nydalsdammen viser regulert vann lenger nede i byelva",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 26,
+          "legacy_id": "frysjadammen_s4_q5",
+          "legacy_quiz_id": "historie_frysjadammen_set_4_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_regulerte_elverom_er_bla_5ab8119fc2",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_regulerte_elverom_er_bla_5ab8119fc2"
+          ],
+          "current_question": "Hva kan dammen fortelle om forholdet mellom natur og styring?",
+          "current_answer": "At bynatur ofte er formet av både naturprosesser og menneskelige inngrep",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 27,
+          "legacy_id": "frysjadammen_s4_q6",
+          "legacy_quiz_id": "historie_frysjadammen_set_4_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_stille_vann_kan_v_re_et__219b6f000c",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_stille_vann_kan_v_re_et__219b6f000c"
+          ],
+          "current_question": "Hva kan dagens stille vannflate skjule?",
+          "current_answer": "Et aktivt system for styring av vann videre gjennom byen",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 28,
+          "legacy_id": "frysjadammen_s4_q7",
+          "legacy_quiz_id": "historie_frysjadammen_set_4_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_quizzen_skal_gj_re_spill_52de3ffd23",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_quizzen_skal_gj_re_spill_52de3ffd23"
+          ],
+          "current_question": "Hva bør en god Frysjadammen-quiz trene spilleren i?",
+          "current_answer": "Å lese dam, vannføring, naturgrunnlag og byutvikling sammen",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 29,
+          "legacy_id": "frysjadammen_s5_q1",
+          "legacy_quiz_id": "historie_frysjadammen_set_5_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_frysjadammen_gj_r_det_ty_2f1b5dbf76",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_frysjadammen_gj_r_det_ty_2f1b5dbf76"
+          ],
+          "current_question": "Hva er den dypere læringen i Frysjadammen?",
+          "current_answer": "At byelva starter som et styrt vannsystem, ikke bare som fri natur",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 30,
+          "legacy_id": "frysjadammen_s5_q2",
+          "legacy_quiz_id": "historie_frysjadammen_set_5_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_regulering_viser_at_natu_00331845f4",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_regulering_viser_at_natu_00331845f4"
+          ],
+          "current_question": "Hvorfor er reguleringspunkter viktige i industri- og byhistorie?",
+          "current_answer": "Fordi vannføring påvirket kraft, risiko, tilgjengelighet og byutvikling",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 31,
+          "legacy_id": "frysjadammen_s5_q3",
+          "legacy_quiz_id": "historie_frysjadammen_set_5_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_sammen_viser_de_to_sider_64b9afb443",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_sammen_viser_de_to_sider_64b9afb443"
+          ],
+          "current_question": "Hva er forskjellen på Frysjadammen og Bjølsenfossen som læringssteder?",
+          "current_answer": "Frysjadammen forklarer regulering; Bjølsenfossen forklarer fallkraft",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 32,
+          "legacy_id": "frysjadammen_s5_q4",
+          "legacy_quiz_id": "historie_frysjadammen_set_5_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_regulerte_vannrom_ma_for_730786651a",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_regulerte_vannrom_ma_for_730786651a"
+          ],
+          "current_question": "Hva kan være en utfordring ved regulerte byelver?",
+          "current_answer": "Balansen mellom teknisk styring, naturhensyn, flomfare og rekreasjon",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 33,
+          "legacy_id": "frysjadammen_s5_q5",
+          "legacy_quiz_id": "historie_frysjadammen_set_5_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_trygg_quizdata_bygger_pa_5cf0636236",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_trygg_quizdata_bygger_pa_5cf0636236"
+          ],
+          "current_question": "Hva er viktig for trygg quizdata ved Frysjadammen?",
+          "current_answer": "Bruke observerbare trekk og sikre hovedlinjer, ikke usikre tekniske detaljer",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 34,
+          "legacy_id": "frysjadammen_s5_q6",
+          "legacy_quiz_id": "historie_frysjadammen_set_5_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_frysjadammen_gir_ruta_et_b56deff76b",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_frysjadammen_gir_ruta_et_b56deff76b"
+          ],
+          "current_question": "Hvordan fungerer Akerselva som læringsstruktur her?",
+          "current_answer": "Elva binder dammer, fosser, møller, parker og byrom til én rute",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 35,
+          "legacy_id": "frysjadammen_s5_q7",
+          "legacy_quiz_id": "historie_frysjadammen_set_5_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_stedet_gj_r_begrepene_re_30e7274579",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_stedet_gj_r_begrepene_re_30e7274579"
+          ],
+          "current_question": "Hva gjør Frysjadammen god for History Go-læring?",
+          "current_answer": "Den lar spilleren forstå regulert vann og byutvikling gjennom et konkret sted",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 36,
+          "legacy_id": "frysjadammen_s6_q1",
+          "legacy_quiz_id": "historie_frysjadammen_set_6_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_reguleringsdam_er_n_kkel_d727310cb3",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_reguleringsdam_er_n_kkel_d727310cb3"
+          ],
+          "current_question": "Hvilket begrep beskriver Frysjadammen best?",
+          "current_answer": "Reguleringsdam",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 37,
+          "legacy_id": "frysjadammen_s6_q2",
+          "legacy_quiz_id": "historie_frysjadammen_set_6_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_vannf_ring_forklarer_hvo_c7cbe157bc",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_vannf_ring_forklarer_hvo_c7cbe157bc"
+          ],
+          "current_question": "Hva betyr vannføring?",
+          "current_answer": "Mengden vann som renner i elva over tid",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 38,
+          "legacy_id": "frysjadammen_s6_q3",
+          "legacy_quiz_id": "historie_frysjadammen_set_6_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_frysjadammen_viser_vann__42757d5e62",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_frysjadammen_viser_vann__42757d5e62"
+          ],
+          "current_question": "Hva betyr vann som infrastruktur?",
+          "current_answer": "At vann organiseres og styres som del av byens systemer",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 39,
+          "legacy_id": "frysjadammen_s6_q4",
+          "legacy_quiz_id": "historie_frysjadammen_set_6_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_er_bade_bla_og_89fc1291bd",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_akerselva_er_bade_bla_og_89fc1291bd"
+          ],
+          "current_question": "Hva betyr blågrønn struktur?",
+          "current_answer": "Sammenheng mellom vann, vegetasjon, ferdsel og byrom",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 40,
+          "legacy_id": "frysjadammen_s6_q5",
+          "legacy_quiz_id": "historie_frysjadammen_set_6_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_regulering_av_vannf_ring_c78d177159",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_regulering_av_vannf_ring_c78d177159"
+          ],
+          "current_question": "Hva betyr klimatilpasning?",
+          "current_answer": "Å håndtere klima- og vannutfordringer i byens utforming",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 41,
+          "legacy_id": "frysjadammen_s6_q6",
+          "legacy_quiz_id": "historie_frysjadammen_set_6_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_vann_fall_og_elvel_p_er__b48a434ede",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_vann_fall_og_elvel_p_er__b48a434ede"
+          ],
+          "current_question": "Hva betyr naturgrunnlag?",
+          "current_answer": "De fysiske naturforholdene som byutvikling bygger på",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        },
+        {
+          "ordinal": 42,
+          "legacy_id": "frysjadammen_s6_q7",
+          "legacy_quiz_id": "historie_frysjadammen_set_6_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_frysjadammen_blir_tydeli_abdfe74720",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_frysjadammen_blir_tydeli_abdfe74720"
+          ],
+          "current_question": "Hvilket begrepspar forklarer Frysjadammen best?",
+          "current_answer": "Regulert vann og vann som infrastruktur",
+          "knowledge_link_status": "linked",
+          "disposition": "reconcile_to_claim_bank_or_archive_before_replacement"
+        }
+      ],
+      "ledger_note": "42 source question IDs and 42 distinct primary Knowledge IDs captured in unchanged live source as of 17 November 2026. This ledger is an audit map, not a request to delete or replace any user-awarded unit. For any replacement, decide whether the learning objective stays equivalent; otherwise preserve old claim in canonical non-playable source before assigning fresh quiz+KU IDs.",
+      "migration_decision": {
+        "original_active_questions": 42,
+        "new_active_questions": 28,
+        "retained_active_original_ids": [
+          "historie_frysjadammen_set_1_q1",
+          "historie_frysjadammen_set_1_q2",
+          "historie_frysjadammen_set_1_q3",
+          "historie_frysjadammen_set_1_q4",
+          "historie_frysjadammen_set_1_q5",
+          "historie_frysjadammen_set_1_q6",
+          "historie_frysjadammen_set_1_q7",
+          "historie_frysjadammen_set_2_q1",
+          "historie_frysjadammen_set_2_q2",
+          "historie_frysjadammen_set_2_q3"
+        ],
+        "retired_legacy_source": "data/knowledge/preserved_quiz_sources/frysjadammen_oset_legacy_20261117.json",
+        "retired_original_count": 32,
+        "new_questions": 18,
+        "old_source_claim_reorder": [
+          1,
+          6,
+          3,
+          5,
+          7,
+          2,
+          11,
+          9,
+          14,
+          8,
+          4,
+          10,
+          12,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ]
+      }
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Fire faglig selvstendige sett er mulig med 28 kildefestede påstander fordelt på 1) selve slusebrua, 2) historiske/nye broanlegg, 3) anleggstrafikk, industriers vanninteresser og regulering, 4) kommunal vannforsyning og kritisk kildebruk. Å videreføre seks sett med generiske definisjons- og produksjonsspørsmål er ikke kildeforsvarlig.",
+      "status": "active_in_PR_pending_release_QA",
+      "opening_policy": "first_2_sets_7_normal_questions_no_theory"
+    },
+    "held_back_candidates": [
+      "Dagens driftsstatus for den gamle manuelt styrte slusen, historisk vannføring eller hydrologiske måleresultater uten datert primærkilde.",
+      "Fysisk tilgang til betjeningshjul, slusebruas bærende tilstand eller vedlikeholdstiltak som ikke er dokumentert av kildene.",
+      "Feilplassering av 1965-betongbrua eller nyere anleggsbru som om de var trebrua fra 1859.",
+      "Fiktive personprofiler, tekniske mål på slusemekanismen eller artsregistreringer.",
+      "Dagens andel drikkevann fra Oset uten en fersk offisiell tidsfestet kilde."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "bridge",
+    "release_gate": "source_review_accepted_real_app_and_CI_pending"
   },
   "sets": [
     {
       "set_id": "historie_frysjadammen_set_1",
       "level": 1,
       "order": 1,
+      "phase": "opening",
       "xp": 50,
       "mode": "place_intro_story",
       "questions": [
@@ -42,7 +744,7 @@
           "answerIndex": 0,
           "knowledge": "Oset slusebru ligger ved utløpet fra Maridalsvannet til Akerselva.",
           "difficulty": 1,
-          "question_type": "stedsspesifikk",
+          "question_type": "fact",
           "question_layer": "intro_story",
           "tags": [
             "oset_slusebru",
@@ -50,9 +752,9 @@
             "stedshistorie"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Oset_slusebru"
+            "oset_byleks"
           ],
-          "claim_basis": "sourced_place_fact",
+          "claim_basis": "Oset slusebru ligger ved Maridalsvannet like nedstrøms Oset anleggsbru.",
           "primary_knowledge_unit_id": "ku_historie_frysjadammen_markerer_ov_1a1a804133",
           "knowledge_unit_ids": [
             "ku_historie_frysjadammen_markerer_ov_1a1a804133"
@@ -71,8 +773,14 @@
             ]
           },
           "emne_ids": [
-            "em_his_industri_produksjon_energi"
-          ]
+            "em_his_kulturminner_bevaring"
+          ],
+          "claim_id": "claim_oset_slusebru_quiz_01",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_kulturminner_bevaring"
         },
         {
           "id": "frysjadammen_s1_q2",
@@ -91,7 +799,7 @@
           "answerIndex": 0,
           "knowledge": "Slusen midt i Oset slusebru ble brukt til å regulere vannstanden i Akerselva.",
           "difficulty": 1,
-          "question_type": "stedsspesifikk",
+          "question_type": "fact",
           "question_layer": "intro_story",
           "tags": [
             "oset_slusebru",
@@ -99,9 +807,9 @@
             "stedshistorie"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Oset_slusebru"
+            "oset_byleks"
           ],
-          "claim_basis": "sourced_place_fact",
+          "claim_basis": "Slusen i Oset slusebru regulerte vannstanden i Akerselva.",
           "primary_knowledge_unit_id": "ku_historie_stedet_kan_leses_gjennom_bb726433bd",
           "knowledge_unit_ids": [
             "ku_historie_stedet_kan_leses_gjennom_bb726433bd"
@@ -121,7 +829,13 @@
           },
           "emne_ids": [
             "em_his_industri_produksjon_energi"
-          ]
+          ],
+          "claim_id": "claim_oset_slusebru_quiz_02",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_industri_produksjon_energi"
         },
         {
           "id": "frysjadammen_s1_q3",
@@ -140,7 +854,7 @@
           "answerIndex": 0,
           "knowledge": "Oset slusebru er en trebru fra 1859; Oset anleggsbru like ovenfor er en nyere betongbru.",
           "difficulty": 1,
-          "question_type": "stedsspesifikk",
+          "question_type": "fact",
           "question_layer": "intro_story",
           "tags": [
             "oset_slusebru",
@@ -148,10 +862,9 @@
             "stedshistorie"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Oset_slusebru",
-            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+            "oset_byleks"
           ],
-          "claim_basis": "sourced_place_fact",
+          "claim_basis": "Den historiske Oset slusebrua er en trebru bygd i 1859.",
           "primary_knowledge_unit_id": "ku_historie_akerselva_ruta_b_r_begyn_dfbacc4bc4",
           "knowledge_unit_ids": [
             "ku_historie_akerselva_ruta_b_r_begyn_dfbacc4bc4"
@@ -171,8 +884,14 @@
             ]
           },
           "emne_ids": [
-            "em_his_kulturminner_bevaring"
-          ]
+            "em_his_spor_materialitet"
+          ],
+          "claim_id": "claim_oset_slusebru_quiz_03",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_spor_materialitet"
         },
         {
           "id": "frysjadammen_s1_q4",
@@ -191,7 +910,7 @@
           "answerIndex": 0,
           "knowledge": "Slusen på Oset slusebru ble styrt manuelt med et ratt.",
           "difficulty": 1,
-          "question_type": "stedsspesifikk",
+          "question_type": "fact",
           "question_layer": "intro_story",
           "tags": [
             "oset_slusebru",
@@ -199,9 +918,9 @@
             "stedshistorie"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Oset_slusebru"
+            "oset_byleks"
           ],
-          "claim_basis": "sourced_place_fact",
+          "claim_basis": "Reguleringsmekanismen ble tidligere styrt manuelt med et ratt.",
           "emne_ids": [
             "em_his_industri_produksjon_energi"
           ],
@@ -221,7 +940,13 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "claim_id": "claim_oset_slusebru_quiz_04",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_industri_produksjon_energi"
         },
         {
           "id": "frysjadammen_s1_q5",
@@ -240,7 +965,7 @@
           "answerIndex": 0,
           "knowledge": "Rester av reguleringsslusens mekanisme er bevart på Oset slusebru.",
           "difficulty": 1,
-          "question_type": "stedsspesifikk",
+          "question_type": "fact",
           "question_layer": "intro_story",
           "tags": [
             "oset_slusebru",
@@ -248,9 +973,10 @@
             "stedshistorie"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Oset_slusebru"
+            "oset_byleks",
+            "akerselvas_venner_oset"
           ],
-          "claim_basis": "sourced_place_fact",
+          "claim_basis": "Rester av den historiske slusemekanismen er bevart.",
           "primary_knowledge_unit_id": "ku_historie_stille_vann_ved_en_dam_k_90949c2a9e",
           "knowledge_unit_ids": [
             "ku_historie_stille_vann_ved_en_dam_k_90949c2a9e"
@@ -270,7 +996,14 @@
           },
           "emne_ids": [
             "em_his_kulturminner_bevaring"
-          ]
+          ],
+          "claim_id": "claim_oset_slusebru_quiz_05",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru",
+            "https://www.akerselvasvenner.no/2016/01/01/oset-slusebru/"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_kulturminner_bevaring"
         },
         {
           "id": "frysjadammen_s1_q6",
@@ -289,7 +1022,7 @@
           "answerIndex": 0,
           "knowledge": "Oset anleggsbru ligger like ovenfor den gamle Oset slusebrua.",
           "difficulty": 1,
-          "question_type": "stedsspesifikk",
+          "question_type": "fact",
           "question_layer": "intro_story",
           "tags": [
             "oset_slusebru",
@@ -297,9 +1030,10 @@
             "stedshistorie"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+            "oset_byleks",
+            "oset_anlegg_byleks"
           ],
-          "claim_basis": "sourced_place_fact",
+          "claim_basis": "Oset anleggsbru ligger like ovenfor den historiske Oset slusebru ved Maridalsvannet.",
           "emne_ids": [
             "em_his_kulturminner_bevaring"
           ],
@@ -319,7 +1053,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "claim_id": "claim_oset_slusebru_quiz_06",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru",
+            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_kulturminner_bevaring"
         },
         {
           "id": "frysjadammen_s1_q7",
@@ -338,7 +1079,7 @@
           "answerIndex": 0,
           "knowledge": "Oset anleggsbru ble bygd ved årsskiftet 2003/2004 for anleggstrafikk til pumpe- og rensestasjonen ved Kjelsås.",
           "difficulty": 1,
-          "question_type": "stedsspesifikk",
+          "question_type": "context",
           "question_layer": "intro_story",
           "tags": [
             "oset_slusebru",
@@ -346,9 +1087,9 @@
             "stedshistorie"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+            "oset_anlegg_byleks"
           ],
-          "claim_basis": "sourced_place_fact",
+          "claim_basis": "Anleggsbrua ble reist for trafikk under byggingen av en ny pumpe- og rensestasjon.",
           "primary_knowledge_unit_id": "ku_historie_sp_rsmalet_kobler_direkt_24becb37b7",
           "knowledge_unit_ids": [
             "ku_historie_sp_rsmalet_kobler_direkt_24becb37b7"
@@ -368,7 +1109,13 @@
           },
           "emne_ids": [
             "em_his_industri_produksjon_energi"
-          ]
+          ],
+          "claim_id": "claim_oset_slusebru_quiz_07",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_industri_produksjon_energi"
         }
       ]
     },
@@ -376,6 +1123,7 @@
       "set_id": "historie_frysjadammen_set_2",
       "level": 2,
       "order": 2,
+      "phase": "middle",
       "xp": 60,
       "mode": "place_life_people_events",
       "questions": [
@@ -396,7 +1144,7 @@
           "answerIndex": 0,
           "knowledge": "Oset slusebru eies av Vann- og avløpsetaten i Oslo.",
           "difficulty": 1,
-          "question_type": "stedsspesifikk",
+          "question_type": "fact",
           "question_layer": "place_life",
           "tags": [
             "oset_slusebru",
@@ -404,9 +1152,9 @@
             "stedshistorie"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Oset_slusebru"
+            "oset_byleks"
           ],
-          "claim_basis": "sourced_place_fact",
+          "claim_basis": "Oset slusebru eies av Oslo kommunes Vann- og avløpsetat.",
           "emne_ids": [
             "em_his_styring_krise_kontinuitet"
           ],
@@ -426,7 +1174,13 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "claim_id": "claim_oset_slusebru_quiz_08",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_styring_krise_kontinuitet"
         },
         {
           "id": "frysjadammen_s2_q2",
@@ -445,7 +1199,7 @@
           "answerIndex": 0,
           "knowledge": "Oset slusebru hadde en håndbetjent reguleringssluse; den nyere anleggsbrua ble bygd for anleggstrafikk.",
           "difficulty": 1,
-          "question_type": "stedsspesifikk",
+          "question_type": "context",
           "question_layer": "place_life",
           "tags": [
             "oset_slusebru",
@@ -453,10 +1207,10 @@
             "stedshistorie"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Oset_slusebru",
-            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+            "oset_byleks",
+            "oset_anlegg_byleks"
           ],
-          "claim_basis": "sourced_place_fact",
+          "claim_basis": "Anleggsbruas primære trafikkformål var annerledes enn slusebruas historiske reguleringsfunksjon.",
           "emne_ids": [
             "em_his_kulturminner_bevaring"
           ],
@@ -477,7 +1231,14 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "claim_id": "claim_oset_slusebru_quiz_09",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru",
+            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_kulturminner_bevaring"
         },
         {
           "id": "frysjadammen_s2_q3",
@@ -496,7 +1257,7 @@
           "answerIndex": 0,
           "knowledge": "Oset slusebru ble bygd i 1859, mens den første Maridalsdammen ble bygd i 1854.",
           "difficulty": 1,
-          "question_type": "stedsspesifikk",
+          "question_type": "fact",
           "question_layer": "place_life",
           "tags": [
             "oset_slusebru",
@@ -504,9 +1265,9 @@
             "byggeaar"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Oset_slusebru"
+            "oset_byleks"
           ],
-          "claim_basis": "sourced_place_fact",
+          "claim_basis": "Den historiske trebrua Oset slusebru ble oppført i 1859.",
           "emne_ids": [
             "em_his_kulturminner_bevaring"
           ],
@@ -526,184 +1287,173 @@
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "claim_id": "claim_oset_slusebru_quiz_10",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_kulturminner_bevaring"
         },
         {
-          "id": "frysjadammen_s2_q4",
-          "quiz_id": "historie_frysjadammen_set_2_q4",
+          "id": "oset_slusebru_v1_s2_q4",
+          "quiz_id": "historie_oset_slusebru_v1_set_2_q4",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hva kan Frysjadammen si om byens avhengighet av vann?",
-          "options": [
-            "At vann må styres før det kan bli ressurs, risiko og byrom",
-            "At byen er løsrevet fra vann",
-            "At elver aldri påvirker byer"
-          ],
-          "answer": "At vann må styres før det kan bli ressurs, risiko og byrom",
-          "answerIndex": 0,
-          "knowledge": "Dammen viser at byutvikling også handler om kontroll av naturkrefter.",
           "difficulty": 1,
-          "question_type": "samfunn",
-          "question_layer": "place_life",
-          "tags": [
-            "byutvikling",
-            "vann"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "safe_place_data",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "natur",
-              "vann"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_dammen_viser_at_byutvikl_63a3616e27",
-          "knowledge_unit_ids": [
-            "ku_historie_dammen_viser_at_byutvikl_63a3616e27"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hvem bygde den første Maridalsdammen i 1854?",
+          "options": [
+            "Knud Graah",
+            "Anton Brodtkorb",
+            "Engebret Soot"
+          ],
+          "answer": "Engebret Soot",
+          "answerIndex": 2,
+          "knowledge": "Engebret Soot bygde den første dammen i 1854. Trebrua med sluse kom fem år senere.",
+          "question_type": "fact",
+          "question_layer": "place_life",
+          "claim_id": "claim_oset_slusebru_quiz_11",
+          "claim_basis": "Engebret Soot bygde den første Maridalsdammen i 1854, før den historiske slusebrua fra 1859.",
+          "source": [
+            "oset_byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ]
         },
         {
-          "id": "frysjadammen_s2_q5",
-          "quiz_id": "historie_frysjadammen_set_2_q5",
+          "id": "oset_slusebru_v1_s2_q5",
+          "quiz_id": "historie_oset_slusebru_v1_set_2_q5",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hvorfor er Frysjadammen relevant for flomforståelse?",
-          "options": [
-            "Fordi regulering av vannføring er del av hvordan byen håndterer vann",
-            "Fordi flom aldri gjelder elver",
-            "Fordi dammer bare er dekor"
-          ],
-          "answer": "Fordi regulering av vannføring er del av hvordan byen håndterer vann",
-          "answerIndex": 0,
-          "knowledge": "Stedet åpner for å forstå vann som både ressurs og risiko.",
           "difficulty": 1,
-          "question_type": "klima",
-          "question_layer": "place_life",
-          "tags": [
-            "flom",
-            "klimatilpasning"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "safe_place_data",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_stedet_apner_for_a_forst_04dc15edde",
-          "knowledge_unit_ids": [
-            "ku_historie_stedet_apner_for_a_forst_04dc15edde"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hva ble den nyere Oset anleggsbrua bygget av?",
+          "options": [
+            "Betongelementer",
+            "Tømmerstokker",
+            "Støpejernsbjelker"
+          ],
+          "answer": "Betongelementer",
+          "answerIndex": 0,
+          "knowledge": "Brua fra 2003/2004 er en kjørebru, ikke den historiske trebrua.",
+          "question_type": "fact",
+          "question_layer": "place_life",
+          "claim_id": "claim_oset_slusebru_quiz_12",
+          "claim_basis": "Den nyere Oset anleggsbru er en kjørebru bygget av betongelementer ved årsskiftet 2003/2004.",
+          "source": [
+            "oset_anlegg_byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
+          ]
         },
         {
-          "id": "frysjadammen_s2_q6",
-          "quiz_id": "historie_frysjadammen_set_2_q6",
+          "id": "oset_slusebru_v1_s2_q6",
+          "quiz_id": "historie_oset_slusebru_v1_set_2_q6",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hvorfor bør usikre tekniske detaljer holdes ute?",
-          "options": [
-            "Fordi hovedlæringen kan bygges trygt på dam, vannføring og regulering",
-            "Fordi teknikk aldri betyr noe",
-            "Fordi stedet mangler historie"
-          ],
-          "answer": "Fordi hovedlæringen kan bygges trygt på dam, vannføring og regulering",
-          "answerIndex": 0,
-          "knowledge": "Vi kan lære mye uten å gjette på presise tekniske konstruksjonsdata.",
           "difficulty": 1,
-          "question_type": "kildekritikk",
-          "question_layer": "place_life",
-          "tags": [
-            "teknikk",
-            "holdback"
-          ],
-          "source": [
-            "manual_production_notes"
-          ],
-          "claim_basis": "holdback_rule",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_vi_kan_l_re_mye_uten_a_g_207229c686",
-          "knowledge_unit_ids": [
-            "ku_historie_vi_kan_l_re_mye_uten_a_g_207229c686"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hvor ligger det nye pumpe- og renseanlegget ved Oset?",
+          "options": [
+            "I et hus på Ankerbrua",
+            "I en flytende stasjon på Maridalsvannet",
+            "I fjellanlegget på Kjelsås"
+          ],
+          "answer": "I fjellanlegget på Kjelsås",
+          "answerIndex": 2,
+          "knowledge": "Anleggsbrua var koblet til arbeid med anlegg inne i fjellet.",
+          "question_type": "fact",
+          "question_layer": "place_life",
+          "claim_id": "claim_oset_slusebru_quiz_13",
+          "claim_basis": "Den nye pumpe- og rensestasjonen som anleggsbrua betjente ligger i et fjellanlegg på Kjelsås.",
+          "source": [
+            "oset_anlegg_byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ]
         },
         {
-          "id": "frysjadammen_s2_q7",
-          "quiz_id": "historie_frysjadammen_set_2_q7",
+          "id": "oset_slusebru_v1_s2_q7",
+          "quiz_id": "historie_oset_slusebru_v1_set_2_q7",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hva gir Frysjadammen sin History Go-stemning?",
-          "options": [
-            "Møtet mellom stille vann, teknisk styring og starten på byelva",
-            "At stedet mangler sammenheng",
-            "At alt må forstås innendørs"
-          ],
-          "answer": "Møtet mellom stille vann, teknisk styring og starten på byelva",
-          "answerIndex": 0,
-          "knowledge": "Stedet gjør et stort system synlig i ett konkret punkt.",
           "difficulty": 1,
-          "question_type": "bruk_stemning",
-          "question_layer": "place_life",
-          "tags": [
-            "startpunkt",
-            "byelv"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "safe_place_data",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_stedet_gj_r_et_stort_sys_70525434fe",
-          "knowledge_unit_ids": [
-            "ku_historie_stedet_gj_r_et_stort_sys_70525434fe"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hvor gikk den nye anleggsveien til Oset fra?",
+          "options": [
+            "Fra Maridalen",
+            "Fra Bjørvika",
+            "Fra Frognerparken"
+          ],
+          "answer": "Fra Maridalen",
+          "answerIndex": 0,
+          "knowledge": "Veiforbindelsen var om lag to kilometer lang og ble bygget samtidig med anleggsbrua.",
+          "question_type": "fact",
+          "question_layer": "place_life",
+          "claim_id": "claim_oset_slusebru_quiz_14",
+          "claim_basis": "Sammen med anleggsbrua ble det laget en anleggsvei på om lag to kilometer fra Maridalen.",
+          "source": [
+            "oset_anlegg_byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ]
         }
       ]
     },
@@ -711,307 +1461,299 @@
       "set_id": "historie_frysjadammen_set_3",
       "level": 3,
       "order": 3,
+      "phase": "bridge",
       "xp": 70,
-      "mode": "emne_based_foundation",
+      "mode": "historical_source_comparison",
       "questions": [
         {
-          "id": "frysjadammen_s3_q1",
-          "quiz_id": "historie_frysjadammen_set_3_q1",
+          "id": "oset_slusebru_v1_s3_q1",
+          "quiz_id": "historie_oset_slusebru_v1_set_3_q1",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva er en reguleringsdam?",
-          "options": [
-            "En dam som hjelper til med å styre vannstand og vannføring",
-            "En tilfeldig bro",
-            "Et sted uten vann"
-          ],
-          "answer": "En dam som hjelper til med å styre vannstand og vannføring",
-          "answerIndex": 0,
-          "knowledge": "Frysjadammen kan brukes til å forstå regulering som byhistorisk og hydrologisk funksjon.",
+          "question_scope": "place",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "reguleringsdam"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_frysjadammen_kan_brukes__f0419adc6a",
-          "knowledge_unit_ids": [
-            "ku_historie_frysjadammen_kan_brukes__f0419adc6a"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hva ville man unngå med anleggsveien ved Kjelsås?",
+          "options": [
+            "At folk skulle gå langs Akerselva",
+            "At Maridalsvannet skulle brukes som vannkilde",
+            "Tung anleggstrafikk gjennom boligområdet"
+          ],
+          "answer": "Tung anleggstrafikk gjennom boligområdet",
+          "answerIndex": 2,
+          "knowledge": "Anleggsveien skulle avlaste bebyggelsen under byggingen av vannanlegget.",
+          "question_type": "context",
+          "question_layer": "historical_bridge",
+          "claim_id": "claim_oset_slusebru_quiz_15",
+          "claim_basis": "Anleggsveien og den nye brua skulle redusere anleggstrafikk gjennom bebyggelsen på Kjelsås.",
+          "source": [
+            "oset_anlegg_byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_styring_krise_kontinuitet",
+          "emne_ids": [
+            "em_his_styring_krise_kontinuitet"
+          ]
         },
         {
-          "id": "frysjadammen_s3_q2",
-          "quiz_id": "historie_frysjadammen_set_3_q2",
+          "id": "oset_slusebru_v1_s3_q2",
+          "quiz_id": "historie_oset_slusebru_v1_set_3_q2",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva betyr vannføring?",
-          "options": [
-            "Hvor mye vann som renner i elva over tid",
-            "Hvor mange trær som står ved bredden",
-            "Hvor mange bygninger som finnes"
-          ],
-          "answer": "Hvor mye vann som renner i elva over tid",
-          "answerIndex": 0,
-          "knowledge": "Vannføring er sentralt når man forstår dammer, industri, flom og elverom.",
+          "question_scope": "place",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "vannføring"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_vannf_ring_er_sentralt_n_79d7df1347",
-          "knowledge_unit_ids": [
-            "ku_historie_vannf_ring_er_sentralt_n_79d7df1347"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hva skjedde med Oset anleggsbru etter anleggsperioden?",
+          "options": [
+            "Den ble stående permanent",
+            "Den ble revet umiddelbart",
+            "Den ble ombygd til jernbanebru"
+          ],
+          "answer": "Den ble stående permanent",
+          "answerIndex": 0,
+          "knowledge": "Brua var planlagt som midlertidig, men ble beholdt.",
+          "question_type": "context",
+          "question_layer": "historical_bridge",
+          "claim_id": "claim_oset_slusebru_quiz_16",
+          "claim_basis": "Oset anleggsbru var planlagt som midlertidig i byggeperioden, men ble stående permanent.",
+          "source": [
+            "oset_anlegg_byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "emne_ids": [
+            "em_his_kulturminner_bevaring"
+          ]
         },
         {
-          "id": "frysjadammen_s3_q3",
-          "quiz_id": "historie_frysjadammen_set_3_q3",
+          "id": "oset_slusebru_v1_s3_q3",
+          "quiz_id": "historie_oset_slusebru_v1_set_3_q3",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva betyr vann som infrastruktur?",
-          "options": [
-            "At vann organiseres og styres som del av byens tekniske og romlige systemer",
-            "At vann bare er pynt",
-            "At vann aldri påvirker byer"
-          ],
-          "answer": "At vann organiseres og styres som del av byens tekniske og romlige systemer",
-          "answerIndex": 0,
-          "knowledge": "Frysjadammen gjør dette begrepet konkret.",
+          "question_scope": "place",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "vann_infrastruktur"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_frysjadammen_gj_r_dette__941a4b191c",
-          "knowledge_unit_ids": [
-            "ku_historie_frysjadammen_gj_r_dette__941a4b191c"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hva sto omtrent der dagens Oset anleggsbru ligger, før den nyere brua?",
+          "options": [
+            "En kopi av Beierbrua",
+            "En annen betongbru fra 1965",
+            "Et vannhjul uten bru"
+          ],
+          "answer": "En annen betongbru fra 1965",
+          "answerIndex": 1,
+          "knowledge": "Den tidligere brua ble revet i 1997 og var ikke trebrua fra 1859.",
+          "question_type": "fact",
+          "question_layer": "historical_bridge",
+          "claim_id": "claim_oset_slusebru_quiz_17",
+          "claim_basis": "Omtrent på samme sted som dagens Oset anleggsbru sto tidligere en annen bru oppført i 1965 og revet i 1997.",
+          "source": [
+            "oset_anlegg_byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "emne_ids": [
+            "em_his_kulturminner_bevaring"
+          ]
         },
         {
-          "id": "frysjadammen_s3_q4",
-          "quiz_id": "historie_frysjadammen_set_3_q4",
+          "id": "oset_slusebru_v1_s3_q4",
+          "quiz_id": "historie_oset_slusebru_v1_set_3_q4",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva betyr blågrønn struktur?",
-          "options": [
-            "Sammenheng mellom vann, vegetasjon, ferdsel og byrom",
-            "En tilfeldig fargekode",
-            "Et lukket kontor"
-          ],
-          "answer": "Sammenheng mellom vann, vegetasjon, ferdsel og byrom",
-          "answerIndex": 0,
-          "knowledge": "Akerselva kan leses som blågrønn struktur gjennom dammer, parker og elvekanter.",
+          "question_scope": "place",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "blågrønn_struktur"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_akerselva_kan_leses_som__9fe54a8fa3",
-          "knowledge_unit_ids": [
-            "ku_historie_akerselva_kan_leses_som__9fe54a8fa3"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hva skiller den 21 meter lange betongbrua fra den gamle Oset slusebru?",
+          "options": [
+            "Betongbrua fra 1859 var den nyere anleggsbrua",
+            "Betongbrua var fra 1965 og er revet; slusebrua er en trebru fra 1859",
+            "Begge navnene viser til samme bru fra 2008"
+          ],
+          "answer": "Betongbrua var fra 1965 og er revet; slusebrua er en trebru fra 1859",
+          "answerIndex": 1,
+          "knowledge": "En tidligere bjelkebru i armert betong fra 1965 ble revet i 1997. Dette var ikke den historiske trebrua med sluse.",
+          "question_type": "analysis",
+          "question_layer": "historical_bridge",
+          "claim_id": "claim_oset_slusebru_quiz_18",
+          "claim_basis": "Den 21 meter lange bjelkebrua av armert betong var oppført i 1965 og revet i 1997; den var ikke den historiske trebrua fra 1859.",
+          "source": [
+            "oset_anlegg_byleks",
+            "oset_byleks"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_anleggsbru",
+            "https://oslobyleksikon.no/side/Oset_slusebru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
+          ],
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
         },
         {
-          "id": "frysjadammen_s3_q5",
-          "quiz_id": "historie_frysjadammen_set_3_q5",
+          "id": "oset_slusebru_v1_s3_q5",
+          "quiz_id": "historie_oset_slusebru_v1_set_3_q5",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva betyr klimatilpasning i en byelv?",
-          "options": [
-            "Tiltak og forståelse som hjelper byen å håndtere vann, nedbør og flom",
-            "Å ignorere vannet",
-            "Bare pynting av parker"
-          ],
-          "answer": "Tiltak og forståelse som hjelper byen å håndtere vann, nedbør og flom",
-          "answerIndex": 0,
-          "knowledge": "Regulering av vann gjør klimatilpasning lettere å forstå på stedet.",
+          "question_scope": "place",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "klimatilpasning"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_regulering_av_vann_gj_r__6f826ec5ce",
-          "knowledge_unit_ids": [
-            "ku_historie_regulering_av_vann_gj_r__6f826ec5ce"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hvordan bidro Akerselva til sterk industrivekst etter 1840?",
+          "options": [
+            "Vannkraft drev maskiner i fabrikkene langs elva",
+            "Elva var en havn for store skip",
+            "Industrien ble bare drevet av vindmøller på fjell"
+          ],
+          "answer": "Vannkraft drev maskiner i fabrikkene langs elva",
+          "answerIndex": 0,
+          "knowledge": "Vannkraft var en sentral forutsetning for fabrikkveksten, viser Oslo kommunes vannhistorie.",
+          "question_type": "context",
+          "question_layer": "historical_bridge",
+          "claim_id": "claim_oset_slusebru_quiz_19",
+          "claim_basis": "Vannkraft fra Akerselva bidro til sterk industriutbygging etter 1840.",
+          "source": [
+            "oslo_vav_150"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ]
         },
         {
-          "id": "frysjadammen_s3_q6",
-          "quiz_id": "historie_frysjadammen_set_3_q6",
+          "id": "oset_slusebru_v1_s3_q6",
+          "quiz_id": "historie_oset_slusebru_v1_set_3_q6",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva er et naturgrunnlag?",
-          "options": [
-            "De fysiske naturforholdene som byutvikling bygger på",
-            "En ren idé uten sted",
-            "Et moderne logoord"
-          ],
-          "answer": "De fysiske naturforholdene som byutvikling bygger på",
-          "answerIndex": 0,
-          "knowledge": "Frysjadammen viser naturgrunnlaget for Akerselva: vann, fall, magasin og elveløp.",
+          "question_scope": "place",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "naturgrunnlag"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "natur",
-              "vann"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_frysjadammen_viser_natur_01ea13b3cb",
-          "knowledge_unit_ids": [
-            "ku_historie_frysjadammen_viser_natur_01ea13b3cb"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hvorfor var brukseierne skeptiske til offentlig vannuttak?",
+          "options": [
+            "De ville stanse all ferdsel i Maridalen",
+            "De fryktet mindre vann til industrien",
+            "De ønsket bare å bruke vannet til isbaner"
+          ],
+          "answer": "De fryktet mindre vann til industrien",
+          "answerIndex": 1,
+          "knowledge": "Industriens kraftbehov og byens drikkevannsforsyning var konkurrerende interesser.",
+          "question_type": "context",
+          "question_layer": "historical_bridge",
+          "claim_id": "claim_oset_slusebru_quiz_20",
+          "claim_basis": "Fabrikkeiernes Akerselven Brugseierforening mente offentlig vannuttak kunne true industriens vannressurser.",
+          "source": [
+            "oslo_vav_150"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_styring_krise_kontinuitet",
+          "emne_ids": [
+            "em_his_styring_krise_kontinuitet"
+          ]
         },
         {
-          "id": "frysjadammen_s3_q7",
-          "quiz_id": "historie_frysjadammen_set_3_q7",
+          "id": "oset_slusebru_v1_s3_q7",
+          "quiz_id": "historie_oset_slusebru_v1_set_3_q7",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva betyr stedlesning?",
-          "options": [
-            "Å bruke observasjoner på stedet til å forstå større sammenhenger",
-            "Å svare uten å se seg rundt",
-            "Å pugge løsrevne navn"
-          ],
-          "answer": "Å bruke observasjoner på stedet til å forstå større sammenhenger",
-          "answerIndex": 0,
-          "knowledge": "Frysjadammen trener stedlesning gjennom dam, vannflate og regulering.",
+          "question_scope": "place",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "stedlesning"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_frysjadammen_trener_sted_0620fb82b8",
-          "knowledge_unit_ids": [
-            "ku_historie_frysjadammen_trener_sted_0620fb82b8"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hva må sammenlignes for å forstå striden om vannrettigheter i 1876?",
+          "options": [
+            "Bare vannets farge på dagens fotografier",
+            "Både kommunens vannbehov og brukseiernes damrettigheter",
+            "Bare fotografier av bruer fra 2000-tallet"
+          ],
+          "answer": "Både kommunens vannbehov og brukseiernes damrettigheter",
+          "answerIndex": 1,
+          "knowledge": "Oslo kommunes historikk omtaler både den kommunale vann- og avløpsforvaltningen og Brugseierforeningens rettigheter til dammer i Nordmarka. Det er to interesser som må vurderes sammen.",
+          "question_type": "analysis",
+          "question_layer": "historical_bridge",
+          "claim_id": "claim_oset_slusebru_quiz_21",
+          "claim_basis": "I 1876 sikret Brugseierforeningen seg damrettigheter i Nordmarka gjennom Baronkontrakten, mens kommunen organiserte egen vann- og avløpsforvaltning.",
+          "source": [
+            "oslo_vav_150"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_styring_krise_kontinuitet",
+          "emne_ids": [
+            "em_his_styring_krise_kontinuitet"
+          ],
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
         }
       ]
     },
@@ -1019,1050 +1761,319 @@
       "set_id": "historie_frysjadammen_set_4",
       "level": 4,
       "order": 4,
+      "phase": "final",
       "xp": 80,
-      "mode": "place_concrete_advanced",
+      "mode": "historical_synthesis",
       "questions": [
         {
-          "id": "frysjadammen_s4_q1",
-          "quiz_id": "historie_frysjadammen_set_4_q1",
+          "id": "oset_slusebru_v1_s4_q1",
+          "quiz_id": "historie_oset_slusebru_v1_set_4_q1",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hva er en avansert observasjon ved Frysjadammen?",
-          "options": [
-            "Å se hvordan dam, vannstand, elveløp og byens behov henger sammen",
-            "Å bare se etter ett skilt",
-            "Å ignorere vannet"
-          ],
-          "answer": "Å se hvordan dam, vannstand, elveløp og byens behov henger sammen",
-          "answerIndex": 0,
-          "knowledge": "Avansert stedlesning kobler fysisk vannrom til teknisk og historisk funksjon.",
-          "difficulty": 2,
-          "question_type": "analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "stedlesning",
-            "vannføring"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "safe_place_data",
-          "primary_knowledge_unit_id": "ku_historie_avansert_stedlesning_kob_466a6ac40c",
-          "knowledge_unit_ids": [
-            "ku_historie_avansert_stedlesning_kob_466a6ac40c"
-          ],
+          "difficulty": 3,
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_ruiner_rester_ombruk",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_spor_materialitet",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_miljo_klima_klima_og_historisk_endring",
-                "score": 7
-              }
-            ]
-          }
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hvorfor fikk Kristiania eget vann- og kloakkvesen i 1876?",
+          "options": [
+            "En by i vekst trengte bedre organisering av vann og avløp",
+            "Kommunen ønsket å stanse all vannforsyning",
+            "Forvaltningen skulle drifte alle private fabrikker"
+          ],
+          "answer": "En by i vekst trengte bedre organisering av vann og avløp",
+          "answerIndex": 0,
+          "knowledge": "Befolkningsvekst, industrialisering og økt press på vannsystemene lå bak etatsopprettelsen.",
+          "question_type": "context",
+          "question_layer": "synthesis_comparison",
+          "claim_id": "claim_oset_slusebru_quiz_22",
+          "claim_basis": "Kristiania vand- og kloakvæsen ble opprettet i 1876 for å møte økende behov for vann- og avløpsinfrastruktur.",
+          "source": [
+            "oslo_vav_150"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_styring_krise_kontinuitet",
+          "emne_ids": [
+            "em_his_styring_krise_kontinuitet"
+          ]
         },
         {
-          "id": "frysjadammen_s4_q2",
-          "quiz_id": "historie_frysjadammen_set_4_q2",
+          "id": "oset_slusebru_v1_s4_q2",
+          "quiz_id": "historie_oset_slusebru_v1_set_4_q2",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hva bør holdes ute av en trygg Frysjadammen-quiz?",
-          "options": [
-            "Presise konstruksjonsdata, tekniske detaljer og usikre årstall uten kilde",
-            "Begrepet regulering",
-            "Observasjon av vannflate"
-          ],
-          "answer": "Presise konstruksjonsdata, tekniske detaljer og usikre årstall uten kilde",
-          "answerIndex": 0,
-          "knowledge": "Trygg quizdata skiller hovedlæring fra detaljer som krever egne kilder.",
-          "difficulty": 2,
-          "question_type": "kildekritikk",
-          "question_layer": "advanced_place",
-          "tags": [
-            "holdback"
-          ],
-          "source": [
-            "manual_production_notes"
-          ],
-          "claim_basis": "holdback_rule",
-          "primary_knowledge_unit_id": "ku_historie_trygg_quizdata_skiller_h_3d2bebbe22",
-          "knowledge_unit_ids": [
-            "ku_historie_trygg_quizdata_skiller_h_3d2bebbe22"
-          ],
+          "difficulty": 3,
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_serielle_kilder_kvantifisering",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_kildekritikk_arkiv_spor",
-                "score": 8
-              }
-            ]
-          }
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hva var Maridalssyken i 1888?",
+          "options": [
+            "Et dambrudd som ødela slusebrua",
+            "En større fabrikkbrann ved elva",
+            "Et alvorlig sykdomsutbrudd fra forurenset drikkevann"
+          ],
+          "answer": "Et alvorlig sykdomsutbrudd fra forurenset drikkevann",
+          "answerIndex": 2,
+          "knowledge": "Forurensning knyttet til saueslakt i Maridalen ble ført inn i drikkevannet og gjorde mange syke.",
+          "question_type": "fact",
+          "question_layer": "synthesis_comparison",
+          "claim_id": "claim_oset_slusebru_quiz_23",
+          "claim_basis": "Maridalssyken i 1888 var et smitteutbrudd knyttet til forurensning av byens vannforsyning fra Maridalen.",
+          "source": [
+            "oslo_vav_150"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_styring_krise_kontinuitet",
+          "emne_ids": [
+            "em_his_styring_krise_kontinuitet"
+          ]
         },
         {
-          "id": "frysjadammen_s4_q3",
-          "quiz_id": "historie_frysjadammen_set_4_q3",
+          "id": "oset_slusebru_v1_s4_q3",
+          "quiz_id": "historie_oset_slusebru_v1_set_4_q3",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hvordan kan spilleren lese vann som system her?",
-          "options": [
-            "Ved å se hvor vann holdes, slippes og ledes videre nedover elva",
-            "Ved å late som dammen ikke finnes",
-            "Ved å se bort fra elveløpet"
-          ],
-          "answer": "Ved å se hvor vann holdes, slippes og ledes videre nedover elva",
-          "answerIndex": 0,
-          "knowledge": "Dammen gjør vannsystemet synlig i landskapet.",
-          "difficulty": 2,
-          "question_type": "stedskonkret",
-          "question_layer": "advanced_place",
-          "tags": [
-            "vannsystem"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "safe_place_data",
-          "primary_knowledge_unit_id": "ku_historie_dammen_gj_r_vannsystemet_21d646de2c",
-          "knowledge_unit_ids": [
-            "ku_historie_dammen_gj_r_vannsystemet_21d646de2c"
-          ],
+          "difficulty": 3,
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_miljo_klima_landskap_som_historisk_prosess",
-                "score": 10
-              },
-              {
-                "emne_id": "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_miljo_klima_energi_og_energiregimer",
-                "score": 9
-              }
-            ]
-          }
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hva begynte man å gjøre med drikkevannet ved Oset fra 1929?",
+          "options": [
+            "Tilsette salt for vinterlagring",
+            "Føre alt vann direkte ut i fjorden",
+            "Desinfisere med klor"
+          ],
+          "answer": "Desinfisere med klor",
+          "answerIndex": 2,
+          "knowledge": "Klorering var en tidlig form for hygienisk sikring av vannforsyningen.",
+          "question_type": "fact",
+          "question_layer": "synthesis_comparison",
+          "claim_id": "claim_oset_slusebru_quiz_24",
+          "claim_basis": "Fra 1929 ble det tilsatt klor ved vannrenseanleggene på Oset og Sognsvann.",
+          "source": [
+            "oslo_vav_150"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ]
         },
         {
-          "id": "frysjadammen_s4_q4",
-          "quiz_id": "historie_frysjadammen_set_4_q4",
+          "id": "oset_slusebru_v1_s4_q4",
+          "quiz_id": "historie_oset_slusebru_v1_set_4_q4",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hva gjør Frysjadammen til et godt startpunkt før Nydalsdammen?",
-          "options": [
-            "Frysjadammen markerer øvre regulering; Nydalsdammen viser regulert vann lenger nede i byelva",
-            "Stedene har ingen sammenheng",
-            "Begge er fjelltopper"
-          ],
-          "answer": "Frysjadammen markerer øvre regulering; Nydalsdammen viser regulert vann lenger nede i byelva",
-          "answerIndex": 0,
-          "knowledge": "Sammen viser de at Akerselva er et sammenhengende vannsystem.",
-          "difficulty": 2,
-          "question_type": "rutekobling",
-          "question_layer": "advanced_place",
-          "tags": [
-            "nydalsdammen",
-            "rute"
-          ],
-          "source": [
-            "History Go place data: frysjadammen",
-            "History Go quiz: nydalsdammen"
-          ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_historie_sammen_viser_de_at_akers_ac054ccf6f",
-          "knowledge_unit_ids": [
-            "ku_historie_sammen_viser_de_at_akers_ac054ccf6f"
-          ],
+          "difficulty": 3,
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
-                "score": 3
-              },
-              {
-                "emne_id": "em_his_miljo_klima_energi_og_energiregimer",
-                "score": 3
-              },
-              {
-                "emne_id": "em_his_miljo_klima_klima_og_historisk_endring",
-                "score": 3
-              }
-            ]
-          }
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hva ble ferdigstilt ved Oset i 1971?",
+          "options": [
+            "Et pumpe- og renseanlegg",
+            "Den gamle trebrua fra 1859",
+            "Den nyere anleggsbrua av betong"
+          ],
+          "answer": "Et pumpe- og renseanlegg",
+          "answerIndex": 0,
+          "knowledge": "Anlegget fra 1971 kom lenge etter både den gamle dammen og slusebrua.",
+          "question_type": "fact",
+          "question_layer": "synthesis_comparison",
+          "claim_id": "claim_oset_slusebru_quiz_25",
+          "claim_basis": "Oset pumpe- og renseanlegg ble ferdigstilt i 1971.",
+          "source": [
+            "oslo_vav_150"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ]
         },
         {
-          "id": "frysjadammen_s4_q5",
-          "quiz_id": "historie_frysjadammen_set_4_q5",
+          "id": "oset_slusebru_v1_s4_q5",
+          "quiz_id": "historie_oset_slusebru_v1_set_4_q5",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hva kan dammen fortelle om forholdet mellom natur og styring?",
-          "options": [
-            "At bynatur ofte er formet av både naturprosesser og menneskelige inngrep",
-            "At natur alltid er urørt",
-            "At dammer er uten betydning"
-          ],
-          "answer": "At bynatur ofte er formet av både naturprosesser og menneskelige inngrep",
-          "answerIndex": 0,
-          "knowledge": "Regulerte elverom er blandede rom: natur, teknikk, historie og bybruk.",
-          "difficulty": 2,
-          "question_type": "kritisk_analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "regulert_vann",
-            "bynatur"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.85,
-            "score": 10,
-            "matched": [
-              "natur",
-              "vann"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_regulerte_elverom_er_bla_5ab8119fc2",
-          "knowledge_unit_ids": [
-            "ku_historie_regulerte_elverom_er_bla_5ab8119fc2"
-          ],
+          "difficulty": 3,
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hvordan skiller åpningen av Oset vannbehandlingsanlegg i 2008 seg fra bruenes historie?",
+          "options": [
+            "Alle bruene ble bygd samtidig med anlegget i 2008",
+            "Det gamle sluserattet ble laget i 2008",
+            "2008 gjelder vannbehandling; slusebrua er fra 1859 og anleggsbrua fra 2003/2004"
+          ],
+          "answer": "2008 gjelder vannbehandling; slusebrua er fra 1859 og anleggsbrua fra 2003/2004",
+          "answerIndex": 2,
+          "knowledge": "Kommunens tidslinje om vannbehandling og Oslo byleksikons brohistorie omtaler forskjellige anlegg og dateringer.",
+          "question_type": "analysis",
+          "question_layer": "synthesis_comparison",
+          "claim_id": "claim_oset_slusebru_quiz_26",
+          "claim_basis": "Oslo kommunes åpning av Oset vannbehandlingsanlegg i 2008 er en annen milepæl enn byggingen av slusebrua i 1859 og anleggsbrua i 2003/2004.",
+          "source": [
+            "oslo_vav_150",
+            "oset_byleks",
+            "oset_anlegg_byleks"
+          ],
+          "source_urls": [
+            "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/",
+            "https://oslobyleksikon.no/side/Oset_slusebru",
+            "https://oslobyleksikon.no/side/Oset_anleggsbru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ],
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
         },
         {
-          "id": "frysjadammen_s4_q6",
-          "quiz_id": "historie_frysjadammen_set_4_q6",
+          "id": "oset_slusebru_v1_s4_q6",
+          "quiz_id": "historie_oset_slusebru_v1_set_4_q6",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hva kan dagens stille vannflate skjule?",
-          "options": [
-            "Et aktivt system for styring av vann videre gjennom byen",
-            "At ingenting skjer",
-            "At stedet ikke har funksjon"
-          ],
-          "answer": "Et aktivt system for styring av vann videre gjennom byen",
-          "answerIndex": 0,
-          "knowledge": "Stille vann kan være et tegn på kontroll, magasinering og regulering.",
-          "difficulty": 2,
-          "question_type": "analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "stille_vann",
-            "infrastruktur"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "safe_place_data",
-          "primary_knowledge_unit_id": "ku_historie_stille_vann_kan_v_re_et__219b6f000c",
-          "knowledge_unit_ids": [
-            "ku_historie_stille_vann_kan_v_re_et__219b6f000c"
-          ],
+          "difficulty": 3,
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_fangenskap_kontroll",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_fattigvesen_veldedighet_sosial_kontroll",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_industri_produksjon_energi",
-                "score": 4
-              }
-            ]
-          }
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hvilke spor ved Oset dokumenterer eldre manuell vannregulering?",
+          "options": [
+            "Bare dagens vannmålere i renseanlegget",
+            "Trebrua og rester av mekanismen med det historiske sluserattet",
+            "Bare den nyere betongbrua for anleggstrafikk"
+          ],
+          "answer": "Trebrua og rester av mekanismen med det historiske sluserattet",
+          "answerIndex": 1,
+          "knowledge": "Den gamle brokonstruksjonen og sluserattet er materielle spor etter reguleringen. De forteller ikke nøyaktig hvordan slusen ble manøvrert på en bestemt dag.",
+          "question_type": "analysis",
+          "question_layer": "synthesis_comparison",
+          "claim_id": "claim_oset_slusebru_quiz_27",
+          "claim_basis": "Slusebruas treverk og bevarte mekanismedeler er et eldre teknisk kulturspor; anleggsbrua og vannbehandlingen representerer senere utbyggingsfaser.",
+          "source": [
+            "oset_byleks",
+            "oset_anlegg_byleks",
+            "oslo_vav_150"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru",
+            "https://oslobyleksikon.no/side/Oset_anleggsbru",
+            "https://www.oslo.kommune.no/etater-foretak-og-ombud/vann-og-avlopsetaten/vann-og-avlop-i-150-ar/"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "emne_ids": [
+            "em_his_kulturminner_bevaring"
+          ],
+          "method_id": "met_sporlesning",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json"
+          ]
         },
         {
-          "id": "frysjadammen_s4_q7",
-          "quiz_id": "historie_frysjadammen_set_4_q7",
+          "id": "oset_slusebru_v1_s4_q7",
+          "quiz_id": "historie_oset_slusebru_v1_set_4_q7",
           "categoryId": "historie",
           "placeId": "frysjadammen",
           "targetId": "frysjadammen",
           "question_scope": "place",
-          "question": "Hva bør en god Frysjadammen-quiz trene spilleren i?",
-          "options": [
-            "Å lese dam, vannføring, naturgrunnlag og byutvikling sammen",
-            "Å overse stedet",
-            "Å svare uten observasjon"
-          ],
-          "answer": "Å lese dam, vannføring, naturgrunnlag og byutvikling sammen",
-          "answerIndex": 0,
-          "knowledge": "Quizzen skal gjøre spilleren bedre til å forstå stedet de står ved.",
-          "difficulty": 2,
-          "question_type": "meta",
-          "question_layer": "advanced_place",
-          "tags": [
-            "stedbasert_læring"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "sted",
-              "l ring"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_quizzen_skal_gj_re_spill_52de3ffd23",
-          "knowledge_unit_ids": [
-            "ku_historie_quizzen_skal_gj_re_spill_52de3ffd23"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "historie_frysjadammen_set_5",
-      "level": 5,
-      "order": 5,
-      "xp": 90,
-      "mode": "emne_based_advanced",
-      "questions": [
-        {
-          "id": "frysjadammen_s5_q1",
-          "quiz_id": "historie_frysjadammen_set_5_q1",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva er den dypere læringen i Frysjadammen?",
-          "options": [
-            "At byelva starter som et styrt vannsystem, ikke bare som fri natur",
-            "At elva ikke påvirker byen",
-            "At dammer bare er dekor"
-          ],
-          "answer": "At byelva starter som et styrt vannsystem, ikke bare som fri natur",
-          "answerIndex": 0,
-          "knowledge": "Frysjadammen gjør det tydelig at Akerselva er natur, infrastruktur og historie samtidig.",
           "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "vann_infrastruktur",
-            "byelv"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.88,
-            "score": 13,
-            "matched": [
-              "tid",
-              "natur",
-              "vann"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_frysjadammen_gj_r_det_ty_2f1b5dbf76",
-          "knowledge_unit_ids": [
-            "ku_historie_frysjadammen_gj_r_det_ty_2f1b5dbf76"
-          ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "frysjadammen_s5_q2",
-          "quiz_id": "historie_frysjadammen_set_5_q2",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hvorfor er reguleringspunkter viktige i industri- og byhistorie?",
+          "tags": [
+            "oset_slusebru",
+            "source_reviewed_20261117"
+          ],
+          "question": "Hva kan et fotografi av det gamle sluserattet ikke alene dokumentere?",
           "options": [
-            "Fordi vannføring påvirket kraft, risiko, tilgjengelighet og byutvikling",
-            "Fordi vannføring aldri betyr noe",
-            "Fordi all industri lå utenfor landskapet"
+            "Hvor mye vann som passerte slusen på en bestemt dag",
+            "At en synlig mekanisme fantes",
+            "Hvordan rattet så ut da bildet ble tatt"
           ],
-          "answer": "Fordi vannføring påvirket kraft, risiko, tilgjengelighet og byutvikling",
+          "answer": "Hvor mye vann som passerte slusen på en bestemt dag",
           "answerIndex": 0,
-          "knowledge": "Regulering viser at naturkraft måtte håndteres før den kunne brukes.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "vannføring",
-            "industrihistorie"
-          ],
+          "knowledge": "Et foto dokumenterer et synlig spor, men ikke historiske driftsmålinger. Slike opplysninger må undersøkes i andre, daterte kilder.",
+          "question_type": "analysis",
+          "question_layer": "synthesis_comparison",
+          "claim_id": "claim_oset_slusebru_quiz_28",
+          "claim_basis": "Et foto av det bevarte sluserattet dokumenterer en historisk mekanisme, men gir ikke alene sikker kunnskap om dagens operasjon eller vannmengder.",
           "source": [
-            "History Go place data: frysjadammen"
+            "oset_byleks"
           ],
-          "claim_basis": "conceptual_safe",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Oset_slusebru"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
           "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
+            "em_his_kildekritikk_arkiv_spor"
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.85,
-            "score": 10,
-            "matched": [
-              "natur",
-              "vann"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_regulering_viser_at_natu_00331845f4",
-          "knowledge_unit_ids": [
-            "ku_historie_regulering_viser_at_natu_00331845f4"
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "frysjadammen_s5_q3",
-          "quiz_id": "historie_frysjadammen_set_5_q3",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva er forskjellen på Frysjadammen og Bjølsenfossen som læringssteder?",
-          "options": [
-            "Frysjadammen forklarer regulering; Bjølsenfossen forklarer fallkraft",
-            "Det finnes ingen forskjell",
-            "Begge mangler vann"
-          ],
-          "answer": "Frysjadammen forklarer regulering; Bjølsenfossen forklarer fallkraft",
-          "answerIndex": 0,
-          "knowledge": "Sammen viser de to sider av samme vannsystem: styring og kraft.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "sammenligning",
-            "bjoelsenfossen"
-          ],
-          "source": [
-            "History Go place data: frysjadammen",
-            "History Go quiz: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_sammen_viser_de_to_sider_64b9afb443",
-          "knowledge_unit_ids": [
-            "ku_historie_sammen_viser_de_to_sider_64b9afb443"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_styring_krise_kontinuitet",
-                "score": 7
-              }
-            ]
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "knut_kjeldstadli",
+          "work": "Fortida er ikke hva den en gang var",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "knut_kjeldstadli",
+            "work": "Fortida er ikke hva den en gang var",
+            "why_it_helps": "Kildekritisk vurdering av hva fotografiet faktisk dokumenterer, og hvilke driftsopplysninger som krever andre kilder."
           }
-        },
-        {
-          "id": "frysjadammen_s5_q4",
-          "quiz_id": "historie_frysjadammen_set_5_q4",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva kan være en utfordring ved regulerte byelver?",
-          "options": [
-            "Balansen mellom teknisk styring, naturhensyn, flomfare og rekreasjon",
-            "At ingen bruker elver",
-            "At vann ikke kan styres"
-          ],
-          "answer": "Balansen mellom teknisk styring, naturhensyn, flomfare og rekreasjon",
-          "answerIndex": 0,
-          "knowledge": "Regulerte vannrom må forstås både teknisk, økologisk og sosialt.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "forvaltning",
-            "flom"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_regulerte_vannrom_ma_for_730786651a",
-          "knowledge_unit_ids": [
-            "ku_historie_regulerte_vannrom_ma_for_730786651a"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_omsorgsarbeid_kjonn_sosial_reproduksjon",
-                "score": 5
-              },
-              {
-                "emne_id": "em_his_1814_statsdannelse_nasjon_sprak_skole_og_institusjoner",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_bruker_tjeneste_forvaltning",
-                "score": 4
-              }
-            ]
-          }
-        },
-        {
-          "id": "frysjadammen_s5_q5",
-          "quiz_id": "historie_frysjadammen_set_5_q5",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva er viktig for trygg quizdata ved Frysjadammen?",
-          "options": [
-            "Bruke observerbare trekk og sikre hovedlinjer, ikke usikre tekniske detaljer",
-            "Gjette tekniske spesifikasjoner",
-            "Hardkode dagsaktuelle driftstall"
-          ],
-          "answer": "Bruke observerbare trekk og sikre hovedlinjer, ikke usikre tekniske detaljer",
-          "answerIndex": 0,
-          "knowledge": "Trygg quizdata bygger på det stedet og datagrunnlaget sikkert støtter.",
-          "difficulty": 3,
-          "question_type": "kildekritikk",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "kildekritikk"
-          ],
-          "source": [
-            "manual_production_notes"
-          ],
-          "claim_basis": "holdback_rule",
-          "primary_knowledge_unit_id": "ku_historie_trygg_quizdata_bygger_pa_5cf0636236",
-          "knowledge_unit_ids": [
-            "ku_historie_trygg_quizdata_bygger_pa_5cf0636236"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_kildekritikk_arkiv_spor",
-                "score": 11
-              },
-              {
-                "emne_id": "em_his_serielle_kilder_kvantifisering",
-                "score": 10
-              },
-              {
-                "emne_id": "em_his_visuelle_kilder_fotografi",
-                "score": 10
-              }
-            ]
-          }
-        },
-        {
-          "id": "frysjadammen_s5_q6",
-          "quiz_id": "historie_frysjadammen_set_5_q6",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hvordan fungerer Akerselva som læringsstruktur her?",
-          "options": [
-            "Elva binder dammer, fosser, møller, parker og byrom til én rute",
-            "Elva gjør steder isolerte",
-            "Elva er bare bakgrunn"
-          ],
-          "answer": "Elva binder dammer, fosser, møller, parker og byrom til én rute",
-          "answerIndex": 0,
-          "knowledge": "Frysjadammen gir ruta et tydelig startpunkt for vannsystemet.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "stedslæring",
-            "elvekorridor"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "sted",
-              "l ring"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_frysjadammen_gir_ruta_et_b56deff76b",
-          "knowledge_unit_ids": [
-            "ku_historie_frysjadammen_gir_ruta_et_b56deff76b"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "frysjadammen_s5_q7",
-          "quiz_id": "historie_frysjadammen_set_5_q7",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "emne",
-          "question": "Hva gjør Frysjadammen god for History Go-læring?",
-          "options": [
-            "Den lar spilleren forstå regulert vann og byutvikling gjennom et konkret sted",
-            "Den krever at man ignorerer stedet",
-            "Den handler bare om løsrevne tall"
-          ],
-          "answer": "Den lar spilleren forstå regulert vann og byutvikling gjennom et konkret sted",
-          "answerIndex": 0,
-          "knowledge": "Stedet gjør begrepene reguleringsdam, vannføring og vann som infrastruktur konkrete.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "stedbasert_læring"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "primary_knowledge_unit_id": "ku_historie_stedet_gj_r_begrepene_re_30e7274579",
-          "knowledge_unit_ids": [
-            "ku_historie_stedet_gj_r_begrepene_re_30e7274579"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_industri_produksjon_energi",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_okonomi_handel_skatt_offentlig_okonomi_og_infrastruktur",
-                "score": 7
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "set_id": "historie_frysjadammen_set_6",
-      "level": 6,
-      "order": 6,
-      "xp": 100,
-      "mode": "concept_based",
-      "questions": [
-        {
-          "id": "frysjadammen_s6_q1",
-          "quiz_id": "historie_frysjadammen_set_6_q1",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "concept",
-          "question": "Hvilket begrep beskriver Frysjadammen best?",
-          "options": [
-            "Reguleringsdam",
-            "Flyplass",
-            "Privat lager"
-          ],
-          "answer": "Reguleringsdam",
-          "answerIndex": 0,
-          "knowledge": "Reguleringsdam er nøkkelbegrepet for Frysjadammen.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "reguleringsdam"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_reguleringsdam_er_n_kkel_d727310cb3",
-          "knowledge_unit_ids": [
-            "ku_historie_reguleringsdam_er_n_kkel_d727310cb3"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "frysjadammen_s6_q2",
-          "quiz_id": "historie_frysjadammen_set_6_q2",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "concept",
-          "question": "Hva betyr vannføring?",
-          "options": [
-            "Mengden vann som renner i elva over tid",
-            "Antall broer i byen",
-            "Høyden på et bygg"
-          ],
-          "answer": "Mengden vann som renner i elva over tid",
-          "answerIndex": 0,
-          "knowledge": "Vannføring forklarer hvorfor dammer og regulering er viktige.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "vannføring"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_vannf_ring_forklarer_hvo_c7cbe157bc",
-          "knowledge_unit_ids": [
-            "ku_historie_vannf_ring_forklarer_hvo_c7cbe157bc"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "frysjadammen_s6_q3",
-          "quiz_id": "historie_frysjadammen_set_6_q3",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "concept",
-          "question": "Hva betyr vann som infrastruktur?",
-          "options": [
-            "At vann organiseres og styres som del av byens systemer",
-            "At vann bare er pynt",
-            "At vann aldri påvirker byen"
-          ],
-          "answer": "At vann organiseres og styres som del av byens systemer",
-          "answerIndex": 0,
-          "knowledge": "Frysjadammen viser vann som teknisk og romlig system.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "vann_infrastruktur"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_frysjadammen_viser_vann__42757d5e62",
-          "knowledge_unit_ids": [
-            "ku_historie_frysjadammen_viser_vann__42757d5e62"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "frysjadammen_s6_q4",
-          "quiz_id": "historie_frysjadammen_set_6_q4",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "concept",
-          "question": "Hva betyr blågrønn struktur?",
-          "options": [
-            "Sammenheng mellom vann, vegetasjon, ferdsel og byrom",
-            "En tilfeldig fargekode",
-            "Et lukket kontor"
-          ],
-          "answer": "Sammenheng mellom vann, vegetasjon, ferdsel og byrom",
-          "answerIndex": 0,
-          "knowledge": "Akerselva er både blå og grønn struktur gjennom byen.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "blågrønn_struktur"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_akerselva_er_bade_bla_og_89fc1291bd",
-          "knowledge_unit_ids": [
-            "ku_historie_akerselva_er_bade_bla_og_89fc1291bd"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "frysjadammen_s6_q5",
-          "quiz_id": "historie_frysjadammen_set_6_q5",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "concept",
-          "question": "Hva betyr klimatilpasning?",
-          "options": [
-            "Å håndtere klima- og vannutfordringer i byens utforming",
-            "Å ignorere flom",
-            "Bare pynting av parker"
-          ],
-          "answer": "Å håndtere klima- og vannutfordringer i byens utforming",
-          "answerIndex": 0,
-          "knowledge": "Regulering av vannføring kan kobles til klimatilpasning.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "klimatilpasning"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_regulering_av_vannf_ring_c78d177159",
-          "knowledge_unit_ids": [
-            "ku_historie_regulering_av_vannf_ring_c78d177159"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "frysjadammen_s6_q6",
-          "quiz_id": "historie_frysjadammen_set_6_q6",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "concept",
-          "question": "Hva betyr naturgrunnlag?",
-          "options": [
-            "De fysiske naturforholdene som byutvikling bygger på",
-            "En reklameidé",
-            "Et sted uten landskap"
-          ],
-          "answer": "De fysiske naturforholdene som byutvikling bygger på",
-          "answerIndex": 0,
-          "knowledge": "Vann, fall og elveløp er naturgrunnlag for Akerselva-historien.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "naturgrunnlag"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.85,
-            "score": 10,
-            "matched": [
-              "natur",
-              "vann"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_vann_fall_og_elvel_p_er__b48a434ede",
-          "knowledge_unit_ids": [
-            "ku_historie_vann_fall_og_elvel_p_er__b48a434ede"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "frysjadammen_s6_q7",
-          "quiz_id": "historie_frysjadammen_set_6_q7",
-          "categoryId": "historie",
-          "placeId": "frysjadammen",
-          "targetId": "frysjadammen",
-          "question_scope": "concept",
-          "question": "Hvilket begrepspar forklarer Frysjadammen best?",
-          "options": [
-            "Regulert vann og vann som infrastruktur",
-            "Kongebolig og slagmark",
-            "Flyplass og høyfjell"
-          ],
-          "answer": "Regulert vann og vann som infrastruktur",
-          "answerIndex": 0,
-          "knowledge": "Frysjadammen blir tydeligst når den leses som styrt vannsystem.",
-          "difficulty": 3,
-          "question_type": "concept_pair",
-          "question_layer": "concept",
-          "tags": [
-            "regulert_vann",
-            "vann_infrastruktur"
-          ],
-          "source": [
-            "History Go place data: frysjadammen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_frysjadammen_blir_tydeli_abdfe74720",
-          "knowledge_unit_ids": [
-            "ku_historie_frysjadammen_blir_tydeli_abdfe74720"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
         }
       ]
     }

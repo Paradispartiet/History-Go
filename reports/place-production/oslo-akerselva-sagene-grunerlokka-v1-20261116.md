@@ -299,3 +299,11 @@ Se `reports/place-production/oslo-akerselva-v1-quiz-audit-20261116.json` for mas
 - **Kravet er beholdt:** `scripts/check-distinct-place-photos.mjs` er uendret og sjekker både fotografers unike originaler og originalillustrasjoners faktiske SVG-innhold. Den målrettede browser-testen er oppdatert til foto/illustrasjon på Oset og to foto på Nydalen. Kilderegnskap, forskjellig medieopphav, dekoding og fullbredde testes nå i mobil/iPad/desktop.
 - **Oset-quiz:** Egen `tests/oset-quiz-migration-draft-guard.test.mjs` tester de 28 kildebundne redaksjonelle spørsmålsutkastene, 4 × 7 plan, første 2 × 7 normale spørsmål og 42/42 uendrede historiske quiz-/Knowledge-ID-er. Testen godkjenner **utkast, ikke aktivering**. Ingen quizmigrering har funnet sted.
 - PR #7342 forblir **DRAFT / ikke merget** til ordinær PR-CI er grønn og hele 20-steders-V1 kan godkjennes.
+
+
+## Oset fullquiz-migrering 4 × 7 – 17. november 2026
+
+- 28 kildebaserte spørsmål i fire sett i canonical historiequiz. Første 10 originale spørsmåls-, quiz- og Knowledge-ID-er videreføres med uendret Knowledge-tekst; 18 nye spørsmål får nye ID-er.
+- De andre 32 eldre spørsmålene ligger uendret og ikke-spillbart i `data/knowledge/preserved_quiz_sources/frysjadammen_oset_legacy_20261117.json`. Canonical Knowledge-generator leser arkivfilen for å bevare opptjente enheter, uten å vise de gamle spørsmålene i spillet.
+- `normal_4x7`: 16 faktaspørsmål, 7 årsak-/sammenhengsspørsmål, 5 reelle metode-/kildekritikkspørsmål. Første 2 × 7 er vanlige spørsmål. Kildeplan, fagvalg og 28 kilde-claim-koblinger er i eksisterende source brief. QuizCard og genererte Knowledge-filer skal bygges fra aktiv quiz.
+- **PR-fase, ikke V1-godkjent:** full produksjonskontekst, Knowledge-regenerering, QuizCard, reelle nettlesertester og samlet CI må bestås på endelig commit.
