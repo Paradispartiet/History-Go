@@ -32,7 +32,7 @@ test('Kunst: activate only approved Tegning og grafikk v2, preserve parent and n
     const bytes=readFileSync(new URL(expected.path,root));
     assert.equal(bytes.length,expected.bytes,kind+' exact byte count');
     assert.equal(digest(bytes),expected.sha256,kind+' SHA-256');
-    const gitObject=Buffer.concat([Buffer.from('blob '+bytes.length+'\\0'),bytes]);
+    const gitObject=Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes]);
     assert.equal(digest(gitObject,'sha1'),expected.gitBlobSha,kind+' Git object SHA-1');
     if(expected.format==='WebP'){
       assert.equal(bytes.toString('ascii',0,4),'RIFF',kind);
