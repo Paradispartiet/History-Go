@@ -76,6 +76,62 @@
       row.appendChild(use); panel.appendChild(row);
     }
     const meals = shop.getNokMeals?.() || [];
+    if (meals.length && shop.previewNokMealPlan && shop.saveNokMealPlan) {
+      const planner = document.createElement("details"); planner.setAttribute("data-meal-planner", "");
+      const toggle = node("summary", "Planlegg måltider og handleliste"); toggle.style.minHeight = "44px";
+      planner.appendChild(toggle);
+      planner.appendChild(node("p", "Velg antall porsjoner. Handlelisten trekker fra maten du har og runder opp til hele pakninger. Kjøp varer i butikken og lag måltidene når du ønsker. Et planlagt måltid teller ned én porsjon når du lager det."));
+      const saved = shop.getNokMealPlan?.();
+      planner.open = saved?.ok && saved.portions > 0;
+      if (saved && !saved.ok) planner.appendChild(node("p", "Den lagrede matplanen kunne ikke leses. Velg antall på nytt for å erstatte planen."));
+      for (const [index, meal] of meals.entries()) {
+        const label = node("label", meal.title + " · Porsjoner: ");
+        const input = document.createElement("input");
+        input.type = "number"; input.min = "0"; input.max = "99"; input.step = "1";
+        input.id = "civiMealPlanCount" + index; label.htmlFor = input.id;
+        input.value = String(saved?.ok ? saved.servings[meal.mealId] || 0 : 0);
+        input.setAttribute("data-plan-meal", meal.mealId);
+        input.style.cssText = "min-height:44px;width:5rem;max-width:100%;box-sizing:border-box;";
+        label.appendChild(input);
+        const row = node("p", ""); row.appendChild(label); planner.appendChild(row);
+      }
+      const previewHost = node("div", ""); previewHost.setAttribute("data-meal-plan-preview", "");
+      planner.appendChild(previewHost);
+      const counts = () => Object.fromEntries(Array.from(planner.querySelectorAll("[data-plan-meal]"))
+        .map(el => [el.getAttribute("data-plan-meal"), /** @type {HTMLInputElement} */ (el).valueAsNumber]));
+      const updatePreview = () => {
+        const view = shop.previewNokMealPlan(counts()); previewHost.replaceChildren();
+        if (!view?.ok) {
+          previewHost.appendChild(node("p", "Planen kunne ikke beregnes. Bruk hele antall mellom 0 og 99, med høyst 99 porsjoner totalt."));
+          return;
+        }
+        previewHost.appendChild(node("p", "Ingredienser i planen: " + formatNok(view.referenceCostCents / 100) + " kr i prisreferanse"));
+        for (const item of view.ingredients) previewHost.appendChild(node("p", `${item.title}: Behov ${item.required} ${item.baseUnit}`
+          + ` · Hjemme ${item.available} ${item.baseUnit} · Mangler ${item.missing} ${item.baseUnit}`
+          + ` · Kjøp ${item.packagesToBuy} pakninger (${item.unitLabel})`));
+        previewHost.appendChild(node("strong", "Pakninger som mangler: " + formatNok(view.shoppingCostCents / 100) + " kr å kjøpe"));
+        previewHost.appendChild(node("p", "Beregnet saldo etter disse kjøpene: " + formatNok(view.projectedBalanceCents / 100) + " kr"
+          + (view.canAfford ? "" : " · Du har ikke dekning for alle pakningene.")));
+      };
+      planner.addEventListener("input", updatePreview);
+      updatePreview();
+      const save = /** @type {HTMLButtonElement} */ (node("button", "Lagre matplan"));
+      save.type = "button"; save.className = "btn"; save.setAttribute("data-save-meal-plan", "");
+      save.addEventListener("click", async () => {
+        if (!save.isConnected || save.disabled) return;
+        save.disabled = true;
+        let result;
+        try { result = shop.saveNokMealPlan(counts()); } catch { result = { ok: false }; }
+        purchaseMessage = result?.ok ? "Matplanen er lagret. Kjøp og tilberedning velges separat." : "Matplanen kunne ikke lagres. Kontroller antall og prisgrunnlag.";
+        if (!result?.ok) {
+          previewHost.prepend(node("p", purchaseMessage)); save.disabled = false; save.focus(); return;
+        }
+        await renderStorePanel();
+        const next = /** @type {HTMLDetailsElement|null} */ (host.querySelector("[data-meal-planner]"));
+        /** @type {HTMLElement|null} */ (next?.querySelector(next.open ? "[data-save-meal-plan]" : "summary"))?.focus({ preventScroll: true });
+      });
+      planner.appendChild(save); panel.appendChild(planner);
+    }
     if (meals.length) {
       panel.appendChild(node("h4", "Lag et måltid"));
       panel.appendChild(node("p", "Valgte spillporsjoner, ikke en full kostplan. Mengder gjelder tørre/rå varer. Referansekostnad bruker profilens pakningspriser; maten er allerede betalt ved kjøp."));

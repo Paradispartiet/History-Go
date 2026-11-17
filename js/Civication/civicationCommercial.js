@@ -550,6 +550,80 @@
   }
 
   /** @returns {CiviCommercialRecord} */
+  function previewNokMealPlan(servings, wallet = window.CivicationState?.getWallet?.()) {
+    if (wallet?.nok_v1?.active !== true || wallet.nok_v1.version !== 1)
+      return { ok: false, reason: "NOK_NOT_ACTIVE" };
+    if (!servings || typeof servings !== "object" || Array.isArray(servings))
+      return { ok: false, reason: "INVALID_MEAL_PLAN" };
+    const selected = {};
+    const required = new Map();
+    let portions = 0;
+    for (const [mealId, count] of Object.entries(servings).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)) {
+      if (!Number.isSafeInteger(count) || count < 0 || count > 99 || portions + count > 99)
+        return { ok: false, reason: "INVALID_MEAL_PLAN" };
+      const meal = getNokMealPreview(mealId, wallet);
+      if (!meal.ok) return meal;
+      if (!count) continue;
+      selected[mealId] = count; portions += count;
+      for (const item of meal.ingredients) {
+        const amount = (required.get(item.productId) || 0) + item.amount * count;
+        if (!Number.isSafeInteger(amount)) return { ok: false, reason: "INVALID_MEAL_PLAN" };
+        required.set(item.productId, amount);
+      }
+    }
+    const ingredients = [];
+    let shoppingCostCents = 0;
+    let referenceCents = 0;
+    for (const [id, amount] of required) {
+      const stock = getNokProductStock(id, wallet);
+      if (!stock.ok) return stock;
+      const product = stock.product;
+      const priceCents = Math.round(product.priceNok * 100);
+      const missing = Math.max(0, amount - stock.available);
+      const packagesToBuy = Math.ceil(missing / product.packageQuantity);
+      const purchaseCostCents = packagesToBuy * priceCents;
+      shoppingCostCents += purchaseCostCents;
+      referenceCents += priceCents * amount / product.packageQuantity;
+      if (!Number.isSafeInteger(purchaseCostCents) || !Number.isSafeInteger(shoppingCostCents)
+          || !Number.isSafeInteger(Math.round(referenceCents))) return { ok: false, reason: "INVALID_MEAL_PLAN" };
+      ingredients.push({ productId: id, title: product.title, baseUnit: product.baseUnit, required: amount,
+        available: stock.available, missing, packagesToBuy, unitLabel: product.unitLabel,
+        packagePriceCents: priceCents, purchaseCostCents, sourceId: product.sourceId, priceCheckedOn: product.checkedOn });
+    }
+    const balanceCents = Math.round(wallet.balance * 100);
+    if (typeof wallet.balance !== "number" || !Number.isSafeInteger(balanceCents)
+        || Math.abs(wallet.balance * 100 - balanceCents) > 0.000001)
+      return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    if (!Number.isSafeInteger(balanceCents - shoppingCostCents)) return { ok: false, reason: "INVALID_MEAL_PLAN" };
+    return { ok: true, servings: selected, portions, ingredients, shoppingCostCents,
+      referenceCostCents: Math.round(referenceCents), canAfford: balanceCents >= shoppingCostCents,
+      projectedBalanceCents: balanceCents - shoppingCostCents };
+  }
+
+  /** @returns {CiviCommercialRecord} */
+  function getNokMealPlan() {
+    const plan = window.CivicationState?.getWallet?.()?.nok_v1?.shopping?.mealPlan;
+    if (plan != null && (plan.version !== 1 || !plan.servings)) return { ok: false, reason: "INVALID_MEAL_PLAN" };
+    return previewNokMealPlan(plan?.servings ?? {});
+  }
+
+  /** @returns {CiviCommercialRecord} */
+  function saveNokMealPlan(servings) {
+    const owner = window.CivicationState;
+    const wallet = owner?.getWallet?.();
+    const view = previewNokMealPlan(servings, wallet);
+    if (!view.ok) return view;
+    const shopping = wallet.nok_v1.shopping ?? { purchases: [], quantities: {} };
+    if (!shopping || typeof shopping !== "object" || Array.isArray(shopping)
+        || !Array.isArray(shopping.purchases) || !shopping.quantities || typeof shopping.quantities !== "object"
+        || Array.isArray(shopping.quantities)) return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    const mealPlan = { version: 1, servings: view.servings };
+    if (JSON.stringify(shopping.mealPlan) === JSON.stringify(mealPlan)) return { ...view, skipped: true };
+    owner.updateWallet({ ...wallet, nok_v1: { ...wallet.nok_v1, shopping: { ...shopping, mealPlan } } });
+    return view;
+  }
+
+  /** @returns {CiviCommercialRecord} */
   function consumeNokMeal(mealId, requestId) {
     const owner = window.CivicationState;
     const wallet = owner?.getWallet?.();
@@ -571,6 +645,17 @@
     if (!view.canPrepare) return { ok: false, reason: "NOT_ENOUGH_STOCK", ingredients: view.ingredients };
     const date = window.CivicationCalendar?.getGameDate?.();
     if (!date) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+    let planPatch = {};
+    if (shopping.mealPlan != null) {
+      if (shopping.mealPlan.version !== 1) return { ok: false, reason: "INVALID_MEAL_PLAN" };
+      const pending = previewNokMealPlan(shopping.mealPlan.servings, wallet);
+      if (!pending.ok) return pending;
+      if (pending.servings[mealId] > 0) {
+        const servings = { ...pending.servings, [mealId]: pending.servings[mealId] - 1 };
+        if (!servings[mealId]) delete servings[mealId];
+        planPatch = { mealPlan: { version: 1, servings } };
+      }
+    }
     const quantities = { ...(shopping.quantities || {}) };
     const openedUnits = { ...(shopping.openedUnits || {}) };
     for (const item of view.ingredients) {
@@ -579,7 +664,7 @@
       quantities[item.productId] = Math.floor(remaining / stock.product.packageQuantity);
       openedUnits[item.productId] = remaining % stock.product.packageQuantity;
     }
-    owner.updateWallet({ ...wallet, nok_v1: { ...wallet.nok_v1, shopping: { ...shopping, quantities, openedUnits,
+    owner.updateWallet({ ...wallet, nok_v1: { ...wallet.nok_v1, shopping: { ...shopping, quantities, openedUnits, ...planPatch,
       consumptions: [...used, { requestId, kind: "meal", mealId, title: view.title, gameDateISO: date,
         referenceCostCents: view.referenceCostCents, ingredients: view.ingredients.map(({ available, missing, ...item }) => item) }] } } });
     return { ok: true, mealId, referenceCostCents: view.referenceCostCents };
@@ -726,6 +811,9 @@
     getNokMeals,
     getNokMealPreview,
     consumeNokMeal,
+    previewNokMealPlan,
+    getNokMealPlan,
+    saveNokMealPlan,
     getWallet,
     getInv,
     getPacks,

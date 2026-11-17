@@ -309,8 +309,52 @@ async function scenario(engine, width, height) {
     await page.waitForFunction(() => !!window.HG_CiviShop?.getNokMeals);
     await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), allMealsSaved, 'all new meals and remaining units survive reload');
+    await openSection('kommers', 'civiStoreSection');
+    const planner = page.locator('[data-meal-planner]');
+    await planner.locator('summary').click();
+    const planBefore = JSON.stringify(await wallet());
+    for (const [id, count] of [['rice-lentils-tomato-onion', '2'], ['pasta-tomato-onion', '1'], ['oats-with-milk', '3']])
+      await planner.locator('[data-plan-meal="' + id + '"]').fill(count);
+    assert.equal(JSON.stringify(await wallet()), planBefore, 'editing a meal plan does not write or reserve food');
+    const forecast = await planner.locator('[data-meal-plan-preview]').textContent();
+    assert.ok(forecast.includes('27,50') && forecast.includes('48,04'));
+    await planner.locator('summary').scrollIntoViewIfNeeded();
+    screenshots.push(await capture('meal-plan-counts'));
+    await planner.locator('[data-save-meal-plan]').click();
+    await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1.shopping.mealPlan?.servings?.['rice-lentils-tomato-onion'] === 2);
+    const afterPlan = await wallet();
+    const withoutPlan = JSON.parse(JSON.stringify(afterPlan)); delete withoutPlan.nok_v1.shopping.mealPlan;
+    assert.equal(JSON.stringify(withoutPlan), planBefore, 'saving changes only the plan');
+    const actualPlan = await page.evaluate(() => window.HG_CiviShop.getNokMealPlan());
+    assert.equal(actualPlan.shoppingCostCents, 2750);
+    assert.equal(actualPlan.referenceCostCents, 4804);
+    assert.equal(actualPlan.portions, 6);
+    const planGeometry = await planner.evaluate(el => ({ fits: el.scrollWidth <= el.clientWidth + 2,
+      inputs: Array.from(el.querySelectorAll('input')).map(input => ({ height: input.getBoundingClientRect().height,
+        left: input.getBoundingClientRect().left, right: input.getBoundingClientRect().right })) }));
+    assert.ok(planGeometry.fits && planGeometry.inputs.every(r => r.height >= 44 && r.left >= 0 && r.right <= width + 1));
+    await planner.locator('[data-meal-plan-preview] > strong').scrollIntoViewIfNeeded();
+    screenshots.push(await capture('meal-plan-shopping-list'));
+    // A real preparation completes exactly one of the selected portions.
+    await page.locator('[data-prepare-meal="oats-with-milk"]').click();
+    await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1.shopping.mealPlan.servings['oats-with-milk'] === 2);
+    assert.equal((await wallet()).balance, 9688.2);
+    const prepared = await page.evaluate(() => window.CivicationState.getWallet().nok_v1.shopping.consumptions.at(-1));
+    const planFinished = JSON.stringify(await wallet());
+    const repeatPlanMeal = await page.evaluate(entry => window.HG_CiviShop.consumeNokMeal(entry.mealId, entry.requestId), prepared);
+    assert.equal(repeatPlanMeal.skipped, true);
+    assert.equal(JSON.stringify(await wallet()), planFinished, 'repeated preparation never completes another planned portion');
+    newMealStock['axa-oats-1100g'] = 860; newMealStock['tine-milk-1l'] = 0;
+    assert.equal(await page.evaluate(() => window.HG_CiviShop.getNokProductStock('tine-milk-1l').available), 0);
+    assert.equal(await page.evaluate(() => window.HG_CiviShop.getNokProductStock('axa-oats-1100g').available), 860);
+    await completeSourceLoading();
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!window.HG_CiviShop?.getNokMealPlan);
+    await completeSourceLoading();
+    assert.equal(JSON.stringify(await wallet()), planFinished, 'plan and its remaining servings survive reload');
+    assert.equal(await page.evaluate(() => window.HG_CiviShop.getNokMealPlan().portions), 5);
     assert.deepEqual(errors, [], 'no uncaught page errors');
-    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 250, addedStock, newMealStock,
+    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 0, addedStock, newMealStock,
       monthlyPaidCents: cashAfterNewMeals.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };
   } catch (error) {
     console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors, pageErrors, failedRequests }));

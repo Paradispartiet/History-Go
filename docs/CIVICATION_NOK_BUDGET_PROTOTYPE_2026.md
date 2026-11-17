@@ -374,3 +374,47 @@ serialisering/gjenoppretting av testdata, ikke en virkelig produksjonskonto.
 Nye datatilbud oppdaterer fortsatt ikke allerede frosne spillerprofiler.
 På aa69c05 bestod 797/797 testfiler og alle åtte workflows før denne utvidelsen.
 Ny CI og visuell kontroll må registreres for endringens faktiske head.
+
+## Matplan og handleliste
+
+Butikkpanelet har en sammenleggbar planlegger. Spilleren velger antall porsjoner
+av de måltidene som finnes i sin frosne profil, med heltall 0–99 og høyst 99
+porsjoner totalt. Dette er en handleplan, ikke en datofestet ukemeny, automatisk
+måltidskalender eller komplett kostplan.
+
+`previewNokMealPlan` summerer rå ingrediensmengder før det trekker fra faktisk
+beholdning, inkludert åpne rester. Manglende mengde rundes opp til hele pakninger.
+Ingrediensreferansen avrundes én gang samlet; den kan derfor avvike fra summen av
+allerede avrundede porsjonsvisninger. Handlelisten viser behov, mengde hjemme,
+mangel, pakninger å kjøpe, samlet kjøpsbeløp og beregnet saldo etter disse kjøpene.
+Kildene er fortsatt de daterte pakningsprisene i spillerens frosne profil.
+
+Forhåndsvisning og redigering skriver ingen spillerdata. «Lagre matplan» lagrer
+bare normaliserte porsjonsvalg i `wallet.nok_v1.shopping.mealPlan`. Samme valg i
+annen rekkefølge lagres ikke på nytt. Lagrede valg følger vanlig wallet-backup og
+bevares ved innlasting på tom enhet. Ingen kjøp, penge-/matreservasjon, forbruk,
+regning eller ny post i månedsoversikten opprettes ved lagring. Kjøp skjer fortsatt
+med vanlige kjøpsknapper og fersk saldo-/tilgangskontroll.
+
+Når spilleren lager et måltid som står i planen, teller `consumeNokMeal` ned én
+planlagt porsjon i samme wallet-skriving som ingrediensforbruket. Handlings-ID-en
+hindrer at gjentakelse bruker mat eller fullfører en planlagt porsjon to ganger.
+Andre varekjøp/forbruk endrer handlelistens beregnede mangel; listen bruker alltid
+ferske beholdningstall. Planen reserverer ikke varer mot annet forbruk. Ugyldig
+lagret plan gir ingen delvis skriving og kan erstattes med nye gyldige valg.
+
+`civication-nok-meal-planning.test.js` bruker faktisk State, Calendar, Budget,
+Shop og StoreUI. To risretter, én pastarett med tomat og tre grøter trenger 48,04 kr
+i ingrediensreferanse, men 185,10 kr i hele pakninger fra tom beholdning. Med
+200 kr blir beregnet saldo 14,90 kr. Redigering og lagring kjøper ingenting.
+Faktiske pakningskjøp reduserer handlelisten til null. Etter separat forbruk av
+750 ml melk trengs én ekstra melkepakning til 19,40 kr; oversikten viser manglende
+dekning uten å trekke penger. Spilleren endrer så planen til én grøt og fullfører
+de fire gjenværende porsjonene uten dobbelt nedtelling eller ekstra betaling.
+
+Testen dekker også ugyldige antall, ukjente oppskrifter, bevart ugyldig utkast i
+UI, fokus, identiske planer, null ekstra kontantstrøm, tom-enhet-gjenoppretting og
+bevarte eldre wallet-felt. Den nye browserdelen skal lagre samme seks porsjoner
+med eksisterende matrester: 48,04 kr i referanse og 27,50 kr i manglende pakninger.
+Den lager én planlagt grøt og forventer fem porsjoner igjen, 9 688,20 kr, 860 g
+havregryn og null melk etter reload. Nye browserbilder/CI må bekreftes på ny head.
