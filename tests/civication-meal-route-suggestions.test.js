@@ -153,6 +153,10 @@ assert.equal(joined.routesConsidered,1);
 assert.deepEqual(Array.from(joined.offers, offer=>offer.meal).sort(),["dinner","lunch"]);
 assert.equal(joined.offers.find(offer=>offer.meal==="dinner").kind,"grocery");
 assert.equal(joined.offers.find(offer=>offer.meal==="lunch").kind,"restaurant");
+assert.equal(bridge.build({...inputs,now:new Date("2026-11-19T12:00:00+01:00")}).status,
+  "verified_commute_required", "stale route proof must not make commute appear offer-ready");
+assert.match(fs.readFileSync(path.join(__dirname, "..", "js/Civication/ui/CivicationMealPlanUI.js"), "utf8"),
+  /Mat langs min arbeidsrute/, "weekly menu UI must show the private route status");
 assert.equal(bridge.build({...inputs,optedOut:true}).offers.length,0);
 assert.equal(bridge.build({...inputs,gameDayIndex:2}).offers.length,0,"wrong weekday cannot use commute");
 assert.equal(bridge.build({...inputs,pantry:{pasta:200000}}).offers.some(offer=>offer.kind==="grocery"),false,
