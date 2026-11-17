@@ -1,0 +1,84 @@
+name: Place image backlog canonical regeneration (one-time PR)
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/place-image-backlog-sync-once-20261117.yml"
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.number == 7342
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Rebuild the actual full-image report
+        run: node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+      - name: Synchronize canonical category and summary totals from full audit
+        env:
+          REGENERATED_FROM: ${{ github.event.pull_request.head.sha }}
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const assert=require('node:assert/strict');
+          const report=JSON.parse(fs.readFileSync('reports/place-image-audit.json','utf8'));
+          const path='data/places/place_image_backlog_summary.json';
+          const saved=JSON.parse(fs.readFileSync(path,'utf8'));
+          assert.equal(saved.schema,'history_go_place_image_backlog_summary_v1');
+          assert.equal(report.schema,'history_go_place_image_audit_v1');
+          assert.equal(report.mode,'all');
+          saved.generatedAt='2026-11-17';
+          saved.generatedFromCommit=process.env.REGENERATED_FROM;
+          saved.totalPlaces=report.totalPlaces;
+          saved.summary={
+            validLocal:report.summary.local,
+            validRemote:report.summary.remote,
+            optionalMissing:report.summary.optional,
+            missing:report.summary.missing,
+            invalidLocalPath:report.summary.invalid,
+            remaining:report.summary.missing+report.summary.invalid
+          };
+          saved.byCategory=Object.fromEntries(Object.entries(report.byCategory).map(([name,row])=>[
+            name,{total:row.total,valid:row.local+row.remote,optional:row.optional,
+              missing:row.missing,invalid:row.invalid}
+          ]));
+          saved.note='Canonical full-place audit regenerated after sourced Oset slusebru and Nydalsdammen outflow images; unlike the older snapshot this reflects the current PR branch. Other ongoing projects remain in the full 1538-place population.';
+          assert.equal(saved.totalPlaces,1538);
+          assert.equal(saved.summary.validLocal,219);
+          assert.equal(saved.summary.validRemote,144);
+          assert.equal(saved.summary.optionalMissing,79);
+          assert.equal(saved.summary.missing,1096);
+          assert.equal(saved.summary.invalidLocalPath,0);
+          const total=Object.values(saved.byCategory).reduce((n,c)=>n+c.total,0);
+          assert.equal(total,saved.totalPlaces);
+          fs.writeFileSync(path,JSON.stringify(saved,null,2)+'\n');
+          console.log('Regenerated canonical image backlog:',saved.summary);
+          NODE
+      - name: Verify canonical summary and no image exceptions
+        run: |
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+          node scripts/audit-place-images.mjs --mode=changed
+      - name: Exact-file scope guard, commit and self-remove
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          changes="$(git diff --name-only)"
+          printf 'Changed generated files:\n%s\n' "$changes"
+          unexpected="$(printf '%s\n' "$changes" | grep -vE '^(data/places/place_image_backlog_summary\.json|reports/place-image-audit\.json)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected files changed: $unexpected"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/place_image_backlog_summary.json reports/place-image-audit.json
+          git rm .github/workflows/place-image-backlog-sync-once-20261117.yml
+          git commit -m "chore(images): regenerate full audit and canonical backlog after Oset and Nydalen photos"
+          git push origin "HEAD:refs/heads/$HEAD_REF"
