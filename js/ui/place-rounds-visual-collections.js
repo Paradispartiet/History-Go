@@ -733,6 +733,12 @@
       grid.style.removeProperty("grid-template-columns");
       grid.style.removeProperty("grid-template-rows");
     }
+    // The base renderer can finish after the curated fill layout (for example,
+    // after asynchronous Nature previews). Commit the curated visibility and
+    // profile marker synchronously, so a late base pass never leaves the card
+    // exposed with the transient place_card_profile_v2 state.
+    global.HGPlaceRoundsFillLayout?.applyCuratedVisibility?.();
+    global.HGPlaceRoundsFillLayout?.scheduleLayout?.();
   }
 
   function scheduleApply() {
