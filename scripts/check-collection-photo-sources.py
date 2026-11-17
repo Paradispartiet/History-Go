@@ -50,6 +50,16 @@ ARCHIVE_SOURCES = {
     "toyen-trafo-apparatpult-1916-photo-source.json": ("toyen_trafo_apparatpult_1916", "A-20138/Ua/0004/054", 1916),
     "toyen-trafo-transformatorkjerne-1918-photo-source.json": ("toyen_trafo_transformatorkjerne_1918", "A-20138/Ua/0004/091", 1918),
 }
+OSLO_CATALOG = {
+    "toyen_trafo_apparatpult_1916": (
+        "Tøyen transformatorstasjon, Apparatpult",
+        None,  # The catalog title does not establish an additional scene description.
+    ),
+    "toyen_trafo_transformatorkjerne_1918": (
+        "Tøyen transformatorstasjon, kjerne for transformatormotor 6250 k.v.a.",
+        "person viser fram motoren",
+    ),
+}
 OSLO_POLICY="https://www.oslo.kommune.no/natur-kultur-og-fritid/byarkivet/oslobilder/pris-og-vilkar-ved-fotobestilling/"
 
 
@@ -61,6 +71,11 @@ def verify_oslo_archive_source(manifest: dict, root: Path, expected: tuple[str, 
         raise ValueError("wrong archive asset identity/year")
     if manifest.get("archiveInstitution") != "Oslo byarkiv" or manifest.get("imageKind") != "photograph":
         raise ValueError("archive owner or photograph type incorrect")
+    expected_title, expected_motif = OSLO_CATALOG[asset]
+    if manifest.get("archivalCatalogTitle") != expected_title or manifest.get("archivalCatalogMotif") != expected_motif:
+        raise ValueError("catalog title/motif must match this exact Tøyen archive item")
+    if manifest.get("canonicalCurrentAsset") != f"bilder/objects/{asset}_illustrasjon.svg":
+        raise ValueError("source-only record cannot silently replace the canonical object image")
     if not str(manifest.get("sourcePage", "")).startswith("https://oslobilder.no/") and not str(manifest.get("sourcePage", "")).startswith("https://www.oslobilder.no/"):
         raise ValueError("archive source must be an Oslobilder page")
     if not str(manifest.get("sourcePage")).endswith("/"+archive_id):
