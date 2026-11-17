@@ -402,7 +402,8 @@
         !ids.includes(from) || !ids.includes(to) || from === to) {
       return { ok: false, reason: "invalid_selection" };
     }
-    if (!Object.prototype.hasOwnProperty.call(INNER_MAP_RELATIONS, kind)) {
+    if (typeof kind !== "string" ||
+        !Object.prototype.hasOwnProperty.call(INNER_MAP_RELATIONS, kind)) {
       return { ok: false, reason: "invalid_relation" };
     }
     const links = getInnerMapLinks();
@@ -549,10 +550,10 @@
     document.getElementById("psychologyRoomLinkForm")?.addEventListener("submit", (event) => {
       event.preventDefault();
       const form = /** @type {HTMLFormElement} */ (event.currentTarget);
-      const from = form.elements.namedItem("from")?.value;
-      const to = form.elements.namedItem("to")?.value;
-      const kind = form.elements.namedItem("kind")?.value;
-      const result = connectInnerMapEntries(from, to, kind);
+      const fromField = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="from"]'));
+      const toField = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="to"]'));
+      const kindField = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="kind"]'));
+      const result = connectInnerMapEntries(fromField?.value, toField?.value, kindField?.value);
       if (!result.ok) {
         const errors = {
           invalid_selection: "Velg to forskjellige refleksjoner.",
