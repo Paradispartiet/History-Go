@@ -47,7 +47,7 @@ class ArchiveReviewImportTests(unittest.TestCase):
                 src=root/'local.jpg'
                 payload=jpeg_bytes()
                 src.write_bytes(payload)
-                out=root/'artifacts'/'review'
+                out=root/'artifacts'/'toyen-archive-review'/'review'
                 result=module.stage_for_review(manifest(*record),record[1],src,out,root)
                 self.assertEqual(result['sourceSha256'],hashlib.sha256(payload).hexdigest())
                 self.assertEqual(result['sourceDimensions'],[127,89])
@@ -73,7 +73,7 @@ class ArchiveReviewImportTests(unittest.TestCase):
                     src=root/'local.jpg'
                     src.write_bytes(jpeg_bytes())
                     result=module.stage_for_review(payload, archive_id, src,
-                        root/'review', repository)
+                        root/'artifacts'/'toyen-archive-review'/'review', root)
                     self.assertFalse(result['sourceIsAuthenticated'])
                     self.assertEqual(result['claimedArchiveIdentifier'], archive_id)
 
@@ -92,19 +92,29 @@ class ArchiveReviewImportTests(unittest.TestCase):
                 changed=manifest(*record)
                 changed[field]=bad
                 with self.assertRaises(ValueError):
-                    module.stage_for_review(changed,record[1],src,root/'artifacts'/'review',root)
-                self.assertFalse((root/'artifacts'/'review').exists())
+                    module.stage_for_review(changed,record[1],src,root/'artifacts'/'toyen-archive-review'/'review',root)
+                self.assertFalse((root/'artifacts'/'toyen-archive-review'/'review').exists())
         with tempfile.TemporaryDirectory() as t:
             root=Path(t)
             src=root/'local.jpg'
             src.write_bytes(b'not a source image')
             with self.assertRaises(ValueError):
-                module.stage_for_review(manifest(*record),record[1],src,root/'artifacts'/'review',root)
+                module.stage_for_review(manifest(*record),record[1],src,root/'artifacts'/'toyen-archive-review'/'review',root)
             src.write_bytes(jpeg_bytes())
             with self.assertRaises(ValueError):
                 module.stage_for_review(manifest(*record),record[1],src,root/'bilder'/'bad',root)
             with self.assertRaises(ValueError):
                 module.stage_for_review(manifest(*record),record[1],src,root/'data'/'bad',root)
+            # The generic artifacts/ folder is not git-ignored.
+            with self.assertRaises(ValueError):
+                module.stage_for_review(manifest(*record),record[1],src,root/'artifacts'/'unignored',root)
+            with self.assertRaises(ValueError):
+                module.stage_for_review(manifest(*record),record[1],src,root/'artifacts'/'toyen-archive-review',root)
+            with tempfile.TemporaryDirectory() as external:
+                # Even a valid-looking directory outside this repo is not review-safe.
+                with self.assertRaises(ValueError):
+                    module.stage_for_review(manifest(*record),record[1],src,Path(external)/'elsewhere',root)
+
 
 if __name__=='__main__':
     unittest.main()
