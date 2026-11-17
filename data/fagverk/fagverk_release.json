@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "f3686870bf0bbb4ce265faef9c44c61f69001542806b6c0a7be457793b43f365"
+    "content_sha256": "558b1333ec0dbd378ade71f46acf23f330f752c4740ecabc5b7ad82519d5d4f3"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 546,
+    "package_file_count": 549,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1410,
+    "referenced_file_count": 1413,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2848,9 +2848,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 152,
+      "package_file_count": 155,
       "required_package_file_count": 4,
-      "optional_package_file_count": 148,
+      "optional_package_file_count": 151,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -3139,6 +3139,18 @@
           ],
           "exists": true,
           "content_sha256": "03540dadaa3f2a4ab0c7a57a1371000281bd45c71002a569548f0fb8dcc89dea"
+        },
+        {
+          "path": "data/quiz/historie/frysjadammen_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frysjadammen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "a98646218e46dcfe6f29dc7630313adf24b6fb63a0abee54c694fadcfd9e5733"
         },
         {
           "path": "data/quiz/historie/gamle_aker_kirke_sets.json",
@@ -3681,6 +3693,18 @@
           "content_sha256": "8845c1a6d0c8d14e879783a7a50e8e2997735de72899c0549aea8ee7a923c1ee"
         },
         {
+          "path": "data/quiz/production_briefs/historie/frysjadammen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frysjadammen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "e1cc03e12c6d0c05fea6c1cd97b829d4666e72f9551f561b2b30499a4d326b13"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/gamle_aker_kirke.json",
           "required": false,
           "fields": [
@@ -4221,6 +4245,18 @@
           "content_sha256": "c5f3e7a16d6a5a475ebb5aa89cf97db46f723a79aa7f7073a0f4991420fa37a6"
         },
         {
+          "path": "data/quiz/production_context/historie/frysjadammen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frysjadammen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "cb43c1505416dcd75561d738c80b4e7ebb8ac4fbc078fa7c7881f804746a3c36"
+        },
+        {
           "path": "data/quiz/production_context/historie/gamle_aker_kirke.json",
           "required": false,
           "fields": [
@@ -4677,20 +4713,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "9d75d64cfffcd68bccab9bdb840a60d7acb9d356ed80eb022402705c3ae5de14",
+      "package_content_sha256": "a6b6f3004fbfafb56ffef18140bbabe8513cd880c835d8b6c6d1fe6a8feea814",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 244,
+      "referenced_file_count": 247,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "2deedcbfb16d579f58195c93676b4c0131e4c1b4e67cffe2c9253d35ac5da22c",
-      "content_sha256": "6f979ee9bc2c25f989f1b9144802a17890f8d8a2ebb6c95c9eae38fce8dd6e6f",
+      "structure_sha256": "53376da1db2f2436d839d325309a528f75895f8d16fe96105f6bb7a4234657fd",
+      "content_sha256": "2438d69dc1484a2150c901476857daf043a47f2c3e1a526a5b48fad54c92ccbc",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -9273,5 +9309,5 @@
       ]
     }
   },
-  "release_sha256": "e4fb1378150ae40b53160f3fd5b1436ba272d5b88802f40917487aad9f8a6558"
+  "release_sha256": "4603cdc1d9099e6cbc206e1f4b025792610d0069d402d7b19ff513b0e720657d"
 }
