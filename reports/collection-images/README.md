@@ -90,3 +90,22 @@ python3 -m unittest discover -s tests -p 'test_collection_photo_source_gate.py' 
 ```
 
 Porten bekrefter at fotokandidaten er merket kildeverifisert, **ikke binært importert og ikke publiserbar**. Et `PASS` er ikke tillatelse til å promotere den. Ved faktisk import må kildekontroll, originalhash, derivativhash, lisens-/krediteringsvisning og mobil-/desktopbilder oppdateres og de relevante testene endres i samme commit.
+
+## Freiaparken – begrenset nettimport 17. november 2026
+
+Automatisk kildenlasting via `upload.wikimedia.org` i GitHub Actions (#44066699257) ble avvist med **HTTP 429 (Too many requests)**. **Ingen originalfil ble hentet og ingen WebP-fil ble produsert** i den kjøringen. Ikke gjenta hyppige forespørsler mot Wikimedia. CI-workflowen `freiaparken-photo-source-review.yml` kjører derfor nå kun **offline-testene** automatisk på PR, mens nettimport er en manuell handling.
+
+Når en menneskelig kontrollør har hentet den eksakte [Commons-originalen](https://commons.wikimedia.org/wiki/File:Freiaparken_bassenget_langs_Freias_bygning.jpg) via nettleseren og har tillatelse til nødvendig intern bilde-QA, kan originalen kontrolleres lokalt **uten nettverk**:
+
+```bash
+python3 -m pip install Pillow==11.3.0
+python3 scripts/fetch-freiaparken-photo-for-review.py \
+  --original /path/to/Freiaparken_bassenget_langs_Freias_bygning.jpg \
+  --out artifacts/freiaparken-photo-source-review
+```
+
+Programmet sjekker opprinnelig SHA-1, filstørrelse, JPEG-format og bildeformat mot kandidatmanifestet og produserer deretter en **ubeskåret 900 × 600 WebP** og et proveniensdokument i en privat gjennomgangsmappe, ikke i appens bildebank. Avvikende innhold og overskriving av eksisterende revisjonsfiler avvises.
+
+**Rettighetsport:** Fotografens CC BY-SA 4.0-lisens er identifisert, men enkelte avbildede skulpturer kan ha egne rettigheter. Norsk åndsverklov §§ 30–31 skiller mellom underordnet medtakelse og gjengivelse av verk i offentlig rom og har egne begrensninger når verket er hovedmotiv og brukes ervervsmessig. Parken er ikke alminnelig offentlig tilgjengelig til enhver tid. Opphavsrettslig vurdering og bildekreditering i PlaceCard er derfor **fortsatt uavklart**; fotokandidaten har `editorialApproval: false`, `publishable: false`.
+
+Bildeintegritets-PASS eller lokal WebP-produksjon er **ikke** tillatelse til å endre `structures[].image` eller publisere fotografiet.
