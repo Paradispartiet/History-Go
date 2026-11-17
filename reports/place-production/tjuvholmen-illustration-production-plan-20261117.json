@@ -10,13 +10,14 @@
   },
   "status": {
     "artwork_count": 8,
-    "illustrated_candidate_count": 6,
-    "remake_required_count": 2,
+    "illustrated_candidate_count": 7,
+    "remake_required_count": 1,
     "artwork_images_active": 0,
     "artwork_images_final_approved": 0,
     "structures_illustrations_covered": 2,
     "formal_vferdig": "BLOCKED",
-    "published_existing_placecard": "UNCHANGED"
+    "published_existing_placecard": "UNCHANGED",
+    "last_update": "2026-11-17"
   },
   "production_rules": [
     "Arkiver original PNG i full oppløsning, deretter WebP for app uten hard beskjæring",
@@ -124,14 +125,17 @@
       "artist": "Paul McCarthy",
       "year": 2011,
       "source_kind": "original_editorial_illustration",
-      "file_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/Konsepttegninger/paul_mccarthy_white_snow_cake_v1.webp",
-      "manifest_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/Konsepttegninger/paul_mccarthy_white_snow_cake_v1_manifest.json",
-      "stage": "REMAKE_REQUIRED",
+      "file_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/paul_mccarthy_white_snow_cake_illustrasjon_v2.webp",
+      "manifest_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/paul_mccarthy_white_snow_cake_illustrasjon_v2_manifest.json",
+      "stage": "VISUAL_QA_CANDIDATE",
       "live_in_app": false,
       "visual_final_approval": false,
       "artwork_reproduction_rights_review": "PENDING",
-      "next_action": "Lag originaltro høyoppløst malerisk illustrasjon av bronsegruppen; skulpturstruktur og figurer må stemme",
-      "notes": "Foreliggende stiliserte SVG/PNG/WebP er skisse og ikke kvalitetssikret ferdig illustrasjon"
+      "next_action": "Sammenlign bronsegruppens figurplassering og formdetaljer med dokumentert original; vurder rettigheter før eventuell aktiv bruk",
+      "notes": "Ny malerisk v2 1086×1448 PNG + 900×1200 WebP uten beskjæring, begge verifisert med SHA-256. V1-konseptet beholdes uendret i Konsepttegninger.",
+      "original_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/paul_mccarthy_white_snow_cake_illustrasjon_v2_original.png",
+      "source_sha256": "2b4f1b202a0765dcee76238b6a776a01251f42e6ce96dc80c1b5926de2fdb5a2",
+      "app_sha256": "7902c018c9e05f805591f2814111b0e4a5592747ab20878e06bfcffd6dd7b984"
     },
     {
       "id": "fischli_weiss_things_for_house_on_island",
@@ -167,7 +171,7 @@
     }
   ],
   "acceptance_gates": [
-    "Forbedre White Snow Cake og Things for a House on an Island; Spalt trenger særskilt korrektur",
+    "Fischli/Weiss Things for a House on an Island må få bedre illustrasjon; Spalt trenger særskilt farge-/formkorrektur og Eyes må vurderes mot original",
     "Individuell verkslikhet og redaksjonell godkjenning per kandidat",
     "Gjennomgå rettsgrunnlag for avbildning av beskyttet kunst og eventuelt unntak etter åndsverkloven",
     "Etter godkjenning: eksakt originaloverføring, kontrollsum, merking, relevante PlaceCard-/Objects-tester",
@@ -175,5 +179,5 @@
   ],
   "photo_source_audit": "reports/place-production/tjuvholmen-authentic-photo-rights-sources-20261117.json",
   "issue": "https://github.com/Paradispartiet/History-Go/issues/7290",
-  "note": "6/8 betyr seks eksisterende illustrasjonskandidater, ikke seks aktive/godkjente kunstverksbilder. 2/8 krever ny illustrasjon. Unødige nye fotoforespørsler pauset etter brukerens beslutning."
+  "note": "7/8 betyr sju eksisterende maleriske illustrasjonskandidater i biblioteket, ikke sju aktive/godkjente kunstverksbilder. Kun Fischli/Weiss mangler ny malerisk versjon. White Snow Cake v2 ble lagret 17.11.2026, ingen bildebytes aktivert i GitHub."
 }
