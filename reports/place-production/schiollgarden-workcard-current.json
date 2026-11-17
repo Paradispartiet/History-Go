@@ -2,13 +2,13 @@
   "schema": "history_go_place_workcard_v2",
   "place_id": "schiollgarden_prinsens_gate_26",
   "category": "by",
-  "status": "in_progress",
+  "status": "blocked",
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
     "status": "PASS",
     "place_id": "schiollgarden_prinsens_gate_26",
     "category": "by",
-    "recorded_at": "2026-11-12T18:51:34.301Z",
+    "recorded_at": "2026-11-16T14:02:09.817Z",
     "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
     "files": [
       {
@@ -41,7 +41,7 @@
       },
       {
         "path": "docs/PLACE_OBJECTS_CANONICAL.md",
-        "sha256": "fbd5e39905942e116c1fef9e375253c54f93d292b82bac03379d011f38fe93c6"
+        "sha256": "a38e2c9a38b68b13a7e94a90481645bd68b9e5f309c85f2d6bb40e9bfee4f3c1"
       },
       {
         "path": "data/brands/brand_rules_v1_1.json",
@@ -49,7 +49,7 @@
       },
       {
         "path": "data/badges/by.json",
-        "sha256": "dbd099a18d159b00f1fa3cff1478101ec5a269d94c8b5066722c277ed26ec067"
+        "sha256": "d90a6efe16c274a21a1be9c5168dca4f8e2b1c2ac22dfca67a652d2ee1e78a87"
       }
     ],
     "contract_snapshot": {
@@ -73,7 +73,7 @@
       ]
     }
   },
-  "active_checkpoint": "language",
+  "active_checkpoint": "source_qualified_collection_assets",
   "production_profile": "standard",
   "profile_rationale": "Dokumenterte lag: dobbeltleiegård, konditori og parlamentarisk ombygging. Egen standard-Fagverk er obligatorisk; ingen samlinger eller fullførtstatus utledes av profilvalget.",
   "underbadge_ids": [
@@ -90,17 +90,34 @@
     "limitations": [
       "Ingen befaring eller verifisert fysisk tilstand i 2026.",
       "Byggherrens sluttmelding dokumenterer prosjektet, ikke uavhengig bevaringskvalitet.",
-      "Historiske bilder fra 2008 og 2020 er ikke nåbilder."
+      "Historiske bilder fra 2008 og 2020 er ikke nåbilder.",
+      "FMF identifies Hans Halvorsen at the top of an owners-portrait display photographed by Jiri Havran; no reuse license or approved local portrait crop has been verified."
     ]
   },
   "remaining": [
-    "People/Brands kandidat- og bilderettighetsreview",
-    "Collections audit",
-    "Language app/collection review",
-    "Full popup- og spillerstatus-QA"
+    "Source-qualified Brands and Structures require canonical member data, verified visual assets and app QA.",
+    "People portrait coverage and remaining directly relevant identities require source/asset resolution.",
+    "Objects candidates require final source-bounded identity audit; no generic or invented members.",
+    "Before/after, chronology viewer and full popup/player-state closeout remain unverified."
   ],
   "verified_checkpoints": {
     "fagverk": "Browser QA passed in PR #7298; source head 204744a.",
-    "quiz": "Separate PR #7304, head 5f0fcbf, all 21 workflows PASS including 84/84 quiz plays and QuizCard."
+    "quiz": "Separate PR #7304, head 5f0fcbf, all 21 workflows PASS including 84/84 quiz plays and QuizCard.",
+    "people_profiles": "Nissen and Halvorsen targeted browser PASS on 7e6bf3f, run 43744285772; portrait coverage remains incomplete.",
+    "language": "PASS on 7e6bf3f, run 43744285681: four entries, filters, Knowledge V2 collection and persistence at 390/820/1440.",
+    "images_and_fagverk": "PASS on 7e6bf3f, run 43744285681.",
+    "media_regression": "PASS on 7e6bf3f, run 43744285714.",
+    "reading_and_historical_news": "PASS on isolated release head ab92945e0a9e0d1177275930eef2d908647e9843, run43841966473; six captures in artifact14213571503 inspected; actual external clicks and news text geometry pass at390/820/1440."
+  },
+  "collection_contract_clarification": {
+    "authority": "docs/PLACE_PRODUCTION_CHECKLIST.md sections 3, 4, 19; docs/PLACE_PRODUCTION_PROFILES.md; data/places/README_place_rounds.md",
+    "ordinary_collections": "One to four qualified PASS collections; four candidate families are not a filling quota. The routing snapshot records candidates, not an instruction to manufacture four members.",
+    "actual_blocker": "Source-backed real candidates are unfinished, not the absence of exactly four collection cards. No N/A is assigned merely to avoid asset work."
+  },
+  "closeout_allowed": false,
+  "evidence_report": "reports/place-production/schiollgarden/closeout-review-2026-11-15.json",
+  "modules_in_review": {
+    "reading": "PASS: both source-read link-only texts, visible metadata and actual external navigation on390/820/1440.",
+    "news": "PASS: one historical2019 item; direct/legacy sole-news regressions, all text and source links within card bounds on390/820/1440."
   }
 }

@@ -128,20 +128,22 @@
         });
       };
 
-      Object.entries(rawByPlace || {}).forEach(([placeId, brandIds]) => {
-        const brands = ensureArray(brandIds)
+      const placeIds = new Set([
+        ...Object.keys(rawByPlace || {}),
+        ...Object.keys(rawActorsByPlace || {})
+      ]);
+      placeIds.forEach(placeId => {
+        const brands = ensureArray(rawByPlace?.[placeId])
           .map(asString)
           .filter(Boolean)
           .map(id => this.byId[id])
           .filter(Boolean);
-        addToPlace(placeId, brands);
-      });
-
-      Object.entries(rawActorsByPlace || {}).forEach(([placeId, actorItems]) => {
-        const actors = ensureArray(actorItems)
-          .map(item => this.byId[asString(item?.id)])
-          .filter(Boolean);
-        addToPlace(placeId, actors);
+        // Identity is shared; the documented role and sources belong to this place.
+        const actors = ensureArray(rawActorsByPlace?.[placeId])
+          .map(normalizeBrand)
+          .filter(item => item.id && item.name);
+        const localById = new Map([...brands, ...actors].map(item => [item.id, item]));
+        addToPlace(placeId, [...localById.values()]);
       });
 
       window.BRANDS_MASTER = this.all;

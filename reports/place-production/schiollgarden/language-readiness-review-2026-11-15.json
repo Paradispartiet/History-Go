@@ -1,0 +1,27 @@
+{
+  "place_id": "schiollgarden_prinsens_gate_26",
+  "date": "2026-11-15",
+  "observed_failure": {
+    "run": 43579357824,
+    "head": "f908b10d3b0cbb845e03487e7afa895f7819d7fe",
+    "detail": "390px passed; at 820px the canonical language navigation button stayed hidden."
+  },
+  "reproduced_ordering_gap": "The direct owner could receive Place-ready before HGLanguageLayer existed, or could load after the ready event. Neither order retried an already-open Place.",
+  "change": "Language runtime publishes readiness; the owner retries the currently open canonical Place. Owner initialization also adopts an already-available runtime. No direct fetch/store ownership change.",
+  "regression": {
+    "baseline": "Both new ordering tests fail with the unchanged baseline runtime.",
+    "fixed": "Both ordering tests pass using the real language renderer. All 36 language/ownership/adapter tests pass.",
+    "browser": {
+      "status": "PASS",
+      "head": "7e6bf3fee88abbd93168000b87907a7786037396",
+      "run": 43744285681,
+      "widths": [
+        390,
+        820,
+        1440
+      ],
+      "coverage": "Four real entries, filter, explicit Knowledge V2 collection, reload persistence; original browser assertions/timeouts unchanged."
+    }
+  },
+  "whole_place_status": "incomplete"
+}

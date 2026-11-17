@@ -30,6 +30,12 @@ Gjelder alle eksisterende og nye stedsbilder, på mobil og desktop. Felles tekni
    People-portretter, merker eller Brands-logoer. De har egne
    beskjærings- og skaleringskontrakter.
 
+## Stedstro illustrasjoner
+
+Illustrasjoner av konkrete steder, anlegg og gjenstander skal bygge på manuelt kontrollerte visuelle referanser av det faktiske motivet. Bevar identitetsbærende geometri, proporsjoner og detaljer. En tekstkilde som bare bekrefter at et rom, en tunnel eller en bil finnes, dokumenterer ikke utseendet. En generisk typeillustrasjon kan derfor ikke brukes som stedstro medlemsbilde. Mangler visuell dokumentasjon, holdes bildet tilbake; utformingen skal ikke diktes opp.
+
+Merk nye illustrasjoner med bare **«Illustrasjon»**, diskret nederst til høyre i bildefilen. Ikke legg «ikke fotografi», AI-etiketter eller lange forbehold inn i motivet. Kilder, bildetype, historisk dato, referansefiler, kontrollsummer og usikkerhet beholdes i metadata og kildevisning. Kortmerking erstatter aldri kontrollen av stedstrohet. People-identitet og autentiske Brand-merker følger fortsatt sine egne kontrakter.
+
 ## Aksept
 
 Kontroller 320/390 px mobil, 900 px nettbrett og 1440 px desktop. Det skarpe

@@ -252,13 +252,15 @@ window.addEventListener("resize", () => {
 
 // ============================================================
 // PERSON-POPUP ANCHOR
-// Person-popup må ligge i samme skalerte app-shell som Nearby.
+// Legacy person-popup må ligge i samme skalerte app-shell som Nearby.
+// V2 bruker viewport-rammen og må forbli et root-søsken til PlaceCard.
 // Hvis den blir appendet direkte på body, vil hardkodede top-verdier
 // bruke viewport-piksler og gi synlig mellomrom på iPad.
 // ============================================================
 
 function anchorPersonPopupToAppShell(node) {
   if (!node || !node.classList?.contains("person-popup")) return;
+  if (node.classList.contains("person-popup-v2")) return;
 
   const shell = document.querySelector(".app-shell");
   if (!shell || node.parentElement === shell) return;
