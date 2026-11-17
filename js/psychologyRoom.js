@@ -420,7 +420,7 @@
       '<section class="psychology-room-note-section"><h4>Legg til en refleksjon</h4>' +
       (picker || '<p class="psychology-room-muted">Ingen flere lagrede situasjoner å legge til.</p>') +
       '<button type="button" class="psychology-room-primary" data-psych-map-new="1">Skriv en ny refleksjon</button></section>' +
-      '<p class="psychology-room-privacy">Kartet lagrer bare ID-er til notater som allerede ligger i denne nettleseren. Ingen AI, AHA-overføring eller database. Lokal lagring er ikke kryptert: ikke bruk svært sensitive opplysninger på en delt enhet.</p>' +
+      '<p class="psychology-room-privacy">Kartet lagrer bare ID-er til notater i denne nettleseren. Ingen AI, AHA-overføring eller database. GitHub Pages deler nettleserlagring med andre apper på samme domene, og den er ikke kryptert. Ikke lagre sensitive opplysninger her.</p>' +
       '</section>'));
     bindBack();
     document.querySelectorAll("[data-psych-map-add], [data-psych-map-remove]").forEach((button) => {
@@ -1685,7 +1685,8 @@
           !window.confirm("Slette alle lagrede tankeverksted-notater på denne enheten?")) return;
       try {
         localStorage.removeItem(STORAGE_KEYS.workbench);
-        window.showToast?.("Tankeverksted-notatene er slettet fra denne enheten");
+        localStorage.removeItem(STORAGE_KEYS.innerMap);
+        window.showToast?.("Tankeverksted-notatene og kartvalgene er slettet fra denne enheten");
         renderProfile();
       } catch (err) {
         console.warn("[PsychologyRoom.clearWorkbench]", err);
