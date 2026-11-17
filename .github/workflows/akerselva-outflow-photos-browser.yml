@@ -1,0 +1,46 @@
+name: Akerselva outflow two-Place photo browser QA
+on:
+  pull_request:
+    paths:
+      - "data/places/natur/oslo/places_oslo_natur_akerselvarute/frysjadammen.json"
+      - "data/places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json"
+      - "data/runtime/place-open/frysjadammen.json"
+      - "data/runtime/place-open/stilla_nydalen.json"
+      - "bilder/places/oset_slusebru_landscape.webp"
+      - "bilder/places/oset_slusebru_front_portrait.webp"
+      - "tests/akerselva-outflow-two-place-image-browser.mjs"
+      - ".github/workflows/akerselva-outflow-photos-browser.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: akerselva-outflow-photos-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify changed Place photos are present
+        run: node scripts/audit-place-images.mjs --mode=changed
+      - name: Install dependencies and rebuild canonical browser payloads
+        run: |
+          npm ci --no-audit --no-fund
+          npm run places:index:build
+          npm run place-open:check
+      - name: Install browser engines
+        run: npx playwright install --with-deps chromium webkit
+      - name: Check true source images and PlaceCard across phone/iPad/desktop
+        run: node tests/akerselva-outflow-two-place-image-browser.mjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: akerselva-outflow-two-place-photos
+          path: artifacts/akerselva-outflow-photo/
+          if-no-files-found: warn
+          retention-days: 14
