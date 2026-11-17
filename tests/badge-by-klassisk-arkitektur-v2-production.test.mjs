@@ -10,8 +10,8 @@ test('Klassisk arkitektur v2 is active with verified grey embroidered WebP',()=>
  const manifest=read('data/badges/underbadge_batch01_production.json');
  const a=manifest.families.by.assets.find(x=>x.id==='klassisk_arkitektur');
  assert.equal(by.color,'#808080');assert.equal(by.secondaryColor,'#404040');
- assert.equal(by.subBadgeImages.klassisk_arkitektur,path);
- assert.equal(a.status,'integrated');assert.equal(a.selectedImage,path);
+ assert.equal(by.subBadgeImages.klassisk_arkitektur,'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v3.webp');
+ assert.equal(a.status,'integrated');assert.equal(a.selectedImage,'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v3.webp');
  assert.deepEqual(a.quality,{visualApproved:true,technicalApproved:true});
  assert.equal(a.productionBrief.topLabel,'KLASSISK ARKITEKTUR');
  assert.equal(a.productionBrief.bottomLabel,'BY');

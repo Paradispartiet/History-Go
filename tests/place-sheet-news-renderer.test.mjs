@@ -141,3 +141,37 @@ test("direct Place Sheet News has responsive canonical card styling", () => {
   assert.match(css, /grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
   assert.match(css, /@media \(max-width:720px\)/);
 });
+
+for (const type of ["historical_news", "news_note"]) {
+  test(`a sole ${type} remains news without a main article`, async () => {
+    const dom = new JSDOM(`<div id="placeCard"><section data-hg-place-sheet-shell="1" data-place-id="sted"><section data-hg-place-sheet-news data-hg-place-sheet-section="news" hidden></section></section></div>`, { url: "https://history-go.test/", runScripts: "outside-only" });
+    try {
+      const { window } = dom;
+      window.PLACES = [{ id: "sted", name: "Sted", placeTier: "standard" }];
+      window.LEKSIKON_BY_PLACE = { sted: [{ id: "only-news", type, title: "Sted", popupDesc: "Dokumentert notis" }] };
+      window.eval(runtimeSource);
+      window.dispatchEvent(new window.CustomEvent("hg:place-unified-ready", { detail: { placeId: "sted", direct: true, phase: 6 } }));
+      await waitFor(() => Boolean(window.document.querySelector('[data-hg-place-sheet-owner="news"]')));
+      const slot = window.document.querySelector('[data-hg-place-sheet-section="news"]');
+      assert.equal(slot.hidden, false);
+      assert.match(slot.textContent, /Dokumentert notis/);
+    } finally { dom.window.close(); }
+  });
+}
+
+for (const type of ["historical_news", "news_note"]) {
+  test(`legacy popup retains a sole ${type} in News`, async () => {
+    const dom = new JSDOM(`<div class="hg-popup place-popup-v2"><article class="hg-place-popup-v2"><div class="hg-place-popup-body"></div></article></div>`, { url: "https://history-go.test/", runScripts: "outside-only" });
+    try {
+      const { window } = dom;
+      window.showPlacePopup = () => {};
+      window.showPlacePopup.__hgPlacePopupV2 = true;
+      window.LEKSIKON_BY_PLACE = { sted: [{ id: "only-news", type, title: "Sted", popupDesc: "Dokumentert notis" }] };
+      window.HG_PLACE_OPEN_LANGUAGE = { sted: null };
+      window.eval(fs.readFileSync("js/ui/place-popup-tabs.js", "utf8"));
+      window.HGPlacePopupTabs.decoratePopup({ id: "sted", name: "Sted", popupDesc: "Stedsbeskrivelse" });
+      await waitFor(() => /Dokumentert notis/.test(window.document.querySelector('[data-place-panel="news"]')?.textContent || ""));
+      assert.doesNotMatch(window.document.querySelector('[data-place-panel="about"]').textContent, /Dokumentert notis/);
+    } finally { dom.window.close(); }
+  });
+}

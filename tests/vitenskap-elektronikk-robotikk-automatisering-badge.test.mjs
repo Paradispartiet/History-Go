@@ -10,7 +10,7 @@ const badge = json('data/badges/vitenskap.json');
 const existing = {
   naturvitenskap:'bilder/merker/vitenskap/brodert/naturvitenskap.webp',
   teknologi:'bilder/merker/vitenskap/brodert/teknologi.webp',
-  matematikk:'bilder/merker/vitenskap/brodert/matematikk_v2.webp',
+  matematikk:'bilder/merker/vitenskap/brodert/matematikk_v3.webp',
   informasjonsteknologi:'bilder/merker/vitenskap/brodert/informasjonsteknologi_v2.webp',
   forskning_og_metode:'bilder/merker/vitenskap/brodert/forskning_og_metode_v2.webp',
   astronomi_og_fysikk:'bilder/merker/vitenskap/brodert/astronomi_og_fysikk_v2.webp',

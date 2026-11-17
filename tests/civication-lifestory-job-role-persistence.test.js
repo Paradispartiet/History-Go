@@ -29,7 +29,7 @@ async function waitUntil(check, label) {
   throw new Error("Timed out waiting for " + label);
 }
 
-async function boot(previousSave = null, initialPosition = null) {
+async function boot(previousSave = null, initialPosition = null, initialCalendarDay = null) {
   const dom = new JSDOM(
     '<!doctype html><html><body><header id="civiLifestoryHeaderStatus"></header>'
     + '<section id="civiLifestoryPanel"></section></body></html>',
@@ -44,6 +44,10 @@ async function boot(previousSave = null, initialPosition = null) {
     return { ok: true, status: 200, json: async () => JSON.parse(fs.readFileSync(absolute, "utf8")) };
   };
   let position = initialPosition;
+  let calendarDay = initialCalendarDay;
+  if (calendarDay !== null) {
+    window.CivicationCalendar = { getClock: () => ({ dayIndex: calendarDay }) };
+  }
   window.CivicationState = { getActivePosition: () => position };
   // The production content resolver translates this canonical career scope
   // through the actual lifestory manifest, not a test-only role mapping.
@@ -70,7 +74,11 @@ async function boot(previousSave = null, initialPosition = null) {
     button.click();
     return current();
   }
-  return { window, dom, current, panel, takeJob, choose };
+  return {
+    window, dom, current, panel, takeJob, choose,
+    loseJob: () => { position = null; window.dispatchEvent(new window.Event("updateProfile")); },
+    setCalendarDay: day => { calendarDay = day; window.dispatchEvent(new window.Event("civi:dayPhaseChanged")); }
+  };
 }
 
 async function main() {
@@ -133,6 +141,10 @@ async function main() {
     "reload preserves the first role's entire archive");
   assert.equal(JSON.stringify(resumed.current().rolleTilstander.ekspeditor.arkiv), clerkHistory,
     "reload preserves third role's choices");
+  const workweekFixture = {
+    ...resumed.current(),
+    dag: 7, livsdag: 7, kalenderDag: 7, dagFerdig: true
+  };
   resumed.dom.window.close();
 
   // Existing flat v2 saves migrate on first role change, without changing
@@ -153,7 +165,43 @@ async function main() {
   assert.equal(next.rolleTilstander.arbeidsledig.fortsettelseId, "old-chapter");
   assert.deepEqual(next.rolleTilstander.arbeidsledig.kapittelArkiv, legacy.kapittelArkiv);
   assert.deepEqual(next.rolleTilstander.arbeidsledig.relasjoner, legacy.relasjoner);
-  console.log("civication lifestory job-role persistence ok (job changes, reload, legacy migration)");
+
+  // Regression for real week-1 layoff: the shell can remove the job after a
+  // completed role day, then tick the canonical calendar from 7 to 8. The
+  // returned unemployed role's already-played chapters must be preserved:
+  // resume its next playable authored day, not reset it to day one. The
+  // global lifetime/checkpoint still follows day 8 exactly once.
+  const layoff = await boot(JSON.stringify(workweekFixture),
+    { career_id: "naeringsliv", role_key: "renholder", scope: "renholder", title: "Renholder" }, 7);
+  assert.equal(layoff.current().rolle, "renholder");
+  layoff.loseJob();
+  await waitUntil(() => layoff.current()?.rolle === "arbeidsledig", "layoff adopts unemployed Life Story");
+  const afterLoss = layoff.current();
+  assert.equal(afterLoss.kalenderDag, 7, "role swap itself does not advance the shell day");
+  assert.equal(afterLoss.livsdag, 7, "role swap itself does not award a played day");
+  assert.equal(afterLoss.dag, unemployed.dag, "unemployed role resumes its previous authored day");
+  for (const entry of unemployed.arkiv) {
+    assert.ok(afterLoss.arkiv.some(row => row.sceneId === entry.sceneId && row.valgId === entry.valgId),
+      "former unemployed story choices survive job and layoff");
+  }
+  // Shared private scenes played during employment may legitimately be
+  // imported into the resumed unemployed story; an identical-length archive
+  // is not the preservation contract.
+  assert.equal(afterLoss.dagFerdig, false, "new role has playable scenes");
+  layoff.setCalendarDay(8);
+  await waitUntil(() => layoff.current()?.kalenderDag === 8, "role switch follows actual day-8 shell rollover");
+  const afterRollover = layoff.current();
+  assert.equal(afterRollover.livsdag, 8, "global lifetime advances exactly once");
+  assert.equal(afterRollover.dag, unemployed.dag, "unemployed authored progress is not skipped or reset");
+  assert.equal(afterRollover.dagFerdig, false, "unemployed scenes remain playable");
+  assert.equal(afterRollover.rolleTilstander.renholder.dag, 7, "completed cleaner role remains archived");
+  assert.equal(afterRollover.rolleTilstander.renholder.dagFerdig, true);
+  assert.equal(afterRollover.rolleBytter.at(-1).til, "arbeidsledig");
+  layoff.setCalendarDay(8);
+  assert.equal(layoff.current().livsdag, 8, "repeat update cannot award a second lifetime day");
+  layoff.dom.window.close();
+
+  console.log("civication lifestory job-role persistence ok (job changes, week-end layoff, reload, legacy migration)");
 }
 
 main().catch(error => {

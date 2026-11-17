@@ -53,7 +53,7 @@ test('v7 activation proposal points to the exact three verified WebP Git blobs',
   for(const item of historical.items){
     if(ids.includes(item.id))continue;
     if(v2ids.includes(item.id)) {
-      assert.equal(badge.subBadgeImages[item.id], 'bilder/merker/vitenskap/brodert/'+item.id+'_v2.webp');
+      assert.equal(badge.subBadgeImages[item.id], 'bilder/merker/vitenskap/brodert/'+item.id+(item.id==='matematikk'?'_v3.webp':'_v2.webp'));
       assert.ok(read(item.image).length>3000,'Historical v2 source must survive rollback');
     } else {
       assert.equal(badge.subBadgeImages[item.id],item.image,'Unrelated science underbadge changed: '+item.id);
