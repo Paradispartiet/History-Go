@@ -112,10 +112,12 @@
     card.dataset.collectionGridCount = String(count);
     card.dataset.collectionRequestedCount = String(requested.length);
     card.dataset.collectionProfileSource = "place_card_profile_v2_curated";
-    grid.dataset.collectionCount = String(count);
-    grid.dataset.collectionRequestedCount = String(requested.length);
-    grid.dataset.collectionProfileSource = "place_card_profile_v2_curated";
-    grid.dataset.roundCount = String(count);
+    // These fields are observed by MutationObserver. Rewriting unchanged
+    // attributes would schedule another layout every animation frame.
+    if (grid.dataset.collectionCount !== String(count)) grid.dataset.collectionCount = String(count);
+    if (grid.dataset.collectionRequestedCount !== String(requested.length)) grid.dataset.collectionRequestedCount = String(requested.length);
+    if (grid.dataset.collectionProfileSource !== "place_card_profile_v2_curated") grid.dataset.collectionProfileSource = "place_card_profile_v2_curated";
+    if (grid.dataset.roundCount !== String(count)) grid.dataset.roundCount = String(count);
     return count;
   }
 
