@@ -947,7 +947,7 @@
     // terminates the entire role; a milestone never blocks progression.
     const ukeslutt = state.dagFerdig && Array.isArray(content.role.ukesluttDager)
       && content.role.ukesluttDager.includes(state.dag);
-    const ending = (sisteDag || ukeslutt) ? Endings.resolveEnding(state, content) : null;
+    const ending = Endings && (sisteDag || ukeslutt) ? Endings.resolveEnding(state, content) : null;
     const authoredEnding = ending && (content.role.endings || []).find(e => e.id === ending.id);
     const onOriginalFinalDay = !content.role.symposium || state.dag === content.role.symposium.sisteDag;
     const endingHtml = ending && onOriginalFinalDay
