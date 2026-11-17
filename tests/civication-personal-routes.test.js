@@ -7,10 +7,12 @@ const assert = require("node:assert/strict");
 const root = path.resolve(__dirname, "..");
 const html = fs.readFileSync(path.join(root, "Civication.html"), "utf8");
 assert.match(html, /id="civiPersonalRoutePanel"/);
-assert.match(html, /js\/Civication\/systems\/civicationPersonalRoutes\.js/);
-assert.match(html, /js\/Civication\/ui\/CivicationPersonalRoutesUI\.js/);
-assert(html.indexOf("js/Civication/systems/civicationPersonalRoutes.js") <
-  html.indexOf("js/Civication/ui/CivicationPersonalRoutesUI.js"));
+const loader = fs.readFileSync(path.join(root, "js/Civication/civicationShellLoader.js"), "utf8");
+assert.match(loader, /js\/Civication\/systems\/civicationPersonalRoutes\.js/);
+assert.match(loader, /js\/Civication\/ui\/CivicationPersonalRoutesUI\.js/);
+assert(loader.indexOf("js/Civication/systems/civicationPersonalRoutes.js") <
+  loader.indexOf("js/Civication/ui/CivicationPersonalRoutesUI.js"));
+assert(!html.includes('<script src="js/Civication/systems/civicationPersonalRoutes.js"'), "script should only load once through shell");
 
 const storage = new Map();
 const localStorage = {
