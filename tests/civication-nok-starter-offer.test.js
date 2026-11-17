@@ -27,7 +27,7 @@ state.setState({ career_reentry_locks: { naeringsliv: null } });
 assert.equal(jobs.ensureNokStarterOffer().ok, true);
 const offer = jobs.getLatestPendingOffer();
 assert.equal(offer.title, config.job.roleTitle);
-assert.equal(jobs.getOffers().length, 1, 'profile dispatch does not recursively duplicate offers');
+assert.equal(jobs.getOffers().length, 2, 'one full-time and one part-time offer; profile dispatch does not duplicate either');
 assert.equal(state.getActivePosition(), null);
 assert.equal(state.getWallet().balance, 123);
 const terms = jobs.getNokOfferTerms(offer);
@@ -46,3 +46,4 @@ assert.equal(state.getActivePosition().nok_salary_contract.jobId, config.job.id)
 assert.equal(state.getWallet().balance, 123);
 assert.equal(jobs.ensureNokStarterOffer().reason, 'active_job');
 console.log('PASS: starter offer requires real stored merits, available open gate, rechecks acceptance, and never pays on acceptance');
+

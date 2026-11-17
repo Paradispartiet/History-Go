@@ -2,6 +2,35 @@
 'use strict';
 // Pure estimates shared by previews, salary contracts and electricity billing.
 // Never reads/writes player state or pays money.
+/** @param {any} config @returns {any[]} */
+function getSalaryJobs(config) {
+  if (!config?.job || (config.jobs != null && !Array.isArray(config.jobs))) return [];
+  const jobs = [config.job, ...(config.jobs || [])];
+  if (jobs.some(job => !job || typeof job.id !== 'string' || !job.id.trim()
+      || typeof job.careerId !== 'string' || !job.careerId.trim()
+      || typeof job.roleTitle !== 'string' || !job.roleTitle.trim()
+      || typeof job.source !== 'string' || !job.source.startsWith('https://')
+      || typeof job.grossMonthlyNok !== 'number' || !Number.isFinite(job.grossMonthlyNok) || job.grossMonthlyNok <= 0
+      || !Number.isSafeInteger(Math.round(job.grossMonthlyNok * 100))
+      || Math.abs(job.grossMonthlyNok * 100 - Math.round(job.grossMonthlyNok * 100)) > .000001)
+      || new Set(jobs.map(job => job.id)).size !== jobs.length) return [];
+  for (const job of jobs) {
+    if (job.hourlyRateNok != null && (typeof job.hourlyRateNok !== 'number' || !Number.isFinite(job.hourlyRateNok)
+        || job.hourlyRateNok <= 0 || typeof job.fullTimeWeeklyHours !== 'number' || !Number.isFinite(job.fullTimeWeeklyHours)
+        || job.fullTimeWeeklyHours <= 0 || job.fullTimeWeeklyHours > 40
+        || Math.round(Math.round(job.hourlyRateNok * 100) * job.fullTimeWeeklyHours * 52 / 12)
+          !== Math.round(job.grossMonthlyNok * 100))) return [];
+  }
+  return jobs;
+}
+/** @param {any} config @param {{jobId?: any, careerId?: any, roleTitle?: any}} [identity] */
+function resolveSalaryJob(config, identity = {}) {
+  const jobs = getSalaryJobs(config);
+  const matches = jobs.filter(job => (identity.jobId == null || job.id === identity.jobId)
+    && (identity.careerId == null || job.careerId === identity.careerId)
+    && (identity.roleTitle == null || job.roleTitle === identity.roleTitle));
+  return matches.length === 1 ? matches[0] : null;
+}
 /** @param {any} config */
 function getElectricityProfile(config) {
   const profile = config?.budget?.electricity;
@@ -17,11 +46,14 @@ function getElectricityProfile(config) {
   return { ...profile, monthlyCents: cents, monthlyConsumptionMilliKwh: profile.monthlyConsumptionKwh * 1000 };
 }
 /** @param {any} config */
-function preview(config, { employed = false, employmentPercent = 100, approvedSupportNok = 0 } = {}) {
+function preview(config, { employed = false, employmentPercent = 100, approvedSupportNok = 0, jobId = config?.job?.id } = {}) {
   if (!Number.isFinite(employmentPercent) || employmentPercent < 0 || employmentPercent > 100
       || !Number.isFinite(approvedSupportNok) || approvedSupportNok < 0) throw new RangeError('Invalid scenario');
   getElectricityProfile(config);
-  const annualGross = employed ? config.job.grossMonthlyNok * 12 * employmentPercent / 100 : 0;
+  const job = resolveSalaryJob(config, { jobId });
+  if (!job) throw new RangeError('Salary profile is missing or ambiguous');
+  const monthlyGrossCents = employed ? Math.round(Math.round(job.grossMonthlyNok * 100) * employmentPercent / 100) : 0;
+  const annualGross = monthlyGrossCents * 12 / 100;
   const t = config.tax;
   const deduction = Math.min(annualGross * t.minimumDeductionRate, t.minimumDeductionCap);
   const ordinaryTax = Math.max(0, annualGross - deduction - t.personalAllowance) * t.ordinaryRate;
@@ -30,9 +62,10 @@ function preview(config, { employed = false, employmentPercent = 100, approvedSu
   const bracketTax = /** @type {number[][]} */ (t.brackets).reduce((sum, [threshold, rate], i, all) =>
     sum + Math.max(0, Math.min(annualGross, all[i + 1]?.[0] ?? Infinity) - threshold) * rate, 0);
   const annualTax = ordinaryTax + insurance + bracketTax;
-  const monthlyNet = (annualGross - annualTax) / 12;
+  const monthlyTaxCents = Math.round(annualTax * 100 / 12);
+  const monthlyNet = (monthlyGrossCents - monthlyTaxCents) / 100;
   const monthlyExpenses = Object.values(/** @type {Record<string, {monthlyNok: number}>} */ (config.budget)).reduce((sum, item) => sum + item.monthlyNok, 0);
-  return { annualGross, annualTax, monthlyGross: annualGross / 12, monthlyTax: annualTax / 12,
+  return { annualGross, annualTax, monthlyGross: monthlyGrossCents / 100, monthlyTax: monthlyTaxCents / 100,
     monthlyNet, approvedSupportNok, monthlyExpenses,
     monthlyRemainder: monthlyNet + approvedSupportNok - monthlyExpenses,
     weeklyAccrualNet: (annualGross - annualTax) / 52,
@@ -136,10 +169,11 @@ function monthlyCashFlow(wallet, monthId, gameDateForDayIndex) {
     return { ok: true, monthId, incomeCents, invoiceCents, groceryCents, transportCents, expenseCents, netCents, entries };
   } catch { return { ok: false, reason: 'INVALID_PAYMENT_HISTORY' }; }
 }
-const api = { preview, projectMonths, getElectricityProfile, monthlyCashFlow };
+const api = { preview, projectMonths, getElectricityProfile, monthlyCashFlow, getSalaryJobs, resolveSalaryJob };
 if (typeof module !== 'undefined' && module.exports) module.exports = api;
 else /** @type {any} */ (root).CivicationNokBudget = api;
 
 
 })(typeof window !== 'undefined' ? window : globalThis);
+
 

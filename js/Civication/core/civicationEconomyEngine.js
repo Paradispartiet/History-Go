@@ -855,14 +855,14 @@ function recordNokPayrollDay(day, wallet) {
   let tax = 0;
   let sourceId = null;
   if (active?.career_id && contract) {
-    if (!nok.config || contract.jobId !== nok.config.job?.id
-        || contract.sourceId !== nok.config.job?.source
+    const calculator = /** @type {any} */ (window).CivicationNokBudget;
+    const job = calculator?.resolveSalaryJob?.(nok.config, { jobId: contract.jobId });
+    if (!job || contract.sourceId !== job.source
         || typeof contract.employmentPercent !== "number"
         || !Number.isFinite(contract.employmentPercent)
         || contract.employmentPercent < 0 || contract.employmentPercent > 100) return;
-    const calculator = /** @type {any} */ (window).CivicationNokBudget;
     if (!calculator?.preview) return;
-    const preview = calculator.preview(nok.config, { employed: true, employmentPercent: contract.employmentPercent });
+    const preview = calculator.preview(nok.config, { employed: true, employmentPercent: contract.employmentPercent, jobId: contract.jobId });
     gross = Math.round(preview.monthlyGross * 100);
     tax = Math.round(preview.monthlyTax * 100);
     sourceId = contract.sourceId;
@@ -880,6 +880,7 @@ function recordNokPayrollDay(day, wallet) {
   window.CivicationState.updateWallet({ ...wallet, nok_v1: { ...nok,
     lastRecordedDayIndex: day, earnedDays: [...(nok.earnedDays || []), {
       dayIndex: day, monthId: period.id, grossCents: share(gross), taxCents: share(tax), sourceId,
+      ...(contract ? { jobId: contract.jobId, employmentPercent: contract.employmentPercent } : {}),
       ...(electricity ? { electricityCents: share(electricity.monthlyCents),
         electricitySourceId: electricity.source, electricityMilliKwh: share(electricity.monthlyConsumptionMilliKwh) } : {})
     }] } });
@@ -1070,8 +1071,9 @@ function migrateNokEconomy(config) {
       || wallet.completed_game_days_v1.length > 0)) return { ok: false, reason: "UNSETTLED_LEGACY_PAYROLL" };
   const active = owner.getActivePosition?.();
   const contract = active?.nok_salary_contract;
-  if (active?.career_id && (!contract || contract.jobId !== config.job?.id
-      || contract.sourceId !== config.job?.source || typeof contract.employmentPercent !== "number"
+  const job = window.CivicationNokBudget?.resolveSalaryJob?.(config, { jobId: contract?.jobId });
+  if (active?.career_id && (!contract || !job
+      || contract.sourceId !== job.source || typeof contract.employmentPercent !== "number"
       || !Number.isFinite(contract.employmentPercent) || contract.employmentPercent <= 0
       || contract.employmentPercent > 100)) return { ok: false, reason: "ACTIVE_JOB_NOT_MAPPED" };
   const clock = window.CivicationCalendar?.getClock?.();
@@ -1230,3 +1232,4 @@ window.CivicationEconomyEngine = {
 window.HG_CiviEconomySnapshot = getEconomySnapshot;
 
 })();
+

@@ -24,7 +24,7 @@ async function scenario(engine, width, height) {
     localStorage.setItem('hg_onboarding_shown_v1', '1');
     if (!localStorage.getItem('nok_browser_fixture_initialized')) {
       localStorage.setItem('hg_civi_wallet_v1', JSON.stringify({ balance: 20000, last_tick_day_index: 1 }));
-      localStorage.setItem('merits_by_category', JSON.stringify({ naeringsliv: { points: 5 } }));
+      localStorage.setItem('merits_by_category', JSON.stringify({ naeringsliv: { points: 10 } })); // Explicit offer-boundary fixture.
       localStorage.setItem('quiz_progress', JSON.stringify({ naeringsliv: { completed } }));
       localStorage.setItem('visited_places', JSON.stringify({ tronsmo_bokhandel: true }));
       localStorage.setItem('nok_browser_fixture_initialized', '1');
@@ -75,11 +75,44 @@ async function scenario(engine, width, height) {
     await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1?.active === true);
     assert.equal((await wallet()).balance, 20000);
     await openSection('karriere', 'activeJobSection');
+    const jobVariants = [];
+    const jobScreenshots = [];
+    async function selectJob(job, percent) {
+      const offerKey = await page.evaluate(({ jobId, percent }) => window.CivicationJobs.getOffers()
+        .find(o => o.status === 'pending' && o.nok_job_id === jobId && o.nok_employment_percent === percent)?.offer_key,
+        { jobId: job.id, percent });
+      assert.ok(offerKey, 'canonical gated offer exists for ' + job.id + ' ' + percent);
+      await page.locator('#civiNokOfferSelect').selectOption(offerKey);
+      await page.waitForFunction(({ source, percent }) => {
+        const terms = document.querySelector('[data-civi-nok-offer-terms]');
+        return terms?.querySelector('a')?.getAttribute('href') === source && terms.textContent.includes(percent + ' % stilling');
+      }, { source: job.source, percent });
+      const checked = await page.evaluate(({ jobId, percent }) => {
+        const terms = document.querySelector('[data-civi-nok-offer-terms]').textContent;
+        const view = window.CivicationNokBudget.preview(window.CivicationState.getWallet().nok_v1.config,
+          { employed: true, employmentPercent: percent, jobId });
+        const money = value => value.toLocaleString('nb-NO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return { correct: terms.includes('Brutto: ' + money(view.monthlyGross))
+          && terms.includes('Estimert netto: ' + money(view.monthlyNet)), gross: view.monthlyGross };
+      }, { jobId: job.id, percent });
+      assert.equal(checked.correct, true);
+      return checked;
+    }
+    for (const job of [profile.job, ...profile.jobs]) for (const percent of [100, 50]) {
+      const checked = await selectJob(job, percent);
+      jobVariants.push({ jobId: job.id, percent, monthlyGross: checked.gross });
+      if (job.id !== profile.job.id && percent === 50) {
+        await page.locator('[data-civi-nok-offer-terms]').scrollIntoViewIfNeeded();
+        jobScreenshots.push(await capture(job.id + '-50-terms'));
+      }
+    }
+    assert.equal((await wallet()).balance, 20000, 'reviewing six offers never pays or changes balance');
+    await selectJob(profile.job, 100);
     await page.locator('[data-civi-nok-offer-terms]').waitFor({ state: 'visible' });
     const terms = await page.locator('[data-civi-nok-offer-terms]').textContent();
     assert.ok(terms.includes('Brutto:') && terms.includes('Estimert netto:') && terms.includes('100 %'));
     await page.locator('[data-civi-nok-offer-terms]').scrollIntoViewIfNeeded();
-    const screenshots = [await capture('salary-terms')];
+    const screenshots = [...jobScreenshots, await capture('salary-terms')];
     await page.locator('#civiOfferAccept').click();
     await page.waitForFunction(title => window.CivicationState.getActivePosition()?.title === title, profile.job.roleTitle);
     assert.equal((await wallet()).balance, 20000, 'acceptance does not pay salary');
@@ -152,7 +185,7 @@ async function scenario(engine, width, height) {
     assert.equal(JSON.stringify(await wallet()), saved, 'reload neither buys, consumes nor pays again');
     assert.deepEqual(errors, [], 'no uncaught page errors');
     return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock,
-      monthlyPaidCents: cashFlow.expenseCents };
+      monthlyPaidCents: cashFlow.expenseCents, jobVariants };
   } catch (error) {
     console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors }));
     console.error('CIVI_NOK_FAILURE_STATE:' + JSON.stringify(await page.evaluate(() => ({
@@ -184,4 +217,5 @@ async function scenario(engine, width, height) {
   } catch (error) { report.status = 'failed'; report.error = String(error.stack || error); throw error; }
   finally { server.kill('SIGTERM'); fs.writeFileSync(path.join(outputDir, 'nok-browser-report.json'), JSON.stringify(report, null, 2)); }
 })().catch(error => { console.error(error); process.exitCode = 1; });
+
 

@@ -1,14 +1,14 @@
 # Civication: kroneøkonomi – budsjettprototype
 
-Status 16.11.2026: implementert på arbeidsgren, produksjonsprofil ikke aktivert.
+Status 17.11.2026: implementert på arbeidsgren, produksjonsprofil ikke aktivert.
 Dette dokumentet beskriver gjeldende tilstand og erstatter tidligere etappevise
 statusavsnitt. Kilde-/prisgrunnlag finnes per felt i
 `data/Civication/economy/nok-budget-prototype-2026.json`.
 
 ## Omfang og beregningsgrunnlag
 
-1 PC tilsvarer 1 NOK. Startprofilen gjelder én voksen aleneboende i Oslo og én
-butikkjobb. Flere yrker, boligprofiler og et fullstendig livsopphold er ikke ferdig.
+1 PC tilsvarer 1 NOK. Startprofilen gjelder én voksen aleneboende i Oslo og tre
+konkrete lønnsprofiler. Bredere yrkesdekning, boligprofiler og fullstendig livsopphold gjenstår.
 Forhåndsvisningen beregner scenarioer uten å betale penger eller opprette regninger.
 
 | Post | Grunnlag | Avgrensning |
@@ -196,5 +196,58 @@ duplikater, ørepresisjon, overløp og inert tekst kontrolleres også.
 Nettleserreisen er utvidet til å kontrollere 10 199,10 kr betalt (10 090 kr leie
 og 109,10 kr varer) samt null utbetalt lønn på første spilledag. Den tar et eget
 bilde av månedsoversikten i hvert nettleseroppsett. Resultat og visuell kontroll må
-registreres for denne endringens faktiske head; 2fcf255 dekker ikke den nye visningen.
+registreres for endringens faktiske head. På 0eb12c9 bestod alle åtte workflows,
+alle tre nettleseroppsett og manuell kontroll av samtlige ni bilder.
+
+## Tre yrker med deltids- og heltidstilbud
+
+`job` bevarer den opprinnelige butikkprofilen; `jobs` inneholder tilleggsprofiler.
+Felles resolver bruker entydig ID, kilde og canonical karriere/rolletittel. Ukjent
+eller duplisert ID gir ingen lønn, og butikkens lønn brukes ikke for et annet yrke.
+Gamle frosne profiler med bare `job` virker fortsatt, uten å få nye profiler automatisk.
+
+| Profil | 100 % brutto/mnd | 50 % brutto/mnd | Grunnlag |
+| --- | ---: | ---: | --- |
+| Ekspeditør / butikkmedarbeider | 31 694,00 | 15 847,00 | Virke/HK trinn 1, fra 01.04.2026 |
+| Renholder | 40 184,63 | 20 092,32 | Virke/NAF dagtid voksen 0–2 år, 247,29 kr/time fra 01.05.2026 |
+| Lager- og driftsmedarbeider | 45 617,00 | 22 808,50 | Virke/Fellesforbundet voksen, 280,72 kr/time / 10 527 kr/uke fra 01.04.2026 |
+
+Kilder kontrollert 17.11.2026:
+
+- https://www.virke.no/tariff-og-lonn/finn-tariffavtale/landsoverenskomsten-hk/
+- https://www.virke.no/tariff-og-lonn/finn-tariffavtale/renholdsoverenskomsten/
+- https://www.virke.no/tariff-og-lonn/finn-tariffavtale/grossistoverenskomsten-ff/
+
+Renhold og lager normaliseres med uttrykkelig antatt heltid på 37,5 t/uke og 52/12,
+avrundet til månedlige øre. Dette er en avtalt månedsreferanse, ikke faktisk
+timeregnskap. Renholdstilbudet gjelder et fiktivt tariffbundet renholdsfirma,
+lagertilbudet en fiktiv tariffbundet grossist; ingen ekte bedrift påstås å ha gitt
+tilbudet. Tillegg, feriepenger og individuell vaktplan er ikke modellert.
+Renholdssatsen er tariffgrunnlag fra mai, ikke universell lovbestemt sats gjennom
+hele 2026. Satsene brukes som datert scenario, ikke historisk tarifftidslinje.
+
+Canonical spillgrenser er 5/8/10 meritter. Eksisterende knowledge-, karriere- og
+reentry-porter beholdes; butikk krever fortsatt åpnet ekte arbeidsgiver gjennom
+eksisterende bridge. Ferske meritter og tilbud kontrolleres igjen ved aksept.
+Nøkkel per profil/prosent hindrer gjentakelser og bevarer gamle 100 %-nøkler.
+Avslag/aksept gjøres ikke om av ny rendring; aktiv jobb sperrer ny aksept.
+
+En velger i jobbkortet viser tilgjengelige tilbud. Prosent, brutto, skatt/netto,
+kilde og avgrensninger vises før aksept; velgeren beholder fokus. Kontrakt, daglig
+opptjening og migrering bruker samme profilresolver. Felles beregning avrunder
+månedlig brutto og skatt i øre før netto fastsettes, slik at visning og oppgjør
+stemmer også ved deltid. Årsskatten er fortsatt et anslag, ikke skattekort.
+
+`civication-nok-multiple-jobs.test.js` kjører alle tre profiler × begge prosenter
+gjennom faktiske canonical materialiserere, knowledge-/livs-/arbeidsgiverporter,
+UI-velger, aksept og deretter 31 fullførte dager og månedslønn. Alle seks består
+lokalt med samsvar i øre og ingen betaling ved aksept eller gjentatt tick.
+Meritter, quizprogresjon, geografi og åpningssaldo er uttrykkelige testgrenser;
+dette er ikke organisk quizopptjening eller 31 dagers private handlingsvalg.
+Eksisterende starter-, wrapped-offer-, kontrakt-, migrering-, budsjett- og lønns-
+kontroller brukes som regresjon. Nettleserreisen prøver alle seks tilbud gjennom
+velgeren i hvert oppsett, tar renhold-/lagerbilder i 50 % og aksepterer deretter
+den opprinnelige butikkjobben. Ti meritter er nå en eksplisitt nettleserfixture.
+Ny nettleser-/CI-status må registreres for den faktiske headen.
+
 

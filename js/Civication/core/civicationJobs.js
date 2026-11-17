@@ -666,9 +666,27 @@
     if (!canReceiveNewOffers()) return null;
 
     const offers = expireOffers();
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true) {
+      const preferred = offers.find(o => o?.status === "pending" && o.nok_job_id === nok.config?.job?.id
+        && o.nok_employment_percent === nok.config?.job?.offerEmploymentPercent);
+      if (preferred) return preferred;
+    }
     return offers.find(function (o) {
       return o && o.status === "pending";
     }) || null;
+  }
+
+  // Preserve the original single-profile contract when the calculator has not
+  // loaded yet; additional roles require its shared, unambiguous resolver.
+  function salaryJob(config, offer) {
+    const identity = { ...(offer?.nok_job_id ? { jobId: offer.nok_job_id } : {}),
+      careerId: offer?.career_id, roleTitle: offer?.title };
+    const resolver = window.CivicationNokBudget?.resolveSalaryJob;
+    if (resolver) return resolver(config, identity);
+    const job = config?.job;
+    return job && (!identity.jobId || identity.jobId === job.id)
+      && identity.careerId === job.careerId && identity.roleTitle === job.roleTitle ? job : null;
   }
 
   /**
@@ -720,10 +738,14 @@
     const nokJobId = typeof nok_job_id === "string" ? nok_job_id.trim() : "";
     if (nokJobId) {
       const nok = window.CivicationState?.getWallet?.()?.nok_v1;
-      if (nok?.active !== true || nok.version !== 1 || nok.config?.job?.id !== nokJobId
-          || nok.config.job.careerId !== badgeId || nok.config.job.roleTitle !== ttl) return { ok: false, reason: "invalid_nok_offer" };
+      const job = salaryJob(nok?.config, { nok_job_id: nokJobId, career_id: badgeId, title: ttl });
+      if (nok?.active !== true || nok.version !== 1 || !job
+          || typeof nok_employment_percent !== "number" || !Number.isFinite(nok_employment_percent)
+          || nok_employment_percent <= 0 || nok_employment_percent > 100)
+        return { ok: false, reason: "invalid_nok_offer" };
     }
-    const offer_key = `${badgeId}:${thr}` + (nokJobId ? `:nok:${nokJobId}` : "");
+    const offer_key = `${badgeId}:${thr}` + (nokJobId ? `:nok:${nokJobId}`
+      + (nok_employment_percent === 100 ? "" : `:pct:${nok_employment_percent}`) : "");
     const offers = getOffers();
 
     if (offers.some(function (o) {
@@ -785,15 +807,15 @@
     const nok = window.CivicationState?.getWallet?.()?.nok_v1;
     let nokContract = null;
     if (nok?.active === true) {
-      const job = nok.config?.job;
+      const job = salaryJob(nok.config, offer);
       const percent = offer.nok_employment_percent;
       if (nok.version !== 1 || !job?.careerId || !job?.roleTitle || !job?.id || !job?.source
           || offer.career_id !== job.careerId || offer.title !== job.roleTitle
           || typeof percent !== "number" || !Number.isFinite(percent) || percent <= 0 || percent > 100) {
         return { ok: false, reason: "NOK_SALARY_NOT_MAPPED" };
       }
-      if (offer.nok_job_id) {
-        const eligibility = checkNokStarterEligibility(offer);
+      if (offer.nok_job_id || job.id !== nok.config?.job?.id) {
+        const eligibility = checkNokStarterEligibility({ ...offer, nok_job_id: job.id });
         if (!eligibility.ok) return eligibility;
       }
       nokContract = { jobId: job.id, sourceId: job.source, employmentPercent: percent,
@@ -906,8 +928,9 @@
   /** @param {any} offer */
   function checkNokStarterEligibility(offer) {
     const nok = window.CivicationState?.getWallet?.()?.nok_v1;
-    const job = nok?.config?.job;
-    if (nok?.active !== true || nok.version !== 1 || !job || offer.nok_job_id !== job.id)
+    const job = salaryJob(nok?.config, offer);
+    if (nok?.active !== true || nok.version !== 1 || !job || offer.nok_job_id !== job.id
+        || (Array.isArray(job.offerEmploymentPercents) && !job.offerEmploymentPercents.includes(offer.nok_employment_percent)))
       return { ok: false, reason: "NOK_SALARY_NOT_MAPPED" };
     const threshold = job.minimumOfferThreshold;
     const merits = safeParse(localStorage.getItem("merits_by_category") || "{}", {});
@@ -921,31 +944,51 @@
     return eligibility?.eligible === true ? { ok: true } : { ok: false, reason: "JOB_GATE_BLOCKED" };
   }
 
+  let producingNokOffers = false;
   function ensureNokStarterOffer() {
     if (hasActiveEmployment()) return { ok: false, reason: "active_job" };
-    const job = window.CivicationState?.getWallet?.()?.nok_v1?.config?.job;
-    if (!job) return { ok: false, reason: "NOK_NOT_ACTIVE" };
-    const offer = { career_id: job.careerId, career_name: "Næringsliv", title: job.roleTitle,
-      threshold: job.minimumOfferThreshold, nok_job_id: job.id,
-      nok_employment_percent: job.offerEmploymentPercent,
-      points_at_offer: safeParse(localStorage.getItem("merits_by_category") || "{}", {})?.[job.careerId]?.points };
-    const eligibility = checkNokStarterEligibility(offer);
-    if (!eligibility.ok) return eligibility;
-    return window.CivicationJobs.pushOffer(offer);
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+    if (producingNokOffers) return { ok: false, reason: "offer_production_active" };
+    const profiles = window.CivicationNokBudget?.getSalaryJobs?.(nok.config) || (nok.config?.job ? [nok.config.job] : []);
+    let firstFailure = null;
+    let firstCreated = null;
+    let seenDuplicate = false;
+    producingNokOffers = true;
+    try {
+      for (const job of profiles) {
+        const fractions = Array.isArray(job.offerEmploymentPercents) ? job.offerEmploymentPercents : [job.offerEmploymentPercent];
+        for (const percent of fractions) {
+          const offer = { career_id: job.careerId, career_name: job.careerName || "Næringsliv", title: job.roleTitle,
+            threshold: job.minimumOfferThreshold, nok_job_id: job.id, nok_employment_percent: percent,
+            points_at_offer: safeParse(localStorage.getItem("merits_by_category") || "{}", {})?.[job.careerId]?.points };
+          const gate = checkNokStarterEligibility(offer);
+          const result = gate.ok ? window.CivicationJobs.pushOffer(offer) : gate;
+          if (result.ok && !firstCreated) firstCreated = result;
+          else if (result.reason === "duplicate") seenDuplicate = true;
+          else if (!firstFailure) firstFailure = result;
+        }
+      }
+      return firstCreated || (seenDuplicate ? { ok: false, reason: "duplicate" } : firstFailure)
+        || { ok: false, reason: "NOK_SALARY_NOT_MAPPED" };
+    } finally { producingNokOffers = false; }
   }
 
   /** @param {any} offer */
   function getNokOfferTerms(offer) {
     const nok = window.CivicationState?.getWallet?.()?.nok_v1;
     if (nok?.active !== true) return null;
-    const job = nok.config?.job;
+    const job = salaryJob(nok.config, offer);
     const percent = offer?.nok_employment_percent;
     if (nok.version !== 1 || offer?.career_id !== job?.careerId || offer?.title !== job?.roleTitle
         || typeof percent !== "number" || !Number.isFinite(percent) || percent <= 0 || percent > 100
         || typeof window.CivicationNokBudget?.preview !== "function") return { supported: false };
-    const view = window.CivicationNokBudget.preview(nok.config, { employed: true, employmentPercent: percent });
+    let view;
+    try { view = window.CivicationNokBudget.preview(nok.config, { employed: true, employmentPercent: percent, jobId: job.id }); }
+    catch { return { supported: false }; }
     return { supported: true, employmentPercent: percent, monthlyGross: view.monthlyGross,
-      monthlyTax: view.monthlyTax, monthlyNet: view.monthlyNet };
+      monthlyTax: view.monthlyTax, monthlyNet: view.monthlyNet, jobId: job.id, source: job.source,
+      label: job.label, termsNote: job.termsNote || "", checkedOn: job.checkedOn || "" };
   }
 
   function declineOffer(offer_key) {
@@ -1005,3 +1048,4 @@
   window.hgGetJobOffers = getOffers;
   window.hgSetJobOffers = setOffers;
 })();
+

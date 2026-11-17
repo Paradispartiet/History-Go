@@ -16,7 +16,14 @@
     "source": "https://www.virke.no/tariff-og-lonn/finn-tariffavtale/landsoverenskomsten-hk/",
     "minimumOfferThreshold": 5,
     "offerEmploymentPercent": 100,
-    "entryGateReference": "data/badges/naeringsliv.json#/tiers/0"
+    "entryGateReference": "data/badges/naeringsliv.json#/tiers/0",
+    "offerEmploymentPercents": [
+      100,
+      50
+    ],
+    "checkedOn": "2026-11-17",
+    "validFrom": "2026-04-01",
+    "termsNote": "Virke/HK, tarifftrinn 1. Stillingsprosenten gjelder avtalt lønn; tariff er ikke en universell minstelønn."
   },
   "tax": {
     "ordinaryRate": 0.22,
@@ -250,6 +257,54 @@
       "baseUnit": "g",
       "consumptionStep": 100,
       "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "cleaner_day_virke_2026",
+      "careerId": "naeringsliv",
+      "careerName": "Økonomi og næringsliv",
+      "roleTitle": "Renholder",
+      "label": "Renholder, dagtid, 0–2 års ansiennitet",
+      "employmentPercent": 100,
+      "grossMonthlyNok": 40184.63,
+      "hourlyRateNok": 247.29,
+      "fullTimeWeeklyHours": 37.5,
+      "conversion": "hourlyRateNok * 37.5 * 52 / 12, monthly equivalent rounded to cents",
+      "source": "https://www.virke.no/tariff-og-lonn/finn-tariffavtale/renholdsoverenskomsten/",
+      "checkedOn": "2026-11-17",
+      "validFrom": "2026-05-01",
+      "minimumOfferThreshold": 8,
+      "offerEmploymentPercent": 100,
+      "offerEmploymentPercents": [
+        100,
+        50
+      ],
+      "entryGateReference": "data/badges/naeringsliv.json#/tiers/1",
+      "termsNote": "Spilltilbud hos et fiktivt tariffbundet renholdsfirma: dagtid, voksen, 0–2 års ansiennitet. 247,29 kr/time er omregnet med antatt 37,5 t/uke og 52/12 til månedsreferanse. Ingen natt-/overtidstillegg eller feriepenger er inkludert."
+    },
+    {
+      "id": "warehouse_virke_2026",
+      "careerId": "naeringsliv",
+      "careerName": "Økonomi og næringsliv",
+      "roleTitle": "Lager- og driftsmedarbeider",
+      "label": "Lagerarbeider, Virke/Fellesforbundet, voksen",
+      "employmentPercent": 100,
+      "grossMonthlyNok": 45617,
+      "hourlyRateNok": 280.72,
+      "fullTimeWeeklyHours": 37.5,
+      "conversion": "10527 NOK weekly * 52 / 12 = 45617 NOK monthly equivalent",
+      "source": "https://www.virke.no/tariff-og-lonn/finn-tariffavtale/grossistoverenskomsten-ff/",
+      "checkedOn": "2026-11-17",
+      "validFrom": "2026-04-01",
+      "minimumOfferThreshold": 10,
+      "offerEmploymentPercent": 100,
+      "offerEmploymentPercents": [
+        100,
+        50
+      ],
+      "entryGateReference": "data/badges/naeringsliv.json#/tiers/2",
+      "termsNote": "Spilltilbud hos en fiktiv tariffbundet grossist: voksen lagerarbeider. Virke/Fellesforbundet, 280,72 kr/time og 10 527 kr/uke ved 37,5 t. Månedsreferanse er ukesatsen × 52/12. Ingen skift-/overtidstillegg eller feriepenger er inkludert."
     }
   ]
 }

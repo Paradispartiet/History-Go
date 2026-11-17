@@ -595,9 +595,10 @@ function getNokSalaryText() {
   const active = window.CivicationState?.getActivePosition?.();
   if (!active) return "Lønn: 0 kr per måned · Ingen aktiv jobb";
   const contract = active.nok_salary_contract;
-  if (!contract || contract.jobId !== nok.config?.job?.id || contract.sourceId !== nok.config?.job?.source)
+  const job = window.CivicationNokBudget?.resolveSalaryJob?.(nok.config, { jobId: contract?.jobId });
+  if (!contract || !job || contract.sourceId !== job.source)
     return "Lønnsvilkår mangler for den aktive rollen";
-  const terms = window.CivicationJobs?.getNokOfferTerms?.({ ...active, nok_employment_percent: contract.employmentPercent });
+  const terms = window.CivicationJobs?.getNokOfferTerms?.({ ...active, nok_job_id: contract.jobId, nok_employment_percent: contract.employmentPercent });
   if (!terms?.supported) return "Lønnsvilkår mangler for den aktive rollen";
   const money = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   return `Lønn: ${money(terms.monthlyGross)} kr brutto per måned · Estimert skatt: ${money(terms.monthlyTax)} kr · Estimert netto: ${money(terms.monthlyNet)} kr · ${Number(terms.employmentPercent).toLocaleString("nb-NO", { maximumFractionDigits: 2 })} % stilling`;
@@ -724,9 +725,19 @@ async function renderCivication() {
   const active = /** @type {CiviUiActivePosition|null|undefined} */ (
     window.CivicationState.getActivePosition()
   );
-  const offer = /** @type {CiviUiPendingOffer|null|undefined} */ (
+  let offer = /** @type {CiviUiPendingOffer|null|undefined} */ (
     window.CivicationJobs?.getLatestPendingOffer?.()
   );
+
+  const nokOffers = window.CivicationState?.getWallet?.()?.nok_v1?.active === true && !active
+    ? (window.CivicationJobs?.expireOffers?.() || []).filter(o => o?.status === "pending"
+      && window.CivicationJobs?.getNokOfferTerms?.(o)?.supported === true) : [];
+  const selectedOffer = nokOffers.find(o => o.offer_key === host.dataset.nokOfferKey);
+  if (selectedOffer) offer = selectedOffer;
+  else if (nokOffers.length && !nokOffers.some(o => o.offer_key === offer?.offer_key)) offer = nokOffers[0];
+  const offerSelector = nokOffers.length > 1
+    ? `<label for="civiNokOfferSelect">Velg jobbtilbud</label><select id="civiNokOfferSelect" style="min-height:44px;width:100%;max-width:100%;min-width:0;">${nokOffers.map(o =>
+      `<option value="${escapeOfferHtml(o.offer_key)}" ${o.offer_key === offer?.offer_key ? "selected" : ""}>${escapeOfferHtml(o.title)} · ${escapeOfferHtml(o.nok_employment_percent)} %</option>`).join("")}</select>` : "";
 
   const nokTerms = window.CivicationJobs?.getNokOfferTerms?.(offer);
   const formatNok = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -735,6 +746,8 @@ async function renderCivication() {
         <div>Brutto: ${formatNok(nokTerms.monthlyGross)} kr per måned</div>
         <div>Estimert skatt: ${formatNok(nokTerms.monthlyTax)} kr per måned</div>
         <div>Estimert netto: ${formatNok(nokTerms.monthlyNet)} kr per måned</div>
+        ${nokTerms.termsNote ? `<div>${escapeOfferHtml(nokTerms.termsNote)}</div>` : ""}
+        <div><a href="${escapeOfferHtml(nokTerms.source)}">Lønnskilde</a>${nokTerms.checkedOn ? ` · Kontrollert ${escapeOfferHtml(nokTerms.checkedOn)}` : ""}</div>
         <div>Årsberegnet skatteanslag, ikke skattekort. Lønn opptjenes etter jobbstart og utbetales ved månedsskifte i spillet.</div></div>`
     : `<div data-civi-nok-offer-terms>Lønnsvilkår mangler for denne rollen. Tilbudet kan foreløpig ikke aksepteres.</div>`) : "";
 
@@ -786,6 +799,7 @@ async function renderCivication() {
         offer
           ? `
             <div><strong>🧾 Jobbtilbud</strong></div>
+            ${offerSelector}
             <div>${offer.career_name || offer.career_id || ""}</div>
             <div><strong>${escapeOfferHtml(offer.title || "")}</strong></div>
             <div>Terskel: ${offer.threshold}</div>
@@ -806,6 +820,12 @@ async function renderCivication() {
   `;
 
   void hydrateCareerKnowledgeDescription(host, offer || active);
+
+  const offerSelect = /** @type {HTMLSelectElement|null} */ (host.querySelector("#civiNokOfferSelect"));
+  offerSelect?.addEventListener("change", () => {
+    host.dataset.nokOfferKey = offerSelect.value;
+    void renderCivication().then(() => /** @type {HTMLElement|null} */ (host.querySelector("#civiNokOfferSelect"))?.focus({ preventScroll: true }));
+  });
 
   if (offer?.offer_key) {
     host.querySelector("#civiOfferAccept")?.addEventListener("click", () => {
@@ -2666,3 +2686,4 @@ window.renderWorkdayPanel = renderWorkdayPanel;
 // Read-only debug/helper global: inspect current workday state without touching rendering.
 // Registered in README/SYSTEM_REGISTRY.md. Never write through this — it is a pure snapshot.
 window.HG_CiviWorkdaySnapshot = getCurrentWorkdaySnapshot;
+
