@@ -39,7 +39,7 @@ const weekPlan={meals:{0:{breakfast:"oats",lunch:"wraps",dinner:"pasta",supper:"
 const shoppingList=[{id:"pasta",quantity:200}];
 const places=[food("breakfast",480,"breakfast"),food("lunch",720,"lunch"),food("dinner",1080,"dinner"),
   food("supper",1260,"supper"), grocery(930)];
-const params={now:NOW,gameDayIndex:1,route,weekPlan,shoppingList,places};
+const params={now:NOW,gameDayIndex:1,route,weekPlan,shoppingList,places,ingredientIdsByMeal:{dinner:["pasta"]}};
 const select = change => api.eligibleCandidates({...params,...change});
 const hits=select();
 assert.equal(hits.length,4,"one match per meal, evening and lunch etc");
@@ -67,6 +67,10 @@ assert.equal(select({places:[{...food("expired-menu",720,"lunch"),dish:{name:"Re
 assert.equal(select({places:[{...food("price-missing",720,"lunch"),dish:{name:"Retten",meals:["lunch"],
   menuEvidence:evidence,priceMinor:999999,priceEvidence:null}}]})[0].priceMinor,null,
   "never infer real prices without current evidence");
+assert.equal(select({places:[grocery(930)],ingredientIdsByMeal:{lunch:["pasta"]}}).length,0,
+  "a dinner ingredient cannot trigger a supposed lunch shopping offer");
+assert.equal(select({places:[grocery(930)],ingredientIdsByMeal:{}}).length,0,
+  "no meal-specific ingredient evidence means no automatic grocery offer");
 assert.equal(select({places:[grocery(930)],shoppingList:[]}).length,0,
   "no grocery suggestions when nothing is needed");
 assert.equal(select({places:[grocery(930)],weekPlan:{meals:{}}}).length,0);
