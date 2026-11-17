@@ -155,6 +155,21 @@
       return { ...row, quantity: Math.max(0, Math.round((row.required - atHome) * 100) / 100) };
     }).filter(row => row.quantity > 0).sort((a, b) => a.name.localeCompare(b.name, "no"));
   }
+  // Ingredient IDs for the player's actual planned meals on one game day.
+  // No retailer, inventory or real price is inferred from recipe ingredients.
+  function getIngredientIdsByMeal(dayIndex = gameDayIndex()) {
+    if (!Number.isSafeInteger(dayIndex) || dayIndex < 1) throw new Error("Invalid game day");
+    const day = (dayIndex - 1) % 7;
+    const chosen = getWeek(getWeekKey(dayIndex)).meals[day] || {};
+    const output = {};
+    for (const meal of Object.keys(MEALS)) {
+      const recipeId = chosen[meal];
+      if (!Object.prototype.hasOwnProperty.call(RECIPES, recipeId || "")) continue;
+      if (!RECIPES[recipeId].meals.includes(meal)) continue;
+      output[meal] = [...new Set(RECIPES[recipeId].ingredients.map(item => item[0]))];
+    }
+    return output;
+  }
   /** @param {{ dayIndex?: number, currentMinutes?: number, recentlyAte?: boolean }} [options] */
   function suggestionForTime({ dayIndex = gameDayIndex(), currentMinutes, recentlyAte = false } = {}) {
     if (recentlyAte || typeof currentMinutes !== "number" || !Number.isInteger(currentMinutes) || currentMinutes < 0 || currentMinutes >= 1440) return null;
@@ -173,6 +188,6 @@
     MEALS: Object.freeze(clone(MEALS)),
     templates: () => Object.entries(TEMPLATES).map(([id, data]) => ({ id, label: data.label })),
     getWeekKey, getWeek, getRecipes, setMeal, setPeople, applyTemplate,
-    getShoppingList, suggestionForTime
+    getShoppingList, getIngredientIdsByMeal, suggestionForTime
   });
 })();
