@@ -11,6 +11,8 @@ on:
       - 'scripts/check-collection-image-candidates.py'
       - 'tests/test_stage_collection_image_candidates.py'
       - 'tests/test_collection_image_integrity_gate.py'
+      - 'scripts/check-collection-photo-sources.py'
+      - 'tests/test_collection_photo_source_gate.py'
       - 'scripts/audit-linked-brand-images.mjs'
       - 'tests/linked-brand-image-audit.test.mjs'
       - 'data/brands/brands_master.json'
@@ -34,6 +36,9 @@ jobs:
         run: |
           python3 -m unittest discover -s tests -p 'test_stage_collection_image_candidates.py' -v
           python3 -m unittest discover -s tests -p 'test_collection_image_integrity_gate.py' -v
+          python3 -m unittest discover -s tests -p 'test_collection_photo_source_gate.py' -v
+      - name: Verify licensed documentary photo is still a source-only candidate
+        run: python3 scripts/check-collection-photo-sources.py
       - name: Validate staged WebP assets against manifests
         run: python3 scripts/check-collection-image-candidates.py
       - name: Audit linked Brands for missing, unsafe or synthetic logos
