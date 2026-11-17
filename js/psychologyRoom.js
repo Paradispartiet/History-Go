@@ -545,7 +545,8 @@
     `));
     bindBack();
     document.querySelector("[data-psych-toggle-map]")?.addEventListener("click", (event) => {
-      const result = toggleInnerMap(event.currentTarget.dataset.psychToggleMap);
+      const button = /** @type {HTMLElement} */ (event.currentTarget);
+      const result = toggleInnerMap(button.dataset.psychToggleMap);
       if (!result.ok) window.showToast?.("Kunne ikke oppdatere kartet.");
       else renderWorkbenchEntry(entry.id);
     });
