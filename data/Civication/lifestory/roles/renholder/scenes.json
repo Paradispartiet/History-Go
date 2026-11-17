@@ -2907,6 +2907,253 @@
           "ren_log204_sendt": true
         }
       }
+    },
+    {
+      "id": "ren_u2_d8_ukeplan",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 8,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Den røde lagerlinjen er her fortsatt",
+      "tekst": "Før første runde i den nye arbeidsuken henter Kari fram statusen fra fredag. Inngangspartiet og lageret står på hver sin linje. Hun vil sende en ny plan, men har ennå ingen bekreftelse fra drift på at hylla ved lagerdøra er flyttet. «Hva kan jeg føre opp for deg i dag?» spør hun. Et svar er en avtale om neste steg, ikke dokumentasjon på utført renhold.",
+      "valg": [
+        {
+          "id": "ettersporr_tilkomst",
+          "tekst": "Be Kari undersøke med drift om lageret faktisk kan åpnes",
+          "konsekvensTekst": "Kari noterer en forespørsel til drift. Lageret står fortsatt som uavklart; verken flytting eller renhold er bekreftet.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_spor": "tilkomst",
+              "ren_u2_drift_forespurt": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avklar_andre_soner",
+          "tekst": "Avtal hvilke tilgjengelige rom du kan ta uten å føre lageret som ferdig",
+          "konsekvensTekst": "Kari bekrefter en egen liste for tilgjengelige soner. Lageret blir stående som sperret. Den avtalte listen betyr ikke at rommene er vasket.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_spor": "soner",
+              "ren_u2_soneliste_avtalt": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        },
+        {
+          "id": "ta_opp_belastning",
+          "tekst": "Be Kari avklare trygg metode og utstyr før du får lageroppgaven igjen",
+          "konsekvensTekst": "Kari fører behov for metode og utstyr til avklaring med Amina. Ingen tung hylle er flyttet og ingen oppgave er ferdigmeldt.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_spor": "belastning",
+              "ren_u2_metode_forespurt": true
+            },
+            "relasjoner": {
+              "erfaren_kollega": 2
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d9_tilkomst",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 9,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Svar fra drift er ikke det samme som fri tilkomst",
+      "tekst": "Kari har fått beskjed om at drift kjenner til hylla, men ingen har bekreftet at den er løsnet. Hun peker på gårsdagens forespørsel. «Skal vi sette lageret som klart?» Det finnes ennå verken dokumentert åpning eller en utført vaskerunde i lageret.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_spor": "tilkomst"
+        }
+      },
+      "valg": [
+        {
+          "id": "behold_sperring",
+          "tekst": "Før driftens tilbakemelding og behold lageret som utilgjengelig",
+          "konsekvensTekst": "Du fører bekreftet kontakt med drift separat fra gjenstående renhold. Lageret står fortsatt åpent som oppgave.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d9_status": "tilkomst_uavklart"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_om_dato",
+          "tekst": "Be Kari etterspørre ansvarlig og dato før en ny romplan vedtas",
+          "konsekvensTekst": "Kari sender spørsmålet videre. Ingen dato er lovet og rommet er fortsatt ikke kvittert ut.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d9_status": "ny_avklaring_etterspurt"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d9_soner",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 9,
+      "fase": "formiddag",
+      "visningstype": "intern vurdering",
+      "avsender": "erfaren_kollega",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "To rom på listen, ett fremdeles sperret",
+      "tekst": "Amina viser deg den bekreftede listen: en tilgjengelig korridor kan tas nå; lageret er fortsatt på vent. Kari ber om en kort status etter runden. Du må skille mellom arbeid du faktisk utfører, og en plan som bare er avtalt.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_spor": "soner"
+        }
+      },
+      "valg": [
+        {
+          "id": "utfor_korridor",
+          "tekst": "Ta og kontroller den avtalte korridorrunden, og før bare den som utført",
+          "konsekvensTekst": "Du går runden, tar berøringspunktene og kontrollerer korridoren. Den blir ført som utført av deg. Lageret er fortsatt sperret og ikke rengjort.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d9_status": "korridor_utfort",
+              "ren_u2_korridor_utfort": true
+            },
+            "meters": {
+              "energi": -3,
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "meld_hindring",
+          "tekst": "Meld at korridoren ikke kan tas nå og be om ny prioritering",
+          "konsekvensTekst": "Kari får beskjed om at runden ikke er utført. Både den planlagte korridoren og det sperrede lageret står uten kvittering.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d9_status": "korridor_utsatt"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d9_belastning",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 9,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Ikke gjør en uavklart løfteoppgave til et løfte",
+      "tekst": "Amina viser hvor tralla kan stå uten å blokkere passasjen. Den tunge hylla står fortsatt fast. Kari vil vite om lageroppgaven kan settes på listen igjen, men ingen har avtalt hvem som skal sikre tilkomsten.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_spor": "belastning"
+        }
+      },
+      "valg": [
+        {
+          "id": "avgrens_oppgave",
+          "tekst": "Beskriv hva du kan gjøre uten tunge løft og be om et trygt opplegg",
+          "konsekvensTekst": "Du gir Kari en konkret avgrensning. Hun tar metodespørsmålet videre; lageret er fremdeles ikke frigjort eller vasket.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d9_status": "metode_uavklart"
+            },
+            "meters": {
+              "integritet": 2
+            },
+            "relasjoner": {
+              "erfaren_kollega": 2
+            }
+          }
+        },
+        {
+          "id": "stopp_uforsvarlig",
+          "tekst": "La lagerarbeidet stå på vent til ansvar og utstyr er bekreftet",
+          "konsekvensTekst": "Oppgaven står på vent med årsak og ansvar uavklart. Det er ingen falsk ferdigmelding og ingen ny skade som er funnet på.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d9_status": "sikker_tilkomst_venter"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d9_kari_mottak",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 9,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Rapporten må ha en mottaker",
+      "tekst": "Ved vaktslutt spør Kari etter status fra din runde. Gårsdagens plan er allerede registrert; det som mangler, er en tydelig overlevering av dagens utførte arbeid og åpne punkter. Du må velge om du overleverer statusen nå eller lar mottaket stå uavklart.",
+      "valg": [
+        {
+          "id": "overlever_kari",
+          "tekst": "Gå gjennom den faktiske statusen med Kari og få bekreftet at hun har mottatt den",
+          "konsekvensTekst": "Kari leser oppsummeringen og bekrefter mottak. Det er mottaket som er dokumentert; ingen nye rom eller driftstiltak blir automatisk ferdige.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_kari_mottatt": true
+            },
+            "relasjoner": {
+              "driftsleder": 2
+            },
+            "meters": {
+              "synlighet": 2
+            }
+          }
+        },
+        {
+          "id": "behold_utkast",
+          "tekst": "Lagre notatet og la mottaket stå åpent til du får snakket med Kari",
+          "konsekvensTekst": "Notatet er lagret, men Kari har ennå ikke bekreftet mottak. Ingen rom eller utstyrstiltak er kvittert ut på grunn av notatet.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_kari_mottak_venter": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
     }
   ]
 }
