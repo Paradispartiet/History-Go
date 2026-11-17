@@ -88,7 +88,7 @@
         const label = node("label", meal.title + " · Porsjoner: ");
         const input = document.createElement("input");
         input.type = "number"; input.min = "0"; input.max = "99"; input.step = "1";
-        input.id = "civiMealPlanCount" + index; label.htmlFor = input.id;
+        input.id = "civiMealPlanCount" + index; label.setAttribute("for", input.id);
         input.value = String(saved?.ok ? saved.servings[meal.mealId] || 0 : 0);
         input.setAttribute("data-plan-meal", meal.mealId);
         input.style.cssText = "min-height:44px;width:5rem;max-width:100%;box-sizing:border-box;";
