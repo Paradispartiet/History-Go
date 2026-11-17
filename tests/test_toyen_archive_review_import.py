@@ -84,6 +84,8 @@ class ArchiveReviewImportTests(unittest.TestCase):
                           ('archivalIdentifier','A-20138/Ua/0004/055'),
                           ('canonicalCurrentAsset','bilder/objects/other.jpg'),
                           ('sourceOriginalDownloaded',True),
+                          ('asset','askim_apparatpult_1916'),
+                          ('recordedYear',1918),
                           ('archivalCatalogTitle','Askim transformatorstasjon, apparatpult')]:
             with self.subTest(field=field), tempfile.TemporaryDirectory() as t:
                 root=Path(t)
@@ -114,6 +116,17 @@ class ArchiveReviewImportTests(unittest.TestCase):
                 # Even a valid-looking directory outside this repo is not review-safe.
                 with self.assertRaises(ValueError):
                     module.stage_for_review(manifest(*record),record[1],src,Path(external)/'elsewhere',root)
+            # Tighten the threshold for this test; avoid allocating an enormous image.
+            original_limit = module.MAX_PIXELS
+            try:
+                module.MAX_PIXELS = 10_000  # 127 x 89 exceeds this threshold.
+                with self.assertRaises(ValueError):
+                    module.stage_for_review(
+                        manifest(*record), record[1], src,
+                        root/'artifacts'/'toyen-archive-review'/'pixel-limit', root)
+                self.assertFalse((root/'artifacts'/'toyen-archive-review'/'pixel-limit').exists())
+            finally:
+                module.MAX_PIXELS = original_limit
 
 
 if __name__=='__main__':
