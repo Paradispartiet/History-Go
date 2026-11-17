@@ -33,7 +33,15 @@ async function scenario(engine, width, height) {
   await context.route('**/data/Civication/economy/nok-budget-prototype-2026.json', route =>
     route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(approved) }));
   const page = await context.newPage();
-  const errors = []; page.on('pageerror', error => errors.push(error.message));
+  const errors = [];
+  const pageErrors = [];
+  const failedRequests = [];
+  page.on('pageerror', error => {
+    errors.push(error.message);
+    pageErrors.push({ message: error.message, stack: error.stack, url: page.url(), at: Date.now() });
+  });
+  page.on('requestfailed', request => failedRequests.push({ url: request.url(),
+    error: request.failure()?.errorText, at: Date.now() }));
   const navigations = [];
   page.on('framenavigated', frame => { if (frame === page.mainFrame()) navigations.push(frame.url()); });
   page.on('crash', () => errors.push('NOK browser renderer crashed'));
@@ -59,6 +67,12 @@ async function scenario(engine, width, height) {
     await page.evaluate(async () => {
       const active = window.CivicationState?.getActivePosition?.();
       if (active) await window.CivicationRoleModelRuntime?.loadRoleModel?.(active);
+      const privateBuilder = window.CivicationPrivatePhaseMailBuilder;
+      if (!privateBuilder?.loadPhaseFamily || !Array.isArray(privateBuilder.PRIVATE_PHASES))
+        throw new Error('Private phase source loader is unavailable');
+      const families = await Promise.all(privateBuilder.PRIVATE_PHASES.map(phase => privateBuilder.loadPhaseFamily(phase)));
+      if (families.some(family => !family)) throw new Error('A required private phase source failed to load');
+      await window.CivicationDailyMailBuilder?.prewarm?.(active);
     });
     await page.waitForLoadState('networkidle', { timeout: 90000 });
     assert.ok(count > 0, 'required place sources finish before navigation, avoiding cancelled WebKit fetches');
@@ -261,7 +275,7 @@ async function scenario(engine, width, height) {
     return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 500, addedStock,
       monthlyPaidCents: cashFlow.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };
   } catch (error) {
-    console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors }));
+    console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors, pageErrors, failedRequests }));
     console.error('CIVI_NOK_FAILURE_STATE:' + JSON.stringify(await page.evaluate(() => ({
       url: location.href, origin: location.origin, readyState: document.readyState, title: document.title,
       body: document.body?.textContent?.slice(0, 500),
