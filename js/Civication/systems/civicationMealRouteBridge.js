@@ -11,6 +11,18 @@
     return Number(value);
   }
   function fail(status) { return { status, offers: [], routesConsidered: 0 }; }
+  function freshRoute(route, nowMillis) {
+    const proof = route?.routeEvidence;
+    const checked = Date.parse(proof?.checkedAt || "");
+    const expires = Date.parse(proof?.validUntil || "");
+    const geometry = route?.roadGeometry;
+    return proof?.sourceUrl?.startsWith("https://api.openrouteservice.org/v2/directions/") &&
+      Number.isFinite(checked) && Number.isFinite(expires) &&
+      checked <= nowMillis && expires > nowMillis &&
+      geometry?.type === "LineString" &&
+      Array.isArray(geometry.coordinates) && geometry.coordinates.length >= 2 &&
+      typeof route.geometryRevision === "string" && !!route.geometryRevision;
+  }
 
   function build(options) {
     const args = options && typeof options === "object" ? options : {};
@@ -39,7 +51,7 @@
       item && item.jobKey === jobKey &&
       item.status === "planned" && item.kind === "commute" &&
       item.visibility === "private" && item.weekDay === weekday &&
-      item.routingStatus === "verified_route");
+      item.routingStatus === "verified_route" && freshRoute(item, nowMillis));
     const chosenRoutes = args.routeId
       ? savedRoutes.filter(item => item.id === args.routeId) : savedRoutes;
     if (!chosenRoutes.length) return fail("verified_commute_required");
