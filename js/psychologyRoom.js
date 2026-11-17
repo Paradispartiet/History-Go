@@ -371,6 +371,7 @@
           typeof item.from !== "string" || typeof item.to !== "string" ||
           item.from === item.to || item.from.length > 129 || item.to.length > 129 ||
           !selected.has(item.from) || !selected.has(item.to) ||
+          typeof item.kind !== "string" ||
           !Object.prototype.hasOwnProperty.call(INNER_MAP_RELATIONS, item.kind)) continue;
       const key = innerMapPairKey(item.from, item.to);
       if (seen.has(key)) continue;
