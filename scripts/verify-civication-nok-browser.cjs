@@ -189,6 +189,7 @@ async function scenario(engine, width, height) {
     await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), saved, 'reload neither buys, consumes nor pays again');
     // Explicit job-loss boundary; application and acceptance use real controls.
+    const priorOffers = await page.evaluate(() => window.CivicationJobs.getOffers());
     await page.evaluate(() => {
       window.CivicationState.setActivePosition(null);
       window.CivicationState.setState({ career: { activeJob: null } });
@@ -207,7 +208,9 @@ async function scenario(engine, width, height) {
     assert.equal(newOffer.nok_job_id, reapplyJob.id);
     assert.equal(newOffer.nok_employment_percent, 50);
     assert.ok(newOffer.nok_application_id);
-    assert.equal((await page.evaluate(() => window.CivicationJobs.getOffers())).length, 7);
+    const withApplication = await page.evaluate(() => window.CivicationJobs.getOffers());
+    assert.equal(withApplication.length, priorOffers.length + 1);
+    assert.deepEqual(withApplication.slice(1), priorOffers, 'all historical offers survive the explicit application');
     assert.equal(JSON.stringify(await wallet()), saved, 'application never pays or mutates wallet');
     screenshots.push(await capture('new-application-terms'));
     await page.locator('#civiOfferAccept').click();
@@ -220,7 +223,7 @@ async function scenario(engine, width, height) {
     assert.equal(JSON.stringify(await wallet()), saved);
     const restored = await page.evaluate(() => ({ active: window.CivicationState.getActivePosition(), offers: window.CivicationJobs.getOffers() }));
     assert.equal(restored.active.nok_salary_contract.offerKey, newOffer.offer_key);
-    assert.equal(restored.offers.length, 7);
+    assert.equal(restored.offers.length, priorOffers.length + 1);
     assert.equal(restored.offers.filter(o => o.status === 'accepted').length, 2, 'prior accepted offer remains historical');
     assert.deepEqual(errors, [], 'no uncaught page errors');
     return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock,
