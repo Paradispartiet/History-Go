@@ -314,3 +314,24 @@ kontantstrømmen er identisk før/etter måltidet. Den venter også på den akti
 rollemodellens faktiske innlasting før reload, for å unngå å avbryte en pågående
 WebKit-forespørsel. Ingen pageerror filtreres bort. Ny CI-/bildekontroll må gjøres
 på endringens faktiske head.
+
+### Samtidig innlasting og reload
+
+Private fasefamilier bruker nå det eksisterende felleslagerets `fetchJson`-API.
+Tidligere ble det sjekket etter et ikke-eksisterende `load`-API, slik at builderen
+gikk direkte til fetch og utenom delt håndtering av samtidige forespørsler.
+Det endrer ikke meldingsvalg, spillerdata eller økonomi. Standalone uten lageret
+bruker fortsatt egen fetch med samme feilbehandling.
+
+Den eksisterende private-phase-mailers-testen lar to builder-kall og én direkte
+lagerlesing be om morgenfilen samtidig. Den kontrollerer én faktisk filhenting,
+samme lastede objekt hos alle tre, delt cache og én henting for hver av de seks
+private fasefamiliene gjennom hele dagsbyggeren. Eksisterende private-/jobb-
+kanalgrenser og progresjon kontrolleres fortsatt. Profilbroens standalone-test
+kjøres med den virkelige places-indeksen tilgjengelig.
+
+Browserens reload-grense venter uttrykkelig på private familier og dagsbyggerens
+forhåndslasting, i tillegg til steder, rollemodell og nettverksro. Feil ved lasting
+og pageerror blir ikke filtrert; stack og mislykkede URL-er beholdes i diagnostikk.
+Dette er en avgrenset testgrense, ikke bevis på at alle senere kilder i appen er
+lastet eller at en vilkårlig avbrutt nettverksforespørsel alltid kan gjenopptas.
