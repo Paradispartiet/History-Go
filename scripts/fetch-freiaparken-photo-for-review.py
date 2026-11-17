@@ -18,7 +18,7 @@ from PIL import Image, ImageOps
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "reports/collection-images/freiaparken-photo-2024-commons-candidate.json"
 
-def import_for_review(manifest: dict, directory: Path) -> dict:
+def import_for_review(manifest: dict, directory: Path, original_path: Path | None = None) -> dict:
     if manifest.get("publishable") is not False or manifest.get("editorialApproval") is not False:
         raise ValueError("photo must remain unapproved")
     if manifest.get("reviewStatus") != "SOURCE_AND_IMAGE_VISUALLY_VERIFIED_BINARY_NOT_STAGED":
@@ -26,14 +26,21 @@ def import_for_review(manifest: dict, directory: Path) -> dict:
     url = manifest["originalFileUrl"]
     if not url.startswith("https://upload.wikimedia.org/wikipedia/commons/"):
         raise ValueError("source URL outside Wikimedia Commons original uploads")
-    req = urllib.request.Request(url, headers={
-        "User-Agent": "HistoryGo-CollectionImageReview/1.0 (source verification; GitHub Actions)",
-        "Accept": "image/jpeg",
-    })
-    with urllib.request.urlopen(req, timeout=60) as response:
-        if response.geturl() != url:
-            raise ValueError("unexpected source redirect: "+response.geturl())
-        payload = response.read(8_000_001)
+    if original_path is not None:
+        # A human can download an archival source once and supply the bytes
+        # without repeatedly hitting Wikimedia's rate-limited CDN.
+        if not original_path.is_file() or original_path.stat().st_size > 8_000_000:
+            raise ValueError("offline original missing or exceeds review size limit")
+        payload = original_path.read_bytes()
+    else:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "HistoryGo-CollectionImageReview/1.0 (source verification; GitHub Actions)",
+            "Accept": "image/jpeg",
+        })
+        with urllib.request.urlopen(req, timeout=60) as response:
+            if response.geturl() != url:
+                raise ValueError("unexpected source redirect: "+response.geturl())
+            payload = response.read(8_000_001)
     if len(payload) > 8_000_000:
         raise ValueError("source image exceeds review size limit")
     digest = hashlib.sha1(payload).hexdigest()
@@ -83,9 +90,10 @@ def import_for_review(manifest: dict, directory: Path) -> dict:
 def main() -> None:
     parser=argparse.ArgumentParser()
     parser.add_argument("--out",type=Path,default=ROOT/"artifacts/freiaparken-photo-source-review")
+    parser.add_argument("--original",type=Path,help="locally saved exact Commons original, verified by SHA-1 (no network)")
     args=parser.parse_args()
     manifest=json.loads(MANIFEST.read_text(encoding="utf8"))
-    print(json.dumps(import_for_review(manifest,args.out),ensure_ascii=False,indent=2))
+    print(json.dumps(import_for_review(manifest,args.out,args.original),ensure_ascii=False,indent=2))
 
 if __name__=="__main__":
     main()
