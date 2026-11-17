@@ -170,8 +170,12 @@ async function checkpoint(w) {
   assert.equal(wallet.last_tick_day_index, 1);
   assert.equal(wallet.balance, (12525 + wallet.nok_v1.payrollLedger.reduce((n, p) => n + p.grossCents - p.taxCents, 0) - 3 * 1009000 - 2 * 65500 - 3 * 61700 - 6970) / 100);
   assert.equal(w.CivicationState.getActivePosition(), null);
-  assert.equal(w.CivicationJobs.getOffers().length, 1);
-  assert.equal(w.CivicationJobs.getOffers()[0].status, 'accepted', 'restored accepted offers never respawn after job loss');
+  const restoredOffers = w.CivicationJobs.getOffers();
+  assert.equal(restoredOffers.length, 2, 'full-time and part-time offer history is restored');
+  assert.equal(restoredOffers.find(o => o.nok_employment_percent === 100).status, 'accepted');
+  assert.equal(restoredOffers.find(o => o.nok_employment_percent === 50).status, 'withdrawn');
+  assert.equal(restoredOffers.filter(o => o.status === 'pending').length, 0,
+    'accepted and withdrawn variants never respawn after restore/job loss');
   for (const key of ['hg_job_offers_v1', 'quiz_progress', 'hg_learning_log_v1', 'hg_pc_inventory_v1']) {
     const remote = db.record.payload.state[key];
     const local = JSON.stringify({ conflict: key });
