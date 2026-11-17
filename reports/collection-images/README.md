@@ -109,3 +109,29 @@ Programmet sjekker opprinnelig SHA-1, filstørrelse, JPEG-format og bildeformat 
 **Rettighetsport:** Fotografens CC BY-SA 4.0-lisens er identifisert, men enkelte avbildede skulpturer kan ha egne rettigheter. Norsk åndsverklov §§ 30–31 skiller mellom underordnet medtakelse og gjengivelse av verk i offentlig rom og har egne begrensninger når verket er hovedmotiv og brukes ervervsmessig. Parken er ikke alminnelig offentlig tilgjengelig til enhver tid. Opphavsrettslig vurdering og bildekreditering i PlaceCard er derfor **fortsatt uavklart**; fotokandidaten har `editorialApproval: false`, `publishable: false`.
 
 Bildeintegritets-PASS eller lokal WebP-produksjon er **ikke** tillatelse til å endre `structures[].image` eller publisere fotografiet.
+
+
+## Tøyen – trygg lokal originalgjennomgang (17. november 2026)
+
+De katalogførte Tøyen-bildene fra Oslo byarkiv er **ikke** nedlastet eller visuelt godkjent i denne PR-en. Eksakte kilder:
+
+- 1916: `A-20138/Ua/0004/054` (Tøyen apparatpult), ikke naboarkivnummer `/055` som gjelder Askim.
+- 1918: `A-20138/Ua/0004/091` (transformatormotorkjerne); katalogens motivfelt sier «person viser fram motoren».
+
+Når originalfiler er innhentet separat fra arkivet, kan de legges i **privat, ignorert gjennomgangsmappe**, uten at noe publiseres:
+
+```bash
+python3 -m pip install Pillow==11.3.0
+python3 scripts/stage_toyen_archive_for_review.py --asset 1916-apparatpult \
+  --original /path/to/oslo-byarkiv-054-original.jpg \
+  --out artifacts/toyen-archive-review/1916
+python3 scripts/stage_toyen_archive_for_review.py --asset 1918-transformatorkjerne \
+  --original /path/to/oslo-byarkiv-091-original.jpg \
+  --out artifacts/toyen-archive-review/1918
+```
+
+Skriptet leser kildekandidatens arkivnummer og katalogtittel, avviser falsk publiseringsstatus, kontrollerer bildefilens lesbarhet og tar SHA-256/dimensjoner. Det kopierer originale lokale bytes og produserer en **ubeskåret 900 × 600 WebP** for kontroll, sammen med `review_receipt.json`. Katalogidentiteten **kan ikke bevises av innlevert fil alene**; derfor forblir `sourceIsAuthenticated: false`, `visualCatalogComparisonDone: false`, `editorialApproval: false`, `publishable: false`.
+
+Utdata kan ikke skrives i `bilder/` eller `data/`; under repoet tillates bare `artifacts/`, og overstyring av eksisterende revisjonsfiler er sperret. `/artifacts/toyen-archive-review/` er ignorert av Git. Ny CI-workflow `.github/workflows/toyen-archive-photo-review.yml` tester både 1916 og 1918 **offline** med genererte testbilder, uten å påstå at originalene er hentet.
+
+Før eventuell promoteringsvurdering må en uavhengig kontrollør bekrefte at *akkurat de tilførte bytene* svarer til riktig Oslobilder-arkivpost og at rettigheter, synlig kreditering og PlaceCard-utsnitt er godkjent på mobil og desktop. **Ingen canonical Object-bilder er endret.**
