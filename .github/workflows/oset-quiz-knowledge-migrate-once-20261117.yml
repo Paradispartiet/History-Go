@@ -27,6 +27,8 @@ jobs:
           npm ci --no-audit --no-fund
           node scripts/build-quiz-production-context.mjs --category historie --target frysjadammen --output data/quiz/production_context/historie/frysjadammen.json
           node scripts/build-quiz-production-context.mjs --category historie --target frysjadammen --output data/quiz/production_context/historie/frysjadammen.json --check
+          node scripts/build-fagverk-release-manifest.mjs --output data/fagverk/fagverk_release.json
+          node scripts/build-fagverk-release-manifest.mjs --output data/fagverk/fagverk_release.json --check
       - name: Generate Knowledge and QuizCard with source and ID parity
         run: |
           npm run knowledge:canonical:write
@@ -47,8 +49,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/oset-quiz-knowledge-migrate-once-20261117.yml
           git status --short
-          unexpected="$(git status --porcelain --untracked-files=all | sed -E 's/^.. //' | grep -vE '^(\.github/workflows/oset-quiz-knowledge-migrate-once-20261117\.yml|data/quiz/production_context/historie/frysjadammen\.json|data/quiz/historie/frysjadammen_sets\.json|data/quizcards/historie/oset_slusebru_quizcard_v1\.json|data/knowledge/(knowledge_units\.generated\.json|knowledge_emne_review_queue\.generated\.json)|reports/knowledge-id-backfill\.json)$' || true)"
+          unexpected="$(git status --porcelain --untracked-files=all | sed -E 's/^.. //' | grep -vE '^(\.github/workflows/oset-quiz-knowledge-migrate-once-20261117\.yml|data/quiz/production_context/historie/frysjadammen\.json|data/quiz/historie/frysjadammen_sets\.json|data/quizcards/historie/oset_slusebru_quizcard_v1\.json|data/fagverk/fagverk_release\.json|data/knowledge/(knowledge_units\.generated\.json|knowledge_emne_review_queue\.generated\.json)|reports/knowledge-id-backfill\.json)$' || true)"
           if [ -n "$unexpected" ]; then echo "Unexpected changed files: $unexpected"; exit 1; fi
+          git add data/fagverk/fagverk_release.json
           git add data/quiz/production_context/historie/frysjadammen.json data/quiz/historie/frysjadammen_sets.json data/quizcards/historie/oset_slusebru_quizcard_v1.json data/knowledge/knowledge_units.generated.json data/knowledge/knowledge_emne_review_queue.generated.json reports/knowledge-id-backfill.json
           git commit -m "feat(oset): canonical 4x7 Knowledge and source-exact QuizCard with 32 archived legacy claims"
           git push origin "HEAD:refs/heads/$HEAD_REF"
