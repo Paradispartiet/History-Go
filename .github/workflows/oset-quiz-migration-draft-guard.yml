@@ -10,6 +10,9 @@ on:
       - ".github/workflows/oset-quiz-migration-draft-guard.yml"
 permissions:
   contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   review:
     runs-on: ubuntu-latest
