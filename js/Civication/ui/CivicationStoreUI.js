@@ -75,6 +75,36 @@
       });
       row.appendChild(use); panel.appendChild(row);
     }
+    const meals = shop.getNokMeals?.() || [];
+    if (meals.length) {
+      panel.appendChild(node("h4", "Lag et måltid"));
+      panel.appendChild(node("p", "Valgte spillporsjoner, ikke en full kostplan. Mengder gjelder tørre/rå varer. Referansekostnad bruker profilens pakningspriser; maten er allerede betalt ved kjøp."));
+    }
+    for (const meal of meals) {
+      const row = node("div", "");
+      row.appendChild(node("strong", meal.title));
+      row.appendChild(node("p", meal.ingredients.map(i => `${i.title}: ${i.amount} ${i.baseUnit}`
+        + (i.missing ? ` (mangler ${i.missing} ${i.baseUnit})` : "")).join(" · ")));
+      row.appendChild(node("p", "Referansekostnad: " + formatNok(meal.referenceCostCents / 100) + " kr · Ingen ny betaling"));
+      const prepare = /** @type {HTMLButtonElement} */ (node("button", "Lag måltidet"));
+      prepare.type = "button"; prepare.className = "btn";
+      prepare.setAttribute("data-prepare-meal", meal.mealId); prepare.disabled = !meal.canPrepare;
+      const requestId = shop.createPurchaseRequest();
+      prepare.addEventListener("click", async () => {
+        if (!prepare.isConnected || prepare.disabled) return;
+        prepare.disabled = true;
+        try {
+          const result = shop.consumeNokMeal(meal.mealId, requestId);
+          purchaseMessage = result?.ok ? "Måltidet er registrert. Ingrediensene er brukt uten ny betaling."
+            : result?.reason === "NOT_ENOUGH_STOCK" ? "Du mangler ingredienser. Ingen varer er brukt." : "Måltidet kunne ikke registreres.";
+        } catch { purchaseMessage = "Måltidet kunne ikke bekreftes. Sjekk beholdningen før nytt forsøk."; }
+        await renderStorePanel();
+        const next = /** @type {HTMLButtonElement|undefined} */ (Array.from(host.querySelectorAll("[data-prepare-meal]"))
+          .find(b => b.getAttribute("data-prepare-meal") === meal.mealId));
+        (next && !next.disabled ? next : host.querySelector("h3"))?.focus({ preventScroll: true });
+      });
+      row.appendChild(prepare); panel.appendChild(row);
+    }
     const status = node("p", purchaseMessage); status.setAttribute("role", "status"); panel.appendChild(status);
     host.replaceChildren(panel);
   }

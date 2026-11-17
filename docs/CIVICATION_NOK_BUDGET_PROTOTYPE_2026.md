@@ -276,3 +276,41 @@ uttrykkelig tilstandsgrense, ikke en test av hele oppsigelses-/gjenoppbyggingsl�
 Nettleserreisen bruker samme uttrykkelige grense og prøver ny søknad og aksept
 via vanlige knapper i alle tre oppsett, med historikk og saldo bevart ved reload.
 Resultat for ny head må kontrolleres før nettleserreisen kan regnes som bestått.
+
+## Måltider fra innkjøpte varer
+
+To uttrykkelige spillporsjoner ligger i profilens `shopMeals`:
+
+| Måltid | Rå/tørre pakningsmengder | Referansekostnad |
+| --- | --- | ---: |
+| Havregrøt med melk | 80 g havregryn + 250 ml melk | 7,10 kr |
+| Pasta med linser og gulrot | 100 g spaghetti + 75 g tørre linser + 100 g gulrot | 9,31 kr |
+
+Kostnaden er summen av andeler av profilens daterte pakningspriser, avrundet én
+gang til øre. Dette er ingen ny betaling eller FIFO-regnskap over historiske
+innkjøpspriser. Mengdene er valgte spillporsjoner, ikke ernæringsråd, tilberedt
+vekt eller et fullstendig matbudsjett. Tilberedningstid, vann, krydder, energibruk,
+metthet og mattrygghet simuleres ikke av disse handlingene.
+
+Butikkpanelet viser ingredienser, manglende mengder og referansekostnad før «Lag
+måltidet». `consumeNokMeal` leser fersk beholdning for alle ingredienser før én
+samlet wallet-skriving. Mangler én ingrediens, brukes ingen av de andre.
+Åpne rester, gjenværende pakninger og måltidshistorikk lagres sammen. Samme
+handlings-ID gjentar ikke forbruk og kan ikke gjenbrukes som kjøp eller enkeltvare-
+forbruk. Ingen pengebonus, belastning eller ekstra utgiftspost opprettes.
+Eide varer kan fortsatt brukes uten ny butikktilgang. Gamle frosne profiler får
+ikke måltider automatisk; profiler uten `shopMeals` viser ingen ny seksjon.
+
+Den utvidede forbrukstesten kontrollerer begge måltiders eksakte referansebeløp,
+faktisk UI-klikk/fokus, fem pakningskjøp til 133 kr, saldo 67 kr fra 200 kr,
+rester 1020 g havregryn / 750 ml melk / 400 g pasta / 825 g linser / 900 g gulrot,
+manglende ingrediens uten delvis bruk, gamle knapper med utdatert beholdning,
+duplikater, krysshandlinger, modulinnlasting og ugyldig oppskrift. Referansekostnad
+kommer ikke med i månedsoversiktens betalinger.
+
+Nettleserreisen er utvidet med kjøp av havregryn, måltidsknapp og reload i alle tre
+oppsett. Forventet slutt er 9 770,00 kr, 1020 g havregryn og 500 ml melk; måneds-
+kontantstrømmen er identisk før/etter måltidet. Den venter også på den aktive
+rollemodellens faktiske innlasting før reload, for å unngå å avbryte en pågående
+WebKit-forespørsel. Ingen pageerror filtreres bort. Ny CI-/bildekontroll må gjøres
+på endringens faktiske head.

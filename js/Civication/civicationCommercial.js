@@ -509,6 +509,82 @@
     return { ok: true, productId, remaining, amount, baseUnit: product.baseUnit };
   }
 
+  // Recipe amounts are explicit game portions in raw package units.
+  // Reference cost describes the ingredients, never a second wallet charge.
+  /** @returns {CiviCommercialRecord[]} */
+  function getNokMeals() {
+    const meals = window.CivicationState?.getWallet?.()?.nok_v1?.config?.shopMeals;
+    return Array.isArray(meals) ? meals.map(m => getNokMealPreview(m?.id)).filter(m => m.ok) : [];
+  }
+
+  /** @returns {CiviCommercialRecord} */
+  function getNokMealPreview(mealId, wallet = window.CivicationState?.getWallet?.()) {
+    const nok = wallet?.nok_v1;
+    if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+    const matches = Array.isArray(nok.config?.shopMeals) ? nok.config.shopMeals.filter(m => m?.id === mealId) : [];
+    const meal = matches[0];
+    if (matches.length !== 1 || typeof meal.title !== "string" || !meal.title.trim()
+        || !Array.isArray(meal.ingredients) || !meal.ingredients.length
+        || new Set(meal.ingredients.map(i => i?.productId)).size !== meal.ingredients.length)
+      return { ok: false, reason: "MEAL_NOT_MAPPED" };
+    const ingredients = [];
+    let referenceCents = 0;
+    for (const item of meal.ingredients) {
+      const stock = getNokProductStock(item?.productId, wallet);
+      if (!stock.ok || !Number.isSafeInteger(item?.amount) || item.amount <= 0 || item.baseUnit !== stock.product.baseUnit)
+        return { ok: false, reason: "MEAL_NOT_MAPPED" };
+      const product = stock.product;
+      const cents = Math.round(product.priceNok * 100);
+      if (typeof product.priceNok !== "number" || !Number.isSafeInteger(cents) || cents <= 0
+          || Math.abs(product.priceNok * 100 - cents) > 0.000001
+          || typeof product.sourceId !== "string" || !product.sourceId.startsWith("https://"))
+        return { ok: false, reason: "NOK_PRICE_NOT_MAPPED" };
+      referenceCents += cents * item.amount / product.packageQuantity;
+      ingredients.push({ productId: product.id, title: product.title, amount: item.amount,
+        baseUnit: item.baseUnit, available: stock.available, missing: Math.max(0, item.amount - stock.available),
+        sourceId: product.sourceId, priceCheckedOn: product.checkedOn });
+    }
+    if (!Number.isSafeInteger(Math.round(referenceCents))) return { ok: false, reason: "NOK_PRICE_NOT_MAPPED" };
+    return { ok: true, mealId, title: meal.title, ingredients, referenceCostCents: Math.round(referenceCents),
+      canPrepare: ingredients.every(i => i.missing === 0) };
+  }
+
+  /** @returns {CiviCommercialRecord} */
+  function consumeNokMeal(mealId, requestId) {
+    const owner = window.CivicationState;
+    const wallet = owner?.getWallet?.();
+    const view = getNokMealPreview(mealId, wallet);
+    if (!view.ok) return view;
+    if (typeof requestId !== "string" || !requestId.trim() || requestId.length > 128)
+      return { ok: false, reason: "CONSUMPTION_REQUEST_REQUIRED" };
+    const shopping = wallet.nok_v1.shopping || { purchases: [], quantities: {} };
+    const used = shopping.consumptions ?? [];
+    if (!Array.isArray(used) || used.some(c => !c || typeof c.requestId !== "string")
+        || new Set(used.map(c => c.requestId)).size !== used.length
+        || !Array.isArray(shopping.purchases) || shopping.purchases.some(p => !p || typeof p.requestId !== "string")
+        || new Set(shopping.purchases.map(p => p.requestId)).size !== shopping.purchases.length)
+      return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    if (shopping.purchases.some(p => p.requestId === requestId)) return { ok: false, reason: "ACTION_REQUEST_CONFLICT" };
+    const previous = used.find(c => c.requestId === requestId);
+    if (previous) return previous.kind === "meal" && previous.mealId === mealId ? { ok: true, skipped: true }
+      : { ok: false, reason: "ACTION_REQUEST_CONFLICT" };
+    if (!view.canPrepare) return { ok: false, reason: "NOT_ENOUGH_STOCK", ingredients: view.ingredients };
+    const date = window.CivicationCalendar?.getGameDate?.();
+    if (!date) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+    const quantities = { ...(shopping.quantities || {}) };
+    const openedUnits = { ...(shopping.openedUnits || {}) };
+    for (const item of view.ingredients) {
+      const stock = getNokProductStock(item.productId, wallet);
+      const remaining = stock.available - item.amount;
+      quantities[item.productId] = Math.floor(remaining / stock.product.packageQuantity);
+      openedUnits[item.productId] = remaining % stock.product.packageQuantity;
+    }
+    owner.updateWallet({ ...wallet, nok_v1: { ...wallet.nok_v1, shopping: { ...shopping, quantities, openedUnits,
+      consumptions: [...used, { requestId, kind: "meal", mealId, title: view.title, gameDateISO: date,
+        referenceCostCents: view.referenceCostCents, ingredients: view.ingredients.map(({ available, missing, ...item }) => item) }] } } });
+    return { ok: true, mealId, referenceCostCents: view.referenceCostCents };
+  }
+
   /** @param {string} packId @param {string} [requestId] @returns {CiviCommercialRecord} */
   function buyNokProduct(packId, requestId) {
     const owner = window.CivicationState;
@@ -647,6 +723,9 @@
     getNokProductStock,
     getNokPantry,
     consumeNokProduct,
+    getNokMeals,
+    getNokMealPreview,
+    consumeNokMeal,
     getWallet,
     getInv,
     getPacks,

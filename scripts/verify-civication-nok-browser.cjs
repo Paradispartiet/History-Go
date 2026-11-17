@@ -56,6 +56,10 @@ async function scenario(engine, width, height) {
         return places.length;
       } finally { clearTimeout(timer); }
     });
+    await page.evaluate(async () => {
+      const active = window.CivicationState?.getActivePosition?.();
+      if (active) await window.CivicationRoleModelRuntime?.loadRoleModel?.(active);
+    });
     assert.ok(count > 0, 'required place sources finish before navigation, avoiding cancelled WebKit fetches');
   }
   async function openSection(category, id) {
@@ -225,8 +229,35 @@ async function scenario(engine, width, height) {
     assert.equal(restored.active.nok_salary_contract.offerKey, newOffer.offer_key);
     assert.equal(restored.offers.length, priorOffers.length + 1);
     assert.equal(restored.offers.filter(o => o.status === 'accepted').length, 2, 'prior accepted offer remains historical');
+    await openSection('kommers', 'civiStoreSection');
+    await page.locator('[data-buy-pack="axa-oats-1100g"]').click();
+    await page.waitForFunction(() => window.HG_CiviShop.getNokProductStock('axa-oats-1100g').available === 1100);
+    assert.equal((await wallet()).balance, 9770);
+    const mealButton = page.locator('[data-prepare-meal="oats-with-milk"]');
+    await mealButton.scrollIntoViewIfNeeded();
+    assert.equal(await mealButton.isEnabled(), true);
+    screenshots.push(await capture('meal-ready'));
+    const cashBeforeMeal = await page.evaluate(() => window.CivicationNokBudget.monthlyCashFlow(
+      window.CivicationState.getWallet(), window.CivicationCalendar.getMonthPeriod().id,
+      window.CivicationCalendar.getGameDate));
+    await mealButton.click();
+    await page.waitForFunction(() => window.HG_CiviShop.getNokProductStock('axa-oats-1100g').available === 1020
+      && window.HG_CiviShop.getNokProductStock('tine-milk-1l').available === 500);
+    assert.equal((await wallet()).balance, 9770, 'meal consumes ingredients with no second payment');
+    const cashAfterMeal = await page.evaluate(() => window.CivicationNokBudget.monthlyCashFlow(
+      window.CivicationState.getWallet(), window.CivicationCalendar.getMonthPeriod().id,
+      window.CivicationCalendar.getGameDate));
+    assert.deepEqual(cashAfterMeal, cashBeforeMeal, 'ingredient reference cost is never an expense');
+    await page.locator('[data-prepare-meal="oats-with-milk"]').scrollIntoViewIfNeeded();
+    screenshots.push(await capture('meal-consumed'));
+    const mealSaved = JSON.stringify(await wallet());
+    await completeSourceLoading();
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!window.HG_CiviShop?.getNokMeals);
+    await completeSourceLoading();
+    assert.equal(JSON.stringify(await wallet()), mealSaved, 'meal inventory/history survives reload without repetition');
     assert.deepEqual(errors, [], 'no uncaught page errors');
-    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock,
+    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 500, addedStock,
       monthlyPaidCents: cashFlow.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };
   } catch (error) {
     console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors }));
