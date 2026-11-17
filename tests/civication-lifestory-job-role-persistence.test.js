@@ -168,8 +168,9 @@ async function main() {
 
   // Regression for real week-1 layoff: the shell can remove the job after a
   // completed role day, then tick the canonical calendar from 7 to 8. The
-  // new unemployed role's first playable day must not be skipped, but its
-  // global lifetime/checkpoint must follow day 8 exactly once.
+  // returned unemployed role's already-played chapters must be preserved:
+  // resume its next playable authored day, not reset it to day one. The
+  // global lifetime/checkpoint still follows day 8 exactly once.
   const layoff = await boot(JSON.stringify(workweekFixture),
     { career_id: "naeringsliv", role_key: "renholder", scope: "renholder", title: "Renholder" }, 7);
   assert.equal(layoff.current().rolle, "renholder");
@@ -178,13 +179,14 @@ async function main() {
   const afterLoss = layoff.current();
   assert.equal(afterLoss.kalenderDag, 7, "role swap itself does not advance the shell day");
   assert.equal(afterLoss.livsdag, 7, "role swap itself does not award a played day");
-  assert.equal(afterLoss.dag, 1, "unemployed role begins at its own authored day");
+  assert.equal(afterLoss.dag, unemployed.dag, "unemployed role resumes its previous authored day");
+  assert.deepEqual(afterLoss.arkiv, unemployed.arkiv, "former unemployed story archive survives job and layoff");
   assert.equal(afterLoss.dagFerdig, false, "new role has playable scenes");
   layoff.setCalendarDay(8);
   await waitUntil(() => layoff.current()?.kalenderDag === 8, "role switch follows actual day-8 shell rollover");
   const afterRollover = layoff.current();
   assert.equal(afterRollo.livsdag, 8, "global lifetime advances exactly once");
-  assert.equal(afterRollo.dag, 1, "unemployed first authored day is not skipped");
+  assert.equal(afterRollo.dag, unemployed.dag, "unemployed authored progress is not skipped or reset");
   assert.equal(afterRollo.dagFerdig, false, "unemployed scenes remain playable");
   assert.equal(afterRollo.rolleTilstander.renholder.dag, 7, "completed cleaner role remains archived");
   assert.equal(afterRollo.rolleTilstander.renholder.dagFerdig, true);
