@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Real PlaceCard photographic verification for the two previously image-blocked
+// Real PlaceCard verification for the two previously image-blocked
 // Akerselva places. Source image provenance and framing are both mandatory.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -19,17 +19,25 @@ const places=ids.map(id=>{
   assert.equal(runtime.frontImage,src.frontImage);
   assert.ok(src.image && src.frontImage && src.image!==src.frontImage);
   assert.equal(src.imageLicense,'CC BY-SA 4.0');
-  assert.ok(src.imageMeta?.pageUrl && src.frontImageMeta?.sourcePage);
+  assert.ok(src.imageMeta?.pageUrl);
   assert.ok(src.externalLinks.some(link=>link.url===src.imageMeta.pageUrl));
-  assert.ok(src.externalLinks.some(link=>link.url===src.frontImageMeta.sourcePage));
+  assert.match(src.imageMeta.sourceSha256||'',/^[a-f0-9]{64}$/u);
+  if(id!=='frysjadammen'){
+    assert.ok(src.frontImageMeta?.sourcePage);
+    assert.ok(src.externalLinks.some(link=>link.url===src.frontImageMeta.sourcePage));
+    assert.match(src.frontImageMeta.sourceSha256||'',/^[a-f0-9]{64}$/u);
+  }
   if(id==='frysjadammen'){
     assert.match(src.name,/Oset slusebru/);
-    for(const image of [src.image,src.frontImage]){
-      assert.ok(!image.startsWith('http'));
-      assert.ok(fs.statSync(path.join(root,image)).size>50000);
-    }
+    assert.match(src.image,/\.webp$/u);
+    assert.ok(fs.statSync(path.join(root,src.image)).size>50000);
+    assert.match(src.frontImage,/\.svg$/u);
+    assert.ok(fs.statSync(path.join(root,src.frontImage)).size>3000);
+    assert.ok(fs.readFileSync(path.join(root,src.frontImage),'utf8').includes('ILLUSTRASJON'));
     assert.equal(src.imageMeta.author,'Kjell Egil Sterten');
-    assert.match(src.frontImageMeta.transformation,/utsnitt/);
+    assert.equal(src.frontImageMeta.mediaType,'editorial_illustration');
+    assert.match(src.frontImageMeta.disclosure,/ikke fotografi/);
+    assert.match(src.frontImageMeta.transformation,/Original nykomponert/);
   }else{
     assert.match(src.name,/nedenfor Nydalsdammen/);
     assert.ok(src.image.startsWith('https://commons.wikimedia.org/'));
@@ -122,7 +130,7 @@ try{
         }
         await page.screenshot({path:out+'/'+mode.name+'-'+place.id+'.png',timeout:15000});
         console.log('PASS',mode.name,place.id,
-          'distinct photos, decoded, full width/height, licensed and sourced');
+          'distinct original media, decoded, full width/height, rights and attribution verified');
       }
     }finally{
       await context.close();await browser.close();

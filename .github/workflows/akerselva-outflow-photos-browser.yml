@@ -7,8 +7,9 @@ on:
       - "data/runtime/place-open/frysjadammen.json"
       - "data/runtime/place-open/stilla_nydalen.json"
       - "bilder/places/oset_slusebru_landscape.webp"
-      - "bilder/places/oset_slusebru_front_portrait.webp"
+      - "bilder/illustrasjoner/places/oset_slusebru_front_original.svg"
       - "tests/akerselva-outflow-two-place-image-browser.mjs"
+      - "scripts/check-distinct-place-photos.mjs"
       - ".github/workflows/akerselva-outflow-photos-browser.yml"
   workflow_dispatch:
 permissions:
@@ -25,8 +26,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Verify changed Place photos are present
-        run: node scripts/audit-place-images.mjs --mode=changed
+      - name: Verify changed Place images and genuine independent originals
+        run: |
+          node scripts/audit-place-images.mjs --mode=changed
+          node scripts/check-distinct-place-photos.mjs --place data/places/natur/oslo/places_oslo_natur_akerselvarute/frysjadammen.json --require-both
+          node scripts/check-distinct-place-photos.mjs --place data/places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json --require-both
       - name: Install dependencies and rebuild canonical browser payloads
         run: |
           npm ci --no-audit --no-fund
