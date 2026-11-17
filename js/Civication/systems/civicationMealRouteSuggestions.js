@@ -125,17 +125,23 @@
           routeId: route.id
         });
       } else {
-        // Shopping is allowed a short period before the intended meal.
-        // The plan must explicitly contain a meal whose ingredients are missing.
-        if (!shoppingIds.size || !Object.keys(meals).length ||
-            !verifiedRetail(place, nowMillis, shoppingIds)) continue;
-        const meal = Object.keys(windows).find(key =>
-          !!meals[key] &&
-          passMinutes >= Math.max(0, windows[key][0] - MAX_SHOPPING_LEAD_MINUTES) &&
-          passMinutes < windows[key][0]);
+        // Weekly shopping list alone does not prove which meal requires a product.
+        // The caller must supply explicit ingredient IDs for each day's meal.
+        if (!shoppingIds.size || !Object.keys(meals).length) continue;
+        const meal = Object.keys(windows).find(key => {
+          if (!meals[key]) return false;
+          const plannedTime = params.mealTimes?.[key] ?? Math.floor((windows[key][0] + windows[key][1]) / 2);
+          if (!validMinute(plannedTime) || plannedTime < windows[key][0] || plannedTime >= windows[key][1]) return false;
+          return passMinutes >= Math.max(0, plannedTime - MAX_SHOPPING_LEAD_MINUTES) &&
+            passMinutes < plannedTime;
+        });
         if (!meal || (Array.isArray(params.dismissedMeals) && params.dismissedMeals.includes(meal))) continue;
+        const perMeal = Array.isArray(params.ingredientIdsByMeal?.[meal])
+          ? params.ingredientIdsByMeal[meal] : [];
+        const required = new Set(perMeal.map(String).filter(id => shoppingIds.has(id)));
+        if (!required.size || !verifiedRetail(place, nowMillis, required)) continue;
         const inStock = place.listings.filter(item =>
-          shoppingIds.has(String(item.ingredientId || "")) &&
+          required.has(String(item.ingredientId || "")) &&
           item.stockState === "confirmed_available" &&
           fresh(item.stockEvidence, nowMillis) &&
           fresh(item.listingEvidence, nowMillis));
