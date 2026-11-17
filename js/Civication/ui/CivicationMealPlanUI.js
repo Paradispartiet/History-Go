@@ -117,7 +117,29 @@
       for (const item of shopping) create("li", item.name + ": " + item.quantity + " " + item.unit, list);
     }
     create("p", "Mengdene er veiledende. Ingen priser eller butikklager er verifisert, og varer du har hjemme er ikke trukket fra.", details).className = "muted";
-    create("p", "Valgene lagres privat i denne nettleseren. Butikkforslag langs ruter kommer som egen integrasjon.", host).className = "muted";
+    const routeInfo = create("details", null, host);
+    routeInfo.style.marginTop = "14px";
+    create("summary", "Mat langs min arbeidsrute", routeInfo);
+    const statusText = {
+      not_initialized: "Rutesystemet er ikke klart.",
+      invalid_game_day: "Spillets dagsplan er ikke klar.",
+      invalid_time: "Klokkeslett kunne ikke leses.",
+      weekly_menu_not_selected: "Velg en ukesmeny for den aktuelle spilluken.",
+      active_job_required: "Velg en jobb for å planlegge mat langs arbeidsruten.",
+      verified_commute_required: "Registrer hjem og arbeidsadresse og beregn en veirute i Karriere.",
+      verified_venues_required: "Ukesmeny og veirute er klare. Bekreftede Fysen-restauranter og butikker er ikke koblet til ennå.",
+      no_verified_offers: "Ingen dokumenterte mattilbud passer denne ruten og måltidstiden.",
+      opted_out: "Matforslag langs ruten er deaktivert."
+    };
+    let routeResult = { status: "not_initialized" };
+    try {
+      routeResult = window.CivicationMealRouteBridge?.build?.({ now: new Date(), places: [] }) || routeResult;
+    } catch (_) { routeResult = { status: "not_initialized" }; }
+    const status = create("p", statusText[routeResult.status] || "Ingen dokumenterte tilbud tilgjengelige.", routeInfo);
+    status.className = "muted";
+    status.setAttribute("role", "status");
+    create("p", "Ingen posisjon spores eller sendes for å vise denne statusen. Restaurant- og butikktilbud må verifiseres før de kan vises.", routeInfo).className = "muted";
+    create("p", "Valgene og handlelisten lagres privat i denne nettleseren.", host).className = "muted";
   }
   window.CivicationMealPlanUI = Object.freeze({ render });
   // The calendar is initialized by the asynchronous Civication shell loader.
