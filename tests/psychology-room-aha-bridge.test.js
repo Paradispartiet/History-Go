@@ -18,7 +18,7 @@ assert.match(room, /destination\.postMessage\(\{/);
 assert.doesNotMatch(room, /localStorage\.setItem\(["']aha_psychology_/);
 assert.match(room, /Kopier valgt tekst/);
 assert.match(entry, /20261117-psychology-inner-map-v1/);
-assert.match(fs.readFileSync("index.html", "utf8"), /psychology-room-entry\\.js\\?v=20261117-psychology-inner-map-v1/);
+assert.ok(fs.readFileSync("index.html", "utf8").includes("js/ui/psychology-room-entry.js?v=20261117-psychology-inner-map-v1"));
 assert.match(entry, /get\("room"\) === "psychology"/);
 
 const shareHandler = room.match(/ahaShareForm\?\.addEventListener\("submit",[\s\S]*?\n    \}\);/u)?.[0] || "";
