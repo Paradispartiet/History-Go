@@ -1,0 +1,41 @@
+name: Freiaparken Commons original review artifact
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/freiaparken-photo-source-review.yml'
+      - 'scripts/fetch-freiaparken-photo-for-review.py'
+      - 'tests/test_freiaparken_photo_review_fetch.py'
+      - 'reports/collection-images/freiaparken-photo-2024-commons-candidate.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  image-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image inspector
+        run: python -m pip install Pillow==11.3.0
+      - name: Test safe source fetch without network
+        run: python -m unittest discover -s tests -p 'test_freiaparken_photo_review_fetch.py' -v
+      - name: Fetch exact Commons photo and verify source SHA-1, dimensions and byte count
+        run: python scripts/fetch-freiaparken-photo-for-review.py --out artifacts/freiaparken-photo-source-review
+      - name: Upload unapproved review files without publishing to History GO
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: freiaparken-2024-source-photo-UNAPPROVED
+          path: artifacts/freiaparken-photo-source-review/*
+          if-no-files-found: error
+          retention-days: 7
