@@ -40,7 +40,7 @@ test('legacy candidates and the activated Scenekunst and Film underbadges are re
   assert.deepEqual(family.assets.map(a=>a.id),parent.sub);
   if(id==='scenekunst') assert.deepEqual(parent.subBadgeImages,activated);
   else if(id==='film_tv') assert.deepEqual(parent.subBadgeImages,{spillefilm:'bilder/merker/film_tv/undermerker/spillefilm-brodert-v2.webp',kortfilm:'bilder/merker/film_tv/undermerker/kortfilm-brodert-v1.webp',dokumentarfilm:'bilder/merker/film_tv/undermerker/dokumentarfilm-brodert-v1.webp',tv_serier:'bilder/merker/film_tv/undermerker/tv_serier-brodert-v1.webp',nyheter_og_reportasje:'bilder/merker/film_tv/undermerker/nyheter_og_reportasje-brodert-v1.webp',klassikere:'bilder/merker/film_tv/undermerker/klassikere-brodert-v1.webp',norsk_film_og_tv:'bilder/merker/film_tv/undermerker/norsk_film_og_tv-brodert-v1.webp',filmfestivaler:'bilder/merker/film_tv/undermerker/filmfestivaler-brodert-v3.webp',filmlocations:'bilder/merker/film_tv/undermerker/filmlocations-brodert-v3.webp',film_og_tv_produksjon:'bilder/merker/film_tv/undermerker/film_og_tv_produksjon-brodert-v1.webp',arkiv_og_kanon:'bilder/merker/film_tv/undermerker/arkiv_og_kanon-brodert-v1.webp',visningssteder:'bilder/merker/film_tv/undermerker/visningssteder-brodert-v1.webp'});
-  else if(id==='by') assert.deepEqual(parent.subBadgeImages,{klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v3.webp',modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v2.webp',funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp',brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v2.webp',postmodernisme:'bilder/merker/by/undermerker/postmodernisme-brodert-v2.webp',samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v2.webp',byplanlegging:'bilder/merker/by/undermerker/byplanlegging-brodert-v2.webp',...(infrastructureActive?{infrastruktur:'bilder/merker/by/undermerker/infrastruktur-brodert-v2.webp'}:{}),...(monumentActive?{monumenter_og_landemerker:'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v2.webp'}:{}),...(boligActive?{bolig_og_bomiljo:'bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp'}:{})});
+  else if(id==='by') assert.deepEqual(parent.subBadgeImages,{klassisk_arkitektur:'bilder/merker/by/undermerker/klassisk_arkitektur-brodert-v3.webp',modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v3.webp',funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp',brutalisme:'bilder/merker/by/undermerker/brutalisme-brodert-v2.webp',postmodernisme:'bilder/merker/by/undermerker/postmodernisme-brodert-v2.webp',samtidsarkitektur:'bilder/merker/by/undermerker/samtidsarkitektur-brodert-v2.webp',byplanlegging:'bilder/merker/by/undermerker/byplanlegging-brodert-v2.webp',...(infrastructureActive?{infrastruktur:'bilder/merker/by/undermerker/infrastruktur-brodert-v2.webp'}:{}),...(monumentActive?{monumenter_og_landemerker:'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v2.webp'}:{}),...(boligActive?{bolig_og_bomiljo:'bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp'}:{})});
   else assert.equal(parent.subBadgeImages,undefined,id+' other underbadges remain inactive');
   for(const asset of family.assets){
    const path='bilder/merker/'+id+'/undermerker/'+asset.id+'-brodert-v1.webp';
@@ -214,11 +214,11 @@ test('By v2/v3 batch: seven exact active assets, alpha, 10/10 and all prior orig
  assert.deepEqual(Object.keys(by.subBadgeImages),by.sub,'exactly ten canonical underbadges');
  assert.equal(by.image,'bilder/merker/by-brodert-v6.webp','main badge retained');
  const others={
-  modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v2.webp',
+  modernisme:'bilder/merker/by/undermerker/modernisme-brodert-v3.webp',
   funksjonalisme:'bilder/merker/by/undermerker/funksjonalisme-brodert-v2.webp',
   bolig_og_bomiljo:'bilder/merker/by/undermerker/bolig_og_bomiljo-brodert-v2.webp'
  };
- for(const [id,p] of Object.entries(others))assert.equal(by.subBadgeImages[id],p,id+' previously active v2 unchanged');
+ for(const [id,p] of Object.entries(others))assert.equal(by.subBadgeImages[id],p,id+' expected active badge version');
  const digest=buf=>createHash('sha256').update(buf).digest('hex');
  for(const [id,s] of Object.entries(expected)){
   const path='bilder/merker/by/undermerker/'+id+'-brodert-v'+s.version+'.webp';
