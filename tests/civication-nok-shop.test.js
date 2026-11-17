@@ -16,7 +16,7 @@ const legacy = '{"packs":{"streetwear_basic":true},"ownedItems":["streetwear_bas
 w.localStorage.setItem('hg_pc_inventory_v1', legacy);
 w.localStorage.setItem('hg_pc_wallet_v1', '{"balance":9999}');
 state.updateWallet({ balance: 100, last_tick_day_index: 8, nok_v1: { active: true, version: 1, config } });
-assert.equal((await shop.getVisiblePacks()).length, 7);
+assert.equal((await shop.getVisiblePacks()).length, 10);
 assert.equal((await shop.getPacks()).some(p => p.id === 'streetwear_basic'), false);
 const before = JSON.stringify(state.getWallet());
 assert.equal((await shop.buyPack('streetwear_basic', 'old-price')).ok, false);
@@ -92,6 +92,25 @@ w.eval(fs.readFileSync('js/Civication/civicationCommercial.js', 'utf8'));
 assert.equal(JSON.stringify(state.getWallet()), purchased);
 for (const [id, , quantity] of added) assert.equal(w.HG_CiviShop.getNokProductStock(id).available, quantity - 100);
 assert.equal(w.localStorage.getItem('hg_pc_inventory_v1'), legacy);
+// New dated package prices flow through both existing purchase controls.
+state.updateWallet({ ...state.getWallet(), balance: 100 });
+const staples = [ ['r-rice-2kg', 35.9, 2000], ['r-chopped-tomatoes-400g', 8.1, 400], ['yellow-onions-1kg', 19.9, 1000] ];
+for (const [index, [id, price, amount]] of staples.entries()) {
+  if (index === 1) {
+    await w.CivicationUI.renderCivicationShop();
+    w.document.querySelector('[data-civi-buy-pack="' + id + '"]').click();
+  } else {
+    await w.CivicationStoreUI.render();
+    w.document.querySelector('[data-buy-pack="' + id + '"]').click();
+  }
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const receipt = state.getWallet().nok_v1.shopping.purchases.at(-1);
+  assert.equal(receipt.productId, id); assert.equal(receipt.amountNok, price);
+  assert.equal(receipt.priceCheckedOn, '2026-11-17');
+  assert.equal(receipt.sourceId, config.shopProducts.find(p => p.id === id).sourceId);
+  assert.equal(shop.getNokProductStock(id).available, amount);
+}
+assert.equal(state.getWallet().balance, 36.1, 'new three packages cost exactly 63.90 kr');
 for (const badPrice of [-1, 1.001, '19.4']) {
   const bad = JSON.parse(JSON.stringify(config)); bad.shopProducts[0].priceNok = badPrice;
   state.updateWallet({ ...state.getWallet(), balance: 100, nok_v1: { ...state.getWallet().nok_v1, config: bad } });

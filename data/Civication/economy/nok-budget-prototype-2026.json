@@ -135,7 +135,7 @@
       "id": "grocery_reference",
       "name": "Dagligvarer",
       "type": "food",
-      "blurb": "Prisreferanser fra Oda, kontrollert 16. november 2026. Spillkjøp uten levering eller andre butikkgebyrer."
+      "blurb": "Prisreferanser fra Oda, datert per vare. Spillkjøp uten levering eller andre butikkgebyrer."
     }
   ],
   "shopProducts": [
@@ -257,6 +257,57 @@
       "baseUnit": "g",
       "consumptionStep": 100,
       "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "r-rice-2kg",
+      "store_id": "grocery_reference",
+      "title": "R Middagsris",
+      "unitLabel": "2 kg",
+      "priceNok": 35.9,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/67510-r-middagsris/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-17",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 2000,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "r-chopped-tomatoes-400g",
+      "store_id": "grocery_reference",
+      "title": "R Grovhakkede tomater",
+      "unitLabel": "400 g",
+      "priceNok": 8.1,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/8474-r-grovhakkede-tomater/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-17",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 400,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "yellow-onions-1kg",
+      "store_id": "grocery_reference",
+      "title": "Gul løk",
+      "unitLabel": "1 kg",
+      "priceNok": 19.9,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/19627-gul-lok-var-laveste-pris-norge/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-17",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 1000,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
     }
   ],
   "jobs": [
@@ -340,6 +391,74 @@
         },
         {
           "productId": "carrots-second-sort-1kg",
+          "amount": 100,
+          "baseUnit": "g"
+        }
+      ]
+    },
+    {
+      "id": "rice-lentils-tomato-onion",
+      "title": "Ris med linser, tomat og løk",
+      "ingredients": [
+        {
+          "productId": "r-rice-2kg",
+          "amount": 100,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "sevan-red-lentils-dry-900g",
+          "amount": 75,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "r-chopped-tomatoes-400g",
+          "amount": 150,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "yellow-onions-1kg",
+          "amount": 50,
+          "baseUnit": "g"
+        }
+      ]
+    },
+    {
+      "id": "pasta-tomato-onion",
+      "title": "Pasta med tomat og løk",
+      "ingredients": [
+        {
+          "productId": "sopps-spaghetti-500g",
+          "amount": 100,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "r-chopped-tomatoes-400g",
+          "amount": 150,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "yellow-onions-1kg",
+          "amount": 50,
+          "baseUnit": "g"
+        }
+      ]
+    },
+    {
+      "id": "oats-milk-banana",
+      "title": "Havregrøt med melk og banan",
+      "ingredients": [
+        {
+          "productId": "axa-oats-1100g",
+          "amount": 80,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "tine-milk-1l",
+          "amount": 250,
+          "baseUnit": "ml"
+        },
+        {
+          "productId": "bananas-1kg",
           "amount": 100,
           "baseUnit": "g"
         }

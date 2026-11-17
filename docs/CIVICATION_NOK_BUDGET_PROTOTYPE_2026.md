@@ -102,7 +102,21 @@ spillreferanser uten levering/gebyrer, ikke sanntidspriser eller tilgjengelighet
 | Bananer | 1 kg | 24,90 | https://oda.com/no/products/24854-bananer-ecuador-costa-rica/ |
 | SEVAN Tørkede røde linser, hele | 900 g | 44,90 | https://oda.com/no/products/67920-sevan-torkede-rode-linser-hele/ |
 
-De tre nye oppføringene bruker åpnet produktside, ikke eldre søkeresultater eller
+Ytterligere tre pakningspriser er kontrollert på åpne produktsider 17.11.2026:
+
+| Vare | Pakning | Kr | Kilde |
+| --- | --- | ---: | --- |
+| R Middagsris | 2 kg | 35,90 | https://oda.com/no/products/67510-r-middagsris/ |
+| R Grovhakkede tomater | 400 g | 8,10 | https://oda.com/no/products/8474-r-grovhakkede-tomater/ |
+| Gul løk | 1 kg | 19,90 | https://oda.com/no/products/19627-gul-lok-var-laveste-pris-norge/ |
+
+Risprisen er for vanlig 2 kg middagsris, ikke boil-in-bag eller jasminris.
+Løkprisen bruker åpnet produktside (19,90 kr), ikke eldre søketreff (32,90 kr).
+Risens eldre søkeresultat viste også en annen pris enn den åpne produktsiden.
+Forbruk bruker pakningsvekt, uten ekstra omregning for løkskall eller tilberedt ris.
+Alle tre nye varer bruker samme kjøps-, beholdnings- og kvitteringseier.
+
+Oppføringene for gulrot, banan og linser bruker åpnet produktside, ikke eldre søkeresultater eller
 kampanjepriser for andre pakninger. Gulrøttene er andre sortering, bananene selges
 som 1 kg og linsene er tørre. Forbruk følger kjøpt pakningsvekt; det beregner ikke
 bananskall, tilberedt vekt, kalorier eller en ernæringsmessig anbefalt porsjon.
@@ -122,7 +136,7 @@ forbruks-ID-kontroll hindrer overforbruk og kollisjoner. Eide varer kan brukes e
 tapt butikktilgang; dette åpner ikke nye kjøp. Fokus beholdes eller flyttes til
 panelets overskrift når varen blir tom. Innhold rendres som tekst, ikke HTML.
 
-Dette er syv enkeltvarer og manuelt registrert pakningsforbruk, ikke et fullstendig
+Dette er ti enkeltvarer og manuelt registrert pakningsforbruk, ikke et fullstendig
 matbudsjett eller en daglig ernæringsmodell. Oslo-proxyen belastes ikke i tillegg
 til varekjøp. Ingen automatisk bedervelse eller spiselig-andelmodell er innført.
 
@@ -279,12 +293,15 @@ Resultat for ny head må kontrolleres før nettleserreisen kan regnes som bestå
 
 ## Måltider fra innkjøpte varer
 
-To uttrykkelige spillporsjoner ligger i profilens `shopMeals`:
+Fem uttrykkelige spillporsjoner ligger i profilens `shopMeals`:
 
 | Måltid | Rå/tørre pakningsmengder | Referansekostnad |
 | --- | --- | ---: |
 | Havregrøt med melk | 80 g havregryn + 250 ml melk | 7,10 kr |
 | Pasta med linser og gulrot | 100 g spaghetti + 75 g tørre linser + 100 g gulrot | 9,31 kr |
+| Ris med linser, tomat og løk | 100 g ris + 75 g tørre linser + 150 g tomat + 50 g løk | 9,57 kr |
+| Pasta med tomat og løk | 100 g spaghetti + 150 g tomat + 50 g løk | 7,61 kr |
+| Havregrøt med melk og banan | 80 g havregryn + 250 ml melk + 100 g banan | 9,59 kr |
 
 Kostnaden er summen av andeler av profilens daterte pakningspriser, avrundet én
 gang til øre. Dette er ingen ny betaling eller FIFO-regnskap over historiske
@@ -301,7 +318,7 @@ forbruk. Ingen pengebonus, belastning eller ekstra utgiftspost opprettes.
 Eide varer kan fortsatt brukes uten ny butikktilgang. Gamle frosne profiler får
 ikke måltider automatisk; profiler uten `shopMeals` viser ingen ny seksjon.
 
-Den utvidede forbrukstesten kontrollerer begge måltiders eksakte referansebeløp,
+For de to opprinnelige måltidene kontrollerer forbrukstesten eksakte referansebeløp,
 faktisk UI-klikk/fokus, fem pakningskjøp til 133 kr, saldo 67 kr fra 200 kr,
 rester 1020 g havregryn / 750 ml melk / 400 g pasta / 825 g linser / 900 g gulrot,
 manglende ingrediens uten delvis bruk, gamle knapper med utdatert beholdning,
@@ -309,8 +326,11 @@ duplikater, krysshandlinger, modulinnlasting og ugyldig oppskrift. Referansekost
 kommer ikke med i månedsoversiktens betalinger.
 
 Nettleserreisen er utvidet med kjøp av havregryn, måltidsknapp og reload i alle tre
-oppsett. Forventet slutt er 9 770,00 kr, 1020 g havregryn og 500 ml melk; måneds-
-kontantstrømmen er identisk før/etter måltidet. Den venter også på den aktive
+oppsett. Den utvidede reisen kjøper også ris, tomat, løk og spaghetti, og lager
+alle tre nye måltider gjennom vanlige knapper. Forventet slutt er 9 688,20 kr,
+940 g havregryn, 250 ml melk, 1900 g ris, 100 g tomat, 900 g løk, 400 g pasta,
+725 g linser og 800 g banan. Faktiske betalinger er 10 311,80 kr; måltidene
+endrer ikke denne summen. Månedsoversikten telles før/etter for å fange ny belastning. Den venter også på den aktive
 rollemodellens faktiske innlasting før reload, for å unngå å avbryte en pågående
 WebKit-forespørsel. Ingen pageerror filtreres bort. Ny CI-/bildekontroll må gjøres
 på endringens faktiske head.
@@ -335,3 +355,22 @@ forhåndslasting, i tillegg til steder, rollemodell og nettverksro. Feil ved las
 og pageerror blir ikke filtrert; stack og mislykkede URL-er beholdes i diagnostikk.
 Dette er en avgrenset testgrense, ikke bevis på at alle senere kilder i appen er
 lastet eller at en vilkårlig avbrutt nettverksforespørsel alltid kan gjenopptas.
+
+
+### Verifikasjon av nye basisvarer og måltider
+
+Butikktesten kjøper ris, tomat og løk gjennom begge eksisterende UI-er: tre
+pakninger koster 63,90 kr, og kvitteringene beholder kilde og kontrolldato.
+Forbrukstesten kjøper åtte ingredienspakninger til 201,90 kr fra 300 kr, lager
+alle tre nye måltider via UI og beholder saldo 98,10 kr. Uavhengige forventninger
+er 9,57 / 7,61 / 9,59 kr i ingrediensreferanse; ingen av beløpene belastes.
+Etterpå gjenstår 1900 g ris, 825 g linser, 100 g tomat, 900 g løk, 400 g pasta,
+1020 g havregryn, 750 ml melk og 900 g banan. Et nytt rismåltid krever 150 g
+tomat og sperres uten å bruke noen ingrediens når bare 100 g er igjen.
+
+Hele localStorage kopieres til en tom JSDOM med nye State/Calendar/Shop-moduler;
+saldo, matrester, måltidshistorikk og duplikatvern består. Dette er en faktisk
+serialisering/gjenoppretting av testdata, ikke en virkelig produksjonskonto.
+Nye datatilbud oppdaterer fortsatt ikke allerede frosne spillerprofiler.
+På aa69c05 bestod 797/797 testfiler og alle åtte workflows før denne utvidelsen.
+Ny CI og visuell kontroll må registreres for endringens faktiske head.

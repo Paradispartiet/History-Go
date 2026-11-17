@@ -271,9 +271,47 @@ async function scenario(engine, width, height) {
     await page.waitForFunction(() => !!window.HG_CiviShop?.getNokMeals);
     await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), mealSaved, 'meal inventory/history survives reload without repetition');
+    await openSection('kommers', 'civiStoreSection');
+    for (const id of ['r-rice-2kg', 'r-chopped-tomatoes-400g', 'yellow-onions-1kg', 'sopps-spaghetti-500g']) {
+      await page.locator('[data-buy-pack="' + id + '"]').click();
+      await page.waitForFunction(productId => window.CivicationState.getWallet().nok_v1.shopping.quantities[productId] === 1, id);
+    }
+    assert.equal((await wallet()).balance, 9688.2);
+    const beforeNewMeals = await page.evaluate(() => window.CivicationNokBudget.monthlyCashFlow(
+      window.CivicationState.getWallet(), window.CivicationCalendar.getMonthPeriod().id,
+      window.CivicationCalendar.getGameDate));
+    for (const [id, cents] of [['rice-lentils-tomato-onion', 957], ['pasta-tomato-onion', 761], ['oats-milk-banana', 959]]) {
+      const prepare = page.locator('[data-prepare-meal="' + id + '"]');
+      assert.equal(await prepare.isEnabled(), true);
+      const rowText = await prepare.locator('..').textContent();
+      const price = (cents / 100).toLocaleString('nb-NO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      assert.ok(rowText.includes(price), 'visible reference cost for ' + id);
+      await prepare.click();
+      await page.waitForFunction(mealId => window.CivicationState.getWallet().nok_v1.shopping.consumptions.some(c => c.kind === 'meal' && c.mealId === mealId), id);
+      assert.equal((await wallet()).balance, 9688.2);
+    }
+    const newMealStock = await page.evaluate(() => Object.fromEntries(['r-rice-2kg', 'r-chopped-tomatoes-400g', 'yellow-onions-1kg',
+      'sopps-spaghetti-500g', 'sevan-red-lentils-dry-900g', 'axa-oats-1100g', 'tine-milk-1l', 'bananas-1kg']
+      .map(id => [id, window.HG_CiviShop.getNokProductStock(id).available])));
+    assert.deepEqual(newMealStock, { 'r-rice-2kg': 1900, 'r-chopped-tomatoes-400g': 100, 'yellow-onions-1kg': 900,
+      'sopps-spaghetti-500g': 400, 'sevan-red-lentils-dry-900g': 725, 'axa-oats-1100g': 940, 'tine-milk-1l': 250, 'bananas-1kg': 800 });
+    assert.equal(await page.locator('[data-prepare-meal="rice-lentils-tomato-onion"]').isEnabled(), false, 'not enough tomatoes for another rice meal');
+    await page.locator('[data-prepare-meal="rice-lentils-tomato-onion"]').scrollIntoViewIfNeeded();
+    screenshots.push(await capture('expanded-meals'));
+    const cashAfterNewMeals = await page.evaluate(() => window.CivicationNokBudget.monthlyCashFlow(
+      window.CivicationState.getWallet(), window.CivicationCalendar.getMonthPeriod().id,
+      window.CivicationCalendar.getGameDate));
+    assert.deepEqual(cashAfterNewMeals, beforeNewMeals, 'new meal reference costs never become extra payments');
+    assert.equal(cashAfterNewMeals.expenseCents, 1031180);
+    const allMealsSaved = JSON.stringify(await wallet());
+    await completeSourceLoading();
+    await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!window.HG_CiviShop?.getNokMeals);
+    await completeSourceLoading();
+    assert.equal(JSON.stringify(await wallet()), allMealsSaved, 'all new meals and remaining units survive reload');
     assert.deepEqual(errors, [], 'no uncaught page errors');
-    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 500, addedStock,
-      monthlyPaidCents: cashFlow.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };
+    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 250, addedStock, newMealStock,
+      monthlyPaidCents: cashAfterNewMeals.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };
   } catch (error) {
     console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors, pageErrors, failedRequests }));
     console.error('CIVI_NOK_FAILURE_STATE:' + JSON.stringify(await page.evaluate(() => ({

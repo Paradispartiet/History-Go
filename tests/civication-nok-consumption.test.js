@@ -67,7 +67,7 @@ await new Promise(resolve => setTimeout(resolve, 0));
 // Meal consumption is one atomic, persisted action over multiple products.
 state.updateWallet({ balance: 200, old: { preserved: true }, nok_v1: { active: true, version: 1, config } });
 w.CivicationHome = null;
-assert.equal(shop.getNokMeals().length, 2);
+assert.equal(shop.getNokMeals().length, 5);
 assert.equal(shop.getNokMealPreview('oats-with-milk').referenceCostCents, 710);
 assert.equal(shop.getNokMealPreview('pasta-lentils-carrot').referenceCostCents, 931);
 await shop.buyPack('axa-oats-1100g', 'meal-oats');
@@ -112,6 +112,44 @@ assert.equal(JSON.stringify(state.getWallet()), drained, 'stale meal button cann
 w.eval(fs.readFileSync('js/Civication/civicationCommercial.js', 'utf8')); shop = w.HG_CiviShop;
 assert.equal(shop.consumeNokMeal('pasta-lentils-carrot', 'dinner').skipped, true, 'reload retains meal idempotency');
 assert.equal(JSON.stringify(state.getWallet()), drained);
+// All new meals use their actual ingredients through the existing UI.
+state.updateWallet({ balance: 300, old: { preserved: true }, nok_v1: { active: true, version: 1, config } });
+for (const id of ['r-rice-2kg', 'r-chopped-tomatoes-400g', 'yellow-onions-1kg', 'sopps-spaghetti-500g',
+  'sevan-red-lentils-dry-900g', 'axa-oats-1100g', 'tine-milk-1l', 'bananas-1kg'])
+  assert.equal((await shop.buyPack(id, 'staple-' + id)).ok, true);
+assert.equal(state.getWallet().balance, 98.1);
+const newMeals = [ ['rice-lentils-tomato-onion', 957], ['pasta-tomato-onion', 761], ['oats-milk-banana', 959] ];
+for (const [id, cents] of newMeals) {
+  assert.equal(shop.getNokMealPreview(id).referenceCostCents, cents, 'independent ingredient cost rounded once');
+  await w.CivicationStoreUI.render();
+  const button = w.document.querySelector('[data-prepare-meal="' + id + '"]');
+  assert.equal(button.disabled, false); button.click();
+  await new Promise(resolve => setTimeout(resolve, 5));
+  assert.equal(state.getWallet().balance, 98.1);
+  const entry = state.getWallet().nok_v1.shopping.consumptions.at(-1);
+  assert.equal(entry.mealId, id); assert.equal(entry.referenceCostCents, cents);
+  const saved = JSON.stringify(state.getWallet());
+  assert.equal(shop.consumeNokMeal(id, entry.requestId).skipped, true);
+  assert.equal(JSON.stringify(state.getWallet()), saved);
+}
+const remaining = { 'r-rice-2kg': 1900, 'sevan-red-lentils-dry-900g': 825, 'r-chopped-tomatoes-400g': 100,
+  'yellow-onions-1kg': 900, 'sopps-spaghetti-500g': 400, 'axa-oats-1100g': 1020, 'tine-milk-1l': 750, 'bananas-1kg': 900 };
+for (const [id, amount] of Object.entries(remaining)) assert.equal(shop.getNokProductStock(id).available, amount);
+const insufficient = JSON.stringify(state.getWallet());
+assert.equal(shop.consumeNokMeal('rice-lentils-tomato-onion', 'missing-tomato').reason, 'NOT_ENOUGH_STOCK');
+assert.equal(JSON.stringify(state.getWallet()), insufficient, '100 g tomatoes cannot satisfy a 150 g recipe; nothing is used');
+// Restore serialized state into a genuinely fresh DOM and runtime.
+const fresh = new JSDOM('<body></body>', { url: 'https://example.test', runScripts: 'outside-only' });
+for (let i = 0; i < w.localStorage.length; i++) {
+  const key = w.localStorage.key(i); fresh.window.localStorage.setItem(key, w.localStorage.getItem(key));
+}
+for (const path of ['core/civicationState.js', 'core/civicationCalendar.js', 'civicationCommercial.js'])
+  fresh.window.eval(fs.readFileSync('js/Civication/' + path, 'utf8'));
+assert.equal(JSON.stringify(fresh.window.CivicationState.getWallet()), insufficient);
+for (const [id, amount] of Object.entries(remaining)) assert.equal(fresh.window.HG_CiviShop.getNokProductStock(id).available, amount);
+for (const entry of fresh.window.CivicationState.getWallet().nok_v1.shopping.consumptions)
+  assert.equal(fresh.window.HG_CiviShop.consumeNokMeal(entry.mealId, entry.requestId).skipped, true);
+fresh.window.close();
 const corruptConfig = JSON.parse(JSON.stringify(config));
 corruptConfig.shopMeals[0].ingredients.push(corruptConfig.shopMeals[0].ingredients[0]);
 state.updateWallet({ ...state.getWallet(), nok_v1: { ...state.getWallet().nok_v1, config: corruptConfig } });
