@@ -75,3 +75,18 @@ Bruk `node scripts/audit-linked-brand-images.mjs --check` for å kontrollere all
 Auditen sjekker at eksisterende Brand-bilder er virkelige filer under `bilder/`, ikke stier utenfor prosjektet eller stagingfiler. Den avviser også eksplisitt genererte logoer. Manglende logoer samles i en **arbeidskø** i stedet for å automatisk generere falske merkeidentiteter; `--check` feiler bare ved usikre/ødelagte eksisterende bildefelt.
 
 Foreløpig ved første kjøring: 94 stedstilknyttede Brands; 79 med et bildefelt, 15 uten. Alle de 79 må fremdeles vurderes for historisk riktig logo, lisens og lesbarhet før endelig visuell godkjenning. Verken `logo`-felt eller eksisterende fil er i seg selv en kvalitetserklæring.
+
+## Freiaparken – kildeverifisert fotografi foretrekkes
+
+Fotografiet [«Freiaparken bassenget langs Freias bygning»](https://commons.wikimedia.org/wiki/File:Freiaparken_bassenget_langs_Freias_bygning.jpg), Helge Høifødt (21. september 2024), har dokumentert original, CC BY-SA 4.0 og lisensvilkår. Se `freiaparken-photo-2024-commons-candidate.json` for eksakt metadata og arkivets SHA-1, samt `freiaparken-2024-photo-v4-comparison-2026-11-17.md` for redaksjonell kvalitetsvurdering.
+
+**Freiaparken v4 ble ikke godkjent som stedstro rekonstruksjon.** Kildens foto har riktig bassinplassering og faktiske bygninger/skulpturer, og er derfor foretrukket kandidat. Den binære originalen er **ikke importert** i PR-en. En foto-lisens frikjenner ikke automatisk separate rettigheter til avbildede skulpturer; avklar dette før eventuell bruk.
+
+Ny kildeport:
+
+```bash
+python3 scripts/check-collection-photo-sources.py
+python3 -m unittest discover -s tests -p 'test_collection_photo_source_gate.py' -v
+```
+
+Porten bekrefter at fotokandidaten er merket kildeverifisert, **ikke binært importert og ikke publiserbar**. Et `PASS` er ikke tillatelse til å promotere den. Ved faktisk import må kildekontroll, originalhash, derivativhash, lisens-/krediteringsvisning og mobil-/desktopbilder oppdateres og de relevante testene endres i samme commit.
