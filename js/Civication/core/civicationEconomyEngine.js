@@ -1114,6 +1114,26 @@ function acceptNokHousing(districtId) {
       || Math.abs(offer.monthlyRentNok * 100 - Math.round(offer.monthlyRentNok * 100)) > 0.000001) {
     return { ok: false, reason: "INVALID_HOUSING_OFFER" };
   }
+  // Validate region and room count against the immutable source table.
+  // This check applies only to versioned source-mapped offers: older test
+  // fixtures and saved contracts remain supported without invented mapping.
+  if (offer.referenceAreaId != null) {
+    const refs = nok.config?.costOfLiving?.rentSources;
+    const matchingRefs = Array.isArray(refs)
+      ? refs.filter(item => item?.id === offer.referenceAreaId) : [];
+    const reference = matchingRefs.length === 1 ? matchingRefs[0] : null;
+    const monthlyReference = reference?.pricesByRoomsNok?.[String(offer.roomCount)];
+    if (!reference || !Number.isSafeInteger(offer.roomCount) ||
+        offer.roomCount < 1 || offer.roomCount > 5 ||
+        !Number.isSafeInteger(monthlyReference) ||
+        monthlyReference !== offer.monthlyRentNok ||
+        reference.source !== offer.sourceId ||
+        reference.year !== offer.referenceYear ||
+        reference.priceKind !== offer.referencePriceKind ||
+        (offer.floorAreaSqm != null && (!Number.isSafeInteger(offer.floorAreaSqm) ||
+          offer.floorAreaSqm <= 0 || offer.floorAreaSqm > 1000)))
+      return { ok:false, reason:"INVALID_HOUSING_REFERENCE" };
+  }
   if (offer.electricityProfileId) {
     let electricity;
     try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(nok.config); } catch {}
@@ -1135,6 +1155,9 @@ function acceptNokHousing(districtId) {
   if (invoices.some(i => !i || typeof i !== "object")) return { ok: false, reason: "INVALID_HOUSING_STATE" };
   owner.updateWallet({ ...wallet, nok_v1: { ...nok, housingSequence: sequence,
     housing: { districtId, offerId: offer.id, contractId, acceptedDateISO: date,
+      ...(offer.roomCount ? { roomCount: offer.roomCount } : {}),
+      ...(offer.referenceAreaId ? { referenceAreaId: offer.referenceAreaId,
+        referenceYear: offer.referenceYear } : {}),
       ...(offer.electricityProfileId ? { electricityProfileId: offer.electricityProfileId } : {}) },
     recurringBills: [...contracts.map(c => c.id === previousId
       ? { ...c, endsOnISO: c.endsOnISO && c.endsOnISO < date ? c.endsOnISO : date } : c),
