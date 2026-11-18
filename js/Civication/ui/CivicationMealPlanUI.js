@@ -267,15 +267,21 @@
               portions.value = "1";
               return;
             }
-            model.setRestaurantMeal(route.weekDay, mealSelect.value, {
-              restaurantId: candidate.restaurantId,
-              name: candidate.name,
-              dishName: candidate.dishName,
-              priceMinor: candidate.priceMinor,
-              priceKind: candidate.priceKind,
-              portions: count
-            }, selectedWeekKey(model));
-            render();
+            try {
+              model.setRestaurantMeal(route.weekDay, mealSelect.value, {
+                restaurantId: candidate.restaurantId,
+                name: candidate.name,
+                dishName: candidate.dishName,
+                priceMinor: candidate.priceMinor,
+                priceKind: candidate.priceKind,
+                portions: count
+              }, selectedWeekKey(model));
+              render();
+            } catch (_) {
+              message.textContent = "Måltidet kunne ikke planlegges. " +
+                "Kontroller at den eksisterende NOK-ukemenyen kan endres uten " +
+                "å påvirke måltider som allerede er spist.";
+            }
           });
           const action = create("button", "Beregn faktisk omvei med OpenRouteService", item);
           action.type = "button";
