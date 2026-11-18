@@ -60,5 +60,32 @@ assert.equal(wallet.nok_v1.earnedDays[0].electricitySourceId,config.budget.elect
 assert.equal(wallet.nok_v1.earnedDays[0].electricityCents,3980,
   'one played day accrues only its proportional 1000 kWh monthly cost');
 assert.equal(wallet.balance,50000,'consumption accrual is not an immediate debit');
+
+// Change from a 4-room home to 2 rooms halfway through January.
+// Both size profiles share SSB's same documented unit price. A move must
+// yield one blended January electricity invoice, not duplicate invoices.
+const twoRoom=config.housingOffers.find(o=>o.districtId==='sagene' && o.roomCount===2);
+for(let gameDay=2;gameDay<=34;gameDay++) {
+  if(gameDay===16) {
+    assert.equal(w.CivicationHome.selectDistrict('sagene',twoRoom.id),true);
+    const afterMove=w.CivicationState.getWallet();
+    assert.equal(afterMove.nok_v1.recurringBills.length,2);
+    assert.equal(afterMove.nok_v1.recurringBills[0].endsOnISO,'2026-01-16');
+    assert.equal(afterMove.nok_v1.recurringBills[1].amountNok,15260);
+    assert.equal(afterMove.balance,50000);
+  }
+  w.CivicationCalendar.setClock({dayIndex:gameDay+1});
+  w.CivicationEconomyEngine.recordCompletedDay(gameDay);
+  w.CivicationEconomyEngine.tickWeekly();
+}
+wallet=w.CivicationState.getWallet();
+const januaryPower=wallet.nok_v1.invoices.filter(i=>
+  i.monthId==='2026-01' && i.estimatedConsumptionKwh!=null);
+assert.equal(januaryPower.length,1,
+  'downsizing midmonth cannot issue duplicate electricity bills');
+assert.equal(januaryPower[0].amountNok,915.55,
+  'electricity accrual follows days in each home and one documented unit price');
+assert.equal(januaryPower[0].estimatedConsumptionKwh,741.935);
+assert.equal(wallet.balance,50000,'electricity invoice is unpaid until player pays');
 dom.window.close();
-console.log('PASS: 1-4 room UI preview is read-only; explicit 4-room lease, idempotency, and sized electricity accrual');
+console.log('PASS: room-size UI, explicit leases, midmonth move and single apportioned electricity bill');
