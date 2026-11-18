@@ -648,6 +648,26 @@
     const wallet = owner?.getWallet?.();
     const view = previewNokMealWeek(startDate, entries, wallet);
     if (!view.ok) return view;
+    // Shop is the sole owner of dated home-cooked meals. A player must first
+    // remove an overlapping Fysen restaurant plan before saving a home meal
+    // in the same date/slot. Plans never create a purchase or debit.
+    const restaurant = window.CivicationMealPlan;
+    const clockStart = window.CivicationCalendar?.getClock?.()?.startDateISO;
+    const startMillis = typeof clockStart === "string"
+      ? Date.parse(clockStart + "T00:00:00.000Z") : NaN;
+    if (restaurant?.getRestaurantSummary && restaurant?.getWeekKey &&
+        Number.isFinite(startMillis)) {
+      for (const entry of view.entries) {
+        const when = Date.parse(entry.date + "T00:00:00.000Z");
+        const dayIndex = 1 + Math.round((when - startMillis) / 86400000);
+        if (!Number.isSafeInteger(dayIndex) || dayIndex < 1) continue;
+        const weekKey = restaurant.getWeekKey(dayIndex);
+        const slotDay = (dayIndex - 1) % 7;
+        const planned = restaurant.getRestaurantSummary(weekKey);
+        if (planned.meals.some(row => row.day === slotDay && row.meal === entry.slot))
+          return { ok:false, reason:"RESTAURANT_SLOT_ALREADY_PLANNED" };
+      }
+    }
     const shopping = wallet.nok_v1.shopping ?? { purchases: [], quantities: {} };
     if (!shopping || typeof shopping !== "object" || Array.isArray(shopping)
         || !Array.isArray(shopping.purchases) || !shopping.quantities || typeof shopping.quantities !== "object"
