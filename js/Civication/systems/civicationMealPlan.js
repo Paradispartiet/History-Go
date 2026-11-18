@@ -154,7 +154,8 @@
         typeof place.dishName !== "string" || !place.dishName.trim() || place.dishName.length > 300 ||
         !Number.isSafeInteger(place.portions) || place.portions < 1 || place.portions > 12 ||
         (place.priceMinor !== null && place.priceMinor !== undefined &&
-          (!Number.isSafeInteger(place.priceMinor) || place.priceMinor < 0 || place.priceMinor > 5000000))) {
+          (!Number.isSafeInteger(place.priceMinor) || place.priceMinor < 0 || place.priceMinor > 5000000)) ||
+        (place.priceKind !== undefined && !["exact", "from", "multiple"].includes(place.priceKind))) {
       throw new Error("Invalid restaurant meal");
     }
     if (!week.restaurantMeals[day]) week.restaurantMeals[day] = {};
@@ -163,7 +164,8 @@
       name: place.name.trim(),
       dishName: place.dishName.trim(),
       portions: place.portions,
-      priceMinor: place.priceMinor ?? null
+      priceMinor: place.priceMinor ?? null,
+      priceKind: place.priceKind || "unspecified"
     };
     if (week.meals[day]) delete week.meals[day][meal];
     return saveWeek(week);
@@ -176,6 +178,8 @@
     const entries = [];
     let pricedTotalMinor = 0;
     let unpriced = 0;
+    let fromMeals = 0;
+    let unspecifiedPriceKindMeals = 0;
     for (let day = 0; day < 7; day++) {
       for (const meal of Object.keys(MEALS)) {
         const item = week.restaurantMeals?.[day]?.[meal];
@@ -183,20 +187,51 @@
             !Number.isSafeInteger(item.portions) || item.portions < 1 || item.portions > 12) continue;
         const priceMinor = Number.isSafeInteger(item.priceMinor) &&
           item.priceMinor >= 0 && item.priceMinor <= 5000000 ? item.priceMinor : null;
+        const priceKind = ["exact", "from", "multiple"].includes(item.priceKind)
+          ? item.priceKind : "unspecified"; // Legacy plans did not retain the quote kind.
         if (priceMinor === null) unpriced++;
-        else pricedTotalMinor += priceMinor * item.portions;
+        else {
+          pricedTotalMinor += priceMinor * item.portions;
+          if (priceKind === "from" || priceKind === "multiple") fromMeals++;
+          if (priceKind === "unspecified") unspecifiedPriceKindMeals++;
+        }
         entries.push({
           day, meal, name:item.name, dishName:item.dishName,
-          portions:item.portions, priceMinor
+          portions:item.portions, priceMinor, priceKind
         });
       }
     }
     const budgetMinor = budget === null ? null : budget * 100;
     return {
       currency:"NOK", budgetNok:budget, budgetMinor,
-      plannedMinor:pricedTotalMinor, unpricedMeals:unpriced,
+      plannedMinor:pricedTotalMinor, unpricedMeals:unpriced, fromMeals, unspecifiedPriceKindMeals,
       remainingMinor:budgetMinor === null ? null : budgetMinor - pricedTotalMinor,
       meals:entries
+    };
+  }
+
+  // Read-only finance bridge. Existing PC balances MUST NOT be displayed as NOK.
+  // The NOK runtime, when activated, keeps the same canonical wallet and 1 PC = 1 NOK.
+  // A forecast is never a charge, reservation, or proof of available funds at checkout.
+  function getRestaurantFinanceSnapshot(rawKey) {
+    const restaurant = getRestaurantSummary(rawKey);
+    let wallet = null;
+    try { wallet = window.CivicationState?.getWallet?.() || null; } catch {}
+    const nokActive = wallet?.nok_v1?.active === true && wallet.nok_v1.version === 1;
+    const rawBalance = nokActive ? wallet.balance : null;
+    const rounded = typeof rawBalance === "number" && Number.isFinite(rawBalance)
+      ? Math.round(rawBalance * 100) : null;
+    const balanceMinor = rounded !== null && Number.isSafeInteger(rounded) &&
+      Math.abs(rawBalance * 100 - rounded) < 0.000001 ? rounded : null;
+    return {
+      ...restaurant,
+      nokActive,
+      balanceMinor,
+      afterKnownPlansMinor: balanceMinor === null ? null : balanceMinor - restaurant.plannedMinor,
+      hasUncertainPrices: restaurant.unpricedMeals > 0 || restaurant.fromMeals > 0 ||
+        restaurant.unspecifiedPriceKindMeals > 0,
+      // This projection does not edit balance or create any payment history.
+      purchasedMinor: null
     };
   }
 
@@ -262,6 +297,7 @@
     templates: () => Object.entries(TEMPLATES).map(([id, data]) => ({ id, label: data.label })),
     getWeekKey, getWeek, getRecipes, setMeal, setPeople, applyTemplate,
     getShoppingList, getIngredientIdsByMeal, suggestionForTime,
-    setRestaurantBudgetNok, setRestaurantMeal, getRestaurantSummary
+    setRestaurantBudgetNok, setRestaurantMeal, getRestaurantSummary,
+    getRestaurantFinanceSnapshot
   });
 })();
