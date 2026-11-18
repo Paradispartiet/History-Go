@@ -1,0 +1,74 @@
+name: Aker Brygge v1 — scoped image, quiz and browser checks
+on:
+  push:
+    branches:
+      - feature/aker-brygge-v1-scoped-20261118
+    paths:
+      - .github/workflows/aker-brygge-v1-sync.yml
+permissions:
+  contents: write
+jobs:
+  aker-brygge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/aker-brygge-v1-scoped-20261118
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Sync only Aker Brygge place index and place-open
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          const read=p=>JSON.parse(fs.readFileSync(p,"utf8"));
+          const place=read("data/places/by/oslo/places/aker_brygge.json");
+          const indexFile="data/places/places_index.json";
+          const index=read(indexFile);
+          const n=index.findIndex(x=>x.id==="aker_brygge");
+          if(n<0)throw new Error("Aker Brygge missing from places_index");
+          const old=index[n],entry={};
+          for(const [key,value] of Object.entries(old)){
+            if(key==="cardImage"||key==="frontImage")continue;
+            entry[key]=key==="image"?place.image:value;
+            if(key==="image")entry.frontImage=place.frontImage;
+          }
+          index[n]=entry;
+          fs.writeFileSync(indexFile,JSON.stringify(index,null,2)+"\n");
+          const runtimePath="data/runtime/place-open/aker_brygge.json",runtime=read(runtimePath);
+          runtime.place={...entry,...place,sourceFile:runtime.place.sourceFile};
+          const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==="object"?Object.fromEntries(Object.keys(value).sort().map(k=>[k,stable(value[k])])):value;
+          fs.writeFileSync(runtimePath,JSON.stringify(stable(runtime))+"\n");
+          NODE
+      - name: Verify exact licensed media and QuizCard source parity
+        run: node --test tests/aker-brygge-v1-contract.test.mjs
+      - name: Check canonical Place-open generator parity
+        run: npm run place-open:check
+      - name: Install Chromium only
+        run: npx playwright install --with-deps chromium
+      - name: Verify Aker Brygge real PlaceCard on phone and desktop
+        run: node tests/aker-brygge-v1-browser.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aker-brygge-v1-browser
+          path: artifacts/aker-brygge-v1-browser/
+          if-no-files-found: ignore
+      - name: Commit only synced Aker Brygge index and runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/places/places_index.json data/runtime/place-open/aker_brygge.json
+          if ! git diff --cached --quiet; then
+            git commit -m "build(aker-brygge): synchronize canonical index and place-open"
+            git push
+          fi
