@@ -1,6 +1,7 @@
 name: By v1 twenty Places app QA
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
     paths:
       - '.github/workflows/by-v1-twenty-app-qa.yml'
       - 'tests/by-v1-twenty-real-app-browser-20261024.mjs'
@@ -17,7 +18,21 @@ concurrency:
   group: by-v1-twenty-app-qa-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
+  draft-focused:
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true
+    name: By v1 quick draft quiz contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Verify all eleven canonical By quiz sets and card bindings
+        run: node --test tests/by-v1-twenty-fullquiz-contract.test.mjs
+
   browser:
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     name: Five Places real app — shard ${{ matrix.shard }}
     runs-on: ubuntu-latest
     timeout-minutes: 30

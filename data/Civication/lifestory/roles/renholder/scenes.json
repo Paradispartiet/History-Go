@@ -3154,6 +3154,826 @@
           }
         }
       ]
+    },
+    {
+      "id": "ren_u2_d10_status",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 10,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Romlista følger etter rapporten",
+      "tekst": "Kari legger fram gårsdagens romliste. Hun skiller korridoren, møtelokalene og det sperrede lageret. Selv om en rapport er sendt eller lagret, er det ikke bevis for at nye rom er rengjort. Før du begynner, må du velge hvordan eventuelle åpne meldinger følges opp.",
+      "valg": [
+        {
+          "id": "ettersend_status",
+          "tekst": "Ettersend den faktiske romstatusen og be om bekreftet mottak",
+          "konsekvensTekst": "Du sender status med gjenstående punkter. Mottak og utbedring er ennå ikke bekreftet.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d10_oppfolging": "sendt"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "behold_utkast",
+          "tekst": "Behold utkastet og noter hva som må avklares før sending",
+          "konsekvensTekst": "Utkastet blir liggende. Kari har ikke mottatt en ny rapport.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d10_oppfolging": "utkast"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d10_runde",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 10,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Et tilgjengelig rom kan faktisk tas",
+      "tekst": "Amina viser deg et ledig møterom og en fri korridor. Lagerdøra er fremdeles blokkert. Romlista og utstyret er på plass for de to tilgjengelige arealene. Hva utfører du i den avtalte tiden?",
+      "valg": [
+        {
+          "id": "utfor_rom204",
+          "tekst": "Rengjør møterom 204 etter romlista, kontroller berøringspunktene og før det som utført",
+          "konsekvensTekst": "Du tar og kontrollerer møterom 204. Bare dette rommet blir ferdigmeldt av deg; lageret er fortsatt sperret.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d10_arbeid_status": "rom204",
+              "ren_u2_d10_arbeid_utfort": true
+            },
+            "meters": {
+              "energi": -3,
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "utfor_korridor",
+          "tekst": "Ta den tilgjengelige korridoren, kontroller resultatet og før arbeidet",
+          "konsekvensTekst": "Du tar korridoren og registrerer den som utført. Lageret og møterommet står som egne punkter.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d10_arbeid_status": "korridor",
+              "ren_u2_d10_arbeid_utfort": true
+            },
+            "meters": {
+              "energi": -2,
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "utsett_runde",
+          "tekst": "Meld fra at runden ikke er utført, og be om ny prioritering",
+          "konsekvensTekst": "Kari får beskjed om at begge tilgjengelige oppgaver fortsatt er åpne. Ingen rom blir automatisk ferdige.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d10_arbeid_status": "utsatt"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d10_egenkontroll",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Utført arbeid er ikke automatisk godkjent av andre",
+      "tekst": "Kari har sett at du har registrert arbeid i ett tilgjengelig område. Hun vil vite om du har kontrollert resultatet, og hva som fortsatt gjenstår. Hun har ikke bekreftet en egen kvalitetskontroll ennå.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_d10_arbeid_utfort": true
+        }
+      },
+      "valg": [
+        {
+          "id": "vis_egenkontroll",
+          "tekst": "Vis egenkontrollen for området du faktisk tok",
+          "konsekvensTekst": "Kari får se din kontroll og restlista. Det er din egenkontroll, ikke et vedtak om byggets samlede kvalitet.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d10_egenkontroll": true
+            },
+            "meters": {
+              "synlighet": 2
+            }
+          }
+        },
+        {
+          "id": "ettersporr_kvalitet",
+          "tekst": "Be om tid til en egen etterkontroll uten å føre den som utført",
+          "konsekvensTekst": "Behovet for etterkontroll registreres. Du har ikke fått en ny kontrollkvittering.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d10_kontroll_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d10_utsatt",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Den åpne ruta må stå åpen",
+      "tekst": "Kari ser at det ikke ble utført renhold i den planlagte runden. Hun trenger å vite om det skyldtes tilgang eller prioritering, men kan ikke føre rommet ferdig av den grunn.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_d10_arbeid_status": "utsatt"
+        }
+      },
+      "valg": [
+        {
+          "id": "meld_restliste",
+          "tekst": "Før de to rompunktene som utestående og be om ny rute",
+          "konsekvensTekst": "Restlista inneholder åpne oppgaver; det er ikke opprettet en falsk utførelsesregistrering.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d10_restliste_fort": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_om_avklaring",
+          "tekst": "Be Kari avklare prioritering før ny avtale",
+          "konsekvensTekst": "Prioriteringen er etterspurt. En ny avtale er ennå ikke bekreftet.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d10_prioritering_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d11_soel",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 11,
+      "fase": "morgen",
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ny hendelse ved kaffestasjonen",
+      "tekst": "Amina har sperret av et nytt søl ved kaffestasjonen og satt ut varsel. Ingen har vasket området ennå. Kari vil ha en sann status før sonen åpnes. Du kan bruke kjent metode hvis området er tilgjengelig, eller avklare risikoen før du gjør mer.",
+      "valg": [
+        {
+          "id": "ta_avgrenset_runde",
+          "tekst": "Velg avgrenset rengjøring med kjent utstyr og behold varslingen til kontroll",
+          "konsekvensTekst": "Du velger en avgrenset oppgave. Valget er ennå bare en plan; rengjøring og kontroll må utføres etterpå.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d11_rute": "arbeid"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "be_om_risikovurdering",
+          "tekst": "La avsperringen stå og be Kari vurdere det ukjente sølet",
+          "konsekvensTekst": "Kari får en konkret forespørsel. Sølet er ikke rengjort, og området er fortsatt sperret.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d11_rute": "avklar"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d11_rengjor",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 11,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Runden krever arbeid og kontroll",
+      "tekst": "Amina viser hvor varsel og tilgjengelig renholdsutstyr står. Du må utføre runden og kontrollere resultatet før du kan registrere sølet som ryddet; varslingen oppheves ikke automatisk.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_d11_rute": "arbeid"
+        }
+      },
+      "valg": [
+        {
+          "id": "vask_etter_sikring",
+          "tekst": "Rengjør den avgrensede flaten, kontroller resultatet og registrer egen innsats",
+          "konsekvensTekst": "Du rengjør og kontrollerer den aktuelle flaten. Kari må fortsatt avgjøre når sperringen kan oppheves.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d11_soel_utfort": true,
+              "ren_u2_d11_sperring_venter": true
+            },
+            "meters": {
+              "energi": -3,
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "stans_ved_tvil",
+          "tekst": "Stans når du oppdager et uklart forhold og meld ny vurdering",
+          "konsekvensTekst": "Ingen utført rengjøring blir registrert. Sølet står med sikring og vurderingsbehov.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d11_soel_status": "avbrutt"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d11_avklaring",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 11,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Melding er ikke opprydding",
+      "tekst": "Kari bekrefter at sølet er meldt inn, men har ikke avklart metode og gjenåpning. Varselskiltet står fortsatt ved kaffestasjonen. Du har andre planlagte oppgaver.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_d11_rute": "avklar"
+        }
+      },
+      "valg": [
+        {
+          "id": "overlever_sperret",
+          "tekst": "Beskriv hvor sperringen står og hvem som må vurdere den",
+          "konsekvensTekst": "Kari får en presis restoppgave. Selve sølet er fortsatt ikke rengjort.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d11_soel_status": "sperret"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "behold_oppgave",
+          "tekst": "Be om en senere, trygg tid til rengjøring",
+          "konsekvensTekst": "Behovet for ny tid registreres som forespørsel. Det er ingen bekreftet utførelse.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d11_soel_status": "ny_tid_etterspurt"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d12_metode",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 12,
+      "fase": "morgen",
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Metode og produkt må passe til oppgaven",
+      "tekst": "Amina tar fram renholdsplanen og produktinformasjonen. Hun kan forklare den lokale instruksen, men et spørsmål om dosering gir ikke automatisk opplæringsbevis. Du må velge hva som kan gjøres forsvarlig med kjent metode.",
+      "valg": [
+        {
+          "id": "bruk_kjent_metode",
+          "tekst": "Begrens oppgaven til en flate og metode du allerede er instruert i",
+          "konsekvensTekst": "Du velger en kjent og avgrenset arbeidsoppgave. Den er ikke utført før du går selve runden.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d12_metode": "kjent"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avklar_metode",
+          "tekst": "Be om demonstrasjon og avklaring før bruk av et ukjent produkt",
+          "konsekvensTekst": "Amina noterer behovet. Ingen ny kvalifikasjon eller utført vask blir registrert.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d12_metode": "avklaring"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d12_arbeid",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 12,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Praktisk arbeid etter kjent instruks",
+      "tekst": "Det avtalte området er ledig. Utstyret er klargjort for den kjente metoden, og du har tid til kontroll etterpå. En plan uten gjennomført runde teller ikke.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_d12_metode": "kjent"
+        }
+      },
+      "valg": [
+        {
+          "id": "utfor_kontrollert",
+          "tekst": "Utfør renholdet, kontroller resultatet og registrer bare egen oppgave",
+          "konsekvensTekst": "Du gjennomfører og kontrollerer den avgrensede oppgaven. Den kan stå som utført i din romliste.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d12_arbeid_utfort": true
+            },
+            "meters": {
+              "energi": -3,
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "meld_mangel",
+          "tekst": "Meld manglende utstyr og la oppgaven stå på restlista",
+          "konsekvensTekst": "Arbeidet er utsatt med årsak. Ingen registrering blir opprettet for utført renhold.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d12_arbeid_status": "utstyr_mangler"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d12_veiledning",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 12,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Veiledning må ikke føres som fullført opplæring",
+      "tekst": "Amina forklarer hvor du finner produktinformasjon og hvem du kan spørre om risiko. Den ukjente metoden er ikke demonstrert og prøvd ut under godkjenning. Hva fører du i loggen?",
+      "conditions": {
+        "flagg": {
+          "ren_u2_d12_metode": "avklaring"
+        }
+      },
+      "valg": [
+        {
+          "id": "for_behov",
+          "tekst": "Registrer behov for konkret opplæring før oppgaven fordeles",
+          "konsekvensTekst": "Kari ser et faktisk opplæringsbehov, ikke et ferdig kurs eller utført rengjøring.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d12_opplaering_venter": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "finn_kjent_rute",
+          "tekst": "Be om en annen oppgave med kjent metode",
+          "konsekvensTekst": "En alternativ rute er etterspurt, men ikke ferdig utført.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d12_alternativ_venter": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d13_tilkomst",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 13,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lageret kontrolleres på nytt",
+      "tekst": "Drift melder at hylla ved lagerdøra skal være flyttet. Kari ber deg kontrollere tilkomsten før lageret føres på dagens romliste. Driftens melding alene er ikke bevis på at rommet kan rengjøres.",
+      "valg": [
+        {
+          "id": "verifiser_fri",
+          "tekst": "Gå til lagerdøra og kontroller at passasjen faktisk er fri",
+          "konsekvensTekst": "Du ser at passasjen er fri. Tilkomst er dokumentert, men lageret er ennå ikke rengjort.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d13_lager_tilkomst": "fri",
+              "ren_u2_d13_tilkomst_bekreftet": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "fremdeles_sperret",
+          "tekst": "Kontroller døra og meld at det fortsatt finnes en fysisk hindring",
+          "konsekvensTekst": "Kari får en konkret observasjon: rommet er fremdeles utilgjengelig. Ingen rengjøring kvitteres ut.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d13_lager_tilkomst": "sperret"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d13_lagerarbeid",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Fri tilkomst gir først nå mulighet for renhold",
+      "tekst": "Du kan gå inn i lageret. Amina minner om romlista: utføring, egenkontroll og status må registreres separat fra meldingen om flyttet hylle. Du kan ta rommet nå eller utsette runden.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_d13_lager_tilkomst": "fri"
+        }
+      },
+      "valg": [
+        {
+          "id": "vask_lager",
+          "tekst": "Utfør det avtalte lager-renholdet og kontroller det du faktisk har gjort",
+          "konsekvensTekst": "Du rengjør og kontrollerer den avtalte delen av lageret. Bare denne oppgaven registreres utført; tilkomsten er dokumentert særskilt.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_lager_utfort": true,
+              "ren_u2_d13_lager_status": "utfort"
+            },
+            "meters": {
+              "energi": -4,
+              "integritet": 3
+            }
+          }
+        },
+        {
+          "id": "utsett_lager",
+          "tekst": "La lageret stå åpent på romlista og be om ny tid",
+          "konsekvensTekst": "Tilkomsten er fri, men lageret er ennå ikke vasket. Det er registrert som utestående.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d13_lager_status": "utsatt"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d13_sperret",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Sperret lager må ikke bli en grønn hake",
+      "tekst": "Kari bekrefter at lageroppgaven står på vent. En tilgjengelig korridor kan tas i stedet, men den må også faktisk utføres før den kan få ferdigstatus.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_d13_lager_tilkomst": "sperret"
+        }
+      },
+      "valg": [
+        {
+          "id": "ta_korridor",
+          "tekst": "Ta den ledige korridoren, kontroller resultatet og før den som utført",
+          "konsekvensTekst": "Du gjennomfører korridorrunden. Lageret står fortsatt uferdig og sperret.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d13_korridor_utfort": true,
+              "ren_u2_d13_lager_status": "sperret"
+            },
+            "meters": {
+              "energi": -2,
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "registrer_rest",
+          "tekst": "Behold lageret og korridoren som utestående med hver sin årsak",
+          "konsekvensTekst": "Kari får to åpne poster. Ingen arbeidstid eller utført renhold er diktet opp av registreringen.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d13_lager_status": "sperret",
+              "ren_u2_d13_korridor_status": "utsatt"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d14_oversikt",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 14,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Ukeslutt begynner med det som faktisk skjedde",
+      "tekst": "Kari legger fram ukas romliste. Hun ber deg holde plan, faktisk utført arbeid, egenkontroll, tilkomst og gjenstående oppgaver atskilt. Hun har ikke gjort et felles kvalitetsvedtak og lønna beregnes ikke fra denne dialogen.",
+      "valg": [
+        {
+          "id": "skille_kategorier",
+          "tekst": "Sorter utført arbeid, åpne rom og avvik i hver sin del av rapporten",
+          "konsekvensTekst": "Ukesoversikten skiller statuskategoriene. Oppsummeringen skaper ingen nye arbeidsregistreringer.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d14_oversikt": "skilt"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_om_hjelp",
+          "tekst": "Be Kari og Amina gå gjennom uklare poster uten å ferdigmelde dem",
+          "konsekvensTekst": "Kari avtaler en gjennomgang, men uavklarte poster blir stående. Ingen ny godkjenning er gitt.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d14_oversikt": "avklaring"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d14_rapport",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 14,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En sendt rapport er ikke et mottak",
+      "tekst": "Det er tid for ukas overlevering. Uansett hvilke rom du fikk tatt, må listen vise det som faktisk skjedde. Du kan sende den til Kari eller beholde utkastet, men ingen av valgene utløser lønnsutbetaling.",
+      "valg": [
+        {
+          "id": "send_status",
+          "tekst": "Send den faktiske rapporten, inkludert utestående arbeid",
+          "konsekvensTekst": "Rapporten er sendt til Kari. Hennes mottak er ennå ikke registrert, og ingen oppgave ferdigmeldes av sendingen.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d14_rapport_status": "sendt",
+              "ren_u2_d14_rapport_sendt": true
+            },
+            "meters": {
+              "synlighet": 2
+            }
+          }
+        },
+        {
+          "id": "lagre_utkast",
+          "tekst": "Lagre rapporten som utkast og noter at overleveringen gjenstår",
+          "konsekvensTekst": "Utkastet ligger lagret. Kari har ikke mottatt ukesrapporten.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d14_rapport_status": "utkast"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d14_kari_mottak",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 14,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Kari kan bekrefte mottak, ikke oppheve restlista",
+      "tekst": "Kari ser den sendte rapporten i innboksen. Hun kan motta gjennomgangen nå, men oppfølging av lager, utstyr og åpne soner må fortsatt behandles som egne saker.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_d14_rapport_status": "sendt"
+        }
+      },
+      "valg": [
+        {
+          "id": "bekreft_mottak",
+          "tekst": "Gå gjennom rapporten med Kari og registrer hennes uttrykkelige mottaksbekreftelse",
+          "konsekvensTekst": "Kari bekrefter at hun har mottatt rapporten. Det er ikke en kvittering for uutført arbeid eller driftstiltak.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d14_kari_mottatt": true
+            },
+            "meters": {
+              "synlighet": 2,
+              "integritet": 1
+            },
+            "relasjoner": {
+              "driftsleder": 1
+            }
+          }
+        },
+        {
+          "id": "avvent_svar",
+          "tekst": "Be om en senere gjennomgang og la mottaket stå uavklart",
+          "konsekvensTekst": "Rapporten er sendt, men du har ikke fått bekreftet mottak. Statusen blir stående som venter.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d14_kari_mottak_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d14_utkast",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 14,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "driftsleder",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Utkastet mangler fortsatt mottaker",
+      "tekst": "Kari har ennå ikke fått ukesrapporten. Du må ta med de åpne punktene videre uten å late som om hun har lest eller godkjent dem.",
+      "conditions": {
+        "flagg": {
+          "ren_u2_d14_rapport_status": "utkast"
+        }
+      },
+      "valg": [
+        {
+          "id": "avtal_levering",
+          "tekst": "Be om nytt tidspunkt for å levere den uavklarte rapporten",
+          "konsekvensTekst": "En leveringsforespørsel er sendt. Det finnes ingen mottaksbekreftelse for selve ukesrapporten.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d14_kari_mottak_venter": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        },
+        {
+          "id": "behold_som_utkast",
+          "tekst": "Før rapporten som uoverlevert med ansvar for videre oppfølging",
+          "konsekvensTekst": "Utkastet er bevart som uoverlevert. Ingen fiktiv kvittering eller utførelse opprettes.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_d14_kari_mottak_venter": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ren_u2_d14_ukeslutt",
+      "threadId": "renholder_uke2_oppfolging",
+      "dag": 14,
+      "fase": "kveld",
+      "visningstype": "samtale",
+      "avsender": "erfaren_kollega",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 1,
+      "tittel": "Arbeidsuka er avsluttet, men restarbeidet er synlig",
+      "tekst": "Amina går gjennom resultatene sammen med deg: oppgaver du faktisk tok, områder som fortsatt venter, og rapportens mottaksstatus. Uka avsluttes som en spillefortelling. Betaling hører til den faktiske ansettelsen og fullførte spilldager i økonomimotoren.",
+      "valg": [
+        {
+          "id": "for_oppfolging",
+          "tekst": "Før konkrete utestående oppgaver videre til neste uke",
+          "konsekvensTekst": "Ukeslutt er dokumentert. Utestående punkter og ansvar står fortsatt åpne; de blir ikke automatisk gjort ferdige.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_uke2_oppsummert": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avklar_kapasitet",
+          "tekst": "Be om en ny prioritering og oppfølging av belastning før neste uke",
+          "konsekvensTekst": "Ukeavslutningen er dokumentert, og støtte er etterspurt. Ingen ny arbeidsavtale eller lønnsutbetaling er vedtatt.",
+          "effekter": {
+            "flagg": {
+              "ren_u2_uke2_oppsummert": true,
+              "ren_u2_hms_oppfolging_etterspurt": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        }
+      ]
     }
   ]
 }
