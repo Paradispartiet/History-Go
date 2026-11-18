@@ -194,13 +194,20 @@
     // The NOK Shop owns the dated grocery plan, so update it through its owner
     // before saving the private restaurant overlay. No purchase or balance write.
     if (nokActive()) {
-      const storePlan = nokRuntime.CivicationState?.getWallet?.()?.nok_v1?.shopping?.mealPlan;
+      const first = (Number(week.weekKey.slice(-6)) - 1) * 7 + 1;
+      const date = window.CivicationCalendar?.getGameDate?.(first + day);
+      const today = window.CivicationCalendar?.getGameDate?.();
+      if (typeof date !== "string" || typeof today !== "string" || date < today)
+        throw new Error("Cannot schedule a restaurant meal in the past");
+      const shopping = nokRuntime.CivicationState?.getWallet?.()?.nok_v1?.shopping;
+      if (Array.isArray(shopping?.consumptions) &&
+          shopping.consumptions.some(item => item?.planEntryKey === date + ":" + meal))
+        throw new Error("This home meal has already been eaten");
+      const storePlan = shopping?.mealPlan;
       if (storePlan?.version === 1) throw new Error("Convert legacy NOK meal plan before selecting restaurant");
       if (storePlan?.version === 2) {
         const weekPlan = nokRuntime.HG_CiviShop?.getNokMealWeek?.();
         if (!weekPlan?.ok) throw new Error("Invalid dated NOK meal plan");
-        const first = (Number(week.weekKey.slice(-6)) - 1) * 7 + 1;
-        const date = window.CivicationCalendar?.getGameDate?.(first + day);
         const sameWeek = weekPlan.dates?.includes(date);
         if (sameWeek && weekPlan.entries.some(entry => entry.date === date && entry.slot === meal)) {
           const remaining = weekPlan.entries.filter(entry => entry.date !== date || entry.slot !== meal);
