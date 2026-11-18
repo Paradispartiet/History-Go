@@ -36,6 +36,10 @@ assert.equal(wallet.nok_v1.restaurantPurchases,undefined,'planning never writes 
 assert.equal(wallet.nok_v1.shopping.mealPlan.entries.length,1,
   'restaurant choice replaces exactly one pending dated home meal');
 assert.equal(shop.getNokMealWeek().entries[0].slot,'lunch');
+const overlapping=shop.saveNokMealWeek('2026-01-01',entries);
+assert.equal(overlapping.reason,'RESTAURANT_SLOT_ALREADY_PLANNED',
+  'dated home planner refuses to double-book a Fysen restaurant slot');
+assert.equal(state.getWallet().balance,50000);
 assert.equal(plan.getWeek().restaurantMeals[0].breakfast.priceKind,'exact');
 assert.equal(plan.getWeek().meals[0]?.breakfast,undefined);
 assert.equal(plan.getIngredientIdsByMeal(1).breakfast,undefined);
