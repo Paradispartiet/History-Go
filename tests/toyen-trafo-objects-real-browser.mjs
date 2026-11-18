@@ -33,9 +33,12 @@ try{
   try{
    await page.goto(base+'/index.html?hgTest=1#/place/toyen_trafo',{waitUntil:'domcontentloaded',timeout:90000});
    await page.waitForFunction(()=>window.__HG_APP_READY__===true&&window.__HG_ROUTER_STARTED__===true&&document.querySelector('#placeCard')?.dataset.currentPlaceId==='toyen_trafo',null,{timeout:90000});
+   // The direct Place Sheet hides legacy collection buttons once it renders
+   // accessible gallery tiles. Require their decoded preview data, then assert
+   // visibility and clickability on the actual gallery button below.
    await page.waitForFunction(()=>['pcPeopleIcon','pcObjectsIcon'].every(id=>{
     const el=document.getElementById(id); const img=el?.querySelector('img.pc-person-img');
-    return el && getComputedStyle(el).display!=='none' && img instanceof HTMLImageElement && img.complete && img.naturalWidth>0;
+    return el?.dataset.collectionItemCount==='2' && img instanceof HTMLImageElement && img.complete && img.naturalWidth>0;
    }),null,{timeout:60000});
    const state=await page.evaluate(()=>['pcPeopleIcon','pcObjectsIcon'].map(id=>{
      const el=document.getElementById(id);const img=el.querySelector('img.pc-person-img');
@@ -98,6 +101,25 @@ try{
    assert.deepEqual(errors,[],label+': unexpected page errors');
    await page.screenshot({path:'artifacts/toyen-trafo-objects/'+label+'-popup.png',fullPage:false});
    console.log(label+': both Tøyen illustrations decoded, credited, source-linked, uncropped and visible');
+  }catch(err){
+   const diagnostic=await page.evaluate(()=>{
+     const ids=['pcPeopleIcon','pcObjectsIcon'];
+     const legacy=Object.fromEntries(ids.map(id=>{
+       const el=document.getElementById(id),img=el?.querySelector('img.pc-person-img');
+       return [id,{count:el?.dataset.collectionItemCount,
+         hidden:el?.hidden,display:el?getComputedStyle(el).display:null,
+         preview:img?.getAttribute('src'),decoded:img?.naturalWidth||0}];
+     }));
+     const gallery=document.querySelector('button[data-pc-round-gallery-item="pcObjectsIcon"]');
+     return {placeId:document.querySelector('#placeCard')?.dataset.currentPlaceId,
+       legacy,galleryFound:!!gallery,
+       galleryDisplay:gallery?getComputedStyle(gallery).display:null,
+       galleryImage:gallery?.querySelector('img')?.getAttribute('src'),
+       popupObjectRows:document.querySelectorAll('#pcObjectsList .pc-object-member').length};
+   }).catch(()=>({status:'diagnostic unavailable'}));
+   console.error(label+': Tøyen browser QA failed',JSON.stringify(diagnostic),String(err));
+   await page.screenshot({path:'artifacts/toyen-trafo-objects/'+label+'-failure.png',fullPage:false}).catch(()=>{});
+   throw err;
   }finally{await ctx.close()}
  }
 }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve))}
