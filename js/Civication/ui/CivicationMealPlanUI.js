@@ -221,6 +221,7 @@
           const mealSelect = labeledSelect(mealBox, "Legg i ukesmeny som",
             Object.entries(model.MEALS).map(([id, entry]) => ({ id, name: entry.label })),
             selectedMeal, () => {});
+          mealSelect.value = selectedMeal;
           const portionsLabel = create("label", "Porsjoner", mealBox);
           portionsLabel.style.cssText = "display:flex;flex-direction:column;gap:4px";
           const portions = create("input", null, portionsLabel);
