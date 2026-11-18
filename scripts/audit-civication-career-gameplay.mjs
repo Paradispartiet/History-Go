@@ -226,6 +226,8 @@ const testFiles = walk('tests').filter((rel) =>
   rel !== 'tests/civication-personal-routes.test.js' &&
   // ORS routing contract exercises private logistics, never career progression.
   rel !== 'tests/civication-road-router.test.js' &&
+  // Geometric Fysen dining corridor screening is not career competency evidence.
+  rel !== 'tests/civication-fysen-route-corridor.test.js' &&
   // Public Fysen menu discovery is retail browsing, not role gameplay evidence.
   rel !== 'tests/civication-fysen-public-menus.test.js' &&
   // Wave-A narrative integration verifies the shared inbox and historical
