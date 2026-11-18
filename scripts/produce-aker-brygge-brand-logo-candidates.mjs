@@ -22,6 +22,17 @@ const CANDIDATES = [
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
   },
   {
+    id: "rorbua",
+    name: "Rorbua",
+    originalUrl: "https://www.rorbua.as/resources/Rorbua-Logo.png",
+    sourcePage: "https://www.rorbua.as/resources/",
+    expectedFormat: "png",
+    minSourceDimension: 350,
+    creator: "Rorbua — official restaurant website",
+    rightsBasis: "Authentic official restaurant brandmark; referential trademark identification only, pending visual and rights approval",
+    licenseUrl: null
+  },
+  {
     id: "wikborg_rein",
     name: "Wikborg Rein",
     originalUrl: "https://upload.wikimedia.org/wikipedia/commons/8/88/Wikborg_Rein_logo.svg",
@@ -41,7 +52,7 @@ const sha = (algorithm, bytes) => crypto.createHash(algorithm).update(bytes).dig
 function assert(condition, message) { if (!condition) throw new Error(message); }
 async function fetchOriginal(url) {
   const origin = new URL(url);
-  assert(origin.protocol === "https:" && origin.hostname === "upload.wikimedia.org", "Unapproved origin: " + url);
+  assert(origin.protocol === "https:" && ["upload.wikimedia.org", "www.rorbua.as"].includes(origin.hostname), "Unapproved origin: " + url);
   const response = await fetch(url, {
     signal: AbortSignal.timeout(35000),
     headers: {
@@ -50,7 +61,7 @@ async function fetchOriginal(url) {
     }
   });
   assert(response.ok, "Source GET returned HTTP " + response.status + " for " + url);
-  assert(new URL(response.url).hostname === "upload.wikimedia.org", "Unexpected redirect origin");
+  assert(["upload.wikimedia.org", "www.rorbua.as"].includes(new URL(response.url).hostname), "Unexpected redirect origin");
   const sizeHeader = Number(response.headers.get("content-length") || 0);
   assert(!sizeHeader || sizeHeader <= 2500000, "Oversized source");
   const bytes = Buffer.from(await response.arrayBuffer());
@@ -77,7 +88,8 @@ async function run() {
     if (entry.expectedSha1) assert(sha("sha1", source) === entry.expectedSha1, "Original SHA1 changed: " + entry.id);
     const meta = await sharp(source, {limitInputPixels: 32000000}).metadata();
     assert(meta.format === entry.expectedFormat, "Wrong original format for " + entry.id);
-    assert(meta.width === entry.expectedDimensions[0] && meta.height === entry.expectedDimensions[1], "Original dimensions changed for " + entry.id);
+    if (entry.expectedDimensions) assert(meta.width === entry.expectedDimensions[0] && meta.height === entry.expectedDimensions[1], "Original dimensions changed for " + entry.id);
+    if (entry.minSourceDimension) assert(meta.width >= entry.minSourceDimension && meta.height >= entry.minSourceDimension, "Source resolution too low for " + entry.id);
     const sourcePath = path.join(sourceDir, entry.id + "_original." + entry.expectedFormat);
     const assetPath = path.join(outputDir, entry.id + ".webp");
     const webp = await sharp(source, {limitInputPixels: 32000000})

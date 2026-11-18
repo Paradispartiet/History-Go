@@ -15,8 +15,8 @@ test("Aker Brygge — exact authentic-logo binary candidates only", async () => 
   assert.equal(report.allBrandsRequired, 9);
   assert.equal(report.productionAssetsActivated, 0);
   assert.equal(report.placecardBrandsEnabled, false);
-  assert.equal(report.candidates.length, 2);
-  assert.deepEqual(report.candidates.map(c => c.brandId).sort(), ["cos", "wikborg_rein"]);
+  assert.equal(report.candidates.length, 3);
+  assert.deepEqual(report.candidates.map(c => c.brandId).sort(), ["cos", "rorbua", "wikborg_rein"]);
   for (const c of report.candidates) {
     assert.ok(mapping.includes(c.brandId));
     assert.equal(c.reviewStatus, "ORIGINAL_BINARY_CAPTURED_PENDING_REVIEW");
