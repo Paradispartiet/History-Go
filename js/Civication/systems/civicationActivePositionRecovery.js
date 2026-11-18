@@ -2,6 +2,8 @@
   "use strict";
 
   var BACKUP_KEY = "hg_civi_last_active_position_v1";
+  // A deliberate job end must override older recovery hints and backups.
+  var CLEARED_KEY = "hg_civi_active_position_explicitly_cleared_v1";
 
   var ROLES = {
     ekspeditor: {
@@ -118,6 +120,7 @@
 
   function backupActivePosition(pos) {
     if (!validActive(pos)) return null;
+    localStorage.removeItem(CLEARED_KEY);
     var backup = Object.assign({}, pos, {
       backed_up_at: new Date().toISOString()
     });
@@ -126,6 +129,7 @@
   }
 
   function getBackupActivePosition() {
+    if (localStorage.getItem(CLEARED_KEY) === "1") return null;
     var backup = safeParse(localStorage.getItem(BACKUP_KEY), null);
     if (!validActive(backup)) return null;
     if (window.CivicationRoleSession?.isOlderThanReset?.(backup.backed_up_at)) return null;
@@ -168,7 +172,13 @@
     var original = api.setActivePosition.bind(api);
     api.setActivePosition = function patchedSetActivePosition(pos) {
       var res = original(pos);
-      if (validActive(pos)) backupActivePosition(pos);
+      if (validActive(pos)) {
+        backupActivePosition(pos);
+      } else {
+        // Losing or leaving a job is not a broken save: never revive it.
+        localStorage.removeItem(BACKUP_KEY);
+        localStorage.setItem(CLEARED_KEY, "1");
+      }
       return res;
     };
 
@@ -188,6 +198,8 @@
       return active;
     }
 
+    // Explicit removal takes precedence over stale role plans or backups.
+    if (localStorage.getItem(CLEARED_KEY) === "1") return null;
     var state = api.getState ? api.getState() : {};
     var recoveredFromState = roleFromState(state);
     var recovered = recoveredFromState || getBackupActivePosition();
