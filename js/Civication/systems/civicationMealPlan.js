@@ -267,7 +267,7 @@
       window.CivicationState.updateWallet({
         ...wallet, balance:(balanceMinor - amountMinor) / 100,
         nok_v1:{ ...wallet.nok_v1,
-          restaurantPurchases:receipts.concat(receipt).slice(-1000) }
+          restaurantPurchases:receipts.concat(receipt) }
       });
     } catch { return { ok:false, reason:"WALLET_WRITE_FAILED" }; }
     return { ok:true, applied:true, receipt:clone(receipt) };
@@ -307,7 +307,6 @@
       hasUncertainPrices: restaurant.unpricedMeals > 0 || restaurant.fromMeals > 0 ||
         restaurant.unspecifiedPriceKindMeals > 0,
       // This projection does not edit balance or create any payment history.
-      purchasedMinor: null
     };
   }
 
