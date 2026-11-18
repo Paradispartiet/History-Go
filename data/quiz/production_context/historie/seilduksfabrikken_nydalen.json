@@ -1,0 +1,602 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "seilduksfabrikken_nydalen",
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1825,
+    "selection_sha256": "54e2cca8ce28a15739c43e4b8c6f13fd67bab21a249efec4c1bbbfec63f300e2",
+    "category_id": "historie",
+    "target_id": "seilduksfabrikken_nydalen"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/seilduksfabrikken_nydalen.json",
+      "bytes": 11839,
+      "sha256": "9a70edb629bd847879e2e81bccaad966a6a18e4bd350cb309097a5126bdf2d69"
+    },
+    "target": {
+      "path": "data/places/natur/oslo/places_oslo_natur_akerselvarute/seilduksfabrikken_nydalen.json",
+      "bytes": 19585,
+      "sha256": "2228cbdbfb59d21dbce58bf8e88abc4fa51860d496ef852ff2a5aa2b11452d22"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1179,
+      "selection_sha256": "3f54cb6c62ce60ccb6af6f6f33197e98c53286b3d9a7e4ea16e9a96dbc6e84d4"
+    },
+    "relations": [],
+    "stories": [
+      {
+        "path": "data/stories/stories_nydalsdammen.json",
+        "matches": 1,
+        "selection_bytes": 3266,
+        "selection_sha256": "22bbe96457f20b61adfd34e241a4ce023d679c70c7ef6fd5c71a5e7423b8dd1d"
+      },
+      {
+        "path": "data/stories/stories_oslo_akerselva_industri_batch1.json",
+        "matches": 1,
+        "selection_bytes": 1762,
+        "selection_sha256": "e4e9f3173b130d5b55d3af26b564e35d87eed95cfedffe3223e3cc8be11af00e"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/seilduksfabrikken_nydalen_sets.json",
+  "source_registry": {
+    "bru": {
+      "url": "https://oslobyleksikon.no/side/Spinneri_bru_%28%C3%98vre%29",
+      "title": "Oslo byleksikon – Øvre Spinneri bru",
+      "source_type": "historical_reference",
+      "review_note": "Det konkrete anlegget, elvas løp i kulvert og bruas eierskap. Oppslaget gir ikke oppdatert adgangsinformasjon.",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-18"
+    },
+    "compagnie": {
+      "url": "https://oslobyleksikon.no/side/Nydalens_Compagnie",
+      "title": "Oslo byleksikon – Nydalens Compagnie",
+      "source_type": "historical_reference",
+      "review_note": "Bedriftshistorie, arbeidsdeling, sysselsettingstall og ombruk gjelder selskapsområdet, med mindre annet er angitt.",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-18"
+    },
+    "sekne": {
+      "url": "https://www.estatenyheter.no/aktuelt/historien-om-nydalen/153954",
+      "title": "Ivar Sekne – Historien om Nydalen",
+      "source_type": "historical_reference",
+      "review_note": "Daterer Nedre og Øvre spinneri og oppgir spindeltallet for det nye spinneriet fra 1856. Motstridende Væveri B-datering er holdt utenfor.",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-18"
+    },
+    "museum": {
+      "url": "https://oslobilder.no/OMU/OB.F04310i",
+      "title": "Oslo Museum – OB.F04310i",
+      "source_type": "museum_catalogue",
+      "review_note": "Katalogen identifiserer fotografen, motivet og vannrennen som ståsted. Opptaksåret 1878 er antatt.",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-18"
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/seilduksfabrikken_nydalen_sets.json",
+      "data/quiz/manifest.json",
+      "data/quizcards/historie/manifest.json",
+      "data/fag/fag_manifest.json"
+    ],
+    "active_before": {
+      "set_count": 6,
+      "question_count": 18,
+      "linked_knowledge": 6,
+      "editorial_review_required": 12
+    },
+    "decisions": [
+      "Alle 18 tidligere spørsmål arkiveres med identisk innhold. Nye, stedsspesifikke spørsmål får nye ID-er."
+    ],
+    "knowledge_migration": "Bevar alle opprinnelige primære og sekundære Knowledge-referanser i data/knowledge/preserved_quiz_sources/seilduksfabrikken_nydalen_legacy_20261118.json"
+  },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "De dokumenterte opplysningene dekker tre nivåer: bygning, produksjon og kildelesing. En større profil ville kreve stoff som tilhører andre bygninger eller gjenta de samme opplysningene."
+  },
+  "held_back_candidates": [
+    "Arkitektnavn uten direkte dekning for Øvre spinneri.",
+    "Motstridende datering av Væveri B.",
+    "Dagens adgang og bemanning for enkeltbygningen."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_fabrikk_arbeidsorganisering",
+        "title": "Fabrikk og arbeidsorganisering",
+        "score": 100
+      },
+      {
+        "id": "em_his_industri_produksjon_energi",
+        "title": "Industriell produksjon, energi og infrastruktur",
+        "score": 100
+      },
+      {
+        "id": "em_his_kildekritikk_arkiv_spor",
+        "title": "Kildekritikk, arkiv og spor",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_arbeidsmiljo_risiko_helse",
+        "title": "Arbeidsmiljø, risiko og helse",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_industriby_arbeiderliv",
+        "title": "Industriby, produksjon og arbeiderliv",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_kildekritikk",
+        "title": "Kildekritikk, opphav og formål",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_industri_produksjon_energi",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_ovre_spinneri_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Byleksikonet plasserer Øvre spinneri i anlegget til Nydalens Compagnie.",
+      "source_ids": [
+        "bru"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Spinning gjør fibrene til tråd. Garnet er råstoff for vevingen.",
+      "source_ids": [
+        "sekne",
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Nedre spinneri er datert til 1847. Øvre spinneri kom i 1856.",
+      "source_ids": [
+        "sekne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Sekne oppgir 14 000 spindler for spinneriet som ble bygd i 1856.",
+      "source_ids": [
+        "sekne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Brooppslaget beskriver kulverten som leder elva under spinneriet.",
+      "source_ids": [
+        "bru"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Gjerdrums vei er adresseankeret for det tidligere selskapsområdet. Oppslaget angir ikke husnummer for selve spinneriet.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "context",
+      "statement": "Spinning og veving var ulike produksjonsledd i det samme bomullsanlegget.",
+      "source_ids": [
+        "compagnie",
+        "sekne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_08",
+      "order": 8,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Sekne beskriver direkte bruk av fossekraft tidlig i driften.",
+      "source_ids": [
+        "sekne"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_09",
+      "order": 9,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Selskapet ble stiftet som Nydalens Bomuldsspinderi. Navnet Nydalens Compagnie kom da det ble aksjeselskap.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_10",
+      "order": 10,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Byleksikonet navngir Hiorth som initiativtaker. Gjerdrum og Petersen hører til den senere utviklingen.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_11",
+      "order": 11,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Selskapet fikk fargeri og blekeri etter at det var bygd ut med veverier.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_12",
+      "order": 12,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Byleksikonet beskriver en overgang fra tekstilproduksjon til eiendomsforvaltning.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_13",
+      "order": 13,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Nydalen Park var navnet på det rehabiliterte området som åpnet i 1990.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_14",
+      "order": 14,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Museets katalog oppgir vannrennen som fotografiets ståsted.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_15",
+      "order": 15,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Motivet viser bygninger og vassdrag. Arbeidstid og produksjonstall krever andre kilder.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_16",
+      "order": 16,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Ordet «antatt» gjelder dateringen av opptaket og må følge med når bildet omtales.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_17",
+      "order": 17,
+      "planned_phase": "final",
+      "family": "fact",
+      "statement": "Bruoppslaget beskriver selve kulverten under spinneriet.",
+      "source_ids": [
+        "bru",
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_18",
+      "order": 18,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Byleksikonet oppgir tallet for Nydalens Compagnie. Det gir ingen fordeling på bygninger eller skift.",
+      "source_ids": [
+        "compagnie"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "method_id": "met_kildekritikk",
+      "topic_hook_id": "his_kildekritikk",
+      "thinker_id": "knut_kjeldstadli",
+      "work": "Fortida er ikke hva den en gang var"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_19",
+      "order": 19,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Katalogen identifiserer begge virksomhetene i motivet. En navngitt plan kan hjelpe med å plassere dem hver for seg.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "method_id": "met_sporlesning"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_20",
+      "order": 20,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kombinasjonen av plassering, ståsted og flere bygningsdetaljer gir sikrere identifikasjon enn én detalj alene.",
+      "source_ids": [
+        "museum",
+        "bru"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "method_id": "met_sporlesning"
+    },
+    {
+      "claim_id": "claim_ovre_spinneri_21",
+      "order": 21,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Opplysningen om eierskap er ingen oppdatert besøksinformasjon. Sjekk lokal skilting eller eierens informasjon.",
+      "source_ids": [
+        "bru"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "method_id": "met_kildekritikk"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "story",
+      "id": "st_ovre_spinneri_nydalen_elva_under_fabrikken",
+      "source_file": "data/stories/stories_nydalsdammen.json",
+      "summary": "Øvre spinneri ble reist over Akerselvas løp og viser hvordan vannkraft, maskiner, arkitektur og arbeid ble samlet i én produksjonsbygning."
+    },
+    {
+      "type": "story",
+      "id": "st_ovre_spinneri_elva_under_fabrikken",
+      "source_file": "data/stories/stories_oslo_akerselva_industri_batch1.json",
+      "summary": "I 1856 ble Akerselva ført i kulvert under det nye Øvre spinneri i Nydalen for å bli en integrert del av fabrikkens kraftsystem."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_seilduksfabrikken_nydalen_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ovre_spinneri_01",
+        "claim_ovre_spinneri_02",
+        "claim_ovre_spinneri_03",
+        "claim_ovre_spinneri_04",
+        "claim_ovre_spinneri_05",
+        "claim_ovre_spinneri_06",
+        "claim_ovre_spinneri_07"
+      ]
+    },
+    {
+      "set_id": "historie_seilduksfabrikken_nydalen_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ovre_spinneri_08",
+        "claim_ovre_spinneri_09",
+        "claim_ovre_spinneri_10",
+        "claim_ovre_spinneri_11",
+        "claim_ovre_spinneri_12",
+        "claim_ovre_spinneri_13",
+        "claim_ovre_spinneri_14"
+      ]
+    },
+    {
+      "set_id": "historie_seilduksfabrikken_nydalen_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_ovre_spinneri_15",
+        "claim_ovre_spinneri_16",
+        "claim_ovre_spinneri_17",
+        "claim_ovre_spinneri_18",
+        "claim_ovre_spinneri_19",
+        "claim_ovre_spinneri_20",
+        "claim_ovre_spinneri_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 11,
+      "context": 6,
+      "concept_theory": 4
+    },
+    "ratios": {
+      "fact": 0.524,
+      "context": 0.286,
+      "concept_theory": 0.19
+    }
+  }
+}

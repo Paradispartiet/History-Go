@@ -1,982 +1,1116 @@
 {
   "targetId": "seilduksfabrikken_nydalen",
   "categoryId": "historie",
-  "generator_version": "chatgpt_history_go_manual_v1_compact",
-  "generated_from": [
-    "data/places/natur/oslo/places_oslo_natur_akerselvarute.json",
-    "data/leksikon/places/oslo/natur/leksikon_oslo_natur_batch4.json",
-    "data/quiz/regler/SET_MAL_README_v3.md"
-  ],
-  "manual_production_notes": {
-    "quality_direction": "sted → observasjon → emne → forståelse",
-    "hold_back": [
-      "Ingen detaljert eier- eller bygningskronologi uten kilde.",
-      "Ingen dagsaktuelle virksomheter eller campus-/kontorfunksjoner uten kilde.",
-      "Ingen usikre personrelasjoner.",
-      "Ingen tekniske fabrikkdetaljer uten kilde."
+  "title": "Øvre spinneri i Nydalen",
+  "sources": {
+    "bru": "https://oslobyleksikon.no/side/Spinneri_bru_%28%C3%98vre%29",
+    "compagnie": "https://oslobyleksikon.no/side/Nydalens_Compagnie",
+    "sekne": "https://www.estatenyheter.no/aktuelt/historien-om-nydalen/153954",
+    "museum": "https://oslobilder.no/OMU/OB.F04310i"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/seilduksfabrikken_nydalen.json",
+    "context_artifact": "data/quiz/production_context/historie/seilduksfabrikken_nydalen.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
     ],
-    "identity_correction": "Canonical targetId beholdes, men korrekt navn er Øvre spinneri i Nydalen. Christiania Seildugsfabrik lå ved Øvre Foss."
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_industri_produksjon_energi",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/historie/seilduksfabrikken_nydalen_sets.json",
+        "data/quiz/manifest.json",
+        "data/quizcards/historie/manifest.json",
+        "data/fag/fag_manifest.json"
+      ],
+      "active_before": {
+        "set_count": 6,
+        "question_count": 18,
+        "linked_knowledge": 6,
+        "editorial_review_required": 12
+      },
+      "decisions": [
+        "Alle 18 tidligere spørsmål arkiveres med identisk innhold. Nye, stedsspesifikke spørsmål får nye ID-er."
+      ],
+      "knowledge_migration": "Bevar alle opprinnelige primære og sekundære Knowledge-referanser i data/knowledge/preserved_quiz_sources/seilduksfabrikken_nydalen_legacy_20261118.json"
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "De dokumenterte opplysningene dekker tre nivåer: bygning, produksjon og kildelesing. En større profil ville kreve stoff som tilhører andre bygninger eller gjenta de samme opplysningene."
+    },
+    "held_back_candidates": [
+      "Arkitektnavn uten direkte dekning for Øvre spinneri.",
+      "Motstridende datering av Væveri B.",
+      "Dagens adgang og bemanning for enkeltbygningen."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
   },
   "sets": [
     {
-      "set_id": "historie_seilduksfabrikken_nydalen_set_1",
-      "level": 1,
+      "set_id": "historie_seilduksfabrikken_nydalen_v1_set_1",
       "order": 1,
+      "level": 1,
+      "phase": "opening",
+      "title": "Spinneriet ved Akerselva",
       "xp": 50,
       "mode": "place_intro_story",
       "questions": [
         {
-          "id": "seilduksfabrikken_nydalen_s1_q1",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_1_q1",
+          "id": "seilduksfabrikken_nydalen_v1_s1_q1",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_1_q1",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
           "question_scope": "place",
-          "question": "Hva gjør Øvre spinneri i Nydalen viktig i Akerselva-ruta?",
+          "question": "Hvilken tekstilbedrift hørte Øvre spinneri til?",
           "options": [
-            "Den viser tekstil- og fabrikkhistorie knyttet til elva",
-            "Den ligger uten kontakt med Akerselva",
-            "Den er bare et fjellområde"
+            "Nydalens Compagnie",
+            "Christiania Seildugsfabrik",
+            "Hjula Væverier",
+            "Graahs spinneri"
           ],
-          "answer": "Den viser tekstil- og fabrikkhistorie knyttet til elva",
+          "answer": "Nydalens Compagnie",
           "answerIndex": 0,
-          "knowledge": "Øvre spinneri gjør industriepoken konkret som bygning, arbeid og elvenær produksjon.",
+          "knowledge": "Byleksikonet plasserer Øvre spinneri i anlegget til Nydalens Compagnie.",
+          "explanation": "Byleksikonet plasserer Øvre spinneri i anlegget til Nydalens Compagnie.",
           "difficulty": 1,
-          "question_type": "scene",
-          "question_layer": "intro_story",
-          "tags": [
-            "seilduksfabrikken",
-            "nydalen",
-            "industrihistorie"
+          "question_type": "fact",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
+            "bru"
           ],
-          "claim_basis": "safe_place_data",
-          "primary_knowledge_unit_id": "ku_historie_vre_spinneri_gj_r_indust_5184d0ef03",
-          "knowledge_unit_ids": [
-            "ku_historie_vre_spinneri_gj_r_indust_5184d0ef03"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Spinneri_bru_%28%C3%98vre%29"
           ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_01",
+          "claim_basis": "Byleksikonet plasserer Øvre spinneri i anlegget til Nydalens Compagnie.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_industriby_1900",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
-                "score": 6
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
-                "score": 6
-              }
-            ]
-          }
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_byleksikonet_plasserer_v_19a4ed5f0c",
+          "knowledge_unit_ids": [
+            "ku_historie_byleksikonet_plasserer_v_19a4ed5f0c"
+          ],
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "seilduksfabrikken_nydalen_s1_q2",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_1_q2",
+          "id": "seilduksfabrikken_nydalen_v1_s1_q2",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_1_q2",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
           "question_scope": "place",
-          "question": "Hva bør spilleren se etter først ved Øvre spinneri?",
+          "question": "Hva laget et bomullsspinneri av bomullsfibrene?",
           "options": [
-            "Bygningsmasse, elvenær plassering og spor etter produksjonsmiljø",
-            "Bare dagens butikklogoer",
-            "Kun natur uten bygninger"
+            "Garn",
+            "Vevd stoff",
+            "Ferdige skjorter",
+            "Blekemiddel"
           ],
-          "answer": "Bygningsmasse, elvenær plassering og spor etter produksjonsmiljø",
+          "answer": "Garn",
           "answerIndex": 0,
-          "knowledge": "Fabrikksteder leses gjennom materialitet, plassering ved elva og endret bruk.",
+          "knowledge": "Spinning gjør fibrene til tråd. Garnet er råstoff for vevingen.",
+          "explanation": "Spinning gjør fibrene til tråd. Garnet er råstoff for vevingen.",
           "difficulty": 1,
-          "question_type": "visuell_hook",
-          "question_layer": "intro_story",
-          "tags": [
-            "observasjon",
-            "fabrikkarkitektur"
+          "question_type": "fact",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
+            "sekne",
+            "compagnie"
           ],
-          "claim_basis": "safe_place_data",
-          "primary_knowledge_unit_id": "ku_historie_fabrikksteder_leses_gjen_c4cfa25692",
-          "knowledge_unit_ids": [
-            "ku_historie_fabrikksteder_leses_gjen_c4cfa25692"
+          "source_urls": [
+            "https://www.estatenyheter.no/aktuelt/historien-om-nydalen/153954",
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
           ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_02",
+          "claim_basis": "Spinning gjør fibrene til tråd. Garnet er råstoff for vevingen.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_fabrikk_arbeidsorganisering",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_gjenoppbygging_minne",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_skrift_hand_lesning",
-                "score": 7
-              }
-            ]
-          }
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_spinning_gj_r_fibrene_ti_0f2d7d0f01",
+          "knowledge_unit_ids": [
+            "ku_historie_spinning_gj_r_fibrene_ti_0f2d7d0f01",
+            "ku_historie_garnet_er_rastoff_for_ve_ba7cb0738f"
+          ],
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "seilduksfabrikken_nydalen_s1_q3",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_1_q3",
+          "id": "seilduksfabrikken_nydalen_v1_s1_q3",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_1_q3",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
           "question_scope": "place",
-          "question": "Hva er et godt første observasjonsspørsmål her?",
+          "question": "Hvilket spinneri kom først i anlegget til Nydalens Compagnie?",
           "options": [
-            "Hvordan viser bygningen at elva og produksjonen hørte sammen?",
-            "Hvorfor finnes det ingen historie her?",
-            "Hvilket arrangement skjer i kveld?"
+            "Nedre spinneri",
+            "Øvre spinneri",
+            "De ble åpnet samtidig",
+            "Veveriet kom før begge"
           ],
-          "answer": "Hvordan viser bygningen at elva og produksjonen hørte sammen?",
+          "answer": "Nedre spinneri",
           "answerIndex": 0,
-          "knowledge": "Spørsmålet kobler fysisk observasjon til industrihistorie uten dagsaktuelle detaljer.",
+          "knowledge": "Nedre spinneri er datert til 1847. Øvre spinneri kom i 1856.",
+          "explanation": "Nedre spinneri er datert til 1847. Øvre spinneri kom i 1856.",
           "difficulty": 1,
-          "question_type": "observasjon",
-          "question_layer": "intro_story",
-          "tags": [
-            "stedlesning"
+          "question_type": "context",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "sekne"
           ],
-          "claim_basis": "generator_rule",
-          "primary_knowledge_unit_id": "ku_historie_sp_rsmalet_kobler_fysisk_83f8eabe98",
-          "knowledge_unit_ids": [
-            "ku_historie_sp_rsmalet_kobler_fysisk_83f8eabe98"
+          "source_urls": [
+            "https://www.estatenyheter.no/aktuelt/historien-om-nydalen/153954"
           ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_03",
+          "claim_basis": "Nedre spinneri er datert til 1847. Øvre spinneri kom i 1856.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
-                "score": 6
-              }
-            ]
-          }
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_nedre_spinneri_er_datert_5feaa6b5ab",
+          "knowledge_unit_ids": [
+            "ku_historie_nedre_spinneri_er_datert_5feaa6b5ab",
+            "ku_historie_vre_spinneri_kom_i_1856_c44d79ee51"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "seilduksfabrikken_nydalen_v1_s1_q4",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "seilduksfabrikken_nydalen",
+          "targetId": "seilduksfabrikken_nydalen",
+          "question_scope": "place",
+          "question": "Hvor stor var maskinparken i det nye spinneriet fra 1856, ifølge Ivar Sekne?",
+          "options": [
+            "14 000 spindler",
+            "4 000 spindler",
+            "40 000 spindler",
+            "1 400 spindler"
+          ],
+          "answer": "14 000 spindler",
+          "answerIndex": 0,
+          "knowledge": "Sekne oppgir 14 000 spindler for spinneriet som ble bygd i 1856.",
+          "explanation": "Sekne oppgir 14 000 spindler for spinneriet som ble bygd i 1856.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ],
+          "source": [
+            "sekne"
+          ],
+          "source_urls": [
+            "https://www.estatenyheter.no/aktuelt/historien-om-nydalen/153954"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_04",
+          "claim_basis": "Sekne oppgir 14 000 spindler for spinneriet som ble bygd i 1856.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_sekne_oppgir_14_000_spin_18c750cebd",
+          "knowledge_unit_ids": [
+            "ku_historie_sekne_oppgir_14_000_spin_18c750cebd"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "seilduksfabrikken_nydalen_v1_s1_q5",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "seilduksfabrikken_nydalen",
+          "targetId": "seilduksfabrikken_nydalen",
+          "question_scope": "place",
+          "question": "Hvordan passerer Akerselva selve Øvre spinneri?",
+          "options": [
+            "Gjennom en kulvert under spinneriet",
+            "I en åpen renne gjennom veverisalen",
+            "På en akvedukt over taket",
+            "Rundt anlegget uten å passere bygningen"
+          ],
+          "answer": "Gjennom en kulvert under spinneriet",
+          "answerIndex": 0,
+          "knowledge": "Brooppslaget beskriver kulverten som leder elva under spinneriet.",
+          "explanation": "Brooppslaget beskriver kulverten som leder elva under spinneriet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
+          ],
+          "source": [
+            "bru"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Spinneri_bru_%28%C3%98vre%29"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_05",
+          "claim_basis": "Brooppslaget beskriver kulverten som leder elva under spinneriet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_brooppslaget_beskriver_k_6f6c20b2fb",
+          "knowledge_unit_ids": [
+            "ku_historie_brooppslaget_beskriver_k_6f6c20b2fb"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "seilduksfabrikken_nydalen_v1_s1_q6",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "seilduksfabrikken_nydalen",
+          "targetId": "seilduksfabrikken_nydalen",
+          "question_scope": "place",
+          "question": "Hvilken vei knytter byleksikonet til det tidligere fabrikkområdet?",
+          "options": [
+            "Gjerdrums vei",
+            "Maridalsveien ved Sagene",
+            "Sandakerveien ved Torshov",
+            "Kjelsåsveien ved Brekkefossen"
+          ],
+          "answer": "Gjerdrums vei",
+          "answerIndex": 0,
+          "knowledge": "Gjerdrums vei er adresseankeret for det tidligere selskapsområdet. Oppslaget angir ikke husnummer for selve spinneriet.",
+          "explanation": "Gjerdrums vei er adresseankeret for det tidligere selskapsområdet. Oppslaget angir ikke husnummer for selve spinneriet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "emne_ids": [
+            "em_his_kulturminner_bevaring"
+          ],
+          "source": [
+            "compagnie"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_06",
+          "claim_basis": "Gjerdrums vei er adresseankeret for det tidligere selskapsområdet. Oppslaget angir ikke husnummer for selve spinneriet.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_gjerdrums_vei_er_adresse_e250477c54",
+          "knowledge_unit_ids": [
+            "ku_historie_gjerdrums_vei_er_adresse_e250477c54",
+            "ku_historie_oppslaget_angir_ikke_hus_0556c5e8b3"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "seilduksfabrikken_nydalen_v1_s1_q7",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "seilduksfabrikken_nydalen",
+          "targetId": "seilduksfabrikken_nydalen",
+          "question_scope": "place",
+          "question": "Hva gjorde veveriet med garn som spinneriet hadde laget?",
+          "options": [
+            "Vevde garnet til stoff",
+            "Spant garnet tilbake til løse fibre",
+            "Presset garnet til råbomullsballer",
+            "Bleket garnet uten å veve det"
+          ],
+          "answer": "Vevde garnet til stoff",
+          "answerIndex": 0,
+          "knowledge": "Spinning og veving var ulike produksjonsledd i det samme bomullsanlegget.",
+          "explanation": "Spinning og veving var ulike produksjonsledd i det samme bomullsanlegget.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ],
+          "source": [
+            "compagnie",
+            "sekne"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie",
+            "https://www.estatenyheter.no/aktuelt/historien-om-nydalen/153954"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_07",
+          "claim_basis": "Spinning og veving var ulike produksjonsledd i det samme bomullsanlegget.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_spinning_og_veving_var_u_13f6797492",
+          "knowledge_unit_ids": [
+            "ku_historie_spinning_og_veving_var_u_13f6797492"
+          ],
+          "knowledge_link_status": "linked"
         }
       ]
     },
     {
-      "set_id": "historie_seilduksfabrikken_nydalen_set_2",
-      "level": 2,
+      "set_id": "historie_seilduksfabrikken_nydalen_v1_set_2",
       "order": 2,
+      "level": 2,
+      "phase": "bridge",
+      "title": "Produksjon og ombruk",
       "xp": 60,
       "mode": "place_life_people_events",
       "questions": [
         {
-          "id": "seilduksfabrikken_nydalen_s2_q1",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_2_q1",
+          "id": "seilduksfabrikken_nydalen_v1_s2_q1",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_2_q1",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
           "question_scope": "place",
-          "question": "Hva slags historisk stedsliv peker Øvre spinneri mot?",
+          "question": "Hva slags kraft utnyttet tekstilbedriften ved oppstarten i Nydalen?",
           "options": [
-            "Arbeid, produksjon, råvareflyt og industribyens hverdag",
-            "Kun stillhet uten mennesker",
-            "Bare moderne servering"
+            "Kraft fra fossefallene",
+            "Dampkraft fra kullfyrte kjeler",
+            "Elektrisitet fra det kommunale strømnettet",
+            "Vindkraft fra møller langs elva"
           ],
-          "answer": "Arbeid, produksjon, råvareflyt og industribyens hverdag",
+          "answer": "Kraft fra fossefallene",
           "answerIndex": 0,
-          "knowledge": "Fabrikkhistorie handler om menneskene, arbeidshverdagen og systemene rundt produksjonen.",
-          "difficulty": 1,
-          "question_type": "bruk",
-          "question_layer": "place_life",
-          "tags": [
-            "arbeid",
-            "produksjon"
+          "knowledge": "Sekne beskriver direkte bruk av fossekraft tidlig i driften.",
+          "explanation": "Sekne beskriver direkte bruk av fossekraft tidlig i driften.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
+            "sekne"
           ],
-          "claim_basis": "safe_place_data",
-          "emne_ids": [
-            "em_his_industriby_1900"
+          "source_urls": [
+            "https://www.estatenyheter.no/aktuelt/historien-om-nydalen/153954"
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.89,
-            "score": 14,
-            "matched": [
-              "sted",
-              "arbeid",
-              "rundt",
-              "produksjon"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_fabrikkhistorie_handler__6016bed9b8",
-          "knowledge_unit_ids": [
-            "ku_historie_fabrikkhistorie_handler__6016bed9b8"
-          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_08",
+          "claim_basis": "Sekne beskriver direkte bruk av fossekraft tidlig i driften.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_sekne_beskriver_direkte__9c410cc3b1",
+          "knowledge_unit_ids": [
+            "ku_historie_sekne_beskriver_direkte__9c410cc3b1"
+          ],
           "knowledge_link_status": "linked"
         },
         {
-          "id": "seilduksfabrikken_nydalen_s2_q2",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_2_q2",
+          "id": "seilduksfabrikken_nydalen_v1_s2_q2",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_2_q2",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
           "question_scope": "place",
-          "question": "Hva kan fabrikkbygningen fortelle?",
+          "question": "Hvilket navn hadde bedriften før den ble Nydalens Compagnie?",
           "options": [
-            "At industrihistorie kan ligge i materialer, volum, vinduer og plassering",
-            "At bygninger aldri betyr noe",
-            "At historien bare finnes i tekst"
+            "Nydalens Bomuldsspinderi",
+            "Nydalens Væverier",
+            "Christiania Seildugsfabrik",
+            "Nygårdsdalens Uldspinderi"
           ],
-          "answer": "At industrihistorie kan ligge i materialer, volum, vinduer og plassering",
+          "answer": "Nydalens Bomuldsspinderi",
           "answerIndex": 0,
-          "knowledge": "Materielle spor gjør industrihistorien synlig og stedlig.",
-          "difficulty": 1,
-          "question_type": "fysisk_trekk",
-          "question_layer": "place_life",
-          "tags": [
-            "materialitet",
-            "fabrikkarkitektur"
+          "knowledge": "Selskapet ble stiftet som Nydalens Bomuldsspinderi. Navnet Nydalens Compagnie kom da det ble aksjeselskap.",
+          "explanation": "Selskapet ble stiftet som Nydalens Bomuldsspinderi. Navnet Nydalens Compagnie kom da det ble aksjeselskap.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
+            "compagnie"
           ],
-          "claim_basis": "safe_place_data",
-          "emne_ids": [
-            "em_his_industriby_1900"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_materielle_spor_gj_r_ind_9f8bb2fe3b",
-          "knowledge_unit_ids": [
-            "ku_historie_materielle_spor_gj_r_ind_9f8bb2fe3b"
-          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_09",
+          "claim_basis": "Selskapet ble stiftet som Nydalens Bomuldsspinderi. Navnet Nydalens Compagnie kom da det ble aksjeselskap.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_selskapet_ble_stiftet_so_f10880c8ee",
+          "knowledge_unit_ids": [
+            "ku_historie_selskapet_ble_stiftet_so_f10880c8ee",
+            "ku_historie_navnet_nydalens_compagni_84d3dafa77"
+          ],
           "knowledge_link_status": "linked"
         },
         {
-          "id": "seilduksfabrikken_nydalen_s2_q3",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_2_q3",
+          "id": "seilduksfabrikken_nydalen_v1_s2_q3",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_2_q3",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
           "question_scope": "place",
-          "question": "Hva er en trygg måte å omtale historien her på?",
+          "question": "Hvem tok initiativ til Nydalens Bomuldsspinderi?",
           "options": [
-            "Som tekstil- og fabrikkmiljø i Nydalen uten å dikte detaljert eierhistorie",
-            "Som full eierliste uten kilde",
-            "Som et sted uten produksjon"
+            "Adam Severin Hiorth",
+            "Otto Adolf Gjerdrum",
+            "Peter Petersen",
+            "Knud Graah"
           ],
-          "answer": "Som tekstil- og fabrikkmiljø i Nydalen uten å dikte detaljert eierhistorie",
+          "answer": "Adam Severin Hiorth",
           "answerIndex": 0,
-          "knowledge": "Trygg quizdata bruker sikre hovedlinjer og holder detaljer tilbake til kilder er sjekket.",
-          "difficulty": 1,
-          "question_type": "kildekritikk",
-          "question_layer": "place_life",
-          "tags": [
-            "holdback"
+          "knowledge": "Byleksikonet navngir Hiorth som initiativtaker. Gjerdrum og Petersen hører til den senere utviklingen.",
+          "explanation": "Byleksikonet navngir Hiorth som initiativtaker. Gjerdrum og Petersen hører til den senere utviklingen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
-            "manual_production_notes"
+            "compagnie"
           ],
-          "claim_basis": "holdback_rule",
-          "emne_ids": [
-            "em_his_industriby_1900"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_trygg_quizdata_bruker_si_6457843243",
-          "knowledge_unit_ids": [
-            "ku_historie_trygg_quizdata_bruker_si_6457843243"
-          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_10",
+          "claim_basis": "Byleksikonet navngir Hiorth som initiativtaker. Gjerdrum og Petersen hører til den senere utviklingen.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_byleksikonet_navngir_hio_242e413041",
+          "knowledge_unit_ids": [
+            "ku_historie_byleksikonet_navngir_hio_242e413041",
+            "ku_historie_gjerdrum_og_petersen_h_r_26f576626e"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "seilduksfabrikken_nydalen_v1_s2_q4",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "seilduksfabrikken_nydalen",
+          "targetId": "seilduksfabrikken_nydalen",
+          "question_scope": "place",
+          "question": "Hvilke to etterbehandlinger fikk bedriften i tillegg til spinning og veving?",
+          "options": [
+            "Farging og bleking",
+            "Garving og valking",
+            "Trykking og bokbinding",
+            "Søm og mønstertegning"
+          ],
+          "answer": "Farging og bleking",
+          "answerIndex": 0,
+          "knowledge": "Selskapet fikk fargeri og blekeri etter at det var bygd ut med veverier.",
+          "explanation": "Selskapet fikk fargeri og blekeri etter at det var bygd ut med veverier.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ],
+          "source": [
+            "compagnie"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_11",
+          "claim_basis": "Selskapet fikk fargeri og blekeri etter at det var bygd ut med veverier.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_selskapet_fikk_fargeri_o_17e4c9578d",
+          "knowledge_unit_ids": [
+            "ku_historie_selskapet_fikk_fargeri_o_17e4c9578d"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "seilduksfabrikken_nydalen_v1_s2_q5",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "seilduksfabrikken_nydalen",
+          "targetId": "seilduksfabrikken_nydalen",
+          "question_scope": "place",
+          "question": "Hva skjedde med selskapsdriften etter at tekstilproduksjonen tok slutt?",
+          "options": [
+            "Selskapet gikk over til å forvalte eiendommene",
+            "Selskapet fortsatte med veving uten spinneriene",
+            "Selskapet begynte å produsere jernvarer",
+            "Selskapet flyttet spinneridriften til Sagene"
+          ],
+          "answer": "Selskapet gikk over til å forvalte eiendommene",
+          "answerIndex": 0,
+          "knowledge": "Byleksikonet beskriver en overgang fra tekstilproduksjon til eiendomsforvaltning.",
+          "explanation": "Byleksikonet beskriver en overgang fra tekstilproduksjon til eiendomsforvaltning.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "emne_ids": [
+            "em_his_kulturminner_bevaring"
+          ],
+          "source": [
+            "compagnie"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_12",
+          "claim_basis": "Byleksikonet beskriver en overgang fra tekstilproduksjon til eiendomsforvaltning.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_byleksikonet_beskriver_e_95771be101",
+          "knowledge_unit_ids": [
+            "ku_historie_byleksikonet_beskriver_e_95771be101"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "seilduksfabrikken_nydalen_v1_s2_q6",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "seilduksfabrikken_nydalen",
+          "targetId": "seilduksfabrikken_nydalen",
+          "question_scope": "place",
+          "question": "Hva het det tidligere industriområdet da det gjenåpnet etter rehabiliteringen?",
+          "options": [
+            "Nydalen Park",
+            "Nydalen Mølle",
+            "Nydalen Kværnerpark",
+            "Nydalen Tekstilmuseum"
+          ],
+          "answer": "Nydalen Park",
+          "answerIndex": 0,
+          "knowledge": "Nydalen Park var navnet på det rehabiliterte området som åpnet i 1990.",
+          "explanation": "Nydalen Park var navnet på det rehabiliterte området som åpnet i 1990.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "emne_ids": [
+            "em_his_kulturminner_bevaring"
+          ],
+          "source": [
+            "compagnie"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_13",
+          "claim_basis": "Nydalen Park var navnet på det rehabiliterte området som åpnet i 1990.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_nydalen_park_var_navnet__9eafdf900d",
+          "knowledge_unit_ids": [
+            "ku_historie_nydalen_park_var_navnet__9eafdf900d"
+          ],
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "seilduksfabrikken_nydalen_v1_s2_q7",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "seilduksfabrikken_nydalen",
+          "targetId": "seilduksfabrikken_nydalen",
+          "question_scope": "place",
+          "question": "Hvor ble det historiske fotografiet av spinneriet og veveriet tatt fra, ifølge Oslo Museum?",
+          "options": [
+            "Fra vannrennen",
+            "Fra taket på veveriet",
+            "Fra innsiden av spinnerisalen",
+            "Fra Gjerdrums vei"
+          ],
+          "answer": "Fra vannrennen",
+          "answerIndex": 0,
+          "knowledge": "Museets katalog oppgir vannrennen som fotografiets ståsted.",
+          "explanation": "Museets katalog oppgir vannrennen som fotografiets ståsted.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
+          ],
+          "source": [
+            "museum"
+          ],
+          "source_urls": [
+            "https://oslobilder.no/OMU/OB.F04310i"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_14",
+          "claim_basis": "Museets katalog oppgir vannrennen som fotografiets ståsted.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_museets_katalog_oppgir_v_429afa89b3",
+          "knowledge_unit_ids": [
+            "ku_historie_museets_katalog_oppgir_v_429afa89b3"
+          ],
           "knowledge_link_status": "linked"
         }
       ]
     },
     {
-      "set_id": "historie_seilduksfabrikken_nydalen_set_3",
-      "level": 3,
+      "set_id": "historie_seilduksfabrikken_nydalen_v1_set_3",
       "order": 3,
+      "level": 3,
+      "phase": "final",
+      "title": "Fotografiet og kildene",
       "xp": 70,
       "mode": "emne_based_foundation",
       "questions": [
         {
-          "id": "seilduksfabrikken_nydalen_s3_q1",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_3_q1",
-          "categoryId": "historie",
-          "placeId": "seilduksfabrikken_nydalen",
-          "targetId": "seilduksfabrikken_nydalen",
-          "question_scope": "emne",
-          "question": "Hva betyr industriarv?",
-          "options": [
-            "Spor og fortellinger etter tidligere industri, arbeid og produksjon",
-            "Et ord for urørt natur",
-            "En dagsaktuell kampanje"
-          ],
-          "answer": "Spor og fortellinger etter tidligere industri, arbeid og produksjon",
-          "answerIndex": 0,
-          "knowledge": "Øvre spinneri er et eksempel på industriarv i Nydalen.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "industriarv"
-          ],
-          "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_vre_spinneri_er_et_eksem_76d925adb5",
-          "knowledge_unit_ids": [
-            "ku_historie_vre_spinneri_er_et_eksem_76d925adb5"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
-                "score": 4
-              }
-            ]
-          }
-        },
-        {
-          "id": "seilduksfabrikken_nydalen_s3_q2",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_3_q2",
-          "categoryId": "historie",
-          "placeId": "seilduksfabrikken_nydalen",
-          "targetId": "seilduksfabrikken_nydalen",
-          "question_scope": "emne",
-          "question": "Hva betyr fabrikkarkitektur?",
-          "options": [
-            "Bygningsform og materialitet knyttet til produksjon og arbeid",
-            "Bare dekor uten funksjon",
-            "Et naturbegrep"
-          ],
-          "answer": "Bygningsform og materialitet knyttet til produksjon og arbeid",
-          "answerIndex": 0,
-          "knowledge": "Fabrikkbygninger kan gjøre produksjonens behov synlige.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "fabrikkarkitektur"
-          ],
-          "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_fabrikkbygninger_kan_gj__ed92033ab5",
-          "knowledge_unit_ids": [
-            "ku_historie_fabrikkbygninger_kan_gj__ed92033ab5"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_fabrikk_arbeidsorganisering",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_industri_produksjon_energi",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_industriby_1900",
-                "score": 3
-              }
-            ]
-          }
-        },
-        {
-          "id": "seilduksfabrikken_nydalen_s3_q3",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_3_q3",
-          "categoryId": "historie",
-          "placeId": "seilduksfabrikken_nydalen",
-          "targetId": "seilduksfabrikken_nydalen",
-          "question_scope": "emne",
-          "question": "Hva betyr stedlesning?",
-          "options": [
-            "Å bruke observasjoner på stedet til å forstå større sammenhenger",
-            "Å svare uten å se seg rundt",
-            "Å pugge løsrevne navn"
-          ],
-          "answer": "Å bruke observasjoner på stedet til å forstå større sammenhenger",
-          "answerIndex": 0,
-          "knowledge": "Stedlesning her betyr å koble bygning, elv og arbeidshistorie.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "stedlesning"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "primary_knowledge_unit_id": "ku_historie_stedlesning_her_betyr_a__f931bed884",
-          "knowledge_unit_ids": [
-            "ku_historie_stedlesning_her_betyr_a__f931bed884"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_arbeid_nettverk_naring",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
-                "score": 8
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "set_id": "historie_seilduksfabrikken_nydalen_set_4",
-      "level": 4,
-      "order": 4,
-      "xp": 80,
-      "mode": "place_concrete_advanced",
-      "questions": [
-        {
-          "id": "seilduksfabrikken_nydalen_s4_q1",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_4_q1",
+          "id": "seilduksfabrikken_nydalen_v1_s3_q1",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_3_q1",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
           "question_scope": "place",
-          "question": "Hva er en avansert observasjon ved Øvre spinneri?",
+          "question": "Hva kan fotografiet fra vannrennen brukes til å undersøke?",
           "options": [
-            "Å se hvordan bygning, elv, arbeid og ny bybruk henger sammen",
-            "Å bare se etter ett skilt",
-            "Å ignorere bygningen"
+            "Hvor fabrikkbygningene lå i forhold til elva",
+            "Hvor mange som jobbet ved spinneriet",
+            "Hvem som hadde nattskift",
+            "Hvor mye garn som ble produsert per dag"
           ],
-          "answer": "Å se hvordan bygning, elv, arbeid og ny bybruk henger sammen",
+          "answer": "Hvor fabrikkbygningene lå i forhold til elva",
           "answerIndex": 0,
-          "knowledge": "Avansert stedlesning kobler materialitet, produksjon og transformasjon.",
-          "difficulty": 2,
-          "question_type": "analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "stedlesning"
+          "knowledge": "Motivet viser bygninger og vassdrag. Arbeidstid og produksjonstall krever andre kilder.",
+          "explanation": "Motivet viser bygninger og vassdrag. Arbeidstid og produksjonstall krever andre kilder.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
+            "museum"
           ],
-          "claim_basis": "safe_place_data",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
+          "source_urls": [
+            "https://oslobilder.no/OMU/OB.F04310i"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_avansert_stedlesning_kob_239a2d375b",
-          "knowledge_unit_ids": [
-            "ku_historie_avansert_stedlesning_kob_239a2d375b"
-          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_15",
+          "claim_basis": "Motivet viser bygninger og vassdrag. Arbeidstid og produksjonstall krever andre kilder.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_motivet_viser_bygninger__a55af9e20f",
+          "knowledge_unit_ids": [
+            "ku_historie_motivet_viser_bygninger__a55af9e20f",
+            "ku_historie_arbeidstid_og_produksjon_6f7b5fbb82"
+          ],
           "knowledge_link_status": "linked"
         },
         {
-          "id": "seilduksfabrikken_nydalen_s4_q2",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_4_q2",
+          "id": "seilduksfabrikken_nydalen_v1_s3_q2",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_3_q2",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
           "question_scope": "place",
-          "question": "Hva bør holdes ute av en trygg quiz her?",
+          "question": "Museet daterer bildet til antatt 1878. Hvordan bør årstallet brukes?",
           "options": [
-            "Detaljert eierhistorie, usikre personer og dagsaktuelle virksomheter uten kilde",
-            "Begrepet industriarv",
-            "Observasjon av bygningen"
+            "Som et sannsynlig opptaksår med forbehold",
+            "Som sikkert opptaksår fordi bildet har et arkivnummer",
+            "Som året Øvre spinneri ble oppført",
+            "Som året fotografen leverte bildet til museet"
           ],
-          "answer": "Detaljert eierhistorie, usikre personer og dagsaktuelle virksomheter uten kilde",
+          "answer": "Som et sannsynlig opptaksår med forbehold",
           "answerIndex": 0,
-          "knowledge": "Detaljer krever kilder; hovedlinjen kan være trygg uten dem.",
-          "difficulty": 2,
-          "question_type": "kildekritikk",
-          "question_layer": "advanced_place",
-          "tags": [
-            "holdback"
+          "knowledge": "Ordet «antatt» gjelder dateringen av opptaket og må følge med når bildet omtales.",
+          "explanation": "Ordet «antatt» gjelder dateringen av opptaket og må følge med når bildet omtales.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "manual_production_notes"
+            "museum"
           ],
-          "claim_basis": "holdback_rule",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
+          "source_urls": [
+            "https://oslobilder.no/OMU/OB.F04310i"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_detaljer_krever_kilder_h_bfb7fa3d46",
-          "knowledge_unit_ids": [
-            "ku_historie_detaljer_krever_kilder_h_bfb7fa3d46"
-          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_16",
+          "claim_basis": "Ordet «antatt» gjelder dateringen av opptaket og må følge med når bildet omtales.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_ordet_antatt_gjelder_dat_0cd225c3a1",
+          "knowledge_unit_ids": [
+            "ku_historie_ordet_antatt_gjelder_dat_0cd225c3a1"
+          ],
           "knowledge_link_status": "linked"
         },
         {
-          "id": "seilduksfabrikken_nydalen_s4_q3",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_4_q3",
+          "id": "seilduksfabrikken_nydalen_v1_s3_q3",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_3_q3",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
           "question_scope": "place",
-          "question": "Hva bør en god Øvre spinneri-quiz trene spilleren i?",
+          "question": "Hvilken kilde svarer mest direkte på hvordan elva går under bygningen?",
           "options": [
-            "Å lese fabrikkarkitektur, elv, arbeid og byomforming sammen",
-            "Å overse stedet",
-            "Å svare uten observasjon"
+            "Byleksikonets oppslag om Øvre Spinneri bru",
+            "Museets datering av oversiktsfotoet",
+            "Byleksikonets opplysning om åpningen av Nydalen Park",
+            "Seknes anslag over antall spindler"
           ],
-          "answer": "Å lese fabrikkarkitektur, elv, arbeid og byomforming sammen",
+          "answer": "Byleksikonets oppslag om Øvre Spinneri bru",
           "answerIndex": 0,
-          "knowledge": "Quizzen skal gjøre spilleren bedre til å forstå stedet de står ved.",
-          "difficulty": 2,
-          "question_type": "meta",
-          "question_layer": "advanced_place",
-          "tags": [
-            "stedbasert_læring"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
+          "knowledge": "Bruoppslaget beskriver selve kulverten under spinneriet.",
+          "explanation": "Bruoppslaget beskriver selve kulverten under spinneriet.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
           "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
+            "em_his_kildekritikk_arkiv_spor"
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "sted",
-              "l ring"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_quizzen_skal_gj_re_spill_52de3ffd23",
-          "knowledge_unit_ids": [
-            "ku_historie_quizzen_skal_gj_re_spill_52de3ffd23"
+          "source": [
+            "bru",
+            "museum"
           ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Spinneri_bru_%28%C3%98vre%29",
+            "https://oslobilder.no/OMU/OB.F04310i"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_17",
+          "claim_basis": "Bruoppslaget beskriver selve kulverten under spinneriet.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bruoppslaget_beskriver_s_908703e1c0",
+          "knowledge_unit_ids": [
+            "ku_historie_bruoppslaget_beskriver_s_908703e1c0"
+          ],
           "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "historie_seilduksfabrikken_nydalen_set_5",
-      "level": 5,
-      "order": 5,
-      "xp": 90,
-      "mode": "emne_based_advanced",
-      "questions": [
-        {
-          "id": "seilduksfabrikken_nydalen_s5_q1",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_5_q1",
-          "categoryId": "historie",
-          "placeId": "seilduksfabrikken_nydalen",
-          "targetId": "seilduksfabrikken_nydalen",
-          "question_scope": "emne",
-          "question": "Hva er den dypere læringen i Øvre spinneri?",
-          "options": [
-            "At industrihistorie kan leses gjennom bygg, materialer, arbeid og elverom",
-            "At historie bare er årstall",
-            "At bygninger ikke betyr noe"
-          ],
-          "answer": "At industrihistorie kan leses gjennom bygg, materialer, arbeid og elverom",
-          "answerIndex": 0,
-          "knowledge": "Stedet gjør den materielle siden av industrihistorien konkret.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "materialitet",
-            "industriarv"
-          ],
-          "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_stedet_gj_r_den_materiel_0de15afd29",
-          "knowledge_unit_ids": [
-            "ku_historie_stedet_gj_r_den_materiel_0de15afd29"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_boligpolitikk_materiell_velferd",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_okonomi_handel_teknologi_produktivitet_og_materielle_standarder",
-                "score": 8
-              }
-            ]
-          }
         },
         {
-          "id": "seilduksfabrikken_nydalen_s5_q2",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_5_q2",
+          "id": "seilduksfabrikken_nydalen_v1_s3_q4",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_3_q4",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
-          "question_scope": "emne",
-          "question": "Hva kan fabrikkomforming fortelle om byutvikling?",
+          "question_scope": "place",
+          "question": "Hva er en presis måte å bruke opplysningen om opptil 1 100 ansatte?",
           "options": [
-            "At gamle produksjonsmiljøer kan få nye funksjoner uten å miste alle historiske spor",
-            "At alt gammelt må rives",
-            "At transformasjon ikke påvirker byliv"
+            "Knytte tallet til hele tekstilbedriften",
+            "Bruke det som bemanning i Øvre spinneri alene",
+            "Bruke det som antall spinnere som arbeidet samtidig",
+            "Knytte tallet til veveriet som vises på fotografiet"
           ],
-          "answer": "At gamle produksjonsmiljøer kan få nye funksjoner uten å miste alle historiske spor",
+          "answer": "Knytte tallet til hele tekstilbedriften",
           "answerIndex": 0,
-          "knowledge": "Byomforming skaper både kontinuitet og nye bruksformer.",
+          "knowledge": "Byleksikonet oppgir tallet for Nydalens Compagnie. Det gir ingen fordeling på bygninger eller skift.",
+          "explanation": "Byleksikonet oppgir tallet for Nydalens Compagnie. Det gir ingen fordeling på bygninger eller skift.",
           "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "transformasjon",
-            "byutvikling"
+          "question_type": "analysis",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
+            "compagnie"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_byomforming_skaper_bade__4b972fd80d",
-          "knowledge_unit_ids": [
-            "ku_historie_byomforming_skaper_bade__4b972fd80d"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Nydalens_Compagnie"
           ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_18",
+          "claim_basis": "Byleksikonet oppgir tallet for Nydalens Compagnie. Det gir ingen fordeling på bygninger eller skift.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_brudd_kontinuitet",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_fabrikk_arbeidsorganisering",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
-                "score": 4
-              }
-            ]
-          }
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "method_id": "met_kildekritikk",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "knut_kjeldstadli",
+          "work": "Fortida er ikke hva den en gang var",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ],
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "knut_kjeldstadli",
+            "work": "Fortida er ikke hva den en gang var",
+            "why_it_helps": "Kildekritikk avgrenser bedriftens samlede sysselsettingstall fra en påstand om én bygning eller ett arbeidsskift."
+          },
+          "primary_knowledge_unit_id": "ku_historie_byleksikonet_oppgir_tall_934c9dab04",
+          "knowledge_unit_ids": [
+            "ku_historie_byleksikonet_oppgir_tall_934c9dab04",
+            "ku_historie_det_gir_ingen_fordeling__4bd8d7caa6"
+          ],
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "seilduksfabrikken_nydalen_s5_q3",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_5_q3",
+          "id": "seilduksfabrikken_nydalen_v1_s3_q5",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_3_q5",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
-          "question_scope": "emne",
-          "question": "Hva gjør Øvre spinneri god for History Go-læring?",
+          "question_scope": "place",
+          "question": "Bildet viser både spinneri og veveri. Hva bør du undersøke for å finne ut hvilken bygning som er hvilken?",
           "options": [
-            "Den lar spilleren forstå industriarv og byomforming gjennom et konkret bygg",
-            "Den krever at man ignorerer stedet",
-            "Den handler bare om løsrevne tall"
+            "Sammenholde motivet med en plan som navngir bygningene",
+            "Regne med at størst bygning alltid er spinneriet",
+            "Bruke fotografens navn til å skille bygningene",
+            "Lese selskapets stiftelsesår som nøkkel til plasseringen"
           ],
-          "answer": "Den lar spilleren forstå industriarv og byomforming gjennom et konkret bygg",
+          "answer": "Sammenholde motivet med en plan som navngir bygningene",
           "answerIndex": 0,
-          "knowledge": "Stedet gjør abstrakte begreper som industriarv, materialitet og transformasjon konkrete.",
+          "knowledge": "Katalogen identifiserer begge virksomhetene i motivet. En navngitt plan kan hjelpe med å plassere dem hver for seg.",
+          "explanation": "Katalogen identifiserer begge virksomhetene i motivet. En navngitt plan kan hjelpe med å plassere dem hver for seg.",
           "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "stedbasert_læring"
+          "question_type": "analysis",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
           ],
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "museum"
           ],
-          "claim_basis": "generator_rule",
-          "primary_knowledge_unit_id": "ku_historie_stedet_gj_r_abstrakte_be_4de3247dd4",
-          "knowledge_unit_ids": [
-            "ku_historie_stedet_gj_r_abstrakte_be_4de3247dd4"
+          "source_urls": [
+            "https://oslobilder.no/OMU/OB.F04310i"
           ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_19",
+          "claim_basis": "Katalogen identifiserer begge virksomhetene i motivet. En navngitt plan kan hjelpe med å plassere dem hver for seg.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_spor_materialitet",
-                "score": 7
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "set_id": "historie_seilduksfabrikken_nydalen_set_6",
-      "level": 6,
-      "order": 6,
-      "xp": 100,
-      "mode": "concept_based",
-      "questions": [
-        {
-          "id": "seilduksfabrikken_nydalen_s6_q1",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_6_q1",
-          "categoryId": "historie",
-          "placeId": "seilduksfabrikken_nydalen",
-          "targetId": "seilduksfabrikken_nydalen",
-          "question_scope": "concept",
-          "question": "Hvilket begrep beskriver spor etter tidligere industri og produksjon?",
-          "options": [
-            "Industriarv",
-            "Flyplass",
-            "Privat lager"
-          ],
-          "answer": "Industriarv",
-          "answerIndex": 0,
-          "knowledge": "Industriarv er nøkkelbegrepet for Øvre spinneri.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
           "tags": [
-            "industriarv"
+            "ovre_spinneri"
           ],
-          "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
+          "method_id": "met_sporlesning",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_industriarv_er_n_kkelbeg_791fb08d02",
+          "primary_knowledge_unit_id": "ku_historie_katalogen_identifiserer__158c87e905",
           "knowledge_unit_ids": [
-            "ku_historie_industriarv_er_n_kkelbeg_791fb08d02"
+            "ku_historie_katalogen_identifiserer__158c87e905",
+            "ku_historie_en_navngitt_plan_kan_hje_0d3a21271e"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_gjenoppbygging_minne",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_industri_produksjon_energi",
-                "score": 7
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "seilduksfabrikken_nydalen_s6_q2",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_6_q2",
+          "id": "seilduksfabrikken_nydalen_v1_s3_q6",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_3_q6",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
-          "question_scope": "concept",
-          "question": "Hva betyr byomforming?",
+          "question_scope": "place",
+          "question": "Hvilket kildespor kan avklare om et nytt fotografi viser samme fabrikkmiljø?",
           "options": [
-            "At områder får nye funksjoner når byen vokser og endres",
-            "At steder aldri endres",
-            "At alle spor slettes"
+            "Sammenligne elveløpet, ståstedet og bygningsformene",
+            "Sammenligne bare antall vinduer",
+            "Sammenligne bare datoen på bildeteksten",
+            "Sammenligne bare fargen på teglsteinen"
           ],
-          "answer": "At områder får nye funksjoner når byen vokser og endres",
+          "answer": "Sammenligne elveløpet, ståstedet og bygningsformene",
           "answerIndex": 0,
-          "knowledge": "Nydalen viser byomforming fra industri til nyere bybruk.",
+          "knowledge": "Kombinasjonen av plassering, ståsted og flere bygningsdetaljer gir sikrere identifikasjon enn én detalj alene.",
+          "explanation": "Kombinasjonen av plassering, ståsted og flere bygningsdetaljer gir sikrere identifikasjon enn én detalj alene.",
           "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "byomforming"
+          "question_type": "analysis",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
           ],
           "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
+            "museum",
+            "bru"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_nydalen_viser_byomformin_2afe865dd5",
-          "knowledge_unit_ids": [
-            "ku_historie_nydalen_viser_byomformin_2afe865dd5"
+          "source_urls": [
+            "https://oslobilder.no/OMU/OB.F04310i",
+            "https://oslobyleksikon.no/side/Spinneri_bru_%28%C3%98vre%29"
           ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_20",
+          "claim_basis": "Kombinasjonen av plassering, ståsted og flere bygningsdetaljer gir sikrere identifikasjon enn én detalj alene.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
-                "score": 4
-              }
-            ]
-          }
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "method_id": "met_sporlesning",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kombinasjonen_av_plasser_a11b83901f",
+          "knowledge_unit_ids": [
+            "ku_historie_kombinasjonen_av_plasser_a11b83901f"
+          ],
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "seilduksfabrikken_nydalen_s6_q3",
-          "quiz_id": "historie_seilduksfabrikken_nydalen_set_6_q3",
+          "id": "seilduksfabrikken_nydalen_v1_s3_q7",
+          "quiz_id": "historie_seilduksfabrikken_nydalen_v1_set_3_q7",
           "categoryId": "historie",
           "placeId": "seilduksfabrikken_nydalen",
           "targetId": "seilduksfabrikken_nydalen",
-          "question_scope": "concept",
-          "question": "Hvilket begrepspar forklarer Øvre spinneri best?",
+          "question_scope": "place",
+          "question": "Bruoppslaget sier at brua inne i spinneriet er privat. Hva kan du slutte om dagens adgang?",
           "options": [
-            "Industriarv og byomforming",
-            "Kongebolig og slagmark",
-            "Flyplass og høyfjell"
+            "Adgang må avklares med en oppdatert kilde",
+            "Privat eierskap viser at alle alltid kan gå inn",
+            "Historiske bilder beviser at det er fri adgang",
+            "Elvas plassering avgjør alene om brua er åpen"
           ],
-          "answer": "Industriarv og byomforming",
+          "answer": "Adgang må avklares med en oppdatert kilde",
           "answerIndex": 0,
-          "knowledge": "Stedet blir tydeligst når fabrikkarven leses sammen med senere transformasjon.",
+          "knowledge": "Opplysningen om eierskap er ingen oppdatert besøksinformasjon. Sjekk lokal skilting eller eierens informasjon.",
+          "explanation": "Opplysningen om eierskap er ingen oppdatert besøksinformasjon. Sjekk lokal skilting eller eierens informasjon.",
           "difficulty": 3,
-          "question_type": "concept_pair",
-          "question_layer": "concept",
-          "tags": [
-            "industriarv",
-            "byomforming"
+          "question_type": "analysis",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "History Go place data: seilduksfabrikken_nydalen"
+            "bru"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_stedet_blir_tydeligst_na_dc07861a7d",
-          "knowledge_unit_ids": [
-            "ku_historie_stedet_blir_tydeligst_na_dc07861a7d"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Spinneri_bru_%28%C3%98vre%29"
           ],
+          "source_origin": "external",
+          "claim_id": "claim_ovre_spinneri_21",
+          "claim_basis": "Opplysningen om eierskap er ingen oppdatert besøksinformasjon. Sjekk lokal skilting eller eierens informasjon.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_fabrikk_arbeidsorganisering",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
-                "score": 7
-              }
-            ]
-          }
+          "tags": [
+            "ovre_spinneri"
+          ],
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_opplysningen_om_eierskap_1a4dd74e0c",
+          "knowledge_unit_ids": [
+            "ku_historie_opplysningen_om_eierskap_1a4dd74e0c",
+            "ku_historie_sjekk_lokal_skilting_ell_657db58b67"
+          ],
+          "knowledge_link_status": "linked"
         }
       ]
     }
