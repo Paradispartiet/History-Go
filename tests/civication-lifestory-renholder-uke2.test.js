@@ -292,7 +292,7 @@ function roleEndingsAreSafe() {
   economy.tickWeekly();
   assert.equal(wallet().balance,initialBalance+expected,"the same week cannot be paid twice");
   const restored = earnedWeekEnvironment(store);
-  restored.CivicationCalendar.advanceByMinutes(14*24*60);
+  assert.equal(restored.CivicationCalendar.getClock().dayIndex,15,"saved calendar reopens on payday");
   restored.CivicationEconomyEngine.tickWeekly();
   assert.equal(wallet().balance,initialBalance+expected,"reload cannot duplicate settled salary");
 }
