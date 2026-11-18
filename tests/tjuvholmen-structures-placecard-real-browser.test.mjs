@@ -13,7 +13,7 @@ const runtime = read("data/runtime/place-open/tjuvholmen.json");
 const ids = ["tjuvtitten","tjuvholmen_bystrand","skulpturparken_skjaeret"];
 assert.deepEqual(canonical.structures.map(row=>row.id),ids);
 assert.deepEqual(runtime.place.structures.map(row=>row.id),ids);
-assert.deepEqual(canonical.place_card_profile.collection_ids,["people","brands","structures"]);
+assert.deepEqual(canonical.place_card_profile.collection_ids,["people","objects","brands","structures"]);
 assert.equal(runtime.brands.length,3);
 assert.equal(runtime.people.length,5);
 assert.ok(runtime.people.some(person=>person.id==="renzo_piano"));
@@ -76,11 +76,11 @@ try{
       await page.waitForFunction(()=>{
         const card=document.getElementById("placeCard");
         return card?.dataset.collectionProfileSource==="place_card_profile_v2_curated"
-          && card?.dataset.collectionRequestedCount==="3";
+          && card?.dataset.collectionRequestedCount==="4";
       },null,{timeout:30000});
       assert.equal(await card.getAttribute("data-collection-profile-source"),
         "place_card_profile_v2_curated",tag+": curated profile");
-      assert.equal(await card.getAttribute("data-collection-requested-count"),"3",tag+": three collections");
+      assert.equal(await card.getAttribute("data-collection-requested-count"),"4",tag+": four collections");
       const structuresTile=page.locator('button[data-pc-round-gallery-item="pcCategoryCollectionIcon"]');
       try {
         await structuresTile.waitFor({state:"visible",timeout:20000});
@@ -107,8 +107,8 @@ try{
         throw error;
       }
       await page.locator('button[data-pc-round-gallery-item="pcBrandsIcon"]').waitFor({state:"visible",timeout:15000});
-      assert.equal(await page.locator('#pcObjectsIcon').getAttribute('hidden'),'',tag+": no filler Objects card");
-      assert.equal(await page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]').count(),0,tag+": no filler Objects gallery tile");
+      await page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]').waitFor({state:"visible",timeout:15000});
+      assert.equal(await page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]').count(),1,tag+": illustrated Objects gallery tile");
 
       await page.waitForFunction(()=>{
         const image=document.querySelector("#pcCategoryCollectionIcon img");
