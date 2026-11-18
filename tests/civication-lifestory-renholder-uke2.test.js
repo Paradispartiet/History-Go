@@ -123,5 +123,84 @@ for (const c of cases) {
   assert.deepEqual(restored.tidligereValg,state.tidligereValg,"choice evidence survives save/reload");
   assert.ok(Runner.getSymposium(restored,content).tidslinje.some(x=>x.sceneId===c.branch && x.valgId===c.day9),
     "Symposium records the actual chosen response");
+// The same actually played first-week state continues through day 14.
+  // Every conditional branch is reached from a choice, never inserted flags.
+  const week2Picks = c.plan === "tilkomst" ? {
+    ren_u2_d10_status:"ettersend_status",ren_u2_d10_runde:"utfor_rom204",
+    ren_u2_d10_egenkontroll:"vis_egenkontroll",ren_u2_d11_soel:"ta_avgrenset_runde",
+    ren_u2_d11_rengjor:"vask_etter_sikring",ren_u2_d12_metode:"bruk_kjent_metode",
+    ren_u2_d12_arbeid:"utfor_kontrollert",ren_u2_d13_tilkomst:"verifiser_fri",
+    ren_u2_d13_lagerarbeid:"vask_lager",ren_u2_d14_oversikt:"skille_kategorier",
+    ren_u2_d14_rapport:"send_status",ren_u2_d14_kari_mottak:"bekreft_mottak",
+    ren_u2_d14_ukeslutt:"for_oppfolging"
+  } : c.receipt === "behold_utkast" ? {
+    ren_u2_d10_status:"behold_utkast",ren_u2_d10_runde:"utsett_runde",
+    ren_u2_d10_utsatt:"meld_restliste",ren_u2_d11_soel:"be_om_risikovurdering",
+    ren_u2_d11_avklaring:"overlever_sperret",ren_u2_d12_metode:"avklar_metode",
+    ren_u2_d12_veiledning:"for_behov",ren_u2_d13_tilkomst:"fremdeles_sperret",
+    ren_u2_d13_sperret:"registrer_rest",ren_u2_d14_oversikt:"be_om_hjelp",
+    ren_u2_d14_rapport:"lagre_utkast",ren_u2_d14_utkast:"behold_som_utkast",
+    ren_u2_d14_ukeslutt:"avklar_kapasitet"
+  } : {
+    ren_u2_d10_status:"ettersend_status",ren_u2_d10_runde:"utfor_korridor",
+    ren_u2_d10_egenkontroll:"ettersporr_kvalitet",ren_u2_d11_soel:"ta_avgrenset_runde",
+    ren_u2_d11_rengjor:"stans_ved_tvil",ren_u2_d12_metode:"bruk_kjent_metode",
+    ren_u2_d12_arbeid:"utfor_kontrollert",ren_u2_d13_tilkomst:"fremdeles_sperret",
+    ren_u2_d13_sperret:"ta_korridor",ren_u2_d14_oversikt:"skille_kategorier",
+    ren_u2_d14_rapport:"send_status",ren_u2_d14_kari_mottak:"avvent_svar",
+    ren_u2_d14_ukeslutt:"for_oppfolging"
+  };
+  const balanceBeforeStory = state.meters.penger;
+  for (let day = 10; day <= 14; day++) {
+    nextDay(state);
+    assert.equal(state.dag, day);
+    const daysBefore = new Set(state.arkiv.map(x => x.sceneId));
+    playDay(state, week2Picks, c.plan + " day " + day);
+    const today = state.arkiv.filter(row => row.dag === day && row.sceneId.startsWith("ren_u2_"));
+    assert.ok(today.length >= 2, "day " + day + " has at least two authored decisions");
+    assert.ok(today.every(row => !daysBefore.has(row.sceneId)), "new scenes did not replay earlier chapters");
+    const saved = JSON.parse(JSON.stringify(state));
+    assert.deepEqual(saved.arkiv, state.arkiv, "day " + day + " archive survives serialization");
+    assert.deepEqual(saved.tidligereValg, state.tidligereValg, "day " + day + " flags survive save/reload");
+  }
+  assert.equal(state.meters.penger,balanceBeforeStory,
+    "Life Story choices do not mint salaries; wallet payroll belongs to canonical economy");
+  assert.ok(!state.tidligereValg.ren_u2_drift_utbedret,
+    "a status message must never fabricate a technical repair");
+  const verified = state.tidligereValg.ren_u2_d13_lager_tilkomst === "fri";
+  assert.equal(state.tidligereValg.ren_u2_lager_utfort===true,
+    verified && week2Picks.ren_u2_d13_lagerarbeid==="vask_lager",
+    "only actual work after verified physical access completes the blocked room");
+  assert.equal(state.tidligereValg.ren_u2_d14_rapport_sendt===true,
+    week2Picks.ren_u2_d14_rapport==="send_status",
+    "draft cannot be silently sent");
+  assert.equal(state.tidligereValg.ren_u2_d14_kari_mottatt===true,
+    week2Picks.ren_u2_d14_kari_mottak==="bekreft_mottak",
+    "sending and receiving are separate actions");
+  assert.ok(state.tidligereValg.ren_u2_uke2_oppsummert);
+  const complete = state.tidligereValg.ren_u2_d10_arbeid_utfort===true
+    && state.tidligereValg.ren_u2_d14_rapport_sendt===true
+    && state.tidligereValg.ren_u2_d14_kari_mottatt===true;
+  const Endings=require("../js/Civication/lifestory/lifestoryEndings.js");
+  assert.equal(Endings.isFinalDay(state,content),true);
+  assert.equal(Endings.resolveEnding(state,content)?.id==="uke2_sporbar_avslutning",complete,
+    "the week-two ending requires all actual work/report/receipt evidence");
+  assert.deepEqual(state.arkiv.slice(0,earlierArchive.length).map(row => [row.sceneId,row.valgId]),
+    earlierArchive,"first-week history remains unchanged through day 14");
+  assert.equal(new Set(state.arkiv.map(x => x.sceneId)).size,state.arkiv.length,
+    "no duplicated scenes through two weeks");
+  assert.ok(Runner.getSymposium(JSON.parse(JSON.stringify(state)),content).tidslinje.some(row=>
+    row.sceneId==="ren_u2_d14_ukeslutt"),"Symposium contains the played week-two closeout");
 }
-console.log("renholder week-2 day 8–9: 4 truthful plan/work/receipt paths passed");
+const weekTwo = raw.roleScenes.scenes.filter(scene => scene.dag >= 10 && scene.dag <= 14);
+assert.equal(weekTwo.length,18);
+assert.deepEqual([...new Set(weekTwo.map(scene => scene.dag))].sort(),[10,11,12,13,14]);
+assert.ok(roleEndingsAreSafe(), "week-two ending must be strict and evidence based");
+function roleEndingsAreSafe() {
+  const ending=raw.role.endings.find(e=>e.id==="uke2_sporbar_avslutning");
+  return !!ending && ending.kreverAlleKriterier === true
+    && Object.keys(ending.kriterier.flagg).length===4
+    && Object.values(ending.kriterier.flagg).every(v=>v===true)
+    && raw.role.ukesluttDager.includes(14);
+}
+console.log("renholder week-2 day 8–14: 4 actual playthroughs, plan/work/receipt/blocked access, ending and save/reload contracts passed");

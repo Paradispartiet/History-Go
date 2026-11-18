@@ -67,7 +67,7 @@ Spillerens Symposium skal holde utført renhold, kontroll, meldt avvik, bekrefte
 
 ## Kildekoblinger og revisjonsrekkefølge
 
-[Personer, arbeidsoppgaver og avslutninger](../../data/Civication/lifestory/roles/renholder/role.json) · [Arbeidslivstråder](../../data/Civication/lifestory/roles/renholder/threads.json) · [60 scener, dag 1–9](../../data/Civication/lifestory/roles/renholder/scenes.json) · [Arbeidsgrammatikk](../../data/Civication/workGrammars/naeringsliv/renholder.json) · [Rolleverden](../../data/Civication/roleWorlds/naeringsliv/renholder.json) · [C17 som tematisk inngang](../CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c17--å-arbeide-seg-tom)
+[Personer, arbeidsoppgaver og avslutninger](../../data/Civication/lifestory/roles/renholder/role.json) · [Arbeidslivstråder](../../data/Civication/lifestory/roles/renholder/threads.json) · [78 scener, dag 1–14](../../data/Civication/lifestory/roles/renholder/scenes.json) · [Arbeidsgrammatikk](../../data/Civication/workGrammars/naeringsliv/renholder.json) · [Rolleverden](../../data/Civication/roleWorlds/naeringsliv/renholder.json) · [C17 som tematisk inngang](../CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c17--å-arbeide-seg-tom)
 
 Dette er én koblet synopsis, ikke 60 uavhengige nye hendelser. Normal jobbmail og Life Story er egne produksjonsveier. Et tematisk C17-spor eller en bok-/filmreferanse er ikke dokumentasjon på renholdspraksis.
 
@@ -79,3 +79,13 @@ Tidsvinduet er nå revidert med bekreftet plan, faktisk utførelse, begge aktør
 Den strenge kalenderkontrollen `RENHOLDER_CASE=dagskifte` skal spille de tre klagerutene gjennom synlig innboks og reelle dagskifteknapper, med kalender og Life Story synkronisert gjennom dag 7. Ingen Runner-reserve er tillatt i denne modusen. Denne kontrollen bestod på head `609d9d4b`: tre ruter, 18 faktiske UI-dagskifter og bevart historikk fram til riktige avslutninger. [PR #7295 og kontrollbevis](https://github.com/Paradispartiet/History-Go/pull/7295). Dette er et eksplisitt Life Story-testspor og må ikke forveksles med den separate [opptjente ansettelsen og første lønnsuken i PR #7303](https://github.com/Paradispartiet/History-Go/pull/7303), som er merget etter grønn organisk nettlesertest.
 
 Fysisk iPad/Safari er ikke utført. [Profilens manuelle sjekkliste](../civication-symposium/renholder.md#fysisk-ipadsafari--åpen-kontroll) beskriver testen og hvilke opplysninger som må føres. [Fellesregisteret](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md#renholder--samlet-reststatus) samler reststatusen; synopsisen er ikke en parallell ferdigliste.
+
+## Uke 2, dag 10–14 – utførelse, kontroll og ukeslutt
+
+Den nye fortsettelsen følger den faktiske dag-9-statusen og bruker det samme arbeidsstedet og de samme rollepersonene. **Dag 10:** Kari etterspør utestående rapport og konkret romstatus. En ledig korridor eller møterom 204 kan rengjøres og egenkontrolleres, men en utsatt runde står fortsatt åpen. **Dag 11:** Amina har sperret av et nytt søl ved kaffestasjonen. Spilleren kan faktisk ta en begrenset rengjøring eller avvente risikovurdering; sikring, utført vask og gjenåpning er forskjellige opplysninger.
+
+**Dag 12:** Amina går gjennom produktinformasjon, kjent metode og behov for opplæring. En forespørsel om demonstrasjon er ikke utført arbeid eller godkjent opplæring. **Dag 13:** Driftsmelding om flyttet hylle krever fysisk kontroll av tilkomsten. Bare når spilleren verifiserer fri passasje **og** utfører den avtalte lager-runden, kan lageret få status som rengjort. Ellers står oppgaven åpen, også hvis en annen korridor blir tatt.
+
+**Dag 14:** Spilleren fører ukeoversikten, sender eller lagrer en faktisk romrapport og får enten en uttrykkelig mottaksbekreftelse fra Kari eller lar mottaket stå på vent. Et eget ukesluttvalg dokumenterer gjenstående arbeid og oppfølging. Den spesifikke uke-2-avslutningen krever dokumentert arbeid, sendt rapport, bekreftet mottak og oppsummering. Ingen story-flagg utløser lønn: **Civications kanoniske økonomimotor** betaler kun for reelt opptjente og registrerte spilldager etter at kalenderen har fullført en spilluke. Uke-2-lønn og konto-/iPad-synk krever egne integrasjonskontroller.
+
+Denne bolken erstatter ikke den sentrale Symposium-profilen eller yrkeskildene. Personene og de konkrete hendelsene er fiktive arbeidsplasssituasjoner basert på stillingsbeskrivelsen. Kildene for plan, metode, HMS og kvalitetskontroll er samlet i [Symposium – Renholder](../civication-symposium/renholder.md).

@@ -181,3 +181,9 @@ Rolleparameteren starter et eksplisitt renholder-Life Story-spor uten å dokumen
 4. Fortsett gjennom dag 7. Kontroller rom 204, valgt klageutfall og at avslutningen bare beskriver registrerte handlinger. Noter eventuelle stopp og siste synlige scene/melding.
 
 Før godkjenning registreres dato, iPad-modell, iPadOS-/Safari-versjon, testet commit, faktisk gjennomførte dager, reload/rotasjon og resultat. En delvis test merkes delvis; «ikke testet» skal ikke omgjøres til «bestått». Ingen fysisk godkjenning er registrert her ennå.
+
+### Uke 2, dag 10–14 – arbeidspraksis og dokumenterte grenser
+
+Dag 10 bygger på avklart romliste og faktisk utført arbeid; en egenkontroll er ikke automatisk en kvalitetsgodkjenning fra andre. Dag 11 bruker et avsperret søl som eksempel på HMS og avbrudd. Dag 12 viser metodevalg og opplæringsbehov uten å finne på produktdosering eller kompetanse. Dag 13 krever fysisk kontroll av lagerdør og deretter egen utførelse før lagerarbeid kan føres ferdig. Dag 14 skiller rapportutkast, faktisk sendt rapport, Karis bekreftede mottak og åpne restoppgaver. Lønn beregnes i den kanoniske spilløkonomien, aldri av disse dialogflaggene.
+
+Status: forfattet fortsettelse og automatisk spill-/lagringskontrakt er del av ny PR. Full lønnsflyt gjennom arbeidsforhold, skybackup, fysisk iPad Safari og offentlig publisering må fortsatt verifiseres særskilt før de oppgis som godkjent.
