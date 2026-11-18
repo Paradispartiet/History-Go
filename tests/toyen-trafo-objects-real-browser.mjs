@@ -5,6 +5,13 @@ import http from 'node:http';
 import path from 'node:path';
 import { chromium } from 'playwright';
 const root=process.cwd();
+const expectedObjects=JSON.parse(fs.readFileSync('data/runtime/place-open/toyen_trafo.json','utf8')).place.objects;
+assert.deepEqual(expectedObjects.map(x=>x.id),['toyen_trafo_apparatpult_1916','toyen_trafo_transformatorkjerne_1918']);
+for(const o of expectedObjects){
+ assert.equal(o.imageKind,'illustration');
+ assert.ok(o.image.endsWith('_illustrasjon.webp'));
+ assert.equal(o.imageMeta.sourcePhotoNotReproduced,true);
+}
 const contentType={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.webp':'image/webp','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.woff2':'font/woff2'};
 const server=http.createServer((req,res)=>{
  const file=path.resolve(root,'.'+(decodeURIComponent(new URL(req.url,'http://localhost').pathname)==='/'?'/index.html':decodeURIComponent(new URL(req.url,'http://localhost').pathname)));
@@ -39,15 +46,57 @@ try{
    assert.ok(state.every(x=>x.loaded),label+' preview images');
    assert.ok(state[0].src.includes('toyen_trafo_'),label+' people image is local');
    assert.ok(state[1].src.includes('toyen_trafo_'),label+' objects image is local');
-   await page.locator('#pcObjectsIcon').click({timeout:12000});
+   // The unified Place Sheet promotes the canonical Object preview to a
+   // real, visible gallery button. Clicking the hidden legacy icon is not QA.
+   const gallery=page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]');
+   await gallery.waitFor({state:'visible',timeout:25000});
+   const galleryImage=gallery.locator('img').first();
+   await page.waitForFunction(expected=>{
+     const img=document.querySelector('button[data-pc-round-gallery-item="pcObjectsIcon"] img');
+     return img?.getAttribute('src')===expected && img.complete && img.naturalWidth===900 && img.naturalHeight===520;
+   },expectedObjects[0].image,{timeout:30000});
+   assert.match(await galleryImage.getAttribute('alt')||'',/Illustrasjon/);
+   await gallery.screenshot({path:'artifacts/toyen-trafo-objects/'+label+'-preview.png'});
+   await gallery.click({timeout:20000});
    const popup=page.locator('.hg-popup.placecard-round-popup.visible');
    await popup.waitFor({state:'visible',timeout:20000});
+   await page.waitForFunction(()=>{
+     const rows=[...document.querySelectorAll('#pcObjectsList .pc-object-member')];
+     return rows.length===2 && rows.every(row=>{
+       const img=row.querySelector('img.pc-object-member-image');
+       return img?.complete && img.naturalWidth===900 && img.naturalHeight===520;
+     });
+   },null,{timeout:30000});
+   const rows=page.locator('#pcObjectsList .pc-object-member');
+   assert.equal(await rows.count(),2,label+' must display exactly two Tøyen Objects');
+   for(let i=0;i<2;i++){
+     const row=rows.nth(i),expected=expectedObjects[i];
+     await row.scrollIntoViewIfNeeded();
+     assert.equal(await row.getAttribute('data-visual-round-item'),expected.id);
+     assert.equal(await row.getAttribute('data-image-kind'),'illustration');
+     assert.match(await row.locator('.pc-object-disclosure').innerText(),/Illustrasjon – ikke fotografi/);
+     assert.match(await row.locator('.pc-object-credit').innerText(),/Bilde: History Go – original illustrasjon/);
+     assert.match(await row.locator('.pc-object-context').innerText(),/Illustrasjon – ikke fotografi/);
+     const img=row.locator('img.pc-object-member-image');
+     assert.equal(await img.getAttribute('src'),expected.image);
+     assert.equal(await img.getAttribute('alt'),expected.imageAlt);
+     const dims=await img.evaluate(el=>[el.naturalWidth,el.naturalHeight]);
+     assert.deepEqual(dims,[900,520],label+' image dimensions '+expected.id);
+     const fit=await img.evaluate(el=>getComputedStyle(el).objectFit);
+     assert.equal(fit,'contain',label+' must preserve full illustration');
+     const rect=await img.boundingBox();
+     assert.ok(rect && rect.width>65 && rect.height>65,label+' image too small '+expected.id);
+     const link=row.locator('a.pc-object-source');
+     assert.equal(await link.count(),1,label+' historic catalog link missing');
+     assert.equal(await link.getAttribute('href'),expected.imageMeta.sourceUrl);
+     await row.screenshot({path:'artifacts/toyen-trafo-objects/'+label+'-'+expected.id+'.png'});
+   }
    const text=await popup.innerText();
    assert.match(text,/Apparatpult/i,label+' missing Apparatpult');
    assert.match(text,/Transformatorkjerne/i,label+' missing transformatorkjerne');
-   assert.ok(errors.length===0,label+': page errors: '+errors.join(' / '));
-   await page.screenshot({path:'artifacts/toyen-trafo-objects/'+label+'.png',fullPage:false});
-   console.log(label+': People and Objects previews loaded; two sourced Objects in popup');
+   assert.deepEqual(errors,[],label+': unexpected page errors');
+   await page.screenshot({path:'artifacts/toyen-trafo-objects/'+label+'-popup.png',fullPage:false});
+   console.log(label+': both Tøyen illustrations decoded, credited, source-linked, uncropped and visible');
   }finally{await ctx.close()}
  }
 }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve))}
