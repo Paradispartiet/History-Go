@@ -1,6 +1,6 @@
 # Civication: kroneøkonomi – budsjettprototype
 
-Status 17.11.2026: implementert på arbeidsgren, produksjonsprofil ikke aktivert.
+Status 18.11.2026: implementert på arbeidsgren, produksjonsprofil ikke aktivert.
 Dette dokumentet beskriver gjeldende tilstand og erstatter tidligere etappevise
 statusavsnitt. Kilde-/prisgrunnlag finnes per felt i
 `data/Civication/economy/nok-budget-prototype-2026.json`.
@@ -379,8 +379,8 @@ Ny CI og visuell kontroll må registreres for endringens faktiske head.
 
 Butikkpanelet har en sammenleggbar planlegger. Spilleren velger antall porsjoner
 av de måltidene som finnes i sin frosne profil, med heltall 0–99 og høyst 99
-porsjoner totalt. Dette er en handleplan, ikke en datofestet ukemeny, automatisk
-måltidskalender eller komplett kostplan.
+porsjoner totalt. Dette er den udaterte handleplanen; den datofestede ukemenyen
+beskrevet nedenfor bruker samme eier og erstatter porsjonsplanen ved eksplisitt lagring.
 
 `previewNokMealPlan` summerer rå ingrediensmengder før det trekker fra faktisk
 beholdning, inkludert åpne rester. Manglende mengde rundes opp til hele pakninger.
@@ -418,3 +418,55 @@ bevarte eldre wallet-felt. Den nye browserdelen skal lagre samme seks porsjoner
 med eksisterende matrester: 48,04 kr i referanse og 27,50 kr i manglende pakninger.
 Den lager én planlagt grøt og forventer fem porsjoner igjen, 9 688,20 kr, 860 g
 havregryn og null melk etter reload. Nye browserbilder/CI må bekreftes på ny head.
+
+
+## Datofestet ukemeny
+
+Butikkpanelet lar spilleren velge første spilledato og ett måltid i hver av fire
+plasser per dag: frokost, lunsj, middag og kveldsmat. Perioden er sju sammenhengende
+dager, ikke nødvendigvis mandag–søndag. Hvert valg er én spillporsjon. Tomme felt
+gir ingen planlagt porsjon. Kalenderen bruker spillets dato og UTC-datoaritmetikk,
+inkludert måneds-/årsskifter og skuddår; virkelig dato brukes ikke.
+
+`previewNokMealWeek(startDate, entries)` validerer datoer, maks 28 entydige dato-/
+måltidsplasser og oppskrifter i frosset profil. Den bruker samme
+`previewNokMealPlan` for aggregert ingrediensbehov, åpne rester, hele pakninger,
+prisreferanse og dekningskontroll. Ingen eget matlager eller prissystem innføres.
+Ukemenyen lagres som `shopping.mealPlan` versjon 2 med `startDate` og normaliserte
+`entries`. Den erstatter eksisterende porsjonsplan; de to planene summeres aldri.
+Versjon 1 virker som før. Gamle profiler og kontoer oppgraderes ikke automatisk.
+
+Redigering og datovalg er skrivefrie. «Lagre ukemeny» endrer bare planen, uten
+kjøp, betaling, reservasjon eller forbruk. Ukemenyen kan revideres med vanlig
+lagring. Tidligere uregistrerte måltider bevares i handlelisten og kan fjernes
+eller flyttes; de kastes eller spises ikke automatisk. Nye eller endrede
+måltidsvalg på tidligere datoer avvises. Lagrede tidligere valg kan beholdes.
+En fullført dato-/måltidsplass kan ikke legges inn på nytt.
+
+«Dagens planlagte måltider» viser uttrykkelige tilberedningsknapper bare for
+nåværende spilledato. `consumeNokMeal(mealId, requestId, planEntryKey)` bruker
+ferske dato-, plan- og ingrediensdata. Riktig plass fjernes atomisk med
+forbrukshistorikk og matrester. Manglende mat, feil dato eller utdatert knapp gir
+ingen delvis handling. Gjentatt ID gir ikke nytt forbruk; annen ID kan ikke
+fullføre samme plass på nytt. Vanlig tilberedning uten planplass bruker fortsatt
+mat, men krysser ikke av et vilkårlig datofestet måltid. Klokkeslett innen dagen
+sperrer foreløpig ikke tilberedning; naturlige tidsvinduer for Fysen-rutealternativer
+gjenstår. Ingen restaurantintegrasjon eller full kost-/ernæringsplan påstås.
+
+`civication-nok-meal-week.test.js` bruker faktisk State/Calendar/Budget/Shop/StoreUI.
+Den dekker alle fire plasser, 28 felt, årsskifte/skuddår, ugyldige datoer og
+oppskrifter, dobbelt plassvalg, eksplisitt erstatning av porsjonsplan, idempotent
+lagring, skrivefritt UI-utkast, fokus, manglende ingredienser, datoavvisning,
+atomisk UI-tilberedning, duplikater, historikk og gjenoppretting på tom enhet.
+To grøter og én pasta gir 21,81 kr ingrediensreferanse og 96,20 kr i hele
+pakninger fra tom beholdning. Testen kjøper melk/havregryn til 50,30 kr av
+200 kr, og bevarer 149,70 kr gjennom planlagte og uplanlagte tilberedninger.
+
+Nettleserreisen utvides med faktisk datovalg, frokost i dag og lunsj i morgen,
+lagring, felles handleliste, avkrysning av dagens frokost og reload. Én ekstra
+melkepakning gir saldo 9 668,80 kr. Ukemenyen trenger 14,72 kr i ingredienser og
+8,10 kr i manglende tomatpakning med eksisterende lager. Etter frokost gjenstår
+én planlagt lunsj, 780 g havregryn og 750 ml melk. Faktiske betalinger er
+10 331,20 kr; tilberedningen gir ingen ekstra utgift. To nye bilder per oppsett
+og kontroll av minst 44 px trykkhøyde og horisontal plass inngår. Ny CI og
+visuell kontroll må registreres på endringens faktiske head.

@@ -600,9 +600,80 @@
       projectedBalanceCents: balanceCents - shoppingCostCents };
   }
 
+  // One dated entry is one game portion; dates use UTC arithmetic, never wall time.
+  const mealSlots = ["breakfast", "lunch", "dinner", "supper"];
+  function mealWeekDates(startDate) {
+    if (typeof startDate !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(startDate)) return null;
+    const start = new Date(startDate + "T00:00:00.000Z");
+    if (!Number.isFinite(start.getTime()) || start.toISOString().slice(0, 10) !== startDate) return null;
+    const dates = Array.from({ length: 7 }, (_, i) => new Date(start.getTime() + i * 86400000).toISOString().slice(0, 10));
+    return dates.every(date => /^\d{4}-\d{2}-\d{2}$/.test(date)) ? dates : null;
+  }
+
+  /** @returns {CiviCommercialRecord} */
+  function previewNokMealWeek(startDate, entries, wallet = window.CivicationState?.getWallet?.()) {
+    const dates = mealWeekDates(startDate);
+    if (!dates || !Array.isArray(entries) || entries.length > 28)
+      return { ok: false, reason: "INVALID_MEAL_WEEK" };
+    const normalized = [];
+    const keys = new Set();
+    const servings = {};
+    for (const entry of entries) {
+      if (!entry || !dates.includes(entry.date) || !mealSlots.includes(entry.slot) || typeof entry.mealId !== "string")
+        return { ok: false, reason: "INVALID_MEAL_WEEK" };
+      const key = entry.date + ":" + entry.slot;
+      if (keys.has(key)) return { ok: false, reason: "INVALID_MEAL_WEEK" };
+      keys.add(key);
+      const meal = getNokMealPreview(entry.mealId, wallet);
+      if (!meal.ok) return meal;
+      servings[entry.mealId] = (servings[entry.mealId] || 0) + 1;
+      normalized.push({ date: entry.date, slot: entry.slot, mealId: entry.mealId });
+    }
+    normalized.sort((a, b) => a.date.localeCompare(b.date) || mealSlots.indexOf(a.slot) - mealSlots.indexOf(b.slot));
+    const view = previewNokMealPlan(servings, wallet);
+    return view.ok ? { ...view, version: 2, startDate, dates, entries: normalized } : view;
+  }
+
+  /** @returns {CiviCommercialRecord} */
+  function getNokMealWeek() {
+    const wallet = window.CivicationState?.getWallet?.();
+    const plan = wallet?.nok_v1?.shopping?.mealPlan;
+    if (plan?.version !== 2) return { ok: false, reason: "NO_MEAL_WEEK" };
+    return previewNokMealWeek(plan.startDate, plan.entries, wallet);
+  }
+
+  /** @returns {CiviCommercialRecord} */
+  function saveNokMealWeek(startDate, entries) {
+    const owner = window.CivicationState;
+    const wallet = owner?.getWallet?.();
+    const view = previewNokMealWeek(startDate, entries, wallet);
+    if (!view.ok) return view;
+    const shopping = wallet.nok_v1.shopping ?? { purchases: [], quantities: {} };
+    if (!shopping || typeof shopping !== "object" || Array.isArray(shopping)
+        || !Array.isArray(shopping.purchases) || !shopping.quantities || typeof shopping.quantities !== "object"
+        || Array.isArray(shopping.quantities) || (shopping.consumptions != null && !Array.isArray(shopping.consumptions)))
+      return { ok: false, reason: "INVALID_SHOPPING_STATE" };
+    const today = window.CivicationCalendar?.getGameDate?.();
+    if (!mealWeekDates(today)) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+    // Past pending entries can be retained/removed, but cannot be invented or changed.
+    const prior = shopping.mealPlan?.version === 2 ? getNokMealWeek() : null;
+    for (const entry of view.entries) {
+      const key = entry.date + ":" + entry.slot;
+      if ((shopping.consumptions || []).some(c => c?.planEntryKey === key)
+          || (entry.date < today && !(prior?.ok && prior.entries.some(old =>
+            old.date === entry.date && old.slot === entry.slot && old.mealId === entry.mealId))))
+        return { ok: false, reason: "MEAL_DATE_UNAVAILABLE" };
+    }
+    const mealPlan = { version: 2, startDate, entries: view.entries };
+    if (JSON.stringify(shopping.mealPlan) === JSON.stringify(mealPlan)) return { ...view, skipped: true };
+    owner.updateWallet({ ...wallet, nok_v1: { ...wallet.nok_v1, shopping: { ...shopping, mealPlan } } });
+    return view;
+  }
+
   /** @returns {CiviCommercialRecord} */
   function getNokMealPlan() {
     const plan = window.CivicationState?.getWallet?.()?.nok_v1?.shopping?.mealPlan;
+    if (plan?.version === 2) return getNokMealWeek();
     if (plan != null && (plan.version !== 1 || !plan.servings)) return { ok: false, reason: "INVALID_MEAL_PLAN" };
     return previewNokMealPlan(plan?.servings ?? {});
   }
@@ -624,7 +695,7 @@
   }
 
   /** @returns {CiviCommercialRecord} */
-  function consumeNokMeal(mealId, requestId) {
+  function consumeNokMeal(mealId, requestId, planEntryKey = null) {
     const owner = window.CivicationState;
     const wallet = owner?.getWallet?.();
     const view = getNokMealPreview(mealId, wallet);
@@ -640,13 +711,24 @@
       return { ok: false, reason: "INVALID_SHOPPING_STATE" };
     if (shopping.purchases.some(p => p.requestId === requestId)) return { ok: false, reason: "ACTION_REQUEST_CONFLICT" };
     const previous = used.find(c => c.requestId === requestId);
-    if (previous) return previous.kind === "meal" && previous.mealId === mealId ? { ok: true, skipped: true }
+    if (previous) return previous.kind === "meal" && previous.mealId === mealId && (previous.planEntryKey ?? null) === planEntryKey ? { ok: true, skipped: true }
       : { ok: false, reason: "ACTION_REQUEST_CONFLICT" };
     if (!view.canPrepare) return { ok: false, reason: "NOT_ENOUGH_STOCK", ingredients: view.ingredients };
     const date = window.CivicationCalendar?.getGameDate?.();
     if (!date) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
     let planPatch = {};
-    if (shopping.mealPlan != null) {
+    if (planEntryKey !== null) {
+      const week = getNokMealWeek();
+      const entry = week.ok && week.entries.find(e => e.date + ":" + e.slot === planEntryKey && e.mealId === mealId);
+      if (!entry || entry.date !== date || used.some(c => c.planEntryKey === planEntryKey))
+        return { ok: false, reason: "MEAL_DATE_UNAVAILABLE" };
+      planPatch = { mealPlan: { version: 2, startDate: week.startDate,
+        entries: week.entries.filter(e => e !== entry) } };
+    } else if (shopping.mealPlan?.version === 2) {
+      const week = getNokMealWeek();
+      if (!week.ok) return week;
+      // Ad-hoc preparation never completes an unrelated dated slot.
+    } else if (shopping.mealPlan != null) {
       if (shopping.mealPlan.version !== 1) return { ok: false, reason: "INVALID_MEAL_PLAN" };
       const pending = previewNokMealPlan(shopping.mealPlan.servings, wallet);
       if (!pending.ok) return pending;
@@ -665,7 +747,7 @@
       openedUnits[item.productId] = remaining % stock.product.packageQuantity;
     }
     owner.updateWallet({ ...wallet, nok_v1: { ...wallet.nok_v1, shopping: { ...shopping, quantities, openedUnits, ...planPatch,
-      consumptions: [...used, { requestId, kind: "meal", mealId, title: view.title, gameDateISO: date,
+      consumptions: [...used, { requestId, kind: "meal", mealId, ...(planEntryKey !== null ? { planEntryKey } : {}), title: view.title, gameDateISO: date,
         referenceCostCents: view.referenceCostCents, ingredients: view.ingredients.map(({ available, missing, ...item }) => item) }] } } });
     return { ok: true, mealId, referenceCostCents: view.referenceCostCents };
   }
@@ -811,6 +893,9 @@
     getNokMeals,
     getNokMealPreview,
     consumeNokMeal,
+    previewNokMealWeek,
+    getNokMealWeek,
+    saveNokMealWeek,
     previewNokMealPlan,
     getNokMealPlan,
     saveNokMealPlan,

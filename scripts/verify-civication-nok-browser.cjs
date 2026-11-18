@@ -353,9 +353,57 @@ async function scenario(engine, width, height) {
     await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), planFinished, 'plan and its remaining servings survive reload');
     assert.equal(await page.evaluate(() => window.HG_CiviShop.getNokMealPlan().portions), 5);
+    await openSection('kommers', 'civiStoreSection');
+    await page.locator('[data-buy-pack="tine-milk-1l"]').click();
+    await page.waitForFunction(() => window.HG_CiviShop.getNokProductStock('tine-milk-1l').available === 1000);
+    assert.equal((await wallet()).balance, 9668.8);
+    const beforeWeek = JSON.stringify(await wallet());
+    const week = page.locator('[data-meal-week]'); await week.locator('summary').first().click();
+    const dates = await page.evaluate(() => {
+      const date = window.CivicationCalendar.getGameDate();
+      return window.HG_CiviShop.previewNokMealWeek(date, []).dates;
+    });
+    await week.locator('[data-week-date="' + dates[0] + '"][data-week-slot="breakfast"]').selectOption('oats-with-milk');
+    // Expand the next day to choose its lunch through the actual select.
+    await week.locator('details').nth(1).locator('summary').click();
+    await week.locator('[data-week-date="' + dates[1] + '"][data-week-slot="lunch"]').selectOption('pasta-tomato-onion');
+    assert.equal(JSON.stringify(await wallet()), beforeWeek, 'weekly editing never purchases, consumes or changes the old portion plan');
+    await week.locator('[data-meal-week-start]').scrollIntoViewIfNeeded();
+    screenshots.push(await capture('meal-week-dates'));
+    await week.locator('[data-save-meal-week]').click();
+    await page.waitForFunction(() => window.HG_CiviShop.getNokMealWeek().portions === 2);
+    const savedWeek = await wallet();
+    const strippedWeek = JSON.parse(JSON.stringify(savedWeek)); delete strippedWeek.nok_v1.shopping.mealPlan;
+    const strippedBefore = JSON.parse(beforeWeek); delete strippedBefore.nok_v1.shopping.mealPlan;
+    assert.deepEqual(strippedWeek, strippedBefore, 'weekly save replaces only the existing plan');
+    const weekView = await page.evaluate(() => window.HG_CiviShop.getNokMealWeek());
+    assert.equal(weekView.referenceCostCents, 1472); assert.equal(weekView.shoppingCostCents, 810);
+    const weekGeometry = await week.evaluate(el => ({ fits: el.scrollWidth <= el.clientWidth + 2,
+      controls: Array.from(el.querySelectorAll('input, select, button')).filter(c => c.getClientRects().length).map(c => {
+        const r = c.getBoundingClientRect(); return { height: r.height, left: r.left, right: r.right };
+      }) }));
+    assert.ok(weekGeometry.fits && weekGeometry.controls.every(r => r.height >= 44 && r.left >= 0 && r.right <= width + 1));
+    await week.locator('[data-meal-week-preview] > strong').scrollIntoViewIfNeeded();
+    screenshots.push(await capture('meal-week-shopping-list'));
+    assert.equal(await page.locator('[data-prepare-week]').count(), 1, 'only today has a meal action');
+    await page.locator('[data-prepare-week="' + dates[0] + ':breakfast"]').click();
+    await page.waitForFunction(() => window.HG_CiviShop.getNokMealWeek().portions === 1);
+    assert.equal((await wallet()).balance, 9668.8);
+    const weeklyConsumption = await page.evaluate(() => window.CivicationState.getWallet().nok_v1.shopping.consumptions.at(-1));
+    const finalWeekWallet = JSON.stringify(await wallet());
+    assert.equal((await page.evaluate(c => window.HG_CiviShop.consumeNokMeal(c.mealId, c.requestId, c.planEntryKey), weeklyConsumption)).skipped, true);
+    assert.equal(JSON.stringify(await wallet()), finalWeekWallet);
+    const finalCash = await page.evaluate(() => window.CivicationNokBudget.monthlyCashFlow(
+      window.CivicationState.getWallet(), window.CivicationCalendar.getMonthPeriod().id, window.CivicationCalendar.getGameDate));
+    assert.equal(finalCash.expenseCents, 1033120, 'only the additional milk purchase is a payment');
+    newMealStock['axa-oats-1100g'] = 780; newMealStock['tine-milk-1l'] = 750;
+    await completeSourceLoading(); await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!window.HG_CiviShop?.getNokMealWeek); await completeSourceLoading();
+    assert.equal(JSON.stringify(await wallet()), finalWeekWallet, 'weekly dates, remaining lunch, inventory and history survive reload');
+    assert.equal(await page.evaluate(() => window.HG_CiviShop.getNokMealWeek().portions), 1);
     assert.deepEqual(errors, [], 'no uncaught page errors');
-    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 0, addedStock, newMealStock,
-      monthlyPaidCents: cashAfterNewMeals.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };
+    return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock, newMealStock,
+      monthlyPaidCents: finalCash.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };
   } catch (error) {
     console.error('CIVI_NOK_NAVIGATION:' + JSON.stringify({ navigations, reloads, errors, pageErrors, failedRequests }));
     console.error('CIVI_NOK_FAILURE_STATE:' + JSON.stringify(await page.evaluate(() => ({
