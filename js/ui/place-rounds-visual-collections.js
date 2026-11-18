@@ -499,7 +499,7 @@
             ${item.description ? `<p class="pc-person-desc">${esc(item.description)}</p>` : ""}
             ${item.imageDisclosure ? `<p class="pc-object-context">${esc(item.imageDisclosure)}</p>` : ""}
             ${item.imageCredit ? `<p class="pc-object-credit">Bilde: ${esc(item.imageCredit)}${item.imageLicense ? ` · ${esc(item.imageLicense)}` : ""}</p>` : ""}
-            ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">Se historisk kilde og bildeopphav</a>` : ""}
+            ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">${kind === "illustration" ? "Historisk kilde for gjenstanden" : "Se historisk kilde og bildeopphav"}</a>` : ""}
           </div>
         </article>`;
       }).join("");

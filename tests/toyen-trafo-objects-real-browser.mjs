@@ -89,6 +89,7 @@ try{
      const link=row.locator('a.pc-object-source');
      assert.equal(await link.count(),1,label+' historic catalog link missing');
      assert.equal(await link.getAttribute('href'),expected.imageMeta.sourceUrl);
+     assert.match(await link.innerText(),/Historisk kilde for gjenstanden/);
      await row.screenshot({path:'artifacts/toyen-trafo-objects/'+label+'-'+expected.id+'.png'});
    }
    const text=await popup.innerText();
