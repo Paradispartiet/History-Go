@@ -44,7 +44,12 @@
     if (checked === null || until === null || seen === null ||
         checked > now || until <= now || seen > now || seen > checked) return null;
     return {
-      dish: { name: d.name.trim() },
+      dish: { name: d.name.trim(),
+        priceMinor: d.currency === "NOK" && Number.isSafeInteger(d.priceMinor) &&
+          d.priceMinor >= 0 && d.priceMinor <= 5000000 ? d.priceMinor : null,
+        priceKind: ["exact", "from", "multiple"].includes(d.priceKind) ? d.priceKind : "exact",
+        currency: d.currency === "NOK" ? "NOK" : null
+      },
       restaurant: {
         id:r.id, name:r.name.trim(), address:r.address.trim(), city:"Oslo",
         latitude:r.latitude, longitude:r.longitude
@@ -57,7 +62,8 @@
     };
   }
   function response(status, results=[]) {
-    return {status, city:"Oslo", results, priceAvailable:false,
+    return {status, city:"Oslo", results,
+      priceAvailable:results.some(row => Number.isSafeInteger(row.dish?.priceMinor)),
       kitchenOpenAtPassTime:"unknown", routeMatched:false, realtimeAvailability:false};
   }
   /** @param {string} dish @param {{ consent?: boolean, signal?: AbortSignal, now?: Date }} [options] */
