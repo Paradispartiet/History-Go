@@ -242,10 +242,11 @@
     const offers = wallet?.nok_v1?.config?.housingOffers;
     return Array.isArray(offers) ? offers.filter(o => o?.districtId === districtId &&
       typeof o.id === "string" && /^[a-zA-Z0-9_-]{4,120}$/.test(o.id) &&
-      Number.isSafeInteger(o.roomCount) && o.roomCount >= 1 && o.roomCount <= 5 &&
+      (o.roomCount == null || (Number.isSafeInteger(o.roomCount) &&
+        o.roomCount >= 1 && o.roomCount <= 5)) &&
       typeof o.monthlyRentNok === "number" && Number.isFinite(o.monthlyRentNok) &&
       o.monthlyRentNok >= 0).slice().sort((a,b) =>
-        a.roomCount - b.roomCount || a.id.localeCompare(b.id)) : [];
+        (a.roomCount ?? 0) - (b.roomCount ?? 0) || a.id.localeCompare(b.id)) : [];
   }
   function safeHtml(value) {
     return String(value).replace(/[&<>"']/g, ch =>
@@ -840,7 +841,9 @@
           </select></label>` : "";
     const chosenRent = housingOffer && typeof housingOffer.monthlyRentNok === "number"
       ? housingOffer.monthlyRentNok.toLocaleString("nb-NO") + " kr / måned · " +
-        housingOffer.roomCount + " rom" : "Dokumentert pris mangler";
+        (Number.isSafeInteger(housingOffer.roomCount)
+          ? housingOffer.roomCount + " rom" : "størrelse ikke oppgitt")
+        : "Dokumentert pris mangler";
     const tagText = normalizeList(district.choice_tags).join(" · ");
     const storeText = normalizeList(district.store_access).join(" · ");
     const classes = ["civi-district-card"];
