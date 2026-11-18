@@ -2,7 +2,7 @@
 
 **Identitet:** `naeringsliv/renholder`, Life Story `renholder`.
 
-**Status:** Samlet redaksjonell synopsis over 60 scener på fortellingsdag 1–9 (55 eksisterende fra uke 1 og fem nye dag 8–9 som testes i egen PR). Den samler dagens innhold og peker ut revisjonsbehov. Den godkjenner ikke automatisk scenene, opplæringen eller avslutningene. [Profilen](../civication-symposium/renholder.md) eier yrkesgrunnlag, ordliste og kildekart. [Registeret](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md) fører profil og synopsis separat.
+**Status:** Samlet redaksjonell synopsis over 78 forfattede scener på fortellingsdag 1–14 (55 fra dag 1–7, fem fra dag 8–9 i merget PR #7378 og 18 nye dag 10–14 i utkast PR #7429). Den samler dagens innhold og peker ut revisjonsbehov. Den godkjenner ikke automatisk scenene, opplæringen eller avslutningene. [Profilen](../civication-symposium/renholder.md) eier yrkesgrunnlag, ordliste og kildekart. [Registeret](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md) fører profil og synopsis separat.
 
 Du arbeider som renholder i bygget som allerede finnes i rollepakken. Før andre bruker møterommet, skal du gjennom en bestemt romliste. Senere kan rommet være fullt av folk igjen. Når noen sier at det aldri blir vasket, må du kunne vise hva som ble gjort, hva som sto igjen og hva du ikke kom til.
 
@@ -48,7 +48,7 @@ Senere introduserer C17-forløpet en avgrenset oppgave: Det er 45 minutter igjen
 
 **Dag 9:** Den valgte planen bestemmer én av tre hendelser. Ved tilkomstsporet står lageret fortsatt uavklart selv om drift er kontaktet. I sonesporet kan spilleren **faktisk gjennomføre og kontrollere korridoren**, men bare den korridoren blir registrert som utført, ikke lageret. Et utsatt arbeid gir ingen gjennomføringskvittering. Ved belastningssporet spør Amina om trygg metode; et spørsmål om utstyr eller en avgrensning innebærer ikke at noen har flyttet hylla. Ved vaktslutt velger spilleren enten en reell samtale der Kari **bekrefter mottak** av rapporten, eller å lagre et utkast med **mottak fortsatt åpent**. Begge svar bevarer utført arbeid og uavklarte oppgaver hver for seg.
 
-Uke-2-bolken er et forfattet fortsettelsesspor, **ikke** bevis på en ny faktisk ansettelsesperiode, en andre lønnsutbetaling, dag 10–14 eller fysisk Safari-verifisering. Disse avgrensningene må beholdes i test- og publiseringsstatus.
+Uke-2-bolken er et forfattet fortsettelsesspor, **ikke** i seg selv bevis på en ny faktisk ansettelsesperiode, utbetalt uke-2-lønn eller fysisk Safari-verifisering. Dag 10–14 er nå forfattet i PR #7429, men fremdeles under gjennomgang. Reell lønn og konto-/iPad-synk må verifiseres gjennom kanonisk arbeids- og økonomiflyt.
 
 ## Valg, ansvar og det spilleren får vite
 
@@ -69,7 +69,7 @@ Spillerens Symposium skal holde utført renhold, kontroll, meldt avvik, bekrefte
 
 [Personer, arbeidsoppgaver og avslutninger](../../data/Civication/lifestory/roles/renholder/role.json) · [Arbeidslivstråder](../../data/Civication/lifestory/roles/renholder/threads.json) · [78 scener, dag 1–14](../../data/Civication/lifestory/roles/renholder/scenes.json) · [Arbeidsgrammatikk](../../data/Civication/workGrammars/naeringsliv/renholder.json) · [Rolleverden](../../data/Civication/roleWorlds/naeringsliv/renholder.json) · [C17 som tematisk inngang](../CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c17--å-arbeide-seg-tom)
 
-Dette er én koblet synopsis, ikke 60 uavhengige nye hendelser. Normal jobbmail og Life Story er egne produksjonsveier. Et tematisk C17-spor eller en bok-/filmreferanse er ikke dokumentasjon på renholdspraksis.
+Dette er én koblet synopsis, ikke 78 uavhengige nye hendelser. Normal jobbmail og Life Story er egne produksjonsveier. Et tematisk C17-spor eller en bok-/filmreferanse er ikke dokumentasjon på renholdspraksis.
 
 Tidsvinduet er nå revidert med bekreftet plan, faktisk utførelse, begge aktørers resultater og mottak. Søl og avvik er også revidert med sikring, rengjøring, resultatkontroll, mottak og separat oppfølging av tralle og skilt. Belastning og opplæring er revidert med avklaring, utførelse og mottak samt demonstrasjon, egen øvelse og tilbakemelding. Klagehistorikk og avslutninger er også revidert: elleve nye scener binder romarbeid, sending og mottak sammen, og avslutningene krever hele sitt kriteriegrunnlag. Tilgangssporets skille mellom plan, befaring og utført arbeid skal bevares. [Profilens revisjonsliste](../civication-symposium/renholder.md#hva-som-må-gjennomgås-i-spillinnholdet) viser de konkrete hullene. Synopsisen beskriver de reviderte tidsvindu-, søl-, opplærings- og klageoppgavene, men godkjenner ikke resten av spillinnholdet eller hele normaljobbkalenderen. Den endrer ikke lagret spillerhistorikk.
 

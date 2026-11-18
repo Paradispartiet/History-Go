@@ -58,9 +58,9 @@ En synopsis kan bygge på et rom som skifter fra opptatt til ledig i løpet av v
 
 ## Samlet rollegrunnlag og lokal bruk
 
-Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 55 Life Story-scenene på dag 1–7. Fem nye scener for dag 8–9 er lagt til som et separat uke-2-forslag under test. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle eller nye scener til godkjent yrkesveiledning.
+Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 55 Life Story-scenene på dag 1–7. Fem nye scener for dag 8–9 er merget i PR #7378. En egen avgrenset PR #7429 utvider fortsettelsen med 18 scener dag 10–14. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle eller nye scener til godkjent yrkesveiledning.
 
-**Uke 2, dag 8–9 (17. november, under test):** Fortsettelsen skiller en forespørsel om fri tilkomst fra en bekreftet soneliste, en faktisk kontrollert korridorrunde, trygg metodeavklaring og Karis uttrykkelig bekreftede mottak. Ingen av disse skrittene flytter hylla, gjør lageret rent eller bestemmer faktisk jobb- eller lønnsstatus. Den samme [synopsisen](../civication-synopsis/renholder.md#uke-2--det-som-fremdeles-står-åpent) er fortsatt den redaksjonelle forløpsbeskrivelsen; det opprettes ikke et konkurrerende register.
+**Uke 2, dag 8–9 (merget i PR #7378):** Fortsettelsen skiller en forespørsel om fri tilkomst fra en bekreftet soneliste, en faktisk kontrollert korridorrunde, trygg metodeavklaring og Karis uttrykkelig bekreftede mottak. Ingen av disse skrittene flytter hylla, gjør lageret rent eller bestemmer faktisk jobb- eller lønnsstatus. Den samme [synopsisen](../civication-synopsis/renholder.md#uke-2--det-som-fremdeles-står-åpent) er fortsatt den redaksjonelle forløpsbeskrivelsen; det opprettes ikke et konkurrerende register.
 
 ### Stillingsbeskrivelse og en vanlig økt
 
