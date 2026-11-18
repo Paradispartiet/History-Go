@@ -5,6 +5,7 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const vm = require("node:vm");
 
 const ROOT = path.join(__dirname, "..");
 const Content = require("../js/Civication/lifestory/lifestoryContent.js");
@@ -203,4 +204,97 @@ function roleEndingsAreSafe() {
     && Object.values(ending.kriterier.flagg).every(v=>v===true)
     && raw.role.ukesluttDager.includes(14);
 }
+
+// Payroll is deliberately a separate boundary from story dialogue.
+// Replay the canonical game calendar/wallet: seven actual employed days are
+// accrued as daily checkpoints, then paid once at day 15. The end-of-week job
+// can be lost without erasing already-earned wages.
+{
+  function storage(seed = {}) {
+    const map = new Map(Object.entries(seed));
+    return {
+      get length() { return map.size; },
+      key(i) { return [...map.keys()][i] ?? null; },
+      getItem(key) { return map.get(key) ?? null; },
+      setItem(key, value) { map.set(key, String(value)); },
+      removeItem(key) { map.delete(key); }
+    };
+  }
+  const json = (store, key, fallback) => JSON.parse(store.getItem(key) || JSON.stringify(fallback));
+  function earnedWeekEnvironment(store) {
+    const window = {
+      localStorage: store, setInterval() {}, dispatchEvent() {},
+      document: { getElementById: () => null, addEventListener() {} }
+    };
+    window.HG_CAREERS = read("data/Civication/hg_careers.json").careers;
+    const catalog = read("data/Civication/hg_careers.json");
+    window.CIVI_CAREER_RULES = [{ global_rules: catalog.global_rules }];
+    window.BADGES = [{ id:"naeringsliv", tiers:[{threshold:0,label:"Renholder"}] }];
+    window.CivicationObligationEngine = { getQuizCountLastWeek: () => 2 };
+    window.CivicationState = {
+      getState() { return json(store,"hg_civi_state_v1",{}); },
+      setState(patch) {
+        const state = { ...this.getState(), ...patch };
+        store.setItem("hg_civi_state_v1",JSON.stringify(state));
+        return state;
+      },
+      getWallet() { return json(store,"hg_civi_wallet_v1",{balance:0,last_tick_day_index:8}); },
+      updateWallet(wallet) { store.setItem("hg_civi_wallet_v1",JSON.stringify(wallet)); },
+      getActivePosition() { return json(store,"hg_active_position_v1",null); },
+      setActivePosition(position) { store.setItem("hg_active_position_v1",JSON.stringify(position)); }
+    };
+    const safeMath = Object.create(Math);
+    safeMath.random = () => 1;
+    const context = vm.createContext({
+      window, localStorage:store, Math:safeMath, Date, console,
+      weekKey:()=>"2026-W44",deriveTierFromPoints:()=>({tierIndex:0}),
+      Event:class { constructor(type){this.type=type;} },
+      CustomEvent:class { constructor(type,opts){this.type=type;this.detail=opts?.detail;} },
+      clearTimeout(){},setTimeout(){return 0;}
+    });
+    for (const script of [
+      "js/Civication/core/civicationCalendar.js",
+      "js/Civication/core/civicationEconomyEngine.js"
+    ]) vm.runInContext(fs.readFileSync(path.join(ROOT,script),"utf8"),context);
+    return window;
+  }
+  const store = storage({
+    hg_civi_wallet_v1:JSON.stringify({balance:110,last_tick_day_index:8}),
+    merits_by_category:JSON.stringify({naeringsliv:{points:8}})
+  });
+  const app = earnedWeekEnvironment(store);
+  const calendar = app.CivicationCalendar, wallet = () => app.CivicationState.getWallet();
+  const economy = app.CivicationEconomyEngine;
+  calendar.advanceByMinutes(7*24*60); // A completed first week is the fixture boundary.
+  assert.equal(calendar.getClock().dayIndex,8);
+  app.CivicationState.setActivePosition({career_id:"naeringsliv",role_key:"renholder",title:"Renholder"});
+  const initialBalance = wallet().balance;
+  for (let day = 8; day <= 14; day++) {
+    assert.equal(calendar.getClock().dayIndex,day);
+    economy.recordCompletedDay(day);
+    economy.recordCompletedDay(day); // Replay is idempotent.
+    assert.equal(wallet().completed_game_days_v1.length,day-7,"one work record per played day");
+    economy.tickWeekly();
+    assert.equal(wallet().balance,initialBalance,"no salary before the seven actual workdays");
+    calendar.advanceByMinutes(24*60);
+  }
+  assert.equal(calendar.getClock().dayIndex,15);
+  const earned = wallet().completed_game_days_v1;
+  assert.equal(earned.length,7);
+  assert.ok(earned.every(r=>r.careerId==="naeringsliv" && r.weeklyNet > 0));
+  const expected = Math.floor(earned.reduce((sum,r)=>sum+r.weeklyNet,0)/7);
+  assert.ok(expected>0,"a full workweek has earned positive catalog salary");
+  app.CivicationState.setActivePosition(null); // A legitimate job end before payday.
+  economy.tickWeekly();
+  assert.equal(wallet().balance,initialBalance+expected,"week-2 accrued wages survive job end");
+  assert.equal(wallet().last_tick_day_index,15,"week-2 settlement uses game day 15");
+  assert.equal(wallet().completed_game_days_v1.length,0,"settled workday records are consumed");
+  economy.tickWeekly();
+  assert.equal(wallet().balance,initialBalance+expected,"the same week cannot be paid twice");
+  const restored = earnedWeekEnvironment(store);
+  restored.CivicationCalendar.advanceByMinutes(14*24*60);
+  restored.CivicationEconomyEngine.tickWeekly();
+  assert.equal(wallet().balance,initialBalance+expected,"reload cannot duplicate settled salary");
+}
+
 console.log("renholder week-2 day 8–14: 4 actual playthroughs, plan/work/receipt/blocked access, ending and save/reload contracts passed");
