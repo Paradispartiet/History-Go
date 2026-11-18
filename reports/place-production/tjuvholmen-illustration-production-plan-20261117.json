@@ -17,9 +17,9 @@
     "structures_illustrations_covered": 2,
     "formal_vferdig": "BLOCKED",
     "published_existing_placecard": "UNCHANGED",
-    "last_update": "2026-11-17",
+    "last_update": "2026-11-18",
     "artwork_repo_candidate_count": 8,
-    "qa_summary": "6 hovedmotiver egner seg til detaljkontroll; Moonrise og White Snow Cake trenger tydelig revisjon før sluttgodkjenning. Ingen er aktivert."
+    "qa_summary": "8/8 illustrasjoner som inaktive GitHub-kandidater; MOONRISE v2 er vesentlig forbedret. White Snow Cake v2 må fortsatt revideres; de øvrige krever detaljkontroll."
   },
   "production_rules": [
     "Arkiver original PNG i full oppløsning, deretter WebP for app uten hard beskjæring",
@@ -146,21 +146,23 @@
       "artist": "Ugo Rondinone",
       "year": 2006,
       "source_kind": "original_editorial_illustration",
-      "file_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/ugo_rondinone_moonrise_east_november_illustrasjon_v1.webp",
-      "manifest_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/ugo_rondinone_moonrise_east_november_illustrasjon_v1_manifest.json",
-      "stage": "REVISION_RECOMMENDED",
+      "file_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/ugo_rondinone_moonrise_east_november_illustrasjon_v2.webp",
+      "manifest_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/ugo_rondinone_moonrise_east_november_illustrasjon_v2_manifest.json",
+      "stage": "VISUAL_QA_CANDIDATE",
       "live_in_app": false,
       "visual_final_approval": false,
       "artwork_reproduction_rights_review": "PENDING",
-      "next_action": "Illustrasjonen er for brun/gullfarget og har for markert nese; originalfoto viser lysere, gråbrun grov hodeform med små øyehull og annerledes ansiktsproporsjoner.",
-      "notes": "Stort brunlig hode med bredt smil",
-      "repo_candidate_path": "bilder/kort/objects/candidates/tjuvholmen/ugo_rondinone_moonrise_east_november_illustrasjon_v1.webp",
-      "repo_candidate_manifest_path": "bilder/kort/objects/candidates/tjuvholmen/ugo_rondinone_moonrise_east_november_illustrasjon_v1_manifest.json",
-      "app_sha256": "904e6892337da26ba7801829456a03a2de35c53f12ccf8d1b81c81097556969f",
-      "git_blob_sha": "18ba4a3e1fee6b41bca1df68e421cf18ee72538b",
+      "next_action": "Sammenlign v2 med dokumentert foto for detaljer, avklar eventuelt rettighetsgrunnlag før aktivisering",
+      "notes": "Ny v2 laget fra dokumentert motiv: lyst, grovt hode uten menneskelig nese, små øyehull, smal tannet munn, tresokkel og trapp. Full PNG 1086×1448 / WebP 900×1200, uten beskjæring. V1 bevart som historikk. Ikke endelig identitetssjekket.",
+      "repo_candidate_path": "bilder/kort/objects/candidates/tjuvholmen/ugo_rondinone_moonrise_east_november_illustrasjon_v2.webp",
+      "repo_candidate_manifest_path": "bilder/kort/objects/candidates/tjuvholmen/ugo_rondinone_moonrise_east_november_illustrasjon_v2_manifest.json",
+      "app_sha256": "dfe1bc7c655bbcfa413f1ff5125bca7173c347e962410bdc6b830aefe7564680",
+      "git_blob_sha": "8a54cc0cd88841e83ed3ebf633d4dd7c7364b7e9",
       "archive_verified": true,
-      "qa_status": "REVISE_BEFORE_APPROVAL",
-      "qa_observation": "Illustrasjonen er for brun/gullfarget og har for markert nese; originalfoto viser lysere, gråbrun grov hodeform med små øyehull og annerledes ansiktsproporsjoner."
+      "qa_status": "MOTIF_IMPROVED_FINE_DETAILS_TO_REVIEW",
+      "qa_observation": "Malerisk v2 følger grunnmotiv og farge bedre enn v1. Kontroll av eksakt munnform, patina, plassering og rettigheter gjenstår.",
+      "original_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/ugo_rondinone_moonrise_east_november_illustrasjon_v2_original.png",
+      "source_sha256": "dc8e7683219af7277ef00b887078d312efe4cec3d1edb96f998a1cc4a41718bc"
     },
     {
       "id": "paul_mccarthy_white_snow_cake",
@@ -226,7 +228,7 @@
     }
   ],
   "acceptance_gates": [
-    "Før visuell godkjenning: revider Moonrise (lysere gråbrun overflate/proporsjoner) og White Snow Cake (deformerte figurer/base); gjennomgå øvrige seks for detaljtrofasthet; ingen automatisk aktivering.",
+    "Revider White Snow Cake for riktig bronsegruppe og sokkel; detaljkontroller øvrige sju, særlig MOONRISE v2 sin munnform. Ingen automatisk aktivering.",
     "Individuell verkslikhet og redaksjonell godkjenning per kandidat",
     "Gjennomgå rettsgrunnlag for avbildning av beskyttet kunst og eventuelt unntak etter åndsverkloven",
     "Etter godkjenning: eksakt originaloverføring, kontrollsum, merking, relevante PlaceCard-/Objects-tester",
@@ -234,5 +236,5 @@
   ],
   "photo_source_audit": "reports/place-production/tjuvholmen-authentic-photo-rights-sources-20261117.json",
   "issue": "https://github.com/Paradispartiet/History-Go/issues/7290",
-  "note": "Alle åtte separate WebP-kandidater er nå binært arkivert på egne inaktive GitHub-baner. Ingen er aktivert eller kunstverkrettighetsgodkjent. Moonrise og White Snow Cake v2 har spesifikke kjente avvik og skal korrigeres før godkjenning; øvrige seks krever endelig identitetskontroll."
+  "note": "MOONRISE v2 ble arkivert i GitHub som eget binært WebP-objekt, gammel v1 bevart. Ingen kunstverksbilder aktivert. White Snow Cake og rettslig bruksgrunnlag gjenstår."
 }
