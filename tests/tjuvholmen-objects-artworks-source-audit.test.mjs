@@ -54,15 +54,19 @@ assert.ok(eyes.year_resolution.owner_source.includes("selvaagartcollection.com")
 assert.deepEqual(eyes.reported_years,["1992","1997"]);
 assert.ok(audit.image_rights.legal_source_url.includes("lovdata.no"));
 assert.equal(audit.image_rights.decision,"NO_BINARY_IMPORT_FROM_UNLICENSED_WORK_PHOTOS");
-assert.equal((place.objects||[]).length,0,"No fake Objects in canonical place");
-assert.equal((runtime.place.objects||[]).length,0,"No fake Objects in runtime");
-assert.deepEqual(place.place_card_profile.collection_ids,["people","brands","structures"]);
-assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","brands","structures"]);
+assert.equal(place.objects.length,8,"All eight reviewed works are represented in PlaceCard");
+assert.deepEqual(runtime.place.objects,place.objects);
+for(const object of place.objects){
+  assert.equal(object.imageKind,"illustration");
+  assert.equal(object.imageMeta.disclosure,"Illustrasjon – ikke fotografi");
+}
+assert.deepEqual(place.place_card_profile.collection_ids,["people","objects","brands","structures"]);
+assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","objects","brands","structures"]);
 assert.equal(runtime.brands.length,3);
 assert.equal(runtime.place.structures.length,3);
 assert.equal(runtime.people.length,5);
 assert.equal(card.object_artwork_review.candidates,8);
-assert.equal(card.object_artwork_review.objectsActivated,0);
+assert.equal(card.object_artwork_review.objectsActivated,0,"November 12 review remains a historical snapshot");
 assert.equal(review.collection_review.objects.count,8);
 assert.equal(card.vferdig.status,"BLOCKED");
-console.log("TJUVHOLMEN_SCULPTURE_SOURCE_AUDIT_PASS eight documented works, zero unlicensed images, no fake Objects");
+console.log("TJUVHOLMEN_SCULPTURE_SOURCE_AUDIT_PASS eight documented works, live illustrated Objects, no unlicensed source photos");

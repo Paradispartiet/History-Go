@@ -278,6 +278,9 @@ test("Tjuvholmen Structures show source-linked photo attribution without changin
     assert.equal(license.rel, "noopener noreferrer");
     assert.equal(source.rel, "noopener noreferrer");
   }
-  assert.equal(w.HGPlaceCardCollections.getItems(place, "objects").length, 0);
+  assert.deepEqual(
+    Array.from(w.HGPlaceCardCollections.getItems(place, "objects"), object => object.id),
+    place.objects.map(object => object.id)
+  );
 });
 
