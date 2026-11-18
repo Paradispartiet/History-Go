@@ -139,6 +139,12 @@ assert.equal(plan.getRestaurantFinanceSnapshot().afterKnownPlansMinor,38400);
 wallet.balance=50;
 assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:no-funds").reason,"INSUFFICIENT_FUNDS");
 wallet.balance=800;
+// Older settled receipts must never be silently dropped from history.
+wallet.nok_v1.restaurantPurchases=Array.from({length:1000},(_,i)=>({
+  requestId:"historic-restaurant-"+i,weekKey:"game-week-000123",
+  day:0,meal:"dinner",restaurantId:"historical-venue",
+  dishName:"Historisk måltid",amountMinor:100,gameDateISO:"2026-01-01"
+}));
 const receipt = plan.purchaseRestaurantMeal(0,"dinner","restaurant:purchase-1");
 assert.equal(receipt.ok,true);
 assert.equal(receipt.applied,true);
@@ -146,7 +152,8 @@ assert.equal(receipt.receipt.amountMinor,12500);
 assert.equal(receipt.receipt.gameDateISO,"2026-11-18");
 assert.equal(wallet.balance,675);
 assert.equal(walletWrites,1);
-assert.equal(wallet.nok_v1.restaurantPurchases.length,1);
+assert.equal(wallet.nok_v1.restaurantPurchases.length,1001,
+  "new purchases must preserve all historical settled receipts");
 assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:purchase-1").applied,false,
   "same request is idempotent");
 assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:purchase-2").reason,"MEAL_ALREADY_PURCHASED");
