@@ -222,6 +222,12 @@ const models = (modelManifest.files || []).map((rel) => ({ rel, json: readJson(r
 const testFiles = walk('tests').filter((rel) =>
   /^tests\/civication-.*\.test\.js$/.test(rel) &&
   !/^tests\/civication-psychology-room-/.test(rel) &&
+  // Commute address/route tests are private logistics, not career gameplay evidence.
+  rel !== 'tests/civication-personal-routes.test.js' &&
+  // ORS routing contract exercises private logistics, never career progression.
+  rel !== 'tests/civication-road-router.test.js' &&
+  // Public Fysen menu discovery is retail browsing, not role gameplay evidence.
+  rel !== 'tests/civication-fysen-public-menus.test.js' &&
   // Wave-A narrative integration verifies the shared inbox and historical
   // personal choices. Mentions of a career in its fixture are not evidence
   // that the career's workday or competency gameplay is implemented.

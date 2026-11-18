@@ -345,6 +345,86 @@
       typeof id === "string" && id.length < 130 && available.has(id)))].slice(0, 16);
   }
 
+
+  // Connection labels are user-chosen, fixed categories—not inferred
+  // emotional patterns or AI-generated descriptions.
+  const INNER_MAP_RELATIONS = Object.freeze({
+    connected: "Henger sammen med",
+    similar: "Ligner på",
+    contrast: "Skiller seg fra",
+    changed: "Utviklet seg til",
+    explore: "Jeg vil undersøke"
+  });
+
+  function innerMapPairKey(from, to) {
+    return [from, to].sort().join("\u0000");
+  }
+
+  function getInnerMapLinks() {
+    const state = readJson(STORAGE_KEYS.innerMap, { selected_ids: [], links: [] });
+    const stored = Array.isArray(state?.links) ? state.links : [];
+    const selected = new Set(getInnerMapIds());
+    const seen = new Set();
+    const valid = [];
+    for (const item of stored) {
+      if (!item || typeof item !== "object" ||
+          typeof item.from !== "string" || typeof item.to !== "string" ||
+          item.from === item.to || item.from.length > 129 || item.to.length > 129 ||
+          !selected.has(item.from) || !selected.has(item.to) ||
+          typeof item.kind !== "string" ||
+          !Object.prototype.hasOwnProperty.call(INNER_MAP_RELATIONS, item.kind)) continue;
+      const key = innerMapPairKey(item.from, item.to);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      valid.push({ from: item.from, to: item.to, kind: item.kind });
+      if (valid.length === 32) break;
+    }
+    return valid;
+  }
+
+  function saveInnerMapState(selectedIds, links) {
+    try {
+      // One atomic localStorage key keeps selection and manual connections
+      // consistent when one note is removed from the map.
+      localStorage.setItem(STORAGE_KEYS.innerMap, JSON.stringify({
+        version: 2, selected_ids: selectedIds, links
+      }));
+      return { ok: true };
+    } catch (error) {
+      console.warn("[PsychologyRoom.saveInnerMapState]", error);
+      return { ok: false, reason: "storage_failed" };
+    }
+  }
+
+  function connectInnerMapEntries(from, to, kind) {
+    const ids = getInnerMapIds();
+    if (typeof from !== "string" || typeof to !== "string" ||
+        !ids.includes(from) || !ids.includes(to) || from === to) {
+      return { ok: false, reason: "invalid_selection" };
+    }
+    if (typeof kind !== "string" ||
+        !Object.prototype.hasOwnProperty.call(INNER_MAP_RELATIONS, kind)) {
+      return { ok: false, reason: "invalid_relation" };
+    }
+    const links = getInnerMapLinks();
+    if (links.some((link) => innerMapPairKey(link.from, link.to) === innerMapPairKey(from, to))) {
+      return { ok: false, reason: "already_connected" };
+    }
+    if (links.length >= 32) return { ok: false, reason: "link_limit" };
+    const result = saveInnerMapState(ids, [...links, { from, to, kind }]);
+    return result.ok ? { ok: true, count: links.length + 1 } : result;
+  }
+
+  function disconnectInnerMapEntries(from, to) {
+    const ids = getInnerMapIds();
+    const links = getInnerMapLinks();
+    const next = links.filter((link) =>
+      innerMapPairKey(link.from, link.to) !== innerMapPairKey(from, to));
+    if (next.length === links.length) return { ok: false, reason: "not_found" };
+    const result = saveInnerMapState(ids, next);
+    return result.ok ? { ok: true, count: next.length } : result;
+  }
+
   function toggleInnerMap(entryId) {
     if (!getWorkbenchEntries().some((entry) => entry.id === entryId)) {
       return { ok: false, reason: "unknown_entry" };
@@ -354,9 +434,10 @@
     if (!exists && selected.length >= 16) return { ok: false, reason: "map_limit" };
     const next = exists ? selected.filter((id) => id !== entryId) : [...selected, entryId];
     try {
-      localStorage.setItem(STORAGE_KEYS.innerMap,
-        JSON.stringify({ version: 1, selected_ids: next }));
-      return { ok: true, selected: !exists, count: next.length };
+      const links = getInnerMapLinks().filter((link) =>
+        next.includes(link.from) && next.includes(link.to));
+      const result = saveInnerMapState(next, links);
+      return result.ok ? { ok: true, selected: !exists, count: next.length } : result;
     } catch (error) {
       console.warn("[PsychologyRoom.toggleInnerMap]", error);
       return { ok: false, reason: "storage_failed" };
@@ -386,6 +467,24 @@
     const selected = getInnerMapModel();
     const selectedIds = new Set(selected.map((entry) => entry.id));
     const available = getWorkbenchEntries().filter((entry) => !selectedIds.has(entry.id));
+    const links = getInnerMapLinks();
+    const caseTitle = new Map(selected.map((entry) => [
+      entry.id, (entry.fields.find((field) => field.key === "situation")?.text || "Min refleksjon").slice(0, 80)
+    ]));
+    const linkCards = links.map((link) =>
+      '<li class="psychology-room-inner-link"><div class="psychology-room-inner-link-path">' +
+      '<span class="psychology-room-inner-link-node">' + escapeHtml(caseTitle.get(link.from) || "") + '</span>' +
+      '<span class="psychology-room-inner-link-relation"><span aria-hidden="true">→</span> ' +
+      escapeHtml(INNER_MAP_RELATIONS[link.kind]) + '</span>' +
+      '<span class="psychology-room-inner-link-node">' + escapeHtml(caseTitle.get(link.to) || "") + '</span>' +
+      '</div><button type="button" class="psychology-room-back" data-psych-map-unlink="' +
+      escapeHtml(link.from) + '" data-psych-map-unlink-to="' + escapeHtml(link.to) +
+      '">Fjern forbindelse</button></li>').join("");
+    const options = selected.map((entry) => '<option value="' + escapeHtml(entry.id) + '">' +
+      escapeHtml((entry.fields.find((field) => field.key === "situation")?.text || "Min refleksjon").slice(0, 90)) +
+      '</option>').join("");
+    const kinds = Object.entries(INNER_MAP_RELATIONS).map(([code, label]) =>
+      '<option value="' + escapeHtml(code) + '">' + escapeHtml(label) + '</option>').join("");
     const cards = selected.map((entry) => {
       const nodes = entry.fields.map((field, index) =>
         '<li class="psychology-room-inner-node"><span class="psychology-room-inner-node-number" aria-hidden="true">' +
@@ -417,6 +516,19 @@
       '<div class="psychology-room-inner-overview"><strong>' + selected.length +
       '</strong><span>av 16 mulige refleksjoner i kartet</span></div>' +
       (cards || '<div class="psychology-room-inner-empty"><strong>Et tomt kart er også et godt utgangspunkt.</strong><p>Ingen refleksjoner legges inn automatisk. Velg en lagret situasjon eller opprett en ny.</p></div>') +
+      '<section class="psychology-room-note-section psychology-room-inner-links" aria-labelledby="psychologyMapLinksHeading">' +
+      '<h4 id="psychologyMapLinksHeading">Mine forbindelser (' + links.length + ')</h4>' +
+      '<p class="psychology-room-muted">Du lager forbindelser selv. Ingen sammenhenger foreslås eller analyseres automatisk.</p>' +
+      (links.length ? '<ul class="psychology-room-inner-link-list">' + linkCards + '</ul>' :
+        '<p class="psychology-room-muted">Du har ikke koblet sammen noen refleksjoner ennå.</p>') +
+      (selected.length >= 2 ?
+        '<form id="psychologyRoomLinkForm" class="psychology-room-form">' +
+        '<label>Fra refleksjon<select name="from" required>' + options + '</select></label>' +
+        '<label>Til refleksjon<select name="to" required><option value="">Velg en annen refleksjon</option>' + options + '</select></label>' +
+        '<label>Hvordan vil du beskrive forbindelsen?<select name="kind" required>' + kinds + '</select></label>' +
+        '<button type="submit" class="psychology-room-primary">Koble sammen</button></form>' :
+        '<p class="psychology-room-muted">Legg minst to refleksjoner i kartet for å lage en forbindelse.</p>') +
+      '</section>' +
       '<section class="psychology-room-note-section"><h4>Legg til en refleksjon</h4>' +
       (picker || '<p class="psychology-room-muted">Ingen flere lagrede situasjoner å legge til.</p>') +
       '<button type="button" class="psychology-room-primary" data-psych-map-new="1">Skriv en ny refleksjon</button></section>' +
@@ -435,6 +547,33 @@
     document.querySelectorAll("[data-psych-map-open]").forEach((button) =>
       button.addEventListener("click", () => renderWorkbenchEntry(button.dataset.psychMapOpen)));
     document.querySelector("[data-psych-map-new]")?.addEventListener("click", renderWorkbench);
+    document.getElementById("psychologyRoomLinkForm")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const fromField = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="from"]'));
+      const toField = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="to"]'));
+      const kindField = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="kind"]'));
+      const result = connectInnerMapEntries(fromField?.value, toField?.value, kindField?.value);
+      if (!result.ok) {
+        const errors = {
+          invalid_selection: "Velg to forskjellige refleksjoner.",
+          already_connected: "Disse refleksjonene er allerede koblet sammen.",
+          link_limit: "Kartet har plass til 32 forbindelser.",
+          storage_failed: "Kunne ikke lagre forbindelsen på denne enheten."
+        };
+        window.showToast?.(errors[result.reason] || "Velg en gyldig forbindelse.");
+        return;
+      }
+      renderInnerMap();
+    });
+    document.querySelectorAll("[data-psych-map-unlink]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const result = disconnectInnerMapEntries(button.dataset.psychMapUnlink,
+          button.dataset.psychMapUnlinkTo);
+        if (!result.ok) window.showToast?.("Kunne ikke fjerne forbindelsen.");
+        else renderInnerMap();
+      });
+    });
   }
 
   function renderWorkbenchEntry(entryId) {
@@ -1714,6 +1853,9 @@
     getWorkbenchEntries,
     getInnerMapIds,
     getInnerMapModel,
+    getInnerMapLinks,
+    connectInnerMapEntries,
+    disconnectInnerMapEntries,
     toggleInnerMap,
     saveWorkbench,
     saveWorkbenchFollowUp,

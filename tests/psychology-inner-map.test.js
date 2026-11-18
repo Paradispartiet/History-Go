@@ -83,6 +83,52 @@ assert.ok(source.includes("localStorage.removeItem(STORAGE_KEYS.innerMap)"),
 assert.ok(source.includes("GitHub Pages deler nettleserlagring"),
   "users must be warned about the shared GitHub Pages storage origin");
 
+// Connections are explicitly created; no relationships appear automatically.
+assert.deepEqual(Array.from(room.getInnerMapLinks()), []);
+assert.equal(room.connectInnerMapEntries("entry-1", "entry-2", "similar").reason,
+  "invalid_selection", "both source notes must be selected");
+assert.equal(room.toggleInnerMap("entry-2").ok, true);
+assert.equal(room.connectInnerMapEntries("entry-1", "entry-1", "similar").reason,
+  "invalid_selection", "self-links are forbidden");
+assert.equal(room.connectInnerMapEntries("entry-1", "entry-2", "unknown").reason,
+  "invalid_relation", "relationship names come from fixed choices");
+assert.equal(room.connectInnerMapEntries("entry-1", "entry-2", "similar").ok, true);
+assert.deepEqual(Array.from(room.getInnerMapLinks(), x => [x.from, x.to, x.kind]),
+  [["entry-1", "entry-2", "similar"]]);
+assert.deepEqual(JSON.parse(store.get(MAP)).links,
+  [{ from: "entry-1", to: "entry-2", kind: "similar" }]);
+assert.ok(!store.get(MAP).includes(note.situation) && !store.get(MAP).includes(note.thoughts),
+  "links may include IDs and enums but never note text");
+assert.ok(writes.every(({key}) => key === MAP),
+  "connections must never write to AHA, backend, or other storage");
+assert.equal(room.connectInnerMapEntries("entry-2", "entry-1", "connected").reason,
+  "already_connected", "reverse duplicates are rejected");
+assert.equal(room.disconnectInnerMapEntries("entry-2", "entry-1").ok, true);
+assert.equal(room.getInnerMapLinks().length, 0);
+assert.equal(room.disconnectInnerMapEntries("entry-1", "entry-2").reason, "not_found");
+assert.equal(room.connectInnerMapEntries("entry-1", "entry-2", "contrast").ok, true);
+assert.equal(room.toggleInnerMap("entry-2").selected, false);
+assert.equal(room.getInnerMapLinks().length, 0, "removing a mapped note prunes links");
+assert.deepEqual(JSON.parse(store.get(MAP)).links, []);
+
+// Malformed state is filtered without side effects or prototype-property abuse.
+store.set(MAP, JSON.stringify({
+  selected_ids: ["entry-1", "entry-2"],
+  links: [
+    { from: "entry-1", to: "entry-1", kind: "similar" },
+    { from: "entry-1", to: "missing", kind: "similar" },
+    { from: "entry-1", to: "entry-2", kind: "__proto__" },
+    { from: "entry-1", to: "entry-2", kind: { suspicious: true } },
+    { from: "entry-1", to: "entry-2", kind: "explore" },
+    { from: "entry-2", to: "entry-1", kind: "similar" }
+  ]
+}));
+const writesBeforeRead = writes.length;
+assert.deepEqual(Array.from(room.getInnerMapLinks(), link => link.kind), ["explore"]);
+assert.equal(writes.length, writesBeforeRead, "reads do not mutate private storage");
+assert.equal(room.disconnectInnerMapEntries("entry-1", "entry-2").ok, true);
+assert.equal(room.toggleInnerMap("entry-2").selected, false);
+
 assert.equal(room.toggleInnerMap("entry-1").selected, false);
 assert.deepEqual(Array.from(room.getInnerMapIds()), []);
 assert.equal(room.toggleInnerMap("entry-2").selected, true);
@@ -104,9 +150,22 @@ for (let i = 0; i < 16; i++) assert.equal(room.toggleInnerMap("id-" + i).ok, tru
 assert.equal(room.toggleInnerMap("id-16").reason, "map_limit");
 assert.equal(room.getInnerMapIds().length, 16);
 
+// Bound user-defined links independently of the 16-note limit.
+for (let i = 0, count = 0; i < 16 && count < 32; i++) {
+  for (let j = i + 1; j < 16 && count < 32; j++) {
+    assert.equal(room.connectInnerMapEntries("id-" + i, "id-" + j, "connected").ok, true);
+    count++;
+  }
+}
+assert.equal(room.getInnerMapLinks().length, 32);
+assert.equal(room.connectInnerMapEntries("id-7", "id-15", "connected").reason, "link_limit");
+
+
 // No silent success when local storage is unavailable.
 storage.setItem = () => { throw new Error("quota exceeded"); };
 assert.equal(room.toggleInnerMap("id-1").reason, "storage_failed");
+assert.equal(room.disconnectInnerMapEntries("id-0", "id-1").reason, "storage_failed");
+assert.equal(room.getInnerMapLinks().length, 32, "failed writes leave the map unchanged");
 assert.equal(room.getInnerMapIds().length, 16);
 
 console.log("Psychology 2.0 inner map: 16-ID opt-in, local-only, safe missing entries: passed");
