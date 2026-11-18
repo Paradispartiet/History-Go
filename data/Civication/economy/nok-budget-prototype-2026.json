@@ -464,5 +464,119 @@
         }
       ]
     }
-  ]
+  ],
+  "costOfLiving": {
+    "version": 1,
+    "kind": "illustrative_read_only_reference_not_billing",
+    "note": "Boligprisene er SSB 2025-statistikk, ikke konkrete boligannonser eller spillerens leiekontrakt. Mat er SIFO 2026-inspirerte husholdningseksempler uten restaurant, alkohol eller andre husholdningsvarer. Strøm, transport, klær og andre levekostnader kommer i tillegg. Ingen priser belastes automatisk.",
+    "rentSources": [
+      {
+        "id": "oslo_baerum",
+        "label": "Oslo og Bærum · gjennomsnitt",
+        "pricesByRoomsNok": {
+          "1": 10090,
+          "2": 15260,
+          "3": 19030,
+          "4": 23200,
+          "5": 26250
+        },
+        "priceKind": "observed_average_monthly_existing_rent_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/statbank/table/09895"
+      },
+      {
+        "id": "oslo_central",
+        "label": "Oslo sentralt · Frogner, Ullern, Sentrum, St. Hanshaugen",
+        "pricesByRoomsNok": {
+          "2": 16700
+        },
+        "priceKind": "predicted_monthly_50sqm_2rooms_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene"
+      },
+      {
+        "id": "oslo_outer",
+        "label": "Oslo ytre øst · Søndre Nordstrand, Grorud, Stovner, Alna",
+        "pricesByRoomsNok": {
+          "2": 14500
+        },
+        "priceKind": "predicted_monthly_50sqm_2rooms_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene"
+      },
+      {
+        "id": "trondheim_central",
+        "label": "Trondheim sentralt · Midtbyen, Østbyen, Nedre Elvehavn",
+        "pricesByRoomsNok": {
+          "2": 13200
+        },
+        "priceKind": "predicted_monthly_50sqm_2rooms_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene"
+      },
+      {
+        "id": "trondheim_outer",
+        "label": "Trondheim · Lerkendal og Heimdal",
+        "pricesByRoomsNok": {
+          "2": 12200
+        },
+        "priceKind": "predicted_monthly_50sqm_2rooms_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene"
+      },
+      {
+        "id": "rural",
+        "label": "Spredtbygde strøk · gjennomsnitt",
+        "pricesByRoomsNok": {
+          "2": 7450
+        },
+        "priceKind": "observed_average_monthly_existing_rent_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene"
+      }
+    ],
+    "foodProfiles": [
+      {
+        "id": "one_adult",
+        "label": "Én voksen, 25–50 år",
+        "monthlyNok": 4520,
+        "kind": "2026_example_mean_adult_25_50",
+        "source": "https://www.livsopphold.com/referansebudsjett/sifo-mat-og-drikke",
+        "composition": "Gjennomsnitt av kvinne 4 280 kr og mann 4 760 kr"
+      },
+      {
+        "id": "two_adults",
+        "label": "To voksne, 25–50 år",
+        "monthlyNok": 9040,
+        "kind": "2026_example_two_adults",
+        "source": "https://www.livsopphold.com/referansebudsjett/sifo-mat-og-drikke",
+        "composition": "Kvinne 4 280 kr + mann 4 760 kr"
+      },
+      {
+        "id": "one_adult_one_child",
+        "label": "Én voksen og ett barn på 1–3 år",
+        "monthlyNok": 6700,
+        "kind": "2026_example_adult_mean_and_child_1_3",
+        "source": "https://www.livsopphold.com/referansebudsjett/sifo-mat-og-drikke",
+        "composition": "Voksen referansegjennomsnitt 4 520 kr + barn 1–3 år 2 180 kr"
+      },
+      {
+        "id": "two_adults_two_children",
+        "label": "To voksne og barn på 5 og 11 år",
+        "monthlyNok": 15375,
+        "kind": "2026_example_two_adults_girl_11_child_5",
+        "source": "https://www.livsopphold.com/referansebudsjett/sifo-mat-og-drikke",
+        "composition": "Kvinne 4 280 kr + mann 4 760 kr + barn 5 år 2 585 kr + jente 11 år 3 750 kr"
+      },
+      {
+        "id": "two_adults_schoolchildren",
+        "label": "To voksne og barn på 8 og 12 år",
+        "monthlyNok": 16070,
+        "kind": "2026_example_two_adults_children_8_12",
+        "source": "https://www.livsopphold.com/referansebudsjett/sifo-mat-og-drikke",
+        "composition": "SIFO-eksempel 2026: to voksne 9 040 kr + barn 8 år 3 190 kr + gutt 12 år 3 840 kr"
+      }
+    ],
+    "foodMethodNote": "Referanse for hjemmelaget mat og alkoholfri drikke. Ikke legg denne posten mekanisk på toppen av dagligvarekjøp eller restaurantkjøp; prognoser og faktiske transaksjoner skal holdes atskilt."
+  }
 }
