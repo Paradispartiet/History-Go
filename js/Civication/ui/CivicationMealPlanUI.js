@@ -61,9 +61,9 @@
   function renderNearbyRestaurants(parent) {
     const details = create("details", null, parent);
     details.style.marginTop = "16px";
-    create("summary", "Restauranter nær arbeidsruten (forhåndsvisning)", details);
+    create("summary", "Restauranter nær arbeidsruten", details);
     create("p",
-      "Søket sender bare rettens navn og Oslo til Fysen. Ved eget valg om omveiberegning sendes ruteendepunktene og restaurantens offentlige koordinater til OpenRouteService. Dette er ikke bekreftede tilbud eller åpningstider.",
+      "Vi bruker restaurantopplysningene fra Fysen som veiledende. Søket sender bare rettens navn og Oslo til Fysen. Omvei beregnes først når du velger det; da sendes rutepunktene til OpenRouteService.",
       details).className = "muted";
     const form = create("form", null, details);
     form.style.cssText = "display:flex;flex-wrap:wrap;align-items:end;gap:8px;margin:12px 0";
@@ -102,18 +102,18 @@
       }
       find.disabled = true;
       results.replaceChildren();
-      message.textContent = "Søker etter kildebelagte restauranter i Oslo …";
+      message.textContent = "Søker etter restauranter i Oslo …";
       try {
         const menuData = await client.lookup(dish.value, { consent: true, now: new Date() });
         const reasons = {
           INVALID_QUERY: "Skriv minst to tegn i navnet på en rett.",
           CONSENT_REQUIRED: "Søket må startes aktivt.",
           PUBLIC_API_UNAVAILABLE: "Fysens offentlige menysøk er utilgjengelig akkurat nå.",
-          INVALID_RESPONSE: "Menydata kunne ikke verifiseres.",
+          INVALID_RESPONSE: "Menydata kunne ikke leses.",
           NO_CURRENT_PUBLIC_MENUS: "Ingen ferske menykilder for denne retten. Du kan prøve arkivsøket ovenfor."
         };
         if (menuData.status !== "DOCUMENTED_PUBLIC_MENUS") {
-          message.textContent = reasons[menuData.status] || "Ingen dokumenterte restauranttreff.";
+          message.textContent = reasons[menuData.status] || "Ingen restauranttreff.";
           return;
         }
         // The player's home/workplace may have changed while Fysen responded.
@@ -126,11 +126,11 @@
           route, response: menuData, nowMillis: Date.now()
         });
         if (nearby.status !== "geographic_candidates" || !nearby.candidates.length) {
-          message.textContent = "Ingen kildebelagte restauranter ble funnet innenfor 500 meter av den beregnede ruten.";
+          message.textContent = "Ingen restauranter fra Fysen ble funnet innenfor 500 meter fra ruten.";
           return;
         }
         message.textContent = nearby.candidates.length +
-          " restauranter geografisk nær ruten. Åpent kjøkken og faktisk omvei er foreløpig ukjent.";
+          " restauranter nær ruten. Beregn omvei dersom du ønsker det.";
         for (const candidate of nearby.candidates) {
           const item = create("li", null, results);
           item.style.cssText = "padding:10px;border:1px solid rgba(128,128,128,.25);border-radius:10px";
@@ -145,7 +145,7 @@
           action.type = "button";
           action.className = "btn";
           action.style.cssText = "display:block;margin-top:8px";
-          const info = create("p", "Kjøkkenåpning ved passering er ikke bekreftet.", item);
+          const info = create("p", "Opplysningene er hentet fra Fysen og kan ha endret seg.", item);
           info.className = "muted";
           action.addEventListener("click", async () => {
             const detours = window.CivicationRestaurantDetours;
@@ -169,7 +169,7 @@
               }
               if (!checked.ok) {
                 info.textContent = "Omveien kunne ikke dokumenteres (" + checked.reason +
-                  "). Ingen tilgjengelighet er bekreftet.";
+                  "). Prøv igjen om du vil.";
                 return;
               }
               const pass = checked.routeProof.passMinutes;
@@ -177,7 +177,7 @@
                 ":" + String(pass % 60).padStart(2, "0");
               info.textContent = "Beregnet omvei: " + checked.routeProof.detourMinutes +
                 " min. Passering ca. " + hhmm +
-                ". Kjøkkenåpning og tilbud er ikke bekreftet. Reisen registreres ikke som gjennomført.";
+                ". Restaurantopplysningene er veiledende. Reisen registreres ikke som gjennomført.";
             } catch (_) {
               info.textContent = "Kunne ikke beregne omveien.";
             } finally { action.disabled = false; }
@@ -286,7 +286,7 @@
       weekly_menu_not_selected: "Velg en ukesmeny for den aktuelle spilluken.",
       active_job_required: "Velg en jobb for å planlegge mat langs arbeidsruten.",
       verified_commute_required: "Registrer hjem og arbeidsadresse og beregn en veirute i Karriere.",
-      verified_venues_required: "Ukesmeny og veirute er klare. Bekreftede Fysen-restauranter og butikker er ikke koblet til ennå.",
+      verified_venues_required: "Ukesmeny og veirute er klare. Søk etter restauranter fra Fysen nedenfor.",
       no_verified_offers: "Ingen dokumenterte mattilbud passer denne ruten og måltidstiden.",
       opted_out: "Matforslag langs ruten er deaktivert."
     };
@@ -297,7 +297,7 @@
     const status = create("p", statusText[routeResult.status] || "Ingen dokumenterte tilbud tilgjengelige.", routeInfo);
     status.className = "muted";
     status.setAttribute("role", "status");
-    create("p", "Ingen posisjon spores eller sendes for å vise denne statusen. Restaurant- og butikktilbud må verifiseres før de kan vises.", routeInfo).className = "muted";
+    create("p", "Ingen posisjon spores eller sendes for å vise denne statusen. Vi bruker Fysens restaurantopplysninger som veiledende.", routeInfo).className = "muted";
 
     // Deliberate city-only menu discovery: archive entries are NEVER shown
     // as real-time route deals, open-now claims or current menu prices.
@@ -339,7 +339,7 @@
           return;
         }
         finderStatus.textContent = data.items.length +
-          " arkivtreff. Dette er historiske menyer, ikke dokumentasjon på at restauranten er åpen eller ligger langs ruten.";
+          " arkivtreff fra tidligere menyer. Bruk dem gjerne som inspirasjon.";
         for (const item of data.items) {
           const entry = create("li", null, found);
           entry.style.cssText = "border:1px solid rgba(128,128,128,.2);border-radius:8px;padding:8px";
