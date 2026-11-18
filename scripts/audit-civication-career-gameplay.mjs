@@ -232,6 +232,9 @@ const testFiles = walk('tests').filter((rel) =>
   rel !== 'tests/civication-fysen-route-corridor.test.js' &&
   // Public Fysen menu discovery is retail browsing, not role gameplay evidence.
   rel !== 'tests/civication-fysen-public-menus.test.js' &&
+  // City-only public restaurant lookup and its UI are not career progression.
+  rel !== 'tests/civication-fysen-live-restaurants.test.js' &&
+  rel !== 'tests/civication-fysen-nearby-ui.test.js' &&
   // Wave-A narrative integration verifies the shared inbox and historical
   // personal choices. Mentions of a career in its fixture are not evidence
   // that the career's workday or competency gameplay is implemented.
