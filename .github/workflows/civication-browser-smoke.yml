@@ -67,8 +67,10 @@ jobs:
         run: npm run audit:civication-city-map-entries
       - name: Install Playwright Chromium and WebKit
         run: npx playwright install --with-deps chromium webkit
+      # Three full salary/shop/portion/week journeys include independent reload checks.
+      # Keep all assertions and a bounded timeout; six minutes cut off WebKit tablet.
       - name: Verify NOK economy through mobile browser controls
-        run: timeout --signal=TERM --kill-after=30s 6m node scripts/verify-civication-nok-browser.cjs
+        run: timeout --signal=TERM --kill-after=30s 8m node scripts/verify-civication-nok-browser.cjs
       - name: Select PR browser acceptance depth
         id: coverage
         shell: bash
