@@ -52,6 +52,11 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+      - name: TEMP diagnostic generated Tjuvholmen runtime
+        run: |
+          npm run place-open:build >/dev/null
+          node -e "const fs=require('node:fs');const s=JSON.stringify(fs.readFileSync('data/runtime/place-open/tjuvholmen.json','utf8'));for(let i=0;i<s.length;i+=1200)console.log('HGTJ_PART '+Math.floor(i/1200)+' '+s.slice(i,i+1200))"
+          git restore data/runtime
       - name: Check exact canonical Place-open parity
         run: npm run place-open:check
       - name: Verify source-licensed People and honest text-only fallback
