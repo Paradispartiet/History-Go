@@ -70,17 +70,19 @@ try{
         document.getElementById("pcCategoryCollectionIcon")?.dataset.collectionId==="structures",
         null,{timeout:40000});
       const card=page.locator("#placeCard");
-      // Place Sheet and the curated fill layout finish asynchronously after
-      // canonical place-open hydration. Assert the stable user-visible state,
-      // not the intermediate core collection profile marker.
+      // Wait for the current v2 collection adapter after canonical hydration.
+      // The People collection is displayed separately, so only three of the
+      // four configured collections occupy icon-grid slots.
       await page.waitForFunction(()=>{
         const card=document.getElementById("placeCard");
-        return card?.dataset.collectionProfileSource==="place_card_profile_v2_curated"
-          && card?.dataset.collectionRequestedCount==="4";
+        return card?.dataset.collectionProfileSource==="place_card_profile_v2"
+          && card?.dataset.collectionCount==="4"
+          && card?.dataset.collectionGridCount==="3";
       },null,{timeout:30000});
       assert.equal(await card.getAttribute("data-collection-profile-source"),
-        "place_card_profile_v2_curated",tag+": curated profile");
-      assert.equal(await card.getAttribute("data-collection-requested-count"),"4",tag+": four collections");
+        "place_card_profile_v2",tag+": canonical v2 profile");
+      assert.equal(await card.getAttribute("data-collection-count"),"4",tag+": four collections");
+      assert.equal(await card.getAttribute("data-collection-grid-count"),"3",tag+": three gallery slots plus People");
       const structuresTile=page.locator('button[data-pc-round-gallery-item="pcCategoryCollectionIcon"]');
       try {
         await structuresTile.waitFor({state:"visible",timeout:20000});
