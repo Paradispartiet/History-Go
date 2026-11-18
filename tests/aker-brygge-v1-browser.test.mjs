@@ -36,8 +36,10 @@ try{
     await page.waitForFunction(()=>{
       const icon=document.getElementById("pcPeopleIcon");
       const img=icon?.querySelector(":scope > img.pc-person-img");
+      const card=document.getElementById("placeCard");
       return img?.complete&&img.naturalWidth>0
-        &&document.getElementById("placeCard")?.dataset.collectionCount==="1";
+        &&card?.dataset.collectionCount==="1"
+        &&card?.dataset.collectionProfileSource==="place_card_profile_v2_curated";
     },null,{timeout:40000});
     const result=await page.evaluate(()=>{
       const card=document.getElementById("placeCard"),h=document.getElementById("pcHeaderImage"),f=document.getElementById("pcFrontImage");
