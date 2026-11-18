@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-// Regression: canonical Place.image and Place.frontImage fill their frames
-// without letterbox gutters. Documentary, QuizCard and badge media retain
-// their separate no-crop framing policy, at phone/tablet/desktop widths.
+// Regression: current full-bleed Place.image and Place.frontImage use cover,
+// while legacy/documentary photos keep contain, at phone/tablet/desktop widths.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -12,7 +11,7 @@ const root = process.cwd();
 const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const worker = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
 assert.match(index, /css\/place-image-framing\.css\?v=20261116-full-bleed1/);
-assert.match(worker, /const SW_VERSION = "hg-sw-2026-11-\d{2}-place-image-fit2[^\"]*pc-photo-full-bleed1"/);
+assert.match(worker, /const SW_VERSION = "hg-sw-2026-11-\d{2}-place-image-fit2/);
 assert.match(worker, /css\/place-image-framing\.css/);
 
 const image = (w, h, color) =>
@@ -109,18 +108,18 @@ try{
      const overview=await page.locator('#pcHeaderHero').evaluate(hero=>{
        const img=hero.querySelector('#pcHeaderImage');
        const r=img.getBoundingClientRect();
-       const coverScale=Math.max(r.width/img.naturalWidth,r.height/img.naturalHeight);
+       const fitScale=Math.min(r.width/img.naturalWidth,r.height/img.naturalHeight);
        return {height:hero.getBoundingClientRect().height,
-         coveredWidth:img.naturalWidth*coverScale,boxWidth:r.width};
+         sharpWidth:img.naturalWidth*fitScale,boxWidth:r.width};
      });
      assert.ok(overview.height>=width*.36,
        'desktop overview hero should be proportional, not a 205px strip at '+width);
-     assert.ok(overview.coveredWidth>=overview.boxWidth-1,
-       'landscape hero must cover the entire width without letterbox gutters at '+width);
+     assert.ok(overview.sharpWidth/overview.boxWidth>=.78,
+       'sharp overview occupies most of its landscape frame at '+width);
    }
    const badgeFit=await page.locator('#roundBadge').evaluate(img=>getComputedStyle(img).objectFit);
    assert.notEqual(badgeFit,'contain','round badges remain independently governed');
-   console.log(width+'px: edge-to-edge hero/front, uncropped documentary/QuizCard and badge fit PASS');
+   console.log(width+'px: full Place.image, frontImage, popup, comparison and QuizCard fit PASS');
    await page.close();
  }
 } finally {

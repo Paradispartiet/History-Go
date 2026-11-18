@@ -120,18 +120,44 @@ try{
      if(!media.titleVisible)problems.push("PlaceCard title clipped inside hero after place switch");
      if(!media.hero?.decoded||!media.hero?.source.endsWith(place.image))problems.push("Real hero image did not decode");
      if(!media.portrait?.decoded||!media.portrait?.source.endsWith(place.frontImage))problems.push("Real portrait did not decode");
-     // Main PlaceCard's hero and collectible photo are full bleed; separate
-     // documentary-source images and QuizCard reverse remain uncropped.
-     // Require actual decoded images fully occupying each displayed frame.
-     for(const [image,label] of [[media.hero,"Hero"],[media.portrait,"Portrait"]]){
-      if(image?.fit!=="cover")problems.push(label+" image does not use full-bleed framing");
-      if(!["50% 50%","center center"].includes(image?.position))
-       problems.push(label+" image not centered in its frame");
+     // The Oslo v1 canonical imageComposition specifies full-bleed hero crops
+     // with independently authored focus points; it also explicitly prohibits
+     // cropping documentary QuizCard backs. Do not silently substitute
+     // the old all-contain contract or accept arbitrary image positions.
+     const composition=place.imageComposition;
+     if(composition.heroBehavior!=="cover_with_subject_focal_point")
+      problems.push("Unsupported canonical hero composition policy");
+     if(composition.portraitRatio!=="3:4")
+      problems.push("Unexpected canonical PlaceCard portrait ratio");
+     if(composition.quizCardBehavior!=="contain_never_crop")
+      problems.push("Canonical QuizCard must remain uncropped");
+     if(media.hero?.fit!=="cover")
+      problems.push("Hero does not respect authored full-bleed policy");
+     if(media.portrait?.fit!=="cover")
+      problems.push("PlaceCard portrait does not fill its 3:4 frame");
+     for(const [image,label,expected] of [
+      [media.hero,"Hero",composition.heroPosition],
+      [media.portrait,"Portrait",composition.portraitPosition]
+     ]){
+      if(!/^\d{1,3}%\s+\d{1,3}%$/.test(expected||""))
+       problems.push(label+" has no valid authored focus point");
+      else if(image?.position!==expected)
+       problems.push(label+" ignores authored focus "+expected+" (actual: "+image?.position+")");
       if(!image?.decoded||image.width<=0||image.height<=0||
          image.frameWidth<=0||image.frameHeight<=0||
          Math.abs(image.width-image.frameWidth)>1||
          Math.abs(image.height-image.frameHeight)>1)
        problems.push(label+" image does not fill its visible frame");
+      // A full-bleed crop must not discard a majority of the source area.
+      // This is a real geometry check, not an object-fit-only assertion.
+      if(image?.decoded&&image?.height>0&&image?.width>0){
+       const sourceRatio=image.naturalWidth/image.naturalHeight;
+       const frameRatio=image.width/image.height;
+       const visibleFraction=Math.min(sourceRatio/frameRatio,frameRatio/sourceRatio);
+       const minimum=label==="Hero"?0.5:0.75;
+       if(visibleFraction<minimum)
+        problems.push(label+" crops too much source content ("+visibleFraction.toFixed(2)+")");
+      }
      }
      if(media.visible){
       for(const [selector,label] of [["#pcHeaderHero","hero"],["#pcFrontCardFlip","front"]]){
