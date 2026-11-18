@@ -3,11 +3,11 @@
   "place_id": "aker_brygge",
   "name": "Aker Brygge",
   "category": "by",
-  "status": "v1_candidate_pending_browser_acceptance",
+  "status": "v1_verified",
   "production_profile": "standard",
   "profile_status": "confirmed",
   "canonical_source": "data/places/by/oslo/places/aker_brygge.json",
-  "active_phase": "Aker Brygge v1: dokumentert historisk tekst og Fagverk beholdes; lokale lisensierte media, quizparitet og reell PlaceCard-verifisering",
+  "active_phase": "Aker Brygge v1 verifisert på main: kildeført bildepar, eksisterende Fagverk, fullquiz og QuizCard samt reell mobil-/desktop-akseptanse",
   "source_review": {
     "site": "Akers mekaniske Verksted på Holmen ved Pipervika, transformert til Aker Brygge",
     "sources": [
@@ -28,7 +28,7 @@
   "content_plan": {
     "hero": "PASS: lokalt kildeført WebP, 1400×900",
     "frontImage": "PASS: separat lisensiert WebP, 900×1350",
-    "people": "PASS: fem etablerte People-registreringer, minst to med bilder; Personer-samlingen vises ved overskriften",
+    "people": "PASS: fem eksisterende People-registreringer; Hariton Pushwagners autentiske portrett er filverifisert og lastet i PlaceCard. Tinashe Williamsons eldre filreferanse finnes ikke i repoet; personoppføringen beholdes uten å framstille det som et verifisert bilde. Øvrige personer er foreløpig tekstbaserte.",
     "brands": "BLOCKED for PlaceCard: ni Brands registrert, men ingen kildelisenserte forhåndsvisningslogoer; eksisterende Brands-data bevares",
     "objects": "BEGRUNNET N/A: ingen dokumenterte bildeklare separate Objects godkjent",
     "structures": "BLOCKED: historiske verftsbygninger beskrevet, men ikke materialisert som kildeklar Structure-samling",
@@ -49,14 +49,14 @@
     "fagverk_status": "curated"
   },
   "qa": {
-    "model": "Første CI-sjekk PASS for lisensiert WebP-integritet og QuizCard 10/10",
-    "place_open": "Første CI-kontroll PASS for generatorparitet",
-    "browser": "Tidligere testfeil gjaldt feil forventet runtime-status; ny 390/1440 kontroll pågår",
-    "read_first": "Alle ti påkrevde canonical regelsett er lest, kontrollsummert og registrert i rule_preflight"
+    "model": "PASS: kilde/lisens/WebP-SHA-256 samt 56/56 fullquiz og QuizCard 10/10 samsvar, målrettet Actions.",
+    "place_open": "PASS: eksakt Place-open-generatorparitet.",
+    "browser": "PASS: GitHub Actions run 44308343863, mobil 390 px og desktop 1440 px. Begge bildepar og ekte Hariton Pushwagner-preview lastet; PlaceCard/QuizCard åpnet og vendt uten JavaScript-feil.",
+    "read_first": "PASS: GitHub Actions 44304825182 og målrettet kontroll i 44308343863."
   },
   "vferdig": {
     "status": "NOT_CLAIMED",
-    "reason": "v1 krever bestått reell mobil-/desktopvisning; full vFerdig er separat og Brands/Structures har dokumenterte blokkeringer"
+    "reason": "v1 er godkjent; formell vFerdig gjenstår på grunn av manglende kilde- og bildeklare Brands-/Structures-medlemmer og uverifisert Tinashe-bildereferanse."
   },
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
@@ -127,5 +127,9 @@
         "final_content_plan"
       ]
     }
-  }
+  },
+  "merged": true,
+  "merge_commit_sha": "2b6774e746859974d37a27bf0507e45f4daccfc6",
+  "verified_at": "2026-11-18",
+  "live_status": "merged_to_main"
 }
