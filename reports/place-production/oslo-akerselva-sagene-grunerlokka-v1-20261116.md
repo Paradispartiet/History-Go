@@ -324,3 +324,41 @@ C50 for Det Norske Teatret bestod på mobil og desktop etter at testen ble lagt 
 - PlaceCard viser et separat stående dokumentarfoto i en 960 × 1280 Commons-visningsvariant. Fotograf Bjoertvedt, 18. august 2014, CC BY-SA 3.0 NO. Kontrollen bekreftet to ulike originaler. [Stående foto og lisens](https://commons.wikimedia.org/wiki/File:Akerselva_stilla_Brekke_kraftstasjon_rk_164964_IMG_5779.JPG)
 - Chromium-kontroll på 390, 834 og 1440 pikslers bredde bekreftet at bildet fyller kortets bredde, QuizCard viser ti spørsmål og fullquizen starter.
 - Aktivitetshusets egen veibeskrivelse oppgir Kjelsåsveien 151. Lokalhistoriewiki identifiserer selve kraftstasjonsbygningen som 151C, mens Oslo kommunes side oppgir 145 som besøksadresse. Det eksisterende kartpunktet viser bygningen ved Brekkefossen. Kildene gir ulike adressenivåer, så besøksadresse holdes utenfor kortteksten. [Aktivitetshuset](https://www.frysja33.no/) · [Lokalhistoriewiki](https://lokalhistoriewiki.no/wiki/Kjels%C3%A5sveien_%28Oslo%29) · [Oslo kommune](https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/frysja-33/)
+
+## Øvre spinneri – gjennomgang før quizmigrering
+
+Stedet er Øvre spinneri i Nydalen. Den eksisterende tekniske ID-en `seilduksfabrikken_nydalen` beholdes. [Oslo byleksikon om Øvre Spinneri bru](https://oslobyleksikon.no/side/Spinneri_bru_%28%C3%98vre%29)
+
+Gjennomgangen av dagens 18 oppgaver fant seks med status `linked` og tolv i redaksjonell kø. Ingen av spørsmålene bør beholde samme spillbare ID ved omskriving til en konkret, kildebelagt oppgave. Dagens fasiter handler om generelle begreper, stedslesing eller hvordan quizen bør skrives. Migreringen skal derfor bevare alle 18 gamle oppgaver som ikke-spillbare Knowledge-kilder med opprinnelige ID-er og kunnskapsutsagn. Nye oppgaver får egne ID-er. Denne gjennomgangen endrer foreløpig ingen aktive data eller opptjening.
+
+| Sett | Hva det tester i dag | Knowledge-koblet | Plan |
+|---|---|---:|---|
+| 1 | Stedslesing og rute | 0 | Alle tre arkiveres |
+| 2 | Arbeid, arkitektur og redaksjonell veiledning | 3 | Alle tre arkiveres |
+| 3 | Generelle definisjoner | 0 | Alle tre arkiveres |
+| 4 | Stedslesing og regler for quizproduksjon | 3 | Alle tre arkiveres |
+| 5 | Generelle læringsmål og ombruk | 0 | Alle tre arkiveres |
+| 6 | Generelle begreper | 0 | Alle tre arkiveres |
+
+| Spørsmåls-ID | Quiz-ID | Primær Knowledge-ID |
+|---|---|---|
+| `seilduksfabrikken_nydalen_s1_q1` | `historie_seilduksfabrikken_nydalen_set_1_q1` | `ku_historie_vre_spinneri_gj_r_indust_5184d0ef03` |
+| `seilduksfabrikken_nydalen_s1_q2` | `historie_seilduksfabrikken_nydalen_set_1_q2` | `ku_historie_fabrikksteder_leses_gjen_c4cfa25692` |
+| `seilduksfabrikken_nydalen_s1_q3` | `historie_seilduksfabrikken_nydalen_set_1_q3` | `ku_historie_sp_rsmalet_kobler_fysisk_83f8eabe98` |
+| `seilduksfabrikken_nydalen_s2_q1` | `historie_seilduksfabrikken_nydalen_set_2_q1` | `ku_historie_fabrikkhistorie_handler__6016bed9b8` |
+| `seilduksfabrikken_nydalen_s2_q2` | `historie_seilduksfabrikken_nydalen_set_2_q2` | `ku_historie_materielle_spor_gj_r_ind_9f8bb2fe3b` |
+| `seilduksfabrikken_nydalen_s2_q3` | `historie_seilduksfabrikken_nydalen_set_2_q3` | `ku_historie_trygg_quizdata_bruker_si_6457843243` |
+| `seilduksfabrikken_nydalen_s3_q1` | `historie_seilduksfabrikken_nydalen_set_3_q1` | `ku_historie_vre_spinneri_er_et_eksem_76d925adb5` |
+| `seilduksfabrikken_nydalen_s3_q2` | `historie_seilduksfabrikken_nydalen_set_3_q2` | `ku_historie_fabrikkbygninger_kan_gj__ed92033ab5` |
+| `seilduksfabrikken_nydalen_s3_q3` | `historie_seilduksfabrikken_nydalen_set_3_q3` | `ku_historie_stedlesning_her_betyr_a__f931bed884` |
+| `seilduksfabrikken_nydalen_s4_q1` | `historie_seilduksfabrikken_nydalen_set_4_q1` | `ku_historie_avansert_stedlesning_kob_239a2d375b` |
+| `seilduksfabrikken_nydalen_s4_q2` | `historie_seilduksfabrikken_nydalen_set_4_q2` | `ku_historie_detaljer_krever_kilder_h_bfb7fa3d46` |
+| `seilduksfabrikken_nydalen_s4_q3` | `historie_seilduksfabrikken_nydalen_set_4_q3` | `ku_historie_quizzen_skal_gj_re_spill_52de3ffd23` |
+| `seilduksfabrikken_nydalen_s5_q1` | `historie_seilduksfabrikken_nydalen_set_5_q1` | `ku_historie_stedet_gj_r_den_materiel_0de15afd29` |
+| `seilduksfabrikken_nydalen_s5_q2` | `historie_seilduksfabrikken_nydalen_set_5_q2` | `ku_historie_byomforming_skaper_bade__4b972fd80d` |
+| `seilduksfabrikken_nydalen_s5_q3` | `historie_seilduksfabrikken_nydalen_set_5_q3` | `ku_historie_stedet_gj_r_abstrakte_be_4de3247dd4` |
+| `seilduksfabrikken_nydalen_s6_q1` | `historie_seilduksfabrikken_nydalen_set_6_q1` | `ku_historie_industriarv_er_n_kkelbeg_791fb08d02` |
+| `seilduksfabrikken_nydalen_s6_q2` | `historie_seilduksfabrikken_nydalen_set_6_q2` | `ku_historie_nydalen_viser_byomformin_2afe865dd5` |
+| `seilduksfabrikken_nydalen_s6_q3` | `historie_seilduksfabrikken_nydalen_set_6_q3` | `ku_historie_stedet_blir_tydeligst_na_dc07861a7d` |
+
+Prøv først en avgrenset profil på tre sett à sju. Sett 1 går på den konkrete bygningen og plasseringen ved Akerselva. Sett 2 dekker arbeidsdeling mellom spinneri og veveri og spinneriets rolle i tekstilbedriften. Sett 3 tar opp hva det historiske fotografiet og de fysiske sporene kan dokumentere. Skill konsekvent mellom opplysninger om bygningen og opplysninger om hele Nydalens Compagnie, og merk fotodateringen som antatt 1878. Før aktivering må 21 selvstendige påstander kildegranskes og de gamle Knowledge-ID-ene verifiseres etter regenerering. [Oslo Museum, OB.F04310i](https://oslobilder.no/OMU/OB.F04310i) · [Oslo byleksikon om Nydalens Compagnie](https://oslobyleksikon.no/side/Nydalens_Compagnie)
