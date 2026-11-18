@@ -51,6 +51,20 @@
   ],
   "endings": [
     {
+      "id": "uke3_sporbar_avslutning",
+      "navn": "Tredje uke med etterprøvbar overlevering",
+      "tekst": "Du har utført et dokumentert romarbeid i uke tre, sendt en sannferdig ukesrapport og fått Karis uttrykkelige mottak. Gjenstående klager, tilkomst og materiell må fortsatt følges opp. Ingen dialogvalg utbetaler lønn eller godkjenner nye arbeidsforhold.",
+      "kriterier": {
+        "flagg": {
+          "ren_u3_d15_arbeid_utfort": true,
+          "ren_u3_d21_rapport_sendt": true,
+          "ren_u3_d21_kari_mottatt": true,
+          "ren_u3_d21_ukeoppsummert": true
+        }
+      },
+      "kreverAlleKriterier": true
+    },
+    {
       "id": "uke2_sporbar_avslutning",
       "navn": "Andre uke med dokumentert overlevering",
       "tekst": "Du har dokumentert en faktisk utført oppgave, sendt den sannferdige ukesrapporten og fått Karis uttrykkelige mottaksbekreftelse. Utestående rom og driftstiltak må fortsatt følges opp. Fortellingsvalgene er ikke i seg selv lønnsgrunnlag.",
@@ -280,10 +294,89 @@
         "klokke": "16:00",
         "tekst": "Ukeavslutning"
       }
+    ],
+    "15": [
+      {
+        "klokke": "07:00",
+        "tekst": "Uke-2-status, romliste og åpne saker"
+      },
+      {
+        "klokke": "13:00",
+        "tekst": "Faktisk rengjøring av tilgjengelig møterom"
+      },
+      {
+        "klokke": "16:00",
+        "tekst": "Spørsmål om lønnsgrunnlag, uten story-utbetaling"
+      }
+    ],
+    "16": [
+      {
+        "klokke": "07:30",
+        "tekst": "Produktmerking og arbeidsmetode"
+      },
+      {
+        "klokke": "13:00",
+        "tekst": "Kjent rute eller avgrenset alternativ"
+      }
+    ],
+    "17": [
+      {
+        "klokke": "08:00",
+        "tekst": "Klage på rom 204 og dokumentasjon"
+      },
+      {
+        "klokke": "14:00",
+        "tekst": "Etterkontroll eller avventet tilgang"
+      }
+    ],
+    "18": [
+      {
+        "klokke": "07:00",
+        "tekst": "Arbeidsmengde og forsvarlig prioritering"
+      },
+      {
+        "klokke": "14:00",
+        "tekst": "Faktisk utførelse eller videre avklaring"
+      }
+    ],
+    "19": [
+      {
+        "klokke": "08:00",
+        "tekst": "Tilkomst til opptatt møterom"
+      },
+      {
+        "klokke": "13:00",
+        "tekst": "Romarbeid eller alternativ rute"
+      }
+    ],
+    "20": [
+      {
+        "klokke": "08:00",
+        "tekst": "Avstemming av oppgaver og avvik"
+      },
+      {
+        "klokke": "14:00",
+        "tekst": "Sporbar liste eller avklaring"
+      }
+    ],
+    "21": [
+      {
+        "klokke": "08:00",
+        "tekst": "Uke-3-oversikt og restarbeid"
+      },
+      {
+        "klokke": "14:00",
+        "tekst": "Rapport: sendt eller utkast"
+      },
+      {
+        "klokke": "16:00",
+        "tekst": "Karis mottak og ukeslutt"
+      }
     ]
   },
   "ukesluttDager": [
     7,
-    14
+    14,
+    21
   ]
 }
