@@ -5,6 +5,10 @@ on:
       - feature/aker-brygge-v1-scoped-20261118
     paths:
       - .github/workflows/aker-brygge-v1-sync.yml
+      - data/places/by/oslo/places/aker_brygge.json
+      - tests/aker-brygge-v1-browser.test.mjs
+      - tests/aker-brygge-v1-contract.test.mjs
+      - reports/place-production/aker-brygge-workcard-current.json
 permissions:
   contents: write
 jobs:
@@ -47,6 +51,8 @@ jobs:
           const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==="object"?Object.fromEntries(Object.keys(value).sort().map(k=>[k,stable(value[k])])):value;
           fs.writeFileSync(runtimePath,JSON.stringify(stable(runtime))+"\n");
           NODE
+      - name: Validate Aker Brygge READ-FIRST workcard
+        run: node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/aker-brygge-workcard-current.json
       - name: Verify exact licensed media and QuizCard source parity
         run: node --test tests/aker-brygge-v1-contract.test.mjs
       - name: Check canonical Place-open generator parity

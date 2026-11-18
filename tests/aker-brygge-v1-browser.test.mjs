@@ -38,10 +38,10 @@ try{
     });
     assert.ok(result.hero?.endsWith(place.image),tag+": hero path "+result.hero);
     assert.ok(result.front?.endsWith(place.frontImage),tag+": front path "+result.front);
-    assert.equal(result.profile,"place_card_profile_v2",tag+": canonical curated profile");
-    assert.equal(result.count,"2",tag+": People and Brands");
-    assert.equal(result.grid,"1",tag+": People is separated from Brands grid");
-    assert.ok(result.brandsVisible&&result.peopleVisible,tag+": collection visibility");
+    assert.equal(result.profile,"place_card_profile_v2_curated",tag+": canonical curated profile");
+    assert.equal(result.count,"1",tag+": one image-ready People collection");
+    assert.equal(result.grid,"0",tag+": no empty grid collections");
+    assert.ok(!result.brandsVisible&&result.peopleVisible,tag+": no empty Brands preview; People visible");
     await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("has-quiz-card")||!!document.querySelector("#pcQuizCardContent .pc-rendered-quiz-card"),null,{timeout:40000});
     await page.locator("#pcFrontCardFlip").click({timeout:20000});
     await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("is-flipped"),null,{timeout:10000});
