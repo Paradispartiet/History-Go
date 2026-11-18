@@ -18,7 +18,8 @@ const config = JSON.parse(JSON.stringify(
   ]) w.eval(fs.readFileSync('js/Civication/' + file, 'utf8'));
   const home = w.CivicationHome;
   const engine = w.CivicationEconomyEngine;
-  const districtIds = home.getAvailableDistricts().map(x => x.id).sort();
+  // Copy the jsdom array into Node's realm before deepStrictEqual.
+  const districtIds = Array.from(home.getAvailableDistricts(), x => x.id).sort();
   const mappedIds = [...new Set(config.housingOffers.map(x => x.districtId))].sort();
   assert.equal(config.migration.activated, false, 'production currency remains disabled');
   assert.deepEqual(mappedIds, districtIds, 'every existing Civication district is covered');
@@ -97,7 +98,7 @@ const config = JSON.parse(JSON.stringify(
   w.CivicationEconomyUI.render();
   const financePanel = w.document.getElementById('civiEconomyPanel');
   assert.match(financePanel.textContent, /Din spillbolig: Søndre Nordstrand/);
-  assert.match(financePanel.textContent, /14.500,00|14\\s?500,00/,
+  assert.match(financePanel.textContent, /14[.\u00a0\u202f ]?500,00/,
     'actual contract price is visible in finance panel, not merely a comparative rent');
   assert.match(financePanel.textContent, /statistisk spilltilbud/i,
     'fictive rental is never presented as a verified live listing');
