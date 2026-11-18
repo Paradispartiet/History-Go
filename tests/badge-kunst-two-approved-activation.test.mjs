@@ -30,7 +30,7 @@ test('Kunst: activate only two approved underbadges with byte-identical original
       const bytes = readFileSync(new URL(expected.path, root)); // Missing binary must fail.
       assert.equal(bytes.length, expected.bytes, id + ' ' + kind + ' byte count');
       assert.equal(hex(bytes, 'sha256'), expected.sha256, id + ' ' + kind + ' SHA-256');
-      assert.equal(hex(Buffer.concat([Buffer.from('blob ' + bytes.length + '\\0'), bytes]), 'sha1'),
+      assert.equal(hex(Buffer.concat([Buffer.from('blob ' + bytes.length + '\0'), bytes]), 'sha1'),
         expected.gitBlobSha, id + ' ' + kind + ' Git blob');
     }
   }
