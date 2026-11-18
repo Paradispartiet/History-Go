@@ -240,9 +240,16 @@
     if (nok?.active === true && nok.version === 1) {
       const offers = Array.isArray(nok.config?.housingOffers) ? nok.config.housingOffers : [];
       const matched = offers.filter(o => o?.districtId === district?.id);
-      const price = matched.length === 1 ? matched[0].monthlyRentNok : null;
-      return typeof price === "number" && Number.isFinite(price) && price >= 0
-        ? price.toLocaleString("nb-NO") + " kr / måned" : "Leiepris mangler";
+      const offer = matched.length === 1 ? matched[0] : null;
+      const price = offer?.monthlyRentNok;
+      if (typeof price !== "number" || !Number.isFinite(price) || price < 0)
+        return "Leiepris mangler";
+      const rooms = Number.isSafeInteger(offer.roomCount) && offer.roomCount >= 1 &&
+        offer.roomCount <= 5 ? " · " + offer.roomCount + " rom" : "";
+      const scope = offer.referenceAreaId === "oslo_central" ? " · SSB sentrale Oslo 2025" :
+        offer.referenceAreaId === "oslo_outer" ? " · SSB ytre øst 2025" :
+        offer.referenceAreaId === "oslo_baerum" ? " · SSB Oslo/Bærum 2025" : "";
+      return price.toLocaleString("nb-NO") + " kr / måned" + rooms + scope;
     }
     const rent = Number(district?.rent || 0);
     return rent <= 0 ? "Ingen husleie" : `${rent} PC / periode`;
