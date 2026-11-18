@@ -1,9 +1,7 @@
-/* History Go — shared photographic overview framing contract.
-   Apply to the canonical Place.image landscape heading, Place.frontImage portrait,
-   legacy Place popup hero, and the before/after documentary pair.
-   A subject is never cropped just to fill its frame: any unused space is a
-   quiet dark mat. The reverse QuizCard, People, brands and badges are untouched.
-   Scoped to Place surfaces so other image families preserve their own geometry. */
+/* History Go — Place photography framing.
+   PlaceCard image/frontImage fill their visible frames edge-to-edge.
+   Legacy popup, miniature and documentary before/after preserve full photos.
+   QuizCard backs, People, brands and badges are unaffected. */
 
 /* The landscape Place.image under the heading. */
 body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
@@ -24,40 +22,6 @@ body.hg-app #placeCard .pc-sheet-canonical-before-after figure img {
 /* The photo's aspect ratio is preserved. QuizCard and round collection badges
    intentionally do not inherit this documentary-photo policy. */
 
-
-/* The direct Place Sheet may wrap the hero and front image differently from
-   the older heading/front-card DOM selectors above. Their IDs are unique to
-   the two documentary Place media fields: keep the complete photographs
-   visible even if a wrapper/class changes during hydration. Never apply this
-   to QuizCard or collection thumbnails, which have separate framing rules. */
-body.hg-app #placeCard.is-unified-place #pcHeaderImage,
-body.hg-app #placeCard.is-unified-place #pcFrontImage {
-  object-fit: contain !important;
-  object-position: center center !important;
-  background: #15212b;
-}
-
-/* First-visit and legacy PlaceCard may render before the is-unified-place
-   class is applied. Keep its two documentary images uncropped in *both*
-   render paths. These IDs never refer to collection badges or QuizCard. */
-#placeCard #pcHeaderImage,
-#placeCard #pcFrontImage {
-  object-fit: contain !important;
-  object-position: center center !important;
-  background-color: #15212b;
-}
-
-/* More-specific documentary-photo rule than the generic full-bleed
-   styling introduced on main (extra html element in selector). The exact
-   canonical Place.image and Place.frontImage nodes show the complete source
-   photograph without cropping. Other media retain their own fill policy. */
-html body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
-html body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage {
-  object-fit: contain !important;
-  object-position: center center !important;
-  background-color: #15212b;
-}
-
 /* Give wide overview photographs enough height on tablet/desktop.
    At the old 205px cap, a complete 16:9 source could shrink into a tiny
    center strip. Keep mobile layout and the sticky header's own measured
@@ -67,4 +31,16 @@ html body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage {
     .pc-heading-hero.has-photo-source:not(.is-collapsed) {
     min-height: clamp(340px, 48vw, 530px);
   }
+}
+
+/* Photo areas in PlaceCard must never show letterbox gutters.
+   The main landscape hero and the collectible card's photo face fill the
+   actual frame on iPad, phone and desktop. The QuizCard back is unchanged.
+   This intentionally supersedes the historical 'contain' rule above. */
+body.hg-app #placeCard .pc-heading-hero #pcHeaderImage.pc-heading-image,
+body.hg-app #placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage{
+  width:100%;
+  height:100%;
+  object-fit:cover !important;
+  object-position:var(--hg-place-media-position, center center) !important;
 }

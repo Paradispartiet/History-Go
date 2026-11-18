@@ -1031,3 +1031,255 @@
 }
 .psychology-room-days-disclosure[open] > summary { margin-bottom: 12px; }
 .psychology-room-days-disclosure .psychology-room-day { margin-top: 10px; }
+
+
+/* Psykologirommet 2.0: voluntary inner map, accessible on narrow/iPad displays. */
+.psychology-room-personal-overview,
+.psychology-room-inner-map {
+  min-width: 0;
+}
+.psychology-room-inner-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+.psychology-room-inner-stats > div,
+.psychology-room-inner-overview {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(174, 221, 217, .22);
+  border-radius: 15px;
+  background: #1a2b33;
+}
+.psychology-room-inner-stats strong,
+.psychology-room-inner-overview strong {
+  font-size: clamp(23px, 4vw, 34px);
+  line-height: 1;
+  color: #b1f0df;
+}
+.psychology-room-inner-stats span,
+.psychology-room-inner-overview span {
+  color: #c1d8d8;
+  font-size: 12px;
+}
+.psychology-room-inner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.psychology-room-inner-actions button {
+  max-width: 100%;
+  min-height: 44px;
+}
+.psychology-room-inner-map {
+  display: grid;
+  gap: 16px;
+}
+.psychology-room-inner-map h3 { margin: 0; }
+.psychology-room-inner-overview {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.psychology-room-inner-case,
+.psychology-room-inner-empty {
+  min-width: 0;
+  border: 1px solid rgba(170, 237, 216, .34);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #14252f, #192c32);
+  padding: 17px;
+}
+.psychology-room-inner-empty strong {
+  color: #b5f2e1;
+}
+.psychology-room-inner-case-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.psychology-room-inner-case-head h4 {
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+  font-size: 17px;
+}
+.psychology-room-inner-case-head button {
+  flex-shrink: 0;
+  min-height: 44px;
+  font-size: 12px;
+}
+.psychology-room-inner-chain {
+  list-style: none;
+  padding: 0 0 0 12px;
+  margin: 17px 0;
+  border-left: 2px solid rgba(160, 235, 212, .38);
+}
+.psychology-room-inner-node {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  margin: 0 0 13px -16px;
+}
+.psychology-room-inner-node-number {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  background: #a9ecda;
+  color: #10232b;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 800;
+}
+.psychology-room-inner-node > div {
+  min-width: 0;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px solid rgba(180, 234, 224, .19);
+  background: #22343d;
+}
+.psychology-room-inner-node strong {
+  color: #b7f1e2;
+  font-size: 12px;
+}
+.psychology-room-inner-node p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 5px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.psychology-room-inner-open,
+.psychology-room-inner-picker {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  min-height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(170, 237, 216, .3);
+  background: #1a343a;
+  color: #c0f2e5;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.psychology-room-inner-picker {
+  display: grid;
+  gap: 5px;
+  overflow-wrap: anywhere;
+}
+.psychology-room-inner-picker span { font-size: 12px; }
+.psychology-room-inner-picker strong { font-size: 14px; }
+.psychology-room-inner-open:hover,
+.psychology-room-inner-picker:hover {
+  background: #25484c;
+  border-color: #a0f1df;
+}
+.psychology-room-inner-map button:focus-visible,
+.psychology-room-personal-overview button:focus-visible,
+.psychology-room-inner-action button:focus-visible {
+  outline: 2px solid #a9ecda;
+  outline-offset: 3px;
+}
+@media (max-width: 560px) {
+  .psychology-room-inner-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .psychology-room-inner-stats > div { padding: 10px; }
+  .psychology-room-inner-case-head { display: grid; }
+  .psychology-room-inner-case-head button { justify-self: start; }
+  .psychology-room-inner-actions { display: grid; }
+}
+
+/* Three compact paths on wide screens; one full-width tap target on mobile. */
+.psychology-room-utility-row--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 670px) {
+  .psychology-room-utility-row--three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* User-authored connections between existing, locally stored reflections.
+   These lines communicate only a manually chosen relation, never a diagnosis. */
+.psychology-room-inner-links {
+  min-width: 0;
+  border-top: 1px solid rgba(170, 237, 216, .24);
+  padding-top: 16px;
+}
+.psychology-room-inner-link-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+.psychology-room-inner-link {
+  display: grid;
+  gap: 11px;
+  min-width: 0;
+  border: 1px solid rgba(170, 237, 216, .28);
+  background: #162931;
+  border-radius: 15px;
+  padding: 13px;
+}
+.psychology-room-inner-link-path {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+  align-items: center;
+  gap: 10px;
+}
+.psychology-room-inner-link-node {
+  min-width: 0;
+  padding: 11px 12px;
+  background: #263943;
+  border-radius: 11px;
+  color: #f1f7f4;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+.psychology-room-inner-link-relation {
+  display: grid;
+  gap: 3px;
+  justify-items: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #a9f0df;
+  text-align: center;
+}
+.psychology-room-inner-link > button {
+  justify-self: start;
+  min-height: 44px;
+}
+.psychology-room-inner-links form label {
+  display: grid;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 650;
+}
+.psychology-room-inner-links form select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px 12px;
+  color: #f3f7f5;
+  background: #20343e;
+  border: 1px solid rgba(170, 237, 216, .44);
+  border-radius: 11px;
+  font: inherit;
+}
+@media (max-width: 620px) {
+  .psychology-room-inner-link-path {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 7px;
+  }
+  .psychology-room-inner-link-relation { justify-items: start; text-align: left; }
+  .psychology-room-inner-link > button { width: 100%; }
+}

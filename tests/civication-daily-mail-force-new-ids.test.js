@@ -6,7 +6,20 @@ const assert = require('assert');
 
 const repoRoot = path.resolve(__dirname, '..');
 function makeStorage() { const store = new Map(); return { getItem:k=>store.has(k)?store.get(k):null, setItem:(k,v)=>store.set(String(k),String(v)), removeItem:k=>store.delete(String(k)), clear:()=>store.clear() }; }
-function makeFetch(rootDir) { return async function fetchMock(url) { const clean = String(url || '').split('?')[0].replace(/^\/+/, ''); const fullPath = path.resolve(rootDir, clean); if (!fullPath.startsWith(rootDir)) return { ok:false, status:400, async json(){return null;} }; try { const body = await fs.promises.readFile(fullPath, 'utf8'); return { ok:true, status:200, async json(){return JSON.parse(body);} }; } catch { return { ok:false, status:404, async json(){return null;} }; } }; }
+function makeFetch(rootDir) { return async function fetchMock(url) { const clean = String(url || '').split('?')[0].replace(/^\/+/, ''); const fullPath = path.resolve(rootDir, clean); if (!fullPath.startsWith(rootDir)) return { ok:false, status:400, async json(){return null;} }; try { const body = await fs.promises.readFile(fullPath, 'utf8'); return { ok:true, status:200, async json(){
+  const payload = JSON.parse(body);
+  // Reproduce an upstream default-key stamp. A normal non-case source mail
+  // is still a separate daily action when the player starts another game day.
+  if (clean.startsWith('data/Civication/mailFamilies/naeringsliv/') && clean.includes('/controller_')) {
+    for (const family of payload.families || []) for (const mail of family.mails || []) {
+      const type = String(mail.mail_type || payload.mail_type || '');
+      if (mail.id && !['micro','followup','knowledge','consequence'].includes(type)) {
+        mail.thread_key = 'controller.mail.' + mail.id;
+      }
+    }
+  }
+  return payload;
+} }; } catch { return { ok:false, status:404, async json(){return null;} }; } }; }
 function loadScript(relPath) { vm.runInThisContext(fs.readFileSync(path.join(repoRoot, relPath), 'utf8'), { filename: relPath }); }
 function setup() {
   global.window = global;
@@ -17,7 +30,8 @@ function setup() {
   global.addEventListener = () => {};
   global.dispatchEvent = () => {};
   global.fetch = makeFetch(repoRoot);
-  global.CivicationCalendar = { getPhase: () => 'morning', setPhase() {}, advanceByMinutes() {} };
+  global.__civiTestGameDay = 1;
+  global.CivicationCalendar = { getClock: () => ({ dayIndex: global.__civiTestGameDay }), getPhase: () => 'morning', setPhase() {}, advanceByMinutes() {} };
   global.HG_CapitalMaintenance = { maintain: () => null };
   global.HG_Lifestyle = { addTags: () => null };
   global.CivicationPsyche = { getAutonomy: () => 50, updateIntegrity() {}, updateVisibility() {}, updateEconomicRoom() {}, updateTrust() {}, checkBurnout() {}, processCollapse() {} };
@@ -60,6 +74,92 @@ async function run() {
   assert(wrapped, 'forceNew day should include a source-backed daily extra mail');
   assert(wrapped.event.id.includes(wrapped.event.source_mail_id), 'daily wrapper id should remain traceable to source_mail_id');
   assert.strictEqual(wrapped.event.daily_mail_meta?.source_mail_id, wrapped.event.source_mail_id, 'daily metadata should preserve source_mail_id');
+
+  // Regression: a repeated non-case source can recur on consecutive game days
+  // even when both days happen on the same real date. Case/explicit threads
+  // retain their existing deduplication contract.
+  const eligible = forcedA.items.find(row => row.event?.source_type === 'daily_extra'
+    && row.event?.source_mail_id && String(row.event?.thread_key || '').includes('.day.'));
+  assert(eligible, 'day queue should include an ordinary source mail with a game-day thread');
+  assert.match(eligible.event.thread_key, /^controller\.mail\..+\.day\.1$/,
+    'even a previously stamped non-case thread must be scoped to game day 1');
+  const sibling = forcedB.items.find(row => row.event?.source_mail_id === eligible.event.source_mail_id);
+  assert(sibling, 'force-new same-day queue should include the same source for comparison');
+  assert.strictEqual(eligible.event.thread_key, sibling.event.thread_key,
+    'same source on one game day must keep one deduplication thread');
+  global.__civiTestGameDay = 2;
+  const nextGameDay = await global.CivicationDailyMailBuilder.buildQueue(active, { date, forceNew: true });
+  const repeated = nextGameDay.items.find(row => row.event?.source_mail_id === eligible.event.source_mail_id);
+  assert(repeated, 'next game day should retain the recurring source mail');
+  assert.notStrictEqual(eligible.event.thread_key, repeated.event.thread_key,
+    'new game day must not be suppressed by a prior day active source thread');
+  assert.strictEqual(repeated.event.source_mail_id, eligible.event.source_mail_id,
+    'canonical source ID is preserved across the game-day thread boundary');
+
+  // A new queue can also start before Calendar.getClock is ready in the app.
+  // A persisted Life Story day must still scope the ordinary source thread.
+  global.CivicationCalendar.getClock = () => ({ dayIndex: null });
+  global.CivicationLifestoryState = { load: () => ({ kalenderDag: 5 }) };
+  const storyFallback = await global.CivicationDailyMailBuilder.buildQueue(active, { date, forceNew: true });
+  const fromStory = storyFallback.items.find(row => row.event?.source_mail_id === eligible.event.source_mail_id);
+  assert(fromStory, 'source mail should remain in queue when clock is unavailable');
+  assert.strictEqual(fromStory.event.thread_key, eligible.event.thread_key.replace(/\.day\.1$/, '.day.5'),
+    'saved Life Story calendar day must scope the daily mail');
+
+  // If neither clock nor Life Story is initialized yet, a new forceNew runtime
+  // still must not collide with an earlier pending or planned inbox thread.
+  delete global.CivicationLifestoryState;
+  const runtimeFallback = await global.CivicationDailyMailBuilder.buildQueue(active, { date, forceNew: true });
+  const fromRuntime = runtimeFallback.items.find(row => row.event?.source_mail_id === eligible.event.source_mail_id);
+  assert(fromRuntime, 'source mail should remain in queue without a loaded game day');
+  assert.ok(fromRuntime.event.thread_key.startsWith('controller.mail.'),
+    'fallback keeps the canonical source thread prefix');
+  assert.ok(fromRuntime.event.thread_key.includes('.runtime.run_'),
+    'unique daily runtime must scope the thread when no game day is available');
+  assert.notStrictEqual(fromRuntime.event.thread_key, eligible.event.thread_key,
+    'uninitialized clock must not reproduce a previous active thread');
+
+  // The real day-5 browser regression was not at queue construction but at
+  // MailEngine delivery: an older unscoped source is already active and the
+  // stale queued wrapper unexpectedly carries the same bare thread key.
+  // Delivery must restore its own game-day thread before deduplication.
+  loadScript('js/Civication/systems/civicationMailEngine.js');
+  global.__civiTestGameDay = 5;
+  global.CivicationCalendar.getClock = () => ({ dayIndex: 5 });
+  global.CivicationCalendar.getPhase = () => 'forenoon';
+  delete global.CivicationLifestoryState;
+  const sourceId = eligible.event.source_mail_id;
+  const unscopedKey = 'controller.mail.' + sourceId;
+  const oldMail = global.CivicationMailEngine.sendMail({
+    status: 'pending', event: {
+      id: sourceId, role_scope: 'controller', mail_type: 'people',
+      thread_key: unscopedKey, choices: [{ id: 'A', label: 'Svar' }]
+    }
+  });
+  assert.strictEqual(oldMail.ok, true, 'older canonical source is present in inbox');
+  const staleEvent = {
+    ...eligible.event,
+    id: sourceId + '__daily_regression_5',
+    thread_key: unscopedKey,
+    source_type: 'daily_extra'
+  };
+  const queuedRuntime = {
+    ...forcedA, date, calendar_day: 5,
+    current_index: 0, runtime_instance_key: '__run_regression_5',
+    items: [{status: 'queued', phase: 'forenoon', slot: 'people_ping', event: staleEvent}]
+  };
+  global.CivicationState.setState({ [global.CivicationDailyMailBuilder.DAY_RUNTIME_KEY]: queuedRuntime });
+  const delivered = await global.CivicationDailyMailBuilder.enqueueNext(null, {
+    active, ignorePending: true, queuedEventId: staleEvent.id
+  });
+  assert.strictEqual(delivered.enqueued, true, 'new day 5 mail must be delivered via real MailEngine');
+  assert.strictEqual(global.CivicationMailEngine.getMail(staleEvent.id)?.event?.thread_key,
+    unscopedKey + '.day.5', 'delivered inbox mail must carry the game-day-scoped thread key');
+  const canonical = global.CivicationDailyMailBuilder.inspect().runtime.items[0];
+  assert.strictEqual(canonical.event.thread_key, unscopedKey + '.day.5',
+    'canonical day runtime must use the same delivered thread key');
+  assert.strictEqual(canonical.status, 'delivered',
+    'daily runtime may be delivered only for its actual inbox event');
 
   console.log('civication-daily-mail-force-new-ids.test.js passed');
 }

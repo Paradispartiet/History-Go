@@ -11,7 +11,7 @@ test('Monumenter og landemerker is ninth active By badge; earlier eight remain u
  assert.deepEqual(by.sub.slice(0,9).at(-1),'monumenter_og_landemerker');
  assert.ok(Object.keys(by.subBadgeImages).length>=9);
  assert.deepEqual(Object.keys(by.subBadgeImages).slice(0,9),by.sub.slice(0,9));
- assert.equal(by.subBadgeImages.monumenter_og_landemerker,spec.sourceImage);
+ assert.equal(by.subBadgeImages.monumenter_og_landemerker,'bilder/merker/by/undermerker/monumenter_og_landemerker-brodert-v2.webp');
  assert.equal(spec.status,'integrated');
  assert.equal(spec.quality.visualApproved,true);
  assert.equal(spec.quality.repositoryBinaryVerified,true);

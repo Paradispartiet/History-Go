@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Regression: canonical Place.image and Place.frontImage never lose their
-// overview to object-fit:cover, at phone/tablet/desktop widths.
+// Regression: current full-bleed Place.image and Place.frontImage use cover,
+// while legacy/documentary photos keep contain, at phone/tablet/desktop widths.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -10,7 +10,7 @@ import { chromium } from 'playwright';
 const root = process.cwd();
 const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const worker = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
-assert.match(index, /css\/place-image-framing\.css\?v=202611[0-9]{2}-[a-z0-9-]+/, 'Place image framing stylesheet must be loaded with a dated cache-busting revision');
+assert.match(index, /css\/place-image-framing\.css\?v=20261116-full-bleed1/);
 assert.match(worker, /const SW_VERSION = "hg-sw-2026-11-\d{2}-place-image-fit2/);
 assert.match(worker, /css\/place-image-framing\.css/);
 
@@ -88,7 +88,7 @@ try{
    const page=await browser.newPage({viewport:{width,height:1000}});
    await page.goto(url,{waitUntil:'load',timeout:30000});
    for(const [selector,expected] of [
-     ['#pcHeaderImage','contain'],['#pcFrontImage','contain'],
+     ['#pcHeaderImage','cover'],['#pcFrontImage','cover'],
      ['#legacyHero','contain'],['#beforePhoto','contain'],
      ['#quizArtwork','contain']
    ]){

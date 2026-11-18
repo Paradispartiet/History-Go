@@ -2,13 +2,18 @@ name: Civication renholder Life Story browser
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
     paths:
       - 'data/Civication/lifestory/roles/renholder/**'
       - 'js/Civication/lifestory/**'
       - 'js/Civication/ui/CivicationLifestoryUI.js'
       - 'tests/civication-lifestory-renholder.test.js'
       - 'tests/civication-lifestory-renholder-soel.test.js'
+      - 'tests/civication-lifestory-job-role-persistence.test.js'
       - 'scripts/verify-civication-renholder-lifestory-browser.cjs'
+      - 'scripts/verify-civication-renholder-employed-browser.ts'
+      - 'scripts/verify-civication-arbeidsledig-browser.ts'
+      - 'tsconfig.scripts.build.json'
       - '.github/workflows/civication-renholder-lifestory-browser.yml'
   workflow_dispatch:
 
@@ -21,11 +26,12 @@ concurrency:
 
 jobs:
   renholder-browser:
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     name: Renholder mobil og iPad (${{ matrix.case }})
     strategy:
       fail-fast: false
       matrix:
-        case: [lifestory, soel, opplaering, klage, dagskifte]
+        case: [lifestory, soel, opplaering, klage, dagskifte, ansatt]
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -40,8 +46,11 @@ jobs:
         run: |
           node tests/civication-lifestory-renholder.test.js
           node tests/civication-lifestory-renholder-soel.test.js
+      - name: Verify earned-week layoff preserves story day
+        if: matrix.case == 'ansatt'
+        run: node tests/civication-lifestory-job-role-persistence.test.js
       - name: Build shared UI calendar test helper
-        if: matrix.case == 'dagskifte'
+        if: matrix.case == 'dagskifte' || matrix.case == 'ansatt'
         run: npm run build:scripts
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

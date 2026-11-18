@@ -341,7 +341,28 @@
   function syncToShellCalendar() {
     if (shellStoryUnavailable()) return false;
     const day = ensureCalendarCheckpoint();
-    if (!state || !content || day === null || day <= state.kalenderDag || !state.dagFerdig) return false;
+    if (!state || !content || day === null || day <= state.kalenderDag) return false;
+    if (!state.dagFerdig) {
+      // A completed workday can end with a real layoff during the canonical
+      // day-end rollover. The shell adopts the newly unemployed Life Story
+      // before (or while) the calendar turns. Its first authored day is not
+      // finished, so startNextDay must NOT skip it, but the player's shared
+      // calendar/lifetime still needs to advance exactly once.
+      const lastSwitch = (state.rolleBytter || []).at(-1);
+      const completedFormerRole = state.rolleTilstander?.[lastSwitch?.fra];
+      const justSwitchedFromCompletedDay =
+        lastSwitch?.til === state.rolle &&
+        Number(lastSwitch?.livsdag) === Number(state.livsdag) &&
+        completedFormerRole?.dagFerdig === true &&
+        day === state.kalenderDag + 1;
+      if (!justSwitchedFromCompletedDay) return false;
+      state.kalenderDag = day;
+      state.livsdag += 1;
+      /** @type {any} */ (window).CivicationLifestoryState.save(state);
+      window.dispatchEvent(new Event("civi:lifestoryChanged"));
+      render();
+      return true;
+    }
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
     // A fully authored three-week chapter can end while Civication's work
@@ -920,7 +941,13 @@
     // Uten endings-modulen vises den vanlige dagsoppsummeringen.
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
     const sisteDag = !!(Endings && Endings.isFinalDay(state, content));
-    const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
+    // A new authored week can follow an already-completed one. Show the
+    // original factual week-one ending on its declared boundary while
+    // retaining the ordinary next-day action. Only the last authored day
+    // terminates the entire role; a milestone never blocks progression.
+    const ukeslutt = state.dagFerdig && Array.isArray(content.role.ukesluttDager)
+      && content.role.ukesluttDager.includes(state.dag);
+    const ending = Endings && (sisteDag || ukeslutt) ? Endings.resolveEnding(state, content) : null;
     const authoredEnding = ending && (content.role.endings || []).find(e => e.id === ending.id);
     const onOriginalFinalDay = !content.role.symposium || state.dag === content.role.symposium.sisteDag;
     const endingHtml = ending && onOriginalFinalDay
