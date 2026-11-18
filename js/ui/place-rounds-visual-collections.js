@@ -755,6 +755,11 @@
       grid.style.removeProperty("grid-template-columns");
       grid.style.removeProperty("grid-template-rows");
     }
+    // The collection adapter finishes after asynchronous member loads. Its
+    // base counters can overwrite the curated one-to-three-slot layout that
+    // already ran earlier; immediately reconcile against image-ready previews
+    // instead of leaving a transient or persistent empty collection slot.
+    global.HGPlaceRoundsFillLayout?.applyCuratedVisibility?.();
   }
 
   function scheduleApply() {
