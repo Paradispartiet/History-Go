@@ -19,7 +19,7 @@
     "published_existing_placecard": "UNCHANGED",
     "last_update": "2026-11-18",
     "artwork_repo_candidate_count": 8,
-    "qa_summary": "8/8 illustrasjoner som inaktive GitHub-kandidater; MOONRISE v2 er vesentlig forbedret. White Snow Cake v2 må fortsatt revideres; de øvrige krever detaljkontroll."
+    "qa_summary": "Alle 8 kunstverk har WebP-illustrasjoner i repo, MOONRISE v2 og White Snow Cake v3 har forbedret hovedmotiv. Alle er inaktive og avventer detalj-QA/rettslig vurdering."
   },
   "production_rules": [
     "Arkiver original PNG i full oppløsning, deretter WebP for app uten hard beskjæring",
@@ -170,23 +170,23 @@
       "artist": "Paul McCarthy",
       "year": 2011,
       "source_kind": "original_editorial_illustration",
-      "file_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/paul_mccarthy_white_snow_cake_illustrasjon_v2.webp",
-      "manifest_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/paul_mccarthy_white_snow_cake_illustrasjon_v2_manifest.json",
-      "stage": "REVISION_RECOMMENDED",
+      "file_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/paul_mccarthy_white_snow_cake_illustrasjon_v3.webp",
+      "manifest_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/paul_mccarthy_white_snow_cake_illustrasjon_v3_manifest.json",
+      "stage": "VISUAL_QA_CANDIDATE",
       "live_in_app": false,
       "visual_final_approval": false,
       "artwork_reproduction_rights_review": "PENDING",
-      "next_action": "Gruppens skulpturbase og deformerte figurer bør sammenlignes med kilde; illustrasjonen er mer symmetrisk og eventyrlig gjenkjennelig enn originalen.",
-      "notes": "Ny malerisk v2 1086×1448 PNG + 900×1200 WebP uten beskjæring, begge verifisert med SHA-256. V1-konseptet beholdes uendret i Konsepttegninger.",
-      "original_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/paul_mccarthy_white_snow_cake_illustrasjon_v2_original.png",
-      "source_sha256": "2b4f1b202a0765dcee76238b6a776a01251f42e6ce96dc80c1b5926de2fdb5a2",
-      "app_sha256": "7902c018c9e05f805591f2814111b0e4a5592747ab20878e06bfcffd6dd7b984",
-      "repo_candidate_path": "bilder/kort/objects/candidates/tjuvholmen/paul_mccarthy_white_snow_cake_illustrasjon_v2.webp",
-      "repo_candidate_manifest_path": "bilder/kort/objects/candidates/tjuvholmen/paul_mccarthy_white_snow_cake_illustrasjon_v2_manifest.json",
-      "git_blob_sha": "9c4046b532fe18be4d0f35317e799e7fce71ce7d",
+      "next_action": "Visuell detaljkontroll og rettslig grunnlag for avbildning av verket før aktivering",
+      "notes": "Ny v3 med uregelmessig, asymmetrisk gruppe av dverger til venstre, Snøhvit til høyre og bred hevet base med åpning under. Mer originaltro hovedkomposisjon enn v2, men fortsatt malerisk fortolkning, ikke identisk gjengivelse.",
+      "original_library_path": "/History-Go/Tjuvholmen/Kunstverk-illustrasjoner/paul_mccarthy_white_snow_cake_illustrasjon_v3_original.png",
+      "source_sha256": "da96540708cd2bd5b2d57422705829877c54ed6590a98e1d1a1bc86a68e51966",
+      "app_sha256": "76d529ba9baa9d09418bc7b733a651b2777d48e86dbd6690144f9ce30a83e65b",
+      "repo_candidate_path": "bilder/kort/objects/candidates/tjuvholmen/paul_mccarthy_white_snow_cake_illustrasjon_v3.webp",
+      "repo_candidate_manifest_path": "bilder/kort/objects/candidates/tjuvholmen/paul_mccarthy_white_snow_cake_illustrasjon_v3_manifest.json",
+      "git_blob_sha": "b45261f19f3b4741294f8adf00580c786bf75fdc",
       "archive_verified": true,
-      "qa_status": "REVISE_BEFORE_APPROVAL",
-      "qa_observation": "Gruppens skulpturbase og deformerte figurer bør sammenlignes med kilde; illustrasjonen er mer symmetrisk og eventyrlig gjenkjennelig enn originalen."
+      "qa_status": "MOTIF_IMPROVED_FINE_DETAILS_TO_REVIEW",
+      "qa_observation": "V3 har forbedret gruppesilhuett, men figurenes detaljer, antall og base må kontrolleres mot foto. Ingen endelig godkjenning."
     },
     {
       "id": "fischli_weiss_things_for_house_on_island",
@@ -228,7 +228,7 @@
     }
   ],
   "acceptance_gates": [
-    "Revider White Snow Cake for riktig bronsegruppe og sokkel; detaljkontroller øvrige sju, særlig MOONRISE v2 sin munnform. Ingen automatisk aktivering.",
+    "Utfør individuell detalj-QA på de åtte aktuelle kandidatversjonene og dokumenter lovlig bruk av underliggende kunstverk før aktiv publisering, inkludert kommersiell/ikke-kommersiell bruksmåte.",
     "Individuell verkslikhet og redaksjonell godkjenning per kandidat",
     "Gjennomgå rettsgrunnlag for avbildning av beskyttet kunst og eventuelt unntak etter åndsverkloven",
     "Etter godkjenning: eksakt originaloverføring, kontrollsum, merking, relevante PlaceCard-/Objects-tester",
@@ -236,5 +236,5 @@
   ],
   "photo_source_audit": "reports/place-production/tjuvholmen-authentic-photo-rights-sources-20261117.json",
   "issue": "https://github.com/Paradispartiet/History-Go/issues/7290",
-  "note": "MOONRISE v2 ble arkivert i GitHub som eget binært WebP-objekt, gammel v1 bevart. Ingen kunstverksbilder aktivert. White Snow Cake og rettslig bruksgrunnlag gjenstår."
+  "note": "Begge tidligere revisjonskandidater er forbedret: MOONRISE v2 og White Snow Cake v3. Fullformat PNG og WebP finnes i biblioteket og binært i GitHub, eldre versjoner beholdes. 0/8 aktive."
 }
