@@ -68,6 +68,36 @@ for (const path of ['core/civicationNokBudget.js', 'ui/CivicationEconomyUI.js'])
 w.CivicationEconomyUI.render();
 assert.equal(JSON.stringify(state.getWallet()), saved);
 assert.equal(view('2026-02').expenseCents, current.expenseCents);
+// Historical restaurant plans never count as payment. Only a settled receipt
+// in the NOK wallet may appear in the monthly statement.
+const restaurantWallet = JSON.parse(saved);
+restaurantWallet.nok_v1.restaurantPurchases = [{
+  requestId: 'paid-meal-1', restaurantId: 'fysen-example',
+  dishName: 'Lunsjrett', amountMinor: 15450,
+  gameDateISO: '2026-02-05'
+}];
+const restaurantBefore = JSON.stringify(restaurantWallet);
+const withRestaurant = w.CivicationNokBudget.monthlyCashFlow(
+  restaurantWallet, '2026-02', calendar.getGameDate);
+assert.equal(withRestaurant.ok, true);
+assert.equal(withRestaurant.restaurantCents, 15450);
+assert.equal(withRestaurant.expenseCents, current.expenseCents + 15450);
+assert.equal(withRestaurant.netCents, current.netCents - 15450);
+assert.equal(withRestaurant.entries.filter(e => e.category === 'restaurants').length, 1);
+assert.equal(JSON.stringify(restaurantWallet), restaurantBefore,
+  'cashflow forecast must never charge wallet or mutate payment receipts');
+for (const corruptReceipt of [
+  [{ ...restaurantWallet.nok_v1.restaurantPurchases[0], amountMinor: 1.25 }],
+  [{ ...restaurantWallet.nok_v1.restaurantPurchases[0], gameDateISO: '2026-02-30' }],
+  [restaurantWallet.nok_v1.restaurantPurchases[0], restaurantWallet.nok_v1.restaurantPurchases[0]]
+]) {
+  const invalidWallet = JSON.parse(saved);
+  invalidWallet.nok_v1.restaurantPurchases = corruptReceipt;
+  const result = w.CivicationNokBudget.monthlyCashFlow(
+    invalidWallet, '2026-02', calendar.getGameDate);
+  assert.equal(result.ok, false, 'invalid restaurant receipts must invalidate the whole statement');
+  assert.equal(result.entries, undefined);
+}
 for (const mutate of [
   x => x.nok_v1.payrollLedger.push(x.nok_v1.payrollLedger[0]),
   x => x.nok_v1.shopping.purchases.push(x.nok_v1.shopping.purchases[0]),
