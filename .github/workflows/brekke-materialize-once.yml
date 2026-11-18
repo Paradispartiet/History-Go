@@ -1,0 +1,35 @@
+name: Materialize Brekke quiz registries
+on:
+  push:
+    branches: [work/brekke-materialize-20261118]
+    paths: ['.github/workflows/brekke-materialize-once.yml']
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --no-audit --no-fund
+      - name: Generate and validate Knowledge
+        run: |
+          npm run knowledge:canonical:write
+          npm run knowledge:canonical:check
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          git add -- data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json data/fagverk/fagverk_release.json
+          git diff --exit-code
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit generated data and remove the one-time workflow
+        run: |
+          git rm -- .github/workflows/brekke-materialize-once.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Materialize Brekke quiz Knowledge registry'
+          git push origin HEAD:refs/heads/work/brekke-materialize-20261118
