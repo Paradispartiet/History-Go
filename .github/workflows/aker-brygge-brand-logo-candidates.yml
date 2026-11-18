@@ -1,0 +1,55 @@
+name: Aker Brygge — original logo candidates (COS + Wikborg Rein)
+on:
+  push:
+    branches:
+      - feature/aker-brygge-original-logo-candidates-20261118
+    paths:
+      - .github/workflows/aker-brygge-brand-logo-candidates.yml
+      - scripts/produce-aker-brygge-brand-logo-candidates.mjs
+      - tests/aker-brygge-brand-logo-candidates.test.mjs
+permissions:
+  contents: write
+concurrency:
+  group: aker-brygge-original-logo-candidates
+  cancel-in-progress: false
+jobs:
+  capture:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the exact candidate branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/aker-brygge-original-logo-candidates-20261118
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned repository dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Download two documented Commons originals and render WebP candidates
+        run: node scripts/produce-aker-brygge-brand-logo-candidates.mjs --write
+      - name: Verify original hashes, export dimensions and non-publication
+        run: node --test tests/aker-brygge-brand-logo-candidates.test.mjs
+      - name: Upload candidates for visual review
+        uses: actions/upload-artifact@v4
+        with:
+          name: aker-brygge-authentic-brand-originals
+          path: |
+            bilder/kort/brands/source/aker_brygge/
+            bilder/kort/brands/candidates/aker_brygge/
+            reports/place-production/aker-brygge-brand-logo-binary-candidates.json
+          if-no-files-found: error
+      - name: Commit only verified, non-published originals and candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- bilder/kort/brands/source/aker_brygge/ bilder/kort/brands/candidates/aker_brygge/ reports/place-production/aker-brygge-brand-logo-binary-candidates.json
+          if ! git diff --cached --quiet; then
+            git commit -m "assets(aker-brygge): archive two verified original logo candidates"
+            git push origin HEAD:refs/heads/feature/aker-brygge-original-logo-candidates-20261118
+          fi
