@@ -71,7 +71,8 @@
   }
   function renderRestaurantBudget(host, model, key) {
     if (typeof model.getRestaurantSummary !== "function") return;
-    const summary = model.getRestaurantSummary(key);
+    const summary = typeof model.getRestaurantFinanceSnapshot === "function"
+      ? model.getRestaurantFinanceSnapshot(key) : model.getRestaurantSummary(key);
     const details = create("details", null, host);
     details.style.marginTop = "14px";
     details.open = true;
@@ -98,7 +99,7 @@
       model.setRestaurantBudgetNok(nok, key);
       render();
     });
-    let line = "Planlagte restaurantmåltider med oppgitt pris: " + kr(summary.plannedMinor);
+    let line = "Planlagte restaurantmåltider (oppgitte priser): " + kr(summary.plannedMinor);
     if (summary.remainingMinor !== null) {
       line += summary.remainingMinor < 0
         ? " · " + kr(-summary.remainingMinor) + " over budsjett"
@@ -108,13 +109,27 @@
     if (summary.unpricedMeals) {
       create("p", summary.unpricedMeals + " planlagte måltider uten oppgitt pris.", details).className = "muted";
     }
+    if (summary.fromMeals) {
+      create("p", summary.fromMeals + " måltider har fra-pris. Faktisk pris kan bli høyere.", details).className = "muted";
+    }
+    if (summary.nokActive && summary.balanceMinor !== null) {
+      create("p", "Kronekonto nå: " + kr(summary.balanceMinor) +
+        " · Etter planlagte restaurantbeløp: " + kr(summary.afterKnownPlansMinor) +
+        " (ingen penger trukket).", details);
+      if (summary.hasUncertainPrices) {
+        create("p", "Restbeløpet er en øvre grense basert på kjente og laveste priser. " +
+          "Ukjente priser kan øke kostnaden.", details).className = "muted";
+      }
+    }
     if (summary.meals.length) {
       const list = create("ul", null, details);
       list.style.cssText = "list-style:none;padding:0;display:grid;gap:6px";
       for (const item of summary.meals) {
         const entry = create("li", null, list);
         entry.style.cssText = "display:flex;flex-wrap:wrap;align-items:center;gap:8px";
-        const amount = item.priceMinor === null ? "pris ukjent" : kr(item.priceMinor * item.portions);
+        const amount = item.priceMinor === null ? "pris ukjent" :
+          (item.priceKind === "from" || item.priceKind === "multiple" ? "fra " : "") +
+          kr(item.priceMinor * item.portions);
         create("span",
           model.DAYS[item.day] + " · " + model.MEALS[item.meal].label + ": " +
           item.dishName + " hos " + item.name + " · " + item.portions +
@@ -249,6 +264,7 @@
               name: candidate.name,
               dishName: candidate.dishName,
               priceMinor: candidate.priceMinor,
+              priceKind: candidate.priceKind,
               portions: count
             }, selectedWeekKey(model));
             render();
