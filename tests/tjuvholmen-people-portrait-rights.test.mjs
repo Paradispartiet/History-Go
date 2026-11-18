@@ -26,7 +26,7 @@ assert.equal(audit.pending.length,3);
 assert.equal(place.people.length,5,"Five canonical People still connected");
 assert.equal(place.brands.length,3,"Preserve three approved Brands");
 assert.equal(place.place.structures.length,3,"Preserve three Structures");
-assert.deepEqual(place.place.place_card_profile.collection_ids,["people","brands","structures"]);
+assert.deepEqual(place.place.place_card_profile.collection_ids,["people","objects","brands","structures"]);
 
 const find=(rows,id)=>rows.find(row=>row.id===id);
 for(const entry of audit.approved){
