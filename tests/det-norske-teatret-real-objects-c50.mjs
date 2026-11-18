@@ -88,19 +88,22 @@ try {
       },null,{timeout:15000});
       const objectIcon=page.locator("#pcObjectsIcon");
       assert.equal(await objectIcon.getAttribute("data-collection-id"),"objects");
-      const cardPreview=objectIcon.locator("img.pc-person-img");
+      const galleryButton=page.locator('[data-pc-round-gallery-section="history"] [data-pc-round-gallery-item="pcObjectsIcon"]');
+      await galleryButton.waitFor({state:"visible",timeout:15000});
+      await galleryButton.scrollIntoViewIfNeeded({timeout:15000});
+      const cardPreview=galleryButton.locator("img");
       phase="preview-visible";
       await cardPreview.waitFor({state:"visible",timeout:15000});
       const previewSrc=await cardPreview.getAttribute("src");
       assert.equal(previewSrc,place.objects[0].image);
       phase="preview-decoded";
-      await page.waitForFunction(src=>{
-        const img=document.querySelector('#pcObjectsIcon img.pc-person-img');
-        return img?.getAttribute("src")===src && img.complete && img.naturalWidth===800;
-      },place.objects[0].image,{timeout:15000});
-      await objectIcon.screenshot({path:artifactPath+"/"+name+"-objects-preview.png"});
+      assert.ok(await cardPreview.evaluate(async (img,src)=>{
+        await img.decode();
+        return img.getAttribute("src")===src && img.naturalWidth===800;
+      },place.objects[0].image,{timeout:15000}),"visible gallery must decode the canonical preview");
+      await galleryButton.screenshot({path:artifactPath+"/"+name+"-objects-preview.png"});
       phase="objects-click";
-      await objectIcon.click({timeout:15000});
+      await galleryButton.click({timeout:15000});
       phase="popup-member-rows";
       await page.waitForFunction(()=>{
         const rows=[...document.querySelectorAll(".pc-object-member")];

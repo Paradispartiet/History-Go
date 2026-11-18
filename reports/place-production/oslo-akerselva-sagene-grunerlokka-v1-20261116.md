@@ -307,3 +307,11 @@ Se `reports/place-production/oslo-akerselva-v1-quiz-audit-20261116.json` for mas
 - De andre 32 eldre spørsmålene ligger uendret og ikke-spillbart i `data/knowledge/preserved_quiz_sources/frysjadammen_oset_legacy_20261117.json`. Canonical Knowledge-generator leser arkivfilen for å bevare opptjente enheter, uten å vise de gamle spørsmålene i spillet.
 - `normal_4x7`: 16 faktaspørsmål, 7 årsak-/sammenhengsspørsmål, 5 reelle metode-/kildekritikkspørsmål. Første 2 × 7 er vanlige spørsmål. Kildeplan, fagvalg og 28 kilde-claim-koblinger er i eksisterende source brief. QuizCard og genererte Knowledge-filer skal bygges fra aktiv quiz.
 - **PR-fase, ikke V1-godkjent:** full produksjonskontekst, Knowledge-regenerering, QuizCard, reelle nettlesertester og samlet CI må bestås på endelig commit.
+
+## Kuratert Fagverk for Oset slusebru – 18. november 2026
+
+- Osets Place-eide Fagverk er kuratert på standardnivå. Fire avsnitt, tre faglige linser, fem undersøkelsesspørsmål og to observerbare spor skiller den håndbetjente slusen fra den nyere anleggsbrua og viser hva man kan slutte fra synlige spor.
+- Kildegrunnlaget er Oslo byleksikons oppslag om [Oset slusebru](https://oslobyleksikon.no/side/Oset_slusebru), [Oset anleggsbru](https://oslobyleksikon.no/side/Oset_anleggsbru) og [Akerselva](https://oslobyleksikon.no/side/Akerselva).
+- Fagverk-indeks, release og Place-open er synkronisert. Lokal Fagverk-audit, Place-open-paritet, release-manifest, Knowledge-kontroll og Osets migreringstest bestod. Nettlesertesten krever synlig artikkel, tre fungerende emnelenker og observerbare spor i tillegg til kort og quiz. Hele bolken har fortsatt åpne V1-porter.
+
+C50 for Det Norske Teatret bestod på mobil og desktop etter at testen ble lagt om til PlaceCards synlige galleriknapp, med samme krav til begge objektenes bilde, kildelenke og kreditering. C51 verifiserer den publiserte versjonen etter vellykket Pages-kjøring på main og sammenligner med commit-en som ble publisert.

@@ -77,6 +77,8 @@ try {
   assert.match(runtimeJs.toString("utf8"),/pc-object-preview-disclosure/);
   const css=await requireExactMedia("css/place-rounds-fill-layout.css","live-Objects-css");
   assert.match(css.toString("utf8"),/pc-object-member-image/);
+  await requireExactMedia("js/ui/place-card-round-gallery.js","live-Objects-gallery");
+  await requireExactMedia("css/place-card-round-gallery.css","live-Objects-gallery-css");
   const index=await get("index.html","public-index");
   assert.match(index.toString("utf8"),/History Go/i);
   browser=await chromium.launch({headless:true});
@@ -119,17 +121,20 @@ try {
       },null,{timeout:30000});
       const icon=page.locator("#pcObjectsIcon");
       assert.equal(await icon.getAttribute("data-collection-id"),"objects");
-      const preview=icon.locator("img.pc-person-img");
+      const galleryButton=page.locator('[data-pc-round-gallery-section="history"] [data-pc-round-gallery-item="pcObjectsIcon"]');
+      await galleryButton.waitFor({state:"visible",timeout:15000});
+      await galleryButton.scrollIntoViewIfNeeded({timeout:15000});
+      const preview=galleryButton.locator("img");
       await preview.waitFor({state:"visible",timeout:15000});
       assert.equal(await preview.getAttribute("src"),place.objects[0].image);
-      await page.waitForFunction(src=>{
-        const img=document.querySelector("#pcObjectsIcon img.pc-person-img");
-        return img?.complete && img.naturalWidth===800 && img.getAttribute("src")===src;
-      },place.objects[0].image,{timeout:15000});
+      assert.ok(await preview.evaluate(async (img,src)=>{
+        await img.decode();
+        return img.getAttribute("src")===src && img.naturalWidth===800;
+      },place.objects[0].image,{timeout:15000}),"visible gallery must decode the canonical preview");
       const previewShot=path.join(artifactPath,name+"-public-objects-preview.png");
-      await icon.screenshot({path:previewShot,timeout:20000});
+      await galleryButton.screenshot({path:previewShot,timeout:20000});
       phase="click-objects";
-      await icon.click({timeout:15000});
+      await galleryButton.click({timeout:15000});
       phase="objects-members";
       await page.waitForFunction(()=>{
         const visible=[...document.querySelectorAll(".pc-round-popup-objects .pc-object-member")];
