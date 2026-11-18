@@ -464,7 +464,7 @@ pakninger fra tom beholdning. Testen kjøper melk/havregryn til 50,30 kr av
 
 Nettleserreisen utvides med faktisk datovalg, frokost i dag og lunsj i morgen,
 lagring, felles handleliste, avkrysning av dagens frokost og reload. Én ekstra
-melkepakning gir saldo 9 668,80 kr. Ukemenyen trenger 14,72 kr i ingredienser og
+melkepakning gir saldo 9 668,80 kr. Ukemenyen trenger 14,71 kr i ingredienser og
 8,10 kr i manglende tomatpakning med eksisterende lager. Etter frokost gjenstår
 én planlagt lunsj, 780 g havregryn og 750 ml melk. Faktiske betalinger er
 10 331,20 kr; tilberedningen gir ingen ekstra utgift. To nye bilder per oppsett

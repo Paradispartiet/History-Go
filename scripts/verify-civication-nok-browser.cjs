@@ -377,7 +377,7 @@ async function scenario(engine, width, height) {
     const strippedBefore = JSON.parse(beforeWeek); delete strippedBefore.nok_v1.shopping.mealPlan;
     assert.deepEqual(strippedWeek, strippedBefore, 'weekly save replaces only the existing plan');
     const weekView = await page.evaluate(() => window.HG_CiviShop.getNokMealWeek());
-    assert.equal(weekView.referenceCostCents, 1472); assert.equal(weekView.shoppingCostCents, 810);
+    assert.equal(weekView.referenceCostCents, 1471); assert.equal(weekView.shoppingCostCents, 810);
     const weekGeometry = await week.evaluate(el => ({ fits: el.scrollWidth <= el.clientWidth + 2,
       controls: Array.from(el.querySelectorAll('input, select, button')).filter(c => c.getClientRects().length).map(c => {
         const r = c.getBoundingClientRect(); return { height: r.height, left: r.left, right: r.right };

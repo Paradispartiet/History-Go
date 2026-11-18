@@ -25,6 +25,9 @@ async function boot(seed) {
   assert.equal(view.ok, true); assert.equal(view.portions, 3);
   assert.deepEqual(Array.from(view.dates), ['2026-12-29', '2026-12-30', '2026-12-31', '2027-01-01', '2027-01-02', '2027-01-03', '2027-01-04']);
   assert.equal(view.referenceCostCents, 2181); assert.equal(view.shoppingCostCents, 9620);
+  // Independent raw fractions: oats 3090*80/1100, milk 1940/4, pasta 1790/5, tomatoes 810*3/8, onion 1990/20 cents.
+  const breakfastAndPasta = shop.previewNokMealWeek(date, entries.slice(0, 2));
+  assert.equal(breakfastAndPasta.referenceCostCents, 1471, 'one rounding after raw ingredient fractions, not rounded meal totals');
   assert.equal(JSON.stringify(state.getWallet()), before, 'preview neither pays nor consumes');
   assert.equal(shop.previewNokMealWeek('2028-02-27', []).dates[2], '2028-02-29');
   for (const [start, invalid] of [['2026-02-29', []], ['2026-02-30', []], ['9999-12-29', []], [date, null],
