@@ -295,6 +295,38 @@ function roleEndingsAreSafe() {
   assert.equal(restored.CivicationCalendar.getClock().dayIndex,15,"saved calendar reopens on payday");
   restored.CivicationEconomyEngine.tickWeekly();
   assert.equal(wallet().balance,initialBalance+expected,"reload cannot duplicate settled salary");
+
+  // Continue the same canonical calendar for an actual third employed game week.
+  // Narrative choices never produce these daily records or automatic payment.
+  restored.CivicationState.setActivePosition({career_id:"naeringsliv",role_key:"renholder",title:"Renholder"});
+  const beforeWeek3 = wallet().balance;
+  for (let day=15;day<=21;day++) {
+    assert.equal(restored.CivicationCalendar.getClock().dayIndex,day);
+    restored.CivicationEconomyEngine.recordCompletedDay(day);
+    restored.CivicationEconomyEngine.recordCompletedDay(day);
+    assert.equal(wallet().completed_game_days_v1.length,day-14,
+      "exactly one week-three work record per earned game day");
+    restored.CivicationEconomyEngine.tickWeekly();
+    assert.equal(wallet().balance,beforeWeek3,"no week-three salary before game day 22");
+    restored.CivicationCalendar.advanceByMinutes(24*60);
+  }
+  assert.equal(restored.CivicationCalendar.getClock().dayIndex,22);
+  const thirdWeekEarned=wallet().completed_game_days_v1;
+  assert.equal(thirdWeekEarned.length,7);
+  assert.ok(thirdWeekEarned.every(r=>r.careerId==="naeringsliv" && r.weeklyNet>0));
+  const expectedThirdWeek=Math.floor(thirdWeekEarned.reduce((sum,r)=>sum+r.weeklyNet,0)/7);
+  assert.ok(expectedThirdWeek>0);
+  restored.CivicationState.setActivePosition(null); // Earned wages survive job loss.
+  restored.CivicationEconomyEngine.tickWeekly();
+  assert.equal(wallet().balance,beforeWeek3+expectedThirdWeek,"week-three wages settle once on day 22");
+  assert.equal(wallet().last_tick_day_index,22);
+  assert.equal(wallet().completed_game_days_v1.length,0,"paid work records are consumed");
+  restored.CivicationEconomyEngine.tickWeekly();
+  assert.equal(wallet().balance,beforeWeek3+expectedThirdWeek,"no duplicate day-22 salary");
+  const weekThreeReload=earnedWeekEnvironment(store);
+  assert.equal(weekThreeReload.CivicationCalendar.getClock().dayIndex,22);
+  weekThreeReload.CivicationEconomyEngine.tickWeekly();
+  assert.equal(wallet().balance,beforeWeek3+expectedThirdWeek,"no duplicate payroll after reload");
 }
 
-console.log("renholder week-2 day 8–14: 4 actual playthroughs, plan/work/receipt/blocked access, ending and save/reload contracts passed");
+console.log("renholder week-2 day 8–14: 4 actual playthroughs; day-15 and day-22 canonical payroll boundaries passed");
