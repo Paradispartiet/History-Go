@@ -70,11 +70,17 @@ try{
        return img?.complete && img.naturalWidth===900 && img.naturalHeight===520;
      });
    },null,{timeout:30000});
-   const rows=page.locator('#pcObjectsList .pc-object-member');
-   assert.equal(await rows.count(),2,label+' must display exactly two Tøyen Objects');
+   // The canonical list is retained as hidden backing DOM. The popup
+   // renders separate, user-visible Object rows. DNT C50 follows the same
+   // contract: assert backing parity, then inspect ONLY the visible rows.
+   const canonicalRows=page.locator('#pcObjectsList .pc-object-member');
+   assert.equal(await canonicalRows.count(),2,label+' backing Objects count');
+   const rows=page.locator('.pc-object-member:visible');
+   await rows.first().waitFor({state:'visible',timeout:20000});
+   assert.equal(await rows.count(),2,label+' must display exactly two visible Tøyen Objects');
    for(let i=0;i<2;i++){
      const row=rows.nth(i),expected=expectedObjects[i];
-     await row.scrollIntoViewIfNeeded();
+     await row.scrollIntoViewIfNeeded({timeout:12000});
      assert.equal(await row.getAttribute('data-visual-round-item'),expected.id);
      assert.equal(await row.getAttribute('data-image-kind'),'illustration');
      assert.match(await row.locator('.pc-object-disclosure').innerText(),/Illustrasjon – ikke fotografi/);
