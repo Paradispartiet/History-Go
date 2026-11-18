@@ -280,7 +280,7 @@ test("Tjuvholmen Structures retain photo attribution and eight illustrated Objec
   }
   const objects = w.HGPlaceCardCollections.getItems(place, "objects");
   assert.equal(place.objects.length, 8, "eight documented sculpture Objects remain canonical");
-  assert.deepEqual(objects.map(item => item.id), place.objects.map(item => item.id),
+  assert.deepEqual(Array.from(objects, item => item.id), place.objects.map(item => item.id),
     "Structures must not hide or remove the eight Objects");
   for (const item of place.objects) {
     assert.equal(item.imageKind, "illustration", item.id + ": labelled illustration");
