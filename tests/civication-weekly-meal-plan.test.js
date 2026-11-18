@@ -61,7 +61,7 @@ assert.equal(plan.getRestaurantSummary().budgetNok,1000);
 const beforeChicken = plan.getShoppingList().find(row=>row.id==="kylling")?.quantity;
 plan.setRestaurantMeal(3,"dinner",{
   restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Pasta",
-  portions:2,priceMinor:14550
+  portions:2,priceMinor:14550,priceKind:"exact"
 });
 const restaurantSummary=plan.getRestaurantSummary();
 assert.equal(restaurantSummary.plannedMinor,29100);
@@ -94,6 +94,14 @@ assert.equal(plan.getRestaurantSummary().fromMeals,1);
 assert.equal(plan.getRestaurantFinanceSnapshot().hasUncertainPrices,true,
   "from price must be described as a lower bound, not a final charge");
 assert.equal(plan.getRestaurantFinanceSnapshot().afterKnownPlansMinor, 25900);
+plan.setRestaurantMeal(1,"breakfast",{
+  restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Historisk rett",
+  portions:1,priceMinor:9900
+});
+assert.equal(plan.getRestaurantSummary().unspecifiedPriceKindMeals, 1,
+  "legacy meal choices lacking quote kind must not imply an exact price");
+assert.equal(plan.getRestaurantFinanceSnapshot().hasUncertainPrices, true);
+plan.setRestaurantMeal(1,"breakfast",null);
 assert.equal(walletWrites, 0);
 plan.setRestaurantMeal(2,"lunch",null);
 assert.equal(plan.getWeek().meals[3].dinner,undefined);
