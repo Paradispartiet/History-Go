@@ -74,7 +74,7 @@ def verify_oslo_archive_source(manifest: dict, root: Path, expected: tuple[str, 
     expected_title, expected_motif = OSLO_CATALOG[asset]
     if manifest.get("archivalCatalogTitle") != expected_title or manifest.get("archivalCatalogMotif") != expected_motif:
         raise ValueError("catalog title/motif must match this exact Tøyen archive item")
-    if manifest.get("canonicalCurrentAsset") != f"bilder/objects/{asset}_illustrasjon.svg":
+    if manifest.get("canonicalCurrentAsset") != f"bilder/objects/{asset}_illustrasjon.webp":
         raise ValueError("source-only record cannot silently replace the canonical object image")
     if not str(manifest.get("sourcePage", "")).startswith("https://oslobilder.no/") and not str(manifest.get("sourcePage", "")).startswith("https://www.oslobilder.no/"):
         raise ValueError("archive source must be an Oslobilder page")

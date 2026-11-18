@@ -144,3 +144,9 @@ Som alternativ til å vente på autentiske arkivfotografier er de to **upubliser
 - `toyen_trafo_transformatorkjerne_1918_kandidat.webp`: SHA-256 `16a3485835c77d216f121e1d0d2911a6d10c145b78c9e0a8a5ef582e628916ff`.
 
 Den andre viser en fiktiv tekniker og en ringformet maskinkjerne som tolkning, **ikke** et verifisert bilde av `A-20138/Ua/0004/091`. Eksisterende kandidatkontroller verifiserer bytes, dimensjoner, uendret canonical image, krediterings- og publiseringsstopp. Status for begge: `publishable: false`, `editorialApproval: false`. Kjør faktisk PlaceCard-bilde-QA i relevant Object-visning før eventuell kanonisk overføring. Ikke endre/merg for å omgå redaksjonell port.
+
+## Canonical Tøyen-illustrasjoner (18.11.2026)
+
+Etter uttrykkelig ønske om illustrasjoner fremfor videre arkivfotohenvendelser er **to nye, frie, KI-assisterte svart-hvitt-illustrasjoner** koblet til canonical Tøyen Objects i både stedsdata og Place-open: `bilder/objects/toyen_trafo_apparatpult_1916_illustrasjon.webp` og `bilder/objects/toyen_trafo_transformatorkjerne_1918_illustrasjon.webp` (900×520). Bildene har synlig «Illustrasjon»-merking. Den ene viser en tenkt pult og rom, den andre en fiktiv tekniker og maskinkjerne. **Ingen av detaljene er verifisert mot arkivfotografiene**, som fortsatt ikke er hentet. Arkivnumrene er kildehenvisninger for den dokumenterte gjenstandstypen, ikke opphav til bildepikslene.
+
+Kandidatbanene under `bilder/kort/objects/candidates/` er fortsatt separat upublisert, med `publishable: false` som gjelder *kandidatstiene*. Canonical bildefiler har egen release-oppføring: `reports/collection-images/toyen-trafo-illustration-release-2026-11-18.json`. Verken Foto-kandidatene eller bildefiler fra Oslo byarkiv er publisert. Nettleser-QA, CI og merge er egne kontrollporter; status må ikke hevdes PASS før kjøring er observert.

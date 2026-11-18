@@ -5,6 +5,10 @@ on:
     paths:
       - '.github/workflows/collection-image-candidates.yml'
       - 'bilder/kort/objects/candidates/**'
+      - 'bilder/objects/toyen_trafo_*_illustrasjon.webp'
+      - 'data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04/toyen_trafo.json'
+      - 'data/runtime/place-open/toyen_trafo.json'
+      - 'tests/toyen-trafo-illustrations-live.test.mjs'
       - 'bilder/kort/structures/candidates/**'
       - 'reports/collection-images/**'
       - 'scripts/stage-collection-image-candidates.py'
@@ -45,6 +49,8 @@ jobs:
         run: |
           node --test tests/linked-brand-image-audit.test.mjs
           node scripts/audit-linked-brand-images.mjs --check
+      - name: Validate canonical Tøyen illustration release
+        run: node --test tests/toyen-trafo-illustrations-live.test.mjs
       - name: Verify canonical image paths are not candidate paths
         run: |
           python3 - <<'PY'

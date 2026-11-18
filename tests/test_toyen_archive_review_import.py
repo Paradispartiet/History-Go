@@ -29,7 +29,7 @@ def manifest(asset, archive, year, title, motif):
         'placeId': 'toyen_trafo', 'collection': 'objects',
         'publishable': False, 'editorialApproval': False,
         'sourceOriginalDownloaded': False, 'stagedAssetPath': None,
-        'canonicalCurrentAsset': 'bilder/objects/'+asset+'_illustrasjon.svg',
+        'canonicalCurrentAsset': 'bilder/objects/'+asset+'_illustrasjon.webp',
     }
 
 

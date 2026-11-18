@@ -65,7 +65,7 @@ def stage_for_review(source: dict, archive_id: str, input_file: Path,
         raise ValueError("asset identity and recorded year must match exact archive number")
     if (source.get("archivalCatalogTitle"), source.get("archivalCatalogMotif")) != SOURCE_CATALOG[archive_id]:
         raise ValueError("catalog title/motif mismatch for this archive item")
-    expected_canonical = f'bilder/objects/{source["asset"]}_illustrasjon.svg'
+    expected_canonical = f'bilder/objects/{source["asset"]}_illustrasjon.webp'
     if source.get("canonicalCurrentAsset") != expected_canonical:
         raise ValueError("canonical image path is not unchanged")
     if source.get("sourceOriginalDownloaded") is not False or source.get("stagedAssetPath") is not None:
