@@ -996,8 +996,9 @@
     handlersBound = true;
 
     document.addEventListener("change", function (event) {
-      const select = event.target instanceof HTMLSelectElement
-        ? event.target.closest("select[data-civi-housing-offer]") : null;
+      const select = event.target instanceof HTMLSelectElement &&
+        event.target.matches("select[data-civi-housing-offer]")
+          ? event.target : null;
       const districtId = select?.getAttribute("data-civi-housing-offer");
       if (!districtId || !getNokHousingOffers(districtId).some(o => o.id === select.value)) return;
       housingChoice[districtId] = select.value;
@@ -1028,8 +1029,8 @@
         event.preventDefault();
         const districtId = selectButton.getAttribute("data-civi-district-select");
         if (!districtId) return;
-        const chosen = selectButton.closest(".civi-district-card")
-          ?.querySelector("[data-civi-housing-offer]");
+        const chosen = /** @type {HTMLSelectElement|null} */ (selectButton.closest(".civi-district-card")
+          ?.querySelector("select[data-civi-housing-offer]") || null);
         const offerId = chosen?.value || housingChoice[districtId] || null;
         const ok = selectDistrict(districtId, offerId);
         if (ok) {
