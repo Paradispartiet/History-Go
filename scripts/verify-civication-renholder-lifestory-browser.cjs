@@ -90,6 +90,7 @@ const baseFlags = complaint ? {ren_log2_sendt:false,ren_log2_mottatt:false,ren_l
   ren_tid_egen_oppgave_venter:false, ren_tid_mottak_venter:false };
 async function play(browser, fixture) {
   const {label,viewport,choices,flags,status}=fixture;
+  const dayLimit=fixture.targetDay||targetDay;
   const context=await browser.newContext({viewport,isMobile:viewport.width<600,hasTouch:true});
   const page=await context.newPage();
   const errors=[],trace=[];
@@ -104,8 +105,8 @@ async function play(browser, fixture) {
       const before=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
       await openDay(page);
       if(before.dagFerdig) {
-        if(before.dag===targetDay) break;
-        assert.ok(before.dag<targetDay);
+        if(before.dag===dayLimit) break;
+        assert.ok(before.dag<dayLimit);
         const mode=await startNextStoryDay(page,label,before.dag);
         dayTransitionMode=(dayTransitionMode||[]).concat({fromDay:before.dag,mode});continue;
       }
@@ -163,18 +164,18 @@ async function play(browser, fixture) {
       }
     }
     const final=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
-    assert.ok(final.dag===targetDay&&final.dagFerdig&&sawRequest&&sawPlan&&dayTransitionMode,label+': completed actual story route');
+    assert.ok(final.dag===dayLimit&&final.dagFerdig&&sawRequest&&sawPlan&&dayTransitionMode,label+': completed actual story route');
     for(const [k,v] of Object.entries({...baseFlags,...flags})) assert.equal(final.tidligereValg[k]===true,v,label+': evidence '+k);
-    if(!complaint) assert.equal(final.threadState[thread].status,status);
+    if(!complaint && !fixture.week2) assert.equal(final.threadState[thread].status,status);
     assert.ok(!final.tidligereValg.ren_tid_korridor3_spiller,label+': Amina retains her work');
     await page.reload({waitUntil:'load',timeout:90000});
     await page.waitForFunction(day=>globalThis.CivicationLifestoryState?.load?.()?.dag===day
-      && globalThis.CivicationLifestoryState.load().dagFerdig,targetDay,{timeout:90000});
+      && globalThis.CivicationLifestoryState.load().dagFerdig,dayLimit,{timeout:90000});
     const saved=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
     assert.deepEqual(saved.arkiv,final.arkiv,label+': exact history after reload');
     assert.deepEqual(saved.tidligereValg,final.tidligereValg,label+': exact evidence after reload');
     await openDay(page);
-    if(complaint){
+    if(complaint || fixture.week2){
       const ending=await page.evaluate(async()=>globalThis.CivicationLifestoryEndings.resolveEnding(globalThis.CivicationLifestoryState.load(),await globalThis.CivicationLifestoryContent.loadContent('renholder')));
       assert.equal(ending.id,fixture.ending,label+': factual final ending');
       const box=page.locator('.civi-lifestory-ending').first();
@@ -200,7 +201,7 @@ async function play(browser, fixture) {
     await withCurrentElement(()=>result.scrollIntoViewIfNeeded());
     await withCurrentElement(()=>result.screenshot({path:path.join(output,label+'-symposium-result.png')}));
     assert.deepEqual(errors,[],label+': no uncaught browser exceptions');
-    return {label,viewport,dayTransitionMode,days:targetDay,calendarMode:organic?'ui-inbox':'story-fixture',ending:fixture.ending,flags:{...baseFlags,...flags},status,trace,archiveLength:saved.arkiv.length,detachedRetries};
+    return {label,viewport,dayTransitionMode,days:dayLimit,calendarMode:organic?'ui-inbox':'story-fixture',ending:fixture.ending,flags:{...baseFlags,...flags},status,trace,archiveLength:saved.arkiv.length,detachedRetries};
   } catch(error) {
     await page.screenshot({path:path.join(output,label+'-failure.png'),fullPage:true}).catch(()=>{});
     throw error;
@@ -246,9 +247,24 @@ async function play(browser, fixture) {
    {label:'amina-venter-mobile',start:'foreslaa_bytte',plan:'bekreft_deling',extra:{tid_04_amina_resultat:'avvent_resultat'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_wc3_spiller:true,ren_tid_amina_venter:true,ren_tid_kari_mottatt:true}},
    {label:'plan-venter-ipad-portrait',start:'sett_grense',plan:'avvent_plan',status:'escalated',flags:{ren_tid_plan_venter:true}},
    {label:'ugjort-ipad-landscape',start:'ta_stille',plan:'prioriter_toaletter',extra:{tid_03_toaletter:'meld_ikke_utfort',tid_05_kari_mottar:'avvent_mottak'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_egen_oppgave_venter:true,ren_tid_mottak_venter:true}},
-   {label:'mottak-dag2-mobile',start:'ta_stille',plan:'prioriter_toaletter',extra:{tid_05_kari_mottar:'avvent_mottak'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_wc3_spiller:true,ren_tid_kari_mottatt:true}}
+   {label:'mottak-dag2-mobile',start:'ta_stille',plan:'prioriter_toaletter',extra:{tid_05_kari_mottar:'avvent_mottak'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_wc3_spiller:true,ren_tid_kari_mottatt:true}},
+   // Only one existing iPad browser job is extended to the 14-day week-two closeout.
+   {label:'uke2-dag14-ipad',viewport:{width:1180,height:820},targetDay:14,week2:true,
+    start:'sett_grense',plan:'behold_egen_rute',ending:'uke2_sporbar_avslutning',
+    extra:{ren_u2_d8_ukeplan:'avklar_andre_soner',ren_u2_d9_soner:'utfor_korridor',
+      ren_u2_d9_kari_mottak:'overlever_kari',ren_u2_d10_runde:'utfor_rom204',
+      ren_u2_d10_egenkontroll:'vis_egenkontroll',ren_u2_d11_soel:'ta_avgrenset_runde',
+      ren_u2_d11_rengjor:'vask_etter_sikring',ren_u2_d12_metode:'bruk_kjent_metode',
+      ren_u2_d12_arbeid:'utfor_kontrollert',ren_u2_d13_tilkomst:'verifiser_fri',
+      ren_u2_d13_lagerarbeid:'vask_lager',ren_u2_d14_rapport:'send_status',
+      ren_u2_d14_kari_mottak:'bekreft_mottak',ren_u2_d14_ukeslutt:'for_oppfolging'},
+    flags:{ren_tid_plan_bekreftet:true,ren_tid_kontorer_spiller:true,ren_tid_trapp_spiller:true,
+      ren_tid_kari_mottatt:true,ren_u2_d10_arbeid_utfort:true,
+      ren_u2_d13_tilkomst_bekreftet:true,ren_u2_lager_utfort:true,
+      ren_u2_d14_rapport_sendt:true,ren_u2_d14_kari_mottatt:true,
+      ren_u2_uke2_oppsummert:true}}
   ];
-  for(const [i,c] of cases.entries()) results.push(await play(browser,{...c,viewport:sizes[i%3],status:c.status||(training||spill?'escalated':'active'),
+  for(const [i,c] of cases.entries()) results.push(await play(browser,{...c,viewport:c.viewport||sizes[i%3],status:c.status||(training||spill?'escalated':'active'),
     choices:complaint||training||spill ? {...c.extra} : {tidsvindu_01_telefon:c.start,tid_02_kari_prioriterer:c.plan,...c.extra}}));
   console.log('PASS: '+cases.length+' real renholder '+(complaint?'complaint':training?'training':spill?'spill':'capacity')+' routes, '+targetDay+' days, reload and visible Symposium',JSON.stringify(results));
  } finally {
