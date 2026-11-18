@@ -64,6 +64,15 @@ const config = JSON.parse(JSON.stringify(
   assert.equal(wallet.nok_v1.recurringBills[0].amountNok, 14500);
   assert.ok(home.getDistrictViewModels().find(d => d.id === 'sondre_nordstrand').rentLabel.includes('kr / måned'),
     'UI labels show contracted rent as monthly NOK');
+  w.document.body.insertAdjacentHTML('beforeend', '<div id="civiEconomyPanel"></div>');
+  w.eval(fs.readFileSync('js/Civication/ui/CivicationEconomyUI.js', 'utf8'));
+  w.CivicationEconomyUI.render();
+  const financePanel = w.document.getElementById('civiEconomyPanel');
+  assert.match(financePanel.textContent, /Din spillbolig: Søndre Nordstrand/);
+  assert.match(financePanel.textContent, /14.500,00|14\\s?500,00/,
+    'actual contract price is visible in finance panel, not merely a comparative rent');
+  assert.match(financePanel.textContent, /statistisk spilltilbud/i,
+    'fictive rental is never presented as a verified live listing');
   const sameWallet = JSON.stringify(wallet);
   assert.equal(home.selectDistrict('sondre_nordstrand'), true);
   assert.equal(JSON.stringify(w.CivicationState.getWallet()), sameWallet,
