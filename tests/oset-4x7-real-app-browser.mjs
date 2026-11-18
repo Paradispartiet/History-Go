@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Source-exact real-app QA for Oset slusebru: PlaceCard, QuizCard and fullquiz.
+// Source-exact real-app QA for Oset slusebru: PlaceCard, QuizCard, fullquiz and curated Fagverk.
 // Phone Chromium, iPad-size WebKit, desktop Chromium. Does not award progress.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -19,6 +19,8 @@ const legacy=read('data/knowledge/preserved_quiz_sources/frysjadammen_oset_legac
 const qs=quiz.sets.flatMap(s=>s.questions);
 assert.equal(payload.id,ID);
 assert.equal(original.id,ID);
+assert.equal(original.fagverk.status, "curated");
+assert.deepEqual(payload.fagverk, original.fagverk);
 assert.match(original.name,/Oset slusebru/);
 assert.equal(quiz.sets.length,4);
 assert.equal(qs.length,28);
@@ -129,8 +131,20 @@ try{
    const visible=(await page.locator('#quizQuestion').innerText()).trim();
    assert.ok(qs.some(q=>q.question===visible),mode.name+': not from the canonical 4x7 quiz: '+visible);
    await page.screenshot({path:out+'/'+mode.name+'-fullquiz.png',timeout:20000});
+   await page.goto(base + '/fagverk-sted.html?place=' + ID, {waitUntil:'domcontentloaded', timeout:90000});
+   await page.locator('#fagverkPlaceArticleSection').waitFor({state:'visible', timeout:45000});
+   assert.match(await page.locator('#fagverkPlaceTitle').innerText(), /Oset slusebru/);
+   assert.match(await page.locator('#fagverkPlaceArticle').innerText(), /Engebret Soot/);
+   const lenses=page.locator('#fagverkPlaceLenses a');
+   assert.equal(await lenses.count(), original.fagverk.lenses.length);
+   for(const lens of await lenses.all()){
+    assert.ok(await lens.isVisible());
+    assert.ok(await lens.getAttribute('href'));
+   }
+   assert.equal(await page.locator('#fagverkPlaceTracesSection').isVisible(), true);
+   await page.screenshot({path:out+'/'+mode.name+'-fagverk.png',timeout:20000});
    assert.deepEqual(errors,[],mode.name+': unexpected page errors');
-   console.log('PASS '+mode.name+' real Oset PlaceCard / 10-item QuizCard / source-exact 4x7 fullquiz route');
+   console.log('PASS '+mode.name+' real Oset PlaceCard / 10-item QuizCard / source-exact 4x7 fullquiz / curated Fagverk');
   }finally{
    await context.close();await browser.close();
   }
