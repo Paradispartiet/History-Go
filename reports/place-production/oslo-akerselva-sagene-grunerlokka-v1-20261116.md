@@ -315,3 +315,9 @@ Se `reports/place-production/oslo-akerselva-v1-quiz-audit-20261116.json` for mas
 - Fagverk-indeks, release og Place-open er synkronisert. Lokal Fagverk-audit, Place-open-paritet, release-manifest, Knowledge-kontroll og Osets migreringstest bestod. Nettlesertesten krever synlig artikkel, tre fungerende emnelenker og observerbare spor i tillegg til kort og quiz. Hele bolken har fortsatt åpne V1-porter.
 
 C50 for Det Norske Teatret bestod på mobil og desktop etter at testen ble lagt om til PlaceCards synlige galleriknapp, med samme krav til begge objektenes bilde, kildelenke og kreditering. C51 verifiserer den publiserte versjonen etter vellykket Pages-kjøring på main og sammenligner med commit-en som ble publisert.
+
+## Frysja 33 – kuratert Fagverk og quizstatus
+
+- Fagverk på standardnivå forklarer tømmeret i Brekkedammen, kraftstasjonens rolle, jernbanefrakten og bygningens senere bruk. Artikkelen fører kommunens 1965 og historielagets 1962 som ulike kildeopplysninger om nedleggelsen. NVE og lokal adressehistorie daterer kraftstasjonen til 1892.
+- Fagverk-audit, deterministisk release og Place-open-paritet bestod. Chromium på 390 og 1440 pikslers bredde viste den kuraterte artikkelen, tre faglige lenker med fungerende mål og feltsporene.
+- Den aktive quizen for hele Frysja industriområde inneholder spørsmål om Brekke Bruk. Manifestet har fortsatt null sett på kraftstasjonens egen ID. Egen fullquiz, QuizCard, Knowledge-kobling og stående bilde gjenstår før V1.
