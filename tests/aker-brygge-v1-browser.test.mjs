@@ -31,6 +31,14 @@ try{
       const h=document.getElementById("pcHeaderImage"),f=document.getElementById("pcFrontImage");
       return h?.complete&&h.naturalWidth>0&&f?.complete&&f.naturalWidth>0;
     },null,{timeout:40000});
+    // Hydration and icon-layout updates are asynchronous: wait for the
+    // actual People image preview, not an intermediate zero-count state.
+    await page.waitForFunction(()=>{
+      const icon=document.getElementById("pcPeopleIcon");
+      const img=icon?.querySelector(":scope > img.pc-person-img");
+      return img?.complete&&img.naturalWidth>0
+        &&document.getElementById("placeCard")?.dataset.collectionCount==="1";
+    },null,{timeout:40000});
     const result=await page.evaluate(()=>{
       const card=document.getElementById("placeCard"),h=document.getElementById("pcHeaderImage"),f=document.getElementById("pcFrontImage");
       const brands=document.getElementById("pcBrandsIcon"),people=document.getElementById("pcPeopleIcon");

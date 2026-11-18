@@ -171,9 +171,18 @@
   }
 
   function peopleItems(place) {
+    const placeId = s(place?.id);
     let direct = [];
-    try { direct = arr(global.getPeopleForPlace?.(s(place?.id))); } catch { direct = []; }
-    return flattenSources([[direct, "people"]]);
+    try { direct = arr(global.getPeopleForPlace?.(placeId)); } catch { direct = []; }
+    // A canonical place-open payload may finish hydrating after the legacy
+    // People lookup was initialized. Read the just-loaded, place-linked
+    // public People entries as well, without creating substitute portraits.
+    const hydrated = arr(global.PEOPLE).filter(person =>
+      s(person?.placeId || person?.place_id) === placeId
+      || arr(person?.places).some(id => s(id) === placeId)
+      || arr(person?.place_ids).some(id => s(id) === placeId)
+    );
+    return flattenSources([[hydrated, "place_open_people"], [direct, "people"]]);
   }
 
   function brandItems(place) {
