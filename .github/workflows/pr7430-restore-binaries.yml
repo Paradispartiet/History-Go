@@ -1,0 +1,62 @@
+name: 'PR7430 one-time restoration of original Kunst PNGs'
+on:
+  push:
+    branches:
+      - 'badges/kunst-30-files-two-approved-staged-20261118'
+    paths:
+      - '.github/workflows/pr7430-restore-binaries.yml'
+      - '.pr7430-transfer/**'
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Restore four byte-identical original PNG images
+        shell: bash
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          import hashlib, base64
+          specs = [
+            ('01', 'bilder/merker/kunst/originaler/offentlig_kunst-brodert-v1-original-1254.png', '66edcfdfa08ed9d500d7b03514820c0c508c459e', '4ad4b83ad741f65e3f2224d7da0a1627d99d01e88fe84886eb7a3e0611b326a3'),
+            ('05', 'bilder/merker/kunst/originaler/skulptur-brodert-v1-original-1254.png', 'e3ca875e28f69861728b2f05474c2b08b1255a3e', 'de54beaddb65258a628cf916f9811aedd00a227f6e36ccbff967cc0376859668'),
+            ('07', 'bilder/merker/kunst/originaler/street_art-brodert-v1-original-1254.png', '11ce856df6212de71caf9a20bd8b0dbaca7305b1', '324d196cd15c7aae5d1d6eeac8028dffd987eea82f095d512b05ca5532b8d829'),
+            ('09', 'bilder/merker/kunst/originaler/tegning_og_grafikk-brodert-v2-original-1254.png', 'e2680b36b07955038b64b048159b6f316ed25ba1', 'e0d4e8aa6820b94036312676326387974c8ae276809d4279c410aaa591a18a58'),
+          ]
+          for asset, path, expected_git, expected_sha256 in specs:
+              segments = sorted(Path('.pr7430-transfer').glob(f'asset_{asset}_part_*.txt'))
+              assert len(segments) == 4, f'{asset}: expected four segments'
+              encoded = ''.join(s.read_text('ascii').strip() for s in segments)
+              raw = base64.b64decode(encoded, validate=True)
+              actual_sha256 = hashlib.sha256(raw).hexdigest()
+              actual_git = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+              assert actual_sha256 == expected_sha256, f'{path}: SHA-256 mismatch'
+              assert actual_git == expected_git, f'{path}: Git blob mismatch'
+              dest = Path(path)
+              assert not dest.exists(), f'{path}: refusing to overwrite existing asset'
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              dest.write_bytes(raw)
+              print(f'Restored {path} ({len(raw)} bytes) SHA256={actual_sha256}')
+          PYCODE
+      - name: Run focused Kunst two-approved-badges QA only
+        run: node --test tests/badge-kunst-two-approved-activation.test.mjs
+      - name: Commit original files and remove temporary transfer data
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -rf .pr7430-transfer
+          rm -f .github/workflows/pr7430-restore-binaries.yml
+          git add -A .pr7430-transfer .github/workflows/pr7430-restore-binaries.yml \
+            bilder/merker/kunst/originaler/offentlig_kunst-brodert-v1-original-1254.png \
+            bilder/merker/kunst/originaler/skulptur-brodert-v1-original-1254.png \
+            bilder/merker/kunst/originaler/street_art-brodert-v1-original-1254.png \
+            bilder/merker/kunst/originaler/tegning_og_grafikk-brodert-v2-original-1254.png
+          git diff --cached --check
+          git commit -m 'Kunst: restore final four original PNGs (#7430)'
+          git push origin HEAD:'badges/kunst-30-files-two-approved-staged-20261118'
