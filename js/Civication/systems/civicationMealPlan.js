@@ -165,7 +165,7 @@
       dishName: place.dishName.trim(),
       portions: place.portions,
       priceMinor: place.priceMinor ?? null,
-      priceKind: place.priceKind || "exact"
+      priceKind: place.priceKind || "unspecified"
     };
     if (week.meals[day]) delete week.meals[day][meal];
     return saveWeek(week);
@@ -179,6 +179,7 @@
     let pricedTotalMinor = 0;
     let unpriced = 0;
     let fromMeals = 0;
+    let unspecifiedPriceKindMeals = 0;
     for (let day = 0; day < 7; day++) {
       for (const meal of Object.keys(MEALS)) {
         const item = week.restaurantMeals?.[day]?.[meal];
@@ -187,11 +188,12 @@
         const priceMinor = Number.isSafeInteger(item.priceMinor) &&
           item.priceMinor >= 0 && item.priceMinor <= 5000000 ? item.priceMinor : null;
         const priceKind = ["exact", "from", "multiple"].includes(item.priceKind)
-          ? item.priceKind : "exact"; // Legacy plans did not retain the quote kind.
+          ? item.priceKind : "unspecified"; // Legacy plans did not retain the quote kind.
         if (priceMinor === null) unpriced++;
         else {
           pricedTotalMinor += priceMinor * item.portions;
-          if (priceKind !== "exact") fromMeals++;
+          if (priceKind === "from" || priceKind === "multiple") fromMeals++;
+          if (priceKind === "unspecified") unspecifiedPriceKindMeals++;
         }
         entries.push({
           day, meal, name:item.name, dishName:item.dishName,
@@ -202,7 +204,7 @@
     const budgetMinor = budget === null ? null : budget * 100;
     return {
       currency:"NOK", budgetNok:budget, budgetMinor,
-      plannedMinor:pricedTotalMinor, unpricedMeals:unpriced, fromMeals,
+      plannedMinor:pricedTotalMinor, unpricedMeals:unpriced, fromMeals, unspecifiedPriceKindMeals,
       remainingMinor:budgetMinor === null ? null : budgetMinor - pricedTotalMinor,
       meals:entries
     };
@@ -226,7 +228,8 @@
       nokActive,
       balanceMinor,
       afterKnownPlansMinor: balanceMinor === null ? null : balanceMinor - restaurant.plannedMinor,
-      hasUncertainPrices: restaurant.unpricedMeals > 0 || restaurant.fromMeals > 0,
+      hasUncertainPrices: restaurant.unpricedMeals > 0 || restaurant.fromMeals > 0 ||
+        restaurant.unspecifiedPriceKindMeals > 0,
       // This projection does not edit balance or create any payment history.
       purchasedMinor: null
     };
