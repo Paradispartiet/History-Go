@@ -569,7 +569,10 @@
       if (image && index + 1 < previewCandidates.length) {
         // An older person can reference an unavailable file. Try a different
         // registered person portrait, never an unrelated placeholder.
-        image.addEventListener("error", () => renderCandidate(index + 1), { once:true });
+        image.addEventListener("error", () => {
+          renderCandidate(index + 1);
+          global.HGPlaceRoundsFillLayout?.scheduleLayout?.();
+        }, { once:true });
       }
     };
     renderCandidate(0);
