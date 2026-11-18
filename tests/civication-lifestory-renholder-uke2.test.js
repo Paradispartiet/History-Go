@@ -183,9 +183,9 @@ for (const c of cases) {
     && state.tidligereValg.ren_u2_d14_rapport_sendt===true
     && state.tidligereValg.ren_u2_d14_kari_mottatt===true;
   const Endings=require("../js/Civication/lifestory/lifestoryEndings.js");
-  assert.equal(Endings.isFinalDay(state,content),true);
+  assert.equal(Endings.isFinalDay(state,content),false, "week two is a checkpoint; day 21 now closes the continued story");
   assert.equal(Endings.resolveEnding(state,content)?.id==="uke2_sporbar_avslutning",complete,
-    "the week-two ending requires all actual work/report/receipt evidence");
+    "week-two evidence remains strict even when chapter three is available");
   assert.deepEqual(state.arkiv.slice(0,earlierArchive.length).map(row => [row.sceneId,row.valgId]),
     earlierArchive,"first-week history remains unchanged through day 14");
   assert.equal(new Set(state.arkiv.map(x => x.sceneId)).size,state.arkiv.length,
