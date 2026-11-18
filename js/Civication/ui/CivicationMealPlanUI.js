@@ -103,7 +103,9 @@
     if (summary.remainingMinor !== null) {
       line += summary.remainingMinor < 0
         ? " · " + kr(-summary.remainingMinor) + " over budsjett"
-        : " · " + kr(summary.remainingMinor) + " igjen av budsjettet";
+        : summary.unpricedMeals || summary.fromMeals || summary.unspecifiedPriceKindMeals
+          ? " · høyst " + kr(summary.remainingMinor) + " igjen ved oppgitte minstepriser"
+          : " · " + kr(summary.remainingMinor) + " igjen av budsjettet";
     }
     create("p", line, details);
     if (summary.unpricedMeals) {
@@ -111,6 +113,10 @@
     }
     if (summary.fromMeals) {
       create("p", summary.fromMeals + " måltider har fra-pris. Faktisk pris kan bli høyere.", details).className = "muted";
+    }
+    if (summary.unspecifiedPriceKindMeals) {
+      create("p", summary.unspecifiedPriceKindMeals + " eldre måltidsvalg har ikke lagret pristype. " +
+        "Beløpet er veiledende.", details).className = "muted";
     }
     if (summary.nokActive && summary.balanceMinor !== null) {
       create("p", "Kronekonto nå: " + kr(summary.balanceMinor) +
@@ -129,7 +135,8 @@
         entry.style.cssText = "display:flex;flex-wrap:wrap;align-items:center;gap:8px";
         const amount = item.priceMinor === null ? "pris ukjent" :
           (item.priceKind === "from" || item.priceKind === "multiple" ? "fra " : "") +
-          kr(item.priceMinor * item.portions);
+          kr(item.priceMinor * item.portions) +
+          (item.priceKind === "unspecified" ? " (pristype ukjent)" : "");
         create("span",
           model.DAYS[item.day] + " · " + model.MEALS[item.meal].label + ": " +
           item.dishName + " hos " + item.name + " · " + item.portions +
