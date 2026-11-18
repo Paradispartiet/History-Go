@@ -35,15 +35,16 @@ const raw = {
 // --- Pakken består de fire lovene (buildContent kaster ellers) ---
 const content = Content.buildContent(raw);
 assert.strictEqual(content.role.id, "renholder");
-assert.strictEqual(raw.roleThreads.threads.length, 9, "fem opprinnelige arbeidstråder og fire C17-ledd");
-assert.ok(content.threads.length >= 9, "arbeidstråder + delte privattråder");
+assert.strictEqual(raw.roleThreads.threads.length, 10, "fem opprinnelige arbeidstråder, fire C17-ledd og uke-2-oppfølging");
+assert.ok(content.threads.length >= 10, "arbeidstråder + delte privattråder");
 assert.ok(raw.roleThreads.threads.every((t) => t.type === "arbeidsliv"), "rolletrådene er arbeidsliv");
 
 // Rollens kjernekonflikter fra FWG-en er representert som tråder.
 const threadIds = raw.roleThreads.threads.map((t) => t.id);
 assert.deepStrictEqual(threadIds.sort(), [
   "rommet_som_saa_rent_ut", "ryggen_sier_fra", "soelet_i_fellesarealet",
-  "tidsvinduet_krymper", "usynlig_arbeid", "wave_a_c17", "wave_b_c17", "wave_c_c17", "wave_d_c17"
+  "tidsvinduet_krymper", "usynlig_arbeid", "wave_a_c17", "wave_b_c17", "wave_c_c17", "wave_d_c17",
+  "renholder_uke2_oppfolging"
 ].sort());
 
 // Personene kommer fra rollens actor-grammatikk og finnes i startState.
