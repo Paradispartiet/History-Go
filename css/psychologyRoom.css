@@ -1205,3 +1205,81 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* User-authored connections between existing, locally stored reflections.
+   These lines communicate only a manually chosen relation, never a diagnosis. */
+.psychology-room-inner-links {
+  min-width: 0;
+  border-top: 1px solid rgba(170, 237, 216, .24);
+  padding-top: 16px;
+}
+.psychology-room-inner-link-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+.psychology-room-inner-link {
+  display: grid;
+  gap: 11px;
+  min-width: 0;
+  border: 1px solid rgba(170, 237, 216, .28);
+  background: #162931;
+  border-radius: 15px;
+  padding: 13px;
+}
+.psychology-room-inner-link-path {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+  align-items: center;
+  gap: 10px;
+}
+.psychology-room-inner-link-node {
+  min-width: 0;
+  padding: 11px 12px;
+  background: #263943;
+  border-radius: 11px;
+  color: #f1f7f4;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+.psychology-room-inner-link-relation {
+  display: grid;
+  gap: 3px;
+  justify-items: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #a9f0df;
+  text-align: center;
+}
+.psychology-room-inner-link > button {
+  justify-self: start;
+  min-height: 44px;
+}
+.psychology-room-inner-links form label {
+  display: grid;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 650;
+}
+.psychology-room-inner-links form select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px 12px;
+  color: #f3f7f5;
+  background: #20343e;
+  border: 1px solid rgba(170, 237, 216, .44);
+  border-radius: 11px;
+  font: inherit;
+}
+@media (max-width: 620px) {
+  .psychology-room-inner-link-path {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 7px;
+  }
+  .psychology-room-inner-link-relation { justify-items: start; text-align: left; }
+  .psychology-room-inner-link > button { width: 100%; }
+}

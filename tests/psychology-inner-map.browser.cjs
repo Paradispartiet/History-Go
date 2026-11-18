@@ -51,12 +51,18 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
         body: "Lette skuldre", actions: "Jeg skrev det ned",
         next_step: "Lage en ny papirfugl",
         follow_ups: [{ id: "follow-synthetic", tried: "Brettet papir", outcome: "Det ble et fly" }]
+      }, {
+        id: "synthetic-map-two", created_at: "2026-11-17T12:10:00Z",
+        situation: "En gul papirdrage landet i hagen",
+        thoughts: "Jeg sammenlignet den med papirfuglen",
+        feelings: "Rolig", body: "Rolige skuldre", actions: "Tegnet den",
+        next_step: "Skrive en fortsettelse"
       }])));
     await page.evaluate(() => window.PsychologyRoom.open());
     await page.locator('[data-psych-nav="profile"]').click();
     await page.locator('[data-psych-overview-map]').waitFor({ state: "visible" });
     assert.match(await page.locator(".psychology-room-personal-overview").innerText(),
-      /1\s*situasjoner|1\s*situasjon/);
+      /2\s*situasjoner/);
     await page.locator('[data-psych-overview-map]').click();
     assert.equal(await page.locator(".psychology-room-inner-case").count(), 0,
       "nothing enters the map automatically");
@@ -81,6 +87,42 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
       contentRight: el.closest(".psychology-room-content").getBoundingClientRect().right
     }));
     assert.ok(layout.right <= layout.contentRight + 2, "map must stay inside its panel");
+
+    // No link is inferred. User connects precisely two explicitly mapped notes.
+    await page.locator('[data-psych-map-add="synthetic-map-two"]').click();
+    assert.equal(await page.locator(".psychology-room-inner-case").count(), 2);
+    assert.equal(await page.locator(".psychology-room-inner-link").count(), 0);
+    await page.locator('#psychologyRoomLinkForm select[name="from"]')
+      .selectOption("synthetic-map-one");
+    await page.locator('#psychologyRoomLinkForm select[name="to"]')
+      .selectOption("synthetic-map-two");
+    await page.locator('#psychologyRoomLinkForm select[name="kind"]')
+      .selectOption("similar");
+    await page.locator('#psychologyRoomLinkForm button[type="submit"]').click();
+    assert.equal(await page.locator(".psychology-room-inner-link").count(), 1);
+    assert.equal(await page.locator(".psychology-room-inner-link img").count(), 0,
+      "unsafe note markup must be escaped in connected nodes");
+    const linkedState = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem("hg_psychology_inner_map_v1")));
+    assert.deepEqual(linkedState.links, [{
+      from: "synthetic-map-one", to: "synthetic-map-two", kind: "similar"
+    }]);
+    assert.equal(JSON.stringify(linkedState).includes(synthetic.situation), false,
+      "neither the connection nor its endpoints copy the note content");
+    await page.locator('[data-psych-map-unlink="synthetic-map-one"]').click();
+    assert.equal(await page.locator(".psychology-room-inner-link").count(), 0);
+    await page.locator('#psychologyRoomLinkForm select[name="from"]')
+      .selectOption("synthetic-map-one");
+    await page.locator('#psychologyRoomLinkForm select[name="to"]')
+      .selectOption("synthetic-map-two");
+    await page.locator('#psychologyRoomLinkForm button[type="submit"]').click();
+    assert.equal(await page.locator(".psychology-room-inner-link").count(), 1);
+    await page.locator('[data-psych-map-remove="synthetic-map-two"]').click();
+    assert.equal(await page.locator(".psychology-room-inner-case").count(), 1);
+    assert.equal(await page.locator(".psychology-room-inner-link").count(), 0,
+      "removing a note also removes all connected edges");
+    assert.deepEqual(await page.evaluate(() =>
+      JSON.parse(localStorage.getItem("hg_psychology_inner_map_v1")).links), []);
 
     await page.locator('[data-psych-map-open="synthetic-map-one"]').click();
     await page.locator('[data-psych-toggle-map="synthetic-map-one"]').waitFor();

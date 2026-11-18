@@ -7,6 +7,9 @@ window.HG_ORS = {
 // Midlertidig trygg bootstrap for place-level naturmapping.
 // Selve logikken ligger isolert i js/nature_place_map_bridge.js.
 (function () {
+  // Civication reuses only the ORS credentials; its life simulator must not
+  // load the History Go nature-place bridge as a side effect.
+  if (/\/Civication\.html$/i.test(window.location?.pathname || "")) return;
   if (window.__HG_NATURE_PLACE_BRIDGE_LOADER__) return;
   window.__HG_NATURE_PLACE_BRIDGE_LOADER__ = true;
 
