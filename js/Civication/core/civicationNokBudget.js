@@ -31,10 +31,27 @@ function resolveSalaryJob(config, identity = {}) {
     && (identity.roleTitle == null || job.roleTitle === identity.roleTitle));
   return matches.length === 1 ? matches[0] : null;
 }
-/** @param {any} config */
-function getElectricityProfile(config) {
-  const profile = config?.budget?.electricity;
+/** @param {any} config @param {string|null} [profileId] */
+function getElectricityProfile(config, profileId = null) {
+  const baseline = config?.budget?.electricity;
+  const alternativeProfiles = config?.electricityProfiles;
+  if (alternativeProfiles != null && !Array.isArray(alternativeProfiles))
+    throw new RangeError('Invalid electricity profiles');
+  const alternatives = alternativeProfiles || [];
+  const candidates = profileId == null ? [baseline] : [baseline, ...alternatives]
+    .filter(profile => profile?.id === profileId);
+  if (candidates.length !== 1) return null;
+  const profile = candidates[0];
   if (profile?.kind !== 'effective_statistical_unit_price_with_assumed_consumption') return null;
+  // All room-size profiles use the same documented price per kWh; only
+  // estimated consumption changes. The estimates are NOT measured usage.
+  if (profileId != null && profile !== baseline &&
+      (profile.source !== baseline?.source ||
+        profile.unitPriceNokPerKwh !== baseline?.unitPriceNokPerKwh ||
+        profile.pricePeriod !== baseline?.pricePeriod ||
+        profile.includes !== baseline?.includes ||
+        profile.consumptionKind !== 'illustrative_larger_home_scenario_not_meter_reading'))
+    throw new RangeError('Inconsistent electricity source');
   if (typeof profile.id !== 'string' || !profile.id.trim() || typeof profile.source !== 'string' || !profile.source.trim()
       || !Number.isFinite(profile.monthlyConsumptionKwh) || profile.monthlyConsumptionKwh <= 0
       || !Number.isFinite(profile.unitPriceNokPerKwh) || profile.unitPriceNokPerKwh <= 0)
