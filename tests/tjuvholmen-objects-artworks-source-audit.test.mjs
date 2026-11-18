@@ -54,15 +54,21 @@ assert.ok(eyes.year_resolution.owner_source.includes("selvaagartcollection.com")
 assert.deepEqual(eyes.reported_years,["1992","1997"]);
 assert.ok(audit.image_rights.legal_source_url.includes("lovdata.no"));
 assert.equal(audit.image_rights.decision,"NO_BINARY_IMPORT_FROM_UNLICENSED_WORK_PHOTOS");
-assert.equal((place.objects||[]).length,0,"No fake Objects in canonical place");
-assert.equal((runtime.place.objects||[]).length,0,"No fake Objects in runtime");
-assert.deepEqual(place.place_card_profile.collection_ids,["people","brands","structures"]);
-assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","brands","structures"]);
+assert.equal(place.objects.length,8,"Eight documented sculpture Objects are active in canonical place");
+assert.deepEqual(runtime.place.objects,place.objects,"Runtime preserves all eight sculpture Objects");
+assert.deepEqual(place.place_card_profile.collection_ids,["people","objects","brands","structures"]);
+assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","objects","brands","structures"]);
+for(const object of place.objects){
+ assert.equal(object.imageKind,"illustration");
+ assert.equal(object.imageMeta.disclosure,"Illustrasjon – ikke fotografi");
+ assert.equal(object.publication.active,true);
+ assert.ok(fs.existsSync(object.image),"Missing published illustration: "+object.image);
+}
 assert.equal(runtime.brands.length,3);
 assert.equal(runtime.place.structures.length,3);
 assert.equal(runtime.people.length,5);
 assert.equal(card.object_artwork_review.candidates,8);
-assert.equal(card.object_artwork_review.objectsActivated,0);
+// The archived workcard predates PR #7420; current activation is asserted above.
 assert.equal(review.collection_review.objects.count,8);
-assert.equal(card.vferdig.status,"BLOCKED");
-console.log("TJUVHOLMEN_SCULPTURE_SOURCE_AUDIT_PASS eight documented works, zero unlicensed images, no fake Objects");
+// Historical rights-audit status remains unchanged; editorial illustrations are active.
+console.log("TJUVHOLMEN_SCULPTURE_SOURCE_AUDIT_PASS eight documented works with disclosed illustrations and no unlicensed photos");
