@@ -32,6 +32,165 @@
     const day = Number.isSafeInteger(index) && index > 0 ? index : 1;
     return plan.getWeekKey(day + weekOffset * 7);
   }
+  function todaysVerifiedCommute() {
+    const routes = window.CivicationPersonalRoutes;
+    const day = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+    if (!routes || !Number.isSafeInteger(day) || day < 1) return null;
+    const activeJob = routes.jobKey?.();
+    if (!activeJob) return null;
+    const weekday = (day - 1) % 7;
+    const now = Date.now();
+    return routes.listRoutes().find(item => {
+      const validUntil = Date.parse(item.routeEvidence?.validUntil || "");
+      return item.kind === "commute" && item.visibility === "private" &&
+        item.status === "planned" && item.routingStatus === "verified_route" &&
+        item.jobKey === activeJob && item.weekDay === weekday &&
+        Number.isFinite(validUntil) && validUntil > now &&
+        item.roadGeometry?.type === "LineString";
+    }) || null;
+  }
+  function isCurrentCommute(route) {
+    if (!route || typeof route.id !== "string" || typeof route.geometryRevision !== "string") return false;
+    const latest = todaysVerifiedCommute();
+    return !!latest && latest.id === route.id &&
+      latest.geometryRevision === route.geometryRevision &&
+      latest.jobKey === route.jobKey &&
+      latest.weekDay === route.weekDay &&
+      latest.routingStatus === "verified_route";
+  }
+  function renderNearbyRestaurants(parent) {
+    const details = create("details", null, parent);
+    details.style.marginTop = "16px";
+    create("summary", "Restauranter nær arbeidsruten (forhåndsvisning)", details);
+    create("p",
+      "Søket sender bare rettens navn og Oslo til Fysen. Ved eget valg om omveiberegning sendes ruteendepunktene og restaurantens offentlige koordinater til OpenRouteService. Dette er ikke bekreftede tilbud eller åpningstider.",
+      details).className = "muted";
+    const form = create("form", null, details);
+    form.style.cssText = "display:flex;flex-wrap:wrap;align-items:end;gap:8px;margin:12px 0";
+    const label = create("label", "Rett å lete etter", form);
+    label.style.cssText = "display:flex;flex-direction:column;gap:4px;flex:1;min-width:160px";
+    const dish = create("input", null, label);
+    dish.type = "search";
+    dish.placeholder = "F.eks. pasta";
+    dish.maxLength = 80;
+    dish.style.cssText = "width:100%;padding:8px;box-sizing:border-box";
+    const departureLabel = create("label", "Planlagt avreise (spilltid)", form);
+    departureLabel.style.cssText = "display:flex;flex-direction:column;gap:4px";
+    const departure = create("input", null, departureLabel);
+    departure.type = "time";
+    departure.style.padding = "8px";
+    const find = create("button", "Finn nær ruten", form);
+    find.type = "submit";
+    find.className = "btn";
+    const message = create("p", "Velg en rett og ha en beregnet arbeidsrute for dagens spilledag.", details);
+    message.className = "muted";
+    message.setAttribute("role", "status");
+    const results = create("ul", null, details);
+    results.style.cssText = "list-style:none;padding:0;display:grid;gap:8px";
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      const client = window.CivicationFysenLiveRestaurants;
+      const corridor = window.CivicationFysenRouteCorridor;
+      const route = todaysVerifiedCommute();
+      if (!route) {
+        message.textContent = "Beregn først en arbeidsrute i Karriere for dagens spilledag.";
+        return;
+      }
+      if (!client || !corridor) {
+        message.textContent = "Datakoblingen for restauranter nær ruten er ikke klar.";
+        return;
+      }
+      find.disabled = true;
+      results.replaceChildren();
+      message.textContent = "Søker etter kildebelagte restauranter i Oslo …";
+      try {
+        const menuData = await client.lookup(dish.value, { consent: true, now: new Date() });
+        const reasons = {
+          INVALID_QUERY: "Skriv minst to tegn i navnet på en rett.",
+          CONSENT_REQUIRED: "Søket må startes aktivt.",
+          PUBLIC_API_UNAVAILABLE: "Fysens offentlige menysøk er utilgjengelig akkurat nå.",
+          INVALID_RESPONSE: "Menydata kunne ikke verifiseres.",
+          NO_CURRENT_PUBLIC_MENUS: "Ingen ferske menykilder for denne retten. Du kan prøve arkivsøket ovenfor."
+        };
+        if (menuData.status !== "DOCUMENTED_PUBLIC_MENUS") {
+          message.textContent = reasons[menuData.status] || "Ingen dokumenterte restauranttreff.";
+          return;
+        }
+        // The player's home/workplace may have changed while Fysen responded.
+        // Do not use a stale route object to produce geographic candidates.
+        if (!isCurrentCommute(route)) {
+          message.textContent = "Arbeidsruten er endret eller slettet. Start søket på nytt.";
+          return;
+        }
+        const nearby = corridor.shortlist({
+          route, response: menuData, nowMillis: Date.now()
+        });
+        if (nearby.status !== "geographic_candidates" || !nearby.candidates.length) {
+          message.textContent = "Ingen kildebelagte restauranter ble funnet innenfor 500 meter av den beregnede ruten.";
+          return;
+        }
+        message.textContent = nearby.candidates.length +
+          " restauranter geografisk nær ruten. Åpent kjøkken og faktisk omvei er foreløpig ukjent.";
+        for (const candidate of nearby.candidates) {
+          const item = create("li", null, results);
+          item.style.cssText = "padding:10px;border:1px solid rgba(128,128,128,.25);border-radius:10px";
+          create("strong", candidate.name + " – " + candidate.dishName, item);
+          create("div", candidate.address + " · ca. " + candidate.approxCorridorMeters +
+            " m fra rutelinjen (ikke kjøre-/gangomvei)", item).className = "muted";
+          const source = create("a", "Menykilde", item);
+          source.href = candidate.menuSourceUrl;
+          source.target = "_blank";
+          source.rel = "noopener noreferrer";
+          const action = create("button", "Beregn faktisk omvei med OpenRouteService", item);
+          action.type = "button";
+          action.className = "btn";
+          action.style.cssText = "display:block;margin-top:8px";
+          const info = create("p", "Kjøkkenåpning ved passering er ikke bekreftet.", item);
+          info.className = "muted";
+          action.addEventListener("click", async () => {
+            const detours = window.CivicationRestaurantDetours;
+            if (!detours) { info.textContent = "Omveiberegning er ikke tilgjengelig."; return; }
+            if (!isCurrentCommute(route)) {
+              info.textContent = "Arbeidsruten er endret eller slettet. Søk på nytt før omveiberegning.";
+              return;
+            }
+            const match = /^([01]\d|2[0-3]):([0-5]\d)$/.exec(departure.value);
+            if (!match) { info.textContent = "Velg planlagt avreisetid først."; return; }
+            const minute = Number(match[1]) * 60 + Number(match[2]);
+            action.disabled = true;
+            info.textContent = "Beregner omvei. Ruteendepunkter og restaurantkoordinater sendes til OpenRouteService etter dette valget.";
+            try {
+              const checked = await detours.calculate(route, candidate, {
+                consent: true, departureMinute: minute, now: new Date()
+              });
+              if (!isCurrentCommute(route)) {
+                info.textContent = "Arbeidsruten ble endret under beregningen. Resultatet er forkastet.";
+                return;
+              }
+              if (!checked.ok) {
+                info.textContent = "Omveien kunne ikke dokumenteres (" + checked.reason +
+                  "). Ingen tilgjengelighet er bekreftet.";
+                return;
+              }
+              const pass = checked.routeProof.passMinutes;
+              const hhmm = String(Math.floor(pass / 60)).padStart(2, "0") +
+                ":" + String(pass % 60).padStart(2, "0");
+              info.textContent = "Beregnet omvei: " + checked.routeProof.detourMinutes +
+                " min. Passering ca. " + hhmm +
+                ". Kjøkkenåpning og tilbud er ikke bekreftet. Reisen registreres ikke som gjennomført.";
+            } catch (_) {
+              info.textContent = "Kunne ikke beregne omveien.";
+            } finally { action.disabled = false; }
+          });
+        }
+      } catch (_) {
+        message.textContent = "Restaurantoppslaget kunne ikke gjennomføres.";
+      } finally {
+        find.disabled = false;
+      }
+    });
+  }
+
   function render() {
     const host = document.getElementById("civiWeeklyMealPlanPanel");
     const model = window.CivicationMealPlan;
@@ -198,6 +357,7 @@
         searchButton.disabled = false;
       }
     });
+    renderNearbyRestaurants(routeInfo);
     create("p", "Valgene og handlelisten lagres privat i denne nettleseren.", host).className = "muted";
   }
   window.CivicationMealPlanUI = Object.freeze({ render });
