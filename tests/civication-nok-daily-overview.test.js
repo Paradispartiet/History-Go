@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const { JSDOM } = require('jsdom');
 (async () => {
- const dom = new JSDOM('<div id="civiEconomyPanel"></div><div id="civiLifestoryPanel"></div>', {url:'https://example.test',runScripts:'outside-only'});
+ const dom = new JSDOM('<div id="civiEconomyPanel"></div><div id="civiLifestoryPanel"></div><nav class="civi-footer"><button data-category="kommers"></button></nav><section id="civiStoreSection"><div class="civi-mini-card"><button data-civi-mini-open></button></div></section>', {url:'https://example.test',runScripts:'outside-only'});
  await new Promise(r=>setTimeout(r,0));
  const w=dom.window;
  for (const p of ['core/civicationState.js','core/civicationCalendar.js','civicationCommercial.js','ui/CivicationEconomyUI.js']) w.eval(fs.readFileSync('js/Civication/'+p,'utf8'));
@@ -20,6 +20,11 @@ const { JSDOM } = require('jsdom');
  assert.ok(w.document.querySelector('[data-nok-daily-overview]').textContent.includes('50,30'));
  const summary = w.document.getElementById('civiNokDailyLifeOverview');
  assert.ok(summary); assert.equal(summary.nextElementSibling.id,'civiLifestoryPanel');
+ let navigations=0;
+ w.document.querySelector('[data-civi-mini-open]').addEventListener('click',()=>navigations++);
+ for(const button of summary.querySelectorAll('[data-nok-daily-open]')) { assert.equal(button.disabled,false); button.click(); }
+ assert.equal(navigations,2);
+ assert.equal(JSON.stringify(w.CivicationState.getWallet()),snapshot,'opening destinations never pays or consumes');
  summary.open=true;
  w.document.getElementById('civiLifestoryPanel').innerHTML='<p>Neste scene</p>';
  w.CivicationEconomyUI.render();

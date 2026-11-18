@@ -62,7 +62,25 @@
       : "Måltider som gjenstår i dag: " + today.mealsToday));
     if (today.shoppingCostCents !== null) section.appendChild(node("p", "Manglende varer til ukemenyen: "
       + money(today.shoppingCostCents / 100) + " kr"));
-    section.appendChild(node("p", "Betal regninger i Min økonomi. Planlegg, kjøp og lag mat i Butikker under Kommers."));
+    for (const [kind, label] of [["bills", "Se regninger"], ["food", "Planlegg og lag mat"]]) {
+      const button = /** @type {HTMLButtonElement} */ (node("button", label));
+      button.type = "button"; button.className = "btn";
+      button.setAttribute("data-nok-daily-open", kind);
+      button.disabled = !document.querySelector('#civiStoreSection > .civi-mini-card [data-civi-mini-open]');
+      button.addEventListener("click", () => {
+        const opener = /** @type {HTMLElement|null} */ (document.querySelector('#civiStoreSection > .civi-mini-card [data-civi-mini-open]'));
+        if (!opener) return;
+        /** @type {HTMLElement|null} */ (document.querySelector('.civi-footer [data-category="kommers"]'))?.click();
+        opener.click();
+        const destination = /** @type {HTMLElement|null} */ (document.querySelector(kind === "bills"
+          ? '#civiEconomyPanel [data-nok-invoice], #civiEconomyPanel h3'
+          : '#civiStorePanel [data-meal-week] summary, #civiStorePanel h3'));
+        const details = destination?.closest("details"); if (details) details.open = true;
+        destination?.focus({ preventScroll: true });
+        destination?.scrollIntoView?.({ block: "nearest" });
+      });
+      section.appendChild(button);
+    }
     /** @type {HTMLDetailsElement} */ (section).open = wasOpen;
     dayPanel.before(section);
   }
