@@ -38,10 +38,10 @@ const route={
   routeEvidence:{validUntil:new Date(Date.now()+3600000).toISOString()}
 };
 let currentRoutes=[route];
-const calls={fysen:[],corridor:[],ors:[]};
+const calls={fysen:[],corridor:[],ors:[],plans:[],budgets:[]};
 const candidate={
   restaurantId:"public-r1",name:"Syntetisk restaurant",address:"Testgaten 1",
-  dishName:"Pasta",approxCorridorMeters:45,
+  dishName:"Pasta",approxCorridorMeters:45,priceMinor:19900,priceKind:"exact",currency:"NOK",
   menuSourceUrl:"https://example.org/meny",routeId:route.id,
   routeGeometryRevision:"ors-geometry-v1-abcdef12",
   latitude:59.905,longitude:10.75
@@ -54,6 +54,9 @@ const window = {
     getWeek:()=>({people:2,meals:{}}),getShoppingList:()=>[],
     getRecipes:()=>[{id:"pasta",name:"Pasta"}],
     templates:()=>[{id:"varied",label:"Variert"}],
+    getRestaurantSummary:()=>({budgetNok:null,plannedMinor:0,remainingMinor:null,unpricedMeals:0,meals:[]}),
+    setRestaurantMeal:(...args)=>calls.plans.push(args),
+    setRestaurantBudgetNok:(...args)=>calls.budgets.push(args),
     DAYS:["Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag","Søndag"],
     MEALS:{breakfast:{label:"Frokost"},lunch:{label:"Lunsj"},dinner:{label:"Middag"},supper:{label:"Kveldsmat"}}
   },
@@ -107,6 +110,17 @@ timeInput.value="11:00";
   assert.equal(calls.ors[0].inputCandidate,candidate);
   const status=via.parentNode.children.find(node=>node.tag==="p");
   assert(status.textContent.includes("Restaurantopplysningene er veiledende"));
+  const quote=via.parentNode.children.find(node=>node.tag==="div"&&node.textContent.includes("199"));
+  assert(quote?.textContent.includes("kr"),"Fysens NOK menu price must be shown to the player");
+  const planButton=findText("button","Planlegg måltid");
+  assert(planButton,"restaurant search offers meal planning");
+  planButton.listeners.click();
+  assert.equal(calls.plans.length,1);
+  assert.equal(calls.plans[0][0],0,"planned meal uses game route weekday");
+  assert.equal(calls.plans[0][1],"dinner");
+  assert.equal(calls.plans[0][2].priceMinor,19900);
+  assert.equal(calls.plans[0][2].portions,1);
+  assert.equal(calls.plans[0][3],"game-week-000001");
   // The initial successful lookup must not authorize a later ORS call
   // if the player removes/changes the private commute in the meantime.
   currentRoutes=[];
