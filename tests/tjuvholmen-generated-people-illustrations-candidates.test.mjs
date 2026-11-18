@@ -69,5 +69,5 @@ for(const entry of manifest.people){
 assert.equal(runtime.people.length,5);
 assert.equal(runtime.brands.length,3);
 assert.equal(runtime.place.structures.length,3);
-assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","brands","structures"]);
+assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","objects","brands","structures"]);
 console.log("TJUVHOLMEN_ORIGINAL_ILLUSTRATIONS_CANDIDATES_PASS: 3 v1 binaries quarantined, three distinct approved editorial illustrations active, authentic photos untouched");
