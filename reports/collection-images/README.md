@@ -135,3 +135,12 @@ Skriptet leser kildekandidatens arkivnummer og katalogtittel, avviser falsk publ
 Utdata kan bare skrives til en **ny undermappe** i den Git-ignorerte `artifacts/toyen-archive-review/`. Skriptet avviser andre mapper (også andre `artifacts/`-mapper og mapper utenfor repoet), stier som går ut gjennom symbolske lenker, og overstyring av eksisterende revisjonsfiler. `/artifacts/toyen-archive-review/` er ignorert av Git. Ny CI-workflow `.github/workflows/toyen-archive-photo-review.yml` tester både 1916 og 1918 **offline** med genererte testbilder, uten å påstå at originalene er hentet.
 
 Før eventuell promoteringsvurdering må en uavhengig kontrollør bekrefte at *akkurat de tilførte bytene* svarer til riktig Oslobilder-arkivpost og at rettigheter, synlig kreditering og PlaceCard-utsnitt er godkjent på mobil og desktop. **Ingen canonical Object-bilder er endret.**
+
+## Reviderte Tøyen-illustrasjoner (18. november 2026)
+
+Som alternativ til å vente på autentiske arkivfotografier er de to **upubliserte** Tøyen Object-kandidatfilene nå erstattet av nye originale sort-hvitt-tolkninger (900×520 WebP). De er ikke dokumentarfoto og har synlig merking **Illustrasjon**. Kildenøklene til Oslo byarkiv er historisk kontekst, ikke bevis for at bildepiksler gjengir de faktiske 1916-/1918-objektene.
+
+- `toyen_trafo_apparatpult_1916_kandidat.webp`: SHA-256 `edd5ae1c044cd0766e612f7986d983c03199eb774cd665f55ef8b46c7badf8a5`.
+- `toyen_trafo_transformatorkjerne_1918_kandidat.webp`: SHA-256 `16a3485835c77d216f121e1d0d2911a6d10c145b78c9e0a8a5ef582e628916ff`.
+
+Den andre viser en fiktiv tekniker og en ringformet maskinkjerne som tolkning, **ikke** et verifisert bilde av `A-20138/Ua/0004/091`. Eksisterende kandidatkontroller verifiserer bytes, dimensjoner, uendret canonical image, krediterings- og publiseringsstopp. Status for begge: `publishable: false`, `editorialApproval: false`. Kjør faktisk PlaceCard-bilde-QA i relevant Object-visning før eventuell kanonisk overføring. Ikke endre/merg for å omgå redaksjonell port.

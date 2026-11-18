@@ -32,3 +32,12 @@
 4. Uavhengig visuell/faglig godkjenning og tester. **Pass på binærintegritet er ikke PASS på historisk representasjon.**
 
 Inntil videre forblir `editorialApproval: false` og `publishable: false` for begge kandidater.
+
+## Nye illustrasjonskandidater 18.11.2026 – gjelder ikke den gamle vurderingen over
+
+På brukers uttrykkelige ønske om **illustrasjoner i stedet for nye arkivfotohenvendelser** er to nye originale bildefiler lagt i **de samme upubliserte kandidatbanene** i PR #7348. Tidligere kandidatversjoner fra 16.11 er bevart i Git-historikken. Ingen originale Oslo byarkiv-bildepiksler er kopiert; arkivnumrene er historiske **kontekstreferanser**, ikke en påstand om fotografisk kildeidentitet.
+
+- **Apparatpult, rundt 1916:** historisk inspirert panel med mange målere og brytere i et industrilokale. Paneldesign, antall instrumenter og rommets detaljer er ikke verifisert mot den faktiske Tøyen-pulten. Ny kandidat: 900×520 WebP, SHA-256 `edd5ae1c044cd0766e612f7986d983c03199eb774cd665f55ef8b46c7badf8a5`.
+- **Maskinkjerne, rundt 1918:** en **tegnet, oppdiktet tekniker** presenterer en stor lamellert maskinkjerne. Dette tolker katalogens motiv «person viser fram motoren», men gjengir ikke en bekreftet person, maskin eller setting ved Tøyen. Ny kandidat: 900×520 WebP, SHA-256 `16a3485835c77d216f121e1d0d2911a6d10c145b78c9e0a8a5ef582e628916ff`.
+
+Begge bildene har et lite synlig felt **«Illustrasjon»** nederst til høyre. Dette feltet må beholdes i alle visninger. **Redaksjonell port er fortsatt HOLD:** `editorialApproval: false`, `publishable: false`. Ingen canonical Objects-bane, PlaceCard-asset eller produksjonsbilde er endret. Kandidatene kan vurderes **som tydelig fiktive illustrasjoner** uten å late som om de er nøyaktige rekonstruksjoner eller fotografier; før publisering kreves separat kontroll av faktisk PlaceCard-utsnitt/kreditering på mobil/desktop og eksplisitt redaksjonell godkjenning.
