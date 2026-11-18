@@ -4,15 +4,17 @@ const fs = require('node:fs');
 const { JSDOM } = require('jsdom');
 const config = require('../data/Civication/economy/nok-budget-prototype-2026.json');
 async function boot(seed) {
-  const dom = new JSDOM('<div id="civiStorePanel"></div>', { url: 'https://example.test', runScripts: 'outside-only' });
+  const dom = new JSDOM('<div id="civiStorePanel"></div><div id="civiWeeklyMealPlanPanel"></div>', { url: 'https://example.test', runScripts: 'outside-only' });
   await new Promise(r => setTimeout(r, 0));
   for (const [k, v] of Object.entries(seed || {})) dom.window.localStorage.setItem(k, v);
-  for (const p of ['core/civicationState.js', 'core/civicationCalendar.js', 'core/civicationNokBudget.js', 'civicationCommercial.js', 'ui/CivicationStoreUI.js'])
+  for (const p of ['core/civicationState.js', 'core/civicationCalendar.js', 'core/civicationNokBudget.js', 'civicationCommercial.js', 'ui/CivicationStoreUI.js', 'systems/civicationMealPlan.js', 'ui/CivicationMealPlanUI.js'])
     dom.window.eval(fs.readFileSync('js/Civication/' + p, 'utf8'));
   return dom;
 }
 (async () => {
   let dom = await boot(), w = dom.window, state = w.CivicationState, shop = w.HG_CiviShop;
+  w.localStorage.setItem('hg_civi_meal_plans_v1', JSON.stringify({version:1,weeks:{'game-week-000001':{weekKey:'game-week-000001',people:2,meals:{0:{dinner:'pasta'}}}}}));
+  const legacyPlan = w.localStorage.getItem('hg_civi_meal_plans_v1');
   w.CivicationCalendar.setClock({ startDateISO: '2026-12-29', dayIndex: 1 });
   state.updateWallet({ balance: 200, old: 'preserved', nok_v1: { active: true, version: 1, config } });
   const date = '2026-12-29', mealId = 'oats-with-milk';
@@ -34,6 +36,15 @@ async function boot(seed) {
   assert.equal(shop.saveNokMealPlan({ [mealId]: 50 }).ok, true);
   assert.equal(shop.saveNokMealWeek(date, entries).ok, true);
   assert.equal(shop.getNokMealPlan().portions, 3);
+  assert.equal(w.CivicationMealPlan.getWeek().meals[0].breakfast, mealId);
+  assert.equal(w.CivicationMealPlan.getShoppingList().find(i => i.id === 'tine-milk-1l').quantity, 500);
+  assert.deepEqual(Array.from(w.CivicationMealPlan.getIngredientIdsByMeal().breakfast), ['axa-oats-1100g', 'tine-milk-1l']);
+  assert.equal(w.CivicationMealPlan.suggestionForTime({ currentMinutes: 480 }).recipeId, mealId);
+  assert.throws(() => w.CivicationMealPlan.applyTemplate('varied'), /dated NOK/);
+  assert.equal(w.localStorage.getItem('hg_civi_meal_plans_v1'), legacyPlan);
+  w.CivicationMealPlanUI.render();
+  assert.equal(w.document.querySelectorAll('#civiWeeklyMealPlanPanel select').length, 0, 'NOK has only one active planner');
+  assert.ok(w.document.querySelector('#civiWeeklyMealPlanPanel input[type=search]'), 'explicit Fysen archive search is preserved');
   assert.equal(shop.saveNokMealWeek(date, entries.slice().reverse()).skipped, true);
   assert.equal(state.getWallet().balance, 200);
   assert.equal(shop.getNokPantry().length, 0);

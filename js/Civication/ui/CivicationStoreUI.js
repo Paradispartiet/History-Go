@@ -138,7 +138,7 @@
       week.appendChild(summary);
       week.appendChild(node("p", "Velg én porsjon til frokost, lunsj, middag og kveldsmat på sju spilledager. Tomme felt betyr ingen plan. Lagring erstatter gjeldende matplan; kjøp gjøres separat."));
       const saved = shop.getNokMealWeek();
-      const today = window.CivicationCalendar?.getGameDate?.();
+      const today = (/** @type {any} */ (window)).CivicationCalendar?.getGameDate?.();
       week.open = saved.ok;
       const startLabel = node("label", "Første spilledato: ");
       const start = document.createElement("input"); start.type = "date";

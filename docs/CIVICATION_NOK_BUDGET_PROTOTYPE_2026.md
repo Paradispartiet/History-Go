@@ -470,3 +470,20 @@ melkepakning gir saldo 9 668,80 kr. Ukemenyen trenger 14,72 kr i ingredienser og
 10 331,20 kr; tilberedningen gir ingen ekstra utgift. To nye bilder per oppsett
 og kontroll av minst 44 px trykkhøyde og horisontal plass inngår. Ny CI og
 visuell kontroll må registreres på endringens faktiske head.
+
+
+### Samordning med rutearbeidets ukemeny
+
+Main sin eksisterende `CivicationMealPlan` beholdes for eldre kontoer, med sine
+illustrative oppskrifter og private lagringsnøkkel. I aktiv NOK-modus leser dens
+uke-, ingrediens-, handleliste- og tidsforslags-API-er den datofestede wallet-planen
+og faktiske produktmengder gjennom `HG_CiviShop`. Ingen oppskrift kobles bare på
+navnelikhet. Udaterte porsjonsplaner tolkes ikke som måltider på en bestemt dato.
+De gamle mutasjons-API-ene avviser NOK-redigering for å hindre en konkurrerende plan.
+
+Den eldre ukeeditoren skjules for NOK-kontoer; ruteinformasjon og uttrykkelig søk
+i Fysens offentlige menyarkiv beholdes. Opprinnelige lagrede planer slettes eller
+konverteres ikke. Integrasjonstesten kontrollerer felles lesemodell, faktisk
+beholdningsfradrag, bevart gammel lagring og én synlig ukeeditor. Dette kobler
+matplanen til eksisterende lokale ruteporter, men verifiserer ikke restaurantens
+nåværende meny, lager, åpningstid eller avstand til ruten.
