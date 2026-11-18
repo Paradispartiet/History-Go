@@ -2,6 +2,7 @@ name: PlaceCard media browser audit
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
     paths:
       - 'css/placeCard.css'
       - 'css/place-sheet.css'
@@ -44,7 +45,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  draft-focused:
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true
+    name: PlaceCard fast draft checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Verify PlaceCard syntax, state and sixteen QuizCard bindings
+        run: |
+          node --check js/ui/place-card.js
+          node --test tests/bottom-sheet-controller-reinit.test.mjs tests/oslo-v1-quizcard-manifest-binding.test.mjs
+
   placecard-media-browser:
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
