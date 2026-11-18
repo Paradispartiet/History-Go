@@ -200,6 +200,16 @@ function monthlyCashFlow(wallet, monthId, gameDateForDayIndex) {
     for (const row of list(nok.shopping?.purchases, 'requestId')) {
       add('grocery:' + row.requestId, row.gameDateISO, 'groceries', String(row.title || 'Varekjøp'), cents(row.amountNok));
     }
+    // Only settled purchase receipts count. Restaurant plans live in a different
+    // private store and must never enter actual cash flow by themselves.
+    for (const row of list(nok.restaurantPurchases, 'requestId')) {
+      if (typeof row.restaurantId !== 'string' || !row.restaurantId.trim()
+          || typeof row.dishName !== 'string' || !row.dishName.trim()
+          || !Number.isSafeInteger(row.amountMinor) || row.amountMinor < 0)
+        throw new Error('Invalid restaurant receipt');
+      add('restaurant:' + row.requestId, row.gameDateISO, 'restaurants',
+        'Restaurant: ' + row.dishName, row.amountMinor);
+    }
     for (const row of list(nok.transportPasses, 'id')) {
       if (!Number.isSafeInteger(row.startsAtGameMinute) || row.startsAtGameMinute < 1440
           || typeof gameDateForDayIndex !== 'function') throw new Error('Invalid transport date');
@@ -217,11 +227,13 @@ function monthlyCashFlow(wallet, monthId, gameDateForDayIndex) {
     const invoiceCents = sum('invoices');
     const groceryCents = sum('groceries');
     const transportCents = sum('transport');
-    const expenseCents = invoiceCents + groceryCents + transportCents;
+    const restaurantCents = sum('restaurants');
+    const expenseCents = invoiceCents + groceryCents + transportCents + restaurantCents;
     const netCents = incomeCents - expenseCents;
     if (!Number.isSafeInteger(expenseCents) || !Number.isSafeInteger(netCents)) throw new Error('Total outside supported range');
     entries.sort((a, b) => a.dateISO.localeCompare(b.dateISO) || a.id.localeCompare(b.id));
-    return { ok: true, monthId, incomeCents, invoiceCents, groceryCents, transportCents, expenseCents, netCents, entries };
+    return { ok: true, monthId, incomeCents, invoiceCents, groceryCents, transportCents,
+      restaurantCents, expenseCents, netCents, entries };
   } catch { return { ok: false, reason: 'INVALID_PAYMENT_HISTORY' }; }
 }
 const api = { preview, projectMonths, getElectricityProfile, monthlyCashFlow, getSalaryJobs, resolveSalaryJob, costOfLivingScenario };
