@@ -79,7 +79,7 @@ function findText(tag,text) {
 }
 assert.equal(calls.fysen.length,0,"opening the meal planner must not access Fysen");
 assert.equal(calls.ors.length,0,"opening the meal planner must not access ORS");
-assert(findText("summary","Restauranter nær arbeidsruten (forhåndsvisning)"));
+assert(findText("summary","Restauranter nær arbeidsruten"));
 const searchInput=host.visit().find(node=>node.tag==="input"&&node.placeholder==="F.eks. pasta");
 const timeInput=host.visit().find(node=>node.tag==="input"&&node.type==="time");
 const searchButton=findText("button","Finn nær ruten");
@@ -106,7 +106,7 @@ timeInput.value="11:00";
   assert.equal(calls.ors[0].inputRoute,route);
   assert.equal(calls.ors[0].inputCandidate,candidate);
   const status=via.parentNode.children.find(node=>node.tag==="p");
-  assert(status.textContent.includes("Kjøkkenåpning og tilbud er ikke bekreftet"));
+  assert(status.textContent.includes("Restaurantopplysningene er veiledende"));
   // The initial successful lookup must not authorize a later ORS call
   // if the player removes/changes the private commute in the meantime.
   currentRoutes=[];
