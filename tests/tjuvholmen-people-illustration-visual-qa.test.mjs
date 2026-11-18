@@ -57,7 +57,7 @@ assert.equal(melgaard.alternative.status,"NEW_LOCAL_V2_CANDIDATE_NOT_COMMITTED_N
 assert.equal(melgaard.alternative.sha256,manifest.people.find(x=>x.person_id==="bjarne_melgaard").local_v2_candidate_not_committed.sha256);
 assert.deepEqual(melgaard.alternative.dimensions,[900,1200]);
 assert.equal(fs.existsSync(path.join(root,melgaard.alternative.expected_staged_path)),false,"Unapproved v2 must not be committed silently");
-assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","brands","structures"]);
+assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","objects","brands","structures"]);
 assert.equal(runtime.people.length,5);
 assert.equal(runtime.brands.length,3);
 assert.equal(runtime.place.structures.length,3);
