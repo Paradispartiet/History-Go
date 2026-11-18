@@ -47,7 +47,11 @@ assert.equal(found.candidates[0].routeId,route.id);
 assert.equal(found.candidates[0].onRoute,"unverified");
 assert.equal(found.candidates[0].detourMinutes,null,"geometric distance is not a road detour");
 assert.equal(found.candidates[0].kitchenOpenAtPassTime,"unknown");
-assert.equal(found.candidates[0].priceMinor,null,"no unverified current prices");
+assert.equal(found.candidates[0].priceMinor,null,"price is null when Fysen has not supplied one");
+const priced={...near,dish:{...near.dish,priceMinor:16900,priceKind:"exact",currency:"NOK"}};
+assert.equal(select({response:{...response,results:[priced]}}).candidates[0].priceMinor,16900,
+  "Fysens NOK menu price reaches the local corridor candidate");
+assert.equal(select({response:{...response,results:[{...priced,dish:{...priced.dish,currency:"EUR"}}]}}).candidates[0].priceMinor,null);
 assert.equal(select({response:{...response,city:"Bergen"}}).status,"verified_public_results_required");
 assert.equal(select({route:{...route,roadGeometry:{}}}).status,"verified_route_required");
 assert.equal(select({route:{...route,routeEvidence:null}}).status,"verified_route_required");

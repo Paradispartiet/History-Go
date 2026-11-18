@@ -76,7 +76,7 @@
       return { version: VERSION, weeks: {} };
     }
   }
-  function makeWeek(key) { return { weekKey: key, people: 2, meals: {} }; }
+  function makeWeek(key) { return { weekKey: key, people: 2, meals: {}, restaurantMeals: {}, restaurantBudgetNok: null }; }
   function getWeek(rawKey) {
     const key = weekKey(rawKey);
     const stored = readStore().weeks[key];
@@ -103,6 +103,7 @@
     if (!week.meals[day]) week.meals[day] = {};
     if (recipeId === null) delete week.meals[day][meal];
     else week.meals[day][meal] = recipeId;
+    if (week.restaurantMeals?.[day]) delete week.restaurantMeals[day][meal];
     return saveWeek(week);
   }
   function setPeople(people, rawKey) {
@@ -125,8 +126,80 @@
       }
     }
     week.meals = meals;
+    week.restaurantMeals = {};
     return saveWeek(week);
   }
+  // Planning only: public Fysen restaurant prices are NOK øre per serving.
+  // Never debit PC, simulate eating, contact a restaurant or create AHA records.
+  function setRestaurantBudgetNok(amount, rawKey) {
+    if (amount !== null && (!Number.isSafeInteger(amount) || amount < 0 || amount > 100000)) {
+      throw new Error("Invalid weekly restaurant budget");
+    }
+    const week = getWeek(rawKey);
+    week.restaurantBudgetNok = amount;
+    return saveWeek(week);
+  }
+  function setRestaurantMeal(day, meal, place, rawKey) {
+    if (!validDay(day) || !validMeal(meal)) throw new Error("Invalid restaurant meal slot");
+    const week = getWeek(rawKey);
+    if (!week.restaurantMeals || typeof week.restaurantMeals !== "object") week.restaurantMeals = {};
+    if (place === null) {
+      if (week.restaurantMeals[day]) delete week.restaurantMeals[day][meal];
+      return saveWeek(week);
+    }
+    if (!place || typeof place !== "object" ||
+        typeof place.restaurantId !== "string" || !place.restaurantId.trim() ||
+        place.restaurantId.length > 150 ||
+        typeof place.name !== "string" || !place.name.trim() || place.name.length > 200 ||
+        typeof place.dishName !== "string" || !place.dishName.trim() || place.dishName.length > 300 ||
+        !Number.isSafeInteger(place.portions) || place.portions < 1 || place.portions > 12 ||
+        (place.priceMinor !== null && place.priceMinor !== undefined &&
+          (!Number.isSafeInteger(place.priceMinor) || place.priceMinor < 0 || place.priceMinor > 5000000))) {
+      throw new Error("Invalid restaurant meal");
+    }
+    if (!week.restaurantMeals[day]) week.restaurantMeals[day] = {};
+    week.restaurantMeals[day][meal] = {
+      restaurantId: place.restaurantId,
+      name: place.name.trim(),
+      dishName: place.dishName.trim(),
+      portions: place.portions,
+      priceMinor: place.priceMinor ?? null
+    };
+    if (week.meals[day]) delete week.meals[day][meal];
+    return saveWeek(week);
+  }
+  function getRestaurantSummary(rawKey) {
+    const week = getWeek(rawKey);
+    const budget = Number.isSafeInteger(week.restaurantBudgetNok) &&
+      week.restaurantBudgetNok >= 0 && week.restaurantBudgetNok <= 100000
+      ? week.restaurantBudgetNok : null;
+    const entries = [];
+    let pricedTotalMinor = 0;
+    let unpriced = 0;
+    for (let day = 0; day < 7; day++) {
+      for (const meal of Object.keys(MEALS)) {
+        const item = week.restaurantMeals?.[day]?.[meal];
+        if (!item || typeof item.name !== "string" || typeof item.dishName !== "string" ||
+            !Number.isSafeInteger(item.portions) || item.portions < 1 || item.portions > 12) continue;
+        const priceMinor = Number.isSafeInteger(item.priceMinor) &&
+          item.priceMinor >= 0 && item.priceMinor <= 5000000 ? item.priceMinor : null;
+        if (priceMinor === null) unpriced++;
+        else pricedTotalMinor += priceMinor * item.portions;
+        entries.push({
+          day, meal, name:item.name, dishName:item.dishName,
+          portions:item.portions, priceMinor
+        });
+      }
+    }
+    const budgetMinor = budget === null ? null : budget * 100;
+    return {
+      currency:"NOK", budgetNok:budget, budgetMinor,
+      plannedMinor:pricedTotalMinor, unpricedMeals:unpriced,
+      remainingMinor:budgetMinor === null ? null : budgetMinor - pricedTotalMinor,
+      meals:entries
+    };
+  }
+
   function getRecipes(meal) {
     if (!validMeal(meal)) throw new Error("Invalid meal type");
     return Object.entries(RECIPES).filter(([, value]) => value.meals.includes(meal))
@@ -188,6 +261,7 @@
     MEALS: Object.freeze(clone(MEALS)),
     templates: () => Object.entries(TEMPLATES).map(([id, data]) => ({ id, label: data.label })),
     getWeekKey, getWeek, getRecipes, setMeal, setPeople, applyTemplate,
-    getShoppingList, getIngredientIdsByMeal, suggestionForTime
+    getShoppingList, getIngredientIdsByMeal, suggestionForTime,
+    setRestaurantBudgetNok, setRestaurantMeal, getRestaurantSummary
   });
 })();

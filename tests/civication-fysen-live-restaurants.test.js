@@ -18,7 +18,7 @@ const menu={
 const candidate={
   restaurant:{id:"demo-restaurant",name:"Prøverestaurant",address:"Syntetisk adresse, Oslo",
     city:"Oslo",latitude:59.91,longitude:10.75},
-  dish:{name:"Pasta",priceMinor:19900},
+  dish:{name:"Pasta",priceMinor:19900,priceKind:"exact",currency:"NOK"},
   menu,match:{type:"exact"},
   opening:{state:"open"}
 };
@@ -47,7 +47,9 @@ const client=window.CivicationFysenLiveRestaurants;
   assert.equal(result.results.length,1);
   assert.equal(result.results[0].restaurant.id,"demo-restaurant");
   assert.equal(result.results[0].menu.sourceUrl,menu.sourceUrl);
-  assert.equal(result.results[0].dish.priceMinor,undefined,"never pass a live price to route UI");
+  assert.equal(result.results[0].dish.priceMinor,19900,"Fysens oppgitte pris brukes som veiledende NOK-menypris");
+  assert.equal(result.results[0].dish.currency,"NOK");
+  assert.equal(result.priceAvailable,true);
   assert.equal(result.results[0].opening,undefined,"open-now must not imply future kitchen availability");
   assert.equal(result.routeMatched,false);
   assert.equal(result.kitchenOpenAtPassTime,"unknown");
@@ -62,6 +64,10 @@ const client=window.CivicationFysenLiveRestaurants;
   assert.equal((await client.lookup("pasta",{consent:true,now})).results.length,0);
   mockData={...original,results:[{...candidate,match:{type:"fuzzy"}}]};
   assert.equal((await client.lookup("pasta",{consent:true,now})).results.length,0);
+  mockData={...original,results:[{...candidate,dish:{...candidate.dish,currency:"EUR"}}]};
+  assert.equal((await client.lookup("pasta",{consent:true,now})).results[0].dish.priceMinor,null);
+  mockData={...original,results:[{...candidate,dish:{...candidate.dish,priceMinor:-5}}]};
+  assert.equal((await client.lookup("pasta",{consent:true,now})).results[0].dish.priceMinor,null);
   mockData={...original,city:"Trondheim"};
   assert.equal((await client.lookup("pasta",{consent:true,now})).status,"INVALID_RESPONSE");
   mockData={...original,query:"private request"};
