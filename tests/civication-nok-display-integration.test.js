@@ -35,7 +35,7 @@ assert.ok(w.document.getElementById('homeStatusContent').textContent.includes('I
 w.openDistrictSelector();
 const list = w.document.getElementById('districtList');
 assert.ok(list.textContent.includes('Statistisk startprofil'));
-assert.equal(list.querySelector('[data-civi-district-select="grunerlokka"]').disabled, true);
+assert.equal(list.querySelector('[data-civi-district-select="grunerlokka"]').disabled, false, 'sourced rental choice unlocks Grünerløkka');
 assert.equal(list.querySelector('[data-civi-district-select="sagene"]').disabled, false);
 state.updateWallet({ balance: 20000, nok_v1: { active: false } });
 w.CivicationUI.renderCivicationSummary();
