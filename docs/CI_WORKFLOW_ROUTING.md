@@ -34,6 +34,27 @@ gate.
 - Place Rounds owns its shared UI and explicitly named legacy place contracts.
   Global story, people, brand and place-index outputs do not trigger it.
 
+## Civication: rask utvikling, full sluttkontroll
+
+Civication-PR-er skal normalt opprettes som **utkast**. På hvert push til et utkast
+kjører en rask CI-sjekk av endrede Civication-artefakter og relevante
+rolletester. For renholder sjekkes også aktiv stilling/gjenoppretting og
+dag-8/9-scenene. TypeScript, kontolagring og dokumentasjonskontroller beholder
+sine eksisterende filbaserte utløsere.
+
+De tre tunge arbeidsflytene (full Civication-regresjon, Civication browser
+smoke og seks renholder-nettleserløp) kjøres **ikke på hvert draft-push**.
+Når PR-en markeres **Ready for review**, kjører alle relevante tunge kontroller.
+Et nytt push til en allerede klar PR kjører dem på nytt. Manuell dispatch og
+planlagt nattkjøring beholder full testdybde. In-progress-jobber fra eldre
+commits avbrytes med eksisterende concurrency-policy.
+
+**Merge-regel:** Ikke merge fra utkast, eller med feilende eller ventende
+sluttkontroller. Alle påkrevde resultatene skal gjelde siste HEAD. Draft-gaten
+erstatter aldri sluttkontrollen; den gir bare tidligere, rimeligere feedback.
+Ikke synkroniser med `main` bare fordi en irrelevant commit har kommet, med
+mindre merge-regel/konflikt krever det.
+
 ## Pull requests versus main
 
 Read-only validation runs on pull requests. `main-integrity.yml` then verifies the
