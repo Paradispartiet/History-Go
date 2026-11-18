@@ -29,6 +29,21 @@
     if (tag === "button") el.style.minHeight = "44px";
     return el;
   }
+  // Read existing owners only; this summary never advances the day or settles money.
+  function dailyOverview() {
+    const wallet = root.CivicationState?.getWallet?.();
+    if (wallet?.nok_v1?.active !== true || wallet.nok_v1.version !== 1) return null;
+    const date = root.CivicationCalendar?.getGameDate?.();
+    if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
+    const invoices = wallet.nok_v1.invoices;
+    const due = Array.isArray(invoices) ? invoices.filter(i => i?.status === "pending"
+      && typeof i.dueDateISO === "string" && /^\d{4}-\d{2}-\d{2}$/.test(i.dueDateISO) && i.dueDateISO <= date) : null;
+    const week = root.HG_CiviShop?.getNokMealWeek?.();
+    return { date, jobTitle: root.CivicationState?.getActivePosition?.()?.title || null,
+      dueCount: due?.length ?? null,
+      mealsToday: week?.ok ? week.entries.filter(e => e.date === date).length : null,
+      shoppingCostCents: week?.ok ? week.shoppingCostCents : null };
+  }
   function render() {
     const host = document.getElementById("civiEconomyPanel");
     if (!host) return;
@@ -70,6 +85,19 @@
         panel.appendChild(activate);
       }
     } else {
+      const today = dailyOverview();
+      if (today) {
+        const daily = node("section"); daily.setAttribute("data-nok-daily-overview", "");
+        daily.appendChild(node("h4", "Hverdagen i dag · " + today.date));
+        daily.appendChild(node("p", today.jobTitle ? "Aktiv jobb: " + today.jobTitle : "Ingen aktiv jobb registrert."));
+        daily.appendChild(node("p", today.dueCount === null ? "Regningsoversikten er utilgjengelig."
+          : "Ubetalte regninger med forfall senest i dag: " + today.dueCount));
+        daily.appendChild(node("p", today.mealsToday === null ? "Velg en datofestet ukemeny i butikken."
+          : "Planlagte måltider som gjenstår i dag: " + today.mealsToday));
+        if (today.shoppingCostCents !== null) daily.appendChild(node("p", "Manglende pakninger for ukemenyen: "
+          + money(today.shoppingCostCents / 100) + " kr. Kjøp og tilberedning velges i butikken."));
+        panel.appendChild(daily);
+      }
       const month = root.CivicationCalendar?.getMonthPeriod?.();
       panel.appendChild(node("p", "Spillmåned: " + (month?.id || "Ukjent")));
       const cashFlow = root.CivicationNokBudget?.monthlyCashFlow?.(wallet, month?.id,
@@ -189,7 +217,7 @@
       (next && !next.disabled ? next : heading).focus({ preventScroll: true });
     }
   }
-  root.CivicationEconomyUI = { render, loadActivationConfig };
+  root.CivicationEconomyUI = { render, loadActivationConfig, dailyOverview };
   document.addEventListener("DOMContentLoaded", function () {
     render();
     void loadActivationConfig();
