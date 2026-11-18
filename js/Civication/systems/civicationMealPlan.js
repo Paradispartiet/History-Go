@@ -210,6 +210,69 @@
     };
   }
 
+  // An explicit game purchase is the ONLY path from a restaurant plan to the
+  // canonical NOK wallet. No booking, payment to a real restaurant or API call.
+  function purchaseRestaurantMeal(day, meal, requestId, rawKey) {
+    if (!validDay(day) || !validMeal(meal)) return { ok:false, reason:"INVALID_SLOT" };
+    if (typeof requestId !== "string" || !/^[a-zA-Z0-9:_-]{8,120}$/.test(requestId))
+      return { ok:false, reason:"INVALID_REQUEST_ID" };
+    let wallet;
+    try { wallet = window.CivicationState?.getWallet?.(); } catch {}
+    if (wallet?.nok_v1?.active !== true || wallet.nok_v1.version !== 1 ||
+        typeof window.CivicationState?.updateWallet !== "function")
+      return { ok:false, reason:"NOK_NOT_ACTIVE" };
+    const index = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+    if (!Number.isSafeInteger(index) || index < 1) return { ok:false, reason:"INVALID_GAME_DAY" };
+    const currentWeek = getWeekKey(index);
+    const requestedWeek = rawKey == null ? currentWeek : weekKey(rawKey);
+    if (requestedWeek !== currentWeek || day !== (index - 1) % 7)
+      return { ok:false, reason:"NOT_CURRENT_MEAL_DAY" };
+    const place = getWeek(currentWeek).restaurantMeals?.[day]?.[meal];
+    if (!place || place.priceKind !== "exact" ||
+        !Number.isSafeInteger(place.priceMinor) || place.priceMinor <= 0 ||
+        place.priceMinor > 5000000 || !Number.isSafeInteger(place.portions) ||
+        place.portions < 1 || place.portions > 12)
+      return { ok:false, reason:"EXACT_PRICE_REQUIRED" };
+    const receipts = wallet.nok_v1.restaurantPurchases ?? [];
+    if (!Array.isArray(receipts) || receipts.some(row => !row || typeof row !== "object" ||
+        typeof row.requestId !== "string" || typeof row.weekKey !== "string" ||
+        !validDay(row.day) || !validMeal(row.meal) ||
+        !Number.isSafeInteger(row.amountMinor) || row.amountMinor < 0) ||
+        new Set(receipts.map(row => row.requestId)).size !== receipts.length)
+      return { ok:false, reason:"INVALID_PURCHASE_HISTORY" };
+    const slot = receipts.find(row =>
+      row.weekKey === currentWeek && row.day === day && row.meal === meal);
+    if (slot) return slot.requestId === requestId
+      ? { ok:true, applied:false, reason:"ALREADY_PURCHASED", receipt:clone(slot) }
+      : { ok:false, reason:"MEAL_ALREADY_PURCHASED" };
+    if (receipts.some(row => row.requestId === requestId))
+      return { ok:false, reason:"REQUEST_ID_CONFLICT" };
+    const amountMinor = place.priceMinor * place.portions;
+    const balance = wallet.balance;
+    const balanceMinor = typeof balance === "number" && Number.isFinite(balance)
+      ? Math.round(balance * 100) : null;
+    if (balanceMinor === null || !Number.isSafeInteger(balanceMinor) ||
+        Math.abs(balance * 100 - balanceMinor) > 0.000001)
+      return { ok:false, reason:"INVALID_NOK_BALANCE" };
+    if (amountMinor > balanceMinor) return { ok:false, reason:"INSUFFICIENT_FUNDS" };
+    const date = window.CivicationCalendar?.getGameDate?.(index);
+    if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date))
+      return { ok:false, reason:"INVALID_GAME_DATE" };
+    const receipt = {
+      requestId, weekKey:currentWeek, day, meal,
+      restaurantId:place.restaurantId, dishName:place.dishName,
+      portions:place.portions, amountMinor, gameDateISO:date
+    };
+    try {
+      window.CivicationState.updateWallet({
+        ...wallet, balance:(balanceMinor - amountMinor) / 100,
+        nok_v1:{ ...wallet.nok_v1,
+          restaurantPurchases:receipts.concat(receipt).slice(-1000) }
+      });
+    } catch { return { ok:false, reason:"WALLET_WRITE_FAILED" }; }
+    return { ok:true, applied:true, receipt:clone(receipt) };
+  }
+
   // Read-only finance bridge. Existing PC balances MUST NOT be displayed as NOK.
   // The NOK runtime, when activated, keeps the same canonical wallet and 1 PC = 1 NOK.
   // A forecast is never a charge, reservation, or proof of available funds at checkout.
@@ -218,6 +281,18 @@
     let wallet = null;
     try { wallet = window.CivicationState?.getWallet?.() || null; } catch {}
     const nokActive = wallet?.nok_v1?.active === true && wallet.nok_v1.version === 1;
+    const receipts = nokActive && Array.isArray(wallet.nok_v1.restaurantPurchases)
+      ? wallet.nok_v1.restaurantPurchases : [];
+    const purchased = receipts.filter(row =>
+      row && row.weekKey === weekKey(rawKey) && validDay(row.day) &&
+      validMeal(row.meal) && Number.isSafeInteger(row.amountMinor) &&
+      row.amountMinor >= 0);
+    const purchasedSlots = purchased.map(row => row.day + ":" + row.meal);
+    const paidSlots = new Set(purchasedSlots);
+    const unpaidPlannedMinor = restaurant.meals.reduce((sum, entry) =>
+      paidSlots.has(entry.day + ":" + entry.meal) || entry.priceMinor === null
+        ? sum : sum + entry.priceMinor * entry.portions, 0);
+    const purchasedMinor = purchased.reduce((sum, row) => sum + row.amountMinor, 0);
     const rawBalance = nokActive ? wallet.balance : null;
     const rounded = typeof rawBalance === "number" && Number.isFinite(rawBalance)
       ? Math.round(rawBalance * 100) : null;
@@ -227,7 +302,8 @@
       ...restaurant,
       nokActive,
       balanceMinor,
-      afterKnownPlansMinor: balanceMinor === null ? null : balanceMinor - restaurant.plannedMinor,
+      afterKnownPlansMinor: balanceMinor === null ? null : balanceMinor - unpaidPlannedMinor,
+      unpaidPlannedMinor, purchasedMinor, purchasedSlots,
       hasUncertainPrices: restaurant.unpricedMeals > 0 || restaurant.fromMeals > 0 ||
         restaurant.unspecifiedPriceKindMeals > 0,
       // This projection does not edit balance or create any payment history.
@@ -298,6 +374,6 @@
     getWeekKey, getWeek, getRecipes, setMeal, setPeople, applyTemplate,
     getShoppingList, getIngredientIdsByMeal, suggestionForTime,
     setRestaurantBudgetNok, setRestaurantMeal, getRestaurantSummary,
-    getRestaurantFinanceSnapshot
+    getRestaurantFinanceSnapshot, purchaseRestaurantMeal
   });
 })();
