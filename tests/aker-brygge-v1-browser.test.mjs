@@ -42,7 +42,7 @@ try{
     const result=await page.evaluate(()=>{
       const card=document.getElementById("placeCard"),h=document.getElementById("pcHeaderImage"),f=document.getElementById("pcFrontImage");
       const brands=document.getElementById("pcBrandsIcon"),people=document.getElementById("pcPeopleIcon");
-      return {hero:h?.getAttribute("src"),front:f?.getAttribute("src"),profile:card?.dataset.collectionProfileSource,count:card?.dataset.collectionCount,grid:card?.dataset.collectionGridCount,brandsVisible:!!brands&&!brands.hidden,peopleVisible:!!people&&!people.hidden};
+      return {hero:h?.getAttribute("src"),front:f?.getAttribute("src"),profile:card?.dataset.collectionProfileSource,count:card?.dataset.collectionCount,grid:card?.dataset.collectionGridCount,peoplePreview:people?.querySelector("img.pc-person-img")?.getAttribute("src"),brandsVisible:!!brands&&!brands.hidden,peopleVisible:!!people&&!people.hidden};
     });
     assert.ok(result.hero?.endsWith(place.image),tag+": hero path "+result.hero);
     assert.ok(result.front?.endsWith(place.frontImage),tag+": front path "+result.front);
@@ -50,6 +50,7 @@ try{
     assert.equal(result.count,"1",tag+": one image-ready People collection");
     assert.equal(result.grid,"0",tag+": no empty grid collections");
     assert.ok(!result.brandsVisible&&result.peopleVisible,tag+": no empty Brands preview; People visible");
+    assert.ok(result.peoplePreview?.startsWith("bilder/kort/people/"),tag+": real People preview image");
     await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("has-quiz-card")||!!document.querySelector("#pcQuizCardContent .pc-rendered-quiz-card"),null,{timeout:40000});
     await page.locator("#pcFrontCardFlip").click({timeout:20000});
     await page.waitForFunction(()=>document.querySelector("#pcFrontCardFlip")?.classList.contains("is-flipped"),null,{timeout:10000});
