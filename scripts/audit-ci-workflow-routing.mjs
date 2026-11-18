@@ -414,26 +414,26 @@ export function auditWorkflowRouting() {
     failures.push('main-integrity.yml: merged-PR fallback is not locked to the merge SHA');
   }
 
-  // Heavy PlaceCard browser suites must run at review readiness and on every
-  // subsequent push, never silently disappear from the merge acceptance path.
-  // Drafts still run their own focused functional/contract checks.
+  // Guard the two draft-gated heavy suites: final browser acceptance must
+  // always rerun on ready-for-review and on subsequent ready-PR commits.
   for (const [file, fullJob, focusedTest] of [
     ['placecard-media-browser-audit.yml', 'placecard-media-browser', 'tests/oslo-v1-quizcard-manifest-binding.test.mjs'],
     ['by-v1-twenty-app-qa.yml', 'browser', 'tests/by-v1-twenty-fullquiz-contract.test.mjs'],
   ]) {
     const source = workflows.find((workflow) => workflow.file === file)?.source ?? '';
     const trigger = eventBlock(source, 'pull_request') ?? '';
-    if (!/types:\\s*\\[[^\\]]*\\bready_for_review\\b[^\\]]*\\]/.test(trigger)) {
-      failures.push(`${file}: full browser checks must trigger on ready_for_review`);
+    const eol = String.fromCharCode(10);
+    if (!trigger.includes('types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]')) {
+      failures.push(`${file}: ready_for_review and subsequent-push triggers are required`);
     }
-    if (!source.includes("  draft-focused:\\n    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true".replace('\\n', '\\n'))) {
+    if (!source.includes(['  draft-focused:', "    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true"].join(eol))) {
       failures.push(`${file}: focused draft validation is missing`);
     }
-    if (!source.includes(`  ${fullJob}:\\n    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false`.replace('\\n', '\\n'))) {
+    if (!source.includes([`  ${fullJob}:`, "    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false"].join(eol))) {
       failures.push(`${file}: browser acceptance must run for ready PRs and manual dispatch`);
     }
     if (!source.includes(focusedTest)) failures.push(`${file}: focused draft contract check is missing`);
-    if (!eventBlock(source, 'workflow_dispatch')) failures.push(`${file}: full manual acceptance entrypoint is missing`);
+    if (!eventBlock(source, 'workflow_dispatch')) failures.push(`${file}: manual full acceptance entrypoint is missing`);
   }
 
   const scenarios = [];
