@@ -414,6 +414,28 @@ export function auditWorkflowRouting() {
     failures.push('main-integrity.yml: merged-PR fallback is not locked to the merge SHA');
   }
 
+  // Heavy PlaceCard browser suites must run at review readiness and on every
+  // subsequent push, never silently disappear from the merge acceptance path.
+  // Drafts still run their own focused functional/contract checks.
+  for (const [file, fullJob, focusedTest] of [
+    ['placecard-media-browser-audit.yml', 'placecard-media-browser', 'tests/oslo-v1-quizcard-manifest-binding.test.mjs'],
+    ['by-v1-twenty-app-qa.yml', 'browser', 'tests/by-v1-twenty-fullquiz-contract.test.mjs'],
+  ]) {
+    const source = workflows.find((workflow) => workflow.file === file)?.source ?? '';
+    const trigger = eventBlock(source, 'pull_request') ?? '';
+    if (!/types:\\s*\\[[^\\]]*\\bready_for_review\\b[^\\]]*\\]/.test(trigger)) {
+      failures.push(`${file}: full browser checks must trigger on ready_for_review`);
+    }
+    if (!source.includes("  draft-focused:\\n    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true".replace('\\n', '\\n'))) {
+      failures.push(`${file}: focused draft validation is missing`);
+    }
+    if (!source.includes(`  ${fullJob}:\\n    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false`.replace('\\n', '\\n'))) {
+      failures.push(`${file}: browser acceptance must run for ready PRs and manual dispatch`);
+    }
+    if (!source.includes(focusedTest)) failures.push(`${file}: focused draft contract check is missing`);
+    if (!eventBlock(source, 'workflow_dispatch')) failures.push(`${file}: full manual acceptance entrypoint is missing`);
+  }
+
   const scenarios = [];
   for (const scenario of routingScenarios) {
     const routes = scenarioRoutes(workflows, scenario.paths);
