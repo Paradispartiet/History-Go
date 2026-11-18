@@ -44,7 +44,30 @@
       mealsToday: week?.ok ? week.entries.filter(e => e.date === date).length : null,
       shoppingCostCents: week?.ok ? week.shoppingCostCents : null };
   }
+  function renderDailyLifeOverview() {
+    const dayPanel = document.getElementById("civiLifestoryPanel");
+    const previous = document.getElementById("civiNokDailyLifeOverview");
+    const today = dailyOverview();
+    if (!dayPanel || !today) { previous?.remove(); return; }
+    const section = previous || node("details");
+    section.id = "civiNokDailyLifeOverview";
+    const wasOpen = /** @type {HTMLDetailsElement} */ (section).open;
+    section.replaceChildren();
+    const summary = node("summary", "Min hverdag · " + today.date);
+    summary.style.minHeight = "44px"; section.appendChild(summary);
+    section.appendChild(node("p", today.jobTitle ? "Jobb: " + today.jobTitle : "Ingen aktiv jobb registrert."));
+    section.appendChild(node("p", today.dueCount === null ? "Regningsoversikten er utilgjengelig."
+      : "Ubetalte regninger med forfall senest i dag: " + today.dueCount));
+    section.appendChild(node("p", today.mealsToday === null ? "Velg en datofestet ukemeny i butikken."
+      : "Måltider som gjenstår i dag: " + today.mealsToday));
+    if (today.shoppingCostCents !== null) section.appendChild(node("p", "Manglende varer til ukemenyen: "
+      + money(today.shoppingCostCents / 100) + " kr"));
+    section.appendChild(node("p", "Betal regninger i Min økonomi. Planlegg, kjøp og lag mat i Butikker under Kommers."));
+    /** @type {HTMLDetailsElement} */ (section).open = wasOpen;
+    dayPanel.before(section);
+  }
   function render() {
+    renderDailyLifeOverview();
     const host = document.getElementById("civiEconomyPanel");
     if (!host) return;
     const focused = host.contains(document.activeElement);
@@ -217,7 +240,7 @@
       (next && !next.disabled ? next : heading).focus({ preventScroll: true });
     }
   }
-  root.CivicationEconomyUI = { render, loadActivationConfig, dailyOverview };
+  root.CivicationEconomyUI = { render, loadActivationConfig, dailyOverview, renderDailyLifeOverview };
   document.addEventListener("DOMContentLoaded", function () {
     render();
     void loadActivationConfig();
