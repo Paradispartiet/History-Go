@@ -35,7 +35,7 @@ assert.equal(JSON.stringify(w.CivicationState.getWallet()),before,
   'selecting and previewing a size cannot write wallet or a lease');
 assert.equal(sageneSelect().value,fourRoom.id);
 const card=sageneSelect().closest('.civi-district-card');
-assert.match(card.textContent,/23\\s?200 kr\\/mnd/);
+assert.match(card.textContent,/23\s?200 kr\/mnd/);
 assert.match(card.textContent,/1234 kr per hel måned/);
 assert.match(card.textContent,/1000 kWh antatt forbruk/);
 card.querySelector('[data-civi-district-select="sagene"]').click();
@@ -46,7 +46,7 @@ assert.equal(wallet.nok_v1.recurringBills.length,1);
 assert.equal(wallet.nok_v1.recurringBills[0].amountNok,23200);
 assert.equal(wallet.balance,50000,'contract signing does not automatically pay the rent');
 assert.match(w.document.querySelector('#homeStatusContent').textContent,
-  /23\\s?200 kr \\/ måned/);
+  /23\s?200 kr \/ måned/);
 const saved=JSON.stringify(wallet);
 w.CivicationHome.selectDistrict('sagene',fourRoom.id);
 assert.equal(JSON.stringify(w.CivicationState.getWallet()),saved,
