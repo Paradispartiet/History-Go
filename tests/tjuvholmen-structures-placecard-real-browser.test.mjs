@@ -70,12 +70,20 @@ try{
         document.getElementById("pcCategoryCollectionIcon")?.dataset.collectionId==="structures",
         null,{timeout:40000});
       const card=page.locator("#placeCard");
+      // Wait for the current v2 collection adapter after canonical hydration.
+      // The People collection is displayed separately, so only three of the
+      // four configured collections occupy icon-grid slots.
       await page.waitForFunction(()=>{
         const card=document.getElementById("placeCard");
-        const objects=document.getElementById("pcObjectsIcon");
-        return card?.dataset.collectionCount==="4" && objects?.dataset.collectionItemCount==="8";
+        return card?.dataset.collectionProfileSource==="place_card_profile_v2"
+          && card?.dataset.collectionCount==="4"
+          && card?.dataset.collectionGridCount==="3"
+          && document.getElementById("pcObjectsIcon")?.dataset.collectionItemCount==="8";
       },null,{timeout:30000});
+      assert.equal(await card.getAttribute("data-collection-profile-source"),
+        "place_card_profile_v2",tag+": canonical v2 profile");
       assert.equal(await card.getAttribute("data-collection-count"),"4",tag+": four collections");
+      assert.equal(await card.getAttribute("data-collection-grid-count"),"3",tag+": three gallery slots plus People");
       const structuresTile=page.locator('button[data-pc-round-gallery-item="pcCategoryCollectionIcon"]');
       try {
         await structuresTile.waitFor({state:"visible",timeout:20000});
@@ -104,6 +112,7 @@ try{
       await page.locator('button[data-pc-round-gallery-item="pcBrandsIcon"]').waitFor({state:"visible",timeout:15000});
       const objectsTile=page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]');
       await objectsTile.waitFor({state:"visible",timeout:15000});
+      assert.equal(await objectsTile.count(),1,tag+": illustrated Objects gallery tile");
       assert.match(await objectsTile.locator("img").getAttribute("alt") || "",/Illustrasjon – ikke fotografi/);
 
       await page.waitForFunction(()=>{

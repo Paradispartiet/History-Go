@@ -107,7 +107,10 @@
         onRoute: "unverified",
         detourMinutes: null,
         kitchenOpenAtPassTime: "unknown",
-        priceMinor: null,
+        priceMinor: row.dish?.currency === "NOK" && Number.isSafeInteger(row.dish?.priceMinor) &&
+          row.dish.priceMinor >= 0 && row.dish.priceMinor <= 5000000 ? row.dish.priceMinor : null,
+        priceKind: ["exact", "from", "multiple"].includes(row.dish?.priceKind) ? row.dish.priceKind : "exact",
+        currency: "NOK",
         source: "fysen_verified_public_menu"
       });
     }

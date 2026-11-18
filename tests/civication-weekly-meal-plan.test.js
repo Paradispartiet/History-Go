@@ -55,6 +55,37 @@ assert(oats1.required > 100);
 assert.equal(oats2.quantity, oats1.quantity - 100, "pantry deduction can remove verified on-hand quantity");
 assert.equal(shopping.some(x => x.price || x.storeId || x.availableNow), false, "never invent store stock or prices");
 
+// A restaurant pick replaces the home-cooked recipe for the same slot, but never purchases food.
+plan.setRestaurantBudgetNok(1000);
+assert.equal(plan.getRestaurantSummary().budgetNok,1000);
+const beforeChicken = plan.getShoppingList().find(row=>row.id==="kylling")?.quantity;
+plan.setRestaurantMeal(3,"dinner",{
+  restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Pasta",
+  portions:2,priceMinor:14550
+});
+const restaurantSummary=plan.getRestaurantSummary();
+assert.equal(restaurantSummary.plannedMinor,29100);
+assert.equal(restaurantSummary.remainingMinor,70900);
+assert.equal(restaurantSummary.meals.length,1);
+assert.equal(restaurantSummary.meals[0].day,3);
+assert.equal(plan.getWeek().meals[3].dinner,undefined);
+assert(!plan.getShoppingList().some(row=>row.id==="kylling"),
+  "restaurant dinner excludes the old ingredient shopping list");
+plan.setMeal(3,"dinner","chicken");
+assert.equal(plan.getRestaurantSummary().meals.length,0,
+  "selecting home cooking replaces an earlier restaurant plan");
+assert.equal(plan.getShoppingList().find(row=>row.id==="kylling")?.quantity,beforeChicken);
+assert.throws(()=>plan.setRestaurantMeal(7,"dinner",null),/Invalid restaurant meal slot/);
+assert.throws(()=>plan.setRestaurantMeal(0,"dinner",{restaurantId:"x",name:"Restaurant",dishName:"Pasta",portions:1,priceMinor:-1}),/Invalid restaurant meal/);
+assert.throws(()=>plan.setRestaurantBudgetNok(-1),/Invalid weekly restaurant budget/);
+plan.setRestaurantMeal(2,"lunch",{
+  restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Suppe",
+  portions:1,priceMinor:null
+});
+assert.equal(plan.getRestaurantSummary().unpricedMeals,1);
+assert.equal(plan.getRestaurantSummary().plannedMinor,0);
+plan.applyTemplate("varied");
+assert.equal(plan.getRestaurantSummary().meals.length,0,"new template clears prior restaurant picks");
 plan.setMeal(0, "dinner", "taco");
 assert.equal(plan.getWeek().meals[0].dinner, "taco", "manual daily change overrides template");
 plan.setMeal(0, "dinner", null);
