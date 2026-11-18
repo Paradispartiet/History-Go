@@ -80,6 +80,21 @@ assert.equal(shop.getNokMealWeek().entries.length,1,
   'removing restaurant plans does not silently restore old grocery purchases');
 const next=JSON.stringify(state.getWallet());
 assert.equal(next,JSON.stringify(snapshot),'wallet stable after removing a restaurant plan');
+state.updateWallet({ ...state.getWallet(), nok_v1: { ...state.getWallet().nok_v1,
+  shopping: { ...state.getWallet().nok_v1.shopping,
+    consumptions:[{planEntryKey:'2026-01-03:dinner'}] } } });
+const afterConsumption=JSON.stringify(state.getWallet());
+assert.throws(()=>plan.setRestaurantMeal(2,'dinner',{
+  restaurantId:'fysen-example',name:'Eksempelrestaurant',dishName:'Middag',
+  portions:1,priceMinor:25000,priceKind:'exact'
+}),/already been eaten/);
+assert.equal(JSON.stringify(state.getWallet()),afterConsumption);
+w.CivicationCalendar.setClock({dayIndex:5});
+assert.throws(()=>plan.setRestaurantMeal(0,'breakfast',{
+  restaurantId:'fysen-example',name:'Eksempelrestaurant',dishName:'Frokost',
+  portions:1,priceMinor:9000,priceKind:'exact'
+}),/in the past/,'past dates are not open for restaurant planning');
+assert.equal(JSON.stringify(state.getWallet()),afterConsumption);
 
 dom.window.close();
 console.log('PASS: NOK Shop owns home meals; Fysen overlay replaces slot, saves budget and never charges automatically');
