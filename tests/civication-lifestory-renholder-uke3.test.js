@@ -38,7 +38,10 @@ function playDay(state,picks,label){
     assert.ok(scene,label+": playable scene on day "+state.dag);
     const choice=picks[scene.id] || scene.valg.find(v=>!v.skills_requirement)?.id;
     assert.ok(choice && scene.valg.some(v=>v.id===choice),label+": valid choice for "+scene.id);
+    const beforeMoney=state.meters.penger;
     Runner.applyChoice(state,content,scene.id,choice);
+    if(scene.id.startsWith("ren_u3_"))assert.equal(state.meters.penger,beforeMoney,
+      label+": authored job story cannot produce payroll");
     assert.ok(++count<125,label+": day terminates");
   }
 }
@@ -74,7 +77,7 @@ const cases=[
 let firstWeekHistory=null;
 for(const route of cases){
   const state=State.createInitialState(content);
-  let week2Archive=null, moneyBeforeWeek3=null;
+  let week2Archive=null;
   for(let day=1;day<=21;day++){
     assert.equal(state.dag,day,route.name+": day");
     playDay(state,route.picks,route.name);
@@ -85,12 +88,9 @@ for(const route of cases){
     }
     if(day===14){
       week2Archive=state.arkiv.map(x=>[x.sceneId,x.valgId]);
-      moneyBeforeWeek3=state.meters.penger;
       assert.equal(Endings.isFinalDay(state,content),false,"week 2 is not the new final story day");
     }
     if(day>=15){
-      assert.equal(state.meters.penger,moneyBeforeWeek3,
-        "narrative choice is never a payroll event");
       const serialized=JSON.parse(JSON.stringify(state));
       assert.deepEqual(serialized.arkiv,state.arkiv,"save/reload archive");
       assert.deepEqual(serialized.tidligereValg,state.tidligereValg,"save/reload evidence");
