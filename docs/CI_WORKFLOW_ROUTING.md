@@ -75,6 +75,20 @@ on its latest head are green, including every shard of By v1 and the real
 PlaceCard composition checks. The routing governance audit protects the event
 triggers and job gates so these checks cannot silently disappear.
 
+## TypeScript guard: metadata versus runtime changes
+
+The TypeScript scope classifier lives in `scripts/ci-typescript-scope.mjs`
+with executable contract tests in `tests/ci-typescript-scope.test.mjs`.
+Workflow configuration (other than `typescript-guard.yml` itself) and this
+routing document are **not** shared-UI runtime changes. Edits to routing scripts
+still run script typechecks and builds but no longer spuriously run the
+Place-open UI regression.
+
+Changes to `typescript-guard.yml` itself, package manifests and unknown source
+paths retain conservative full-gate behavior. Actual browser/UI source changes
+still require web, shared-UI and legacy checks as before. The scope job runs its
+contract test before selecting gates, preventing silent omissions.
+
 ## Pull requests versus main
 
 Read-only validation runs on pull requests. `main-integrity.yml` then verifies the
