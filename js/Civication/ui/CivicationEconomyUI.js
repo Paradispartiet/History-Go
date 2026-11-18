@@ -220,6 +220,28 @@
         panel.appendChild(activate);
       }
     } else {
+      // The monthly amount comes from the accepted recurring lease, not the
+      // optional comparison selector or a district-level guessed price.
+      const currentHousing = nok.housing;
+      const matchingContracts = Array.isArray(nok.recurringBills) && currentHousing?.contractId
+        ? nok.recurringBills.filter((/** @type {any} */ lease) =>
+          lease?.id === currentHousing.contractId) : [];
+      const lease = matchingContracts.length === 1 ? matchingContracts[0] : null;
+      const acceptedOffer = Array.isArray(nok.config?.housingOffers) && currentHousing?.offerId
+        ? nok.config.housingOffers.find((/** @type {any} */ offer) =>
+          offer?.id === currentHousing.offerId && offer.districtId === currentHousing.districtId)
+        : null;
+      if (lease && acceptedOffer && typeof lease.amountNok === "number" &&
+          Number.isFinite(lease.amountNok) && lease.amountNok >= 0 &&
+          Number.isSafeInteger(Math.round(lease.amountNok * 100))) {
+        const place = root.CivicationHome?.getDistrictName?.(currentHousing.districtId)
+          || String(currentHousing.districtId);
+        const roomText = Number.isSafeInteger(currentHousing.roomCount)
+          ? " · " + currentHousing.roomCount + " rom" : "";
+        panel.appendChild(node("p", "Din spillbolig: " + place + roomText +
+          " · husleie i aktiv kontrakt: " + money(lease.amountNok) +
+          " kr / måned. Statistisk spilltilbud, ikke en virkelig leieannonse."));
+      }
       const today = dailyOverview();
       if (today) {
         const daily = node("section"); daily.setAttribute("data-nok-daily-overview", "");
