@@ -35,7 +35,7 @@ De 199 livsposisjonene skal behandles etter samme krav gjennom sin faktiske roll
 | --- | --- |
 | Identitet og yrkesgrunnlag | Én kanonisk Life Story `ekspeditor` med [kildeprofil og ordliste](civication-symposium/ekspeditor.md) og [samlet synopsis](civication-synopsis/ekspeditor.md). Eksisterende arbeidstråder og karrieremail beholdes. |
 | Dag 1–3 | 59 forfattede scener fra tidligere arbeid: kasse, prisavvik, retur, varemottak, avløsning og lederfullmakt. Eldre scenerevisjoner og testbevis gir ikke automatisk godkjenning av nye dager. |
-| Dag 4–7 | [Ny ekspeditørbolk](https://github.com/Paradispartiet/History-Go/pulls): 17 nye scener, totalt 76. Første uke skiller faktisk telling, levering, sendt avvik, mottak, returmyndighet og bekreftet overlevering. Samme Life Story og Symposium brukes; automatisk kontroll og merge må dokumenteres før dette markeres ferdig. |
+| Dag 4–7 | [Ny ekspeditørbolk](https://github.com/Paradispartiet/History-Go/tree/feat/civication-ekspeditor-d4-7-20261119): 17 nye scener, totalt 76. Første uke skiller faktisk telling, levering, sendt avvik, mottak, returmyndighet og bekreftet overlevering. Samme Life Story og Symposium brukes; automatisk kontroll og merge må dokumenteres før dette markeres ferdig. |
 | Utgivelser og brukerreise | Første uke er ikke det samme som en full 21-dagers V1. Organisk opptjent ansettelse, karrieremail, lønn, oppgavelagring og fysisk iPad Safari krever eget relevant bevis og skal ikke utledes fra rolleparameteren. |
 
 ## Hvordan listen brukes
