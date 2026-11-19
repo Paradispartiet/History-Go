@@ -662,10 +662,13 @@ async function continueThroughDayThree(page, label, viewport, choices, expected,
   assert.ok(ending.id === 'arbeid_og_restoppgaver' || finalState.tidligereValg[endingEvidence[ending.id]] === true,
     label + ': ending has its concrete work evidence');
   if (expected.priceChoice === 'gi_etter_igjen') assert.equal(ending.id, 'mistet_tilliten');
+  const isFinal = await page.evaluate(async () => globalThis.CivicationLifestoryEndings.isFinalDay(
+    globalThis.CivicationLifestoryState.load(), await globalThis.CivicationLifestoryContent.loadContent('ekspeditor')));
+  assert.equal(isFinal, false, label + ': day three is now a chapter checkpoint, not the final day');
   const endingBox = page.locator('.civi-lifestory-ending').first();
-  assert.equal(await endingBox.locator('h3').textContent(), ending.navn);
-  await endingBox.scrollIntoViewIfNeeded();
-  await endingBox.screenshot({ path: path.join(output, label + '-day3-ending.png') });
+  assert.equal(await endingBox.isVisible().catch(() => false), false,
+    label + ': no premature ending shown during the first working week');
+  await page.screenshot({ path: path.join(output, label + '-day3-checkpoint.png') });
   await page.reload({ waitUntil: 'load', timeout: 90000 });
   await page.waitForFunction(() => globalThis.CivicationLifestoryState?.load?.()?.dagFerdig === true,
     null, { timeout: 90000 });
@@ -855,7 +858,7 @@ async function continueThroughDayThree(page, label, viewport, choices, expected,
       { dayThree: { priceChoice: 'gi_etter_igjen', supportScene: 'd3_ettermiddag_presset_sitter', supportStatus: 'escalated', flags: { d3_pris_avvik_apent: true, d3_pris_ansvar_bekreftet: true, d3_pris_handel_avklart: false, ekspeditor_oversaa_slitasje: true } }, authorityChoice: 'del_med_vikaren', finalScene: 'd2_vikar_retur_02_kort_svar', status: 'escalated',
         flags: { retur_d2_ikke_fulgt_opp: true, retur_d2_vilkar_kontrollert: false,
           retur_d2_lene_godkjent: false, retur_d2_bytte_gjennomfort: false, laerte_bort_metoden: false } }));
-    console.log('PASS: ekspeditør three-day price, support, endings and saved Symposium plus all earlier Life Story paths on mobile and iPad', JSON.stringify(results));
+    console.log('PASS: ekspeditør original day-one to day-three price, support, checkpoint and saved Symposium on mobile and iPad', JSON.stringify(results));
   } finally {
     writeFileSync(path.join(output, 'results.json'), JSON.stringify(results, null, 2) + '\n');
     if (browser) await browser.close();
