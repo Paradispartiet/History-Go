@@ -144,8 +144,22 @@ try {
     assert.ok(initial.audio.top>=initial.hero.bottom,"Reader is below the hero");
     const verifyHeroLayout = (geom, stage) => {
       const desc = stage + " at " + width + "px: " + JSON.stringify(geom);
-      assert.ok(geom.status.bottom <= geom.title.top + 2,
-        "Quiz action sits above the title: " + desc);
+      // The action is now intentionally at the photo's bottom-right on the
+      // epoch baseline. Check real geometry rather than the retired "above title" layout.
+      const overlaps = (a,b) => Math.min(a.right,b.right)-Math.max(a.left,b.left)>1
+        && Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1;
+      assert.ok(geom.status.left>=geom.hero.left-1
+        && geom.status.right<=geom.hero.right+1
+        && geom.status.right>=geom.hero.right-25
+        && geom.status.top>=geom.hero.top-1
+        && geom.status.bottom<=geom.hero.bottom+1,
+        "Quiz action stays inside photo at bottom-right: " + desc);
+      assert.ok(Math.abs(geom.status.bottom-geom.epoch.bottom)<=6,
+        "Quiz action shares the epoch baseline: " + desc);
+      for (const [label,bounds] of [["title",geom.title],["category",geom.category],["epoch",geom.epoch]]) {
+        assert.ok(!overlaps(geom.status,bounds),
+          "Quiz action must not cover "+label+": "+desc);
+      }
       assert.ok(geom.favorite.left >= geom.title.right - 2
         && geom.favorite.left - geom.title.right <= 20
         && geom.favorite.width <= 30,
@@ -200,14 +214,16 @@ try {
         title:r("#pcTitle"), category:r("#pcMeta > .pc-category-meta"),
         epoch:r("#pcMeta > .pc-epoke"), audio:r("#pcReaderToggle"), favorite:r("#pcFavorite"),
         badge:r("#pcBadgesIcon"), people:r("#pcPeopleIcon"),
-        status:r("#pcStatusBar"), meta:r("#pcMeta"), nav:r(".pc-sheet-section-nav"),
+        status:r("#pcStatusBar > .pc-progress-status-line"), meta:r("#pcMeta"), nav:r(".pc-sheet-section-nav"),
         scroller:r(".pc-body"), scrollTop:document.querySelector(".pc-body").scrollTop,
         scrollHeight:document.querySelector(".pc-body").scrollHeight,
         clientHeight:document.querySelector(".pc-body").clientHeight,
         stickyPosition:getComputedStyle(document.querySelector(".pc-sheet-hero")).position,
         titleFont:getComputedStyle(title).fontSize,
         sameImage:document.querySelector("#pcHeaderImage").src===window.__initialImageSource,
-        value:parseFloat(document.querySelector("#placeCard").style.getPropertyValue("--pc-visible-hero-height"))
+        value:parseFloat(document.querySelector("#placeCard").style.getPropertyValue("--pc-visible-hero-height")),
+        crop:parseFloat(document.querySelector("#placeCard").style.getPropertyValue("--pc-hero-collapse-offset")),
+        clip:getComputedStyle(document.querySelector(".pc-sheet-hero")).clipPath
       };
     });
     assert.ok(scrolled.originalNodes,"Original heading, badges and icons remain single live DOM nodes");
@@ -217,13 +233,27 @@ try {
     verifyHeroLayout(scrolled, "after scroll");
     assert.ok(scrolled.visible.top <= scrolled.scroller.top + 1
       && scrolled.visible.top >= scrolled.scroller.top-1, "Same original image remains pinned: "+JSON.stringify(scrolled));
-    assert.ok(scrolled.visible.height<=initial.heading-40,
-      "Actual original image must shrink significantly during scroll; not just a few pixels: "+JSON.stringify(scrolled));
-    assert.ok(scrolled.title.bottom<=scrolled.visible.bottom+1,"Title stays visible");
-    assert.ok(scrolled.favorite.bottom<=scrolled.visible.bottom+1,
-      "Favorite follows the title inside the pinned photograph");
-    assert.ok(scrolled.category.bottom<=scrolled.visible.bottom+1,
-      "Category follows the visible lower edge as the photo collapses");
+    // The wrapper retains its layout height to avoid scroll jumps. Its real
+    // visible image height is the CSS variable, enforced by clip-path.
+    const clippedBottom = scrolled.visible.top + scrolled.value;
+    assert.ok(Math.abs(scrolled.visible.height-initial.heading)<=3,
+      "Sticky image keeps its original layout slot while scrolling: "+JSON.stringify(scrolled));
+    assert.ok(scrolled.value<=initial.heading-40
+      && scrolled.crop>=40 && Math.abs(scrolled.visible.height-scrolled.crop-scrolled.value)<=3
+      && scrolled.clip!=="none",
+      "Original image must visibly clip by at least 40px without resizing its slot: "+JSON.stringify(scrolled));
+    assert.ok(scrolled.title.top>=scrolled.visible.top+8
+      && scrolled.title.bottom<=clippedBottom-4,
+      "Full title remains readable inside visible image after scroll: "+JSON.stringify(scrolled));
+    assert.ok(scrolled.favorite.top>=scrolled.visible.top+3
+      && scrolled.favorite.bottom<=clippedBottom,
+      "Favorite stays visible beside the title: "+JSON.stringify(scrolled));
+    assert.ok(scrolled.category.top>=scrolled.visible.top
+      && scrolled.category.bottom<=clippedBottom,
+      "Category remains inside the visible, clipped photograph: "+JSON.stringify(scrolled));
+    assert.ok(scrolled.epoch.bottom<=clippedBottom+1
+      && scrolled.status.bottom<=clippedBottom+1,
+      "Epoch and quiz action remain inside the visible photograph: "+JSON.stringify(scrolled));
     assert.ok(scrolled.audio.top>scrolled.visible.bottom,
       "Audio remains in the editorial About section");
     assert.ok(scrolled.nav.top>=scrolled.visible.bottom-1,"Navigation follows pinned image");

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Regression: current full-bleed Place.image and Place.frontImage use cover,
-// while legacy/documentary photos keep contain, at phone/tablet/desktop widths.
+// Regression: PlaceCard's main photo and portrait fill their frames; other
+// documentary images and QuizCard back remain uncropped on every viewport.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -102,24 +102,24 @@ try{
      assert.ok(values.ready,selector+' should load at '+width);
      assert.ok(values.box[0]>0&&values.box[1]>0,selector+' must occupy real layout at '+width);
    }
-   // A complete panorama must remain usefully sized, not merely uncropped
-   // inside the old extremely shallow desktop banner.
+   // Wide PlaceCard imagery should occupy its actual desktop hero rather
+   // than letterboxing within the obsolete 205px banner.
    if(width>=900){
      const overview=await page.locator('#pcHeaderHero').evaluate(hero=>{
        const img=hero.querySelector('#pcHeaderImage');
        const r=img.getBoundingClientRect();
-       const fitScale=Math.min(r.width/img.naturalWidth,r.height/img.naturalHeight);
+       const fitScale=Math.max(r.width/img.naturalWidth,r.height/img.naturalHeight);
        return {height:hero.getBoundingClientRect().height,
          sharpWidth:img.naturalWidth*fitScale,boxWidth:r.width};
      });
      assert.ok(overview.height>=width*.36,
        'desktop overview hero should be proportional, not a 205px strip at '+width);
-     assert.ok(overview.sharpWidth/overview.boxWidth>=.78,
-       'sharp overview occupies most of its landscape frame at '+width);
+     assert.ok(overview.sharpWidth/overview.boxWidth>=1,
+       'covered overview fills its landscape frame at '+width);
    }
    const badgeFit=await page.locator('#roundBadge').evaluate(img=>getComputedStyle(img).objectFit);
    assert.notEqual(badgeFit,'contain','round badges remain independently governed');
-   console.log(width+'px: full Place.image, frontImage, popup, comparison and QuizCard fit PASS');
+   console.log(width+'px: PlaceCard cover with uncropped documentary and QuizCard views PASS');
    await page.close();
  }
 } finally {

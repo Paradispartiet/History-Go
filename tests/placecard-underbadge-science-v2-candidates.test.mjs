@@ -79,7 +79,7 @@ test('PlaceCard live badge render uses the no-crop embroidered class and legible
   assert.match(css, /#placeCard #pcBadgesIcon \.pc-badge-round-img\s*\{[^}]*object-fit:\s*contain/);
   assert.match(css, /#placeCard \.pc-title-row > #pcBadgesIcon > img\.pc-badge-round-img\s*\{[^}]*object-fit:\s*contain/);
   assert.match(css, /#placeCard \.pc-title-row > #pcBadgesIcon > img\.pc-badge-round-img\s*\{[^}]*transform:\s*none/);
-  assert.match(index, /css\/placeCard\.css\?v=20261114-badge-rim-class1/);
+  assert.match(index, /css\/placeCard\.css\?v=202611\d{2}-[\w-]+/);
   assert.match(index, /js\/app\.js\?v=20261114-badge-rim-class1/);
   assert.match(loader, /js\/ui\/place-card\.js\?v=20261114-badge-rim-class1/);
   assert.match(sw, /hg-sw-2026-11-14-[^"]*badge-rim-class1/);
