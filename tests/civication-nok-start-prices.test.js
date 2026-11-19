@@ -13,7 +13,8 @@ assert.equal(config.budget.transport.periodDays, 30);
 assert.ok(Math.abs(config.budget.transport.monthlyNok - 655 * 365 / 30 / 12) < .005);
 assert.notEqual(config.budget.transport.monthlyNok, config.budget.transport.priceNok,
   '30-day ticket price must not be silently treated as a calendar-month bill');
-assert.equal(config.migration.activated, false);
+assert.equal(config.migration.activated, true);
+assert.equal(config.migration.releaseMode, 'explicit_player_opt_in_only');
 const dom = new JSDOM('<body><div id="homeStatusContent"></div><div id="districtList"></div></body>',
   { url: 'https://example.test', runScripts: 'outside-only' });
 const w = dom.window;
