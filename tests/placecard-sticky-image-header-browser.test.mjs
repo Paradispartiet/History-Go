@@ -144,8 +144,22 @@ try {
     assert.ok(initial.audio.top>=initial.hero.bottom,"Reader is below the hero");
     const verifyHeroLayout = (geom, stage) => {
       const desc = stage + " at " + width + "px: " + JSON.stringify(geom);
-      assert.ok(geom.status.bottom <= geom.title.top + 2,
-        "Quiz action sits above the title: " + desc);
+      // The action is now intentionally at the photo's bottom-right on the
+      // epoch baseline. Check real geometry rather than the retired "above title" layout.
+      const overlaps = (a,b) => Math.min(a.right,b.right)-Math.max(a.left,b.left)>1
+        && Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1;
+      assert.ok(geom.status.left>=geom.hero.left-1
+        && geom.status.right<=geom.hero.right+1
+        && geom.status.right>=geom.hero.right-25
+        && geom.status.top>=geom.hero.top-1
+        && geom.status.bottom<=geom.hero.bottom+1,
+        "Quiz action stays inside photo at bottom-right: " + desc);
+      assert.ok(Math.abs(geom.status.bottom-geom.epoch.bottom)<=6,
+        "Quiz action shares the epoch baseline: " + desc);
+      for (const [label,bounds] of [["title",geom.title],["category",geom.category],["epoch",geom.epoch]]) {
+        assert.ok(!overlaps(geom.status,bounds),
+          "Quiz action must not cover "+label+": "+desc);
+      }
       assert.ok(geom.favorite.left >= geom.title.right - 2
         && geom.favorite.left - geom.title.right <= 20
         && geom.favorite.width <= 30,
@@ -200,7 +214,7 @@ try {
         title:r("#pcTitle"), category:r("#pcMeta > .pc-category-meta"),
         epoch:r("#pcMeta > .pc-epoke"), audio:r("#pcReaderToggle"), favorite:r("#pcFavorite"),
         badge:r("#pcBadgesIcon"), people:r("#pcPeopleIcon"),
-        status:r("#pcStatusBar"), meta:r("#pcMeta"), nav:r(".pc-sheet-section-nav"),
+        status:r("#pcStatusBar > .pc-progress-status-line"), meta:r("#pcMeta"), nav:r(".pc-sheet-section-nav"),
         scroller:r(".pc-body"), scrollTop:document.querySelector(".pc-body").scrollTop,
         scrollHeight:document.querySelector(".pc-body").scrollHeight,
         clientHeight:document.querySelector(".pc-body").clientHeight,
