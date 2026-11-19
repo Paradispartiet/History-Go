@@ -37,6 +37,9 @@ jobs:
       - name: Install browser
         run: npx playwright install --with-deps chromium
       - name: Verify PUBLIC GitHub Pages Objects, photo, illustration and cards at mobile and desktop widths
+        env:
+          HG_C51_TEST_EMAIL: ${{ secrets.HG_C51_TEST_EMAIL }}
+          HG_C51_TEST_PASSWORD: ${{ secrets.HG_C51_TEST_PASSWORD }}
         run: node tests/det-norske-teatret-public-objects-c51.mjs
       - name: Preserve public evidence and screenshots regardless of test result
         if: always()

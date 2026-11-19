@@ -6,6 +6,9 @@ import { chromium, request } from "playwright";
 
 const base="https://paradispartiet.github.io/History-Go/";
 const placeId="det_norske_teatret";
+// Inject credentials only from GitHub Actions secrets; never hard-code a test user.
+const ciEmail=(process.env.HG_C51_TEST_EMAIL||"").trim();
+const ciPassword=process.env.HG_C51_TEST_PASSWORD||"";
 const sourceFile="data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json";
 const place=JSON.parse(fs.readFileSync(sourceFile,"utf8"));
 const runtimeLocal=JSON.parse(fs.readFileSync("data/runtime/place-open/det_norske_teatret.json","utf8"));
@@ -112,6 +115,24 @@ try {
       phase="open-public-app";
       const res=await page.goto(base+"index.html?dnt-c51=20261021#/map",{waitUntil:"domcontentloaded",timeout:60000});
       assert.equal(res?.status(),200);
+      // Production deliberately requires AHA authentication. Assert the real
+      // unauthenticated redirect first; never bypass it or fake an auth token.
+      phase="verify-login-gate";
+      await page.waitForURL(url=>url.pathname.endsWith("/History-Go/login.html"),{timeout:30000});
+      await page.locator("#hgLoginForm").waitFor({state:"visible",timeout:15000});
+      assert.ok((new URL(page.url()).searchParams.get("next")||"").includes("index.html"),"Auth redirect must preserve index deep link");
+      caseResult.unauthenticatedLoginRedirect="PASS";
+      if(!ciEmail || !ciPassword){
+        throw new Error("Authenticated C51 is BLOCKED: add HG_C51_TEST_EMAIL and HG_C51_TEST_PASSWORD as GitHub Actions secrets for a dedicated, non-admin AHA test account. Public asset verification and login redirect passed, but Objects browser QA was not run.");
+      }
+      phase="sign-in-through-real-login";
+      await page.locator("#hgRegisterToggle").click();
+      await page.locator("#hgLoginEmail").fill(ciEmail);
+      await page.locator("#hgLoginPassword").fill(ciPassword);
+      await page.locator("#hgLoginSubmit").click();
+      await page.waitForURL(url=>url.pathname.endsWith("/History-Go/index.html"),{timeout:60000});
+      await page.waitForFunction(()=>window.HGLoginGate?.allowed===true && document.documentElement.classList.contains("hg-auth-verified"),null,{timeout:30000});
+      caseResult.authenticatedLogin="PASS";
       phase="app-ready";
       await page.waitForFunction(()=>window.__HG_APP_READY__===true && window.__HG_ROUTER_STARTED__===true && window.HG_PLACES_READY===true,null,{timeout:60000});
       // On a fresh public browser profile onboarding appears asynchronously;
