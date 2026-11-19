@@ -169,6 +169,9 @@ assert.equal(paidForecast.unpaidPlannedMinor,29100,
 assert.equal(paidForecast.afterKnownPlansMinor,38400);
 assert.equal(paidForecast.purchasedMinor,12500);
 assert.equal(paidForecast.purchasedSlots[0],"0:dinner");
+// The secondary forecast has been verified; clear it for the legacy
+// single-meal scenarios below, which intentionally expect zero known price.
+plan.setRestaurantMeal(3,"dinner",null);
 plan.setRestaurantMeal(0,"dinner",null);
 plan.setRestaurantMeal(2,"lunch",{
   restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Suppe",
