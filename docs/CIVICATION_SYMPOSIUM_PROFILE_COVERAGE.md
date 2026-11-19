@@ -33,12 +33,13 @@ De 199 livsposisjonene skal behandles etter samme krav gjennom sin faktiske roll
 
 | Del | Dokumentert status / kontrollport |
 | --- | --- |
-| Identitet og yrkesgrunnlag | Én kanonisk Life Story `ekspeditor` med [kildeprofil og ordliste](civication-symposium/ekspeditor.md), [samlet synopsis](civication-synopsis/ekspeditor.md) og eksisterende karrieremail. Ingen ny parallell rolleliste. |
-| Dag 1–3 | 59 eldre scener om kasse, prisavvik, retur, opplæring, lager og lederfullmakt. Spilles og kontrolleres fortsatt med samme rolle- og nettlesertester. |
-| Dag 4–7 | [PR #7456](https://github.com/Paradispartiet/History-Go/pull/7456) er **merget** med 17 nye scener (76 samlet). Full Civication-regresjon og ekspeditørens mobil-/iPad-nettleserkontroll bestod før merge. Uke 1 har faktisk kontroll, meldt avvik, mottaksbekreftelse og åpne restposter som separate hendelser. |
-| Dag 8–14 | [PR #7463](https://github.com/Paradispartiet/History-Go/pull/7463) inneholder 27 nye scener (103 totalt) og tre gjennomspillinger dag 1–14 i eksisterende rolletest. Leveranseavvik, beholdning, retur, vikaropplæring, pris og arbeidstid forblir etterprøvbare. **Bolken er under godkjenning; test og merge er ikke bekreftet.** |
-| Ukeavslutning og videreføring | Dag 7 er et kapitelskille, dag 14 foreløpig siste forfattede dag. Ingen dialogvalg gir automatisk lønn, refusjon, korrigert lager eller innvilget ekstravakt. |
-| Full V1 / iPad | **Åpen.** Dag 15–21 er ikke skrevet. Organisk ansettelse, jobbmail, faktisk arbeidstids-/lønnssystem, kontolagring, synk mellom enheter og fysisk iPad Safari er ikke integrert V1-verifisert for ekspeditør. |
+| Identitet og yrkesgrunnlag | Én kanonisk Life Story `ekspeditor`, med [kildeprofil og ordliste](civication-symposium/ekspeditor.md), [samlet synopsis](civication-synopsis/ekspeditor.md) og eksisterende karrieremail. Ingen parallell rolleliste. |
+| Dag 1–3 | 59 eldre scener om kasse, prisavvik, retur, opplæring, lager og lederfullmakt. Eldre scenetester og nettleserbevis er beholdt. |
+| Dag 4–7 | [PR #7456](https://github.com/Paradispartiet/History-Go/pull/7456) **merget**, 17 nye scener (76 samlet), grønn Civication-regresjon og mobil-/iPad-nettlesertest. Første uke skiller telling, melding, mottak og overlevering. |
+| Dag 8–14 | [PR #7463](https://github.com/Paradispartiet/History-Go/pull/7463) **merget**, 27 nye scener (103 samlet), tre dag-1–14-gjennomspillinger og grønn målrettet CI + nettlesertest. Dag 14 er kapitelskille, ikke slutten på hele Life Story. |
+| Dag 15–21 | Ny tredje-ukesbolk i `feat/civication-ekspeditor-d15-21-20261119`: 27 nye scener (130 totalt) og tre fullstendige dag-1–21-gjennomspillinger i samme testfil. Dokumentert oppfølging av gamle rapporter, lager-/retursaker, mattrygghet, opplæring og arbeidstid. **Under CI-godkjenning og ikke merget før faktiske grønne testbevis.** |
+| Ukeavslutning og slutt | Ukegrenser [7, 14, 21]. Siste forfattede dag er 21. Slutten arkiverer faktiske valg og åpne restposter, og skaper ikke automatisk lønn, retur, systemretting, ny vakt eller forfremmelse. |
+| Full teknisk V1 / iPad | **Åpen.** En helhetlig opptjent ansettelse → jobbmail → 21 arbeidsdager → lønnsoppgjør og kontolagring er ikke integrert verifisert for ekspeditør. Reell synk mellom enheter og fysisk iPad Safari må dokumenteres separat før full V1. |
 
 ## Hvordan listen brukes
 
