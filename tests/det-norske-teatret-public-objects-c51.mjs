@@ -46,9 +46,19 @@ const requireExactMedia=async(relative,label)=>{
 };
 try {
   api=await request.newContext({timeout:45000,ignoreHTTPSErrors:false});
-  let ready=false;
+  // A push to main can start C51 before GitHub Pages has published that commit.
+  // Matching Object IDs alone is insufficient: unchanged JSON can be served with old JS/CSS.
+  // Wait for the exact public release bytes before running the existing strict assertions.
+  const releaseFiles=[
+    sourceFile,
+    "data/runtime/place-open/det_norske_teatret.json",
+    "js/ui/place-rounds-visual-collections.js",
+    "css/place-rounds-fill-layout.css"
+  ];
+  let ready=false,pendingFiles=[];
   for(let i=0;i<18;i++){
     report.deployment_attempts=i+1;
+    pendingFiles=[];
     try{
       const response=await api.get(urlOf(sourceFile),{timeout:15000,headers:{"cache-control":"no-cache"}});
       if(response.ok()){
@@ -57,12 +67,24 @@ try {
           && remote.objects[0]?.id===place.objects[0].id
           && remote.objects[1]?.id===place.objects[1].id
           && remote.place_card_profile?.collection_ids?.includes("objects");
+        if(ready){
+          for(const relative of releaseFiles){
+            const liveResponse=await api.get(urlOf(relative),{timeout:15000,headers:{"cache-control":"no-cache"}});
+            if(!liveResponse.ok() || hash(await liveResponse.body())!==hash(fs.readFileSync(relative))){
+              pendingFiles.push(relative+(!liveResponse.ok()?" HTTP "+liveResponse.status():" checksum mismatch"));
+            }
+          }
+          ready=pendingFiles.length===0;
+        }else pendingFiles.push("Objects data and collection profile");
         if(ready)break;
-      }
-    }catch(error){report.errors.push("Deploy attempt "+(i+1)+": "+String(error));}
+      }else pendingFiles.push(sourceFile+" HTTP "+response.status());
+    }catch(error){
+      ready=false;
+      pendingFiles.push(String(error));
+    }
     if(i<17)await new Promise(resolve=>setTimeout(resolve,10000));
   }
-  assert.equal(ready,true,"Public site has not deployed C50 canonical Objects");
+  assert.equal(ready,true,"Public site has not yet deployed the exact C51 release bytes: "+pendingFiles.join("; "));
   const published=JSON.parse((await get(sourceFile,"public-canonical-place")).toString("utf8"));
   assert.deepEqual(published.objects,place.objects,"public Objects differ from main branch");
   assert.deepEqual(published.place_card_profile,place.place_card_profile,"public PlaceCard profile differs");
