@@ -2314,6 +2314,11 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta > *{
     font-size:11px;
   }
+  /* Keep the category readable on narrow screens without covering the
+     bottom-right quiz action. Allow a natural multi-line label. */
+  #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta > .pc-category-meta{
+    max-width:calc(100% - 116px);
+  }
   #placeCard .pc-heading-hero.has-photo-source #pcStatusBar > .pc-progress-status-line{
     font-size:10px;
     padding:3px 6px;
