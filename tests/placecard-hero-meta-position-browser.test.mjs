@@ -100,8 +100,17 @@ try{
    assert.equal(m.statusParent,"pcStatusBar","progress action keeps its host at "+width);
    assert.equal(m.categoryParent,"pcMeta","category stays inside image at "+width);
    assert.equal(m.titleParent,"pc-title-row","title stays in hero heading row at "+width);
-   assert.ok(m.status.y>=m.hero.y-1 && m.status.bottom<=m.title.y+1,
-     "Ta quiz is above the heading in the image at "+width+": "+JSON.stringify(m));
+   const overlaps = (a,b) => Math.min(a.right,b.right)-Math.max(a.x,b.x)>1
+     && Math.min(a.bottom,b.bottom)-Math.max(a.y,b.y)>1;
+   assert.ok(m.status.y>=m.hero.y-1 && m.status.bottom<=m.hero.bottom+1
+     && m.status.right<=m.hero.right+1 && m.status.right>=m.hero.right-22,
+     "Ta quiz stays inside the bottom-right of the image at "+width+": "+JSON.stringify(m));
+   assert.ok(Math.abs(m.status.bottom-m.epoke.bottom)<=6,
+     "Ta quiz shares the epoch baseline at "+width+": "+JSON.stringify(m));
+   for (const [label,rectangle] of [["title",m.title],["category",m.category],["epoch",m.epoke]]) {
+     assert.ok(!overlaps(m.status,rectangle),
+       "Ta quiz must not cover "+label+" at "+width+": "+JSON.stringify(m));
+   }
    assert.ok(m.title.x>=m.hero.x-1 && m.title.x<=m.hero.x+26
      && m.title.y>=m.hero.y-1 && m.title.bottom<=m.category.y+1,
      "title left beneath Ta quiz at "+width+": "+JSON.stringify(m));
