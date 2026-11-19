@@ -119,6 +119,10 @@ wallet = { balance:800, nok_v1:{ active:true, version:2 } };
 assert.equal(plan.getRestaurantFinanceSnapshot().balanceMinor,null,
   "unsupported wallet versions must never expose a presumed NOK balance");
 wallet = { balance:800, nok_v1:{ active:true, version:1 } };
+assert.throws(() => plan.applyTemplate("varied"), /dated NOK/,
+  "active NOK home meals must use the canonical dated Shop editor");
+// All remaining assertions are for the legacy private PC planner.
+wallet = { balance:800, nok_v1:{ active:false, version:1 } };
 plan.setRestaurantMeal(2,"lunch",{
   restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Suppe",
   portions:1,priceMinor:null
