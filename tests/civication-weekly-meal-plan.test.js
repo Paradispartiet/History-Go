@@ -86,14 +86,19 @@ assert.equal(forecast.afterKnownPlansMinor, 50900);
 assert.equal(forecast.hasUncertainPrices, false);
 assert.equal(wallet.balance, 800);
 assert.equal(walletWrites, 0, "a forecast cannot charge the canonical wallet");
+// Editing the legacy PC restaurant plan is intentionally separate from
+// dated NOK mode. The wallet is a test fixture; this toggles mode only.
+wallet.nok_v1.active = false;
 plan.setRestaurantMeal(2,"lunch",{
   restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Lunsj",
   portions:1,priceMinor:25000,priceKind:"from"
 });
 assert.equal(plan.getRestaurantSummary().fromMeals,1);
+wallet.nok_v1.active = true;
 assert.equal(plan.getRestaurantFinanceSnapshot().hasUncertainPrices,true,
   "from price must be described as a lower bound, not a final charge");
 assert.equal(plan.getRestaurantFinanceSnapshot().afterKnownPlansMinor, 25900);
+wallet.nok_v1.active = false;
 plan.setRestaurantMeal(1,"breakfast",{
   restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Historisk rett",
   portions:1,priceMinor:9900
