@@ -35,6 +35,7 @@ const CANDIDATES = [
   {
     id: "olivia",
     name: "Olivia",
+    matteColor: "#242422",
     originalUrl: "https://oliviarestauranter.no/wp-content/uploads/2022/11/logo.svg",
     sourcePage: "https://oliviarestauranter.no/",
     expectedFormat: "svg",
@@ -112,10 +113,11 @@ async function run() {
     if (entry.minSourceDimension) assert(meta.width >= entry.minSourceDimension && meta.height >= entry.minSourceDimension, "Source resolution too low for " + entry.id);
     const sourcePath = path.join(sourceDir, entry.id + "_original." + entry.expectedFormat);
     const assetPath = path.join(outputDir, entry.id + ".webp");
+    const matteColor = entry.matteColor ?? "#ffffff";
     const webp = await sharp(source, {limitInputPixels: 32000000})
-      .resize(860, 480, {fit: "contain", background: "#ffffff", kernel: "lanczos3"})
-      .flatten({background: "#ffffff"})
-      .extend({top: 20, bottom: 20, left: 20, right: 20, background: "#ffffff"})
+      .resize(860, 480, {fit: "contain", background: matteColor, kernel: "lanczos3"})
+      .flatten({background: matteColor})
+      .extend({top: 20, bottom: 20, left: 20, right: 20, background: matteColor})
       .webp({quality: 93, effort: 5})
       .toBuffer();
     const outMeta = await sharp(webp).metadata();
@@ -132,7 +134,8 @@ async function run() {
       sourceDimensions: [meta.width, meta.height], originalBytes: source.length,
       candidatePath: assetPath, candidateSha256: sha("sha256", webp),
       outputDimensions: [outMeta.width, outMeta.height], outputBytes: webp.length,
-      transformation: "Render exact original to white-matted 900x520 WebP, fit contain, no crop or redraw",
+      transformation: "Render exact original to 900x520 WebP on source-appropriate solid matte (" + matteColor + "), fit contain, no crop or redraw",
+      matteColor,
       assetKind: "logo", sourceVerified: true, visualApproval: false,
       publishable: false, reviewStatus: "ORIGINAL_BINARY_CAPTURED_PENDING_REVIEW",
       usageContext: "referential_identification", noEndorsement: true
