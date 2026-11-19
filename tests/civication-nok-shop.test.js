@@ -1,0 +1,130 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const { JSDOM } = require('jsdom');
+const config = require('../data/Civication/economy/nok-budget-prototype-2026.json');
+(async () => {
+const dom = new JSDOM('<body><div id="civiStorePanel"></div><div id="civiShopBox"><div id="civiPcBalance"></div><div id="civiShopHint"></div><div id="civiShopPacks"></div><div id="civiStyleCounts"></div></div></body>',
+  { url: 'https://example.test', runScripts: 'outside-only' });
+const w = dom.window;
+w.fetch = async p => ({ ok: true, json: async () => JSON.parse(fs.readFileSync(p, 'utf8')) });
+for (const path of ['core/civicationState.js', 'core/civicationCalendar.js', 'civicationCommercial.js',
+  'ui/CivicationStoreUI.js', 'ui/CivicationUI.js']) w.eval(fs.readFileSync('js/Civication/' + path, 'utf8'));
+const state = w.CivicationState;
+const shop = w.HG_CiviShop;
+const legacy = '{"packs":{"streetwear_basic":true},"ownedItems":["streetwear_basic"],"style_counts":{"street":1}}';
+w.localStorage.setItem('hg_pc_inventory_v1', legacy);
+w.localStorage.setItem('hg_pc_wallet_v1', '{"balance":9999}');
+state.updateWallet({ balance: 100, last_tick_day_index: 8, nok_v1: { active: true, version: 1, config } });
+assert.equal((await shop.getVisiblePacks()).length, 10);
+assert.equal((await shop.getPacks()).some(p => p.id === 'streetwear_basic'), false);
+const before = JSON.stringify(state.getWallet());
+assert.equal((await shop.buyPack('streetwear_basic', 'old-price')).ok, false);
+assert.equal((await shop.buyPack('tine-milk-1l')).reason, 'PURCHASE_REQUEST_REQUIRED');
+assert.equal(JSON.stringify(state.getWallet()), before);
+const results = await Promise.all([shop.buyPack('tine-milk-1l', 'one'), shop.buyPack('tine-milk-1l', 'one')]);
+assert.equal(results.filter(r => r.skipped).length, 1);
+assert.equal(state.getWallet().balance, 80.6);
+assert.equal(state.getWallet().nok_v1.shopping.quantities['tine-milk-1l'], 1);
+assert.equal((await shop.buyPack('axa-oats-1100g', 'one')).reason, 'PURCHASE_REQUEST_CONFLICT');
+assert.equal((await shop.buyPack('tine-milk-1l', 'two')).newBalance, 61.2);
+assert.equal((await shop.buyPack('axa-oats-1100g', 'three')).newBalance, 30.3);
+assert.equal(state.getWallet().nok_v1.shopping.purchases.length, 3);
+assert.equal(state.getWallet().nok_v1.shopping.purchases[0].sourceId, config.shopProducts[0].sourceId);
+assert.equal(state.getWallet().nok_v1.shopping.quantities['tine-milk-1l'], 2);
+assert.equal(state.getWallet().last_tick_day_index, 8);
+assert.equal(w.localStorage.getItem('hg_pc_inventory_v1'), legacy, 'food never rewrites old durable possessions/styles');
+assert.equal(w.localStorage.getItem('hg_pc_wallet_v1'), '{"balance":9999}', 'NOK purchase has a single canonical owner');
+await w.CivicationStoreUI.render();
+assert.ok(w.document.getElementById('civiStorePanel').textContent.includes('1,1 kg'));
+assert.ok(w.document.getElementById('civiStorePanel').textContent.includes('På lager: 2 pakninger'));
+await w.CivicationUI.renderCivicationShop();
+assert.ok(w.document.getElementById('civiShopPacks').textContent.includes('kr'));
+assert.ok(w.document.getElementById('civiShopPacks').textContent.includes('Kontrollert: 2026-11-16'));
+const stale = w.document.querySelector('#civiStorePanel [data-buy-pack="tine-milk-1l"]');
+state.updateWallet({ ...state.getWallet(), balance: 0 });
+stale.click();
+await new Promise(r => setTimeout(r, 5));
+assert.equal(state.getWallet().balance, 0);
+assert.equal(state.getWallet().nok_v1.shopping.purchases.length, 3);
+assert.ok(w.document.querySelector('#civiStorePanel [role="status"]').textContent.includes('Ikke nok penger'));
+state.updateWallet({ ...state.getWallet(), balance: 100 });
+await w.CivicationStoreUI.render();
+const liveBuy = w.document.querySelector('#civiStorePanel [data-buy-pack="tine-milk-1l"]');
+liveBuy.focus(); liveBuy.click();
+await new Promise(r => setTimeout(r, 5));
+assert.equal(state.getWallet().balance, 80.6);
+assert.equal(state.getWallet().nok_v1.shopping.quantities['tine-milk-1l'], 3);
+assert.equal(w.document.activeElement.getAttribute('data-buy-pack'), 'tine-milk-1l');
+await w.CivicationUI.renderCivicationShop();
+w.document.querySelector('[data-civi-buy-pack="axa-oats-1100g"]').click();
+await new Promise(r => setTimeout(r, 5));
+assert.equal(state.getWallet().balance, 49.7);
+assert.equal(state.getWallet().nok_v1.shopping.quantities['axa-oats-1100g'], 2);
+// Buy the added produce/pulse references through both real shop UIs. Consume
+// package weight, not inferred edible yield, cooked weight or nutritional portions.
+state.updateWallet({ ...state.getWallet(), balance: 100 });
+const added = [
+  ['carrots-second-sort-1kg', 19.9, 1000],
+  ['bananas-1kg', 24.9, 1000],
+  ['sevan-red-lentils-dry-900g', 44.9, 900]
+];
+for (const [index, [id, price, quantity]] of added.entries()) {
+  if (index === 1) {
+    await w.CivicationUI.renderCivicationShop();
+    w.document.querySelector('[data-civi-buy-pack="' + id + '"]').click();
+  } else {
+    await w.CivicationStoreUI.render();
+    w.document.querySelector('[data-buy-pack="' + id + '"]').click();
+  }
+  await new Promise(r => setTimeout(r, 5));
+  const receipt = state.getWallet().nok_v1.shopping.purchases.at(-1);
+  assert.equal(receipt.productId, id);
+  assert.equal(receipt.amountNok, price);
+  assert.equal(receipt.sourceId, config.shopProducts.find(p => p.id === id).sourceId);
+  assert.equal(receipt.priceCheckedOn, '2026-11-16');
+  assert.equal(shop.getNokProductStock(id).available, quantity);
+  assert.equal(shop.consumeNokProduct(id, 'new-food-use-' + id).remaining, quantity - 100);
+}
+assert.equal(state.getWallet().balance, 10.3, 'three sourced packs total 89.70; consumption adds no payment');
+const purchased = JSON.stringify(state.getWallet());
+w.eval(fs.readFileSync('js/Civication/civicationCommercial.js', 'utf8'));
+assert.equal(JSON.stringify(state.getWallet()), purchased);
+for (const [id, , quantity] of added) assert.equal(w.HG_CiviShop.getNokProductStock(id).available, quantity - 100);
+assert.equal(w.localStorage.getItem('hg_pc_inventory_v1'), legacy);
+// New dated package prices flow through both existing purchase controls.
+state.updateWallet({ ...state.getWallet(), balance: 100 });
+const staples = [ ['r-rice-2kg', 35.9, 2000], ['r-chopped-tomatoes-400g', 8.1, 400], ['yellow-onions-1kg', 19.9, 1000] ];
+for (const [index, [id, price, amount]] of staples.entries()) {
+  if (index === 1) {
+    await w.CivicationUI.renderCivicationShop();
+    w.document.querySelector('[data-civi-buy-pack="' + id + '"]').click();
+  } else {
+    await w.CivicationStoreUI.render();
+    w.document.querySelector('[data-buy-pack="' + id + '"]').click();
+  }
+  await new Promise(resolve => setTimeout(resolve, 5));
+  const receipt = state.getWallet().nok_v1.shopping.purchases.at(-1);
+  assert.equal(receipt.productId, id); assert.equal(receipt.amountNok, price);
+  assert.equal(receipt.priceCheckedOn, '2026-11-17');
+  assert.equal(receipt.sourceId, config.shopProducts.find(p => p.id === id).sourceId);
+  assert.equal(shop.getNokProductStock(id).available, amount);
+}
+assert.equal(state.getWallet().balance, 36.1, 'new three packages cost exactly 63.90 kr');
+for (const badPrice of [-1, 1.001, '19.4']) {
+  const bad = JSON.parse(JSON.stringify(config)); bad.shopProducts[0].priceNok = badPrice;
+  state.updateWallet({ ...state.getWallet(), balance: 100, nok_v1: { ...state.getWallet().nok_v1, config: bad } });
+  const saved = JSON.stringify(state.getWallet());
+  assert.equal((await shop.buyPack('tine-milk-1l', 'bad-price')).reason, 'NOK_PRICE_NOT_MAPPED');
+  assert.equal(JSON.stringify(state.getWallet()), saved);
+}
+const inert = JSON.parse(JSON.stringify(config)); inert.shopProducts[0].title = '<img src=x onerror=alert(1)>';
+state.updateWallet({ ...state.getWallet(), nok_v1: { ...state.getWallet().nok_v1, config: inert } });
+await w.CivicationStoreUI.render(); await w.CivicationUI.renderCivicationShop();
+assert.equal(w.document.querySelector('#civiStorePanel img, #civiShopPacks img'), null);
+w.CivicationHome = { getSelectedDistrictAccess: () => ({ store: ['audio'], housing: [] }) };
+assert.equal((await shop.buyPack('tine-milk-1l', 'locked-store')).reason, 'PACK_NOT_FOUND');
+assert.equal(w.localStorage.getItem('hg_pc_inventory_v1'), legacy);
+console.log('PASS: sourced NOK groceries, old prices blocked, repeat purchases, request deduplication, fresh balance/access, quantities, safe rendering and preserved legacy inventory');
+dom.window.close();
+})().catch(error => { console.error(error); process.exitCode = 1; });

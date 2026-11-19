@@ -64,7 +64,14 @@ async function run() {
   global.document = { readyState: 'complete', addEventListener() {} };
   global.addEventListener = () => {};
   global.dispatchEvent = () => {};
-  global.fetch = makeFetch(repoRoot);
+  const fetchFile = makeFetch(repoRoot);
+  const privateReads = new Map();
+  global.fetch = async url => {
+    const key = String(url);
+    if (key.includes('privatePhaseMailFamilies/')) privateReads.set(key, (privateReads.get(key) || 0) + 1);
+    return fetchFile(url);
+  };
+  loadScript('js/Civication/core/civicationJsonStore.js');
 
   loadScript('js/Civication/core/civicationState.js');
   loadScript('js/Civication/core/civicationCalendar.js');
@@ -104,12 +111,23 @@ async function run() {
   // ============================================================
   assert(privateBuilder, 'CivicationPrivatePhaseMailBuilder skal finnes');
 
+  const morningPath = 'data/Civication/privatePhaseMailFamilies/morning.json';
+  const simultaneous = await Promise.all([
+    privateBuilder.loadPhaseFamily('morning'),
+    privateBuilder.loadPhaseFamily('morning'),
+    global.CivicationJsonStore.fetchJson(morningPath)
+  ]);
+  assert.strictEqual(privateReads.get(morningPath), 1, 'concurrent private and shared consumers fetch the source once');
+  assert(simultaneous[0] && simultaneous.every(value => value === simultaneous[0]), 'all consumers share the actual loaded source');
+  assert.strictEqual(global.CivicationJsonStore.getCached(morningPath), simultaneous[0]);
+
   const privateItems = await privateBuilder.buildPrivatePhaseItems(active, { date: '2026-06-22' });
   // Maks 1 aktiv mail per private fase.
   for (const phase of PRIVATE_PHASES) {
     const rows = privateItems.filter(row => row.phase === phase);
     assert(rows.length <= 1, `private fase «${phase}» skal ha maks 1 aktiv mail (fant ${rows.length})`);
   }
+  for (const phase of PRIVATE_PHASES) assert.strictEqual(privateReads.get(`data/Civication/privatePhaseMailFamilies/${phase}.json`), 1, 'each private source is fetched once');
   assert(privateItems.length >= 5, `private builder skal produsere mailer for de private fasene (fant ${privateItems.length})`);
 
   for (const row of privateItems) {

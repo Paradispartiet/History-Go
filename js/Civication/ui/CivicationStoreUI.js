@@ -9,6 +9,259 @@
     return Number.isFinite(num) ? num.toLocaleString("no-NO") : "0";
   }
 
+  const formatNok = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  let purchaseMessage = "";
+  /** @param {HTMLElement} host @param {any[]} stores @param {any[]} packs @param {any} wallet @param {any} shop */
+  function renderNokStore(host, stores, packs, wallet, shop) {
+    const node = (/** @type {string} */ tag, /** @type {string} */ text) => {
+      const el = document.createElement(tag); el.textContent = text;
+      if (tag === "button") el.style.minHeight = "44px";
+      return el;
+    };
+    const panel = node("div", "");
+    const heading = node("h3", "Dagligvarer"); heading.tabIndex = -1; panel.appendChild(heading);
+    panel.appendChild(node("p", "Saldo: " + formatNok(wallet.balance) + " kr"));
+    panel.appendChild(node("p", "Daterte prisreferanser. Spillkjøp uten levering. Varer kan kjøpes flere ganger; ingen automatisk månedlig belastning."));
+    for (const store of stores) {
+      panel.appendChild(node("h4", String(store.name || "Butikk")));
+      for (const pack of packs.filter(p => p.store_id === store.id)) {
+        const row = node("div", "");
+        row.appendChild(node("strong", String(pack.title || "Vare")));
+        row.appendChild(node("p", String(pack.unitLabel || "") + " · " + formatNok(pack.priceNok) + " kr"));
+        row.appendChild(node("p", "Priskilde: " + String(pack.retailer || "") + " · Kontrollert: " + String(pack.checkedOn || "")));
+        const opened = wallet.nok_v1.shopping?.openedUnits?.[pack.id] || 0;
+        row.appendChild(node("p", "På lager: " + String(wallet.nok_v1.shopping?.quantities?.[pack.id] || 0) + " pakninger"
+          + (opened ? " + " + opened + " " + String(pack.baseUnit) + " i åpnet pakning" : "")));
+        const button = /** @type {HTMLButtonElement} */ (node("button", "Kjøp én pakning"));
+        button.type = "button"; button.className = "btn";
+        button.setAttribute("data-buy-pack", String(pack.id));
+        button.disabled = !Number.isFinite(pack.priceNok) || pack.priceNok <= 0 || !Number.isFinite(wallet.balance) || wallet.balance < pack.priceNok;
+        const requestId = shop.createPurchaseRequest();
+        button.addEventListener("click", async () => {
+          button.disabled = true;
+          try {
+            const result = await shop.buyPack(pack.id, requestId);
+            purchaseMessage = result?.ok ? (result.skipped ? "Kjøpet var allerede registrert." : "Varen er kjøpt.")
+              : result?.reason === "NOT_ENOUGH_PC" ? "Ikke nok penger. Ingen vare er kjøpt." : "Varen kunne ikke kjøpes.";
+          } catch { purchaseMessage = "Kjøpet kunne ikke bekreftes. Sjekk saldo og beholdning før nytt forsøk."; }
+          await renderStorePanel();
+          const next = /** @type {HTMLButtonElement|undefined} */ (Array.from(host.querySelectorAll("[data-buy-pack]")).find(b => b.getAttribute("data-buy-pack") === String(pack.id)));
+          (next && !next.disabled ? next : host.querySelector("h3"))?.focus({ preventScroll: true });
+        });
+        row.appendChild(button); panel.appendChild(row);
+      }
+    }
+    if (!packs.length) panel.appendChild(node("p", "Ingen dokumenterte varepriser er tilgjengelige her ennå."));
+    const pantry = shop.getNokPantry?.() || [];
+    panel.appendChild(node("h4", "Matvarer hjemme"));
+    if (!pantry.length) panel.appendChild(node("p", "Ingen registrerte matvarer igjen."));
+    for (const stock of pantry) {
+      const product = stock.product;
+      const row = node("div", "");
+      row.appendChild(node("p", String(product.title) + " · Igjen: " + stock.available + " " + String(product.baseUnit)));
+      const use = /** @type {HTMLButtonElement} */ (node("button", "Bruk " + Math.min(stock.available, product.consumptionStep) + " " + product.baseUnit));
+      use.type = "button"; use.className = "btn"; use.setAttribute("data-consume-product", product.id);
+      const requestId = shop.createPurchaseRequest();
+      use.addEventListener("click", async () => {
+        use.disabled = true;
+        try {
+          const result = shop.consumeNokProduct(product.id, requestId);
+          purchaseMessage = result?.ok ? "Forbruket er registrert."
+            : result?.reason === "NOT_ENOUGH_STOCK" ? "Varen er brukt opp." : "Forbruket kunne ikke registreres.";
+        } catch { purchaseMessage = "Forbruket kunne ikke bekreftes. Sjekk beholdningen før nytt forsøk."; }
+        await renderStorePanel();
+        const next = /** @type {HTMLButtonElement|undefined} */ (Array.from(host.querySelectorAll("[data-consume-product]")).find(b => b.getAttribute("data-consume-product") === product.id));
+        (next || host.querySelector("h3"))?.focus({ preventScroll: true });
+      });
+      row.appendChild(use); panel.appendChild(row);
+    }
+    const meals = shop.getNokMeals?.() || [];
+    if (meals.length && wallet.nok_v1.shopping?.mealPlan?.version !== 2 && shop.previewNokMealPlan && shop.saveNokMealPlan) {
+      const planner = document.createElement("details"); planner.setAttribute("data-meal-planner", "");
+      const toggle = node("summary", "Planlegg måltider og handleliste"); toggle.style.minHeight = "44px";
+      planner.appendChild(toggle);
+      planner.appendChild(node("p", "Velg antall porsjoner. Handlelisten trekker fra maten du har og runder opp til hele pakninger. Kjøp varer i butikken og lag måltidene når du ønsker. Et planlagt måltid teller ned én porsjon når du lager det."));
+      const saved = shop.getNokMealPlan?.();
+      planner.open = saved?.ok && saved.portions > 0;
+      if (saved && !saved.ok) planner.appendChild(node("p", "Den lagrede matplanen kunne ikke leses. Velg antall på nytt for å erstatte planen."));
+      for (const [index, meal] of meals.entries()) {
+        const label = node("label", meal.title + " · Porsjoner: ");
+        const input = document.createElement("input");
+        input.type = "number"; input.min = "0"; input.max = "99"; input.step = "1";
+        input.id = "civiMealPlanCount" + index; label.setAttribute("for", input.id);
+        input.value = String(saved?.ok ? saved.servings[meal.mealId] || 0 : 0);
+        input.setAttribute("data-plan-meal", meal.mealId);
+        input.style.cssText = "min-height:44px;width:5rem;max-width:100%;box-sizing:border-box;";
+        label.appendChild(input);
+        const row = node("p", ""); row.appendChild(label); planner.appendChild(row);
+      }
+      const previewHost = node("div", ""); previewHost.setAttribute("data-meal-plan-preview", "");
+      planner.appendChild(previewHost);
+      const counts = () => Object.fromEntries(Array.from(planner.querySelectorAll("[data-plan-meal]"))
+        .map(el => [el.getAttribute("data-plan-meal"), /** @type {HTMLInputElement} */ (el).valueAsNumber]));
+      const updatePreview = () => {
+        const view = shop.previewNokMealPlan(counts()); previewHost.replaceChildren();
+        if (!view?.ok) {
+          previewHost.appendChild(node("p", "Planen kunne ikke beregnes. Bruk hele antall mellom 0 og 99, med høyst 99 porsjoner totalt."));
+          return;
+        }
+        previewHost.appendChild(node("p", "Ingredienser i planen: " + formatNok(view.referenceCostCents / 100) + " kr i prisreferanse"));
+        for (const item of view.ingredients) previewHost.appendChild(node("p", `${item.title}: Behov ${item.required} ${item.baseUnit}`
+          + ` · Hjemme ${item.available} ${item.baseUnit} · Mangler ${item.missing} ${item.baseUnit}`
+          + ` · Kjøp ${item.packagesToBuy} pakninger (${item.unitLabel})`));
+        previewHost.appendChild(node("strong", "Pakninger som mangler: " + formatNok(view.shoppingCostCents / 100) + " kr å kjøpe"));
+        previewHost.appendChild(node("p", "Beregnet saldo etter disse kjøpene: " + formatNok(view.projectedBalanceCents / 100) + " kr"
+          + (view.canAfford ? "" : " · Du har ikke dekning for alle pakningene.")));
+      };
+      planner.addEventListener("input", updatePreview);
+      updatePreview();
+      const save = /** @type {HTMLButtonElement} */ (node("button", "Lagre matplan"));
+      save.type = "button"; save.className = "btn"; save.setAttribute("data-save-meal-plan", "");
+      save.addEventListener("click", async () => {
+        if (!save.isConnected || save.disabled) return;
+        save.disabled = true;
+        let result;
+        try { result = shop.saveNokMealPlan(counts()); } catch { result = { ok: false }; }
+        purchaseMessage = result?.ok ? "Matplanen er lagret. Kjøp og tilberedning velges separat." : "Matplanen kunne ikke lagres. Kontroller antall og prisgrunnlag.";
+        if (!result?.ok) {
+          previewHost.prepend(node("p", purchaseMessage)); save.disabled = false; save.focus(); return;
+        }
+        await renderStorePanel();
+        const next = /** @type {HTMLDetailsElement|null} */ (host.querySelector("[data-meal-planner]"));
+        /** @type {HTMLElement|null} */ (next?.querySelector(next.open ? "[data-save-meal-plan]" : "summary"))?.focus({ preventScroll: true });
+      });
+      planner.appendChild(save); panel.appendChild(planner);
+    }
+    if (meals.length && shop.previewNokMealWeek && shop.saveNokMealWeek) {
+      const week = document.createElement("details"); week.setAttribute("data-meal-week", "");
+      const summary = node("summary", "Ukemeny og handleliste"); summary.style.minHeight = "44px";
+      week.appendChild(summary);
+      week.appendChild(node("p", "Velg én porsjon til frokost, lunsj, middag og kveldsmat på sju spilledager. Tomme felt betyr ingen plan. Lagring erstatter gjeldende matplan; kjøp gjøres separat."));
+      const saved = shop.getNokMealWeek();
+      const today = (/** @type {any} */ (window)).CivicationCalendar?.getGameDate?.();
+      week.open = saved.ok;
+      const startLabel = node("label", "Første spilledato: ");
+      const start = document.createElement("input"); start.type = "date";
+      start.id = "civiMealWeekStart"; startLabel.setAttribute("for", start.id);
+      start.value = saved.ok ? saved.startDate : today || "";
+      start.style.cssText = "min-height:44px;max-width:100%;box-sizing:border-box;";
+      start.setAttribute("data-meal-week-start", ""); startLabel.appendChild(start); week.appendChild(startLabel);
+      const days = node("div", ""); week.appendChild(days);
+      const forecast = node("div", ""); forecast.setAttribute("data-meal-week-preview", ""); week.appendChild(forecast);
+      const slots = { breakfast: "Frokost", lunch: "Lunsj", dinner: "Middag", supper: "Kveldsmat" };
+      const entries = () => Array.from(days.querySelectorAll("select")).filter(el => el.value)
+        .map(el => ({ date: el.getAttribute("data-week-date"), slot: el.getAttribute("data-week-slot"), mealId: el.value }));
+      const preview = () => {
+        const view = shop.previewNokMealWeek(start.value, entries()); forecast.replaceChildren();
+        if (!view.ok) { forecast.appendChild(node("p", "Velg en gyldig spilledato og måltider.")); return; }
+        forecast.appendChild(node("p", view.portions + " planlagte porsjoner · Ingrediensreferanse: " + formatNok(view.referenceCostCents / 100) + " kr"));
+        for (const item of view.ingredients) forecast.appendChild(node("p", `${item.title}: Behov ${item.required} ${item.baseUnit}`
+          + ` · Hjemme ${item.available} ${item.baseUnit} · Mangler ${item.missing} ${item.baseUnit}`
+          + ` · Kjøp ${item.packagesToBuy} pakninger (${item.unitLabel})`));
+        forecast.appendChild(node("strong", "Pakninger som mangler: " + formatNok(view.shoppingCostCents / 100) + " kr å kjøpe"));
+        forecast.appendChild(node("p", "Beregnet saldo etter kjøp: " + formatNok(view.projectedBalanceCents / 100) + " kr"
+          + (view.canAfford ? "" : " · Ikke dekning for alle pakningene.")));
+      };
+      const buildDays = (selected) => {
+        days.replaceChildren();
+        const view = shop.previewNokMealWeek(start.value, []);
+        if (!view.ok) { preview(); return; }
+        for (const date of view.dates) {
+          const day = document.createElement("details"); day.open = date === today;
+          const title = node("summary", date + (date === today ? " · I dag" : "")); title.style.minHeight = "44px"; day.appendChild(title);
+          for (const [slot, title] of Object.entries(slots)) {
+            const row = node("p", ""); const label = node("label", title + ": ");
+            const select = document.createElement("select"); select.id = "civiWeek-" + date + "-" + slot;
+            label.setAttribute("for", select.id);
+            select.setAttribute("data-week-date", date); select.setAttribute("data-week-slot", slot);
+            select.style.cssText = "display:block;min-height:44px;width:100%;max-width:100%;box-sizing:border-box;";
+            select.add(new Option("Ikke planlagt", ""));
+            for (const meal of meals) select.add(new Option(meal.title, meal.mealId));
+            select.value = selected.find(e => e.date === date && e.slot === slot)?.mealId || "";
+            label.appendChild(select); row.appendChild(label); day.appendChild(row);
+          }
+          days.appendChild(day);
+        }
+        preview();
+      };
+      buildDays(saved.ok ? saved.entries : []);
+      start.addEventListener("change", () => buildDays(entries()));
+      days.addEventListener("change", preview);
+      const save = /** @type {HTMLButtonElement} */ (node("button", "Lagre ukemeny"));
+      save.type = "button"; save.className = "btn"; save.setAttribute("data-save-meal-week", "");
+      save.addEventListener("click", async () => {
+        if (!save.isConnected || save.disabled) return;
+        save.disabled = true;
+        let result;
+        try { result = shop.saveNokMealWeek(start.value, entries()); } catch { result = { ok: false }; }
+        if (!result?.ok) {
+          forecast.prepend(node("p", "Ukemenyen kunne ikke lagres. Tidligere eller allerede registrerte måltider kan ikke legges inn på nytt."));
+          save.disabled = false; save.focus(); return;
+        }
+        purchaseMessage = "Ukemenyen er lagret. Ingen varer er kjøpt eller brukt.";
+        await renderStorePanel();
+        /** @type {HTMLElement|null} */ (host.querySelector("[data-save-meal-week]"))?.focus({ preventScroll: true });
+      });
+      week.appendChild(save); panel.appendChild(week);
+      if (saved.ok) {
+        panel.appendChild(node("h4", "Dagens planlagte måltider"));
+        const due = saved.entries.filter(e => e.date === today);
+        if (!due.length) panel.appendChild(node("p", "Ingen måltider gjenstår i planen for i dag."));
+        if (saved.entries.some(e => e.date < today)) panel.appendChild(node("p", "Planen har tidligere måltider som ikke er registrert. De står fortsatt i handlelisten; fjern eller flytt dem i ukemenyen."));
+        for (const entry of due) {
+          const meal = shop.getNokMealPreview(entry.mealId);
+          const key = entry.date + ":" + entry.slot;
+          const row = node("div", ""); row.appendChild(node("p", slots[entry.slot] + " · " + meal.title));
+          const prepare = /** @type {HTMLButtonElement} */ (node("button", "Lag og registrer " + slots[entry.slot].toLowerCase()));
+          prepare.type = "button"; prepare.className = "btn"; prepare.disabled = !meal.canPrepare;
+          prepare.setAttribute("data-prepare-week", key);
+          if (!meal.canPrepare) row.appendChild(node("p", "Du mangler ingredienser."));
+          const request = shop.createPurchaseRequest();
+          prepare.addEventListener("click", async () => {
+            if (!prepare.isConnected || prepare.disabled) return;
+            prepare.disabled = true;
+            let result;
+            try { result = shop.consumeNokMeal(entry.mealId, request, key); } catch { result = { ok: false }; }
+            purchaseMessage = result?.ok ? "Måltidet er registrert i ukemenyen uten ny betaling." : "Måltidet kunne ikke registreres. Kontroller dato og ingredienser.";
+            await renderStorePanel(); host.querySelector("h3")?.focus({ preventScroll: true });
+          });
+          row.appendChild(prepare); panel.appendChild(row);
+        }
+      }
+    }
+    if (meals.length) {
+      panel.appendChild(node("h4", "Lag et måltid"));
+      panel.appendChild(node("p", "Valgte spillporsjoner, ikke en full kostplan. Mengder gjelder tørre/rå varer. Referansekostnad bruker profilens pakningspriser; maten er allerede betalt ved kjøp."));
+    }
+    for (const meal of meals) {
+      const row = node("div", "");
+      row.appendChild(node("strong", meal.title));
+      row.appendChild(node("p", meal.ingredients.map(i => `${i.title}: ${i.amount} ${i.baseUnit}`
+        + (i.missing ? ` (mangler ${i.missing} ${i.baseUnit})` : "")).join(" · ")));
+      row.appendChild(node("p", "Referansekostnad: " + formatNok(meal.referenceCostCents / 100) + " kr · Ingen ny betaling"));
+      const prepare = /** @type {HTMLButtonElement} */ (node("button", "Lag måltidet"));
+      prepare.type = "button"; prepare.className = "btn";
+      prepare.setAttribute("data-prepare-meal", meal.mealId); prepare.disabled = !meal.canPrepare;
+      const requestId = shop.createPurchaseRequest();
+      prepare.addEventListener("click", async () => {
+        if (!prepare.isConnected || prepare.disabled) return;
+        prepare.disabled = true;
+        try {
+          const result = shop.consumeNokMeal(meal.mealId, requestId);
+          purchaseMessage = result?.ok ? "Måltidet er registrert. Ingrediensene er brukt uten ny betaling."
+            : result?.reason === "NOT_ENOUGH_STOCK" ? "Du mangler ingredienser. Ingen varer er brukt." : "Måltidet kunne ikke registreres.";
+        } catch { purchaseMessage = "Måltidet kunne ikke bekreftes. Sjekk beholdningen før nytt forsøk."; }
+        await renderStorePanel();
+        const next = /** @type {HTMLButtonElement|undefined} */ (Array.from(host.querySelectorAll("[data-prepare-meal]"))
+          .find(b => b.getAttribute("data-prepare-meal") === meal.mealId));
+        (next && !next.disabled ? next : host.querySelector("h3"))?.focus({ preventScroll: true });
+      });
+      row.appendChild(prepare); panel.appendChild(row);
+    }
+    const status = node("p", purchaseMessage); status.setAttribute("role", "status"); panel.appendChild(status);
+    host.replaceChildren(panel);
+  }
+
   async function renderStorePanel() {
     const host = document.getElementById("civiStorePanel");
     if (!host) return;
@@ -24,9 +277,13 @@
       shop.getVisiblePacks()
     ]));
 
-    const wallet = /** @type {{ balance?: number }} */ (typeof window.getPCWallet === "function"
-      ? window.getPCWallet()
-      : { balance: 0 });
+    const rawWallet = /** @type {any} */ (window.CivicationState?.getWallet?.()
+      ?? (typeof window.getPCWallet === "function" ? window.getPCWallet() : null));
+    const wallet = typeof rawWallet === "number" ? { balance: rawWallet } : rawWallet;
+    if (wallet?.nok_v1?.active === true) {
+      renderNokStore(host, stores, packs, wallet, shop);
+      return;
+    }
     const inv = /** @type {{ packs?: Record<string, unknown> }} */ (shop.getInv?.() || {});
     const owned = inv.packs || {};
 

@@ -1,0 +1,1278 @@
+{
+  "version": 1,
+  "status": "prototype_not_activated",
+  "currency": {
+    "id": "PC",
+    "nokPerPC": 1
+  },
+  "referenceYear": 2026,
+  "job": {
+    "id": "retail_assistant_tariff_1",
+    "careerId": "naeringsliv",
+    "roleTitle": "Ekspeditør / butikkmedarbeider",
+    "label": "Butikkmedarbeider, tarifftrinn 1",
+    "employmentPercent": 100,
+    "grossMonthlyNok": 31694,
+    "source": "https://www.virke.no/tariff-og-lonn/finn-tariffavtale/landsoverenskomsten-hk/",
+    "minimumOfferThreshold": 5,
+    "offerEmploymentPercent": 100,
+    "entryGateReference": "data/badges/naeringsliv.json#/tiers/0",
+    "offerEmploymentPercents": [
+      100,
+      50
+    ],
+    "checkedOn": "2026-11-17",
+    "validFrom": "2026-04-01",
+    "termsNote": "Virke/HK, tarifftrinn 1. Stillingsprosenten gjelder avtalt lønn; tariff er ikke en universell minstelønn."
+  },
+  "tax": {
+    "ordinaryRate": 0.22,
+    "personalAllowance": 114540,
+    "minimumDeductionRate": 0.46,
+    "minimumDeductionCap": 95700,
+    "nationalInsuranceRate": 0.076,
+    "nationalInsuranceThreshold": 99650,
+    "nationalInsuranceRamp": 0.25,
+    "brackets": [
+      [
+        226100,
+        0.017
+      ],
+      [
+        318300,
+        0.04
+      ],
+      [
+        725050,
+        0.137
+      ],
+      [
+        980100,
+        0.168
+      ],
+      [
+        1467200,
+        0.178
+      ]
+    ],
+    "source": "https://www.skatteetaten.no/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/"
+  },
+  "budget": {
+    "rent": {
+      "monthlyNok": 10090,
+      "kind": "statistical_reference_2025_not_listing",
+      "source": "https://www.ssb.no/statbank/table/09895",
+      "scope": "Oslo/Bærum ettroms"
+    },
+    "living": {
+      "monthlyNok": 9406,
+      "kind": "Oslo_guideline_proxy_not_itemised_consumption",
+      "source": "https://www.oslo.kommune.no/bolig-og-sosiale-tjenester/sosiale-tjenester/okonomisk-sosialhjelp/"
+    },
+    "electricity": {
+      "id": "ssb-q3-2026-electricity-500kwh",
+      "monthlyNok": 617,
+      "kind": "effective_statistical_unit_price_with_assumed_consumption",
+      "monthlyConsumptionKwh": 500,
+      "unitPriceNokPerKwh": 1.234,
+      "pricePeriod": "2026-Q3",
+      "includes": "power_grid_taxes_less_public_support",
+      "consumptionKind": "scenario_assumption_not_meter_reading",
+      "source": "https://www.ssb.no/energi-og-industri/energi/statistikk/elektrisitetspriser/artikler/noe-lavere-strompris-for-husholdninger",
+      "checkedOn": "2026-11-16"
+    },
+    "transport": {
+      "monthlyNok": 664.1,
+      "priceNok": 655,
+      "periodDays": 30,
+      "kind": "annualised_monthly_equivalent_not_invoice",
+      "scope": "Voksen, Ruter sone 1",
+      "source": "https://ruter.no/aktuelt/produkter/prisen-gar-ned",
+      "validFrom": "2026-05-03",
+      "reviewBy": "2027-04-01",
+      "conversion": "655 * 365 / 30 / 12, rounded to cents; not a monthly ticket",
+      "id": "ruter-adult-zone1-30days-2026",
+      "label": "Ruter, voksen sone 1, 30 dager",
+      "checkedOn": "2026-11-16",
+      "purchaseMode": "optional_prepaid_no_auto_renewal"
+    }
+  },
+  "unemployed": {
+    "automaticIncomeNok": 0,
+    "approvedSupportRequired": true,
+    "osloSingleLivingGuidelineNok": 9406,
+    "dagpenger": "requires_separate_eligibility_and_prior_income"
+  },
+  "migration": {
+    "activated": false,
+    "policy": "preserve_existing_balance_no_multiplier",
+    "activationRequires": [
+      "versioned_wallet",
+      "job_specific_salary_mapping",
+      "single_expense_owner",
+      "monthly_due_dates",
+      "no_duplicate_tax_or_rent",
+      "UI_breakdown",
+      "three_month_acceptance"
+    ]
+  },
+  "housingOffers": [
+    {
+      "id": "oslo-1room-ssb2025-sagene-start",
+      "districtId": "sagene",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "sourceYear": 2025,
+      "priceScope": "Oslo og Bærum, ettroms",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-16",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh",
+      "referenceAreaId": "oslo_baerum",
+      "roomCount": 1,
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "note": "Fiktivt spilltilbud i Sagene med SSBs gjennomsnitt for ettroms i Oslo/Bærum, ikke dokumentert lokal leieannonse",
+      "referenceYear": 2025,
+      "defaultOffer": true
+    },
+    {
+      "id": "oslo-2room-ssb2025-frogner",
+      "districtId": "frogner",
+      "monthlyRentNok": 16700,
+      "sourceId": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "predicted_monthly_50sqm_2rooms_2025",
+      "referenceAreaId": "oslo_central",
+      "referenceYear": 2025,
+      "roomCount": 2,
+      "floorAreaSqm": 50,
+      "priceScope": "Oslo sentralt · Frogner, Ullern, Sentrum, St. Hanshaugen",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktiv spillbolig i frogner; leiepris bruker SSBs Oslo sentralt · Frogner, Ullern, Sentrum, St. Hanshaugen-referanse, ikke en dokumentert annonse eller lokal distriktspris",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh",
+      "defaultOffer": true
+    },
+    {
+      "id": "oslo-2room-ssb2025-gamle_oslo",
+      "districtId": "gamle_oslo",
+      "monthlyRentNok": 15260,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 2,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktiv spillbolig i gamle_oslo; leiepris bruker SSBs Oslo og Bærum · gjennomsnitt-referanse, ikke en dokumentert annonse eller lokal distriktspris",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh",
+      "defaultOffer": true
+    },
+    {
+      "id": "oslo-2room-ssb2025-gronland",
+      "districtId": "gronland",
+      "monthlyRentNok": 15260,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 2,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktiv spillbolig i gronland; leiepris bruker SSBs Oslo og Bærum · gjennomsnitt-referanse, ikke en dokumentert annonse eller lokal distriktspris",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh",
+      "defaultOffer": true
+    },
+    {
+      "id": "oslo-2room-ssb2025-grunerlokka",
+      "districtId": "grunerlokka",
+      "monthlyRentNok": 15260,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 2,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktiv spillbolig i grunerlokka; leiepris bruker SSBs Oslo og Bærum · gjennomsnitt-referanse, ikke en dokumentert annonse eller lokal distriktspris",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh",
+      "defaultOffer": true
+    },
+    {
+      "id": "oslo-2room-ssb2025-majorstuen",
+      "districtId": "majorstuen",
+      "monthlyRentNok": 16700,
+      "sourceId": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "predicted_monthly_50sqm_2rooms_2025",
+      "referenceAreaId": "oslo_central",
+      "referenceYear": 2025,
+      "roomCount": 2,
+      "floorAreaSqm": 50,
+      "priceScope": "Oslo sentralt · Frogner, Ullern, Sentrum, St. Hanshaugen",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktiv spillbolig i majorstuen; leiepris bruker SSBs Oslo sentralt · Frogner, Ullern, Sentrum, St. Hanshaugen-referanse, ikke en dokumentert annonse eller lokal distriktspris",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh",
+      "defaultOffer": true
+    },
+    {
+      "id": "oslo-2room-ssb2025-sentrum",
+      "districtId": "sentrum",
+      "monthlyRentNok": 16700,
+      "sourceId": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "predicted_monthly_50sqm_2rooms_2025",
+      "referenceAreaId": "oslo_central",
+      "referenceYear": 2025,
+      "roomCount": 2,
+      "floorAreaSqm": 50,
+      "priceScope": "Oslo sentralt · Frogner, Ullern, Sentrum, St. Hanshaugen",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktiv spillbolig i sentrum; leiepris bruker SSBs Oslo sentralt · Frogner, Ullern, Sentrum, St. Hanshaugen-referanse, ikke en dokumentert annonse eller lokal distriktspris",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh",
+      "defaultOffer": true
+    },
+    {
+      "id": "oslo-2room-ssb2025-sondre_nordstrand",
+      "districtId": "sondre_nordstrand",
+      "monthlyRentNok": 14500,
+      "sourceId": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "predicted_monthly_50sqm_2rooms_2025",
+      "referenceAreaId": "oslo_outer",
+      "referenceYear": 2025,
+      "roomCount": 2,
+      "floorAreaSqm": 50,
+      "priceScope": "Oslo ytre øst · Søndre Nordstrand, Grorud, Stovner, Alna",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktiv spillbolig i sondre_nordstrand; leiepris bruker SSBs Oslo ytre øst · Søndre Nordstrand, Grorud, Stovner, Alna-referanse, ikke en dokumentert annonse eller lokal distriktspris",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh",
+      "defaultOffer": true
+    },
+    {
+      "id": "oslo-2room-ssb2025-toyen",
+      "districtId": "toyen",
+      "monthlyRentNok": 15260,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 2,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktiv spillbolig i toyen; leiepris bruker SSBs Oslo og Bærum · gjennomsnitt-referanse, ikke en dokumentert annonse eller lokal distriktspris",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh",
+      "defaultOffer": true
+    },
+    {
+      "id": "oslo-2room-ssb2025-ullern",
+      "districtId": "ullern",
+      "monthlyRentNok": 16700,
+      "sourceId": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "predicted_monthly_50sqm_2rooms_2025",
+      "referenceAreaId": "oslo_central",
+      "referenceYear": 2025,
+      "roomCount": 2,
+      "floorAreaSqm": 50,
+      "priceScope": "Oslo sentralt · Frogner, Ullern, Sentrum, St. Hanshaugen",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktiv spillbolig i ullern; leiepris bruker SSBs Oslo sentralt · Frogner, Ullern, Sentrum, St. Hanshaugen-referanse, ikke en dokumentert annonse eller lokal distriktspris",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh",
+      "defaultOffer": true
+    },
+    {
+      "id": "oslo-2room-ssb2025-sagene",
+      "districtId": "sagene",
+      "monthlyRentNok": 15260,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 2,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 2-roms spilltilbud i sagene med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
+    },
+    {
+      "id": "oslo-3room-ssb2025-sagene",
+      "districtId": "sagene",
+      "monthlyRentNok": 19030,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 3,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 3-roms spilltilbud i sagene med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-750kwh"
+    },
+    {
+      "id": "oslo-4room-ssb2025-sagene",
+      "districtId": "sagene",
+      "monthlyRentNok": 23200,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 4,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 4-roms spilltilbud i sagene med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-1000kwh"
+    },
+    {
+      "id": "oslo-1room-ssb2025-frogner",
+      "districtId": "frogner",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 1,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 1-roms spilltilbud i frogner med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
+    },
+    {
+      "id": "oslo-3room-ssb2025-frogner",
+      "districtId": "frogner",
+      "monthlyRentNok": 19030,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 3,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 3-roms spilltilbud i frogner med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-750kwh"
+    },
+    {
+      "id": "oslo-4room-ssb2025-frogner",
+      "districtId": "frogner",
+      "monthlyRentNok": 23200,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 4,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 4-roms spilltilbud i frogner med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-1000kwh"
+    },
+    {
+      "id": "oslo-1room-ssb2025-gamle_oslo",
+      "districtId": "gamle_oslo",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 1,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 1-roms spilltilbud i gamle_oslo med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
+    },
+    {
+      "id": "oslo-3room-ssb2025-gamle_oslo",
+      "districtId": "gamle_oslo",
+      "monthlyRentNok": 19030,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 3,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 3-roms spilltilbud i gamle_oslo med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-750kwh"
+    },
+    {
+      "id": "oslo-4room-ssb2025-gamle_oslo",
+      "districtId": "gamle_oslo",
+      "monthlyRentNok": 23200,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 4,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 4-roms spilltilbud i gamle_oslo med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-1000kwh"
+    },
+    {
+      "id": "oslo-1room-ssb2025-gronland",
+      "districtId": "gronland",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 1,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 1-roms spilltilbud i gronland med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
+    },
+    {
+      "id": "oslo-3room-ssb2025-gronland",
+      "districtId": "gronland",
+      "monthlyRentNok": 19030,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 3,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 3-roms spilltilbud i gronland med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-750kwh"
+    },
+    {
+      "id": "oslo-4room-ssb2025-gronland",
+      "districtId": "gronland",
+      "monthlyRentNok": 23200,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 4,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 4-roms spilltilbud i gronland med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-1000kwh"
+    },
+    {
+      "id": "oslo-1room-ssb2025-grunerlokka",
+      "districtId": "grunerlokka",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 1,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 1-roms spilltilbud i grunerlokka med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
+    },
+    {
+      "id": "oslo-3room-ssb2025-grunerlokka",
+      "districtId": "grunerlokka",
+      "monthlyRentNok": 19030,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 3,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 3-roms spilltilbud i grunerlokka med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-750kwh"
+    },
+    {
+      "id": "oslo-4room-ssb2025-grunerlokka",
+      "districtId": "grunerlokka",
+      "monthlyRentNok": 23200,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 4,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 4-roms spilltilbud i grunerlokka med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-1000kwh"
+    },
+    {
+      "id": "oslo-1room-ssb2025-majorstuen",
+      "districtId": "majorstuen",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 1,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 1-roms spilltilbud i majorstuen med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
+    },
+    {
+      "id": "oslo-3room-ssb2025-majorstuen",
+      "districtId": "majorstuen",
+      "monthlyRentNok": 19030,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 3,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 3-roms spilltilbud i majorstuen med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-750kwh"
+    },
+    {
+      "id": "oslo-4room-ssb2025-majorstuen",
+      "districtId": "majorstuen",
+      "monthlyRentNok": 23200,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 4,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 4-roms spilltilbud i majorstuen med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-1000kwh"
+    },
+    {
+      "id": "oslo-1room-ssb2025-sentrum",
+      "districtId": "sentrum",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 1,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 1-roms spilltilbud i sentrum med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
+    },
+    {
+      "id": "oslo-3room-ssb2025-sentrum",
+      "districtId": "sentrum",
+      "monthlyRentNok": 19030,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 3,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 3-roms spilltilbud i sentrum med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-750kwh"
+    },
+    {
+      "id": "oslo-4room-ssb2025-sentrum",
+      "districtId": "sentrum",
+      "monthlyRentNok": 23200,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 4,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 4-roms spilltilbud i sentrum med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-1000kwh"
+    },
+    {
+      "id": "oslo-1room-ssb2025-sondre_nordstrand",
+      "districtId": "sondre_nordstrand",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 1,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 1-roms spilltilbud i sondre_nordstrand med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
+    },
+    {
+      "id": "oslo-3room-ssb2025-sondre_nordstrand",
+      "districtId": "sondre_nordstrand",
+      "monthlyRentNok": 19030,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 3,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 3-roms spilltilbud i sondre_nordstrand med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-750kwh"
+    },
+    {
+      "id": "oslo-4room-ssb2025-sondre_nordstrand",
+      "districtId": "sondre_nordstrand",
+      "monthlyRentNok": 23200,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 4,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 4-roms spilltilbud i sondre_nordstrand med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-1000kwh"
+    },
+    {
+      "id": "oslo-1room-ssb2025-toyen",
+      "districtId": "toyen",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 1,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 1-roms spilltilbud i toyen med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
+    },
+    {
+      "id": "oslo-3room-ssb2025-toyen",
+      "districtId": "toyen",
+      "monthlyRentNok": 19030,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 3,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 3-roms spilltilbud i toyen med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-750kwh"
+    },
+    {
+      "id": "oslo-4room-ssb2025-toyen",
+      "districtId": "toyen",
+      "monthlyRentNok": 23200,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 4,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 4-roms spilltilbud i toyen med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-1000kwh"
+    },
+    {
+      "id": "oslo-1room-ssb2025-ullern",
+      "districtId": "ullern",
+      "monthlyRentNok": 10090,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 1,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 1-roms spilltilbud i ullern med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-500kwh"
+    },
+    {
+      "id": "oslo-3room-ssb2025-ullern",
+      "districtId": "ullern",
+      "monthlyRentNok": 19030,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 3,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 3-roms spilltilbud i ullern med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-750kwh"
+    },
+    {
+      "id": "oslo-4room-ssb2025-ullern",
+      "districtId": "ullern",
+      "monthlyRentNok": 23200,
+      "sourceId": "https://www.ssb.no/statbank/table/09895",
+      "priceKind": "statistical_reference_not_listing",
+      "referencePriceKind": "observed_average_monthly_existing_rent_2025",
+      "referenceAreaId": "oslo_baerum",
+      "referenceYear": 2025,
+      "roomCount": 4,
+      "priceScope": "Oslo og Bærum · gjennomsnitt",
+      "placementKind": "fictional_game_location",
+      "checkedOn": "2026-11-18",
+      "note": "Fiktivt 4-roms spilltilbud i ullern med Oslo/Bærum-gjennomsnitt; ikke en bydelsspesifikk leiepris eller faktisk boligannonse.",
+      "electricityProfileId": "ssb-q3-2026-electricity-1000kwh"
+    }
+  ],
+  "shopStores": [
+    {
+      "id": "grocery_reference",
+      "name": "Dagligvarer",
+      "type": "food",
+      "blurb": "Prisreferanser fra Oda, datert per vare. Spillkjøp uten levering eller andre butikkgebyrer."
+    }
+  ],
+  "shopProducts": [
+    {
+      "id": "tine-milk-1l",
+      "store_id": "grocery_reference",
+      "title": "Tine Lettmelk 1 %",
+      "unitLabel": "1 l",
+      "priceNok": 19.4,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/430-tine-tine-lettmelk-1-fett/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-16",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 1000,
+      "baseUnit": "ml",
+      "consumptionStep": 250,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "axa-oats-1100g",
+      "store_id": "grocery_reference",
+      "title": "AXA Bjørn Havregryn Store",
+      "unitLabel": "1,1 kg",
+      "priceNok": 30.9,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/5953-axa-bjorn-havregryn-store/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-16",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 1100,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "r-bread-750g",
+      "store_id": "grocery_reference",
+      "title": "R Grovbrød, lettstekt",
+      "unitLabel": "750 g",
+      "priceNok": 43.6,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/13753-r-grovbrod-lettstekt/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-16",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 750,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "sopps-spaghetti-500g",
+      "store_id": "grocery_reference",
+      "title": "Sopps Spaghetti",
+      "unitLabel": "500 g",
+      "priceNok": 17.9,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/693-sopps-spaghetti/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-16",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 500,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "carrots-second-sort-1kg",
+      "store_id": "grocery_reference",
+      "title": "Gulrøtter 2. Sortering",
+      "unitLabel": "1 kg",
+      "priceNok": 19.9,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/9212-gulrotter-2-sortering-norge/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-16",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 1000,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "bananas-1kg",
+      "store_id": "grocery_reference",
+      "title": "Bananer",
+      "unitLabel": "1 kg",
+      "priceNok": 24.9,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/24854-bananer-ecuador-costa-rica/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-16",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 1000,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "sevan-red-lentils-dry-900g",
+      "store_id": "grocery_reference",
+      "title": "SEVAN Tørkede røde linser, hele",
+      "unitLabel": "900 g",
+      "priceNok": 44.9,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/67920-sevan-torkede-rode-linser-hele/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-16",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 900,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "r-rice-2kg",
+      "store_id": "grocery_reference",
+      "title": "R Middagsris",
+      "unitLabel": "2 kg",
+      "priceNok": 35.9,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/67510-r-middagsris/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-17",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 2000,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "r-chopped-tomatoes-400g",
+      "store_id": "grocery_reference",
+      "title": "R Grovhakkede tomater",
+      "unitLabel": "400 g",
+      "priceNok": 8.1,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/8474-r-grovhakkede-tomater/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-17",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 400,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    },
+    {
+      "id": "yellow-onions-1kg",
+      "store_id": "grocery_reference",
+      "title": "Gul løk",
+      "unitLabel": "1 kg",
+      "priceNok": 19.9,
+      "category": "food",
+      "repeatable": true,
+      "sourceId": "https://oda.com/no/products/19627-gul-lok-var-laveste-pris-norge/",
+      "retailer": "Oda",
+      "checkedOn": "2026-11-17",
+      "priceKind": "dated_retail_reference_not_live_quote",
+      "packageQuantity": 1000,
+      "baseUnit": "g",
+      "consumptionStep": 100,
+      "consumptionKind": "explicit_game_portion_not_nutrition_model"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "cleaner_day_virke_2026",
+      "careerId": "naeringsliv",
+      "careerName": "Økonomi og næringsliv",
+      "roleTitle": "Renholder",
+      "label": "Renholder, dagtid, 0–2 års ansiennitet",
+      "employmentPercent": 100,
+      "grossMonthlyNok": 40184.63,
+      "hourlyRateNok": 247.29,
+      "fullTimeWeeklyHours": 37.5,
+      "conversion": "hourlyRateNok * 37.5 * 52 / 12, monthly equivalent rounded to cents",
+      "source": "https://www.virke.no/tariff-og-lonn/finn-tariffavtale/renholdsoverenskomsten/",
+      "checkedOn": "2026-11-17",
+      "validFrom": "2026-05-01",
+      "minimumOfferThreshold": 8,
+      "offerEmploymentPercent": 100,
+      "offerEmploymentPercents": [
+        100,
+        50
+      ],
+      "entryGateReference": "data/badges/naeringsliv.json#/tiers/1",
+      "termsNote": "Spilltilbud hos et fiktivt tariffbundet renholdsfirma: dagtid, voksen, 0–2 års ansiennitet. 247,29 kr/time er omregnet med antatt 37,5 t/uke og 52/12 til månedsreferanse. Ingen natt-/overtidstillegg eller feriepenger er inkludert."
+    },
+    {
+      "id": "warehouse_virke_2026",
+      "careerId": "naeringsliv",
+      "careerName": "Økonomi og næringsliv",
+      "roleTitle": "Lager- og driftsmedarbeider",
+      "label": "Lagerarbeider, Virke/Fellesforbundet, voksen",
+      "employmentPercent": 100,
+      "grossMonthlyNok": 45617,
+      "hourlyRateNok": 280.72,
+      "fullTimeWeeklyHours": 37.5,
+      "conversion": "10527 NOK weekly * 52 / 12 = 45617 NOK monthly equivalent",
+      "source": "https://www.virke.no/tariff-og-lonn/finn-tariffavtale/grossistoverenskomsten-ff/",
+      "checkedOn": "2026-11-17",
+      "validFrom": "2026-04-01",
+      "minimumOfferThreshold": 10,
+      "offerEmploymentPercent": 100,
+      "offerEmploymentPercents": [
+        100,
+        50
+      ],
+      "entryGateReference": "data/badges/naeringsliv.json#/tiers/2",
+      "termsNote": "Spilltilbud hos en fiktiv tariffbundet grossist: voksen lagerarbeider. Virke/Fellesforbundet, 280,72 kr/time og 10 527 kr/uke ved 37,5 t. Månedsreferanse er ukesatsen × 52/12. Ingen skift-/overtidstillegg eller feriepenger er inkludert."
+    }
+  ],
+  "shopMeals": [
+    {
+      "id": "oats-with-milk",
+      "title": "Havregrøt med melk",
+      "ingredients": [
+        {
+          "productId": "axa-oats-1100g",
+          "amount": 80,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "tine-milk-1l",
+          "amount": 250,
+          "baseUnit": "ml"
+        }
+      ]
+    },
+    {
+      "id": "pasta-lentils-carrot",
+      "title": "Pasta med linser og gulrot",
+      "ingredients": [
+        {
+          "productId": "sopps-spaghetti-500g",
+          "amount": 100,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "sevan-red-lentils-dry-900g",
+          "amount": 75,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "carrots-second-sort-1kg",
+          "amount": 100,
+          "baseUnit": "g"
+        }
+      ]
+    },
+    {
+      "id": "rice-lentils-tomato-onion",
+      "title": "Ris med linser, tomat og løk",
+      "ingredients": [
+        {
+          "productId": "r-rice-2kg",
+          "amount": 100,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "sevan-red-lentils-dry-900g",
+          "amount": 75,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "r-chopped-tomatoes-400g",
+          "amount": 150,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "yellow-onions-1kg",
+          "amount": 50,
+          "baseUnit": "g"
+        }
+      ]
+    },
+    {
+      "id": "pasta-tomato-onion",
+      "title": "Pasta med tomat og løk",
+      "ingredients": [
+        {
+          "productId": "sopps-spaghetti-500g",
+          "amount": 100,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "r-chopped-tomatoes-400g",
+          "amount": 150,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "yellow-onions-1kg",
+          "amount": 50,
+          "baseUnit": "g"
+        }
+      ]
+    },
+    {
+      "id": "oats-milk-banana",
+      "title": "Havregrøt med melk og banan",
+      "ingredients": [
+        {
+          "productId": "axa-oats-1100g",
+          "amount": 80,
+          "baseUnit": "g"
+        },
+        {
+          "productId": "tine-milk-1l",
+          "amount": 250,
+          "baseUnit": "ml"
+        },
+        {
+          "productId": "bananas-1kg",
+          "amount": 100,
+          "baseUnit": "g"
+        }
+      ]
+    }
+  ],
+  "costOfLiving": {
+    "version": 1,
+    "kind": "illustrative_read_only_reference_not_billing",
+    "note": "Boligprisene er SSB 2025-statistikk, ikke konkrete boligannonser eller spillerens leiekontrakt. Mat er SIFO 2026-inspirerte husholdningseksempler uten restaurant, alkohol eller andre husholdningsvarer. Strøm, transport, klær og andre levekostnader kommer i tillegg. Ingen priser belastes automatisk.",
+    "rentSources": [
+      {
+        "id": "oslo_baerum",
+        "label": "Oslo og Bærum · gjennomsnitt",
+        "pricesByRoomsNok": {
+          "1": 10090,
+          "2": 15260,
+          "3": 19030,
+          "4": 23200,
+          "5": 26250
+        },
+        "priceKind": "observed_average_monthly_existing_rent_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/statbank/table/09895"
+      },
+      {
+        "id": "oslo_central",
+        "label": "Oslo sentralt · Frogner, Ullern, Sentrum, St. Hanshaugen",
+        "pricesByRoomsNok": {
+          "2": 16700
+        },
+        "priceKind": "predicted_monthly_50sqm_2rooms_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene"
+      },
+      {
+        "id": "oslo_outer",
+        "label": "Oslo ytre øst · Søndre Nordstrand, Grorud, Stovner, Alna",
+        "pricesByRoomsNok": {
+          "2": 14500
+        },
+        "priceKind": "predicted_monthly_50sqm_2rooms_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene"
+      },
+      {
+        "id": "trondheim_central",
+        "label": "Trondheim sentralt · Midtbyen, Østbyen, Nedre Elvehavn",
+        "pricesByRoomsNok": {
+          "2": 13200
+        },
+        "priceKind": "predicted_monthly_50sqm_2rooms_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene"
+      },
+      {
+        "id": "trondheim_outer",
+        "label": "Trondheim · Lerkendal og Heimdal",
+        "pricesByRoomsNok": {
+          "2": 12200
+        },
+        "priceKind": "predicted_monthly_50sqm_2rooms_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene"
+      },
+      {
+        "id": "rural",
+        "label": "Spredtbygde strøk · gjennomsnitt",
+        "pricesByRoomsNok": {
+          "2": 7450
+        },
+        "priceKind": "observed_average_monthly_existing_rent_2025",
+        "year": 2025,
+        "source": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen/artikler/store-geografiske-forskjeller-i-husleiene"
+      }
+    ],
+    "foodProfiles": [
+      {
+        "id": "one_adult",
+        "label": "Én voksen, 25–50 år",
+        "monthlyNok": 4520,
+        "kind": "2026_example_mean_adult_25_50",
+        "source": "https://www.livsopphold.com/referansebudsjett/sifo-mat-og-drikke",
+        "composition": "Gjennomsnitt av kvinne 4 280 kr og mann 4 760 kr"
+      },
+      {
+        "id": "two_adults",
+        "label": "To voksne, 25–50 år",
+        "monthlyNok": 9040,
+        "kind": "2026_example_two_adults",
+        "source": "https://www.livsopphold.com/referansebudsjett/sifo-mat-og-drikke",
+        "composition": "Kvinne 4 280 kr + mann 4 760 kr"
+      },
+      {
+        "id": "one_adult_one_child",
+        "label": "Én voksen og ett barn på 1–3 år",
+        "monthlyNok": 6700,
+        "kind": "2026_example_adult_mean_and_child_1_3",
+        "source": "https://www.livsopphold.com/referansebudsjett/sifo-mat-og-drikke",
+        "composition": "Voksen referansegjennomsnitt 4 520 kr + barn 1–3 år 2 180 kr"
+      },
+      {
+        "id": "two_adults_two_children",
+        "label": "To voksne og barn på 5 og 11 år",
+        "monthlyNok": 15375,
+        "kind": "2026_example_two_adults_girl_11_child_5",
+        "source": "https://www.livsopphold.com/referansebudsjett/sifo-mat-og-drikke",
+        "composition": "Kvinne 4 280 kr + mann 4 760 kr + barn 5 år 2 585 kr + jente 11 år 3 750 kr"
+      },
+      {
+        "id": "two_adults_schoolchildren",
+        "label": "To voksne og barn på 8 og 12 år",
+        "monthlyNok": 16070,
+        "kind": "2026_example_two_adults_children_8_12",
+        "source": "https://www.livsopphold.com/referansebudsjett/sifo-mat-og-drikke",
+        "composition": "SIFO-eksempel 2026: to voksne 9 040 kr + barn 8 år 3 190 kr + gutt 12 år 3 840 kr"
+      }
+    ],
+    "foodMethodNote": "Referanse for hjemmelaget mat og alkoholfri drikke. Ikke legg denne posten mekanisk på toppen av dagligvarekjøp eller restaurantkjøp; prognoser og faktiske transaksjoner skal holdes atskilt."
+  },
+  "housingPricingPolicy": {
+    "version": 1,
+    "defaultUnit": "NOK_per_month",
+    "note": "Kun én versjonert eksempelbolig per eksisterende Civication-distrikt. Prisen er en SSB 2025 statistisk referanse for korrekt prissone og romantall, ikke en virkelig leilighet. Valg i spillet oppretter én kontrakt på tilbudets oppgitte månedssum. Uten referanse: ingen automatisk leiepris.",
+    "districtScope": "Oslo-distrikter som eksisterer i CivicationHome.DISTRICTS",
+    "householdPolicy": "Romstørrelsen er knyttet til tilbudet, ikke antatt husholdning. SIFOs matbudsjett er en separat prognose og faktureres ikke.",
+    "existingContractPolicy": "Allerede lagrede spillkontrakter beholder beløp og aktiv frosset konfigurasjon.",
+    "additionalSizesNote": "Alle ti nabolag har nå fire størrelser (1–4 rom); bare eksisterende 2-roms bydelsområder har egne sentral-/ytre-øst-sammenligninger. Øvrige størrelser bruker SSB Oslo/Bærum-områdesnitt, aldri oppdiktede bydelspriser."
+  },
+  "electricityProfiles": [
+    {
+      "id": "ssb-q3-2026-electricity-750kwh",
+      "monthlyNok": 925.5,
+      "kind": "effective_statistical_unit_price_with_assumed_consumption",
+      "monthlyConsumptionKwh": 750,
+      "unitPriceNokPerKwh": 1.234,
+      "pricePeriod": "2026-Q3",
+      "includes": "power_grid_taxes_less_public_support",
+      "source": "https://www.ssb.no/energi-og-industri/energi/statistikk/elektrisitetspriser/artikler/noe-lavere-strompris-for-husholdninger",
+      "checkedOn": "2026-11-16",
+      "consumptionKind": "illustrative_larger_home_scenario_not_meter_reading",
+      "scenarioForRooms": 3,
+      "notes": "Antatt kWh-forbruk til spillbudsjett; ikke SSB-observert strømforbruk for denne boligstørrelsen."
+    },
+    {
+      "id": "ssb-q3-2026-electricity-1000kwh",
+      "monthlyNok": 1234,
+      "kind": "effective_statistical_unit_price_with_assumed_consumption",
+      "monthlyConsumptionKwh": 1000,
+      "unitPriceNokPerKwh": 1.234,
+      "pricePeriod": "2026-Q3",
+      "includes": "power_grid_taxes_less_public_support",
+      "source": "https://www.ssb.no/energi-og-industri/energi/statistikk/elektrisitetspriser/artikler/noe-lavere-strompris-for-husholdninger",
+      "checkedOn": "2026-11-16",
+      "consumptionKind": "illustrative_larger_home_scenario_not_meter_reading",
+      "scenarioForRooms": 4,
+      "notes": "Antatt kWh-forbruk til spillbudsjett; ikke SSB-observert strømforbruk for denne boligstørrelsen."
+    }
+  ],
+  "housingElectricityPolicy": {
+    "version": 1,
+    "referencePriceProfileId": "ssb-q3-2026-electricity-500kwh",
+    "billOwnership": "existing_recordCompletedDay_and_settleNokPayroll_only",
+    "householdNote": "Boligens kWh er en illustrativ spillegenskap. SSBs dokumenterte pris per kWh brukes, uten å hevde at SSB har målt forbruket per rom.",
+    "assumptionsByRoomsKwh": {
+      "1": 500,
+      "2": 500,
+      "3": 750,
+      "4": 1000
+    },
+    "selectionNote": "Eksisterende enroms- og toromsprofil beholdes med 500 kWh per måned. Store leiligheter har illustrativt 750/1000 kWh, og regning beregnes først etter faktisk spilletid."
+  }
+}

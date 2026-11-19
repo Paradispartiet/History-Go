@@ -2,7 +2,6 @@ name: Civication
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
     paths:
       - 'data/Civication/**'
       - '!data/Civication/historyPeople_index.json'
@@ -25,7 +24,6 @@ on:
       - '.github/workflows/civication.yml'
       - 'scripts/ci-civication-scope.mjs'
       - 'tests/ci-civication-scope.test.mjs'
-      - 'tests/ci-civication-draft-gates.test.mjs'
   workflow_dispatch:
   # Full suite still executes daily; badge artwork-only PRs use lightweight scope QA.
   schedule:
@@ -54,7 +52,7 @@ jobs:
         with:
           node-version: '22'
       - name: Test scope classification
-        run: node --test tests/ci-civication-scope.test.mjs tests/ci-civication-draft-gates.test.mjs
+        run: node --test tests/ci-civication-scope.test.mjs
       - id: classify
         name: Detect relevant Civication changes
         shell: bash
@@ -68,46 +66,9 @@ jobs:
             node scripts/ci-civication-scope.mjs "$BASE_SHA" "$HEAD_SHA" >> "$GITHUB_OUTPUT"
           fi
 
-  draft-focused:
-    needs: scope
-    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true && needs.scope.outputs.regression == 'true'
-    name: Civication focused draft validation
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - run: npm ci --no-audit --no-fund
-      - name: Validate canonical generated Civication data
-        run: |
-          node scripts/build-civication-scene-registry.mjs --check
-          node scripts/audit-civication-career-gameplay.mjs --check
-          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
-      - name: Run focused tests for the changed role
-        shell: bash
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: |
-          set -euo pipefail
-          git diff --name-only "$BASE_SHA" "$HEAD_SHA" > "$RUNNER_TEMP/civication-changes.txt"
-          node tests/civication-lifestory-shell-role-bridge.test.js
-          if grep -Eq '^(data/Civication/lifestory/roles/renholder/|js/Civication/systems/civicationActivePositionRecovery[.]js$|js/Civication/ui/CivicationLifestoryUI[.]js$|tests/civication-(lifestory-renholder|active-position-recovery-clear|lifestory-job-role-persistence))' "$RUNNER_TEMP/civication-changes.txt"; then
-            node tests/civication-active-position-recovery-clear.test.js
-            node tests/civication-lifestory-renholder.test.js
-            node tests/civication-lifestory-renholder-uke2.test.js
-            node tests/civication-lifestory-renholder-uke3.test.js
-            node tests/civication-lifestory-endings.test.js
-            node tests/civication-lifestory-job-role-persistence.test.js
-          fi
-
   regression:
     needs: scope
-    if: needs.scope.outputs.regression == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.draft == false)
+    if: needs.scope.outputs.regression == 'true'
     name: Civication regression suite
     runs-on: ubuntu-latest
     steps:
@@ -151,6 +112,12 @@ jobs:
 
       - name: Verify 21-day calendar, earnings and account recovery
         run: node tests/acceptance-civication-21day-economy-cloud-journey.test.js
+
+      - name: Verify three-month NOK account journey and cloud recovery
+        run: node tests/acceptance-civication-nok-three-month-cloud-journey.test.js
+
+      - name: Verify account backup conflicts and allowed state
+        run: node tests/account-cloud-save.test.cjs
 
       - name: Run complete Civication suite
         run: npm run test:civication

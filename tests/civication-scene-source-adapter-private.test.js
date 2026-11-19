@@ -60,8 +60,7 @@ const windowObject = {
   CivicationMailRuntime: { makeCandidateMailsForActiveRole: async () => [] },
   CivicationEventEngine: MockEventEngine,
   CivicationJsonStore: {
-    load: async (sourcePath) => sourcePath.endsWith("/afternoon.json") ? fixtureFamily : null,
-    fetchJson: async () => null
+    fetchJson: async (sourcePath) => sourcePath.endsWith("/afternoon.json") ? fixtureFamily : null
   },
   CivicationProfileSignalBridge: { getSignals: async () => null }
 };

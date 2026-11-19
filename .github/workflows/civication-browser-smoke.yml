@@ -2,9 +2,10 @@ name: Civication browser smoke
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
     paths:
       - 'js/Civication/**'
+      - 'data/Civication/economy/**'
+      - 'scripts/verify-civication-nok-browser.cjs'
       - 'data/Civication/roleWorlds/**'
       - 'data/Civication/cityMaps/**'
       - 'data/Civication/maps/**'
@@ -41,7 +42,6 @@ concurrency:
 
 jobs:
   browser:
-    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     name: Civication boot smoke
     runs-on: ubuntu-latest
     timeout-minutes: 95
@@ -67,6 +67,10 @@ jobs:
         run: npm run audit:civication-city-map-entries
       - name: Install Playwright Chromium and WebKit
         run: npx playwright install --with-deps chromium webkit
+      # Three full salary/shop/portion/week journeys include independent reload checks.
+      # Keep all assertions and a bounded timeout; six minutes cut off WebKit tablet.
+      - name: Verify NOK economy through mobile browser controls
+        run: timeout --signal=TERM --kill-after=30s 8m node scripts/verify-civication-nok-browser.cjs
       - name: Select PR browser acceptance depth
         id: coverage
         shell: bash

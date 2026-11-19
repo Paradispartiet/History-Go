@@ -76,9 +76,38 @@
       return { version: VERSION, weeks: {} };
     }
   }
+  const nokRuntime = /** @type {any} */ (window);
+  function nokActive() {
+    return nokRuntime.CivicationState?.getWallet?.()?.nok_v1?.active === true;
+  }
+  function assertLegacyEditor() {
+    if (nokActive()) throw new Error("Use the dated NOK meal planner to edit home meals");
+  }
   function makeWeek(key) { return { weekKey: key, people: 2, meals: {}, restaurantMeals: {}, restaurantBudgetNok: null }; }
+  // The Shop owns dated home-cooked meals in NOK mode. This local private
+  // store owns Fysen restaurant plans and weekly restaurant budgets.
+  function nokWeek(key) {
+    const stored = readStore().weeks[key];
+    const overlay = stored && stored.weekKey === key && typeof stored.meals === "object"
+      && !Array.isArray(stored.meals) ? clone(stored) : makeWeek(key);
+    const output = { ...overlay, meals: {}, people:1 };
+    const plan = nokRuntime.HG_CiviShop?.getNokMealWeek?.();
+    const first = (Number(key.slice(-6)) - 1) * 7 + 1;
+    if (!plan?.ok || !Array.isArray(plan.entries)) return output;
+    for (let day = 0; day < 7; day++) {
+      const date = window.CivicationCalendar?.getGameDate?.(first + day);
+      for (const entry of plan.entries.filter(e => e.date === date)) {
+        // Never present the same meal as both home-cooked and restaurant.
+        if (output.restaurantMeals?.[day]?.[entry.slot]) continue;
+        if (!output.meals[day]) output.meals[day] = {};
+        output.meals[day][entry.slot] = entry.mealId;
+      }
+    }
+    return output;
+  }
   function getWeek(rawKey) {
     const key = weekKey(rawKey);
+    if (nokActive()) return nokWeek(key);
     const stored = readStore().weeks[key];
     return stored && stored.weekKey === key && typeof stored.meals === "object" && !Array.isArray(stored.meals)
       ? clone(stored) : makeWeek(key);
@@ -98,6 +127,7 @@
     }
   }
   function setMeal(day, meal, recipeId, rawKey) {
+    assertLegacyEditor();
     validateSlot(day, meal, recipeId);
     const week = getWeek(rawKey);
     if (!week.meals[day]) week.meals[day] = {};
@@ -107,12 +137,14 @@
     return saveWeek(week);
   }
   function setPeople(people, rawKey) {
+    assertLegacyEditor();
     if (!Number.isSafeInteger(people) || people < 1 || people > 12) throw new Error("Invalid household size");
     const week = getWeek(rawKey);
     week.people = people;
     return saveWeek(week);
   }
   function applyTemplate(templateId, rawKey) {
+    assertLegacyEditor();
     const template = TEMPLATES[templateId];
     if (!template) throw new Error("Unknown template");
     const week = getWeek(rawKey);
@@ -157,6 +189,32 @@
           (!Number.isSafeInteger(place.priceMinor) || place.priceMinor < 0 || place.priceMinor > 5000000)) ||
         (place.priceKind !== undefined && !["exact", "from", "multiple"].includes(place.priceKind))) {
       throw new Error("Invalid restaurant meal");
+    }
+    // A restaurant replaces the pending home-cooked meal at this exact slot.
+    // The NOK Shop owns the dated grocery plan, so update it through its owner
+    // before saving the private restaurant overlay. No purchase or balance write.
+    if (nokActive()) {
+      const first = (Number(week.weekKey.slice(-6)) - 1) * 7 + 1;
+      const date = window.CivicationCalendar?.getGameDate?.(first + day);
+      const today = window.CivicationCalendar?.getGameDate?.();
+      if (typeof date !== "string" || typeof today !== "string" || date < today)
+        throw new Error("Cannot schedule a restaurant meal in the past");
+      const shopping = nokRuntime.CivicationState?.getWallet?.()?.nok_v1?.shopping;
+      if (Array.isArray(shopping?.consumptions) &&
+          shopping.consumptions.some(item => item?.planEntryKey === date + ":" + meal))
+        throw new Error("This home meal has already been eaten");
+      const storePlan = shopping?.mealPlan;
+      if (storePlan?.version === 1) throw new Error("Convert legacy NOK meal plan before selecting restaurant");
+      if (storePlan?.version === 2) {
+        const weekPlan = nokRuntime.HG_CiviShop?.getNokMealWeek?.();
+        if (!weekPlan?.ok) throw new Error("Invalid dated NOK meal plan");
+        const sameWeek = weekPlan.dates?.includes(date);
+        if (sameWeek && weekPlan.entries.some(entry => entry.date === date && entry.slot === meal)) {
+          const remaining = weekPlan.entries.filter(entry => entry.date !== date || entry.slot !== meal);
+          const saved = nokRuntime.HG_CiviShop?.saveNokMealWeek?.(weekPlan.startDate, remaining);
+          if (!saved?.ok) throw new Error("Unable to remove home meal from NOK grocery plan");
+        }
+      }
     }
     if (!week.restaurantMeals[day]) week.restaurantMeals[day] = {};
     week.restaurantMeals[day][meal] = {
@@ -210,69 +268,6 @@
     };
   }
 
-  // An explicit game purchase is the ONLY path from a restaurant plan to the
-  // canonical NOK wallet. No booking, payment to a real restaurant or API call.
-  function purchaseRestaurantMeal(day, meal, requestId, rawKey) {
-    if (!validDay(day) || !validMeal(meal)) return { ok:false, reason:"INVALID_SLOT" };
-    if (typeof requestId !== "string" || !/^[a-zA-Z0-9:_-]{8,120}$/.test(requestId))
-      return { ok:false, reason:"INVALID_REQUEST_ID" };
-    let wallet;
-    try { wallet = window.CivicationState?.getWallet?.(); } catch {}
-    if (wallet?.nok_v1?.active !== true || wallet.nok_v1.version !== 1 ||
-        typeof window.CivicationState?.updateWallet !== "function")
-      return { ok:false, reason:"NOK_NOT_ACTIVE" };
-    const index = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
-    if (!Number.isSafeInteger(index) || index < 1) return { ok:false, reason:"INVALID_GAME_DAY" };
-    const currentWeek = getWeekKey(index);
-    const requestedWeek = rawKey == null ? currentWeek : weekKey(rawKey);
-    if (requestedWeek !== currentWeek || day !== (index - 1) % 7)
-      return { ok:false, reason:"NOT_CURRENT_MEAL_DAY" };
-    const place = getWeek(currentWeek).restaurantMeals?.[day]?.[meal];
-    if (!place || place.priceKind !== "exact" ||
-        !Number.isSafeInteger(place.priceMinor) || place.priceMinor <= 0 ||
-        place.priceMinor > 5000000 || !Number.isSafeInteger(place.portions) ||
-        place.portions < 1 || place.portions > 12)
-      return { ok:false, reason:"EXACT_PRICE_REQUIRED" };
-    const receipts = wallet.nok_v1.restaurantPurchases ?? [];
-    if (!Array.isArray(receipts) || receipts.some(row => !row || typeof row !== "object" ||
-        typeof row.requestId !== "string" || typeof row.weekKey !== "string" ||
-        !validDay(row.day) || !validMeal(row.meal) ||
-        !Number.isSafeInteger(row.amountMinor) || row.amountMinor < 0) ||
-        new Set(receipts.map(row => row.requestId)).size !== receipts.length)
-      return { ok:false, reason:"INVALID_PURCHASE_HISTORY" };
-    const slot = receipts.find(row =>
-      row.weekKey === currentWeek && row.day === day && row.meal === meal);
-    if (slot) return slot.requestId === requestId
-      ? { ok:true, applied:false, reason:"ALREADY_PURCHASED", receipt:clone(slot) }
-      : { ok:false, reason:"MEAL_ALREADY_PURCHASED" };
-    if (receipts.some(row => row.requestId === requestId))
-      return { ok:false, reason:"REQUEST_ID_CONFLICT" };
-    const amountMinor = place.priceMinor * place.portions;
-    const balance = wallet.balance;
-    const balanceMinor = typeof balance === "number" && Number.isFinite(balance)
-      ? Math.round(balance * 100) : null;
-    if (balanceMinor === null || !Number.isSafeInteger(balanceMinor) ||
-        Math.abs(balance * 100 - balanceMinor) > 0.000001)
-      return { ok:false, reason:"INVALID_NOK_BALANCE" };
-    if (amountMinor > balanceMinor) return { ok:false, reason:"INSUFFICIENT_FUNDS" };
-    const date = window.CivicationCalendar?.getGameDate?.(index);
-    if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date))
-      return { ok:false, reason:"INVALID_GAME_DATE" };
-    const receipt = {
-      requestId, weekKey:currentWeek, day, meal,
-      restaurantId:place.restaurantId, dishName:place.dishName,
-      portions:place.portions, amountMinor, gameDateISO:date
-    };
-    try {
-      window.CivicationState.updateWallet({
-        ...wallet, balance:(balanceMinor - amountMinor) / 100,
-        nok_v1:{ ...wallet.nok_v1,
-          restaurantPurchases:receipts.concat(receipt) }
-      });
-    } catch { return { ok:false, reason:"WALLET_WRITE_FAILED" }; }
-    return { ok:true, applied:true, receipt:clone(receipt) };
-  }
-
   // Read-only finance bridge. Existing PC balances MUST NOT be displayed as NOK.
   // The NOK runtime, when activated, keeps the same canonical wallet and 1 PC = 1 NOK.
   // A forecast is never a charge, reservation, or proof of available funds at checkout.
@@ -281,18 +276,6 @@
     let wallet = null;
     try { wallet = window.CivicationState?.getWallet?.() || null; } catch {}
     const nokActive = wallet?.nok_v1?.active === true && wallet.nok_v1.version === 1;
-    const receipts = nokActive && Array.isArray(wallet.nok_v1.restaurantPurchases)
-      ? wallet.nok_v1.restaurantPurchases : [];
-    const purchased = receipts.filter(row =>
-      row && row.weekKey === weekKey(rawKey) && validDay(row.day) &&
-      validMeal(row.meal) && Number.isSafeInteger(row.amountMinor) &&
-      row.amountMinor >= 0);
-    const purchasedSlots = purchased.map(row => row.day + ":" + row.meal);
-    const paidSlots = new Set(purchasedSlots);
-    const unpaidPlannedMinor = restaurant.meals.reduce((sum, entry) =>
-      paidSlots.has(entry.day + ":" + entry.meal) || entry.priceMinor === null
-        ? sum : sum + entry.priceMinor * entry.portions, 0);
-    const purchasedMinor = purchased.reduce((sum, row) => sum + row.amountMinor, 0);
     const rawBalance = nokActive ? wallet.balance : null;
     const rounded = typeof rawBalance === "number" && Number.isFinite(rawBalance)
       ? Math.round(rawBalance * 100) : null;
@@ -302,11 +285,11 @@
       ...restaurant,
       nokActive,
       balanceMinor,
-      afterKnownPlansMinor: balanceMinor === null ? null : balanceMinor - unpaidPlannedMinor,
-      unpaidPlannedMinor, purchasedMinor, purchasedSlots,
+      afterKnownPlansMinor: balanceMinor === null ? null : balanceMinor - restaurant.plannedMinor,
       hasUncertainPrices: restaurant.unpricedMeals > 0 || restaurant.fromMeals > 0 ||
         restaurant.unspecifiedPriceKindMeals > 0,
       // This projection does not edit balance or create any payment history.
+      purchasedMinor: null
     };
   }
 
@@ -317,6 +300,15 @@
   }
   function getShoppingList(rawKey, pantry = {}) {
     const week = getWeek(rawKey);
+    if (nokActive()) {
+      const servings = {};
+      for (const chosen of Object.values(week.meals))
+        for (const id of Object.values(chosen)) servings[id] = (servings[id] || 0) + 1;
+      const preview = nokRuntime.HG_CiviShop?.previewNokMealPlan?.(servings);
+      return preview?.ok ? preview.ingredients.filter(i => i.missing > 0).map(i => ({
+        id:i.productId, name:i.title, unit:i.baseUnit, required:i.required, quantity:i.missing
+      })) : [];
+    }
     const people = Number.isSafeInteger(week.people) && week.people >= 1 && week.people <= 12 ? week.people : 2;
     const totals = new Map();
     for (let day = 0; day < 7; day++) {
@@ -347,6 +339,11 @@
     const output = {};
     for (const meal of Object.keys(MEALS)) {
       const recipeId = chosen[meal];
+      if (nokActive()) {
+        const preview = nokRuntime.HG_CiviShop?.getNokMealPreview?.(recipeId);
+        if (preview?.ok) output[meal] = preview.ingredients.map(i => i.productId);
+        continue;
+      }
       if (!Object.prototype.hasOwnProperty.call(RECIPES, recipeId || "")) continue;
       if (!RECIPES[recipeId].meals.includes(meal)) continue;
       output[meal] = [...new Set(RECIPES[recipeId].ingredients.map(item => item[0]))];
@@ -362,6 +359,11 @@
     const day = (dayIndex - 1) % 7;
     const week = getWeek(getWeekKey(dayIndex));
     const id = week.meals[day]?.[meal];
+    if (nokActive()) {
+      const preview = nokRuntime.HG_CiviShop?.getNokMealPreview?.(id);
+      return preview?.ok ? { dayIndex, meal, mealLabel: MEALS[meal].label,
+        recipeId:id, name:preview.title, source:"user_week_plan", verifiedStoreAvailability:false } : null;
+    }
     if (!Object.prototype.hasOwnProperty.call(RECIPES, id || "") || !RECIPES[id].meals.includes(meal)) return null;
     return { dayIndex, meal, mealLabel: MEALS[meal].label, recipeId: id, name: RECIPES[id].name, source: "user_week_plan", verifiedStoreAvailability: false };
   }
@@ -373,6 +375,6 @@
     getWeekKey, getWeek, getRecipes, setMeal, setPeople, applyTemplate,
     getShoppingList, getIngredientIdsByMeal, suggestionForTime,
     setRestaurantBudgetNok, setRestaurantMeal, getRestaurantSummary,
-    getRestaurantFinanceSnapshot, purchaseRestaurantMeal
+    getRestaurantFinanceSnapshot
   });
 })();
