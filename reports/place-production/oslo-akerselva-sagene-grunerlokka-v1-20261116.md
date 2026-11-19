@@ -362,3 +362,10 @@ Gjennomgangen av dagens 18 oppgaver fant seks med status `linked` og tolv i reda
 | `seilduksfabrikken_nydalen_s6_q3` | `historie_seilduksfabrikken_nydalen_set_6_q3` | `ku_historie_stedet_blir_tydeligst_na_dc07861a7d` |
 
 Prøv først en avgrenset profil på tre sett à sju. Sett 1 går på den konkrete bygningen og plasseringen ved Akerselva. Sett 2 dekker arbeidsdeling mellom spinneri og veveri og spinneriets rolle i tekstilbedriften. Sett 3 tar opp hva det historiske fotografiet og de fysiske sporene kan dokumentere. Skill konsekvent mellom opplysninger om bygningen og opplysninger om hele Nydalens Compagnie, og merk fotodateringen som antatt 1878. Før aktivering må 21 selvstendige påstander kildegranskes og de gamle Knowledge-ID-ene verifiseres etter regenerering. [Oslo Museum, OB.F04310i](https://oslobilder.no/OMU/OB.F04310i) · [Oslo byleksikon om Nydalens Compagnie](https://oslobyleksikon.no/side/Nydalens_Compagnie)
+
+## Øvre spinneri – gjennomført migrering og lokal sluttkontroll (19.11.2026)
+
+- Fullquizen har tre aktive sett à sju kildekoblede spørsmål. Alle 21 har Knowledge-kobling. De 18 gamle spørsmålene er arkivert som Knowledge-kilder med opprinnelige ID-er. QuizCard viser ti spørsmål.
+- Fagverk er kuratert. PlaceCard har to separate arkivopptak, hovedbildet [OB.F04310i fra vannrennen](https://oslobilder.no/OMU/OB.F04310i) og det stående [OB.F04310k fra veien](https://oslobilder.no/OMU/OB.F04310k). Fotograf Per Adolf Thorén, Oslo Museum, antatt 1878.
+- Place-open, Fagverk-release og den kanoniske Knowledge-kontrollen bestod lokalt. Fullquizen ble spilt gjennom i Chromium på mobil- og skrivebordsstørrelse. PlaceCard og QuizCard bestod også i WebKit med simulert iPad-størrelse, inkludert full bildevisning, kortflipp og ti spørsmål i begge kortvisningene.
+- Øvre spinneri er ferdig lokalt gjennomgått for denne delbolken. Ved gjennomgangen viste GitHub ingen CI-resultater for bildecommit `b130cb84`. Samlet godkjenning av 20-stedersbolken og merge av PR #7342 står fortsatt åpne.
