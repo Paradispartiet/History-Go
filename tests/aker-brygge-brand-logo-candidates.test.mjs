@@ -22,7 +22,7 @@ test("Aker Brygge — exact authentic-logo binary candidates only", async () => 
     assert.equal(c.reviewStatus, "ORIGINAL_BINARY_CAPTURED_PENDING_REVIEW");
     assert.equal(c.visualApproval, false);
     assert.equal(c.publishable, false);
-    assert.ok([ "commons.wikimedia.org", "www.rorbua.as" ].includes(new URL(c.sourcePage).hostname), "Unapproved source host: " + c.sourcePage);
+    assert.ok([ "commons.wikimedia.org", "www.rorbua.as", "oliviarestauranter.no", "wiersholm.no" ].includes(new URL(c.sourcePage).hostname), "Unapproved source host: " + c.sourcePage);
     assert.equal(c.usageContext, "referential_identification");
     assert.equal(c.noEndorsement, true);
     assert.ok(c.originalPath.startsWith("bilder/kort/brands/source/aker_brygge/"));
