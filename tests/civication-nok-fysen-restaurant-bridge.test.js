@@ -79,7 +79,7 @@ assert.equal(plan.getWeek().restaurantMeals[0]?.breakfast,undefined);
 assert.equal(shop.getNokMealWeek().entries.length,1,
   'removing restaurant plans does not silently restore old grocery purchases');
 const next=JSON.stringify(state.getWallet());
-assert.equal(next,JSON.stringify(snapshot),'wallet stable after removing a restaurant plan');
+assert.equal(next,snapshot,'wallet stable after removing a restaurant plan');
 state.updateWallet({ ...state.getWallet(), nok_v1: { ...state.getWallet().nok_v1,
   shopping: { ...state.getWallet().nok_v1.shopping,
     consumptions:[{planEntryKey:'2026-01-03:dinner'}] } } });
