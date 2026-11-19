@@ -33,6 +33,26 @@ const CANDIDATES = [
     licenseUrl: null
   },
   {
+    id: "olivia",
+    name: "Olivia",
+    originalUrl: "https://oliviarestauranter.no/wp-content/uploads/2022/11/logo.svg",
+    sourcePage: "https://oliviarestauranter.no/",
+    expectedFormat: "svg",
+    creator: "Olivia Restauranter",
+    rightsBasis: "Original official Olivia logo; referential trademark identification, pending visual and legal review",
+    licenseUrl: null
+  },
+  {
+    id: "wiersholm",
+    name: "Wiersholm",
+    originalUrl: "https://wiersholm.no/content/uploads/2024/10/logo.svg",
+    sourcePage: "https://wiersholm.no/",
+    expectedFormat: "svg",
+    creator: "Advokatfirmaet Wiersholm",
+    rightsBasis: "Original official Wiersholm logo; referential trademark identification, pending visual and legal review",
+    licenseUrl: null
+  },
+  {
     id: "wikborg_rein",
     name: "Wikborg Rein",
     originalUrl: "https://upload.wikimedia.org/wikipedia/commons/8/88/Wikborg_Rein_logo.svg",
@@ -52,7 +72,7 @@ const sha = (algorithm, bytes) => crypto.createHash(algorithm).update(bytes).dig
 function assert(condition, message) { if (!condition) throw new Error(message); }
 async function fetchOriginal(url) {
   const origin = new URL(url);
-  assert(origin.protocol === "https:" && ["upload.wikimedia.org", "www.rorbua.as"].includes(origin.hostname), "Unapproved origin: " + url);
+  assert(origin.protocol === "https:" && ["upload.wikimedia.org", "www.rorbua.as", "oliviarestauranter.no", "wiersholm.no"].includes(origin.hostname), "Unapproved origin: " + url);
   const response = await fetch(url, {
     signal: AbortSignal.timeout(35000),
     headers: {
@@ -61,7 +81,7 @@ async function fetchOriginal(url) {
     }
   });
   assert(response.ok, "Source GET returned HTTP " + response.status + " for " + url);
-  assert(["upload.wikimedia.org", "www.rorbua.as"].includes(new URL(response.url).hostname), "Unexpected redirect origin");
+  assert(["upload.wikimedia.org", "www.rorbua.as", "oliviarestauranter.no", "wiersholm.no"].includes(new URL(response.url).hostname), "Unexpected redirect origin");
   const sizeHeader = Number(response.headers.get("content-length") || 0);
   assert(!sizeHeader || sizeHeader <= 2500000, "Oversized source");
   const bytes = Buffer.from(await response.arrayBuffer());
