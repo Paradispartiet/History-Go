@@ -104,6 +104,9 @@ jobs:
             node tests/civication-lifestory-endings.test.js
             node tests/civication-lifestory-job-role-persistence.test.js
           fi
+          if grep -Eq '^(data/Civication/lifestory/roles/ekspeditor/|tests/civication-lifestory-ekspeditor[.]test[.]js$)' "$RUNNER_TEMP/civication-changes.txt"; then
+            node tests/civication-lifestory-ekspeditor.test.js
+          fi
 
   regression:
     needs: scope
