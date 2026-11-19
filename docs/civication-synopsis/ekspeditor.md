@@ -72,7 +72,25 @@ Ukeavslutningen på dag 7 er fortsatt slutten på **første arbeidsuke**, men hi
 
 **Dag 14:** Andre uke avstemmes. Rapporten kan sendes eller lagres som utkast. Dersom den sendes, kan Lenes mottaksbekreftelse registreres i en egen scene, men det er ikke en godkjenning av alle åpne avvik. Uka kan oppsummeres selv om restoppgaver består.
 
-Denne bolken er skrevet i den eksisterende rollen, med en egen kronologisk oppfølgingstråd fra dag 8. [PR #7463](https://github.com/Paradispartiet/History-Go/pull/7463) inneholder scenene og tre sammenhengende rolletester. Test- og merge-status må bekreftes før bolken regnes som ferdig. **Dag 15–21, en fullstendig spillbar jobb-/lønnsreise og fysisk iPad-test gjenstår** før ekspeditøren kan vurderes som V1.
+Denne bolken er merget i [PR #7463](https://github.com/Paradispartiet/History-Go/pull/7463), med godkjente målrettede rolletester og mobil-/iPad-nettlesertest. Den eksisterende kronologiske oppfølgingstråden starter på dag 8. **Dag 15–21 videreføres i en egen bolk med sluttdokumentasjon og skal kontrolleres før merge.** Samlet jobb-/lønnsreise, faktisk kontosynk og fysisk iPad Safari er ikke dermed V1-verifisert.
+
+## Tredje arbeidsuke – dag 15 til 21
+
+**Dag 15:** Rapporter fra forrige uke følges opp. Hvis Lene faktisk bekreftet mottak på dag 14, kan spilleren dokumentere det. Hvis rapporten bare ble sendt eller lå som utkast, må mottak fortsatt etterspørres. Ingen mottakskvittering er automatisk godkjenning av åpne lagersaker.
+
+**Dag 16:** En gammel lagerdifferanse kobles til dagens kontrollgrunnlag. Bare dersom spilleren faktisk sendte telleavviket i uke to, kan det behandles som en eksisterende dokumentert melding. Ellers må ny fysisk telling bestilles. Et meldt avvik er fortsatt ikke en rettet systembeholdning.
+
+**Dag 17:** Retursaken følges videre. Historikken avgjør om dokumentasjon ble innsendt tidligere. Lene må fremdeles ta stilling til vilkårene; ekspeditøren kan ikke opprette en fiktiv refusjon eller love kunden et bestemt utfall.
+
+**Dag 18:** Et realistisk mattrygghetsdilemma: temperaturmåling ved kjøledisk, mulig avvik, melding til ansvarlig og tydelig videre håndtering. Et gammelt temperaturtall kan ikke kopieres inn i dagens journal. Å melde avvik betyr ikke at varer er kassert eller godkjent for salg.
+
+**Dag 19:** Opplæring av vikaren får en konkret etterkontroll; vikaren må utføre en faktisk varekontroll for at dette kan dokumenteres. En misfornøyd kunde får et etterprøvbart svar, uten ubegrunnet rabatt eller refusjon.
+
+**Dag 20:** Spørsmål om flere vakter og arbeidstid. Tilgjengelighet er ikke en tildelt vakt. En forklaring om lønnsrutiner skaper ikke lønn; selve lønnsberegningen er økonomimotorens ansvar.
+
+**Dag 21:** Tre ukers arbeid oppsummeres. Spilleren kan rapportere det som faktisk er utført, og overlevere åpne spørsmål. Rapporten kan sendes eller lagres som utkast, og mottaksbekreftelse registreres separat. Slutten gir ingen oppdiktet forfremmelse, automatisk lønn eller lukking av uavklarte saker.
+
+Bolken er skrevet som 27 nye scener i den eksisterende Life Story (130 samlet) med én egen oppfølgingstråd fra dag 15. Tre fullstendige rollegjennomspillinger fra dag 1 til dag 21 kontrollerer at valg, årsaker, lagring og Synopsis-/Symposium-historikk følger faktisk spilltilstand. Godkjenning av disse testene er et teknisk bevis, **ikke fysisk iPad/Safari eller en ekte innlogget jobb-/lønnsreise**.
 
 ## Valgene skal gi forskjellige historier om arbeidet
 
