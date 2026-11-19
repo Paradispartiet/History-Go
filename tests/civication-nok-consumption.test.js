@@ -1,0 +1,166 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const { JSDOM } = require('jsdom');
+const config = require('../data/Civication/economy/nok-budget-prototype-2026.json');
+(async () => {
+const dom = new JSDOM('<body><div id="civiStorePanel"></div></body>',
+  { url: 'https://example.test', runScripts: 'outside-only' });
+const w = dom.window;
+for (const path of ['core/civicationState.js', 'core/civicationCalendar.js', 'civicationCommercial.js', 'ui/CivicationStoreUI.js'])
+  w.eval(fs.readFileSync('js/Civication/' + path, 'utf8'));
+const state = w.CivicationState;
+let shop = w.HG_CiviShop;
+state.updateWallet({ balance: 200, old: { preserved: true }, nok_v1: { active: true, version: 1, config } });
+const empty = JSON.stringify(state.getWallet());
+assert.equal(shop.consumeNokProduct('tine-milk-1l', 'empty').reason, 'NOT_ENOUGH_STOCK');
+assert.equal(JSON.stringify(state.getWallet()), empty);
+await shop.buyPack('tine-milk-1l', 'buy-1'); await shop.buyPack('tine-milk-1l', 'buy-2');
+assert.equal(state.getWallet().balance, 161.2);
+assert.equal(shop.consumeNokProduct('tine-milk-1l', 'use-1').remaining, 1750);
+assert.equal(state.getWallet().nok_v1.shopping.quantities['tine-milk-1l'], 1);
+assert.equal(state.getWallet().nok_v1.shopping.openedUnits['tine-milk-1l'], 750);
+assert.equal(state.getWallet().balance, 161.2, 'consumption never charges or credits money');
+const once = JSON.stringify(state.getWallet());
+assert.equal(shop.consumeNokProduct('tine-milk-1l', 'use-1').skipped, true);
+assert.equal((await shop.buyPack('tine-milk-1l', 'use-1')).reason, 'ACTION_REQUEST_CONFLICT');
+assert.equal(shop.consumeNokProduct('tine-milk-1l', 'buy-1').reason, 'ACTION_REQUEST_CONFLICT');
+assert.equal(shop.consumeNokProduct('axa-oats-1100g', 'use-1').reason, 'ACTION_REQUEST_CONFLICT');
+assert.equal(JSON.stringify(state.getWallet()), once);
+for (let n = 2; n <= 8; n++) assert.equal(shop.consumeNokProduct('tine-milk-1l', 'use-' + n).ok, true);
+assert.equal(shop.getNokProductStock('tine-milk-1l').available, 0);
+const used = JSON.stringify(state.getWallet());
+assert.equal(shop.consumeNokProduct('tine-milk-1l', 'overuse').reason, 'NOT_ENOUGH_STOCK');
+assert.equal(JSON.stringify(state.getWallet()), used);
+await shop.buyPack('tine-milk-1l', 'buy-3');
+await shop.buyPack('r-bread-750g', 'bread');
+for (let n = 1; n <= 7; n++) assert.equal(shop.consumeNokProduct('r-bread-750g', 'bread-' + n).amount, 100);
+assert.equal(shop.consumeNokProduct('r-bread-750g', 'bread-last').amount, 50, 'the final remainder can be used');
+assert.equal(shop.getNokProductStock('r-bread-750g').available, 0);
+assert.equal(state.getWallet().balance, 98.2);
+// Owned food remains usable after store access changes; this does not unlock a new purchase.
+w.CivicationHome = { getSelectedDistrictAccess: () => ({ store: ['audio'], housing: [] }) };
+await w.CivicationStoreUI.render();
+assert.equal(w.document.querySelector('[data-buy-pack]'), null);
+const button = w.document.querySelector('[data-consume-product="tine-milk-1l"]');
+assert.ok(button); button.focus(); button.click();
+await new Promise(resolve => setTimeout(resolve, 5));
+assert.equal(shop.getNokProductStock('tine-milk-1l').available, 750);
+assert.equal(w.document.activeElement.getAttribute('data-consume-product'), 'tine-milk-1l');
+assert.ok(w.document.querySelector('[role="status"]').textContent.includes('Forbruket er registrert'));
+const stale = w.document.querySelector('[data-consume-product="tine-milk-1l"]');
+for (let n = 1; n <= 3; n++) shop.consumeNokProduct('tine-milk-1l', 'finish-' + n);
+const finished = JSON.stringify(state.getWallet());
+stale.click(); await new Promise(resolve => setTimeout(resolve, 5));
+assert.equal(JSON.stringify(state.getWallet()), finished, 'stale controls cannot consume empty stock');
+w.eval(fs.readFileSync('js/Civication/civicationCommercial.js', 'utf8')); shop = w.HG_CiviShop;
+assert.equal(JSON.stringify(state.getWallet()), finished);
+assert.equal(shop.getNokPantry().length, 0);
+assert.equal(state.getWallet().old.preserved, true);
+state.updateWallet({ ...state.getWallet(), nok_v1: { ...state.getWallet().nok_v1,
+  shopping: { ...state.getWallet().nok_v1.shopping, openedUnits: { 'tine-milk-1l': 1000 } } } });
+const bad = JSON.stringify(state.getWallet());
+assert.equal(shop.consumeNokProduct('tine-milk-1l', 'bad').reason, 'INVALID_SHOPPING_STATE');
+assert.equal(JSON.stringify(state.getWallet()), bad);
+await w.CivicationStoreUI.render();
+await new Promise(resolve => setTimeout(resolve, 0));
+// Meal consumption is one atomic, persisted action over multiple products.
+state.updateWallet({ balance: 200, old: { preserved: true }, nok_v1: { active: true, version: 1, config } });
+w.CivicationHome = null;
+assert.equal(shop.getNokMeals().length, 5);
+assert.equal(shop.getNokMealPreview('oats-with-milk').referenceCostCents, 710);
+assert.equal(shop.getNokMealPreview('pasta-lentils-carrot').referenceCostCents, 931);
+await shop.buyPack('axa-oats-1100g', 'meal-oats');
+await shop.buyPack('tine-milk-1l', 'meal-milk');
+const beforeMeal = state.getWallet().balance;
+await w.CivicationStoreUI.render();
+const breakfast = w.document.querySelector('[data-prepare-meal="oats-with-milk"]');
+assert.equal(breakfast.disabled, false);
+breakfast.click();
+await new Promise(resolve => setTimeout(resolve, 5));
+assert.equal(shop.getNokProductStock('axa-oats-1100g').available, 1020);
+assert.equal(shop.getNokProductStock('tine-milk-1l').available, 750);
+assert.equal(state.getWallet().balance, beforeMeal);
+assert.equal(w.document.activeElement.getAttribute('data-prepare-meal'), 'oats-with-milk');
+const mealEntry = state.getWallet().nok_v1.shopping.consumptions[0];
+assert.equal(mealEntry.kind, 'meal'); assert.equal(mealEntry.ingredients.length, 2);
+assert.equal(mealEntry.referenceCostCents, 710);
+const mealOnce = JSON.stringify(state.getWallet());
+assert.equal(shop.consumeNokMeal('oats-with-milk', mealEntry.requestId).skipped, true);
+assert.equal(shop.consumeNokMeal('pasta-lentils-carrot', mealEntry.requestId).reason, 'ACTION_REQUEST_CONFLICT');
+assert.equal(shop.consumeNokProduct('tine-milk-1l', mealEntry.requestId).reason, 'ACTION_REQUEST_CONFLICT');
+assert.equal((await shop.buyPack('tine-milk-1l', mealEntry.requestId)).reason, 'ACTION_REQUEST_CONFLICT');
+assert.equal(shop.consumeNokMeal('oats-with-milk', 'meal-oats').reason, 'ACTION_REQUEST_CONFLICT');
+assert.equal(JSON.stringify(state.getWallet()), mealOnce);
+await shop.buyPack('sopps-spaghetti-500g', 'meal-pasta');
+await shop.buyPack('sevan-red-lentils-dry-900g', 'meal-lentils');
+const missing = JSON.stringify(state.getWallet());
+assert.equal(shop.consumeNokMeal('pasta-lentils-carrot', 'missing-carrot').reason, 'NOT_ENOUGH_STOCK');
+assert.equal(JSON.stringify(state.getWallet()), missing, 'no partial meal consumption');
+await shop.buyPack('carrots-second-sort-1kg', 'meal-carrot');
+assert.equal(shop.consumeNokMeal('pasta-lentils-carrot', 'dinner').ok, true);
+assert.equal(shop.getNokProductStock('sopps-spaghetti-500g').available, 400);
+assert.equal(shop.getNokProductStock('sevan-red-lentils-dry-900g').available, 825);
+assert.equal(shop.getNokProductStock('carrots-second-sort-1kg').available, 900);
+assert.equal(state.getWallet().balance, 67, 'only the five packages cost money (133 kr)');
+await w.CivicationStoreUI.render();
+const staleMeal = w.document.querySelector('[data-prepare-meal="oats-with-milk"]');
+for (let n = 0; n < 3; n++) shop.consumeNokProduct('tine-milk-1l', 'milk-rest-' + n);
+const drained = JSON.stringify(state.getWallet());
+staleMeal.click(); await new Promise(resolve => setTimeout(resolve, 5));
+assert.equal(JSON.stringify(state.getWallet()), drained, 'stale meal button cannot use partial ingredients');
+w.eval(fs.readFileSync('js/Civication/civicationCommercial.js', 'utf8')); shop = w.HG_CiviShop;
+assert.equal(shop.consumeNokMeal('pasta-lentils-carrot', 'dinner').skipped, true, 'reload retains meal idempotency');
+assert.equal(JSON.stringify(state.getWallet()), drained);
+// All new meals use their actual ingredients through the existing UI.
+state.updateWallet({ balance: 300, old: { preserved: true }, nok_v1: { active: true, version: 1, config } });
+for (const id of ['r-rice-2kg', 'r-chopped-tomatoes-400g', 'yellow-onions-1kg', 'sopps-spaghetti-500g',
+  'sevan-red-lentils-dry-900g', 'axa-oats-1100g', 'tine-milk-1l', 'bananas-1kg'])
+  assert.equal((await shop.buyPack(id, 'staple-' + id)).ok, true);
+assert.equal(state.getWallet().balance, 98.1);
+const newMeals = [ ['rice-lentils-tomato-onion', 957], ['pasta-tomato-onion', 761], ['oats-milk-banana', 959] ];
+for (const [id, cents] of newMeals) {
+  assert.equal(shop.getNokMealPreview(id).referenceCostCents, cents, 'independent ingredient cost rounded once');
+  await w.CivicationStoreUI.render();
+  const button = w.document.querySelector('[data-prepare-meal="' + id + '"]');
+  assert.equal(button.disabled, false); button.click();
+  await new Promise(resolve => setTimeout(resolve, 5));
+  assert.equal(state.getWallet().balance, 98.1);
+  const entry = state.getWallet().nok_v1.shopping.consumptions.at(-1);
+  assert.equal(entry.mealId, id); assert.equal(entry.referenceCostCents, cents);
+  const saved = JSON.stringify(state.getWallet());
+  assert.equal(shop.consumeNokMeal(id, entry.requestId).skipped, true);
+  assert.equal(JSON.stringify(state.getWallet()), saved);
+}
+const remaining = { 'r-rice-2kg': 1900, 'sevan-red-lentils-dry-900g': 825, 'r-chopped-tomatoes-400g': 100,
+  'yellow-onions-1kg': 900, 'sopps-spaghetti-500g': 400, 'axa-oats-1100g': 1020, 'tine-milk-1l': 750, 'bananas-1kg': 900 };
+for (const [id, amount] of Object.entries(remaining)) assert.equal(shop.getNokProductStock(id).available, amount);
+const insufficient = JSON.stringify(state.getWallet());
+assert.equal(shop.consumeNokMeal('rice-lentils-tomato-onion', 'missing-tomato').reason, 'NOT_ENOUGH_STOCK');
+assert.equal(JSON.stringify(state.getWallet()), insufficient, '100 g tomatoes cannot satisfy a 150 g recipe; nothing is used');
+// Restore serialized state into a genuinely fresh DOM and runtime.
+const fresh = new JSDOM('<body></body>', { url: 'https://example.test', runScripts: 'outside-only' });
+for (let i = 0; i < w.localStorage.length; i++) {
+  const key = w.localStorage.key(i); fresh.window.localStorage.setItem(key, w.localStorage.getItem(key));
+}
+for (const path of ['core/civicationState.js', 'core/civicationCalendar.js', 'civicationCommercial.js'])
+  fresh.window.eval(fs.readFileSync('js/Civication/' + path, 'utf8'));
+assert.equal(JSON.stringify(fresh.window.CivicationState.getWallet()), insufficient);
+for (const [id, amount] of Object.entries(remaining)) assert.equal(fresh.window.HG_CiviShop.getNokProductStock(id).available, amount);
+for (const entry of fresh.window.CivicationState.getWallet().nok_v1.shopping.consumptions)
+  assert.equal(fresh.window.HG_CiviShop.consumeNokMeal(entry.mealId, entry.requestId).skipped, true);
+fresh.window.close();
+const corruptConfig = JSON.parse(JSON.stringify(config));
+corruptConfig.shopMeals[0].ingredients.push(corruptConfig.shopMeals[0].ingredients[0]);
+state.updateWallet({ ...state.getWallet(), nok_v1: { ...state.getWallet().nok_v1, config: corruptConfig } });
+const corrupt = JSON.stringify(state.getWallet());
+assert.equal(shop.consumeNokMeal('oats-with-milk', 'bad-meal').reason, 'MEAL_NOT_MAPPED');
+assert.equal(JSON.stringify(state.getWallet()), corrupt);
+const oldConfig = JSON.parse(JSON.stringify(config)); delete oldConfig.shopMeals;
+state.updateWallet({ ...state.getWallet(), nok_v1: { ...state.getWallet().nok_v1, config: oldConfig } });
+assert.equal(shop.getNokMeals().length, 0, 'frozen old profiles get no automatic recipes');
+await w.CivicationStoreUI.render();
+await new Promise(resolve => setTimeout(resolve, 0));
+console.log('PASS: atomic meals, sourced reference costs, shared action IDs, preserved balance, fresh ingredients and real package quantities, partial stock, explicit portions/remainders, no money on consumption, request conflicts, fresh stock, ownership access and reload');
+dom.window.close();
+})().catch(error => { console.error(error); process.exitCode = 1; });

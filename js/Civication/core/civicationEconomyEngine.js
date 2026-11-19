@@ -168,6 +168,7 @@ function recordCompletedGameDay(rawDay) {
   const state = window.CivicationState;
   if (!state?.getWallet || !state?.updateWallet) return;
   const wallet = normalizeWallet(state.getWallet());
+  if (wallet.nok_v1?.active === true) return recordNokPayrollDay(day, wallet);
   let start = Number(wallet.last_tick_day_index);
   if (!Number.isSafeInteger(start) || start < 1 || start > day) {
     // Old saves start here without creating back-pay for earlier days.
@@ -224,6 +225,13 @@ function tickPCIncomeWeekly() {
   let wallet = normalizeWallet(
     window.CivicationState.getWallet()
   );
+  if (wallet.nok_v1?.active === true) {
+    const billing = generateNokInvoices(wallet);
+    if (!billing.ok) return billing;
+    // Billing may have persisted invoices; do not overwrite them with the
+    // older wallet snapshot when paying earned salary.
+    return settleNokPayroll(normalizeWallet(window.CivicationState.getWallet()));
+  }
 
   /** @type {CiviEconomyCareer | null} */
   const active =
@@ -829,7 +837,427 @@ function getEconomySnapshot() {
 
 
   
+// NOK payroll remains inside the canonical economy owner. Activation and job
+// contracts are supplied by explicit migration/job acceptance, never by a
+// badge or this calculation. No completed day means no earned salary.
+/** @param {number} day @param {CiviEconomyWallet} wallet */
+function recordNokPayrollDay(day, wallet) {
+  const nok = wallet.nok_v1;
+  const calendar = window.CivicationCalendar;
+  const currentDay = Number(calendar?.getClock?.()?.dayIndex);
+  const last = nok.lastRecordedDayIndex ?? (nok.startedDayIndex - 1);
+  const period = calendar?.getMonthPeriod?.(day);
+  if (nok.version !== 1 || !Number.isSafeInteger(last) || day !== last + 1
+      || !Number.isSafeInteger(currentDay) || day >= currentDay || !period) return;
+  const active = window.CivicationState.getActivePosition?.();
+  const contract = active?.nok_salary_contract;
+  let gross = 0;
+  let tax = 0;
+  let sourceId = null;
+  if (active?.career_id && contract) {
+    const calculator = /** @type {any} */ (window).CivicationNokBudget;
+    const job = calculator?.resolveSalaryJob?.(nok.config, { jobId: contract.jobId });
+    if (!job || contract.sourceId !== job.source
+        || typeof contract.employmentPercent !== "number"
+        || !Number.isFinite(contract.employmentPercent)
+        || contract.employmentPercent < 0 || contract.employmentPercent > 100) return;
+    if (!calculator?.preview) return;
+    const preview = calculator.preview(nok.config, { employed: true, employmentPercent: contract.employmentPercent, jobId: contract.jobId });
+    gross = Math.round(preview.monthlyGross * 100);
+    tax = Math.round(preview.monthlyTax * 100);
+    sourceId = contract.sourceId;
+  } else if (active?.career_id) return; // Unmapped jobs must not receive fabricated pay.
+  if (!Number.isSafeInteger(gross) || !Number.isSafeInteger(tax) || gross < tax || tax < 0) return;
+  // Allocate the month's integer cents across its actual days, with no lost
+  // rounding cents when all 28/29/30/31 days are completed.
+  const share = (/** @type {number} */ amount) => Math.floor(amount * period.dayOfMonth / period.daysInMonth)
+    - Math.floor(amount * (period.dayOfMonth - 1) / period.daysInMonth);
+  let electricity = null;
+  if (nok.housing?.electricityProfileId && nok.housing.acceptedDateISO <= period.dateISO) {
+    try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(
+      nok.config, nok.housing.electricityProfileId); } catch { return; }
+    if (!electricity || electricity.id !== nok.housing.electricityProfileId) return;
+  }
+  window.CivicationState.updateWallet({ ...wallet, nok_v1: { ...nok,
+    lastRecordedDayIndex: day, earnedDays: [...(nok.earnedDays || []), {
+      dayIndex: day, monthId: period.id, grossCents: share(gross), taxCents: share(tax), sourceId,
+      ...(contract ? { jobId: contract.jobId, employmentPercent: contract.employmentPercent } : {}),
+      ...(electricity ? { electricityCents: share(electricity.monthlyCents),
+        electricitySourceId: electricity.source, electricityMilliKwh: share(electricity.monthlyConsumptionMilliKwh) } : {})
+    }] } });
+}
+
+/** @param {CiviEconomyWallet} wallet @returns {CiviEconomyRecord} */
+function settleNokPayroll(wallet) {
+  const nok = wallet.nok_v1;
+  const period = window.CivicationCalendar?.getMonthPeriod?.();
+  if (nok.version !== 1 || !period) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+  const days = /** @type {CiviEconomyRecord[]} */ (nok.earnedDays || []);
+  const due = days.filter(d => d.monthId < period.id);
+  if (!due.length) return { ok: true, skipped: true };
+  if (new Set(due.map(d => d.dayIndex)).size !== due.length || due.some(d =>
+      !Number.isSafeInteger(d.grossCents) || !Number.isSafeInteger(d.taxCents)
+      || d.taxCents < 0 || d.grossCents < d.taxCents
+      || (d.electricityCents != null && (!Number.isSafeInteger(d.electricityCents) || d.electricityCents < 0
+        || typeof d.electricitySourceId !== "string" || !d.electricitySourceId.trim()
+        || !Number.isSafeInteger(d.electricityMilliKwh) || d.electricityMilliKwh < 0))
+      || window.CivicationCalendar?.getMonthPeriod?.(d.dayIndex)?.id !== d.monthId)) {
+    return { ok: false, reason: "INVALID_EARNED_DAYS" };
+  }
+  const months = [...new Set(due.map(d => d.monthId))].sort();
+  const ledger = /** @type {CiviEconomyRecord[]} */ (nok.payrollLedger || []);
+  if (months.some(id => ledger.some(entry => entry.monthId === id))) return { ok: false, reason: "DUPLICATE_PAYROLL" };
+  const entries = months.map(monthId => {
+    const rows = due.filter(d => d.monthId === monthId);
+    return { monthId, grossCents: rows.reduce((sum, d) => sum + d.grossCents, 0),
+      taxCents: rows.reduce((sum, d) => sum + d.taxCents, 0), paidDateISO: period.dateISO };
+  });
+  if (nok.invoices != null && !Array.isArray(nok.invoices)) return { ok: false, reason: "INVALID_INVOICES" };
+  const invoices = /** @type {CiviEconomyRecord[]} */ (nok.invoices || []);
+  const electricityInvoices = [];
+  for (const monthId of months) {
+    const rows = due.filter(d => d.monthId === monthId && d.electricityCents != null);
+    if (!rows.length) continue;
+    const sources = [...new Set(rows.map(d => d.electricitySourceId))];
+    if (sources.length !== 1) return { ok: false, reason: "ELECTRICITY_SOURCE_CONFLICT" };
+    const amountCents = rows.reduce((sum, d) => sum + d.electricityCents, 0);
+    const milliKwh = rows.reduce((sum, d) => sum + d.electricityMilliKwh, 0);
+    if (!Number.isSafeInteger(amountCents) || !Number.isSafeInteger(milliKwh))
+      return { ok: false, reason: "INVALID_ELECTRICITY_AMOUNT" };
+    const id = "electricity:" + encodeURIComponent(sources[0]) + ":" + monthId;
+    if (invoices.some(i => !i || i.id === id)) return { ok: false, reason: "DUPLICATE_ELECTRICITY_INVOICE" };
+    const dueDateISO = new Date(Date.UTC(Number(monthId.slice(0, 4)), Number(monthId.slice(5, 7)), 1)).toISOString().slice(0, 10);
+    electricityInvoices.push({ id, contractId: "electricity:" + sources[0], sourceId: sources[0],
+      title: "Strøm (" + monthId + ") – estimert forbruk", monthId, dueDateISO,
+      amountNok: amountCents / 100, estimatedConsumptionKwh: milliKwh / 1000,
+      priceKind: "effective_statistical_unit_price_with_assumed_consumption", status: "pending" });
+  }
+  const net = entries.reduce((sum, entry) => sum + entry.grossCents - entry.taxCents, 0);
+  const before = wallet.balance;
+  if (typeof before !== "number" || !Number.isFinite(before)
+      || Math.abs(before * 100 - Math.round(before * 100)) > 0.000001
+      || !Number.isSafeInteger(net) || net < 0 || !Number.isSafeInteger(Math.round(before * 100) + net)) {
+    return { ok: false, reason: "INVALID_PAYROLL_AMOUNT" };
+  }
+  const balance = (Math.round(before * 100) + net) / 100;
+  window.CivicationState.updateWallet({ ...wallet, balance, nok_v1: { ...nok,
+    earnedDays: days.filter(d => d.monthId >= period.id), payrollLedger: [...ledger, ...entries],
+    ...(electricityInvoices.length ? { invoices: [...invoices, ...electricityInvoices] } : {}) } });
+  return { ok: true, netNok: net / 100, balance };
+}
+
+/** @param {CiviEconomyWallet} wallet @returns {CiviEconomyRecord} */
+function generateNokInvoices(wallet) {
+  const nok = wallet.nok_v1;
+  if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+  if (nok.recurringBills != null && !Array.isArray(nok.recurringBills)) return { ok: false, reason: "INVALID_BILLING_CONTRACT" };
+  const contracts = /** @type {CiviEconomyRecord[]} */ (nok.recurringBills || []);
+  if (!contracts.length) return { ok: true, skipped: true };
+  if (contracts.some(c => !c || typeof c !== "object")) return { ok: false, reason: "INVALID_BILLING_CONTRACT" };
+  const calendar = window.CivicationCalendar;
+  const current = calendar?.getMonthPeriod?.();
+  const start = calendar?.getMonthPeriod?.(nok.startedDayIndex);
+  if (!Number.isSafeInteger(nok.startedDayIndex) || !start || !current || start.dateISO > current.dateISO) {
+    return { ok: false, reason: "INVALID_BILLING_PERIOD" };
+  }
+  const validDate = (/** @type {unknown} */ value) => {
+    if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+    const date = new Date(value + "T00:00:00.000Z");
+    return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
+  };
+  if (new Set(contracts.map(c => c.id)).size !== contracts.length || contracts.some(c =>
+      typeof c.id !== "string" || !c.id.trim() || typeof c.sourceId !== "string" || !c.sourceId.trim()
+      || !validDate(c.firstDueDateISO) || (c.endsOnISO != null && (!validDate(c.endsOnISO) || c.endsOnISO < c.firstDueDateISO))
+      || typeof c.amountNok !== "number" || !Number.isFinite(c.amountNok) || c.amountNok < 0
+      || !Number.isSafeInteger(Math.round(c.amountNok * 100))
+      || Math.abs(c.amountNok * 100 - Math.round(c.amountNok * 100)) > 0.000001)) {
+    return { ok: false, reason: "INVALID_BILLING_CONTRACT" };
+  }
+  const firstMonth = Number(start.id.slice(0, 4)) * 12 + Number(start.id.slice(5, 7)) - 1;
+  const lastMonth = Number(current.id.slice(0, 4)) * 12 + Number(current.id.slice(5, 7)) - 1;
+  if (lastMonth - firstMonth > 1200) return { ok: false, reason: "BILLING_PERIOD_TOO_LONG" };
+  if (nok.invoices != null && !Array.isArray(nok.invoices)) return { ok: false, reason: "INVALID_INVOICES" };
+  const invoices = /** @type {CiviEconomyRecord[]} */ (nok.invoices || []);
+  if (invoices.some(i => !i || typeof i !== "object")) return { ok: false, reason: "INVALID_INVOICES" };
+  if (new Set(invoices.map(i => i.id)).size !== invoices.length) return { ok: false, reason: "INVOICE_NOT_UNIQUE" };
+  const added = [];
+  for (let index = firstMonth; index <= lastMonth; index++) {
+    const year = Math.floor(index / 12);
+    const month = index % 12;
+    const period = String(year).padStart(4, "0") + "-" + String(month + 1).padStart(2, "0");
+    const monthDays = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+    for (const contract of contracts) {
+      const day = Math.min(Number(contract.firstDueDateISO.slice(8, 10)), monthDays);
+      const due = period + "-" + String(day).padStart(2, "0");
+      if (due < contract.firstDueDateISO || due < start.dateISO || (contract.endsOnISO && due > contract.endsOnISO)) continue;
+      const id = "nok:" + encodeURIComponent(contract.id) + ":" + period;
+      const existing = invoices.find(i => i.id === id);
+      if (existing) {
+        if (existing.sourceId !== contract.sourceId || existing.amountNok !== contract.amountNok || existing.dueDateISO !== due) {
+          return { ok: false, reason: "BILLING_CONTRACT_CONFLICT" };
+        }
+        continue;
+      }
+      added.push({ id, contractId: contract.id, sourceId: contract.sourceId,
+        amountNok: contract.amountNok, dueDateISO: due, monthId: period, status: "pending" });
+    }
+  }
+  if (!added.length) return { ok: true, skipped: true };
+  window.CivicationState.updateWallet({ ...wallet, nok_v1: { ...nok, invoices: [...invoices, ...added] } });
+  return { ok: true, created: added.length };
+}
+
+// A payment consumes an existing, source-bound invoice. It cannot invent a
+// charge from a UI amount, activate NOK mode or grant an overdraft.
+/** @param {string} invoiceId @returns {CiviEconomyRecord} */
+function payNokInvoice(invoiceId) {
+  if (typeof invoiceId !== "string" || !invoiceId.trim()) return { ok: false, reason: "INVALID_INVOICE_ID" };
+  const owner = window.CivicationState;
+  const wallet = owner?.getWallet?.();
+  const nok = wallet?.nok_v1;
+  if (nok?.active !== true || nok?.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+  const invoices = /** @type {CiviEconomyRecord[]} */ (Array.isArray(nok.invoices) ? nok.invoices : []);
+  const matches = invoices.filter((invoice) => invoice?.id === invoiceId);
+  if (matches.length !== 1) return { ok: false, reason: "INVOICE_NOT_UNIQUE" };
+  const invoice = matches[0];
+  if (invoice.status === "paid") return { ok: true, skipped: true, reason: "ALREADY_PAID" };
+  if (invoice.status !== "pending" || typeof invoice.sourceId !== "string" || !invoice.sourceId.trim()) {
+    return { ok: false, reason: "INVALID_INVOICE" };
+  }
+  const date = window.CivicationCalendar?.getGameDate?.();
+  const due = String(invoice.dueDateISO || "");
+  const parsed = /^\d{4}-\d{2}-\d{2}$/.test(due) ? new Date(due + "T00:00:00.000Z") : null;
+  if (!date || !parsed || !Number.isFinite(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== due) {
+    return { ok: false, reason: "INVALID_DATE" };
+  }
+  if (date < due) return { ok: false, reason: "NOT_DUE" };
+  const amount = invoice.amountNok;
+  const balance = wallet.balance;
+  if (typeof amount !== "number" || typeof balance !== "number" || !Number.isFinite(amount)
+      || !Number.isFinite(balance) || amount < 0
+      || !Number.isSafeInteger(Math.round(amount * 100)) || !Number.isSafeInteger(Math.round(balance * 100))
+      || Math.abs(balance * 100 - Math.round(balance * 100)) > 0.000001
+      || Math.abs(amount * 100 - Math.round(amount * 100)) > 0.000001) {
+    return { ok: false, reason: "INVALID_AMOUNT" };
+  }
+  const amountCents = Math.round(amount * 100);
+  const balanceCents = Math.round(balance * 100);
+  if (balanceCents < amountCents) return { ok: false, reason: "NOT_ENOUGH_PC", amountNok: amount };
+  const nextBalance = (balanceCents - amountCents) / 100;
+  owner.updateWallet({ ...wallet, balance: nextBalance, nok_v1: { ...nok,
+    invoices: invoices.map((entry) => entry === invoice
+      ? { ...entry, status: "paid", paidDateISO: date } : entry) } });
+  return { ok: true, invoiceId, paidNok: amount, balance: nextBalance };
+}
+
+/** @param {CiviEconomyRecord} config @returns {CiviEconomyRecord} */
+function migrateNokEconomy(config) {
+  if (config?.status !== "active" || config?.migration?.activated !== true
+      || config?.currency?.id !== "PC" || config?.currency?.nokPerPC !== 1) {
+    return { ok: false, reason: "NOK_CONFIG_NOT_APPROVED" };
+  }
+  const owner = window.CivicationState;
+  const wallet = owner?.getWallet?.();
+  if (!wallet || typeof wallet.balance !== "number" || !Number.isFinite(wallet.balance)
+      || !Number.isSafeInteger(Math.round(wallet.balance * 100))
+      || Math.abs(wallet.balance * 100 - Math.round(wallet.balance * 100)) > 0.000001) {
+    return { ok: false, reason: "INVALID_OPENING_BALANCE" };
+  }
+  if (wallet.nok_v1 != null) {
+    return wallet.nok_v1.active === true && wallet.nok_v1.version === 1
+      ? { ok: true, skipped: true, reason: "ALREADY_MIGRATED" }
+      : { ok: false, reason: "UNKNOWN_NOK_STATE" };
+  }
+  if (wallet.completed_game_days_v1 != null && (!Array.isArray(wallet.completed_game_days_v1)
+      || wallet.completed_game_days_v1.length > 0)) return { ok: false, reason: "UNSETTLED_LEGACY_PAYROLL" };
+  const active = owner.getActivePosition?.();
+  const contract = active?.nok_salary_contract;
+  const job = window.CivicationNokBudget?.resolveSalaryJob?.(config, { jobId: contract?.jobId });
+  if (active?.career_id && (!contract || !job
+      || contract.sourceId !== job.source || typeof contract.employmentPercent !== "number"
+      || !Number.isFinite(contract.employmentPercent) || contract.employmentPercent <= 0
+      || contract.employmentPercent > 100)) return { ok: false, reason: "ACTIVE_JOB_NOT_MAPPED" };
+  const clock = window.CivicationCalendar?.getClock?.();
+  const date = window.CivicationCalendar?.getGameDate?.();
+  if (!Number.isSafeInteger(clock?.dayIndex) || clock.dayIndex < 1 || !date) {
+    return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+  }
+  let frozenConfig;
+  try {
+    frozenConfig = JSON.parse(JSON.stringify(config));
+    const calculator = /** @type {any} */ (window).CivicationNokBudget;
+    if (!calculator?.preview) return { ok: false, reason: "NOK_CALCULATOR_UNAVAILABLE" };
+    const sample = calculator.preview(frozenConfig, { employed: true });
+    if (!Number.isFinite(sample.monthlyNet) || sample.monthlyNet < 0) return { ok: false, reason: "INVALID_NOK_CONFIG" };
+  } catch { return { ok: false, reason: "INVALID_NOK_CONFIG" }; }
+  // All older wallet fields remain intact. No multiplied balance, retroactive
+  // salary, benefits, new purchases or housing agreement are fabricated here.
+  owner.updateWallet({ ...wallet, nok_v1: { active: true, version: 1,
+    startedDayIndex: clock.dayIndex, activatedDateISO: date, openingBalanceNok: wallet.balance,
+    lastRecordedDayIndex: clock.dayIndex - 1, config: frozenConfig,
+    earnedDays: [], payrollLedger: [], recurringBills: [], invoices: [] } });
+  return { ok: true, balance: wallet.balance, startedDayIndex: clock.dayIndex };
+}
+
+/** @param {string} districtId @param {string|null} [offerId] @returns {CiviEconomyRecord} */
+function acceptNokHousing(districtId, offerId = null) {
+  const owner = window.CivicationState;
+  const wallet = owner?.getWallet?.();
+  const nok = wallet?.nok_v1;
+  if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+  const offers = /** @type {CiviEconomyRecord[]} */ (Array.isArray(nok.config?.housingOffers) ? nok.config.housingOffers : []);
+  const matching = offers.filter(o => o?.districtId === districtId);
+  if (!matching.length) return { ok: false, reason: "HOUSING_PRICE_NOT_MAPPED" };
+  if (new Set(matching.map(o => o.id)).size !== matching.length)
+    return { ok:false, reason:"DUPLICATE_HOUSING_OFFER" };
+  const selected = offerId == null
+    ? (matching.length === 1 ? matching : matching.filter(o => o.defaultOffer === true))
+    : matching.filter(o => o.id === offerId);
+  if (selected.length !== 1) return {
+    ok:false, reason:offerId == null ? "HOUSING_OFFER_SELECTION_REQUIRED" : "HOUSING_OFFER_NOT_FOUND"
+  };
+  const offer = selected[0];
+  if (typeof offer.id !== "string" || !offer.id.trim() || typeof offer.sourceId !== "string" || !offer.sourceId.trim()
+      || typeof offer.monthlyRentNok !== "number" || !Number.isFinite(offer.monthlyRentNok) || offer.monthlyRentNok < 0
+      || !Number.isSafeInteger(Math.round(offer.monthlyRentNok * 100))
+      || Math.abs(offer.monthlyRentNok * 100 - Math.round(offer.monthlyRentNok * 100)) > 0.000001) {
+    return { ok: false, reason: "INVALID_HOUSING_OFFER" };
+  }
+  // Validate region and room count against the immutable source table.
+  // This check applies only to versioned source-mapped offers: older test
+  // fixtures and saved contracts remain supported without invented mapping.
+  if (offer.referenceAreaId != null) {
+    const refs = nok.config?.costOfLiving?.rentSources;
+    const matchingRefs = Array.isArray(refs)
+      ? refs.filter(item => item?.id === offer.referenceAreaId) : [];
+    const reference = matchingRefs.length === 1 ? matchingRefs[0] : null;
+    const monthlyReference = reference?.pricesByRoomsNok?.[String(offer.roomCount)];
+    if (!reference || !Number.isSafeInteger(offer.roomCount) ||
+        offer.roomCount < 1 || offer.roomCount > 5 ||
+        !Number.isSafeInteger(monthlyReference) ||
+        monthlyReference !== offer.monthlyRentNok ||
+        reference.source !== offer.sourceId ||
+        reference.year !== offer.referenceYear ||
+        reference.priceKind !== offer.referencePriceKind ||
+        (offer.floorAreaSqm != null && (!Number.isSafeInteger(offer.floorAreaSqm) ||
+          offer.floorAreaSqm <= 0 || offer.floorAreaSqm > 1000)))
+      return { ok:false, reason:"INVALID_HOUSING_REFERENCE" };
+  }
+  if (offer.electricityProfileId) {
+    let electricity;
+    try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(
+      nok.config, offer.electricityProfileId); } catch {}
+    if (!electricity || electricity.id !== offer.electricityProfileId)
+      return { ok: false, reason: "ELECTRICITY_PRICE_NOT_MAPPED" };
+  }
+  if (nok.housing?.districtId === districtId && nok.housing?.offerId === offer.id) return { ok: true, skipped: true };
+  const date = window.CivicationCalendar?.getGameDate?.();
+  if (!date || typeof nok.activatedDateISO !== "string" || date < nok.activatedDateISO) return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+  const sequence = Number(nok.housingSequence || 0) + 1;
+  if (!Number.isSafeInteger(sequence) || sequence < 1) return { ok: false, reason: "INVALID_HOUSING_SEQUENCE" };
+  const contractId = "rent:" + offer.id + ":" + sequence;
+  if ((nok.recurringBills != null && !Array.isArray(nok.recurringBills))
+      || (nok.invoices != null && !Array.isArray(nok.invoices))) return { ok: false, reason: "INVALID_HOUSING_STATE" };
+  const contracts = /** @type {CiviEconomyRecord[]} */ (Array.isArray(nok.recurringBills) ? nok.recurringBills : []);
+  if (contracts.some(c => !c || typeof c !== "object")) return { ok: false, reason: "INVALID_HOUSING_STATE" };
+  if (contracts.some(c => c.id === contractId)) return { ok: false, reason: "DUPLICATE_HOUSING_CONTRACT" };
+  const previousId = nok.housing?.contractId;
+  const invoices = /** @type {CiviEconomyRecord[]} */ (Array.isArray(nok.invoices) ? nok.invoices : []);
+  if (invoices.some(i => !i || typeof i !== "object")) return { ok: false, reason: "INVALID_HOUSING_STATE" };
+  owner.updateWallet({ ...wallet, nok_v1: { ...nok, housingSequence: sequence,
+    housing: { districtId, offerId: offer.id, contractId, acceptedDateISO: date,
+      ...(offer.roomCount ? { roomCount: offer.roomCount } : {}),
+      ...(offer.referenceAreaId ? { referenceAreaId: offer.referenceAreaId,
+        referenceYear: offer.referenceYear } : {}),
+      ...(offer.electricityProfileId ? { electricityProfileId: offer.electricityProfileId } : {}) },
+    recurringBills: [...contracts.map(c => c.id === previousId
+      ? { ...c, endsOnISO: c.endsOnISO && c.endsOnISO < date ? c.endsOnISO : date } : c),
+      { id: contractId, sourceId: offer.sourceId, districtId, amountNok: offer.monthlyRentNok, firstDueDateISO: date }],
+    invoices: invoices.map(i => i.contractId === previousId && i.status === "pending" && i.dueDateISO >= date
+      ? { ...i, status: "cancelled", cancellationReason: "housing_changed" } : i) } });
+  return { ok: true, contractId };
+}
+
+// A prepaid ticket is a purchase, never a calendar-month bill or automatic renewal.
+/** @param {CiviEconomyWallet} [wallet] @returns {CiviEconomyRecord} */
+function getNokTransportStatus(wallet = window.CivicationState?.getWallet?.()) {
+  const nok = wallet?.nok_v1;
+  if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
+  const offer = nok.config?.budget?.transport;
+  if (!offer || typeof offer.id !== "string" || !offer.id.trim()
+      || typeof offer.source !== "string" || !offer.source.trim()
+      || offer.periodDays !== 30 || offer.purchaseMode !== "optional_prepaid_no_auto_renewal"
+      || typeof offer.priceNok !== "number" || !Number.isFinite(offer.priceNok) || offer.priceNok <= 0
+      || !Number.isSafeInteger(Math.round(offer.priceNok * 100))
+      || Math.abs(offer.priceNok * 100 - Math.round(offer.priceNok * 100)) > 0.000001)
+    return { ok: false, reason: "TRANSPORT_PRICE_NOT_MAPPED" };
+  const calendar = window.CivicationCalendar;
+  const clock = calendar?.getClock?.();
+  if (!Number.isSafeInteger(nok.startedDayIndex) || nok.startedDayIndex < 1
+      || !Number.isSafeInteger(clock?.dayIndex) || clock.dayIndex < nok.startedDayIndex
+      || !Number.isSafeInteger(clock.currentMinutes) || clock.currentMinutes < 0 || clock.currentMinutes >= 1440)
+    return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+  const now = clock.dayIndex * 1440 + clock.currentMinutes;
+  if (!Number.isSafeInteger(now + 30 * 1440) || !calendar.getGameDate(clock.dayIndex + 30))
+    return { ok: false, reason: "INVALID_NOK_CALENDAR" };
+  const passes = nok.transportPasses || [];
+  if (!Array.isArray(passes) || passes.some(p => !p || typeof p.id !== "string"
+      || !Number.isSafeInteger(p.startsAtGameMinute) || !Number.isSafeInteger(p.expiresAtGameMinute)
+      || p.expiresAtGameMinute - p.startsAtGameMinute !== 30 * 1440)
+      || new Set(passes.map(p => p.id)).size !== passes.length)
+    return { ok: false, reason: "INVALID_TRANSPORT_HISTORY" };
+  const current = passes.filter(p => p.expiresAtGameMinute > now);
+  if (current.length > 1 || current.some(p => p.startsAtGameMinute > now))
+    return { ok: false, reason: "INVALID_TRANSPORT_HISTORY" };
+  return { ok: true, offer, current: current[0] || null, now,
+    validUntilDateISO: current[0] ? calendar.getGameDate(Math.floor(current[0].expiresAtGameMinute / 1440)) : null,
+    validUntilTime: current[0] ? calendar.minutesToLabel(current[0].expiresAtGameMinute % 1440) : null };
+}
+
+/** @returns {CiviEconomyRecord} */
+function purchaseNokTransportPass() {
+  const owner = window.CivicationState;
+  const wallet = owner?.getWallet?.();
+  const status = getNokTransportStatus(wallet);
+  if (!status.ok) return status;
+  if (status.current) return { ok: true, skipped: true, reason: "TRANSPORT_PASS_ACTIVE" };
+  const balance = wallet.balance;
+  const cents = Math.round(balance * 100);
+  const priceCents = Math.round(status.offer.priceNok * 100);
+  if (typeof balance !== "number" || !Number.isFinite(balance) || !Number.isSafeInteger(cents)
+      || Math.abs(balance * 100 - cents) > 0.000001) return { ok: false, reason: "INVALID_OPENING_BALANCE" };
+  if (cents < priceCents) return { ok: false, reason: "NOT_ENOUGH_PC" };
+  const nok = wallet.nok_v1;
+  const passes = nok.transportPasses || [];
+  const id = "transport:" + status.offer.id + ":" + status.now;
+  if (passes.some(p => p.id === id)) return { ok: false, reason: "DUPLICATE_TRANSPORT_PURCHASE" };
+  const pass = { id, offerId: status.offer.id, sourceId: status.offer.source,
+    amountNok: status.offer.priceNok, startsAtGameMinute: status.now,
+    expiresAtGameMinute: status.now + status.offer.periodDays * 1440 };
+  owner.updateWallet({ ...wallet, balance: (cents - priceCents) / 100,
+    nok_v1: { ...nok, transportPasses: [...passes, pass] } });
+  return { ok: true, pass, balance: (cents - priceCents) / 100 };
+}
+
 window.CivicationEconomyEngine = {
+  getNokTransportStatus,
+  purchaseNokTransportPass,
+  acceptNokHousing,
+  migrateNokEconomy,
+  payNokInvoice,
+  // Explicit scenario preview. A selected budget job is not an actual job,
+  // nor permission to pay salary or support into the player's wallet.
+  /** @param {CiviEconomyRecord} config @param {CiviEconomyRecord} scenario */
+  getNokBudgetPreview(config, scenario = {}) {
+    const calculator = /** @type {any} */ (window).CivicationNokBudget;
+    if (!calculator?.preview) return null;
+    const result = calculator.preview(config, scenario);
+    const wallet = window.CivicationState?.getWallet?.();
+    return { ...result, mode: "scenario_preview", activated: false,
+      actualBalance: typeof wallet?.balance === "number" && Number.isFinite(wallet.balance)
+        ? wallet.balance : null,
+      gameMonth: window.CivicationCalendar?.getMonthPeriod?.() || null };
+  },
   tickWeekly: tickPCIncomeWeekly,
   recordCompletedDay: recordCompletedGameDay,
   getEconomySnapshot
@@ -838,3 +1266,4 @@ window.CivicationEconomyEngine = {
 window.HG_CiviEconomySnapshot = getEconomySnapshot;
 
 })();
+

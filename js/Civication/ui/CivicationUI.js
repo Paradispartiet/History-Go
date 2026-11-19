@@ -316,7 +316,7 @@ function buildOfferPackDepthHtml(offer) {
   if (!vm) return "";
   return "<div class=\"civi-offer-pack-depth\" data-pack-depth=\"" + escapeOfferHtml(vm.level) + "\">"
     + "<span class=\"civi-offer-eligibility-label\">" + escapeOfferHtml(vm.label) + "</span>"
-    + "<span class=\"civi-offer-eligibility-muted\">" + escapeOfferHtml(vm.description) + "</span>"
+    + " <span class=\"civi-offer-eligibility-muted\">" + escapeOfferHtml(vm.description) + "</span>"
     + "</div>";
 }
 
@@ -476,7 +476,10 @@ async function renderCivicationShop() {
     return;
   }
 
-  hintEl.textContent = "Tilgjengelige pakker følger merker, steder og nabolag du har låst opp.";
+  const nokShopping = window.CivicationState?.getWallet?.()?.nok_v1;
+  hintEl.textContent = nokShopping?.active === true
+    ? "Daterte varepriser. Spillkjøp uten levering eller automatisk månedsbelastning."
+    : "Tilgjengelige pakker følger merker, steder og nabolag du har låst opp.";
 
   const ownedPacks = civiShopRecord(inv.packs);
   const ownedItems = civiShopRecord(/** @type {any} */ (inv).ownedItems);
@@ -484,13 +487,15 @@ async function renderCivicationShop() {
     const packRecord = civiShopRecord(pack);
     const packId = String(packRecord.id || "").trim();
     const title = String(packRecord.title || packRecord.name || packId || "Pakke");
-    const price = packRecord.price_pc ?? packRecord.price ?? 0;
+    const price = packRecord.nok_product ? packRecord.priceNok : (packRecord.price_pc ?? packRecord.price ?? 0);
     const isOwned = !!ownedPacks[packId] || !!ownedItems[packId];
 
     return `
       <div class="civi-shop-pack">
         <div><strong>${escapeOfferHtml(title)}</strong></div>
-        <div>Pris: ${formatCiviShopPc(price)} PC</div>
+        <div>Pris: ${packRecord.nok_product ? Number(price).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : formatCiviShopPc(price)} ${packRecord.nok_product ? "kr" : "PC"}</div>
+        ${packRecord.nok_product ? `<div>${escapeOfferHtml(packRecord.unitLabel)} · ${escapeOfferHtml(packRecord.retailer)} · Kontrollert: ${escapeOfferHtml(packRecord.checkedOn)}</div>
+          <div>På lager: ${Number(nokShopping?.shopping?.quantities?.[packId] || 0)} pakninger${nokShopping?.shopping?.openedUnits?.[packId] ? ` + ${Number(nokShopping.shopping.openedUnits[packId])} ${escapeOfferHtml(packRecord.baseUnit)} i åpnet pakning` : ""}</div>` : ""}
         <div>${isOwned ? "Kjøpt" : `<button type="button" data-civi-buy-pack="${escapeOfferHtml(packId)}">Kjøp</button>`}</div>
       </div>
     `;
@@ -498,6 +503,7 @@ async function renderCivicationShop() {
 
   packsEl.querySelectorAll("[data-civi-buy-pack]").forEach(function (btn) {
     const buyBtn = /** @type {HTMLButtonElement} */ (btn);
+    const requestId = shop.createPurchaseRequest?.();
     buyBtn.addEventListener("click", async function () {
       const packId = buyBtn.getAttribute("data-civi-buy-pack");
       if (!packId || !shop?.buyPack) return;
@@ -505,7 +511,7 @@ async function renderCivicationShop() {
       buyBtn.disabled = true;
       let res = /** @type {{ ok?: boolean, reason?: string }} */ ({ ok: false });
       try {
-        res = /** @type {{ ok?: boolean, reason?: string }} */ (await shop.buyPack(packId));
+        res = /** @type {{ ok?: boolean, reason?: string }} */ (await shop.buyPack(packId, requestId));
       } catch {
         res = { ok: false };
       } finally {
@@ -582,6 +588,22 @@ function getCivicationProfileSnapshot() {
 /**
  * @returns {void}
  */
+/** Contract monthly estimate; null preserves the legacy display path. */
+function getNokSalaryText() {
+  const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+  if (nok?.active !== true) return null;
+  const active = window.CivicationState?.getActivePosition?.();
+  if (!active) return "Lønn: 0 kr per måned · Ingen aktiv jobb";
+  const contract = active.nok_salary_contract;
+  const job = window.CivicationNokBudget?.resolveSalaryJob?.(nok.config, { jobId: contract?.jobId });
+  if (!contract || !job || contract.sourceId !== job.source)
+    return "Lønnsvilkår mangler for den aktive rollen";
+  const terms = window.CivicationJobs?.getNokOfferTerms?.({ ...active, nok_job_id: contract.jobId, nok_employment_percent: contract.employmentPercent });
+  if (!terms?.supported) return "Lønnsvilkår mangler for den aktive rollen";
+  const money = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return `Lønn: ${money(terms.monthlyGross)} kr brutto per måned · Estimert skatt: ${money(terms.monthlyTax)} kr · Estimert netto: ${money(terms.monthlyNet)} kr · ${Number(terms.employmentPercent).toLocaleString("nb-NO", { maximumFractionDigits: 2 })} % stilling`;
+}
+
 function renderCivicationSummary() {
   const title = document.getElementById("civiRoleTitle");
   const details = document.getElementById("civiRoleDetails");
@@ -604,7 +626,9 @@ function renderCivicationSummary() {
     details.textContent = active ? `Status: ${status} · Felt: ${field}` : "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
   }
 
-  if (salaryLn) {
+  if (salaryLn && getNokSalaryText() !== null) {
+    salaryLn.textContent = getNokSalaryText();
+  } else if (salaryLn) {
     let weekly = NaN;
     try {
       const points = Number(activeCareerId ? merits?.[activeCareerId]?.points || 0 : 0);
@@ -701,9 +725,43 @@ async function renderCivication() {
   const active = /** @type {CiviUiActivePosition|null|undefined} */ (
     window.CivicationState.getActivePosition()
   );
-  const offer = /** @type {CiviUiPendingOffer|null|undefined} */ (
+  let offer = /** @type {CiviUiPendingOffer|null|undefined} */ (
     window.CivicationJobs?.getLatestPendingOffer?.()
   );
+
+  const nokOffers = window.CivicationState?.getWallet?.()?.nok_v1?.active === true && !active
+    ? (window.CivicationJobs?.expireOffers?.() || []).filter(o => o?.status === "pending"
+      && window.CivicationJobs?.getNokOfferTerms?.(o)?.supported === true) : [];
+  const selectedOffer = nokOffers.find(o => o.offer_key === host.dataset.nokOfferKey);
+  if (selectedOffer) offer = selectedOffer;
+  else if (nokOffers.length && !nokOffers.some(o => o.offer_key === offer?.offer_key)) offer = nokOffers[0];
+  const offerSelector = nokOffers.length > 1
+    ? `<label for="civiNokOfferSelect">Velg jobbtilbud</label><select id="civiNokOfferSelect" style="min-height:44px;width:100%;max-width:100%;min-width:0;">${nokOffers.map(o =>
+      `<option value="${escapeOfferHtml(o.offer_key)}" ${o.offer_key === offer?.offer_key ? "selected" : ""}>${escapeOfferHtml(o.title)} · ${escapeOfferHtml(o.nok_employment_percent)} %</option>`).join("")}</select>` : "";
+
+  const nokConfig = window.CivicationState?.getWallet?.()?.nok_v1;
+  if (active && host.dataset) delete host.dataset.nokApplicationMessage;
+  const searchOptions = nokConfig?.active === true && !active && !nokOffers.length
+    ? (window.CivicationNokBudget?.getSalaryJobs?.(nokConfig.config) || []).flatMap(job =>
+      (job.offerEmploymentPercents || [job.offerEmploymentPercent]).map(percent => ({ jobId: job.id, percent,
+        label: `${job.roleTitle} · ${percent} % · ${job.minimumOfferThreshold} meritter` }))) : [];
+  const searchHtml = searchOptions.length ? `<div><label for="civiNokSearch">Søk på jobb</label>
+    <select id="civiNokSearch" style="min-height:44px;width:100%;min-width:0;">${searchOptions.map((o, i) =>
+      `<option value="${i}">${escapeOfferHtml(o.label)}</option>`).join("")}</select>
+    <button class="civi-btn" id="civiNokApply" style="min-height:44px;">Be om nytt jobbtilbud</button>
+    <div>Meritter, kunnskapskrav og eventuelle sperrer gjelder fortsatt. Du må akseptere tilbudet før du starter i jobben.</div></div>` : "";
+
+  const nokTerms = window.CivicationJobs?.getNokOfferTerms?.(offer);
+  const formatNok = (/** @type {number} */ value) => Number(value).toLocaleString("nb-NO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const nokTermsHtml = nokTerms ? (nokTerms.supported
+    ? `<div data-civi-nok-offer-terms><strong>Lønnsvilkår: ${Number(nokTerms.employmentPercent).toLocaleString("nb-NO", { maximumFractionDigits: 2 })} % stilling</strong>
+        <div>Brutto: ${formatNok(nokTerms.monthlyGross)} kr per måned</div>
+        <div>Estimert skatt: ${formatNok(nokTerms.monthlyTax)} kr per måned</div>
+        <div>Estimert netto: ${formatNok(nokTerms.monthlyNet)} kr per måned</div>
+        ${nokTerms.termsNote ? `<div>${escapeOfferHtml(nokTerms.termsNote)}</div>` : ""}
+        <div><a href="${escapeOfferHtml(nokTerms.source)}">Lønnskilde</a>${nokTerms.checkedOn ? ` · Kontrollert ${escapeOfferHtml(nokTerms.checkedOn)}` : ""}</div>
+        <div>Årsberegnet skatteanslag, ikke skattekort. Lønn opptjenes etter jobbstart og utbetales ved månedsskifte i spillet.</div></div>`
+    : `<div data-civi-nok-offer-terms>Lønnsvilkår mangler for denne rollen. Tilbudet kan foreløpig ikke aksepteres.</div>`) : "";
 
   // Lønn (best effort)
   let salaryTxt = "Lønn: —";
@@ -739,6 +797,8 @@ async function renderCivication() {
     }
   } catch {}
 
+  salaryTxt = getNokSalaryText() ?? salaryTxt;
+
   host.innerHTML = `
     <div>
       <div><strong>${active?.title ? `Rolle: ${active.title}` : "Rolle: —"}</strong></div>
@@ -751,24 +811,56 @@ async function renderCivication() {
         offer
           ? `
             <div><strong>🧾 Jobbtilbud</strong></div>
+            ${offerSelector}
             <div>${offer.career_name || offer.career_id || ""}</div>
+            <div><strong>${escapeOfferHtml(offer.title || "")}</strong></div>
             <div>Terskel: ${offer.threshold}</div>
             <div>Utløper: ${offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—"}</div>
             ${buildOfferEligibilityHtml(offer)}
             ${buildOfferPackDepthHtml(offer)}
+            ${nokTermsHtml}
 
             <div style="display:flex;gap:10px;margin-top:10px;">
-              <button class="civi-btn primary" id="civiOfferAccept">Aksepter</button>
+              <button class="civi-btn primary" id="civiOfferAccept" ${nokTerms && !nokTerms.supported ? "disabled" : ""}>Aksepter</button>
               <button class="civi-btn" id="civiOfferDecline">Ikke nå</button>
             </div>
           `
           : `<div>Ingen aktive jobbtilbud.</div>`
       }
+      ${searchHtml}
+      ${nokConfig?.active === true ? `<div role="status" data-civi-application-status>${escapeOfferHtml(host.dataset?.nokApplicationMessage || "")}</div>` : ""}
       <div data-civi-career-knowledge-description></div>
     </div>
   `;
 
   void hydrateCareerKnowledgeDescription(host, offer || active);
+
+  const offerSelect = /** @type {HTMLSelectElement|null} */ (host.querySelector("#civiNokOfferSelect"));
+  offerSelect?.addEventListener("change", () => {
+    host.dataset.nokOfferKey = offerSelect.value;
+    void renderCivication().then(() => /** @type {HTMLElement|null} */ (host.querySelector("#civiNokOfferSelect"))?.focus({ preventScroll: true }));
+  });
+
+  const applyButton = /** @type {HTMLButtonElement|null} */ (host.querySelector("#civiNokApply"));
+  const applicationId = applyButton ? window.CivicationJobs?.createNokApplicationRequest?.() : null;
+  applyButton?.addEventListener("click", () => {
+    if (!applyButton.isConnected || applyButton.disabled) return;
+    const select = /** @type {HTMLSelectElement|null} */ (host.querySelector("#civiNokSearch"));
+    const choice = searchOptions[Number(select?.value)];
+    if (!choice) return;
+    applyButton.disabled = true;
+    const result = window.CivicationJobs?.applyForNokJob?.(choice.jobId, choice.percent, applicationId);
+    if (result?.offer?.status === "pending") {
+      host.dataset.nokOfferKey = result.offer.offer_key;
+      host.dataset.nokApplicationMessage = "Tilbudet er klart. Les lønnsvilkårene før du svarer.";
+    } else {
+      host.dataset.nokApplicationMessage = result?.reason === "NOK_MERITS_REQUIRED"
+        ? "Du mangler meritter til denne jobben."
+        : "Tilbudet kunne ikke opprettes. Kontroller jobbkrav, sperrer og tilgang til arbeidsgiver.";
+    }
+    void renderCivication().then(() => /** @type {HTMLElement|null} */ (
+      host.querySelector("#civiOfferAccept, #civiNokApply"))?.focus({ preventScroll: true }));
+  });
 
   if (offer?.offer_key) {
     host.querySelector("#civiOfferAccept")?.addEventListener("click", () => {
@@ -909,6 +1001,10 @@ window.CivicationConflicts
 // ============================================================
 
 function renderHomeStatus() {
+  if (window.CivicationState?.getWallet?.()?.nok_v1?.active === true) {
+    window.CivicationHome?.render?.();
+    return;
+  }
   const el = document.getElementById("homeStatusContent");
   if (!el) return;
 
@@ -1058,6 +1154,9 @@ function openDistrictSelector() {
   /** @type {Record<string, { id?: string, name?: string, baseCost?: number, modifiers?: Record<string, number>, quizRequirements?: Record<string, unknown> }>} */
   const districts = civiHome.DISTRICTS || {};
 
+  if (window.CivicationState?.getWallet?.()?.nok_v1?.active === true) {
+    civiHome.renderDistrictList?.();
+  } else {
   list.innerHTML = "";
 
   Object.values(districts).forEach(function (d) {
@@ -1098,6 +1197,8 @@ function openDistrictSelector() {
 
     list.appendChild(card);
   });
+
+  }
 
   // Når nabolagsvelgeren åpnes mens en seksjons-popup er aktiv, skal listen
   // vises som et innebygd panel inni popupen. Ellers havner #districtModal bak
@@ -2620,3 +2721,4 @@ window.renderWorkdayPanel = renderWorkdayPanel;
 // Read-only debug/helper global: inspect current workday state without touching rendering.
 // Registered in README/SYSTEM_REGISTRY.md. Never write through this — it is a pure snapshot.
 window.HG_CiviWorkdaySnapshot = getCurrentWorkdaySnapshot;
+

@@ -182,8 +182,8 @@
     }
     create("p", "Planlegging belaster aldri kontoen. Kun et eksplisitt «Kjøp i spillet» " +
       "på dagens spilldato kan trekke kroner i aktiv NOK-modus. " +
-      "Ingen bestilling eller betaling sendes til en ekte restaurant. " +
-      "Hjemmelaget mat er ikke prisberegnet.", details).className = "muted";
+      "Hjemmelaget mat beregnes separat i NOK-butikken når NOK er aktiv. " +
+      "Ingen ekte restaurant bestilles eller betales.", details).className = "muted";
   }
 
   function renderNearbyRestaurants(parent) {
@@ -299,15 +299,21 @@
               portions.value = "1";
               return;
             }
-            model.setRestaurantMeal(route.weekDay, mealSelect.value, {
-              restaurantId: candidate.restaurantId,
-              name: candidate.name,
-              dishName: candidate.dishName,
-              priceMinor: candidate.priceMinor,
-              priceKind: candidate.priceKind,
-              portions: count
-            }, selectedWeekKey(model));
-            render();
+            try {
+              model.setRestaurantMeal(route.weekDay, mealSelect.value, {
+                restaurantId: candidate.restaurantId,
+                name: candidate.name,
+                dishName: candidate.dishName,
+                priceMinor: candidate.priceMinor,
+                priceKind: candidate.priceKind,
+                portions: count
+              }, selectedWeekKey(model));
+              render();
+            } catch (_) {
+              message.textContent = "Måltidet kunne ikke planlegges. " +
+                "Kontroller at den eksisterende NOK-ukemenyen kan endres uten " +
+                "å påvirke måltider som allerede er spist.";
+            }
           });
           const action = create("button", "Beregn faktisk omvei med OpenRouteService", item);
           action.type = "button";
@@ -368,6 +374,22 @@
     const shopping = model.getShoppingList(key);
     host.replaceChildren();
 
+    const nokActive = (/** @type {any} */ (window)).CivicationState?.getWallet?.()?.nok_v1?.active === true;
+    if (nokActive) {
+      create("h3", "Restaurantplan · kroneøkonomi", host);
+      create("p", "Hjemmelagde måltider, handleliste og pakningspriser administreres " +
+        "i NOK-butikkpanelet. Restaurantvalg og ukesbudsjett ligger separat her, " +
+        "uten å belaste saldoen automatisk.", host).className = "muted";
+      const nokControls = create("div", null, host);
+      nokControls.style.cssText = "display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:10px 0";
+      labeledSelect(nokControls, "Spilluke", [
+        { id:"0", name:"Denne spilluken" }, { id:"1", name:"Neste spilluke" },
+        { id:"2", name:"Om to spilluker" }
+      ], String(weekOffset), value => { weekOffset = Number(value); render(); });
+      labeledSelect(nokControls, "Måltid",
+        Object.entries(model.MEALS).map(([id, item]) => ({ id, name:item.label })),
+        selectedMeal, value => { selectedMeal = value; render(); });
+    } else {
     const heading = create("h3", "Min ukesmeny", host);
     heading.style.margin = "16px 0 6px";
     const intro = create("p", "Planlegg frokost, lunsj, middag og kveldsmat. Eksempelretter – ikke verifiserte butikkmenyer eller priser.", host);
@@ -449,6 +471,7 @@
       for (const item of shopping) create("li", item.name + ": " + item.quantity + " " + item.unit, list);
     }
     create("p", "Mengdene er veiledende. Ingen priser eller butikklager er verifisert, og varer du har hjemme er ikke trukket fra.", details).className = "muted";
+    }
     renderRestaurantBudget(host, model, key);
     const routeInfo = create("details", null, host);
     routeInfo.style.marginTop = "14px";

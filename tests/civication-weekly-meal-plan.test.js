@@ -86,14 +86,19 @@ assert.equal(forecast.afterKnownPlansMinor, 50900);
 assert.equal(forecast.hasUncertainPrices, false);
 assert.equal(wallet.balance, 800);
 assert.equal(walletWrites, 0, "a forecast cannot charge the canonical wallet");
+// Editing the legacy PC restaurant plan is intentionally separate from
+// dated NOK mode. The wallet is a test fixture; this toggles mode only.
+wallet.nok_v1.active = false;
 plan.setRestaurantMeal(2,"lunch",{
   restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Lunsj",
   portions:1,priceMinor:25000,priceKind:"from"
 });
 assert.equal(plan.getRestaurantSummary().fromMeals,1);
+wallet.nok_v1.active = true;
 assert.equal(plan.getRestaurantFinanceSnapshot().hasUncertainPrices,true,
   "from price must be described as a lower bound, not a final charge");
 assert.equal(plan.getRestaurantFinanceSnapshot().afterKnownPlansMinor, 25900);
+wallet.nok_v1.active = false;
 plan.setRestaurantMeal(1,"breakfast",{
   restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Historisk rett",
   portions:1,priceMinor:9900
@@ -119,60 +124,10 @@ wallet = { balance:800, nok_v1:{ active:true, version:2 } };
 assert.equal(plan.getRestaurantFinanceSnapshot().balanceMinor,null,
   "unsupported wallet versions must never expose a presumed NOK balance");
 wallet = { balance:800, nok_v1:{ active:true, version:1 } };
-// Only an explicit purchase on the correct game day may debit active NOK.
-// A scheduled meal, even with a known price, cannot debit anything itself.
-window.CivicationCalendar.getGameDate = () => "2026-11-18";
-window.CivicationState.updateWallet = next => { walletWrites++; wallet = next; };
-// A separate unpaid plan stays in the forecast after today's meal is paid.
-plan.setRestaurantMeal(3,"dinner",{
-  restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Selskapsmiddag",
-  portions:1,priceMinor:29100,priceKind:"exact"
-});
-plan.setRestaurantMeal(0,"dinner",{
-  restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Spillmiddag",
-  portions:1,priceMinor:12500,priceKind:"from"
-});
-assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:refused").reason,"EXACT_PRICE_REQUIRED");
-plan.setRestaurantMeal(0,"dinner",{
-  restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Spillmiddag",
-  portions:1,priceMinor:12500,priceKind:"exact"
-});
-assert.equal(plan.purchaseRestaurantMeal(3,"dinner","restaurant:wrongday").reason,"NOT_CURRENT_MEAL_DAY");
-assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:future","game-week-000002").reason,"NOT_CURRENT_MEAL_DAY");
-assert.equal(walletWrites,0,"meal planning never pays");
-assert.equal(plan.getRestaurantFinanceSnapshot().afterKnownPlansMinor,38400);
-wallet.balance=50;
-assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:no-funds").reason,"INSUFFICIENT_FUNDS");
-wallet.balance=800;
-// Older settled receipts must never be silently dropped from history.
-wallet.nok_v1.restaurantPurchases=Array.from({length:1000},(_,i)=>({
-  requestId:"historic-restaurant-"+i,weekKey:"game-week-000123",
-  day:0,meal:"dinner",restaurantId:"historical-venue",
-  dishName:"Historisk måltid",amountMinor:100,gameDateISO:"2026-01-01"
-}));
-const receipt = plan.purchaseRestaurantMeal(0,"dinner","restaurant:purchase-1");
-assert.equal(receipt.ok,true);
-assert.equal(receipt.applied,true);
-assert.equal(receipt.receipt.amountMinor,12500);
-assert.equal(receipt.receipt.gameDateISO,"2026-11-18");
-assert.equal(wallet.balance,675);
-assert.equal(walletWrites,1);
-assert.equal(wallet.nok_v1.restaurantPurchases.length,1001,
-  "new purchases must preserve all historical settled receipts");
-assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:purchase-1").applied,false,
-  "same request is idempotent");
-assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:purchase-2").reason,"MEAL_ALREADY_PURCHASED");
-assert.equal(walletWrites,1,"no duplicate checkout");
-const paidForecast=plan.getRestaurantFinanceSnapshot();
-assert.equal(paidForecast.unpaidPlannedMinor,29100,
-  "already paid meal must not be deducted from the forecast a second time");
-assert.equal(paidForecast.afterKnownPlansMinor,38400);
-assert.equal(paidForecast.purchasedMinor,12500);
-assert.equal(paidForecast.purchasedSlots[0],"0:dinner");
-// The secondary forecast has been verified; clear it for the legacy
-// single-meal scenarios below, which intentionally expect zero known price.
-plan.setRestaurantMeal(3,"dinner",null);
-plan.setRestaurantMeal(0,"dinner",null);
+assert.throws(() => plan.applyTemplate("varied"), /dated NOK/,
+  "active NOK home meals must use the canonical dated Shop editor");
+// All remaining assertions are for the legacy private PC planner.
+wallet = { balance:800, nok_v1:{ active:false, version:1 } };
 plan.setRestaurantMeal(2,"lunch",{
   restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Suppe",
   portions:1,priceMinor:null
@@ -213,9 +168,56 @@ assert.equal(data.size, 1, "one private plan key; no wallet writes");
 assert(data.has("hg_civi_meal_plans_v1"));
 assert(!data.has("hg_civi_wallet_v1") && !data.has("hg_pc_wallet_v1"));
 assert(!data.has("aha_import_payload_v1"), "no automatic AHA export");
-assert.equal(walletWrites, 1, "planning and browsing do not make additional purchases");
+assert.equal(walletWrites, 0, "no purchase may be performed while browsing or planning");
 
 data.set("hg_civi_meal_plans_v1", "{bad json");
 assert.equal(plan.getWeek().people, 2, "malformed private save fails safe");
 assert.equal(plan.getShoppingList().length, 0);
-console.log("PASS: Civication weekly meal plan, meal windows, household list, privacy and no price claims");
+
+// Reconcile the published restaurant checkout with the NOK-only meal owner.
+// All preceding assertions continue to check the legacy PC planner.
+gameDay = 1;
+wallet = { balance:800, nok_v1:{ active:true, version:1 } };
+window.CivicationCalendar.getGameDate = () => "2026-11-18";
+window.CivicationState.updateWallet = next => { walletWrites++; wallet = next; };
+assert.throws(() => plan.applyTemplate("green"), /dated NOK/,
+  "the legacy home editor must not mutate a dated NOK meal plan");
+plan.setRestaurantMeal(3,"dinner",{
+  restaurantId:"public-example",name:"Restaurant",dishName:"Selskapsmiddag",
+  portions:1,priceMinor:29100,priceKind:"exact"
+});
+plan.setRestaurantMeal(0,"dinner",{
+  restaurantId:"public-example",name:"Restaurant",dishName:"Spillmiddag",
+  portions:1,priceMinor:12500,priceKind:"exact"
+});
+assert.equal(plan.getRestaurantFinanceSnapshot().afterKnownPlansMinor,38400,
+  "only planned restaurant amounts affect a read-only forecast");
+assert.equal(walletWrites,0);
+assert.equal(plan.purchaseRestaurantMeal(3,"dinner","restaurant:otherday").reason,
+  "NOT_CURRENT_MEAL_DAY");
+wallet.balance=50;
+assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:too-poor").reason,
+  "INSUFFICIENT_FUNDS");
+wallet.balance=800;
+wallet.nok_v1.restaurantPurchases=Array.from({length:1000},(_,i)=>({
+  requestId:"old-restaurant-"+i,weekKey:"game-week-000123",
+  day:0,meal:"dinner",restaurantId:"old",dishName:"Old receipt",
+  amountMinor:100,gameDateISO:"2026-01-01"
+}));
+const checkout=plan.purchaseRestaurantMeal(0,"dinner","restaurant:purchase-1");
+assert.equal(checkout.ok,true);
+assert.equal(checkout.applied,true);
+assert.equal(wallet.balance,675);
+assert.equal(wallet.nok_v1.restaurantPurchases.length,1001,
+  "new purchases never discard old receipt history");
+assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:purchase-1").applied,false);
+assert.equal(plan.purchaseRestaurantMeal(0,"dinner","restaurant:purchase-2").reason,
+  "MEAL_ALREADY_PURCHASED");
+assert.equal(walletWrites,1,"repeat checkout must not spend");
+const paidForecast=plan.getRestaurantFinanceSnapshot();
+assert.equal(paidForecast.purchasedMinor,12500);
+assert.equal(paidForecast.unpaidPlannedMinor,29100);
+assert.equal(paidForecast.afterKnownPlansMinor,38400,
+  "never deduct a settled receipt a second time");
+
+console.log("PASS: Civication legacy planner, NOK date guard, Fysen finance and idempotent checkout");

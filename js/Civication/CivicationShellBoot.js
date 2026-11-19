@@ -229,6 +229,10 @@
     try {
       console.log("[CivicationShellBoot] skall-boot start");
       await loadCivicationData();
+      // The standalone shell loads brands_loader.js but must also initialize
+      // its catalog before the employer gate can resolve visited workplaces.
+      try { await window.HGBrands?.init?.(); }
+      catch (error) { console.warn("[CivicationShellBoot] arbeidsgiverregister utilgjengelig; jobbport beholdes", error); }
       await ensureCiviCareerRulesLoaded();
       await ensureCivicationCareerRoleResolverLoaded();
       await ensureCivicationLifePositionRuntimeLoaded();
