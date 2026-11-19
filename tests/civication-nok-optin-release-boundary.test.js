@@ -29,6 +29,8 @@ const config = require('../data/Civication/economy/nok-budget-prototype-2026.jso
   assert.equal(next.old_preferences.theme,'light');
   assert.equal(next.nok_v1.active,true);
   assert.equal(next.nok_v1.openingBalanceNok,246.35);
+  assert.match(w.document.querySelector('#civiEconomyPanel').textContent,/Saldo: 246,35 kr/,
+    'active NOK account uses kroner rather than the legacy PC label');
   assert.equal(next.nok_v1.recurringBills.length,0,'no automatic rent contract');
   assert.equal(next.nok_v1.invoices.length,0,'no automatic bills');
   assert.equal(next.nok_v1.payrollLedger.length,0,'no retroactive wages');
