@@ -4338,12 +4338,12 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Siste hyllekontroll før ukeslutt",
-      "tekst": "Amir viser en hylle der riktig vare ligger på lager. Du kan gjennomføre påfyll og egenkontroll, eller registrere at oppgaven ikke rakk å bli gjort.",
+      "tekst": "Amir viser en hylle der riktig vare ligger på lageret. Akkurat da spør en fast kunde etter den til kveldsmaten. For henne er det et lite spørsmål, for deg en anledning til å få til noe ordentlig. Du kan fylle på etter kontroll, eller være ærlig om at du ikke rekker det før vaktslutt.",
       "valg": [
         {
           "id": "fyll_paa",
           "tekst": "Kontroller varenummer, fyll på hylla og registrer utført arbeid",
-          "konsekvensTekst": "Riktig vare er fylt på og kontrollert. Eventuelle eldre lageravvik er ikke dermed utbedret.",
+          "konsekvensTekst": "Riktig vare er fylt på og kontrollert. Kunden får det hun kom etter og sier et oppriktig takk. Du kjenner en liten stolthet – uten at det eldre lageravviket er rettet.",
           "effekter": {
             "flagg": {
               "eksp_u1_d7_hylle_utfort": true
@@ -4357,7 +4357,7 @@
         {
           "id": "foer_rest",
           "tekst": "Før varepåfylling som utestående for neste vakt",
-          "konsekvensTekst": "Du unngår en falsk ferdigmelding, og oppgaven er fortsatt åpen.",
+          "konsekvensTekst": "Du fører varepåfyllingen som utestående og forteller kunden at du ikke kan love at hylla blir fylt nå. Hun takker for et tydelig svar. Oppgaven står fortsatt åpen.",
           "effekter": {
             "flagg": {
               "eksp_u1_d7_hylle_rest": true
@@ -4469,12 +4469,12 @@
       "tilgjengelighet": "start",
       "prioritet": 1,
       "tittel": "Første arbeidsuke avsluttes med det som kan dokumenteres",
-      "tekst": "Du ser hva som ble gjort i kassa, på lageret og sammen med kolleger. Uavklarte avvik er fortsatt åpne. Faglig tillit, ekstra vakter og fullmakter kan ikke utledes fra en oppsummering alene.",
+      "tekst": "Første uke er over. Du husker køen som vokste, en kunde du faktisk fikk hjulpet og et øyeblikk der Amir viste deg en enklere måte å finne riktig varenummer på. Du har fortsatt åpne saker. Likevel merker du at du tør å spørre mer presist enn på første vakt. Det gir ikke automatisk flere vakter eller nye fullmakter.",
       "valg": [
         {
           "id": "arkiver_fakta",
           "tekst": "Arkiver de faktiske valgene og hva som står igjen",
-          "konsekvensTekst": "Første uke er oppsummert med reelle arbeidsspor og åpne oppfølgingspunkter.",
+          "konsekvensTekst": "Du arkiverer både det du fikk til og det som gjenstår. Første uka er faktisk gjennomført. Mestring er ikke det samme som at alle avvik er lukket.",
           "effekter": {
             "flagg": {
               "eksp_u1_d7_ukeslutt": true
@@ -4487,7 +4487,7 @@
         {
           "id": "be_om_oppfolging",
           "tekst": "Oppsummer og etterspør ansvarlig for restpostene",
-          "konsekvensTekst": "Første uke er oppsummert. Oppfølging er bedt om, ikke automatisk gjennomført.",
+          "konsekvensTekst": "Du oppsummerer den første uka og ber om hjelp til restoppgavene. Det er en arbeidsferdighet å kjenne egne grenser; oppfølging er likevel ikke automatisk gjennomført.",
           "effekter": {
             "flagg": {
               "eksp_u1_d7_ukeslutt": true,
@@ -4510,12 +4510,12 @@
       "tilgjengelighet": "start",
       "prioritet": 9,
       "tittel": "Uke to starter med restarbeidet",
-      "tekst": "Lene viser lista fra forrige uke. Den inneholder både utførte oppgaver, sendte spørsmål og saker uten kvittering. De må holdes atskilt før du går i kassa.",
+      "tekst": "Lene legger lista fra forrige uke mellom dere. Amir har tegnet en liten stjerne ved varenummeret han fant fram til, og sier at det er godt å slippe å gjette hva neste skift har gjort. Lene spør hva som faktisk er utført, hva som er sendt, og hva ingen har kvittert for. Du vil vise at du duger, men har ikke lyst til å late som.",
       "valg": [
         {
           "id": "sorter_spor",
           "tekst": "Sorter utført, meldt og åpent i skiftlista",
-          "konsekvensTekst": "Du har laget en oversikt. Ingen eldre avvik er dermed rettet.",
+          "konsekvensTekst": "Du skiller de ulike postene, og Amir finner straks fram til varen det gjelder. Det er en liten gevinst for laget. Ingen eldre avvik er dermed rettet.",
           "effekter": {
             "flagg": {
               "eksp_u2_d8_liste": "sortert"
@@ -4528,7 +4528,7 @@
         {
           "id": "be_om_rekkefolge",
           "tekst": "Spør Lene hva som haster før kassa bemannes",
-          "konsekvensTekst": "Prioritering er etterspurt, ikke fastslått.",
+          "konsekvensTekst": "Lene hører spørsmålet ditt og ber deg gi henne den korte oversikten før hun fordeler arbeidet. Prioriteringen er ennå ikke avgjort.",
           "effekter": {
             "flagg": {
               "eksp_u2_d8_liste": "venter"
@@ -5063,12 +5063,12 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Vikaren trenger faktisk kontroll, ikke bare et tips",
-      "tekst": "Vikaren spør hvordan hun sjekker varenummer mot en hylleetikett. Du kan vise metoden, men opplæring er først dokumentert når hun har prøvd og du har kontrollert resultatet.",
+      "tekst": "Vikaren står med to nesten like pakker. «Jeg spør deg hele tiden. Kan jeg prøve selv denne gangen?» sier hun. Du kjenner igjen følelsen fra din første vakt. Amir har samtidig mye å gjøre, og kassa trenger fortsatt folk. Nå handler det om å lære bort én konkret metode, ikke å bevise at du kan alt.",
       "valg": [
         {
           "id": "vis_og_test",
           "tekst": "Avtal kasseavløsning, vis varekontrollen og la vikaren gjøre den selv",
-          "konsekvensTekst": "Vikaren sammenligner riktig vare og etikett, og du kontrollerer denne oppgaven.",
+          "konsekvensTekst": "Vikaren sammenligner varenummer og etikett selv. Du kontrollerer svaret. «Der satt den», sier hun og ler. For første gang er det du som har hjulpet noen fram til en egen liten seier. Dette dokumenterer bare denne opplæringsoppgaven.",
           "effekter": {
             "flagg": {
               "eksp_u2_d11_vikar_opplaert": true
@@ -5082,7 +5082,7 @@
         {
           "id": "sporr_amir",
           "tekst": "Spør Amir om han kan overta opplæringen når bemanningen tillater det",
-          "konsekvensTekst": "Amirs hjelp er etterspurt, ikke bekreftet. Du har ikke selv utført opplæring.",
+          "konsekvensTekst": "Du forklarer at du ikke kan gi henne en ordentlig gjennomgang uten avløsning, og spør Amir om han kan hjelpe. Hun er skuffet, men glad for at du tok spørsmålet alvorlig. Amirs hjelp er fortsatt ikke bekreftet.",
           "effekter": {
             "flagg": {
               "eksp_u2_d11_opplaering_venter": true
@@ -5144,12 +5144,12 @@
       "tilgjengelighet": "start",
       "prioritet": 9,
       "tittel": "Tre priser – ikke nødvendigvis samme vare",
-      "tekst": "Kunden viser en digital annonse med 29 kroner. Hylla viser 35 og kassa 39. Før du korrigerer noe, må du undersøke varenummer, pakningsstørrelse, butikk og kampanjeperiode.",
+      "tekst": "Kunden har handlet her lenge og er lei av å diskutere priser. Hun viser en digital annonse på 29 kroner; hylla viser 35 og kassa 39. «Jeg vil ikke krangle. Jeg vil bare skjønne hva som gjelder», sier hun. Du må kontrollere vare, størrelse, butikk og kampanjeperiode før du gir et svar.",
       "valg": [
         {
           "id": "sammenlign_grunnlag",
           "tekst": "Sammenlign annonse og vare mot etikett og kampanjedato",
-          "konsekvensTekst": "Annonsen gjelder en større pakning. Prisgrunnlaget for varen i kassa krever egen kontroll.",
+          "konsekvensTekst": "Du oppdager at annonsen gjelder en større pakning. Det er godt å kunne forklare noe du faktisk har undersøkt, men prisen for varen på båndet må fortsatt kontrolleres.",
           "effekter": {
             "flagg": {
               "eksp_u2_d12_pris": "ulik_variant"
@@ -5163,7 +5163,7 @@
         {
           "id": "etterspor_lene",
           "tekst": "Be Lene avklare aktuell pris før handelen gjennomføres",
-          "konsekvensTekst": "Lene er spurt, men pris eller rabatt er ikke fastslått.",
+          "konsekvensTekst": "Du sier rolig hva du trenger å avklare, og henter Lenes vurdering. Kunden venter. Du har ikke lovet rabatt eller fastslått prisen.",
           "effekter": {
             "flagg": {
               "eksp_u2_d12_pris": "leder_venter"
@@ -5315,12 +5315,12 @@
       "tilgjengelighet": "start",
       "prioritet": 9,
       "tittel": "Lene nevner en ledig helgevakt",
-      "tekst": "Du vil gjerne ha flere timer. Lene spør om du kan være tilgjengelig neste uke, men tidspunkt, lengde og endelig avtale er ikke avklart.",
+      "tekst": "Du ønsker flere timer, og Lene spør om du kan være tilgjengelig neste uke. Du kjenner et lite sug i magen: kanskje har hun lagt merke til innsatsen din. Samtidig er du sliten etter mange vakter og har avtaler utenfor jobben. Lene har foreløpig ikke oppgitt tidspunkt, lengde eller om vakten faktisk blir ledig. Hun presser deg ikke til å svare med én gang.",
       "valg": [
         {
           "id": "be_om_skriftlig",
           "tekst": "Be om konkret tidspunkt og vilkår før du aksepterer",
-          "konsekvensTekst": "Vaktvilkår er etterspurt, ikke avtalt.",
+          "konsekvensTekst": "Du spør etter de konkrete vilkårene. Lene sier at det er et rimelig spørsmål, men vakten er ennå ikke avtalt. Det kjennes bedre å ha spurt enn å gjette.",
           "effekter": {
             "flagg": {
               "eksp_u2_d13_vakt": "vilkar_venter"
@@ -5333,7 +5333,7 @@
         {
           "id": "si_kanskje",
           "tekst": "Si at du kanskje kan, forutsatt at Lene bekrefter vakten",
-          "konsekvensTekst": "Du har meldt mulig tilgjengelighet. Ingen ny vakt er registrert som utført.",
+          "konsekvensTekst": "Du sier at du gjerne vil bidra dersom tidspunktet passer. Lene noterer at hun kan spørre deg igjen. Ingen ekstra vakt eller arbeidstime er tildelt.",
           "effekter": {
             "flagg": {
               "eksp_u2_d13_vakt": "mulig"
@@ -5435,12 +5435,12 @@
       "tilgjengelighet": "start",
       "prioritet": 9,
       "tittel": "Andre uke skal avsluttes på fakta",
-      "tekst": "Lene trenger en konkret oversikt over levering, lager, retur, pris, opplæring og arbeidstid. Tidligere valg avgjør hvilke handlinger du faktisk kan dokumentere.",
+      "tekst": "Amir setter en kopp kaffe på pauseromsbordet. «Jeg blir også lei av å rydde opp i halvferdige beskjeder», sier han. Han virker mer sliten enn sint. Lene trenger en oversikt over levering, lager, retur, pris, opplæring og arbeidstid. For første gang ser du også hvor mye det betyr for kollegene at noe faktisk er undersøkt.",
       "valg": [
         {
           "id": "bygg_liste",
           "tekst": "Sorter utført, meldt, mottatt og fortsatt åpent i ukelista",
-          "konsekvensTekst": "Du har laget en etterprøvbar oversikt. Den godkjenner ikke automatisk alle sakene.",
+          "konsekvensTekst": "Du skiller utført, meldt, mottatt og fortsatt åpent. Amir kan bruke oversikten uten å måtte stille de samme spørsmålene om igjen. Ingen sak er automatisk godkjent.",
           "effekter": {
             "flagg": {
               "eksp_u2_d14_oversikt": "klar"
@@ -5453,7 +5453,7 @@
         {
           "id": "merk_hull",
           "tekst": "Merk dokumentasjonshull før du ber om gjennomgang",
-          "konsekvensTekst": "Manglende fakta er synlige, uten å bli gjort om til utført arbeid.",
+          "konsekvensTekst": "Du peker ut det du ennå ikke har bevis for. Amir sier at en ærlig restliste er bedre enn at neste vakt begynner på feil spor.",
           "effekter": {
             "flagg": {
               "eksp_u2_d14_oversikt": "hull"
@@ -5642,12 +5642,12 @@
       "tilgjengelighet": "start",
       "prioritet": 9,
       "tittel": "Uke tre starter med åpne oppgaver",
-      "tekst": "Lene ber deg bruke de faktiske rapportene fra de to første ukene. Kundesaker, lagerdifferanser og vaktønsker skal ikke stå som løst dersom ingen har bekreftet det.",
+      "tekst": "Tredje uke. Lene legger rapportene på bordet, men begynner med å spørre hvordan du synes de første vaktene har vært. Du svarer ikke helt med én gang. Du vil ha flere timer, men ser også at Amir og vikaren trenger tydelig avløsning og støtte. Lene ber deg skille bekreftet arbeid fra åpne saker før dere planlegger dagen.",
       "valg": [
         {
           "id": "skill_status",
           "tekst": "Skill utført kontroll, sendt melding og uavklart ansvar i skiftlista",
-          "konsekvensTekst": "Du har laget en etterprøvbar prioriteringsliste. Ingen åpne poster er lukket.",
+          "konsekvensTekst": "Du lager en etterprøvbar liste og forteller Lene hva du selv fortsatt trenger hjelp med. Hun lytter, men ingen åpne poster er lukket.",
           "effekter": {
             "flagg": {
               "eksp_u3_d15_start": "sporbar"
@@ -5660,7 +5660,7 @@
         {
           "id": "be_prioritering",
           "tekst": "Be Lene velge rekkefølge før du binder deg til alt",
-          "konsekvensTekst": "Prioritering er etterspurt, ikke avtalt. Restpostene er fortsatt åpne.",
+          "konsekvensTekst": "Du ber om rekkefølge framfor å love at du skal klare alt. Lene sier hun må se bemanningen først. Prioritering er etterspurt, ikke avtalt.",
           "effekter": {
             "flagg": {
               "eksp_u3_d15_start": "prioritering_venter"
@@ -6330,12 +6330,12 @@
       "tilgjengelighet": "start",
       "prioritet": 9,
       "tittel": "Vikaren vil gjennomføre en kontroll selv",
-      "tekst": "Vikaren viser til opplæringen hun kanskje fikk tidligere. Du må skille det å ha forklart metoden fra det å ha observert at hun mestrer den i dag.",
+      "tekst": "Vikaren kommer med samme type varekontroll som hun strevde med i uke to. «Denne gangen vil jeg prøve uten at du sier svaret», sier hun. Amir smiler skjevt: «Det der har jeg hørt før.» Du kan gi henne rom til å vise hva hun kan, eller sikre en ny opplæringsøkt hvis det er for travelt til å følge opp ordentlig.",
       "valg": [
         {
           "id": "la_prove",
           "tekst": "Be vikaren sammenligne et konkret varenummer selv og kontroller svaret",
-          "konsekvensTekst": "Vikaren utfører én ny kontroll, og du ser resultatet. Det gir bevis for denne oppgaven, ikke generell autorisasjon.",
+          "konsekvensTekst": "Hun sammenligner varenummer og etikett, nøler, og velger riktig. Du kontrollerer resultatet. «Nå kan jeg gjøre denne selv», sier hun. Du kjenner igjen hvor godt det var første gang du fikk det til. Mestringen gjelder denne oppgaven, ikke generell fullmakt.",
           "effekter": {
             "flagg": {
               "eksp_u3_d19_vikar": "observert"
@@ -6349,7 +6349,7 @@
         {
           "id": "avtal_oppfolging",
           "tekst": "Be Amir eller Lene sette av en konkret opplæringsøkt",
-          "konsekvensTekst": "Ny opplæring er etterspurt. Ingen kontroll er gjennomført av vikaren i denne scenen.",
+          "konsekvensTekst": "Du sier at hun fortjener en ordentlig økt, ikke et halvt svar mens køen vokser. Hun nikker. Ny opplæring er etterspurt, men ingen kontroll er gjennomført i denne scenen.",
           "effekter": {
             "flagg": {
               "eksp_u3_d19_vikar": "opplaering_venter"
@@ -6371,12 +6371,12 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Kunden er misfornøyd med ventetiden",
-      "tekst": "En kunde klager over at ingen svarte på prisavviket raskt nok. Kunden kan ha rett i opplevelsen uten at ekspeditøren dermed har myndighet til å love økonomisk kompensasjon.",
+      "tekst": "En kunde kommer tilbake. Hun er irritert over at prisavviket tok lang tid, men sier også at hun ikke liker å måtte heve stemmen for å bli hørt. Du merker hvor fort du selv får lyst til å forsvare deg. Kundens frustrasjon er virkelig, men du kan ikke love rabatt eller refusjon uten fullmakt.",
       "valg": [
         {
           "id": "beklag_og_forklar",
           "tekst": "Beklag ventetiden, vis sakens dokumenterte status og be om ansvarlig svar",
-          "konsekvensTekst": "Du tar kundens opplevelse alvorlig uten å love rabatt eller tilbakebetaling.",
+          "konsekvensTekst": "Du lar kunden snakke ut før du forklarer hva som er kontrollert og hvem som må svare. Hun senker stemmen: «Takk for at du faktisk hørte etter.» Det er et godt kundemøte, men ingen rabatt eller refusjon er godkjent.",
           "effekter": {
             "flagg": {
               "eksp_u3_d19_klage": "forklart"
@@ -6389,7 +6389,7 @@
         {
           "id": "be_leder_svare",
           "tekst": "Be Lene ta stilling til klagen og eventuell løsning",
-          "konsekvensTekst": "Klagesvaret er etterspurt. Utfallet er ikke avgjort.",
+          "konsekvensTekst": "Du sier at du vil skaffe riktig person framfor å gjette. Kunden sukker, men får vite hvem som kan avgjøre klagen. Utfallet er fortsatt åpent.",
           "effekter": {
             "flagg": {
               "eksp_u3_d19_klage": "leder_venter"
@@ -6451,12 +6451,12 @@
       "tilgjengelighet": "start",
       "prioritet": 9,
       "tittel": "Nye vakter må avtales, ikke antas",
-      "tekst": "Lene nevner at neste uke kan bli travel. Du har kanskje meldt deg tilgjengelig tidligere, men det er ikke et dokumentert nytt arbeidsforhold eller en avtalt ekstra vakt.",
+      "tekst": "Lene spør hva du ønsker å kunne gjøre mer selvstendig neste måned. Første uka ville du kanskje bare sagt «alt» for å få flere vakter. Nå ser du forskjellen mellom å hjelpe til og å stå ansvarlig for noe du ikke har fått opplæring i. Lene nevner at neste uke kan bli travel, men har ennå ikke tilbudt en bestemt vakt.",
       "valg": [
         {
           "id": "be_om_bekreftelse",
           "tekst": "Be om konkret skriftlig tid, rolle og bekreftet arbeidsplan",
-          "konsekvensTekst": "Vaktvilkår er etterspurt. Ingen ekstra arbeidstid er opptjent.",
+          "konsekvensTekst": "Du ber om konkret arbeidsplan og sier hvilke oppgaver du vil lære bedre. Lene noterer ønskene. Ingen ekstra arbeidstid eller ny fullmakt er avtalt.",
           "effekter": {
             "flagg": {
               "eksp_u3_d20_plan": "vilkar_venter"
@@ -6469,7 +6469,7 @@
         {
           "id": "si_naar_du_kan",
           "tekst": "Oppgi når du kan jobbe, og presiser at vakten må avtales",
-          "konsekvensTekst": "Tilgjengelighet er meldt. Ingen ny vakt er tildelt.",
+          "konsekvensTekst": "Du sier når du kan jobbe, og hva du fremdeles trenger hjelp med. Det er lettere enn for tre uker siden å være tydelig. Tilgjengelighet er meldt, ikke tildelt som vakt.",
           "effekter": {
             "flagg": {
               "eksp_u3_d20_plan": "tilgjengelighet"
@@ -6737,12 +6737,12 @@
       "tilgjengelighet": "start",
       "prioritet": 1,
       "tittel": "Tre uker i butikken – et spor, ikke en oppdiktet premie",
-      "tekst": "Du har prøvd kassearbeid, vareflyt, kundeklager og opplæring. Arkivet viser faktiske valg, feil og hensyn. Dette er slutten på den forfattede treukershistorien, ikke automatisk forfremmelse eller garanti for flere vakter.",
+      "tekst": "Siste vakt i denne historien. Du kjenner lyden fra kassa, vet hvor du finner følgeseddelen og tør å si «det må jeg undersøke». Amir spør om du husker hvor usikker du var første dag. Vikaren vil vise deg en kontroll hun selv har lært. Lene har ennå ikke lovet flere vakter. Noen saker er åpne, men du har lært forskjellen mellom å skjule en feil og å ta ansvar for den.",
       "valg": [
         {
           "id": "arkiver_fakta",
           "tekst": "Arkiver valgene med åpne restposter og faktisk dokumentert arbeid",
-          "konsekvensTekst": "Treukersforløpet er fullført med etterprøvbart arbeidsgrunnlag, men ingen automatisk ny stilling eller lønn.",
+          "konsekvensTekst": "Du avslutter med å arkivere det du faktisk gjorde, og det du fortsatt skylder svar på. Du vet mer enn på første vakt, uten at spillet gir deg en ufortjent stilling, lønn eller ferdigmelding.",
           "effekter": {
             "flagg": {
               "eksp_u3_d21_fullfort": true
@@ -6755,7 +6755,7 @@
         {
           "id": "etterspor_videre",
           "tekst": "Arkiver gjennomføringen og spør Lene om neste avtalte steg",
-          "konsekvensTekst": "Treukersforløpet er fullført. Neste mulighet er etterspurt, ikke tildelt.",
+          "konsekvensTekst": "Du sier til Lene hva du har lært, og spør hvilke oppgaver du kan få øve mer på. Hun tar imot spørsmålet, men lover ingen ny stilling eller vakt. Du avslutter med et eget, ærlig mål.",
           "effekter": {
             "flagg": {
               "eksp_u3_d21_fullfort": true,
