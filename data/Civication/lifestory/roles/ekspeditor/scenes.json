@@ -6148,6 +6148,625 @@
           }
         }
       ]
+    },
+    {
+      "id": "eksp_u3_d18_temperatur",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 18,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Kjøledisken trenger en faktisk temperaturkontroll",
+      "tekst": "Amir viser temperaturjournalen. En tidligere avlesning er ikke bevis på dagens forhold. Du må kontrollere riktig skap, tidspunkt og verdi før det kan stå som utført.",
+      "valg": [
+        {
+          "id": "mal_og_noter",
+          "tekst": "Les av riktig skap og dokumenter dagens faktiske måling",
+          "konsekvensTekst": "Dagens måling er ført, men den gir ikke grunnlag for å erklære alle varer godkjent.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d18_temp": "maalt"
+            },
+            "meters": {
+              "integritet": 2,
+              "energi": -2
+            }
+          }
+        },
+        {
+          "id": "be_om_tid",
+          "tekst": "Be om avløsning for å utføre kontrollen ordentlig",
+          "konsekvensTekst": "Kontrollen er etterspurt. Ingen temperaturverdi er registrert av deg.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d18_temp": "venter"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d18_avvik_temperatur",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Målingen må vurderes av ansvarlig",
+      "tekst": "Den dokumenterte målingen avviker fra instruksen for disken. Lene må vurdere varenes håndtering. Du kan ikke avgjøre trygg bruk på egen hånd.",
+      "conditions": {
+        "flagg": {
+          "eksp_u3_d18_temp": "maalt"
+        }
+      },
+      "valg": [
+        {
+          "id": "sikre_og_meld",
+          "tekst": "Stans videre salg fra den berørte disken og meld målegrunnlaget til Lene",
+          "konsekvensTekst": "Du melder avvik og hindrer videre salg i påvente av vurdering. Varene er ikke automatisk kassert eller godkjent.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d18_tempavvik_sendt": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_om_veiledning",
+          "tekst": "Be Lene instruere videre håndtering før du konkluderer",
+          "konsekvensTekst": "Vurdering er etterspurt. Avviket er fortsatt åpent og salg må holdes tilbake.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d18_temp_vurdering_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d18_maling_venter",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En manglende måling skal ikke fylles inn i ettertid",
+      "tekst": "Lene finner ingen ny dokumentert temperaturavlesning. Det er ikke forsvarlig å kopiere et gammelt tall til dagens journal.",
+      "conditions": {
+        "flagg": {
+          "eksp_u3_d18_temp": "venter"
+        }
+      },
+      "valg": [
+        {
+          "id": "registrer_mangler",
+          "tekst": "Merk dagens kontroll som ikke gjennomført og eskaler til ansvarlig",
+          "konsekvensTekst": "Du registrerer et hull i journalen uten å fabrikere en måling.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d18_temp_mangler": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "etterspor_bemanning",
+          "tekst": "Spør om navngitt kollega kan utføre og dokumentere ny kontroll",
+          "konsekvensTekst": "Ny kontroll er etterspurt, ikke utført.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d18_temp_overtaker_venter": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d18_mattrygg_status",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 18,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Mattrygghet krever et eget avviksspor",
+      "tekst": "Ved vaktslutt må du skille måling, melding og Lenes beslutning. Ingen av samtalene dine har dokumentert at varene kan selges videre.",
+      "valg": [
+        {
+          "id": "send_status",
+          "tekst": "Send faktisk journalstatus og uavklarte vurderinger",
+          "konsekvensTekst": "Skiftlista viser hva som er målt, og hva som fortsatt må avklares.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d18_journal": "status_sendt"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "etterspor_vurdering",
+          "tekst": "Be om at ansvarlig kvitterer for videre oppfølging",
+          "konsekvensTekst": "Kvittering er etterspurt. Mattrygghetsavviket er ikke automatisk lukket.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d18_journal": "kvittering_venter"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d19_vikarens_oppgave",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 19,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "ny_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Vikaren vil gjennomføre en kontroll selv",
+      "tekst": "Vikaren viser til opplæringen hun kanskje fikk tidligere. Du må skille det å ha forklart metoden fra det å ha observert at hun mestrer den i dag.",
+      "valg": [
+        {
+          "id": "la_prove",
+          "tekst": "Be vikaren sammenligne et konkret varenummer selv og kontroller svaret",
+          "konsekvensTekst": "Vikaren utfører én ny kontroll, og du ser resultatet. Det gir bevis for denne oppgaven, ikke generell autorisasjon.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d19_vikar": "observert"
+            },
+            "meters": {
+              "integritet": 2,
+              "energi": -2
+            }
+          }
+        },
+        {
+          "id": "avtal_oppfolging",
+          "tekst": "Be Amir eller Lene sette av en konkret opplæringsøkt",
+          "konsekvensTekst": "Ny opplæring er etterspurt. Ingen kontroll er gjennomført av vikaren i denne scenen.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d19_vikar": "opplaering_venter"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d19_kunde_klager",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 19,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "avsender": "stamkunde",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kunden er misfornøyd med ventetiden",
+      "tekst": "En kunde klager over at ingen svarte på prisavviket raskt nok. Kunden kan ha rett i opplevelsen uten at ekspeditøren dermed har myndighet til å love økonomisk kompensasjon.",
+      "valg": [
+        {
+          "id": "beklag_og_forklar",
+          "tekst": "Beklag ventetiden, vis sakens dokumenterte status og be om ansvarlig svar",
+          "konsekvensTekst": "Du tar kundens opplevelse alvorlig uten å love rabatt eller tilbakebetaling.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d19_klage": "forklart"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_leder_svare",
+          "tekst": "Be Lene ta stilling til klagen og eventuell løsning",
+          "konsekvensTekst": "Klagesvaret er etterspurt. Utfallet er ikke avgjort.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d19_klage": "leder_venter"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d19_vaktslutt",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 19,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Trening og tilbakemelding er to ulike resultater",
+      "tekst": "Du kan dokumentere hva vikaren faktisk prøvde, og hvilke kundebeskjeder som ble gitt. Ingen kan utlede forfremmelse eller ekstra lønn av at du støttet kollegene.",
+      "valg": [
+        {
+          "id": "skill_opplaering_klage",
+          "tekst": "Send et skiftnotat med observerte handlinger og åpne klagespørsmål",
+          "konsekvensTekst": "Arbeidssporene er skilt, og uavklarte saker står åpne.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d19_oppfolging": "sporbar"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_om_feedback",
+          "tekst": "Be Lene om konkret tilbakemelding på arbeidet og oppfølgingsansvar",
+          "konsekvensTekst": "Tilbakemelding er etterspurt, ikke gitt.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d19_oppfolging": "feedback_venter"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d20_vaktplan",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Nye vakter må avtales, ikke antas",
+      "tekst": "Lene nevner at neste uke kan bli travel. Du har kanskje meldt deg tilgjengelig tidligere, men det er ikke et dokumentert nytt arbeidsforhold eller en avtalt ekstra vakt.",
+      "valg": [
+        {
+          "id": "be_om_bekreftelse",
+          "tekst": "Be om konkret skriftlig tid, rolle og bekreftet arbeidsplan",
+          "konsekvensTekst": "Vaktvilkår er etterspurt. Ingen ekstra arbeidstid er opptjent.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d20_plan": "vilkar_venter"
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        },
+        {
+          "id": "si_naar_du_kan",
+          "tekst": "Oppgi når du kan jobbe, og presiser at vakten må avtales",
+          "konsekvensTekst": "Tilgjengelighet er meldt. Ingen ny vakt er tildelt.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d20_plan": "tilgjengelighet"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d20_faktisk_arbeidstid",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 20,
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lønn kommer fra registrert arbeid, ikke gode valg",
+      "tekst": "Vikaren spør hva som teller som arbeidstid. Faktisk arbeidstid og godkjente tillegg føres i egne systemer. Life Story kan vise dilemmaet, men ikke tildele lønn fra et tekstvalg.",
+      "valg": [
+        {
+          "id": "forklar_rutinen",
+          "tekst": "Forklar registrering av utført tid, pause og godkjenning",
+          "konsekvensTekst": "Du viser korrekt praksis uten å opprette nye lønnskrav.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d20_tid": "forklart"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_lene_sjekke",
+          "tekst": "Be Lene avklare konkrete tidsavvik før noe godkjennes",
+          "konsekvensTekst": "Tidsavvik er til vurdering. Ingen ekstra timer er godkjent.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d20_tid": "avklaring_venter"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d20_overlever_plan",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 20,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Planer og utført arbeid skal ikke blandes",
+      "tekst": "Lenes skiftnotat skal skille de timene som faktisk er jobbet fra vaktønsker og uavklarte tillegg. Et dokumentert ønsker om flere timer er ingen lønnsutbetaling.",
+      "valg": [
+        {
+          "id": "send_faktisk",
+          "tekst": "Send status med utført arbeid og uavklart fremtidig vakt separat",
+          "konsekvensTekst": "Notatet gir korrekt grunnlag for oppfølging, men ingen automatisk godkjenning.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d20_vaktstatus": "sendt"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_om_kvittering",
+          "tekst": "Be Lene kontrollere eventuelle uavklarte tidsopplysninger",
+          "konsekvensTekst": "Gjennomgang er etterspurt, ikke gjennomført.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d20_vaktstatus": "kvittering_venter"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d21_treukersoversikt",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 21,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Tre uker – vurder det som faktisk er gjort",
+      "tekst": "Lene ber om et kort sammendrag fra kassa, lageret, returhenvendelser, mattrygghet og opplæring. For hver post skal det stå hvem som handlet og hva som fortsatt mangler.",
+      "valg": [
+        {
+          "id": "bygg_sporbar_oversikt",
+          "tekst": "Skriv rapport som skiller utført, meldt, mottatt, vurdert og fortsatt åpent",
+          "konsekvensTekst": "Du lager en konkret oversikt som kan kontrolleres, uten å pynte på resultatene.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d21_oversikt": "sporbar"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "registrer_hull",
+          "tekst": "Merk manglende bevis og etterspør kontroll før du kaller noe ferdig",
+          "konsekvensTekst": "Dokumentasjonshull er synlige. Ingen manglende oppgave blir gjort av seg selv.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d21_oversikt": "hull"
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d21_restarbeid",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "De åpne sakene trenger ansvar etter uke tre",
+      "tekst": "Amir ser på gammel leveranse, mulig lagerdifferanse og kundesaker. Det er viktig å tildele oppfølging uten å påstå at et ukjent utfall allerede er bestemt.",
+      "valg": [
+        {
+          "id": "send_restliste",
+          "tekst": "Gi Lene en restliste med kilde, dato og hvilket svar som trengs",
+          "konsekvensTekst": "Du har gjort åpne saker synlige for riktig ansvarlig, ikke lukket dem.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d21_rest": "meldt"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_navngitt_ansvar",
+          "tekst": "Be om navngitt ansvarlig som kan kontrollere resten",
+          "konsekvensTekst": "Ansvarsoverføring er etterspurt. Ingen har bekreftet at arbeidet er overtatt.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d21_rest": "eier_venter"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d21_ukerapport",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 21,
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Den siste ukesrapporten må ha riktig status",
+      "tekst": "Rapporten om de tre ukene skal kunne lagres som utkast eller sendes til Lene. Selv en grundig rapport får ikke automatisk mottakskvittering eller ledergodkjenning.",
+      "valg": [
+        {
+          "id": "send_rapport",
+          "tekst": "Send rapporten med dokumenterte handlinger og tydelige restposter",
+          "konsekvensTekst": "Rapporten er sendt, men ennå ikke registrert mottatt av Lene.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d21_rapport": "sendt",
+              "eksp_u3_d21_sendt": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "lagre_utkast",
+          "tekst": "Lagre et ærlig utkast og vis hva som må kontrolleres først",
+          "konsekvensTekst": "Rapporten er et utkast, ikke sendt, mottatt eller godkjent.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d21_rapport": "utkast"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d21_lene_kvitterer",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 21,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Lene bekrefter mottak – ikke alle resultatene",
+      "tekst": "Lene sier uttrykkelig at den sendte rapporten er mottatt. Uavklarte beholdnings- og retursaker må likevel avgjøres særskilt.",
+      "conditions": {
+        "flagg": {
+          "eksp_u3_d21_rapport": "sendt"
+        }
+      },
+      "valg": [
+        {
+          "id": "registrer_mottak",
+          "tekst": "Før mottakskvittering og la restpostene fortsatt stå åpne",
+          "konsekvensTekst": "Mottaket er dokumentert, mens uavklarte saker forblir uavgjort.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d21_lene_mottatt": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avvent_loggføring",
+          "tekst": "La rapporten stå som sendt uten registrert kvittering",
+          "konsekvensTekst": "Du registrerer ikke et mottak du har valgt å ikke føre i din egen historikk.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d21_kvittering_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u3_d21_slutt",
+      "threadId": "ekspeditor_uke3_oppfolging",
+      "dag": 21,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 1,
+      "tittel": "Tre uker i butikken – et spor, ikke en oppdiktet premie",
+      "tekst": "Du har prøvd kassearbeid, vareflyt, kundeklager og opplæring. Arkivet viser faktiske valg, feil og hensyn. Dette er slutten på den forfattede treukershistorien, ikke automatisk forfremmelse eller garanti for flere vakter.",
+      "valg": [
+        {
+          "id": "arkiver_fakta",
+          "tekst": "Arkiver valgene med åpne restposter og faktisk dokumentert arbeid",
+          "konsekvensTekst": "Treukersforløpet er fullført med etterprøvbart arbeidsgrunnlag, men ingen automatisk ny stilling eller lønn.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d21_fullfort": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "etterspor_videre",
+          "tekst": "Arkiver gjennomføringen og spør Lene om neste avtalte steg",
+          "konsekvensTekst": "Treukersforløpet er fullført. Neste mulighet er etterspurt, ikke tildelt.",
+          "effekter": {
+            "flagg": {
+              "eksp_u3_d21_fullfort": true,
+              "eksp_u3_d21_neste_steg_venter": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        }
+      ]
     }
   ]
 }
