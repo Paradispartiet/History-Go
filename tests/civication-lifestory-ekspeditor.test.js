@@ -1090,3 +1090,167 @@ assert.ok(!roughCustomer.valg.some(v=>v.effekter.flagg.eksp_u3_d19_retur_godkjen
   "a customer being listened to never auto-approves a refund");
 console.log("Ekspeditør narrative quality: earned warmth, teachable confidence and boundaries intact");
 
+
+// Cross-system integration fixture for the ALREADY-HIRED ekspeditør. This
+// intentionally does NOT fake quiz-earned employment or a production login.
+// It plays real authored decisions against the published PC calendar/economy
+// and uses the existing cloud backup's real code with an in-memory provider.
+async function verifyEkspeditorEconomyCloudJourney(){
+  const vm=require("node:vm");
+  const economyCatalog=readJson("data/Civication/hg_careers.json");
+  const retail=economyCatalog.careers.find(c=>c.career_id==="naeringsliv");
+  assert.ok(retail?.economy?.salary_by_tier?.["1"],"use published business salary, not invented wages");
+  const mkStore=(initial={})=>{
+    const data=new Map(Object.entries(initial));
+    return {
+      get length(){return data.size;},
+      key(i){return [...data.keys()][i]??null;},
+      getItem(k){return data.get(k)??null;},
+      setItem(k,v){data.set(k,String(v));},
+      removeItem(k){data.delete(k);}
+    };
+  };
+  const read=(s,key,fallback=null)=>JSON.parse(s.getItem(key)||JSON.stringify(fallback));
+  const db={record:null,writes:0};
+  const createDevice=store=>{
+    const window={
+      localStorage:store,setInterval(){},dispatchEvent(){},
+      document:{getElementById:()=>null,addEventListener(){}},
+      HistoryGoAHAAuth:{
+        getSession:async()=>({user:{id:"fictional-expeditor-account"}}),
+        getClient:async()=>({
+          from(table){
+            assert.strictEqual(table,"aha_imports","same cloud collection as canonical Civication");
+            return {
+              select(){return this;},eq(){return this;},
+              async maybeSingle(){return {data:db.record,error:null};},
+              async upsert(row){db.record=row;db.writes++;return {error:null};}
+            };
+          }
+        })
+      }
+    };
+    const safeMath=Object.create(Math);
+    safeMath.random=()=>1; // Deterministic fixture; no random layoffs.
+    const ctx=vm.createContext({
+      window,localStorage:store,Math:safeMath,Date,console,
+      weekKey:()=> "2026-W47",
+      deriveTierFromPoints:()=>({tierIndex:0}),
+      Event:class{constructor(type){this.type=type;}},
+      CustomEvent:class{constructor(type,opts){this.type=type;this.detail=opts?.detail;}},
+      setTimeout(){return 0;},clearTimeout(){}
+    });
+    window.BADGES=[{id:"naeringsliv",tiers:[{threshold:5,label:"Handel"}]}];
+    window.HG_CAREERS=economyCatalog.careers;
+    window.CIVI_CAREER_RULES=[{global_rules:economyCatalog.global_rules}];
+    window.CivicationObligationEngine={getQuizCountLastWeek:()=>2};
+    window.CivicationState={
+      getState:()=>read(store,"hg_civi_state_v1",{}),
+      setState(patch){
+        const next={...this.getState(),...patch};
+        store.setItem("hg_civi_state_v1",JSON.stringify(next));
+        return next;
+      },
+      getWallet:()=>read(store,"hg_civi_wallet_v1",{balance:0,last_tick_day_index:1}),
+      updateWallet(value){store.setItem("hg_civi_wallet_v1",JSON.stringify(value));},
+      getActivePosition:()=>read(store,"hg_active_position_v1",null),
+      setActivePosition(value){store.setItem("hg_active_position_v1",JSON.stringify(value));}
+    };
+    const load=path=>vm.runInContext(fs.readFileSync(require("node:path").join(ROOT,path),"utf8"),ctx,{filename:path});
+    load("js/Civication/core/civicationCalendar.js");
+    load("js/Civication/core/civicationEconomyEngine.js");
+    return {
+      window,
+      loadCloud(){
+        load("js/Civication/core/CivicationCloudSave.js");
+        return window.CivicationCloudSave;
+      }
+    };
+  };
+  const old=mkStore({
+    hg_civi_wallet_v1:JSON.stringify({balance:0,last_tick_day_index:1}),
+    merits_by_category:JSON.stringify({naeringsliv:{points:5}}),
+    hg_quiz_sets_v1:JSON.stringify({fixture_qualified_set:{completed:true}}),
+    hg_job_history_v1:JSON.stringify([{career_id:"naeringsliv",role_key:"ekspeditor",started_day_index:1}])
+  });
+  const device=createDevice(old);
+  device.window.CivicationState.setActivePosition({
+    career_id:"naeringsliv",role_key:"ekspeditor",
+    role_id:"naer_ekspeditor",title:"Ekspeditør / butikkmedarbeider"
+  });
+  const calendar=device.window.CivicationCalendar,economy=device.window.CivicationEconomyEngine;
+  const st=State.createInitialState(content),checkpoints=[];
+  economy.tickWeekly();
+  assert.strictEqual(economy.getEconomySnapshot().balance,0,"initial app open does not pay wages");
+  let totalChoices=0;
+  for(let day=1;day<=21;day++){
+    assert.strictEqual(calendar.getClock().dayIndex,day,"real calendar matches authored day");
+    assert.strictEqual(st.dag,day);
+    if(day===8||day===15){
+      economy.tickWeekly();
+      checkpoints.push({day,balance:economy.getEconomySnapshot().balance});
+      const already=economy.getEconomySnapshot().balance;
+      economy.tickWeekly();
+      assert.strictEqual(economy.getEconomySnapshot().balance,already,"no duplicate weekly salary");
+    }
+    let actions=0;
+    while(!st.dagFerdig){
+      const sc=Runner.selectNextScene(st,content);
+      if(sc){
+        const choice=sc.valg.find(v=>!v.skills_requirement);
+        assert.ok(choice,"authored role choice is playable");
+        Runner.applyChoice(st,content,sc.id,choice.id);
+        totalChoices++;actions++;
+      }else Runner.advance(st,content);
+      assert.ok(actions<220,"all shifts terminate without loop");
+    }
+    assert.ok(actions>0,"every day has actual authored choices");
+    old.setItem("civication_lifestory_v1",JSON.stringify(st));
+    economy.recordCompletedDay(day);
+    economy.recordCompletedDay(day); // Same shift must not be counted twice.
+    const unpaid=read(old,"hg_civi_wallet_v1",{});
+    assert.strictEqual(unpaid.completed_game_days_v1.filter(x=>x.dayIndex===day).length,1,
+      "one documented wage record for each played day");
+    if(day<21)Runner.startNextDay(st,content);
+    calendar.advanceByMinutes(24*60);
+  }
+  assert.strictEqual(calendar.getClock().dayIndex,22);
+  economy.tickWeekly();
+  checkpoints.push({day:22,balance:economy.getEconomySnapshot().balance});
+  assert.deepStrictEqual(checkpoints.map(x=>x.day),[8,15,22]);
+  assert.ok(checkpoints[0].balance>0,"week 1 pays published business wage");
+  assert.ok(checkpoints[1].balance>checkpoints[0].balance,"week 2 earns wage from worked days");
+  assert.ok(checkpoints[2].balance>checkpoints[1].balance,"week 3 earns wage from worked days");
+  const last=checkpoints[2].balance;
+  economy.tickWeekly();
+  assert.strictEqual(economy.getEconomySnapshot().balance,last,"app reload does not mint 4th week");
+  assert.strictEqual(read(old,"hg_civi_wallet_v1",{}).last_tick_day_index,22);
+  assert.strictEqual(read(old,"hg_civi_wallet_v1",{}).completed_game_days_v1.length,0);
+  assert.strictEqual(st.livsdag,21);
+  assert.ok(st.arkiv.some(x=>x.sceneId==="eksp_u3_d21_slutt"));
+  assert.strictEqual(new Set(st.arkiv.map(x=>x.sceneId)).size,st.arkiv.length);
+  assert.strictEqual(device.window.CivicationState.getActivePosition().role_key,"ekspeditor");
+
+  const cloud=device.loadCloud();await cloud.ready;await cloud.flush();
+  assert.strictEqual(db.writes,1,"one mocked account backup");
+  for(const key of ["hg_active_position_v1","hg_job_history_v1","hg_civi_calendar_v1",
+    "hg_civi_wallet_v1","civication_lifestory_v1","merits_by_category","hg_quiz_sets_v1"]){
+    assert.strictEqual(db.record.payload.state[key],old.getItem(key),key+" survives cloud snapshot");
+  }
+  const second=mkStore(),newDevice=createDevice(second);
+  const restoredCloud=newDevice.loadCloud();await restoredCloud.ready;
+  assert.strictEqual(newDevice.window.CivicationCalendar.getClock().dayIndex,22);
+  assert.strictEqual(read(second,"civication_lifestory_v1",{}).livsdag,21);
+  assert.strictEqual(read(second,"hg_active_position_v1",{}).role_key,"ekspeditor");
+  assert.strictEqual(newDevice.window.CivicationEconomyEngine.getEconomySnapshot().balance,last);
+  newDevice.window.CivicationEconomyEngine.tickWeekly();
+  await restoredCloud.flush();
+  assert.strictEqual(db.writes,1,"restored device must not duplicate pay or upload");
+  console.log("Ekspeditør V1 integration fixture: "+totalChoices+
+    " actual authored choices, 21 calendar days, three earned PC settlements, mock account restore OK");
+}
+verifyEkspeditorEconomyCloudJourney().catch(error=>{
+  console.error("Ekspeditør integration fixture failed",error);
+  process.exitCode=1;
+});
+
