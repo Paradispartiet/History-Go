@@ -2,6 +2,7 @@ name: Civication browser smoke
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
     paths:
       - 'js/Civication/**'
       - 'data/Civication/economy/**'
@@ -43,6 +44,7 @@ concurrency:
 jobs:
   browser:
     name: Civication boot smoke
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 95
     steps:
