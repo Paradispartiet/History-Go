@@ -8,6 +8,8 @@ on:
       - 'tests/oslo-batch04-v1-real-browser.mjs'
       - 'scripts/verify-place-quiz-browser.mjs'
       - 'data/quiz/**'
+      # Production-context SHA metadata is owned by the place/data gates, not 17-place QuizCard parity.
+      - '!data/quiz/production_context/**'
       - 'data/quizcards/**'
       - 'reports/place-production/oslo-batch04-v1-quiz-readiness-20261022.md'
   workflow_dispatch:

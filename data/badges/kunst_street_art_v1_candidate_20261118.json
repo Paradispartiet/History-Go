@@ -3,7 +3,7 @@
   "categoryId": "kunst",
   "version": "v1",
   "createdAt": "2026-11-18",
-  "status": "visual_candidate_pending_approval_and_binary_upload",
+  "status": "candidate_pending_visual_approval",
   "trackingIssue": 7406,
   "design": {
     "topLabel": "KUNST",
@@ -50,13 +50,13 @@
   "source": {
     "generation": "ChatGPT original artwork",
     "package": "HistoryGo_Kunst_Street_Art_v1_kandidat.zip",
-    "location": "ChatGPT conversation files, not yet uploaded to GitHub"
+    "location": "Source package archived in ChatGPT; all three image binaries verified in GitHub main by PR #7430"
   },
   "quality": {
     "visualApprovedByUser": false,
     "localChecksumsVerified": true,
-    "repositoryUploaded": false,
-    "repositoryHashesVerified": false,
+    "repositoryUploaded": true,
+    "repositoryHashesVerified": true,
     "active": false
   },
   "preservation": {
@@ -64,5 +64,11 @@
     "otherNineUnderbadgesUnchanged": true,
     "placeCardAndMapUnchanged": true
   },
-  "activationPolicy": "Only activate after user visual approval and byte-identical image upload to GitHub with verified SHA-256 and Git blob SHA. Change only subBadgeImages.street_art; run only focused Kunst badge tests."
+  "activationPolicy": "All three image binaries are uploaded and Git blob SHA verified by PR #7430. Activate only this subBadgeImages entry after explicit user visual approval and focused Kunst badge QA. Leave all other badges unchanged.",
+  "repositoryVerification": {
+    "commit": "ae43a27096548b7c0cada725d4a9469f6184bf43",
+    "pullRequest": 7430,
+    "allThreeGitBlobsVerified": true,
+    "verifiedOn": "2026-11-19"
+  }
 }

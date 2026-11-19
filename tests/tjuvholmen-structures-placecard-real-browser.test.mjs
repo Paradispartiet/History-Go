@@ -13,7 +13,7 @@ const runtime = read("data/runtime/place-open/tjuvholmen.json");
 const ids = ["tjuvtitten","tjuvholmen_bystrand","skulpturparken_skjaeret"];
 assert.deepEqual(canonical.structures.map(row=>row.id),ids);
 assert.deepEqual(runtime.place.structures.map(row=>row.id),ids);
-assert.deepEqual(canonical.place_card_profile.collection_ids,["people","brands","structures"]);
+assert.deepEqual(canonical.place_card_profile.collection_ids,["people","objects","brands","structures"]);
 assert.equal(runtime.brands.length,3);
 assert.equal(runtime.people.length,5);
 assert.ok(runtime.people.some(person=>person.id==="renzo_piano"));
@@ -70,17 +70,35 @@ try{
         document.getElementById("pcCategoryCollectionIcon")?.dataset.collectionId==="structures",
         null,{timeout:40000});
       const card=page.locator("#placeCard");
-      // Place Sheet and the curated fill layout finish asynchronously after
-      // canonical place-open hydration. Assert the stable user-visible state,
-      // not the intermediate core collection profile marker.
+      // Wait for the current v2 collection adapter after canonical hydration.
+      // The People collection is displayed separately, so only three of the
+      // four configured collections occupy icon-grid slots.
       await page.waitForFunction(()=>{
         const card=document.getElementById("placeCard");
-        return card?.dataset.collectionProfileSource==="place_card_profile_v2_curated"
-          && card?.dataset.collectionRequestedCount==="3";
+        return card?.dataset.collectionProfileSource==="place_card_profile_v2"
+          && card?.dataset.collectionCount==="4"
+          && card?.dataset.collectionGridCount==="3";
       },null,{timeout:30000});
       assert.equal(await card.getAttribute("data-collection-profile-source"),
-        "place_card_profile_v2_curated",tag+": curated profile");
-      assert.equal(await card.getAttribute("data-collection-requested-count"),"3",tag+": three collections");
+        "place_card_profile_v2",tag+": canonical v2 profile");
+      assert.equal(await card.getAttribute("data-collection-count"),"4",tag+": four collections");
+      assert.equal(await card.getAttribute("data-collection-grid-count"),"3",tag+": three gallery slots plus People");
+      // Verify a late core render cannot replace or hide the canonical four-collection layout.
+      const afterCoreReapply=await page.evaluate(async()=>{
+        const card=document.getElementById("placeCard");
+        const current=window.PLACES?.find(p=>p.id==="tjuvholmen");
+        await window.HGPlaceCardCollections.apply(current);
+        return {
+          source:card?.dataset.collectionProfileSource,
+          total:card?.dataset.collectionCount,
+          gridCount:card?.dataset.collectionGridCount,
+          gridSource:card?.querySelector(".pc-icons-quad")?.dataset.collectionProfileSource
+        };
+      });
+      assert.equal(afterCoreReapply.source,"place_card_profile_v2",tag+": core reapply preserves canonical profile");
+      assert.equal(afterCoreReapply.gridSource,"place_card_profile_v2",tag+": gallery source survives core reapply");
+      assert.equal(afterCoreReapply.total,"4",tag+": all four collections survive core reapply");
+      assert.equal(afterCoreReapply.gridCount,"3",tag+": three visible galleries survive core reapply");
       const structuresTile=page.locator('button[data-pc-round-gallery-item="pcCategoryCollectionIcon"]');
       try {
         await structuresTile.waitFor({state:"visible",timeout:20000});
@@ -107,8 +125,8 @@ try{
         throw error;
       }
       await page.locator('button[data-pc-round-gallery-item="pcBrandsIcon"]').waitFor({state:"visible",timeout:15000});
-      assert.equal(await page.locator('#pcObjectsIcon').getAttribute('hidden'),'',tag+": no filler Objects card");
-      assert.equal(await page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]').count(),0,tag+": no filler Objects gallery tile");
+      await page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]').waitFor({state:"visible",timeout:15000});
+      assert.equal(await page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]').count(),1,tag+": illustrated Objects gallery tile");
 
       await page.waitForFunction(()=>{
         const image=document.querySelector("#pcCategoryCollectionIcon img");

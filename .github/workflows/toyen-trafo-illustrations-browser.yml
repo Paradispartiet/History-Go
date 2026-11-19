@@ -1,0 +1,59 @@
+name: Tøyen Objects illustration browser QA
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/toyen-trafo-illustrations-browser.yml'
+      - 'bilder/objects/toyen_trafo_*_illustrasjon.webp'
+      - 'data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_04/toyen_trafo.json'
+      - 'data/runtime/place-open/toyen_trafo.json'
+      - 'reports/collection-images/toyen-trafo-illustration-release-2026-11-18.json'
+      - 'tests/toyen-trafo-objects-real-browser.mjs'
+      - 'tests/toyen-trafo-illustrations-live.test.mjs'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - 'css/place-rounds-fill-layout.css'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  toyen-illustration-browser:
+    name: Two Tøyen Objects – mobile and desktop
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify only the Tøyen illustration file and source-runtime contracts
+        run: node --test tests/toyen-trafo-illustrations-live.test.mjs
+      - name: Build canonical Places index and Place-open for the actual app
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run place-open:check
+      - name: Resolve installed Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Open the real Tøyen Objects gallery at 390 and 1440 pixels
+        run: node tests/toyen-trafo-objects-real-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: toyen-illustration-mobile-desktop
+          path: artifacts/toyen-trafo-objects/
+          if-no-files-found: warn
+          retention-days: 14

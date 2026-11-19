@@ -1,6 +1,10 @@
 name: Det Norske Teatret C51 deployed Objects QA
 on:
-  pull_request:
+  # This is a PUBLIC Pages deployment check: PR branches are not deployed.
+  # Pull requests have their own real local-browser Objects gate (C50).
+  push:
+    branches:
+      - main
     paths:
       - '.github/workflows/dnt-public-objects-c51.yml'
       - 'tests/det-norske-teatret-public-objects-c51.mjs'
@@ -14,7 +18,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: dnt-public-c51-${{ github.event.pull_request.number || github.ref }}
+  group: dnt-public-c51-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   public-objects:

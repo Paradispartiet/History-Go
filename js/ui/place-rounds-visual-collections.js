@@ -171,9 +171,18 @@
   }
 
   function peopleItems(place) {
+    const placeId = s(place?.id);
     let direct = [];
-    try { direct = arr(global.getPeopleForPlace?.(s(place?.id))); } catch { direct = []; }
-    return flattenSources([[direct, "people"]]);
+    try { direct = arr(global.getPeopleForPlace?.(placeId)); } catch { direct = []; }
+    // A canonical place-open payload may finish hydrating after the legacy
+    // People lookup was initialized. Read the just-loaded, place-linked
+    // public People entries as well, without creating substitute portraits.
+    const hydrated = arr(global.PEOPLE).filter(person =>
+      s(person?.placeId || person?.place_id) === placeId
+      || arr(person?.places).some(id => s(id) === placeId)
+      || arr(person?.place_ids).some(id => s(id) === placeId)
+    );
+    return flattenSources([[hydrated, "place_open_people"], [direct, "people"]]);
   }
 
   function brandItems(place) {
@@ -499,7 +508,7 @@
             ${item.description ? `<p class="pc-person-desc">${esc(item.description)}</p>` : ""}
             ${item.imageDisclosure ? `<p class="pc-object-context">${esc(item.imageDisclosure)}</p>` : ""}
             ${item.imageCredit ? `<p class="pc-object-credit">Bilde: ${esc(item.imageCredit)}${item.imageLicense ? ` · ${esc(item.imageLicense)}` : ""}</p>` : ""}
-            ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">Se historisk kilde og bildeopphav</a>` : ""}
+            ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">${kind === "illustration" ? "Historisk kilde for gjenstanden" : "Se historisk kilde og bildeopphav"}</a>` : ""}
           </div>
         </article>`;
       }).join("");
@@ -553,7 +562,20 @@
     const icon = document.getElementById(def.iconId);
     if (!icon) return;
     const items = collectionItems(place, def.id);
-    renderCollectionPreview(icon, items.find(item => item.image), def, items.length);
+    const previewCandidates = items.filter(item => item.image);
+    const renderCandidate = (index) => {
+      renderCollectionPreview(icon, previewCandidates[index], def, items.length);
+      const image = icon.querySelector(":scope > img.pc-person-img");
+      if (image && index + 1 < previewCandidates.length) {
+        // An older person can reference an unavailable file. Try a different
+        // registered person portrait, never an unrelated placeholder.
+        image.addEventListener("error", () => {
+          renderCandidate(index + 1);
+          global.HGPlaceRoundsFillLayout?.scheduleLayout?.();
+        }, { once:true });
+      }
+    };
+    renderCandidate(0);
     if (def.id === "people" && icon.classList.contains("pc-title-people")) {
       icon.hidden = items.length === 0;
       icon.setAttribute("aria-hidden", items.length ? "false" : "true");
@@ -732,6 +754,15 @@
       grid.dataset.roundCount = String(gridIds.length);
       grid.style.removeProperty("grid-template-columns");
       grid.style.removeProperty("grid-template-rows");
+    }
+
+    // The async collection renderer may finish after the curated 1–3-item
+    // layout (for example after a late image decode or Place-open hydration).
+    // Reconcile its visibility and source markers *after* every core apply.
+    // Otherwise a late core write flips a curated Place back to the generic
+    // "place_card_profile_v2" state between consecutive browser assertions.
+    if (s(card.dataset.currentPlaceId) === s(place.id)) {
+      global.HGPlaceRoundsFillLayout?.applyCuratedVisibility?.();
     }
   }
 

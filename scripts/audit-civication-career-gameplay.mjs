@@ -226,8 +226,15 @@ const testFiles = walk('tests').filter((rel) =>
   rel !== 'tests/civication-personal-routes.test.js' &&
   // ORS routing contract exercises private logistics, never career progression.
   rel !== 'tests/civication-road-router.test.js' &&
+  // Routing to an external restaurant does not prove career role gameplay.
+  rel !== 'tests/civication-restaurant-detours.test.js' &&
+  // Geometric Fysen dining corridor screening is not career competency evidence.
+  rel !== 'tests/civication-fysen-route-corridor.test.js' &&
   // Public Fysen menu discovery is retail browsing, not role gameplay evidence.
   rel !== 'tests/civication-fysen-public-menus.test.js' &&
+  // City-only public restaurant lookup and its UI are not career progression.
+  rel !== 'tests/civication-fysen-live-restaurants.test.js' &&
+  rel !== 'tests/civication-fysen-nearby-ui.test.js' &&
   // Wave-A narrative integration verifies the shared inbox and historical
   // personal choices. Mentions of a career in its fixture are not evidence
   // that the career's workday or competency gameplay is implemented.
@@ -238,9 +245,7 @@ const testFiles = walk('tests').filter((rel) =>
   // Narrative ending tests cover epilogues, not a role's daily career gameplay.
   // Incidental role mentions must not become career-test evidence.
   rel !== 'tests/civication-lifestory-endings.test.js' &&
-  // NOK salary profiles exercise offers, fractions and calendar/payroll boundaries,
-  // not a role's work tasks, competency choices or consequence/performance paths.
-  // They still run in run-civication-tests.mjs; do not credit them as role-world evidence.
+  // NOK salary/tax projections are finance tests, not authored role gameplay.
   rel !== 'tests/civication-nok-multiple-jobs.test.js' &&
   // Vitality narrative tests are not proof of independent career workday gameplay.
   !/^tests\/civication-lifestory-vitality-/.test(rel)

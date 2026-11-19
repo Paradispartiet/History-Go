@@ -258,7 +258,7 @@ test("missing or broken front media keeps a branded visual surface instead of a 
 });
 
 
-test("Tjuvholmen Structures show source-linked photo attribution without changing Objects", async () => {
+test("Tjuvholmen Structures retain photo attribution and eight illustrated Objects", async () => {
   const place = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/places/by/oslo/places/tjuvholmen.json"), "utf8"));
   const w = make(place);
   await w.HGPlaceCardCollections.apply(place);
@@ -278,6 +278,14 @@ test("Tjuvholmen Structures show source-linked photo attribution without changin
     assert.equal(license.rel, "noopener noreferrer");
     assert.equal(source.rel, "noopener noreferrer");
   }
-  assert.equal(w.HGPlaceCardCollections.getItems(place, "objects").length, 0);
+  const objects = w.HGPlaceCardCollections.getItems(place, "objects");
+  assert.equal(place.objects.length, 8, "eight documented sculpture Objects remain canonical");
+  assert.deepEqual(Array.from(objects, item => item.id), place.objects.map(item => item.id),
+    "Structures must not hide or remove the eight Objects");
+  for (const item of place.objects) {
+    assert.equal(item.imageKind, "illustration", item.id + ": labelled illustration");
+    assert.ok(item.imageMeta?.credit?.includes("History Go"), item.id + ": attribution retained");
+    assert.ok(item.imageMeta?.sourcePage?.startsWith("https://"), item.id + ": historical source retained");
+  }
 });
 

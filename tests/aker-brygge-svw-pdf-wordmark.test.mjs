@@ -1,0 +1,36 @@
+import {test} from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs/promises";
+import crypto from "node:crypto";
+import sharp from "sharp";
+const sha=b=>crypto.createHash("sha256").update(b).digest("hex");
+test("SVW exact cropped original candidate and no publication",async()=>{
+  const p="reports/place-production/aker-brygge-svw-authentic-pdf-wordmark-2026-11-19.json";
+  const r=JSON.parse(await fs.readFile(p,"utf8"));
+  const brands=JSON.parse(await fs.readFile("data/brands/brands_by_place.json","utf8")).aker_brygge;
+  assert.equal(brands.length,9);
+  assert.ok(brands.includes(r.brandId));
+  assert.equal(r.brandId,"simonsen_vogt_wiig");
+  assert.equal(r.sourcePage,"https://chambers.com/downloads/gpg/1090/018_norway.pdf");
+  assert.equal(r.sourcePageNumber,5);
+  assert.equal(r.publishable,false);
+  assert.equal(r.visualApproval,false);
+  assert.equal(r.productionAssetsActivated,0);
+  assert.equal(r.placecardBrandsEnabled,false);
+  assert.ok(r.originalPath.startsWith("bilder/kort/brands/source/aker_brygge/"));
+  assert.ok(r.candidatePath.startsWith("bilder/kort/brands/candidates/aker_brygge/"));
+  const original=await fs.readFile(r.originalPath);
+  const candidate=await fs.readFile(r.candidatePath);
+  assert.equal(sha(original),r.originalSha256);
+  assert.equal(sha(candidate),r.candidateSha256);
+  const o=await sharp(original).metadata(),c=await sharp(candidate).metadata();
+  assert.deepEqual([o.width,o.height],r.originalDimensions);
+  assert.deepEqual([c.width,c.height,c.format],[900,520,"webp"]);
+  const pixels=await sharp(original).removeAlpha().raw().toBuffer({resolveWithObject:true});
+  let dark=0;
+  for(let i=0;i<pixels.data.length;i+=pixels.info.channels)
+    if(pixels.data[i]<110&&pixels.data[i+1]<110&&pixels.data[i+2]<110)dark++;
+  const darkRatio=dark/(pixels.info.width*pixels.info.height);
+  assert.ok(darkRatio>0.008&&darkRatio<0.6,"source crop misses wordmark: dark ratio "+darkRatio);
+  assert.match(r.transformation,/no text recreation/);
+});

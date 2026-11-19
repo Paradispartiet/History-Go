@@ -120,8 +120,12 @@
     }
     if (summary.nokActive && summary.balanceMinor !== null) {
       create("p", "Kronekonto nå: " + kr(summary.balanceMinor) +
-        " · Etter planlagte restaurantbeløp: " + kr(summary.afterKnownPlansMinor) +
-        " (ingen penger trukket).", details);
+        " · Ubetalte restaurantplaner: " + kr(summary.unpaidPlannedMinor) +
+        " · Etter ubetalte planer: " + kr(summary.afterKnownPlansMinor) + ".", details);
+      if (summary.purchasedMinor > 0) {
+        create("p", "Restaurantkjøp gjennomført denne spilluken: " +
+          kr(summary.purchasedMinor) + " (allerede trukket fra kontoen).", details);
+      }
       if (summary.hasUncertainPrices) {
         create("p", "Restbeløpet er en øvre grense basert på kjente og laveste priser. " +
           "Ukjente priser kan øke kostnaden.", details).className = "muted";
@@ -137,10 +141,37 @@
           (item.priceKind === "from" || item.priceKind === "multiple" ? "fra " : "") +
           kr(item.priceMinor * item.portions) +
           (item.priceKind === "unspecified" ? " (pristype ukjent)" : "");
+        const purchased = Array.isArray(summary.purchasedSlots) &&
+          summary.purchasedSlots.includes(item.day + ":" + item.meal);
         create("span",
           model.DAYS[item.day] + " · " + model.MEALS[item.meal].label + ": " +
           item.dishName + " hos " + item.name + " · " + item.portions +
-          (item.portions === 1 ? " porsjon · " : " porsjoner · ") + amount, entry);
+          (item.portions === 1 ? " porsjon · " : " porsjoner · ") + amount +
+          (purchased ? " · betalt i spillet" : ""), entry);
+        const gameDay = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+        const isToday = Number.isSafeInteger(gameDay) && gameDay >= 1 &&
+          model.getWeekKey(gameDay) === key && (gameDay - 1) % 7 === item.day;
+        if (isToday && summary.nokActive && !purchased && summary.balanceMinor !== null &&
+            item.priceKind === "exact" && Number.isSafeInteger(item.priceMinor) &&
+            item.priceMinor > 0 && typeof model.purchaseRestaurantMeal === "function") {
+          const total = item.priceMinor * item.portions;
+          const buy = create("button", "Kjøp i spillet – " + kr(total), entry);
+          buy.type = "button";
+          buy.disabled = summary.balanceMinor < total;
+          buy.addEventListener("click", () => {
+            buy.disabled = true;
+            const requestId = "restaurant:" + String(gameDay) + ":" +
+              Math.random().toString(36).slice(2, 14);
+            const result = model.purchaseRestaurantMeal(item.day, item.meal, requestId, key);
+            if (result.ok) render();
+            else {
+              buy.disabled = false;
+              const note = create("span", "Kjøpet kunne ikke gjennomføres: " +
+                result.reason, entry);
+              note.setAttribute("role", "status");
+            }
+          });
+        }
         const remove = create("button", "Fjern", entry);
         remove.type = "button";
         remove.addEventListener("click", () => {
@@ -149,9 +180,10 @@
         });
       }
     }
-    create("p", "Restaurantutgifter er kun planer. " +
-      "I NOK-modus kan en planlagt restaurantrett erstatte en ikke-spist hjemmerett i handleplanen. " +
-      "Ingen penger trekkes fra saldoen ved planlegging, og ingen ekte restaurant bestilles.", details).className = "muted";
+    create("p", "Planlegging belaster aldri kontoen. Kun et eksplisitt «Kjøp i spillet» " +
+      "på dagens spilldato kan trekke kroner i aktiv NOK-modus. " +
+      "Hjemmelaget mat beregnes separat i NOK-butikken når NOK er aktiv. " +
+      "Ingen ekte restaurant bestilles eller betales.", details).className = "muted";
   }
 
   function renderNearbyRestaurants(parent) {

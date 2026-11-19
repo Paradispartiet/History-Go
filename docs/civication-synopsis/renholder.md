@@ -2,7 +2,7 @@
 
 **Identitet:** `naeringsliv/renholder`, Life Story `renholder`.
 
-**Status:** Samlet redaksjonell synopsis over de 55 eksisterende scenene på sju fortellingsdager. Den samler dagens innhold og peker ut revisjonsbehov. Den godkjenner ikke automatisk scenene, opplæringen eller avslutningene. [Profilen](../civication-symposium/renholder.md) eier yrkesgrunnlag, ordliste og kildekart. [Registeret](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md) fører profil og synopsis separat.
+**Status:** Samlet redaksjonell synopsis over 78 forfattede scener på fortellingsdag 1–14 (55 fra dag 1–7, fem fra dag 8–9 i merget PR #7378 og 18 nye dag 10–14 i utkast PR #7429). Den samler dagens innhold og peker ut revisjonsbehov. Den godkjenner ikke automatisk scenene, opplæringen eller avslutningene. [Profilen](../civication-symposium/renholder.md) eier yrkesgrunnlag, ordliste og kildekart. [Registeret](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md) fører profil og synopsis separat.
 
 Du arbeider som renholder i bygget som allerede finnes i rollepakken. Før andre bruker møterommet, skal du gjennom en bestemt romliste. Senere kan rommet være fullt av folk igjen. Når noen sier at det aldri blir vasket, må du kunne vise hva som ble gjort, hva som sto igjen og hva du ikke kom til.
 
@@ -42,6 +42,14 @@ Senere introduserer C17-forløpet en avgrenset oppgave: Det er 45 minutter igjen
 
 **Dag 7:** Den blokkerte døra får følger også i neste arbeidsøkt. Du kan arbeide i tilgjengelige rom, be om en konkret avklaring eller forklare de to statuslinjene til Amina og kontorbrukeren. Følelsen av å ha skyld i den røde ruta må skilles fra ansvaret for å flytte hylla. Ingen av de skrevne avslutningene i dette tilgangssporet flytter den. Et fortsatt åpent lager er et mulig, uttrykkelig utfall.
 
+## Uke 2 – det som fremdeles står åpent
+
+**Dag 8:** For renholdere som fortsatt er i jobben og fortsetter denne rollepakken, møter Kari deg med de to statuslinjene fra forrige uke: tilgjengelige arealer og lageret som ikke er frigjort av drift. Spilleren kan be om oppdatert tilkomst, avtale arbeid i tilgjengelige soner eller etterspørre trygg metode og utstyr. Disse tre valgene skaper **en forespørsel eller bekreftet arbeidsplan**, ikke utført renhold, reparert hylle eller mottatt arbeidsrapport. En spiller som mistet jobben ved ukeslutt, skal i stedet følge sin faktiske aktive rolle, med renholderens arkiv bevart.
+
+**Dag 9:** Den valgte planen bestemmer én av tre hendelser. Ved tilkomstsporet står lageret fortsatt uavklart selv om drift er kontaktet. I sonesporet kan spilleren **faktisk gjennomføre og kontrollere korridoren**, men bare den korridoren blir registrert som utført, ikke lageret. Et utsatt arbeid gir ingen gjennomføringskvittering. Ved belastningssporet spør Amina om trygg metode; et spørsmål om utstyr eller en avgrensning innebærer ikke at noen har flyttet hylla. Ved vaktslutt velger spilleren enten en reell samtale der Kari **bekrefter mottak** av rapporten, eller å lagre et utkast med **mottak fortsatt åpent**. Begge svar bevarer utført arbeid og uavklarte oppgaver hver for seg.
+
+Uke-2-bolken er et forfattet fortsettelsesspor, **ikke** i seg selv bevis på en ny faktisk ansettelsesperiode, utbetalt uke-2-lønn eller fysisk Safari-verifisering. Dag 10–14 er nå forfattet i PR #7429, men fremdeles under gjennomgang. Reell lønn og konto-/iPad-synk må verifiseres gjennom kanonisk arbeids- og økonomiflyt.
+
 ## Valg, ansvar og det spilleren får vite
 
 | Aktør | Handlingsrom i denne historien |
@@ -59,15 +67,37 @@ Spillerens Symposium skal holde utført renhold, kontroll, meldt avvik, bekrefte
 
 ## Kildekoblinger og revisjonsrekkefølge
 
-[Personer, arbeidsoppgaver og avslutninger](../../data/Civication/lifestory/roles/renholder/role.json) · [Arbeidslivstråder](../../data/Civication/lifestory/roles/renholder/threads.json) · [55 scener, dag 1–7](../../data/Civication/lifestory/roles/renholder/scenes.json) · [Arbeidsgrammatikk](../../data/Civication/workGrammars/naeringsliv/renholder.json) · [Rolleverden](../../data/Civication/roleWorlds/naeringsliv/renholder.json) · [C17 som tematisk inngang](../CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c17--å-arbeide-seg-tom)
+[Personer, arbeidsoppgaver og avslutninger](../../data/Civication/lifestory/roles/renholder/role.json) · [Arbeidslivstråder](../../data/Civication/lifestory/roles/renholder/threads.json) · [101 scener, dag 1–21](../../data/Civication/lifestory/roles/renholder/scenes.json) · [Arbeidsgrammatikk](../../data/Civication/workGrammars/naeringsliv/renholder.json) · [Rolleverden](../../data/Civication/roleWorlds/naeringsliv/renholder.json) · [C17 som tematisk inngang](../CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md#c17--å-arbeide-seg-tom)
 
-Dette er én koblet synopsis, ikke 55 nye hendelser. Normal jobbmail og Life Story er egne produksjonsveier. Et tematisk C17-spor eller en bok-/filmreferanse er ikke dokumentasjon på renholdspraksis.
+Dette er én koblet synopsis, ikke 101 uavhengige nye hendelser. Normal jobbmail og Life Story er egne produksjonsveier. Et tematisk C17-spor eller en bok-/filmreferanse er ikke dokumentasjon på renholdspraksis.
 
 Tidsvinduet er nå revidert med bekreftet plan, faktisk utførelse, begge aktørers resultater og mottak. Søl og avvik er også revidert med sikring, rengjøring, resultatkontroll, mottak og separat oppfølging av tralle og skilt. Belastning og opplæring er revidert med avklaring, utførelse og mottak samt demonstrasjon, egen øvelse og tilbakemelding. Klagehistorikk og avslutninger er også revidert: elleve nye scener binder romarbeid, sending og mottak sammen, og avslutningene krever hele sitt kriteriegrunnlag. Tilgangssporets skille mellom plan, befaring og utført arbeid skal bevares. [Profilens revisjonsliste](../civication-symposium/renholder.md#hva-som-må-gjennomgås-i-spillinnholdet) viser de konkrete hullene. Synopsisen beskriver de reviderte tidsvindu-, søl-, opplærings- og klageoppgavene, men godkjenner ikke resten av spillinnholdet eller hele normaljobbkalenderen. Den endrer ikke lagret spillerhistorikk.
 
 
 ## Gjenstående kontroll før samlet lukking
 
-Den strenge kalenderkontrollen `RENHOLDER_CASE=dagskifte` skal spille de tre klagerutene gjennom synlig innboks og reelle dagskifteknapper, med kalender og Life Story synkronisert gjennom dag 7. Ingen Runner-reserve er tillatt i denne modusen. Denne kontrollen bestod på head `609d9d4b`: tre ruter, 18 faktiske UI-dagskifter og bevart historikk fram til riktige avslutninger. [PR #7295 og kontrollbevis](https://github.com/Paradispartiet/History-Go/pull/7295). Dette er fortsatt et eksplisitt Life Story-testspor; faktisk renholderansettelse, jobbmail og lønnsforløp må ikke utledes av rolleparameteren.
+Den strenge kalenderkontrollen `RENHOLDER_CASE=dagskifte` skal spille de tre klagerutene gjennom synlig innboks og reelle dagskifteknapper, med kalender og Life Story synkronisert gjennom dag 7. Ingen Runner-reserve er tillatt i denne modusen. Denne kontrollen bestod på head `609d9d4b`: tre ruter, 18 faktiske UI-dagskifter og bevart historikk fram til riktige avslutninger. [PR #7295 og kontrollbevis](https://github.com/Paradispartiet/History-Go/pull/7295). Dette er et eksplisitt Life Story-testspor og må ikke forveksles med den separate [opptjente ansettelsen og første lønnsuken i PR #7303](https://github.com/Paradispartiet/History-Go/pull/7303), som er merget etter grønn organisk nettlesertest.
 
 Fysisk iPad/Safari er ikke utført. [Profilens manuelle sjekkliste](../civication-symposium/renholder.md#fysisk-ipadsafari--åpen-kontroll) beskriver testen og hvilke opplysninger som må føres. [Fellesregisteret](../CIVICATION_SYMPOSIUM_PROFILE_COVERAGE.md#renholder--samlet-reststatus) samler reststatusen; synopsisen er ikke en parallell ferdigliste.
+
+## Uke 2, dag 10–14 – utførelse, kontroll og ukeslutt
+
+Den nye fortsettelsen følger den faktiske dag-9-statusen og bruker det samme arbeidsstedet og de samme rollepersonene. **Dag 10:** Kari etterspør utestående rapport og konkret romstatus. En ledig korridor eller møterom 204 kan rengjøres og egenkontrolleres, men en utsatt runde står fortsatt åpen. **Dag 11:** Amina har sperret av et nytt søl ved kaffestasjonen. Spilleren kan faktisk ta en begrenset rengjøring eller avvente risikovurdering; sikring, utført vask og gjenåpning er forskjellige opplysninger.
+
+**Dag 12:** Amina går gjennom produktinformasjon, kjent metode og behov for opplæring. En forespørsel om demonstrasjon er ikke utført arbeid eller godkjent opplæring. **Dag 13:** Driftsmelding om flyttet hylle krever fysisk kontroll av tilkomsten. Bare når spilleren verifiserer fri passasje **og** utfører den avtalte lager-runden, kan lageret få status som rengjort. Ellers står oppgaven åpen, også hvis en annen korridor blir tatt.
+
+**Dag 14:** Spilleren fører ukeoversikten, sender eller lagrer en faktisk romrapport og får enten en uttrykkelig mottaksbekreftelse fra Kari eller lar mottaket stå på vent. Et eget ukesluttvalg dokumenterer gjenstående arbeid og oppfølging. Den spesifikke uke-2-avslutningen krever dokumentert arbeid, sendt rapport, bekreftet mottak og oppsummering. Ingen story-flagg utløser lønn: **Civications kanoniske økonomimotor** betaler kun for reelt opptjente og registrerte spilldager etter at kalenderen har fullført en spilluke. Uke-2-lønn og konto-/iPad-synk krever egne integrasjonskontroller.
+
+Denne bolken erstatter ikke den sentrale Symposium-profilen eller yrkeskildene. Personene og de konkrete hendelsene er fiktive arbeidsplasssituasjoner basert på stillingsbeskrivelsen. Kildene for plan, metode, HMS og kvalitetskontroll er samlet i [Symposium – Renholder](../civication-symposium/renholder.md).
+
+## Uke 3, dag 15–21 – etterprøvbar arbeidsuke og videre oppfølging
+
+Uke tre fortsetter den samme renholderfortellingen med Kari, Amina og de åpne sakene fra dag 14. Dette er en fortsettelse av tråden `renholder_uke2_oppfolging`, ikke et nytt register eller et eget jobbsystem. Situasjonene er fiktive, men knyttet til konkrete arbeidsoppgaver og skillet mellom plan, utførelse, kontroll og mottak.
+
+**Dag 15** skiller uke-2-rapport, faktisk romarbeid og lønnsgrunnlag. En dialog om lønn betaler ikke ut penger. **Dag 16** handler om umerket materiell, kjent metode og trygg alternativ rute; ukjent produkt tas ikke i bruk. **Dag 17** følger en klage på rom 204 med faktasjekk og eventuell begrenset etterkontroll, uten automatisk skyld eller lukking.
+
+**Dag 18** er bemanningspress og forsvarlig oppgaveavgrensning; bare utførte rom kan registreres som gjort. **Dag 19** krever faktisk verifisert tilkomst før rengjøring av møtelokalet; et opptatt rom forblir åpent selv om en annen korridor vaskes. **Dag 20** skiller avstemte romposter fra uavklarte og eventuelt sendt arbeidsliste. **Dag 21** skiller ukesrapport, uttrykkelig bekreftet mottak og fortsatt åpne forhold.
+
+Den særskilte uke-3-avslutningen krever fire spilte bevis: faktisk romarbeid på dag 15, sendt rapport, Karis bekreftede mottak og spilt ukeoppsummering på dag 21. Uke-2-avslutningen beholdes som identifiserbar evidens, men dag 14 er ikke lenger fortellingens siste dag. Lønn følger utelukkende kanonisk `CivicationCalendar` og `CivicationEconomyEngine`, med neste avregningsgrense på spilldag 22, ikke narrative flagg.
+
+**Teststatus ved forfatting:** den nye bolken og testene er innført på utviklingsgren; full Civication-CI, mobil-/iPad-matrisen og merge er ikke godkjent før kontrollene faktisk består. Fysisk Safari på iPad og produksjonspublisering er ikke testet.

@@ -308,6 +308,29 @@ export function auditWorkflowRouting() {
     if (!dataCheckPaths.has(knowledgeInput)) failures.push(`data-checks.yml: canonical Knowledge input is missing: ${knowledgeInput}`);
   }
 
+  // An unrelated SHA refresh under quiz production_context must not launch four
+  // 45-minute browser shards for the fixed Oslo batch04 QuizCard matrix.
+  const osloQuizWorkflow = workflows.find(({ file }) => file === 'oslo-batch04-quiz-parity.yml');
+  const osloQuizPaths = declaredPaths(eventBlock(osloQuizWorkflow.source, 'pull_request'));
+  for (const [changed, expected] of [
+    ['data/quiz/production_context/naeringsliv/freia_fabrikken.json', false],
+    ['data/quiz/manifest.json', true],
+    ['data/quiz/naeringsliv/freia_fabrikken_sets.json', true],
+    ['data/quizcards/naeringsliv/topp10_naeringsliv_oslo_v1_batch02.json', true],
+    ['tests/oslo-batch04-v1-quiz-parity.test.mjs', true],
+    ['.github/workflows/oslo-batch04-quiz-parity.yml', true],
+  ]) {
+    if (workflowMatches(osloQuizPaths, [changed]) !== expected) {
+      failures.push(`oslo-batch04-quiz-parity.yml: unexpected routing for ${changed}; expected ${expected}`);
+    }
+  }
+  if (!workflowMatches(osloQuizPaths, [
+    'data/quiz/production_context/naeringsliv/freia_fabrikken.json',
+    'data/quiz/manifest.json',
+  ])) {
+    failures.push('oslo-batch04-quiz-parity.yml: canonical quiz changes must not be hidden by production_context exclusion');
+  }
+
   const releaseSource = workflows.find(({ file }) => file === 'fagverk-release.yml').source;
   if (!/^permissions:\s*\n\s{2}contents:\s*read\s*$/m.test(releaseSource)) {
     failures.push('fagverk-release.yml: release validation must be contents-read-only');
@@ -412,6 +435,28 @@ export function auditWorkflowRouting() {
   if (!/github\.event\.pull_request\.merged == true/.test(mainIntegritySource)
       || !/github\.event\.pull_request\.merge_commit_sha/.test(mainIntegritySource)) {
     failures.push('main-integrity.yml: merged-PR fallback is not locked to the merge SHA');
+  }
+
+  // Guard the two draft-gated heavy suites: final browser acceptance must
+  // always rerun on ready-for-review and on subsequent ready-PR commits.
+  for (const [file, fullJob, focusedTest] of [
+    ['placecard-media-browser-audit.yml', 'placecard-media-browser', 'tests/oslo-v1-quizcard-manifest-binding.test.mjs'],
+    ['by-v1-twenty-app-qa.yml', 'browser', 'tests/by-v1-twenty-fullquiz-contract.test.mjs'],
+  ]) {
+    const source = workflows.find((workflow) => workflow.file === file)?.source ?? '';
+    const trigger = eventBlock(source, 'pull_request') ?? '';
+    const eol = String.fromCharCode(10);
+    if (!trigger.includes('types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]')) {
+      failures.push(`${file}: ready_for_review and subsequent-push triggers are required`);
+    }
+    if (!source.includes(['  draft-focused:', "    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true"].join(eol))) {
+      failures.push(`${file}: focused draft validation is missing`);
+    }
+    if (!source.includes([`  ${fullJob}:`, "    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false"].join(eol))) {
+      failures.push(`${file}: browser acceptance must run for ready PRs and manual dispatch`);
+    }
+    if (!source.includes(focusedTest)) failures.push(`${file}: focused draft contract check is missing`);
+    if (!eventBlock(source, 'workflow_dispatch')) failures.push(`${file}: manual full acceptance entrypoint is missing`);
   }
 
   const scenarios = [];

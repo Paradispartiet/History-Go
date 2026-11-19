@@ -42,6 +42,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify TypeScript scope routing scenarios
+        run: node --test tests/ci-typescript-scope.test.mjs
       - name: Classify affected TypeScript surfaces
         id: scope
         shell: bash
@@ -50,94 +55,13 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-
           if [[ "${GITHUB_EVENT_NAME}" != "pull_request" ]]; then
-            {
-              echo "web=true"
-              echo "scripts=true"
-              echo "tools=true"
-              echo "legacy=true"
-              echo "shared_ui=true"
-            } >> "$GITHUB_OUTPUT"
-            exit 0
+            node scripts/ci-typescript-scope.mjs --all >> "$GITHUB_OUTPUT"
+          else
+            git diff --name-only "$BASE_SHA" "$HEAD_SHA" > "$RUNNER_TEMP/history-go-typescript-changed.txt"
+            cat "$RUNNER_TEMP/history-go-typescript-changed.txt"
+            node scripts/ci-typescript-scope.mjs "$RUNNER_TEMP/history-go-typescript-changed.txt" >> "$GITHUB_OUTPUT"
           fi
-
-          web=false
-          scripts=false
-          tools=false
-          legacy=false
-          shared_ui=false
-
-          git diff --name-only "$BASE_SHA" "$HEAD_SHA" > /tmp/history-go-typescript-changed.txt
-          cat /tmp/history-go-typescript-changed.txt
-
-          while IFS= read -r path; do
-            [[ -z "$path" ]] && continue
-
-            case "$path" in
-              .github/workflows/typescript-guard.yml|package.json|package-lock.json)
-                web=true
-                scripts=true
-                tools=true
-                legacy=true
-                shared_ui=true
-                ;;
-              tsconfig.web.json|build/*|dist/web/*)
-                web=true
-                shared_ui=true
-                ;;
-              tsconfig.scripts.json|tsconfig.scripts.build.json|scripts/*)
-                scripts=true
-                ;;
-              tsconfig.tools.json|tsconfig.tools.build.json|tools/*|types/*)
-                tools=true
-                ;;
-              tsconfig.json)
-                legacy=true
-                ;;
-              schemas/*)
-                web=true
-                legacy=true
-                shared_ui=true
-                ;;
-              js/*)
-                web=true
-                case "$path" in
-                  js/Civication/*) ;;
-                  *) shared_ui=true ;;
-                esac
-                case "$path" in
-                  *.js) legacy=true ;;
-                esac
-                ;;
-              *)
-                shared_ui=true
-                if [[ "$path" != */* && "$path" == *.js ]]; then
-                  legacy=true
-                  web=true
-                else
-                  # Any newly added source path that reaches this workflow is
-                  # treated conservatively until it receives an explicit scope.
-                  web=true
-                  scripts=true
-                  tools=true
-                  legacy=true
-                fi
-                ;;
-            esac
-
-            if [[ "$path" == scripts/*.js ]]; then
-              legacy=true
-            fi
-          done < /tmp/history-go-typescript-changed.txt
-
-          {
-            echo "web=$web"
-            echo "scripts=$scripts"
-            echo "tools=$tools"
-            echo "legacy=$legacy"
-            echo "shared_ui=$shared_ui"
-          } >> "$GITHUB_OUTPUT"
 
   typecheck-build:
     name: TypeScript typecheck and build guard

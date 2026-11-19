@@ -51,7 +51,8 @@ assert.equal(forecast.nokActive,true);
 assert.equal(forecast.balanceMinor,5000000);
 assert.equal(forecast.plannedMinor,23800);
 assert.equal(forecast.afterKnownPlansMinor,4976200);
-assert.equal(forecast.purchasedMinor,null);
+assert.equal(forecast.purchasedMinor,0,
+  'active NOK forecast shows zero paid receipts before explicit checkout');
 assert.equal(forecast.meals.length,1);
 assert.equal(w.CivicationNokBudget.monthlyCashFlow(wallet,'2026-01',
   w.CivicationCalendar.getGameDate).restaurantCents,0,
