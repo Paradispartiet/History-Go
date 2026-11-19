@@ -46,7 +46,10 @@ async function boot(seed) {
   assert.throws(() => w.CivicationMealPlan.applyTemplate('varied'), /dated NOK/);
   assert.equal(w.localStorage.getItem('hg_civi_meal_plans_v1'), legacyPlan);
   w.CivicationMealPlanUI.render();
-  assert.equal(w.document.querySelectorAll('#civiWeeklyMealPlanPanel select').length, 0, 'NOK has only one active planner');
+  assert.equal(w.document.querySelectorAll('#civiWeeklyMealPlanPanel select').length, 2,
+    'NOK keeps the sole dated home planner in Shop; these are restaurant week/slot filters');
+  assert.ok(w.document.querySelector('#civiWeeklyMealPlanPanel input[placeholder="Valgfritt"]'),
+    'Fysen restaurant budget is available alongside NOK grocery planning');
   assert.ok(w.document.querySelector('#civiWeeklyMealPlanPanel input[type=search]'), 'explicit Fysen archive search is preserved');
   assert.equal(shop.saveNokMealWeek(date, entries.slice().reverse()).skipped, true);
   assert.equal(state.getWallet().balance, 200);
