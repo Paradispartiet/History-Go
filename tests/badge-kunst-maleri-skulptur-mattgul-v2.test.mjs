@@ -7,7 +7,7 @@ const base = new URL('../', import.meta.url);
 const json = relative => JSON.parse(readFileSync(new URL(relative, base), 'utf8'));
 const sha256 = data => createHash('sha256').update(data).digest('hex');
 const blobSha = data => createHash('sha1')
-  .update(Buffer.concat([Buffer.from('blob ' + data.length + '\\0'), data]))
+  .update(Buffer.concat([Buffer.from('blob ' + data.length), Buffer.from([0]), data]))
   .digest('hex');
 
 test('Kunst v2: matte-yellow Maleri and Skulptur stay candidates with byte-identical WebP assets', () => {
