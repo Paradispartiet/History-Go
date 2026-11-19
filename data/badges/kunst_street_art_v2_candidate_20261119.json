@@ -1,0 +1,65 @@
+{
+  "id": "street_art",
+  "categoryId": "kunst",
+  "version": "v2",
+  "createdAt": "2026-11-19",
+  "status": "candidate_pending_visual_approval",
+  "quality": {
+    "visualApprovedByUser": false,
+    "appAndMasterInRepository": true,
+    "appAndMasterShaVerified": true,
+    "active": false
+  },
+  "preservation": {
+    "originalV1FilesUntouched": true,
+    "mainKunstBadgeUntouched": true,
+    "otherSubbadgesUntouched": true,
+    "placeCardUnchanged": true
+  },
+  "activationPolicy": "Do not activate without explicit user visual approval. After signoff, update only the relevant subBadgeImages entry in data/badges/kunst.json and run focused Kunst badge QA.",
+  "design": {
+    "topLabel": "KUNST",
+    "bottomLabel": "STREET ART",
+    "textColor": "white",
+    "outerBorder": "matte muted yellow embroidery, not metallic gold",
+    "preserveOriginalMotif": true,
+    "preserveOriginalTextAndRedBlueFabric": true,
+    "processing": "radial yellow-only recolor of the outer embroidered rope; inner 86.5% pixels, transparency, lettering, fabric and artwork unchanged from v1 source PNG",
+    "centralMotif": "Street mural, painted portrait and spray cans"
+  },
+  "images": {
+    "app": {
+      "path": "bilder/merker/kunst/undermerker/street_art-brodert-v2-matt-gul.webp",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 599424,
+      "sha256": "6940b4fcb35f23ed479841705b330b0a54120bfe7b61bf84862e0f7dadb821ac",
+      "gitBlobSha": "0d29995b7e8a0e648074023f9decf942dd13753a",
+      "format": "webp",
+      "alpha": true
+    },
+    "master": {
+      "path": "bilder/merker/kunst/originaler/street_art-brodert-v2-matt-gul-master-1254.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 806384,
+      "sha256": "d9ca02d527a4ea6c7caaeaf48f7b5da15a14b78dd761da9e59a39638bd5c439e",
+      "gitBlobSha": "2b9d9dc34a8fef19fe70c58be256a6e400ab6570",
+      "format": "webp",
+      "alpha": true
+    }
+  },
+  "highResolutionPngSource": {
+    "path": "bilder/merker/kunst/originaler/street_art-brodert-v2-matt-gul-original-1254.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2986756,
+    "sha256": "b1719ef736367afd3d3348c1d89259cc97aabd31937aa12f6849f6d2e41d6e91",
+    "gitBlobSha": "d71ad697d0f11eb9086e9e4d66cbc614275eae90",
+    "format": "png",
+    "alpha": true,
+    "package": "HistoryGo_Kunst_Street_Art_Kunsthistorie_mattgul_v2_kandidater.zip",
+    "repositoryUploaded": false,
+    "notes": "Full-resolution RGBA PNG archived in ChatGPT; both WebP assets byte-identical in GitHub PR branch."
+  }
+}
