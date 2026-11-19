@@ -463,25 +463,30 @@
     ensureQuizAction();
   }
 
-  // Show the actual Commons attribution where the visitor views each image.
-  // Keep external links outside the clickable legacy member button.
+  // Keep image source, kind and attribution visible without treating
+  // interpretive Structures artwork as an archival photograph.
+  // Links stay outside the clickable member button.
   function structureAttributionHtml(item) {
     const credit = s(item.imageCredit);
     const license = s(item.imageLicense);
     const source = [item.imageSource, ...item.sourceUrls].find(url => /^https:\/\//i.test(url));
     const licenseUrl = s(item.imageLicenseUrl);
-    if (!credit && !license) return "";
-    const photoCredit = credit ? '<span>Foto: ' + esc(credit) + '</span>' : "";
+    const illustrated = item.imageKind === "illustration";
+    const disclosure = s(item.imageDisclosure);
+    if (!item.image || (!credit && !license && !source && !illustrated && !disclosure)) return "";
+    const kindLabel = illustrated ? '<span class="pc-structure-illustration-label">Illustrasjon</span>' : "";
+    const namedCredit = credit ? '<span>' + (illustrated ? "Illustrasjon: " : "Foto: ") + esc(credit) + '</span>' : "";
     const linkedLicense = /^https:\/\//i.test(licenseUrl)
       ? '<a class="pc-structure-license-link" href="' + esc(licenseUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(license || "Lisens") + '</a>'
       : (license ? '<span>' + esc(license) + '</span>' : "");
     const linkedSource = source
-      ? '<a class="pc-structure-source-link" href="' + esc(source) + '" target="_blank" rel="noopener noreferrer">Bildekilde</a>'
+      ? '<a class="pc-structure-source-link" href="' + esc(source) + '" target="_blank" rel="noopener noreferrer">' + (illustrated ? "Historisk kilde" : "Bildekilde") + '</a>'
       : "";
+    const context = disclosure ? '<span class="pc-structure-context">' + esc(disclosure) + '</span>' : "";
     const adapted = /without crop|without cropping/i.test(s(item.imageTransformation))
       ? '<span>Tilpasset WebP uten beskjæring</span>'
       : "";
-    return '<div class="pc-structure-credit">' + photoCredit + linkedLicense + linkedSource + adapted + '</div>';
+    return '<div class="pc-structure-credit">' + kindLabel + namedCredit + linkedLicense + linkedSource + context + adapted + '</div>';
   }
 
   function renderRows(items, def) {
@@ -533,7 +538,7 @@
   function renderCollectionPreview(icon, preview, def, count) {
     icon.dataset.collectionItemCount = String(Number(count) || 0);
     const fallback = fallbackCollectionHtml(def, count);
-    const illustrated = def.id === "objects" && preview?.imageKind === "illustration";
+    const illustrated = (def.id === "objects" || def.id === "structures") && preview?.imageKind === "illustration";
     const visualPreviewSignature = preview?.image
       ? `member-image|${s(preview.id)}|${s(preview.image)}|${s(preview.title)}|${illustrated}`
       : `fallback|${s(def.id)}|${Number(count) || 0}`;
