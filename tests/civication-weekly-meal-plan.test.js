@@ -123,6 +123,11 @@ wallet = { balance:800, nok_v1:{ active:true, version:1 } };
 // A scheduled meal, even with a known price, cannot debit anything itself.
 window.CivicationCalendar.getGameDate = () => "2026-11-18";
 window.CivicationState.updateWallet = next => { walletWrites++; wallet = next; };
+// A separate unpaid plan stays in the forecast after today's meal is paid.
+plan.setRestaurantMeal(3,"dinner",{
+  restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Selskapsmiddag",
+  portions:1,priceMinor:29100,priceKind:"exact"
+});
 plan.setRestaurantMeal(0,"dinner",{
   restaurantId:"demo-public-restaurant",name:"Prøverestaurant",dishName:"Spillmiddag",
   portions:1,priceMinor:12500,priceKind:"from"
