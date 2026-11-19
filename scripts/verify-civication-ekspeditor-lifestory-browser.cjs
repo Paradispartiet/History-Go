@@ -567,6 +567,9 @@ async function playDayTwoReturnTraining(browser, label, viewport, choices, expec
 }
 
 async function continueThroughDayThree(page, label, viewport, choices, expected, trace) {
+  // Re-renders can replace a choice between scene lookup and scrolling.
+  // Recover only from that transient; never skip a scene or relax evidence checks.
+  let consecutiveDetachRetries = 0;
   const openDay = async () => {
     const popup = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
     if (await popup.isVisible().catch(() => false)) await popup.click({ timeout: 12000 });
@@ -609,7 +612,21 @@ async function continueThroughDayThree(page, label, viewport, choices, expected,
     const button = page.locator('[data-lifestory-scene="' + sceneId + '"][data-lifestory-choice'
       + (wanted ? '="' + wanted + '"' : '') + ']:not([disabled])').first();
     assert.equal(await button.count(), 1, label + ': chosen day-three action exists ' + sceneId);
-    await button.scrollIntoViewIfNeeded();
+    try {
+      await button.scrollIntoViewIfNeeded({ timeout: 12000 });
+    } catch (error) {
+      if (!/Element is not attached to the DOM|Element is detached from the DOM/i.test(String(error?.message || error))) {
+        throw error;
+      }
+      consecutiveDetachRetries++;
+      assert.ok(consecutiveDetachRetries <= 3,
+        label + ': unstable day-three scene after three consecutive DOM replacements: ' + sceneId);
+      // The next iteration rereads both persisted state and scene ID. It must
+      // still click one real choice and verify its exact archive consequence.
+      console.warn(label + ': day-three scene rerendered during scroll; resolving again ' + sceneId);
+      continue;
+    }
+    consecutiveDetachRetries = 0;
     const bounds = await button.boundingBox();
     assert.ok(bounds && bounds.width > 0 && bounds.x >= -2 && bounds.x + bounds.width <= viewport.width + 2);
     const focus = sceneId === 'd3_stamkunden_prismatch' || sceneId === expected.supportScene
