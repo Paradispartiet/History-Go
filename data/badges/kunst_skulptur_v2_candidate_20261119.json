@@ -1,0 +1,55 @@
+{
+  "id": "skulptur",
+  "categoryId": "kunst",
+  "version": "v2",
+  "createdAt": "2026-11-19",
+  "status": "candidate_pending_visual_approval",
+  "quality": {
+    "visualApprovedByUser": false,
+    "appAndMasterInRepository": true,
+    "appAndMasterShaVerified": true,
+    "active": false
+  },
+  "preservation": {
+    "originalV1FilesUntouched": true,
+    "mainKunstBadgeUntouched": true,
+    "otherSubbadgesUntouched": true,
+    "placeCardUnchanged": true
+  },
+  "activationPolicy": "Do not activate until explicit user visual approval. When approved, update only this candidate's subBadgeImages entry in data/badges/kunst.json and run focused Kunst badge tests.",
+  "design": {
+    "topLabel": "KUNST",
+    "bottomLabelColor": "white",
+    "outerBorder": "matte muted yellow stitched rope, warmer highlights reduced",
+    "preserveOriginalMotif": true,
+    "preserveOriginalTextAndRedBlueFabric": true,
+    "processing": "radial mask + color-limited HSV adjustment of outer yellow embroidered rope; all other source PNG pixels retained exactly",
+    "bottomLabel": "SKULPTUR",
+    "centralMotif": "classical stone bust with sculptor's mallet and chisel"
+  },
+  "images": {
+    "app": {
+      "path": "bilder/merker/kunst/undermerker/skulptur-brodert-v2-matt-gul.webp",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 452552,
+      "sha256": "d51404793f0286449f1a44c2034bcf6d6b8bd81f29e618b12fa0bbe09f40e4bf",
+      "gitBlobSha": "a1d20677985628549c7066bbcf2a6240ade003bf"
+    },
+    "master": {
+      "path": "bilder/merker/kunst/originaler/skulptur-brodert-v2-matt-gul-master-1254.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 639180,
+      "sha256": "4ed10d58673969808117204a98ca89b3edfda526e74437ae7d32439151edaa00",
+      "gitBlobSha": "820cf494140919f61ac8d792ad61da42e552c879"
+    }
+  },
+  "highResolutionPngSource": {
+    "package": "HistoryGo_Kunst_Maleri_Skulptur_mattgul_v2_kandidater.zip",
+    "repositoryUploaded": false,
+    "bytes": 3484789,
+    "sha256": "c63dc179ef23f24dd973c43a523ae54ac4540cf249e261172b5b76f0325160b7",
+    "notes": "Full-resolution corrected PNG archived in ChatGPT candidate package; exceeds connected GitHub transfer size. 1254px WebP master is present and verified in GitHub."
+  }
+}
