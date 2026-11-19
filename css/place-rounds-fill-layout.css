@@ -102,6 +102,17 @@
   background:#fff;
 }
 
+/* Show full façades, site plans and architectural drawings; do not crop
+   evidence-bearing edges just to fill a collection preview rectangle. */
+#placeCard .pc-icons-quad .pc-collection[data-collection-id="structures"]{
+  position:relative;
+  overflow:hidden;
+}
+#placeCard .pc-icons-quad .pc-collection[data-collection-id="structures"] > img.pc-person-img{
+  object-fit:contain;
+  background:#141619;
+}
+
 body.hg-app.hg-phone #placeCard .pc-side-stack,
 body.hg-app.hg-phone #placeCard .pc-icons-quad{
   width:100%;
@@ -240,6 +251,13 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   border-bottom:1px solid rgba(128,128,128,.25);
 }
 .pc-structure-member > .pc-person{width:100%;}
+/* Preserve the whole source image in the member row, not only the preview. */
+.pc-structure-member > .pc-person > img.pc-person-img{
+  object-fit:contain;
+  background:#141619;
+}
+.pc-structure-illustration-label{font-weight:700;}
+.pc-structure-context{flex-basis:100%;}
 .pc-structure-credit{
   display:flex;
   flex-wrap:wrap;
