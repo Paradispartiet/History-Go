@@ -1,0 +1,59 @@
+name: Aker Brygge — Tiger of Sweden official 2026 press wordmark candidate
+on:
+  push:
+    branches:
+      - feature/aker-brygge-tiger-official-press-logo-20261119
+    paths:
+      - .github/workflows/aker-brygge-tiger-press-wordmark.yml
+      - scripts/produce-aker-brygge-tiger-wordmark-from-press-pdf.mjs
+      - tests/aker-brygge-tiger-press-wordmark.test.mjs
+permissions:
+  contents: write
+concurrency:
+  group: aker-brygge-tiger-official-press-wordmark-candidate
+  cancel-in-progress: false
+jobs:
+  source-based-logo:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/aker-brygge-tiger-official-press-logo-20261119
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Ensure PDF page renderer is available
+        run: |
+          if ! command -v pdftoppm >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq poppler-utils
+          fi
+      - name: Download official Tiger of Sweden 2026 press PDF and crop actual wordmark
+        run: node scripts/produce-aker-brygge-tiger-wordmark-from-press-pdf.mjs
+      - name: Verify source crop, hashes, WebP and hold status
+        run: node --test tests/aker-brygge-tiger-press-wordmark.test.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aker-brygge-tiger-official-press-wordmark-candidate
+          path: |
+            bilder/kort/brands/source/aker_brygge/tiger_of_sweden_press_ss2026_authentic_wordmark_crop.png
+            bilder/kort/brands/candidates/aker_brygge/tiger_of_sweden.webp
+            reports/place-production/aker-brygge-tiger-official-press-wordmark-2026-11-19.json
+          if-no-files-found: error
+      - name: Store only non-published binary candidate and provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- bilder/kort/brands/source/aker_brygge/tiger_of_sweden_press_ss2026_authentic_wordmark_crop.png bilder/kort/brands/candidates/aker_brygge/tiger_of_sweden.webp reports/place-production/aker-brygge-tiger-official-press-wordmark-2026-11-19.json
+          if ! git diff --cached --quiet; then
+            git commit -m "assets(aker-brygge): archive source-backed Tiger of Sweden wordmark candidate"
+            git push origin HEAD:refs/heads/feature/aker-brygge-tiger-official-press-logo-20261119
+          fi
