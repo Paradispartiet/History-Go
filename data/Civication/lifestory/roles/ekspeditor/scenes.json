@@ -3776,6 +3776,729 @@
           }
         }
       ]
+    },
+    {
+      "id": "eksp_u1_d4_arbeidsliste",
+      "threadId": "arbeidsrytme_og_overskudd",
+      "dag": 4,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Restoppgavene er ikke en felles ferdigliste",
+      "tekst": "Lene viser tre typer poster fra tidligere vakter: faktisk gjennomført arbeid, meldte spørsmål og oppgaver som fortsatt står åpne. Et sendt notat betyr ikke at neste kollega har overtatt ansvaret.",
+      "valg": [
+        {
+          "id": "skill_poster",
+          "tekst": "Sorter hva som er gjort, hva som er meldt og hvem som må bekrefte resten",
+          "konsekvensTekst": "Du lager en sporbar oversikt uten å lukke gamle avvik eller tilskrive Amir ditt arbeid.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d4_oversikt": "skilt"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_om_prioritering",
+          "tekst": "Be Lene avklare rekkefølgen før du lover en ferdig liste",
+          "konsekvensTekst": "Prioriteringen er etterspurt, men ikke besluttet. De åpne oppgavene står fremdeles åpne.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d4_oversikt": "prioritering_venter"
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d4_hyllepris",
+      "threadId": "prisfeilen_i_koen",
+      "dag": 4,
+      "fase": "formiddag",
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ny prisstikkprøve må gjøres – uansett den gamle klagen",
+      "tekst": "På vei til kassa ser du en ny kampanjehylle. Den gamle kaffeprisen kan være korrigert allerede, men det sier ikke om disse etikettene stemmer med vare og tidsrom.",
+      "valg": [
+        {
+          "id": "kontroller_merke",
+          "tekst": "Sammenlign samme vare, størrelse og kampanjevilkår med kassa",
+          "konsekvensTekst": "Du har kontrollert én aktuell hylleetikett. Det beviser ikke at alle priser er korrekte.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d4_pris_kontrollert": true
+            },
+            "meters": {
+              "energi": -2,
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "registrer_prisrest",
+          "tekst": "Registrer at etiketten må undersøkes når det er avløsning",
+          "konsekvensTekst": "Du gjør ingen ubekreftet priskorrigering. Stikkprøven står åpen.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d4_prisrest_aapen": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d4_lageroversikt",
+      "threadId": "varen_som_ikke_finnes",
+      "dag": 4,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Tall i systemet er ikke varer på hylla",
+      "tekst": "Amir viser en vare som står med tre i systemet, men som ikke er synlig i riktig hylle. Han kan hjelpe med telling, men ingen av dere skal love kunden at varen er tilgjengelig før den er funnet.",
+      "valg": [
+        {
+          "id": "tell_riktig_vare",
+          "tekst": "Kontroller varenummer på lager og tell faktisk antall",
+          "konsekvensTekst": "Du teller riktig vare, noterer fysisk antall og hva som må avstemmes. Tellingen retter ikke systemtallet.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d4_lager_telt": true
+            },
+            "meters": {
+              "energi": -2,
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "meld_tellebehov",
+          "tekst": "Noter varenummeret og be om avtalt tid til telling",
+          "konsekvensTekst": "Telling er etterspurt. Du fører ingen beholdning som fysisk kontrollert.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d4_lager_telling_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d4_skiftnotat",
+      "threadId": "lukkingen",
+      "dag": 4,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Hvem overtar etter vaktslutt?",
+      "tekst": "Lene ønsker et kort skiftnotat før du går til avtalt tid. Det må skille dagens arbeid fra pris- og lagerposter som fortsatt trenger kontroll.",
+      "valg": [
+        {
+          "id": "send_faktisk_status",
+          "tekst": "Send notat om kontrollert arbeid og de konkrete åpne postene",
+          "konsekvensTekst": "Notatet er sendt. Neste medarbeider har ikke nødvendigvis bekreftet mottak.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d4_status_sendt": true
+            },
+            "meters": {
+              "synlighet": 2
+            }
+          }
+        },
+        {
+          "id": "behold_utkast",
+          "tekst": "Skriv et utkast, men merk overleveringen som uferdig",
+          "konsekvensTekst": "Ingenting er overlevert bare fordi du har skrevet utkastet.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d4_status_utkast": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d5_folgeseddel",
+      "threadId": "varen_som_ikke_finnes",
+      "dag": 5,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Leveransen kommer mens kassa trenger folk",
+      "tekst": "Amir viser en følgeseddel med 12 kolli. Antallet i bilen er ennå ikke kontrollert. En signatur for mottatt levering må ikke brukes som bevis for at alle 12 faktisk kom.",
+      "valg": [
+        {
+          "id": "tell_kolli",
+          "tekst": "Tell leverte kolli mot følgeseddelen før du registrerer noe",
+          "konsekvensTekst": "Du teller 11 kolli mot 12 på seddelen. Ett kolli må avklares før full levering kan kvitteres.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d5_mottak": "kontrollert",
+              "eksp_u1_d5_telleavvik": true
+            },
+            "meters": {
+              "energi": -3,
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avklar_bemanning",
+          "tekst": "Be om kasseavløsning før du starter mottakskontrollen",
+          "konsekvensTekst": "Bemanning er etterspurt. Antall kolli er fortsatt ukjent og levering ikke bekreftet.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d5_mottak": "ikke_kontrollert"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d5_manglende_kolli",
+      "threadId": "varen_som_ikke_finnes",
+      "dag": 5,
+      "fase": "formiddag",
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ett manglende kolli må føres som avvik",
+      "tekst": "Du fant 11 mot 12. Varene som faktisk kom, kan registreres; det siste kolliet kan ikke kalles mottatt. Amir vet ikke om det er blitt stående i bilen.",
+      "conditions": {
+        "flagg": {
+          "eksp_u1_d5_mottak": "kontrollert"
+        }
+      },
+      "valg": [
+        {
+          "id": "foer_mangel",
+          "tekst": "Registrer 11 mottatte kolli og meld differansen til ansvarlig",
+          "konsekvensTekst": "Avviket er sendt med antall og referanse til følgeseddelen. Årsaken er ikke bekreftet.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d5_avvik_sendt": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "ettersporr_kolli",
+          "tekst": "Be om ny kontroll før du fører mottaket ferdig",
+          "konsekvensTekst": "Det manglende kolliet er etterspurt, men ingen har bekreftet hvor det er.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d5_nytell_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d5_ikke_talt",
+      "threadId": "varen_som_ikke_finnes",
+      "dag": 5,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ubekreftet levering er ikke ferdig mottak",
+      "tekst": "Lene får vite at den planlagte kontrollen ble avbrutt. Hun ber om en konkret restpost, så neste person ikke tror at alle kolli er avstemt.",
+      "conditions": {
+        "flagg": {
+          "eksp_u1_d5_mottak": "ikke_kontrollert"
+        }
+      },
+      "valg": [
+        {
+          "id": "registrer_aapent",
+          "tekst": "Før leveransen som ikke ferdig kontrollert og oppgi hvorfor",
+          "konsekvensTekst": "Den åpne mottakskontrollen står i loggen. Ingen faktisk telling er tilskrevet deg.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d5_mottak_aapent": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_om_ny_tid",
+          "tekst": "Etterspør et nytt kontrollvindu med kasseavløsning",
+          "konsekvensTekst": "Ny tid er forespurt, ikke avtalt, og leveransen står uavklart.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d5_mottak_tid_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d5_status",
+      "threadId": "lukkingen",
+      "dag": 5,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Ufullført varemottak må videreføres",
+      "tekst": "Lene vil ha en status ved vaktslutt. Du kan overlevere hva du faktisk vet, men verken sendeord eller innført tall gjør en kontrollert mangel borte.",
+      "valg": [
+        {
+          "id": "send_mottaksstatus",
+          "tekst": "Send status om kontrollerte og åpne poster",
+          "konsekvensTekst": "Statusen er sendt. Lene må bekrefte at den er mottatt, og en leverandør må avklare eventuell mangel.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d5_status_sendt": true
+            },
+            "meters": {
+              "synlighet": 1,
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "avklar_etter_vakta",
+          "tekst": "Noter hva som mangler og spør hvem som tar resten",
+          "konsekvensTekst": "Neste ansvarlig er etterspurt. Det er ikke en bekreftet overlevering.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d5_ansvar_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d6_returhenvendelse",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "dag": 6,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "stamkunde",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "En retur er en henvendelse, ikke en godkjent utbetaling",
+      "tekst": "En kunde ønsker å levere tilbake en uåpnet matboks og viser en kvittering. Du må finne riktig vare, pris og hvilke vilkår som gjelder; den personlige fullmakten din kan være avgrenset.",
+      "valg": [
+        {
+          "id": "kontroller_grunnlag",
+          "tekst": "Kontroller kjøpsgrunnlag, vare og emballasje før du foreslår videre behandling",
+          "konsekvensTekst": "Fakta er samlet, men du har ikke godkjent utbetaling eller bytte.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d6_retur": "kontrollert"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_lene_avgjore",
+          "tekst": "Be Lene overta vurderingen før du lover kunden en løsning",
+          "konsekvensTekst": "Saken er sendt til leder for vurdering. Verken retur eller godkjenning har skjedd.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d6_retur": "leder_etterspurt"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d6_returgrunnlag",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "dag": 6,
+      "fase": "formiddag",
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kontrollert kvittering gir ikke automatisk returrett",
+      "tekst": "Du finner kvittering og varenummer. For den konkrete ordningen er det likevel Lene som må avgjøre denne returtypen. Kunden ønsker svar, men resultatet er ikke bestemt.",
+      "conditions": {
+        "flagg": {
+          "eksp_u1_d6_retur": "kontrollert"
+        }
+      },
+      "valg": [
+        {
+          "id": "send_saksfakta",
+          "tekst": "Send dokumenterte fakta til Lene og forklar kunden hva som gjenstår",
+          "konsekvensTekst": "Du har oversendt dokumentasjonen. Ingen vare er byttet og ingen penger er utbetalt.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d6_returfakta_sendt": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avvent_svar",
+          "tekst": "La saken stå åpen til du kan beskrive den presist",
+          "konsekvensTekst": "Kundens sak står åpen. Du har ikke bekreftet at Lene har fått en fullstendig vurdering.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d6_retur_venter": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d6_leder_ikke_avklart",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "dag": 6,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En forespørsel må ha et konkret grunnlag",
+      "tekst": "Lene spør etter vare, kvittering og hva kunden ber om. Hun har ikke sagt ja eller nei til denne saken.",
+      "conditions": {
+        "flagg": {
+          "eksp_u1_d6_retur": "leder_etterspurt"
+        }
+      },
+      "valg": [
+        {
+          "id": "innhent_dokument",
+          "tekst": "Fortell kunden hva du trenger, og registrer at dokumentasjon mangler",
+          "konsekvensTekst": "Manglende dokumentasjon er ført; saken er ikke avgjort.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d6_dokument_venter": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "avtal_oppfolging",
+          "tekst": "Be om et tidspunkt for når Lene kan gi et svar",
+          "konsekvensTekst": "Oppfølging er forespurt, men ikke bekreftet, og ingen retur er gjennomført.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d6_svaret_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d6_returmottak",
+      "threadId": "kunden_som_tror_du_bestemmer",
+      "dag": 6,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Lene bekrefter bare hva hun faktisk mottok",
+      "tekst": "Lene bekrefter at hun har fått dokumentasjonen du sendte. Hun trenger fortsatt kontroll av den konkrete returordningen før en eventuell avgjørelse.",
+      "conditions": {
+        "flagg": {
+          "eksp_u1_d6_returfakta_sendt": true
+        }
+      },
+      "valg": [
+        {
+          "id": "registrer_mottaket",
+          "tekst": "Før mottakskvitteringen, uten å registrere returen som godkjent",
+          "konsekvensTekst": "Lene har mottatt dokumentasjon. Retursaken er fortsatt under vurdering.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d6_lene_mottatt": true
+            },
+            "meters": {
+              "synlighet": 1,
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "avvent_kvittering",
+          "tekst": "Behold saken som sendt, men uten registrert mottaksbekreftelse",
+          "konsekvensTekst": "Saken er fortsatt sendt uten registrert mottak i din logg.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d6_mottak_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d7_ukeoversikt",
+      "threadId": "arbeidsrytme_og_overskudd",
+      "dag": 7,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Ukas siste vakt: hva er faktisk gjort?",
+      "tekst": "Lene vil ha en oversikt over den gjennomførte kasserunden, hyllepriser, leveransekontroll, returhenvendelser og restarbeid. Historien fra tidligere dager bestemmer hva du kan dokumentere.",
+      "valg": [
+        {
+          "id": "skill_arbeid_og_rest",
+          "tekst": "Skill utført arbeid fra meldte spørsmål, mottak og åpne avvik",
+          "konsekvensTekst": "Du har laget en faktisk ukeliste. Det står igjen arbeid selv om oversikten er ferdig.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d7_oversikt": "sporbar"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_om_avklaring",
+          "tekst": "Be om hjelp til å avstemme oppgavene du ikke kan dokumentere",
+          "konsekvensTekst": "Avklaring er etterspurt. Ingen ekstra kontroll eller løsning er oppdiktet.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d7_oversikt": "avklaring"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d7_siste_runde",
+      "threadId": "varen_som_ikke_finnes",
+      "dag": 7,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Siste hyllekontroll før ukeslutt",
+      "tekst": "Amir viser en hylle der riktig vare ligger på lager. Du kan gjennomføre påfyll og egenkontroll, eller registrere at oppgaven ikke rakk å bli gjort.",
+      "valg": [
+        {
+          "id": "fyll_paa",
+          "tekst": "Kontroller varenummer, fyll på hylla og registrer utført arbeid",
+          "konsekvensTekst": "Riktig vare er fylt på og kontrollert. Eventuelle eldre lageravvik er ikke dermed utbedret.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d7_hylle_utfort": true
+            },
+            "meters": {
+              "energi": -2,
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "foer_rest",
+          "tekst": "Før varepåfylling som utestående for neste vakt",
+          "konsekvensTekst": "Du unngår en falsk ferdigmelding, og oppgaven er fortsatt åpen.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d7_hylle_rest": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d7_ukerapport",
+      "threadId": "lukkingen",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Ukeavslutning må overleveres",
+      "tekst": "Du skal gå til avtalt tid. Rapporten må skille utført hylle- og kassaarbeid fra avvik som er meldt, saker som er mottatt og saker som venter. En samlet godkjent uke finnes ikke bare fordi du trykker send.",
+      "valg": [
+        {
+          "id": "send_rapport",
+          "tekst": "Send ukesrapporten med faktiske poster og åpne spørsmål",
+          "konsekvensTekst": "Ukesrapporten er sendt. Mottaksbekreftelsen må registreres separat.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d7_rapport_status": "sendt",
+              "eksp_u1_d7_rapport_sendt": true
+            },
+            "meters": {
+              "synlighet": 2
+            }
+          }
+        },
+        {
+          "id": "lagre_utkast",
+          "tekst": "Lagre en uferdig oversikt med tydelige restpunkter",
+          "konsekvensTekst": "Rapporten er et utkast. Ingen mottakskvittering er opprettet.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d7_rapport_status": "utkast"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d7_kvittering",
+      "threadId": "lukkingen",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "avsender": "butikksjef",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Kari? Nei – Lene bekrefter mottak i butikken",
+      "tekst": "Lene har mottatt den sendte ukesrapporten og oppgir hvilke åpne saker hun vil se på. Hun godkjenner ikke automatisk prisavvik, retur eller varelevering ved å bekrefte mottak.",
+      "conditions": {
+        "flagg": {
+          "eksp_u1_d7_rapport_status": "sendt"
+        }
+      },
+      "valg": [
+        {
+          "id": "registrer_lene",
+          "tekst": "Før Lenes uttrykkelige mottaksbekreftelse uten å lukke restoppgavene",
+          "konsekvensTekst": "Mottaket er dokumentert. Pris- og returspørsmål må fortsatt vurderes.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d7_lene_mottatt": true
+            },
+            "meters": {
+              "synlighet": 1,
+              "integritet": 2
+            },
+            "relasjoner": {
+              "butikksjef": 1
+            }
+          }
+        },
+        {
+          "id": "avvent_svar",
+          "tekst": "La mottaket stå uavklart i loggen",
+          "konsekvensTekst": "Rapporten er sendt, men du har ingen mottaksbekreftelse å føre.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d7_mottak_venter": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "eksp_u1_d7_oppsummering",
+      "threadId": "arbeidsrytme_og_overskudd",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "avsender": null,
+      "tilgjengelighet": "start",
+      "prioritet": 1,
+      "tittel": "Første arbeidsuke avsluttes med det som kan dokumenteres",
+      "tekst": "Du ser hva som ble gjort i kassa, på lageret og sammen med kolleger. Uavklarte avvik er fortsatt åpne. Faglig tillit, ekstra vakter og fullmakter kan ikke utledes fra en oppsummering alene.",
+      "valg": [
+        {
+          "id": "arkiver_fakta",
+          "tekst": "Arkiver de faktiske valgene og hva som står igjen",
+          "konsekvensTekst": "Første uke er oppsummert med reelle arbeidsspor og åpne oppfølgingspunkter.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d7_ukeslutt": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "be_om_oppfolging",
+          "tekst": "Oppsummer og etterspør ansvarlig for restpostene",
+          "konsekvensTekst": "Første uke er oppsummert. Oppfølging er bedt om, ikke automatisk gjennomført.",
+          "effekter": {
+            "flagg": {
+              "eksp_u1_d7_ukeslutt": true,
+              "eksp_u1_d7_oppfolging_etterspurt": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        }
+      ]
     }
   ]
 }
