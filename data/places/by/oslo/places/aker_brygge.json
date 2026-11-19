@@ -300,8 +300,86 @@
   "place_card_profile": {
     "schema": "history_go_place_card_profile_v2",
     "collection_ids": [
-      "people"
+      "people",
+      "structures"
     ],
-    "reason": "Kun People har dokumenterte bildeklare medlemmer på Aker Brygge. Ni registrerte Brands mangler bildeforhåndsvisninger og bevares uten tom PlaceCard-samling; ikke opprett fiktive Objects/Structures."
-  }
+    "reason": "People bevares. To kildeførte Structures er synlige som avgrensede historiske motiv: felles verkstedhallmiljø 2022 (ikke identifisert enkelthall), og tørrdokken fotografert 1929 (ikke påstand om dagens geometri). Ni Brands forblir upubliserte inntil egen identitets-/rettighetsvurdering."
+  },
+  "structures": [
+    {
+      "id": "aker_brygge_verkstedhallene_miljo",
+      "name": "Verkstedhallmiljøet i Bryggegata",
+      "title": "Verkstedhallmiljøet i Bryggegata",
+      "type": "historic_shipyard_halls_environment",
+      "period": "Fotografert i 2022",
+      "desc": "Et kildebelagt oversiktsfoto av teglfasader og det eldre verkstedhallmiljøet langs Bryggegata på Aker Brygge. Motivet viser bygningsmiljøet samlet. Bildet identifiserer verken Verkstedhallen eller Maskinhallen enkeltvis, og skal ikke brukes som fasadebevis for én bestemt hall.",
+      "why_here": "Den gamle verftsarkitekturen er en synlig del av omformingen fra skipsindustri til dagens byområde.",
+      "image": "bilder/kort/structures/aker_brygge_verkstedhallene_bryggegata_2022.webp",
+      "imageAlt": "Foto fra 2022 av teglfasader og eldre verkstedhallmiljø langs Bryggegata, uten identifikasjon av en enkelt hall.",
+      "imageKind": "photograph",
+      "imageMeta": {
+        "kind": "photograph",
+        "assetKind": "documentary_shared_structure_environment",
+        "creator": "Ssu",
+        "credit": "Ssu / Wikimedia Commons",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Bryggegata,_Oslo_(2022)_(3).jpg",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bryggegata,_Oslo_(2022)_(3).jpg",
+        "sourceSha256": "0ec350511d33055a20dfe11ccc6f4aa6543396540b9b512f9b6c426768ca02c9",
+        "assetSha256": "dbb00c9b707031e2cd620b6957df3f7c633b7edb4899e2199c3950d942e69ac8",
+        "sourceLocalPath": "bilder/kort/structures/source/aker_brygge/verkstedhallene_bryggegata_2022_original.jpg",
+        "outputDimensions": [
+          1200,
+          900
+        ],
+        "photoDate": "2022-06-14",
+        "transformation": "JPEG converted to full-frame WebP without crop; framed as shared building environment, not exact individual hall",
+        "reviewStatus": "sourced_environment_only_individual_hall_identity_unconfirmed",
+        "editorialLimit": "Miljøfotografi, ikke foto av separat identifisert Verkstedhallen eller Maskinhallen."
+      },
+      "source_urls": [
+        "https://www.oslo.kommune.no/get-file/111605/c9d377407250598967e3f0c172faa003d73e556370d733fcbaf0f93e5bc89e8f",
+        "https://commons.wikimedia.org/wiki/File:Bryggegata,_Oslo_(2022)_(3).jpg",
+        "https://oslobyleksikon.no/side/Aker_Brygge"
+      ]
+    },
+    {
+      "id": "aker_brygge_torrdokken_historisk_1929",
+      "name": "Tørrdokken ved Akers mekaniske verksted (1929)",
+      "title": "Tørrdokken ved Akers mekaniske verksted (1929)",
+      "type": "historic_shipyard_drydock",
+      "period": "1929 – historisk fotografi",
+      "desc": "Anders Beer Wilses fotografi fra 1929 dokumenterer skipet Frontenac i tørrdokken ved Akers mekaniske verksted, nå Aker Brygge. Fotografiet viser verftets historiske drift og er ikke et nåtidsfoto. Dagens nøyaktige dokkvegger og anleggsgrenser er ikke utledet fra dette motivet.",
+      "why_here": "Tørrdokken viser verftets produksjon og havnefunksjon før ombyggingen til Aker Brygge.",
+      "image": "bilder/kort/structures/aker_brygge_torrdokken_frontenac_wilse_1929.webp",
+      "imageAlt": "Historisk dokumentarfotografi fra 1929: Frontenac i tørrdokken ved Akers mekaniske verksted i Oslo.",
+      "imageKind": "photograph",
+      "imageMeta": {
+        "kind": "photograph",
+        "assetKind": "historic_documentary_drydock_photo",
+        "creator": "Anders Beer Wilse",
+        "credit": "Anders Beer Wilse / Oslo Museum (OB.Y3285), Wikimedia Commons",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Frontenac_(OB.Y3285).jpg",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Frontenac_(OB.Y3285).jpg",
+        "sourceSha256": "6492228a73dbdb5fe3c99a55150a597e35f33295f4a884ffa6d628ddbab94155",
+        "assetSha256": "ddd82538e2103f098362b1e4d3eefe9cdf9ffcf0bc7d7de867e8805d531e7139",
+        "sourceLocalPath": "bilder/kort/structures/source/aker_brygge/torrdokken_frontenac_wilse_1929_original.jpg",
+        "outputDimensions": [
+          1200,
+          900
+        ],
+        "photoDate": "1929",
+        "transformation": "Full composition transferred to 1200×900 WebP with neutral padding, no crop",
+        "reviewStatus": "historic_scene_source_matched_current_geometry_not_verified",
+        "editorialLimit": "Brukes kun som 1929-fotografi av historisk anlegg, ikke som dokumentasjon av dagens tørrdokk."
+      },
+      "source_urls": [
+        "https://snl.no/Akers_mekaniske_Verksted",
+        "https://commons.wikimedia.org/wiki/File:Frontenac_(OB.Y3285).jpg"
+      ]
+    }
+  ]
 }
