@@ -1,4 +1,4 @@
-name: Aker Brygge — original logo candidates (COS + Wikborg Rein)
+name: Aker Brygge — five official logo candidates
 on:
   push:
     branches:
@@ -29,7 +29,7 @@ jobs:
           cache: npm
       - name: Install pinned repository dependencies
         run: npm ci --no-audit --no-fund
-      - name: Download two documented Commons originals and render WebP candidates
+      - name: Download five documented original logos and render WebP candidates
         run: node scripts/produce-aker-brygge-brand-logo-candidates.mjs --write
       - name: Verify original hashes, export dimensions and non-publication
         run: node --test tests/aker-brygge-brand-logo-candidates.test.mjs
