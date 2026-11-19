@@ -115,17 +115,21 @@
       if (!height) return;
       const bounds = owningHero.getBoundingClientRect();
       const headingBounds = hero.getBoundingClientRect();
-      // The former minimum-height calculation used the title's bottom edge.
-      // With a bottom-aligned heading that prevents nearly all collapse.
-      // Show roughly the upper half of the original photograph when scrolled;
-      // shift the original heading contents up alongside the cropped edge.
+      // The layout slot stays full height while only its bottom is clipped.
+      // A fixed 46% minimum can clip the real title above the visible photo
+      // when category/epoch text wraps on a narrow phone. Calculate the
+      // maximum safe crop from the title's actual top edge instead.
       naturalHeight = Math.ceil(Math.max(height, hero.offsetHeight)
         + Math.max(0, headingBounds.top - bounds.top));
-      const titleHeight = Math.ceil(title.getBoundingClientRect().height);
+      const currentCrop = parseFloat(card.style.getPropertyValue("--pc-hero-collapse-offset")) || 0;
+      // The heading content was moved by -currentCrop after a prior scroll.
+      // Undo that movement for a stable measurement during resize/remeasure.
+      const titleTop = title.getBoundingClientRect().top - headingBounds.top + currentCrop;
+      const safeCrop = Math.max(0, titleTop - 12);
       minimumHeight = Math.min(naturalHeight, Math.max(
         96,
         Math.ceil(naturalHeight * 0.46),
-        titleHeight + 18
+        naturalHeight - safeCrop
       ));
       card.style.setProperty("--pc-original-hero-height", height + "px");
       card.classList.add("is-original-photo-pinned");
