@@ -29,14 +29,16 @@ De 199 livsposisjonene skal behandles etter samme krav gjennom sin faktiske roll
 | Renholder – V1-status | **Automatisert teknisk V1 godkjent:** 101 scener, gjennomspilling dag 1–21, lønnsoppgjør på dag 8/15/22 og simulert kontogjenoppretting, merget i [#7429](https://github.com/Paradispartiet/History-Go/pull/7429), [#7440](https://github.com/Paradispartiet/History-Go/pull/7440) og [#7444](https://github.com/Paradispartiet/History-Go/pull/7444). **Full V1 på fysisk iPad og faktisk synk mellom enheter er fortsatt åpent.** |
 | Fysisk iPad/Safari | **Åpen – ikke utført.** Kjør én manuell test på ekte iPad: åpne [renholderens spill](https://paradispartiet.github.io/History-Go/Civication.html?lifestoryRole=renholder), spill minst én dag med innboks/dagskifte, last siden på nytt og kontroller historikk, test stående/liggende og noter faktisk resultat. Rolleparameteren er et eget testspor, ikke et bevis på opptjent ansettelse. [Full sjekkliste og registreringskrav](civication-symposium/renholder.md#fysisk-ipadsafari--åpen-kontroll). |
 
-## Ekspeditør – første arbeidsuke (pågående)
+## Ekspeditør – samlet utviklingsstatus
 
 | Del | Dokumentert status / kontrollport |
 | --- | --- |
-| Identitet og yrkesgrunnlag | Én kanonisk Life Story `ekspeditor` med [kildeprofil og ordliste](civication-symposium/ekspeditor.md) og [samlet synopsis](civication-synopsis/ekspeditor.md). Eksisterende arbeidstråder og karrieremail beholdes. |
-| Dag 1–3 | 59 forfattede scener fra tidligere arbeid: kasse, prisavvik, retur, varemottak, avløsning og lederfullmakt. Eldre scenerevisjoner og testbevis gir ikke automatisk godkjenning av nye dager. |
-| Dag 4–7 | [Ny ekspeditørbolk](https://github.com/Paradispartiet/History-Go/tree/feat/civication-ekspeditor-d4-7-20261119): 17 nye scener, totalt 76. Første uke skiller faktisk telling, levering, sendt avvik, mottak, returmyndighet og bekreftet overlevering. Samme Life Story og Symposium brukes; automatisk kontroll og merge må dokumenteres før dette markeres ferdig. |
-| Utgivelser og brukerreise | Første uke er ikke det samme som en full 21-dagers V1. Organisk opptjent ansettelse, karrieremail, lønn, oppgavelagring og fysisk iPad Safari krever eget relevant bevis og skal ikke utledes fra rolleparameteren. |
+| Identitet og yrkesgrunnlag | Én kanonisk Life Story `ekspeditor` med [kildeprofil og ordliste](civication-symposium/ekspeditor.md), [samlet synopsis](civication-synopsis/ekspeditor.md) og eksisterende karrieremail. Ingen ny parallell rolleliste. |
+| Dag 1–3 | 59 eldre scener om kasse, prisavvik, retur, opplæring, lager og lederfullmakt. Spilles og kontrolleres fortsatt med samme rolle- og nettlesertester. |
+| Dag 4–7 | [PR #7456](https://github.com/Paradispartiet/History-Go/pull/7456) er **merget** med 17 nye scener (76 samlet). Full Civication-regresjon og ekspeditørens mobil-/iPad-nettleserkontroll bestod før merge. Uke 1 har faktisk kontroll, meldt avvik, mottaksbekreftelse og åpne restposter som separate hendelser. |
+| Dag 8–14 | [PR #7463](https://github.com/Paradispartiet/History-Go/pull/7463) inneholder 27 nye scener (103 totalt) og tre gjennomspillinger dag 1–14 i eksisterende rolletest. Leveranseavvik, beholdning, retur, vikaropplæring, pris og arbeidstid forblir etterprøvbare. **Bolken er under godkjenning; test og merge er ikke bekreftet.** |
+| Ukeavslutning og videreføring | Dag 7 er et kapitelskille, dag 14 foreløpig siste forfattede dag. Ingen dialogvalg gir automatisk lønn, refusjon, korrigert lager eller innvilget ekstravakt. |
+| Full V1 / iPad | **Åpen.** Dag 15–21 er ikke skrevet. Organisk ansettelse, jobbmail, faktisk arbeidstids-/lønnssystem, kontolagring, synk mellom enheter og fysisk iPad Safari er ikke integrert V1-verifisert for ekspeditør. |
 
 ## Hvordan listen brukes
 
