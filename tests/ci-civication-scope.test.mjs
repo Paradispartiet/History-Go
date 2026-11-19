@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { artworkOnlyBadgeRegistryChange, needsCivicationRegression } from '../scripts/ci-civication-scope.mjs';
+import { artworkOnlyBadgeRegistryChange, needsCivicationRegression, classifyCivicationChanges } from '../scripts/ci-civication-scope.mjs';
 
 const original = {
   id: 'vitenskap',
@@ -62,7 +62,10 @@ test('changed Civication code or test still requires the complete suite, even wi
     'tests/acceptance-civication-core.test.js',
     'scripts/audit-civication-progression.mjs',
     'package.json',
-    '.github/workflows/civication.yml'
+    '.github/workflows/civication.yml',
+    'scripts/ci-civication-scope.mjs',
+    'tests/ci-civication-scope.test.mjs',
+    'tests/ci-civication-draft-gates.test.mjs'
   ]) {
     assert.equal(needsCivicationRegression([badgePath, changed], readVersions(original, v7)), true, changed);
   }
@@ -73,8 +76,7 @@ test('excluded/generated Civication paths and unrelated science tests do not tri
     'data/Civication/historyPeople_index.json',
     'data/Civication/scenarioPeople_index.json',
     'tests/civication-psychology-room-theory.test.js',
-    'tests/vitenskap-active-typography-audit.test.mjs',
-    'scripts/ci-civication-scope.mjs'
+    'tests/vitenskap-active-typography-audit.test.mjs'
   ], readVersions(original, v7)), false);
 });
 
@@ -82,3 +84,60 @@ test('unchanged or unknown badge semantics are not misclassified as artwork repl
   assert.equal(artworkOnlyBadgeRegistryChange(original, original), false);
   assert.equal(needsCivicationRegression([badgePath], readVersions(original, original)), true);
 });
+
+
+const noBadgeRead = () => { throw Error('unexpected badge read'); };
+test('role-only edits for approved roles use focused validation on draft and ready PRs', () => {
+  const renholder = classifyCivicationChanges([
+    'data/Civication/lifestory/roles/renholder/scenes.json',
+    'data/Civication/lifestory/roles/renholder/threads.json',
+    'tests/civication-lifestory-renholder-uke3.test.js',
+    'docs/civication-symposium/renholder.md'
+  ], noBadgeRead);
+  assert.deepEqual(renholder, { regression: false, focused: true, roles: ['renholder'] });
+  assert.equal(needsCivicationRegression([
+    'data/Civication/lifestory/roles/renholder/scenes.json'
+  ], noBadgeRead), false);
+  assert.deepEqual(classifyCivicationChanges([
+    'data/Civication/lifestory/roles/ekspeditor/role.json',
+    'data/Civication/lifestory/roles/ekspeditor/scenes.json',
+    'tests/civication-lifestory-ekspeditor.test.js'
+  ], noBadgeRead), { regression: false, focused: true, roles: ['ekspeditor'] });
+  assert.deepEqual(classifyCivicationChanges([
+    'data/Civication/lifestory/roles/ekspeditor/scenes.json',
+    'data/Civication/lifestory/roles/renholder/scenes.json'
+  ], noBadgeRead), { regression: false, focused: true, roles: ['ekspeditor','renholder'] });
+});
+
+test('unknown roles, shared state, changes to CI itself and generated registries fail closed to full suite', () => {
+  const paths=[
+    'data/Civication/lifestory/roles/new_role/scenes.json',
+    'data/Civication/lifestory/roles/ekspeditor/other.json',
+    'data/Civication/lifestory/manifest.json',
+    'data/Civication/careerGameplayMatrix.json',
+    'data/Civication/roleWorldRolloutReadiness.json',
+    'js/Civication/lifestory/lifestoryRunner.js',
+    'tests/civication-lifestory-endings.test.js',
+    'scripts/ci-civication-scope.mjs',
+    '.github/workflows/civication.yml',
+    'tests/ci-civication-draft-gates.test.mjs'
+  ];
+  for(const path of paths) {
+    assert.deepEqual(classifyCivicationChanges([
+      'data/Civication/lifestory/roles/ekspeditor/scenes.json',path
+    ], noBadgeRead), { regression: true, focused: false, roles: [] },path);
+  }
+});
+
+test('badge art and supported role changes use focused tests; badge semantic changes use full suite', () => {
+  assert.deepEqual(classifyCivicationChanges([
+    badgePath, 'data/Civication/lifestory/roles/renholder/role.json'
+  ], readVersions(original,v7)), { regression:false, focused:true, roles:['renholder'] });
+  assert.deepEqual(classifyCivicationChanges([
+    badgePath, 'data/Civication/lifestory/roles/renholder/role.json'
+  ], readVersions(original,original)), { regression:true, focused:false, roles:[] });
+  assert.deepEqual(classifyCivicationChanges([
+    'data/Civication/historyPeople_index.json','tests/vitenskap-v7-activation-proposal.test.mjs'
+  ],noBadgeRead), { regression:false, focused:false, roles:[] });
+});
+
