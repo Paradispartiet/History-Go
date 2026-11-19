@@ -1,0 +1,53 @@
+name: Aker Brygge — Snekkerbygget original illustration candidate
+on:
+  push:
+    branches:
+      - assets/aker-brygge-snekkerbygget-illustration-20261119
+    paths:
+      - .github/workflows/aker-brygge-snekkerbygget-illustration.yml
+      - scripts/produce-aker-brygge-snekkerbygget-illustration.mjs
+      - tests/aker-brygge-snekkerbygget-illustration.test.mjs
+permissions:
+  contents: write
+concurrency:
+  group: aker-brygge-snekkerbygget-original-illustration
+  cancel-in-progress: false
+jobs:
+  archive-original-illustration:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: assets/aker-brygge-snekkerbygget-illustration-20261119
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Render original source-bounded architectural illustration
+        run: node scripts/produce-aker-brygge-snekkerbygget-illustration.mjs
+      - name: Verify SVG, WebP, identity and no false-photo publication
+        run: node --test tests/aker-brygge-snekkerbygget-illustration.test.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aker-brygge-snekkerbygget-original-illustration-candidate
+          path: |
+            bilder/kort/structures/source/aker_brygge/snekkerbygget_architectural_illustration.svg
+            bilder/kort/structures/candidates/aker_brygge/snekkerbygget_architectural_illustration.webp
+            reports/place-production/aker-brygge-snekkerbygget-illustration-candidate-2026-11-19.json
+          if-no-files-found: error
+      - name: Commit only held illustration and original provenance files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- bilder/kort/structures/source/aker_brygge/snekkerbygget_architectural_illustration.svg bilder/kort/structures/candidates/aker_brygge/snekkerbygget_architectural_illustration.webp reports/place-production/aker-brygge-snekkerbygget-illustration-candidate-2026-11-19.json
+          if ! git diff --cached --quiet; then
+            git commit -m "assets(aker-brygge): archive original Snekkerbygget illustration candidate"
+            git push origin HEAD:refs/heads/assets/aker-brygge-snekkerbygget-illustration-20261119
+          fi
