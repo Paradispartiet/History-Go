@@ -35,6 +35,7 @@
       card.style.removeProperty("--pc-original-hero-height");
       card.style.removeProperty("--pc-visible-hero-height");
       card.style.removeProperty("--pc-hero-collapse-offset");
+      card.style.removeProperty("--pc-reader-runway");
       shellHero = null;
       naturalHeight = 0;
       minimumHeight = 0;
@@ -43,17 +44,10 @@
     function renderScroll() {
       frameScheduled = false;
       if (!shellHero || !naturalHeight || !card.classList.contains("is-original-photo-pinned")) return;
-      // On desktop, the sticky photograph must yield when someone reads below
-      // it. Otherwise a tall hero covers the native QuizCard pointer target.
-      // Retain the pinned initial overview and historical source caption; keep
-      // the hero unpinned until the reader has returned almost to the top.
-      // Mobile retains the existing pinned-photo behavior.
-      const quizAvailable = window.innerWidth >= 721 &&
-        card.querySelector("#pcFrontCardFlip.has-quiz-card") instanceof HTMLElement;
-      const releaseAt = Math.max(280, Math.min(350, Math.round(naturalHeight * 0.55)));
-      const reading = card.classList.contains("is-quizcard-reading");
-      card.classList.toggle("is-quizcard-reading", quizAvailable &&
-        (reading ? scroller.scrollTop > 48 : scroller.scrollTop >= releaseAt));
+      // Do not automatically release the sticky photograph at an arbitrary
+      // scroll threshold. Switching position:sticky to position:relative here
+      // made the title suddenly jump away on iPad after the first scroll stop.
+      // The smaller collapsed hero and scroll padding leave room for reading.
 
       // Continuous crop of the ORIGINAL photograph; font, badges, positions,
       // source image and image scaling stay exactly the same.
@@ -130,11 +124,29 @@
       const titleHeight = Math.ceil(title.getBoundingClientRect().height);
       minimumHeight = Math.min(naturalHeight, Math.max(
         96,
-        Math.ceil(naturalHeight * 0.53),
+        Math.ceil(naturalHeight * 0.46),
         titleHeight + 18
       ));
       card.style.setProperty("--pc-original-hero-height", height + "px");
       card.classList.add("is-original-photo-pinned");
+      // On a short Place Sheet the initial hero + 3:4 QuizCard may be taller
+      // than the scroll pane. Provide only the missing scroll range needed to
+      // reveal the *entire* card below the compact sticky heading. Preserve
+      // the original content height to prevent scrollTop feedback and jumps.
+      const flip = card.querySelector("#pcFrontCardFlip");
+      if (window.innerWidth >= 721 && flip instanceof HTMLElement && flip.getBoundingClientRect().height > 0) {
+        const previousRunway = parseFloat(card.style.getPropertyValue("--pc-reader-runway")) || 0;
+        const topInScrollContent = flip.getBoundingClientRect().top -
+          scroller.getBoundingClientRect().top + scroller.scrollTop;
+        const targetScroll = Math.max(0, Math.ceil(topInScrollContent - minimumHeight - 14));
+        const ordinaryMaxScroll = Math.max(0, scroller.scrollHeight - scroller.clientHeight - previousRunway);
+        const requiredRunway = Math.max(0, targetScroll - ordinaryMaxScroll);
+        if (Math.abs(requiredRunway - previousRunway) > 1) {
+          card.style.setProperty("--pc-reader-runway", requiredRunway + "px");
+        }
+      } else {
+        card.style.removeProperty("--pc-reader-runway");
+      }
       updateTitleContrast();
       scheduleScroll();
     }
