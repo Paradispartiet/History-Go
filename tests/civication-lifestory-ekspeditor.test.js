@@ -1065,3 +1065,28 @@ assert.ok(!sentUnacknowledgedThreeWeeks.tidligereValg.eksp_u3_d21_lene_mottatt,
 assert.strictEqual(sentUnacknowledgedThreeWeeks.tidligereValg.eksp_u3_d21_kvittering_venter,true);
 console.log("Ekspeditør days 1–21: three full played routes, causal evidence and strict three-week end passed");
 
+
+// Editorial quality guard: earned positive moments belong to actions, and
+// characters still cannot confer pay, unverified authority or an invented result.
+for (const [sceneId, optionId, evidence] of [
+  ["eksp_u1_d7_siste_runde","fyll_paa",/takk/i],
+  ["eksp_u2_d11_opplaere_vikar","vis_og_test",/Der satt den/i],
+  ["eksp_u3_d19_vikarens_oppgave","la_prove",/mestring|kan gjøre denne selv/i],
+  ["eksp_u3_d19_kunde_klager","beklag_og_forklar",/hørte etter/i]
+]) {
+  const sc=raw.roleScenes.scenes.find(s=>s.id===sceneId);
+  assert.ok(sc,"existing authored scene preserved: "+sceneId);
+  const win=sc.valg.find(x=>x.id===optionId);
+  assert.ok(win,"positive action exists: "+sceneId+"/"+optionId);
+  assert.match(win.konsekvensTekst,evidence,sceneId+": specific earned human response");
+  assert.ok(sc.valg.some(x=>x.id!==optionId),sceneId+": legitimate alternative remains playable");
+}
+const goodVikar=raw.roleScenes.scenes.find(x=>x.id==="eksp_u2_d11_opplaere_vikar");
+assert.strictEqual(goodVikar.valg.find(v=>v.id==="vis_og_test").effekter.flagg.eksp_u2_d11_vikar_opplaert,true);
+assert.ok(!goodVikar.valg.find(v=>v.id==="sporr_amir").effekter.flagg.eksp_u2_d11_vikar_opplaert,
+  "asking Amir to teach cannot award the player teaching evidence");
+const roughCustomer=raw.roleScenes.scenes.find(x=>x.id==="eksp_u3_d19_kunde_klager");
+assert.ok(!roughCustomer.valg.some(v=>v.effekter.flagg.eksp_u3_d19_retur_godkjent),
+  "a customer being listened to never auto-approves a refund");
+console.log("Ekspeditør narrative quality: earned warmth, teachable confidence and boundaries intact");
+
