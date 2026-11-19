@@ -7,7 +7,7 @@
   "production_profile": "standard",
   "profile_status": "confirmed",
   "canonical_source": "data/places/by/oslo/places/aker_brygge.json",
-  "active_phase": "Aker Brygge v1 verifisert på main: kildeført bildepar, eksisterende Fagverk, fullquiz og QuizCard samt reell mobil-/desktop-akseptanse",
+  "active_phase": "Verifisert Aker Brygge v1; to kildeførte historiske Structures i PR #7464 til målrettet visuell kontroll. Øvrig innhold bevares.",
   "source_review": {
     "site": "Akers mekaniske Verksted på Holmen ved Pipervika, transformert til Aker Brygge",
     "sources": [
@@ -31,14 +31,15 @@
     "people": "PASS: fem eksisterende People-registreringer; Hariton Pushwagners autentiske portrett er filverifisert og lastet i PlaceCard. Tinashe Williamsons eldre filreferanse finnes ikke i repoet; personoppføringen beholdes uten å framstille det som et verifisert bilde. Øvrige personer er foreløpig tekstbaserte.",
     "brands": "HOLD: 9/9 eksisterende merkevarer har nå dokumenterte originalkilder og WebP-kandidater på main (PR #7439, #7442, #7445, #7448); 0/9 er redaksjonelt/rettslig godkjent for PlaceCard. Aktiv Brands-knapp holdes skjult inntil kilde- og rettighetsporter samt målrettet nettlesertest består.",
     "objects": "BEGRUNNET N/A: ingen dokumenterte bildeklare separate Objects godkjent",
-    "structures": "HOLD: seks dokumenterte bygnings-/anleggskandidater. To kildeførte Structure-bildekandidater: 1) Bryggegata-oversikt av verkstedhallmiljøet, Ssu 2022, 1200×900 WebP, CC BY-SA 4.0 (PR #7451); 2) faktisk tørrdokk med Frontenac, Anders Beer Wilse 1929, Oslo Museum OB.Y3285, 1200×900 WebP, CC BY-SA 4.0 (PR #7457). Begge har bevarte originaler, kontrollsummer og visuell kontroll. Ingen enkeltbygg- eller nåtidsdokk-Structure er aktivert uten eksakt identitet.",
+    "structures": "STAGED PR #7464: to source-autentiske historiske Structures med kanoniske WebP: 1) Bryggegata bygningsmiljø foto Ssu 2022, CC BY-SA 4.0, ikke identifisert enkelthall; 2) tørrdokken med Frontenac, Wilse/Oslo Museum OB.Y3285 foto 1929, CC BY-SA 4.0, ikke dokumentasjon av dagens dokkgrenser. Originaler og bildesjekksummer er arkivert. Publisering, kilder i reell PlaceCard og mobil-/desktop-QA må bekreftes før ferdigstatus.",
     "fagverk": "PRESERVED: seks kurerte historiske artikkelavsnitt, linser og kildegrunnlag",
     "fullquiz": "PRESERVED: 8 × 7 = 56 eksisterende spørsmål og samtlige kanoniske ID-er",
     "quizcard": "PASS: 10/10 fra eksisterende fullquiz med lik fasit og Knowledge",
     "stories": "Ingen nye Story-medlemmer uten kildeevidens"
   },
   "collection_ids": [
-    "people"
+    "people",
+    "structures"
   ],
   "existing_content": {
     "fullquiz_questions": 56,
@@ -52,11 +53,13 @@
     "model": "PASS: kilde/lisens/WebP-SHA-256 samt 56/56 fullquiz og QuizCard 10/10 samsvar, målrettet Actions.",
     "place_open": "PASS: eksakt Place-open-generatorparitet.",
     "browser": "PASS: GitHub Actions run 44308343863, mobil 390 px og desktop 1440 px. Begge bildepar og ekte Hariton Pushwagner-preview lastet; PlaceCard/QuizCard åpnet og vendt uten JavaScript-feil.",
-    "read_first": "PASS: GitHub Actions 44304825182 og målrettet kontroll i 44308343863."
+    "read_first": "PASS: GitHub Actions 44304825182 og målrettet kontroll i 44308343863.",
+    "structures_browser": "PENDING_REAL_PLACE_CARD_QA_FOR_PR_7464",
+    "structures_source_integrity": "PASS: source and derivative SHA-256 preserved from archived candidate reports"
   },
   "vferdig": {
     "status": "NOT_CLAIMED",
-    "reason": "V1 er bekreftet, 9/9 Brand-kandidater er arkivert men ikke publiseringsgodkjent, og to historiske/arkitektoniske Structure-bildekandidater er kildeklare men ingen Structures er aktivert. Verifiserte separate fasadebilder, rettighets-/redaksjonell godkjenning, Tinashe-portrett og målrettet PlaceCard QA gjenstår før vFerdig."
+    "reason": "V1 for Aker Brygge er fortsatt verifisert. To historiske Structures-bilder er koblet til PlaceCard i PR #7464, men egen publiserings- og visuell akseptanse gjenstår. Ni Brands mangler publiseringsgodkjenning, og individuelle hallidentiteter/modern dock geometry påstås ikke."
   },
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
