@@ -2,7 +2,9 @@ name: Materialize Øvre spinneri quiz registries
 on:
   push:
     branches: [work/spinner-materialize-20261118]
-    paths: ['.github/workflows/spinner-materialize-once.yml']
+    paths:
+      - '.github/workflows/spinner-materialize-once.yml'
+      - 'data/quiz/historie/seilduksfabrikken_nydalen_sets.json'
 permissions:
   contents: write
 jobs:
