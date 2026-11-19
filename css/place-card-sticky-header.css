@@ -5,7 +5,11 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   position: sticky;
   top: 0;
   z-index: 9;
-  height: var(--pc-visible-hero-height);
+  /* Keep the layout slot at its original height. A dynamically shrinking
+     sticky box changes scrollHeight while the user scrolls, making the card
+     underneath jump behind the hero. Only clip its visible lower edge. */
+  height: var(--pc-original-hero-height);
+  clip-path: inset(0 0 var(--pc-hero-collapse-offset, 0px) 0);
   box-sizing: border-box;
   overflow: hidden;
   background: #101721;
@@ -13,18 +17,8 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
   isolation: isolate;
 }
 
-/* On larger screens a tall, uncropped Place overview remains pinned while
-   reading. Once a QuizCard is flipped, its expand button lives farther down
-   the same scroll pane; a sticky hero can cover that real pointer target.
-   Let the authentic hero scroll out with the content during QuizCard reading.
-   Do not disable hit testing or simulate clicks through the photograph. */
-@media (min-width: 721px) {
-  body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned.is-quizcard-reading .pc-sheet-hero,
-  body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned:has(#pcFrontCardFlip.is-flipped) .pc-sheet-hero {
-    position: relative;
-    z-index: 1;
-  }
-}
+/* Scrolling and flipping QuizCard must never unpin the heading abruptly.
+   Explicit navigation to a reading section still releases it below. */
 
 /* Retain the original image's object-fit geometry while the outer wrapper
    reveals less from its bottom. Neither icons nor text are resized. */
@@ -69,6 +63,8 @@ body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-
 body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-body {
   scroll-padding-top: calc(var(--pc-visible-hero-height, 0px) + 12px);
   scroll-padding-bottom: 16px;
+  /* The runway is zero when existing content already provides enough scroll. */
+  padding-bottom: calc(16px + var(--pc-reader-runway, 0px));
 }
 
 /* Reading navigation yields the real sticky photo, including on phones.
