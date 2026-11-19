@@ -37,6 +37,26 @@
     {
       "url": "https://akershuseiendom.no/lokaler/snekkerbygget?b=%2F",
       "claim": "Snekkerbygget omtales som et eldre snekkerverksted/administrasjonsbygg fra 1854; identitet og datering krever uavhengig kildekontroll"
+    },
+    {
+      "url": "https://darkarkitekter.no/prosjekt/snekkerbygget",
+      "claim": "Arkitekten beskriver Snekkerbygget og Administrasjonsbygget som to bevarte historiske bygninger med nyere mellombygg og overgangstrapp."
+    },
+    {
+      "url": "https://oslobyleksikon.no/side/Stranden",
+      "claim": "Stranden 3–5 omtales som to opprinnelige verkstedhaller; senere bruk fra 1985 og Black Box 1985–2003."
+    },
+    {
+      "url": "https://www.norwegianproperty.no/no/vacant-premises/bryggegata-3-aker-brygge-modern-office-space-of-high-quality-with-a-sea-view",
+      "claim": "Eierforvalters siden oppgir byggeår 1855 i metadata, men teksten sier oppført 1895. Dette er en reell intern kildekonflikt, ikke et verifisert oppføringsår."
+    },
+    {
+      "url": "https://www.betonmast.no/2025/11/04/betonmast-signerer-byggekontrakt-med-norwegian-property/",
+      "claim": "Entreprenør bekrefter Bryggegata 9 som Snekkerbygget, i historisk skipsverftsmiljø og med rehabiliteringsplan."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bryggegata,_Oslo_(2022)_(3).jpg",
+      "claim": "Fotografi av teglfasade i Bryggegata, foto Ssu 14.06.2022; 3767×2825 JPG, CC BY-SA 4.0, SHA-1 eb45a0f9ea81d218715a56eddb300d132e4accf7. Bekreftes som oversiktsbilde av bygningsmiljøet, ikke eksakt hall-ID."
     }
   ],
   "candidates": [
@@ -54,7 +74,11 @@
       "next": "Bekreft eksakt gnr/bnr/adresse og forholdet til maskinverksted- og dieselverkstednavn; få eget overblikkfotografi",
       "sourceStrength": "strong_named_structure",
       "visualSourceApproved": false,
-      "publishable": false
+      "publishable": false,
+      "identityEvidence": "Bygg.no 2014 dokumenterer Verkstedhallen og Maskinhallen som fysisk atskilte, med dobbel teglvegg. Oslo byleksikon oppgir to haller i Stranden 3–5.",
+      "individualBuildingConfirmed": true,
+      "uniqueIdentityConfidence": "high_named_separate_building",
+      "exactFacadePhotoApproved": false
     },
     {
       "id": "aker_brygge_maskinhallen",
@@ -69,7 +93,11 @@
       "next": "Identifiser eksakt bygning og skill fra Verkstedhallen før bildematching; bekreft byggeår",
       "sourceStrength": "named_but_identity_mapping_pending",
       "visualSourceApproved": false,
-      "publishable": false
+      "publishable": false,
+      "identityEvidence": "Bygg.no 2014 dokumenterer Verkstedhallen og Maskinhallen som fysisk atskilte, med dobbel teglvegg. Oslo byleksikon oppgir to haller i Stranden 3–5.",
+      "individualBuildingConfirmed": true,
+      "uniqueIdentityConfidence": "high_named_separate_building",
+      "exactFacadePhotoApproved": false
     },
     {
       "id": "aker_brygge_dieselmotorverksted",
@@ -83,7 +111,11 @@
       "next": "Kontroller om dagens navn/bygning tilsvarer Verkstedhallen eller Maskinhallen; ingen dobbelte oppføringer",
       "sourceStrength": "historical_structure_location_mapping_pending",
       "visualSourceApproved": false,
-      "publishable": false
+      "publishable": false,
+      "identityEvidence": "Maskin-/dieselmotorverksteder nevnes hos SNL, men nøyaktig krysning mot dagens Verkstedhallen/Maskinhallen er uavklart. Kan være historisk funksjonsnavn for et av disse.",
+      "individualBuildingConfirmed": false,
+      "status": "POSSIBLE_ALIAS_HOLD_NO_DUPLICATE",
+      "exactFacadePhotoApproved": false
     },
     {
       "id": "aker_brygge_snekkerbygget",
@@ -97,7 +129,12 @@
       "next": "Finn uavhengig kulturminne-/arkivkilde og foto av eksakt Aker Brygge-bygning før godkjenning",
       "sourceStrength": "one_source_review_needed",
       "visualSourceApproved": false,
-      "publishable": false
+      "publishable": false,
+      "identityEvidence": "DARK Arkitekter beskriver Snekkerbygget og Administrasjonsbygget som separate bygninger. Bryggegata 9 som eiendomsadresse bekreftes også av Betonmast.",
+      "individualBuildingConfirmed": true,
+      "uniqueIdentityConfidence": "high_named_separate_building",
+      "builtYearStatus": "DISPUTED: utleiekilde oppgir 1854 og andre kilder andre perioder; ikke påstå eksakt oppføringsår uten arkivbevis",
+      "exactFacadePhotoApproved": false
     },
     {
       "id": "aker_brygge_torrdokken",
@@ -112,6 +149,24 @@
       "sourceStrength": "strong_historic_structure",
       "visualSourceApproved": false,
       "publishable": false
+    },
+    {
+      "id": "aker_brygge_administrasjonsbygget",
+      "name": "Administrasjonsbygget",
+      "evidence": [
+        "https://darkarkitekter.no/prosjekt/snekkerbygget"
+      ],
+      "knownFacts": [
+        "Arkitekten beskriver et administrasjonsbygg på seks etasjer som er tilstøtende, men fysisk forskjellig fra Snekkerbygget.",
+        "Det ble modernisert og koblet til Snekkerbygget gjennom et nytt mellombygg i rehabiliteringen 2011–2013."
+      ],
+      "next": "Bekreft eksakt oppgang/bygg og separat fasadefoto før publisering. Ikke legg Snekkerbyggets foto på dette bygget.",
+      "sourceStrength": "separate_named_structure_architect_evidence",
+      "uniqueIdentityConfidence": "high_named_separate_building",
+      "individualBuildingConfirmed": true,
+      "visualSourceApproved": false,
+      "exactFacadePhotoApproved": false,
+      "publishable": false
     }
   ],
   "visualSourcePolicy": {
@@ -124,7 +179,8 @@
       "Commons File:Aker_Mek_Aug_2014.JPG som Aker Brygge-foto: filen dokumenterer første hovedkontor ved Foss på Grünerløkka, en annen lokasjon",
       "generiske industribyggbilder som ikke viser kandidaten",
       "fotografi fra annen Aker-bygning som Structure-bilde",
-      "AI-rekonstruksjon uten visuell referansekontroll"
+      "AI-rekonstruksjon uten visuell referansekontroll",
+      "Det kildeåpne Bryggegata 2022-fotoet som foto av én navngitt hall uten visuell lokasjonskontroll; det viser hallmiljøet samlet."
     ],
     "identificationRisk": "Historical hall functions and present-day naming (Verkstedhallen, Maskinhallen, 1914 machine workshop, 1930 diesel workshop) overlap or may differ; canonical entries must await exact building crosswalk."
   },
@@ -137,12 +193,71 @@
       "documented_image_rights",
       "actual_PlaceCard_browser_test"
     ],
-    "stage": "HOLD",
+    "stage": "HOLD_PHOTO_CANDIDATE_PENDING",
     "placecardEnabled": false
   },
   "notes": [
     "This report alone does not materialize Structures, add invented objects, modify quiz or imply vFerdig.",
     "Existing People PlaceCard and fullquiz remain unchanged.",
-    "Next production should prioritize exact structural crosswalk rather than guessing aliases."
-  ]
+    "Next production should prioritize exact structural crosswalk rather than guessing aliases.",
+    "19.11.2026: Kontroll av to fysisk adskilte hallbygg og to fysisk adskilte snekker-/administrasjonsbygg. Dateringskonflikter beholdes som åpne spørsmål. Ett lisensiert miljøfoto er identifisert som separat kandidat."
+  ],
+  "revisedAt": "2026-11-19",
+  "status": "IDENTITY_CROSSWALK_UPDATED_PHOTO_CANDIDATE_PENDING",
+  "sharedEnvironmentPhotoCandidate": {
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bryggegata,_Oslo_(2022)_(3).jpg",
+    "author": "Ssu",
+    "captureDate": "2022-06-14",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceSha1": "eb45a0f9ea81d218715a56eddb300d132e4accf7",
+    "sourceWidth": 3767,
+    "sourceHeight": 2825,
+    "depicts": "Historiske teglfasader langs Bryggegata ved Aker Brygge",
+    "allowedLabel": "Verkstedhallene – samlet miljøbilde (ikke identifisert enkeltbygg)",
+    "sourceBinaryPath": "bilder/kort/structures/source/aker_brygge/verkstedhallene_bryggegata_2022_original.jpg",
+    "candidatePath": "bilder/kort/structures/candidates/aker_brygge/verkstedhallene_bryggegata_oversikt_2022.webp",
+    "productionStatus": "PIPELINE_STAGED",
+    "editorialApproval": false,
+    "publishable": false
+  },
+  "identityCrosswalk": {
+    "confirmedSeparatePairs": [
+      [
+        "aker_brygge_verkstedhallen",
+        "aker_brygge_maskinhallen"
+      ],
+      [
+        "aker_brygge_snekkerbygget",
+        "aker_brygge_administrasjonsbygget"
+      ]
+    ],
+    "confirmedSiteAddressMappings": [
+      {
+        "ids": [
+          "aker_brygge_verkstedhallen",
+          "aker_brygge_maskinhallen"
+        ],
+        "addressCluster": "Stranden 3–5 / Verkstedhallene",
+        "individualAddressMapping": "NOT_CLAIMED"
+      },
+      {
+        "ids": [
+          "aker_brygge_snekkerbygget",
+          "aker_brygge_administrasjonsbygget"
+        ],
+        "addressCluster": "Bryggegata 7–9",
+        "snekkerbyggetPropertyAddress": "Bryggegata 9",
+        "individualAddressMapping": "PARTIALLY_CONFIRMED"
+      }
+    ],
+    "historicalFunctionAliasHold": [
+      "aker_brygge_dieselmotorverksted"
+    ],
+    "dateConflicts": [
+      "Norwegian Property: Bryggegata 3 property lists 1855 and says 1895, so year withheld",
+      "Snekkerbygget often attributed to yard founded/moved in 1854, not proof same physical building constructed then"
+    ],
+    "publishingGuard": "No single-building card may reuse the shared photo without visible building match and approval"
+  }
 }

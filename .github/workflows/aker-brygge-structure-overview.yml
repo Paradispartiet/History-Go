@@ -1,0 +1,53 @@
+name: Aker Brygge — CC BY-SA historic hall overview candidate
+on:
+  push:
+    branches:
+      - assets/aker-brygge-verkstedhallene-licensed-overview-20261119
+    paths:
+      - .github/workflows/aker-brygge-structure-overview.yml
+      - scripts/produce-aker-brygge-structure-overview.mjs
+      - tests/aker-brygge-structure-overview-candidate.test.mjs
+permissions:
+  contents: write
+concurrency:
+  group: aker-brygge-licensed-structure-overview
+  cancel-in-progress: false
+jobs:
+  verify-and-archive:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: assets/aker-brygge-verkstedhallene-licensed-overview-20261119
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Capture verified open-license overview without cropping
+        run: node scripts/produce-aker-brygge-structure-overview.mjs --write
+      - name: Check author, CC license, source SHA, WebP and publication hold
+        run: node --test tests/aker-brygge-structure-overview-candidate.test.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aker-brygge-licensed-structure-overview-candidate
+          path: |
+            bilder/kort/structures/source/aker_brygge/verkstedhallene_bryggegata_2022_original.jpg
+            bilder/kort/structures/candidates/aker_brygge/verkstedhallene_bryggegata_oversikt_2022.webp
+            reports/place-production/aker-brygge-verkstedhallene-licensed-overview-2026-11-19.json
+          if-no-files-found: error
+      - name: Archive only candidate assets and provenance on PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- bilder/kort/structures/source/aker_brygge/verkstedhallene_bryggegata_2022_original.jpg bilder/kort/structures/candidates/aker_brygge/verkstedhallene_bryggegata_oversikt_2022.webp reports/place-production/aker-brygge-verkstedhallene-licensed-overview-2026-11-19.json
+          if ! git diff --cached --quiet; then
+            git commit -m "assets(aker-brygge): archive licensed overview photo as held Structure candidate"
+            git push origin HEAD:refs/heads/assets/aker-brygge-verkstedhallene-licensed-overview-20261119
+          fi
