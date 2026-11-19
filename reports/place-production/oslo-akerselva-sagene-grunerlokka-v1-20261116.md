@@ -407,3 +407,10 @@ Kilder for fasitene og metodene: [Dammen](https://oslobyleksikon.no/side/Nydalsd
 - De 42 tidligere spørsmålene er identiske med arkivkopien. Hver opprinnelige quiz-ID peker fortsatt til den samme primære Knowledge-enheten i det genererte registeret. De nye spørsmålene gjenbruker ingen av disse ID-ene.
 - QuizCard er registrert under Natur. Alle ti oppgavene samsvarer med aktiv fullquiz i spørsmål, svaralternativer, fasit, kildelenker og Knowledge-ID.
 - Lokalt bestod kontrollene for quizmanifest, quizmaler, progresjonsregler, quizreferanser, kanonisk Knowledge, Fagverk-release og Place-open. QuizCard og fullquiz må fortsatt verifiseres i nettleser på den migrerte versjonen. Lokal Chromium avsluttet ved oppstart, og GitHub viste ingen sjekkkjøringer på `19fec872`. Samlet V1-godkjenning og merge er åpne.
+
+## Elvepartiet nedenfor Nydalsdammen – nettleserkontroll (19.11.2026)
+
+- Fullquizen ble spilt gjennom i Chromium på desktop, mobil og i stående og liggende iPad-størrelse. Alle 21 spørsmål og tre sett ble fullført i hver profil. Testene bekreftet tre registrerte læringshendelser, én stedsbelønning og uendret fysisk besøksstatus.
+- PlaceCard, vendt og utvidet QuizCard med ti spørsmål og kuratert Fagverk bestod i de samme fire skjermprofilene.
+- I én liggende kjøring fanget det grønne framgangsvarselet trykket over et svaralternativ. Commit `ba21595f` lar trykk gå gjennom dette varselet. Begge varseltestene bestod, og en ny liggende Chromium-gjennomspilling bekreftet at det aktive varselet slipper gjennom trykk og at hele quizen kan fullføres.
+- Nettleserkontrollen brukte samme MapLibre-versjon fra npm fordi CDN-kallet feilet i testmiljøet. iPad-kontrollen brukte Chromium med berøring og iPad-størrelser. Safari/WebKit og lasting av de eksternt hostede fotografiene inngikk ikke i denne kjøringen.
