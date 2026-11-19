@@ -874,7 +874,8 @@ function recordNokPayrollDay(day, wallet) {
     - Math.floor(amount * (period.dayOfMonth - 1) / period.daysInMonth);
   let electricity = null;
   if (nok.housing?.electricityProfileId && nok.housing.acceptedDateISO <= period.dateISO) {
-    try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(nok.config); } catch { return; }
+    try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(
+      nok.config, nok.housing.electricityProfileId); } catch { return; }
     if (!electricity || electricity.id !== nok.housing.electricityProfileId) return;
   }
   window.CivicationState.updateWallet({ ...wallet, nok_v1: { ...nok,
@@ -1098,26 +1099,56 @@ function migrateNokEconomy(config) {
   return { ok: true, balance: wallet.balance, startedDayIndex: clock.dayIndex };
 }
 
-/** @param {string} districtId @returns {CiviEconomyRecord} */
-function acceptNokHousing(districtId) {
+/** @param {string} districtId @param {string|null} [offerId] @returns {CiviEconomyRecord} */
+function acceptNokHousing(districtId, offerId = null) {
   const owner = window.CivicationState;
   const wallet = owner?.getWallet?.();
   const nok = wallet?.nok_v1;
   if (nok?.active !== true || nok.version !== 1) return { ok: false, reason: "NOK_NOT_ACTIVE" };
   const offers = /** @type {CiviEconomyRecord[]} */ (Array.isArray(nok.config?.housingOffers) ? nok.config.housingOffers : []);
   const matching = offers.filter(o => o?.districtId === districtId);
-  if (matching.length !== 1) return { ok: false, reason: "HOUSING_PRICE_NOT_MAPPED" };
-  const offer = matching[0];
+  if (!matching.length) return { ok: false, reason: "HOUSING_PRICE_NOT_MAPPED" };
+  if (new Set(matching.map(o => o.id)).size !== matching.length)
+    return { ok:false, reason:"DUPLICATE_HOUSING_OFFER" };
+  const selected = offerId == null
+    ? (matching.length === 1 ? matching : matching.filter(o => o.defaultOffer === true))
+    : matching.filter(o => o.id === offerId);
+  if (selected.length !== 1) return {
+    ok:false, reason:offerId == null ? "HOUSING_OFFER_SELECTION_REQUIRED" : "HOUSING_OFFER_NOT_FOUND"
+  };
+  const offer = selected[0];
   if (typeof offer.id !== "string" || !offer.id.trim() || typeof offer.sourceId !== "string" || !offer.sourceId.trim()
       || typeof offer.monthlyRentNok !== "number" || !Number.isFinite(offer.monthlyRentNok) || offer.monthlyRentNok < 0
       || !Number.isSafeInteger(Math.round(offer.monthlyRentNok * 100))
       || Math.abs(offer.monthlyRentNok * 100 - Math.round(offer.monthlyRentNok * 100)) > 0.000001) {
     return { ok: false, reason: "INVALID_HOUSING_OFFER" };
   }
+  // Validate region and room count against the immutable source table.
+  // This check applies only to versioned source-mapped offers: older test
+  // fixtures and saved contracts remain supported without invented mapping.
+  if (offer.referenceAreaId != null) {
+    const refs = nok.config?.costOfLiving?.rentSources;
+    const matchingRefs = Array.isArray(refs)
+      ? refs.filter(item => item?.id === offer.referenceAreaId) : [];
+    const reference = matchingRefs.length === 1 ? matchingRefs[0] : null;
+    const monthlyReference = reference?.pricesByRoomsNok?.[String(offer.roomCount)];
+    if (!reference || !Number.isSafeInteger(offer.roomCount) ||
+        offer.roomCount < 1 || offer.roomCount > 5 ||
+        !Number.isSafeInteger(monthlyReference) ||
+        monthlyReference !== offer.monthlyRentNok ||
+        reference.source !== offer.sourceId ||
+        reference.year !== offer.referenceYear ||
+        reference.priceKind !== offer.referencePriceKind ||
+        (offer.floorAreaSqm != null && (!Number.isSafeInteger(offer.floorAreaSqm) ||
+          offer.floorAreaSqm <= 0 || offer.floorAreaSqm > 1000)))
+      return { ok:false, reason:"INVALID_HOUSING_REFERENCE" };
+  }
   if (offer.electricityProfileId) {
     let electricity;
-    try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(nok.config); } catch {}
-    if (!electricity || electricity.id !== offer.electricityProfileId) return { ok: false, reason: "ELECTRICITY_PRICE_NOT_MAPPED" };
+    try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(
+      nok.config, offer.electricityProfileId); } catch {}
+    if (!electricity || electricity.id !== offer.electricityProfileId)
+      return { ok: false, reason: "ELECTRICITY_PRICE_NOT_MAPPED" };
   }
   if (nok.housing?.districtId === districtId && nok.housing?.offerId === offer.id) return { ok: true, skipped: true };
   const date = window.CivicationCalendar?.getGameDate?.();
@@ -1135,6 +1166,9 @@ function acceptNokHousing(districtId) {
   if (invoices.some(i => !i || typeof i !== "object")) return { ok: false, reason: "INVALID_HOUSING_STATE" };
   owner.updateWallet({ ...wallet, nok_v1: { ...nok, housingSequence: sequence,
     housing: { districtId, offerId: offer.id, contractId, acceptedDateISO: date,
+      ...(offer.roomCount ? { roomCount: offer.roomCount } : {}),
+      ...(offer.referenceAreaId ? { referenceAreaId: offer.referenceAreaId,
+        referenceYear: offer.referenceYear } : {}),
       ...(offer.electricityProfileId ? { electricityProfileId: offer.electricityProfileId } : {}) },
     recurringBills: [...contracts.map(c => c.id === previousId
       ? { ...c, endsOnISO: c.endsOnISO && c.endsOnISO < date ? c.endsOnISO : date } : c),

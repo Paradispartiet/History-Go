@@ -3,6 +3,11 @@
   let message = "";
   /** @type {any} */
   let activationConfig = null;
+  /** @type {any} */
+  let scenarioConfig = null;
+  let selectedAreaId = "oslo_baerum";
+  let selectedRooms = 3;
+  let selectedHouseholdId = "two_adults_two_children";
   /** @type {Promise<void>|null} */
   let activationLoad = null;
   function loadActivationConfig() {
@@ -13,6 +18,9 @@
         const response = await root.fetch("data/Civication/economy/nok-budget-prototype-2026.json");
         if (!response.ok) return;
         const config = await response.json();
+        // Read-only scenarios can be displayed while NOK activation remains blocked.
+        if (config?.costOfLiving?.version === 1 && config?.currency?.nokPerPC === 1)
+          scenarioConfig = config;
         // Loading a profile is read-only. Only reviewed release data can expose activation.
         if (config?.status === "active" && config?.migration?.activated === true
             && config?.currency?.id === "PC" && config?.currency?.nokPerPC === 1) activationConfig = config;
@@ -28,6 +36,90 @@
     el.textContent = text;
     if (tag === "button") el.style.minHeight = "44px";
     return el;
+  }
+  // A transparent reference comparison, not an inferred player household or invoice.
+  function renderRegionalCosts(/** @type {any} */ config) {
+    const refs = config?.costOfLiving;
+    const calculate = root.CivicationNokBudget?.costOfLivingScenario;
+    if (refs?.version !== 1 || typeof calculate !== "function" ||
+        !Array.isArray(refs.rentSources) || !Array.isArray(refs.foodProfiles))
+      return null;
+    const details = /** @type {HTMLDetailsElement} */ (node("details"));
+    details.setAttribute("data-nok-location-costs", "");
+    details.open = true;
+    details.appendChild(node("summary", "Bolig og mat · sammenlign områder og husholdninger"));
+    details.appendChild(node("p", "Statistiske eksempler, ikke din registrerte bolig eller en regning. "
+      + "Husleie varierer med område og antall rom; mat med antall og alder på beboerne."));
+    const controls = node("div");
+    controls.style.cssText = "display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:12px 0";
+    const select = (/** @type {string} */ labelText, /** @type {Array<{id:string,label:string}>} */ items,
+      /** @type {string} */ selected, /** @type {(id:string)=>void} */ changed) => {
+      const label = node("label", labelText);
+      label.style.cssText = "display:flex;flex-direction:column;gap:4px";
+      const input = /** @type {HTMLSelectElement} */ (node("select"));
+      input.style.cssText = "max-width:100%;padding:8px";
+      for (const item of items) {
+        const option = /** @type {HTMLOptionElement} */ (document.createElement("option"));
+        option.value = item.id;
+        option.textContent = item.label;
+        option.selected = item.id === selected;
+        input.appendChild(option);
+      }
+      input.addEventListener("change", () => changed(input.value));
+      label.appendChild(input); controls.appendChild(label);
+    };
+    const region = refs.rentSources.find((/** @type {any} */ item) => item.id === selectedAreaId)
+      || refs.rentSources[0];
+    if (!region || !region.pricesByRoomsNok) return null;
+    selectedAreaId = region.id;
+    const roomOptions = Object.keys(region.pricesByRoomsNok)
+      .filter(x => /^[1-5]$/.test(x))
+      .map(x => ({ id:x, label:x + (x === "1" ? " rom" : " rom") }));
+    if (!roomOptions.some(x => Number(x.id) === selectedRooms)) selectedRooms = Number(roomOptions[0]?.id || 2);
+    select("Område", refs.rentSources.map((/** @type {any} */ entry) =>
+      ({ id:entry.id, label:entry.label })), selectedAreaId, value => {
+        selectedAreaId = value;
+        const found = refs.rentSources.find((/** @type {any} */ entry) => entry.id === value);
+        selectedRooms = Number(Object.keys(found?.pricesByRoomsNok || {})[0] || 2);
+        render();
+      });
+    select("Boligstørrelse", roomOptions, String(selectedRooms), value => {
+      selectedRooms = Number(value); render();
+    });
+    select("Eksempel på husholdning", refs.foodProfiles.map((/** @type {any} */ entry) =>
+      ({ id:entry.id, label:entry.label })), selectedHouseholdId, value => {
+        selectedHouseholdId = value; render();
+      });
+    details.appendChild(controls);
+    const result = calculate(config, { areaId:selectedAreaId, rooms:selectedRooms,
+      householdId:selectedHouseholdId });
+    if (!result?.ok) {
+      details.appendChild(node("p", "Ingen dokumentert kombinasjon for dette utvalget."));
+      return details;
+    }
+    details.appendChild(node("p", "Husleie (" + result.rentSourceYear + "): "
+      + money(result.monthlyRentNok) + " kr per måned"));
+    details.appendChild(node("p", "Mat og alkoholfri drikke (" + result.foodReferenceYear + "): "
+      + money(result.monthlyFoodNok) + " kr per måned"));
+    const total = node("strong", "Til sammen bolig og mat: "
+      + money(result.monthlyRentAndFoodNok) + " kr per måned");
+    details.appendChild(total);
+    details.appendChild(node("p", "Før strøm, transport, klær, husholdningsvarer og annet forbruk. "
+      + "Restauranter inngår ikke. Beløpet belaster ikke spillkontoen."));
+    details.appendChild(node("p", result.rentPriceKind.startsWith("predicted")
+      ? "Husleie er SSBs beregnede sammenligningspris for 2-roms på 50 m²."
+      : "Husleie er SSBs gjennomsnitt for eksisterende leieforhold, ikke en ny annonsepris."));
+    for (const [label, url] of [["Husleie: SSB", result.rentSource],
+      ["Mat: SIFO-referanse", result.foodSource]]) {
+      const link = /** @type {HTMLAnchorElement} */ (document.createElement("a"));
+      link.textContent = label;
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.style.marginRight = "12px";
+      details.appendChild(link);
+    }
+    return details;
   }
   // Read existing owners only; this summary never advances the day or settles money.
   function dailyOverview() {
@@ -99,6 +191,8 @@
     heading.tabIndex = -1;
     panel.appendChild(heading);
     panel.appendChild(node("p", "Saldo: " + money(wallet?.balance) + (active ? " kr (PC)" : " PC")));
+    const references = renderRegionalCosts(nok?.config?.costOfLiving ? nok.config : scenarioConfig);
+    if (references) panel.appendChild(references);
     if (!active) {
       panel.appendChild(node("p", "Kroneøkonomien er ikke aktivert. Eksisterende saldo og kjøp beholdes."));
       if (activationConfig && root.CivicationEconomyEngine?.migrateNokEconomy) {
@@ -126,6 +220,28 @@
         panel.appendChild(activate);
       }
     } else {
+      // The monthly amount comes from the accepted recurring lease, not the
+      // optional comparison selector or a district-level guessed price.
+      const currentHousing = nok.housing;
+      const matchingContracts = Array.isArray(nok.recurringBills) && currentHousing?.contractId
+        ? nok.recurringBills.filter((/** @type {any} */ lease) =>
+          lease?.id === currentHousing.contractId) : [];
+      const lease = matchingContracts.length === 1 ? matchingContracts[0] : null;
+      const acceptedOffer = Array.isArray(nok.config?.housingOffers) && currentHousing?.offerId
+        ? nok.config.housingOffers.find((/** @type {any} */ offer) =>
+          offer?.id === currentHousing.offerId && offer.districtId === currentHousing.districtId)
+        : null;
+      if (lease && acceptedOffer && typeof lease.amountNok === "number" &&
+          Number.isFinite(lease.amountNok) && lease.amountNok >= 0 &&
+          Number.isSafeInteger(Math.round(lease.amountNok * 100))) {
+        const place = root.CivicationHome?.getDistrictName?.(currentHousing.districtId)
+          || String(currentHousing.districtId);
+        const roomText = Number.isSafeInteger(currentHousing.roomCount)
+          ? " · " + currentHousing.roomCount + " rom" : "";
+        panel.appendChild(node("p", "Din spillbolig: " + place + roomText +
+          " · husleie i aktiv kontrakt: " + money(lease.amountNok) +
+          " kr / måned. Statistisk spilltilbud, ikke en virkelig leieannonse."));
+      }
       const today = dailyOverview();
       if (today) {
         const daily = node("section"); daily.setAttribute("data-nok-daily-overview", "");

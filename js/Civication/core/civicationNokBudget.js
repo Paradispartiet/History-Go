@@ -31,10 +31,27 @@ function resolveSalaryJob(config, identity = {}) {
     && (identity.roleTitle == null || job.roleTitle === identity.roleTitle));
   return matches.length === 1 ? matches[0] : null;
 }
-/** @param {any} config */
-function getElectricityProfile(config) {
-  const profile = config?.budget?.electricity;
+/** @param {any} config @param {string|null} [profileId] */
+function getElectricityProfile(config, profileId = null) {
+  const baseline = config?.budget?.electricity;
+  const alternativeProfiles = config?.electricityProfiles;
+  if (alternativeProfiles != null && !Array.isArray(alternativeProfiles))
+    throw new RangeError('Invalid electricity profiles');
+  const alternatives = alternativeProfiles || [];
+  const candidates = profileId == null ? [baseline] : [baseline, ...alternatives]
+    .filter(profile => profile?.id === profileId);
+  if (candidates.length !== 1) return null;
+  const profile = candidates[0];
   if (profile?.kind !== 'effective_statistical_unit_price_with_assumed_consumption') return null;
+  // All room-size profiles use the same documented price per kWh; only
+  // estimated consumption changes. The estimates are NOT measured usage.
+  if (profileId != null && profile !== baseline &&
+      (profile.source !== baseline?.source ||
+        profile.unitPriceNokPerKwh !== baseline?.unitPriceNokPerKwh ||
+        profile.pricePeriod !== baseline?.pricePeriod ||
+        profile.includes !== baseline?.includes ||
+        profile.consumptionKind !== 'illustrative_larger_home_scenario_not_meter_reading'))
+    throw new RangeError('Inconsistent electricity source');
   if (typeof profile.id !== 'string' || !profile.id.trim() || typeof profile.source !== 'string' || !profile.source.trim()
       || !Number.isFinite(profile.monthlyConsumptionKwh) || profile.monthlyConsumptionKwh <= 0
       || !Number.isFinite(profile.unitPriceNokPerKwh) || profile.unitPriceNokPerKwh <= 0)
@@ -45,6 +62,44 @@ function getElectricityProfile(config) {
     throw new RangeError('Inconsistent electricity estimate');
   return { ...profile, monthlyCents: cents, monthlyConsumptionMilliKwh: profile.monthlyConsumptionKwh * 1000 };
 }
+// Read-only, location-specific reference scenario. This is not a rent contract,
+// a household fact, a grocery bill or a wallet transaction. No extrapolation.
+ /** @param {any} config @param {{areaId?: string, rooms?: number, householdId?: string}} [selection] */
+function costOfLivingScenario(config, { areaId = 'oslo_baerum', rooms = 3,
+  householdId = 'two_adults_two_children' } = {}) {
+  const refs = config?.costOfLiving;
+  if (refs?.version !== 1 || !Array.isArray(refs.rentSources)
+      || !Array.isArray(refs.foodProfiles))
+    return { ok:false, reason:'REFERENCES_UNAVAILABLE' };
+  if (!Number.isSafeInteger(rooms) || rooms < 1 || rooms > 5 ||
+      typeof areaId !== 'string' || typeof householdId !== 'string')
+    return { ok:false, reason:'INVALID_SELECTION' };
+  const areas = refs.rentSources.filter(x => x?.id === areaId);
+  const foods = refs.foodProfiles.filter(x => x?.id === householdId);
+  if (areas.length !== 1 || foods.length !== 1)
+    return { ok:false, reason:'UNKNOWN_REFERENCE' };
+  const area = areas[0], household = foods[0];
+  const amount = area.pricesByRoomsNok?.[String(rooms)];
+  if (amount == null) return { ok:false, reason:'ROOM_REFERENCE_UNAVAILABLE' };
+  if (!Number.isSafeInteger(amount) || amount <= 0 ||
+      !Number.isSafeInteger(household.monthlyNok) || household.monthlyNok <= 0 ||
+      !Number.isSafeInteger(area.year) || area.year < 2000 ||
+      typeof area.source !== 'string' || !area.source.startsWith('https://') ||
+      typeof household.source !== 'string' || !household.source.startsWith('https://'))
+    return { ok:false, reason:'INVALID_REFERENCE' };
+  const total = amount + household.monthlyNok;
+  if (!Number.isSafeInteger(total))
+    return { ok:false, reason:'INVALID_REFERENCE' };
+  return { ok:true, currency:'NOK', areaId, rooms, householdId,
+    monthlyRentNok:amount, monthlyFoodNok:household.monthlyNok,
+    monthlyRentAndFoodNok:total, rentPriceKind:area.priceKind,
+    rentSourceYear:area.year, rentSource:area.source,
+    foodReferenceYear:2026, foodSource:household.source,
+    includesElectricity:false, includesTransport:false,
+    includesOtherLiving:false, includesRestaurants:false,
+    isActualPayment:false, isHousingOffer:false };
+}
+
 /** @param {any} config */
 function preview(config, { employed = false, employmentPercent = 100, approvedSupportNok = 0, jobId = config?.job?.id } = {}) {
   if (!Number.isFinite(employmentPercent) || employmentPercent < 0 || employmentPercent > 100
@@ -181,7 +236,7 @@ function monthlyCashFlow(wallet, monthId, gameDateForDayIndex) {
       restaurantCents, expenseCents, netCents, entries };
   } catch { return { ok: false, reason: 'INVALID_PAYMENT_HISTORY' }; }
 }
-const api = { preview, projectMonths, getElectricityProfile, monthlyCashFlow, getSalaryJobs, resolveSalaryJob };
+const api = { preview, projectMonths, getElectricityProfile, monthlyCashFlow, getSalaryJobs, resolveSalaryJob, costOfLivingScenario };
 if (typeof module !== 'undefined' && module.exports) module.exports = api;
 else /** @type {any} */ (root).CivicationNokBudget = api;
 
