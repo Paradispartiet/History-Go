@@ -508,7 +508,7 @@
             ${item.description ? `<p class="pc-person-desc">${esc(item.description)}</p>` : ""}
             ${item.imageDisclosure ? `<p class="pc-object-context">${esc(item.imageDisclosure)}</p>` : ""}
             ${item.imageCredit ? `<p class="pc-object-credit">Bilde: ${esc(item.imageCredit)}${item.imageLicense ? ` · ${esc(item.imageLicense)}` : ""}</p>` : ""}
-            ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">Se historisk kilde og bildeopphav</a>` : ""}
+            ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">${kind === "illustration" ? "Historisk kilde for gjenstanden" : "Se historisk kilde og bildeopphav"}</a>` : ""}
           </div>
         </article>`;
       }).join("");
@@ -755,11 +755,15 @@
       grid.style.removeProperty("grid-template-columns");
       grid.style.removeProperty("grid-template-rows");
     }
-    // The collection adapter finishes after asynchronous member loads. Its
-    // base counters can overwrite the curated one-to-three-slot layout that
-    // already ran earlier; immediately reconcile against image-ready previews
-    // instead of leaving a transient or persistent empty collection slot.
-    global.HGPlaceRoundsFillLayout?.applyCuratedVisibility?.();
+
+    // The async collection renderer may finish after the curated 1–3-item
+    // layout (for example after a late image decode or Place-open hydration).
+    // Reconcile its visibility and source markers *after* every core apply.
+    // Otherwise a late core write flips a curated Place back to the generic
+    // "place_card_profile_v2" state between consecutive browser assertions.
+    if (s(card.dataset.currentPlaceId) === s(place.id)) {
+      global.HGPlaceRoundsFillLayout?.applyCuratedVisibility?.();
+    }
   }
 
   function scheduleApply() {

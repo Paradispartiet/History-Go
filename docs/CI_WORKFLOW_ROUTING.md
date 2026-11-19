@@ -31,6 +31,10 @@ gate.
 - Oslo Micro Places listens only to Micro Place source, contract, UI and audit
   paths. Global place indexes, runtime payloads and generic production outputs do
   not trigger it.
+- Oslo batch04 quiz parity validates actual canonical quiz and QuizCard inputs.
+  A generated `data/quiz/production_context/**` SHA refresh does not exercise
+  its 17-place/170-question acceptance suite; the place/data integrity gates
+  own that generated context. A real quiz or QuizCard change still triggers it.
 - Place Rounds owns its shared UI and explicitly named legacy place contracts.
   Global story, people, brand and place-index outputs do not trigger it.
 

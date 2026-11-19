@@ -12,13 +12,13 @@ const report = read("reports/place-production/toyen-trafo-objects-20261104.json"
 
 test("Tøyen trafo refuses to misclassify architectural details as Objects", () => {
   assert.equal(place.id, "toyen_trafo");
-  assert.equal(place.objects, undefined);
-  assert.equal(place.place_card_profile, undefined);
-  assert.equal(runtime.place.objects, undefined);
+  assert.equal(place.objects.length, 2);
+  assert.deepEqual(place.place_card_profile.collection_ids, ['people','objects','brands','productions']);
+  assert.equal(runtime.place.objects.length, 2);
   assert.equal(runtime.objects, undefined);
   assert.equal(runtime.place_card_profile, undefined);
-  assert.equal(report.objects_status, "SOURCE-BOUNDED HOLDBACK");
-  assert.equal(report.objects_accepted.length, 0);
+  assert.match(report.objects_status,/PASS_TWO_ARCHIVE_OBJECTS/);
+  assert.equal(report.objects_accepted.length, 2);
   assert.equal(report.objects_held_back.length, 3);
   assert.match(report.rule_authority, /PLACE_OBJECTS_CANONICAL/);
   assert.equal(report.not_vferdig, true);
@@ -41,8 +41,8 @@ test("Architectural detail illustration is shown as marked Story art, never as O
   const renderedStory = runtime.stories.find(x => x.id === story.id);
   assert.ok(renderedStory, "Story must be attached to actual Place-open");
   assert.equal(renderedStory.image, story.image);
-  assert.deepEqual(runtime.people, []);
-  assert.deepEqual(runtime.brands, []);
+  assert.deepEqual(runtime.people.map(p=>p.id), ['thorvald_astrup','kari_rolfsen']);
+  assert.deepEqual(runtime.brands.map(b=>b.id), ['oslo_teatersenter','unge_kunstneres_samfund']);
   assert.equal(runtime.language.entries.length, 6);
   assert.equal(runtime.lesespor.length, 4, "Preserve four independently merged source-backed Lesespor");
   assert.equal(runtime.leksikon.length, 1);
