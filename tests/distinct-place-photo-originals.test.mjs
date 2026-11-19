@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import { validateDistinctPhotoPair, photoFieldsChanged, placeRows } from '../scripts/check-distinct-place-photos.mjs';
 
 const a = 'a'.repeat(64);
