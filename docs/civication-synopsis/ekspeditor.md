@@ -8,17 +8,44 @@ Du er ny i butikken og vil bli trygg nok til å gjøre jobben ordentlig. Du øns
 
 Arbeidet foregår i kassa, mellom hyllene og på lageret. Varer skal registreres, kunder skal få svar, og neste kollega må vite hva som gjenstår. Det er sjelden én oppgave om gangen. Når du undersøker en pris, venter køen. Når du hjelper vikaren, må noen fortsatt ta kundene. Den gjennomgående konflikten er hvordan du holder arbeidet i gang uten å love mer enn du vet eller ta ansvar du ikke har fått.
 
+## Historien – fra å bevise seg til å kjenne sin egen verdi
+
+**Dramatisk spørsmål:** Kan du bli trygg i en jobb der alle trenger at du stiller opp, uten å love mer enn du har tid, kunnskap og myndighet til? Den ytre drivkraften er ønsket om flere vakter og å høre til i gjengen. Den indre drivkraften forandrer seg: Først vil du unngå å gjøre feil foran andre; til slutt tør du vise hva du kan, innrømme hva du ikke vet og spørre om rimelige grenser. Det er ikke en historie om å bli butikksjef på tre uker.
+
+**Uke 1 – å bli sett (dag 1–7):** Først oppleves hvert spørsmål fra vikaren som en forsinkelse, og hver kunde som en mulig dom over deg. Kaffeprisen blir et synlig feiltrinn. Amir hjelper, men har selv en kasse å passe; Lene ser etter noen som både tar initiativ og sier fra når noe er uklart. En liten kundeseier ved varepåfylling (dag 7) skal kjennes større enn antall utfylte avviksskjemaer. Du kan være sliten, stolt og fortsatt ha restoppgaver.
+
+**Uke 2 – å velge hvem du vil være (dag 8–14):** Nå skjønner du systemene, men også prisen andre betaler når beskjedene er uklare. Amir blir lei av å være den som alltid må rydde opp; vikaren vil prøve selv, selv om det koster deg tid i kassa. En fast kunde trenger en rolig forklaring på en pris, ikke enda en formulering om at saken er sendt. Lene nevner mulige ekstra vakter. For første gang kan du si at du trenger konkrete vilkår uten å føle at du har mislyktes. En god øyeblikksseier er at vikaren selv sammenligner riktig vare og etikett på dag 11. Det er ikke en generell autorisasjon.
+
+**Uke 3 – hva betyr det å ta ansvar? (dag 15–21):** Lene spør hvordan du faktisk har hatt det. Nå er et mulig mattrygghetsavvik mer alvorlig enn egen prestisje: du må sikre og melde uten å erklære varene trygge eller kassert på egen hånd. Vikaren viser at hun kan en oppgave uten å få svaret. Den irriterte kunden kan bli hørt, også uten rabatt. Spørsmålet om flere vakter kommer tilbake, men hovedpersonen kan nå svare både tydeligere og ærligere om kapasitet, læring og tid. Ved slutten på dag 21 ser vi forandringen: Du er ikke blitt en helt som fikser alt. Du har blitt en kollega som vet forskjellen på å hjelpe, undersøke, overlevere og ta ansvar.
+
+**Rytme:** Ikke alle dager skal toppe seg i et problem. Etter krevende kunde- eller lagerhendelser trenger historien små pauser: et glimt av humor mellom Amir og vikaren, en kunde som får det hun lette etter, en ordentlig takk, en kollega som mestrer noe selv. Slike øyeblikk må knyttes til faktisk valgte handlinger, ikke deles ut automatisk som belønning.
+
 ## Personene og det de prøver å få til
 
-| Person | Mål og handlingsrom |
+| Person | Eget behov og endring gjennom forløpet |
 | --- | --- |
-| Medarbeideren | Vil mestre arbeidet og få en tryggere plass i butikken. Kan undersøke, registrere, forklare og be om hjelp innenfor opplæringen og de avtalte fullmaktene. |
-| Lene, butikksjef | Vil ha flyt og nøyaktighet. Avklarer fullmakter og må bekrefte det hun overtar. At noen sender henne en beskjed betyr ikke at hun har rettet saken. |
-| Amir, erfaren kollega | Kan undersøke, veilede eller avløse når det er avtalt. Han skal få æren for arbeid han faktisk har utført. Erfaring gir ikke automatisk ledermyndighet. |
-| Vikaren | Trenger hjelp med konkrete arbeidsoppgaver. At du har forklart noe, beviser ikke at hun har forstått og utført det. |
-| Kunden og stamkunden | Vil få riktig vare, riktig pris eller svar på en retur. Forventningen om at du bestemmer må skilles fra fullmakten du faktisk har. |
+| Medarbeideren | Trenger inntekt og tilhørighet, men vil også få respekt for sin tid. Først skjuler du usikkerhet bak tempo; etter hvert blir det en styrke å undersøke, be om avløsning og si nei til udokumenterte løfter. |
+| Lene, butikksjef | Vil ha kunder som kommer tilbake, et team som klarer skiftene og en butikk som ikke pådrar seg dyre feil. Hun kan være knapp under press, men må selv gi klare fullmakter og bemanningsbeskjeder. Hun er verken motstander eller automatisk mentor. |
+| Amir, erfaren kollega | Kan den praktiske driften og vil at andre skal lære, men vil ikke bli en permanent reserve som må ta alle uavklarte saker. Varmen hans merkes best gjennom konkret hjelp, ikke skryt av ting han ikke har gjort. |
+| Vikaren | Vil slutte å føle at hun er til bry. Hun trenger å få prøve en oppgave på egen hånd, gjøre feil som kan rettes og få faktisk tilbakemelding. Mestring på én varekontroll gir ikke generell fullmakt. |
+| Stamkunden og andre kunder | Har forskjellige behov: én er oppgitt over pris, én trenger varen til middag, én vil bli hørt. De skal ikke alle være plagsomme eller fungere som moralske prøver for ekspeditøren. En vennlig kunde kan gjøre dagen bedre. |
 
-Jonas og søsteren finnes i de delte privatlivsscenene. Kontakten med dem fortsetter etter arbeidstid. Privatlivet skal følge spillerens faktiske valg; det skal ikke brukes som bevis på at en arbeidsoppgave er løst.
+Jonas og søsteren finnes i de delte privatlivsscenene. De gir mulighet for kontrast mellom jobbens krav og livet utenfor, men synopsisen skal ikke påstå at en bestemt privat avtale er inngått uten faktisk flagg eller scene. Å ønske flere vakter er heller ikke det samme som å kunne jobbe når som helst.
+
+## Konkrete øyeblikk vi skal kjenne på
+
+| Dag og situasjon | Vanskelig eller hyggelig øyeblikk | Hva spilleren kan lære |
+| --- | --- | --- |
+| 5 – varemottak | Amir viser hvordan man leser følgeseddelen mens kassa kaller. | Det er lov å spørre før man signerer; et arbeidslag hjelper hverandre. |
+| 7 – vare på plass | En fast kunde finner varen til kveldsmaten og takker, **hvis** du fylte på og kontrollerte den. | Gleden ved godt utført, enkelt servicearbeid. |
+| 8 – skiftlista | Amir merker at en tydelig oversikt faktisk sparer ham for leting. | Arbeidsfellesskapet merker små forbedringer. |
+| 11 – vikaren | Hun vil prøve selv og ler når hun klarer varekontrollen. | Du kan bli en god kollega ved å gi andre rom til å lykkes. |
+| 12 – prisuenighet | En oppgitt kunde vil forstå, ikke vinne en krangel. | Du kan lytte, kontrollere fakta og gi et svar uten å gi en ubegrunnet rabatt. |
+| 13 – mulig ekstravakt | Håp om flere timer møter behovet for forutsigbarhet og hvile. | Å be om skriftlige vilkår er ansvar, ikke ulydighet. |
+| 14 – pauserom | Amir sier at uklare overleveringer også sliter på ham. | Han har sitt eget liv og sin egen arbeidsbelastning. |
+| 18 – temperaturavvik | En ubehagelig kontroll må tas på alvor selv om ingen applauderer. | Mestring er også å varsle og sikre mattrygghet. |
+| 19 – kollega og kunde | Vikaren kan få en selvstendig seier; en irritert kunde kan oppleve å bli hørt. | Anerkjennelse kan komme uten pengegevinst eller oppdiktet autoritet. |
+| 21 – siste vakt | Amir minner deg om første dag, men Lene lover ingen forfremmelse. | Den fortjente seieren er bedre dømmekraft og større trygghet. |
 
 ## Hovedforløpet – de tre første dagene
 
@@ -54,7 +81,7 @@ Dag 3 følger også den registrerte arbeidsfordelingen fra dagen før. Lene og A
 
 **Dag 7:** Spilleren avstemmer arbeid fra første uke, gjør eventuelt en konkret varepåfylling og overleverer åpne punkter. Rapporten kan sendes eller bli et utkast. Dersom den sendes, krever faktisk registrert mottak et eget valg. Spilleren må ikke få nye vakter, lederansvar eller en kvalitetsgodkjenning uten dokumentert beslutning.
 
-Ukeavslutningen på dag 7 er fortsatt slutten på **første arbeidsuke**, men historien fortsetter nå til dag 14. Dagskift, oppgaver og faktiske valg testes i tre gjennomspillinger uten å erstatte de opprinnelige dag 1–3-scenene. Dette er ikke en ferdig treukers V1 for ekspeditøren. Eksisterende karrieremail og økonomimotor holdes adskilt fra fortellingens resultatflagg til integrasjonen er etterprøvd. Fysisk iPad/Safari er ikke dokumentert for denne bolken.
+Ukeavslutningen på dag 7 er et kapitelskille. Historien fortsetter gjennom andre og tredje arbeidsuke til dag 21. Dagskift, oppgaver og faktiske valg testes i tre gjennomspillinger uten å erstatte de opprinnelige dag 1–3-scenene. Alle 21 Life Story-dager er forfattet og teknisk testet, men organisk ansettelse, jobbmail, opptjent lønn, kontolagring og fysisk iPad er ennå ikke helhetlig V1-godkjent. Eksisterende karrieremail og økonomimotor holdes adskilt fra fortellingens resultatflagg til integrasjonen er etterprøvd. Fysisk iPad/Safari er ikke dokumentert for denne bolken.
 
 ## Andre arbeidsuke – dag 8 til 14
 
@@ -107,6 +134,6 @@ Spillerens Symposium skal derfor kunne vise undersøkelse, korrigert handel, sen
 | De tre første dagene | [Life Story-scenene](../../data/Civication/lifestory/roles/ekspeditor/scenes.json) | Prisgrunnlag, lederavgjørelse, avviksmelding, avløsning og begge kontrollører har egne handlinger. Et meldt eller overtatt prisavvik er fortsatt ikke rettet. |
 | Prisfeil i ordinær jobb | [Jobbmailfamilien](../../data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json) | Dette er en egen produksjonsvei. Life Story-historikk skal ikke antas å være delt med normal jobbkjede uten kontrollert kobling. |
 | Yrkespraksis og lokale vilkår | [Profil, ordliste og kildekart](../civication-symposium/ekspeditor.md) | Direkte praksiseksempler og lokale variasjoner må fortsatt merkes og undersøkes. Eksempeluke og lønnsgrunnlag er ikke dermed implementert økonomi. |
-| Gjennomspilling og visning | [Regresjon](../../tests/civication-lifestory-ekspeditor.test.js), [kontinuitet](../../tests/civication-lifestory-ekspeditor-continuity.test.js) og [nettleserkontroll](../../scripts/verify-civication-ekspeditor-lifestory-browser.cjs) | Nettlesertestene rapporterer UI- eller Runner-overgang for dag 1–3 (nå et kapitelskille), mens den eksisterende Node-rolletesten spiller dag 1–14 i tre utfall. Nettleserkontroll gjennom dag 14, hele jobbkalenderen og fysisk Safari er fortsatt utenfor denne kontrollen. |
+| Gjennomspilling og visning | [Regresjon](../../tests/civication-lifestory-ekspeditor.test.js), [kontinuitet](../../tests/civication-lifestory-ekspeditor-continuity.test.js) og [nettleserkontroll](../../scripts/verify-civication-ekspeditor-lifestory-browser.cjs) | Nettlesertestene kontrollerer mobil-/iPad-simulering av den opprinnelige rolleflyten. Rolletesten gjennomspiller dag 1–21 i tre utfall med arkiv- og flaggkontroll. Fysisk iPad Safari og den ekte helhetlige jobb-/lønns-/kontosynkreisen er fortsatt ikke dokumentert. |
 
 Denne synopsisen samler eksisterende arbeid og synliggjør hullene. Den skriver ikke nye hendelser inn i spillerens lagring. Bøker og filmer kan senere gi nye perspektiver på person og miljø; yrkespraksis og fullmakter må fortsatt ha sitt eget kildegrunnlag.
