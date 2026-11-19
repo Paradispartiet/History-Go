@@ -1,0 +1,148 @@
+{
+  "schema": "history_go_aker_brygge_structure_source_audit_v1",
+  "placeId": "aker_brygge",
+  "date": "2026-11-19",
+  "scope": "research_only",
+  "categoryExpression": "structures",
+  "publishable": false,
+  "structuresEnabled": false,
+  "reason": "Historically distinct shipyard halls and docking infrastructure are evidenced, but exact present-day building identities and image rights must be verified before canonical Structures are generated.",
+  "rules": {
+    "doNotDuplicatePlaces": true,
+    "doNotConflateOriginalGrunerlokkaHeadquarters": true,
+    "doNotInventReconstruction": true,
+    "doNotConflateObjectsAndStructures": true,
+    "onlyRealDocumentedBuildings": true,
+    "preferOverviewImages": true,
+    "preventHardZoomAndCropping": true,
+    "requireBinarySourceAndRightsBeforeActivation": true
+  },
+  "primarySources": [
+    {
+      "url": "https://snl.no/Akers_mekaniske_Verksted",
+      "claim": "Maskinverkstedet fra 1914 med påbygg fra 1948, dieselmotorverkstedet fra 1930, to eldre bakre verkstedbygninger og tørrdokken fra 1920 beskrives som bevart/gjenbrukt"
+    },
+    {
+      "url": "https://oslobyleksikon.no/side/Aker_Brygge",
+      "claim": "Gamle verkstedhaller i Stranden 3–5 ble omgjort til forretninger og servering i 1985–86"
+    },
+    {
+      "url": "https://byggeprosjekter.bygg.no/2014-oslo-prosjekter/verkstedhallen-og-maskinhallen/2308979",
+      "claim": "Verkstedhallen og Maskinhallen er særskilt omtalt som rehabiliterte bygg på Aker Brygge"
+    },
+    {
+      "url": "https://www.norwegianproperty.no/no/properties/central-business-district/verkstedhallene",
+      "claim": "Forvalter beskriver verneverdig fasade og industrihistorie i Verkstedhallene"
+    },
+    {
+      "url": "https://akershuseiendom.no/lokaler/snekkerbygget?b=%2F",
+      "claim": "Snekkerbygget omtales som et eldre snekkerverksted/administrasjonsbygg fra 1854; identitet og datering krever uavhengig kildekontroll"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "aker_brygge_verkstedhallen",
+      "name": "Verkstedhallen",
+      "evidence": [
+        "https://oslobyleksikon.no/side/Aker_Brygge",
+        "https://byggeprosjekter.bygg.no/2014-oslo-prosjekter/verkstedhallen-og-maskinhallen/2308979"
+      ],
+      "knownFacts": [
+        "Bevart industrihall i Aker Brygge-miljøet",
+        "Ombruk og rehabilitering fra 1980-årene, senere ombygging"
+      ],
+      "next": "Bekreft eksakt gnr/bnr/adresse og forholdet til maskinverksted- og dieselverkstednavn; få eget overblikkfotografi",
+      "sourceStrength": "strong_named_structure",
+      "visualSourceApproved": false,
+      "publishable": false
+    },
+    {
+      "id": "aker_brygge_maskinhallen",
+      "name": "Maskinhallen",
+      "evidence": [
+        "https://byggeprosjekter.bygg.no/2014-oslo-prosjekter/verkstedhallen-og-maskinhallen/2308979",
+        "https://snl.no/Akers_mekaniske_Verksted"
+      ],
+      "knownFacts": [
+        "Navngitt hall i rehabiliteringsprosjekt på Aker Brygge"
+      ],
+      "next": "Identifiser eksakt bygning og skill fra Verkstedhallen før bildematching; bekreft byggeår",
+      "sourceStrength": "named_but_identity_mapping_pending",
+      "visualSourceApproved": false,
+      "publishable": false
+    },
+    {
+      "id": "aker_brygge_dieselmotorverksted",
+      "name": "Dieselmotorverkstedet",
+      "evidence": [
+        "https://snl.no/Akers_mekaniske_Verksted"
+      ],
+      "knownFacts": [
+        "Verkstedbygning fra 1930 mot brygga inngår i de bevarte delene av skipsverftsmiljøet"
+      ],
+      "next": "Kontroller om dagens navn/bygning tilsvarer Verkstedhallen eller Maskinhallen; ingen dobbelte oppføringer",
+      "sourceStrength": "historical_structure_location_mapping_pending",
+      "visualSourceApproved": false,
+      "publishable": false
+    },
+    {
+      "id": "aker_brygge_snekkerbygget",
+      "name": "Snekkerbygget",
+      "evidence": [
+        "https://akershuseiendom.no/lokaler/snekkerbygget?b=%2F"
+      ],
+      "knownFacts": [
+        "Utleiekilde beskriver snekkerverksted og administrasjonsbygg fra 1854"
+      ],
+      "next": "Finn uavhengig kulturminne-/arkivkilde og foto av eksakt Aker Brygge-bygning før godkjenning",
+      "sourceStrength": "one_source_review_needed",
+      "visualSourceApproved": false,
+      "publishable": false
+    },
+    {
+      "id": "aker_brygge_torrdokken",
+      "name": "Tørrdokken",
+      "evidence": [
+        "https://snl.no/Akers_mekaniske_Verksted"
+      ],
+      "knownFacts": [
+        "Stor tørrdokk fra 1920 omtales som bevart i Aker Brygge-miljøet"
+      ],
+      "next": "Bekreft dagens fysisk synlige form og aktuelt kildeklart oversiktsbilde; som anlegg klassifiseres denne som Structure, ikke Object",
+      "sourceStrength": "strong_historic_structure",
+      "visualSourceApproved": false,
+      "publishable": false
+    }
+  ],
+  "visualSourcePolicy": {
+    "goodImageExamples": [
+      "kildeverifisert foto av navngitt hall fra samme perspektiv",
+      "nøkternt kildebasert originalillustrasjon med arkitekturreferanse",
+      "historisk foto tydelig merket med opptaksår"
+    ],
+    "mustNotUse": [
+      "Commons File:Aker_Mek_Aug_2014.JPG som Aker Brygge-foto: filen dokumenterer første hovedkontor ved Foss på Grünerløkka, en annen lokasjon",
+      "generiske industribyggbilder som ikke viser kandidaten",
+      "fotografi fra annen Aker-bygning som Structure-bilde",
+      "AI-rekonstruksjon uten visuell referansekontroll"
+    ],
+    "identificationRisk": "Historical hall functions and present-day naming (Verkstedhallen, Maskinhallen, 1914 machine workshop, 1930 diesel workshop) overlap or may differ; canonical entries must await exact building crosswalk."
+  },
+  "activationGate": {
+    "requires": [
+      "verified_unique_structure_identity",
+      "historical_source",
+      "current_or_historical_photograph_or_reviewed_likeness_illustration",
+      "local_image_binary",
+      "documented_image_rights",
+      "actual_PlaceCard_browser_test"
+    ],
+    "stage": "HOLD",
+    "placecardEnabled": false
+  },
+  "notes": [
+    "This report alone does not materialize Structures, add invented objects, modify quiz or imply vFerdig.",
+    "Existing People PlaceCard and fullquiz remain unchanged.",
+    "Next production should prioritize exact structural crosswalk rather than guessing aliases."
+  ]
+}
