@@ -182,9 +182,8 @@
     }
     create("p", "Planlegging belaster aldri kontoen. Kun et eksplisitt «Kjøp i spillet» " +
       "på dagens spilldato kan trekke kroner i aktiv NOK-modus. " +
-      "Ingen bestilling eller betaling sendes til en ekte restaurant. " +
       "Hjemmelaget mat beregnes separat i NOK-butikken når NOK er aktiv. " +
-      "Ingen ekte bestilling eller betaling utføres.", details).className = "muted";
+      "Ingen ekte restaurant bestilles eller betales.", details).className = "muted";
   }
 
   function renderNearbyRestaurants(parent) {
