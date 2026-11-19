@@ -35,14 +35,15 @@ const raw = {
 // --- Pakken består de fire lovene (buildContent kaster ellers) ---
 const content = Content.buildContent(raw);
 assert.strictEqual(content.role.id, "ekspeditor");
-assert.strictEqual(raw.roleThreads.threads.length, 6, "fem opprinnelige arbeidstråder og én oppfølgingstråd");
+assert.strictEqual(raw.roleThreads.threads.length, 7, "seks etablerte arbeidstråder og én oppfølgingstråd fra dag fire");
 assert.ok(raw.roleThreads.threads.every((t) => t.type === "arbeidsliv"), "rolletrådene er arbeidsliv");
 
 // De fem opprinnelige mail-familiene og en ekstra forfattet tråd om belastning og støtte.
 const threadIds = raw.roleThreads.threads.map((t) => t.id);
 assert.deepStrictEqual(threadIds.sort(), [
   "kunden_som_tror_du_bestemmer", "lukkingen", "ny_kollega_og_tillit",
-  "prisfeilen_i_koen", "varen_som_ikke_finnes", "arbeidsrytme_og_overskudd"
+  "prisfeilen_i_koen", "varen_som_ikke_finnes", "arbeidsrytme_og_overskudd",
+  "ekspeditor_uke1_oppfolging"
 ].sort());
 
 // Personene er mail-familienes faste cast og finnes i startState.
