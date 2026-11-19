@@ -72,7 +72,7 @@ Ukeavslutningen på dag 7 er fortsatt slutten på **første arbeidsuke**, men hi
 
 **Dag 14:** Andre uke avstemmes. Rapporten kan sendes eller lagres som utkast. Dersom den sendes, kan Lenes mottaksbekreftelse registreres i en egen scene, men det er ikke en godkjenning av alle åpne avvik. Uka kan oppsummeres selv om restoppgaver består.
 
-Denne bolken er merget i [PR #7463](https://github.com/Paradispartiet/History-Go/pull/7463), med godkjente målrettede rolletester og mobil-/iPad-nettlesertest. Den eksisterende kronologiske oppfølgingstråden starter på dag 8. **Dag 15–21 videreføres i en egen bolk med sluttdokumentasjon og skal kontrolleres før merge.** Samlet jobb-/lønnsreise, faktisk kontosynk og fysisk iPad Safari er ikke dermed V1-verifisert.
+Denne bolken er merget i [PR #7463](https://github.com/Paradispartiet/History-Go/pull/7463), med godkjente målrettede rolletester og mobil-/iPad-nettlesertest. Den eksisterende kronologiske oppfølgingstråden starter på dag 8. **Dag 15–21 er ferdig merget i [PR #7465](https://github.com/Paradispartiet/History-Go/pull/7465) med grønn målrettet CI og mobil-/iPad-nettlesertest.** Samlet jobb-/lønnsreise, faktisk kontosynk og fysisk iPad Safari er ikke dermed V1-verifisert.
 
 ## Tredje arbeidsuke – dag 15 til 21
 
@@ -90,7 +90,7 @@ Denne bolken er merget i [PR #7463](https://github.com/Paradispartiet/History-Go
 
 **Dag 21:** Tre ukers arbeid oppsummeres. Spilleren kan rapportere det som faktisk er utført, og overlevere åpne spørsmål. Rapporten kan sendes eller lagres som utkast, og mottaksbekreftelse registreres separat. Slutten gir ingen oppdiktet forfremmelse, automatisk lønn eller lukking av uavklarte saker.
 
-Bolken er skrevet som 27 nye scener i den eksisterende Life Story (130 samlet) med én egen oppfølgingstråd fra dag 15. Tre fullstendige rollegjennomspillinger fra dag 1 til dag 21 kontrollerer at valg, årsaker, lagring og Synopsis-/Symposium-historikk følger faktisk spilltilstand. Godkjenning av disse testene er et teknisk bevis, **ikke fysisk iPad/Safari eller en ekte innlogget jobb-/lønnsreise**.
+Bolken er merget i [PR #7465](https://github.com/Paradispartiet/History-Go/pull/7465) med 27 nye scener i den eksisterende Life Story (130 samlet) og én kronologisk oppfølgingstråd fra dag 15. Tre beståtte rollegjennomspillinger fra dag 1 til dag 21 kontrollerer at valg, årsaker, lagring og Symposium-historikk følger faktisk spilltilstand. Målrettet CI, dokumentasjon og den eksisterende mobil-/iPad-nettlesertesten er grønne. Dette er et teknisk bevis, **ikke fysisk iPad/Safari eller en ekte innlogget jobb-/lønnsreise**.
 
 ## Valgene skal gi forskjellige historier om arbeidet
 
