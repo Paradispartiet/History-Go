@@ -166,7 +166,7 @@ async function play(browser, fixture) {
     const final=await page.evaluate(()=>globalThis.CivicationLifestoryState.load());
     assert.ok(final.dag===dayLimit&&final.dagFerdig&&sawRequest&&sawPlan&&dayTransitionMode,label+': completed actual story route');
     for(const [k,v] of Object.entries({...baseFlags,...flags})) assert.equal(final.tidligereValg[k]===true,v,label+': evidence '+k);
-    if(!complaint && !fixture.week2) assert.equal(final.threadState[thread].status,status);
+    if(!complaint && !fixture.extended) assert.equal(final.threadState[thread].status,status);
     assert.ok(!final.tidligereValg.ren_tid_korridor3_spiller,label+': Amina retains her work');
     await page.reload({waitUntil:'load',timeout:90000});
     await page.waitForFunction(day=>globalThis.CivicationLifestoryState?.load?.()?.dag===day
@@ -175,7 +175,7 @@ async function play(browser, fixture) {
     assert.deepEqual(saved.arkiv,final.arkiv,label+': exact history after reload');
     assert.deepEqual(saved.tidligereValg,final.tidligereValg,label+': exact evidence after reload');
     await openDay(page);
-    if(complaint || fixture.week2){
+    if(complaint || fixture.extended){
       const ending=await page.evaluate(async()=>globalThis.CivicationLifestoryEndings.resolveEnding(globalThis.CivicationLifestoryState.load(),await globalThis.CivicationLifestoryContent.loadContent('renholder')));
       assert.equal(ending.id,fixture.ending,label+': factual final ending');
       const box=page.locator('.civi-lifestory-ending').first();
@@ -248,21 +248,31 @@ async function play(browser, fixture) {
    {label:'plan-venter-ipad-portrait',start:'sett_grense',plan:'avvent_plan',status:'escalated',flags:{ren_tid_plan_venter:true}},
    {label:'ugjort-ipad-landscape',start:'ta_stille',plan:'prioriter_toaletter',extra:{tid_03_toaletter:'meld_ikke_utfort',tid_05_kari_mottar:'avvent_mottak'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_egen_oppgave_venter:true,ren_tid_mottak_venter:true}},
    {label:'mottak-dag2-mobile',start:'ta_stille',plan:'prioriter_toaletter',extra:{tid_05_kari_mottar:'avvent_mottak'},status:'escalated',flags:{ren_tid_plan_bekreftet:true,ren_tid_wc3_spiller:true,ren_tid_kari_mottatt:true}},
-   // Only one existing iPad browser job is extended to the 14-day week-two closeout.
-   {label:'uke2-dag14-ipad',viewport:{width:1180,height:820},targetDay:14,week2:true,
-    start:'sett_grense',plan:'behold_egen_rute',ending:'uke2_sporbar_avslutning',
+   // Only one existing iPad browser job plays the full 21-day renholder continuation.
+   {label:'uke3-dag21-ipad',viewport:{width:1180,height:820},targetDay:21,extended:true,
+    start:'sett_grense',plan:'behold_egen_rute',ending:'uke3_sporbar_avslutning',
     extra:{ren_u2_d8_ukeplan:'avklar_andre_soner',ren_u2_d9_soner:'utfor_korridor',
       ren_u2_d9_kari_mottak:'overlever_kari',ren_u2_d10_runde:'utfor_rom204',
       ren_u2_d10_egenkontroll:'vis_egenkontroll',ren_u2_d11_soel:'ta_avgrenset_runde',
       ren_u2_d11_rengjor:'vask_etter_sikring',ren_u2_d12_metode:'bruk_kjent_metode',
       ren_u2_d12_arbeid:'utfor_kontrollert',ren_u2_d13_tilkomst:'verifiser_fri',
       ren_u2_d13_lagerarbeid:'vask_lager',ren_u2_d14_rapport:'send_status',
-      ren_u2_d14_kari_mottak:'bekreft_mottak',ren_u2_d14_ukeslutt:'for_oppfolging'},
+      ren_u2_d14_kari_mottak:'bekreft_mottak',ren_u2_d14_ukeslutt:'for_oppfolging',
+      ren_u3_d15_status:'spor_uke2',ren_u3_d15_arbeid:'utfor_moterom',
+      ren_u3_d16_materiell:'bruk_kjent_utstyr',ren_u3_d16_kjent_rute:'utfor_kjent',
+      ren_u3_d17_klage:'kontroller_spor',ren_u3_d17_etterkontroll:'gjennomfor_kontroll',
+      ren_u3_d18_hms:'avgrens_rute',ren_u3_d18_utforsel:'utfor_avgrenset',
+      ren_u3_d19_tilkomst:'verifiser_fri',ren_u3_d19_romarbeid:'vask_rom',
+      ren_u3_d20_avstemming:'skill_poster',ren_u3_d20_sporbar_liste:'send_liste',
+      ren_u3_d21_ukeoversikt:'registrer_fakta',ren_u3_d21_rapport:'send_status',
+      ren_u3_d21_mottak:'bekreft_mottak',ren_u3_d21_ukeslutt:'for_videre'},
     flags:{ren_tid_plan_bekreftet:true,ren_tid_kontorer_spiller:true,ren_tid_trapp_spiller:true,
       ren_tid_kari_mottatt:true,ren_u2_d10_arbeid_utfort:true,
       ren_u2_d13_tilkomst_bekreftet:true,ren_u2_lager_utfort:true,
       ren_u2_d14_rapport_sendt:true,ren_u2_d14_kari_mottatt:true,
-      ren_u2_uke2_oppsummert:true}}
+      ren_u2_uke2_oppsummert:true,
+      ren_u3_d15_arbeid_utfort:true,ren_u3_d21_rapport_sendt:true,
+      ren_u3_d21_kari_mottatt:true,ren_u3_d21_ukeoppsummert:true}}
   ];
   for(const [i,c] of cases.entries()) results.push(await play(browser,{...c,viewport:c.viewport||sizes[i%3],status:c.status||(training||spill?'escalated':'active'),
     choices:complaint||training||spill ? {...c.extra} : {tidsvindu_01_telefon:c.start,tid_02_kari_prioriterer:c.plan,...c.extra}}));

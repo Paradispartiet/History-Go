@@ -50,7 +50,7 @@ const siste = (s) => s.valg.filter(choice => !choice.skills_requirement).at(-1).
 
 const FORVENTET = {
   arbeidsledig: { foerste: "bygget_kompetanse", siste: "kom_i_jobb" },
-  renholder: { foerste: "uke2_sporbar_avslutning", siste: "aapen_arbeidsstatus" },
+  renholder: { foerste: "uke3_sporbar_avslutning", siste: "aapen_arbeidsstatus" },
   ekspeditor: { foerste: "trygg_paa_gulvet", siste: "mistet_tilliten" },
   arealplanlegger: { foerste: "faglig_sterk", siste: "politisk_lydig" },
   controller: { foerste: "sporbar_styring", siste: "hard_kontroll" },
