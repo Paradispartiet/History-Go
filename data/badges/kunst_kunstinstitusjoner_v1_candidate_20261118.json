@@ -3,7 +3,7 @@
   "categoryId": "kunst",
   "version": "v1",
   "createdAt": "2026-11-18",
-  "status": "visual_candidate_pending_user_approval_and_binary_upload",
+  "status": "candidate_pending_visual_approval",
   "trackingIssue": 7414,
   "design": {
     "upperLabel": "KUNST",
@@ -47,13 +47,13 @@
   "source": {
     "package": "HistoryGo_Kunst_Kunstinstitusjoner_v1_kandidat.zip",
     "renderSource": "a_highly_detailed_embroidered_patch_badge_on_a_t.png",
-    "location": "ChatGPT working container / original package, not uploaded to GitHub"
+    "location": "Source package archived in ChatGPT; all three image binaries verified in GitHub main by PR #7430"
   },
   "quality": {
     "localFileIntegrityCalculated": true,
     "visualApprovedByUser": false,
-    "repositoryUploaded": false,
-    "repositoryHashesVerified": false,
+    "repositoryUploaded": true,
+    "repositoryHashesVerified": true,
     "active": false
   },
   "preservation": {
@@ -61,5 +61,11 @@
     "otherNineUnderbadgesUnchanged": true,
     "placeCardAndMapUnchanged": true
   },
-  "activationPolicy": "Requires explicit visual approval, verified byte-identical GitHub upload for original/master/app, then isolated Kunst badge test. Only update subBadgeImages.kunstinstitusjoner."
+  "activationPolicy": "All three image binaries are uploaded and Git blob SHA verified by PR #7430. Activate only this subBadgeImages entry after explicit user visual approval and focused Kunst badge QA. Leave all other badges unchanged.",
+  "repositoryVerification": {
+    "commit": "ae43a27096548b7c0cada725d4a9469f6184bf43",
+    "pullRequest": 7430,
+    "allThreeGitBlobsVerified": true,
+    "verifiedOn": "2026-11-19"
+  }
 }
