@@ -5,7 +5,7 @@ on:
       - feature/aker-brygge-tiger-official-press-logo-20261119
     paths:
       - .github/workflows/aker-brygge-tiger-press-wordmark.yml
-      - scripts/produce-aker-brygge-svw-wordmark-from-pdf.mjs
+      - scripts/produce-aker-brygge-tiger-wordmark-from-press-pdf.mjs
       - tests/aker-brygge-tiger-press-wordmark.test.mjs
 permissions:
   contents: write
@@ -34,8 +34,8 @@ jobs:
             sudo apt-get update -qq
             sudo apt-get install -y -qq poppler-utils
           fi
-      - name: Download documented published PDF and crop authentic SVW wordmark
-        run: node scripts/produce-aker-brygge-svw-wordmark-from-pdf.mjs
+      - name: Download official Tiger of Sweden 2026 press PDF and crop actual wordmark
+        run: node scripts/produce-aker-brygge-tiger-wordmark-from-press-pdf.mjs
       - name: Verify source crop, hashes, WebP and hold status
         run: node --test tests/aker-brygge-tiger-press-wordmark.test.mjs
       - uses: actions/upload-artifact@v4
