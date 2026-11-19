@@ -20,7 +20,7 @@ await fs.mkdir(outDir,{recursive:true});
 try{
  for(const site of sources){
   const page=await browser.newPage({viewport:{width:1280,height:900},deviceScaleFactor:2,colorScheme:"light",locale:"nb-NO"});
-  const result={brandId:site.id,sourcePage:site.url,httpStatus:null,finalUrl:null,title:null,error:null,headerEvidence:null,logoCandidates:[],published:false,reviewStatus:"UNVERIFIED_BROWSER_EVIDENCE"};
+  const result={brandId:site.id,sourcePage:site.url,httpStatus:null,finalUrl:null,title:null,error:null,headerEvidence:null,headerEvidenceStorage:"actions_artifact_only",logoCandidates:[],published:false,reviewStatus:"UNVERIFIED_BROWSER_EVIDENCE"};
   try {
    const response=await page.goto(site.url,{waitUntil:"domcontentloaded",timeout:45000});
    result.httpStatus=response?.status()??null;

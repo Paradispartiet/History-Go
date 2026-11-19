@@ -52,7 +52,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- reports/place-production/aker-brygge-official-header-evidence reports/place-production/aker-brygge-remaining-brand-header-audit-2026-11-19.json reports/place-production/aker-brygge-inline-svg-candidates-2026-11-19.json bilder/kort/brands/source/aker_brygge/lund_hagem_official_inline.svg bilder/kort/brands/source/aker_brygge/haavind_official_inline.svg bilder/kort/brands/candidates/aker_brygge/lund_hagem.webp bilder/kort/brands/candidates/aker_brygge/haavind.webp
+          git add -- reports/place-production/aker-brygge-remaining-brand-header-audit-2026-11-19.json reports/place-production/aker-brygge-inline-svg-candidates-2026-11-19.json bilder/kort/brands/source/aker_brygge/lund_hagem_official_inline.svg bilder/kort/brands/source/aker_brygge/haavind_official_inline.svg bilder/kort/brands/candidates/aker_brygge/lund_hagem.webp bilder/kort/brands/candidates/aker_brygge/haavind.webp
           if ! git diff --cached --quiet; then
             git commit -m "research(aker-brygge): archive four official header visual reviews"
             git push origin HEAD:refs/heads/feature/aker-brygge-remaining-brand-visual-review-20261119
