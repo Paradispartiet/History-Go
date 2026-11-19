@@ -38,6 +38,11 @@ test("Aker Brygge — exact authentic-logo binary candidates only", async () => 
     assert.deepEqual([inputMeta.width, inputMeta.height], c.sourceDimensions);
     assert.deepEqual([outputMeta.width, outputMeta.height, outputMeta.format], [900, 520, "webp"]);
     assert.ok(original.length > 300 && output.length > 300);
+    assert.equal(c.matteColor, c.brandId === "olivia" ? "#242422" : "#ffffff");
+    const corner = await sharp(output).extract({left: 0, top: 0, width: 1, height: 1}).removeAlpha().raw().toBuffer();
+    const expected = c.brandId === "olivia" ? [36, 36, 34] : [255, 255, 255];
+    assert.ok(corner.subarray(0,3).every((v,i)=>Math.abs(v-expected[i])<=3),
+      "Unexpected logo matte for " + c.brandId + ": " + [...corner.subarray(0,3)]);
     assert.equal(c.assetKind, "logo");
     assert.equal(c.transformation.includes("no crop or redraw"), true);
   }
