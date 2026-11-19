@@ -158,6 +158,13 @@
       "url": "https://creativecommons.org/licenses/by-sa/4.0/",
       "lang": "en",
       "verifiedAt": "2026-11-17"
+    },
+    {
+      "type": "reference",
+      "label": "Oslo byleksikon – Consul Blikstads bro",
+      "url": "https://oslobyleksikon.no/side/Consul_Blikstads_bro",
+      "lang": "nb",
+      "verifiedAt": "2026-11-19"
     }
   ],
   "tasks_profile": {
@@ -323,13 +330,13 @@
   "fagverk": {
     "schema": "history_go_place_fagverk_v2",
     "level": "standard",
-    "status": "in_production",
-    "intro": "Elvepartiet rett nedenfor Nydalsdammen lar oss studere hvordan Akerselva går fra en demmet vannflate til et smalere løp gjennom Nydalen. Stedet handler om vannets bevegelse og breddenes utforming, ikke om de historiske Stilla-kulpene.",
+    "status": "curated",
+    "intro": "Rett nedenfor Nydalsdammen går Akerselva fra en bred, oppdemmet vannflate inn i et smalere løp. Her kan du lese både hvordan elvebredden former vannets vei, og hvordan vannkraften preget Nydalen.",
     "article": [
-      "Ved dette punktet går Akerselva videre nedenfor Nydalsdammen. Elveløpet er smalere enn damflaten, og breddene har vegetasjon og gangforbindelser. Sammen kan vannets bevegelse, terrengformen og tilgjengeligheten studeres på stedet.",
-      "Nydalen var et industriområde der elva ble brukt som del av fabrikkdriften. I dag er store deler av elverommet også et offentlig grøntdrag. Dette betyr ikke at vannhastighet, flomfare eller naturmangfold kan fastslås ved å se på elva én gang.",
-      "Stedsnavnet Stilla har vært brukt om badekulpene i øvre del av Akerselva, fra Grandalen mot Brekkefossen. Oslo byleksikon plasserer disse lenger nord. Derfor må ikke badekulpenes navn og historie overføres til dette punktet nedenfor Nydalsdammen.",
-      "En god feltundersøkelse kan beskrive synlige trekk ved elvebredden, vannets form og ferdselsveiene, mens kilder brukes til å skille eldre industribruk fra senere byutvikling. Målinger kreves for å si noe sikkert om vannkvalitet eller strømhastighet."
+      "Begynn med å sammenligne vannflaten ved dammen med elveløpet nedenfor. Ved dammen brer vannflaten seg ut. Lenger ned rammer breddene inn et tydeligere løp. Se hvor løv og små kvister samler seg ved kanten, og sammenlign med det som flyter lenger ute. Bevegelsen du ser, beskriver overflaten på observasjonstidspunktet. Strømhastighet gjennom hele tverrsnittet og vannføring krever målinger.",
+      "Oslo byleksikon beskriver Nydalsdammen som det øvre vanninntaket til Nydalens Compagnie. På vestsiden lå Nygaards sag. Den var i drift fram til tekstilbedriften begynte å utnytte vannkraften i 1845. Nedenfor dammen krysser Consul Blikstads bro Akerselva ved inngangen til det tidligere industriområdet. Dammen og brua gir to holdepunkter for å lese hvordan bedriften tok vannet og elverommet i bruk.",
+      "Dammen ble ryddet opp i 1991, og området fikk plener og beplantning året etter. Langs elvepartiet kan du sammenligne steder der vegetasjonen skygger over vannet, med åpne partier. Noter hvor du ser røtter nær vannkanten, og hvor bredden virker bratt eller slak. Gjenta observasjonen etter regn eller i en annen årstid for å undersøke hvor mye som endrer seg.",
+      "Den eldre kart-ID-en for elvepunktet inneholder navnet Stilla. I Oslo byleksikon betegner Stilla de historiske badekulpene lenger opp i Akerselva, mellom Grandalen og Brekkefossen. Finn dammen og Brekkefossen på kartet og følg elva mellom dem. Da kan du plassere badehistorien på riktig strekning og bruke elvepartiet nedenfor dammen til å undersøke overgangen fra oppdemmet vannflate til smalere elveløp."
     ],
     "subject_ids": [
       "natur"
@@ -348,7 +355,7 @@
       {
         "id": "elveparti-overgang",
         "title": "Fra dam til elveløp",
-        "prompt": "Hvordan endrer elvas synlige form seg mellom Nydalsdammen og strekningen nedenfor?",
+        "prompt": "Hvor går vannflaten fra bred og åpen til tydelig avgrenset av elvebreddene?",
         "subject_id": "natur",
         "emne_id": "em_natur_elver_bekker_vassdrag",
         "evidence": "Sammenlign damflaten og det smalere elveløpet fra trygge, offentlig tilgjengelige utsiktspunkter."
@@ -356,26 +363,26 @@
       {
         "id": "elveparti-bredder",
         "title": "Hva kan vi se fra stien?",
-        "prompt": "Hvilke synlige trekk ved elvebreddene kan dokumenteres uten å utlede usikre arts- eller vannkvalitetsdata?",
+        "prompt": "Hvor gir trær og busker skygge over vannet, og hvor er bredden åpen?",
         "subject_id": "natur",
         "emne_id": "em_natur_dalforer_vannskiller_topografi",
         "evidence": "Bruk egne observasjoner av bredde, kantvegetasjon og terreng; unngå å konkludere om skjulte prosesser uten målinger."
       },
       {
         "id": "elveparti-stedsnavn",
-        "title": "Stilla ligger et annet sted",
+        "title": "Les stedsnavnet oppstrøms",
         "prompt": "Hvordan kan kart og stedsleksikon forhindre at historiske badekulper feilplasseres?",
         "subject_id": "natur",
         "emne_id": "em_natur_friluftsliv_helse",
-        "evidence": "Oslo byleksikon skiller Stilla-kulpene fra dette punktet ved Nydalsdammen."
+        "evidence": "Finn Nydalsdammen og Brekkefossen på kartet, og bruk oppslaget om Stilla til å plassere badekulpene."
       }
     ],
     "guiding_questions": [
-      "Hva skjer med elvas form nedenfor Nydalsdammen?",
-      "Hva kan du faktisk observere langs breddene fra en lovlig sti?",
-      "Hvordan er elvepartiet knyttet til Nydalens industrihistorie?",
-      "Hvor lå de historiske Stilla-kulpene?",
-      "Hvilke påstander om vannkvalitet eller strøm krever egne målinger?"
+      "Hvordan endrer vannflatens bredde seg nedenfor dammen?",
+      "Hvor ser du forskjell på vannets bevegelse ved kanten og lenger ute?",
+      "Hva forteller vanninntaket og sagbruket om bruken av elva?",
+      "Hvor finner du de historiske Stilla-kulpene på kartet?",
+      "Hva måtte du måle for å sammenligne vannføringen på to ulike dager?"
     ],
     "concepts": [
       "byvassdrag",
@@ -398,22 +405,23 @@
         ]
       },
       {
-        "title": "To ulike stedsnavn",
-        "observation": "Finn elvepunktet og de historiske Stilla-kulpene på kart og sammenlign deres plassering.",
-        "interpretation_boundary": "Nærhet til Akerselva er ikke grunnlag for å overføre navnehistorien fra ett sted til et annet.",
+        "title": "Brua som holdepunkt",
+        "observation": "Finn Consul Blikstads bro i kartet og se hvor den ligger i forhold til dammen og det tidligere industriområdet.",
+        "interpretation_boundary": "Bruas plassering hjelper med å orientere seg. Historiske kilder trengs for å dokumentere hvordan vannet ble ført inn i fabrikkanlegget.",
         "source_urls": [
-          "https://oslobyleksikon.no/side/Stilla",
+          "https://oslobyleksikon.no/side/Consul_Blikstads_bro",
           "https://oslobyleksikon.no/side/Nydalsdammen"
         ]
       }
     ],
     "source_urls": [
-      "https://oslobyleksikon.no/side/Stilla",
       "https://oslobyleksikon.no/side/Nydalsdammen",
+      "https://oslobyleksikon.no/side/Consul_Blikstads_bro",
+      "https://oslobyleksikon.no/side/Stilla",
       "https://oslobyleksikon.no/side/Akerselva",
-      "https://www.nydalen.no/om-nydalen/"
+      "https://oslobyleksikon.no/side/Nydalen"
     ],
-    "verified_at": "2026-11-16"
+    "verified_at": "2026-11-19"
   },
   "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Nydalsdammen_-_Oslo,_Norway_2020-08-06_(05).jpg?width=1280",
   "frontImage": "https://commons.wikimedia.org/wiki/Special:FilePath/Akerselva_-_Oslo,_Norway_2020-08-06_(01).jpg?width=960",
