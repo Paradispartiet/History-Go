@@ -20,7 +20,7 @@ Arbeidet foregår i kassa, mellom hyllene og på lageret. Varer skal registreres
 
 Jonas og søsteren finnes i de delte privatlivsscenene. Kontakten med dem fortsetter etter arbeidstid. Privatlivet skal følge spillerens faktiske valg; det skal ikke brukes som bevis på at en arbeidsoppgave er løst.
 
-## Hovedforløpet over tre skrevne dager
+## Hovedforløpet – de tre første dagene
 
 **Første dag:** Du overtar kassa. En innledende kontroll av brød og juice dekker ikke automatisk kampanjekaffen som kommer senere. Når kaffen skannes til 49 og kunden viser til 39, må samme vare og kampanje undersøkes. Du kan undersøke selv etter bekreftet avløsning eller la Amir kontrollere. En snarvei kan følges opp senere. Kundens handel og butikkens prisfeil er to forskjellige oppgaver: Handelen kan være korrigert mens meldingen, mottaksbekreftelsen eller etterkontrollen fortsatt mangler.
 
@@ -44,6 +44,18 @@ Den eksisterende grenen med fullført avstemming etter feilutbetaling på dag 2 
 
 Dag 3 følger også den registrerte arbeidsfordelingen fra dagen før. Lene og Amir kan bekrefte en plan for avløsning; det betyr ikke at en framtidig pause er tatt. Når vikaren skal sammenligne juice og hylleetikett, kan du få avløsning, vise kontrollen og kontrollere hennes egen sammenligning. Du kan i stedet avtale at Amir gjør gjennomgangen. Da må hans resultat innhentes, og det er hans opplæring. Ved fortsatt arbeidspress kan Amir faktisk ta over kassa etter avklart overlevering. Å be om avlastning er ikke tap av ansikt. Fortsetter du uten avklaring, står behovet for avlastning åpent.
 
+## Videreføring – dag 4 til 7
+
+**Dag 4:** Lene ber om en faktisk restoversikt etter de første vaktene. Spilleren skal skille utførte handlinger, meldte spørsmål og poster som ingen har overtatt. En ny kampanjeprissjekk må kontrolleres for riktig vare og gyldig periode, selv om den tidligere kaffeprisen ble rettet. Amir viser en mulig lagerdifferanse, men systemtall er ikke fysisk beholdning. Ved vaktslutt kan et skiftnotat sendes eller bli liggende som utkast. Ingen av delene betyr automatisk at neste skift har bekreftet overtakelse.
+
+**Dag 5:** En varelevering kommer samtidig med behov for hjelp i kassa. Følgeseddelen viser 12 kolli, og en faktisk telling kan vise 11. Dette er en fiktiv, konkret øvelse i dokumentkontroll, ikke et faktisk leverandøravvik. En ansatt som telte kan registrere 11 som mottatt og melde ett manglende kolli, eller etterspørre kontroll. Den som aldri telte må føre leveransen som ukontrollert. Lene mottar status, men det manglende kolliet dukker ikke opp bare fordi noen sendte et notat.
+
+**Dag 6:** En kunde ber om retur av en matboks. Kvittering, vare og vilkår undersøkes, og Lenes beslutningsmyndighet beholdes. Å sende dokumentasjon er ikke å godkjenne returen, og å få bekreftet mottak er ikke det samme som å bytte varen eller betale tilbake.
+
+**Dag 7:** Spilleren avstemmer arbeid fra første uke, gjør eventuelt en konkret varepåfylling og overleverer åpne punkter. Rapporten kan sendes eller bli et utkast. Dersom den sendes, krever faktisk registrert mottak et eget valg. Spilleren må ikke få nye vakter, lederansvar eller en kvalitetsgodkjenning uten dokumentert beslutning.
+
+Ukeavslutningen er nå siste forfattede dag i den **første** spilluka. Dagskift, oppgaver og faktiske valg testes i tre gjennomspillinger uten å erstatte de opprinnelige dag 1–3-scenene. Dette er ikke en ferdig treukers V1 for ekspeditøren. Eksisterende karrieremail og økonomimotor holdes adskilt fra fortellingens resultatflagg til integrasjonen er etterprøvd. Fysisk iPad/Safari er ikke dokumentert for denne bolken.
+
 ## Valgene skal gi forskjellige historier om arbeidet
 
 En kunde kan ende med samme pris etter flere forsvarlige valg. Forskjellen ligger i hvem som undersøkte, hvem som ble avbrutt, hvor lenge kunden ventet og hvem som følger opp. Du kan ha gjort godt arbeid selv om Lene måtte avgjøre saken. Du kan ha fått køen unna uten å ha avsluttet restoppgaven.
@@ -56,7 +68,7 @@ Spillerens Symposium skal derfor kunne vise undersøkelse, korrigert handel, sen
 | --- | --- | --- |
 | Personer, mål og mulige avslutninger | [Rollebeskrivelsen](../../data/Civication/lifestory/roles/ekspeditor/role.json) | Hver konkret avslutning har ett bevisflagg og beskriver bare den dokumenterte handlingen. Den nøytrale standardavslutningen tilskriver ingen ferdige oppgaver, tillitstap eller forfremmelse. |
 | Arbeidslivstråder | [Trådene](../../data/Civication/lifestory/roles/ekspeditor/threads.json) | Trådtittel og status må samsvare med oppgaven som faktisk er gjort. |
-| De tre skrevne dagene | [Life Story-scenene](../../data/Civication/lifestory/roles/ekspeditor/scenes.json) | Prisgrunnlag, lederavgjørelse, avviksmelding, avløsning og begge kontrollører har egne handlinger. Et meldt eller overtatt prisavvik er fortsatt ikke rettet. |
+| De tre første dagene | [Life Story-scenene](../../data/Civication/lifestory/roles/ekspeditor/scenes.json) | Prisgrunnlag, lederavgjørelse, avviksmelding, avløsning og begge kontrollører har egne handlinger. Et meldt eller overtatt prisavvik er fortsatt ikke rettet. |
 | Prisfeil i ordinær jobb | [Jobbmailfamilien](../../data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json) | Dette er en egen produksjonsvei. Life Story-historikk skal ikke antas å være delt med normal jobbkjede uten kontrollert kobling. |
 | Yrkespraksis og lokale vilkår | [Profil, ordliste og kildekart](../civication-symposium/ekspeditor.md) | Direkte praksiseksempler og lokale variasjoner må fortsatt merkes og undersøkes. Eksempeluke og lønnsgrunnlag er ikke dermed implementert økonomi. |
 | Gjennomspilling og visning | [Regresjon](../../tests/civication-lifestory-ekspeditor.test.js), [kontinuitet](../../tests/civication-lifestory-ekspeditor-continuity.test.js) og [nettleserkontroll](../../scripts/verify-civication-ekspeditor-lifestory-browser.cjs) | Nettlesertestene rapporterer UI- eller Runner-overgang for begge dagskifter og kontrollerer dag 3, avslutning og synlig Symposium. Hele jobbkalenderen og fysisk Safari er fortsatt utenfor denne kontrollen. |
