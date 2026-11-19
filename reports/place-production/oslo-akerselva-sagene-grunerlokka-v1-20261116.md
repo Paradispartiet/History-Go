@@ -400,3 +400,10 @@ Kilder for fasitene og metodene: [Dammen](https://oslobyleksikon.no/side/Nydalsd
 | 3.5 | Hvorfor er flere observasjoner gjennom året nyttige? | De viser om et mønster går igjen under ulike vann- og lysforhold | De gjør opplysninger om historisk bruk overflødige · De gir eksakt strømhastighet fra bilder alene · De gir alltid samme resultat ved samme bru | Måling, Kantsone |
 | 3.6 | Hvilke kilder kan du kombinere for å skille elvepunktet fra de historiske badekulpene? | Kart med elveløpet og stedsoppslaget om Stilla | Et bilde av vannflaten og en artsliste · Bruas byggeår og nedbørsstatistikk · Et rutenavn og én observasjon av vannets fart | Stilla |
 | 3.7 | Hvordan kan en historisk kilde og en feltobservasjon utfylle hverandre ved dammen? | Kilden forklarer vanninntakets bruk, mens observasjonen viser dagens vannflate og bredd | Kilden gir dagens vannføring, mens observasjonen daterer sagbruket · Begge viser nøyaktig hvordan vannet gikk inne i fabrikken · Feltobservasjonen alene fastslår både byggeår og tidligere drift | Dammen, Nydalen |
+
+## Elvepartiet nedenfor Nydalsdammen – migrert quiz og lokal datakontroll (19.11.2026)
+
+- Commit `19fec872` aktiverer tre sett à sju kildekoblede spørsmål for `stilla_nydalen`. Alle 21 har egne quiz- og Knowledge-ID-er og er registrert i quizmanifestet.
+- De 42 tidligere spørsmålene er identiske med arkivkopien. Hver opprinnelige quiz-ID peker fortsatt til den samme primære Knowledge-enheten i det genererte registeret. De nye spørsmålene gjenbruker ingen av disse ID-ene.
+- QuizCard er registrert under Natur. Alle ti oppgavene samsvarer med aktiv fullquiz i spørsmål, svaralternativer, fasit, kildelenker og Knowledge-ID.
+- Lokalt bestod kontrollene for quizmanifest, quizmaler, progresjonsregler, quizreferanser, kanonisk Knowledge, Fagverk-release og Place-open. QuizCard og fullquiz må fortsatt verifiseres i nettleser på den migrerte versjonen. Lokal Chromium avsluttet ved oppstart, og GitHub viste ingen sjekkkjøringer på `19fec872`. Samlet V1-godkjenning og merge er åpne.
