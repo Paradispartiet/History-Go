@@ -1,4 +1,4 @@
-name: Det Norske Teatret C51 deployed Objects QA
+name: Det Norske Teatret C51 public assets and login gate
 on:
   # This is a PUBLIC Pages deployment check: PR branches are not deployed.
   # Pull requests have their own real local-browser Objects gate (C50).
@@ -36,10 +36,7 @@ jobs:
         run: node --check tests/det-norske-teatret-public-objects-c51.mjs
       - name: Install browser
         run: npx playwright install --with-deps chromium
-      - name: Verify PUBLIC GitHub Pages Objects, photo, illustration and cards at mobile and desktop widths
-        env:
-          HG_C51_TEST_EMAIL: ${{ secrets.HG_C51_TEST_EMAIL }}
-          HG_C51_TEST_PASSWORD: ${{ secrets.HG_C51_TEST_PASSWORD }}
+      - name: Verify PUBLIC assets and anonymous AHA login gate at mobile and desktop widths
         run: node tests/det-norske-teatret-public-objects-c51.mjs
       - name: Preserve public evidence and screenshots regardless of test result
         if: always()
