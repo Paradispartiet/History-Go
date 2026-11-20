@@ -466,6 +466,12 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         await page.locator(`[data-lifestory-continue="${chapterId}"]`).click();
         await page.waitForFunction(() => (globalThis as any).CivicationLifestoryState.load().dag === 8);
         state = await readState();
+        assert.equal(state.fortsettelseId, chapterId,
+          `${scenario.id}: selected continuation must be committed before day 8`);
+        assert.equal(state.kapittelArkiv?.length, 1,
+          `${scenario.id}: completed chapter is archived before day 8`);
+        assert.equal(state.kalenderDag, await page.evaluate(() => (globalThis as any).CivicationCalendar.getClock().dayIndex),
+          `${scenario.id}: chapter and shell share one calendar day`);
         const frozenEnding = JSON.stringify(state.kapittelArkiv[0]);
         const pending = await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo().sceneId);
         assert.equal(pending, scenario.expectedOpening || (scenario.id === 'mira_videre_spilt' ? 'd8_mira_etter_settet' : 'd8_mira_uten_sett'));
@@ -473,7 +479,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         // Change the primary life position through the real profile, reload
         // while paused, then restore it through the same player control.
         await openFullHistoryViaUi(page);
-        await page.locator('[data-lifestory-life-profile]').click();
+        await page.locator('[data-lifestory-symposium] [data-lifestory-life-profile]').click();
         await page.locator('#civiLifePositionSelect').selectOption('by|Byvandrer');
         await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
         await page.locator('.civi-footer button[data-category="minDag"]').click();
@@ -541,7 +547,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         const secondRole = scenario.nextRole || roleLabel;
         if (secondRole !== roleLabel) {
           await openFullHistoryViaUi(page);
-          await page.locator('[data-lifestory-life-profile]').click();
+          await page.locator('[data-lifestory-symposium] [data-lifestory-life-profile]').click();
           await page.locator('#civiLifePositionSelect').selectOption(`${encodeURIComponent(badge)}|${encodeURIComponent(secondRole)}`);
           await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
           await page.locator('.civi-footer button[data-category="minDag"]').click();
@@ -632,7 +638,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         await page.reload({ waitUntil: 'load' });
         await page.waitForFunction(() => !!(globalThis as any).CivicationLifestoryUI?.getRoleSuggestion?.());
         await openFullHistoryViaUi(page);
-        await page.locator('[data-lifestory-life-profile]').click();
+        await page.locator('[data-lifestory-symposium] [data-lifestory-life-profile]').click();
         await page.locator('#civiSectionPopup [data-civi-life-suggestion]').waitFor({ state: 'visible' });
         if (scenario.activate) assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifePositions.getLifeContext().primary_life_position.label), scenario.nextRole || scenario.suggestion);
         await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
