@@ -250,6 +250,10 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
     await page.locator('#psychologyPrivateBackupRestore input[name="password"]').fill(passphrase);
     await page.locator('#psychologyPrivateBackupRestore input[name="confirm"]').check();
     await page.locator('#psychologyPrivateBackupRestore button[type="submit"]').click();
+    await page.waitForFunction(() => {
+      const status = document.querySelector('#psychologyPrivateBackupRestore [role="status"]')?.textContent || "";
+      return status.includes("allerede et arkiv");
+    }, null, { timeout: 10000 });
     assert.match(await page.locator('#psychologyPrivateBackupRestore [role="status"]').innerText(),
       /allerede et arkiv/, "restore refuses to overwrite existing private records");
     page.once("dialog", dialog => dialog.accept());
