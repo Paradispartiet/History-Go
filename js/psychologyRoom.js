@@ -506,6 +506,38 @@
     });
   }
 
+
+  function renderInnerMapCanvas(selected, links, caseTitle) {
+    if (!selected.length) return "";
+    const positions = getInnerMapPositions();
+    const byId = new Map(positions.map((point) => [point.id, point]));
+    const lines = links.map((link) => {
+      const a = byId.get(link.from), b = byId.get(link.to);
+      if (!a || !b) return "";
+      return '<line class="psychology-room-map-edge" data-from="' + escapeHtml(link.from) +
+        '" data-to="' + escapeHtml(link.to) + '" x1="' + a.x * 1000 + '" y1="' + a.y * 1000 +
+        '" x2="' + b.x * 1000 + '" y2="' + b.y * 1000 + '"/>';
+    }).join("");
+    const nodes = positions.map((point) => {
+      const title = caseTitle.get(point.id) || "Min refleksjon";
+      return '<button type="button" class="psychology-room-map-node" data-psych-map-drag="' +
+        escapeHtml(point.id) + '" aria-label="Flytt refleksjon: ' + escapeHtml(title) +
+        '" aria-describedby="psychologyMapCanvasHelp" style="left:' + point.x * 100 +
+        '%;top:' + point.y * 100 + '%"><span class="psychology-room-map-node-grip" aria-hidden="true">⠿</span>' +
+        '<span class="psychology-room-map-node-title">' + escapeHtml(title) + '</span></button>';
+    }).join("");
+    return '<section class="psychology-room-map-section" aria-label="Visuelt indre kart">' +
+      '<h4>Mitt kart – flytt refleksjonene</h4>' +
+      '<p class="psychology-room-muted" id="psychologyMapCanvasHelp">Dra med finger eller mus. ' +
+      'Bruk piltastene på en valgt refleksjon, og Shift for større steg. ' +
+      'På smale skjermer kan kartet rulles sidelengs.</p>' +
+      '<div class="psychology-room-map-viewport" tabindex="0" aria-label="Rullbar kartflate">' +
+      '<div class="psychology-room-map-stage">' +
+      '<svg class="psychology-room-map-edges" viewBox="0 0 1000 1000" ' +
+      'preserveAspectRatio="none" aria-hidden="true" focusable="false">' + lines + '</svg>' +
+      nodes + '</div></div></section>';
+  }
+
   function renderInnerMap() {
     setActiveSection("profile");
     const selected = getInnerMapModel();
@@ -559,6 +591,7 @@
       '<p class="psychology-room-muted">Du velger hvilke refleksjoner som skal vises. Kartet følger bare det du selv skrev: hendelse, tanke, følelse, kropp, handling og neste steg. Det tolker deg ikke.</p>' +
       '<div class="psychology-room-inner-overview"><strong>' + selected.length +
       '</strong><span>av 16 mulige refleksjoner i kartet</span></div>' +
+      renderInnerMapCanvas(selected, links, caseTitle) +
       (cards || '<div class="psychology-room-inner-empty"><strong>Et tomt kart er også et godt utgangspunkt.</strong><p>Ingen refleksjoner legges inn automatisk. Velg en lagret situasjon eller opprett en ny.</p></div>') +
       '<section class="psychology-room-note-section psychology-room-inner-links" aria-labelledby="psychologyMapLinksHeading">' +
       '<h4 id="psychologyMapLinksHeading">Mine forbindelser (' + links.length + ')</h4>' +
