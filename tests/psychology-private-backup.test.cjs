@@ -27,6 +27,8 @@ const sample = {
     follow_ups: [{
       id: "follow-1", created_at: "2026-11-20T13:00:00.000Z",
       tried: "Skrev en setning", outcome: "Kun testdata"
+    }, {
+      id: "follow-legacy", tried: "Eldre notat", outcome: "Mangler tidsstempel"
     }]
   }, {
     id: "synthetic-note-2", created_at: "2026-11-19T12:00:00.000Z",
@@ -86,6 +88,9 @@ async function run() {
   const content = await backup.decryptBackup(exported.text, password);
   assert.equal(content.workbench.length, 2);
   assert.equal(content.workbench[0].situation, sample.workbench[0].situation);
+  assert.equal(content.workbench[0].follow_ups.length, 2,
+    "legacy follow-ups without timestamps must survive the encrypted roundtrip");
+  assert.equal(content.workbench[0].follow_ups[1].created_at, undefined);
   assert.equal(content.inner_map.groups[0].label, "Test-tema");
   assert.equal(content.inner_map.links.length, 1);
 
