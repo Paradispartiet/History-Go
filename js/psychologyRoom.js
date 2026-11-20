@@ -608,6 +608,8 @@
   function renderInnerMapCanvas(selected, links, caseTitle) {
     if (!selected.length) return "";
     const positions = getInnerMapPositions();
+    const groups = new Map(getInnerMapGroups().map((group) => [group.id, group.label]));
+    const assignments = getInnerMapAssignments();
     const byId = new Map(positions.map((point) => [point.id, point]));
     const lines = links.map((link) => {
       const a = byId.get(link.from), b = byId.get(link.to);
@@ -618,11 +620,17 @@
     }).join("");
     const nodes = positions.map((point) => {
       const title = caseTitle.get(point.id) || "Min refleksjon";
+      const groupId = assignments[point.id] || "";
+      const groupLabel = groups.get(groupId) || "";
       return '<button type="button" class="psychology-room-map-node" data-psych-map-drag="' +
-        escapeHtml(point.id) + '" aria-label="Flytt refleksjon: ' + escapeHtml(title) +
+        escapeHtml(point.id) + '" data-psych-group="' + escapeHtml(groupId) +
+        '" aria-label="Flytt refleksjon: ' + escapeHtml(title) +
+        (groupLabel ? ', gruppe ' + escapeHtml(groupLabel) : "") +
         '" aria-describedby="psychologyMapCanvasHelp" style="left:' + point.x * 100 +
         '%;top:' + point.y * 100 + '%"><span class="psychology-room-map-node-grip" aria-hidden="true">⠿</span>' +
-        '<span class="psychology-room-map-node-title">' + escapeHtml(title) + '</span></button>';
+        '<span class="psychology-room-map-node-title">' + escapeHtml(title) +
+        (groupLabel ? '<small class="psychology-room-map-group-label">' +
+          escapeHtml(groupLabel) + '</small>' : '') + '</span></button>';
     }).join("");
     return '<section class="psychology-room-map-section" aria-label="Visuelt indre kart">' +
       '<h4>Mitt kart – flytt refleksjonene</h4>' +
@@ -711,6 +719,97 @@
     });
   }
 
+
+  function renderInnerMapGroups(selected, caseTitle) {
+    const groups = getInnerMapGroups();
+    const assignments = getInnerMapAssignments();
+    const groupName = new Map(groups.map((item) => [item.id, item.label]));
+    const groupRows = groups.map((item) => {
+      const count = Object.values(assignments).filter((id) => id === item.id).length;
+      return '<li class="psychology-room-map-group-item" data-psych-map-group-row="' +
+        escapeHtml(item.id) + '"><span class="psychology-room-map-group-dot ' +
+        escapeHtml(item.id) + '" aria-hidden="true"></span><strong>' +
+        escapeHtml(item.label) + '</strong><span>' + count + ' refleksjoner</span>' +
+        '<button type="button" class="psychology-room-back" data-psych-map-group-delete="' +
+        escapeHtml(item.id) + '">Fjern gruppe</button></li>';
+    }).join("");
+    const noteOptions = selected.map((entry) =>
+      '<option value="' + escapeHtml(entry.id) + '">' +
+      escapeHtml(caseTitle.get(entry.id) || "Min refleksjon") + '</option>').join("");
+    const groupOptions = groups.map((item) =>
+      '<option value="' + escapeHtml(item.id) + '">' + escapeHtml(item.label) +
+      '</option>').join("");
+    return '<section class="psychology-room-note-section psychology-room-map-groups" ' +
+      'aria-labelledby="psychologyMapGroupsHeading"><h4 id="psychologyMapGroupsHeading">Mine temagrupper</h4>' +
+      '<p class="psychology-room-muted">Du bestemmer selv navn og tilhørighet. Ingen temaer utledes automatisk.</p>' +
+      (groupRows ? '<ul class="psychology-room-map-group-list">' + groupRows + '</ul>' :
+        '<p class="psychology-room-muted">Ingen grupper opprettet.</p>') +
+      '<form id="psychologyMapGroupCreate" class="psychology-room-form">' +
+      '<label>Navn på ny gruppe<input type="text" name="name" maxlength="40" required ' +
+      'autocomplete="off" placeholder="For eksempel: Arbeid"></label>' +
+      '<button type="submit" class="psychology-room-primary"' +
+      (groups.length >= 6 ? ' disabled' : '') + '>Opprett gruppe</button></form>' +
+      (selected.length && groups.length ?
+        '<form id="psychologyMapGroupAssign" class="psychology-room-form">' +
+        '<label>Refleksjon<select name="entry" required>' + noteOptions + '</select></label>' +
+        '<label>Gruppe<select name="group"><option value="">Uten gruppe</option>' +
+        groupOptions + '</select></label>' +
+        '<button type="submit" class="psychology-room-primary">Lagre gruppetilhørighet</button></form>' : '') +
+      '<p class="psychology-room-privacy">Gruppenavn lagres lokalt på enheten, uten kryptering. ' +
+      'Unngå sensitive opplysninger i navnene.</p></section>';
+  }
+
+  function renderInnerMapTimeline() {
+    const entries = getInnerMapTimeline();
+    const items = entries.map((entry) =>
+      '<li class="psychology-room-map-timeline-item"><span class="psychology-room-map-timeline-date">' +
+      escapeHtml(/^\\d{4}-\\d{2}-\\d{2}/.test(entry.created_at) ?
+        entry.created_at.slice(0, 10) : "Uten dato") + '</span>' +
+      '<button type="button" class="psychology-room-inner-open" data-psych-map-timeline-open="' +
+      escapeHtml(entry.id) + '"><strong>' + escapeHtml(entry.title) + '</strong><span>' +
+      entry.follow_up_count + ' oppfølginger</span></button></li>').join("");
+    return '<section class="psychology-room-note-section psychology-room-map-timeline" ' +
+      'aria-labelledby="psychologyMapTimelineHeading"><h4 id="psychologyMapTimelineHeading">Min tidslinje</h4>' +
+      '<p class="psychology-room-muted">Valgte refleksjoner i datoorden. ' +
+      'Tidslinjen viser datoene fra notatene, uten tolkning av utviklingen.</p>' +
+      (items ? '<ol class="psychology-room-map-timeline-list">' + items + '</ol>' :
+        '<p class="psychology-room-muted">Legg til refleksjoner i kartet for å se dem på tidslinjen.</p>') +
+      '</section>';
+  }
+
+  function bindInnerMapGroups() {
+    document.getElementById("psychologyMapGroupCreate")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const name = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="name"]'))?.value;
+      const result = createInnerMapGroup(name);
+      if (result.ok) renderInnerMap();
+      else window.showToast?.(result.reason === "group_limit" ? "Maksimalt seks grupper." :
+        result.reason === "duplicate_group" ? "Gruppen finnes allerede." :
+        result.reason === "storage_failed" ? "Kunne ikke lagre gruppen." : "Oppgi et gruppenavn på maks 40 tegn.");
+    });
+    document.getElementById("psychologyMapGroupAssign")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const entry = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="entry"]'))?.value;
+      const group = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="group"]'))?.value;
+      const result = setInnerMapGroup(entry, group);
+      if (result.ok) renderInnerMap();
+      else window.showToast?.("Kunne ikke lagre gruppetilhørigheten.");
+    });
+    document.querySelectorAll("[data-psych-map-group-delete]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const result = deleteInnerMapGroup(button.getAttribute("data-psych-map-group-delete"));
+        if (result.ok) renderInnerMap();
+        else window.showToast?.("Kunne ikke fjerne gruppen.");
+      });
+    });
+    document.querySelectorAll("[data-psych-map-timeline-open]").forEach((button) => {
+      button.addEventListener("click", () =>
+        renderWorkbenchEntry(button.getAttribute("data-psych-map-timeline-open")));
+    });
+  }
+
   function renderInnerMap() {
     setActiveSection("profile");
     const selected = getInnerMapModel();
@@ -765,6 +864,8 @@
       '<div class="psychology-room-inner-overview"><strong>' + selected.length +
       '</strong><span>av 16 mulige refleksjoner i kartet</span></div>' +
       renderInnerMapCanvas(selected, links, caseTitle) +
+      renderInnerMapGroups(selected, caseTitle) +
+      renderInnerMapTimeline() +
       (cards || '<div class="psychology-room-inner-empty"><strong>Et tomt kart er også et godt utgangspunkt.</strong><p>Ingen refleksjoner legges inn automatisk. Velg en lagret situasjon eller opprett en ny.</p></div>') +
       '<section class="psychology-room-note-section psychology-room-inner-links" aria-labelledby="psychologyMapLinksHeading">' +
       '<h4 id="psychologyMapLinksHeading">Mine forbindelser (' + links.length + ')</h4>' +
@@ -786,6 +887,7 @@
       '</section>'));
     bindBack();
     bindInnerMapCanvas();
+    bindInnerMapGroups();
     document.querySelectorAll("[data-psych-map-add], [data-psych-map-remove]").forEach((button) => {
       button.addEventListener("click", () => {
         const id = button.dataset.psychMapAdd || button.dataset.psychMapRemove;
