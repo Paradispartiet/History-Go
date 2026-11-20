@@ -410,13 +410,111 @@
     }));
   }
 
-  function saveInnerMapState(selectedIds, links, layout = getInnerMapLayout()) {
+
+  // A maximum of six user-named groups; only group labels and note-ID references
+  // are stored, never copied workbench text or screening values.
+  function getInnerMapGroups() {
+    const state = readJson(STORAGE_KEYS.innerMap, {});
+    const raw = Array.isArray(state?.groups) ? state.groups : [];
+    const seen = new Set(), groups = [];
+    for (const group of raw) {
+      if (!group || typeof group.id !== "string" ||
+          !/^group-[1-6]$/.test(group.id) || seen.has(group.id) ||
+          typeof group.label !== "string") continue;
+      const label = group.label.trim();
+      if (!label || label.length > 40) continue;
+      seen.add(group.id);
+      groups.push({ id: group.id, label });
+      if (groups.length === 6) break;
+    }
+    return groups;
+  }
+
+  function getInnerMapAssignments() {
+    const state = readJson(STORAGE_KEYS.innerMap, {});
+    const raw = state?.assignments && typeof state.assignments === "object" &&
+      !Array.isArray(state.assignments) ? state.assignments : {};
+    const selected = getInnerMapIds();
+    const allowed = new Set(getInnerMapGroups().map((item) => item.id));
+    const assignments = Object.create(null);
+    for (const id of selected) {
+      if (!Object.prototype.hasOwnProperty.call(raw, id)) continue;
+      const groupId = raw[id];
+      if (typeof groupId === "string" && allowed.has(groupId)) assignments[id] = groupId;
+    }
+    return assignments;
+  }
+
+  function createInnerMapGroup(name) {
+    if (typeof name !== "string" || !name.trim() || name.trim().length > 40) {
+      return { ok: false, reason: "invalid_label" };
+    }
+    const label = name.trim();
+    const groups = getInnerMapGroups();
+    if (groups.length >= 6) return { ok: false, reason: "group_limit" };
+    if (groups.some((item) => item.label.toLocaleLowerCase() === label.toLocaleLowerCase())) {
+      return { ok: false, reason: "duplicate_group" };
+    }
+    const id = Array.from({ length: 6 }, (_, index) => "group-" + (index + 1))
+      .find((item) => !groups.some((group) => group.id === item));
+    return saveInnerMapState(getInnerMapIds(), getInnerMapLinks(), getInnerMapLayout(),
+      [...groups, { id, label }], getInnerMapAssignments());
+  }
+
+  function setInnerMapGroup(entryId, groupId) {
+    const selected = getInnerMapIds();
+    if (typeof entryId !== "string" || !selected.includes(entryId) ||
+        typeof groupId !== "string" ||
+        (groupId !== "" && !getInnerMapGroups().some((group) => group.id === groupId))) {
+      return { ok: false, reason: "invalid_group" };
+    }
+    const assignments = getInnerMapAssignments();
+    if (groupId) assignments[entryId] = groupId;
+    else delete assignments[entryId];
+    return saveInnerMapState(selected, getInnerMapLinks(), getInnerMapLayout(),
+      getInnerMapGroups(), assignments);
+  }
+
+  function deleteInnerMapGroup(groupId) {
+    const groups = getInnerMapGroups();
+    if (typeof groupId !== "string" || !groups.some((group) => group.id === groupId)) {
+      return { ok: false, reason: "unknown_group" };
+    }
+    const assignments = getInnerMapAssignments();
+    for (const id of Object.keys(assignments)) {
+      if (assignments[id] === groupId) delete assignments[id];
+    }
+    return saveInnerMapState(getInnerMapIds(), getInnerMapLinks(), getInnerMapLayout(),
+      groups.filter((group) => group.id !== groupId), assignments);
+  }
+
+  function getInnerMapTimeline() {
+    return getInnerMapModel().map((entry, index) => ({
+      id: entry.id, created_at: entry.created_at,
+      follow_up_count: entry.follow_up_count,
+      title: (entry.fields.find((field) => field.key === "situation")?.text ||
+        "Min refleksjon").slice(0, 100),
+      order: index
+    })).sort((a, b) => {
+      // ISO timestamps from existing records only. Invalid dates go last.
+      const aTime = Date.parse(a.created_at), bTime = Date.parse(b.created_at);
+      const x = Number.isFinite(aTime) ? aTime : Number.POSITIVE_INFINITY;
+      const y = Number.isFinite(bTime) ? bTime : Number.POSITIVE_INFINITY;
+      return x - y || a.order - b.order;
+    });
+  }
+
+  function saveInnerMapState(selectedIds, links, layout = getInnerMapLayout(),
+    groups = getInnerMapGroups(), assignments = getInnerMapAssignments()) {
     try {
       // One atomic localStorage key keeps selection and manual connections
       // consistent when one note is removed from the map.
       localStorage.setItem(STORAGE_KEYS.innerMap, JSON.stringify({
-        version: 3, selected_ids: selectedIds, links,
-        layout: Object.fromEntries(Object.entries(layout).filter(([id]) => selectedIds.includes(id)))
+        version: 4, selected_ids: selectedIds, links,
+        layout: Object.fromEntries(Object.entries(layout).filter(([id]) => selectedIds.includes(id))),
+        groups,
+        assignments: Object.fromEntries(Object.entries(assignments).filter(([id, groupId]) =>
+          selectedIds.includes(id) && groups.some((group) => group.id === groupId)))
       }));
       return { ok: true };
     } catch (error) {
@@ -2008,6 +2106,12 @@
     getInnerMapModel,
     getInnerMapLinks,
     getInnerMapPositions,
+    getInnerMapGroups,
+    getInnerMapAssignments,
+    getInnerMapTimeline,
+    createInnerMapGroup,
+    setInnerMapGroup,
+    deleteInnerMapGroup,
     setInnerMapPosition,
     connectInnerMapEntries,
     disconnectInnerMapEntries,
