@@ -2,10 +2,10 @@
   "categoryId": "musikk",
   "version": "v2-concept-round-1",
   "createdAt": "2026-11-20",
-  "status": "five_native_1254px_image_candidates_pending_review_and_upload",
+  "status": "five_native_candidates_publication_approved_pending_binary_upload",
   "liveBadgeManifest": "data/badges/musikk.json",
   "flags": {
-    "visualApprovedByUser": false,
+    "visualApprovedByUser": true,
     "activated": false,
     "productionWebPImagesInRepository": false,
     "mainBadgeChanged": false,
@@ -40,7 +40,7 @@
       "label": "KLASSISK",
       "motif": "Violin med bue",
       "illustrationDescription": "classical violin and bow",
-      "status": "candidate_pending_visual_approval",
+      "status": "publication_approved_pending_binary_upload",
       "position": {
         "row": 0,
         "column": 0
@@ -55,7 +55,7 @@
       "label": "JAZZ",
       "motif": "Saksofon",
       "illustrationDescription": "jazz saxophone",
-      "status": "candidate_pending_visual_approval",
+      "status": "publication_approved_pending_binary_upload",
       "position": {
         "row": 0,
         "column": 1
@@ -70,7 +70,7 @@
       "label": "POP",
       "motif": "Mikrofon med scenelys",
       "illustrationDescription": "pop vocal microphone under spotlights",
-      "status": "candidate_pending_visual_approval",
+      "status": "publication_approved_pending_binary_upload",
       "position": {
         "row": 0,
         "column": 2
@@ -85,7 +85,7 @@
       "label": "ROCK",
       "motif": "Elektrisk gitar",
       "illustrationDescription": "electric guitar and energetic stage lighting",
-      "status": "candidate_pending_visual_approval",
+      "status": "publication_approved_pending_binary_upload",
       "position": {
         "row": 1,
         "column": 0
@@ -100,7 +100,7 @@
       "label": "ELEKTRONISK",
       "motif": "Synthesizer og lydbølge",
       "illustrationDescription": "analog synthesizer and waveform",
-      "status": "candidate_pending_visual_approval",
+      "status": "publication_approved_pending_binary_upload",
       "position": {
         "row": 1,
         "column": 1
@@ -186,7 +186,7 @@
   "nativeGeneratedCandidates": [
     {
       "id": "klassisk",
-      "status": "native_master_created_in_conversation_not_uploaded_not_approved",
+      "status": "publication_approved_pending_binary_upload",
       "nativeResolution": true,
       "png": {
         "path": "01_originaler/klassisk-original-1254.png",
@@ -207,7 +207,7 @@
     },
     {
       "id": "jazz",
-      "status": "native_master_created_in_conversation_not_uploaded_not_approved",
+      "status": "publication_approved_pending_binary_upload",
       "nativeResolution": true,
       "png": {
         "path": "01_originaler/jazz-original-1254.png",
@@ -228,7 +228,7 @@
     },
     {
       "id": "pop",
-      "status": "native_master_created_in_conversation_not_uploaded_not_approved",
+      "status": "publication_approved_pending_binary_upload",
       "nativeResolution": true,
       "png": {
         "path": "01_originaler/pop-original-1254.png",
@@ -249,7 +249,7 @@
     },
     {
       "id": "rock",
-      "status": "native_master_created_in_conversation_not_uploaded_not_approved",
+      "status": "publication_approved_pending_binary_upload",
       "nativeResolution": true,
       "png": {
         "path": "01_originaler/rock-original-1254.png",
@@ -270,7 +270,7 @@
     },
     {
       "id": "elektronisk",
-      "status": "native_master_created_in_conversation_not_uploaded_not_approved",
+      "status": "publication_approved_pending_binary_upload",
       "nativeResolution": true,
       "png": {
         "path": "01_originaler/elektronisk-original-1254.png",
@@ -295,5 +295,25 @@
     "location": "ChatGPT conversation file, not in GitHub",
     "contains": "1 separate native 1254x1254 PNG, 1 transparent 1024x1024 WebP candidate, manifest",
     "binaryUploadedToGitHub": false
+  },
+  "publicationApproval": {
+    "date": "2026-11-20",
+    "authorization": "User explicitly requested publishing: 'Fett, legg de ut'",
+    "scope": [
+      "klassisk",
+      "jazz",
+      "pop",
+      "rock",
+      "elektronisk"
+    ],
+    "activationPermittedOnlyAfterBinaryUploadAndHashVerification": true
+  },
+  "combinedPublicationPackage": {
+    "name": "HistoryGo_Musikk_5_originaler_publiseringspakke.zip",
+    "bytes": 17491025,
+    "sha256": "0bf28fa8f15ba4202330e6fb2c2c5971ab4ffa717d912f0c82e7e21493d2ac3a",
+    "location": "ChatGPT generated conversation file; not uploaded to GitHub",
+    "contains": "Five exact native 1254x1254 PNG originals, five 1024x1024 WebP candidates and SHA-256 manifest",
+    "deploymentState": "pending binary transfer to GitHub; no active images changed"
   }
 }
