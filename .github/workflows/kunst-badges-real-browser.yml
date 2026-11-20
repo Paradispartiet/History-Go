@@ -1,0 +1,44 @@
+name: Kunst — real PlaceCard and map badge (mobile/desktop)
+
+on:
+  pull_request:
+    paths:
+      - 'tests/kunst-badges-real-placecard-map-browser.test.mjs'
+      - '.github/workflows/kunst-badges-real-browser.yml'
+      - 'data/badges/kunst.json'
+      - 'js/ui/badges.js'
+      - 'js/ui/place-card.js'
+      - 'js/map.js'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kunst-real-badge-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  kunst-real-badge-browser:
+    name: Kunst PlaceCard underbadge and map main badge — Chromium
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Exercise actual Kunst PlaceCard and map markers, mobile and desktop
+        run: node tests/kunst-badges-real-placecard-map-browser.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kunst-badges-real-browser
+          path: artifacts/kunst-badges-real-browser/
+          if-no-files-found: warn
+          retention-days: 14
