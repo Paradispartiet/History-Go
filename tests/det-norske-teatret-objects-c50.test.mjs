@@ -98,13 +98,14 @@ test("C50 canonical renderer shows both evidence cards, licensed source and visi
     assert.equal(list.querySelectorAll(".pc-object-member").length,2);
     assert.equal(list.querySelectorAll(".pc-object-member img").length,2);
     assert.equal(list.querySelectorAll(".pc-object-source").length,2);
-    assert.match(list.textContent,/Illustrasjon – ikke fotografi/);
+    assert.match(list.textContent,/Illustrasjon/);
+    assert.doesNotMatch(list.textContent,/Illustrasjon – ikke fotografi/);
     assert.match(list.textContent,/CC BY-SA 4.0/);
     assert.match(list.textContent,/Strekkomposisjon/);
     assert.equal(w.document.querySelector("#pcObjectsIcon").dataset.previewStatus,"member-image");
     const reversed={...place,objects:[place.objects[1],place.objects[0]]};
     await w.HGVisualPlaceRounds.apply(reversed);
     assert.equal(w.document.querySelectorAll("#pcObjectsIcon .pc-object-preview-disclosure").length,1);
-    assert.match(w.document.querySelector("#pcObjectsIcon .pc-object-preview-disclosure").textContent,/ikke fotografi/);
+    assert.equal(w.document.querySelector("#pcObjectsIcon .pc-object-preview-disclosure").textContent,"Illustrasjon");
   } finally {dom.window.close()}
 });
