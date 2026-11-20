@@ -411,6 +411,61 @@ async function scenario(engine, width, height) {
     await page.waitForFunction(() => !!window.HG_CiviShop?.getNokMealWeek); await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), finalWeekWallet, 'weekly dates, remaining lunch, inventory and history survive reload');
     assert.equal(await page.evaluate(() => window.HG_CiviShop.getNokMealWeek().portions), 1);
+    // Synthetic Fysen quote in an isolated browser wallet: check the real UI button,
+    // not a live restaurant offer or a payment to an external provider.
+    await openSection('kommers', 'civiStoreSection');
+    const beforeRestaurant = (await wallet()).balance;
+    const baselineRestaurant = await page.evaluate(() => {
+      const wallet = window.CivicationState.getWallet();
+      return {
+        purchases: wallet.nok_v1.restaurantPurchases?.length || 0,
+        cash: window.CivicationNokBudget.monthlyCashFlow(wallet,
+          window.CivicationCalendar.getMonthPeriod().id,
+          window.CivicationCalendar.getGameDate).restaurantCents
+      };
+    });
+    assert.deepEqual(baselineRestaurant, { purchases: 0, cash: 0 });
+    await page.evaluate(() => {
+      const day = (window.CivicationCalendar.getClock().dayIndex - 1) % 7;
+      window.CivicationMealPlan.setRestaurantMeal(day, 'dinner', {
+        restaurantId: 'fysen-browser-test-only',
+        name: 'Syntetisk testrestaurant',
+        dishName: 'Testmiddag',
+        portions: 2,
+        priceMinor: 11900,
+        priceKind: 'exact'
+      });
+      window.CivicationMealPlanUI.render();
+    });
+    const restaurantPanel = page.locator('#civiWeeklyMealPlanPanel');
+    const checkout = restaurantPanel.getByRole('button', { name: /Kjøp i spillet/ });
+    await checkout.waitFor({ state: 'visible' });
+    assert.equal(await checkout.count(), 1, 'one explicit restaurant checkout for today');
+    assert.equal((await wallet()).balance, beforeRestaurant, 'restaurant planning never charges');
+    assert.ok((await restaurantPanel.textContent()).includes('Testmiddag'));
+    await checkout.click();
+    await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1.restaurantPurchases?.length === 1);
+    const restaurantPaidWallet = await wallet();
+    const restaurantReceipt = restaurantPaidWallet.nok_v1.restaurantPurchases[0];
+    assert.equal(restaurantReceipt.amountMinor, 23800, 'two test portions at NOK 119 each');
+    assert.equal(restaurantPaidWallet.balance, beforeRestaurant - 238);
+    const restaurantCash = await page.evaluate(() => window.CivicationNokBudget.monthlyCashFlow(
+      window.CivicationState.getWallet(), window.CivicationCalendar.getMonthPeriod().id,
+      window.CivicationCalendar.getGameDate));
+    assert.equal(restaurantCash.restaurantCents, 23800, 'one settled restaurant expense');
+    assert.equal(restaurantCash.expenseCents, finalCash.expenseCents + 23800,
+      'restaurant checkout is included exactly once in monthly cash flow');
+    assert.equal(await checkout.count(), 0, 'paid slot cannot be purchased again');
+    assert.ok((await restaurantPanel.textContent()).includes('betalt i spillet'));
+    screenshots.push(await capture('restaurant-checkout'));
+    await completeSourceLoading(); await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!window.CivicationMealPlanUI?.render && !!window.HG_CiviShop?.getNokMealWeek);
+    await completeSourceLoading();
+    await openSection('kommers', 'civiStoreSection');
+    assert.equal(JSON.stringify(await wallet()), JSON.stringify(restaurantPaidWallet),
+      'restaurant payment and receipt persist after reload without a second debit');
+    assert.equal(await page.locator('#civiWeeklyMealPlanPanel').getByRole('button',
+      { name: /Kjøp i spillet/ }).count(), 0, 'reload cannot repurchase paid restaurant slot');
     assert.deepEqual(errors, [], 'no uncaught page errors');
     return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock, newMealStock,
       monthlyPaidCents: finalCash.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };
