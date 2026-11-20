@@ -2,7 +2,7 @@
   "categoryId": "musikk",
   "version": "v2-concept-round-1",
   "createdAt": "2026-11-20",
-  "status": "four_native_1254px_image_candidates_pending_review_and_upload",
+  "status": "five_native_1254px_image_candidates_pending_review_and_upload",
   "liveBadgeManifest": "data/badges/musikk.json",
   "flags": {
     "visualApprovedByUser": false,
@@ -31,7 +31,7 @@
     "sha256": "0c9c2f470ccdd149a1a9bf5f1680ecf800feb967374483b3e59e3650f41bcb3a",
     "storedInRepository": false,
     "nativeHighResolutionPerBadge": false,
-    "notes": "Nine source-concept 418px crops remain low resolution. Four separate native 1254px originals were generated and exported: Klassisk, Jazz, Pop and Rock. Five other categories still need native individual generation. Binary files exist only in ChatGPT v4 archive; no images or app activation in GitHub."
+    "notes": "Nine source-concept 418px crops remain low resolution. Five separate native 1254px originals were generated and exported: Klassisk, Jazz, Pop, Rock and Elektronisk. Four categories still need native individual generation. All five binaries exist only in ChatGPT conversation files; no images or app activation in GitHub."
   },
   "activationPolicy": "After explicit visual review, render each approved design at native 1024x1024+ resolution with true transparency, preserve high-res originals, verify image SHA-256 and exact visual content, then activate only approved music subbadges with focused badge tests. Never activate these contact-sheet crops as final production assets.",
   "candidates": [
@@ -107,7 +107,7 @@
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/elektronisk-brodert-v2.webp",
       "productionAssetReady": false,
-      "nativeMasterCreatedInConversation": false,
+      "nativeMasterCreatedInConversation": true,
       "filesPresentInRepository": false
     },
     {
@@ -267,6 +267,33 @@
         "sha256": "29fdd19b0af0495d00db2c2e8939b930a4408b05340964fa1dc7c61270108a6e",
         "alpha": true
       }
+    },
+    {
+      "id": "elektronisk",
+      "status": "native_master_created_in_conversation_not_uploaded_not_approved",
+      "nativeResolution": true,
+      "png": {
+        "path": "01_originaler/elektronisk-original-1254.png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 3109752,
+        "sha256": "3ef997f7e8dfdee5e78e2e30a94bdc20a8c6e4686b297c6c1b418a4235bde7ea",
+        "alpha": true
+      },
+      "appWebP": {
+        "path": "03_app_webp_kandidat/elektronisk-brodert-v2-kandidat.webp",
+        "width": 1024,
+        "height": 1024,
+        "bytes": 548326,
+        "sha256": "7a3faf7717bdb9bbc90706e36cc7d04f0473c2b70d6e045a264aaddf2c860b04",
+        "alpha": true
+      }
     }
-  ]
+  ],
+  "additionalCandidateArchive": {
+    "name": "HistoryGo_Musikk_Elektronisk_kandidat.zip",
+    "location": "ChatGPT conversation file, not in GitHub",
+    "contains": "1 separate native 1254x1254 PNG, 1 transparent 1024x1024 WebP candidate, manifest",
+    "binaryUploadedToGitHub": false
+  }
 }
