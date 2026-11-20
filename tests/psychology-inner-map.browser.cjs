@@ -223,6 +223,15 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
     await page.locator('[data-psych-map-add="synthetic-map-one"]').click();
     await page.locator('[data-psych-nav="profile"]').click();
     assert.equal(await page.locator("#psychologyPrivateBackupExport").count(), 1);
+    await page.evaluate(() => {
+      // Capture the exact encrypted Blob created by the UI; Safari/WebKit does
+      // not reliably allow fetch(blob:...) in a routed test context.
+      const nativeObjectURL = URL.createObjectURL.bind(URL);
+      URL.createObjectURL = blob => {
+        window.__psychologyTestEncryptedBlob = blob;
+        return nativeObjectURL(blob);
+      };
+    });
     const passphrase = "Et langt syntetisk testpassord 2026";
     await page.locator('#psychologyPrivateBackupExport input[name="password"]').fill(passphrase);
     await page.locator('#psychologyPrivateBackupExport input[name="confirm_password"]').fill(passphrase);
@@ -238,8 +247,8 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
     await downloadLink.waitFor({ state: "visible" });
     assert.match(await downloadLink.innerText(), /Last ned kryptert fil/,
       "export provides an explicit user download link");
-    const encryptedFile = await downloadLink.evaluate(async link =>
-      (await fetch(link.href)).text());
+    const encryptedFile = await page.evaluate(async () =>
+      window.__psychologyTestEncryptedBlob.text());
     assert.ok(encryptedFile.includes("history-go-psychology-encrypted-backup-v1"));
     assert.ok(!encryptedFile.includes(synthetic.situation),
       "the download must not contain plaintext reflections");
