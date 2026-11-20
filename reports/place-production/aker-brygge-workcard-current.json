@@ -7,7 +7,7 @@
   "production_profile": "standard",
   "profile_status": "confirmed",
   "canonical_source": "data/places/by/oslo/places/aker_brygge.json",
-  "active_phase": "Verifisert Aker Brygge v1; to kildeførte historiske Structures i PR #7464 til målrettet visuell kontroll. Øvrig innhold bevares.",
+  "active_phase": "Brands: revidert kilde- og filgrunnlag; fem nåværende stedstilknytninger bekreftet, fire arvede koblinger krever egen stedsevidens. Ingen aktivering.",
   "source_review": {
     "site": "Akers mekaniske Verksted på Holmen ved Pipervika, transformert til Aker Brygge",
     "sources": [
@@ -29,7 +29,7 @@
     "hero": "PASS: lokalt kildeført WebP, 1400×900",
     "frontImage": "PASS: separat lisensiert WebP, 900×1350",
     "people": "PASS: fem eksisterende People-registreringer; Hariton Pushwagners autentiske portrett er filverifisert og lastet i PlaceCard. Tinashe Williamsons eldre filreferanse finnes ikke i repoet; personoppføringen beholdes uten å framstille det som et verifisert bilde. Øvrige personer er foreløpig tekstbaserte.",
-    "brands": "HOLD: 9/9 eksisterende merkevarer har nå dokumenterte originalkilder og WebP-kandidater på main (PR #7439, #7442, #7445, #7448); 0/9 er redaksjonelt/rettslig godkjent for PlaceCard. Aktiv Brands-knapp holdes skjult inntil kilde- og rettighetsporter samt målrettet nettlesertest består.",
+    "brands": "HOLD: 9/9 lokale logo-kandidatpar hashkontrollert og visuelt inspisert. Nåværende stedstilknytning bekreftet for COS, Olivia, Rorbua, Tiger of Sweden og Wiersholm. Haavind, Lund Hagem, Simonsen Vogt Wiig og Wikborg Rein oppgir nåværende adresser utenfor selve Aker Brygge; selvstendige historiske/prosjektbaserte koblinger er ikke bekreftet her. Populasjonen skal korrigeres kildebasert før sluttgodkjenning, ikke låses til en ni-logo-kvote. Se separat review 2026-11-20.",
     "objects": "BEGRUNNET N/A: ingen dokumenterte bildeklare separate Objects godkjent",
     "structures": "PASS for the two already activated, strictly scoped historical/documentary Structures in PlaceCard: verkstedhallmiljøet i Bryggegata (Ssu 2022, felles miljø – ikke enkeltbygning) and tørrdokken/Frontenac (Anders Beer Wilse 1929 – ikke dagens dokkgeometri). Both images full-frame, 1200x900, CC BY-SA 4.0, browser verified on 390px/1440px in GitHub run 44759976996. Additional single-building Structure candidates (Verkstedhallen, Maskinhallen, Snekkerbygget and Administrasjonsbygget) still require exact facade imagery and editorial approval; historic dieselmotorverksted possible alias. No fabricated imagery approved.",
     "fagverk": "PRESERVED: seks kurerte historiske artikkelavsnitt, linser og kildegrunnlag",
@@ -55,11 +55,12 @@
     "browser": "PASS: GitHub Actions run 44308343863, mobil 390 px og desktop 1440 px. Begge bildepar og ekte Hariton Pushwagner-preview lastet; PlaceCard/QuizCard åpnet og vendt uten JavaScript-feil.",
     "read_first": "PASS: GitHub Actions 44304825182 og målrettet kontroll i 44308343863.",
     "structures_browser": "PASS: GitHub Actions run 44759976996, Playwright Chromium real PlaceCard 390px mobile and 1440px desktop. Canonical People + Structures 2/2 visible (one gallery slot), 2/2 Structure photos load, click opens two-item popup with credit/license/Commons source, Brands hidden, zero JS errors.",
-    "structures_source_integrity": "PASS: source and derivative SHA-256 preserved from archived candidate reports"
+    "structures_source_integrity": "PASS: source and derivative SHA-256 preserved from archived candidate reports",
+    "brands_evidence_review": "reports/place-production/aker-brygge-brands-place-and-asset-review-2026-11-20.json"
   },
   "vferdig": {
     "status": "NOT_CLAIMED",
-    "reason": "PlaceCard People + two source-limited Structures passed actual mobile/desktop browser QA (44759976996). Formal vFerdig remains blocked by publication/referential-use approval of 9 Brands, missing verified People portrait (Tinashe Williamson), and source-correct visual completion of individual qualifying hall/administration/carpenter building candidates; separate Pages deployment not independently verified."
+    "reason": "Full vFerdig hevdes ikke. Brands krever kildebelagt avgrensning av fire arvede stedskoblinger og publiseringsvurdering av de kvalifiserte logoene. People-portrett og individuelle Structures har fortsatt egne restpunkter."
   },
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
