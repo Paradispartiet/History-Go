@@ -101,7 +101,7 @@ jobs:
           # Run the real quiz -> job acceptance journey on PRs touching its
           # implementation; keep unrelated PR smoke focused and nightly full.
           CIVICATION_BROWSER_DEPTH: ${{ steps.coverage.outputs.depth }}
-          CIVICATION_ARBEIDSL_FOCUS: prosjekt_laaset,skape_sen,fellesskap_uten_vakt,byhistorie_avslaatt,utforsking_null,kultur_sen,mira_videre_spilt,lea_sideprosjekt_videre,lea_frilans_videre,lea_grunder_videre,mira_videre_avlyst,arvid_videre_gjennomfort,arvid_videre_avbrutt,arvid_videre_avstand
+          CIVICATION_ARBEIDSL_FOCUS: mira_videre_spilt
         shell: bash
         run: |
           set -o pipefail
