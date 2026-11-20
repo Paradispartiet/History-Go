@@ -7,8 +7,9 @@ const config = require('../data/Civication/economy/nok-budget-prototype-2026.jso
 const { costOfLivingScenario } = require('../js/Civication/core/civicationNokBudget.js');
 
 const original = JSON.stringify(config);
-assert.equal(config.status, 'prototype_not_activated');
-assert.equal(config.migration.activated, false);
+assert.equal(config.status, 'active');
+assert.equal(config.migration.activated, true);
+assert.equal(config.migration.releaseMode, 'explicit_player_opt_in_only');
 const estimate = (areaId, rooms, householdId) =>
   costOfLivingScenario(config, { areaId, rooms, householdId });
 

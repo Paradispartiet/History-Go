@@ -83,9 +83,10 @@ try{
      await row.scrollIntoViewIfNeeded({timeout:12000});
      assert.equal(await row.getAttribute('data-visual-round-item'),expected.id);
      assert.equal(await row.getAttribute('data-image-kind'),'illustration');
-     assert.match(await row.locator('.pc-object-disclosure').innerText(),/Illustrasjon – ikke fotografi/);
+     assert.equal(await row.locator('.pc-object-disclosure').innerText(),'Illustrasjon');
      assert.match(await row.locator('.pc-object-credit').innerText(),/Bilde: History Go – original illustrasjon/);
-     assert.match(await row.locator('.pc-object-context').innerText(),/Illustrasjon – ikke fotografi/);
+     assert.doesNotMatch(await row.locator('.pc-object-context').innerText(),/ikke fotografi/);
+     assert.ok((await row.locator('.pc-object-context').innerText()).length>20);
      const img=row.locator('img.pc-object-member-image');
      assert.equal(await img.getAttribute('src'),expected.image);
      assert.equal(await img.getAttribute('alt'),expected.imageAlt);

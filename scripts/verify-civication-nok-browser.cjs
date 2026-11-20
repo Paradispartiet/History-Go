@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 // Real shell/browser controls. Boundaries: release approval, opening savings and
-// earned qualification fixtures. No production profile/account is activated.
+// earned qualification fixtures. Test wallets are isolated; real accounts are never modified.
 const assert = require('node:assert/strict');
 const { spawn } = require('node:child_process');
 const fs = require('node:fs');
@@ -10,7 +10,14 @@ const playwright = require('playwright');
 const outputDir = path.join(process.cwd(), 'reports/civication-browser');
 const origin = 'http://127.0.0.1:4175';
 const profile = JSON.parse(fs.readFileSync('data/Civication/economy/nok-budget-prototype-2026.json', 'utf8'));
-assert.equal(profile.migration.activated, false, 'production data remains inactive');
+const releaseCandidate = profile.status === 'active' && profile.migration?.activated === true;
+if (releaseCandidate) {
+  assert.equal(profile.migration.releaseMode, 'explicit_player_opt_in_only',
+    'approved release must remain explicitly player-initiated');
+} else {
+  assert.equal(profile.status, 'prototype_not_activated', 'unapproved profile stays disabled');
+  assert.equal(profile.migration?.activated, false, 'unapproved migration remains disabled');
+}
 const approved = JSON.parse(JSON.stringify(profile)); approved.status = 'active'; approved.migration.activated = true;
 const quiz = JSON.parse(fs.readFileSync('data/quiz/naeringsliv/akerselva_industri_sets_merged.json', 'utf8'));
 const completed = quiz.sets.slice(0, 5).map(s => quiz.targetId + '::' + s.set_id);
@@ -90,6 +97,9 @@ async function scenario(engine, width, height) {
       && document.querySelector('#civiStoreSection > .civi-mini-card'), null, { timeout: 90000 });
     await completeSourceLoading();
     await openSection('kommers', 'civiStoreSection');
+    assert.equal((await wallet()).nok_v1, undefined,
+      'loading approved NOK release never silently migrates the player wallet');
+    assert.equal((await wallet()).balance, 20000, 'balance remains intact before explicit opt-in');
     await page.locator('[data-nok-activate]').click();
     await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1?.active === true);
     assert.equal((await wallet()).balance, 20000);
@@ -401,6 +411,61 @@ async function scenario(engine, width, height) {
     await page.waitForFunction(() => !!window.HG_CiviShop?.getNokMealWeek); await completeSourceLoading();
     assert.equal(JSON.stringify(await wallet()), finalWeekWallet, 'weekly dates, remaining lunch, inventory and history survive reload');
     assert.equal(await page.evaluate(() => window.HG_CiviShop.getNokMealWeek().portions), 1);
+    // Synthetic Fysen quote in an isolated browser wallet: check the real UI button,
+    // not a live restaurant offer or a payment to an external provider.
+    await openSection('kommers', 'civiStoreSection');
+    const beforeRestaurant = (await wallet()).balance;
+    const baselineRestaurant = await page.evaluate(() => {
+      const wallet = window.CivicationState.getWallet();
+      return {
+        purchases: wallet.nok_v1.restaurantPurchases?.length || 0,
+        cash: window.CivicationNokBudget.monthlyCashFlow(wallet,
+          window.CivicationCalendar.getMonthPeriod().id,
+          window.CivicationCalendar.getGameDate).restaurantCents
+      };
+    });
+    assert.deepEqual(baselineRestaurant, { purchases: 0, cash: 0 });
+    await page.evaluate(() => {
+      const day = (window.CivicationCalendar.getClock().dayIndex - 1) % 7;
+      window.CivicationMealPlan.setRestaurantMeal(day, 'dinner', {
+        restaurantId: 'fysen-browser-test-only',
+        name: 'Syntetisk testrestaurant',
+        dishName: 'Testmiddag',
+        portions: 2,
+        priceMinor: 11900,
+        priceKind: 'exact'
+      });
+      window.CivicationMealPlanUI.render();
+    });
+    const restaurantPanel = page.locator('#civiWeeklyMealPlanPanel');
+    const checkout = restaurantPanel.getByRole('button', { name: /Kjøp i spillet/ });
+    await checkout.waitFor({ state: 'visible' });
+    assert.equal(await checkout.count(), 1, 'one explicit restaurant checkout for today');
+    assert.equal((await wallet()).balance, beforeRestaurant, 'restaurant planning never charges');
+    assert.ok((await restaurantPanel.textContent()).includes('Testmiddag'));
+    await checkout.click();
+    await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1.restaurantPurchases?.length === 1);
+    const restaurantPaidWallet = await wallet();
+    const restaurantReceipt = restaurantPaidWallet.nok_v1.restaurantPurchases[0];
+    assert.equal(restaurantReceipt.amountMinor, 23800, 'two test portions at NOK 119 each');
+    assert.equal(restaurantPaidWallet.balance, beforeRestaurant - 238);
+    const restaurantCash = await page.evaluate(() => window.CivicationNokBudget.monthlyCashFlow(
+      window.CivicationState.getWallet(), window.CivicationCalendar.getMonthPeriod().id,
+      window.CivicationCalendar.getGameDate));
+    assert.equal(restaurantCash.restaurantCents, 23800, 'one settled restaurant expense');
+    assert.equal(restaurantCash.expenseCents, finalCash.expenseCents + 23800,
+      'restaurant checkout is included exactly once in monthly cash flow');
+    assert.equal(await checkout.count(), 0, 'paid slot cannot be purchased again');
+    assert.ok((await restaurantPanel.textContent()).includes('betalt i spillet'));
+    screenshots.push(await capture('restaurant-checkout'));
+    await completeSourceLoading(); await page.reload({ waitUntil: 'load', timeout: 90000 });
+    await page.waitForFunction(() => !!window.CivicationMealPlanUI?.render && !!window.HG_CiviShop?.getNokMealWeek);
+    await completeSourceLoading();
+    await openSection('kommers', 'civiStoreSection');
+    assert.equal(JSON.stringify(await wallet()), JSON.stringify(restaurantPaidWallet),
+      'restaurant payment and receipt persist after reload without a second debit');
+    assert.equal(await page.locator('#civiWeeklyMealPlanPanel').getByRole('button',
+      { name: /Kjøp i spillet/ }).count(), 0, 'reload cannot repurchase paid restaurant slot');
     assert.deepEqual(errors, [], 'no uncaught page errors');
     return { engine, width, height, geometry, screenshots, balance: (await wallet()).balance, remainingMilkMl: 750, addedStock, newMealStock,
       monthlyPaidCents: finalCash.expenseCents, jobVariants, acceptedJobId: acceptedJob.id, acceptedPercent };

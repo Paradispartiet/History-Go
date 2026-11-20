@@ -16,7 +16,9 @@ assert.equal(preview(c, { employed: true, employmentPercent: 50 }).annualGross, 
 assert.throws(() => preview(c, { employmentPercent: 101 }), RangeError);
 assert.throws(() => preview(c, { approvedSupportNok: -1 }), RangeError);
 assert.equal(JSON.stringify(c), before);
-assert.equal(c.migration.activated, false);
+assert.equal(c.status, 'active');
+assert.equal(c.migration.activated, true);
+assert.equal(c.migration.releaseMode, 'explicit_player_opt_in_only');
 console.log('PASS: sourced NOK budget preview, annual tax arithmetic, part time, support and immutable inputs');
 const scenarios = [{ approvedSupportNok: 9406 }, { employed: true }, { employed: true }];
 const saved = JSON.stringify(scenarios);

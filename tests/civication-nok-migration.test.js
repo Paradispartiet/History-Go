@@ -5,7 +5,10 @@ const vm = require('node:vm');
 const prototype = require('../data/Civication/economy/nok-budget-prototype-2026.json');
 const approved = JSON.parse(JSON.stringify(prototype));
 approved.status = 'active';
-approved.migration.activated = true; // Explicit approval fixture, never production data.
+approved.migration.activated = true;
+const unapproved = JSON.parse(JSON.stringify(prototype));
+unapproved.status = 'prototype_not_activated';
+unapproved.migration.activated = false; // Must always be refused even in release candidate.
 let wallet = { balance: 123.45, last_tick_day_index: 8, completed_game_days_v1: [],
   livelihood_settled_weeks: ['game-week-000001'], history: [{ id: 'old-purchase' }] };
 let active = null;
@@ -19,7 +22,7 @@ for (const name of ['civicationCalendar.js', 'civicationNokBudget.js', 'civicati
   vm.runInContext(fs.readFileSync('js/Civication/core/' + name, 'utf8'), context);
 }
 const migrate = window.CivicationEconomyEngine.migrateNokEconomy;
-assert.equal(migrate(prototype).reason, 'NOK_CONFIG_NOT_APPROVED');
+assert.equal(migrate(unapproved).reason, 'NOK_CONFIG_NOT_APPROVED');
 assert.equal(writes, 0);
 wallet.completed_game_days_v1 = [{ dayIndex: 8, weeklyNet: 2 }];
 assert.equal(migrate(approved).reason, 'UNSETTLED_LEGACY_PAYROLL');

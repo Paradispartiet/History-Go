@@ -110,7 +110,7 @@ try {
       phase="popup-member-rows";
       await page.waitForFunction(()=>{
         const rows=[...document.querySelectorAll(".pc-object-member")];
-        return rows.length>=2 && rows.some(x=>/Illustrasjon – ikke fotografi/.test(x.textContent));
+        return rows.length>=2 && rows.some(x=>/Illustrasjon/.test(x.textContent));
       },null,{timeout:15000});
       const memberImages=page.locator("#pcObjectsList .pc-object-member img");
       assert.equal(await memberImages.count(),2,"the same canonical member data must drive collection rows");
@@ -136,7 +136,7 @@ try {
       assert.match(await rows.nth(0).innerText(),/Lone Lunde/);
       assert.match(await rows.nth(0).innerText(),/CC BY-SA 4.0/);
       assert.match(await rows.nth(1).innerText(),/Jan Groth/);
-      assert.match(await rows.nth(1).innerText(),/Illustrasjon – ikke fotografi/);
+      assert.equal(await rows.nth(1).locator(".pc-object-disclosure").innerText(),"Illustrasjon");
       assert.equal(await rows.nth(0).locator("a.pc-object-source").getAttribute("href"),place.objects[0].imageMeta.sourceUrl);
       assert.equal(await rows.nth(1).locator("a.pc-object-source").getAttribute("href"),place.objects[1].imageMeta.sourceUrl);
       const photoDimensions=await visibleMemberImages.first().evaluate(el=>[el.naturalWidth,el.naturalHeight]);

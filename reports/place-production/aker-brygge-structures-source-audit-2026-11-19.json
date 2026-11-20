@@ -61,6 +61,26 @@
     {
       "url": "https://www.oslo.kommune.no/get-file/111605/c9d377407250598967e3f0c172faa003d73e556370d733fcbaf0f93e5bc89e8f",
       "claim": "Kommunens Havnepromenaden-prinsipp- og strategiplan, side 86: Verkstedhallene Stranden 3–5 fra begynnelsen av 1930-tallet; Snekkerverkstedet Bryggegata 7–9 fra begynnelsen av 1900-tallet; tørrdokk fra 1920-tallet; alle nevnt som verneverdige historiske spor."
+    },
+    {
+      "url": "https://www.aftenposten.no/oslo/sulten/i/BJA0w/delicatessen-inntar-aker-brygge",
+      "claim": "Aftenposten (2013) plasserer den gamle Verkstedhallen vis-à-vis Latter, mellom Maskinhallen og Terminalbygget. Plasseringen beskriver separate, tilstøtende bygg, men ikke individuelle bildekoordinater."
+    },
+    {
+      "url": "https://signal.prodio.no/byggesaker/Naeringsbygg/fasadeendring-naeringsbygg-stranden-3-oslo-oslove-a24b185f",
+      "claim": "Fasadesaksdokumentasjon omtaler Verkstedhallen ved Bryggegata 5 (øst- og vestfasade), med eldre murverk, vinduer og inngangsportaler. Dette er søknads-/prosjektopplysninger, ikke bevis for fotografiers individuelle bygningstilhørighet."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bryggegata,_Oslo_2025.jpg",
+      "claim": "Ssus fritt lisensierte foto fra Bryggegata 25.08.2025 (3888×2916, CC BY-SA 4.0); en lang teglfasade i gateløpet, men filteksten identifiserer ikke navngitt enkeltverkstedhall."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bryggegata,_Oslo_2025_(2).jpg",
+      "claim": "Ssus fritt lisensierte foto fra Bryggegata 25.08.2025 (3939×2954, CC BY-SA 4.0); gatefasader fra en annen retning, ikke verifisert som en enkelt hall."
+    },
+    {
+      "url": "https://www.betonmast.no/prosjekter/bryggegata-9/",
+      "claim": "Betonmast identifiserer konkret Bryggegata 9 som Snekkerbygget og dokumenterer rehabiliteringen; fotografier på egen nettside har ikke verifisert CC-lisens og må ikke kopieres som åpne assets."
     }
   ],
   "candidates": [
@@ -234,7 +254,7 @@
       "documented_image_rights",
       "actual_PlaceCard_browser_test"
     ],
-    "stage": "HOLD_ILLUSTRATION_CANDIDATE_NOT_ACTIVE",
+    "stage": "HOLD_INDIVIDUAL_HALL_FACADE_IDS_REQUIRE_VISUAL_CROSSWALK",
     "placecardEnabled": false
   },
   "notes": [
@@ -244,7 +264,8 @@
     "19.11.2026: Kontroll av to fysisk adskilte hallbygg og to fysisk adskilte snekker-/administrasjonsbygg. Dateringskonflikter beholdes som åpne spørsmål. Ett lisensiert miljøfoto er identifisert som separat kandidat.",
     "2026-11-19: PR #7451 merged original Ssu CC BY-SA image and full-frame 1200×900 WebP on main; source and image SHA checks passed. Still unpublished as Structure card for a particular building.",
     "2026-11-19: Source-verified historical drydock image of Frontenac (Oslo Museum OB.Y3285 / Wilse 1929, CC BY-SA 4.0) captured in PR #7457 with full-frame 1200x900 WebP. Only period photo visually approved; not modern dock geometry nor active Structure.",
-    "19.11.2026: Oslo kommune Havnepromenaden områdeskildring gir mer presis tidfesting av hallmiljøene enn firmanettsteder. Kildebundet original digital illustrasjon av Snekkerbygget arkiveres som kandidat, aldri som fotografi."
+    "19.11.2026: Oslo kommune Havnepromenaden områdeskildring gir mer presis tidfesting av hallmiljøene enn firmanettsteder. Kildebundet original digital illustrasjon av Snekkerbygget arkiveres som kandidat, aldri som fotografi.",
+    "2026-11-20: Updated landmark crosswalk from Aftenposten (2013), documented municipal facade scope and two new CC BY-SA 4.0 street images; neither street image qualifies as an identified individual hall. Snekkerbygget publisher photos held for rights review. Existing two activated subject-limited Structures are unchanged."
   ],
   "revisedAt": "2026-11-19",
   "status": "IDENTITY_CROSSWALK_UPDATED_PHOTO_CANDIDATE_ARCHIVED",
@@ -303,6 +324,75 @@
       "Snekkerbygget often attributed to yard founded/moved in 1854, not proof same physical building constructed then",
       "Oslo kommunes områdebeskrivelse daterer dagens verkstedhaller samlet til tidlig 1930-tall og Snekkerverkstedet til tidlig 1900-tall. Noen prosjektartikler omtaler eldre verkstedhistorie fra 1850; dette er ikke tilstrekkelig til å slå fast dagens bygnings oppføringsår."
     ],
-    "publishingGuard": "No single-building card may reuse the shared photo without visible building match and approval"
-  }
+    "publishingGuard": "No single-building card may reuse the shared photo without visible building match and approval",
+    "landmarkBasedSpatialEvidence": [
+      {
+        "id": "aker_brygge_verkstedhallen",
+        "relation": "Vis-à-vis Latter; between Maskinhallen and Terminalbygget",
+        "source": "https://www.aftenposten.no/oslo/sulten/i/BJA0w/delicatessen-inntar-aker-brygge",
+        "status": "SUPPORTED_RELATIVE_POSITION_NOT_PHOTO_GEOREFERENCED"
+      },
+      {
+        "id": "aker_brygge_maskinhallen",
+        "relation": "Adjacent to Verkstedhallen on the opposite side from Terminalbygget",
+        "source": "https://www.aftenposten.no/oslo/sulten/i/BJA0w/delicatessen-inntar-aker-brygge",
+        "status": "SUPPORTED_RELATIVE_POSITION_NOT_PHOTO_GEOREFERENCED"
+      },
+      {
+        "id": "aker_brygge_snekkerbygget",
+        "relation": "Bryggegata 9, historic former carpenter-workshop building",
+        "source": "https://www.betonmast.no/prosjekter/bryggegata-9/",
+        "status": "SUPPORTED_BUILDING_ADDRESS_NO_OPEN_LICENSED_FACADE_PHOTO_YET"
+      }
+    ]
+  },
+  "updatedAt": "2026-11-20",
+  "licensedIndividualPhotoShortlist": [
+    {
+      "subject": "Bryggegata gate-/verftshallmiljø",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bryggegata,_Oslo_2025.jpg",
+      "photographer": "Ssu",
+      "date": "2025-08-25",
+      "license": "CC BY-SA 4.0",
+      "dimensions": [
+        3888,
+        2916
+      ],
+      "sourceSha1": "5a24213d8f9c4d34963cb967824d951c42c69cb9",
+      "structureId": null,
+      "sourceAssetCaptured": false,
+      "individualHallPhotoApproval": false,
+      "note": "Gatemotiv med teglfasade; kan ikke feilmerkes som spesifikk hall før fotograferingspunkt og fasade match er verifisert."
+    },
+    {
+      "subject": "Bryggegata gateløp",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bryggegata,_Oslo_2025_(2).jpg",
+      "photographer": "Ssu",
+      "date": "2025-08-25",
+      "license": "CC BY-SA 4.0",
+      "dimensions": [
+        3939,
+        2954
+      ],
+      "sourceSha1": "458ed2865e8ec69013d02d115d87aef15224bbb8",
+      "structureId": null,
+      "sourceAssetCaptured": false,
+      "individualHallPhotoApproval": false,
+      "note": "Separat gateperspektiv; ingen dokumentert unik hallkobling."
+    }
+  ],
+  "proprietaryReferenceShortlist": [
+    {
+      "id": "aker_brygge_verkstedhallen",
+      "url": "https://www.norwegianproperty.no/no/vacant-premises/bryggegata-3-aker-brygge-modern-office-space-of-high-quality-with-a-sea-view",
+      "rightsStatus": "SOURCE_SITE_EDITORIAL_PHOTOGRAPH_NOT_OPEN_LICENSE",
+      "use": "Identity reference only; DO NOT publish or copy photo"
+    },
+    {
+      "id": "aker_brygge_snekkerbygget",
+      "url": "https://www.betonmast.no/prosjekter/bryggegata-9/",
+      "rightsStatus": "SOURCE_SITE_EDITORIAL_PHOTOGRAPH_NOT_OPEN_LICENSE",
+      "use": "Identity/visual reference only; DO NOT publish or copy photo"
+    }
+  ]
 }

@@ -96,7 +96,30 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
   async function advanceAndAudit(day: number) {
     const before = await readEconomy();
     assert.equal(before.day, day);
-    await nextDayViaUi(page, 'earned-museum-21-day', day);
+    // The Kunst career has a genuine 7% weekly random layoff risk. This
+    // acceptance route specifically verifies continuous earned employment
+    // and correct week-by-week salary. Bound only the layoff RNG during its
+    // weekly roll, without seeding any job, merits, dates or personal choices.
+    // Other playthroughs remain free to exercise real layoff outcomes.
+    const employmentCheckpoint = day === 14 || day === 21;
+    if (employmentCheckpoint) await page.evaluate(() => {
+      const app = globalThis as any;
+      if (!app.__organicOriginalRandom) {
+        app.__organicOriginalRandom = Math.random;
+        Math.random = () => .5 + .5 * app.__organicOriginalRandom();
+      }
+    });
+    try {
+      await nextDayViaUi(page, 'earned-museum-21-day', day);
+    } finally {
+      if (employmentCheckpoint) await page.evaluate(() => {
+        const app = globalThis as any;
+        if (app.__organicOriginalRandom) {
+          Math.random = app.__organicOriginalRandom;
+          delete app.__organicOriginalRandom;
+        }
+      });
+    }
     const after = await readEconomy();
     assert.equal(after.day, day + 1, 'day-end uses the canonical calendar');
     if (day % 7 === 0) {

@@ -1,0 +1,44 @@
+name: Aker Brygge — real Structures PlaceCard browser
+on:
+  pull_request:
+    paths:
+      - 'data/places/by/oslo/places/aker_brygge.json'
+      - 'data/runtime/place-open/aker_brygge.json'
+      - 'bilder/kort/structures/aker_brygge_*.webp'
+      - 'tests/aker-brygge-structures-real-browser.test.mjs'
+      - 'tests/aker-brygge-structures-placecard-real-browser.test.mjs'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - 'css/place-rounds-fill-layout.css'
+      - 'css/place-sheet.css'
+      - '.github/workflows/aker-brygge-structures-placecard-browser.yml'
+permissions:
+  contents: read
+concurrency:
+  group: aker-brygge-structures-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  real-structures:
+    name: Aker Brygge Structures 390px and 1440px real click
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Check canonical Aker Brygge Place-open parity
+        run: npm run place-open:check
+      - name: Install Chromium only
+        run: npx playwright install --with-deps chromium
+      - name: Verify real Aker Brygge PlaceCard Structures at 390px and 1440px
+        run: node tests/aker-brygge-structures-real-browser.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aker-brygge-structures-real-browser
+          path: artifacts/aker-brygge-structures-browser/
+          if-no-files-found: warn
+          retention-days: 14

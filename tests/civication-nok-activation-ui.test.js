@@ -22,11 +22,16 @@ async function create(config, wallet) {
   return dom;
 }
 (async () => {
-  const inactive = await create(prototype, { balance: 123.45 });
-  assert.equal(inactive.window.document.querySelector('[data-nok-activate]'), null, 'unapproved production prototype cannot expose activation');
+  const unapproved = JSON.parse(JSON.stringify(prototype));
+  unapproved.status = 'prototype_not_activated';
+  unapproved.migration.activated = false;
+  const inactive = await create(unapproved, { balance: 123.45 });
+  assert.equal(inactive.window.document.querySelector('[data-nok-activate]'), null, 'unapproved configuration cannot expose activation');
   inactive.window.close();
   const approved = JSON.parse(JSON.stringify(prototype));
-  approved.status = 'active'; approved.migration.activated = true; // Release approval fixture only.
+  assert.equal(approved.status, 'active');
+  assert.equal(approved.migration.activated, true);
+  assert.equal(approved.migration.releaseMode, 'explicit_player_opt_in_only');
   const dom = await create(approved, { balance: 123.45, last_tick_day_index: 8,
     completed_game_days_v1: [{ dayIndex: 8, weeklyNet: 2 }], history: [{ id: 'kept' }] });
   const w = dom.window;

@@ -190,7 +190,7 @@
     const heading = node("h3", "Min økonomi");
     heading.tabIndex = -1;
     panel.appendChild(heading);
-    panel.appendChild(node("p", "Saldo: " + money(wallet?.balance) + (active ? " kr (PC)" : " PC")));
+    panel.appendChild(node("p", "Saldo: " + money(wallet?.balance) + (active ? " kr" : " PC")));
     const references = renderRegionalCosts(nok?.config?.costOfLiving ? nok.config : scenarioConfig);
     if (references) panel.appendChild(references);
     if (!active) {
