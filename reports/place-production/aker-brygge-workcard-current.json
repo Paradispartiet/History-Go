@@ -7,7 +7,7 @@
   "production_profile": "standard",
   "profile_status": "confirmed",
   "canonical_source": "data/places/by/oslo/places/aker_brygge.json",
-  "active_phase": "Brands: fem kildebekreftede stedskoblinger beholdt; fire udokumenterte koblinger tatt ut av aktiv Aker Brygge-mapping og bevart som kandidater. Logoaktivering gjenstår.",
+  "active_phase": "Brands: fem autentiske logoer koblet til canonical master og PlaceCard; faktisk mobil-/desktoptest kreves på PR-head før merge.",
   "source_review": {
     "site": "Akers mekaniske Verksted på Holmen ved Pipervika, transformert til Aker Brygge",
     "sources": [
@@ -29,7 +29,7 @@
     "hero": "PASS: lokalt kildeført WebP, 1400×900",
     "frontImage": "PASS: separat lisensiert WebP, 900×1350",
     "people": "PASS: fem eksisterende People-registreringer; Hariton Pushwagners autentiske portrett er filverifisert og lastet i PlaceCard. Tinashe Williamsons eldre filreferanse finnes ikke i repoet; personoppføringen beholdes uten å framstille det som et verifisert bilde. Øvrige personer er foreløpig tekstbaserte.",
-    "brands": "HOLD: COS, Olivia, Rorbua, Tiger of Sweden og Wiersholm har kildebekreftet nåværende tilknytning. Haavind, Lund Hagem, Simonsen Vogt Wiig og Wikborg Rein er fjernet fra aktiv stedskobling etter kildeavgrensning; canonical merkevareposter og alle ni logo-kandidatpar beholdes. Publiseringsvurdering av de fem logoene og ekte Brands-popup-test gjenstår.",
+    "brands": "PASS kilde/asset: COS, Olivia, Rorbua, Tiger of Sweden og Wiersholm har direkte stedsevidens, lokal autentisk logo og synlig kilde/kreditering. Ingen fri lisens påstås for de fire offisielle logoene. COS følger CC BY-SA 4.0. Nettleser-QA avventes før merge.",
     "objects": "BEGRUNNET N/A: ingen dokumenterte bildeklare separate Objects godkjent",
     "structures": "PASS for the two already activated, strictly scoped historical/documentary Structures in PlaceCard: verkstedhallmiljøet i Bryggegata (Ssu 2022, felles miljø – ikke enkeltbygning) and tørrdokken/Frontenac (Anders Beer Wilse 1929 – ikke dagens dokkgeometri). Both images full-frame, 1200x900, CC BY-SA 4.0, browser verified on 390px/1440px in GitHub run 44759976996. Additional single-building Structure candidates (Verkstedhallen, Maskinhallen, Snekkerbygget and Administrasjonsbygget) still require exact facade imagery and editorial approval; historic dieselmotorverksted possible alias. No fabricated imagery approved.",
     "fagverk": "PRESERVED: seks kurerte historiske artikkelavsnitt, linser og kildegrunnlag",
@@ -39,6 +39,7 @@
   },
   "collection_ids": [
     "people",
+    "brands",
     "structures"
   ],
   "existing_content": {
@@ -57,18 +58,20 @@
     "structures_browser": "PASS: GitHub Actions run 44759976996, Playwright Chromium real PlaceCard 390px mobile and 1440px desktop. Canonical People + Structures 2/2 visible (one gallery slot), 2/2 Structure photos load, click opens two-item popup with credit/license/Commons source, Brands hidden, zero JS errors.",
     "structures_source_integrity": "PASS: source and derivative SHA-256 preserved from archived candidate reports",
     "brands_evidence_review": "reports/place-production/aker-brygge-brands-place-and-asset-review-2026-11-20.json",
-    "brands_mapping_review": "reports/place-production/aker-brygge-brands-mapping-closeout-2026-11-20.json"
+    "brands_mapping_review": "reports/place-production/aker-brygge-brands-mapping-closeout-2026-11-20.json",
+    "brands_publication": "data/brands/aker_brygge_asset_attributions.json",
+    "brands_browser": "PENDING: real click of all five Brand entries at 390px and 1440px in the dedicated PR workflow."
   },
   "vferdig": {
     "status": "NOT_CLAIMED",
-    "reason": "vFerdig hevdes ikke. De fem kvalifiserte logoene krever publiseringsvurdering og faktisk Brands-popup-test. People-portrett og individuelle Structures har egne restpunkter."
+    "reason": "vFerdig hevdes ikke. Brands-pakken leveres separat; People-portrett og individuelle Structures har egne restpunkter."
   },
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
     "status": "PASS",
     "place_id": "aker_brygge",
     "category": "by",
-    "recorded_at": "2026-11-18T12:30:00.000Z",
+    "recorded_at": "2026-11-20T21:22:17.675Z",
     "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
     "files": [
       {
@@ -133,8 +136,7 @@
       ]
     }
   },
-  "merged": true,
-  "merge_commit_sha": "2b6774e746859974d37a27bf0507e45f4daccfc6",
-  "verified_at": "2026-11-18",
-  "live_status": "merged_to_main"
+  "merged": false,
+  "verified_at": "2026-11-20",
+  "live_status": "pending_merge"
 }

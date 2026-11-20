@@ -44,11 +44,12 @@ test('Removed place links preserve Brand identities and sourced candidate eviden
  }
 });
 
-test('A mapping correction cannot activate unpublished Brands or disturb the two Structure members',()=>{
+test('Publication preserves sourced Brand boundaries and the two Structure members',()=>{
  const place=read('data/places/by/oslo/places/aker_brygge.json');
- assert.deepEqual(place.place_card_profile.collection_ids,['people','structures']);
+ assert.deepEqual(place.place_card_profile.collection_ids,['people','brands','structures']);
  assert.deepEqual(runtime.place.place_card_profile,place.place_card_profile);
  assert.deepEqual(runtime.place.structures.map(s=>s.id),['aker_brygge_verkstedhallene_miljo','aker_brygge_torrdokken_historisk_1929']);
  assert.equal(closeout.placecardBrandsEnabled,false);
  assert.equal(closeout.vFerdig,false);
 });
+

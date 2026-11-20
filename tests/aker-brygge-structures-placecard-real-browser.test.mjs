@@ -18,10 +18,10 @@ const workcard=read("reports/place-production/aker-brygge-workcard-current.json"
 const ids=["aker_brygge_verkstedhallene_miljo","aker_brygge_torrdokken_historisk_1929"];
 assert.deepEqual(place.structures.map(x=>x.id),ids,"Canonical Structures IDs/order");
 assert.deepEqual(runtime.place.structures.map(x=>x.id),ids,"Place-open Structures IDs/order");
-assert.deepEqual(place.place_card_profile.collection_ids,["people","structures"]);
-assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","structures"]);
+assert.deepEqual(place.place_card_profile.collection_ids,["people","brands","structures"]);
+assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","brands","structures"]);
 assert.equal(workcard.vferdig.status,"NOT_CLAIMED");
-assert.equal(runtime.brands.length,5,"Five source-confirmed Brands remain hidden pending publication");
+assert.equal(runtime.brands.length,5,"Five source-confirmed Brands preserved");
 assert.ok(runtime.people.length>=1,"People preserved");
 for(const structure of place.structures){
  assert.ok(fs.existsSync(structure.image),"Missing physical image "+structure.image);
@@ -111,15 +111,15 @@ try{
      return structureImg?.complete&&structureImg.naturalWidth>0&&
        peopleImg?.complete&&peopleImg.naturalWidth>0&&
        hero?.complete&&hero.naturalWidth>0&&front?.complete&&front.naturalWidth>0&&
-       card?.dataset.collectionCount==="2"&&card?.dataset.collectionGridCount==="1";
+       card?.dataset.collectionCount==="3"&&card?.dataset.collectionGridCount==="2";
    },null,{timeout:50000});
    const before=await readLayout();
    assert.match(before.profile,/^place_card_profile_v2(?:_curated)?$/,tag+": canonical curated profile");
-   assert.equal(before.count,"2",tag+": only People + Structures");
-   assert.equal(before.grid,"1",tag+": one Structures gallery slot");
+   assert.equal(before.count,"3",tag+": People + Brands + Structures");
+   assert.equal(before.grid,"2",tag+": Brands and Structures gallery slots");
    assert.equal(before.structuresId,"structures");
    assert.equal(before.structuresCount,"2");
-   assert.ok(before.peopleVisible&&before.previewVisible&&!before.brandsVisible,tag+": no hidden/empty wrong collections");
+   assert.ok(before.peopleVisible&&before.previewVisible&&before.brandsVisible,tag+": no hidden/empty wrong collections");
    assert.ok(before.headerLoaded&&before.frontLoaded&&before.previewLoaded,tag+": actual images loaded");
    assert.ok(before.previewSrc?.startsWith("bilder/kort/structures/"),tag+": valid Structure photo preview");
    // Real click; neither popup content nor UI event is mocked.
@@ -156,3 +156,4 @@ try{
   }finally{await context.close();}
  }
 }finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}
+

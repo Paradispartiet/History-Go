@@ -907,6 +907,29 @@ window.showFloraPopup = function (flora) {
 // 2D. Brand-POPUP
 // ============================================================
 
+function renderBrandAssetCredit(brand) {
+  const meta = brand?.imageMeta;
+  if (!meta || !(brand.logo || brand.image)) return "";
+  const safeUrl = value => {
+    try {
+      const url = new URL(String(value || ""));
+      return url.protocol === "https:" && !url.username && !url.password ? url.href : "";
+    } catch { return ""; }
+  };
+  const source = safeUrl(meta.sourcePage || meta.sourceUrl);
+  const licenseUrl = safeUrl(meta.licenseUrl);
+  const license = String(meta.license || "").trim();
+  const credit = String(meta.credit || meta.creator || "").trim();
+  return `<section class="hg-section hg-brand-asset-credit" aria-label="Logoens kilde og kreditering">
+    ${credit ? `<p>Logo: ${hgEsc(credit)}</p>` : ""}
+    ${license ? `<p>${licenseUrl ? `<a class="hg-brand-license" href="${hgEscAttr(licenseUrl)}" target="_blank" rel="noopener noreferrer">${hgEsc(license)}</a>` : hgEsc(license)}</p>` : ""}
+    ${source ? `<p><a class="hg-brand-asset-source" href="${hgEscAttr(source)}" target="_blank" rel="noopener noreferrer">Logoens kilde</a></p>` : ""}
+    ${meta.transformation ? `<p>${hgEsc(meta.transformation)}</p>` : ""}
+    ${meta.rightsNote ? `<p>${hgEsc(meta.rightsNote)}</p>` : ""}
+    ${meta.noEndorsement === true ? `<p>Vist for identifikasjon. Ingen tilknytning eller godkjenning fra virksomheten er påstått.</p>` : ""}
+  </section>`;
+}
+
 window.showBrandPopup = async function (brandId, place = null) {
   const id = String(brandId || "").trim();
   if (!id) return;
@@ -1071,6 +1094,7 @@ window.showBrandPopup = async function (brandId, place = null) {
         </div>
       </div>
 
+      ${renderBrandAssetCredit(brand)}
       ${aliasesHtml}
       ${tagsHtml}
       ${placesHtml}
@@ -1963,3 +1987,4 @@ function hgEsc(s){
 function hgEscAttr(s){
   return hgEsc(s).replaceAll("\n", " ").trim();
 }
+
