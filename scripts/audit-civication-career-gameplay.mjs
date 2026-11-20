@@ -245,6 +245,8 @@ const testFiles = walk('tests').filter((rel) =>
   // Narrative ending tests cover epilogues, not a role's daily career gameplay.
   // Incidental role mentions must not become career-test evidence.
   rel !== 'tests/civication-lifestory-endings.test.js' &&
+  // NOK salary/tax projections are finance tests, not authored role gameplay.
+  rel !== 'tests/civication-nok-multiple-jobs.test.js' &&
   // Vitality narrative tests are not proof of independent career workday gameplay.
   !/^tests\/civication-lifestory-vitality-/.test(rel)
 );

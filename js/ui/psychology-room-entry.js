@@ -106,7 +106,7 @@
     const link = document.createElement("link");
     link.id = "psychology-room-css";
     link.rel = "stylesheet";
-    link.href = "css/psychologyRoom.css?v=20261116-aha-bridge1";
+    link.href = "css/psychologyRoom.css?v=20261117-psychology-inner-map-v1";
     document.head.appendChild(link);
   }
 
@@ -126,7 +126,7 @@
 
       const script = document.createElement("script");
       script.id = "psychology-room-script";
-      script.src = "js/psychologyRoom.js?v=20261116-aha-bridge1";
+      script.src = "js/psychologyRoom.js?v=20261117-psychology-inner-map-v1";
       script.onload = () => resolve();
       script.onerror = reject;
       document.body.appendChild(script);

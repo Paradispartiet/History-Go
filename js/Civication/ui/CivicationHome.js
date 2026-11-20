@@ -43,7 +43,9 @@
     state.home ||= {};
     state.objects ||= [];
 
-    const currentDistrictId = state.currentDistrictId || state.home.district || null;
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    const currentDistrictId = (nok?.active === true && nok.version === 1 ? nok.housing?.districtId : null)
+      || state.currentDistrictId || state.home.district || null;
     const unlockedDistrictIds = uniqueStrings([
       ...(state.unlockedDistrictIds || []),
       ...(state.home.unlockedDistrictIds || []),
@@ -233,7 +235,42 @@
     return cost <= 0 ? "Gratis" : `${cost} kapital`;
   }
 
+  // UI selection remains local until an explicit player move confirms the lease.
+  const housingChoice = Object.create(null);
+  function getNokHousingOffers(districtId) {
+    const wallet = window.CivicationState?.getWallet?.();
+    const offers = wallet?.nok_v1?.config?.housingOffers;
+    return Array.isArray(offers) ? offers.filter(o => o?.districtId === districtId &&
+      typeof o.id === "string" && /^[a-zA-Z0-9_-]{4,120}$/.test(o.id) &&
+      (o.roomCount == null || (Number.isSafeInteger(o.roomCount) &&
+        o.roomCount >= 1 && o.roomCount <= 5)) &&
+      typeof o.monthlyRentNok === "number" && Number.isFinite(o.monthlyRentNok) &&
+      o.monthlyRentNok >= 0).slice().sort((a,b) =>
+        (a.roomCount ?? 0) - (b.roomCount ?? 0) || a.id.localeCompare(b.id)) : [];
+  }
+  function safeHtml(value) {
+    return String(value).replace(/[&<>"']/g, ch =>
+      ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[ch]);
+  }
   function formatRent(district) {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true && nok.version === 1) {
+      const matched = getNokHousingOffers(district?.id);
+      const current = nok.housing?.districtId === district?.id
+        ? matched.find(o => o.id === nok.housing?.offerId) : null;
+      const selected = current || matched.find(o => o.id === housingChoice[district?.id]) || null;
+      const prices = matched.map(o => o.monthlyRentNok)
+        .filter(p => typeof p === "number" && Number.isFinite(p) && p >= 0);
+      const price = selected?.monthlyRentNok ?? (prices.length ? Math.min(...prices) : null);
+      if (price === null || !Number.isFinite(price)) return "Leiepris mangler";
+      const rooms = selected && Number.isSafeInteger(selected.roomCount)
+        ? " · " + selected.roomCount + " rom" : " · velg antall rom";
+      const scope = selected?.referenceAreaId === "oslo_central" ? " · SSB sentrale Oslo 2025" :
+        selected?.referenceAreaId === "oslo_outer" ? " · SSB ytre øst 2025" :
+        selected?.referenceAreaId === "oslo_baerum" ? " · SSB Oslo/Bærum 2025" : "";
+      return (selected ? "" : "Fra ") + price.toLocaleString("nb-NO") +
+        " kr / måned" + rooms + scope;
+    }
     const rent = Number(district?.rent || 0);
     return rent <= 0 ? "Ingen husleie" : `${rent} PC / periode`;
   }
@@ -300,6 +337,11 @@
 
   function getDistrictLockReason(district) {
     if (!district) return "Ukjent nabolag";
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true) {
+      const offers = Array.isArray(nok.config?.housingOffers) ? nok.config.housingOffers : [];
+      if (!offers.some(o => o?.districtId === district.id)) return "Dokumentert leiepris mangler";
+    }
 
     const capital = getCapital();
     if ((capital.economic || 0) < Number(district.baseCost || 0)) return "For lite kapital";
@@ -395,22 +437,35 @@
     return true;
   }
 
-  function canMoveToDistrict(districtId) {
+  function canMoveToDistrict(districtId, offerId = null) {
     const district = getDistrict(districtId);
     if (!district) return { ok: false, reason: "Ukjent nabolag" };
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true) {
+      const offers = Array.isArray(nok.config?.housingOffers) ? nok.config.housingOffers : [];
+      const matching = getNokHousingOffers(district.id);
+      if (!matching.length) return { ok:false, reason:"Dokumentert leieavtale mangler" };
+      if (offerId != null && !matching.some(o => o.id === offerId))
+        return { ok:false, reason:"Boligtilbudet finnes ikke i dette nabolaget" };
+    }
     const state = ensure(load());
     const unlocked = state.unlockedDistrictIds.includes(district.id);
     const lockReason = unlocked ? "" : getDistrictLockReason(district);
     return { ok: unlocked || !lockReason, reason: lockReason };
   }
 
-  function moveToDistrict(districtId) {
+  function moveToDistrict(districtId, offerId = null) {
     const district = getDistrict(districtId);
     if (!district) return false;
-    const access = canMoveToDistrict(districtId);
+    const access = canMoveToDistrict(districtId, offerId);
     if (!access.ok) return false;
     const state = ensure(load());
     const from = state.currentDistrictId || null;
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true) {
+      const result = window.CivicationEconomyEngine?.acceptNokHousing?.(district.id, offerId);
+      if (!result?.ok) return false;
+    }
     if (from === district.id) return true;
     state.currentDistrictId = district.id;
     state.unlockedDistrictIds = uniqueStrings(state.unlockedDistrictIds.concat(district.id));
@@ -465,6 +520,8 @@
   }
 
   function applyRentTick(force = false) {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true && nok.version === 1) return { ok: true, skipped: true, reason: "NOK_WALLET_BILLING" };
     const state = ensure(load());
     const district = getDistrict(state.currentDistrictId);
     if (!district) return { ok: false, reason: "no_district" };
@@ -548,7 +605,7 @@
         title: getDistrictTitle(district),
         isCurrent,
         isStartOption: district.isStartOption === true,
-        canSelect: unlocked || !lockReason || isCurrent,
+        canSelect: (unlocked || !lockReason || isCurrent) && canMoveToDistrict(district.id).ok,
         unlockReason,
         lockReason: (unlocked || isCurrent) ? "" : lockReason,
         cost: Number(district.baseCost || 0),
@@ -605,6 +662,8 @@
   }
 
   function applyHousingPeriodCosts(force = false) {
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    if (nok?.active === true && nok.version === 1) return { ok: true, skipped: true, reason: "NOK_WALLET_BILLING" };
     const state = ensure(load());
     const district = getDistrict(state?.home?.district);
     if (!district) return { ok: false, reason: "no_district" };
@@ -731,16 +790,16 @@
     return canMoveToDistrict(districtId).ok;
   }
 
-  function purchaseDistrict(districtId) {
-    return moveToDistrict(districtId);
+  function purchaseDistrict(districtId, offerId = null) {
+    return moveToDistrict(districtId, offerId);
   }
 
-  function moveDistrict(newId) {
-    return moveToDistrict(newId);
+  function moveDistrict(newId, offerId = null) {
+    return moveToDistrict(newId, offerId);
   }
 
-  function selectDistrict(districtId) {
-    return moveToDistrict(districtId);
+  function selectDistrict(districtId, offerId = null) {
+    return moveToDistrict(districtId, offerId);
   }
 
   // ----------------------------------------------------------
@@ -750,7 +809,41 @@
   function renderDistrictCard(district, currentId) {
     const isCurrent = String(currentId || "") === String(district.id || "");
     const reason = getDistrictLockReason(district);
-    const canSelect = !reason || isCurrent;
+    const canSelect = (!reason || isCurrent) && canMoveToDistrict(district.id).ok;
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    const housingOffers = nok?.active === true ? getNokHousingOffers(district.id) : [];
+    const housingOffer = housingOffers.find(o => o.id === housingChoice[district.id]) ||
+      (nok?.housing?.districtId === district.id
+        ? housingOffers.find(o => o.id === nok.housing.offerId) : null) ||
+      housingOffers.find(o => o.defaultOffer === true) || housingOffers[0] || null;
+    const referenceArea = housingOffer?.referenceAreaId === "oslo_central"
+      ? "sentrale Oslo" : housingOffer?.referenceAreaId === "oslo_outer"
+        ? "ytre øst i Oslo" : "Oslo/Bærum";
+    const referenceNote = nok?.active === true && housingOffer?.priceKind === "statistical_reference_not_listing"
+      ? "Statistisk startprofil for " + referenceArea +
+        ". Ikke en boligannonse eller dokumentert bydelspris. Andre størrelser kan bruke Oslo/Bærum-snitt." : "";
+    let electricity = null;
+    if (nok?.active === true && housingOffer?.electricityProfileId) {
+      try { electricity = window.CivicationNokBudget?.getElectricityProfile?.(
+        nok.config, housingOffer.electricityProfileId); } catch {}
+    }
+    const roomSelector = nok?.active === true && housingOffers.length > 1
+      ? `<label style="display:block;margin-top:8px;">Velg boligstørrelse
+          <select data-civi-housing-offer="${safeHtml(district.id)}"
+            aria-label="Boligstørrelse i ${safeHtml(district.name)}"
+            style="display:block;margin-top:4px;max-width:100%;padding:8px;">
+            ${housingOffers.map(offer => `<option value="${safeHtml(offer.id)}"
+              ${offer.id === housingOffer?.id ? "selected" : ""}>
+              ${offer.roomCount} rom · ${offer.monthlyRentNok.toLocaleString("nb-NO")} kr/mnd
+              ${offer.referenceAreaId === "oslo_baerum" ? "(Oslo/Bærum-gjennomsnitt)" :
+                offer.referenceAreaId === "oslo_outer" ? "(ytre øst, 50 m²)" : "(sentrale Oslo, 50 m²)"}
+            </option>`).join("")}
+          </select></label>` : "";
+    const chosenRent = housingOffer && typeof housingOffer.monthlyRentNok === "number"
+      ? housingOffer.monthlyRentNok.toLocaleString("nb-NO") + " kr / måned · " +
+        (Number.isSafeInteger(housingOffer.roomCount)
+          ? housingOffer.roomCount + " rom" : "størrelse ikke oppgitt")
+        : "Dokumentert pris mangler";
     const tagText = normalizeList(district.choice_tags).join(" · ");
     const storeText = normalizeList(district.store_access).join(" · ");
     const classes = ["civi-district-card"];
@@ -769,14 +862,18 @@
           ${isCurrent ? `<span style="font-size:0.82rem;opacity:0.8;">Valgt</span>` : ""}
         </div>
         <div style="margin-top:8px;line-height:1.45;">${district.shortDesc || ""}</div>
-        <div style="font-size:0.86rem;opacity:0.82;margin-top:8px;">Pris: ${formatCost(district)} · Husleie: ${formatRent(district)} · Prestige: ${Number(district.prestige || 0)}</div>
+        ${roomSelector}
+        <div style="font-size:0.86rem;opacity:0.82;margin-top:8px;">${nok?.active === true ? `Husleie for valgt bolig: ${chosenRent}` : `Pris: ${formatCost(district)} · Husleie: ${formatRent(district)} · Prestige: ${Number(district.prestige || 0)}`}</div>
+        ${referenceNote ? `<p>${referenceNote}</p>` : ""}
+        ${electricity ? `<p>Strømanslag: ${electricity.monthlyNok} kr per hel måned, med ${electricity.monthlyConsumptionKwh} kWh antatt forbruk. KWh er en illustrativ spillantakelse, ikke avlest forbruk. Pris per kWh fra SSB, inkludert nettleie, avgifter og fratrukket støtte. Dager i boligen faktureres etter månedsslutt.</p>` : ""}
+        ${nok?.active === true && housingOffer ? `<p>Første hele leieperiode forfaller ved innflytting. Depositum er ikke modellert. Velg bare hvis du vil inngå leieavtalen.</p>` : ""}
         <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Krav: ${requirementText(district)}</div>
-        <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">Råd: ${affordability}</div>
+        <div style="font-size:0.86rem;opacity:0.82;margin-top:6px;">${nok?.active === true ? "Sjekk saldo og regninger under Kommers før du velger." : `Råd: ${affordability}`}</div>
         ${storeText ? `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Butikktilgang: ${storeText}</div>` : ""}
         ${tagText ? `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Valgtagger: ${tagText}</div>` : ""}
         ${!canSelect && reason ? `<div style="font-size:0.82rem;opacity:0.78;margin-top:6px;">Låst: ${reason}</div>` : `<div style="font-size:0.82rem;opacity:0.72;margin-top:6px;">Låst opp: ${district.isStartOption ? "Startnabolag" : "Krav oppfylt"}</div>`}
         <div style="margin-top:10px;">
-          <button class="btn" data-civi-district-select="${district.id}" ${canSelect ? "" : "disabled"}>${isCurrent ? "Bor her" : (canSelect ? "Flytt hit" : "Se krav")}</button>
+          <button class="btn" data-civi-district-select="${district.id}" ${canSelect ? "" : "disabled"}>${isCurrent ? "Bekreft boligvalg" : (canSelect ? "Flytt hit" : "Se krav")}</button>
         </div>
       </div>
     `;
@@ -803,6 +900,8 @@
 
     const state = ensure(load());
     const current = getDistrict(state?.home?.district);
+    const nok = window.CivicationState?.getWallet?.()?.nok_v1;
+    const nokActive = nok?.active === true;
 
     if (!current) {
       const startDistricts = getStartDistricts().slice(0, 3);
@@ -810,7 +909,7 @@
       host.innerHTML = `
         <div class="latest-knowledge-box">
           <div class="lk-topic">Velg nabolag</div>
-          <div class="lk-category">Tre gratis alternativer fra start</div>
+          <div class="lk-category">${nokActive ? "Velg blant dokumenterte leieprofiler" : "Tre gratis alternativer fra start"}</div>
           <div class="lk-text">Nabolaget setter hjemfølelse, hverdag, butikktilgang, boligspor, husleie og prestige i Civication.</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
@@ -823,6 +922,16 @@
       return;
     }
 
+    if (nokActive) {
+      host.innerHTML = `
+        <div class="latest-knowledge-box"><div class="lk-topic">Hjem</div>
+          <div class="lk-category">${current.name}</div></div>
+        <div>Husleie: ${formatRent(current)}</div>
+        <div>Leieavtalen og regningene vises under Kommers. Betaling skjer der ved forfall.</div>
+        <button class="btn" data-civi-open-districts>Bytt nabolag</button>`;
+      renderDistrictList();
+      return;
+    }
     const access = getSelectedDistrictAccess();
     const capital = getCapital();
     const influence = getHomeInfluence();
@@ -886,6 +995,16 @@
     if (handlersBound) return;
     handlersBound = true;
 
+    document.addEventListener("change", function (event) {
+      const select = event.target instanceof HTMLSelectElement &&
+        event.target.matches("select[data-civi-housing-offer]")
+          ? event.target : null;
+      const districtId = select?.getAttribute("data-civi-housing-offer");
+      if (!districtId || !getNokHousingOffers(districtId).some(o => o.id === select.value)) return;
+      housingChoice[districtId] = select.value;
+      renderHomeStatus(); // Preview updates without changing the signed lease or wallet.
+    });
+
     document.addEventListener("click", function (event) {
       const target = /** @type {HTMLElement | null} */ (event.target instanceof HTMLElement ? event.target : null);
       if (!target) return;
@@ -910,8 +1029,14 @@
         event.preventDefault();
         const districtId = selectButton.getAttribute("data-civi-district-select");
         if (!districtId) return;
-        const ok = selectDistrict(districtId);
-        if (ok) closeDistrictModal();
+        const chosen = /** @type {HTMLSelectElement|null} */ (selectButton.closest(".civi-district-card")
+          ?.querySelector("select[data-civi-housing-offer]") || null);
+        const offerId = chosen?.value || housingChoice[districtId] || null;
+        const ok = selectDistrict(districtId, offerId);
+        if (ok) {
+          delete housingChoice[districtId];
+          closeDistrictModal();
+        }
         renderHomeStatus();
         return;
       }
@@ -1125,6 +1250,7 @@
     hasVisitedDistrict,
     applyHousingPeriodCosts,
     render: renderHomeStatus,
+    renderDistrictList,
     boot,
     DISTRICTS
   });

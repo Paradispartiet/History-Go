@@ -37,3 +37,17 @@ test('Civication routes draft-gate tests and explicitly invokes their contract',
   assert.match(c, /'tests\/ci-civication-draft-gates\.test\.mjs'/);
   assert.match(c, /node --test tests\/ci-civication-scope\.test\.mjs tests\/ci-civication-draft-gates\.test\.mjs/);
 });
+
+
+test('role-only PRs keep a focused required gate when ready, shared changes retain full and nightly suite', () => {
+  const c=workflow('civication.yml');
+  assert.match(c, /focused: \$\{\{ steps\.classify\.outputs\.focused \}\}/);
+  assert.match(c, /echo 'focused=false' >> "\$GITHUB_OUTPUT"/);
+  assert.match(c, /if: github\.event_name == 'pull_request' && \(needs\.scope\.outputs\.focused == 'true' \|\| \(github\.event\.pull_request\.draft == true && needs\.scope\.outputs\.regression == 'true'\)\)/);
+  assert.match(c, /node tests\/civication-lifestory-renholder-uke3\.test\.js/);
+  assert.match(c, /node tests\/civication-lifestory-ekspeditor\.test\.js/);
+  assert.match(c, /node tests\/civication-lifestory-endings\.test\.js/);
+  assert.match(c, /if: needs\.scope\.outputs\.regression == 'true' && \(github\.event_name != 'pull_request' \|\| github\.event\.pull_request\.draft == false\)/);
+  assert.match(c, /cron: '17 3 \* \* \*'/);
+});
+

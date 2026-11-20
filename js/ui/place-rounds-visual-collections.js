@@ -171,9 +171,18 @@
   }
 
   function peopleItems(place) {
+    const placeId = s(place?.id);
     let direct = [];
-    try { direct = arr(global.getPeopleForPlace?.(s(place?.id))); } catch { direct = []; }
-    return flattenSources([[direct, "people"]]);
+    try { direct = arr(global.getPeopleForPlace?.(placeId)); } catch { direct = []; }
+    // A canonical place-open payload may finish hydrating after the legacy
+    // People lookup was initialized. Read the just-loaded, place-linked
+    // public People entries as well, without creating substitute portraits.
+    const hydrated = arr(global.PEOPLE).filter(person =>
+      s(person?.placeId || person?.place_id) === placeId
+      || arr(person?.places).some(id => s(id) === placeId)
+      || arr(person?.place_ids).some(id => s(id) === placeId)
+    );
+    return flattenSources([[hydrated, "place_open_people"], [direct, "people"]]);
   }
 
   function brandItems(place) {
@@ -454,25 +463,30 @@
     ensureQuizAction();
   }
 
-  // Show the actual Commons attribution where the visitor views each image.
-  // Keep external links outside the clickable legacy member button.
+  // Keep image source, kind and attribution visible without treating
+  // interpretive Structures artwork as an archival photograph.
+  // Links stay outside the clickable member button.
   function structureAttributionHtml(item) {
     const credit = s(item.imageCredit);
     const license = s(item.imageLicense);
     const source = [item.imageSource, ...item.sourceUrls].find(url => /^https:\/\//i.test(url));
     const licenseUrl = s(item.imageLicenseUrl);
-    if (!credit && !license) return "";
-    const photoCredit = credit ? '<span>Foto: ' + esc(credit) + '</span>' : "";
+    const illustrated = item.imageKind === "illustration";
+    const disclosure = s(item.imageDisclosure);
+    if (!item.image || (!credit && !license && !source && !illustrated && !disclosure)) return "";
+    const kindLabel = illustrated ? '<span class="pc-structure-illustration-label">Illustrasjon</span>' : "";
+    const namedCredit = credit ? '<span>' + (illustrated ? "Illustrasjon: " : "Foto: ") + esc(credit) + '</span>' : "";
     const linkedLicense = /^https:\/\//i.test(licenseUrl)
       ? '<a class="pc-structure-license-link" href="' + esc(licenseUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(license || "Lisens") + '</a>'
       : (license ? '<span>' + esc(license) + '</span>' : "");
     const linkedSource = source
-      ? '<a class="pc-structure-source-link" href="' + esc(source) + '" target="_blank" rel="noopener noreferrer">Bildekilde</a>'
+      ? '<a class="pc-structure-source-link" href="' + esc(source) + '" target="_blank" rel="noopener noreferrer">' + (illustrated ? "Historisk kilde" : "Bildekilde") + '</a>'
       : "";
+    const context = disclosure ? '<span class="pc-structure-context">' + esc(disclosure) + '</span>' : "";
     const adapted = /without crop|without cropping/i.test(s(item.imageTransformation))
       ? '<span>Tilpasset WebP uten beskjæring</span>'
       : "";
-    return '<div class="pc-structure-credit">' + photoCredit + linkedLicense + linkedSource + adapted + '</div>';
+    return '<div class="pc-structure-credit">' + kindLabel + namedCredit + linkedLicense + linkedSource + context + adapted + '</div>';
   }
 
   function renderRows(items, def) {
@@ -499,7 +513,7 @@
             ${item.description ? `<p class="pc-person-desc">${esc(item.description)}</p>` : ""}
             ${item.imageDisclosure ? `<p class="pc-object-context">${esc(item.imageDisclosure)}</p>` : ""}
             ${item.imageCredit ? `<p class="pc-object-credit">Bilde: ${esc(item.imageCredit)}${item.imageLicense ? ` · ${esc(item.imageLicense)}` : ""}</p>` : ""}
-            ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">Se historisk kilde og bildeopphav</a>` : ""}
+            ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">${kind === "illustration" ? "Historisk kilde for gjenstanden" : "Se historisk kilde og bildeopphav"}</a>` : ""}
           </div>
         </article>`;
       }).join("");
@@ -524,7 +538,7 @@
   function renderCollectionPreview(icon, preview, def, count) {
     icon.dataset.collectionItemCount = String(Number(count) || 0);
     const fallback = fallbackCollectionHtml(def, count);
-    const illustrated = def.id === "objects" && preview?.imageKind === "illustration";
+    const illustrated = (def.id === "objects" || def.id === "structures") && preview?.imageKind === "illustration";
     const visualPreviewSignature = preview?.image
       ? `member-image|${s(preview.id)}|${s(preview.image)}|${s(preview.title)}|${illustrated}`
       : `fallback|${s(def.id)}|${Number(count) || 0}`;
@@ -553,7 +567,20 @@
     const icon = document.getElementById(def.iconId);
     if (!icon) return;
     const items = collectionItems(place, def.id);
-    renderCollectionPreview(icon, items.find(item => item.image), def, items.length);
+    const previewCandidates = items.filter(item => item.image);
+    const renderCandidate = (index) => {
+      renderCollectionPreview(icon, previewCandidates[index], def, items.length);
+      const image = icon.querySelector(":scope > img.pc-person-img");
+      if (image && index + 1 < previewCandidates.length) {
+        // An older person can reference an unavailable file. Try a different
+        // registered person portrait, never an unrelated placeholder.
+        image.addEventListener("error", () => {
+          renderCandidate(index + 1);
+          global.HGPlaceRoundsFillLayout?.scheduleLayout?.();
+        }, { once:true });
+      }
+    };
+    renderCandidate(0);
     if (def.id === "people" && icon.classList.contains("pc-title-people")) {
       icon.hidden = items.length === 0;
       icon.setAttribute("aria-hidden", items.length ? "false" : "true");
@@ -733,12 +760,15 @@
       grid.style.removeProperty("grid-template-columns");
       grid.style.removeProperty("grid-template-rows");
     }
-    // The base renderer can finish after the curated fill layout (for example,
-    // after asynchronous Nature previews). Commit the curated visibility and
-    // profile marker synchronously, so a late base pass never leaves the card
-    // exposed with the transient place_card_profile_v2 state.
-    global.HGPlaceRoundsFillLayout?.applyCuratedVisibility?.();
-    global.HGPlaceRoundsFillLayout?.scheduleLayout?.();
+
+    // The async collection renderer may finish after the curated 1–3-item
+    // layout (for example after a late image decode or Place-open hydration).
+    // Reconcile its visibility and source markers *after* every core apply.
+    // Otherwise a late core write flips a curated Place back to the generic
+    // "place_card_profile_v2" state between consecutive browser assertions.
+    if (s(card.dataset.currentPlaceId) === s(place.id)) {
+      global.HGPlaceRoundsFillLayout?.applyCuratedVisibility?.();
+    }
   }
 
   function scheduleApply() {

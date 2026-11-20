@@ -86,24 +86,27 @@ try {
         return icon && !icon.hidden && icon.dataset.collectionItemCount==="2"
           && icon.dataset.previewStatus==="member-image";
       },null,{timeout:15000});
-      const objectIcon=page.locator("#pcObjectsIcon");
-      assert.equal(await objectIcon.getAttribute("data-collection-id"),"objects");
-      const galleryButton=page.locator('[data-pc-round-gallery-section="history"] [data-pc-round-gallery-item="pcObjectsIcon"]');
-      await galleryButton.waitFor({state:"visible",timeout:15000});
-      await galleryButton.scrollIntoViewIfNeeded({timeout:15000});
-      const cardPreview=galleryButton.locator("img");
+      const objectSource=page.locator("#pcObjectsIcon");
+      assert.equal(await objectSource.getAttribute("data-collection-id"),"objects");
+      // Direct Place Sheet intentionally hides the original collection icon
+      // once its image has been promoted into a full-size gallery button.
+      // Use the visible, real user control; its click forwards to the same
+      // canonical Objects popup, never a mock or forced hidden-element click.
+      const objectButton=page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]');
       phase="preview-visible";
+      await objectButton.waitFor({state:"visible",timeout:15000});
+      const cardPreview=objectButton.locator("img");
       await cardPreview.waitFor({state:"visible",timeout:15000});
       const previewSrc=await cardPreview.getAttribute("src");
       assert.equal(previewSrc,place.objects[0].image);
       phase="preview-decoded";
-      assert.ok(await cardPreview.evaluate(async (img,src)=>{
-        await img.decode();
-        return img.getAttribute("src")===src && img.naturalWidth===800;
-      },place.objects[0].image,{timeout:15000}),"visible gallery must decode the canonical preview");
-      await galleryButton.screenshot({path:artifactPath+"/"+name+"-objects-preview.png"});
+      await page.waitForFunction(src=>{
+        const img=document.querySelector('button[data-pc-round-gallery-item="pcObjectsIcon"] > img');
+        return img?.getAttribute("src")===src && img.complete && img.naturalWidth===800;
+      },place.objects[0].image,{timeout:15000});
+      await objectButton.screenshot({path:artifactPath+"/"+name+"-objects-preview.png"});
       phase="objects-click";
-      await galleryButton.click({timeout:15000});
+      await objectButton.click({timeout:15000});
       phase="popup-member-rows";
       await page.waitForFunction(()=>{
         const rows=[...document.querySelectorAll(".pc-object-member")];

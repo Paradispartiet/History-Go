@@ -3,7 +3,7 @@
   "categoryId": "kunst",
   "version": "v1",
   "date": "2026-11-18",
-  "status": "candidate_pending_visual_approval_and_binary_upload",
+  "status": "candidate_pending_visual_approval",
   "trackingIssue": 7401,
   "design": {
     "topLabel": "KUNST",
@@ -47,14 +47,14 @@
   "source": {
     "generation": "ChatGPT original artwork",
     "package": "HistoryGo_Kunst_Samtidskunst_v1_kandidat.zip",
-    "note": "Image files exist in the conversation artifact, NOT in repository"
+    "note": "All three original/master/app assets present in GitHub main since PR #7430; visual approval still pending"
   },
   "quality": {
     "textVisuallyVerified": true,
     "visualApprovedByUser": false,
     "localChecksumsCalculated": true,
-    "repositoryUploaded": false,
-    "repositoryHashesVerified": false,
+    "repositoryUploaded": true,
+    "repositoryHashesVerified": true,
     "active": false
   },
   "preservation": {
@@ -62,5 +62,11 @@
     "otherNineBadgesUnchanged": true,
     "placeCardAndMapUnchanged": true
   },
-  "activationPolicy": "Only activate after explicit user visual approval, byte-identical upload of original/master/app assets, and focused Kunst badge integrity tests. Keep the other 9 subbadges and main image unchanged."
+  "activationPolicy": "All three image binaries are uploaded and Git blob SHA verified by PR #7430. Activate only this subBadgeImages entry after explicit user visual approval and focused Kunst badge QA. Leave all other badges unchanged.",
+  "repositoryVerification": {
+    "commit": "ae43a27096548b7c0cada725d4a9469f6184bf43",
+    "pullRequest": 7430,
+    "allThreeGitBlobsVerified": true,
+    "verifiedOn": "2026-11-19"
+  }
 }

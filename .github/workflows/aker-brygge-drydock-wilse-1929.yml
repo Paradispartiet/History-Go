@@ -1,0 +1,53 @@
+name: Aker Brygge — Wilse 1929 historic drydock photograph candidate
+on:
+  push:
+    branches:
+      - assets/aker-brygge-historic-drydock-wilse-1929-20261119
+    paths:
+      - .github/workflows/aker-brygge-drydock-wilse-1929.yml
+      - scripts/produce-aker-brygge-drydock-wilse-1929.mjs
+      - tests/aker-brygge-drydock-wilse-1929.test.mjs
+permissions:
+  contents: write
+concurrency:
+  group: aker-brygge-wilse-historic-drydock-candidate
+  cancel-in-progress: false
+jobs:
+  archive-historic-drydock:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: assets/aker-brygge-historic-drydock-wilse-1929-20261119
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Capture original Oslo Museum / Wilse 1929 drydock photo and WebP
+        run: node scripts/produce-aker-brygge-drydock-wilse-1929.mjs --write
+      - name: Validate source SHA-1, SHA-256, license, exact historical subject and nonpublication
+        run: node --test tests/aker-brygge-drydock-wilse-1929.test.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aker-brygge-wilse-1929-authentic-drydock-candidate
+          path: |
+            bilder/kort/structures/source/aker_brygge/torrdokken_frontenac_wilse_1929_original.jpg
+            bilder/kort/structures/candidates/aker_brygge/torrdokken_frontenac_wilse_1929.webp
+            reports/place-production/aker-brygge-torrdokken-wilse-1929-image-candidate.json
+          if-no-files-found: error
+      - name: Archive original, WebP and source proof on isolated PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- bilder/kort/structures/source/aker_brygge/torrdokken_frontenac_wilse_1929_original.jpg bilder/kort/structures/candidates/aker_brygge/torrdokken_frontenac_wilse_1929.webp reports/place-production/aker-brygge-torrdokken-wilse-1929-image-candidate.json
+          if ! git diff --cached --quiet; then
+            git commit -m "assets(aker-brygge): archive Wilse 1929 historic drydock candidate"
+            git push origin HEAD:refs/heads/assets/aker-brygge-historic-drydock-wilse-1929-20261119
+          fi

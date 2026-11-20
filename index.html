@@ -61,8 +61,8 @@
   <link rel="stylesheet" href="css/effects.css">
   <link rel="stylesheet" href="css/map.css?v=20261028-badges-readable-close5">
   <link rel="stylesheet" href="css/home-favorite-map-picker.css?v=20261111-safe-map1">
-  <link rel="stylesheet" href="css/placeCard.css?v=20261114-badge-rim-class1">
-  <link rel="stylesheet" href="css/place-card-sticky-header.css?v=20261112-quiz-scroll-inset1">
+  <link rel="stylesheet" href="css/placeCard.css?v=20261116-hero-quiz-epoch1">
+  <link rel="stylesheet" href="css/place-card-sticky-header.css?v=20261116-continuous-scroll1">
   <link rel="stylesheet" href="css/place-card-reader.css?v=20261010-continuous2">
   <link rel="stylesheet" href="css/place-onsite-surface.css?v=20261027-about-image-inset1">
   <link rel="stylesheet" href="css/wonderkammer.css">
@@ -118,8 +118,8 @@
     }
     body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
       .pc-heading-hero.has-photo-source .pc-heading-content #pcStatusBar{
-      order:0!important;grid-column:1!important;grid-row:2!important;
-      justify-self:start!important;align-self:end!important;
+      order:0!important;grid-column:auto!important;grid-row:auto!important;
+      justify-self:end!important;align-self:end!important;
     }
     body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
       .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta{
@@ -127,7 +127,9 @@
     }
     body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
       .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta > .pc-epoke{
-      flex-basis:100%!important;
+      flex-basis:auto!important;
+      width:max-content!important;
+      max-width:calc(100% - 106px)!important;
     }
     @media(max-width:520px){
       body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1
@@ -460,7 +462,7 @@
         "js/hgSocialGuards.js",
         "js/knowledgeMatch.js",
         "js/ui/header-menu.js?v=20261027-nature-pages1",
-        "js/ui/psychology-room-entry.js",
+        "js/ui/psychology-room-entry.js?v=20261117-psychology-inner-map-v1",
         "js/ui/badges.js?v=20261112-place-underbadge-v1"
       ];
       let chain = Promise.resolve();
@@ -478,7 +480,7 @@
     }, { once: true });
   </script>
 
-  <script defer src="js/ui/place-card-sticky-header.js?v=20261102-half-crop2"></script>
+  <script defer src="js/ui/place-card-sticky-header.js?v=20261116-continuous-scroll1"></script>
   <script defer src="js/ui/place-card-round-gallery.js?v=20261103-editorial1"></script>
   <script defer src="js/ui/nearby-explore-guide.js?v=20261106-1"></script>
   <script type="module" src="./js/app.js?v=20261114-badge-rim-class1"></script>

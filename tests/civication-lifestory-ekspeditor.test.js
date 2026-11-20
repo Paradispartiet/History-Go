@@ -35,14 +35,15 @@ const raw = {
 // --- Pakken består de fire lovene (buildContent kaster ellers) ---
 const content = Content.buildContent(raw);
 assert.strictEqual(content.role.id, "ekspeditor");
-assert.strictEqual(raw.roleThreads.threads.length, 6, "fem opprinnelige arbeidstråder og én oppfølgingstråd");
+assert.strictEqual(raw.roleThreads.threads.length, 9, "seks etablerte tråder og én oppfølgingstråd for hver av de tre arbeidsukene");
 assert.ok(raw.roleThreads.threads.every((t) => t.type === "arbeidsliv"), "rolletrådene er arbeidsliv");
 
 // De fem opprinnelige mail-familiene og en ekstra forfattet tråd om belastning og støtte.
 const threadIds = raw.roleThreads.threads.map((t) => t.id);
 assert.deepStrictEqual(threadIds.sort(), [
   "kunden_som_tror_du_bestemmer", "lukkingen", "ny_kollega_og_tillit",
-  "prisfeilen_i_koen", "varen_som_ikke_finnes", "arbeidsrytme_og_overskudd"
+  "prisfeilen_i_koen", "varen_som_ikke_finnes", "arbeidsrytme_og_overskudd",
+  "ekspeditor_uke1_oppfolging", "ekspeditor_uke2_oppfolging", "ekspeditor_uke3_oppfolging"
 ].sort());
 
 // Personene er mail-familienes faste cast og finnes i startState.
@@ -783,3 +784,309 @@ for (const choice of ['ta_ansvaret', 'en_uke_til', 'del_med_vikaren']) {
 }
 
 console.log("civication lifestory ekspeditor ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");
+
+
+// First-week extension: play the original days 1–3 without faking earlier
+// choices, and prove that days 4–7 preserve work, handoff and approval boundaries.
+const WeekOneEndings = require("../js/Civication/lifestory/lifestoryEndings.js");
+const addedWeekOne=raw.roleScenes.scenes.filter(s=>s.dag>=4 && s.dag<=7);
+assert.strictEqual(addedWeekOne.length,17,"17 new first-week scenes");
+assert.deepStrictEqual([...new Set(addedWeekOne.map(s=>s.dag))],[4,5,6,7]);
+assert.strictEqual(new Set(addedWeekOne.map(s=>s.id)).size,17);
+assert.deepStrictEqual(raw.role.ukesluttDager,[7,14,21]);
+for(const [day,scenes] of Object.entries({4:4,5:4,6:4,7:5})) {
+  assert.strictEqual(addedWeekOne.filter(s=>s.dag===Number(day)).length,scenes);
+}
+function playRealWeek(picks,name){
+  const saved=State.createInitialState(content);
+  for(let day=1;day<=7;day++){
+    assert.strictEqual(saved.dag,day,name+": real story day");
+    let actions=0;
+    while(!saved.dagFerdig){
+      const scene=Runner.selectNextScene(saved,content);
+      if(!scene){Runner.advance(saved,content);assert.ok(++actions<200);continue;}
+      const wanted=picks[scene.id];
+      const choice=scene.valg.find(v=>v.id===(wanted||scene.valg.find(x=>!x.skills_requirement)?.id));
+      assert.ok(choice,name+": authored selectable choice "+scene.id);
+      const before=saved.arkiv.length, money=saved.meters.penger;
+      Runner.applyChoice(saved,content,scene.id,choice.id);
+      assert.strictEqual(saved.arkiv.length,before+1);
+      if(day>=4)assert.strictEqual(saved.meters.penger,money,
+        name+": retail dialogue cannot directly change payroll");
+      assert.ok(++actions<200,name+": terminates day "+day);
+    }
+    const serialized=JSON.parse(JSON.stringify(saved));
+    assert.deepStrictEqual(serialized.arkiv,saved.arkiv,name+": archive save/reload");
+    assert.deepStrictEqual(serialized.tidligereValg,saved.tidligereValg,name+": flags save/reload");
+    if(day===3)assert.strictEqual(WeekOneEndings.isFinalDay(saved,content),false,
+      "new first-week story continues after the original third day");
+    if(day<7)Runner.startNextDay(saved,content);
+  }
+  assert.strictEqual(WeekOneEndings.isFinalDay(saved,content),false,
+    "day 7 is a completed week, but not the last authored day");
+  assert.strictEqual(saved.tidligereValg.eksp_u1_d7_ukeslutt,true);
+  assert.strictEqual(new Set(saved.arkiv.map(e=>e.sceneId)).size,saved.arkiv.length);
+  const diary=Runner.getSymposium(JSON.parse(JSON.stringify(saved)),content);
+  assert.ok(diary.tidslinje.some(e=>e.sceneId==="eksp_u1_d7_oppsummering"),
+    "week-one actually remains visible in Symposium");
+  return saved;
+}
+let firstWeek=playRealWeek({},"factual week");
+assert.strictEqual(firstWeek.tidligereValg.eksp_u1_d5_avvik_sendt,true);
+assert.ok(!firstWeek.tidligereValg.eksp_u1_d5_mottak_aapent);
+assert.strictEqual(firstWeek.tidligereValg.eksp_u1_d6_returfakta_sendt,true);
+assert.strictEqual(firstWeek.tidligereValg.eksp_u1_d6_lene_mottatt,true);
+assert.strictEqual(firstWeek.tidligereValg.eksp_u1_d7_hylle_utfort,true);
+assert.strictEqual(firstWeek.tidligereValg.eksp_u1_d7_rapport_sendt,true);
+assert.strictEqual(firstWeek.tidligereValg.eksp_u1_d7_lene_mottatt,true);
+assert.ok(!firstWeek.tidligereValg.eksp_u1_d6_retur_godkjent,
+  "a received claim is not an authorized return");
+
+let pendingWeek=playRealWeek({
+  eksp_u1_d5_folgeseddel:"avklar_bemanning",
+  eksp_u1_d6_returhenvendelse:"be_lene_avgjore",
+  eksp_u1_d7_siste_runde:"foer_rest",
+  eksp_u1_d7_ukerapport:"lagre_utkast"
+},"open rest work");
+assert.strictEqual(pendingWeek.tidligereValg.eksp_u1_d5_mottak_aapent,true);
+assert.ok(!pendingWeek.tidligereValg.eksp_u1_d5_avvik_sendt);
+assert.ok(!pendingWeek.tidligereValg.eksp_u1_d6_lene_mottatt);
+assert.strictEqual(pendingWeek.tidligereValg.eksp_u1_d7_hylle_rest,true);
+assert.ok(!pendingWeek.tidligereValg.eksp_u1_d7_hylle_utfort);
+assert.ok(!pendingWeek.tidligereValg.eksp_u1_d7_rapport_sendt);
+assert.ok(!pendingWeek.tidligereValg.eksp_u1_d7_lene_mottatt);
+
+let noReceiptWeek=playRealWeek({
+  eksp_u1_d5_manglende_kolli:"ettersporr_kolli",
+  eksp_u1_d6_returgrunnlag:"avvent_svar",
+  eksp_u1_d7_kvittering:"avvent_svar"
+},"reported without receipt");
+assert.ok(!noReceiptWeek.tidligereValg.eksp_u1_d5_avvik_sendt);
+assert.ok(!noReceiptWeek.tidligereValg.eksp_u1_d6_returfakta_sendt);
+assert.strictEqual(noReceiptWeek.tidligereValg.eksp_u1_d7_rapport_sendt,true);
+assert.ok(!noReceiptWeek.tidligereValg.eksp_u1_d7_lene_mottatt,
+  "sent is never treated as received");
+console.log("Ekspeditør first week: three actual 7-day playthroughs, distinct approval and archive evidence passed");
+
+
+// Second-week acceptance: continue the actual days 1–7 to day 14 without
+// seeding earlier flags or fabricating any successful delivery/refund/extra pay.
+const secondWeek=raw.roleScenes.scenes.filter(s=>s.dag>=8&&s.dag<=14);
+assert.strictEqual(secondWeek.length,27,"27 second-week scenes on the same role");
+assert.deepStrictEqual([...new Set(secondWeek.map(s=>s.dag))],[8,9,10,11,12,13,14]);
+assert.strictEqual(new Set(secondWeek.map(s=>s.id)).size,27);
+for(const [day,count] of Object.entries({8:4,9:4,10:4,11:3,12:4,13:3,14:5})){
+  assert.strictEqual(secondWeek.filter(s=>s.dag===Number(day)).length,count);
+}
+function playThroughTwoWeeks(picks,name){
+  const st=State.createInitialState(content);
+  let count=0;
+  for(let day=1;day<=14;day++){
+    assert.strictEqual(st.dag,day,name+": actual authored day");
+    let guard=0;
+    while(!st.dagFerdig){
+      const scene=Runner.selectNextScene(st,content);
+      if(!scene){Runner.advance(st,content);assert.ok(++guard<210);continue;}
+      const chosen=picks[scene.id]||scene.valg.find(x=>!x.skills_requirement)?.id;
+      const choice=scene.valg.find(x=>x.id===chosen);
+      assert.ok(choice,name+": valid branch "+scene.id+"/"+chosen);
+      const oldMoney=st.meters.penger,before=st.arkiv.length;
+      Runner.applyChoice(st,content,scene.id,chosen);
+      assert.strictEqual(st.arkiv.length,before+1);
+      if(day>=8)assert.strictEqual(st.meters.penger,oldMoney,
+        name+": decisions about work records do not directly create wages");
+      assert.ok(++guard<210,name+": no loops on day "+day);
+      count++;
+    }
+    const snapshot=JSON.parse(JSON.stringify(st));
+    assert.deepStrictEqual(snapshot.arkiv,st.arkiv,name+": daily archive serializes exactly");
+    assert.deepStrictEqual(snapshot.tidligereValg,st.tidligereValg,name+": daily decisions persist");
+    if(day===7)assert.strictEqual(WeekOneEndings.isFinalDay(st,content),false);
+    if(day<14)Runner.startNextDay(st,content);
+  }
+  assert.ok(count>75,name+": must actually play the two weeks");
+  assert.strictEqual(WeekOneEndings.isFinalDay(st,content),false,
+    "day 14 completes week two but not the full authored story");
+  assert.strictEqual(st.tidligereValg.eksp_u2_d14_ukeavsluttet,true);
+  assert.strictEqual(new Set(st.arkiv.map(e=>e.sceneId)).size,st.arkiv.length,
+    "every event is played once");
+  const sym=Runner.getSymposium(JSON.parse(JSON.stringify(st)),content);
+  assert.ok(sym.tidslinje.some(x=>x.sceneId==="eksp_u2_d14_avslutning"),
+    "second-week ending is an actual visible Symposium event");
+  return st;
+}
+const recorded=playThroughTwoWeeks({},"two-week documented route");
+assert.strictEqual(recorded.tidligereValg.eksp_u1_d5_avvik_sendt,true);
+assert.ok(recorded.arkiv.some(e=>e.sceneId==="eksp_u2_d8_meldt_mangel"));
+assert.ok(!recorded.arkiv.some(e=>e.sceneId==="eksp_u2_d8_uten_melding"));
+assert.strictEqual(recorded.tidligereValg.eksp_u2_d9_avvik_sendt,true);
+assert.strictEqual(recorded.tidligereValg.eksp_u2_d10_retur_sendt,true);
+assert.strictEqual(recorded.tidligereValg.eksp_u2_d11_vikar_opplaert,true);
+assert.strictEqual(recorded.tidligereValg.eksp_u2_d14_rapport_sendt,true);
+assert.strictEqual(recorded.tidligereValg.eksp_u2_d14_lene_mottatt,true);
+assert.ok(!recorded.tidligereValg.eksp_u2_d10_retur_godkjent,
+  "a return sent for approval is not an approved refund");
+assert.ok(!recorded.tidligereValg.eksp_u2_d13_vakt_godkjent,
+  "availability is not an extra shift");
+
+const unresolved=playThroughTwoWeeks({
+  eksp_u1_d5_folgeseddel:"avklar_bemanning",
+  eksp_u1_d7_ukerapport:"lagre_utkast",
+  eksp_u2_d9_telling:"vent_med_telling",
+  eksp_u2_d10_retur_som_venter:"be_om_vilkar",
+  eksp_u2_d11_opplaere_vikar:"sporr_amir",
+  eksp_u2_d12_kampanje:"etterspor_lene",
+  eksp_u2_d13_avlosning:"bli_ved_kassa",
+  eksp_u2_d14_rapport:"lagre_utkast"
+},"open-issues route");
+assert.ok(unresolved.arkiv.some(e=>e.sceneId==="eksp_u2_d8_uten_melding"));
+assert.ok(!unresolved.arkiv.some(e=>e.sceneId==="eksp_u2_d8_meldt_mangel"));
+assert.strictEqual(unresolved.tidligereValg.eksp_u2_d9_fysisk_ukjent,true);
+assert.ok(!unresolved.tidligereValg.eksp_u2_d9_avvik_sendt);
+assert.ok(!unresolved.tidligereValg.eksp_u2_d10_retur_sendt);
+assert.ok(!unresolved.tidligereValg.eksp_u2_d11_vikar_opplaert);
+assert.ok(!unresolved.tidligereValg.eksp_u2_d12_prisavvik_sendt);
+assert.strictEqual(unresolved.tidligereValg.eksp_u2_d13_lager_rest,true);
+assert.ok(!unresolved.tidligereValg.eksp_u2_d14_rapport_sendt);
+assert.ok(!unresolved.tidligereValg.eksp_u2_d14_lene_mottatt);
+
+const sentNotReceived=playThroughTwoWeeks({
+  eksp_u2_d9_tellingsavvik:"be_amir_kontrollere",
+  eksp_u2_d10_send_saksfakta:"be_kunden_vente",
+  eksp_u2_d12_annonse_varen:"meld_prisavvik",
+  eksp_u2_d14_mottak:"avvent_registrering"
+},"sent but not acknowledged");
+assert.ok(!sentNotReceived.tidligereValg.eksp_u2_d9_avvik_sendt);
+assert.strictEqual(sentNotReceived.tidligereValg.eksp_u2_d12_prisavvik_sendt,true);
+assert.strictEqual(sentNotReceived.tidligereValg.eksp_u2_d14_rapport_sendt,true);
+assert.ok(!sentNotReceived.tidligereValg.eksp_u2_d14_lene_mottatt);
+assert.strictEqual(sentNotReceived.tidligereValg.eksp_u2_d14_mottak_venter,true);
+console.log("Ekspeditør days 1–14: three actual routes, causal follow-up, archive and real week-two evidence passed");
+
+
+// Third-week acceptance: replay the authored Life Story from day one, preserving
+// decisions, actual branch preconditions and Symposium continuity. No test
+// directly writes evidence flags or grants money, refunds, work or promotion.
+const thirdWeek=raw.roleScenes.scenes.filter(s=>s.dag>=15&&s.dag<=21);
+assert.strictEqual(thirdWeek.length,27,"27 new scenes, 130 total");
+assert.strictEqual(raw.roleScenes.scenes.length,130);
+assert.deepStrictEqual([...new Set(thirdWeek.map(s=>s.dag))],[15,16,17,18,19,20,21]);
+assert.strictEqual(new Set(thirdWeek.map(s=>s.id)).size,27);
+for(const [day,count] of Object.entries({15:4,16:4,17:4,18:4,19:3,20:3,21:5})){
+  assert.strictEqual(thirdWeek.filter(s=>s.dag===Number(day)).length,count);
+}
+function playThreeWeeks(picks,name){
+  const st=State.createInitialState(content);
+  let weekThreeChoices=0;
+  for(let day=1;day<=21;day++){
+    assert.strictEqual(st.dag,day,name+": actual day "+day);
+    let guard=0;
+    while(!st.dagFerdig){
+      const scene=Runner.selectNextScene(st,content);
+      if(!scene){Runner.advance(st,content);assert.ok(++guard<220);continue;}
+      const chosen=picks[scene.id]||scene.valg.find(v=>!v.skills_requirement)?.id;
+      const choice=scene.valg.find(v=>v.id===chosen);
+      assert.ok(choice,name+": legal option "+scene.id+"/"+chosen);
+      const money=st.meters.penger,oldLen=st.arkiv.length;
+      Runner.applyChoice(st,content,scene.id,choice.id);
+      assert.strictEqual(st.arkiv.length,oldLen+1);
+      if(day>=15){
+        assert.strictEqual(st.meters.penger,money,
+          name+": report/refund/availability dialogue cannot pay wages or refund");
+        weekThreeChoices++;
+      }
+      assert.ok(++guard<220,name+": scene loop on day "+day);
+    }
+    const snapshot=JSON.parse(JSON.stringify(st));
+    assert.deepStrictEqual(snapshot.arkiv,st.arkiv,name+": archive round-trip");
+    assert.deepStrictEqual(snapshot.tidligereValg,st.tidligereValg,name+": evidence round-trip");
+    if(day===7||day===14)
+      assert.strictEqual(WeekOneEndings.isFinalDay(st,content),false,
+        "week checkpoint must not stop three-week continuation");
+    if(day<21)Runner.startNextDay(st,content);
+  }
+  assert.ok(weekThreeChoices>=21,name+": actual third-week choices were played");
+  assert.strictEqual(WeekOneEndings.isFinalDay(st,content),true);
+  assert.strictEqual(st.tidligereValg.eksp_u3_d21_fullfort,true);
+  assert.strictEqual(new Set(st.arkiv.map(e=>e.sceneId)).size,st.arkiv.length);
+  const sym=Runner.getSymposium(JSON.parse(JSON.stringify(st)),content);
+  assert.ok(sym.tidslinje.some(e=>e.sceneId==="eksp_u3_d21_slutt"),
+    name+": week-three ending is in the actual Symposium");
+  return st;
+}
+const documentedThreeWeeks=playThreeWeeks({},"documented three-week route");
+for(const played of [
+  "eksp_u3_d15_rapport_kvittert",
+  "eksp_u3_d16_gammel_melding",
+  "eksp_u3_d17_retur_dokumentert",
+  "eksp_u3_d18_avvik_temperatur",
+  "eksp_u3_d21_lene_kvitterer"
+])assert.ok(documentedThreeWeeks.arkiv.some(row=>row.sceneId===played),
+  played+" is actually reached from documented prior choices");
+assert.ok(!documentedThreeWeeks.arkiv.some(row=>row.sceneId==="eksp_u3_d15_rapport_ukvittert"));
+assert.strictEqual(documentedThreeWeeks.tidligereValg.eksp_u3_d21_lene_mottatt,true);
+assert.ok(!documentedThreeWeeks.tidligereValg.eksp_u3_d17_retur_utbetalt,
+  "manager document review cannot authorize fictitious refund");
+assert.ok(!documentedThreeWeeks.tidligereValg.eksp_u3_d20_ekstravakt_tildelt,
+  "availability never grants an extra shift");
+
+const unresolvedThreeWeeks=playThreeWeeks({
+  eksp_u1_d5_folgeseddel:"avklar_bemanning",
+  eksp_u2_d9_telling:"vent_med_telling",
+  eksp_u2_d10_retur_som_venter:"be_om_vilkar",
+  eksp_u2_d14_rapport:"lagre_utkast",
+  eksp_u3_d18_temperatur:"be_om_tid",
+  eksp_u3_d19_vikarens_oppgave:"avtal_oppfolging",
+  eksp_u3_d21_ukerapport:"lagre_utkast"
+},"open work route");
+for(const played of [
+  "eksp_u3_d15_rapport_ukvittert",
+  "eksp_u3_d16_uten_gammelt_avvik",
+  "eksp_u3_d17_retur_uten_bilag",
+  "eksp_u3_d18_maling_venter"
+])assert.ok(unresolvedThreeWeeks.arkiv.some(row=>row.sceneId===played),
+  played+" is reached without inventing evidence");
+assert.ok(!unresolvedThreeWeeks.tidligereValg.eksp_u3_d21_sendt);
+assert.ok(!unresolvedThreeWeeks.tidligereValg.eksp_u3_d21_lene_mottatt);
+assert.strictEqual(unresolvedThreeWeeks.tidligereValg.eksp_u3_d18_temp_mangler,true);
+assert.strictEqual(unresolvedThreeWeeks.tidligereValg.eksp_u3_d19_vikar,"opplaering_venter");
+
+const sentUnacknowledgedThreeWeeks=playThreeWeeks({
+  eksp_u2_d14_mottak:"avvent_registrering",
+  eksp_u3_d16_lageropptelling:"be_ny_kontroll",
+  eksp_u3_d17_returstatus:"forklar_status",
+  eksp_u3_d18_temperatur:"be_om_tid",
+  eksp_u3_d21_lene_kvitterer:"avvent_loggføring"
+},"sent without receipt route");
+assert.ok(sentUnacknowledgedThreeWeeks.arkiv.some(row=>row.sceneId==="eksp_u3_d15_rapport_ukvittert"));
+assert.strictEqual(sentUnacknowledgedThreeWeeks.tidligereValg.eksp_u3_d21_sendt,true);
+assert.ok(!sentUnacknowledgedThreeWeeks.tidligereValg.eksp_u3_d21_lene_mottatt,
+  "sent is not the same as received");
+assert.strictEqual(sentUnacknowledgedThreeWeeks.tidligereValg.eksp_u3_d21_kvittering_venter,true);
+console.log("Ekspeditør days 1–21: three full played routes, causal evidence and strict three-week end passed");
+
+
+// Editorial quality guard: earned positive moments belong to actions, and
+// characters still cannot confer pay, unverified authority or an invented result.
+for (const [sceneId, optionId, evidence] of [
+  ["eksp_u1_d7_siste_runde","fyll_paa",/takk/i],
+  ["eksp_u2_d11_opplaere_vikar","vis_og_test",/Der satt den/i],
+  ["eksp_u3_d19_vikarens_oppgave","la_prove",/mestring|kan gjøre denne selv/i],
+  ["eksp_u3_d19_kunde_klager","beklag_og_forklar",/hørte etter/i]
+]) {
+  const sc=raw.roleScenes.scenes.find(s=>s.id===sceneId);
+  assert.ok(sc,"existing authored scene preserved: "+sceneId);
+  const win=sc.valg.find(x=>x.id===optionId);
+  assert.ok(win,"positive action exists: "+sceneId+"/"+optionId);
+  assert.match(win.konsekvensTekst,evidence,sceneId+": specific earned human response");
+  assert.ok(sc.valg.some(x=>x.id!==optionId),sceneId+": legitimate alternative remains playable");
+}
+const goodVikar=raw.roleScenes.scenes.find(x=>x.id==="eksp_u2_d11_opplaere_vikar");
+assert.strictEqual(goodVikar.valg.find(v=>v.id==="vis_og_test").effekter.flagg.eksp_u2_d11_vikar_opplaert,true);
+assert.ok(!goodVikar.valg.find(v=>v.id==="sporr_amir").effekter.flagg.eksp_u2_d11_vikar_opplaert,
+  "asking Amir to teach cannot award the player teaching evidence");
+const roughCustomer=raw.roleScenes.scenes.find(x=>x.id==="eksp_u3_d19_kunde_klager");
+assert.ok(!roughCustomer.valg.some(v=>v.effekter.flagg.eksp_u3_d19_retur_godkjent),
+  "a customer being listened to never auto-approves a refund");
+console.log("Ekspeditør narrative quality: earned warmth, teachable confidence and boundaries intact");
+

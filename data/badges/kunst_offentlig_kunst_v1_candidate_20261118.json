@@ -3,7 +3,7 @@
   "categoryId": "kunst",
   "version": "v1",
   "createdAt": "2026-11-18",
-  "status": "visual_candidate_pending_user_approval_and_binary_upload",
+  "status": "candidate_pending_visual_approval",
   "trackingIssue": 7416,
   "design": {
     "upperLabel": "KUNST",
@@ -50,14 +50,14 @@
   "source": {
     "originalPackage": "HistoryGo_Kunst_Offentlig_kunst_v1_kandidat.zip",
     "sourceRender": "a_highly_detailed_embroidered_patch_emblem_circul.png",
-    "where": "ChatGPT conversation; binary image assets NOT uploaded to GitHub"
+    "where": "Original source in ChatGPT package; all three exported binaries verified in GitHub main by PR #7430"
   },
   "quality": {
     "preview128pxChecked": true,
     "localFileDimensionsAndHashesVerified": true,
     "visualApprovedByUser": false,
-    "repositoryUploaded": false,
-    "repositoryHashVerified": false,
+    "repositoryUploaded": true,
+    "repositoryHashVerified": true,
     "active": false
   },
   "preservation": {
@@ -65,5 +65,11 @@
     "otherNineUnderbadgesUnchanged": true,
     "placeCardAndMapUnchanged": true
   },
-  "activationPolicy": "Only after explicit user signoff and byte-identical GitHub upload of app/master/PNG; verify hashes, then activate only subBadgeImages.offentlig_kunst and run focused Kunst badge tests."
+  "activationPolicy": "All three image binaries are uploaded and Git blob SHA verified by PR #7430. Activate only this subBadgeImages entry after explicit user visual approval and focused Kunst badge QA. Leave all other badges unchanged.",
+  "repositoryVerification": {
+    "commit": "ae43a27096548b7c0cada725d4a9469f6184bf43",
+    "pullRequest": 7430,
+    "allThreeGitBlobsVerified": true,
+    "verifiedOn": "2026-11-19"
+  }
 }

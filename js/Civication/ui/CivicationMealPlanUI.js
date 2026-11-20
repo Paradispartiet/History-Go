@@ -71,7 +71,8 @@
   }
   function renderRestaurantBudget(host, model, key) {
     if (typeof model.getRestaurantSummary !== "function") return;
-    const summary = model.getRestaurantSummary(key);
+    const summary = typeof model.getRestaurantFinanceSnapshot === "function"
+      ? model.getRestaurantFinanceSnapshot(key) : model.getRestaurantSummary(key);
     const details = create("details", null, host);
     details.style.marginTop = "14px";
     details.open = true;
@@ -98,15 +99,37 @@
       model.setRestaurantBudgetNok(nok, key);
       render();
     });
-    let line = "Planlagte restaurantmåltider med oppgitt pris: " + kr(summary.plannedMinor);
+    let line = "Planlagte restaurantmåltider (oppgitte priser): " + kr(summary.plannedMinor);
     if (summary.remainingMinor !== null) {
       line += summary.remainingMinor < 0
         ? " · " + kr(-summary.remainingMinor) + " over budsjett"
-        : " · " + kr(summary.remainingMinor) + " igjen av budsjettet";
+        : summary.unpricedMeals || summary.fromMeals || summary.unspecifiedPriceKindMeals
+          ? " · høyst " + kr(summary.remainingMinor) + " igjen ved oppgitte minstepriser"
+          : " · " + kr(summary.remainingMinor) + " igjen av budsjettet";
     }
     create("p", line, details);
     if (summary.unpricedMeals) {
       create("p", summary.unpricedMeals + " planlagte måltider uten oppgitt pris.", details).className = "muted";
+    }
+    if (summary.fromMeals) {
+      create("p", summary.fromMeals + " måltider har fra-pris. Faktisk pris kan bli høyere.", details).className = "muted";
+    }
+    if (summary.unspecifiedPriceKindMeals) {
+      create("p", summary.unspecifiedPriceKindMeals + " eldre måltidsvalg har ikke lagret pristype. " +
+        "Beløpet er veiledende.", details).className = "muted";
+    }
+    if (summary.nokActive && summary.balanceMinor !== null) {
+      create("p", "Kronekonto nå: " + kr(summary.balanceMinor) +
+        " · Ubetalte restaurantplaner: " + kr(summary.unpaidPlannedMinor) +
+        " · Etter ubetalte planer: " + kr(summary.afterKnownPlansMinor) + ".", details);
+      if (summary.purchasedMinor > 0) {
+        create("p", "Restaurantkjøp gjennomført denne spilluken: " +
+          kr(summary.purchasedMinor) + " (allerede trukket fra kontoen).", details);
+      }
+      if (summary.hasUncertainPrices) {
+        create("p", "Restbeløpet er en øvre grense basert på kjente og laveste priser. " +
+          "Ukjente priser kan øke kostnaden.", details).className = "muted";
+      }
     }
     if (summary.meals.length) {
       const list = create("ul", null, details);
@@ -114,11 +137,41 @@
       for (const item of summary.meals) {
         const entry = create("li", null, list);
         entry.style.cssText = "display:flex;flex-wrap:wrap;align-items:center;gap:8px";
-        const amount = item.priceMinor === null ? "pris ukjent" : kr(item.priceMinor * item.portions);
+        const amount = item.priceMinor === null ? "pris ukjent" :
+          (item.priceKind === "from" || item.priceKind === "multiple" ? "fra " : "") +
+          kr(item.priceMinor * item.portions) +
+          (item.priceKind === "unspecified" ? " (pristype ukjent)" : "");
+        const purchased = Array.isArray(summary.purchasedSlots) &&
+          summary.purchasedSlots.includes(item.day + ":" + item.meal);
         create("span",
           model.DAYS[item.day] + " · " + model.MEALS[item.meal].label + ": " +
           item.dishName + " hos " + item.name + " · " + item.portions +
-          (item.portions === 1 ? " porsjon · " : " porsjoner · ") + amount, entry);
+          (item.portions === 1 ? " porsjon · " : " porsjoner · ") + amount +
+          (purchased ? " · betalt i spillet" : ""), entry);
+        const gameDay = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+        const isToday = Number.isSafeInteger(gameDay) && gameDay >= 1 &&
+          model.getWeekKey(gameDay) === key && (gameDay - 1) % 7 === item.day;
+        if (isToday && summary.nokActive && !purchased && summary.balanceMinor !== null &&
+            item.priceKind === "exact" && Number.isSafeInteger(item.priceMinor) &&
+            item.priceMinor > 0 && typeof model.purchaseRestaurantMeal === "function") {
+          const total = item.priceMinor * item.portions;
+          const buy = create("button", "Kjøp i spillet – " + kr(total), entry);
+          buy.type = "button";
+          buy.disabled = summary.balanceMinor < total;
+          buy.addEventListener("click", () => {
+            buy.disabled = true;
+            const requestId = "restaurant:" + String(gameDay) + ":" +
+              Math.random().toString(36).slice(2, 14);
+            const result = model.purchaseRestaurantMeal(item.day, item.meal, requestId, key);
+            if (result.ok) render();
+            else {
+              buy.disabled = false;
+              const note = create("span", "Kjøpet kunne ikke gjennomføres: " +
+                result.reason, entry);
+              note.setAttribute("role", "status");
+            }
+          });
+        }
         const remove = create("button", "Fjern", entry);
         remove.type = "button";
         remove.addEventListener("click", () => {
@@ -127,8 +180,10 @@
         });
       }
     }
-    create("p", "Dette er planlagte restaurantutgifter basert på Fysens oppgitte priser. " +
-      "Hjemmelaget mat er ikke prisberegnet. Ingen penger trekkes fra PC-saldoen.", details).className = "muted";
+    create("p", "Planlegging belaster aldri kontoen. Kun et eksplisitt «Kjøp i spillet» " +
+      "på dagens spilldato kan trekke kroner i aktiv NOK-modus. " +
+      "Hjemmelaget mat beregnes separat i NOK-butikken når NOK er aktiv. " +
+      "Ingen ekte restaurant bestilles eller betales.", details).className = "muted";
   }
 
   function renderNearbyRestaurants(parent) {
@@ -244,14 +299,21 @@
               portions.value = "1";
               return;
             }
-            model.setRestaurantMeal(route.weekDay, mealSelect.value, {
-              restaurantId: candidate.restaurantId,
-              name: candidate.name,
-              dishName: candidate.dishName,
-              priceMinor: candidate.priceMinor,
-              portions: count
-            }, selectedWeekKey(model));
-            render();
+            try {
+              model.setRestaurantMeal(route.weekDay, mealSelect.value, {
+                restaurantId: candidate.restaurantId,
+                name: candidate.name,
+                dishName: candidate.dishName,
+                priceMinor: candidate.priceMinor,
+                priceKind: candidate.priceKind,
+                portions: count
+              }, selectedWeekKey(model));
+              render();
+            } catch (_) {
+              message.textContent = "Måltidet kunne ikke planlegges. " +
+                "Kontroller at den eksisterende NOK-ukemenyen kan endres uten " +
+                "å påvirke måltider som allerede er spist.";
+            }
           });
           const action = create("button", "Beregn faktisk omvei med OpenRouteService", item);
           action.type = "button";
@@ -312,6 +374,22 @@
     const shopping = model.getShoppingList(key);
     host.replaceChildren();
 
+    const nokActive = (/** @type {any} */ (window)).CivicationState?.getWallet?.()?.nok_v1?.active === true;
+    if (nokActive) {
+      create("h3", "Restaurantplan · kroneøkonomi", host);
+      create("p", "Hjemmelagde måltider, handleliste og pakningspriser administreres " +
+        "i NOK-butikkpanelet. Restaurantvalg og ukesbudsjett ligger separat her, " +
+        "uten å belaste saldoen automatisk.", host).className = "muted";
+      const nokControls = create("div", null, host);
+      nokControls.style.cssText = "display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:10px 0";
+      labeledSelect(nokControls, "Spilluke", [
+        { id:"0", name:"Denne spilluken" }, { id:"1", name:"Neste spilluke" },
+        { id:"2", name:"Om to spilluker" }
+      ], String(weekOffset), value => { weekOffset = Number(value); render(); });
+      labeledSelect(nokControls, "Måltid",
+        Object.entries(model.MEALS).map(([id, item]) => ({ id, name:item.label })),
+        selectedMeal, value => { selectedMeal = value; render(); });
+    } else {
     const heading = create("h3", "Min ukesmeny", host);
     heading.style.margin = "16px 0 6px";
     const intro = create("p", "Planlegg frokost, lunsj, middag og kveldsmat. Eksempelretter – ikke verifiserte butikkmenyer eller priser.", host);
@@ -393,6 +471,7 @@
       for (const item of shopping) create("li", item.name + ": " + item.quantity + " " + item.unit, list);
     }
     create("p", "Mengdene er veiledende. Ingen priser eller butikklager er verifisert, og varer du har hjemme er ikke trukket fra.", details).className = "muted";
+    }
     renderRestaurantBudget(host, model, key);
     const routeInfo = create("details", null, host);
     routeInfo.style.marginTop = "14px";

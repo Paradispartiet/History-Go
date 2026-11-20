@@ -58,9 +58,9 @@ En synopsis kan bygge på et rom som skifter fra opptatt til ledig i løpet av v
 
 ## Samlet rollegrunnlag og lokal bruk
 
-Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 55 Life Story-scenene på dag 1–7. Fem nye scener for dag 8–9 er lagt til som et separat uke-2-forslag under test. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle eller nye scener til godkjent yrkesveiledning.
+Tillegg kontrollert 12. november 2026. [Den samlede synopsisen](../civication-synopsis/renholder.md) binder denne profilen til de 55 Life Story-scenene på dag 1–7. Fem nye scener for dag 8–9 er merget i PR #7378. En egen avgrenset PR #7429 utvider fortsettelsen med 18 scener dag 10–14. Kildene nedenfor supplerer grunnprofilen fra 10. november; de gjør ikke alle gamle eller nye scener til godkjent yrkesveiledning.
 
-**Uke 2, dag 8–9 (17. november, under test):** Fortsettelsen skiller en forespørsel om fri tilkomst fra en bekreftet soneliste, en faktisk kontrollert korridorrunde, trygg metodeavklaring og Karis uttrykkelig bekreftede mottak. Ingen av disse skrittene flytter hylla, gjør lageret rent eller bestemmer faktisk jobb- eller lønnsstatus. Den samme [synopsisen](../civication-synopsis/renholder.md#uke-2--det-som-fremdeles-står-åpent) er fortsatt den redaksjonelle forløpsbeskrivelsen; det opprettes ikke et konkurrerende register.
+**Uke 2, dag 8–9 (merget i PR #7378):** Fortsettelsen skiller en forespørsel om fri tilkomst fra en bekreftet soneliste, en faktisk kontrollert korridorrunde, trygg metodeavklaring og Karis uttrykkelig bekreftede mottak. Ingen av disse skrittene flytter hylla, gjør lageret rent eller bestemmer faktisk jobb- eller lønnsstatus. Den samme [synopsisen](../civication-synopsis/renholder.md#uke-2--det-som-fremdeles-står-åpent) er fortsatt den redaksjonelle forløpsbeskrivelsen; det opprettes ikke et konkurrerende register.
 
 ### Stillingsbeskrivelse og en vanlig økt
 
@@ -181,3 +181,19 @@ Rolleparameteren starter et eksplisitt renholder-Life Story-spor uten å dokumen
 4. Fortsett gjennom dag 7. Kontroller rom 204, valgt klageutfall og at avslutningen bare beskriver registrerte handlinger. Noter eventuelle stopp og siste synlige scene/melding.
 
 Før godkjenning registreres dato, iPad-modell, iPadOS-/Safari-versjon, testet commit, faktisk gjennomførte dager, reload/rotasjon og resultat. En delvis test merkes delvis; «ikke testet» skal ikke omgjøres til «bestått». Ingen fysisk godkjenning er registrert her ennå.
+
+### Uke 2, dag 10–14 – arbeidspraksis og dokumenterte grenser
+
+Dag 10 bygger på avklart romliste og faktisk utført arbeid; en egenkontroll er ikke automatisk en kvalitetsgodkjenning fra andre. Dag 11 bruker et avsperret søl som eksempel på HMS og avbrudd. Dag 12 viser metodevalg og opplæringsbehov uten å finne på produktdosering eller kompetanse. Dag 13 krever fysisk kontroll av lagerdør og deretter egen utførelse før lagerarbeid kan føres ferdig. Dag 14 skiller rapportutkast, faktisk sendt rapport, Karis bekreftede mottak og åpne restoppgaver. Lønn beregnes i den kanoniske spilløkonomien, aldri av disse dialogflaggene.
+
+Status: forfattet fortsettelse og automatisk spill-/lagringskontrakt er del av ny PR. Full lønnsflyt gjennom arbeidsforhold, skybackup, fysisk iPad Safari og offentlig publisering må fortsatt verifiseres særskilt før de oppgis som godkjent.
+
+### Uke 3, dag 15–21 – verifiserbar praksis
+
+Fortsettelsen har 23 forfattede scener og bygger på den eksisterende `renholder_uke2_oppfolging`-tråden. Dag 15 skal skille faktisk utført romrengjøring fra uke-2-overlevering og spørsmål om lønnsgrunnlag. Dag 16 må skille ukjent produkt, meldt mangel og en faktisk gjennomført oppgave med kjent utstyr. Dag 17 behandler ny klage som en sak til kontroll, ikke som bevis for skyld.
+
+Dag 18 krever realistisk prioritering og forsvarlig arbeidsmengde. Dag 19 må holde tilkomst, utført arbeid og alternative rom adskilt. Dag 20 skiller sendt arbeidsliste fra kvittert mottak, og dag 21 skiller utkast, sendt ukesrapport, Karis uttrykkelige mottak og oppsummering. Ingen meldinger kan lukke eldre avvik, gi HMS-vedtak eller kreditere lønn.
+
+Testkrav for tredje uke: gjennomspill flere ruter fra dag 1–21, bevar arkiv og flagg ved lagring, behold korrekte grenser for faktisk utført arbeid, og krev fire separate bevis for `uke3_sporbar_avslutning`. Kanonisk lønn skal opptjenes gjennom kalenderen dag 15–21 og avregnes én gang på spilldag 22, med re-load og duplikatvern. Eksisterende iPad-landskapsscenario utvides i samme testjobb, uten egen parallell Playwright-matrise.
+
+**Status:** plan og testkontrakt skrevet på utviklingsgren, ikke ferdig godkjent. Full Civication-regresjon, de seks nettleserløpene og fysisk iPad Safari må fortsatt skilles fra hverandre i dokumentasjonen. Det sentrale fellesregisteret for rolledekning er fortsatt kanonisk.

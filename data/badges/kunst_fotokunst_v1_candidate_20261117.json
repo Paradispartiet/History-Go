@@ -3,7 +3,7 @@
   "categoryId": "kunst",
   "version": "v1",
   "createdAt": "2026-11-17",
-  "status": "visual_candidate_pending_review_and_binary_upload",
+  "status": "candidate_pending_visual_approval",
   "design": {
     "topText": "KUNST",
     "topTextLargest": true,
@@ -54,8 +54,8 @@
   "quality": {
     "localChecksumsVerified": true,
     "visualApproved": false,
-    "repositoryUploaded": false,
-    "repositoryHashVerified": false,
+    "repositoryUploaded": true,
+    "repositoryHashVerified": true,
     "active": false
   },
   "preservation": {
@@ -63,6 +63,12 @@
     "otherNineSubbadgesUnchanged": true,
     "noChangesToPlaceCard": true
   },
-  "activationGate": "Do not update data/badges/kunst.json until explicit visual signoff and exact binary GitHub upload are both verified. Run only focused Kunst badge tests.",
-  "trackingIssue": 7395
+  "activationGate": "All three image binaries uploaded and Git blob SHA verified by PR #7430. Do not activate in data/badges/kunst.json until explicit visual approval. Run only focused Kunst badge tests.",
+  "trackingIssue": 7395,
+  "repositoryVerification": {
+    "commit": "ae43a27096548b7c0cada725d4a9469f6184bf43",
+    "pullRequest": 7430,
+    "allThreeGitBlobsVerified": true,
+    "verifiedOn": "2026-11-19"
+  }
 }

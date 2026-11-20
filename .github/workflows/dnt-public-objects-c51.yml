@@ -1,25 +1,31 @@
-name: Det Norske Teatret C51 deployed Objects QA
+name: Det Norske Teatret C51 public assets and login gate
 on:
-  workflow_run:
-    workflows: ['pages build and deployment']
-    branches: [main]
-    types: [completed]
+  # This is a PUBLIC Pages deployment check: PR branches are not deployed.
+  # Pull requests have their own real local-browser Objects gate (C50).
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/dnt-public-objects-c51.yml'
+      - 'tests/det-norske-teatret-public-objects-c51.mjs'
+      - 'data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json'
+      - 'data/runtime/place-open/det_norske_teatret.json'
+      - 'reports/place-production/det-norske-teatret-workcard-current.json'
+      - 'reports/place-production/det-norske-teatret/20261021/objects-c51-public-qa.json'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - 'css/place-rounds-fill-layout.css'
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: dnt-public-c51-${{ github.event.workflow_run.head_branch || github.ref_name }}
+  group: dnt-public-c51-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   public-objects:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
-          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -30,7 +36,7 @@ jobs:
         run: node --check tests/det-norske-teatret-public-objects-c51.mjs
       - name: Install browser
         run: npx playwright install --with-deps chromium
-      - name: Verify PUBLIC GitHub Pages Objects, photo, illustration and cards at mobile and desktop widths
+      - name: Verify PUBLIC assets and anonymous AHA login gate at mobile and desktop widths
         run: node tests/det-norske-teatret-public-objects-c51.mjs
       - name: Preserve public evidence and screenshots regardless of test result
         if: always()

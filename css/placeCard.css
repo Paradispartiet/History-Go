@@ -2221,8 +2221,8 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   grid-column:1;
   grid-row:4;
   display:flex;
-  flex-flow:row wrap;
-  align-items:center;
+  flex-flow:column nowrap;
+  align-items:flex-start;
   justify-content:flex-start;
   gap:5px 6px;
   width:100%;
@@ -2251,24 +2251,31 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   background:rgba(0,0,0,.62);
 }
 #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta > .pc-epoke{
-  /* Epoch always starts below the category, including tablet and desktop. */
-  flex-basis:100%;
+  /* A compact second line, leaving the right side free for the quiz action. */
+  flex:0 1 auto;
+  width:max-content;
+  max-width:calc(100% - 106px);
   padding:4px 8px;
   border:1px solid rgba(255,255,255,.22);
-  border-radius:999px;
+  border-radius:7px;
   background:rgba(0,0,0,.58);
 }
 #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcStatusBar{
+  /* Same bottom baseline as the epoch, anchored to the image's right edge. */
+  position:absolute;
+  right:15px;
+  bottom:14px;
+  z-index:4;
   order:0;
-  grid-column:1;
-  grid-row:2;
-  justify-self:start;
+  grid-column:auto;
+  grid-row:auto;
+  justify-self:end;
   align-self:end;
   width:auto;
-  max-width:100%;
-  margin:0 0 4px;
+  max-width:104px;
+  margin:0;
   padding:0;
-  text-align:left;
+  text-align:right;
 }
 #placeCard .pc-heading-hero.has-photo-source #pcStatusBar > .pc-progress-status-line{
   width:auto;
@@ -2321,9 +2328,18 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta > *{
     font-size:11px;
   }
+  /* Keep the category readable on narrow screens without covering the
+     bottom-right quiz action. Allow a natural multi-line label. */
+  #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcMeta > .pc-category-meta{
+    max-width:calc(100% - 116px);
+  }
   #placeCard .pc-heading-hero.has-photo-source #pcStatusBar > .pc-progress-status-line{
     font-size:10px;
     padding:3px 6px;
+  }
+  #placeCard .pc-heading-hero.has-photo-source .pc-heading-content #pcStatusBar{
+    right:12px;
+    bottom:12px;
   }
 }
 /* The original heading scrolls with the retained lower half of the photograph. */

@@ -31,6 +31,10 @@ gate.
 - Oslo Micro Places listens only to Micro Place source, contract, UI and audit
   paths. Global place indexes, runtime payloads and generic production outputs do
   not trigger it.
+- Oslo batch04 quiz parity validates actual canonical quiz and QuizCard inputs.
+  A generated `data/quiz/production_context/**` SHA refresh does not exercise
+  its 17-place/170-question acceptance suite; the place/data integrity gates
+  own that generated context. A real quiz or QuizCard change still triggers it.
 - Place Rounds owns its shared UI and explicitly named legacy place contracts.
   Global story, people, brand and place-index outputs do not trigger it.
 
@@ -54,6 +58,40 @@ sluttkontroller. Alle påkrevde resultatene skal gjelde siste HEAD. Draft-gaten
 erstatter aldri sluttkontrollen; den gir bare tidligere, rimeligere feedback.
 Ikke synkroniser med `main` bare fordi en irrelevant commit har kommet, med
 mindre merge-regel/konflikt krever det.
+
+## PlaceCard and By v1: fast drafts, full browser review
+
+`placecard-media-browser-audit.yml` and `by-v1-twenty-app-qa.yml` use the same
+two-stage model as Civication. While a PR is a draft, lightweight checks run
+on every relevant push: PlaceCard JavaScript syntax, controller restoration and
+the 16 Oslo v1 QuizCard bindings; or the 11 canonical By quiz and card sets.
+This keeps immediate functional feedback without downloading Chromium or
+launching the long PlaceCard / 20-place browser suites for every draft update.
+
+Marking the PR **Ready for review** triggers the full relevant browser suite,
+as do any subsequent pushes to that ready PR. Manual workflow dispatch still
+runs the complete suite. Conversion back to draft cancels obsolete browser runs
+and restores the focused draft check. No assertion has been removed from the
+full browser jobs, and a draft PR cannot be merged.
+
+**Merge rule:** Do not accept a ready PR unless all required full browser jobs
+on its latest head are green, including every shard of By v1 and the real
+PlaceCard composition checks. The routing governance audit protects the event
+triggers and job gates so these checks cannot silently disappear.
+
+## TypeScript guard: metadata versus runtime changes
+
+The TypeScript scope classifier lives in `scripts/ci-typescript-scope.mjs`
+with executable contract tests in `tests/ci-typescript-scope.test.mjs`.
+Workflow configuration (other than `typescript-guard.yml` itself) and this
+routing document are **not** shared-UI runtime changes. Edits to routing scripts
+still run script typechecks and builds but no longer spuriously run the
+Place-open UI regression.
+
+Changes to `typescript-guard.yml` itself, package manifests and unknown source
+paths retain conservative full-gate behavior. Actual browser/UI source changes
+still require web, shared-UI and legacy checks as before. The scope job runs its
+contract test before selecting gates, preventing silent omissions.
 
 ## Pull requests versus main
 

@@ -84,6 +84,22 @@ try{
         "place_card_profile_v2",tag+": canonical v2 profile");
       assert.equal(await card.getAttribute("data-collection-count"),"4",tag+": four collections");
       assert.equal(await card.getAttribute("data-collection-grid-count"),"3",tag+": three gallery slots plus People");
+      // Verify a late core render cannot replace or hide the canonical four-collection layout.
+      const afterCoreReapply=await page.evaluate(async()=>{
+        const card=document.getElementById("placeCard");
+        const current=window.PLACES?.find(p=>p.id==="tjuvholmen");
+        await window.HGPlaceCardCollections.apply(current);
+        return {
+          source:card?.dataset.collectionProfileSource,
+          total:card?.dataset.collectionCount,
+          gridCount:card?.dataset.collectionGridCount,
+          gridSource:card?.querySelector(".pc-icons-quad")?.dataset.collectionProfileSource
+        };
+      });
+      assert.equal(afterCoreReapply.source,"place_card_profile_v2",tag+": core reapply preserves canonical profile");
+      assert.equal(afterCoreReapply.gridSource,"place_card_profile_v2",tag+": gallery source survives core reapply");
+      assert.equal(afterCoreReapply.total,"4",tag+": all four collections survive core reapply");
+      assert.equal(afterCoreReapply.gridCount,"3",tag+": three visible galleries survive core reapply");
       const structuresTile=page.locator('button[data-pc-round-gallery-item="pcCategoryCollectionIcon"]');
       try {
         await structuresTile.waitFor({state:"visible",timeout:20000});

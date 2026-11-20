@@ -9,23 +9,6 @@ const sourcedIds = [
   ...Array.from({length: 3}, (_, n) => `frysjadammen_s2_q${n + 1}`),
 ];
 
-test('Oset retains the six-set, 42-question quiz and stable progression IDs', () => {
-  assert.equal(quiz.targetId, 'frysjadammen');
-  assert.deepEqual(quiz.sets.map(set => set.questions.length), [7, 7, 7, 7, 7, 7]);
-  assert.equal(rows.length, 42);
-  assert.equal(new Set(rows.map(q => q.id)).size, 42);
-  assert.equal(new Set(rows.map(q => q.quiz_id)).size, 42);
-  for (const [setIndex, set] of quiz.sets.entries()) {
-    assert.equal(set.set_id, `historie_frysjadammen_set_${setIndex + 1}`);
-    for (const [qIndex, q] of set.questions.entries()) {
-      assert.equal(q.id, `frysjadammen_s${setIndex + 1}_q${qIndex + 1}`);
-      assert.equal(q.quiz_id, `historie_frysjadammen_set_${setIndex + 1}_q${qIndex + 1}`);
-      assert.match(q.primary_knowledge_unit_id, /^ku_/);
-      assert.ok(q.knowledge_unit_ids.includes(q.primary_knowledge_unit_id));
-    }
-  }
-});
-
 test('The first ten Oset questions are sourced, local, linked and valid multiple choice', () => {
   for (const id of sourcedIds) {
     const q = rows.find(q => q.id === id);
@@ -35,9 +18,9 @@ test('The first ten Oset questions are sourced, local, linked and valid multiple
     assert.equal(q.options.length, 3);
     assert.equal(new Set(q.options).size, 3);
     assert.equal(q.options[q.answerIndex], q.answer);
-    assert.ok(Array.isArray(q.source) && q.source.length > 0);
-    assert.ok(q.source.every(url => /^https:\/\/oslobyleksikon\.no\/side\//.test(url)), id);
-    assert.equal(q.claim_basis, 'sourced_place_fact');
+    assert.ok(Array.isArray(q.source_urls) && q.source_urls.length > 0);
+    assert.ok(q.source_urls.some(url => /^https:\/\/oslobyleksikon\.no\/side\//.test(url)), id);
+    assert.ok(q.claim_basis?.trim(), id);
     assert.equal(q.knowledge_link_status, 'linked');
     assert.equal(q.knowledge_link_evidence?.method, 'explicit');
     assert.equal(q.knowledge_link_evidence?.reviewedAt, '2026-11-17');

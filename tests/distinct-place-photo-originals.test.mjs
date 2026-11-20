@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import { validateDistinctPhotoPair, photoFieldsChanged, placeRows } from '../scripts/check-distinct-place-photos.mjs';
 
 const a = 'a'.repeat(64);
@@ -55,4 +56,26 @@ test('original illustrated Tøyen torg pair is independent and visibly disclosed
   assert.deepEqual(validateDistinctPhotoPair(p,{requireBoth:true}),[]);
   assert.match(validateDistinctPhotoPair({...p,frontImage:p.image}).join(' '),/same asset path|same original illustration bytes/);
   assert.match(validateDistinctPhotoPair({...p,frontImage:'bilder/illustrasjoner/places/not-a-real-front.svg'}).join(' '),/missing from the repository/);
+});
+
+
+test('diagnostic: compute SHA256 for two independently licensed Politihuset source photos', async () => {
+  const originalSources = [
+    ['image', 'https://upload.wikimedia.org/wikipedia/commons/5/57/Politihuset.jpg'],
+    ['frontImage', 'https://upload.wikimedia.org/wikipedia/commons/0/05/Gr%C3%B8nlandsleiret_44_%E2%80%93_Gr%C3%B8nland_politistasjon_%282022%29_2.jpg'],
+  ];
+  for (const [label, url] of originalSources) {
+    try {
+      const response = await fetch(url, {
+        headers: {'User-Agent': 'History-Go/1.0 (https://github.com/Paradispartiet/History-Go; image attribution audit)'},
+        signal: AbortSignal.timeout(30000),
+      });
+      if (!response.ok) throw Error('HTTP '+response.status);
+      const bytes = Buffer.from(await response.arrayBuffer());
+      const sha = createHash('sha256').update(bytes).digest('hex');
+      console.log('POLITIHUSET_SOURCE_SHA256', label, sha, bytes.length, url);
+    } catch (e) {
+      console.warn('POLITIHUSET_SOURCE_SHA256_UNAVAILABLE',label,String(e));
+    }
+  }
 });

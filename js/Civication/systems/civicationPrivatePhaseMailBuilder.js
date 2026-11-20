@@ -110,8 +110,8 @@
     let data = null;
     try {
       const store = window.CivicationJsonStore;
-      if (store?.load) {
-        data = await store.load(path);
+      if (store?.fetchJson) {
+        data = await store.fetchJson(path);
       } else if (typeof fetch === "function") {
         const res = await fetch(path);
         if (res?.ok) data = await res.json();

@@ -23,7 +23,9 @@ function affectsCivicationPath(path) {
   if (path === 'tests/run-civication-tests.mjs') return true;
   if (/^scripts\/audit-civication-.*\.mjs$/.test(path)) return true;
   if (/^scripts\/auditJob(LearningProfiles|KnowledgeRequirements)\..+$/.test(path)) return true;
-  return ['package.json', 'package-lock.json', '.github/workflows/civication.yml'].includes(path);
+  return ['package.json', 'package-lock.json', '.github/workflows/civication.yml',
+    'scripts/ci-civication-scope.mjs', 'tests/ci-civication-scope.test.mjs',
+    'tests/ci-civication-draft-gates.test.mjs'].includes(path);
 }
 
 export function artworkOnlyBadgeRegistryChange(before, after) {
@@ -46,21 +48,47 @@ export function artworkOnlyBadgeRegistryChange(before, after) {
   return changed;
 }
 
-export function needsCivicationRegression(paths, readBadgeVersion) {
+// Only roles with dedicated playable tests can bypass the full PR regression.
+// Shared code, unknown files, generated registries and new roles fail closed.
+const supportedRoleFile = /^data\/Civication\/lifestory\/roles\/(renholder|ekspeditor)\/(role|threads|scenes)\.json$/;
+const supportedRoleTest = /^tests\/civication-lifestory-(renholder(?:-uke2|-uke3)?|ekspeditor)\.test\.js$/;
+function roleForFocusedPath(path) {
+  const file = supportedRoleFile.exec(path);
+  if (file) return file[1];
+  const roleTest = supportedRoleTest.exec(path);
+  if (!roleTest) return null;
+  return roleTest[1].startsWith('renholder') ? 'renholder' : 'ekspeditor';
+}
+
+export function classifyCivicationChanges(paths, readBadgeVersion) {
+  const roles = new Set();
   for (const path of paths) {
     if (!affectsCivicationPath(path)) continue;
-    if (!path.startsWith('data/badges/')) return true;
-    // Unknown badge manifests or binary edits fail closed to full regression.
-    if (!/^data\/badges\/[a-z0-9_-]+\.json$/.test(path)) return true;
-    try {
-      const before = readBadgeVersion(path, 'base');
-      const after = readBadgeVersion(path, 'head');
-      if (!artworkOnlyBadgeRegistryChange(before, after)) return true;
-    } catch {
-      return true;
+    const role = roleForFocusedPath(path);
+    if (role) {
+      roles.add(role);
+      continue;
     }
+    if (path.startsWith('data/badges/')) {
+      // Only verified art substitutions can bypass the full suite.
+      if (!/^data\/badges\/[a-z0-9_-]+\.json$/.test(path)) {
+        return { regression: true, focused: false, roles: [] };
+      }
+      try {
+        const before = readBadgeVersion(path, 'base');
+        const after = readBadgeVersion(path, 'head');
+        if (artworkOnlyBadgeRegistryChange(before, after)) continue;
+      } catch {
+        // Missing/invalid or renamed manifest needs the full suite.
+      }
+    }
+    return { regression: true, focused: false, roles: [] };
   }
-  return false;
+  return { regression: false, focused: roles.size > 0, roles: [...roles].sort() };
+}
+
+export function needsCivicationRegression(paths, readBadgeVersion) {
+  return classifyCivicationChanges(paths, readBadgeVersion).regression;
 }
 
 function git(args) {
@@ -74,8 +102,10 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   }
   const changedPaths = git(['diff', '--name-only', '--diff-filter=ACDMRT', base, head])
     .split('\n').filter(Boolean);
-  const run = needsCivicationRegression(changedPaths, (path, version) =>
+  const scope = classifyCivicationChanges(changedPaths, (path, version) =>
     JSON.parse(git(['show', (version === 'base' ? base : head) + ':' + path])));
-  process.stdout.write('regression=' + (run ? 'true' : 'false') + '\n');
-  process.stderr.write('Civication full regression ' + (run ? 'required' : 'skipped (artwork-only / unrelated changes)') + '\n');
+  process.stdout.write('regression=' + (scope.regression ? 'true' : 'false') + '\n');
+  process.stdout.write('focused=' + (scope.focused ? 'true' : 'false') + '\n');
+  process.stderr.write('Civication CI: ' + (scope.regression ? 'full regression' :
+    scope.focused ? 'focused validation for ' + scope.roles.join(', ') : 'unrelated or artwork-only') + '\n');
 }

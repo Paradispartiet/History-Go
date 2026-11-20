@@ -44,6 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       regression: ${{ steps.classify.outputs.regression }}
+      focused: ${{ steps.classify.outputs.focused }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -64,13 +65,15 @@ jobs:
         run: |
           if [[ "$GITHUB_EVENT_NAME" != "pull_request" ]]; then
             echo 'regression=true' >> "$GITHUB_OUTPUT"
+            echo 'focused=false' >> "$GITHUB_OUTPUT"
           else
             node scripts/ci-civication-scope.mjs "$BASE_SHA" "$HEAD_SHA" >> "$GITHUB_OUTPUT"
           fi
 
   draft-focused:
     needs: scope
-    if: github.event_name == 'pull_request' && github.event.pull_request.draft == true && needs.scope.outputs.regression == 'true'
+    # A role-only PR gets this gate on draft AND ready; shared changes get it only on draft.
+    if: github.event_name == 'pull_request' && (needs.scope.outputs.focused == 'true' || (github.event.pull_request.draft == true && needs.scope.outputs.regression == 'true'))
     name: Civication focused draft validation
     runs-on: ubuntu-latest
     steps:
@@ -100,7 +103,14 @@ jobs:
             node tests/civication-active-position-recovery-clear.test.js
             node tests/civication-lifestory-renholder.test.js
             node tests/civication-lifestory-renholder-uke2.test.js
+            node tests/civication-lifestory-renholder-uke3.test.js
+            node tests/civication-lifestory-endings.test.js
             node tests/civication-lifestory-job-role-persistence.test.js
+          fi
+          if grep -Eq '^(data/Civication/lifestory/roles/ekspeditor/|tests/civication-lifestory-ekspeditor[.]test[.]js$)' "$RUNNER_TEMP/civication-changes.txt"; then
+            node tests/civication-lifestory-ekspeditor.test.js
+            node tests/civication-lifestory-endings.test.js
+            node tests/civication-skills-evidence.test.js
           fi
 
   regression:
@@ -149,6 +159,12 @@ jobs:
 
       - name: Verify 21-day calendar, earnings and account recovery
         run: node tests/acceptance-civication-21day-economy-cloud-journey.test.js
+
+      - name: Verify three-month NOK account journey and cloud recovery
+        run: node tests/acceptance-civication-nok-three-month-cloud-journey.test.js
+
+      - name: Verify account backup conflicts and allowed state
+        run: node tests/account-cloud-save.test.cjs
 
       - name: Run complete Civication suite
         run: npm run test:civication
