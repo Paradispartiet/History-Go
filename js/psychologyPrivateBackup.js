@@ -96,9 +96,12 @@
       normalized.follow_ups = entry.follow_ups.map((follow) => {
         if (!follow || typeof follow !== "object" || Array.isArray(follow) ||
             typeof follow.id !== "string" || follow.id.length > 130 ||
-            !follow.id || typeof follow.created_at !== "string" ||
-            follow.created_at.length > 60) throw failure("invalid_backup");
-        const result = { id: follow.id, created_at: follow.created_at };
+            !follow.id || (follow.created_at !== undefined &&
+              (typeof follow.created_at !== "string" || follow.created_at.length > 60))) {
+          throw failure("invalid_backup");
+        }
+        const result = { id: follow.id };
+        if (follow.created_at !== undefined) result.created_at = follow.created_at;
         for (const field of FOLLOW_FIELDS) {
           if (follow[field] === undefined) continue;
           if (typeof follow[field] !== "string" || follow[field].length > 2400) {
