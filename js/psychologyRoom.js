@@ -292,20 +292,47 @@
       entry && typeof entry === "object" && typeof entry.situation === "string") : [];
   }
 
+  // Fail closed on unreadable/corrupt local data. Never replace an existing
+  // archive with an empty array when the browser cannot read it safely.
+  function readWorkbenchForWrite() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEYS.workbench);
+      if (raw === null) return { ok: true, entries: [] };
+      const entries = JSON.parse(raw);
+      if (!Array.isArray(entries) || entries.some((entry) =>
+          !entry || typeof entry !== "object" ||
+          typeof entry.id !== "string" || typeof entry.situation !== "string")) {
+        return { ok: false, reason: "invalid_stored_data" };
+      }
+      return { ok: true, entries };
+    } catch (error) {
+      console.warn("[PsychologyRoom.readWorkbenchForWrite]", error);
+      return { ok: false, reason: "storage_failed" };
+    }
+  }
+
   function saveWorkbench(values = {}) {
     const fields = ["situation", "thoughts", "feelings", "body", "actions", "next_step"];
     const clean = Object.fromEntries(fields.map((field) =>
       [field, String(values[field] || "").trim().slice(0, 2400)]));
     if (!clean.situation) return { saved: false, reason: "situation_required" };
-    const entry = {
-      id: "psych_workbench_" + Date.now(),
-      created_at: new Date().toISOString(),
-      ...clean
-    };
-    const history = getWorkbenchEntries();
-    history.push(entry);
-    writeJson(STORAGE_KEYS.workbench, history.slice(-30));
-    return { saved: true, entry };
+    const current = readWorkbenchForWrite();
+    if (!current.ok) return { saved: false, reason: current.reason };
+    // The generated ID must not reuse one when two notes are saved quickly.
+    const idBase = "psych_workbench_" + Date.now();
+    let id = idBase, serial = 1;
+    const used = new Set(current.entries.map((item) => item.id));
+    while (used.has(id)) id = idBase + "_" + serial++;
+    const entry = { id, created_at: new Date().toISOString(), ...clean };
+    try {
+      // Do not silently drop the oldest entry after the 30th note.
+      localStorage.setItem(STORAGE_KEYS.workbench,
+        JSON.stringify([...current.entries, entry]));
+      return { saved: true, entry };
+    } catch (error) {
+      console.warn("[PsychologyRoom.saveWorkbench]", error);
+      return { saved: false, reason: "storage_failed" };
+    }
   }
 
   function saveWorkbenchFollowUp(entryId, values = {}) {
@@ -314,7 +341,9 @@
       [field, String(values[field] || "").trim().slice(0, 2400)]));
     if (!clean.tried || !clean.outcome) return { saved: false, reason: "required_fields" };
   
-    const entries = getWorkbenchEntries();
+    const current = readWorkbenchForWrite();
+    if (!current.ok) return { saved: false, reason: current.reason };
+    const entries = current.entries;
     const index = entries.findIndex((entry) => entry.id === entryId);
     if (index < 0) return { saved: false, reason: "not_found" };
     const previous = entries[index];
@@ -1115,7 +1144,8 @@
         .map((field) => [field, form.elements[field]?.value || ""]));
       const result = saveWorkbenchFollowUp(entry.id, values);
       if (!result.saved) {
-        window.showToast?.(result.reason === "required_fields" ? "Fyll ut hva du prøvde og hva som skjedde" : "Oppfølgingen kunne ikke lagres");
+        window.showToast?.(result.reason === "required_fields" ? "Fyll ut hva du prøvde og hva som skjedde"
+          : "Oppfølgingen ble IKKE lagret. Kontroller ledig plass og nettleserlagring.");
         return;
       }
       window.showToast?.("Oppfølgingen er lagret på denne enheten");
@@ -1168,7 +1198,9 @@
         .map((field) => [field, form.elements[field]?.value || ""]));
       const result = saveWorkbench(values);
       if (!result.saved) {
-        window.showToast?.("Beskriv først en konkret hendelse");
+        window.showToast?.(result.reason === "situation_required"
+          ? "Beskriv først en konkret hendelse."
+          : "Refleksjonen ble IKKE lagret. Kontroller ledig plass og nettleserlagring før du prøver igjen.");
         return;
       }
       window.showToast?.("Refleksjonen er lagret på denne enheten");
