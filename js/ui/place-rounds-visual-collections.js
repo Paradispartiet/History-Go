@@ -472,9 +472,9 @@
     const source = [item.imageSource, ...item.sourceUrls].find(url => /^https:\/\//i.test(url));
     const licenseUrl = s(item.imageLicenseUrl);
     const illustrated = item.imageKind === "illustration";
-    const disclosure = s(item.imageDisclosure);
+    const disclosure = (illustrated ? s(item.imageDisclosure).replace(/^Illustrasjon\s*[–-]\s*ikke fotografi\.\s*/i, "") : s(item.imageDisclosure));
     if (!item.image || (!credit && !license && !source && !illustrated && !disclosure)) return "";
-    const kindLabel = illustrated ? '<span class="pc-structure-illustration-label">Illustrasjon</span>' : "";
+    const kindLabel = illustrated && !credit ? '<span class="pc-structure-illustration-label">Illustrasjon</span>' : "";
     const cleanCredit = credit.replace(/^(?:foto|illustrasjon):\s*/i, "");
     const namedCredit = cleanCredit ? '<span>' + (illustrated ? "Illustrasjon: " : "Foto: ") + esc(cleanCredit) + '</span>' : "";
     const linkedLicense = /^https:\/\//i.test(licenseUrl)
