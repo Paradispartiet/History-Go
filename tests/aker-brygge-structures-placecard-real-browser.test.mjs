@@ -101,10 +101,18 @@ try{
       previewLoaded:preview?.complete&&preview.naturalWidth>0,previewSrc:preview?.getAttribute("src"),
       previewVisible:!!icon&&!icon.hidden};
    });
+   // Curated layouts count only loaded real member previews: the People portrait
+   // can hydrate after the Structures picture. Wait for both, not a transient 1/2.
    await page.waitForFunction(()=>{
-     const icon=document.getElementById("pcCategoryCollectionIcon"),img=icon?.querySelector("img");
-     return img?.complete&&img.naturalWidth>0;
-   },null,{timeout:45000});
+     const card=document.getElementById("placeCard");
+     const icon=document.getElementById("pcCategoryCollectionIcon"),structureImg=icon?.querySelector(":scope > img.pc-person-img");
+     const people=document.getElementById("pcPeopleIcon"),peopleImg=people?.querySelector(":scope > img.pc-person-img");
+     const hero=document.getElementById("pcHeaderImage"),front=document.getElementById("pcFrontImage");
+     return structureImg?.complete&&structureImg.naturalWidth>0&&
+       peopleImg?.complete&&peopleImg.naturalWidth>0&&
+       hero?.complete&&hero.naturalWidth>0&&front?.complete&&front.naturalWidth>0&&
+       card?.dataset.collectionCount==="2"&&card?.dataset.collectionGridCount==="1";
+   },null,{timeout:50000});
    const before=await readLayout();
    assert.match(before.profile,/^place_card_profile_v2(?:_curated)?$/,tag+": canonical curated profile");
    assert.equal(before.count,"2",tag+": only People + Structures");
