@@ -7,7 +7,7 @@
   "production_profile": "standard",
   "profile_status": "confirmed",
   "canonical_source": "data/places/by/oslo/places/aker_brygge.json",
-  "active_phase": "Brands: fem kildebekreftede stedskoblinger beholdt; fire udokumenterte koblinger tatt ut av aktiv Aker Brygge-mapping og bevart som kandidater. Logoaktivering gjenstår.",
+  "active_phase": "Brands: fem autentiske logoer koblet til canonical master og PlaceCard; faktisk mobil-/desktoptest kreves på PR-head før merge.",
   "source_review": {
     "site": "Akers mekaniske Verksted på Holmen ved Pipervika, transformert til Aker Brygge",
     "sources": [
@@ -29,7 +29,7 @@
     "hero": "PASS: lokalt kildeført WebP, 1400×900",
     "frontImage": "PASS: separat lisensiert WebP, 900×1350",
     "people": "PASS: fem eksisterende People-registreringer; Hariton Pushwagners autentiske portrett er filverifisert og lastet i PlaceCard. Tinashe Williamsons eldre filreferanse finnes ikke i repoet; personoppføringen beholdes uten å framstille det som et verifisert bilde. Øvrige personer er foreløpig tekstbaserte.",
-    "brands": "HOLD: COS, Olivia, Rorbua, Tiger of Sweden og Wiersholm har kildebekreftet nåværende tilknytning. Haavind, Lund Hagem, Simonsen Vogt Wiig og Wikborg Rein er fjernet fra aktiv stedskobling etter kildeavgrensning; canonical merkevareposter og alle ni logo-kandidatpar beholdes. Publiseringsvurdering av de fem logoene og ekte Brands-popup-test gjenstår.",
+    "brands": "PASS kilde/asset: COS, Olivia, Rorbua, Tiger of Sweden og Wiersholm har direkte stedsevidens, lokal autentisk logo og synlig kilde/kreditering. Ingen fri lisens påstås for de fire offisielle logoene. COS følger CC BY-SA 4.0. Nettleser-QA avventes før merge.",
     "objects": "BEGRUNNET N/A: ingen dokumenterte bildeklare separate Objects godkjent",
     "structures": "PASS for the two already activated, strictly scoped historical/documentary Structures in PlaceCard: verkstedhallmiljøet i Bryggegata (Ssu 2022, felles miljø – ikke enkeltbygning) and tørrdokken/Frontenac (Anders Beer Wilse 1929 – ikke dagens dokkgeometri). Both images full-frame, 1200x900, CC BY-SA 4.0, browser verified on 390px/1440px in GitHub run 44759976996. Additional single-building Structure candidates (Verkstedhallen, Maskinhallen, Snekkerbygget and Administrasjonsbygget) still require exact facade imagery and editorial approval; historic dieselmotorverksted possible alias. No fabricated imagery approved.",
     "fagverk": "PRESERVED: seks kurerte historiske artikkelavsnitt, linser og kildegrunnlag",
@@ -39,6 +39,7 @@
   },
   "collection_ids": [
     "people",
+    "brands",
     "structures"
   ],
   "existing_content": {
@@ -57,59 +58,61 @@
     "structures_browser": "PASS: GitHub Actions run 44759976996, Playwright Chromium real PlaceCard 390px mobile and 1440px desktop. Canonical People + Structures 2/2 visible (one gallery slot), 2/2 Structure photos load, click opens two-item popup with credit/license/Commons source, Brands hidden, zero JS errors.",
     "structures_source_integrity": "PASS: source and derivative SHA-256 preserved from archived candidate reports",
     "brands_evidence_review": "reports/place-production/aker-brygge-brands-place-and-asset-review-2026-11-20.json",
-    "brands_mapping_review": "reports/place-production/aker-brygge-brands-mapping-closeout-2026-11-20.json"
+    "brands_mapping_review": "reports/place-production/aker-brygge-brands-mapping-closeout-2026-11-20.json",
+    "brands_publication": "data/brands/aker_brygge_asset_attributions.json",
+    "brands_browser": "PENDING: real click of all five Brand entries at 390px and 1440px in the dedicated PR workflow."
   },
   "vferdig": {
     "status": "NOT_CLAIMED",
-    "reason": "vFerdig hevdes ikke. De fem kvalifiserte logoene krever publiseringsvurdering og faktisk Brands-popup-test. People-portrett og individuelle Structures har egne restpunkter."
+    "reason": "vFerdig hevdes ikke. Brands-pakken leveres separat; People-portrett og individuelle Structures har egne restpunkter."
   },
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
     "status": "PASS",
     "place_id": "aker_brygge",
     "category": "by",
-    "recorded_at": "2026-11-18T12:30:00.000Z",
+    "recorded_at": "2026-11-20T21:18:23.624Z",
     "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
     "files": [
       {
         "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
-        "sha256": "eacaec225d5a1c61e43ed6cbe9754bc007ecff3818dfd630940dd4f4870ba7f5"
+        "sha256": "cbf0b4dccc567516e584ff3483c31ae3d6d87acee8796ee84caf71ed0d68d829"
       },
       {
         "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
-        "sha256": "2fba6e0e7e6747b6c95266c57ca875ce7b6b2bfbe5e9e1abac79c02ad35aee0d"
+        "sha256": "21489a8ecdb2ad14efd77e8c5cf30116fa542ea50ef1b70e8bed7c831bee2981"
       },
       {
         "path": "docs/PLACE_PRODUCTION_PROFILES.md",
-        "sha256": "b42bb5cc086737acc0046d8d871c54f10b2b7fdf1d56cf0a447b02b9227feb8b"
+        "sha256": "7568fba574411303419369614e0b054d3af4f7cc645fc57758157b20426d6b99"
       },
       {
         "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
-        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+        "sha256": "4ab879204a461396fa5bb2bdfc0d1585b33dc55fff6838c9fb1c3ac9ab22a8cb"
       },
       {
         "path": "data/places/README_place_rounds.md",
-        "sha256": "9e7eb88f4c701b8588473e63bb03697762f3c178df7716acdc12a16d406c4525"
+        "sha256": "8d380056e36b3e1ab29d6b9a1d8f37f264267df3e0e1ce332766f9d8ce6f5e9b"
       },
       {
         "path": "data/badges/index.json",
-        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+        "sha256": "fe17810ad8146470edc7a02a8284c5aaf940629760273f25724ade55474df216"
       },
       {
         "path": "data/badges/place_production_routing_v1.json",
-        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+        "sha256": "2bf830034bdc0a4b6679bf913ab516070c2482b846e8ef847577ec2be309984a"
       },
       {
         "path": "docs/PLACE_OBJECTS_CANONICAL.md",
-        "sha256": "fbd5e39905942e116c1fef9e375253c54f93d292b82bac03379d011f38fe93c6"
+        "sha256": "7312e0bb158f38757a38b7b69ed464a3af5ad72a6315b5f01f039720db6bc939"
       },
       {
         "path": "data/brands/brand_rules_v1_1.json",
-        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+        "sha256": "666f7bc445921481d4a9516cb02cfc049b3ed9b63debe08dc407dc253e0955f3"
       },
       {
         "path": "data/badges/by.json",
-        "sha256": "27066c2b295f59ab02b780f1cf53e3c956652a8408cba75052a0e9a0bb7a6fee"
+        "sha256": "d28d5a343ead6345c71e8009da8476b998a9f2eb6ce09db1ed6ed7acf5beb604"
       }
     ],
     "contract_snapshot": {
@@ -133,8 +136,7 @@
       ]
     }
   },
-  "merged": true,
-  "merge_commit_sha": "2b6774e746859974d37a27bf0507e45f4daccfc6",
-  "verified_at": "2026-11-18",
-  "live_status": "merged_to_main"
+  "merged": false,
+  "verified_at": "2026-11-20",
+  "live_status": "pending_merge"
 }

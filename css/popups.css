@@ -470,6 +470,20 @@
   color: rgba(255,255,255,.92);
 }
 
+/* A logo must keep its rectangular frame; the People portrait mask crops marks. */
+.hg-popup.placecard-round-popup .pc-brand-entry > img.pc-person-img{
+  width:56px;
+  height:40px;
+  border-radius:4px;
+  object-fit:contain;
+  background:#fff;
+}
+.hg-popup.placecard-round-popup .pc-brand-entry:has(> img.pc-person-img){
+  grid-template-columns:56px minmax(0,1fr);
+}
+.hg-brand-asset-credit{font-size:13px;line-height:1.5;overflow-wrap:anywhere;}
+.hg-brand-asset-credit p{margin:6px 0;}
+
 .hg-popup.placecard-round-popup .pc-brand-entry-title{
   display: block;
   min-width: 0;
@@ -1894,3 +1908,4 @@ body.hg-app #locationPickerModal .hg-location-close{
     grid-template-columns: 1fr;
   }
 }
+
