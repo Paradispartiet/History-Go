@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 // Real shell/browser controls. Boundaries: release approval, opening savings and
-// earned qualification fixtures. No production profile/account is activated.
+// earned qualification fixtures. Test wallets are isolated; real accounts are never modified.
 const assert = require('node:assert/strict');
 const { spawn } = require('node:child_process');
 const fs = require('node:fs');
@@ -10,7 +10,14 @@ const playwright = require('playwright');
 const outputDir = path.join(process.cwd(), 'reports/civication-browser');
 const origin = 'http://127.0.0.1:4175';
 const profile = JSON.parse(fs.readFileSync('data/Civication/economy/nok-budget-prototype-2026.json', 'utf8'));
-assert.equal(profile.migration.activated, false, 'production data remains inactive');
+const releaseCandidate = profile.status === 'active' && profile.migration?.activated === true;
+if (releaseCandidate) {
+  assert.equal(profile.migration.releaseMode, 'explicit_player_opt_in_only',
+    'approved release must remain explicitly player-initiated');
+} else {
+  assert.equal(profile.status, 'prototype_not_activated', 'unapproved profile stays disabled');
+  assert.equal(profile.migration?.activated, false, 'unapproved migration remains disabled');
+}
 const approved = JSON.parse(JSON.stringify(profile)); approved.status = 'active'; approved.migration.activated = true;
 const quiz = JSON.parse(fs.readFileSync('data/quiz/naeringsliv/akerselva_industri_sets_merged.json', 'utf8'));
 const completed = quiz.sets.slice(0, 5).map(s => quiz.targetId + '::' + s.set_id);
@@ -90,6 +97,9 @@ async function scenario(engine, width, height) {
       && document.querySelector('#civiStoreSection > .civi-mini-card'), null, { timeout: 90000 });
     await completeSourceLoading();
     await openSection('kommers', 'civiStoreSection');
+    assert.equal((await wallet()).nok_v1, undefined,
+      'loading approved NOK release never silently migrates the player wallet');
+    assert.equal((await wallet()).balance, 20000, 'balance remains intact before explicit opt-in');
     await page.locator('[data-nok-activate]').click();
     await page.waitForFunction(() => window.CivicationState.getWallet().nok_v1?.active === true);
     assert.equal((await wallet()).balance, 20000);
