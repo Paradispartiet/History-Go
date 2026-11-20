@@ -3,6 +3,29 @@
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
 
+// Opening the full history is a two-level disclosure in the live Mini UI.
+// Click the visible parent first; a child <summary> inside a closed <details>
+// is in the DOM but is not visible or clickable to a real player.
+async function openFullHistoryViaUi(page: any) {
+  const history = page.locator('details[data-lifestory-disclosure="history"]');
+  const parentSummary = history.locator(':scope > summary');
+  if (!(await parentSummary.isVisible().catch(() => false))) {
+    const popupClose = page.locator('#civiSectionPopup.is-open button[data-civi-popup-close]').first();
+    if (await popupClose.isVisible().catch(() => false)) await popupClose.click();
+    await page.locator('.civi-footer button[data-category="minDag"]').click();
+  }
+  await parentSummary.waitFor({ state: 'visible', timeout: 20000 });
+  if (!(await history.evaluate((el: HTMLDetailsElement) => el.open))) {
+    await parentSummary.click();
+  }
+  const full = page.locator('details[data-lifestory-symposium]');
+  const fullSummary = full.locator(':scope > summary');
+  await fullSummary.waitFor({ state: 'visible', timeout: 20000 });
+  if (!(await full.evaluate((el: HTMLDetailsElement) => el.open))) {
+    await fullSummary.click();
+  }
+}
+
 // One browser day through real controls. No direct writes to the game clock
 // and no test invocation of the phase-advance API.
 export const queuedPointerFallbacks: { scenario: string; day: number; mailId: string }[] = [];
@@ -449,7 +472,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         assert.equal(JSON.stringify(state.arkiv), weekArchive);
         // Change the primary life position through the real profile, reload
         // while paused, then restore it through the same player control.
-        await page.locator('[data-lifestory-symposium] summary').click();
+        await openFullHistoryViaUi(page);
         await page.locator('[data-lifestory-life-profile]').click();
         await page.locator('#civiLifePositionSelect').selectOption('by|Byvandrer');
         await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
@@ -517,7 +540,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         const previousChapters = JSON.stringify(state.kapittelArkiv);
         const secondRole = scenario.nextRole || roleLabel;
         if (secondRole !== roleLabel) {
-          await page.locator('[data-lifestory-symposium] summary').click();
+          await openFullHistoryViaUi(page);
           await page.locator('[data-lifestory-life-profile]').click();
           await page.locator('#civiLifePositionSelect').selectOption(`${encodeURIComponent(badge)}|${encodeURIComponent(secondRole)}`);
           await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
@@ -587,7 +610,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         }
         assert.equal(state.threadState.nav_og_meldekortet.status, 'completed');
       }
-      await page.locator('[data-lifestory-symposium] summary').click();
+      await openFullHistoryViaUi(page);
       const storyText = await page.locator('[data-lifestory-symposium]').innerText();
       if (representative) {
         assert.ok(storyText.includes(representative.name));
@@ -599,7 +622,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         await page.reload({ waitUntil: 'load' });
         await page.waitForFunction(() => !!(globalThis as any).CivicationLifestoryUI?.getCurrentSceneInfo?.());
         assert.equal(JSON.stringify((await readState()).personRepresentanter[representative.type]), cast);
-        await page.locator('[data-lifestory-symposium] summary').click();
+        await openFullHistoryViaUi(page);
       }
       assert.ok(storyText.includes('Tidslinje') && storyText.includes('Møter og avtaler'));
       assert.ok(storyText.includes(state.arkiv[0].valgTekst));
@@ -608,7 +631,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         assert.ok(storyText.includes(scenario.suggestion));
         await page.reload({ waitUntil: 'load' });
         await page.waitForFunction(() => !!(globalThis as any).CivicationLifestoryUI?.getRoleSuggestion?.());
-        await page.locator('[data-lifestory-symposium] summary').click();
+        await openFullHistoryViaUi(page);
         await page.locator('[data-lifestory-life-profile]').click();
         await page.locator('#civiSectionPopup [data-civi-life-suggestion]').waitFor({ state: 'visible' });
         if (scenario.activate) assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifePositions.getLifeContext().primary_life_position.label), scenario.nextRole || scenario.suggestion);
