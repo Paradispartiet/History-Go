@@ -10,17 +10,18 @@ const blobSha = data => createHash('sha1')
   .update(Buffer.concat([Buffer.from('blob ' + data.length), Buffer.from([0]), data]))
   .digest('hex');
 
-test('Kunst v2: Fotokunst and Samtidskunst remain unapproved candidates with verified WebPs', () => {
+test('Kunst v2: Fotokunst and Samtidskunst are approved and active with verified WebPs', () => {
   const kunst = readJSON('data/badges/kunst.json');
   assert.equal(kunst.image, 'bilder/merker/kunst-brodert.webp');
-  assert.deepEqual(Object.keys(kunst.subBadgeImages || {}).sort(), ['design_og_form', 'tegning_og_grafikk']);
+  assert.deepEqual(Object.keys(kunst.subBadgeImages || {}).sort(), [...kunst.sub].sort());
 
   for (const id of ['fotokunst', 'samtidskunst']) {
     const candidate = readJSON('data/badges/kunst_' + id + '_v2_candidate_20261119.json');
     assert.equal(candidate.id, id);
-    assert.equal(candidate.status, 'candidate_pending_visual_approval');
-    assert.equal(candidate.quality.visualApprovedByUser, false);
-    assert.equal(candidate.quality.active, false);
+    assert.equal(kunst.subBadgeImages[id], candidate.images.app.path);
+    assert.equal(candidate.status, 'active');
+    assert.equal(candidate.quality.visualApprovedByUser, true);
+    assert.equal(candidate.quality.active, true);
     assert.equal(candidate.highResolutionPngSource.repositoryUploaded, false);
     assert.deepEqual(Object.keys(candidate.images).sort(), ['app', 'master']);
 

@@ -10,16 +10,17 @@ const blobSha = data => createHash('sha1')
   .update(Buffer.concat([Buffer.from('blob ' + data.length), Buffer.from([0]), data]))
   .digest('hex');
 
-test('Kunst v2: matte-yellow Maleri and Skulptur stay candidates with byte-identical WebP assets', () => {
+test('Kunst v2: matte-yellow Maleri and Skulptur are active with byte-identical WebP assets', () => {
   const kunst = json('data/badges/kunst.json');
   assert.equal(kunst.image, 'bilder/merker/kunst-brodert.webp');
-  assert.deepEqual(Object.keys(kunst.subBadgeImages || {}).sort(), ['design_og_form', 'tegning_og_grafikk']);
+  assert.deepEqual(Object.keys(kunst.subBadgeImages || {}).sort(), [...kunst.sub].sort());
   for (const id of ['maleri', 'skulptur']) {
     const p = json('data/badges/kunst_' + id + '_v2_candidate_20261119.json');
     assert.equal(p.id, id);
-    assert.equal(p.status, 'candidate_pending_visual_approval');
-    assert.equal(p.quality.active, false);
-    assert.equal(p.quality.visualApprovedByUser, false);
+    assert.equal(kunst.subBadgeImages[id], p.images.app.path);
+    assert.equal(p.status, 'active');
+    assert.equal(p.quality.active, true);
+    assert.equal(p.quality.visualApprovedByUser, true);
     assert.equal(p.highResolutionPngSource.repositoryUploaded, false);
     assert.equal(Object.keys(p.images).length, 2);
     for (const [kind, image] of Object.entries(p.images)) {
