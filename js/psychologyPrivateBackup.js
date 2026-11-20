@@ -16,9 +16,7 @@
   const FOLLOW_FIELDS = ["tried", "outcome", "new_view", "next_step"];
 
   function failure(code) {
-    const error = new Error(code);
-    error.code = code;
-    return error;
+    return Object.assign(new Error(code), { code });
   }
 
   function webCrypto() {
