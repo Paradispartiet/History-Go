@@ -540,7 +540,7 @@
 
 
   function bindInnerMapCanvas() {
-    document.querySelectorAll("[data-psych-map-drag]").forEach((button) => {
+    /** @type {NodeListOf<HTMLButtonElement>} */ (document.querySelectorAll("[data-psych-map-drag]")).forEach((button) => {
       const id = button.dataset.psychMapDrag;
       const stage = button.closest(".psychology-room-map-stage");
       if (!stage) return;
@@ -549,11 +549,11 @@
         button.style.left = x * 100 + "%";
         button.style.top = y * 100 + "%";
         stage.querySelectorAll(".psychology-room-map-edge").forEach((line) => {
-          if (line.dataset.from === id) {
+          if (line.getAttribute("data-from") === id) {
             line.setAttribute("x1", String(x * 1000));
             line.setAttribute("y1", String(y * 1000));
           }
-          if (line.dataset.to === id) {
+          if (line.getAttribute("data-to") === id) {
             line.setAttribute("x2", String(x * 1000));
             line.setAttribute("y2", String(y * 1000));
           }
