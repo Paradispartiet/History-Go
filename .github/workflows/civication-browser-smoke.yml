@@ -102,6 +102,8 @@ jobs:
           # Run the real quiz -> job acceptance journey on PRs touching its
           # implementation; keep unrelated PR smoke focused and nightly full.
           CIVICATION_BROWSER_DEPTH: ${{ steps.coverage.outputs.depth }}
+          # Temporary one-scenario diagnostic on this repair PR; remove before merge.
+          CIVICATION_ARBEIDSL_FOCUS: mira_videre_spilt
         shell: bash
         run: |
           set -o pipefail
