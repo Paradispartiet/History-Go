@@ -16,7 +16,7 @@ assert.deepEqual(canonical.structures.map(x=>x.id),expectedIds);
 assert.deepEqual(runtime.place.structures.map(x=>x.id),expectedIds);
 assert.deepEqual(canonical.place_card_profile.collection_ids,["people","structures"]);
 assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","structures"]);
-assert.equal(runtime.brands.length,9);
+assert.equal(runtime.brands.length,5);
 assert.equal(runtime.people.length,5);
 assert.equal(release.structuresCount,2);
 assert.equal(release.vFerdig,false);

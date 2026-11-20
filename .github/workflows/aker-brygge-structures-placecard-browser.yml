@@ -4,6 +4,8 @@ on:
     paths:
       - 'data/places/by/oslo/places/aker_brygge.json'
       - 'data/runtime/place-open/aker_brygge.json'
+      - 'data/brands/brands_by_place.json'
+      - 'tests/aker-brygge-brand-place-boundaries.test.mjs'
       - 'bilder/kort/structures/aker_brygge_*.webp'
       - 'tests/aker-brygge-structures-real-browser.test.mjs'
       - 'tests/aker-brygge-structures-placecard-real-browser.test.mjs'
@@ -31,6 +33,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Check canonical Aker Brygge Place-open parity
         run: npm run place-open:check
+      - name: Verify sourced Brand boundaries and preserved candidate archive
+        run: node --test tests/aker-brygge-brand-place-boundaries.test.mjs tests/aker-brygge-brand-logo-candidates.test.mjs tests/aker-brygge-inline-svg-candidates.test.mjs tests/aker-brygge-svw-pdf-wordmark.test.mjs tests/aker-brygge-tiger-press-wordmark.test.mjs tests/aker-brygge-v1-contract.test.mjs
       - name: Install Chromium only
         run: npx playwright install --with-deps chromium
       - name: Verify real Aker Brygge PlaceCard Structures at 390px and 1440px
