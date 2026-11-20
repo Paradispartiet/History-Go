@@ -544,6 +544,7 @@
       const id = button.dataset.psychMapDrag;
       const stage = button.closest(".psychology-room-map-stage");
       if (!stage) return;
+      /** @type {{pointerId: number, x: number, y: number, moved: boolean, ox: number, oy: number} | null} */
       let drag = null;
       const paint = (x, y) => {
         button.style.left = x * 100 + "%";
@@ -594,15 +595,18 @@
         if (saved) paint(saved.x, saved.y);
       });
       button.addEventListener("keydown", (event) => {
-        const delta = { ArrowLeft: [-1, 0], ArrowRight: [1, 0],
-          ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
-        if (!delta) return;
+        let dx = 0, dy = 0;
+        if (event.key === "ArrowLeft") dx = -1;
+        else if (event.key === "ArrowRight") dx = 1;
+        else if (event.key === "ArrowUp") dy = -1;
+        else if (event.key === "ArrowDown") dy = 1;
+        else return;
         event.preventDefault();
         const point = getInnerMapPositions().find((p) => p.id === id);
         if (!point) return;
         const step = event.shiftKey ? 0.05 : 0.02;
-        const x = Math.min(0.89, Math.max(0.11, point.x + step * delta[0]));
-        const y = Math.min(0.9, Math.max(0.1, point.y + step * delta[1]));
+        const x = Math.min(0.89, Math.max(0.11, point.x + step * dx));
+        const y = Math.min(0.9, Math.max(0.1, point.y + step * dy));
         if (setInnerMapPosition(id, x, y).ok) paint(x, y);
         else window.showToast?.("Kunne ikke lagre plasseringen.");
       });
