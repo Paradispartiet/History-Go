@@ -3,12 +3,12 @@
   "categoryId": "kunst",
   "version": "v2",
   "createdAt": "2026-11-19",
-  "status": "candidate_pending_visual_approval",
+  "status": "active",
   "quality": {
-    "visualApprovedByUser": false,
+    "visualApprovedByUser": true,
     "appAndMasterInRepository": true,
     "appAndMasterShaVerified": true,
-    "active": false
+    "active": true
   },
   "preservation": {
     "originalV1FilesUntouched": true,
@@ -16,7 +16,7 @@
     "otherSubbadgesUntouched": true,
     "placeCardUnchanged": true
   },
-  "activationPolicy": "Do not activate without explicit user visual approval. After signoff, update only the relevant subBadgeImages entry in data/badges/kunst.json and run focused Kunst badge QA.",
+  "activationPolicy": "Active in Kunst subBadgeImages after user approval 2026-11-20. Original v1 images and high-resolution v2 WebP masters preserved; high-resolution v2 PNG source remains archived in ChatGPT and is not represented as uploaded to GitHub.",
   "design": {
     "topLabel": "KUNST",
     "bottomLabel": "KUNSTHISTORIE",
@@ -61,5 +61,10 @@
     "package": "HistoryGo_Kunst_Street_Art_Kunsthistorie_mattgul_v2_kandidater.zip",
     "repositoryUploaded": false,
     "notes": "Full-resolution RGBA PNG archived in ChatGPT; both WebP assets byte-identical in GitHub PR branch."
+  },
+  "approval": {
+    "visualApprovedByUser": true,
+    "approvedAt": "2026-11-20",
+    "scope": "Collective approval of all eight matte-yellow Kunst v2 candidates in ChatGPT ('Ser bra ut')."
   }
 }

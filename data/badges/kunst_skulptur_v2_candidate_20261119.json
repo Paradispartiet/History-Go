@@ -3,12 +3,12 @@
   "categoryId": "kunst",
   "version": "v2",
   "createdAt": "2026-11-19",
-  "status": "candidate_pending_visual_approval",
+  "status": "active",
   "quality": {
-    "visualApprovedByUser": false,
+    "visualApprovedByUser": true,
     "appAndMasterInRepository": true,
     "appAndMasterShaVerified": true,
-    "active": false
+    "active": true
   },
   "preservation": {
     "originalV1FilesUntouched": true,
@@ -16,7 +16,7 @@
     "otherSubbadgesUntouched": true,
     "placeCardUnchanged": true
   },
-  "activationPolicy": "Do not activate until explicit user visual approval. When approved, update only this candidate's subBadgeImages entry in data/badges/kunst.json and run focused Kunst badge tests.",
+  "activationPolicy": "Active in Kunst subBadgeImages after user approval 2026-11-20. Original v1 images and high-resolution v2 WebP masters preserved; high-resolution v2 PNG source remains archived in ChatGPT and is not represented as uploaded to GitHub.",
   "design": {
     "topLabel": "KUNST",
     "bottomLabelColor": "white",
@@ -51,5 +51,10 @@
     "bytes": 3484789,
     "sha256": "c63dc179ef23f24dd973c43a523ae54ac4540cf249e261172b5b76f0325160b7",
     "notes": "Full-resolution corrected PNG archived in ChatGPT candidate package; exceeds connected GitHub transfer size. 1254px WebP master is present and verified in GitHub."
+  },
+  "approval": {
+    "visualApprovedByUser": true,
+    "approvedAt": "2026-11-20",
+    "scope": "Collective approval of all eight matte-yellow Kunst v2 candidates in ChatGPT ('Ser bra ut')."
   }
 }
