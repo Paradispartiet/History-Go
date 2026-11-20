@@ -382,18 +382,60 @@
     return valid;
   }
 
-  function saveInnerMapState(selectedIds, links) {
+
+  // Positions are optional, local-only metadata. Maps from v1/v2 remain readable.
+  function getInnerMapLayout() {
+    const state = readJson(STORAGE_KEYS.innerMap, {});
+    const saved = state?.layout && typeof state.layout === "object" &&
+      !Array.isArray(state.layout) ? state.layout : {};
+    const valid = Object.create(null);
+    for (const id of getInnerMapIds()) {
+      if (!Object.prototype.hasOwnProperty.call(saved, id)) continue;
+      const point = saved[id];
+      if (point && typeof point.x === "number" && Number.isFinite(point.x) &&
+          typeof point.y === "number" && Number.isFinite(point.y) &&
+          point.x >= 0.11 && point.x <= 0.89 && point.y >= 0.1 && point.y <= 0.9) {
+        valid[id] = { x: point.x, y: point.y };
+      }
+    }
+    return valid;
+  }
+
+  function getInnerMapPositions() {
+    const layout = getInnerMapLayout();
+    return getInnerMapIds().map((id, index) => ({
+      id,
+      x: layout[id]?.x ?? (0.15 + (index % 4) * 0.23),
+      y: layout[id]?.y ?? (0.14 + Math.floor(index / 4) * 0.22)
+    }));
+  }
+
+  function saveInnerMapState(selectedIds, links, layout = getInnerMapLayout()) {
     try {
       // One atomic localStorage key keeps selection and manual connections
       // consistent when one note is removed from the map.
       localStorage.setItem(STORAGE_KEYS.innerMap, JSON.stringify({
-        version: 2, selected_ids: selectedIds, links
+        version: 3, selected_ids: selectedIds, links,
+        layout: Object.fromEntries(Object.entries(layout).filter(([id]) => selectedIds.includes(id)))
       }));
       return { ok: true };
     } catch (error) {
       console.warn("[PsychologyRoom.saveInnerMapState]", error);
       return { ok: false, reason: "storage_failed" };
     }
+  }
+
+
+  function setInnerMapPosition(id, x, y) {
+    if (typeof id !== "string" || !getInnerMapIds().includes(id) ||
+        typeof x !== "number" || !Number.isFinite(x) ||
+        typeof y !== "number" || !Number.isFinite(y)) {
+      return { ok: false, reason: "invalid_position" };
+    }
+    const layout = getInnerMapLayout();
+    layout[id] = { x: Math.min(0.89, Math.max(0.11, x)),
+      y: Math.min(0.9, Math.max(0.1, y)) };
+    return saveInnerMapState(getInnerMapIds(), getInnerMapLinks(), layout);
   }
 
   function connectInnerMapEntries(from, to, kind) {
@@ -436,7 +478,9 @@
     try {
       const links = getInnerMapLinks().filter((link) =>
         next.includes(link.from) && next.includes(link.to));
-      const result = saveInnerMapState(next, links);
+      const layout = getInnerMapLayout();
+      for (const id of Object.keys(layout)) if (!next.includes(id)) delete layout[id];
+      const result = saveInnerMapState(next, links, layout);
       return result.ok ? { ok: true, selected: !exists, count: next.length } : result;
     } catch (error) {
       console.warn("[PsychologyRoom.toggleInnerMap]", error);
@@ -459,6 +503,113 @@
         ].map(([key, label]) => ({ key, label, text: String(entry[key] || "").trim() }))
           .filter((field) => field.text)
       };
+    });
+  }
+
+
+  function renderInnerMapCanvas(selected, links, caseTitle) {
+    if (!selected.length) return "";
+    const positions = getInnerMapPositions();
+    const byId = new Map(positions.map((point) => [point.id, point]));
+    const lines = links.map((link) => {
+      const a = byId.get(link.from), b = byId.get(link.to);
+      if (!a || !b) return "";
+      return '<line class="psychology-room-map-edge" data-from="' + escapeHtml(link.from) +
+        '" data-to="' + escapeHtml(link.to) + '" x1="' + a.x * 1000 + '" y1="' + a.y * 1000 +
+        '" x2="' + b.x * 1000 + '" y2="' + b.y * 1000 + '"/>';
+    }).join("");
+    const nodes = positions.map((point) => {
+      const title = caseTitle.get(point.id) || "Min refleksjon";
+      return '<button type="button" class="psychology-room-map-node" data-psych-map-drag="' +
+        escapeHtml(point.id) + '" aria-label="Flytt refleksjon: ' + escapeHtml(title) +
+        '" aria-describedby="psychologyMapCanvasHelp" style="left:' + point.x * 100 +
+        '%;top:' + point.y * 100 + '%"><span class="psychology-room-map-node-grip" aria-hidden="true">⠿</span>' +
+        '<span class="psychology-room-map-node-title">' + escapeHtml(title) + '</span></button>';
+    }).join("");
+    return '<section class="psychology-room-map-section" aria-label="Visuelt indre kart">' +
+      '<h4>Mitt kart – flytt refleksjonene</h4>' +
+      '<p class="psychology-room-muted" id="psychologyMapCanvasHelp">Dra med finger eller mus. ' +
+      'Bruk piltastene på en valgt refleksjon, og Shift for større steg. ' +
+      'På smale skjermer kan kartet rulles sidelengs.</p>' +
+      '<div class="psychology-room-map-viewport" tabindex="0" aria-label="Rullbar kartflate">' +
+      '<div class="psychology-room-map-stage">' +
+      '<svg class="psychology-room-map-edges" viewBox="0 0 1000 1000" ' +
+      'preserveAspectRatio="none" aria-hidden="true" focusable="false">' + lines + '</svg>' +
+      nodes + '</div></div></section>';
+  }
+
+
+  function bindInnerMapCanvas() {
+    /** @type {NodeListOf<HTMLButtonElement>} */ (document.querySelectorAll("[data-psych-map-drag]")).forEach((button) => {
+      const id = button.dataset.psychMapDrag;
+      const stage = button.closest(".psychology-room-map-stage");
+      if (!stage) return;
+      /** @type {{pointerId: number, x: number, y: number, moved: boolean, ox: number, oy: number} | null} */
+      let drag = null;
+      const paint = (x, y) => {
+        button.style.left = x * 100 + "%";
+        button.style.top = y * 100 + "%";
+        stage.querySelectorAll(".psychology-room-map-edge").forEach((line) => {
+          if (line.getAttribute("data-from") === id) {
+            line.setAttribute("x1", String(x * 1000));
+            line.setAttribute("y1", String(y * 1000));
+          }
+          if (line.getAttribute("data-to") === id) {
+            line.setAttribute("x2", String(x * 1000));
+            line.setAttribute("y2", String(y * 1000));
+          }
+        });
+      };
+      button.addEventListener("pointerdown", (event) => {
+        if (!event.isPrimary || event.button !== 0) return;
+        const rect = stage.getBoundingClientRect();
+        const current = getInnerMapPositions().find((p) => p.id === id);
+        if (!current) return;
+        event.preventDefault();
+        drag = { pointerId: event.pointerId, x: current.x, y: current.y, moved: false,
+          ox: event.clientX - rect.left - current.x * rect.width,
+          oy: event.clientY - rect.top - current.y * rect.height };
+        button.setPointerCapture(event.pointerId);
+      });
+      button.addEventListener("pointermove", (event) => {
+        if (!drag || event.pointerId !== drag.pointerId) return;
+        const rect = stage.getBoundingClientRect();
+        drag.x = Math.min(0.89, Math.max(0.11, (event.clientX - rect.left - drag.ox) / rect.width));
+        drag.y = Math.min(0.9, Math.max(0.1, (event.clientY - rect.top - drag.oy) / rect.height));
+        drag.moved = true;
+        paint(drag.x, drag.y);
+      });
+      button.addEventListener("pointerup", (event) => {
+        if (!drag || event.pointerId !== drag.pointerId) return;
+        const current = drag;
+        drag = null;
+        if (current.moved && !setInnerMapPosition(id, current.x, current.y).ok) {
+          window.showToast?.("Kunne ikke lagre plasseringen.");
+          renderInnerMap();
+        }
+      });
+      button.addEventListener("pointercancel", () => {
+        if (!drag) return;
+        drag = null;
+        const saved = getInnerMapPositions().find((p) => p.id === id);
+        if (saved) paint(saved.x, saved.y);
+      });
+      button.addEventListener("keydown", (event) => {
+        let dx = 0, dy = 0;
+        if (event.key === "ArrowLeft") dx = -1;
+        else if (event.key === "ArrowRight") dx = 1;
+        else if (event.key === "ArrowUp") dy = -1;
+        else if (event.key === "ArrowDown") dy = 1;
+        else return;
+        event.preventDefault();
+        const point = getInnerMapPositions().find((p) => p.id === id);
+        if (!point) return;
+        const step = event.shiftKey ? 0.05 : 0.02;
+        const x = Math.min(0.89, Math.max(0.11, point.x + step * dx));
+        const y = Math.min(0.9, Math.max(0.1, point.y + step * dy));
+        if (setInnerMapPosition(id, x, y).ok) paint(x, y);
+        else window.showToast?.("Kunne ikke lagre plasseringen.");
+      });
     });
   }
 
@@ -515,6 +666,7 @@
       '<p class="psychology-room-muted">Du velger hvilke refleksjoner som skal vises. Kartet følger bare det du selv skrev: hendelse, tanke, følelse, kropp, handling og neste steg. Det tolker deg ikke.</p>' +
       '<div class="psychology-room-inner-overview"><strong>' + selected.length +
       '</strong><span>av 16 mulige refleksjoner i kartet</span></div>' +
+      renderInnerMapCanvas(selected, links, caseTitle) +
       (cards || '<div class="psychology-room-inner-empty"><strong>Et tomt kart er også et godt utgangspunkt.</strong><p>Ingen refleksjoner legges inn automatisk. Velg en lagret situasjon eller opprett en ny.</p></div>') +
       '<section class="psychology-room-note-section psychology-room-inner-links" aria-labelledby="psychologyMapLinksHeading">' +
       '<h4 id="psychologyMapLinksHeading">Mine forbindelser (' + links.length + ')</h4>' +
@@ -535,6 +687,7 @@
       '<p class="psychology-room-privacy">Kartet lagrer bare ID-er til notater i denne nettleseren. Ingen AI, AHA-overføring eller database. GitHub Pages deler nettleserlagring med andre apper på samme domene, og den er ikke kryptert. Ikke lagre sensitive opplysninger her.</p>' +
       '</section>'));
     bindBack();
+    bindInnerMapCanvas();
     document.querySelectorAll("[data-psych-map-add], [data-psych-map-remove]").forEach((button) => {
       button.addEventListener("click", () => {
         const id = button.dataset.psychMapAdd || button.dataset.psychMapRemove;
@@ -1854,6 +2007,8 @@
     getInnerMapIds,
     getInnerMapModel,
     getInnerMapLinks,
+    getInnerMapPositions,
+    setInnerMapPosition,
     connectInnerMapEntries,
     disconnectInnerMapEntries,
     toggleInnerMap,

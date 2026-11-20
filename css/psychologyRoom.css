@@ -1283,3 +1283,94 @@
   .psychology-room-inner-link-relation { justify-items: start; text-align: left; }
   .psychology-room-inner-link > button { width: 100%; }
 }
+
+
+/* Psykologirommet 3.0: a private, manually arranged graph, not an interpretation. */
+.psychology-room-map-section {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  border: 1px solid rgba(169,236,218,.3);
+  background: #14242d;
+  padding: 14px;
+  border-radius: 16px;
+}
+.psychology-room-map-section h4 { margin: 0; color: #c5f3e8; }
+.psychology-room-map-viewport {
+  min-width: 0;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(169,236,218,.24);
+  scrollbar-width: thin;
+}
+.psychology-room-map-viewport:focus-visible {
+  outline: 2px solid #a9ecda;
+  outline-offset: 3px;
+}
+.psychology-room-map-stage {
+  width: 100%;
+  min-width: 700px;
+  height: 560px;
+  position: relative;
+  background-color: #10232b;
+  background-image: radial-gradient(rgba(182,239,221,.18) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.psychology-room-map-edges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.psychology-room-map-edge {
+  stroke: #a9ecda;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  opacity: .8;
+}
+.psychology-room-map-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  min-height: 72px;
+  max-height: 100px;
+  overflow: hidden;
+  padding: 12px;
+  border: 1px solid rgba(189,248,230,.7);
+  border-radius: 12px;
+  background: #24444a;
+  color: #f1fbf7;
+  box-shadow: 0 5px 14px rgba(0,0,0,.25);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.psychology-room-map-node:active { cursor: grabbing; }
+.psychology-room-map-node:focus-visible {
+  outline: 3px solid #d7fff1;
+  outline-offset: 2px;
+  z-index: 2;
+}
+.psychology-room-map-node-grip {
+  flex: none;
+  font-size: 20px;
+  color: #a9ecda;
+}
+.psychology-room-map-node-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
