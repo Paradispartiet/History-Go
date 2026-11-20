@@ -3,6 +3,42 @@
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
 
+// Diagnostics only (never merge this isolated branch): report exact persisted
+// state paths instead of Node's truncated 50 KB string assertion output.
+function assertReloadUnchanged(actualJson: string, expectedJson: string, context: string) {
+  if (actualJson === expectedJson) return;
+  const actual = JSON.parse(actualJson);
+  const expected = JSON.parse(expectedJson);
+  const differences: string[] = [];
+  const renderValue = (value: any) => {
+    const serialized = JSON.stringify(value);
+    return serialized === undefined ? "undefined" : serialized.slice(0, 130);
+  };
+  const walk = (before: any, after: any, path: string): void => {
+    if (differences.length >= 12 || JSON.stringify(before) === JSON.stringify(after)) return;
+    if (!before || !after || typeof before !== 'object' || typeof after !== 'object'
+        || Array.isArray(before) !== Array.isArray(after)) {
+      differences.push(path + ': before=' + renderValue(before) + ' after=' + renderValue(after));
+      return;
+    }
+    if (Array.isArray(before) && before.length !== after.length) {
+      differences.push(path + '.length: before=' + before.length + ' after=' + after.length);
+    }
+    const keys = new Set([...Object.keys(before), ...Object.keys(after)]);
+    for (const key of keys) {
+      if (differences.length >= 12) break;
+      const child = path + (Array.isArray(before) ? '[' + key + ']' : '.' + key);
+      if (!Object.prototype.hasOwnProperty.call(before, key) || !Object.prototype.hasOwnProperty.call(after, key)) {
+        differences.push(child + ': before=' + renderValue(before[key]) + ' after=' + renderValue(after[key]));
+      } else {
+        walk(before[key], after[key], child);
+      }
+    }
+  };
+  walk(expected, actual, 'state');
+  throw new Error(context + ': persisted state changed after reload: ' + JSON.stringify(differences));
+}
+
 // Opening the full history is a two-level disclosure in the live Mini UI.
 // Click the visible parent first; a child <summary> inside a closed <details>
 // is in the DOM but is not visible or clickable to a real player.
@@ -528,7 +564,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
             return app.CivicationLifestoryUI?.getCurrentSceneInfo?.() && app.CivicationLifePositions?.getLifeContext?.().primary_life_position?.label === expectedRole
               && !app.document.querySelector('[data-lifestory-paused]');
           }, roleLabel);
-          assert.equal(JSON.stringify(await readState()), beforeReload);
+          assertReloadUnchanged(JSON.stringify(await readState()), beforeReload, `${scenario.id}: day ${after.dag}, scene ${sceneId}`);
           }
           assert.ok(++nativeGuard < 20);
         }
