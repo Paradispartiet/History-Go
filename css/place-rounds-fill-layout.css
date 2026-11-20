@@ -108,7 +108,8 @@
   position:relative;
   overflow:hidden;
 }
-#placeCard .pc-icons-quad .pc-collection[data-collection-id="structures"] > img.pc-person-img{
+#placeCard .pc-icons-quad .pc-collection[data-collection-id="structures"] > img.pc-person-img,
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-id="structures"] > img.pc-person-img{
   object-fit:contain;
   background:#141619;
 }
@@ -252,11 +253,23 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
 }
 .pc-structure-member > .pc-person{width:100%;}
 /* Preserve the whole source image in the member row, not only the preview. */
-.pc-structure-member > .pc-person > img.pc-person-img{
+.pc-structure-member > .pc-person > img.pc-person-img,
+.hg-popup.placecard-round-popup .pc-structure-member > .pc-person > img.pc-person-img{
   object-fit:contain;
   background:#141619;
 }
 .pc-structure-illustration-label{font-weight:700;}
+/* Small, corner-only label on interpretive Structures art; original image remains visible. */
+#placeCard .pc-icons-quad .pc-collection[data-collection-id="structures"] .pc-object-preview-disclosure{
+  left:auto;
+  right:6px;
+  bottom:6px;
+  padding:3px 6px;
+  font-size:10px;
+  line-height:1.2;
+  font-weight:500;
+  white-space:nowrap;
+}
 .pc-structure-context{flex-basis:100%;}
 .pc-structure-credit{
   display:flex;

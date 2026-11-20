@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "status": "prototype_not_activated",
+  "status": "active",
   "currency": {
     "id": "PC",
     "nokPerPC": 1
@@ -104,7 +104,7 @@
     "dagpenger": "requires_separate_eligibility_and_prior_income"
   },
   "migration": {
-    "activated": false,
+    "activated": true,
     "policy": "preserve_existing_balance_no_multiplier",
     "activationRequires": [
       "versioned_wallet",
@@ -114,7 +114,10 @@
       "no_duplicate_tax_or_rent",
       "UI_breakdown",
       "three_month_acceptance"
-    ]
+    ],
+    "releaseMode": "explicit_player_opt_in_only",
+    "rolloutNote": "Opt-in is shown only after loading approved static config. No automatic migration, no PC balance multiplier, no silent rent or grocery bills. Existing employment and unsettled wages block conversion.",
+    "rollbackPolicy": "No automatic rollback of a migrated wallet. Disable public opt-in if any issue; preserve existing migrated player ledgers and investigate separately."
   },
   "housingOffers": [
     {

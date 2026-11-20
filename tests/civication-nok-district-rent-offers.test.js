@@ -21,7 +21,8 @@ const config = JSON.parse(JSON.stringify(
   // Copy the jsdom array into Node's realm before deepStrictEqual.
   const districtIds = Array.from(home.getAvailableDistricts(), x => x.id).sort();
   const mappedIds = [...new Set(config.housingOffers.map(x => x.districtId))].sort();
-  assert.equal(config.migration.activated, false, 'production currency remains disabled');
+  assert.equal(config.migration.activated, true, 'release candidate enables only explicit opt-in');
+  assert.equal(config.migration.releaseMode, 'explicit_player_opt_in_only');
   assert.deepEqual(mappedIds, districtIds, 'every existing Civication district is covered');
   assert.equal(config.housingOffers.length, 40, '1-, 2-, 3- and 4-room offers in each Oslo district');
   assert.equal(new Set(config.housingOffers.map(x => x.id)).size, 40);

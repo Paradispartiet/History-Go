@@ -132,18 +132,18 @@ try{
         assert.ok(popup.html.includes(structure.imageMeta.editorialLimit),
           tag+": missing limitation that prevents misidentification "+structure.id);
       }
-      assert.equal(await page.locator("#pcCategoryCollectionList .pc-structure-member").count(),2,
+      assert.equal(await page.locator(".hg-popup.placecard-round-popup .pc-structure-member").count(),2,
         tag+": exactly two real Structure entries");
-      assert.equal(await page.locator("#pcCategoryCollectionList .pc-structure-credit").count(),2,
+      assert.equal(await page.locator(".hg-popup.placecard-round-popup .pc-structure-credit").count(),2,
         tag+": two credits");
-      assert.equal(await page.locator("#pcCategoryCollectionList [data-visual-round-item]").count(),2,
+      assert.equal(await page.locator(".hg-popup.placecard-round-popup [data-visual-round-item]").count(),2,
         tag+": no invented individual halls");
       await page.waitForFunction(()=>{
-        const images=[...document.querySelectorAll("#pcCategoryCollectionList .pc-structure-member img.pc-person-img")];
+        const images=[...document.querySelectorAll(".hg-popup.placecard-round-popup .pc-structure-member img.pc-person-img")];
         return images.length===2&&images.every(img=>img.complete&&img.naturalWidth===1200&&img.naturalHeight===900);
       },null,{timeout:30000});
       const rows=await page.evaluate(()=>
-        [...document.querySelectorAll("#pcCategoryCollectionList .pc-structure-member")].map(el=>{
+        [...document.querySelectorAll(".hg-popup.placecard-round-popup .pc-structure-member")].map(el=>{
           const img=el.querySelector("img.pc-person-img");
           return {src:img?.getAttribute("src"),naturalWidth:img?.naturalWidth,naturalHeight:img?.naturalHeight,
             fit:img?getComputedStyle(img).objectFit:null,alt:img?.alt};
@@ -158,6 +158,9 @@ try{
       await page.screenshot({path:path.join(output,tag+"-aker-brygge-structures.png"),fullPage:false});
       console.log(tag.toUpperCase()+"_AKER_BRYGGE_STRUCTURES_PASS "+
         JSON.stringify({count:rows.length,preview:preview,rows,profile:state.profile,brandHidden:!state.brandsVisible,jsErrors:errors}));
+    } catch(error) {
+      await page.screenshot({path:path.join(output,tag+"-failure.png"),fullPage:false}).catch(()=>{});
+      throw error;
     } finally {await context.close();}
   }
 } finally {
