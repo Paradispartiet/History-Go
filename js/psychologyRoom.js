@@ -410,13 +410,111 @@
     }));
   }
 
-  function saveInnerMapState(selectedIds, links, layout = getInnerMapLayout()) {
+
+  // A maximum of six user-named groups; only group labels and note-ID references
+  // are stored, never copied workbench text or screening values.
+  function getInnerMapGroups() {
+    const state = readJson(STORAGE_KEYS.innerMap, {});
+    const raw = Array.isArray(state?.groups) ? state.groups : [];
+    const seen = new Set(), groups = [];
+    for (const group of raw) {
+      if (!group || typeof group.id !== "string" ||
+          !/^group-[1-6]$/.test(group.id) || seen.has(group.id) ||
+          typeof group.label !== "string") continue;
+      const label = group.label.trim();
+      if (!label || label.length > 40) continue;
+      seen.add(group.id);
+      groups.push({ id: group.id, label });
+      if (groups.length === 6) break;
+    }
+    return groups;
+  }
+
+  function getInnerMapAssignments() {
+    const state = readJson(STORAGE_KEYS.innerMap, {});
+    const raw = state?.assignments && typeof state.assignments === "object" &&
+      !Array.isArray(state.assignments) ? state.assignments : {};
+    const selected = getInnerMapIds();
+    const allowed = new Set(getInnerMapGroups().map((item) => item.id));
+    const assignments = Object.create(null);
+    for (const id of selected) {
+      if (!Object.prototype.hasOwnProperty.call(raw, id)) continue;
+      const groupId = raw[id];
+      if (typeof groupId === "string" && allowed.has(groupId)) assignments[id] = groupId;
+    }
+    return assignments;
+  }
+
+  function createInnerMapGroup(name) {
+    if (typeof name !== "string" || !name.trim() || name.trim().length > 40) {
+      return { ok: false, reason: "invalid_label" };
+    }
+    const label = name.trim();
+    const groups = getInnerMapGroups();
+    if (groups.length >= 6) return { ok: false, reason: "group_limit" };
+    if (groups.some((item) => item.label.toLocaleLowerCase() === label.toLocaleLowerCase())) {
+      return { ok: false, reason: "duplicate_group" };
+    }
+    const id = Array.from({ length: 6 }, (_, index) => "group-" + (index + 1))
+      .find((item) => !groups.some((group) => group.id === item));
+    return saveInnerMapState(getInnerMapIds(), getInnerMapLinks(), getInnerMapLayout(),
+      [...groups, { id, label }], getInnerMapAssignments());
+  }
+
+  function setInnerMapGroup(entryId, groupId) {
+    const selected = getInnerMapIds();
+    if (typeof entryId !== "string" || !selected.includes(entryId) ||
+        typeof groupId !== "string" ||
+        (groupId !== "" && !getInnerMapGroups().some((group) => group.id === groupId))) {
+      return { ok: false, reason: "invalid_group" };
+    }
+    const assignments = getInnerMapAssignments();
+    if (groupId) assignments[entryId] = groupId;
+    else delete assignments[entryId];
+    return saveInnerMapState(selected, getInnerMapLinks(), getInnerMapLayout(),
+      getInnerMapGroups(), assignments);
+  }
+
+  function deleteInnerMapGroup(groupId) {
+    const groups = getInnerMapGroups();
+    if (typeof groupId !== "string" || !groups.some((group) => group.id === groupId)) {
+      return { ok: false, reason: "unknown_group" };
+    }
+    const assignments = getInnerMapAssignments();
+    for (const id of Object.keys(assignments)) {
+      if (assignments[id] === groupId) delete assignments[id];
+    }
+    return saveInnerMapState(getInnerMapIds(), getInnerMapLinks(), getInnerMapLayout(),
+      groups.filter((group) => group.id !== groupId), assignments);
+  }
+
+  function getInnerMapTimeline() {
+    return getInnerMapModel().map((entry, index) => ({
+      id: entry.id, created_at: entry.created_at,
+      follow_up_count: entry.follow_up_count,
+      title: (entry.fields.find((field) => field.key === "situation")?.text ||
+        "Min refleksjon").slice(0, 100),
+      order: index
+    })).sort((a, b) => {
+      // ISO timestamps from existing records only. Invalid dates go last.
+      const aTime = Date.parse(a.created_at), bTime = Date.parse(b.created_at);
+      const x = Number.isFinite(aTime) ? aTime : Number.POSITIVE_INFINITY;
+      const y = Number.isFinite(bTime) ? bTime : Number.POSITIVE_INFINITY;
+      return x - y || a.order - b.order;
+    });
+  }
+
+  function saveInnerMapState(selectedIds, links, layout = getInnerMapLayout(),
+    groups = getInnerMapGroups(), assignments = getInnerMapAssignments()) {
     try {
       // One atomic localStorage key keeps selection and manual connections
       // consistent when one note is removed from the map.
       localStorage.setItem(STORAGE_KEYS.innerMap, JSON.stringify({
-        version: 3, selected_ids: selectedIds, links,
-        layout: Object.fromEntries(Object.entries(layout).filter(([id]) => selectedIds.includes(id)))
+        version: 4, selected_ids: selectedIds, links,
+        layout: Object.fromEntries(Object.entries(layout).filter(([id]) => selectedIds.includes(id))),
+        groups,
+        assignments: Object.fromEntries(Object.entries(assignments).filter(([id, groupId]) =>
+          selectedIds.includes(id) && groups.some((group) => group.id === groupId)))
       }));
       return { ok: true };
     } catch (error) {
@@ -510,6 +608,8 @@
   function renderInnerMapCanvas(selected, links, caseTitle) {
     if (!selected.length) return "";
     const positions = getInnerMapPositions();
+    const groups = new Map(getInnerMapGroups().map((group) => [group.id, group.label]));
+    const assignments = getInnerMapAssignments();
     const byId = new Map(positions.map((point) => [point.id, point]));
     const lines = links.map((link) => {
       const a = byId.get(link.from), b = byId.get(link.to);
@@ -520,11 +620,17 @@
     }).join("");
     const nodes = positions.map((point) => {
       const title = caseTitle.get(point.id) || "Min refleksjon";
+      const groupId = assignments[point.id] || "";
+      const groupLabel = groups.get(groupId) || "";
       return '<button type="button" class="psychology-room-map-node" data-psych-map-drag="' +
-        escapeHtml(point.id) + '" aria-label="Flytt refleksjon: ' + escapeHtml(title) +
+        escapeHtml(point.id) + '" data-psych-group="' + escapeHtml(groupId) +
+        '" aria-label="Flytt refleksjon: ' + escapeHtml(title) +
+        (groupLabel ? ', gruppe ' + escapeHtml(groupLabel) : "") +
         '" aria-describedby="psychologyMapCanvasHelp" style="left:' + point.x * 100 +
         '%;top:' + point.y * 100 + '%"><span class="psychology-room-map-node-grip" aria-hidden="true">⠿</span>' +
-        '<span class="psychology-room-map-node-title">' + escapeHtml(title) + '</span></button>';
+        '<span class="psychology-room-map-node-title">' + escapeHtml(title) +
+        (groupLabel ? '<small class="psychology-room-map-group-label">' +
+          escapeHtml(groupLabel) + '</small>' : '') + '</span></button>';
     }).join("");
     return '<section class="psychology-room-map-section" aria-label="Visuelt indre kart">' +
       '<h4>Mitt kart – flytt refleksjonene</h4>' +
@@ -613,6 +719,96 @@
     });
   }
 
+
+  function renderInnerMapGroups(selected, caseTitle) {
+    const groups = getInnerMapGroups();
+    const assignments = getInnerMapAssignments();
+    const groupRows = groups.map((item) => {
+      const count = Object.values(assignments).filter((id) => id === item.id).length;
+      return '<li class="psychology-room-map-group-item" data-psych-map-group-row="' +
+        escapeHtml(item.id) + '"><span class="psychology-room-map-group-dot ' +
+        escapeHtml(item.id) + '" aria-hidden="true"></span><strong>' +
+        escapeHtml(item.label) + '</strong><span>' + count + ' refleksjoner</span>' +
+        '<button type="button" class="psychology-room-back" data-psych-map-group-delete="' +
+        escapeHtml(item.id) + '">Fjern gruppe</button></li>';
+    }).join("");
+    const noteOptions = selected.map((entry) =>
+      '<option value="' + escapeHtml(entry.id) + '">' +
+      escapeHtml(caseTitle.get(entry.id) || "Min refleksjon") + '</option>').join("");
+    const groupOptions = groups.map((item) =>
+      '<option value="' + escapeHtml(item.id) + '">' + escapeHtml(item.label) +
+      '</option>').join("");
+    return '<section class="psychology-room-note-section psychology-room-map-groups" ' +
+      'aria-labelledby="psychologyMapGroupsHeading"><h4 id="psychologyMapGroupsHeading">Mine temagrupper</h4>' +
+      '<p class="psychology-room-muted">Du bestemmer selv navn og tilhørighet. Ingen temaer utledes automatisk.</p>' +
+      (groupRows ? '<ul class="psychology-room-map-group-list">' + groupRows + '</ul>' :
+        '<p class="psychology-room-muted">Ingen grupper opprettet.</p>') +
+      '<form id="psychologyMapGroupCreate" class="psychology-room-form">' +
+      '<label>Navn på ny gruppe<input type="text" name="name" maxlength="40" required ' +
+      'autocomplete="off" placeholder="For eksempel: Arbeid"></label>' +
+      '<button type="submit" class="psychology-room-primary"' +
+      (groups.length >= 6 ? ' disabled' : '') + '>Opprett gruppe</button></form>' +
+      (selected.length && groups.length ?
+        '<form id="psychologyMapGroupAssign" class="psychology-room-form">' +
+        '<label>Refleksjon<select name="entry" required>' + noteOptions + '</select></label>' +
+        '<label>Gruppe<select name="group"><option value="">Uten gruppe</option>' +
+        groupOptions + '</select></label>' +
+        '<button type="submit" class="psychology-room-primary">Lagre gruppetilhørighet</button></form>' : '') +
+      '<p class="psychology-room-privacy">Gruppenavn lagres lokalt på enheten, uten kryptering. ' +
+      'Unngå sensitive opplysninger i navnene.</p></section>';
+  }
+
+  function renderInnerMapTimeline() {
+    const entries = getInnerMapTimeline();
+    const items = entries.map((entry) =>
+      '<li class="psychology-room-map-timeline-item"><span class="psychology-room-map-timeline-date">' +
+      escapeHtml(/^\d{4}-\d{2}-\d{2}/.test(entry.created_at) ?
+        entry.created_at.slice(0, 10) : "Uten dato") + '</span>' +
+      '<button type="button" class="psychology-room-inner-open" data-psych-map-timeline-open="' +
+      escapeHtml(entry.id) + '"><strong>' + escapeHtml(entry.title) + '</strong><span>' +
+      entry.follow_up_count + ' oppfølginger</span></button></li>').join("");
+    return '<section class="psychology-room-note-section psychology-room-map-timeline" ' +
+      'aria-labelledby="psychologyMapTimelineHeading"><h4 id="psychologyMapTimelineHeading">Min tidslinje</h4>' +
+      '<p class="psychology-room-muted">Valgte refleksjoner i datoorden. ' +
+      'Tidslinjen viser datoene fra notatene, uten tolkning av utviklingen.</p>' +
+      (items ? '<ol class="psychology-room-map-timeline-list">' + items + '</ol>' :
+        '<p class="psychology-room-muted">Legg til refleksjoner i kartet for å se dem på tidslinjen.</p>') +
+      '</section>';
+  }
+
+  function bindInnerMapGroups() {
+    document.getElementById("psychologyMapGroupCreate")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const name = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="name"]'))?.value;
+      const result = createInnerMapGroup(name);
+      if (result.ok) renderInnerMap();
+      else window.showToast?.(result.reason === "group_limit" ? "Maksimalt seks grupper." :
+        result.reason === "duplicate_group" ? "Gruppen finnes allerede." :
+        result.reason === "storage_failed" ? "Kunne ikke lagre gruppen." : "Oppgi et gruppenavn på maks 40 tegn.");
+    });
+    document.getElementById("psychologyMapGroupAssign")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const entry = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="entry"]'))?.value;
+      const group = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="group"]'))?.value;
+      const result = setInnerMapGroup(entry, group);
+      if (result.ok) renderInnerMap();
+      else window.showToast?.("Kunne ikke lagre gruppetilhørigheten.");
+    });
+    document.querySelectorAll("[data-psych-map-group-delete]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const result = deleteInnerMapGroup(button.getAttribute("data-psych-map-group-delete"));
+        if (result.ok) renderInnerMap();
+        else window.showToast?.("Kunne ikke fjerne gruppen.");
+      });
+    });
+    document.querySelectorAll("[data-psych-map-timeline-open]").forEach((button) => {
+      button.addEventListener("click", () =>
+        renderWorkbenchEntry(button.getAttribute("data-psych-map-timeline-open")));
+    });
+  }
+
   function renderInnerMap() {
     setActiveSection("profile");
     const selected = getInnerMapModel();
@@ -667,6 +863,8 @@
       '<div class="psychology-room-inner-overview"><strong>' + selected.length +
       '</strong><span>av 16 mulige refleksjoner i kartet</span></div>' +
       renderInnerMapCanvas(selected, links, caseTitle) +
+      renderInnerMapGroups(selected, caseTitle) +
+      renderInnerMapTimeline() +
       (cards || '<div class="psychology-room-inner-empty"><strong>Et tomt kart er også et godt utgangspunkt.</strong><p>Ingen refleksjoner legges inn automatisk. Velg en lagret situasjon eller opprett en ny.</p></div>') +
       '<section class="psychology-room-note-section psychology-room-inner-links" aria-labelledby="psychologyMapLinksHeading">' +
       '<h4 id="psychologyMapLinksHeading">Mine forbindelser (' + links.length + ')</h4>' +
@@ -688,6 +886,7 @@
       '</section>'));
     bindBack();
     bindInnerMapCanvas();
+    bindInnerMapGroups();
     document.querySelectorAll("[data-psych-map-add], [data-psych-map-remove]").forEach((button) => {
       button.addEventListener("click", () => {
         const id = button.dataset.psychMapAdd || button.dataset.psychMapRemove;
@@ -2008,6 +2207,12 @@
     getInnerMapModel,
     getInnerMapLinks,
     getInnerMapPositions,
+    getInnerMapGroups,
+    getInnerMapAssignments,
+    getInnerMapTimeline,
+    createInnerMapGroup,
+    setInnerMapGroup,
+    deleteInnerMapGroup,
     setInnerMapPosition,
     connectInnerMapEntries,
     disconnectInnerMapEntries,
