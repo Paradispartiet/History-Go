@@ -119,7 +119,7 @@
       description:s(item.description || item.desc || item.summary || item.placeSpecificDetail || item.whatToNotice || item.whereToFind || item.why_here || item.why),
       image:imageFor(item),
       imageAlt:s(item.imageAlt || title),
-      imageKind:s(item.imageKind || item.imageMeta?.kind),
+      imageKind:s(item.imageKind || item.imageMeta?.imageKind || item.imageMeta?.kind),
       imageCredit:s(item.imageMeta?.credit),
       imageLicense:s(item.imageMeta?.license),
       imageLicenseUrl:s(item.imageMeta?.licenseUrl),
@@ -472,10 +472,11 @@
     const source = [item.imageSource, ...item.sourceUrls].find(url => /^https:\/\//i.test(url));
     const licenseUrl = s(item.imageLicenseUrl);
     const illustrated = item.imageKind === "illustration";
-    const disclosure = s(item.imageDisclosure);
+    const disclosure = (illustrated ? s(item.imageDisclosure).replace(/^Illustrasjon\s*[–-]\s*ikke fotografi\.\s*/i, "") : s(item.imageDisclosure));
     if (!item.image || (!credit && !license && !source && !illustrated && !disclosure)) return "";
-    const kindLabel = illustrated ? '<span class="pc-structure-illustration-label">Illustrasjon</span>' : "";
-    const namedCredit = credit ? '<span>' + (illustrated ? "Illustrasjon: " : "Foto: ") + esc(credit) + '</span>' : "";
+    const kindLabel = illustrated && !credit ? '<span class="pc-structure-illustration-label">Illustrasjon</span>' : "";
+    const cleanCredit = credit.replace(/^(?:foto|illustrasjon):\s*/i, "");
+    const namedCredit = cleanCredit ? '<span>' + (illustrated ? "Illustrasjon: " : "Foto: ") + esc(cleanCredit) + '</span>' : "";
     const linkedLicense = /^https:\/\//i.test(licenseUrl)
       ? '<a class="pc-structure-license-link" href="' + esc(licenseUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(license || "Lisens") + '</a>'
       : (license ? '<span>' + esc(license) + '</span>' : "");
@@ -554,7 +555,10 @@
       return;
     }
     const alt = s(preview.imageAlt || preview.title);
-    icon.innerHTML = `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(alt)}">${illustrated ? '<span class="pc-object-preview-disclosure">Illustrasjon – ikke fotografi</span>' : ""}`;
+    const previewDisclosure = illustrated
+      ? `<span class="pc-object-preview-disclosure">${def.id === "structures" ? "Illustrasjon" : "Illustrasjon – ikke fotografi"}</span>`
+      : "";
+    icon.innerHTML = `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(alt)}">${previewDisclosure}`;
     icon.dataset.previewStatus = "member-image";
     icon.querySelector("img")?.addEventListener("error", () => {
       icon.innerHTML = fallback;
