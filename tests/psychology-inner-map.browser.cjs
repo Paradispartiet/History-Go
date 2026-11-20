@@ -227,6 +227,13 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
     await page.locator('#psychologyPrivateBackupExport input[name="password"]').fill(passphrase);
     await page.locator('#psychologyPrivateBackupExport input[name="confirm_password"]').fill(passphrase);
     await page.locator('#psychologyPrivateBackupExport button[type="submit"]').click();
+    await page.waitForFunction(() => {
+      const status = document.querySelector('#psychologyPrivateBackupExport [role="status"]')?.textContent || "";
+      return status.includes("klar") || status.includes("ikke") || status.includes("støtter") ||
+        status.includes("stor");
+    }, null, { timeout: 15000 });
+    const exportStatus = await page.locator('#psychologyPrivateBackupExport [role="status"]').innerText();
+    assert.match(exportStatus, /kryptert og klar/, "export failed: " + exportStatus);
     const downloadLink = page.locator(".psychology-room-backup-download a");
     await downloadLink.waitFor({ state: "visible" });
     assert.match(await downloadLink.innerText(), /Last ned kryptert fil/,
