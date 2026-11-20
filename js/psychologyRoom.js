@@ -538,6 +538,77 @@
       nodes + '</div></div></section>';
   }
 
+
+  function bindInnerMapCanvas() {
+    document.querySelectorAll("[data-psych-map-drag]").forEach((button) => {
+      const id = button.dataset.psychMapDrag;
+      const stage = button.closest(".psychology-room-map-stage");
+      if (!stage) return;
+      let drag = null;
+      const paint = (x, y) => {
+        button.style.left = x * 100 + "%";
+        button.style.top = y * 100 + "%";
+        stage.querySelectorAll(".psychology-room-map-edge").forEach((line) => {
+          if (line.dataset.from === id) {
+            line.setAttribute("x1", String(x * 1000));
+            line.setAttribute("y1", String(y * 1000));
+          }
+          if (line.dataset.to === id) {
+            line.setAttribute("x2", String(x * 1000));
+            line.setAttribute("y2", String(y * 1000));
+          }
+        });
+      };
+      button.addEventListener("pointerdown", (event) => {
+        if (!event.isPrimary || event.button !== 0) return;
+        const rect = stage.getBoundingClientRect();
+        const current = getInnerMapPositions().find((p) => p.id === id);
+        if (!current) return;
+        event.preventDefault();
+        drag = { pointerId: event.pointerId, x: current.x, y: current.y, moved: false,
+          ox: event.clientX - rect.left - current.x * rect.width,
+          oy: event.clientY - rect.top - current.y * rect.height };
+        button.setPointerCapture(event.pointerId);
+      });
+      button.addEventListener("pointermove", (event) => {
+        if (!drag || event.pointerId !== drag.pointerId) return;
+        const rect = stage.getBoundingClientRect();
+        drag.x = Math.min(0.89, Math.max(0.11, (event.clientX - rect.left - drag.ox) / rect.width));
+        drag.y = Math.min(0.9, Math.max(0.1, (event.clientY - rect.top - drag.oy) / rect.height));
+        drag.moved = true;
+        paint(drag.x, drag.y);
+      });
+      button.addEventListener("pointerup", (event) => {
+        if (!drag || event.pointerId !== drag.pointerId) return;
+        const current = drag;
+        drag = null;
+        if (current.moved && !setInnerMapPosition(id, current.x, current.y).ok) {
+          window.showToast?.("Kunne ikke lagre plasseringen.");
+          renderInnerMap();
+        }
+      });
+      button.addEventListener("pointercancel", () => {
+        if (!drag) return;
+        drag = null;
+        const saved = getInnerMapPositions().find((p) => p.id === id);
+        if (saved) paint(saved.x, saved.y);
+      });
+      button.addEventListener("keydown", (event) => {
+        const delta = { ArrowLeft: [-1, 0], ArrowRight: [1, 0],
+          ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
+        if (!delta) return;
+        event.preventDefault();
+        const point = getInnerMapPositions().find((p) => p.id === id);
+        if (!point) return;
+        const step = event.shiftKey ? 0.05 : 0.02;
+        const x = Math.min(0.89, Math.max(0.11, point.x + step * delta[0]));
+        const y = Math.min(0.9, Math.max(0.1, point.y + step * delta[1]));
+        if (setInnerMapPosition(id, x, y).ok) paint(x, y);
+        else window.showToast?.("Kunne ikke lagre plasseringen.");
+      });
+    });
+  }
+
   function renderInnerMap() {
     setActiveSection("profile");
     const selected = getInnerMapModel();
@@ -612,6 +683,7 @@
       '<p class="psychology-room-privacy">Kartet lagrer bare ID-er til notater i denne nettleseren. Ingen AI, AHA-overføring eller database. GitHub Pages deler nettleserlagring med andre apper på samme domene, og den er ikke kryptert. Ikke lagre sensitive opplysninger her.</p>' +
       '</section>'));
     bindBack();
+    bindInnerMapCanvas();
     document.querySelectorAll("[data-psych-map-add], [data-psych-map-remove]").forEach((button) => {
       button.addEventListener("click", () => {
         const id = button.dataset.psychMapAdd || button.dataset.psychMapRemove;
