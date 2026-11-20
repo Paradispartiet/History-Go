@@ -13,7 +13,7 @@ const card=read("data/quizcards/by/topp10_by_kort_batch1.json").cards.find(x=>x.
 test("Aker Brygge has distinct local licensed hero and collectible images",()=>{
  assert.equal(place.id,"aker_brygge");
  assert.equal(place.place_card_profile.schema,"history_go_place_card_profile_v2");
- assert.deepEqual(place.place_card_profile.collection_ids,["people"]);
+ assert.deepEqual(place.place_card_profile.collection_ids,["people","structures"]);
  assert.ok(place.fagverk?.article?.length>=4);
  assert.ok(place.externalLinks?.length>=4);
  assert.notEqual(place.image,place.frontImage);
@@ -33,11 +33,11 @@ test("Aker Brygge has distinct local licensed hero and collectible images",()=>{
  }
  assert.equal(index.image,place.image);
  assert.equal(index.frontImage,place.frontImage);
- assert.equal(index.cardImage,undefined);
+ assert.equal(index.cardImage,place.cardImage);
  for(const k of Object.keys(place))assert.deepEqual(runtime.place[k],place[k],"Runtime mismatch: "+k);
- assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people"]);
+ assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","structures"]);
  assert.ok(runtime.people.length>=5);
- assert.ok(runtime.brands.length>=9, "Existing Brands registry preserved");
+ assert.deepEqual(runtime.brands.map(b=>b.id),["cos","olivia","rorbua","tiger_of_sweden","wiersholm"], "Only directly sourced place links enter runtime");
 });
 test("Aker Brygge QuizCard is identical to ten unique canonical questions",()=>{
  assert.equal(quiz.sets.length,8);

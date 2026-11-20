@@ -68,6 +68,12 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
       "nothing enters the map automatically");
     await page.locator('[data-psych-map-add="synthetic-map-one"]').click();
     assert.equal(await page.locator(".psychology-room-inner-case").count(), 1);
+    assert.equal(await page.locator(".psychology-room-map-node").count(), 1,
+      "selected notes appear on a draggable visual graph");
+    assert.equal(await page.locator(".psychology-room-map-edge").count(), 0);
+    assert.equal(await page.locator(".psychology-room-map-node img").count(), 0,
+      "user text must never become executable HTML on the graph");
+
     assert.equal(await page.locator(".psychology-room-inner-node").count(), 6);
     assert.equal(await page.locator(".psychology-room-inner-node img").count(), 0,
       "untrusted user text must never create live HTML elements");
@@ -92,6 +98,35 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
     await page.locator('[data-psych-map-add="synthetic-map-two"]').click();
     assert.equal(await page.locator(".psychology-room-inner-case").count(), 2);
     assert.equal(await page.locator(".psychology-room-inner-link").count(), 0);
+    assert.equal(await page.locator(".psychology-room-map-timeline-item").count(), 2,
+      "timeline renders only the two self-selected reflections");
+    assert.match(await page.locator(".psychology-room-map-timeline-item").first().innerText(),
+      /2026-11-17/, "timeline shows existing note date without interpretation");
+    assert.equal(await page.locator(".psychology-room-map-group-item").count(), 0,
+      "no group is created automatically");
+    await page.locator('#psychologyMapGroupCreate input[name="name"]')
+      .fill('Tema <img src=x onerror=alert(1)>');
+    await page.locator('#psychologyMapGroupCreate button[type="submit"]').click();
+    assert.equal(await page.locator(".psychology-room-map-group-item").count(), 1);
+    assert.equal(await page.locator(".psychology-room-map-groups img").count(), 0,
+      "user-provided group labels cannot create HTML");
+    assert.match(await page.locator(".psychology-room-map-group-item").innerText(), /Tema <img/);
+    await page.locator('#psychologyMapGroupAssign select[name="entry"]')
+      .selectOption("synthetic-map-one");
+    await page.locator('#psychologyMapGroupAssign select[name="group"]')
+      .selectOption("group-1");
+    await page.locator('#psychologyMapGroupAssign button[type="submit"]').click();
+    assert.equal(await page.locator('[data-psych-map-drag="synthetic-map-one"]')
+      .getAttribute("data-psych-group"), "group-1");
+    assert.equal(await page.locator(".psychology-room-map-node img").count(), 0,
+      "group names must remain inert text in visual graph");
+    const grouped = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem("hg_psychology_inner_map_v1")));
+    assert.equal(grouped.assignments["synthetic-map-one"], "group-1");
+    assert.equal(grouped.groups[0].id, "group-1");
+    assert.equal(grouped.selected_ids.length, 2);
+    assert.equal(JSON.stringify(grouped).includes(synthetic.situation), false,
+      "new group storage must not copy workbench text");
     await page.locator('#psychologyRoomLinkForm select[name="from"]')
       .selectOption("synthetic-map-one");
     await page.locator('#psychologyRoomLinkForm select[name="to"]')
@@ -107,6 +142,41 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
     assert.deepEqual(linkedState.links, [{
       from: "synthetic-map-one", to: "synthetic-map-two", kind: "similar"
     }]);
+    assert.equal(await page.locator(".psychology-room-map-node").count(), 2);
+    assert.equal(await page.locator(".psychology-room-map-edge").count(), 1,
+      "user-authored relationship appears as a line");
+    const movingNode = page.locator('[data-psych-map-drag="synthetic-map-one"]');
+    await movingNode.focus();
+    const originalX = await page.evaluate(() =>
+      window.PsychologyRoom.getInnerMapPositions().find(p => p.id === "synthetic-map-one").x);
+    await page.keyboard.press("ArrowRight");
+    await page.keyboard.press("Shift+ArrowDown");
+    const moved = await page.evaluate(() => {
+      const item = window.PsychologyRoom.getInnerMapPositions().find(p => p.id === "synthetic-map-one");
+      return {
+        position: item,
+        stored: JSON.parse(localStorage.getItem("hg_psychology_inner_map_v1")),
+        edgeX: Number(document.querySelector(".psychology-room-map-edge").getAttribute("x1"))
+      };
+    });
+    assert.ok(moved.position.x > originalX, "keyboard moves the selected node");
+    assert.ok(moved.position.y > 0.14, "Shift+ArrowDown moves the selected node");
+    assert.equal(moved.edgeX, moved.position.x * 1000, "edge follows node");
+    assert.equal(moved.stored.layout["synthetic-map-one"].x, moved.position.x,
+      "position survives in the local map record");
+    assert.equal(JSON.stringify(moved.stored).includes(synthetic.situation), false,
+      "saved layout contains no private note text");
+    if (engineName === "Chromium") {
+      const box = await movingNode.boundingBox();
+      await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+      await page.mouse.down();
+      await page.mouse.move(box.x + box.width / 2 + 45, box.y + box.height / 2 + 38,
+        { steps: 5 });
+      await page.mouse.up();
+      const dragged = await page.evaluate(() =>
+        window.PsychologyRoom.getInnerMapPositions().find(p => p.id === "synthetic-map-one"));
+      assert.ok(dragged.x > moved.position.x, "mouse drag saves an updated node position");
+    }
     assert.equal(JSON.stringify(linkedState).includes(synthetic.situation), false,
       "neither the connection nor its endpoints copy the note content");
     await page.locator('[data-psych-map-unlink="synthetic-map-one"]').click();
@@ -117,12 +187,22 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
       .selectOption("synthetic-map-two");
     await page.locator('#psychologyRoomLinkForm button[type="submit"]').click();
     assert.equal(await page.locator(".psychology-room-inner-link").count(), 1);
+    await page.locator('[data-psych-map-group-delete="group-1"]').click();
+    assert.equal(await page.locator(".psychology-room-map-group-item").count(), 0);
+    assert.equal(await page.locator('[data-psych-map-drag="synthetic-map-one"]')
+      .getAttribute("data-psych-group"), "",
+      "deleting a group keeps the note but clears its assignment");
+    assert.equal(await page.locator(".psychology-room-map-timeline-item").count(), 2,
+      "timeline is independent of grouping");
     await page.locator('[data-psych-map-remove="synthetic-map-two"]').click();
     assert.equal(await page.locator(".psychology-room-inner-case").count(), 1);
     assert.equal(await page.locator(".psychology-room-inner-link").count(), 0,
       "removing a note also removes all connected edges");
     assert.deepEqual(await page.evaluate(() =>
       JSON.parse(localStorage.getItem("hg_psychology_inner_map_v1")).links), []);
+    assert.equal(await page.locator(".psychology-room-map-edge").count(), 0,
+      "deleted relationships leave no stale graph lines");
+
 
     await page.locator('[data-psych-map-open="synthetic-map-one"]').click();
     await page.locator('[data-psych-toggle-map="synthetic-map-one"]').waitFor();

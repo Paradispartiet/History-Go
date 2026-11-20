@@ -1283,3 +1283,215 @@
   .psychology-room-inner-link-relation { justify-items: start; text-align: left; }
   .psychology-room-inner-link > button { width: 100%; }
 }
+
+
+/* Psykologirommet 3.0: a private, manually arranged graph, not an interpretation. */
+.psychology-room-map-section {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  border: 1px solid rgba(169,236,218,.3);
+  background: #14242d;
+  padding: 14px;
+  border-radius: 16px;
+}
+.psychology-room-map-section h4 { margin: 0; color: #c5f3e8; }
+.psychology-room-map-viewport {
+  min-width: 0;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(169,236,218,.24);
+  scrollbar-width: thin;
+}
+.psychology-room-map-viewport:focus-visible {
+  outline: 2px solid #a9ecda;
+  outline-offset: 3px;
+}
+.psychology-room-map-stage {
+  width: 100%;
+  min-width: 700px;
+  height: 560px;
+  position: relative;
+  background-color: #10232b;
+  background-image: radial-gradient(rgba(182,239,221,.18) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.psychology-room-map-edges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.psychology-room-map-edge {
+  stroke: #a9ecda;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  opacity: .8;
+}
+.psychology-room-map-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  min-height: 72px;
+  max-height: 100px;
+  overflow: hidden;
+  padding: 12px;
+  border: 1px solid rgba(189,248,230,.7);
+  border-radius: 12px;
+  background: #24444a;
+  color: #f1fbf7;
+  box-shadow: 0 5px 14px rgba(0,0,0,.25);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.psychology-room-map-node:active { cursor: grabbing; }
+.psychology-room-map-node:focus-visible {
+  outline: 3px solid #d7fff1;
+  outline-offset: 2px;
+  z-index: 2;
+}
+.psychology-room-map-node-grip {
+  flex: none;
+  font-size: 20px;
+  color: #a9ecda;
+}
+.psychology-room-map-node-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+
+/* Psykologirommet 3.0 – self-authored groups and neutral chronological view. */
+.psychology-room-map-groups,
+.psychology-room-map-timeline {
+  min-width: 0;
+  display: grid;
+  gap: 12px;
+}
+.psychology-room-map-group-list,
+.psychology-room-map-timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+.psychology-room-map-group-item {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 11px;
+  border-radius: 12px;
+  background: #20333b;
+  border: 1px solid rgba(170, 237, 216, .24);
+}
+.psychology-room-map-group-item strong {
+  flex: 1 1 120px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #e6faf2;
+}
+.psychology-room-map-group-item > span:not(.psychology-room-map-group-dot) {
+  color: #b7d9d2;
+  font-size: 12px;
+}
+.psychology-room-map-group-item button { min-height: 44px; }
+.psychology-room-map-group-dot {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  border-radius: 50%;
+  background: #9ec8d7;
+}
+.psychology-room-map-group-dot.group-1 { background: #82c9f4; }
+.psychology-room-map-group-dot.group-2 { background: #d6adfc; }
+.psychology-room-map-group-dot.group-3 { background: #f1b28e; }
+.psychology-room-map-group-dot.group-4 { background: #90d5a3; }
+.psychology-room-map-group-dot.group-5 { background: #f4d47e; }
+.psychology-room-map-group-dot.group-6 { background: #b8bccb; }
+.psychology-room-map-node[data-psych-group="group-1"] { border-color: #82c9f4; background: #1a3e55; }
+.psychology-room-map-node[data-psych-group="group-2"] { border-color: #d6adfc; background: #473552; }
+.psychology-room-map-node[data-psych-group="group-3"] { border-color: #f1b28e; background: #564038; }
+.psychology-room-map-node[data-psych-group="group-4"] { border-color: #90d5a3; background: #254a39; }
+.psychology-room-map-node[data-psych-group="group-5"] { border-color: #f4d47e; background: #53482b; }
+.psychology-room-map-node[data-psych-group="group-6"] { border-color: #b8bccb; background: #424651; }
+.psychology-room-map-group-label {
+  display: block;
+  color: #f4fbf8;
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+.psychology-room-map-groups form {
+  display: grid;
+  gap: 10px;
+}
+.psychology-room-map-groups form input,
+.psychology-room-map-groups form select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid rgba(170, 237, 216, .43);
+  border-radius: 10px;
+  padding: 10px;
+  background: #20343e;
+  color: #f3f7f5;
+  font: inherit;
+}
+.psychology-room-map-groups form label {
+  display: grid;
+  gap: 6px;
+}
+.psychology-room-map-timeline-list {
+  border-left: 2px solid rgba(170, 237, 216, .42);
+  margin-left: 11px;
+}
+.psychology-room-map-timeline-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+  position: relative;
+  margin-left: 17px;
+}
+.psychology-room-map-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -24px;
+  top: 9px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #a9ecda;
+}
+.psychology-room-map-timeline-date {
+  font-size: 12px;
+  color: #b8e5da;
+}
+.psychology-room-map-timeline-item button {
+  display: grid;
+  gap: 4px;
+}
+.psychology-room-map-timeline-item button strong,
+.psychology-room-map-timeline-item button span { overflow-wrap: anywhere; }
+.psychology-room-map-timeline-item button span { font-size: 12px; }
+@media (max-width: 560px) {
+  .psychology-room-map-group-item button { width: 100%; }
+}

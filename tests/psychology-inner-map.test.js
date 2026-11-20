@@ -83,6 +83,49 @@ assert.ok(source.includes("localStorage.removeItem(STORAGE_KEYS.innerMap)"),
 assert.ok(source.includes("GitHub Pages deler nettleserlagring"),
   "users must be warned about the shared GitHub Pages storage origin");
 
+// v3 stores only user-chosen graph coordinates, never the underlying note text.
+const startPosition = room.getInnerMapPositions()[0];
+assert.equal(startPosition.id, "entry-1");
+assert.equal(startPosition.x, 0.15);
+assert.equal(room.setInnerMapPosition("missing", 0.4, 0.4).reason, "invalid_position");
+assert.equal(room.setInnerMapPosition("entry-1", NaN, 0.4).reason, "invalid_position");
+assert.equal(room.setInnerMapPosition("entry-1", "0.4", 0.4).reason, "invalid_position");
+assert.equal(room.setInnerMapPosition("entry-1", 0.4, 0.45).ok, true);
+assert.deepEqual(JSON.parse(store.get(MAP)).layout["entry-1"], { x: 0.4, y: 0.45 });
+assert.equal(JSON.parse(store.get(MAP)).version, 4);
+assert.equal(store.get(MAP).includes(note.situation), false);
+assert.equal(room.setInnerMapPosition("entry-1", 1, -1).ok, true);
+assert.deepEqual(JSON.parse(store.get(MAP)).layout["entry-1"], { x: 0.89, y: 0.1 },
+  "out-of-range pointer positions must be clamped inside the canvas");
+assert.ok(writes.every(({ key }) => key === MAP), "moving notes must never write elsewhere");
+
+// Voluntary thematic grouping reuses selected IDs; group names never imply a diagnosis.
+assert.deepEqual(Array.from(room.getInnerMapGroups()), []);
+assert.deepEqual(Object.keys(room.getInnerMapAssignments()), []);
+assert.equal(room.createInnerMapGroup("").reason, "invalid_label");
+assert.equal(room.createInnerMapGroup("x".repeat(41)).reason, "invalid_label");
+assert.equal(room.createInnerMapGroup("Arbeid").ok, true);
+assert.equal(room.createInnerMapGroup("arbeid").reason, "duplicate_group");
+assert.equal(room.createInnerMapGroup("Fritid").ok, true);
+assert.deepEqual(Array.from(room.getInnerMapGroups(), group => [group.id, group.label]),
+  [["group-1", "Arbeid"], ["group-2", "Fritid"]]);
+assert.equal(room.setInnerMapGroup("entry-1", "missing").reason, "invalid_group");
+assert.equal(room.setInnerMapGroup("entry-2", "group-2").reason, "invalid_group",
+  "note must be selected before any group assignment");
+assert.equal(room.setInnerMapGroup("entry-1", "group-1").ok, true);
+assert.equal(room.getInnerMapAssignments()["entry-1"], "group-1");
+assert.equal(room.setInnerMapPosition("entry-1", 0.4, 0.46).ok, true);
+assert.equal(room.getInnerMapAssignments()["entry-1"], "group-1",
+  "moving a node must not drop its group");
+assert.ok(!store.get(MAP).includes(note.situation) && !store.get(MAP).includes(note.thoughts),
+  "groups and layout must not copy workbench content");
+assert.ok(writes.every(({ key }) => key === MAP), "groups never touch AHA or other storage");
+assert.equal(room.deleteInnerMapGroup("missing").reason, "unknown_group");
+assert.equal(room.deleteInnerMapGroup("group-1").ok, true);
+assert.equal(room.getInnerMapAssignments()["entry-1"], undefined,
+  "deleting a group clears its assignment without deleting the note");
+assert.equal(room.getInnerMapIds().length, 1);
+
 // Connections are explicitly created; no relationships appear automatically.
 assert.deepEqual(Array.from(room.getInnerMapLinks()), []);
 assert.equal(room.connectInnerMapEntries("entry-1", "entry-2", "similar").reason,
@@ -107,9 +150,17 @@ assert.equal(room.disconnectInnerMapEntries("entry-2", "entry-1").ok, true);
 assert.equal(room.getInnerMapLinks().length, 0);
 assert.equal(room.disconnectInnerMapEntries("entry-1", "entry-2").reason, "not_found");
 assert.equal(room.connectInnerMapEntries("entry-1", "entry-2", "contrast").ok, true);
+assert.equal(room.setInnerMapGroup("entry-2", "group-2").ok, true);
+assert.equal(room.getInnerMapAssignments()["entry-2"], "group-2");
 assert.equal(room.toggleInnerMap("entry-2").selected, false);
 assert.equal(room.getInnerMapLinks().length, 0, "removing a mapped note prunes links");
 assert.deepEqual(JSON.parse(store.get(MAP)).links, []);
+assert.equal(JSON.parse(store.get(MAP)).layout["entry-2"], undefined,
+  "removing a map entry must discard its saved position");
+assert.equal(room.getInnerMapAssignments()["entry-2"], undefined,
+  "removing a note must also remove its group assignment");
+
+
 
 // Malformed state is filtered without side effects or prototype-property abuse.
 store.set(MAP, JSON.stringify({
@@ -139,9 +190,38 @@ store.set(WORKBENCH, JSON.stringify([note]));
 assert.deepEqual(Array.from(room.getInnerMapIds()), []);
 assert.equal(room.getInnerMapModel().length, 0);
 
+// A chronology is read from existing timestamps and never adds time guesses or writes.
+store.set(WORKBENCH, JSON.stringify([
+  sample("entry-1", { created_at: "2026-11-18T12:00:00.000Z" }),
+  sample("entry-2", { created_at: "2026-11-17T12:00:00.000Z" })
+]));
+store.set(MAP, JSON.stringify({ selected_ids: ["entry-1", "entry-2"], links: [],
+  groups: [{ id: "group-1", label: "<img src=x onerror=alert(1)>" },
+    { id: "__proto__", label: "unsafe" }],
+  assignments: { "entry-1": "group-1", "entry-2": "missing", missing: "group-1" } }));
+const timelineReadCount = writes.length;
+assert.deepEqual(Array.from(room.getInnerMapTimeline(), item => item.id), ["entry-2", "entry-1"],
+  "timeline shows the user's real dates from oldest to newest");
+assert.equal(writes.length, timelineReadCount, "timeline reads must not write");
+assert.deepEqual(Array.from(room.getInnerMapGroups(), item => item.id), ["group-1"]);
+assert.deepEqual(Object.keys(room.getInnerMapAssignments()), ["entry-1"],
+  "invalid group references, prototype-like IDs and missing notes are ignored");
+assert.ok(source.includes("escapeHtml(item.label)"), "group names must be escaped");
+assert.ok(source.includes("escapeHtml(groupLabel)"), "graph labels must be escaped");
+store.set(WORKBENCH, JSON.stringify([note, sample("entry-2")]));
+
 // Corrupt or hostile state is ignored without reading arbitrary record keys.
 store.set(MAP, JSON.stringify({ selected_ids: ["missing", {}, null, "entry-1", "entry-1"] }));
 assert.deepEqual(Array.from(room.getInnerMapIds()), ["entry-1"]);
+
+// Malformed or stale map positions must be ignored without mutating storage.
+store.set(MAP, JSON.stringify({
+  selected_ids: ["entry-1"], links: [],
+  layout: { "entry-1": { x: "invalid", y: 0.5 }, missing: { x: 0.3, y: 0.4 } }
+}));
+const beforeInvalidRead = writes.length;
+assert.equal(room.getInnerMapPositions()[0].x, 0.15);
+assert.equal(writes.length, beforeInvalidRead, "a read must not repair data silently");
 
 // Maximum 16 explicit selections prevents unbounded rendering.
 store.set(MAP, JSON.stringify({ selected_ids: [] }));
@@ -149,6 +229,13 @@ store.set(WORKBENCH, JSON.stringify(Array.from({ length: 17 }, (_, i) => sample(
 for (let i = 0; i < 16; i++) assert.equal(room.toggleInnerMap("id-" + i).ok, true);
 assert.equal(room.toggleInnerMap("id-16").reason, "map_limit");
 assert.equal(room.getInnerMapIds().length, 16);
+
+// Six groups maximum, with no inferred grouping or private note copying.
+for (let i = 1; i <= 6; i++) {
+  assert.equal(room.createInnerMapGroup("Tema " + i).ok, true);
+}
+assert.equal(room.createInnerMapGroup("Et syvende tema").reason, "group_limit");
+assert.equal(room.getInnerMapGroups().length, 6);
 
 // Bound user-defined links independently of the 16-note limit.
 for (let i = 0, count = 0; i < 16 && count < 32; i++) {
@@ -167,5 +254,8 @@ assert.equal(room.toggleInnerMap("id-1").reason, "storage_failed");
 assert.equal(room.disconnectInnerMapEntries("id-0", "id-1").reason, "storage_failed");
 assert.equal(room.getInnerMapLinks().length, 32, "failed writes leave the map unchanged");
 assert.equal(room.getInnerMapIds().length, 16);
+assert.equal(room.setInnerMapPosition("id-0", 0.4, 0.4).reason, "storage_failed");
+assert.equal(room.setInnerMapGroup("id-0", "group-1").reason, "storage_failed");
+assert.equal(room.deleteInnerMapGroup("group-1").reason, "storage_failed");
 
 console.log("Psychology 2.0 inner map: 16-ID opt-in, local-only, safe missing entries: passed");

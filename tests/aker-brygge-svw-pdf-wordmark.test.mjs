@@ -7,9 +7,8 @@ const sha=b=>crypto.createHash("sha256").update(b).digest("hex");
 test("SVW exact cropped original candidate and no publication",async()=>{
   const p="reports/place-production/aker-brygge-svw-authentic-pdf-wordmark-2026-11-19.json";
   const r=JSON.parse(await fs.readFile(p,"utf8"));
-  const brands=JSON.parse(await fs.readFile("data/brands/brands_by_place.json","utf8")).aker_brygge;
-  assert.equal(brands.length,9);
-  assert.ok(brands.includes(r.brandId));
+  const knownBrandIds=JSON.parse(await fs.readFile("data/brands/brands_master.json","utf8")).map(b=>b.id);
+  assert.ok(knownBrandIds.includes(r.brandId));
   assert.equal(r.brandId,"simonsen_vogt_wiig");
   assert.equal(r.sourcePage,"https://chambers.com/downloads/gpg/1090/018_norway.pdf");
   assert.equal(r.sourcePageNumber,5);
