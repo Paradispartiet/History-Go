@@ -1,9 +1,12 @@
-name: Akerselva outflow two-Place photo browser QA
+name: Akerselva PlaceCard photo browser QA
 on:
   pull_request:
     paths:
       - "data/places/natur/oslo/places_oslo_natur_akerselvarute/frysjadammen.json"
       - "data/places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json"
+      - "data/places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenfossen.json"
+      - "data/runtime/place-open/bjoelsenfossen.json"
+      - "bilder/places/bjoelsenfossen_*.webp"
       - "data/runtime/place-open/frysjadammen.json"
       - "data/runtime/place-open/stilla_nydalen.json"
       - "bilder/places/oset_slusebru_landscape.webp"
@@ -31,6 +34,7 @@ jobs:
           node scripts/audit-place-images.mjs --mode=changed
           node scripts/check-distinct-place-photos.mjs --place data/places/natur/oslo/places_oslo_natur_akerselvarute/frysjadammen.json --require-both
           node scripts/check-distinct-place-photos.mjs --place data/places/natur/oslo/places_oslo_natur_akerselvarute/stilla_nydalen.json --require-both
+          node scripts/check-distinct-place-photos.mjs --place data/places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenfossen.json --require-both
       - name: Install dependencies and rebuild canonical browser payloads
         run: |
           npm ci --no-audit --no-fund
@@ -44,7 +48,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: akerselva-outflow-two-place-photos
+          name: akerselva-placecard-photos
           path: artifacts/akerselva-outflow-photo/
           if-no-files-found: warn
           retention-days: 14

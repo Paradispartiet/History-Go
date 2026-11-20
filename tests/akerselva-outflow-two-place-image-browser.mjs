@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Real PlaceCard verification for the two previously image-blocked
+// Real PlaceCard verification for the photographed
 // Akerselva places. Source image provenance and framing are both mandatory.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -8,7 +8,7 @@ import http from 'node:http';
 import { chromium, webkit } from 'playwright';
 
 const root=process.cwd();
-const ids=['frysjadammen','stilla_nydalen'];
+const ids=['frysjadammen','stilla_nydalen','bjoelsenfossen'];
 const read=filename=>JSON.parse(fs.readFileSync(path.join(root,filename),'utf8'));
 const places=ids.map(id=>{
   const src=read('data/places/natur/oslo/places_oslo_natur_akerselvarute/'+id+'.json');
@@ -38,6 +38,18 @@ const places=ids.map(id=>{
     assert.equal(src.frontImageMeta.mediaType,'editorial_illustration');
     assert.match(src.frontImageMeta.disclosure,/ikke fotografi/);
     assert.match(src.frontImageMeta.transformation,/Original nykomponert/);
+  }else if(id==='bjoelsenfossen'){
+    assert.equal(src.name,'Bjølsenfossen');
+    assert.equal(src.imageMeta.author,'Kjell Egil Sterten');
+    assert.equal(src.frontImageMeta.creator,'Sigurd Senje');
+    assert.equal(src.frontImageMeta.license,'CC BY-SA 4.0');
+    assert.notEqual(src.imageMeta.sourceSha256,src.frontImageMeta.sourceSha256);
+    for(const asset of [src.image,src.frontImage]){
+      assert.match(asset,/^bilder\/places\/bjoelsenfossen_.*\.webp$/u);
+      assert.ok(fs.statSync(path.join(root,asset)).size>50000);
+    }
+    assert.deepEqual(runtime.imageMeta,src.imageMeta);
+    assert.deepEqual(runtime.frontImageMeta,src.frontImageMeta);
   }else{
     assert.match(src.name,/nedenfor Nydalsdammen/);
     assert.ok(src.image.startsWith('https://commons.wikimedia.org/'));
@@ -115,6 +127,10 @@ try{
             id:document.querySelector('#placeCard').dataset.currentPlaceId};
         });
         assert.equal(actual.id,place.id);
+        if(place.id==='bjoelsenfossen'){
+          assert.equal(new URL(actual.hero.src).pathname,'/'+place.image);
+          assert.equal(new URL(actual.front.src).pathname,'/'+place.frontImage);
+        }
         assert.notEqual(actual.hero.src,actual.front.src,
           mode.name+'/'+place.id+': different source images needed');
         assert.ok(actual.hero.naturalWidth>actual.hero.naturalHeight,
