@@ -2,7 +2,7 @@
   "categoryId": "musikk",
   "version": "v2-concept-round-1",
   "createdAt": "2026-11-20",
-  "status": "three_native_1254px_image_candidates_pending_review_and_upload",
+  "status": "four_native_1254px_image_candidates_pending_review_and_upload",
   "liveBadgeManifest": "data/badges/musikk.json",
   "flags": {
     "visualApprovedByUser": false,
@@ -31,7 +31,7 @@
     "sha256": "0c9c2f470ccdd149a1a9bf5f1680ecf800feb967374483b3e59e3650f41bcb3a",
     "storedInRepository": false,
     "nativeHighResolutionPerBadge": false,
-    "notes": "Nine low-resolution source-concept crops remain only 418px each. Three separate native-resolution originals have now been generated independently and exported. Jazz and Pop had checkerboard/white backgrounds removed during technical RGBA conversion, and their resultant files are verified for transparency. Binary assets are not present in GitHub."
+    "notes": "Nine source-concept 418px crops remain low resolution. Four separate native 1254px originals were generated and exported: Klassisk, Jazz, Pop and Rock. Five other categories still need native individual generation. Binary files exist only in ChatGPT v4 archive; no images or app activation in GitHub."
   },
   "activationPolicy": "After explicit visual review, render each approved design at native 1024x1024+ resolution with true transparency, preserve high-res originals, verify image SHA-256 and exact visual content, then activate only approved music subbadges with focused badge tests. Never activate these contact-sheet crops as final production assets.",
   "candidates": [
@@ -92,7 +92,7 @@
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/rock-brodert-v2.webp",
       "productionAssetReady": false,
-      "nativeMasterCreatedInConversation": false,
+      "nativeMasterCreatedInConversation": true,
       "filesPresentInRepository": false
     },
     {
@@ -177,11 +177,11 @@
     "civication": true
   },
   "localCandidateArchive": {
-    "name": "HistoryGo_Musikk_kandidater_20261120_v3.zip",
-    "sha256": "0a5831f8409f7f1d68feff22aa5a1a10b2141dddbcab4bcc0cbf85638efced0e",
-    "bytes": 13544434,
+    "name": "HistoryGo_Musikk_kandidater_20261120_v4.zip",
+    "sha256": "fe3a906d2e62197f6a40cf5f7b512b34b5b8178ef83945ff277cdebb6f15bbaa",
+    "bytes": 17154497,
     "location": "ChatGPT conversation file, not in GitHub",
-    "contains": "3 separate native 1254×1254 PNG originals, 3 1024×1024 WebP app candidates, 9 concept crops, manifest"
+    "contains": "4 separate native 1254×1254 PNG originals, 4 1024×1024 WebP app candidates, 9 concept crops, manifest"
   },
   "nativeGeneratedCandidates": [
     {
@@ -244,6 +244,27 @@
         "height": 1024,
         "bytes": 385398,
         "sha256": "ab302c1bf1d0af9a94264a5ad6b83e48b0fa4067fa97ee72016ddb241fe48d93",
+        "alpha": true
+      }
+    },
+    {
+      "id": "rock",
+      "status": "native_master_created_in_conversation_not_uploaded_not_approved",
+      "nativeResolution": true,
+      "png": {
+        "path": "01_originaler/rock-original-1254.png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 3131197,
+        "sha256": "b60b736e8df80e0055ac4743b12230f7472af83ad77fba31fbe35fec69cad786",
+        "alpha": true
+      },
+      "appWebP": {
+        "path": "03_app_webp_kandidat/rock-brodert-v2-kandidat.webp",
+        "width": 1024,
+        "height": 1024,
+        "bytes": 478234,
+        "sha256": "29fdd19b0af0495d00db2c2e8939b930a4408b05340964fa1dc7c61270108a6e",
         "alpha": true
       }
     }
