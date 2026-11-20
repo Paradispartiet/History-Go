@@ -3,6 +3,39 @@
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
 
+/** Compare persisted story values, not incidental JSON property order, and
+ * report the first actual change instead of dumping 40 KB of serialized state. */
+function firstStoryDifference(actual: any, expected: any, path = 'state'): { path: string; actual: any; expected: any } | null {
+  if (Object.is(actual, expected)) return null;
+  if (Array.isArray(actual) || Array.isArray(expected)) {
+    if (!Array.isArray(actual) || !Array.isArray(expected) || actual.length !== expected.length)
+      return { path: path + '.length', actual: actual?.length, expected: expected?.length };
+    for (let i = 0; i < actual.length; i++) {
+      const mismatch = firstStoryDifference(actual[i], expected[i], path + '[' + i + ']');
+      if (mismatch) return mismatch;
+    }
+    return null;
+  }
+  if (actual && expected && typeof actual === 'object' && typeof expected === 'object') {
+    for (const key of new Set([...Object.keys(actual), ...Object.keys(expected)])) {
+      if (!Object.hasOwn(actual, key) || !Object.hasOwn(expected, key))
+        return { path: path + '.' + key, actual: actual[key], expected: expected[key] };
+      const mismatch = firstStoryDifference(actual[key], expected[key], path + '.' + key);
+      if (mismatch) return mismatch;
+    }
+    return null;
+  }
+  return { path, actual, expected };
+}
+function assertStorySurvivesReload(actual: any, expectedJson: string, stage: string) {
+  const mismatch = firstStoryDifference(actual, JSON.parse(expectedJson));
+  assert.equal(mismatch, null, mismatch
+    ? stage + ': persisted story mismatch at ' + mismatch.path
+      + '; actual=' + JSON.stringify(mismatch.actual).slice(0, 250)
+      + '; expected=' + JSON.stringify(mismatch.expected).slice(0, 250)
+    : undefined);
+}
+
 // Opening the full history is a two-level disclosure in the live Mini UI.
 // Click the visible parent first; a child <summary> inside a closed <details>
 // is in the DOM but is not visible or clickable to a real player.
@@ -339,7 +372,11 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
   };
   const reports: any[] = [];
   const failures: any[] = [];
-  for (const scenario of cases) {
+  // Optional narrow diagnostic replay. Production and normal full CI run all cases.
+  const focusId = process.env.CIVICATION_ARBEIDSL_FOCUS || '';
+  if (focusId) assert.ok(cases.some((c: any) => c.id === focusId), 'Unknown focused scenario ' + focusId);
+  const selectedCases = focusId ? cases.filter((c: any) => c.id === focusId) : cases;
+  for (const scenario of selectedCases) {
     const representative = representatives[scenario.id];
     const context = await browser.newContext({ viewport: scenario.id === 'musikk_booket' ? { width: 1024, height: 768 } : { width: 390, height: 844 } });
     if (representative) await context.addInitScript((person: any) => {
@@ -489,7 +526,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         await page.reload({ waitUntil: 'load' });
         await page.locator('[data-lifestory-paused]').waitFor();
         await page.waitForFunction(() => !!(globalThis as any).CivicationLifePositions?.getLifeContext);
-        assert.equal(JSON.stringify(await readState()), paused);
+        assertStorySurvivesReload(await readState(), paused, scenario.id + ': paused profile');
         await page.locator('[data-lifestory-paused] [data-lifestory-life-profile]').click();
         await page.locator('#civiLifePositionSelect').selectOption(`${encodeURIComponent(badge)}|${encodeURIComponent(roleLabel)}`);
         await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
@@ -522,7 +559,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
             return app.CivicationLifestoryUI?.getCurrentSceneInfo?.() && app.CivicationLifePositions?.getLifeContext?.().primary_life_position?.label === expectedRole
               && !app.document.querySelector('[data-lifestory-paused]');
           }, roleLabel);
-          assert.equal(JSON.stringify(await readState()), beforeReload);
+          assertStorySurvivesReload(await readState(), beforeReload, scenario.id + ': chapter 2 day ' + after.dag);
           }
           assert.ok(++nativeGuard < 20);
         }
@@ -585,7 +622,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
               const app = globalThis as any;
               return app.CivicationLifestoryUI?.getCurrentSceneInfo?.() && app.CivicationLifePositions?.getLifeContext?.().primary_life_position?.label === label && !app.document.querySelector('[data-lifestory-paused]');
             }, secondRole);
-            assert.equal(JSON.stringify(await readState()), before);
+            assertStorySurvivesReload(await readState(), before, scenario.id + ': chapter 3 day ' + after.dag);
           }
           assert.ok(++nativeGuard < 40);
         }
@@ -661,8 +698,8 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     } finally { await context.close(); }
   }
   if (failures.length) {
-    throw new Error('Arbeidsledig full browser acceptance: ' + reports.length + '/' + cases.length
-      + ' passed; failures=' + JSON.stringify(failures.map(({ id, error }) => ({ id, error }))));
+    throw new Error('Arbeidsledig full browser acceptance: ' + reports.length + '/' + selectedCases.length
+      + ' passed; failures= + JSON.stringify(failures.map(({ id, error }) => ({ id, error }))));
   }
   return { cases: reports, fullShell: true, productionFunctionsReplaced: false };
 }
