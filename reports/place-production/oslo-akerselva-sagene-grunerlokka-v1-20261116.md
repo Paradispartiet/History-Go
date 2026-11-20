@@ -414,3 +414,10 @@ Kilder for fasitene og metodene: [Dammen](https://oslobyleksikon.no/side/Nydalsd
 - PlaceCard, vendt og utvidet QuizCard med ti spørsmål og kuratert Fagverk bestod i de samme fire skjermprofilene.
 - I én liggende kjøring fanget det grønne framgangsvarselet trykket over et svaralternativ. Commit `ba21595f` lar trykk gå gjennom dette varselet. Begge varseltestene bestod, og en ny liggende Chromium-gjennomspilling bekreftet at det aktive varselet slipper gjennom trykk og at hele quizen kan fullføres.
 - Nettleserkontrollen brukte samme MapLibre-versjon fra npm fordi CDN-kallet feilet i testmiljøet. iPad-kontrollen brukte Chromium med berøring og iPad-størrelser. Safari/WebKit og lasting av de eksternt hostede fotografiene inngikk ikke i denne kjøringen.
+
+## Elvepartiet nedenfor Nydalsdammen – WebKit-kontroll (20.11.2026)
+
+- Fullquizen bestod i lokal Playwright WebKit i stående og liggende iPad-størrelse på appversjonen fra `4d395659`. Alle 21 spørsmål ble besvart med berøring, alle tre sett ble lagret, og quizen ga én stedsbelønning uten å registrere fysisk besøk. I liggende visning ble det også kontrollert at et aktivt framgangsvarsel lar trykk gå gjennom.
+- PlaceCard, vendt og utvidet QuizCard med ti spørsmål og kuratert Fagverk bestod i begge WebKit-visningene. Testene brukte samme MapLibre-versjon fra npm som appen ber om fra CDN.
+- Dette var simulert iPad-størrelse med WebKit på Linux. Wikimedia svarte HTTP 403 for begge eksterne fotografier fra testmiljøet, så bildelasting ble ikke verifisert i denne runden.
+- En lokal prøvefletting mot `main` ved `e392ab3e` viste sju konflikter i den samlede 20-stedersbolken, blant annet i teaterarbeidet og genererte registre. PR-en står som utkast.
