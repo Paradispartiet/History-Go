@@ -15,13 +15,13 @@ async function openFullHistoryViaUi(page: any) {
     await page.locator('.civi-footer button[data-category="minDag"]').click();
   }
   await parentSummary.waitFor({ state: 'visible', timeout: 20000 });
-  if (!(await history.evaluate((el: HTMLDetailsElement) => el.open))) {
+  if (!(await history.evaluate((el: { open?: boolean }) => el.open))) {
     await parentSummary.click();
   }
   const full = page.locator('details[data-lifestory-symposium]');
   const fullSummary = full.locator(':scope > summary');
   await fullSummary.waitFor({ state: 'visible', timeout: 20000 });
-  if (!(await full.evaluate((el: HTMLDetailsElement) => el.open))) {
+  if (!(await full.evaluate((el: { open?: boolean }) => el.open))) {
     await fullSummary.click();
   }
 }
