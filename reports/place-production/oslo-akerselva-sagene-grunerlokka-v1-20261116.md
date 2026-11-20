@@ -439,3 +439,34 @@ Kilder for fasitene og metodene: [Dammen](https://oslobyleksikon.no/side/Nydalsd
 ### Bjølsenfossen – innlagt bildebinding og bestått lokal visning
 
 Commit `1d2c8e9` kobler et liggende foto av Kjell Egil Sterten og et separat stående foto av Sigurd Senje til PlaceCard som lokale WebP-filer. Begge har kilde, fotograf, lisens og kontrollsum for opphavsfilen i stedsdata. Det lokale Playwright-løpet bekreftet riktige bildefiler, dekoding og full rammedekning på mobil og desktop med Chromium og i simulert iPad-størrelse med WebKit. Stedsindeks, Place-open og bildeoversikt bestod. Bjølsenfossen inngår nå også i den eksisterende nettleserarbeidsflyten for Akerselva-bilder. Fagverk og quiz gjenstår før V1-vurdering.
+
+## Bjølsenfossen – Fagverk-utkast og fullquizgjennomgang (20.11.2026)
+
+**Fagverk-utkast: Fossen som ga byen vann og mølla kraft**
+
+Ved Bjølsen gjør Akerselva sitt høyeste fall. Rundt fossen ligger spor etter to ulike måter å bruke vannet på. En periode tok byen vann fra dammen. Ved mølla ble fallet brukt til å drive maskiner.
+
+Sandaker sag utnyttet vannkraften på 1600-tallet. I 1701 anla Gerhard Treschow Bjølsen sag ved fossen. Da Christiania tok vann fra Bjølsendammen i 1860–1867, fikk dammen en annen oppgave i byens vannforsyning. Senere ble mølledriften flyttet fra vestbredden til østbredden i 1890-årene. Det bevarte turbinrøret og turbinen på vestbredden viser hvordan elvestrømmen kunne føres inn i et kraftanlegg.
+
+På arkivbildet kan du undersøke hvordan Valsemøllebrua ligger i forhold til fossefallet. Byleksikonet knytter reguleringsmekanismene på brua til vannføringen i fossen. Bildet kan vise plasseringen av anlegget, mens en historisk driftskilde trengs for å si hvordan slusene faktisk ble brukt på en bestemt dag. Bruk foto og kart til undersøkelsen. Området har begrenset offentlig adkomst.
+
+- **Undersøkelse 1:** Finn dammen, brua og fossefallet på et kart. Bruk byleksikonet til å forklare forbindelsen mellom dammen og reguleringen nedenfor.
+- **Undersøkelse 2:** Tegn to enkle vannveier. Den ene ender ved byens vanninntak, den andre ved en turbin. Merk hvilke deler som er dokumentert og hvilke som er forenklinger.
+- **Undersøkelse 3:** Sammenlign de to PlaceCard-fotografiene. Bruk fotograf, datering og kameravinkel til å forklare hva hvert bilde kan si om anlegget.
+
+**Gjennomgang av aktiv quiz.** Historiepakken har 42 spørsmål i seks sett. 21 er merket `editorial_review_required`, og 21 er teknisk koblet til Knowledge. De siste settene gjentar flere begreper fra tidligere sett, blant annet industrilandskap, industriarv og stedlesning. Spørsmål om «History Go-stemning», «trygg quizdata» og hva spilleren bør lære må erstattes med spørsmål om stedet. Auditér fasit og Knowledge-eierskap før migrering. Ingen quiz-ID-er er endret.
+
+| Spørsmålskandidat | Fasit | Kilde |
+|---|---|---|
+| Hvilken elv danner Bjølsenfossen? | Akerselva | Bjølsenfallet |
+| Hvilken bru ligger nord for Bjølsenfossen? | Treschows bru | Bjølsenfallet |
+| Hva brukte Christiania Bjølsendammen til i 1860–1867? | Vanninntak for byens vannforsyning | Bjølsenfallet |
+| På hvilken side av elva lå Bjølsen Mølle før virksomheten ble flyttet østover? | Vestsiden | Bjølsenfallet |
+| Hvilken bru ved Bjølsendammen har mekanismer for vannregulering? | Valsemøllebrua | Valsemøllebrua |
+| Hva styrer reguleringsmekanismene på brua? | Vannføringen i fossen | Valsemøllebrua |
+| Hva er den gamle Valsemøllebrua bygd av? | Tre | Valsemøllebrua |
+| Hvilke to deler av kraftanlegget er bevart på vestbredden? | Turbinrøret og turbinen | Valsemøllebrua |
+| Hvilken tidlig sag utnyttet fossen på 1600-tallet? | Sandaker sag | Akerselvas Venner |
+| Hvem anla Bjølsen sag i 1701? | Gerhard Treschow | Akerselvas Venner |
+
+Kilder: [Bjølsenfallet](https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet), [Valsemøllebrua](https://oslobyleksikon.no/side/Valsem%C3%B8llebrua), [Akerselvas Venner](https://www.akerselvasvenner.no/2016/01/01/2396/) og [Oslo kommunes forprosjekt](https://www.oslo.kommune.no/slik-bygger-vi-oslo/bjolsenfossen-hvordan-gjore-omradet-rundt-fossen-tilgjengelig-forprosjekt-med-omregulering/). Fagverk-teksten og kandidatene er redaksjonelle utkast. Aktivt Fagverk, QuizCard og fullquiz krever integrasjon og validering.
