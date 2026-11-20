@@ -150,14 +150,13 @@ assert.equal(room.disconnectInnerMapEntries("entry-2", "entry-1").ok, true);
 assert.equal(room.getInnerMapLinks().length, 0);
 assert.equal(room.disconnectInnerMapEntries("entry-1", "entry-2").reason, "not_found");
 assert.equal(room.connectInnerMapEntries("entry-1", "entry-2", "contrast").ok, true);
+assert.equal(room.setInnerMapGroup("entry-2", "group-2").ok, true);
+assert.equal(room.getInnerMapAssignments()["entry-2"], "group-2");
 assert.equal(room.toggleInnerMap("entry-2").selected, false);
 assert.equal(room.getInnerMapLinks().length, 0, "removing a mapped note prunes links");
 assert.deepEqual(JSON.parse(store.get(MAP)).links, []);
 assert.equal(JSON.parse(store.get(MAP)).layout["entry-2"], undefined,
   "removing a map entry must discard its saved position");
-assert.equal(room.setInnerMapGroup("entry-2", "group-2").ok, true);
-assert.equal(room.getInnerMapAssignments()["entry-2"], "group-2");
-assert.equal(room.toggleInnerMap("entry-2").selected, false);
 assert.equal(room.getInnerMapAssignments()["entry-2"], undefined,
   "removing a note must also remove its group assignment");
 
