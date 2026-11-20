@@ -2,7 +2,7 @@
   "categoryId": "musikk",
   "version": "v2-concept-round-1",
   "createdAt": "2026-11-20",
-  "status": "visual_candidates_only_pending_user_review",
+  "status": "visual_candidates_with_one_native_master_pending_user_approval",
   "liveBadgeManifest": "data/badges/musikk.json",
   "flags": {
     "visualApprovedByUser": false,
@@ -31,7 +31,7 @@
     "sha256": "0c9c2f470ccdd149a1a9bf5f1680ecf800feb967374483b3e59e3650f41bcb3a",
     "storedInRepository": false,
     "nativeHighResolutionPerBadge": false,
-    "notes": "Rendered in current ChatGPT conversation. Native 418 px crops are concept previews only, not app-grade high-resolution masters. No live assets are modified."
+    "notes": "Nine source-concept crops are 418×418 px. The 1254×1254 Klassisk badge was separately generated, and 1024×1024 app WebP derived from it; neither has been uploaded to GitHub. All other subbadges still need native-resolution generation. Do not activate any badges."
   },
   "activationPolicy": "After explicit visual review, render each approved design at native 1024x1024+ resolution with true transparency, preserve high-res originals, verify image SHA-256 and exact visual content, then activate only approved music subbadges with focused badge tests. Never activate these contact-sheet crops as final production assets.",
   "candidates": [
@@ -46,7 +46,9 @@
         "column": 0
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/klassisk-brodert-v2.webp",
-      "productionAssetReady": false
+      "productionAssetReady": false,
+      "nativeMasterCreatedInConversation": true,
+      "filesPresentInRepository": false
     },
     {
       "id": "jazz",
@@ -157,5 +159,34 @@
     "mainBadge": "bilder/merker/musikk-brodert-v1.webp",
     "otherCategories": true,
     "civication": true
-  }
+  },
+  "localCandidateArchive": {
+    "name": "HistoryGo_Musikk_kandidater_20261120_v2.zip",
+    "sha256": "178232f1d724024897d8d7004f7e2c640afa958ca6d205e93f4866bc41b3484e",
+    "bytes": 10463209,
+    "location": "ChatGPT conversation attachment; not uploaded to GitHub",
+    "contains": "One native Klassisk original, its 1024px WebP candidate, nine low-resolution concept crops and manifest"
+  },
+  "nativeGeneratedCandidates": [
+    {
+      "id": "klassisk",
+      "status": "native_master_created_not_uploaded_not_approved",
+      "png": {
+        "path": "01_originaler/klassisk-original-1254.png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 3197100,
+        "sha256": "1a12e08e797f9e855635c4d08c872cea7e6ad60c0d6d5ba6096e8cb062223773",
+        "alpha": true
+      },
+      "appWebP": {
+        "path": "03_app_webp_kandidat/klassisk-brodert-v2-kandidat.webp",
+        "width": 1024,
+        "height": 1024,
+        "bytes": 520658,
+        "sha256": "db5cfd0bfb479a90b51324907f7d82197af8b3eead8f5ffb89659c978dab6884",
+        "alpha": true
+      }
+    }
+  ]
 }
