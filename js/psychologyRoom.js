@@ -2209,6 +2209,8 @@
       '<form id="psychologyPrivateBackupExport" class="psychology-room-form">' +
       '<label>Velg passord (minst 12 tegn)<input type="password" name="password" minlength="12" ' +
       'maxlength="512" autocomplete="new-password" required></label>' +
+      '<label>Gjenta passordet<input type="password" name="confirm_password" minlength="12" ' +
+      'maxlength="512" autocomplete="new-password" required></label>' +
       '<button type="submit" class="psychology-room-primary">Lag kryptert sikkerhetskopi</button>' +
       '<p role="status" aria-live="polite" class="psychology-room-muted"></p>' +
       '<div class="psychology-room-backup-download"></div></form>' +
@@ -2235,9 +2237,14 @@
       event.preventDefault();
       const form = /** @type {HTMLFormElement} */ (event.currentTarget);
       const input = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="password"]'));
+      const confirmInput = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="confirm_password"]'));
       const status = form.querySelector('[role="status"]');
       const downloadArea = form.querySelector(".psychology-room-backup-download");
-      if (!input || !status || !downloadArea) return;
+      if (!input || !confirmInput || !status || !downloadArea) return;
+      if (input.value !== confirmInput.value) {
+        status.textContent = "Passordene er forskjellige. Sikkerhetskopien ble ikke opprettet.";
+        return;
+      }
       status.textContent = "Krypterer på denne enheten …";
       downloadArea.replaceChildren();
       try {
@@ -2251,11 +2258,14 @@
         link.className = "psychology-room-inner-open";
         link.textContent = "Last ned kryptert fil (" + result.count + " refleksjoner)";
         downloadArea.appendChild(link);
+        link.addEventListener("click", () => window.setTimeout(() => URL.revokeObjectURL(url), 60000),
+          { once: true });
         status.textContent = "Sikkerhetskopien er kryptert og klar. Trykk på nedlastingslenken og oppbevar filen trygt.";
       } catch (error) {
         status.textContent = backupErrorMessage(error?.code);
       } finally {
         input.value = "";
+        confirmInput.value = "";
       }
     });
     document.getElementById("psychologyPrivateBackupRestore")?.addEventListener("submit", async (event) => {
