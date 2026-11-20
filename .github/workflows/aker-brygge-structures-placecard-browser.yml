@@ -1,0 +1,47 @@
+name: Aker Brygge — Structures real PlaceCard browser (390 and 1440)
+
+on:
+  pull_request:
+    paths:
+      - 'tests/aker-brygge-structures-placecard-real-browser.test.mjs'
+      - '.github/workflows/aker-brygge-structures-placecard-browser.yml'
+      - 'data/places/by/oslo/places/aker_brygge.json'
+      - 'data/runtime/place-open/aker_brygge.json'
+      - 'bilder/kort/structures/aker_brygge_*.webp'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - 'js/ui/place-card.js'
+      - 'reports/place-production/aker-brygge-two-historical-structures-release-2026-11-19.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aker-brygge-structures-browser-\${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  actual-placecard:
+    name: Aker Brygge mobile 390px and desktop 1440px
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify exact Place-open parity
+        run: npm run place-open:check
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Click actual Structures gallery and check both images and credits
+        run: node tests/aker-brygge-structures-placecard-real-browser.test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aker-brygge-structures-real-browser
+          path: artifacts/aker-brygge-structures-real-browser/
+          if-no-files-found: warn
+          retention-days: 14
