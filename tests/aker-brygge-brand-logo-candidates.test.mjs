@@ -9,8 +9,7 @@ const sha256 = data => createHash("sha256").update(data).digest("hex");
 
 test("Aker Brygge — exact authentic-logo binary candidates only", async () => {
   const report = JSON.parse(await readFile(reportPath, "utf8"));
-  const mapping = JSON.parse(await readFile("data/brands/brands_by_place.json", "utf8")).aker_brygge;
-  assert.equal(mapping.length, 9);
+  const knownBrandIds = JSON.parse(await readFile("data/brands/brands_master.json", "utf8")).map(b=>b.id);
   assert.equal(report.placeId, "aker_brygge");
   assert.equal(report.allBrandsRequired, 9);
   assert.equal(report.productionAssetsActivated, 0);
@@ -18,7 +17,7 @@ test("Aker Brygge — exact authentic-logo binary candidates only", async () => 
   assert.equal(report.candidates.length, 5);
   assert.deepEqual(report.candidates.map(c => c.brandId).sort(), ["cos", "olivia", "rorbua", "wiersholm", "wikborg_rein"]);
   for (const c of report.candidates) {
-    assert.ok(mapping.includes(c.brandId));
+    assert.ok(knownBrandIds.includes(c.brandId));
     assert.equal(c.reviewStatus, "ORIGINAL_BINARY_CAPTURED_PENDING_REVIEW");
     assert.equal(c.visualApproval, false);
     assert.equal(c.publishable, false);

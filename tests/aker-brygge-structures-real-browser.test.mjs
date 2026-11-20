@@ -16,7 +16,7 @@ assert.deepEqual(canonical.structures.map(x=>x.id),expectedIds);
 assert.deepEqual(runtime.place.structures.map(x=>x.id),expectedIds);
 assert.deepEqual(canonical.place_card_profile.collection_ids,["people","structures"]);
 assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","structures"]);
-assert.equal(runtime.brands.length,9);
+assert.equal(runtime.brands.length,5);
 assert.equal(runtime.people.length,5);
 assert.equal(release.structuresCount,2);
 assert.equal(release.vFerdig,false);
@@ -73,14 +73,14 @@ try{
         return /^place_card_profile_v2(?:_curated)?$/.test(card?.dataset.collectionProfileSource||"") &&
           card?.dataset.collectionCount==="2" && card?.dataset.collectionGridCount==="1";
       },null,{timeout:30000});
-      const state=await page.evaluate(()=>{
+      const stateHandle=await page.waitForFunction(()=>{
         const card=document.getElementById("placeCard");
         const preview=document.querySelector("#pcCategoryCollectionIcon > img.pc-person-img");
         const brands=document.getElementById("pcBrandsIcon");
         const people=document.getElementById("pcPeopleIcon");
         const hero=document.getElementById("pcHeaderImage");
         const front=document.getElementById("pcFrontImage");
-        return {
+        const snapshot = {
           profile:card?.dataset.collectionProfileSource,
           count:card?.dataset.collectionCount,
           gridCount:card?.dataset.collectionGridCount,
@@ -89,11 +89,22 @@ try{
           previewFit:preview?getComputedStyle(preview).objectFit:null,
           brandsVisible:!!brands&&!brands.hidden,
           peopleVisible:!!people&&!people.hidden,
+          peopleLoaded:!!people?.querySelector("img")?.complete&&people.querySelector("img").naturalWidth>0,
           heroSrc:hero?.getAttribute("src"),frontSrc:front?.getAttribute("src"),
           heroLoaded:!!hero?.complete&&hero.naturalWidth>0,
           frontLoaded:!!front?.complete&&front.naturalWidth>0
         };
-      });
+        // Core rendering and curated layout both write these counters during
+        // hydration. Capture readiness and values in the same browser turn,
+        // after all real member/hero images have decoded.
+        return /^place_card_profile_v2(?:_curated)?$/.test(snapshot.profile||"") &&
+          snapshot.count==="2" && snapshot.gridCount==="1" &&
+          snapshot.peopleVisible && snapshot.peopleLoaded &&
+          snapshot.previewLoaded && snapshot.heroLoaded && snapshot.frontLoaded
+          ? snapshot : false;
+      },null,{timeout:50000});
+      const state=await stateHandle.jsonValue();
+      await stateHandle.dispose();
       assert.match(state.profile,/^place_card_profile_v2(?:_curated)?$/,tag+": profile");
       assert.equal(state.count,"2",tag+": exactly People and Structures");
       assert.equal(state.gridCount,"1",tag+": gallery shows only Structures beside People");

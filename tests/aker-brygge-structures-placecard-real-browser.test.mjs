@@ -21,7 +21,7 @@ assert.deepEqual(runtime.place.structures.map(x=>x.id),ids,"Place-open Structure
 assert.deepEqual(place.place_card_profile.collection_ids,["people","structures"]);
 assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","structures"]);
 assert.equal(workcard.vferdig.status,"NOT_CLAIMED");
-assert.equal(runtime.brands.length,9,"Nine registered but hidden Brands must remain intact");
+assert.equal(runtime.brands.length,5,"Five source-confirmed Brands remain hidden pending publication");
 assert.ok(runtime.people.length>=1,"People preserved");
 for(const structure of place.structures){
  assert.ok(fs.existsSync(structure.image),"Missing physical image "+structure.image);

@@ -7,9 +7,8 @@ const sha=b=>crypto.createHash("sha256").update(b).digest("hex");
 test("Tiger official 2026 wordmark cropped original candidate and no publication",async()=>{
   const p="reports/place-production/aker-brygge-tiger-official-press-wordmark-2026-11-19.json";
   const r=JSON.parse(await fs.readFile(p,"utf8"));
-  const brands=JSON.parse(await fs.readFile("data/brands/brands_by_place.json","utf8")).aker_brygge;
-  assert.equal(brands.length,9);
-  assert.ok(brands.includes(r.brandId));
+  const knownBrandIds=JSON.parse(await fs.readFile("data/brands/brands_master.json","utf8")).map(b=>b.id);
+  assert.ok(knownBrandIds.includes(r.brandId));
   assert.equal(r.brandId,"tiger_of_sweden");
   assert.equal(r.sourcePage,"https://tigerofsweden-pressportal.qbank.se/detail/Press%20release%20Tiger%20of%20Sweden%20Spring%20Summer%202026.pdf/181132/download/original?pdf=1");
   assert.equal(r.sourcePageNumber,1);

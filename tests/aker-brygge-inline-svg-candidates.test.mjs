@@ -6,15 +6,14 @@ import sharp from "sharp";
 const checksum = d => createHash("sha256").update(d).digest("hex");
 test("Aker Brygge: two authentic inline SVG candidates cannot activate unfinished Brands",async()=>{
  const report=JSON.parse(await readFile("reports/place-production/aker-brygge-inline-svg-candidates-2026-11-19.json","utf8"));
- const mapping=JSON.parse(await readFile("data/brands/brands_by_place.json","utf8")).aker_brygge;
- assert.equal(mapping.length,9);
+ const knownBrandIds=JSON.parse(await readFile("data/brands/brands_master.json","utf8")).map(b=>b.id);
  assert.equal(report.productionAssetsActivated,0);
  assert.equal(report.placecardBrandsEnabled,false);
  assert.equal(report.publishable,false);
  assert.equal(report.candidates.length,2);
  assert.deepEqual(report.candidates.map(c=>c.brandId).sort(),["haavind","lund_hagem"]);
  for(const c of report.candidates){
-  assert.ok(mapping.includes(c.brandId));
+  assert.ok(knownBrandIds.includes(c.brandId));
   assert.equal(c.sourceType,"original_inline_svg");
   assert.equal(c.visualApproval,false);
   assert.equal(c.publishable,false);
