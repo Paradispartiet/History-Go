@@ -2,7 +2,7 @@
   "categoryId": "musikk",
   "version": "v2-concept-round-1",
   "createdAt": "2026-11-20",
-  "status": "visual_candidates_with_one_native_master_pending_user_approval",
+  "status": "three_native_1254px_image_candidates_pending_review_and_upload",
   "liveBadgeManifest": "data/badges/musikk.json",
   "flags": {
     "visualApprovedByUser": false,
@@ -31,7 +31,7 @@
     "sha256": "0c9c2f470ccdd149a1a9bf5f1680ecf800feb967374483b3e59e3650f41bcb3a",
     "storedInRepository": false,
     "nativeHighResolutionPerBadge": false,
-    "notes": "Nine source-concept crops are 418×418 px. The 1254×1254 Klassisk badge was separately generated, and 1024×1024 app WebP derived from it; neither has been uploaded to GitHub. All other subbadges still need native-resolution generation. Do not activate any badges."
+    "notes": "Nine low-resolution source-concept crops remain only 418px each. Three separate native-resolution originals have now been generated independently and exported. Jazz and Pop had checkerboard/white backgrounds removed during technical RGBA conversion, and their resultant files are verified for transparency. Binary assets are not present in GitHub."
   },
   "activationPolicy": "After explicit visual review, render each approved design at native 1024x1024+ resolution with true transparency, preserve high-res originals, verify image SHA-256 and exact visual content, then activate only approved music subbadges with focused badge tests. Never activate these contact-sheet crops as final production assets.",
   "candidates": [
@@ -61,7 +61,9 @@
         "column": 1
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/jazz-brodert-v2.webp",
-      "productionAssetReady": false
+      "productionAssetReady": false,
+      "nativeMasterCreatedInConversation": true,
+      "filesPresentInRepository": false
     },
     {
       "id": "pop",
@@ -74,7 +76,9 @@
         "column": 2
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/pop-brodert-v2.webp",
-      "productionAssetReady": false
+      "productionAssetReady": false,
+      "nativeMasterCreatedInConversation": true,
+      "filesPresentInRepository": false
     },
     {
       "id": "rock",
@@ -87,7 +91,9 @@
         "column": 0
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/rock-brodert-v2.webp",
-      "productionAssetReady": false
+      "productionAssetReady": false,
+      "nativeMasterCreatedInConversation": false,
+      "filesPresentInRepository": false
     },
     {
       "id": "elektronisk",
@@ -100,7 +106,9 @@
         "column": 1
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/elektronisk-brodert-v2.webp",
-      "productionAssetReady": false
+      "productionAssetReady": false,
+      "nativeMasterCreatedInConversation": false,
+      "filesPresentInRepository": false
     },
     {
       "id": "hiphop",
@@ -113,7 +121,9 @@
         "column": 2
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/hiphop-brodert-v2.webp",
-      "productionAssetReady": false
+      "productionAssetReady": false,
+      "nativeMasterCreatedInConversation": false,
+      "filesPresentInRepository": false
     },
     {
       "id": "samtidsmusikk",
@@ -126,7 +136,9 @@
         "column": 0
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/samtidsmusikk-brodert-v2.webp",
-      "productionAssetReady": false
+      "productionAssetReady": false,
+      "nativeMasterCreatedInConversation": false,
+      "filesPresentInRepository": false
     },
     {
       "id": "konsertsteder",
@@ -139,7 +151,9 @@
         "column": 1
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/konsertsteder-brodert-v2.webp",
-      "productionAssetReady": false
+      "productionAssetReady": false,
+      "nativeMasterCreatedInConversation": false,
+      "filesPresentInRepository": false
     },
     {
       "id": "lyd_og_produksjon",
@@ -152,7 +166,9 @@
         "column": 2
       },
       "productionAssetPathPlanned": "bilder/merker/musikk/undermerker/lyd_og_produksjon-brodert-v2.webp",
-      "productionAssetReady": false
+      "productionAssetReady": false,
+      "nativeMasterCreatedInConversation": false,
+      "filesPresentInRepository": false
     }
   ],
   "unaffected": {
@@ -161,30 +177,73 @@
     "civication": true
   },
   "localCandidateArchive": {
-    "name": "HistoryGo_Musikk_kandidater_20261120_v2.zip",
-    "sha256": "178232f1d724024897d8d7004f7e2c640afa958ca6d205e93f4866bc41b3484e",
-    "bytes": 10463209,
-    "location": "ChatGPT conversation attachment; not uploaded to GitHub",
-    "contains": "One native Klassisk original, its 1024px WebP candidate, nine low-resolution concept crops and manifest"
+    "name": "HistoryGo_Musikk_kandidater_20261120_v3.zip",
+    "sha256": "0a5831f8409f7f1d68feff22aa5a1a10b2141dddbcab4bcc0cbf85638efced0e",
+    "bytes": 13544434,
+    "location": "ChatGPT conversation file, not in GitHub",
+    "contains": "3 separate native 1254×1254 PNG originals, 3 1024×1024 WebP app candidates, 9 concept crops, manifest"
   },
   "nativeGeneratedCandidates": [
     {
       "id": "klassisk",
-      "status": "native_master_created_not_uploaded_not_approved",
+      "status": "native_master_created_in_conversation_not_uploaded_not_approved",
+      "nativeResolution": true,
       "png": {
         "path": "01_originaler/klassisk-original-1254.png",
         "width": 1254,
         "height": 1254,
-        "bytes": 3197100,
-        "sha256": "1a12e08e797f9e855635c4d08c872cea7e6ad60c0d6d5ba6096e8cb062223773",
+        "bytes": 2972116,
+        "sha256": "bfbbda7993fac8b4d2a73b39479e8cdc5e30a87b751789c1263d88b60c04bd67",
         "alpha": true
       },
       "appWebP": {
         "path": "03_app_webp_kandidat/klassisk-brodert-v2-kandidat.webp",
         "width": 1024,
         "height": 1024,
-        "bytes": 520658,
-        "sha256": "db5cfd0bfb479a90b51324907f7d82197af8b3eead8f5ffb89659c978dab6884",
+        "bytes": 444306,
+        "sha256": "8e82554b13a4cec81a7cd346fb50d481a065b9431bf9abebbcb36fd9fad827c7",
+        "alpha": true
+      }
+    },
+    {
+      "id": "jazz",
+      "status": "native_master_created_in_conversation_not_uploaded_not_approved",
+      "nativeResolution": true,
+      "png": {
+        "path": "01_originaler/jazz-original-1254.png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 3039661,
+        "sha256": "a902a0b35b5cdd28e57fe16d0fc2b26bda4e796d72a41bd9415d7d182db41211",
+        "alpha": true
+      },
+      "appWebP": {
+        "path": "03_app_webp_kandidat/jazz-brodert-v2-kandidat.webp",
+        "width": 1024,
+        "height": 1024,
+        "bytes": 357444,
+        "sha256": "f68a5f09fefe090766d3691fba4d27472e2f37154a533b2894731166f1e74a6d",
+        "alpha": true
+      }
+    },
+    {
+      "id": "pop",
+      "status": "native_master_created_in_conversation_not_uploaded_not_approved",
+      "nativeResolution": true,
+      "png": {
+        "path": "01_originaler/pop-original-1254.png",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 3019605,
+        "sha256": "29798a2f9b7fb48202cf81bf20ed8f93771e0f3002a02051d88ed596427d875b",
+        "alpha": true
+      },
+      "appWebP": {
+        "path": "03_app_webp_kandidat/pop-brodert-v2-kandidat.webp",
+        "width": 1024,
+        "height": 1024,
+        "bytes": 385398,
+        "sha256": "ab302c1bf1d0af9a94264a5ad6b83e48b0fa4067fa97ee72016ddb241fe48d93",
         "alpha": true
       }
     }
