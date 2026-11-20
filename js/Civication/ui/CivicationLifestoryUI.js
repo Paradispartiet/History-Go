@@ -340,6 +340,10 @@
 
   function syncToShellCalendar() {
     if (shellStoryUnavailable()) return false;
+    // The player selected a new authored chapter. Its handler owns this
+    // calendar rollover, and must archive the completed chapter before any
+    // normal next-day sync can consume the final story state.
+    if (continuing) return false;
     const day = ensureCalendarCheckpoint();
     if (!state || !content || day === null || day <= state.kalenderDag) return false;
     if (!state.dagFerdig) {
@@ -739,13 +743,20 @@
     continuationError = "";
     render();
     try {
-      // Kapittelstart bruker samme shell-døgnskifte som Start neste dag.
-      if (getShellDay() !== null && !await ensureShellDayAdvanced()) return;
+      // Fetch and validate the next chapter before spending a calendar day.
+      // During the shell rollover, syncToShellCalendar must not start an
+      // ordinary day 8 before the chapter-ending snapshot is archived.
       const merged = await Content.loadContinuation(previousContent, id);
       if (state !== previousState || content !== previousContent) return;
+      if (getShellDay() !== null && !await ensureShellDayAdvanced()) return;
+      if (state !== previousState || content !== previousContent) return;
+      // Day-end mail can add genuine shared private consequences. Preserve
+      // them when preparing the continuation, rather than overwriting them
+      // with a stale pre-rollover snapshot.
+      syncSharedPrivateState(State.load());
       const advanced = JSON.parse(JSON.stringify(state));
       Runner.startContinuation(advanced, previousContent, merged, id, Endings.resolveEnding(state, previousContent));
-      if (getShellDay() !== null) advanced.kalenderDag += 1;
+      if (getShellDay() !== null) advanced.kalenderDag = getShellDay();
       State.save(advanced);
       content = merged;
       state = advanced;
@@ -756,6 +767,10 @@
       continuationError = "Fortsettelsen kunne ikke åpnes. Historien din er bevart. Prøv igjen.";
     } finally {
       continuing = false;
+      // If the shell advanced but the chapter could not be committed, never
+      // leave the saved story one calendar day behind. Fall back to its
+      // canonical normal-day synchronization; the error remains visible.
+      if (state && getShellDay() !== null && getShellDay() > state.kalenderDag) syncToShellCalendar();
       render();
     }
   }

@@ -3,6 +3,42 @@
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
 
+// Diagnostics only (never merge this isolated branch): report exact persisted
+// state paths instead of Node's truncated 50 KB string assertion output.
+function assertReloadUnchanged(actualJson: string, expectedJson: string, context: string) {
+  if (actualJson === expectedJson) return;
+  const actual = JSON.parse(actualJson);
+  const expected = JSON.parse(expectedJson);
+  const differences: string[] = [];
+  const renderValue = (value: any) => {
+    const serialized = JSON.stringify(value);
+    return serialized === undefined ? "undefined" : serialized.slice(0, 130);
+  };
+  const walk = (before: any, after: any, path: string): void => {
+    if (differences.length >= 12 || JSON.stringify(before) === JSON.stringify(after)) return;
+    if (!before || !after || typeof before !== 'object' || typeof after !== 'object'
+        || Array.isArray(before) !== Array.isArray(after)) {
+      differences.push(path + ': before=' + renderValue(before) + ' after=' + renderValue(after));
+      return;
+    }
+    if (Array.isArray(before) && before.length !== after.length) {
+      differences.push(path + '.length: before=' + before.length + ' after=' + after.length);
+    }
+    const keys = new Set([...Object.keys(before), ...Object.keys(after)]);
+    for (const key of keys) {
+      if (differences.length >= 12) break;
+      const child = path + (Array.isArray(before) ? '[' + key + ']' : '.' + key);
+      if (!Object.prototype.hasOwnProperty.call(before, key) || !Object.prototype.hasOwnProperty.call(after, key)) {
+        differences.push(child + ': before=' + renderValue(before[key]) + ' after=' + renderValue(after[key]));
+      } else {
+        walk(before[key], after[key], child);
+      }
+    }
+  };
+  walk(expected, actual, 'state');
+  throw new Error(context + ': persisted state changed after reload: ' + JSON.stringify(differences));
+}
+
 // Opening the full history is a two-level disclosure in the live Mini UI.
 // Click the visible parent first; a child <summary> inside a closed <details>
 // is in the DOM but is not visible or clickable to a real player.
@@ -329,6 +365,12 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     { id: 'arvid_videre_avbrutt', route: 'miljo', suggestion: 'Gangster', activate: true, continue: true, continuation: 'miljo_med_arvid', nextContinuation: 'miljo_navnet_ditt', expectedOpening: 'd8_arvid_etter_avbruddet', choices: { d5_amir_oppmotet: 'ga_hjem', d7_miljo_videre: 'rolleflaten', d9_arvid_praten: 'ga', d10_arvid_etter_praten: 'avstand', d11_arvid_med_avstand: 'kontakt', d12_arvid_avklaringen: 'nei' } },
     { id: 'arvid_videre_avstand', route: 'miljo', suggestion: 'Gangster', activate: true, continue: true, continuation: 'miljo_med_arvid', nextContinuation: 'miljo_navnet_ditt', expectedOpening: 'd8_arvid_etter_avstanden', choices: { d4_amir_rammen: 'trekk_deg', d5_amir_uten_oppmote: 'avstand', d7_miljo_videre: 'rolleflaten', d8_arvid_etter_avstanden: 'avstand', d10_arvid_uten_prat: 'avstand', d11_arvid_med_avstand: 'avstand' } }
   ];
+  // Test-only branch: rerun the exact 14 failing cases before a full suite.
+  const focus = new Set(String(process.env.CIVICATION_ARBEIDSL_FOCUS || '').split(',').filter(Boolean));
+  if (focus.size) {
+    for (const id of focus) assert.ok(cases.some((c: any) => c.id === id), 'unknown focused scenario: ' + id);
+  }
+  const selectedCases = focus.size ? cases.filter((c: any) => focus.has(c.id)) : cases;
   const representatives: Record<string, any> = {
     lea_sideprosjekt_videre: { type: 'lea', id: 'jens_jacob_jensen_myrens', name: 'Jens Jacob Jensen' },
     lea_frilans_videre: { type: 'lea', id: 'peter_emil_steen', name: 'Peter Emil Steen' },
@@ -339,7 +381,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
   };
   const reports: any[] = [];
   const failures: any[] = [];
-  for (const scenario of cases) {
+  for (const scenario of selectedCases) {
     const representative = representatives[scenario.id];
     const context = await browser.newContext({ viewport: scenario.id === 'musikk_booket' ? { width: 1024, height: 768 } : { width: 390, height: 844 } });
     if (representative) await context.addInitScript((person: any) => {
@@ -466,6 +508,12 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         await page.locator(`[data-lifestory-continue="${chapterId}"]`).click();
         await page.waitForFunction(() => (globalThis as any).CivicationLifestoryState.load().dag === 8);
         state = await readState();
+        assert.equal(state.fortsettelseId, chapterId,
+          `${scenario.id}: selected continuation must be committed before day 8`);
+        assert.equal(state.kapittelArkiv?.length, 1,
+          `${scenario.id}: completed chapter is archived before day 8`);
+        assert.equal(state.kalenderDag, await page.evaluate(() => (globalThis as any).CivicationCalendar.getClock().dayIndex),
+          `${scenario.id}: chapter and shell share one calendar day`);
         const frozenEnding = JSON.stringify(state.kapittelArkiv[0]);
         const pending = await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo().sceneId);
         assert.equal(pending, scenario.expectedOpening || (scenario.id === 'mira_videre_spilt' ? 'd8_mira_etter_settet' : 'd8_mira_uten_sett'));
@@ -473,7 +521,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         // Change the primary life position through the real profile, reload
         // while paused, then restore it through the same player control.
         await openFullHistoryViaUi(page);
-        await page.locator('[data-lifestory-life-profile]').click();
+        await page.locator('[data-lifestory-symposium] [data-lifestory-life-profile]').click();
         await page.locator('#civiLifePositionSelect').selectOption('by|Byvandrer');
         await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
         await page.locator('.civi-footer button[data-category="minDag"]').click();
@@ -516,7 +564,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
             return app.CivicationLifestoryUI?.getCurrentSceneInfo?.() && app.CivicationLifePositions?.getLifeContext?.().primary_life_position?.label === expectedRole
               && !app.document.querySelector('[data-lifestory-paused]');
           }, roleLabel);
-          assert.equal(JSON.stringify(await readState()), beforeReload);
+          assertReloadUnchanged(JSON.stringify(await readState()), beforeReload, `${scenario.id}: day ${after.dag}, scene ${sceneId}`);
           }
           assert.ok(++nativeGuard < 20);
         }
@@ -541,7 +589,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         const secondRole = scenario.nextRole || roleLabel;
         if (secondRole !== roleLabel) {
           await openFullHistoryViaUi(page);
-          await page.locator('[data-lifestory-life-profile]').click();
+          await page.locator('[data-lifestory-symposium] [data-lifestory-life-profile]').click();
           await page.locator('#civiLifePositionSelect').selectOption(`${encodeURIComponent(badge)}|${encodeURIComponent(secondRole)}`);
           await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
           await page.locator('.civi-footer button[data-category="minDag"]').click();
@@ -632,7 +680,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         await page.reload({ waitUntil: 'load' });
         await page.waitForFunction(() => !!(globalThis as any).CivicationLifestoryUI?.getRoleSuggestion?.());
         await openFullHistoryViaUi(page);
-        await page.locator('[data-lifestory-life-profile]').click();
+        await page.locator('[data-lifestory-symposium] [data-lifestory-life-profile]').click();
         await page.locator('#civiSectionPopup [data-civi-life-suggestion]').waitFor({ state: 'visible' });
         if (scenario.activate) assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifePositions.getLifeContext().primary_life_position.label), scenario.nextRole || scenario.suggestion);
         await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
@@ -655,7 +703,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     } finally { await context.close(); }
   }
   if (failures.length) {
-    throw new Error('Arbeidsledig full browser acceptance: ' + reports.length + '/' + cases.length
+    throw new Error('Arbeidsledig full browser acceptance: ' + reports.length + '/' + selectedCases.length
       + ' passed; failures=' + JSON.stringify(failures.map(({ id, error }) => ({ id, error }))));
   }
   return { cases: reports, fullShell: true, productionFunctionsReplaced: false };
