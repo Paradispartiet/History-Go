@@ -723,7 +723,6 @@
   function renderInnerMapGroups(selected, caseTitle) {
     const groups = getInnerMapGroups();
     const assignments = getInnerMapAssignments();
-    const groupName = new Map(groups.map((item) => [item.id, item.label]));
     const groupRows = groups.map((item) => {
       const count = Object.values(assignments).filter((id) => id === item.id).length;
       return '<li class="psychology-room-map-group-item" data-psych-map-group-row="' +
@@ -763,7 +762,7 @@
     const entries = getInnerMapTimeline();
     const items = entries.map((entry) =>
       '<li class="psychology-room-map-timeline-item"><span class="psychology-room-map-timeline-date">' +
-      escapeHtml(/^\\d{4}-\\d{2}-\\d{2}/.test(entry.created_at) ?
+      escapeHtml(/^\d{4}-\d{2}-\d{2}/.test(entry.created_at) ?
         entry.created_at.slice(0, 10) : "Uten dato") + '</span>' +
       '<button type="button" class="psychology-room-inner-open" data-psych-map-timeline-open="' +
       escapeHtml(entry.id) + '"><strong>' + escapeHtml(entry.title) + '</strong><span>' +
