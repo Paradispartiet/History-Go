@@ -124,7 +124,8 @@
       imageLicense:s(item.imageMeta?.license),
       imageLicenseUrl:s(item.imageMeta?.licenseUrl),
       imageTransformation:s(item.imageMeta?.transformation),
-      imageDisclosure:s(item.imageMeta?.disclosure),
+      // Historical Structures may carry a narrower evidence-bound label than the generic disclosure.
+      imageDisclosure:s(item.imageMeta?.disclosure || (sourceKind === "structures" ? item.imageMeta?.editorialLimit : "")),
       imageSource:s(item.imageMeta?.sourceUrl || item.imageMeta?.sourcePage),
       sourceUrls:arr(item.source_urls).filter(url => /^https:\/\//i.test(s(url))),
       sourceKind
