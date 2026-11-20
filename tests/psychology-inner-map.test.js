@@ -83,6 +83,22 @@ assert.ok(source.includes("localStorage.removeItem(STORAGE_KEYS.innerMap)"),
 assert.ok(source.includes("GitHub Pages deler nettleserlagring"),
   "users must be warned about the shared GitHub Pages storage origin");
 
+// v3 stores only user-chosen graph coordinates, never the underlying note text.
+const startPosition = room.getInnerMapPositions()[0];
+assert.equal(startPosition.id, "entry-1");
+assert.equal(startPosition.x, 0.15);
+assert.equal(room.setInnerMapPosition("missing", 0.4, 0.4).reason, "invalid_position");
+assert.equal(room.setInnerMapPosition("entry-1", NaN, 0.4).reason, "invalid_position");
+assert.equal(room.setInnerMapPosition("entry-1", "0.4", 0.4).reason, "invalid_position");
+assert.equal(room.setInnerMapPosition("entry-1", 0.4, 0.45).ok, true);
+assert.deepEqual(JSON.parse(store.get(MAP)).layout["entry-1"], { x: 0.4, y: 0.45 });
+assert.equal(JSON.parse(store.get(MAP)).version, 3);
+assert.equal(store.get(MAP).includes(note.situation), false);
+assert.equal(room.setInnerMapPosition("entry-1", 1, -1).ok, true);
+assert.deepEqual(JSON.parse(store.get(MAP)).layout["entry-1"], { x: 0.89, y: 0.1 },
+  "out-of-range pointer positions must be clamped inside the canvas");
+assert.ok(writes.every(({ key }) => key === MAP), "moving notes must never write elsewhere");
+
 // Connections are explicitly created; no relationships appear automatically.
 assert.deepEqual(Array.from(room.getInnerMapLinks()), []);
 assert.equal(room.connectInnerMapEntries("entry-1", "entry-2", "similar").reason,
@@ -110,6 +126,9 @@ assert.equal(room.connectInnerMapEntries("entry-1", "entry-2", "contrast").ok, t
 assert.equal(room.toggleInnerMap("entry-2").selected, false);
 assert.equal(room.getInnerMapLinks().length, 0, "removing a mapped note prunes links");
 assert.deepEqual(JSON.parse(store.get(MAP)).links, []);
+assert.equal(JSON.parse(store.get(MAP)).layout["entry-2"], undefined,
+  "removing a map entry must discard its saved position");
+
 
 // Malformed state is filtered without side effects or prototype-property abuse.
 store.set(MAP, JSON.stringify({
@@ -143,6 +162,15 @@ assert.equal(room.getInnerMapModel().length, 0);
 store.set(MAP, JSON.stringify({ selected_ids: ["missing", {}, null, "entry-1", "entry-1"] }));
 assert.deepEqual(Array.from(room.getInnerMapIds()), ["entry-1"]);
 
+// Malformed or stale map positions must be ignored without mutating storage.
+store.set(MAP, JSON.stringify({
+  selected_ids: ["entry-1"], links: [],
+  layout: { "entry-1": { x: "invalid", y: 0.5 }, missing: { x: 0.3, y: 0.4 } }
+}));
+const beforeInvalidRead = writes.length;
+assert.equal(room.getInnerMapPositions()[0].x, 0.15);
+assert.equal(writes.length, beforeInvalidRead, "a read must not repair data silently");
+
 // Maximum 16 explicit selections prevents unbounded rendering.
 store.set(MAP, JSON.stringify({ selected_ids: [] }));
 store.set(WORKBENCH, JSON.stringify(Array.from({ length: 17 }, (_, i) => sample("id-" + i))));
@@ -167,5 +195,6 @@ assert.equal(room.toggleInnerMap("id-1").reason, "storage_failed");
 assert.equal(room.disconnectInnerMapEntries("id-0", "id-1").reason, "storage_failed");
 assert.equal(room.getInnerMapLinks().length, 32, "failed writes leave the map unchanged");
 assert.equal(room.getInnerMapIds().length, 16);
+assert.equal(room.setInnerMapPosition("id-0", 0.4, 0.4).reason, "storage_failed");
 
 console.log("Psychology 2.0 inner map: 16-ID opt-in, local-only, safe missing entries: passed");
