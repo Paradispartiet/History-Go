@@ -504,15 +504,14 @@
       // The same popup works for all places; nothing is hard-coded to the theatre.
       return items.map(item => {
         const kind = item.imageKind === "illustration" ? "illustration" : "photo";
-        const disclosure = kind === "illustration" ? "Illustrasjon – ikke fotografi" : "Dokumentarfotografi";
+        const context = kind === "illustration" ? s(item.imageDisclosure).replace(/^Illustrasjon\s*[–-]\s*ikke fotografi[.;,]?\s*/i, "") : s(item.imageDisclosure);
         const source = [item.imageSource, ...item.sourceUrls].find(url => /^https:\/\//i.test(url));
         return `<article class="pc-visual-round-item pc-object-member" data-visual-round-item="${esc(item.id)}" data-image-kind="${kind}">
-          ${item.image ? `<img src="${esc(item.image)}" class="pc-person-img pc-object-member-image" alt="${esc(item.imageAlt)}" loading="lazy" decoding="async">` : ""}
+          ${item.image ? `<div class="pc-object-member-media"><img src="${esc(item.image)}" class="pc-person-img pc-object-member-image" alt="${esc(item.imageAlt)}" loading="lazy" decoding="async">${kind === "illustration" ? '<span class="pc-object-disclosure">Illustrasjon</span>' : ""}</div>` : ""}
           <div class="pc-person-meta pc-object-member-copy">
             <strong class="pc-person-name">${esc(item.title)}</strong>
-            <span class="pc-object-disclosure">${disclosure}</span>
             ${item.description ? `<p class="pc-person-desc">${esc(item.description)}</p>` : ""}
-            ${item.imageDisclosure ? `<p class="pc-object-context">${esc(item.imageDisclosure)}</p>` : ""}
+            ${context ? `<p class="pc-object-context">${esc(context)}</p>` : ""}
             ${item.imageCredit ? `<p class="pc-object-credit">Bilde: ${esc(item.imageCredit)}${item.imageLicense ? ` · ${esc(item.imageLicense)}` : ""}</p>` : ""}
             ${source ? `<a class="pc-object-source" href="${esc(source)}" target="_blank" rel="noopener noreferrer">${kind === "illustration" ? "Historisk kilde for gjenstanden" : "Se historisk kilde og bildeopphav"}</a>` : ""}
           </div>
@@ -556,7 +555,7 @@
     }
     const alt = s(preview.imageAlt || preview.title);
     const previewDisclosure = illustrated
-      ? `<span class="pc-object-preview-disclosure">${def.id === "structures" ? "Illustrasjon" : "Illustrasjon – ikke fotografi"}</span>`
+      ? '<span class="pc-object-preview-disclosure">Illustrasjon</span>'
       : "";
     icon.innerHTML = `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(alt)}">${previewDisclosure}`;
     icon.dataset.previewStatus = "member-image";
