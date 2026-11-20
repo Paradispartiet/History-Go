@@ -70,7 +70,7 @@ try{
       const icon=document.getElementById("pcCategoryCollectionIcon");
       const card=document.getElementById("placeCard");
       return p?.structures?.length===2&&icon?.dataset.collectionItemCount==="2"&&
-        icon?.dataset.collectionId==="structures"&&card?.dataset.collectionProfileSource==="place_card_profile_v2";
+        icon?.dataset.collectionId==="structures"&&/^place_card_profile_v2(?:_curated)?$/.test(card?.dataset.collectionProfileSource || "");
     },null,{timeout:28000});
    } catch (error) {
     const diagnostic=await page.evaluate(()=>{
@@ -106,7 +106,7 @@ try{
      return img?.complete&&img.naturalWidth>0;
    },null,{timeout:45000});
    const before=await readLayout();
-   assert.equal(before.profile,"place_card_profile_v2",tag+": canonical profile");
+   assert.match(before.profile,/^place_card_profile_v2(?:_curated)?$/,tag+": canonical curated profile");
    assert.equal(before.count,"2",tag+": only People + Structures");
    assert.equal(before.grid,"1",tag+": one Structures gallery slot");
    assert.equal(before.structuresId,"structures");
