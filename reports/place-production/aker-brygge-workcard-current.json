@@ -31,7 +31,7 @@
     "people": "PASS: fem eksisterende People-registreringer; Hariton Pushwagners autentiske portrett er filverifisert og lastet i PlaceCard. Tinashe Williamsons eldre filreferanse finnes ikke i repoet; personoppføringen beholdes uten å framstille det som et verifisert bilde. Øvrige personer er foreløpig tekstbaserte.",
     "brands": "HOLD: 9/9 eksisterende merkevarer har nå dokumenterte originalkilder og WebP-kandidater på main (PR #7439, #7442, #7445, #7448); 0/9 er redaksjonelt/rettslig godkjent for PlaceCard. Aktiv Brands-knapp holdes skjult inntil kilde- og rettighetsporter samt målrettet nettlesertest består.",
     "objects": "BEGRUNNET N/A: ingen dokumenterte bildeklare separate Objects godkjent",
-    "structures": "STAGED PR #7464: to source-autentiske historiske Structures med kanoniske WebP: 1) Bryggegata bygningsmiljø foto Ssu 2022, CC BY-SA 4.0, ikke identifisert enkelthall; 2) tørrdokken med Frontenac, Wilse/Oslo Museum OB.Y3285 foto 1929, CC BY-SA 4.0, ikke dokumentasjon av dagens dokkgrenser. Originaler og bildesjekksummer er arkivert. Publisering, kilder i reell PlaceCard og mobil-/desktop-QA må bekreftes før ferdigstatus.",
+    "structures": "PASS for the two already activated, strictly scoped historical/documentary Structures in PlaceCard: verkstedhallmiljøet i Bryggegata (Ssu 2022, felles miljø – ikke enkeltbygning) and tørrdokken/Frontenac (Anders Beer Wilse 1929 – ikke dagens dokkgeometri). Both images full-frame, 1200x900, CC BY-SA 4.0, browser verified on 390px/1440px in GitHub run 44759976996. Additional single-building Structure candidates (Verkstedhallen, Maskinhallen, Snekkerbygget and Administrasjonsbygget) still require exact facade imagery and editorial approval; historic dieselmotorverksted possible alias. No fabricated imagery approved.",
     "fagverk": "PRESERVED: seks kurerte historiske artikkelavsnitt, linser og kildegrunnlag",
     "fullquiz": "PRESERVED: 8 × 7 = 56 eksisterende spørsmål og samtlige kanoniske ID-er",
     "quizcard": "PASS: 10/10 fra eksisterende fullquiz med lik fasit og Knowledge",
@@ -54,12 +54,12 @@
     "place_open": "PASS: eksakt Place-open-generatorparitet.",
     "browser": "PASS: GitHub Actions run 44308343863, mobil 390 px og desktop 1440 px. Begge bildepar og ekte Hariton Pushwagner-preview lastet; PlaceCard/QuizCard åpnet og vendt uten JavaScript-feil.",
     "read_first": "PASS: GitHub Actions 44304825182 og målrettet kontroll i 44308343863.",
-    "structures_browser": "PENDING_REAL_PLACE_CARD_QA_FOR_PR_7464",
+    "structures_browser": "PASS: GitHub Actions run 44759976996, Playwright Chromium real PlaceCard 390px mobile and 1440px desktop. Canonical People + Structures 2/2 visible (one gallery slot), 2/2 Structure photos load, click opens two-item popup with credit/license/Commons source, Brands hidden, zero JS errors.",
     "structures_source_integrity": "PASS: source and derivative SHA-256 preserved from archived candidate reports"
   },
   "vferdig": {
     "status": "NOT_CLAIMED",
-    "reason": "V1 for Aker Brygge er fortsatt verifisert. To historiske Structures-bilder er koblet til PlaceCard i PR #7464, men egen publiserings- og visuell akseptanse gjenstår. Ni Brands mangler publiseringsgodkjenning, og individuelle hallidentiteter/modern dock geometry påstås ikke."
+    "reason": "PlaceCard People + two source-limited Structures passed actual mobile/desktop browser QA (44759976996). Formal vFerdig remains blocked by publication/referential-use approval of 9 Brands, missing verified People portrait (Tinashe Williamson), and source-correct visual completion of individual qualifying hall/administration/carpenter building candidates; separate Pages deployment not independently verified."
   },
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
