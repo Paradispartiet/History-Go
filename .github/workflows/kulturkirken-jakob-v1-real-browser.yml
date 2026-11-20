@@ -4,6 +4,8 @@ on:
     paths:
       - '.github/workflows/kulturkirken-jakob-v1-real-browser.yml'
       - 'tests/kulturkirken-jakob-v1-real-browser.test.mjs'
+      - 'scripts/verify-place-quiz-browser.mjs'
+      - 'data/quiz/manifest.json'
       - 'data/places/musikk/oslo/places_musikk/kulturkirken_jakob_litteratur.json'
       - 'data/quiz/musikk/kulturkirken_jakob_litteratur_sets.json'
       - 'data/quizcards/musikk/kulturkirken_jakob_litteratur_quizkort_v1.json'
@@ -16,7 +18,7 @@ concurrency:
 jobs:
   real-app:
     runs-on: ubuntu-latest
-    timeout-minutes: 22
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,11 +34,20 @@ jobs:
           CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
           test -n "$CHROME_BIN"
           CHROME_BIN="$CHROME_BIN" node tests/kulturkirken-jakob-v1-real-browser.test.mjs
+      - name: Full canonical Musikk quiz — 21 questions, rewards, no physical visit
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node scripts/verify-place-quiz-browser.mjs kulturkirken_jakob_litteratur --ipad
       - name: Upload browser evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: kulturkirken-jakob-v1-real-app
-          path: artifacts/kulturkirken-jakob-real-browser/**
+          path: |
+            artifacts/kulturkirken-jakob-real-browser/**
+            artifacts/place-quiz/kulturkirken_jakob_litteratur/**
           if-no-files-found: ignore
           retention-days: 14
