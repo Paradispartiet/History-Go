@@ -628,7 +628,32 @@ async function continueThroughDayThree(page, label, viewport, choices, expected,
     }
     consecutiveDetachRetries = 0;
     const bounds = await button.boundingBox();
-    assert.ok(bounds && bounds.width > 0 && bounds.x >= -2 && bounds.x + bounds.width <= viewport.width + 2);
+    const fitsViewport = bounds && bounds.width > 0 && bounds.x >= -2
+      && bounds.x + bounds.width <= viewport.width + 2;
+    if (!fitsViewport) {
+      // Preserve the strict mobile-width check; collect the precise failing
+      // scene, layout dimensions and screenshot instead of hiding overflow.
+      const layout = await button.evaluate(el => {
+        const rect = el.getBoundingClientRect();
+        const style = getComputedStyle(el);
+        const parent = el.parentElement;
+        return {
+          rect: { x: rect.x, width: rect.width, right: rect.right },
+          display: style.display, position: style.position, boxSizing: style.boxSizing,
+          parentWidth: parent?.getBoundingClientRect().width,
+          viewportWidth: document.documentElement.clientWidth,
+          documentScrollWidth: document.documentElement.scrollWidth,
+          windowInnerWidth: window.innerWidth, windowScrollX: window.scrollX
+        };
+      }).catch(error => ({ error: String(error) }));
+      const diagnostic = { label, sceneId, viewport, bounds, layout };
+      console.error('EKSPEDITOR_DAY3_VIEWPORT_FAILURE ' + JSON.stringify(diagnostic));
+      await page.screenshot({
+        path: path.join(output, label + '-' + sceneId + '-viewport-failure.png'),
+        fullPage: true
+      }).catch(error => console.warn('Could not capture viewport failure: ' + String(error)));
+      assert.fail(label + ': day-three choice outside viewport ' + JSON.stringify(diagnostic));
+    }
     const focus = sceneId === 'd3_stamkunden_prismatch' || sceneId === expected.supportScene
       || sceneId.startsWith('d3_pris_') || sceneId === 'd3_stotte_02_amir_resultat';
     if (focus) {
