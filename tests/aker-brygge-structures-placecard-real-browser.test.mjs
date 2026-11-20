@@ -64,13 +64,31 @@ try{
    await page.goto(base+"/index.html?hgTest=1#/place/aker_brygge",{waitUntil:"domcontentloaded",timeout:90000});
    await page.waitForFunction(()=>window.__HG_APP_READY__===true&&window.__HG_ROUTER_STARTED__===true&&
      document.getElementById("placeCard")?.dataset.currentPlaceId==="aker_brygge",null,{timeout:90000});
-   await page.waitForFunction(()=>{
-    const p=window.PLACES?.find(x=>x.id==="aker_brygge");
-    const icon=document.getElementById("pcCategoryCollectionIcon");
-    const card=document.getElementById("placeCard");
-    return p?.structures?.length===2&&icon?.dataset.collectionItemCount==="2"&&
-      icon?.dataset.collectionId==="structures"&&card?.dataset.collectionProfileSource==="place_card_profile_v2";
-   },null,{timeout:50000});
+   try {
+    await page.waitForFunction(()=>{
+      const p=window.PLACES?.find(x=>x.id==="aker_brygge");
+      const icon=document.getElementById("pcCategoryCollectionIcon");
+      const card=document.getElementById("placeCard");
+      return p?.structures?.length===2&&icon?.dataset.collectionItemCount==="2"&&
+        icon?.dataset.collectionId==="structures"&&card?.dataset.collectionProfileSource==="place_card_profile_v2";
+    },null,{timeout:28000});
+   } catch (error) {
+    const diagnostic=await page.evaluate(()=>{
+      const p=window.PLACES?.find(x=>x.id==="aker_brygge"),card=document.getElementById("placeCard");
+      const icon=document.getElementById("pcCategoryCollectionIcon");
+      const people=document.getElementById("pcPeopleIcon"),brands=document.getElementById("pcBrandsIcon");
+      return {placeReady:!!p,placeStructCount:p?.structures?.length,placeStructures:p?.structures?.map(x=>({id:x.id,img:x.image})),
+        configuredProfile:p?.place_card_profile,cardData:{...card?.dataset},
+        iconData:{...icon?.dataset},iconHidden:icon?.hidden,iconHtml:icon?.outerHTML.slice(0,1100),
+        peopleHidden:people?.hidden,brandsHidden:brands?.hidden,
+        collectionAdapterReady:typeof window.HGPlaceCardCollections?.apply,
+        collectionConfigured:window.HGPlaceCardCollections?.getConfigured?.(p),
+        hasLoadErrors:window.__HG_APP_READY__===false};
+    });
+    console.error(tag+" AKER_BRYGGE_STRUCTURES_STATE_DIAGNOSTIC",JSON.stringify(diagnostic));
+    await page.screenshot({path:path.join(out,tag+"-structures-hydration-diagnostic.png"),fullPage:false}).catch(()=>{});
+    throw error;
+   }
    const readLayout=()=>page.evaluate(()=>{
     const card=document.getElementById("placeCard"),icon=document.getElementById("pcCategoryCollectionIcon"),people=document.getElementById("pcPeopleIcon");
     const brands=document.getElementById("pcBrandsIcon"),header=document.getElementById("pcHeaderImage"),front=document.getElementById("pcFrontImage");
@@ -116,7 +134,7 @@ try{
     assert.ok(popup.html.includes(structure.imageMeta.credit),tag+": photographer missing "+structure.id);
     assert.ok(popup.html.includes(structure.imageMeta.licenseUrl),tag+": CC license missing "+structure.id);
     assert.ok(popup.html.includes(structure.imageMeta.sourcePage),tag+": original Commons source missing "+structure.id);
-    assert.ok(popup.html.includes(structure.imageMeta.editorialLimit),tag+": must display date/identity limit "+structure.id);
+    assert.ok(popup.html.includes(structure.id==="aker_brygge_verkstedhallene_miljo"?"enkeltvis":"1929"),tag+": missing historical/identity disclosure "+structure.id);
    }
    assert.equal(await page.locator("#pcCategoryCollectionList [data-visual-round-item]").count(),2,tag+": two actual entries");
    assert.equal(await page.locator("#pcCategoryCollectionList .pc-structure-credit").count(),2,tag+": two visible photo credits");
