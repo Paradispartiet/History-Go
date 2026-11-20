@@ -10,6 +10,7 @@ on:
       - 'js/ui/psychology-room-entry.js'
       - 'tests/psychology-room-aha-bridge.test.js'
       - 'tests/psychology-inner-map.test.js'
+      - 'tests/psychology-workbench-storage.test.cjs'
       - 'css/psychologyRoom.css'
       - 'tests/civication-psychology-room-theory.test.js'
       - 'tests/civication-psychology-room-coverage.test.js'
@@ -45,5 +46,7 @@ jobs:
         run: node tests/psychology-room-aha-bridge.test.js
       - name: Check private personal map and opt-in storage
         run: node tests/psychology-inner-map.test.js
+      - name: Check lossless and failure-safe private reflection storage
+        run: node tests/psychology-workbench-storage.test.cjs
       - name: Validate theory coverage, read-only navigation and competence boundaries
         run: npm run test:psychology
