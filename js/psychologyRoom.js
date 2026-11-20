@@ -382,18 +382,60 @@
     return valid;
   }
 
-  function saveInnerMapState(selectedIds, links) {
+
+  // Positions are optional, local-only metadata. Maps from v1/v2 remain readable.
+  function getInnerMapLayout() {
+    const state = readJson(STORAGE_KEYS.innerMap, {});
+    const saved = state?.layout && typeof state.layout === "object" &&
+      !Array.isArray(state.layout) ? state.layout : {};
+    const valid = Object.create(null);
+    for (const id of getInnerMapIds()) {
+      if (!Object.prototype.hasOwnProperty.call(saved, id)) continue;
+      const point = saved[id];
+      if (point && typeof point.x === "number" && Number.isFinite(point.x) &&
+          typeof point.y === "number" && Number.isFinite(point.y) &&
+          point.x >= 0.11 && point.x <= 0.89 && point.y >= 0.1 && point.y <= 0.9) {
+        valid[id] = { x: point.x, y: point.y };
+      }
+    }
+    return valid;
+  }
+
+  function getInnerMapPositions() {
+    const layout = getInnerMapLayout();
+    return getInnerMapIds().map((id, index) => ({
+      id,
+      x: layout[id]?.x ?? (0.15 + (index % 4) * 0.23),
+      y: layout[id]?.y ?? (0.14 + Math.floor(index / 4) * 0.22)
+    }));
+  }
+
+  function saveInnerMapState(selectedIds, links, layout = getInnerMapLayout()) {
     try {
       // One atomic localStorage key keeps selection and manual connections
       // consistent when one note is removed from the map.
       localStorage.setItem(STORAGE_KEYS.innerMap, JSON.stringify({
-        version: 2, selected_ids: selectedIds, links
+        version: 3, selected_ids: selectedIds, links,
+        layout: Object.fromEntries(Object.entries(layout).filter(([id]) => selectedIds.includes(id)))
       }));
       return { ok: true };
     } catch (error) {
       console.warn("[PsychologyRoom.saveInnerMapState]", error);
       return { ok: false, reason: "storage_failed" };
     }
+  }
+
+
+  function setInnerMapPosition(id, x, y) {
+    if (typeof id !== "string" || !getInnerMapIds().includes(id) ||
+        typeof x !== "number" || !Number.isFinite(x) ||
+        typeof y !== "number" || !Number.isFinite(y)) {
+      return { ok: false, reason: "invalid_position" };
+    }
+    const layout = getInnerMapLayout();
+    layout[id] = { x: Math.min(0.89, Math.max(0.11, x)),
+      y: Math.min(0.9, Math.max(0.1, y)) };
+    return saveInnerMapState(getInnerMapIds(), getInnerMapLinks(), layout);
   }
 
   function connectInnerMapEntries(from, to, kind) {
@@ -436,7 +478,9 @@
     try {
       const links = getInnerMapLinks().filter((link) =>
         next.includes(link.from) && next.includes(link.to));
-      const result = saveInnerMapState(next, links);
+      const layout = getInnerMapLayout();
+      for (const id of Object.keys(layout)) if (!next.includes(id)) delete layout[id];
+      const result = saveInnerMapState(next, links, layout);
       return result.ok ? { ok: true, selected: !exists, count: next.length } : result;
     } catch (error) {
       console.warn("[PsychologyRoom.toggleInnerMap]", error);
@@ -1854,6 +1898,8 @@
     getInnerMapIds,
     getInnerMapModel,
     getInnerMapLinks,
+    getInnerMapPositions,
+    setInnerMapPosition,
     connectInnerMapEntries,
     disconnectInnerMapEntries,
     toggleInnerMap,
