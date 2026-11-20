@@ -6,6 +6,7 @@ const { chromium, webkit, devices } = require("playwright");
 // A complete UI smoke in a throwaway profile. No live site, account, database,
 // real personal notes, external calls or model usage.
 const source = fs.readFileSync("js/psychologyRoom.js", "utf8");
+const backupSource = fs.readFileSync("js/psychologyPrivateBackup.js", "utf8");
 const styles = fs.readFileSync("css/psychologyRoom.css", "utf8");
 const origin = "http://127.0.0.1:45778";
 const synthetic = {
@@ -32,6 +33,10 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
       if (url.pathname === "/") {
         return route.fulfill({ status: 200, contentType: "text/html; charset=utf-8",
           body: '<!doctype html><html lang="no"><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body></body></html>' });
+      }
+      if (url.pathname === "/js/psychologyPrivateBackup.js") {
+        return route.fulfill({ status: 200, contentType: "text/javascript; charset=utf-8",
+          body: backupSource });
       }
       if (url.pathname.startsWith("/data/psychology/") && /^[a-zA-Z0-9_-]+\.json$/.test(url.pathname.split("/").pop())) {
         const filename = path.join("data", "psychology", path.basename(url.pathname));
@@ -217,6 +222,49 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
     // and its map references. Neither must survive in this browser profile.
     await page.locator('[data-psych-map-add="synthetic-map-one"]').click();
     await page.locator('[data-psych-nav="profile"]').click();
+    assert.equal(await page.locator("#psychologyPrivateBackupExport").count(), 1);
+    await page.evaluate(() => {
+      // Capture the exact encrypted Blob created by the UI; Safari/WebKit does
+      // not reliably allow fetch(blob:...) in a routed test context.
+      const nativeObjectURL = URL.createObjectURL.bind(URL);
+      URL.createObjectURL = blob => {
+        window.__psychologyTestEncryptedBlob = blob;
+        return nativeObjectURL(blob);
+      };
+    });
+    const passphrase = "Et langt syntetisk testpassord 2026";
+    await page.locator('#psychologyPrivateBackupExport input[name="password"]').fill(passphrase);
+    await page.locator('#psychologyPrivateBackupExport input[name="confirm_password"]').fill(passphrase);
+    await page.locator('#psychologyPrivateBackupExport button[type="submit"]').click();
+    await page.waitForFunction(() => {
+      const status = document.querySelector('#psychologyPrivateBackupExport [role="status"]')?.textContent || "";
+      return status.includes("klar") || status.includes("ikke") || status.includes("støtter") ||
+        status.includes("stor");
+    }, null, { timeout: 15000 });
+    const exportStatus = await page.locator('#psychologyPrivateBackupExport [role="status"]').innerText();
+    assert.match(exportStatus, /kryptert og klar/, "export failed: " + exportStatus);
+    const downloadLink = page.locator(".psychology-room-backup-download a");
+    await downloadLink.waitFor({ state: "visible" });
+    assert.match(await downloadLink.innerText(), /Last ned kryptert fil/,
+      "export provides an explicit user download link");
+    const encryptedFile = await page.evaluate(async () =>
+      window.__psychologyTestEncryptedBlob.text());
+    assert.ok(encryptedFile.includes("history-go-psychology-encrypted-backup-v1"));
+    assert.ok(!encryptedFile.includes(synthetic.situation),
+      "the download must not contain plaintext reflections");
+    await page.locator(".psychology-room-backup-restore summary").click();
+    await page.locator('#psychologyPrivateBackupRestore input[name="file"]').setInputFiles({
+      name: "backup.json", mimeType: "application/json", buffer: Buffer.from(encryptedFile, "utf8")
+    });
+    await page.locator('#psychologyPrivateBackupRestore input[name="password"]').fill(passphrase);
+    await page.locator('#psychologyPrivateBackupRestore input[name="confirm"]').check();
+    await page.locator('#psychologyPrivateBackupRestore button[type="submit"]').click();
+    await page.waitForFunction(() => {
+      const status = document.querySelector('#psychologyPrivateBackupRestore [role="status"]')?.textContent || "";
+      return status.includes("allerede et arkiv");
+    }, null, { timeout: 10000 });
+    assert.match(await page.locator('#psychologyPrivateBackupRestore [role="status"]').innerText(),
+      /allerede et arkiv/, "restore refuses to overwrite existing private records");
     page.once("dialog", dialog => dialog.accept());
     await page.locator('[data-psych-clear-workbench]').click();
     const cleared = await page.evaluate(() => ({
@@ -227,6 +275,23 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
     assert.equal(cleared.workbench, null, "deleting notes removes the source data");
     assert.equal(cleared.map, null, "deleting notes removes selected map references");
     assert.equal(cleared.aha, null, "the map must never create regular AHA insights");
+    await page.locator(".psychology-room-backup-restore summary").click();
+    await page.locator('#psychologyPrivateBackupRestore input[name="file"]').setInputFiles({
+      name: "backup.json", mimeType: "application/json", buffer: Buffer.from(encryptedFile, "utf8")
+    });
+    await page.locator('#psychologyPrivateBackupRestore input[name="password"]').fill(passphrase);
+    await page.locator('#psychologyPrivateBackupRestore input[name="confirm"]').check();
+    await page.locator('#psychologyPrivateBackupRestore button[type="submit"]').click();
+    await page.locator('[data-psych-open-workbench="synthetic-map-one"]').waitFor();
+    const afterRestore = await page.evaluate(() => ({
+      notes: JSON.parse(localStorage.getItem("hg_psychology_workbench_v1")),
+      map: JSON.parse(localStorage.getItem("hg_psychology_inner_map_v1")),
+      aha: localStorage.getItem("aha_insight_chamber_v1")
+    }));
+    assert.equal(afterRestore.notes.length, 2);
+    assert.equal(afterRestore.notes[0].situation, synthetic.situation);
+    assert.ok(afterRestore.map.selected_ids.includes("synthetic-map-one"));
+    assert.equal(afterRestore.aha, null, "restoration must never create AHA insights");
     await context.close();
     console.log(engineName + ": psychology inner-map UI, escaping and responsive layout passed");
   } finally {

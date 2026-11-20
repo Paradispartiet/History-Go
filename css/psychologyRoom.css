@@ -1495,3 +1495,61 @@
 @media (max-width: 560px) {
   .psychology-room-map-group-item button { width: 100%; }
 }
+
+
+/* Private encrypted file backup: no network transport or automatic uploads. */
+.psychology-room-private-backup {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+.psychology-room-private-backup .psychology-room-form {
+  min-width: 0;
+  display: grid;
+  gap: 11px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(169,236,218,.24);
+  background: #182d35;
+}
+.psychology-room-private-backup .psychology-room-form label {
+  display: grid;
+  gap: 6px;
+}
+.psychology-room-private-backup input[type="password"],
+.psychology-room-private-backup input[type="file"] {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  min-height: 44px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid rgba(169,236,218,.35);
+  background: #203b43;
+  color: #f1f8f6;
+  font: inherit;
+}
+.psychology-room-private-backup .psychology-room-backup-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+.psychology-room-private-backup .psychology-room-backup-consent input { margin-top: 4px; }
+.psychology-room-backup-restore > summary {
+  padding: 12px 14px;
+  min-height: 44px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 1px solid rgba(169,236,218,.28);
+  border-radius: 12px;
+}
+.psychology-room-backup-restore[open] > summary { margin-bottom: 12px; }
+.psychology-room-backup-download a {
+  display: block;
+  min-height: 44px;
+  overflow-wrap: anywhere;
+}
+.psychology-room-private-backup [role="status"] {
+  min-height: 20px;
+  overflow-wrap: anywhere;
+}

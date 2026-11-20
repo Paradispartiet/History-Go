@@ -2162,6 +2162,135 @@
     return foundDay ? String(pathReflections[String(foundDay)]?.reflection || "").trim() : "";
   }
 
+
+  let privateBackupScriptPromise = null;
+  function loadPrivateBackupScript() {
+    if (window.HGPsychologyPrivateBackup) return Promise.resolve(window.HGPsychologyPrivateBackup);
+    if (privateBackupScriptPromise) return privateBackupScriptPromise;
+    privateBackupScriptPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "js/psychologyPrivateBackup.js?v=20261120-psychology-crypto-v1";
+      script.async = true;
+      script.onload = () => window.HGPsychologyPrivateBackup ?
+        resolve(window.HGPsychologyPrivateBackup) : reject(new Error("backup module unavailable"));
+      script.onerror = () => reject(new Error("backup module load failed"));
+      document.head.appendChild(script);
+    }).catch((error) => {
+      privateBackupScriptPromise = null;
+      throw error;
+    });
+    return privateBackupScriptPromise;
+  }
+
+  function backupErrorMessage(code, restoring = false) {
+    const messages = {
+      invalid_password: "Velg et passord på minst 12 tegn.",
+      crypto_unavailable: "Denne nettleseren støtter ikke sikker kryptering her.",
+      invalid_file: "Filen er ikke en gyldig kryptert sikkerhetskopi.",
+      invalid_backup: "Sikkerhetskopien inneholder ugyldige data.",
+      invalid_stored_data: "Lokale notater kan ikke leses trygt. Ingen sikkerhetskopi ble laget.",
+      too_large: "Sikkerhetskopien er for stor for denne løsningen.",
+      archive_not_empty: "Denne nettleseren har allerede et arkiv. Gjenoppretting erstatter aldri eksisterende notater.",
+      cannot_decrypt: "Passordet er feil eller sikkerhetskopien er skadet.",
+      rollback_failed: "Gjenopprettingen feilet og oppryddingen kunne ikke bekreftes. Undersøk lokale data før nytt forsøk.",
+      storage_failed: "Nettleseren avviste lagring. Ingen vellykket gjenoppretting er bekreftet."
+    };
+    return messages[code] || (restoring ?
+      "Gjenoppretting mislyktes. Ingen vellykket lagring er bekreftet." :
+      "Sikkerhetskopien ble ikke opprettet. Kontroller nettleseren og prøv igjen.");
+  }
+
+  function renderPrivateBackupSection() {
+    return '<section class="psychology-room-section psychology-room-private-backup" ' +
+      'aria-labelledby="psychologyPrivateBackupHeading">' +
+      '<h3 id="psychologyPrivateBackupHeading">Min krypterte sikkerhetskopi</h3>' +
+      '<p class="psychology-room-muted">Lagre Tankeverksted-notater og Mitt indre kart i én passordkryptert fil. ' +
+      'Du velger selv når du laster den ned. Filen inneholder ikke screening, profil eller sjudagersløp.</p>' +
+      '<form id="psychologyPrivateBackupExport" class="psychology-room-form">' +
+      '<label>Velg passord (minst 12 tegn)<input type="password" name="password" minlength="12" ' +
+      'maxlength="512" autocomplete="new-password" required></label>' +
+      '<label>Gjenta passordet<input type="password" name="confirm_password" minlength="12" ' +
+      'maxlength="512" autocomplete="new-password" required></label>' +
+      '<button type="submit" class="psychology-room-primary">Lag kryptert sikkerhetskopi</button>' +
+      '<p role="status" aria-live="polite" class="psychology-room-muted"></p>' +
+      '<div class="psychology-room-backup-download"></div></form>' +
+      '<details class="psychology-room-backup-restore"><summary>Gjenopprett fra kryptert fil</summary>' +
+      '<p class="psychology-room-privacy">Av sikkerhetshensyn er gjenoppretting bare tilgjengelig ' +
+      'når denne nettleseren ikke har noen lagrede Tankeverksted-notater eller kartdata. ' +
+      'Ingen eksisterende notater overskrives.</p>' +
+      '<form id="psychologyPrivateBackupRestore" class="psychology-room-form">' +
+      '<label>Kryptert fil<input type="file" name="file" accept=".json,application/json" required></label>' +
+      '<label>Passord<input type="password" name="password" minlength="12" ' +
+      'maxlength="512" autocomplete="off" required></label>' +
+      '<label class="psychology-room-backup-consent"><input type="checkbox" name="confirm" required> ' +
+      'Jeg vil gjenopprette denne filen i et tomt lokalt arkiv.</label>' +
+      '<button type="submit" class="psychology-room-primary">Gjenopprett lokalt</button>' +
+      '<p role="status" aria-live="polite" class="psychology-room-muted"></p></form></details>' +
+      '<p class="psychology-room-privacy">Kryptering skjer på denne enheten. ' +
+      'Passordet sendes ikke til AHA eller History GO. AHA-kontoen lagrer eller ' +
+      'synkroniserer ikke denne filen automatisk. Mister du passordet, kan ikke filen åpnes. ' +
+      'Notatene som allerede ligger i nettleseren, er fortsatt ukrypterte.</p></section>';
+  }
+
+  function bindPrivateBackup() {
+    document.getElementById("psychologyPrivateBackupExport")?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const input = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="password"]'));
+      const confirmInput = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="confirm_password"]'));
+      const status = form.querySelector('[role="status"]');
+      const downloadArea = form.querySelector(".psychology-room-backup-download");
+      if (!input || !confirmInput || !status || !downloadArea) return;
+      if (input.value !== confirmInput.value) {
+        status.textContent = "Passordene er forskjellige. Sikkerhetskopien ble ikke opprettet.";
+        return;
+      }
+      status.textContent = "Krypterer på denne enheten …";
+      downloadArea.replaceChildren();
+      try {
+        const backup = await loadPrivateBackupScript();
+        const result = await backup.exportEncrypted(localStorage, input.value);
+        const blob = new Blob([result.text], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "psykologirommet-kryptert-" + new Date().toISOString().slice(0, 10) + ".json";
+        link.className = "psychology-room-inner-open";
+        link.textContent = "Last ned kryptert fil (" + result.count + " refleksjoner)";
+        downloadArea.appendChild(link);
+        link.addEventListener("click", () => window.setTimeout(() => URL.revokeObjectURL(url), 60000),
+          { once: true });
+        status.textContent = "Sikkerhetskopien er kryptert og klar. Trykk på nedlastingslenken og oppbevar filen trygt.";
+      } catch (error) {
+        status.textContent = backupErrorMessage(error?.code);
+      } finally {
+        input.value = "";
+        confirmInput.value = "";
+      }
+    });
+    document.getElementById("psychologyPrivateBackupRestore")?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const file = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="file"]'))?.files?.[0];
+      const passwordField = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="password"]'));
+      const consent = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="confirm"]'));
+      const status = form.querySelector('[role="status"]');
+      if (!file || !passwordField || !consent?.checked || !status) return;
+      status.textContent = "Kontrollerer kryptert fil …";
+      try {
+        const backup = await loadPrivateBackupScript();
+        if (file.size > backup.maxFileBytes) throw Object.assign(new Error("too large"), { code: "too_large" });
+        const restored = await backup.restoreEncrypted(localStorage, await file.text(), passwordField.value);
+        window.showToast?.("Gjenopprettet " + restored.count + " refleksjoner lokalt.");
+        renderProfile();
+      } catch (error) {
+        status.textContent = backupErrorMessage(error?.code, true);
+      } finally {
+        passwordField.value = "";
+      }
+    });
+  }
+
   function renderProfile() {
     setActiveSection("profile");
     const profile = getProfile();
@@ -2197,8 +2326,10 @@
       (workbenchEntries.length ? '<button type="button" class="psychology-room-back" data-psych-clear-workbench="1">Slett lagrede tankeverksted-notater</button>' : '') +
       '</section>';
 
-    setContent(shell(`${backButton()}${overviewHtml}${workbenchHtml}<section class="psychology-room-profile-card"><div><span>Innsiktspoeng</span><strong>${profile.insight_points}</strong></div><div><span>Økter</span><strong>${profile.completed_sessions}</strong></div><div><span>Lagrede situasjoner</span><strong>${getWorkbenchEntries().length}</strong></div></section><section class="psychology-room-section"><h3>Screeningprofil</h3>${Object.keys(profile.screening || {}).length ? Object.entries(profile.screening).map(([dimension, score]) => `<div class="psychology-room-score"><span>${escapeHtml(dimension)}</span><strong>${escapeHtml(score)}</strong></div>`).join("") : `<p class="psychology-room-muted">Ingen screeningdata lagret ennå.</p>`}</section><section class="psychology-room-section"><h3>7-dagersløp</h3>${pathEntries.length ? pathEntries.map((item) => { const path = findById(dataCache?.paths || [], item.path_id); const total = path?.days?.length || path?.duration_days || 7; const completed = Array.isArray(item.completed_days) ? item.completed_days.map(Number).filter(Boolean) : []; const done = completed.length; const currentDay = Number(item.current_day || 1); const today = (path?.days || []).find((day) => Number(day.day || 0) === currentDay); const latestReflection = getLatestPathReflection(item.path_id, completed); return `<article class="psychology-room-insight"><strong>${escapeHtml(path?.title || item.path_id)} — ${item.completed_at ? "Fullført" : `Pågår: ${done}/${total} dager`}</strong>${!item.completed_at ? `<p>Dagens steg: dag ${escapeHtml(currentDay)}${today?.title ? ` – ${escapeHtml(today.title)}` : ""}</p>` : `<p>Fullført: ${escapeHtml(done)}/${escapeHtml(total)} dager</p>`}<p>Fullførte dager: ${escapeHtml(done)}/${escapeHtml(total)}</p>${latestReflection ? `<p>Siste refleksjon: ${escapeHtml(latestReflection)}</p>` : ""}</article>`; }).join("") : `<p class="psychology-room-muted">Ingen løp startet ennå.</p>`}</section><section class="psychology-room-section"><h3>Siste refleksjoner / screeningresultater</h3>${Array.isArray(insights) && insights.length ? insights.slice(-7).reverse().map(item => `<article class="psychology-room-insight"><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.reflection || item.result_text || "")}</p></article>`).join("") : `<p class="psychology-room-muted">Ingen refleksjoner lagret ennå.</p>`}</section><section class="psychology-room-section"><h3>Siste screening</h3>${screenings.length ? screenings.slice(-3).reverse().map(item => `<article class="psychology-room-insight"><strong>${escapeHtml(item.result_title || item.title)}</strong><p>${escapeHtml(item.result_text || "")}</p></article>`).join("") : `<p class="psychology-room-muted">Ingen screeningresultater lagret ennå.</p>`}</section>`));
+    const backupHtml = renderPrivateBackupSection();
+    setContent(shell(`${backButton()}${overviewHtml}${workbenchHtml}${backupHtml}<section class="psychology-room-profile-card"><div><span>Innsiktspoeng</span><strong>${profile.insight_points}</strong></div><div><span>Økter</span><strong>${profile.completed_sessions}</strong></div><div><span>Lagrede situasjoner</span><strong>${getWorkbenchEntries().length}</strong></div></section><section class="psychology-room-section"><h3>Screeningprofil</h3>${Object.keys(profile.screening || {}).length ? Object.entries(profile.screening).map(([dimension, score]) => `<div class="psychology-room-score"><span>${escapeHtml(dimension)}</span><strong>${escapeHtml(score)}</strong></div>`).join("") : `<p class="psychology-room-muted">Ingen screeningdata lagret ennå.</p>`}</section><section class="psychology-room-section"><h3>7-dagersløp</h3>${pathEntries.length ? pathEntries.map((item) => { const path = findById(dataCache?.paths || [], item.path_id); const total = path?.days?.length || path?.duration_days || 7; const completed = Array.isArray(item.completed_days) ? item.completed_days.map(Number).filter(Boolean) : []; const done = completed.length; const currentDay = Number(item.current_day || 1); const today = (path?.days || []).find((day) => Number(day.day || 0) === currentDay); const latestReflection = getLatestPathReflection(item.path_id, completed); return `<article class="psychology-room-insight"><strong>${escapeHtml(path?.title || item.path_id)} — ${item.completed_at ? "Fullført" : `Pågår: ${done}/${total} dager`}</strong>${!item.completed_at ? `<p>Dagens steg: dag ${escapeHtml(currentDay)}${today?.title ? ` – ${escapeHtml(today.title)}` : ""}</p>` : `<p>Fullført: ${escapeHtml(done)}/${escapeHtml(total)} dager</p>`}<p>Fullførte dager: ${escapeHtml(done)}/${escapeHtml(total)}</p>${latestReflection ? `<p>Siste refleksjon: ${escapeHtml(latestReflection)}</p>` : ""}</article>`; }).join("") : `<p class="psychology-room-muted">Ingen løp startet ennå.</p>`}</section><section class="psychology-room-section"><h3>Siste refleksjoner / screeningresultater</h3>${Array.isArray(insights) && insights.length ? insights.slice(-7).reverse().map(item => `<article class="psychology-room-insight"><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.reflection || item.result_text || "")}</p></article>`).join("") : `<p class="psychology-room-muted">Ingen refleksjoner lagret ennå.</p>`}</section><section class="psychology-room-section"><h3>Siste screening</h3>${screenings.length ? screenings.slice(-3).reverse().map(item => `<article class="psychology-room-insight"><strong>${escapeHtml(item.result_title || item.title)}</strong><p>${escapeHtml(item.result_text || "")}</p></article>`).join("") : `<p class="psychology-room-muted">Ingen screeningresultater lagret ennå.</p>`}</section>`));
     bindBack();
+    bindPrivateBackup();
     document.querySelector("[data-psych-overview-map]")?.addEventListener("click", renderInnerMap);
     document.querySelector("[data-psych-overview-new]")?.addEventListener("click", renderWorkbench);
     document.querySelectorAll("[data-psych-open-workbench]").forEach((button) => {
