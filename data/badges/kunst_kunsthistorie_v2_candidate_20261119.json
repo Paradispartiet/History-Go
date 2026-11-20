@@ -1,0 +1,65 @@
+{
+  "id": "kunsthistorie",
+  "categoryId": "kunst",
+  "version": "v2",
+  "createdAt": "2026-11-19",
+  "status": "candidate_pending_visual_approval",
+  "quality": {
+    "visualApprovedByUser": false,
+    "appAndMasterInRepository": true,
+    "appAndMasterShaVerified": true,
+    "active": false
+  },
+  "preservation": {
+    "originalV1FilesUntouched": true,
+    "mainKunstBadgeUntouched": true,
+    "otherSubbadgesUntouched": true,
+    "placeCardUnchanged": true
+  },
+  "activationPolicy": "Do not activate without explicit user visual approval. After signoff, update only the relevant subBadgeImages entry in data/badges/kunst.json and run focused Kunst badge QA.",
+  "design": {
+    "topLabel": "KUNST",
+    "bottomLabel": "KUNSTHISTORIE",
+    "textColor": "white",
+    "outerBorder": "matte muted yellow embroidery, not metallic gold",
+    "preserveOriginalMotif": true,
+    "preserveOriginalTextAndRedBlueFabric": true,
+    "processing": "radial yellow-only recolor of the outer embroidered rope; inner 86.5% pixels, transparency, lettering, fabric and artwork unchanged from v1 source PNG",
+    "centralMotif": "Art history collage, sculpture, historic portrait and paintings"
+  },
+  "images": {
+    "app": {
+      "path": "bilder/merker/kunst/undermerker/kunsthistorie-brodert-v2-matt-gul.webp",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 585946,
+      "sha256": "c9c45e6575d74758e1645985e078eb8af5479c2a5a3c25c453e7c1fc07300375",
+      "gitBlobSha": "4ee91168370df55bf491a77565cd5f486f982cf4",
+      "format": "webp",
+      "alpha": true
+    },
+    "master": {
+      "path": "bilder/merker/kunst/originaler/kunsthistorie-brodert-v2-matt-gul-master-1254.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 787518,
+      "sha256": "59667d90fe36e39a3ac9c6ffe3e9bb0356a18eba0e843b04512374d93b08a58a",
+      "gitBlobSha": "40c1a781283d1f57a73e6511bf9f5fb8c3870c62",
+      "format": "webp",
+      "alpha": true
+    }
+  },
+  "highResolutionPngSource": {
+    "path": "bilder/merker/kunst/originaler/kunsthistorie-brodert-v2-matt-gul-original-1254.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2949530,
+    "sha256": "288561b3cd6ac5e7dd2ec9016662fc0eb4bbb4648efddcc087ac0d72991b90b0",
+    "gitBlobSha": "54a0c7b8b304715933fbb39869ca293cf972a20c",
+    "format": "png",
+    "alpha": true,
+    "package": "HistoryGo_Kunst_Street_Art_Kunsthistorie_mattgul_v2_kandidater.zip",
+    "repositoryUploaded": false,
+    "notes": "Full-resolution RGBA PNG archived in ChatGPT; both WebP assets byte-identical in GitHub PR branch."
+  }
+}
