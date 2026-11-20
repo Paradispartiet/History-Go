@@ -31,8 +31,8 @@ function assertStorySurvivesReload(actual: any, expectedJson: string, stage: str
   const mismatch = firstStoryDifference(actual, JSON.parse(expectedJson));
   assert.equal(mismatch, null, mismatch
     ? stage + ': persisted story mismatch at ' + mismatch.path
-      + '; actual=' + JSON.stringify(mismatch.actual).slice(0, 250)
-      + '; expected=' + JSON.stringify(mismatch.expected).slice(0, 250)
+      + '; actual=' + String(JSON.stringify(mismatch.actual)).slice(0, 250)
+      + '; expected=' + String(JSON.stringify(mismatch.expected)).slice(0, 250)
     : undefined);
 }
 
