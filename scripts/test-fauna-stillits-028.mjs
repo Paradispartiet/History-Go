@@ -59,10 +59,10 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,27);
 for(const [olderId,olderSha] of Object.entries(previous))assert.equal(reg.get(olderId)?.gitBlobSha,olderSha,olderId+" original unchanged");
-assert.equal(reg.get("emne_fauna_bokfink"),null,"Unapproved Bokfink retains SVG fallback");
+assert.equal(reg.get("emne_fauna_taarnseiler"),null,"Unapproved Tårnseiler retains SVG fallback");
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Versioned approved register required");
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-stillits-028.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Stillits")'));
-assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Bokfink")'));
+assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Tårnseiler")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #28 Stillits: original alpha WebP, hashes, species, quiz, 27 earlier originals, browser contract and fallback OK.");
