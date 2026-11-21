@@ -55,7 +55,7 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,24);
 for(const [pid,sha] of Object.entries(previous))assert.equal(reg.get(pid)?.gitBlobSha,sha,pid+" original must remain unchanged");
-assert.equal(reg.get("emne_fauna_taarnseiler"),null,"Tårnseiler remains on original SVG fallback");
+assert.equal(reg.get("emne_fauna_hvitkinngaas"),null,"Hvitkinngås remains on original SVG fallback");
 assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v="),"Versioned registry required");
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-maaltrost-025.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Måltrost")'));
