@@ -699,7 +699,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
   }
   if (failures.length) {
     throw new Error('Arbeidsledig full browser acceptance: ' + reports.length + '/' + selectedCases.length
-      + ' passed; failures= + JSON.stringify(failures.map(({ id, error }) => ({ id, error }))));
+      + ' passed; failures=' + JSON.stringify(failures.map(({ id, error }) => ({ id, error }))));
   }
   return { cases: reports, fullShell: true, productionFunctionsReplaced: false };
 }
