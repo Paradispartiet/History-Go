@@ -530,3 +530,7 @@ Sett 3 følger hvordan møllefirmaet sikret produksjonsanlegg og vannkraft. Sett
 Kilder: [Bjølsen Valsemølle – Oslo byleksikon](https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle), [Valsemøllebrua](https://oslobyleksikon.no/side/Valsem%C3%B8llebrua), [Bjølsen Valsemølle – Store norske leksikon](https://snl.no/Bj%C3%B8lsen_Valsem%C3%B8lle), [Sigurd Senje / Oslo Museum, OMu.A15631](https://commons.wikimedia.org/wiki/File:Valsem%C3%B8llebrua_over_Bj%C3%B8lsenfossen_-_Oslo_Museum_-_OMu.A15631.jpg), [Kjell Egil Sterten / Oslo byleksikon](https://oslobyleksikon.no/side/Fil:Valsem%C3%B8llebrua.jpg), [Oslo kommune – forprosjekt](https://www.oslo.kommune.no/slik-bygger-vi-oslo/bjolsenfossen-hvordan-gjore-omradet-rundt-fossen-tilgjengelig-forprosjekt-med-omregulering/).
 
 Alle fire sett foreligger redaksjonelt som 28 spørsmål. De fem tidligere identifiserte quiz- og Knowledge-ID-ene beholdes ved migrering. Arkiv, aktive manifestoppføringer, Knowledge-generering og QuizCard må oppdateres samlet ved aktivering. Dagens aktive quiz er fremdeles 6 × 7.
+
+### Bjølsenfossen – 4 × 7 migrert i arbeidsgren (21.11.2026)
+
+De 28 spørsmålene er nå lagt inn som fire aktive sett på PR-grenen, med 5 uendrede historiske quiz-/Knowledge-ID-er. 37 utgåtte spørsmål ligger i ikke-spillbart Knowledge-arkiv; 23 nye spørsmål har nye ID-er. Ett QuizCard speiler ti av fullquizens spørsmål. Kanonisk Knowledge- og context-regenerering og reell app-test må være grønne før godkjenning. PR forblir DRAFT.
