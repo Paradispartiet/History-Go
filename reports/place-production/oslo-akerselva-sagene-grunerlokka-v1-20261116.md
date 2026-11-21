@@ -556,3 +556,12 @@ De 28 spørsmålene er nå lagt inn som fire aktive sett på PR-grenen, med 5 ue
 - **To verifiserte liggende fotokandidater:** Helge Høifødt 25.08.2012, CC BY-SA 4.0, [Bentsebrugata 3740 × 2198](https://commons.wikimedia.org/wiki/File:Advokat_Dehlis_plass_med_Bentsebrugata.jpg) og [Bjølsen skole 3781 × 1823](https://commons.wikimedia.org/wiki/File:Advokat_Dehlis_plass_med_Bj%C3%B8lsen_skole.jpg). To ulike utsnitt fra samme fotografering er ikke tilstrekkelig som uavhengig hoved-/frontmotiv; velg én av disse som mulig hovedbilde, og finn egen stående original med relevant motiv.
 - [Arkivfoto fra avdukningen i 1946](https://oslobilder.no/ARB/AAB-112147) er relevant som historiebevis, men eksakt gjenbrukslisens må avklares. Commons-kategoriens stående bilder viser en søppeldunk, ikke et egnet frontmotiv. **Ingen bildefiler er importert eller aktivert** her.
 - Neste port er ett separat, lisenskontrollert portrettmotiv og kuratert stedsspesifikt Fagverk, etterfulgt av ID-vernet quizoppgradering, QuizCard og målrettet app-test. Ikke V1-godkjent ennå.
+
+
+### Advokat Dehlis plass – kuratert Fagverk godkjent (21.11.2026)
+
+- Rettet utdaterte quizprofil-metadata om «Bjølsenparken (elvenær del)» i canonical Place og tilhørende Place-open uten å endre stedets stabile ID eller quizens 21 spørsmål.
+- Egen Place-eid Fagverk på **standard/curated**: fire stedsspesifikke avsnitt om plassrommet, samvirkemonumentet, vegetasjon, skygge og hva kilder eller observasjoner kan dokumentere. Fem navngitte, operative kilder, tre Natur-linser, fem undersøkelsesspørsmål og to observerbare spor.
+- [GitHub-kjøring #44871307910](https://github.com/Paradispartiet/History-Go/actions/runs/44871307910) **SUCCESS**. Stedsindeks og 1538 Place-open-filer ble bygget, 1538 payloads kontrollert, Fagverk-audit bestod, release-manifestet ble bygd og kontrollert, og den målrettede testen bestod 3/3. Genererte endringer er skrevet tilbake til PR-grenen, commit 2398552f. Engangsarbeidsflyten ble fjernet etter grønn kjøring.
+- Fagverk-release inneholder nå totalt **300 curated** steder i arbeidsgrenen. Dette er felles Fagverk-statistikk, ikke antall V1-steder i den aktuelle 20-stedersbolken.
+- **Ikke ferdig V1:** PlaceCard mangler fortsatt kvalitetsgodkjent eget bildepar; den aktive 3 × 7 Natur-quizen har fremdeles 13 editorial_review_required og trenger kildebasert redaksjonell gjennomgang, ID-/Knowledge-bevaring og nytt QuizCard. Ingen gamle spørsmål ble arkivert eller aktivt omskrevet i denne delproduksjonen. PR #7342 forblir DRAFT og ikke merget.
