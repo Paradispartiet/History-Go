@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.17.16",
     "updated_at": "2026-11-16",
-    "content_sha256": "1101bc03e0e7d0c26bdfb12671d9535b03e45761834d24f824242b2bf611ee24"
+    "content_sha256": "3aa1ed7709fe73c81df939a9738cf6298935667c403265d2764b32c3cdeb79bf"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "d1d4aacba7e747ad760145e584ea0f07af072a5d706b12b2fb25ec401a0368da"
+    "content_sha256": "732975f27451815618e9957ed63ce13f7d18a516196c1cfdc6d59e2128b7473f"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 555,
+    "package_file_count": 558,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1419,
+    "referenced_file_count": 1422,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2848,9 +2848,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 158,
+      "package_file_count": 161,
       "required_package_file_count": 4,
-      "optional_package_file_count": 154,
+      "optional_package_file_count": 157,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -3067,6 +3067,18 @@
           ],
           "exists": true,
           "content_sha256": "8901dc02eac9d11dfb8e571fadc1ae04e708bc0324f16840d5be52bac1c6abe4"
+        },
+        {
+          "path": "data/quiz/historie/bjoelsenfossen_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.bjoelsenfossen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "69a5adcf6bd9a7b8123ef93ff883c2edc5180b58b42869c753c4a0352cf18733"
         },
         {
           "path": "data/quiz/historie/botsfengselet_sets.json",
@@ -3633,6 +3645,18 @@
           "content_sha256": "7e4534501749efad8b0b33acd5ad43fc15ddce388234a841006c12a1de1fc8e9"
         },
         {
+          "path": "data/quiz/production_briefs/historie/bjoelsenfossen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.bjoelsenfossen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "6228b95a5f28289d4604667c4ffdc7e93e2bac102e78de4fc5e9382c575b2eaf"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/botsfengselet.json",
           "required": false,
           "fields": [
@@ -4197,6 +4221,18 @@
           "content_sha256": "f23c5fad82f5c83bc12cffdda9ffa6a5e7266c89619f0f7bbc0d23e63fae1679"
         },
         {
+          "path": "data/quiz/production_context/historie/bjoelsenfossen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.bjoelsenfossen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "b07d74975869c1c84fae93dbee12a673d1f93cf0bd72b550909a05468b7c1e58"
+        },
+        {
           "path": "data/quiz/production_context/historie/botsfengselet.json",
           "required": false,
           "fields": [
@@ -4749,20 +4785,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "3445a420fd1ed2a2d143f11b1ebb2dbbb7ba3db44acaa615ffa23b2ab49e4b86",
+      "package_content_sha256": "ca1af046df31f13343864bcf5a4011c03bdefff743ebd540183b83faf8d8dbff",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 250,
+      "referenced_file_count": 253,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "218529a65194b29174a3729f9f4b45214eebaa2203764e10919eba13504f3456",
-      "content_sha256": "2975cd668d8dba9e9efa23f4e1256d43a88e9fdb84093a80726ed2174c649e4a",
+      "structure_sha256": "f01dc2cc1e2475a5122d8efa900d08e29f7d91c1e209e956dcf2801725a01d5f",
+      "content_sha256": "c6aa1767bbaf7b2a3cfe45ace93110f4c94634e25e366ba848abdd486dd69103",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -9381,5 +9417,5 @@
       ]
     }
   },
-  "release_sha256": "ab3ff354756e1dd69e30afa2a26558e7ef984ba331db852b359d0b79f499cf54"
+  "release_sha256": "0afd76e99066f207a7bc119128063131b8591436e43538bf0c158c686091553b"
 }
