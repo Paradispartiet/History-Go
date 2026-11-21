@@ -76,9 +76,9 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,31);
 for(const [oldId,hash] of Object.entries(previous))assert.equal(reg.get(oldId)?.gitBlobSha,hash,oldId+" must remain byte-identical");
-assert.equal(reg.get("emne_fauna_tjeld"),null,"Unapproved Tjeld must retain SVG fallback");
+assert.equal(reg.get("emne_fauna_kvinand"),null,"Unapproved Kvinand must retain SVG fallback");
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-taarnseiler-032.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Tårnseiler")'));
-assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Tjeld")'));
+assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Kvinand")'));
 console.log("Finn Fauna #32 Tårnseiler: alpha WebP, SHA-256, Git blob, dimensions, species/quiz IDs and 31 previous originals OK.");

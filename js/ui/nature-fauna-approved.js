@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_tjeld:Object.freeze({
+   scientificName:"Haematopus ostralegus",
+   src:"bilder/natur/fauna/godkjent/34_tjeld_v1.webp",
+   gitBlobSha:"c5bc1284a129192d52ed8e756834bac3dbbba9b6",
+   reviewedAt:"2026-11-21",
+   stage:"adult_black_white_eurasian_oystercatcher_orange_red_bill_eye_ring_pink_red_legs_pebbly_shore",
+   evidence:"data/natur/fauna/illustration-quality-tjeld-20261121.json"
+  }),
   emne_fauna_hvitkinngaas:Object.freeze({
    scientificName:"Branta leucopsis",
    src:"bilder/natur/fauna/godkjent/33_hvitkinngaas_v1.webp",
