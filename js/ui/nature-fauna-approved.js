@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_hvitkinngaas:Object.freeze({
+   scientificName:"Branta leucopsis",
+   src:"bilder/natur/fauna/godkjent/33_hvitkinngaas_v1.webp",
+   gitBlobSha:"700c304c91f3cf64a109d5ae37081913746b6542",
+   reviewedAt:"2026-11-21",
+   stage:"adult_cream_white_face_black_head_neck_breast_grey_barred_wings_pale_underparts_black_bill_legs",
+   evidence:"data/natur/fauna/illustration-quality-hvitkinngaas-20261121.json"
+  }),
   emne_fauna_taarnseiler:Object.freeze({
    scientificName:"Apus apus",
    src:"bilder/natur/fauna/godkjent/32_taarnseiler_v1.webp",
