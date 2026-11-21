@@ -52,10 +52,10 @@ const old={
 };
 assert.equal(Object.keys(old).length,25);
 for(const [oldId,oldSha] of Object.entries(old))assert.equal(reg.get(oldId)?.gitBlobSha,oldSha,oldId+" original hash must stay unchanged");
-assert.equal(reg.get("emne_fauna_bokfink"),null,"Bokfink remains on SVG");
+assert.equal(reg.get("emne_fauna_hvitkinngaas"),null,"Hvitkinngås remains on SVG");
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Approved fauna cache version must exist");
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-notteskrike-026.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Nøtteskrike")'));
-assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Bokfink")'));
+assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Tårnseiler")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna 26/26: Nøtteskrike original WebP integrity, all 25 previous originals, atlas species & quiz IDs, mobile/desktop and SVG fallback OK.");

@@ -2,6 +2,22 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_taarnseiler:Object.freeze({
+   scientificName:"Apus apus",
+   src:"bilder/natur/fauna/godkjent/32_taarnseiler_v1.webp",
+   gitBlobSha:"49822981f3584d594d6ae43fcd475563f2f1f4bd",
+   reviewedAt:"2026-11-21",
+   stage:"adult_sooty_brown_in_flight_scythe_shaped_wings_small_pale_throat_short_forked_tail",
+   evidence:"data/natur/fauna/illustration-quality-taarnseiler-20261121.json"
+  }),
+  emne_fauna_bokfink:Object.freeze({
+   scientificName:"Fringilla coelebs",
+   src:"bilder/natur/fauna/godkjent/31_bokfink_v1.webp",
+   gitBlobSha:"f48fafe915612bc0b520af1388e62230901d3060",
+   reviewedAt:"2026-11-21",
+   stage:"adult_male_blue_grey_crown_rose_orange_breast_white_wing_bars_olive_rump_lichen_perch",
+   evidence:"data/natur/fauna/illustration-quality-bokfink-20261121.json"
+  }),
   emne_fauna_staer:Object.freeze({
    scientificName:"Sturnus vulgaris",
    src:"bilder/natur/fauna/godkjent/30_staer_v1.webp",

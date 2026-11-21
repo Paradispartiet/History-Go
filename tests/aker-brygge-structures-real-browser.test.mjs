@@ -14,9 +14,9 @@ const release=read("reports/place-production/aker-brygge-two-historical-structur
 const expectedIds=["aker_brygge_verkstedhallene_miljo","aker_brygge_torrdokken_historisk_1929"];
 assert.deepEqual(canonical.structures.map(x=>x.id),expectedIds);
 assert.deepEqual(runtime.place.structures.map(x=>x.id),expectedIds);
-assert.deepEqual(canonical.place_card_profile.collection_ids,["people","structures"]);
-assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","structures"]);
-assert.equal(runtime.brands.length,9);
+assert.deepEqual(canonical.place_card_profile.collection_ids,["people","brands","structures"]);
+assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","brands","structures"]);
+assert.equal(runtime.brands.length,5);
 assert.equal(runtime.people.length,5);
 assert.equal(release.structuresCount,2);
 assert.equal(release.vFerdig,false);
@@ -71,16 +71,16 @@ try{
       await page.waitForFunction(()=>{
         const card=document.getElementById("placeCard");
         return /^place_card_profile_v2(?:_curated)?$/.test(card?.dataset.collectionProfileSource||"") &&
-          card?.dataset.collectionCount==="2" && card?.dataset.collectionGridCount==="1";
+          card?.dataset.collectionCount==="3" && card?.dataset.collectionGridCount==="2";
       },null,{timeout:30000});
-      const state=await page.evaluate(()=>{
+      const stateHandle=await page.waitForFunction(()=>{
         const card=document.getElementById("placeCard");
         const preview=document.querySelector("#pcCategoryCollectionIcon > img.pc-person-img");
         const brands=document.getElementById("pcBrandsIcon");
         const people=document.getElementById("pcPeopleIcon");
         const hero=document.getElementById("pcHeaderImage");
         const front=document.getElementById("pcFrontImage");
-        return {
+        const snapshot = {
           profile:card?.dataset.collectionProfileSource,
           count:card?.dataset.collectionCount,
           gridCount:card?.dataset.collectionGridCount,
@@ -89,15 +89,26 @@ try{
           previewFit:preview?getComputedStyle(preview).objectFit:null,
           brandsVisible:!!brands&&!brands.hidden,
           peopleVisible:!!people&&!people.hidden,
+          peopleLoaded:!!people?.querySelector("img")?.complete&&people.querySelector("img").naturalWidth>0,
           heroSrc:hero?.getAttribute("src"),frontSrc:front?.getAttribute("src"),
           heroLoaded:!!hero?.complete&&hero.naturalWidth>0,
           frontLoaded:!!front?.complete&&front.naturalWidth>0
         };
-      });
+        // Core rendering and curated layout both write these counters during
+        // hydration. Capture readiness and values in the same browser turn,
+        // after all real member/hero images have decoded.
+        return /^place_card_profile_v2(?:_curated)?$/.test(snapshot.profile||"") &&
+          snapshot.count==="3" && snapshot.gridCount==="2" &&
+          snapshot.peopleVisible && snapshot.peopleLoaded &&
+          snapshot.previewLoaded && snapshot.heroLoaded && snapshot.frontLoaded
+          ? snapshot : false;
+      },null,{timeout:50000});
+      const state=await stateHandle.jsonValue();
+      await stateHandle.dispose();
       assert.match(state.profile,/^place_card_profile_v2(?:_curated)?$/,tag+": profile");
-      assert.equal(state.count,"2",tag+": exactly People and Structures");
-      assert.equal(state.gridCount,"1",tag+": gallery shows only Structures beside People");
-      assert.equal(state.brandsVisible,false,tag+": unapproved Brands remain hidden");
+      assert.equal(state.count,"3",tag+": exactly People, Brands and Structures");
+      assert.equal(state.gridCount,"2",tag+": gallery shows Brands and Structures beside People");
+      assert.equal(state.brandsVisible,true,tag+": source-approved Brands are visible");
       assert.equal(state.peopleVisible,true,tag+": existing People remain visible");
       assert.ok(state.heroSrc?.endsWith(canonical.image),tag+": existing hero unchanged");
       assert.ok(state.frontSrc?.endsWith(canonical.frontImage),tag+": existing frontImage unchanged");
@@ -156,6 +167,88 @@ try{
       }
       assert.equal(errors.length,0,tag+": JavaScript errors: "+errors.join(" | "));
       await page.screenshot({path:path.join(output,tag+"-aker-brygge-structures.png"),fullPage:false});
+      await page.locator('.hg-popup.placecard-round-popup [data-close-popup]').click();
+      const brandsTile=page.locator('button[data-pc-round-gallery-item="pcBrandsIcon"]');
+      await brandsTile.waitFor({state:"visible",timeout:20000});
+      await brandsTile.click();
+      const brandRows=page.locator('.hg-popup.placecard-round-popup .pc-brand-entry');
+      await brandRows.first().waitFor({state:"visible",timeout:20000});
+      assert.equal(await brandRows.count(),5,tag+": exactly five sourced Brands");
+      assert.deepEqual((await brandRows.evaluateAll(els=>els.map(el=>el.dataset.brand))).sort(),runtime.brands.map(b=>b.id).sort());
+      await page.waitForFunction(()=>{
+        const imgs=[...document.querySelectorAll('.hg-popup.placecard-round-popup .pc-brand-entry img')];
+        return imgs.length===5&&imgs.every(img=>img.complete&&img.naturalWidth===900&&img.naturalHeight===520);
+      },null,{timeout:30000});
+      const listImages=await brandRows.locator('img').evaluateAll(imgs=>imgs.map(img=>({fit:getComputedStyle(img).objectFit,radius:getComputedStyle(img).borderRadius})));
+      assert.ok(listImages.every(img=>img.fit==='contain'&&img.radius!=='50%'),tag+": full unmasked logos in collection");
+      await page.screenshot({path:path.join(output,tag+'-aker-brygge-brands.png'),fullPage:false});
+      for(const [index,brand] of runtime.brands.entries()){
+        if(index>0){await brandsTile.click();await brandRows.first().waitFor({state:'visible'});}
+        await page.locator('.hg-popup.placecard-round-popup .pc-brand-entry[data-brand="'+brand.id+'"]').click();
+        const detail=page.locator('.hg-popup.brand-popup');
+        await detail.waitFor({state:'visible',timeout:20000});
+        assert.equal(await detail.locator('.hg-popup-name').textContent(),brand.name);
+        const logo=detail.locator('.hg-brand-logo-img');
+        await logo.waitFor({state:'visible'});
+        await page.waitForFunction(()=>{const img=document.querySelector('.hg-popup.brand-popup .hg-brand-logo-img');return img?.complete&&img.naturalWidth===900&&img.naturalHeight===520;},null,{timeout:30000});
+        assert.equal(await logo.getAttribute('src'),brand.logo);
+        assert.equal(await logo.evaluate(el=>getComputedStyle(el).objectFit),'contain');
+        const credit=detail.locator('.hg-brand-asset-credit');
+        assert.ok((await credit.innerText()).includes(brand.imageMeta.credit),tag+': visible credit '+brand.id);
+        assert.equal(await credit.locator('.hg-brand-asset-source').getAttribute('href'),new URL(brand.imageMeta.sourcePage).href);
+        assert.ok((await credit.innerText()).includes('identifikasjon'),tag+': referential context');
+        if(brand.id==='cos'){
+          assert.equal(await credit.locator('.hg-brand-license').textContent(),'CC BY-SA 4.0');
+          assert.equal(await credit.locator('.hg-brand-license').getAttribute('href'),brand.imageMeta.licenseUrl);
+        }else assert.ok((await credit.innerText()).includes('Ingen fri gjenbrukslisens'),tag+': do not invent a licence');
+        await page.screenshot({path:path.join(output,tag+'-brand-'+brand.id+'.png'),fullPage:false});
+        await detail.locator('[data-close-popup]').click();
+      }
+      assert.equal(errors.length,0,tag+': no JavaScript errors after all five Brand details');
+      fs.writeFileSync(path.join(output,tag+'-brands-result.json'),JSON.stringify({viewport:view,brands:runtime.brands.map(b=>b.id),listImages,allDetailsOpened:true,creditsVisible:true,jsErrors:errors},null,2));
+      console.log(tag.toUpperCase()+'_AKER_BRYGGE_BRANDS_PASS '+JSON.stringify({logos:5,detailsOpened:5,creditsVisible:true,jsErrors:errors}));
+      await page.locator('#pcPeopleIcon').click();
+      const nielsRow=page.locator('.hg-popup.placecard-round-popup [data-person="niels_torp"]');
+      await nielsRow.waitFor({state:'visible',timeout:20000});
+      assert.equal(await nielsRow.locator('img').getAttribute('src'),'bilder/kort/people/niels_torp.jpg');
+      await nielsRow.click();
+      const personPopup=page.locator('.hg-popup.person-popup-v2');
+      await personPopup.waitFor({state:'visible',timeout:20000});
+      assert.equal(await personPopup.evaluate(el=>el.parentElement===document.body),true,
+        tag+': viewport-framed People popup must remain outside the transformed app-shell');
+      assert.equal(await personPopup.locator('h2.hg-popup-name').textContent(),'Niels Torp');
+      await page.waitForFunction(()=>{
+        const img=document.querySelector('.hg-popup.person-popup-v2 [data-person-hero-image]');
+        return img?.complete&&img.naturalWidth===927&&img.naturalHeight===1189;
+      },null,{timeout:30000});
+      // DOM visibility alone passes for a popup hidden under PlaceCard.
+      // Check the actual painted layer at the portrait's visible centre.
+      await page.waitForFunction(()=>{
+        const popup=document.querySelector('.hg-popup.person-popup-v2');
+        const img=popup?.querySelector('[data-person-hero-image]');
+        if(!popup||!img)return false;
+        const b=img.getBoundingClientRect();
+        const x=b.left+b.width/2,y=b.top+Math.min(b.height/2,120);
+        return x>0&&x<innerWidth&&y>0&&y<innerHeight&&popup.contains(document.elementFromPoint(x,y));
+      },null,{timeout:15000});
+      assert.equal(await personPopup.locator('[data-person-hero-image]').getAttribute('src'),'bilder/kort/people/niels_torp.jpg');
+      await page.screenshot({path:path.join(output,tag+'-niels-torp-portrait.png'),fullPage:false});
+      const sources=personPopup.locator('.hg-person-sources-section');
+      const sourceLink=sources.getByRole('link',{name:/Foto: Norsk Form/});
+      await sourceLink.scrollIntoViewIfNeeded();
+      assert.ok(await sourceLink.isVisible(),tag+': visible portrait credit');
+      assert.ok(await sourceLink.evaluate(el=>{
+        const b=el.getBoundingClientRect();
+        return el.contains(document.elementFromPoint(b.left+b.width/2,b.top+b.height/2));
+      }),tag+': portrait credit is actually in front of PlaceCard');
+      assert.match(await sourceLink.textContent(),/CC BY 3.0.*utsnitt/);
+      assert.ok((await sourceLink.getAttribute('href')).startsWith('https://commons.wikimedia.org/wiki/File:Niels_Torp_Peter_Butensch'));
+      assert.equal(await sources.getByRole('link',{name:'Bildelisens: CC BY 3.0'}).getAttribute('href'),'https://creativecommons.org/licenses/by/3.0');
+      assert.equal(errors.length,0,tag+': portrait opens without JavaScript errors');
+      await page.screenshot({path:path.join(output,tag+'-niels-torp-credit.png'),fullPage:false});
+      await personPopup.locator('[data-close-popup]').click();
+      await personPopup.waitFor({state:'detached'});
+      console.log(tag.toUpperCase()+'_AKER_BRYGGE_NIELS_TORP_PASS '+JSON.stringify({width:927,height:1189,source:'Norsk Form',license:'CC BY 3.0',realPersonClick:true,paintedInFront:true,creditHitTest:true,closedByClick:true,jsErrors:errors}));
       console.log(tag.toUpperCase()+"_AKER_BRYGGE_STRUCTURES_PASS "+
         JSON.stringify({count:rows.length,preview:preview,rows,profile:state.profile,brandHidden:!state.brandsVisible,jsErrors:errors}));
     } catch(error) {
@@ -167,3 +260,4 @@ try{
   await browser?.close();
   await new Promise(resolve=>server.close(resolve));
 }
+

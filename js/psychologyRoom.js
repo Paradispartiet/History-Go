@@ -292,20 +292,47 @@
       entry && typeof entry === "object" && typeof entry.situation === "string") : [];
   }
 
+  // Fail closed on unreadable/corrupt local data. Never replace an existing
+  // archive with an empty array when the browser cannot read it safely.
+  function readWorkbenchForWrite() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEYS.workbench);
+      if (raw === null) return { ok: true, entries: [] };
+      const entries = JSON.parse(raw);
+      if (!Array.isArray(entries) || entries.some((entry) =>
+          !entry || typeof entry !== "object" ||
+          typeof entry.id !== "string" || typeof entry.situation !== "string")) {
+        return { ok: false, reason: "invalid_stored_data" };
+      }
+      return { ok: true, entries };
+    } catch (error) {
+      console.warn("[PsychologyRoom.readWorkbenchForWrite]", error);
+      return { ok: false, reason: "storage_failed" };
+    }
+  }
+
   function saveWorkbench(values = {}) {
     const fields = ["situation", "thoughts", "feelings", "body", "actions", "next_step"];
     const clean = Object.fromEntries(fields.map((field) =>
       [field, String(values[field] || "").trim().slice(0, 2400)]));
     if (!clean.situation) return { saved: false, reason: "situation_required" };
-    const entry = {
-      id: "psych_workbench_" + Date.now(),
-      created_at: new Date().toISOString(),
-      ...clean
-    };
-    const history = getWorkbenchEntries();
-    history.push(entry);
-    writeJson(STORAGE_KEYS.workbench, history.slice(-30));
-    return { saved: true, entry };
+    const current = readWorkbenchForWrite();
+    if (!current.ok) return { saved: false, reason: current.reason };
+    // The generated ID must not reuse one when two notes are saved quickly.
+    const idBase = "psych_workbench_" + Date.now();
+    let id = idBase, serial = 1;
+    const used = new Set(current.entries.map((item) => item.id));
+    while (used.has(id)) id = idBase + "_" + serial++;
+    const entry = { id, created_at: new Date().toISOString(), ...clean };
+    try {
+      // Do not silently drop the oldest entry after the 30th note.
+      localStorage.setItem(STORAGE_KEYS.workbench,
+        JSON.stringify([...current.entries, entry]));
+      return { saved: true, entry };
+    } catch (error) {
+      console.warn("[PsychologyRoom.saveWorkbench]", error);
+      return { saved: false, reason: "storage_failed" };
+    }
   }
 
   function saveWorkbenchFollowUp(entryId, values = {}) {
@@ -314,7 +341,9 @@
       [field, String(values[field] || "").trim().slice(0, 2400)]));
     if (!clean.tried || !clean.outcome) return { saved: false, reason: "required_fields" };
   
-    const entries = getWorkbenchEntries();
+    const current = readWorkbenchForWrite();
+    if (!current.ok) return { saved: false, reason: current.reason };
+    const entries = current.entries;
     const index = entries.findIndex((entry) => entry.id === entryId);
     if (index < 0) return { saved: false, reason: "not_found" };
     const previous = entries[index];
@@ -382,18 +411,158 @@
     return valid;
   }
 
-  function saveInnerMapState(selectedIds, links) {
+
+  // Positions are optional, local-only metadata. Maps from v1/v2 remain readable.
+  function getInnerMapLayout() {
+    const state = readJson(STORAGE_KEYS.innerMap, {});
+    const saved = state?.layout && typeof state.layout === "object" &&
+      !Array.isArray(state.layout) ? state.layout : {};
+    const valid = Object.create(null);
+    for (const id of getInnerMapIds()) {
+      if (!Object.prototype.hasOwnProperty.call(saved, id)) continue;
+      const point = saved[id];
+      if (point && typeof point.x === "number" && Number.isFinite(point.x) &&
+          typeof point.y === "number" && Number.isFinite(point.y) &&
+          point.x >= 0.11 && point.x <= 0.89 && point.y >= 0.1 && point.y <= 0.9) {
+        valid[id] = { x: point.x, y: point.y };
+      }
+    }
+    return valid;
+  }
+
+  function getInnerMapPositions() {
+    const layout = getInnerMapLayout();
+    return getInnerMapIds().map((id, index) => ({
+      id,
+      x: layout[id]?.x ?? (0.15 + (index % 4) * 0.23),
+      y: layout[id]?.y ?? (0.14 + Math.floor(index / 4) * 0.22)
+    }));
+  }
+
+
+  // A maximum of six user-named groups; only group labels and note-ID references
+  // are stored, never copied workbench text or screening values.
+  function getInnerMapGroups() {
+    const state = readJson(STORAGE_KEYS.innerMap, {});
+    const raw = Array.isArray(state?.groups) ? state.groups : [];
+    const seen = new Set(), groups = [];
+    for (const group of raw) {
+      if (!group || typeof group.id !== "string" ||
+          !/^group-[1-6]$/.test(group.id) || seen.has(group.id) ||
+          typeof group.label !== "string") continue;
+      const label = group.label.trim();
+      if (!label || label.length > 40) continue;
+      seen.add(group.id);
+      groups.push({ id: group.id, label });
+      if (groups.length === 6) break;
+    }
+    return groups;
+  }
+
+  function getInnerMapAssignments() {
+    const state = readJson(STORAGE_KEYS.innerMap, {});
+    const raw = state?.assignments && typeof state.assignments === "object" &&
+      !Array.isArray(state.assignments) ? state.assignments : {};
+    const selected = getInnerMapIds();
+    const allowed = new Set(getInnerMapGroups().map((item) => item.id));
+    const assignments = Object.create(null);
+    for (const id of selected) {
+      if (!Object.prototype.hasOwnProperty.call(raw, id)) continue;
+      const groupId = raw[id];
+      if (typeof groupId === "string" && allowed.has(groupId)) assignments[id] = groupId;
+    }
+    return assignments;
+  }
+
+  function createInnerMapGroup(name) {
+    if (typeof name !== "string" || !name.trim() || name.trim().length > 40) {
+      return { ok: false, reason: "invalid_label" };
+    }
+    const label = name.trim();
+    const groups = getInnerMapGroups();
+    if (groups.length >= 6) return { ok: false, reason: "group_limit" };
+    if (groups.some((item) => item.label.toLocaleLowerCase() === label.toLocaleLowerCase())) {
+      return { ok: false, reason: "duplicate_group" };
+    }
+    const id = Array.from({ length: 6 }, (_, index) => "group-" + (index + 1))
+      .find((item) => !groups.some((group) => group.id === item));
+    return saveInnerMapState(getInnerMapIds(), getInnerMapLinks(), getInnerMapLayout(),
+      [...groups, { id, label }], getInnerMapAssignments());
+  }
+
+  function setInnerMapGroup(entryId, groupId) {
+    const selected = getInnerMapIds();
+    if (typeof entryId !== "string" || !selected.includes(entryId) ||
+        typeof groupId !== "string" ||
+        (groupId !== "" && !getInnerMapGroups().some((group) => group.id === groupId))) {
+      return { ok: false, reason: "invalid_group" };
+    }
+    const assignments = getInnerMapAssignments();
+    if (groupId) assignments[entryId] = groupId;
+    else delete assignments[entryId];
+    return saveInnerMapState(selected, getInnerMapLinks(), getInnerMapLayout(),
+      getInnerMapGroups(), assignments);
+  }
+
+  function deleteInnerMapGroup(groupId) {
+    const groups = getInnerMapGroups();
+    if (typeof groupId !== "string" || !groups.some((group) => group.id === groupId)) {
+      return { ok: false, reason: "unknown_group" };
+    }
+    const assignments = getInnerMapAssignments();
+    for (const id of Object.keys(assignments)) {
+      if (assignments[id] === groupId) delete assignments[id];
+    }
+    return saveInnerMapState(getInnerMapIds(), getInnerMapLinks(), getInnerMapLayout(),
+      groups.filter((group) => group.id !== groupId), assignments);
+  }
+
+  function getInnerMapTimeline() {
+    return getInnerMapModel().map((entry, index) => ({
+      id: entry.id, created_at: entry.created_at,
+      follow_up_count: entry.follow_up_count,
+      title: (entry.fields.find((field) => field.key === "situation")?.text ||
+        "Min refleksjon").slice(0, 100),
+      order: index
+    })).sort((a, b) => {
+      // ISO timestamps from existing records only. Invalid dates go last.
+      const aTime = Date.parse(a.created_at), bTime = Date.parse(b.created_at);
+      const x = Number.isFinite(aTime) ? aTime : Number.POSITIVE_INFINITY;
+      const y = Number.isFinite(bTime) ? bTime : Number.POSITIVE_INFINITY;
+      return x - y || a.order - b.order;
+    });
+  }
+
+  function saveInnerMapState(selectedIds, links, layout = getInnerMapLayout(),
+    groups = getInnerMapGroups(), assignments = getInnerMapAssignments()) {
     try {
       // One atomic localStorage key keeps selection and manual connections
       // consistent when one note is removed from the map.
       localStorage.setItem(STORAGE_KEYS.innerMap, JSON.stringify({
-        version: 2, selected_ids: selectedIds, links
+        version: 4, selected_ids: selectedIds, links,
+        layout: Object.fromEntries(Object.entries(layout).filter(([id]) => selectedIds.includes(id))),
+        groups,
+        assignments: Object.fromEntries(Object.entries(assignments).filter(([id, groupId]) =>
+          selectedIds.includes(id) && groups.some((group) => group.id === groupId)))
       }));
       return { ok: true };
     } catch (error) {
       console.warn("[PsychologyRoom.saveInnerMapState]", error);
       return { ok: false, reason: "storage_failed" };
     }
+  }
+
+
+  function setInnerMapPosition(id, x, y) {
+    if (typeof id !== "string" || !getInnerMapIds().includes(id) ||
+        typeof x !== "number" || !Number.isFinite(x) ||
+        typeof y !== "number" || !Number.isFinite(y)) {
+      return { ok: false, reason: "invalid_position" };
+    }
+    const layout = getInnerMapLayout();
+    layout[id] = { x: Math.min(0.89, Math.max(0.11, x)),
+      y: Math.min(0.9, Math.max(0.1, y)) };
+    return saveInnerMapState(getInnerMapIds(), getInnerMapLinks(), layout);
   }
 
   function connectInnerMapEntries(from, to, kind) {
@@ -436,7 +605,9 @@
     try {
       const links = getInnerMapLinks().filter((link) =>
         next.includes(link.from) && next.includes(link.to));
-      const result = saveInnerMapState(next, links);
+      const layout = getInnerMapLayout();
+      for (const id of Object.keys(layout)) if (!next.includes(id)) delete layout[id];
+      const result = saveInnerMapState(next, links, layout);
       return result.ok ? { ok: true, selected: !exists, count: next.length } : result;
     } catch (error) {
       console.warn("[PsychologyRoom.toggleInnerMap]", error);
@@ -459,6 +630,211 @@
         ].map(([key, label]) => ({ key, label, text: String(entry[key] || "").trim() }))
           .filter((field) => field.text)
       };
+    });
+  }
+
+
+  function renderInnerMapCanvas(selected, links, caseTitle) {
+    if (!selected.length) return "";
+    const positions = getInnerMapPositions();
+    const groups = new Map(getInnerMapGroups().map((group) => [group.id, group.label]));
+    const assignments = getInnerMapAssignments();
+    const byId = new Map(positions.map((point) => [point.id, point]));
+    const lines = links.map((link) => {
+      const a = byId.get(link.from), b = byId.get(link.to);
+      if (!a || !b) return "";
+      return '<line class="psychology-room-map-edge" data-from="' + escapeHtml(link.from) +
+        '" data-to="' + escapeHtml(link.to) + '" x1="' + a.x * 1000 + '" y1="' + a.y * 1000 +
+        '" x2="' + b.x * 1000 + '" y2="' + b.y * 1000 + '"/>';
+    }).join("");
+    const nodes = positions.map((point) => {
+      const title = caseTitle.get(point.id) || "Min refleksjon";
+      const groupId = assignments[point.id] || "";
+      const groupLabel = groups.get(groupId) || "";
+      return '<button type="button" class="psychology-room-map-node" data-psych-map-drag="' +
+        escapeHtml(point.id) + '" data-psych-group="' + escapeHtml(groupId) +
+        '" aria-label="Flytt refleksjon: ' + escapeHtml(title) +
+        (groupLabel ? ', gruppe ' + escapeHtml(groupLabel) : "") +
+        '" aria-describedby="psychologyMapCanvasHelp" style="left:' + point.x * 100 +
+        '%;top:' + point.y * 100 + '%"><span class="psychology-room-map-node-grip" aria-hidden="true">⠿</span>' +
+        '<span class="psychology-room-map-node-title">' + escapeHtml(title) +
+        (groupLabel ? '<small class="psychology-room-map-group-label">' +
+          escapeHtml(groupLabel) + '</small>' : '') + '</span></button>';
+    }).join("");
+    return '<section class="psychology-room-map-section" aria-label="Visuelt indre kart">' +
+      '<h4>Mitt kart – flytt refleksjonene</h4>' +
+      '<p class="psychology-room-muted" id="psychologyMapCanvasHelp">Dra med finger eller mus. ' +
+      'Bruk piltastene på en valgt refleksjon, og Shift for større steg. ' +
+      'På smale skjermer kan kartet rulles sidelengs.</p>' +
+      '<div class="psychology-room-map-viewport" tabindex="0" aria-label="Rullbar kartflate">' +
+      '<div class="psychology-room-map-stage">' +
+      '<svg class="psychology-room-map-edges" viewBox="0 0 1000 1000" ' +
+      'preserveAspectRatio="none" aria-hidden="true" focusable="false">' + lines + '</svg>' +
+      nodes + '</div></div></section>';
+  }
+
+
+  function bindInnerMapCanvas() {
+    /** @type {NodeListOf<HTMLButtonElement>} */ (document.querySelectorAll("[data-psych-map-drag]")).forEach((button) => {
+      const id = button.dataset.psychMapDrag;
+      const stage = button.closest(".psychology-room-map-stage");
+      if (!stage) return;
+      /** @type {{pointerId: number, x: number, y: number, moved: boolean, ox: number, oy: number} | null} */
+      let drag = null;
+      const paint = (x, y) => {
+        button.style.left = x * 100 + "%";
+        button.style.top = y * 100 + "%";
+        stage.querySelectorAll(".psychology-room-map-edge").forEach((line) => {
+          if (line.getAttribute("data-from") === id) {
+            line.setAttribute("x1", String(x * 1000));
+            line.setAttribute("y1", String(y * 1000));
+          }
+          if (line.getAttribute("data-to") === id) {
+            line.setAttribute("x2", String(x * 1000));
+            line.setAttribute("y2", String(y * 1000));
+          }
+        });
+      };
+      button.addEventListener("pointerdown", (event) => {
+        if (!event.isPrimary || event.button !== 0) return;
+        const rect = stage.getBoundingClientRect();
+        const current = getInnerMapPositions().find((p) => p.id === id);
+        if (!current) return;
+        event.preventDefault();
+        drag = { pointerId: event.pointerId, x: current.x, y: current.y, moved: false,
+          ox: event.clientX - rect.left - current.x * rect.width,
+          oy: event.clientY - rect.top - current.y * rect.height };
+        button.setPointerCapture(event.pointerId);
+      });
+      button.addEventListener("pointermove", (event) => {
+        if (!drag || event.pointerId !== drag.pointerId) return;
+        const rect = stage.getBoundingClientRect();
+        drag.x = Math.min(0.89, Math.max(0.11, (event.clientX - rect.left - drag.ox) / rect.width));
+        drag.y = Math.min(0.9, Math.max(0.1, (event.clientY - rect.top - drag.oy) / rect.height));
+        drag.moved = true;
+        paint(drag.x, drag.y);
+      });
+      button.addEventListener("pointerup", (event) => {
+        if (!drag || event.pointerId !== drag.pointerId) return;
+        const current = drag;
+        drag = null;
+        if (current.moved && !setInnerMapPosition(id, current.x, current.y).ok) {
+          window.showToast?.("Kunne ikke lagre plasseringen.");
+          renderInnerMap();
+        }
+      });
+      button.addEventListener("pointercancel", () => {
+        if (!drag) return;
+        drag = null;
+        const saved = getInnerMapPositions().find((p) => p.id === id);
+        if (saved) paint(saved.x, saved.y);
+      });
+      button.addEventListener("keydown", (event) => {
+        let dx = 0, dy = 0;
+        if (event.key === "ArrowLeft") dx = -1;
+        else if (event.key === "ArrowRight") dx = 1;
+        else if (event.key === "ArrowUp") dy = -1;
+        else if (event.key === "ArrowDown") dy = 1;
+        else return;
+        event.preventDefault();
+        const point = getInnerMapPositions().find((p) => p.id === id);
+        if (!point) return;
+        const step = event.shiftKey ? 0.05 : 0.02;
+        const x = Math.min(0.89, Math.max(0.11, point.x + step * dx));
+        const y = Math.min(0.9, Math.max(0.1, point.y + step * dy));
+        if (setInnerMapPosition(id, x, y).ok) paint(x, y);
+        else window.showToast?.("Kunne ikke lagre plasseringen.");
+      });
+    });
+  }
+
+
+  function renderInnerMapGroups(selected, caseTitle) {
+    const groups = getInnerMapGroups();
+    const assignments = getInnerMapAssignments();
+    const groupRows = groups.map((item) => {
+      const count = Object.values(assignments).filter((id) => id === item.id).length;
+      return '<li class="psychology-room-map-group-item" data-psych-map-group-row="' +
+        escapeHtml(item.id) + '"><span class="psychology-room-map-group-dot ' +
+        escapeHtml(item.id) + '" aria-hidden="true"></span><strong>' +
+        escapeHtml(item.label) + '</strong><span>' + count + ' refleksjoner</span>' +
+        '<button type="button" class="psychology-room-back" data-psych-map-group-delete="' +
+        escapeHtml(item.id) + '">Fjern gruppe</button></li>';
+    }).join("");
+    const noteOptions = selected.map((entry) =>
+      '<option value="' + escapeHtml(entry.id) + '">' +
+      escapeHtml(caseTitle.get(entry.id) || "Min refleksjon") + '</option>').join("");
+    const groupOptions = groups.map((item) =>
+      '<option value="' + escapeHtml(item.id) + '">' + escapeHtml(item.label) +
+      '</option>').join("");
+    return '<section class="psychology-room-note-section psychology-room-map-groups" ' +
+      'aria-labelledby="psychologyMapGroupsHeading"><h4 id="psychologyMapGroupsHeading">Mine temagrupper</h4>' +
+      '<p class="psychology-room-muted">Du bestemmer selv navn og tilhørighet. Ingen temaer utledes automatisk.</p>' +
+      (groupRows ? '<ul class="psychology-room-map-group-list">' + groupRows + '</ul>' :
+        '<p class="psychology-room-muted">Ingen grupper opprettet.</p>') +
+      '<form id="psychologyMapGroupCreate" class="psychology-room-form">' +
+      '<label>Navn på ny gruppe<input type="text" name="name" maxlength="40" required ' +
+      'autocomplete="off" placeholder="For eksempel: Arbeid"></label>' +
+      '<button type="submit" class="psychology-room-primary"' +
+      (groups.length >= 6 ? ' disabled' : '') + '>Opprett gruppe</button></form>' +
+      (selected.length && groups.length ?
+        '<form id="psychologyMapGroupAssign" class="psychology-room-form">' +
+        '<label>Refleksjon<select name="entry" required>' + noteOptions + '</select></label>' +
+        '<label>Gruppe<select name="group"><option value="">Uten gruppe</option>' +
+        groupOptions + '</select></label>' +
+        '<button type="submit" class="psychology-room-primary">Lagre gruppetilhørighet</button></form>' : '') +
+      '<p class="psychology-room-privacy">Gruppenavn lagres lokalt på enheten, uten kryptering. ' +
+      'Unngå sensitive opplysninger i navnene.</p></section>';
+  }
+
+  function renderInnerMapTimeline() {
+    const entries = getInnerMapTimeline();
+    const items = entries.map((entry) =>
+      '<li class="psychology-room-map-timeline-item"><span class="psychology-room-map-timeline-date">' +
+      escapeHtml(/^\d{4}-\d{2}-\d{2}/.test(entry.created_at) ?
+        entry.created_at.slice(0, 10) : "Uten dato") + '</span>' +
+      '<button type="button" class="psychology-room-inner-open" data-psych-map-timeline-open="' +
+      escapeHtml(entry.id) + '"><strong>' + escapeHtml(entry.title) + '</strong><span>' +
+      entry.follow_up_count + ' oppfølginger</span></button></li>').join("");
+    return '<section class="psychology-room-note-section psychology-room-map-timeline" ' +
+      'aria-labelledby="psychologyMapTimelineHeading"><h4 id="psychologyMapTimelineHeading">Min tidslinje</h4>' +
+      '<p class="psychology-room-muted">Valgte refleksjoner i datoorden. ' +
+      'Tidslinjen viser datoene fra notatene, uten tolkning av utviklingen.</p>' +
+      (items ? '<ol class="psychology-room-map-timeline-list">' + items + '</ol>' :
+        '<p class="psychology-room-muted">Legg til refleksjoner i kartet for å se dem på tidslinjen.</p>') +
+      '</section>';
+  }
+
+  function bindInnerMapGroups() {
+    document.getElementById("psychologyMapGroupCreate")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const name = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="name"]'))?.value;
+      const result = createInnerMapGroup(name);
+      if (result.ok) renderInnerMap();
+      else window.showToast?.(result.reason === "group_limit" ? "Maksimalt seks grupper." :
+        result.reason === "duplicate_group" ? "Gruppen finnes allerede." :
+        result.reason === "storage_failed" ? "Kunne ikke lagre gruppen." : "Oppgi et gruppenavn på maks 40 tegn.");
+    });
+    document.getElementById("psychologyMapGroupAssign")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const entry = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="entry"]'))?.value;
+      const group = /** @type {HTMLSelectElement | null} */ (form.querySelector('select[name="group"]'))?.value;
+      const result = setInnerMapGroup(entry, group);
+      if (result.ok) renderInnerMap();
+      else window.showToast?.("Kunne ikke lagre gruppetilhørigheten.");
+    });
+    document.querySelectorAll("[data-psych-map-group-delete]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const result = deleteInnerMapGroup(button.getAttribute("data-psych-map-group-delete"));
+        if (result.ok) renderInnerMap();
+        else window.showToast?.("Kunne ikke fjerne gruppen.");
+      });
+    });
+    document.querySelectorAll("[data-psych-map-timeline-open]").forEach((button) => {
+      button.addEventListener("click", () =>
+        renderWorkbenchEntry(button.getAttribute("data-psych-map-timeline-open")));
     });
   }
 
@@ -515,6 +891,9 @@
       '<p class="psychology-room-muted">Du velger hvilke refleksjoner som skal vises. Kartet følger bare det du selv skrev: hendelse, tanke, følelse, kropp, handling og neste steg. Det tolker deg ikke.</p>' +
       '<div class="psychology-room-inner-overview"><strong>' + selected.length +
       '</strong><span>av 16 mulige refleksjoner i kartet</span></div>' +
+      renderInnerMapCanvas(selected, links, caseTitle) +
+      renderInnerMapGroups(selected, caseTitle) +
+      renderInnerMapTimeline() +
       (cards || '<div class="psychology-room-inner-empty"><strong>Et tomt kart er også et godt utgangspunkt.</strong><p>Ingen refleksjoner legges inn automatisk. Velg en lagret situasjon eller opprett en ny.</p></div>') +
       '<section class="psychology-room-note-section psychology-room-inner-links" aria-labelledby="psychologyMapLinksHeading">' +
       '<h4 id="psychologyMapLinksHeading">Mine forbindelser (' + links.length + ')</h4>' +
@@ -535,6 +914,8 @@
       '<p class="psychology-room-privacy">Kartet lagrer bare ID-er til notater i denne nettleseren. Ingen AI, AHA-overføring eller database. GitHub Pages deler nettleserlagring med andre apper på samme domene, og den er ikke kryptert. Ikke lagre sensitive opplysninger her.</p>' +
       '</section>'));
     bindBack();
+    bindInnerMapCanvas();
+    bindInnerMapGroups();
     document.querySelectorAll("[data-psych-map-add], [data-psych-map-remove]").forEach((button) => {
       button.addEventListener("click", () => {
         const id = button.dataset.psychMapAdd || button.dataset.psychMapRemove;
@@ -763,7 +1144,8 @@
         .map((field) => [field, form.elements[field]?.value || ""]));
       const result = saveWorkbenchFollowUp(entry.id, values);
       if (!result.saved) {
-        window.showToast?.(result.reason === "required_fields" ? "Fyll ut hva du prøvde og hva som skjedde" : "Oppfølgingen kunne ikke lagres");
+        window.showToast?.(result.reason === "required_fields" ? "Fyll ut hva du prøvde og hva som skjedde"
+          : "Oppfølgingen ble IKKE lagret. Kontroller ledig plass og nettleserlagring.");
         return;
       }
       window.showToast?.("Oppfølgingen er lagret på denne enheten");
@@ -816,7 +1198,9 @@
         .map((field) => [field, form.elements[field]?.value || ""]));
       const result = saveWorkbench(values);
       if (!result.saved) {
-        window.showToast?.("Beskriv først en konkret hendelse");
+        window.showToast?.(result.reason === "situation_required"
+          ? "Beskriv først en konkret hendelse."
+          : "Refleksjonen ble IKKE lagret. Kontroller ledig plass og nettleserlagring før du prøver igjen.");
         return;
       }
       window.showToast?.("Refleksjonen er lagret på denne enheten");
@@ -1778,6 +2162,135 @@
     return foundDay ? String(pathReflections[String(foundDay)]?.reflection || "").trim() : "";
   }
 
+
+  let privateBackupScriptPromise = null;
+  function loadPrivateBackupScript() {
+    if (window.HGPsychologyPrivateBackup) return Promise.resolve(window.HGPsychologyPrivateBackup);
+    if (privateBackupScriptPromise) return privateBackupScriptPromise;
+    privateBackupScriptPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "js/psychologyPrivateBackup.js?v=20261120-psychology-crypto-v1";
+      script.async = true;
+      script.onload = () => window.HGPsychologyPrivateBackup ?
+        resolve(window.HGPsychologyPrivateBackup) : reject(new Error("backup module unavailable"));
+      script.onerror = () => reject(new Error("backup module load failed"));
+      document.head.appendChild(script);
+    }).catch((error) => {
+      privateBackupScriptPromise = null;
+      throw error;
+    });
+    return privateBackupScriptPromise;
+  }
+
+  function backupErrorMessage(code, restoring = false) {
+    const messages = {
+      invalid_password: "Velg et passord på minst 12 tegn.",
+      crypto_unavailable: "Denne nettleseren støtter ikke sikker kryptering her.",
+      invalid_file: "Filen er ikke en gyldig kryptert sikkerhetskopi.",
+      invalid_backup: "Sikkerhetskopien inneholder ugyldige data.",
+      invalid_stored_data: "Lokale notater kan ikke leses trygt. Ingen sikkerhetskopi ble laget.",
+      too_large: "Sikkerhetskopien er for stor for denne løsningen.",
+      archive_not_empty: "Denne nettleseren har allerede et arkiv. Gjenoppretting erstatter aldri eksisterende notater.",
+      cannot_decrypt: "Passordet er feil eller sikkerhetskopien er skadet.",
+      rollback_failed: "Gjenopprettingen feilet og oppryddingen kunne ikke bekreftes. Undersøk lokale data før nytt forsøk.",
+      storage_failed: "Nettleseren avviste lagring. Ingen vellykket gjenoppretting er bekreftet."
+    };
+    return messages[code] || (restoring ?
+      "Gjenoppretting mislyktes. Ingen vellykket lagring er bekreftet." :
+      "Sikkerhetskopien ble ikke opprettet. Kontroller nettleseren og prøv igjen.");
+  }
+
+  function renderPrivateBackupSection() {
+    return '<section class="psychology-room-section psychology-room-private-backup" ' +
+      'aria-labelledby="psychologyPrivateBackupHeading">' +
+      '<h3 id="psychologyPrivateBackupHeading">Min krypterte sikkerhetskopi</h3>' +
+      '<p class="psychology-room-muted">Lagre Tankeverksted-notater og Mitt indre kart i én passordkryptert fil. ' +
+      'Du velger selv når du laster den ned. Filen inneholder ikke screening, profil eller sjudagersløp.</p>' +
+      '<form id="psychologyPrivateBackupExport" class="psychology-room-form">' +
+      '<label>Velg passord (minst 12 tegn)<input type="password" name="password" minlength="12" ' +
+      'maxlength="512" autocomplete="new-password" required></label>' +
+      '<label>Gjenta passordet<input type="password" name="confirm_password" minlength="12" ' +
+      'maxlength="512" autocomplete="new-password" required></label>' +
+      '<button type="submit" class="psychology-room-primary">Lag kryptert sikkerhetskopi</button>' +
+      '<p role="status" aria-live="polite" class="psychology-room-muted"></p>' +
+      '<div class="psychology-room-backup-download"></div></form>' +
+      '<details class="psychology-room-backup-restore"><summary>Gjenopprett fra kryptert fil</summary>' +
+      '<p class="psychology-room-privacy">Av sikkerhetshensyn er gjenoppretting bare tilgjengelig ' +
+      'når denne nettleseren ikke har noen lagrede Tankeverksted-notater eller kartdata. ' +
+      'Ingen eksisterende notater overskrives.</p>' +
+      '<form id="psychologyPrivateBackupRestore" class="psychology-room-form">' +
+      '<label>Kryptert fil<input type="file" name="file" accept=".json,application/json" required></label>' +
+      '<label>Passord<input type="password" name="password" minlength="12" ' +
+      'maxlength="512" autocomplete="off" required></label>' +
+      '<label class="psychology-room-backup-consent"><input type="checkbox" name="confirm" required> ' +
+      'Jeg vil gjenopprette denne filen i et tomt lokalt arkiv.</label>' +
+      '<button type="submit" class="psychology-room-primary">Gjenopprett lokalt</button>' +
+      '<p role="status" aria-live="polite" class="psychology-room-muted"></p></form></details>' +
+      '<p class="psychology-room-privacy">Kryptering skjer på denne enheten. ' +
+      'Passordet sendes ikke til AHA eller History GO. AHA-kontoen lagrer eller ' +
+      'synkroniserer ikke denne filen automatisk. Mister du passordet, kan ikke filen åpnes. ' +
+      'Notatene som allerede ligger i nettleseren, er fortsatt ukrypterte.</p></section>';
+  }
+
+  function bindPrivateBackup() {
+    document.getElementById("psychologyPrivateBackupExport")?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const input = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="password"]'));
+      const confirmInput = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="confirm_password"]'));
+      const status = form.querySelector('[role="status"]');
+      const downloadArea = form.querySelector(".psychology-room-backup-download");
+      if (!input || !confirmInput || !status || !downloadArea) return;
+      if (input.value !== confirmInput.value) {
+        status.textContent = "Passordene er forskjellige. Sikkerhetskopien ble ikke opprettet.";
+        return;
+      }
+      status.textContent = "Krypterer på denne enheten …";
+      downloadArea.replaceChildren();
+      try {
+        const backup = await loadPrivateBackupScript();
+        const result = await backup.exportEncrypted(localStorage, input.value);
+        const blob = new Blob([result.text], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "psykologirommet-kryptert-" + new Date().toISOString().slice(0, 10) + ".json";
+        link.className = "psychology-room-inner-open";
+        link.textContent = "Last ned kryptert fil (" + result.count + " refleksjoner)";
+        downloadArea.appendChild(link);
+        link.addEventListener("click", () => window.setTimeout(() => URL.revokeObjectURL(url), 60000),
+          { once: true });
+        status.textContent = "Sikkerhetskopien er kryptert og klar. Trykk på nedlastingslenken og oppbevar filen trygt.";
+      } catch (error) {
+        status.textContent = backupErrorMessage(error?.code);
+      } finally {
+        input.value = "";
+        confirmInput.value = "";
+      }
+    });
+    document.getElementById("psychologyPrivateBackupRestore")?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const file = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="file"]'))?.files?.[0];
+      const passwordField = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="password"]'));
+      const consent = /** @type {HTMLInputElement | null} */ (form.querySelector('input[name="confirm"]'));
+      const status = form.querySelector('[role="status"]');
+      if (!file || !passwordField || !consent?.checked || !status) return;
+      status.textContent = "Kontrollerer kryptert fil …";
+      try {
+        const backup = await loadPrivateBackupScript();
+        if (file.size > backup.maxFileBytes) throw Object.assign(new Error("too large"), { code: "too_large" });
+        const restored = await backup.restoreEncrypted(localStorage, await file.text(), passwordField.value);
+        window.showToast?.("Gjenopprettet " + restored.count + " refleksjoner lokalt.");
+        renderProfile();
+      } catch (error) {
+        status.textContent = backupErrorMessage(error?.code, true);
+      } finally {
+        passwordField.value = "";
+      }
+    });
+  }
+
   function renderProfile() {
     setActiveSection("profile");
     const profile = getProfile();
@@ -1813,8 +2326,10 @@
       (workbenchEntries.length ? '<button type="button" class="psychology-room-back" data-psych-clear-workbench="1">Slett lagrede tankeverksted-notater</button>' : '') +
       '</section>';
 
-    setContent(shell(`${backButton()}${overviewHtml}${workbenchHtml}<section class="psychology-room-profile-card"><div><span>Innsiktspoeng</span><strong>${profile.insight_points}</strong></div><div><span>Økter</span><strong>${profile.completed_sessions}</strong></div><div><span>Lagrede situasjoner</span><strong>${getWorkbenchEntries().length}</strong></div></section><section class="psychology-room-section"><h3>Screeningprofil</h3>${Object.keys(profile.screening || {}).length ? Object.entries(profile.screening).map(([dimension, score]) => `<div class="psychology-room-score"><span>${escapeHtml(dimension)}</span><strong>${escapeHtml(score)}</strong></div>`).join("") : `<p class="psychology-room-muted">Ingen screeningdata lagret ennå.</p>`}</section><section class="psychology-room-section"><h3>7-dagersløp</h3>${pathEntries.length ? pathEntries.map((item) => { const path = findById(dataCache?.paths || [], item.path_id); const total = path?.days?.length || path?.duration_days || 7; const completed = Array.isArray(item.completed_days) ? item.completed_days.map(Number).filter(Boolean) : []; const done = completed.length; const currentDay = Number(item.current_day || 1); const today = (path?.days || []).find((day) => Number(day.day || 0) === currentDay); const latestReflection = getLatestPathReflection(item.path_id, completed); return `<article class="psychology-room-insight"><strong>${escapeHtml(path?.title || item.path_id)} — ${item.completed_at ? "Fullført" : `Pågår: ${done}/${total} dager`}</strong>${!item.completed_at ? `<p>Dagens steg: dag ${escapeHtml(currentDay)}${today?.title ? ` – ${escapeHtml(today.title)}` : ""}</p>` : `<p>Fullført: ${escapeHtml(done)}/${escapeHtml(total)} dager</p>`}<p>Fullførte dager: ${escapeHtml(done)}/${escapeHtml(total)}</p>${latestReflection ? `<p>Siste refleksjon: ${escapeHtml(latestReflection)}</p>` : ""}</article>`; }).join("") : `<p class="psychology-room-muted">Ingen løp startet ennå.</p>`}</section><section class="psychology-room-section"><h3>Siste refleksjoner / screeningresultater</h3>${Array.isArray(insights) && insights.length ? insights.slice(-7).reverse().map(item => `<article class="psychology-room-insight"><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.reflection || item.result_text || "")}</p></article>`).join("") : `<p class="psychology-room-muted">Ingen refleksjoner lagret ennå.</p>`}</section><section class="psychology-room-section"><h3>Siste screening</h3>${screenings.length ? screenings.slice(-3).reverse().map(item => `<article class="psychology-room-insight"><strong>${escapeHtml(item.result_title || item.title)}</strong><p>${escapeHtml(item.result_text || "")}</p></article>`).join("") : `<p class="psychology-room-muted">Ingen screeningresultater lagret ennå.</p>`}</section>`));
+    const backupHtml = renderPrivateBackupSection();
+    setContent(shell(`${backButton()}${overviewHtml}${workbenchHtml}${backupHtml}<section class="psychology-room-profile-card"><div><span>Innsiktspoeng</span><strong>${profile.insight_points}</strong></div><div><span>Økter</span><strong>${profile.completed_sessions}</strong></div><div><span>Lagrede situasjoner</span><strong>${getWorkbenchEntries().length}</strong></div></section><section class="psychology-room-section"><h3>Screeningprofil</h3>${Object.keys(profile.screening || {}).length ? Object.entries(profile.screening).map(([dimension, score]) => `<div class="psychology-room-score"><span>${escapeHtml(dimension)}</span><strong>${escapeHtml(score)}</strong></div>`).join("") : `<p class="psychology-room-muted">Ingen screeningdata lagret ennå.</p>`}</section><section class="psychology-room-section"><h3>7-dagersløp</h3>${pathEntries.length ? pathEntries.map((item) => { const path = findById(dataCache?.paths || [], item.path_id); const total = path?.days?.length || path?.duration_days || 7; const completed = Array.isArray(item.completed_days) ? item.completed_days.map(Number).filter(Boolean) : []; const done = completed.length; const currentDay = Number(item.current_day || 1); const today = (path?.days || []).find((day) => Number(day.day || 0) === currentDay); const latestReflection = getLatestPathReflection(item.path_id, completed); return `<article class="psychology-room-insight"><strong>${escapeHtml(path?.title || item.path_id)} — ${item.completed_at ? "Fullført" : `Pågår: ${done}/${total} dager`}</strong>${!item.completed_at ? `<p>Dagens steg: dag ${escapeHtml(currentDay)}${today?.title ? ` – ${escapeHtml(today.title)}` : ""}</p>` : `<p>Fullført: ${escapeHtml(done)}/${escapeHtml(total)} dager</p>`}<p>Fullførte dager: ${escapeHtml(done)}/${escapeHtml(total)}</p>${latestReflection ? `<p>Siste refleksjon: ${escapeHtml(latestReflection)}</p>` : ""}</article>`; }).join("") : `<p class="psychology-room-muted">Ingen løp startet ennå.</p>`}</section><section class="psychology-room-section"><h3>Siste refleksjoner / screeningresultater</h3>${Array.isArray(insights) && insights.length ? insights.slice(-7).reverse().map(item => `<article class="psychology-room-insight"><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.reflection || item.result_text || "")}</p></article>`).join("") : `<p class="psychology-room-muted">Ingen refleksjoner lagret ennå.</p>`}</section><section class="psychology-room-section"><h3>Siste screening</h3>${screenings.length ? screenings.slice(-3).reverse().map(item => `<article class="psychology-room-insight"><strong>${escapeHtml(item.result_title || item.title)}</strong><p>${escapeHtml(item.result_text || "")}</p></article>`).join("") : `<p class="psychology-room-muted">Ingen screeningresultater lagret ennå.</p>`}</section>`));
     bindBack();
+    bindPrivateBackup();
     document.querySelector("[data-psych-overview-map]")?.addEventListener("click", renderInnerMap);
     document.querySelector("[data-psych-overview-new]")?.addEventListener("click", renderWorkbench);
     document.querySelectorAll("[data-psych-open-workbench]").forEach((button) => {
@@ -1854,6 +2369,14 @@
     getInnerMapIds,
     getInnerMapModel,
     getInnerMapLinks,
+    getInnerMapPositions,
+    getInnerMapGroups,
+    getInnerMapAssignments,
+    getInnerMapTimeline,
+    createInnerMapGroup,
+    setInnerMapGroup,
+    deleteInnerMapGroup,
+    setInnerMapPosition,
     connectInnerMapEntries,
     disconnectInnerMapEntries,
     toggleInnerMap,

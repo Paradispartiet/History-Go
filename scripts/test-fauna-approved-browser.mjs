@@ -1119,17 +1119,91 @@ try {
    }
    await context.close();
   }
+  // Bokfink #31: adult male blue-grey head, rose-orange breast and two white wing bars.
+  for(const brokenChaffinch of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenChaffinch)await context.route("**/bilder/natur/fauna/godkjent/31_bokfink_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Bokfink");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Bokfink,/i}).first();
+   await card.waitFor();
+   if(brokenChaffinch){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Bokfink: no photo substitution when WebP fails");
+   }else{
+    const img=card.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("31_bokfink_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"bokfink-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenChaffinch){
+    await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   }else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Bokfink modal fits viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"bokfink-detail-"+width+".png")});
+   }
+   await context.close();
+  }
+  // Tårnseiler #32: adult in flight, pointed scythe-wings, sooty plumage and pale throat.
+  for(const brokenSwift of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenSwift)await context.route("**/bilder/natur/fauna/godkjent/32_taarnseiler_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();
+   await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Tårnseiler");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Tårnseiler,/i}).first();
+   await card.waitFor();
+   if(brokenSwift){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Tårnseiler: no photo substitution when WebP fails");
+   }else{
+    const img=card.locator("img");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await img.getAttribute("src")).endsWith("32_taarnseiler_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"taarnseiler-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenSwift){
+    await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   }else{
+    const img=page.locator("#natureDialog .ne-dialog-image");
+    await img.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await img.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Tårnseiler modal fits viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"taarnseiler-detail-"+width+".png")});
+   }
+   await context.close();
+  }
   // Unapproved fauna must retain a separate legacy SVG fallback.
   const context=await browser.newContext({viewport:{width,height:900}});
   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
-  await page.locator("#natureSearch").fill("Bokfink");
-  const unapproved=page.locator("#natureGrid").getByRole("button",{name:/^Bokfink,/i}).first();
+  await page.locator("#natureSearch").fill("Hvitkinngås");
+  const unapproved=page.locator("#natureGrid").getByRole("button",{name:/^Hvitkinngås,/i}).first();
   await unapproved.waitFor();
-  assert((await unapproved.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Unapproved Bokfink retains original SVG");
+  assert((await unapproved.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Unapproved Hvitkinngås retains original SVG");
   await context.close();
-  console.log("Finn Fauna 30 approved originals "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
+  console.log("Finn Fauna 32 approved originals "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}

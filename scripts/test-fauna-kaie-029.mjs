@@ -63,10 +63,10 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,28);
 for(const [priorId,hash] of Object.entries(previous))assert.equal(reg.get(priorId)?.gitBlobSha,hash,priorId+" must remain unchanged");
-assert.equal(reg.get("emne_fauna_bokfink"),null,"Unapproved Bokfink retains SVG fallback");
+assert.equal(reg.get("emne_fauna_hvitkinngaas"),null,"Unapproved Hvitkinngås retains SVG fallback");
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-kaie-029.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Kaie")'));
-assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Bokfink")'));
+assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Tårnseiler")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));
 console.log("Finn Fauna #29 Kaie: alpha WebP, Git/SHA256, species, quiz, 28 prior originals and browser fallback OK.");

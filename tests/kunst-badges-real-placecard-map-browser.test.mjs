@@ -114,8 +114,17 @@ try {
       assert.equal(mapBadge.src,expectedMapImage,viewport.tag + ': map pin must use Kunst MAIN badge');
       assert.notEqual(mapBadge.src,card.src,viewport.tag + ': map badge must not use subbadge');
       assert.equal(mapBadge.parentId,place.id);
+      // The card overlays the map on both form factors. Hide only the card
+      // inside this test before capturing pixels, so the screenshot depicts
+      // the actual MapLibre marker and not the overlapping PlaceCard text.
+      await page.evaluate(() => {
+        const card = document.getElementById('placeCard');
+        if (card) card.style.setProperty('display','none','important');
+      });
       const marker = page.locator('.hg-place-detail-marker[data-place-id="oslo_prosjektrom"]');
-      await marker.screenshot({path:path.join(out,viewport.tag+'-kunst-map-pin.png')});
+      const markerImage = marker.locator('img.hg-place-detail-badge');
+      await markerImage.screenshot({path:path.join(out,viewport.tag+'-kunst-map-pin.png')});
+      await page.screenshot({path:path.join(out,viewport.tag+'-kunst-map-view.png')});
       console.log(viewport.tag.toUpperCase() + '_KUNST_BADGE_BROWSER_PASS',JSON.stringify({card,mapBadge,pageErrors}));
     } catch (error) {
       const diag = await page.evaluate(() => ({
