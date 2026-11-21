@@ -48,7 +48,7 @@ if(fs.existsSync(new URL(binaryPath,root))){
  assert.equal(bytes.length,item.sizeBytes,"Candidate byte count changed");
  assert.equal(crypto.createHash("sha256").update(bytes).digest("hex"),item.sha256);
  const gitBlob=crypto.createHash("sha1").update(Buffer.concat([
-  Buffer.from("blob "+bytes.length+"\\0"),bytes
+  Buffer.from("blob "+bytes.length),Buffer.from([0]),bytes
  ])).digest("hex");
  assert.equal(gitBlob,item.expectedGitBlobSha,"Git blob differs from candidate");
  assert.equal(bytes.toString("ascii",0,4),"RIFF");
