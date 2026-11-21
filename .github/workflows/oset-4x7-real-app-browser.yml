@@ -1,0 +1,46 @@
+name: Oset 4x7 real-app Playwright acceptance
+on:
+  pull_request:
+    paths:
+      - "data/quiz/historie/frysjadammen_sets.json"
+      - "data/quiz/manifest.json"
+      - "data/quizcards/historie/oset_slusebru_quizcard_v1.json"
+      - "data/quizcards/historie/manifest.json"
+      - "data/knowledge/preserved_quiz_sources/frysjadammen_oset_legacy_20261117.json"
+      - "data/places/natur/oslo/places_oslo_natur_akerselvarute/frysjadammen.json"
+      - "data/runtime/place-open/frysjadammen.json"
+      - "tests/oset-4x7-real-app-browser.mjs"
+      - ".github/workflows/oset-4x7-real-app-browser.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies and build actual app source data
+        run: |
+          npm ci --no-audit --no-fund
+          npm run places:index:build
+          npm run place-open:check
+          npm run knowledge:canonical:check
+          node --test tests/oset-quiz-migration-draft-guard.test.mjs
+      - name: Install Chromium and WebKit
+        run: npx playwright install --with-deps chromium webkit
+      - name: Open actual Oset PlaceCard, quizcard and fullquiz in phone/iPad/desktop
+        run: node tests/oset-4x7-real-app-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oset-4x7-real-app-screenshots
+          path: artifacts/oset-4x7-real-app/
+          if-no-files-found: warn
+          retention-days: 14

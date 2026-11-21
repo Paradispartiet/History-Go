@@ -34,7 +34,12 @@ const KNOWLEDGE_ROOT = path.join(ROOT, 'data/knowledge');
  * No legacy question is reactivated by this mechanism.
  */
 const PRESERVED_QUIZ_KNOWLEDGE_SOURCES = [
+  'data/knowledge/preserved_quiz_sources/stilla_nydalen_legacy_20261119.json',
   'data/knowledge/preserved_quiz_sources/grini_fangeleir_legacy_1x3.json',
+  'data/knowledge/preserved_quiz_sources/myralokka_myragarden_legacy_20261116.json',
+  'data/knowledge/preserved_quiz_sources/frysjadammen_oset_legacy_20261117.json',
+  'data/knowledge/preserved_quiz_sources/seilduksfabrikken_nydalen_legacy_20261118.json',
+  'data/knowledge/preserved_quiz_sources/bjoelsenfossen_legacy_20261121.json',
 ];
 
 /**

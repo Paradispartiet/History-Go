@@ -77,7 +77,8 @@ try{
         const card=document.getElementById("placeCard");
         return card?.dataset.collectionProfileSource==="place_card_profile_v2"
           && card?.dataset.collectionCount==="4"
-          && card?.dataset.collectionGridCount==="3";
+          && card?.dataset.collectionGridCount==="3"
+          && document.getElementById("pcObjectsIcon")?.dataset.collectionItemCount==="8";
       },null,{timeout:30000});
       assert.equal(await card.getAttribute("data-collection-profile-source"),
         "place_card_profile_v2",tag+": canonical v2 profile");
@@ -125,8 +126,10 @@ try{
         throw error;
       }
       await page.locator('button[data-pc-round-gallery-item="pcBrandsIcon"]').waitFor({state:"visible",timeout:15000});
-      await page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]').waitFor({state:"visible",timeout:15000});
-      assert.equal(await page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]').count(),1,tag+": illustrated Objects gallery tile");
+      const objectsTile=page.locator('button[data-pc-round-gallery-item="pcObjectsIcon"]');
+      await objectsTile.waitFor({state:"visible",timeout:15000});
+      assert.equal(await objectsTile.count(),1,tag+": illustrated Objects gallery tile");
+      assert.match(await objectsTile.locator("img").getAttribute("alt") || "",/Illustrasjon – ikke fotografi/);
 
       await page.waitForFunction(()=>{
         const image=document.querySelector("#pcCategoryCollectionIcon img");

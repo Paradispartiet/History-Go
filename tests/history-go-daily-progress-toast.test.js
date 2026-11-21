@@ -59,6 +59,7 @@ assert.match(document.getElementById("hgDailyProgressToast").innerHTML, /&lt;Må
 const css = document.getElementById("hgDailyProgressToastStyle").textContent;
 assert.match(css, /--hg-mission-notification-bottom/);
 assert.match(css, /z-index:2147481800/);
+assert.match(css, /pointer-events:none/, "Progress notices must let taps reach underlying controls");
 advance(2599);
 assert.equal(toast.isVisible(), true);
 advance(1);

@@ -222,6 +222,20 @@
   z-index:1;
 }
 
+/* The collectible card photo occupies the full front face. The face is an
+   absolute 3:4 grid; percentage sizing of its normal-flow grid image can
+   shrink to intrinsic height on narrow/desktop viewports. Positioning it
+   against the face prevents black gutters, independently of whether the
+   photographic framing contract uses contain or full-bleed cover. */
+#placeCard .pc-frontcard .pc-card-face-front > #pcFrontImage{
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+}
+
 /* Akerselva uses a landscape Commons photo on a portrait flip card.
    Show the complete source photograph rather than cropping the river. */
 #placeCard[data-current-place-id="akerselva"] #pcFrontImage{
