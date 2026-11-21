@@ -88,6 +88,7 @@ try {
         overlayBackground: getComputedStyle(overlay).backgroundColor,
         overlayBackdrop: getComputedStyle(overlay).backdropFilter,
         overlayZ: Number(getComputedStyle(overlay).zIndex),
+        placeCardZ: Number(getComputedStyle(document.querySelector("#placeCard")).zIndex),
         headerZ: Number(getComputedStyle(document.querySelector(".site-header")).zIndex),
         footerZ: Number(getComputedStyle(document.querySelector(".app-footer")).zIndex),
         scrollable: body.scrollHeight > body.clientHeight,
@@ -109,6 +110,7 @@ try {
       "header visible above person card at " + width);
     assert.ok(state.overlay.bottom <= state.footer.y - 11,
       "footer visible below person card at " + width);
+    assert.ok(state.overlayZ > state.placeCardZ, "person popup above the open PlaceCard at " + width);
     assert.ok(state.overlayZ < state.footerZ && state.overlayZ < state.headerZ,
       "person popup beneath footer and header layers at " + width);
     assert.ok(state.overlay.width <= 760.5 && state.inner.height <= state.overlay.height + 1,

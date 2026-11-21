@@ -259,6 +259,10 @@ window.addEventListener("resize", () => {
 
 function anchorPersonPopupToAppShell(node) {
   if (!node || !node.classList?.contains("person-popup")) return;
+  // V2 is viewport-framed like PlaceCard. Moving it into the transformed,
+  // lower app-shell traps both its fixed geometry and its stacking context.
+  // Only the older popup uses the shell-relative placement contract.
+  if (node.classList.contains("person-popup-v2")) return;
 
   const shell = document.querySelector(".app-shell");
   if (!shell || node.parentElement === shell) return;

@@ -207,6 +207,48 @@ try{
       assert.equal(errors.length,0,tag+': no JavaScript errors after all five Brand details');
       fs.writeFileSync(path.join(output,tag+'-brands-result.json'),JSON.stringify({viewport:view,brands:runtime.brands.map(b=>b.id),listImages,allDetailsOpened:true,creditsVisible:true,jsErrors:errors},null,2));
       console.log(tag.toUpperCase()+'_AKER_BRYGGE_BRANDS_PASS '+JSON.stringify({logos:5,detailsOpened:5,creditsVisible:true,jsErrors:errors}));
+      await page.locator('#pcPeopleIcon').click();
+      const nielsRow=page.locator('.hg-popup.placecard-round-popup [data-person="niels_torp"]');
+      await nielsRow.waitFor({state:'visible',timeout:20000});
+      assert.equal(await nielsRow.locator('img').getAttribute('src'),'bilder/kort/people/niels_torp.jpg');
+      await nielsRow.click();
+      const personPopup=page.locator('.hg-popup.person-popup-v2');
+      await personPopup.waitFor({state:'visible',timeout:20000});
+      assert.equal(await personPopup.evaluate(el=>el.parentElement===document.body),true,
+        tag+': viewport-framed People popup must remain outside the transformed app-shell');
+      assert.equal(await personPopup.locator('h2.hg-popup-name').textContent(),'Niels Torp');
+      await page.waitForFunction(()=>{
+        const img=document.querySelector('.hg-popup.person-popup-v2 [data-person-hero-image]');
+        return img?.complete&&img.naturalWidth===927&&img.naturalHeight===1189;
+      },null,{timeout:30000});
+      // DOM visibility alone passes for a popup hidden under PlaceCard.
+      // Check the actual painted layer at the portrait's visible centre.
+      await page.waitForFunction(()=>{
+        const popup=document.querySelector('.hg-popup.person-popup-v2');
+        const img=popup?.querySelector('[data-person-hero-image]');
+        if(!popup||!img)return false;
+        const b=img.getBoundingClientRect();
+        const x=b.left+b.width/2,y=b.top+Math.min(b.height/2,120);
+        return x>0&&x<innerWidth&&y>0&&y<innerHeight&&popup.contains(document.elementFromPoint(x,y));
+      },null,{timeout:15000});
+      assert.equal(await personPopup.locator('[data-person-hero-image]').getAttribute('src'),'bilder/kort/people/niels_torp.jpg');
+      await page.screenshot({path:path.join(output,tag+'-niels-torp-portrait.png'),fullPage:false});
+      const sources=personPopup.locator('.hg-person-sources-section');
+      const sourceLink=sources.getByRole('link',{name:/Foto: Norsk Form/});
+      await sourceLink.scrollIntoViewIfNeeded();
+      assert.ok(await sourceLink.isVisible(),tag+': visible portrait credit');
+      assert.ok(await sourceLink.evaluate(el=>{
+        const b=el.getBoundingClientRect();
+        return el.contains(document.elementFromPoint(b.left+b.width/2,b.top+b.height/2));
+      }),tag+': portrait credit is actually in front of PlaceCard');
+      assert.match(await sourceLink.textContent(),/CC BY 3.0.*utsnitt/);
+      assert.ok((await sourceLink.getAttribute('href')).startsWith('https://commons.wikimedia.org/wiki/File:Niels_Torp_Peter_Butensch'));
+      assert.equal(await sources.getByRole('link',{name:'Bildelisens: CC BY 3.0'}).getAttribute('href'),'https://creativecommons.org/licenses/by/3.0');
+      assert.equal(errors.length,0,tag+': portrait opens without JavaScript errors');
+      await page.screenshot({path:path.join(output,tag+'-niels-torp-credit.png'),fullPage:false});
+      await personPopup.locator('[data-close-popup]').click();
+      await personPopup.waitFor({state:'detached'});
+      console.log(tag.toUpperCase()+'_AKER_BRYGGE_NIELS_TORP_PASS '+JSON.stringify({width:927,height:1189,source:'Norsk Form',license:'CC BY 3.0',realPersonClick:true,paintedInFront:true,creditHitTest:true,closedByClick:true,jsErrors:errors}));
       console.log(tag.toUpperCase()+"_AKER_BRYGGE_STRUCTURES_PASS "+
         JSON.stringify({count:rows.length,preview:preview,rows,profile:state.profile,brandHidden:!state.brandsVisible,jsErrors:errors}));
     } catch(error) {

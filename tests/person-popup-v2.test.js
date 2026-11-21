@@ -342,7 +342,7 @@ test("person surface follows PlaceCard framing while quiz stays compact", () => 
   assert.match(css, /top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 12px\)/);
   assert.match(css, /bottom:\s*calc\(var\(--hg-bottom-nav-height, 72px\) \+ 12px\)/);
   assert.match(css, /max-width:\s*760px/);
-  assert.match(css, /z-index:\s*var\(--hg-z-placecard, 100\)/);
+  assert.match(css, /z-index:\s*calc\(var\(--hg-z-placecard, 100\) \+ 1\)/);
   assert.match(css, /background:\s*transparent/);
   assert.match(css, /backdrop-filter:\s*none/);
   assert.match(css, /\.hg-popup-inner\{[\s\S]*?border-radius:\s*var\(--pc-radius, 22px\)/);
