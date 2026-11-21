@@ -12,7 +12,9 @@ const cp='data/quizcards/historie/bjoelsenfossen_quizcard_v1.json';
 const old=read(qp),original=old.sets.flatMap(s=>s.questions);
 assert.equal(old.sets.length,6);assert.equal(original.length,42);
 const report=fs.readFileSync(rp,'utf8'),rows=new Map();
-for(const line of report.split('\n')){
+const sectionStart=report.indexOf('### Bjølsenfossen – gjennomgått åpningsdel');
+assert.ok(sectionStart>=0,'Bjølsenfossen section missing');
+for(const line of report.slice(sectionStart).split('\n')){
  const m=/^\|\s*([1-4])\.([1-7])\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*$/.exec(line);
  if(!m)continue;
  const [all,s,n,question,answer,distractors,explanation]=m;
