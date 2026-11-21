@@ -1,0 +1,50 @@
+name: Advokat Dehlis plass one-time Fagverk sync
+on:
+  push:
+    branches:
+      - work/oslo-akerselva-v1-bolk-20261116
+    paths:
+      - ".github/workflows/advokat-dehlis-plass-fagverk-sync-once.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: advokat-dehlis-place-fagverk-once
+  cancel-in-progress: false
+jobs:
+  verify-and-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build only required derived files
+        run: |
+          npm ci --no-audit --no-fund
+          npm run places:index:build
+          npm run place-open:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify Fagverk source, registry, runtime and unchanged quiz IDs
+        run: |
+          npm run place-open:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-fagverk-place-pages.mjs
+          node --test tests/advokat-dehlis-plass-fagverk.test.mjs
+      - name: Commit verified generated files, remove one-time workflow
+        run: |
+          rm .github/workflows/advokat-dehlis-plass-fagverk-sync-once.yml
+          git add data/places/places_index.json \
+            data/runtime/place-open/bjoelsenparken_elvenaer.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/fagverk-place-page-coverage-v2.json \
+            .github/workflows/advokat-dehlis-plass-fagverk-sync-once.yml
+          git diff --cached --stat
+          git diff --cached --quiet && exit 0
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit -m 'Sync Advokat Dehlis plass Fagverk runtime, index and release'
+          git push origin HEAD:work/oslo-akerselva-v1-bolk-20261116
