@@ -40,7 +40,7 @@ for(const [key,sha] of [
 ["emne_fauna_kraake","efbf5b4d09143192cb5c7405e07f04eadd15f1a1"],
 ["emne_fauna_graaspurv","468b3c17af9a0b90aebe7ce1cdd6866f9224687f"]
 ])assert.equal(reg.get(key)?.gitBlobSha,sha,key+" original must remain byte-identical");
-assert.equal(reg.get("emne_fauna_bokfink"),null,"Bokfink retains its original SVG fallback");
+assert.equal(reg.get("emne_fauna_taarnseiler"),null,"Tårnseiler retains its original SVG fallback");
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Fiskemåke")'));
 assert(read("scripts/test-nature-illustrations.mjs").includes("330"));

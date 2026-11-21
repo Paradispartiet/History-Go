@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_bokfink:Object.freeze({
+   scientificName:"Fringilla coelebs",
+   src:"bilder/natur/fauna/godkjent/31_bokfink_v1.webp",
+   gitBlobSha:"f48fafe915612bc0b520af1388e62230901d3060",
+   reviewedAt:"2026-11-21",
+   stage:"adult_male_blue_grey_crown_rose_orange_breast_white_wing_bars_olive_rump_lichen_perch",
+   evidence:"data/natur/fauna/illustration-quality-bokfink-20261121.json"
+  }),
   emne_fauna_staer:Object.freeze({
    scientificName:"Sturnus vulgaris",
    src:"bilder/natur/fauna/godkjent/30_staer_v1.webp",

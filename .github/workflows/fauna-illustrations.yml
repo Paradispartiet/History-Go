@@ -7,7 +7,6 @@ on:
       - 'finn-fauna.html'
       - 'css/nature-explorer.css'
       - 'data/natur/fauna/illustration-quality-*.json'
-      - 'data/natur/fauna/candidates/**'
       - 'bilder/natur/fauna/godkjent/**'
       - 'scripts/test-fauna-approved-*.mjs'
       - 'scripts/test-fauna-*.mjs'
@@ -57,7 +56,7 @@ jobs:
       - run: node scripts/test-fauna-stillits-028.mjs
       - run: node scripts/test-fauna-kaie-029.mjs
       - run: node scripts/test-fauna-staer-030.mjs
-      - run: node scripts/test-fauna-bokfink-031-candidate.mjs
+      - run: node scripts/test-fauna-bokfink-031.mjs
       - run: node scripts/test-nature-illustrations.mjs
   approved-fauna-browser:
     runs-on: ubuntu-latest
