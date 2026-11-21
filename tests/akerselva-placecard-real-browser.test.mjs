@@ -94,13 +94,21 @@ try {
         };
         return {
           front: {src:front.currentSrc,fit:getComputedStyle(front).objectFit,
-            width:front.naturalWidth,height:front.naturalHeight, box:bounds(front)},
+            width:front.naturalWidth,height:front.naturalHeight, box:bounds(front),frame:bounds(front.parentElement)},
           hero: {src:hero.currentSrc,fit:getComputedStyle(hero).objectFit,
-            width:hero.naturalWidth,height:hero.naturalHeight,box:bounds(hero)}
+            width:hero.naturalWidth,height:hero.naturalHeight,box:bounds(hero),frame:bounds(hero.parentElement)}
         };
       });
-      assert.equal(media.front.fit, 'contain', tag + ': photo must not be cropped on portrait card');
-      assert.equal(media.hero.fit, 'contain', tag + ': uncropped landscape overview must preserve the source photo');
+      // The shared PlaceCard contract fills the two photo frames, following
+      // place-image-framing.css and its browser audit (d4f00ccb, 18 Nov).
+      // Source-file orientation, identity and independent hero/front images
+      // remain checked below; documentary popups have their own contain policy.
+      for (const [role, photo] of Object.entries(media)) {
+        assert.equal(photo.fit, 'cover', tag + ': ' + role + ' follows the current full-bleed contract');
+        assert.ok(Math.abs(photo.box.width-photo.frame.width)<=2 &&
+          Math.abs(photo.box.height-photo.frame.height)<=2,
+          tag + ': ' + role + ' photo fills its actual frame without gutters');
+      }
       assert.ok(media.front.height > media.front.width, tag + ': front photo is natively portrait');
       assert.ok(media.hero.width > media.hero.height, tag + ': header photo is landscape');
       assert.notEqual(media.front.src, media.hero.src, tag + ': independent front and header photos');
