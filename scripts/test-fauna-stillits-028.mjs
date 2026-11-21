@@ -59,7 +59,7 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,27);
 for(const [olderId,olderSha] of Object.entries(previous))assert.equal(reg.get(olderId)?.gitBlobSha,olderSha,olderId+" original unchanged");
-assert.equal(reg.get("emne_fauna_hvitkinngaas"),null,"Unapproved Hvitkinngås retains SVG fallback");
+assert.equal(reg.get("emne_fauna_kvinand"),null,"Unapproved Kvinand retains SVG fallback");
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Versioned approved register required");
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-stillits-028.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Stillits")'));
