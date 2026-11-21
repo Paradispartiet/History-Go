@@ -470,3 +470,38 @@ På arkivbildet kan du undersøke hvordan Valsemøllebrua ligger i forhold til f
 | Hvem anla Bjølsen sag i 1701? | Gerhard Treschow | Akerselvas Venner |
 
 Kilder: [Bjølsenfallet](https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet), [Valsemøllebrua](https://oslobyleksikon.no/side/Valsem%C3%B8llebrua), [Akerselvas Venner](https://www.akerselvasvenner.no/2016/01/01/2396/) og [Oslo kommunes forprosjekt](https://www.oslo.kommune.no/slik-bygger-vi-oslo/bjolsenfossen-hvordan-gjore-omradet-rundt-fossen-tilgjengelig-forprosjekt-med-omregulering/). Fagverk-teksten og kandidatene er redaksjonelle utkast. Aktivt Fagverk, QuizCard og fullquiz krever integrasjon og validering.
+
+### Bjølsenfossen – gjennomgått åpningsdel og plan for opptjente ID-er (21.11.2026)
+
+Den eksisterende quizen har seks sett med sju spørsmål. Fem spørsmål dekker kildebelagte poenger som kan videreføres med samme læringsinnhold. Ved migrering beholdes spørsmål-ID, quiz-ID og primær Knowledge-ID for disse fem. De øvrige 37 skal bevares som historiske Knowledge-referanser med original-ID, før erstatningsspørsmål eventuelt aktiveres. At en gammel oppgave har en teknisk Knowledge-kobling, bekrefter ikke redaksjonell kvalitet.
+
+| Behold spørsmål-ID | Behold quiz-ID | Behold primær Knowledge-ID | Faglig avgrensning |
+|---|---|---|---|
+| `bjoelsenfossen_s1_q1` | `historie_bjoelsenfossen_set_1_q1` | `ku_historie_bj_lsenfossen_er_akersel_f02d302bf5` | Akerselvas høyeste foss, omtrent 16 meter fordelt på to fall |
+| `bjoelsenfossen_s1_q4` | `historie_bjoelsenfossen_set_1_q4` | `ku_historie_bj_lsenfossen_og_bj_lsen_ed3e714378` | Sagbruk, vanninntak og møllekraft |
+| `bjoelsenfossen_s2_q1` | `historie_bjoelsenfossen_set_2_q1` | `ku_historie_firmaet_bj_lsen_valsem_l_e4604ba94e` | Gustav Martinsen og Ole Amundsen grunnla firmaet i 1884 |
+| `bjoelsenfossen_s2_q3` | `historie_bjoelsenfossen_set_2_q3` | `ku_historie_fossen_og_valsem_llebrua_82decdee56` | Begrenset tilgang til industriområdet |
+| `bjoelsenfossen_s2_q5` | `historie_bjoelsenfossen_set_2_q5` | `ku_historie_bj_lsen_anlegget_er_en_a_80345245ef` | Matmelproduksjonen fortsetter på Bjølsen |
+
+Forslag til de første to settene. Plasseringen i tabellen er redaksjonell. Før aktivering må gjenbrukte quiz-ID-er og settprogresjonen kontrolleres mot runtime. Fasiten står først i tabellen. Appen stokker svaralternativene.
+
+| Sett og plass | Spørsmål | Fasit | To distraktorer | Forklaring og kilde |
+|---|---|---|---|---|
+| 1.1 | Hva skiller Bjølsenfossen fra de andre fossene i Akerselva? | Den har størst samlet fallhøyde | Den ligger øverst i elva · Den ligger nærmest fjorden | De to fallene utgjør rundt 16 meter til sammen. Bjølsenfallet og Akerselvas Venner. |
+| 1.2 | Hvilken bru ligger like nord for Bjølsenfossen? | Treschows bru | Bentsebrua · Beierbrua | Bjølsenfallet ligger sør for Treschows bru. Bjølsenfallet. |
+| 1.3 | Hva brukte Christiania Bjølsendammen til i 1860-årene? | Vanninntak for byen | Omlasting av tømmer til havn · Opplagsplass for kornlektere | Byen hadde vanninntak i dammen fra 1860 til 1867. Bjølsenfallet. |
+| 1.4 | Hvilke tre oppgaver har vannet ved Bjølsenfossen hatt? | Sagdrift, vannforsyning og møllekraft | Sagdrift, kanaltrafikk og tømmerfløting · Vannforsyning, papirproduksjon og skipsbygging | Sagene og møllene utnyttet fallet, mens byen tok vann fra dammen. Bjølsenfallet, Akerselvas Venner og Valsemøllebrua. |
+| 1.5 | På hvilken side av elva lå den gamle Bjølsen Mølle? | På vestbredden | På østbredden · På begge bredder fra starten | Virksomheten ble flyttet østover på 1890-tallet. Bjølsenfallet. |
+| 1.6 | Hvilken bru ved dammen har mekanismer for å regulere fossen? | Valsemøllebrua | Treschows bru · Bentsebrua | Reguleringsmekanismene er del av Valsemøllebrua. Valsemøllebrua. |
+| 1.7 | Hva styrer reguleringsmekanismene ved Valsemøllebrua? | Hvor mye vann som passerer fossen | Hvor mye korn som mates inn i mølla · Hvor raskt kornet tømmes fra siloen | Mekanismene regulerer vannføringen. Valsemøllebrua. |
+| 2.1 | Hvem etablerte firmaet Bjølsen Valsemølle? | Gustav Martinsen og Ole Amundsen | Gerhard Treschow og Ole Bentsen · Adam Hiorth og Oluf Onsum | Amundsen eide Bjølsen Mølle da han startet firmaet sammen med Martinsen i 1884. Bjølsen Valsemølle. |
+| 2.2 | Hva er den gamle Valsemøllebrua bygd av? | Tre | Støpejern · Armert betong | Byleksikonet beskriver en smal trebru på fabrikkområdet. Valsemøllebrua. |
+| 2.3 | Hvorfor kan du vanligvis ikke gå helt fram til Bjølsenfossen? | Fossen ligger inne på et industriområde | Elva kan bare krysses med båt · En tunnel stenger den offentlige stien | Kommunen utreder tryggere tilgang til området. Oslo kommunes forprosjekt. |
+| 2.4 | Hvilke deler av det gamle kraftanlegget er bevart på vestbredden? | Turbinrøret og turbinen | En dampkjele og en skorstein · Et vannhjul og et sagblad | De bevarte delene viser hvordan vann ble ledet inn til kraftanlegget. Valsemøllebrua. |
+| 2.5 | Hvilken produksjon på Bjølsen viderefører den gamle møllevirksomheten? | Produksjon av matmel og melblandinger | Foredling av trevirke · Produksjon av tekstiler | Lantmännen oppgir fortsatt mølleproduksjon i Oslo. Bjølsen Valsemølle og Regal. |
+| 2.6 | Hvilken sag brukte fossen som kraftkilde på 1600-tallet? | Sandaker sag | Bjølsen sag · Bentse Brug | Sandaker sag var i drift før Treschow anla Bjølsen sag. Akerselvas Venner. |
+| 2.7 | Hvem anla Bjølsen sag? | Gerhard Treschow | Gustav Martinsen · Ole Amundsen | Treschow anla saga i 1701. Martinsen og Amundsen hører til den senere valsemølla. Akerselvas Venner og Bjølsen Valsemølle. |
+
+Sett 3 kan ta opp møllas flytting og oppkjøp, fallrettigheter, valsestoler og forskjellen mellom turbinrør og turbin. Sett 4 kan bruke kart, arkivfoto og driftskilder til å undersøke vannets vei, hva fotografiene viser, og hva som krever målinger eller samtidige dokumenter. Aktiv fullquiz og QuizCard er uendret i denne commiten.
+
+[Bjølsen Valsemølle – Oslo byleksikon](https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle) · [Store norske leksikon](https://snl.no/Bj%C3%B8lsen_Valsem%C3%B8lle) · [Regal – møller i Norge](https://www.regal.no/om-oss/moller-i-norge/).
