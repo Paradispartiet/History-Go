@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_taarnseiler:Object.freeze({
+   scientificName:"Apus apus",
+   src:"bilder/natur/fauna/godkjent/32_taarnseiler_v1.webp",
+   gitBlobSha:"49822981f3584d594d6ae43fcd475563f2f1f4bd",
+   reviewedAt:"2026-11-21",
+   stage:"adult_sooty_brown_in_flight_scythe_shaped_wings_small_pale_throat_short_forked_tail",
+   evidence:"data/natur/fauna/illustration-quality-taarnseiler-20261121.json"
+  }),
   emne_fauna_bokfink:Object.freeze({
    scientificName:"Fringilla coelebs",
    src:"bilder/natur/fauna/godkjent/31_bokfink_v1.webp",

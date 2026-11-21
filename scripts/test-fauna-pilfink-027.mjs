@@ -60,7 +60,7 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,26);
 for(const [prevId,prevSha]of Object.entries(previous))assert.equal(reg.get(prevId)?.gitBlobSha,prevSha,prevId+" must be preserved");
-assert.equal(reg.get("emne_fauna_taarnseiler"),null,"Unapproved Tårnseiler retains SVG fallback");
+assert.equal(reg.get("emne_fauna_hvitkinngaas"),null,"Unapproved Hvitkinngås retains SVG fallback");
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Versioned fauna registry must load");
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-pilfink-027.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Pilfink")'));

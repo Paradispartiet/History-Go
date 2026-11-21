@@ -46,7 +46,7 @@ assert.deepEqual([bytes.readUIntLE(24,3)+1,bytes.readUIntLE(27,3)+1],[1024,1536]
 const sandbox={window:{}};
 vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
 const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,31);
+assert(reg.count>=31,"Bokfink remains approved after future birds");
 assert.equal(reg.get(id)?.src,item.src);
 assert.equal(reg.get(id)?.scientificName,latin);
 assert.equal(reg.get(id)?.gitBlobSha,item.gitBlobSha);
@@ -84,8 +84,8 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,30);
 for(const [oldId,sha] of Object.entries(previous))assert.equal(reg.get(oldId)?.gitBlobSha,sha,oldId+" must remain unchanged");
-assert.equal(reg.get("emne_fauna_taarnseiler"),null,"Unapproved Tårnseiler retains legacy SVG fallback");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261121-31"));
+assert.equal(reg.get("emne_fauna_hvitkinngaas"),null,"Unapproved Hvitkinngås retains legacy SVG fallback");
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-bokfink-031.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Bokfink")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Tårnseiler")'));
