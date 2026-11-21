@@ -1,0 +1,21 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const source=fs.readFileSync('js/ui/interactions.js','utf8');
+const start=source.indexOf('function anchorPersonPopupToAppShell(');
+assert.ok(start>0);
+test('The production popup observer keeps V2 outside the transformed shell while preserving legacy anchoring',()=>{
+ let callback;
+ const body={},shell={appendChild(node){node.parentElement=this;}};
+ const context={document:{body,querySelector:selector=>selector==='.app-shell'?shell:null},MutationObserver:class{constructor(fn){callback=fn;}observe(){}}};
+ vm.createContext(context);vm.runInContext(source.slice(start),context);
+ const node=classes=>({parentElement:body,classList:{contains:name=>classes.includes(name)}});
+ const v2=node(['hg-popup','person-popup','person-popup-v2']);
+ const legacy=node(['hg-popup','person-popup']);
+ const unrelated=node(['hg-popup','brand-popup']);
+ callback([{addedNodes:[v2,legacy,unrelated]}]);
+ assert.equal(v2.parentElement,body,'V2 must stay a root sibling of PlaceCard');
+ assert.equal(legacy.parentElement,shell,'Legacy popup still uses its shell anchor');
+ assert.equal(unrelated.parentElement,body,'Other popup owners are unaffected');
+});

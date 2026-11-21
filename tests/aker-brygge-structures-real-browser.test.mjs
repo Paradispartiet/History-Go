@@ -214,6 +214,8 @@ try{
       await nielsRow.click();
       const personPopup=page.locator('.hg-popup.person-popup-v2');
       await personPopup.waitFor({state:'visible',timeout:20000});
+      assert.equal(await personPopup.evaluate(el=>el.parentElement===document.body),true,
+        tag+': viewport-framed People popup must remain outside the transformed app-shell');
       assert.equal(await personPopup.locator('h2.hg-popup-name').textContent(),'Niels Torp');
       await page.waitForFunction(()=>{
         const img=document.querySelector('.hg-popup.person-popup-v2 [data-person-hero-image]');

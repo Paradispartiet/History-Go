@@ -14,6 +14,8 @@ on:
       - 'js/ui/popup-utils.js'
       - 'css/person-popup-v2.css'
       - 'js/ui/person-popup-v2.js'
+      - 'js/ui/interactions.js'
+      - 'tests/person-popup-root-placement.test.mjs'
       - 'css/popups.css'
       - 'tests/aker-brygge-brand-publication.test.mjs'
       - 'tests/aker-brygge-brand-place-boundaries.test.mjs'
@@ -45,7 +47,7 @@ jobs:
       - name: Check canonical Aker Brygge Place-open parity
         run: npm run place-open:check
       - name: Verify reviewed Niels Torp portrait and synchronized People data
-        run: node --test tests/aker-brygge-niels-torp-portrait.test.mjs
+        run: node --test tests/aker-brygge-niels-torp-portrait.test.mjs tests/person-popup-root-placement.test.mjs
       - name: Verify sourced Brand boundaries and preserved candidate archive
         run: node --test tests/aker-brygge-brand-publication.test.mjs tests/aker-brygge-brand-place-boundaries.test.mjs tests/aker-brygge-brand-logo-candidates.test.mjs tests/aker-brygge-inline-svg-candidates.test.mjs tests/aker-brygge-svw-pdf-wordmark.test.mjs tests/aker-brygge-tiger-press-wordmark.test.mjs tests/aker-brygge-v1-contract.test.mjs
       - name: Install Chromium only

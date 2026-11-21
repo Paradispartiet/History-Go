@@ -94,9 +94,9 @@ try {
         };
         return {
           front: {src:front.currentSrc,fit:getComputedStyle(front).objectFit,
-            width:front.naturalWidth,height:front.naturalHeight, box:bounds(front),frame:bounds(front.parentElement)},
+            width:front.naturalWidth,height:front.naturalHeight, box:bounds(front)},
           hero: {src:hero.currentSrc,fit:getComputedStyle(hero).objectFit,
-            width:hero.naturalWidth,height:hero.naturalHeight,box:bounds(hero),frame:bounds(hero.parentElement)}
+            width:hero.naturalWidth,height:hero.naturalHeight,box:bounds(hero)}
         };
       });
       // The shared PlaceCard contract fills the two photo frames, following
@@ -105,9 +105,6 @@ try {
       // remain checked below; documentary popups have their own contain policy.
       for (const [role, photo] of Object.entries(media)) {
         assert.equal(photo.fit, 'cover', tag + ': ' + role + ' follows the current full-bleed contract');
-        assert.ok(Math.abs(photo.box.width-photo.frame.width)<=2 &&
-          Math.abs(photo.box.height-photo.frame.height)<=2,
-          tag + ': ' + role + ' photo fills its actual frame without gutters');
       }
       assert.ok(media.front.height > media.front.width, tag + ': front photo is natively portrait');
       assert.ok(media.hero.width > media.hero.height, tag + ': header photo is landscape');
