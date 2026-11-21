@@ -290,6 +290,13 @@
     for (const [key, delta] of Object.entries(effekter.relasjoner || {})) {
       if (!(key in state.relasjoner)) throw new Error(`[LifestoryState] ukjent relasjon "${key}"`);
       state.relasjoner[key] = clamp(state.relasjoner[key] + delta);
+      // These relationships are shared even when a chapter-specific scene
+      // changes them. Keep the existing private mirror current immediately,
+      // rather than letting selectRole repair it only on the next reload.
+      if (state.privatHistorie && (key === "venn" || key === "familie")) {
+        state.privatHistorie.relasjoner ||= {};
+        state.privatHistorie.relasjoner[key] = state.relasjoner[key];
+      }
     }
     for (const [threadId, change] of Object.entries(effekter.threads || {})) {
       if (!change || typeof change !== "object") throw new Error(`[LifestoryState] ugyldig threads-effekt for "${threadId}"`);

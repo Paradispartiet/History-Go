@@ -58,6 +58,7 @@ jobs:
         run: |
           node --test tests/civication-lifestory-choice-outcome-focus.test.js tests/civication-lifestory-next-day-focus.test.js
           node tests/civication-lifestory-day-sync.test.js
+          node tests/civication-lifestory-continuation-reload.test.js
           node tests/civication-mini-sections-popup-focus.test.js
       - name: Run Civication map tests
         run: npm run test:civication-map
@@ -102,8 +103,6 @@ jobs:
           # Run the real quiz -> job acceptance journey on PRs touching its
           # implementation; keep unrelated PR smoke focused and nightly full.
           CIVICATION_BROWSER_DEPTH: ${{ steps.coverage.outputs.depth }}
-          # Temporary one-scenario diagnostic on this repair PR; remove before merge.
-          CIVICATION_ARBEIDSL_FOCUS: mira_videre_spilt
         shell: bash
         run: |
           set -o pipefail

@@ -261,10 +261,11 @@
     if (Object.keys(people).length) entry.personRepresentanter = people;
     if (consequenceText) entry.konsekvensTekst = consequenceText;
     state.arkiv.push(entry);
-    // Personal day-8–21 events are appended directly to their shared private
-    // archive. Full historical reconciliation is still done on role switches,
-    // not after each choice, avoiding repeated work on deep life histories.
-    if (/^wave_[abcde]_c0[15]_/.test(scene.id) || /^wave_[fg]_c(?:01|02|03|05|06|07|17|23)_/.test(scene.id)) State.capturePrivateStory(state);
+    // Legacy Wave stories capture shared history when played. Otherwise
+    // selectRole adds the missing C02/C03/C06/C07/C17/C23 entries on reload,
+    // changing the saved private history without a new player choice.
+    if (/^wave_[abcdefg]_c(?:01|02|03|05|06|07|17|23)_/.test(scene.id)) State.capturePrivateStory(state);
+    // Longer personal day-8–21 histories keep their incremental archive path.
     else if (/^wave_e_life21_/.test(scene.id) || content.personalOnly) State.recordPrivateScene(state, entry);
 
     const progress = advance(state, content);
