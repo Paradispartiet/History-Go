@@ -111,7 +111,8 @@ try{
    const front=page.locator('#pcFrontCardFlip');
    const bounds=await front.boundingBox();
    assert.ok(bounds&&bounds.width>0&&bounds.height>0);
-   await front.click({position:{x:22,y:Math.max(24,bounds.height-25)},timeout:15000});
+   if(mode.engine===webkit) await front.tap({position:{x:bounds.width/2,y:bounds.height/2},timeout:15000});
+   else await front.click({position:{x:22,y:Math.max(24,bounds.height-25)},timeout:15000});
    await page.waitForFunction(()=>document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'),null,{timeout:14000});
    await page.waitForTimeout(400);
    assert.equal(await page.locator('#pcQuizCardContent li').count(),10,'Ten QuizCard questions must render');
@@ -124,7 +125,8 @@ try{
    await page.screenshot({path:out+'/'+mode.name+'-expanded.png',timeout:20000});
    await page.locator('#pcQuizExpandedClose').click();
    await page.waitForFunction(()=>document.querySelector('#pcQuizExpanded')?.hidden===true,null,{timeout:10000});
-   await front.click({position:{x:22,y:Math.max(24,bounds.height-25)},timeout:12000});
+   if(mode.engine===webkit) await front.tap({position:{x:bounds.width/2,y:bounds.height/2},timeout:12000});
+   else await front.click({position:{x:22,y:Math.max(24,bounds.height-25)},timeout:12000});
    await page.locator('#pcQuiz').click({timeout:16000});
    await page.waitForFunction(id=>location.hash.startsWith('#/quiz/'+id),ID,{timeout:30000});
    await page.waitForFunction(()=>document.querySelector('#quizChoices button:not(:disabled)'),null,{timeout:40000});
