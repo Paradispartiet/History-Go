@@ -531,6 +531,28 @@ Kilder: [Bjølsen Valsemølle – Oslo byleksikon](https://oslobyleksikon.no/sid
 
 Alle fire sett foreligger redaksjonelt som 28 spørsmål. De fem tidligere identifiserte quiz- og Knowledge-ID-ene beholdes ved migrering. Arkiv, aktive manifestoppføringer, Knowledge-generering og QuizCard må oppdateres samlet ved aktivering. Dagens aktive quiz er fremdeles 6 × 7.
 
+*Historisk mellomstatus før migreringen; gjeldende sluttstatus følger nederst.*
+
 ### Bjølsenfossen – 4 × 7 migrert i arbeidsgren (21.11.2026)
 
 De 28 spørsmålene er nå lagt inn som fire aktive sett på PR-grenen, med 5 uendrede historiske quiz-/Knowledge-ID-er. 37 utgåtte spørsmål ligger i ikke-spillbart Knowledge-arkiv; 23 nye spørsmål har nye ID-er. Ett QuizCard speiler ti av fullquizens spørsmål. Kanonisk Knowledge- og context-regenerering og reell app-test må være grønne før godkjenning. PR forblir DRAFT.
+
+
+### Bjølsenfossen – godkjent delkontroll, ikke felles V1/merge (21.11.2026)
+
+- Aktiv quiz i PR #7342 er kontrollert som **4 × 7 = 28 spørsmål**. De fem valgte legacy-spørsmålene beholder originale spørsmåls-/quiz-/Knowledge-ID-er og Knowledge-tekst. 23 nye har nye ID-er.
+- **37** opprinnelige spørsmål ligger ikke-spillbart i data/knowledge/preserved_quiz_sources/bjoelsenfossen_legacy_20261121.json, med sine opprinnelige Knowledge-ID-er.
+- **10** QuizCard-spørsmål stemmer kildeeksakt med fullquizen i fasit, alternativer og Knowledge-ID. Deterministisk kontekst, canonical Knowledge write/check, 3/3 migreringstester og quizmanifestaudit er grønne: [GitHub-kjøring #44869659213](https://github.com/Paradispartiet/History-Go/actions/runs/44869659213).
+- Ekte appvisning bestod for **mobil Chromium 390**, **simulert iPad WebKit 834** og **desktop Chromium 1440**: PlaceCard, bildefiler, QuizCard og utvidelse, fullquiz, kuratert Fagverk. [Grønn nettleserkjøring #44870130428](https://github.com/Paradispartiet/History-Go/actions/runs/44870130428) har skjermbilder. Fysisk iPad Safari er ikke testet.
+- Dette avslutter Bjølsenfossens egen quiz-, QuizCard-, Fagverk- og bildedel, ikke automatisk stedets V1-godkjenning. Reviderte beskrivelsestekster må fremdeles gjennom ordinær source→claim→sentence→hash før publisering.
+- **Hele PR-en er fortsatt DRAFT og ikke mergebar.** Ved kontroll 21.11 endret PR-en 97 filer for en 20-stedersbolk; GitHub oppgir mergeable_state dirty. Arbeidsgrenen lå 32 commits bak main. Bare fem filer var endret på begge sider: data/places/place_image_backlog_summary.json, data/places/places_index.json, data/quiz/production_context/politikk/politihuset_gronland.json, data/runtime/people-all/part-007.json og tests/akerselva-placecard-real-browser.test.mjs. Overlapp er ikke bevis på at alle fem har konflikt; løses enkeltvis ved senere synk, uten automatisk overskriving.
+
+### Advokat Dehlis plass – neste sted, kildesjekket nullmåling (21.11.2026)
+
+- Canonical place-ID **bjoelsenparken_elvenaer** beholdes, men synlig navn og stedsidentitet er **Advokat Dehlis plass**, et lite plassrom ved Maridalsveien/Bentsebrugata, ikke Bjølsenparken og ikke en elvebredd.
+- Eksisterende aktiv Natur-quiz: **3 × 7 = 21 spørsmål**, 8 teknisk linked, 13 editorial_review_required. Dette er ikke en redaksjonell kvalitetsscore. Alle 21 opprinnelige spørsmåls- og Knowledge-ID-er må gjennomgås før migrering. Stedet mangler eget kuratert Fagverk, QuizCard og bildebinding i denne arbeidsgrenen.
+- Stedsfilens quiz_profile.signature_features omtaler fortsatt feilaktig «Bjølsenparken (elvenær del)» og en park «tett på elva». De utdaterte produksjonsfeltene må rettes ved samlet steds-/quizarbeid. Quizzen bør handle om plassrommet, monumentet, synlige grenser mellom vegetasjon og gate og forsvarlig kildebruk – ikke om redaksjonell quizproduksjon.
+- **Kildedekket historisk innhold:** Plassen fikk navn i **1934** etter **Ole Dehli**, pioner for forbrukersamvirket. Minnesmerket ble avduket i **1946**, laget av **Asbjørg Borgfelt**. Fire relieffer viser en bonde, en arbeider, en fisker og en kvinne med barn og kurv. Bjølsen skole vender mot plassrommet. [Oslo byleksikon](https://oslobyleksikon.no/side/Advokat_Dehlis_plass) · [Lokalhistoriewiki](https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass) · [Norsk kunstnerleksikon](https://nkl.snl.no/Asbj%C3%B8rg_Betty_Borgfelt). Overvann, skygge og kantvirkning må formuleres som observasjons- og naturfaglige temaer, ikke målte lokale effekter.
+- **To verifiserte liggende fotokandidater:** Helge Høifødt 25.08.2012, CC BY-SA 4.0, [Bentsebrugata 3740 × 2198](https://commons.wikimedia.org/wiki/File:Advokat_Dehlis_plass_med_Bentsebrugata.jpg) og [Bjølsen skole 3781 × 1823](https://commons.wikimedia.org/wiki/File:Advokat_Dehlis_plass_med_Bj%C3%B8lsen_skole.jpg). To ulike utsnitt fra samme fotografering er ikke tilstrekkelig som uavhengig hoved-/frontmotiv; velg én av disse som mulig hovedbilde, og finn egen stående original med relevant motiv.
+- [Arkivfoto fra avdukningen i 1946](https://oslobilder.no/ARB/AAB-112147) er relevant som historiebevis, men eksakt gjenbrukslisens må avklares. Commons-kategoriens stående bilder viser en søppeldunk, ikke et egnet frontmotiv. **Ingen bildefiler er importert eller aktivert** her.
+- Neste port er ett separat, lisenskontrollert portrettmotiv og kuratert stedsspesifikt Fagverk, etterfulgt av ID-vernet quizoppgradering, QuizCard og målrettet app-test. Ikke V1-godkjent ennå.
