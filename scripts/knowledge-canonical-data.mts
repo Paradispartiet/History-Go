@@ -40,6 +40,7 @@ const PRESERVED_QUIZ_KNOWLEDGE_SOURCES = [
   'data/knowledge/preserved_quiz_sources/frysjadammen_oset_legacy_20261117.json',
   'data/knowledge/preserved_quiz_sources/seilduksfabrikken_nydalen_legacy_20261118.json',
   'data/knowledge/preserved_quiz_sources/bjoelsenfossen_legacy_20261121.json',
+  'data/knowledge/preserved_quiz_sources/bjoelsenparken_elvenaer_legacy_20261123.json',
 ];
 
 /**

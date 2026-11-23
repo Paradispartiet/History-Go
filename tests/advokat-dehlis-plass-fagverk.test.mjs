@@ -33,11 +33,30 @@ test('Curated source-bound Fagverk uses canonical Natur links and honest observa
  assert.equal(idx.sourceFile,p.replace('data/',''));
  assert.ok(rel,'Fagverk release should be readable');
 });
-test('Existing 21 quiz IDs and learned Knowledge remain unchanged',()=>{
- assert.equal(qs.length,21);
- assert.equal(new Set(qs.map(q=>q.quiz_id)).size,21);
- assert.equal(new Set(qs.map(q=>q.id)).size,21);
- assert.ok(qs.every(q=>q.knowledge_unit_ids.includes(q.primary_knowledge_unit_id)));
- assert.equal(qs.filter(q=>q.knowledge_link_status==='linked').length,8);
- assert.equal(qs.filter(q=>q.knowledge_link_status==='editorial_review_required').length,13);
+test('Advokat Dehlis plass migrates six quiz questions and preserves learned Knowledge', () => {
+ const legacy = read('data/knowledge/preserved_quiz_sources/' + id + '_legacy_20261123.json');
+ const cardName = 'advokat_dehlis_plass_quizcard_v1.json';
+ const cards = read('data/quizcards/natur/' + cardName);
+ assert.equal(qs.length, 21);
+ assert.equal(new Set(qs.map(q => q.quiz_id)).size, 21);
+ assert.equal(new Set(qs.map(q => q.id)).size, 21);
+ assert.equal(qs.filter(q => q.id.startsWith(id + '_')).length, 15);
+ assert.equal(legacy.status, 'preserved_legacy_knowledge_only_not_playable');
+ assert.equal(legacy.questions.length, 6);
+ assert.equal(new Set([...qs, ...legacy.questions].map(q => q.primary_knowledge_unit_id)).size, 27);
+ assert.ok(qs.every(q => q.knowledge_link_status === 'linked' && q.knowledge_unit_ids.includes(q.primary_knowledge_unit_id)));
+ for (const question of legacy.questions) {
+  assert.ok(question.id.startsWith(id + '_'));
+  assert.ok(qs.every(q => q.id !== question.id && q.quiz_id !== question.quiz_id));
+ }
+ assert.ok(read('data/quizcards/natur/manifest.json').collections.includes(cardName));
+ const cardQuestions = cards.cards[0].questions;
+ assert.equal(cardQuestions.length, 10);
+ for (const question of cardQuestions) {
+  const source = qs.find(q => q.id === question.sourceQuestionId);
+  assert.ok(source);
+  assert.equal(question.answer, source.answer);
+  assert.deepEqual(question.options, source.options);
+  assert.equal(question.primary_knowledge_unit_id, source.primary_knowledge_unit_id);
+ }
 });
