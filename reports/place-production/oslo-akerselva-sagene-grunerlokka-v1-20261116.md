@@ -602,3 +602,33 @@ Kildekoder i tabellen
 - **T** [Oslo kommune om bytrær](https://www.oslo.kommune.no/natur-kultur-og-fritid/trar-i-oslo/forvaltning-av-traer/)
 - **F** Stedets kuraterte Fagverk og dets observasjonsgrenser. Fagverket beskriver ingen lokale målinger av vann eller temperatur.
 - **R** [Roy Olsens kildefoto fra 2008](https://lokalhistoriewiki.no/index.php?curid=98668). Fotoet viser synlige trekk og dokumenterer ikke dagens tilstand.
+
+### Knowledge-migreringsgrunnlag for Advokat Dehlis plass (23.11.2026)
+
+De 21 aktive spørsmålene har én unik primær Knowledge-ID hver. Her er forslag til nytt spørsmål og fasit etter sammenligning med den eksisterende Knowledge-påstanden. **Behold** betyr at quiz-ID og Knowledge-ID kan videreføres med den opprinnelige Knowledge-teksten. **Arkiver** betyr at den opprinnelige posten bevares i Knowledge-arkivet og det nye spørsmålet får nye ID-er. En ny formulering som fremdeles ligger innenfor den opprinnelige påstanden kan beholde ID selv om forrige gjennomgang foreslo erstatning. Dette gjelder blant annet lokal nytte av vegetasjon og navngivningen etter Ole Dehli. Artsregistrering og historisk ruteredaksjon holdes utenfor det nye innholdet.
+
+| Spørsmål | ID-beslutning | Opprinnelig Knowledge-ID | Nytt spørsmålsutkast | Fasitutkast |
+|---|---|---|---|---|
+| 1.1 | Behold | `ku_natur_koordinatet_ligger_ved_a_6d53c54123` | Hvilket grønt byrom ligger ved krysset Maridalsveien og Bentsebrugata? | Advokat Dehlis plass |
+| 1.2 | Behold | `ku_natur_bj_lsenparken_ligger_len_4920c62935` | Hvor ligger Bjølsenparken i forhold til Advokat Dehlis plass? | Lenger nordvest, som et eget parkanlegg |
+| 1.3 | Behold | `ku_natur_stedets_naturfunksjon_bl_a5c495cd37` | Hvilken overgang kan du se fra fortauet ved plassen? | Fra plen og jord til fortau og asfalt |
+| 1.4 | Behold | `ku_natur_sma_gr_ntarealer_kan_gi__e6fda59204` | Hvilken nytte kan du merke ved å stå under et tre på plassen en solrik dag? | Trekronen gir skygge |
+| 1.5 | Behold | `ku_natur_plassen_ble_oppkalt_ette_578482190e` | Hvem fikk plassen navn etter? | Ole Dehli, en pioner i samvirkebevegelsen |
+| 1.6 | Behold | `ku_natur_asbj_rg_borgfelts_monume_9021efebaf` | Hva viser at grøntarealet også er et minnested? | Asbjørg Borgfelts monument over Ole Dehli |
+| 1.7 | Behold | `ku_natur_stedet_ligger_ved_trafik_7e7d144571` | Hvor kan du se på vegetasjonen og monumentet uten å stå i kjørebanen? | Fra fortauet eller det offentlige grøntarealet |
+| 2.1 | Behold | `ku_natur_asfalt_og_fortau_gir_ras_d6af56d7b7` | Hvordan kan regn oppføre seg ulikt på asfalt og plen? | På asfalt renner vannet lettere videre, mens noe kan trekke ned i jorda på plenen |
+| 2.2 | Behold | `ku_natur_sma_gr_ntarealer_har_mye_b254e9696a` | Hva gjør at kantsonen utgjør en stor del av et lite, smalt grøntareal? | Mye av flaten ligger nær en kant |
+| 2.3 | Behold | `ku_natur_trekroner_pavirker_lys_t_04e70165fd` | Hvorfor er det ofte mindre direkte sol under trekronene enn på åpent fortau? | Bladene skjermer for sollyset |
+| 2.4 | Arkiver | `ku_natur_artskoblingen_ligger_i_n_e0489f63d6` | Hva viser fotoet fra 2008 sikkert om vegetasjonen ved monumentet? | Det var trær og annen vegetasjon rundt monumentet da bildet ble tatt |
+| 2.5 | Arkiver | `ku_natur_feil_navn_f_rte_tidliger_13fcffc9f8` | Hvilken figur på monumentet viser til fiskeri? | Fiskeren |
+| 2.6 | Arkiver | `ku_natur_stoppet_viser_nabolagsna_5ea5b0ed2e` | Hvilken skole vender ut mot Advokat Dehlis plass? | Bjølsen skole |
+| 2.7 | Behold | `ku_natur_plassen_kombinerer_natur_20629563c2` | Hva viser at plassen brukes både til ferdsel og som minnested? | Fortauet leder folk forbi monumentet over Ole Dehli |
+| 3.1 | Behold | `ku_natur_urbannatur_omfatter_ogsa_2de4fd066c` | Hvilket trekk ved plassen er et eksempel på urbannatur? | Trær og plen mellom gater og fortau |
+| 3.2 | Behold | `ku_natur_sma_arealer_kan_fungere__b44683acde` | Hva må undersøkes før man sier at dyr bruker plassen som forbindelse mellom grøntområder? | Om de aktuelle dyrene faktisk beveger seg via plassen |
+| 3.3 | Behold | `ku_natur_sma_gr_nne_flater_kan_fo_1828c37536` | Hvordan kan en plen gjøre at mindre regnvann renner videre med én gang? | Jorda kan ta opp og holde tilbake noe av vannet |
+| 3.4 | Arkiver | `ku_natur_fremmede_arter_ma_handte_db6847709a` | Hva trengs for å sammenligne lufttemperaturen i sol og skygge på plassen? | Målinger begge steder på omtrent samme tidspunkt og under sammenlignbare forhold |
+| 3.5 | Arkiver | `ku_natur_identitetskontrollen_vis_14ba76d045` | Hva kan forskjellen mellom en grønn lomme ved et kryss og en større park bety for en feltobservasjon? | Ved plassen ligger en større del av området tett på gate og fortau |
+| 3.6 | Behold | `ku_natur_trekroner_kan_gi_merkbar_9920f37104` | Hva kan synlig skygge fortelle om trærnes påvirkning på mikroklimaet? | Kronene skjermer for sol, mens en eventuell forskjell i lufttemperatur må måles |
+| 3.7 | Arkiver | `ku_natur_artsdata_skal_komme_fra__c40c0eaf7b` | Hva bør en etterprøvbar registrering av en plante på plassen oppgi? | Art, sted og dato, med grunnlag for artsbestemmelsen |
+
+Dette er en redaksjonell migreringstabell. Aktiv quiz, arkiv, Knowledge-register og QuizCard endres først sammen med ferdige alternativer, kildeforklaringer og tester.
