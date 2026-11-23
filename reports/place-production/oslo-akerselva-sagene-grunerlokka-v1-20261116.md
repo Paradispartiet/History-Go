@@ -565,3 +565,40 @@ De 28 spørsmålene er nå lagt inn som fire aktive sett på PR-grenen, med 5 ue
 - [GitHub-kjøring #44871307910](https://github.com/Paradispartiet/History-Go/actions/runs/44871307910) **SUCCESS**. Stedsindeks og 1538 Place-open-filer ble bygget, 1538 payloads kontrollert, Fagverk-audit bestod, release-manifestet ble bygd og kontrollert, og den målrettede testen bestod 3/3. Genererte endringer er skrevet tilbake til PR-grenen, commit 2398552f. Engangsarbeidsflyten ble fjernet etter grønn kjøring.
 - Fagverk-release inneholder nå totalt **300 curated** steder i arbeidsgrenen. Dette er felles Fagverk-statistikk, ikke antall V1-steder i den aktuelle 20-stedersbolken.
 - **Ikke ferdig V1:** PlaceCard mangler fortsatt kvalitetsgodkjent eget bildepar; den aktive 3 × 7 Natur-quizen har fremdeles 13 editorial_review_required og trenger kildebasert redaksjonell gjennomgang, ID-/Knowledge-bevaring og nytt QuizCard. Ingen gamle spørsmål ble arkivert eller aktivt omskrevet i denne delproduksjonen. PR #7342 forblir DRAFT og ikke merget.
+
+### Advokat Dehlis plass – redaksjonell gjennomgang av 21 aktive spørsmål (23.11.2026)
+
+Spørsmålsnumrene følger de eksisterende ID-ene `bjoelsenparken_elvenaer_s{sett}_q{spørsmål}`. Gjennomgangen vurderer læringspåstanden i hvert spørsmål. Før omskriving kontrolleres den opprinnelige Knowledge-påstanden, også for de åtte spørsmålene som er teknisk koblet. Der påstanden endres vesentlig skal den gamle ID-en og Knowledge-koblingen arkiveres før et nytt spørsmål får ny ID. Tabellen aktiverer ingen quizendring.
+
+| Spørsmål | Redaksjonell vurdering | Endring og kildegrunnlag |
+|---|---|---|
+| 1.1 | Skriv om | Spør hvor plassen ligger. Bytt ut markørperspektivet med krysset Maridalsveien–Bentsebrugata. Kan beholde ID hvis samme stedspåstand. B |
+| 1.2 | Behold | Forskjellen mellom plassrommet og Bjølsenparken kan forankres i kildene og stedsartikkelen. B, L |
+| 1.3 | Skriv om | Spør hvilken overgang man faktisk kan se fra fortauet. Fjern den vilkårlige rangeringen av hva som bør observeres først. F, R |
+| 1.4 | Erstatt | Skiller ikke mellom observerbar skygge og udokumentert artsforbindelse. Bruk synlig skygge eller et konkret samvirkerelieff. T, B |
+| 1.5 | Erstatt | Bruk hvorfor plassen fikk navnet sitt som læringsmål. Behold 1934 i forklaringen. B, L |
+| 1.6 | Behold | Minnesmerket er stedsspesifikt. Avgrens spørsmålet til hvem monumentet hedrer, og bruk 1946 i forklaringen hvis samme læringspåstand kan bevares. B, L |
+| 1.7 | Skriv om | Spør hvorfra spilleren kan se monument, trær og kantstein uten å gå ut i kjørebanen. F, R |
+| 2.1 | Skriv om | Spør hvilken vei vannet kan renne og hvilken rolle kantstein kan ha. Gjør lokal vannvei til en hypotese som må observeres. O, F |
+| 2.2 | Skriv om | Bruk slitasje ved en konkret overgang som observasjon. Skill slitasje fra mulige årsaker som salt, tråkk og klipping. F, R |
+| 2.3 | Skriv om | Behold trærnes skyggevirkning. Skill det spilleren kan se fra en lokal temperaturforskjell som må måles. T, F |
+| 2.4 | Erstatt | Krever Artskart-post med stedspresisjon og registreringsdato. Bruk et spørsmål om hva fotoet viser om vegetasjonen mens posten er uverifisert. R |
+| 2.5 | Erstatt | Spør om hva vegetasjon og monument forteller om bruken av plassen. Arkiver den gamle påstanden om en intern identitetsrettelse. F, B |
+| 2.6 | Erstatt | Bruk plassens forhold til gate og skole. Rutefunksjonen er et redaksjonelt valg og trenger ikke bli et quizfaktum. B, L |
+| 2.7 | Skriv om | Behold samspillet mellom opphold, ferdsel og minnested. Bruk monument, benk og fortau som konkrete spor. F, R |
+| 3.1 | Skriv om | La spilleren velge et eksempel på naturprosesser i akkurat dette byrommet. F, T |
+| 3.2 | Skriv om | Presenter grønt mellomledd som en mulig funksjon. Spør hva man må undersøke før man kan si at arter faktisk bruker plassen som forbindelse. F |
+| 3.3 | Skriv om | Sammenlign plen og asfalt. Unngå å tallfeste arealandel eller lokal infiltrasjon uten målinger. O, R |
+| 3.4 | Erstatt | Flytt generell skjøtsel av fremmede arter ut av stedets fullquiz inntil en relevant lokal artspost er dokumentert. Bruk for eksempel hva fotoet kan og ikke kan vise om skygge. T, R |
+| 3.5 | Skriv om | Bruk konkret sammenligning mellom denne plassen og Bjølsenparken. Unngå universell definisjon basert på størrelse. B, L |
+| 3.6 | Skriv om | Gjør siste sett til sammenligning av skygge og temperaturmåling. Skill fra setts 2 spørsmål om trærnes funksjon. T, F |
+| 3.7 | Erstatt | Spør hvordan man kan etterprøve en artspåstand med registreringsdato, stedspresisjon og identifikasjon. Fjern instruksen om redigering av stedfilen. F |
+
+Kildekoder i tabellen
+
+- **B** [Oslo byleksikon om Advokat Dehlis plass](https://oslobyleksikon.no/side/Advokat_Dehlis_plass)
+- **L** [Lokalhistoriewiki om Advokat Dehlis plass og Bjølsen skole](https://lokalhistoriewiki.no/wiki/Advokat_Dehlis_plass)
+- **O** [Oslo kommune om overvann](https://www.oslo.kommune.no/vann-og-avlop/handtering-av-overvann-og-oversvommelser/overvannshandtering-i-oslo/)
+- **T** [Oslo kommune om bytrær](https://www.oslo.kommune.no/natur-kultur-og-fritid/trar-i-oslo/forvaltning-av-traer/)
+- **F** Stedets kuraterte Fagverk og dets observasjonsgrenser. Fagverket beskriver ingen lokale målinger av vann eller temperatur.
+- **R** [Roy Olsens kildefoto fra 2008](https://lokalhistoriewiki.no/index.php?curid=98668). Fotoet viser synlige trekk og dokumenterer ikke dagens tilstand.
