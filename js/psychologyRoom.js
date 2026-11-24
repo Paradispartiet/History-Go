@@ -1046,19 +1046,17 @@
           <button class="psychology-room-primary" type="submit">Lagre oppfølging</button>
         </form>
         <section class="psychology-room-note-section" aria-labelledby="psychologyRoomAhaShareHeading">
-          <h4 id="psychologyRoomAhaShareHeading">En selvvalgt innsikt til Mitt AHA</h4>
-          <p class="psychology-room-privacy">Psykologirommet er privat og uavhengig av andre rom. Ingen notater, tester, screening, profiler eller øvelsesresultater deles automatisk. Skriv bare det du uttrykkelig vil ta med.</p>
+          <h4 id="psychologyRoomAhaShareHeading">Kopier en selvvalgt innsikt</h4>
+          <p class="psychology-room-privacy">Ingen privat tekst sendes til AHA. En separat AHA-adresse er foreløpig ikke verifisert, så automatisk overføring er deaktivert. Du kan fortsatt kopiere din egen korte tekst eller lage en kryptert sikkerhetskopi fra Min oversikt.</p>
           <form id="psychologyRoomAhaShareForm" class="psychology-room-form">
             <label class="psychology-room-textarea-label">
               <span>Min valgte tekst (ikke hele refleksjonsnotatet)</span>
               <textarea name="selected_insight" rows="3" maxlength="1500" required placeholder="Skriv en kort innsikt du vil bevare i Mitt AHA …"></textarea>
             </label>
-            <label><input type="checkbox" name="aha_share_confirm" required> Jeg ønsker å overføre akkurat denne teksten til forhåndsvisning i AHA.</label>
             <div class="psychology-room-hero-actions">
-              <button type="submit" class="psychology-room-primary">Åpne AHA med valgt tekst</button>
               <button type="button" class="psychology-room-back" data-psych-copy-aha="1">Kopier valgt tekst</button>
             </div>
-            <p class="psychology-room-muted" id="psychologyRoomAhaShareStatus" role="status" aria-live="polite">AHA ber om en ny bekreftelse før den lagrer teksten. Ingen deling til EchoNet eller AI-analyse.</p>
+            <p class="psychology-room-muted" id="psychologyRoomAhaShareStatus" role="status" aria-live="polite">Ingen overføring til AHA. Teksten kopieres bare når du trykker på knappen.</p>
           </form>
         </section>
       </section>
@@ -1074,47 +1072,8 @@
     const ahaShareForm = /** @type {HTMLFormElement | null} */ (document.getElementById("psychologyRoomAhaShareForm"));
     const ahaShareStatus = document.getElementById("psychologyRoomAhaShareStatus");
     const ahaShareText = /** @type {HTMLTextAreaElement | null} */ (ahaShareForm?.querySelector('textarea[name="selected_insight"]') || null);
-    const ahaShareConsent = /** @type {HTMLInputElement | null} */ (ahaShareForm?.querySelector('input[name="aha_share_confirm"]') || null);
-    const ahaShareTarget = "https://aha-echo-net.vercel.app/psykologi.html";
-    const ahaTrustedOrigins = ["https://aha-echo-net.vercel.app"];
-    function selectedAhaText() {
-      const text = String(ahaShareText?.value || "").trim();
-      return text.length > 0 && text.length <= 1500 ? text : null;
-    }
-    ahaShareForm?.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const selected = selectedAhaText();
-      if (!selected || !ahaShareConsent?.checked) {
-        ahaShareStatus.textContent = "Skriv en valgt tekst og bekreft overføringen.";
-        return;
-      }
-      // Det nye vinduet mottar kun selvvalgt tekst i minnet, ikke gjennom URL,
-      // felles localStorage, private workbench-data eller automatisk eksport.
-      const destination = window.open(ahaShareTarget, "_blank");
-      if (!destination) {
-        ahaShareStatus.textContent = "Nettleseren blokkerte det nye vinduet. Bruk Kopier valgt tekst og lim den inn i AHA.";
-        return;
-      }
-      let sent = false;
-      const onAhaReady = (message) => {
-        if (sent || message.source !== destination || !ahaTrustedOrigins.includes(message.origin) ||
-            message.data?.type !== "aha.psychology.ready.v1") return;
-        destination.postMessage({
-          type: "historygo.psychology.selection.v1",
-          schema_version: "aha_psychology_selection_v1",
-          source_app: "historygo",
-          text: selected
-        }, message.origin);
-        sent = true;
-        window.removeEventListener("message", onAhaReady);
-        ahaShareStatus.textContent = "Teksten er sendt til AHA sin forhåndsvisning. Godkjenn lagring i AHA-vinduet.";
-      };
-      window.addEventListener("message", onAhaReady);
-      window.setTimeout(() => {
-        window.removeEventListener("message", onAhaReady);
-        if (!sent) ahaShareStatus.textContent = "Automatisk overføring ble ikke bekreftet. Kopier teksten manuelt og lim den inn i AHA.";
-      }, 20000);
-    });
+    // No verified AHA private origin is available. Disable all window.open
+    // and postMessage for private selected reflections. Clipboard is opt-in.
     document.querySelector("[data-psych-copy-aha]")?.addEventListener("click", async () => {
       const selected = selectedAhaText();
       if (!selected) {
@@ -1123,11 +1082,11 @@
       }
       try {
         await navigator.clipboard.writeText(selected);
-        ahaShareStatus.textContent = "Valgt tekst er kopiert. Du kan lime den inn i AHA og bekrefte privat lagring der.";
+        ahaShareStatus.textContent = "Valgt tekst er kopiert lokalt. Oppbevar den selv til en verifisert AHA-adresse er tilgjengelig.";
       } catch {
         ahaShareText.focus();
         ahaShareText.select();
-        ahaShareStatus.textContent = "Marker teksten og kopier den selv. Lim den deretter inn i AHA.";
+        ahaShareStatus.textContent = "Marker teksten og kopier den selv. Ingen tekst er sendt til AHA.";
       }
     });
     document.querySelector("[data-psych-choose-linked-path]")?.addEventListener("click", () => renderPathsList(entry.id));
