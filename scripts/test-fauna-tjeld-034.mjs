@@ -33,7 +33,7 @@ assert.equal(bytes.toString("ascii",12,16),"VP8X");assert((bytes[20]&16)!==0,"Tr
 assert.deepEqual([bytes.readUIntLE(24,3)+1,bytes.readUIntLE(27,3)+1],[1024,1536]);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
 const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,34,"Expected 34 individually approved originals");
+assert(reg.count>=34,"At least 34 individually approved originals expected");
 assert.equal(reg.get(id)?.src,item.src);assert.equal(reg.get(id)?.scientificName,latin);assert.equal(reg.get(id)?.gitBlobSha,item.gitBlobSha);
 const previous={
  "emne_fauna_hvitkinngaas": "700c304c91f3cf64a109d5ae37081913746b6542",
@@ -72,8 +72,8 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,33);
 for(const [oldId,hash] of Object.entries(previous))assert.equal(reg.get(oldId)?.gitBlobSha,hash,oldId+" must remain byte-identical");
-assert.equal(reg.get("emne_fauna_kvinand"),null,"Unapproved Kvinand retains legacy SVG fallback");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261121-34"));
+assert.equal(reg.get("emne_fauna_kvinand")?.gitBlobSha,"d043e1ee98cdfd91dd686b89be0dd5ca8037f6f1","Kvinand #35 must not modify Tjeld");
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-tjeld-034.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Tjeld")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Kvinand")'));

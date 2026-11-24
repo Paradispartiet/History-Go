@@ -84,7 +84,7 @@ const previous={
 };
 assert.equal(Object.keys(previous).length,30);
 for(const [oldId,sha] of Object.entries(previous))assert.equal(reg.get(oldId)?.gitBlobSha,sha,oldId+" must remain unchanged");
-assert.equal(reg.get("emne_fauna_kvinand"),null,"Unapproved Kvinand retains legacy SVG fallback");
+assert.equal(reg.get("emne_fauna_kvinand")?.gitBlobSha,"d043e1ee98cdfd91dd686b89be0dd5ca8037f6f1","Kvinand #35 original must remain verified while preserving prior species");
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-bokfink-031.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Bokfink")'));
