@@ -1051,7 +1051,7 @@
           <form id="psychologyRoomAhaShareForm" class="psychology-room-form">
             <label class="psychology-room-textarea-label">
               <span>Min valgte tekst (ikke hele refleksjonsnotatet)</span>
-              <textarea name="selected_insight" rows="3" maxlength="1500" required placeholder="Skriv en kort innsikt du vil bevare i Mitt AHA …"></textarea>
+              <textarea name="selected_insight" rows="3" maxlength="1500" required placeholder="Skriv en kort innsikt du ønsker å kopiere …"></textarea>
             </label>
             <div class="psychology-room-hero-actions">
               <button type="button" class="psychology-room-back" data-psych-copy-aha="1">Kopier valgt tekst</button>
@@ -1074,6 +1074,10 @@
     const ahaShareText = /** @type {HTMLTextAreaElement | null} */ (ahaShareForm?.querySelector('textarea[name="selected_insight"]') || null);
     // No verified AHA private origin is available. Disable all window.open
     // and postMessage for private selected reflections. Clipboard is opt-in.
+    function selectedAhaText() {
+      const text = String(ahaShareText?.value || "").trim();
+      return text.length > 0 && text.length <= 1500 ? text : null;
+    }
     document.querySelector("[data-psych-copy-aha]")?.addEventListener("click", async () => {
       const selected = selectedAhaText();
       if (!selected) {
