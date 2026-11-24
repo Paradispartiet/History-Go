@@ -660,3 +660,21 @@ Dette er en redaksjonell migreringstabell. Aktiv quiz, arkiv, Knowledge-register
 | 3.5 | Hva kan forskjellen mellom en grønn lomme ved et kryss og en større park bety for en feltobservasjon? | Ved plassen ligger en større del av området tett på gate og fortau / Trafikkpåvirkningen kan regnes ut fra grøntarealets størrelse alene / Alle observasjoner fra parken gjelder også for den mindre plassen | A | Ved et lite gatekryss ligger mye av vegetasjonen nær asfalt, fortau og ferdsel. Det forteller hvor du kan lete etter spor, ikke hva som forårsaket dem. (F) |
 | 3.6 | Hva kan synlig skygge fortelle om trærnes påvirkning på mikroklimaet? | Skyggen viser nøyaktig hvor mange grader luften er kjøligere / Kronene skjermer for sol, mens en eventuell forskjell i lufttemperatur må måles / Skyggen viser at luften er like varm overalt på plassen | B | Du kan se hvor trekronen skjermer for sol. For å si noe om lufttemperaturen må du måle den. (T) |
 | 3.7 | Hva bør en etterprøvbar registrering av en plante på plassen oppgi? | Bare det norske artsnavnet / Bare et kartutsnitt av kvartalet / Art, sted og dato, med grunnlag for artsbestemmelsen | C | Sted og dato gjør registreringen sporbar, og grunnlaget for artsbestemmelsen gjør det mulig å vurdere hvor sikker den er. (F) |
+
+## Beierbrua – kildegjennomgang og første quizsett (24.11.2026)
+
+Beierbrua er neste sted i denne produksjonsrunden. Stedsdata ligger under Akerselva-ruta med By som primærkategori. Quizmanifestet peker til Historie-fullquizen `data/quiz/historie/beierbrua_sets.json`. Den aktive quizen har seks sett à sju. Hvert av de 42 spørsmålene har en primær Knowledge-ID. Flere spørsmål går igjen som generelle definisjoner eller handler om hvordan History Go bør lage quiz. Ved senere migrering må quiz- og Knowledge-ID-ene kartlegges før spørsmålsinnholdet skiftes ut.
+
+**Kilder:** [Oslo byleksikon – Beierbrua](https://oslobyleksikon.no/side/Beierbrua) (B), [Lokalhistoriewiki – Beierbrua](https://lokalhistoriewiki.no/wiki/Beierbrua) (L) og [Store norske leksikon – Beierbrua](https://snl.no/Beierbrua) (S). De støtter forbindelsen mellom arbeidsstrøk og tekstilfabrikker, ombyggingen til kjørebru, brannen og restaureringen. Kildene oppgir ulike perioder for Anders Beyers eierskap. Quizutkastet bruker derfor bare den felles opplysningen om hvem brua har navn etter.
+
+| Spørsmål | Alternativer A / B / C | Fasit | Forklaring |
+|---|---|---|---|
+| Hvilke gater forbinder Beierbrua? | Sagveien og Sandakerveien / Maridalsveien og Uelands gate / Thorvald Meyers gate og Markveien | A | Brua krysser Akerselva mellom Sagveien og Sandakerveien. (B, L) |
+| Hva bandt brua sammen for fabrikkarbeiderne? | To industriområder på østsiden / Arbeiderstrøk på østsiden og tekstilfabrikker på vestsiden / Boligstrøk på vestsiden og tekstilfabrikker på østsiden | B | Brua ga en direkte forbindelse mellom boligområdene og arbeidsplassene. (B, L) |
+| Hvilken virksomhet lå ved brua på vestsiden? | Christiania Spigerverk / Christiania Seildugsfabrik / Hjula Væverier | C | Hjula Væverier lå ved brua. Graahs spinneri lå også like ved i Sagveien. (L) |
+| Hvilken forfatter forbindes med uttrykket «fabrikkjentenes bro»? | Oskar Braaten / Johan Falkberget / Rudolf Nilsen | A | Braatens fortellinger gjorde brua kjent under dette navnet. (B, S) |
+| Hvilken bruk ble Beierbrua nybygd for i 1837? | Jernbane / Kjøring / Gangtrafikk alene | B | Den smale trebrua ble erstattet av en kjørebru. (B, S) |
+| Hvordan brukes brua i dag etter gjenoppbyggingen og restaureringen? | Som kjørebru for lokaltrafikk / Som driftsbru for fabrikkene / Som gangbru | C | Etter brannen i 1974 ble brua gjenoppbygd og senere restaurert med utgangspunkt i 1837-utseendet. Den brukes i dag som gangbru. (B, L) |
+| Hvem laget «Skulder ved skulder» ved brua? | Ellen Jacobsen / Arne Durban / Asbjørg Borgfelt | A | Jacobsen laget skulpturgruppen til minne om fabrikkjentene. Durban laget Braaten-bysten. (S) |
+
+Første sett er et redaksjonelt utkast. Gjenstående arbeid omfatter ID-kartlegging, flere sett og deretter Fagverk, spillbar quiz og QuizCard med målrettet verifisering.
