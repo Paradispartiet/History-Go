@@ -52,7 +52,7 @@ const old={
 };
 assert.equal(Object.keys(old).length,25);
 for(const [oldId,oldSha] of Object.entries(old))assert.equal(reg.get(oldId)?.gitBlobSha,oldSha,oldId+" original hash must stay unchanged");
-assert.equal(reg.get("emne_fauna_kvinand"),null,"Kvinand remains on SVG");
+assert.equal(reg.get("emne_fauna_kvinand")?.gitBlobSha,"d043e1ee98cdfd91dd686b89be0dd5ca8037f6f1","Kvinand #35 original must remain verified while preserving prior species");
 assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")),"Approved fauna cache version must exist");
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-notteskrike-026.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Nøtteskrike")'));
