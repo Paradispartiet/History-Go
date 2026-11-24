@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_kvinand:Object.freeze({
+   scientificName:"Bucephala clangula",
+   src:"bilder/natur/fauna/godkjent/35_kvinand_v1.webp",
+   gitBlobSha:"d043e1ee98cdfd91dd686b89be0dd5ca8037f6f1",
+   reviewedAt:"2026-11-24",
+   stage:"adult_male_iridescent_green_black_head_yellow_eye_white_cheek_spot_black_white_wings_floating",
+   evidence:"data/natur/fauna/illustration-quality-kvinand-20261124.json"
+  }),
   emne_fauna_tjeld:Object.freeze({
    scientificName:"Haematopus ostralegus",
    src:"bilder/natur/fauna/godkjent/34_tjeld_v1.webp",

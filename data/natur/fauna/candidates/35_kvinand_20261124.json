@@ -5,7 +5,7 @@
   "speciesNumber": 35,
   "phaseSpeciesNumber": 9,
   "baselineApproved": 34,
-  "kind": "unpublished_candidate_awaiting_exact_binary_upload",
+  "kind": "verified_binary_integrated_awaiting_pr_checks_and_merge",
   "requiredReleaseGates": [
     "Verify exact source SHA-256 and Git blob SHA after WebP upload",
     "Human visual review of black/white backgrounds",
@@ -15,7 +15,7 @@
     "Flora approved-flora-browser",
     "Pages completed/success for resulting merge SHA"
   ],
-  "publicationStatus": "not_uploaded_not_published",
+  "publicationStatus": "integrated_not_published",
   "items": [
     {
       "name": "Kvinand – voksen hann",
@@ -25,9 +25,9 @@
       "existingQuizId": "quiz_fauna_kvinand",
       "expectedRepoSrc": "bilder/natur/fauna/godkjent/35_kvinand_v1.webp",
       "localCandidateFile": "35_kvinand_v1_candidate.webp",
-      "imagePresentInRepo": false,
-      "approvedForPublication": false,
-      "reviewStatus": "candidate",
+      "imagePresentInRepo": true,
+      "approvedForPublication": true,
+      "reviewStatus": "approved_for_release",
       "dimensions": [
         1024,
         1536
@@ -50,7 +50,9 @@
         "https://www.rspb.org.uk/birds-and-wildlife/goldeneye",
         "https://www.bto.org/learn/about-birds/birdfacts/goldeneye"
       ],
-      "notes": "Original candidate exists in this conversation only. Do not update the published registry, HTML cache version, or replace legacy SVG until the byte-identical source is in this PR and all release gates pass."
+      "notes": "Exact original binary verified in GitHub; release remains pending all four Fauna/Flora jobs on PR head, merge and Pages success. Do not confuse integration with publication.",
+      "originalBinaryVerified": true,
+      "qualityManifest": "data/natur/fauna/illustration-quality-kvinand-20261124.json"
     }
   ]
 }
