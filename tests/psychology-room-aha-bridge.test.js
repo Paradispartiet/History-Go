@@ -3,25 +3,26 @@ const fs = require("node:fs");
 const room = fs.readFileSync("js/psychologyRoom.js", "utf8");
 const entry = fs.readFileSync("js/ui/psychology-room-entry.js", "utf8");
 
+// Private selections can still be composed and copied locally.
 assert.match(room, /id="psychologyRoomAhaShareForm"/);
 assert.match(room, /name="selected_insight"/);
-assert.match(room, /name="aha_share_confirm" required/);
-assert.match(room, /ahaShareConsent\?\.checked/);
-assert.match(room, /type: "historygo\.psychology\.selection\.v1"/);
-assert.match(room, /schema_version: "aha_psychology_selection_v1"/);
-assert.ok(room.includes('const ahaShareTarget = "https://aha-echo-net.vercel.app/psykologi.html";'));
-assert.ok(room.includes('const ahaTrustedOrigins = ["https://aha-echo-net.vercel.app"];'));
-assert.equal(room.includes("https://aha-echonet.vercel.app"), false);
-assert.match(room, /message\.source !== destination/);
-assert.match(room, /!ahaTrustedOrigins\.includes\(message\.origin\)/);
-assert.match(room, /destination\.postMessage\(\{/);
-assert.doesNotMatch(room, /localStorage\.setItem\(["']aha_psychology_/);
-assert.match(room, /Kopier valgt tekst/);
-assert.match(entry, /20261120-psychology-backup-v1/);
-assert.ok(fs.readFileSync("index.html", "utf8").includes("js/ui/psychology-room-entry.js?v=20261120-psychology-backup-v1"));
-assert.match(entry, /get\("room"\) === "psychology"/);
+assert.match(room, /data-psych-copy-aha="1"/);
+assert.match(room, /navigator\.clipboard\.writeText\(selected\)/);
+assert.match(room, /Ingen privat tekst sendes til AHA/);
+assert.match(room, /automatisk overføring er deaktivert/);
+assert.match(room, /Ingen overføring til AHA/);
 
-const shareHandler = room.match(/ahaShareForm\?\.addEventListener\("submit",[\s\S]*?\n    \}\);/u)?.[0] || "";
-assert.ok(shareHandler.length > 300);
-assert.doesNotMatch(shareHandler, /STORAGE_KEYS|readJson\(|getWorkbenchEntries\(|getProfile\(/);
-console.log("psychology-room-aha-bridge.test.js passed");
+// The former endpoint was neither verified nor owned by the connected
+// Vercel team. Never open it and never postMessage private reflection text.
+assert.doesNotMatch(room, /aha-echo-net\.vercel\.app|aha-echonet\.vercel\.app/);
+assert.doesNotMatch(room, /ahaShareTarget|ahaTrustedOrigins|ahaShareConsent/);
+assert.doesNotMatch(room, /window\.open\(ahaShareTarget|destination\.postMessage/);
+assert.doesNotMatch(room, /name="aha_share_confirm"|Åpne AHA med valgt tekst/);
+
+// Keep existing local backup and Psychology Room entry intact.
+assert.match(entry, /20261120-psychology-backup-v1/);
+assert.ok(fs.readFileSync("index.html", "utf8").includes(
+  "js/ui/psychology-room-entry.js?v=20261120-psychology-backup-v1"));
+assert.match(entry, /get\("room"\) === "psychology"/);
+assert.doesNotMatch(room, /localStorage\.setItem\(["']aha_psychology_/);
+console.log("psychology-room-aha-bridge.test.js: unverified remote share blocked, manual copy available PASS");
