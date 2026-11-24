@@ -1,0 +1,23 @@
+name: Advokat Dehlis plass quiz browser acceptance
+on:
+  pull_request:
+    paths:
+      - 'data/quiz/natur/bjoelsenparken_elvenaer_sets.json'
+      - 'data/quizcards/natur/advokat_dehlis_plass_quizcard_v1.json'
+      - 'tests/advokat-dehlis-plass-browser.mjs'
+      - '.github/workflows/advokat-dehlis-plass-browser.yml'
+permissions:
+  contents: read
+jobs:
+  quiz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: node --test tests/advokat-dehlis-plass-fagverk.test.mjs
+      - run: npx playwright install --with-deps chromium webkit
+      - run: node tests/advokat-dehlis-plass-browser.mjs
