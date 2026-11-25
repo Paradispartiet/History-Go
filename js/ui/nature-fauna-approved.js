@@ -342,4 +342,3 @@
  const get=id=>images[String(id)]||null;
  window.HG_NATURE_FAUNA_APPROVED=Object.freeze({get,has:id=>Boolean(get(id)),count:Object.keys(images).length});
 })();
-

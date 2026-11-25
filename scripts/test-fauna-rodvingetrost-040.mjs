@@ -76,4 +76,3 @@ assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Jernspurv
 console.log("Finn Fauna #40 Rødvingetrost WebP, alpha, taxonomy and 39 previous original SHA OK.");
 
 for(const [oldId,h] of Object.entries(prior)){const b=fs.readFileSync(new URL(reg.get(oldId).src,root));assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),h,oldId+" binary unchanged");}
-

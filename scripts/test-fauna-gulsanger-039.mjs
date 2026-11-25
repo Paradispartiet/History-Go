@@ -71,4 +71,3 @@ assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Gulsanger")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Rødvingetrost")'));
 console.log("Finn Fauna #39 Gulsanger WebP, alpha, taxonomy and 38 previous original SHA OK.");
-

@@ -31,4 +31,3 @@ assert.equal(approved.get("emne_fauna_kvinand")?.gitBlobSha,"d043e1ee98cdfd91dd6
 assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-42"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Løvsanger")'));
 console.log("Finn Fauna #37 Løvsanger candidate PASS – exact WebP and current 36 approvals preserved; not publication.");
-

@@ -70,4 +70,3 @@ assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Svarthvit fluesnapper")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Gulsanger")'));
 console.log("Finn Fauna #38 Svarthvit fluesnapper original, alpha, species and 37 previous hashes OK.");
-

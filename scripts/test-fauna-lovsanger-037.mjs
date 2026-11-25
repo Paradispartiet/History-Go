@@ -77,4 +77,3 @@ assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Løvsanger")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Svarthvit fluesnapper")'));
 console.log("Finn Fauna #37 Løvsanger: alpha WebP, hashes, runtime ID, 36 prior original SHA values and next SVG fallback OK.");
-

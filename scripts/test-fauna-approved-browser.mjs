@@ -1580,4 +1580,3 @@ try {
   console.log("Finn Fauna 42 approved originals "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
-
