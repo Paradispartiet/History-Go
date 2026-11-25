@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_ekorn:Object.freeze({
+   scientificName:"Sciurus vulgaris",
+   src:"bilder/natur/fauna/godkjent/48_ekorn_v1.webp",
+   gitBlobSha:"4d581507a74152f6ed0bbec26b738ccef4bff417",
+   reviewedAt:"2026-11-25",
+   stage:"red_brown_fur_pale_underside_ear_tufts_bushy_tail_holding_hazelnut",
+   evidence:"data/natur/fauna/illustration-quality-ekorn-20261125.json"
+  }),
   emne_fauna_aerfugl:Object.freeze({
    scientificName:"Somateria mollissima",
    src:"bilder/natur/fauna/godkjent/47_aerfugl_v1.webp",
