@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_lovsanger:Object.freeze({
+   scientificName:"Phylloscopus trochilus",
+   src:"bilder/natur/fauna/godkjent/37_lovsanger_v1.webp",
+   gitBlobSha:"a8cfb708899e9cb77476c378a6395c38d0c1c0ed",
+   reviewedAt:"2026-11-25",
+   stage:"adult_olive_brown_cream_yellow_supercilium_long_wings_pale_legs_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-lovsanger-20261125.json"
+  }),
   emne_fauna_sjoorre:Object.freeze({
    scientificName:"Melanitta fusca",
    src:"bilder/natur/fauna/godkjent/36_sjoorre_v1.webp",
