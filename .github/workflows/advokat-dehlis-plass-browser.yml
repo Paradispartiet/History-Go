@@ -8,6 +8,9 @@ on:
       - '.github/workflows/advokat-dehlis-plass-browser.yml'
 permissions:
   contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   quiz:
     runs-on: ubuntu-latest
