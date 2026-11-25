@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_jordhumle:Object.freeze({
+   scientificName:"Bombus terrestris",
+   src:"bilder/natur/fauna/godkjent/50_jordhumle_v1.webp",
+   gitBlobSha:"b940c2faa365ae0aa1af22e43c890c3f06519357",
+   reviewedAt:"2026-11-25",
+   stage:"queen_black_fur_two_yellow_bands_buff_tail_on_red_clover",
+   evidence:"data/natur/fauna/illustration-quality-jordhumle-20261125.json"
+  }),
   emne_fauna_honningbie:Object.freeze({
    scientificName:"Apis mellifera",
    src:"bilder/natur/fauna/godkjent/49_honningbie_v1.webp",
