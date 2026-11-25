@@ -223,6 +223,13 @@ async function browserSmoke(engineName, browserEngine, device = {}) {
     await page.locator('[data-psych-map-add="synthetic-map-one"]').click();
     await page.locator('[data-psych-nav="profile"]').click();
     assert.equal(await page.locator("#psychologyPrivateBackupExport").count(), 1);
+    const pilotLink = page.locator("#psychologyAccountVaultPilot a");
+    assert.equal(await pilotLink.count(), 1);
+    assert.equal(await pilotLink.getAttribute("href"), "https://aha-echo-net.vercel.app/psykologi-vault.html");
+    assert.equal(await pilotLink.getAttribute("target"), "_blank");
+    assert.equal(await pilotLink.getAttribute("rel"), "noopener noreferrer");
+    assert.equal(await pilotLink.getAttribute("referrerpolicy"), "no-referrer");
+    assert.match(await page.locator("#psychologyAccountVaultPilot").innerText(), /kun syntetiske testfiler/);
     await page.evaluate(() => {
       // Capture the exact encrypted Blob created by the UI; Safari/WebKit does
       // not reliably allow fetch(blob:...) in a routed test context.
