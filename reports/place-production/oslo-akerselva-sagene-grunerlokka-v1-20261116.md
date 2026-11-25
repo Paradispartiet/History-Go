@@ -767,3 +767,9 @@ Alle 42 eksisterende spørsmåls-, quiz- og Knowledge-ID-er er kartlagt. Syv eks
 | Hvordan kan du undersøke endringen fra kjørebru til gangbru? | Sammenligne navnene på fabrikkene / Sammenholde eldre foto og historiske kilder med dagens bruk / Se på vannstanden under brua | B | Eldre foto viser kjørebrua, og kildene beskriver restaureringen og dagens gangbruk. (B, L, S) |
 
 Alle fire sett er skrevet. De to siste settene tester konkrete historiske opplysninger og kildebruk som de tidligere spørsmålene ikke tester. Migreringsplanen blir derfor sju eksisterende spørsmål med opprinnelig spørsmåls-, quiz- og Knowledge-ID i sett 2, 21 spørsmål med nye ID-er og 35 gamle spørsmål bevart i Knowledge-arkivet med opprinnelige ID-er. QuizCard velges fra den migrerte fullquizen. Denne endringen gjelder produksjonsrapporten.
+
+### Beierbrua – gjennomført migrering og samordning med main (25.11.2026)
+
+Historie-fullquizen har fire sett à sju spørsmål, og QuizCard henter ti av dem. Sju tidligere spørsmål viderefører opprinnelige ID-er, og 35 ligger i Knowledge-arkivet. [Knowledge-kontrollen](https://github.com/Paradispartiet/History-Go/actions/runs/45568051483) og [nettleserløpet for Beierbrua](https://github.com/Paradispartiet/History-Go/actions/runs/45585168447) bestod. Nettleserløpet åpnet QuizCard og spilte ett helt sett i mobil Chromium, iPad-format WebKit og desktop Chromium.
+
+Den samordnede bildeoversikten og stedsindeksen bestod i [kjøringen for samordning med main](https://github.com/Paradispartiet/History-Go/actions/runs/45586383191). Den samlede PR-en står som utkast.
