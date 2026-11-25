@@ -24,10 +24,10 @@ assert(item);assert.equal(item.title,"Løvsanger");assert.equal(item.latin,"Phyl
 assert.equal(item.taxonomy?.familie,"Phylloscopidae");
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
 const approved=sandbox.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(approved.count,37,"All 36 prior originals plus Løvsanger are registered");
+assert(approved.count>=37,"All 36 prior originals plus Løvsanger must remain registered after later approvals");
 assert.equal(approved.get(id)?.gitBlobSha,"a8cfb708899e9cb77476c378a6395c38d0c1c0ed","Approved Løvsanger original must be byte-identical");
 assert.equal(approved.get("emne_fauna_sjoorre")?.gitBlobSha,"e88b63fdaf4d9635982597568cd424f314fe607d");
 assert.equal(approved.get("emne_fauna_kvinand")?.gitBlobSha,"d043e1ee98cdfd91dd686b89be0dd5ca8037f6f1");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-37"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-38"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Løvsanger")'));
 console.log("Finn Fauna #37 Løvsanger candidate PASS – exact WebP and current 36 approvals preserved; not publication.");
