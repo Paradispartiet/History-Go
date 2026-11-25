@@ -1,10 +1,12 @@
-name: Literature candidates - isolated browser QA
+name: Literature badges - integrity and real browser QA
 on:
   pull_request:
     branches: [main]
     paths:
       - 'bilder/merker/litteratur/**'
       - 'data/badges/litteratur_eight_visual_candidates_20261124.json'
+      - 'data/badges/litteratur.json'
+      - 'tests/litteratur-badges-real-placecard-map-browser.test.mjs'
       - '.github/workflows/literature-candidates-browser-qa.yml'
 concurrency:
   group: literature-candidates-browser-qa-${{ github.event.pull_request.number || github.ref }}
@@ -14,7 +16,7 @@ permissions:
 jobs:
   candidate-qa:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,7 +30,9 @@ jobs:
       - name: Verify exact files and render candidate gallery
         shell: bash
         run: |
-          git diff --exit-code "$(git merge-base HEAD origin/main)" HEAD -- data/badges/litteratur.json bilder/merker/litteratur-brodert-v4.webp
+          git diff --exit-code "$(git merge-base HEAD origin/main)" HEAD -- data/badges/ ':(exclude)data/badges/litteratur.json' ':(exclude)data/badges/litteratur_eight_visual_candidates_20261124.json'
+          git diff --exit-code "$(git merge-base HEAD origin/main)" HEAD -- bilder/merker/ ':(exclude)bilder/merker/litteratur/**'
+          git show "$(git merge-base HEAD origin/main):data/badges/litteratur.json" > /tmp/literature-before.json
           mkdir -p /tmp/literature-qa
           node --input-type=module <<'JS'
           import assert from 'node:assert/strict';
@@ -39,6 +43,12 @@ jobs:
           const manifest=JSON.parse(await readFile('data/badges/litteratur_eight_visual_candidates_20261124.json','utf8'));
           assert.equal(manifest.candidates.length,8);
           assert.equal(new Set(manifest.candidates.map(c=>c.id)).size,8);
+          const before=JSON.parse(await readFile('/tmp/literature-before.json','utf8'));
+          const active=JSON.parse(await readFile('data/badges/litteratur.json','utf8'));
+          const {subBadgeImages,...rest}=active;
+          assert.deepEqual(rest,before);
+          assert.deepEqual(subBadgeImages,Object.fromEntries(manifest.candidates.map(c=>[c.id,c.webp.path])));
+          assert.equal(manifest.visualApprovalReceived,true);
           const images=[];
           const report=[];
           const alphaIssues=[];
@@ -107,9 +117,13 @@ jobs:
           assert.equal(alphaIssues.length,0,'Corner-region opacity exceeds 1/255: '+JSON.stringify(alphaIssues));
           console.log('PASS: all 64 outer corner regions have alpha <= 1/255; exact originals preserved.');
           JS
+      - name: Exercise real History Go PlaceCard and map markers
+        run: node tests/litteratur-badges-real-placecard-map-browser.test.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: literature-candidate-qa
-          path: /tmp/literature-qa/
+          path: |
+            /tmp/literature-qa/
+            artifacts/litteratur-badges-real-browser/
           if-no-files-found: warn

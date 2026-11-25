@@ -2,7 +2,7 @@
   "categoryId": "litteratur",
   "categoryLabel": "Litteratur & poesi",
   "date": "2026-11-24",
-  "state": "candidate_assets_transferred_pending_visual_approval_and_qa",
+  "state": "visual_approval_received_activation_pending_production_qa",
   "design": {
     "borderColor": "#F5B4C8",
     "secondaryColor": "#FFF4E3",
@@ -13,8 +13,8 @@
   "candidateCount": 8,
   "assetFilesExpected": 16,
   "assetsUploadedToGithub": true,
-  "activeBadgesModified": false,
-  "visualApprovalReceived": false,
+  "activeBadgesModified": true,
+  "visualApprovalReceived": true,
   "activationRule": "Do not alter data/badges/litteratur.json, merge or deploy until all 16 exact image files exist in the PR, pass image/badge QA and the user explicitly approves all eight visuals.",
   "candidates": [
     {
@@ -199,14 +199,29 @@
     "Correct pale-pink palette vs music category strong pink",
     "Poesi had generated checkerboard background cleaned with alpha reconstruction; visually review on dark/light backgrounds",
     "Long top label Forfattere og litteratursteder must be inspected at 64 px",
-    "All 16 candidate asset paths are committed; no active badge mappings have changed."
+    "Only the eight approved literature subBadgeImages are activated in this branch; main badge and all other categories unchanged."
   ],
   "integrityEvidence": {
     "transferCommit": "e1e1add3b48baf1788232fe0c2ed39786bc4a03b",
     "method": "GitHub Actions transfer workflow checks byte counts and SHA-256 for all 16 assets before committing Poesi; workflow-generated commit present.",
     "independentWebpRecheck": "8/8 SHA-256 and byte counts match manifest at transfer commit.",
     "independentPngRecheck": "Not completed: connector does not return large PNG binary content.",
-    "visualQa": "Pending",
-    "browserQa": "Pending; latest PR workflows reported action_required."
+    "visualQa": "Explicit user approval 2026-11-25",
+    "browserQa": "Candidate gallery CI 45597818140: 4/4 isolated renders; 16/16 exact files; 64/64 outer corner regions <= 1/255.",
+    "productionQa": "Pending activation CI"
+  },
+  "visualApproval": {
+    "date": "2026-11-25",
+    "scope": [
+      "skjonnlitteratur",
+      "sakprosa",
+      "poesi",
+      "drama",
+      "krim",
+      "barn_og_ungdom",
+      "klassikere",
+      "forfattere_og_litteratursteder"
+    ],
+    "instruction": "Jeg godkjenner alle åtte Litteratur & poesi-merkene visuelt. Aktiver dem, gjennomfør produksjonstestene og publiser når kontrollene er bestått. Bevar alle øvrige merker."
   }
 }
