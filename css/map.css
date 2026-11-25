@@ -556,3 +556,12 @@ body.hg-app #map .hg-place-detail-marker .hg-place-detail-label {
   user-select: none;
   -webkit-user-select: none;
 }
+
+/* Fysen is a map-only badge, not a canonical historical Place category. */
+.hg-fysen-map-popup { display: grid; gap: 7px; padding: 5px 6px; color: #172b20; line-height: 1.4; }
+.hg-fysen-map-popup strong { font-size: 16px; padding-right: 10px; }
+.hg-fysen-map-popup p { margin: 0; font-size: 13px; }
+.hg-fysen-map-popup small { color: #43584a; font-size: 11px; }
+.hg-fysen-map-popup a { display: inline-flex; align-items: center; min-height: 44px; color: #17673b; font-weight: 650; text-decoration: underline; }
+.map-controls .hg-fysen-map-option { border-color: rgba(108, 194, 135, .45); }
+body .map-controls .hg-fysen-map-option .hg-fysen-map-option-label { position: static !important; width: auto !important; height: auto !important; margin: 0 !important; clip: auto !important; white-space: normal !important; font-size: 10px; }
