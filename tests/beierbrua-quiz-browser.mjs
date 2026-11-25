@@ -72,7 +72,17 @@ try{
     localStorage.setItem('hg_lang','nb');
    });
    const page=await context.newPage();
-   page.on('pageerror',e=>errors.push(String(e.message)));
+   page.on('pageerror', error => {
+    const message = String(error.message);
+    // The external map label glyphs are outside this PlaceCard and Fagverk test.
+    const cartoGlyphCorsError = mode.engine === webkit &&
+     /tiles\.basemaps\.cartocdn\.com\/[^\s]*\/fonts\/[^\s]+\.pbf due to access control checks\./.test(message);
+    if (cartoGlyphCorsError) {
+     console.warn('External CARTO glyph request blocked in WebKit:', message);
+     return;
+    }
+    errors.push(message);
+   });
    await page.goto(base+'/index.html?hgTest=1#/place/'+ID,{waitUntil:'domcontentloaded',timeout:90000});
    await page.waitForFunction(id=>window.__HG_APP_READY__===true &&
     window.__HG_ROUTER_STARTED__===true &&
@@ -137,7 +147,7 @@ try{
    assert.equal(await page.locator('#fagverkPlaceLenses a').count(), 3);
    await page.screenshot({path:out+'/'+mode.name+'-fagverk.png',timeout:20000});
    assert.deepEqual(errors,[],mode.name+': unexpected page errors');
-   console.log('PASS '+mode.name+' real Beierbrua PlaceCard / 10-item QuizCard / source-exact 4x7 fullquiz and one seven-question set played');
+   console.log('PASS '+mode.name+' real Beierbrua PlaceCard / two photographs / Fagverk / 10-item QuizCard / source-exact 4x7 fullquiz and one seven-question set played');
   }finally{
    await context.close();await browser.close();
   }
