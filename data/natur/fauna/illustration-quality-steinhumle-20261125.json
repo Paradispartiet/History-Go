@@ -1,10 +1,12 @@
 {
-  "schema": "history-go-fauna-single-species-candidate-v1",
+  "schema": "history-go-fauna-single-species-review-v1",
   "date": "2026-11-25",
+  "series": "Finn Fauna – individuelt godkjente originalillustrasjoner",
   "speciesNumber": 52,
   "baselineApproved": 51,
-  "kind": "candidate_pending_binary_transfer",
-  "publicationRule": "Preserve all 51 previous originals and existing quiz; verify exact binary, registry, cache and four QA jobs before merge; verify Pages deployment.",
+  "approvedCountAfterRelease": 52,
+  "kind": "approved_original_verified_git_blob",
+  "publicationRule": "Preserve all 51 previous original binaries and existing quiz; require four successful Fauna/Flora jobs on final PR head, merge and successful Pages deployment before counting 52 published.",
   "items": [
     {
       "name": "Steinhumle – hunn på lilla blomst",
@@ -12,21 +14,24 @@
       "scientificName": "Bombus lapidarius",
       "family": "Apidae",
       "existingQuizId": "quiz_fauna_steinhumle",
+      "quizNote": "Existing quiz ID preserved.",
       "src": "bilder/natur/fauna/godkjent/52_steinhumle_v1.webp",
-      "reviewStatus": "candidate",
-      "approvedForPublication": false,
-      "originalBinaryVerifiedInGitHub": false,
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "originalBinaryVerified": true,
       "dimensions": [
         1024,
         1536
       ],
       "sizeBytes": 583156,
       "sha256": "ffd1878804228570beaf8008cf7df2071cb5117b4ce3c5dccfb9429676634db4",
-      "expectedGitBlobSha": "5a7c66a5c7b840ea99d5fff12a08ea4ba4eed641",
+      "gitBlobSha": "5a7c66a5c7b840ea99d5fff12a08ea4ba4eed641",
       "visualChecks": {
         "blackBackgroundReviewed": true,
         "whiteBackgroundReviewed": true,
         "trueAlphaWebP": true,
+        "fullImageReviewed": true,
+        "entireAnimalVisible": true,
         "blackBody": true,
         "redOrangeTail": true,
         "veinedWings": true
@@ -35,7 +40,8 @@
         "https://www.bumblebeeconservation.org/learn-about-bumblebees/species-guide/red-tailed-bumblebee/",
         "https://www.nhsn.org.uk/species/red-tailed-bumblebee/"
       ],
-      "notes": "AI-generated illustration. Female color pattern; queen versus worker cannot be determined without scale. Side view hides some appendages. Similar species require additional characters. Exact binary transfer pending."
+      "observations": "AI-generert naturhistorisk illustrasjon med svart kropp, rødoransje bakkroppsspiss og vingenerver. Kontrollert på svart og hvit bakgrunn; eksakt Git-blob verifisert.",
+      "limitations": "Illustrasjon, ikke feltfoto. Dronning og arbeider kan ikke skilles sikkert uten målestokk. Sideperspektivet skjuler deler av bein og vinger. Nærstående arter krever ytterligere kjennetegn. Blomstens art er ikke fastslått."
     }
   ]
 }

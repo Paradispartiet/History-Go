@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_steinhumle:Object.freeze({
+   scientificName:"Bombus lapidarius",
+   src:"bilder/natur/fauna/godkjent/52_steinhumle_v1.webp",
+   gitBlobSha:"5a7c66a5c7b840ea99d5fff12a08ea4ba4eed641",
+   reviewedAt:"2026-11-25",
+   stage:"female_black_body_red_orange_tail_veined_wings_on_purple_flower",
+   evidence:"data/natur/fauna/illustration-quality-steinhumle-20261125.json"
+  }),
   emne_fauna_aakerhumle:Object.freeze({
    scientificName:"Bombus pascuorum",
    src:"bilder/natur/fauna/godkjent/51_aakerhumle_v1.webp",
