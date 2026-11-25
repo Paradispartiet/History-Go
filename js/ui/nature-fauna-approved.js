@@ -2,6 +2,22 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_jernspurv:Object.freeze({
+   scientificName:"Prunella modularis",
+   src:"bilder/natur/fauna/godkjent/41_jernspurv_v1.webp",
+   gitBlobSha:"09aec68b4055d7c4aa6a60d97a6a1f9ae09c2d58",
+   reviewedAt:"2026-11-25",
+   stage:"adult_grey_head_neck_breast_brown_streaked_back_thin_dark_bill_pink_legs_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-jernspurv-20261125.json"
+  }),
+  emne_fauna_rodvingetrost:Object.freeze({
+   scientificName:"Turdus iliacus",
+   src:"bilder/natur/fauna/godkjent/40_rodvingetrost_v1.webp",
+   gitBlobSha:"1f83145ebdb08968d523c58e3b39c3e43a4d9e70",
+   reviewedAt:"2026-11-25",
+   stage:"adult_brown_upperparts_cream_supercilium_streaked_breast_rust_red_flanks_lichen_twig",
+   evidence:"data/natur/fauna/illustration-quality-rodvingetrost-20261125.json"
+  }),
   emne_fauna_gulsanger:Object.freeze({
    scientificName:"Hippolais icterina",
    src:"bilder/natur/fauna/godkjent/39_gulsanger_v1.webp",
