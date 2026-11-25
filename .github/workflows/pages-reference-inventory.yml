@@ -1,0 +1,95 @@
+name: Pages reference inventory
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/pages-reference-inventory.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages-reference-inventory-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inventory source bytes and cross-tree references without building Pages
+        run: |
+          python3 - <<'PY'
+          import json, re, subprocess
+          from collections import defaultdict
+          from pathlib import Path
+          from urllib.parse import quote, unquote
+          paths = subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          paths = [p for p in paths if p and Path(p).is_file() and not Path(p).is_symlink()]
+          prefixes = [
+              'reports/', 'scripts/', 'tools/', 'docs/',
+              'bilder/merker/by/originaler/', 'bilder/merker/kunst/originaler/',
+              'bilder/merker/musikk/originaler/', 'bilder/merker/litteratur/originaler/',
+              'bilder/merker/vitenskap/kandidater/',
+              'bilder/natur/flora/illustrasjonskandidater/',
+              'bilder/kort/places/', 'bilder/kort/people/', 'bilder/places/'
+          ]
+          groups = {p: {'files': 0, 'bytes': 0, 'external_references': [],
+                        'immediate_subgroups': {}} for p in prefixes}
+          def category(path):
+              if path.startswith(('scripts/', 'tools/', '.github/', 'tests/')):
+                  return 'development'
+              if path.startswith(('reports/', 'docs/')):
+                  return 'documentation_or_review'
+              return 'potential_runtime_or_review'
+          for path in paths:
+              for prefix, group in groups.items():
+                  if path.startswith(prefix):
+                      n = Path(path).stat().st_size
+                      group['files'] += 1
+                      group['bytes'] += n
+                      rest = path[len(prefix):]
+                      key = rest.split('/')[0] if '/' in rest else '(direct files)'
+                      row = group['immediate_subgroups'].setdefault(key, {'files':0, 'bytes':0})
+                      row['files'] += 1
+                      row['bytes'] += n
+          suffixes = {'.html','.htm','.js','.mjs','.cjs','.css','.json','.webmanifest',
+                      '.xml','.md','.svg','.ts','.tsx','.jsx','.txt','.yaml','.yml','.map','.py'}
+          # Match group paths, not bare words such as "originaler".
+          needles = {p: re.compile(re.escape(p.rstrip('/')) + r'(?=[/\s\x22\x27\x60?#]|$)') for p in prefixes}
+          for path in paths:
+              if path == '.github/workflows/pages-reference-inventory.yml':
+                  continue
+              if Path(path).suffix.lower() not in suffixes:
+                  continue
+              raw = Path(path).read_text(encoding='utf-8', errors='replace')
+              normalized = unquote(raw).replace('\\/', '/')
+              for prefix, pattern in needles.items():
+                  if path.startswith(prefix):
+                      continue
+                  match = pattern.search(normalized)
+                  if match:
+                      groups[prefix]['external_references'].append({
+                          'path':path, 'classification':category(path),
+                          'first_match_line_approx': normalized.count('\n',0,match.start())+1
+                      })
+          for group in groups.values():
+              counts = defaultdict(int)
+              for ref in group['external_references']:
+                  counts[ref['classification']] += 1
+              group['reference_counts'] = dict(counts)
+          result = {
+              'source_commit':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),
+              'scope':'tracked source inventory; not actual Jekyll output',
+              'limitations':'Literal prefix scan only; relative paths, dynamic construction and indirect consumers require review. No group is automatically safe to exclude.',
+              'groups':groups
+          }
+          Path('pages-reference-inventory.json').write_text(json.dumps(result,indent=2))
+          print(json.dumps({p:{'files':g['files'],'bytes':g['bytes'],
+              'reference_counts':g['reference_counts'],
+              'largest_subgroups': sorted(g['immediate_subgroups'].items(),key=lambda x:-x[1]['bytes'])[:8],
+              'potential_runtime_or_review_sample':[r for r in g['external_references'] if r['classification']=='potential_runtime_or_review'][:12]}
+              for p,g in groups.items()},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pages-reference-inventory
+          path: pages-reference-inventory.json
