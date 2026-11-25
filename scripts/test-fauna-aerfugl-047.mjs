@@ -25,7 +25,7 @@ assert.equal(bytes.toString("ascii",12,16),"VP8X");assert((bytes[20]&16)!==0,"We
 assert.deepEqual([bytes.readUIntLE(24,3)+1,bytes.readUIntLE(27,3)+1],[1024,1536]);
 const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);
 const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,47);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
+assert(reg.count>=47);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
 const prior={
  "emne_fauna_fossekall": "bb8eb8f2b59a02d469f0531195f29651198d3a8b",
  "emne_fauna_munk": "4d5b3d2ef13a225dcecc23edd7237c656ce68253",
@@ -76,8 +76,8 @@ const prior={
 };
 assert.equal(Object.keys(prior).length,46);
 for(const [oldId,h] of Object.entries(prior))assert.equal(reg.get(oldId)?.gitBlobSha,h,oldId+" previous original must remain byte-identical");
-assert.equal(reg.get("emne_fauna_ekorn"),null,"Ekorn retains SVG fallback");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-47"));
+assert.equal(reg.get("emne_fauna_honningbie"),null,"Honningbie retains SVG fallback");
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-48"));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-aerfugl-047.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Ærfugl")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Ekorn")'));

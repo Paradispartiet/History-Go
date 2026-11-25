@@ -69,7 +69,7 @@ const prior={
 assert.equal(Object.keys(prior).length,39);
 for(const [oldId,h] of Object.entries(prior))assert.equal(reg.get(oldId)?.gitBlobSha,h,oldId+" previous original must remain byte-identical");
 assert.equal(reg.get("emne_fauna_jernspurv")?.gitBlobSha,"09aec68b4055d7c4aa6a60d97a6a1f9ae09c2d58","Jernspurv #41 original");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-47"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-48"));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-rodvingetrost-040.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Rødvingetrost")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Jernspurv")'));
