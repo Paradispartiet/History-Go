@@ -103,6 +103,22 @@ async function run() {
     sample.workbench[0].situation);
   assert.equal(JSON.parse(restored.saved.get(MAP)).groups[0].label, "Test-tema");
 
+  // While async WebCrypto decryption is running, another action may save
+  // an archive. Both note-only and map-only writes must survive untouched.
+  for (const [key, value] of [
+    [NOTES, JSON.stringify([{ id: "new-note", situation: "New synthetic note" }])],
+    [MAP, JSON.stringify({ version: 4, selected_ids: [] })]
+  ]) {
+    const changedDuringDecrypt = storage();
+    const pending = backup.restoreEncrypted(changedDuringDecrypt, exported.text, password);
+    changedDuringDecrypt.setItem(key, value);
+    await assert.rejects(pending, /archive_not_empty/);
+    assert.equal(changedDuringDecrypt.saved.get(key), value);
+    assert.equal(changedDuringDecrypt.saved.size, 1, "restore must not add a second key");
+    assert.equal(changedDuringDecrypt.keys.filter(([op]) => op === "set").length, 1,
+      "only the intervening write may mutate storage");
+  }
+
   const failedMap = storage();
   failedMap.failOn(MAP);
   await assert.rejects(backup.restoreEncrypted(failedMap, exported.text, password),
