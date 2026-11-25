@@ -24,7 +24,7 @@ assert.equal(bytes.toString("ascii",12,16),"VP8X");assert((bytes[20]&16)!==0,"We
 assert.deepEqual([bytes.readUIntLE(24,3)+1,bytes.readUIntLE(27,3)+1],[1024,1536]);
 const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);
 const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,39);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
+assert(reg.count>=39);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
 const prior={ "emne_fauna_svarthvit_fluesnapper":"90b25e78ef79b3e9e7f8a04624fb4122c2ede371",
  "emne_fauna_lovsanger":"a8cfb708899e9cb77476c378a6395c38d0c1c0ed",
  "emne_fauna_sjoorre":"e88b63fdaf4d9635982597568cd424f314fe607d",
@@ -65,8 +65,8 @@ const prior={ "emne_fauna_svarthvit_fluesnapper":"90b25e78ef79b3e9e7f8a04624fb41
  "emne_fauna_graaspurv":"468b3c17af9a0b90aebe7ce1cdd6866f9224687f"};
 assert.equal(Object.keys(prior).length,38);
 for(const [oldId,h] of Object.entries(prior))assert.equal(reg.get(oldId)?.gitBlobSha,h,oldId+" previous original must remain byte-identical");
-assert.equal(reg.get("emne_fauna_rodvingetrost"),null,"Rødvingetrost retains SVG fallback");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-39"));
+assert.equal(reg.get("emne_fauna_rodvingetrost")?.gitBlobSha,"1f83145ebdb08968d523c58e3b39c3e43a4d9e70","Rødvingetrost #40 original");
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-40"));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-gulsanger-039.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Gulsanger")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Rødvingetrost")'));
