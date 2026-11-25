@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_hvitryggspett:Object.freeze({
+   scientificName:"Dendrocopos leucotos",
+   src:"bilder/natur/fauna/godkjent/42_hvitryggspett_v1.webp",
+   gitBlobSha:"995aee26570d954ba33bfb34d6252b06234edbf1",
+   reviewedAt:"2026-11-25",
+   stage:"adult_male_red_crown_white_lower_back_barred_wings_streaked_underparts_pink_vent_birch_trunk",
+   evidence:"data/natur/fauna/illustration-quality-hvitryggspett-20261125.json"
+  }),
   emne_fauna_jernspurv:Object.freeze({
    scientificName:"Prunella modularis",
    src:"bilder/natur/fauna/godkjent/41_jernspurv_v1.webp",
