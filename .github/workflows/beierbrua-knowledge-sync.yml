@@ -1,0 +1,32 @@
+name: Beierbrua Knowledge synchronization
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/beierbrua-knowledge-sync.yml'
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.event.pull_request.number == 7342 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      BRANCH: work/oslo-akerselva-v1-bolk-20261116
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: npm run knowledge:canonical:write
+      - run: npm run knowledge:canonical:check
+      - name: Commit generated files to the draft branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json
+          git rm '.github/workflows/beierbrua-knowledge-sync.yml'
+          git commit -m 'Regenerate canonical Knowledge for Beierbrua'
+          git push origin "HEAD:refs/heads/$BRANCH"
