@@ -1,0 +1,27 @@
+name: R2 migration reference audit
+on:
+  pull_request:
+    paths:
+      - 'tools/r2-migration-review-inventory-20261125.json'
+      - 'tools/r2-migration-reference-audit.py'
+      - '.github/workflows/r2-migration-reference-audit.yml'
+permissions:
+  contents: read
+concurrency:
+  group: r2-migration-reference-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  reference-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify candidate bytes and collect static reference evidence
+        run: |
+          python3 tools/r2-migration-reference-audit.py --report "$RUNNER_TEMP/r2-migration-reference-audit.json"
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r2-migration-reference-audit
+          path: ${{ runner.temp }}/r2-migration-reference-audit.json
+          if-no-files-found: error
