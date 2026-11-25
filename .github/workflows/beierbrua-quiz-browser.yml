@@ -8,6 +8,8 @@ on:
       - 'tests/beierbrua-quiz-browser.mjs'
       - 'data/quiz/historie/beierbrua_sets.json'
       - 'data/quizcards/historie/beierbrua_quizcard_v1.json'
+      - 'bilder/places/beierbrua_*.webp'
+      - 'data/runtime/place-open/beierbrua.json'
 permissions:
   contents: read
 jobs:
@@ -22,3 +24,9 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium webkit
       - run: node tests/beierbrua-quiz-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: beierbrua-placecard-and-fagverk
+          path: artifacts/beierbrua-4x7-real-app/
+          if-no-files-found: warn

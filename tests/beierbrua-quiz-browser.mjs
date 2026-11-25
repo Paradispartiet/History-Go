@@ -79,6 +79,14 @@ try{
     document.querySelector('#placeCard')?.dataset.currentPlaceId===id,
     ID,{timeout:90000});
    assert.match(await page.locator('#pcTitle').innerText(), /Beierbrua/);
+   await page.waitForFunction(() => [
+    ['pcFrontImage', 'beierbrua_front.webp'],
+    ['pcHeaderImage', 'beierbrua_landscape.webp']
+   ].every(([id, file]) => {
+    const image = document.getElementById(id);
+    return image?.complete && image.naturalWidth > 0 && image.currentSrc.endsWith(file);
+   }));
+   await page.screenshot({path:out+'/'+mode.name+'-placecard.png',timeout:20000});
    await page.waitForFunction(()=>document.querySelector('#pcQuizCardContent')?.querySelector('.pc-rendered-quiz-card')&&
     document.querySelector('#pcFrontCardFlip')?.classList.contains('has-quiz-card'),
     null,{timeout:50000});
@@ -121,6 +129,13 @@ try{
       document.querySelector('#quizChoices button:not(:disabled)'), questionText);
     }
    }
+   await page.goto(base + '/fagverk-sted.html?place=' + ID, {waitUntil:'domcontentloaded'});
+   const article = page.locator('#fagverkPlaceArticle > p');
+   await article.first().waitFor({state:'visible'});
+   assert.equal(await article.count(), 4);
+   assert.match(await page.locator('#fagverkPlaceArticle').innerText(), /Hjula Væverier/);
+   assert.equal(await page.locator('#fagverkPlaceLenses a').count(), 3);
+   await page.screenshot({path:out+'/'+mode.name+'-fagverk.png',timeout:20000});
    assert.deepEqual(errors,[],mode.name+': unexpected page errors');
    console.log('PASS '+mode.name+' real Beierbrua PlaceCard / 10-item QuizCard / source-exact 4x7 fullquiz and one seven-question set played');
   }finally{
