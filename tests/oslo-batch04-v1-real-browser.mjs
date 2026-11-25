@@ -75,7 +75,9 @@ try {
         await flip.scrollIntoViewIfNeeded();
         // A tall portrait can extend below the viewport. Select a visible point
         // that actually belongs to the card, then retain normal pointer checks.
-        const point = await flip.evaluate(el => {
+        const pointHandle = await page.waitForFunction(() => {
+          const el = document.querySelector("#pcFrontCardFlip");
+          if (!el) return null;
           const rect = el.getBoundingClientRect();
           for (const fraction of [.5,.75,.25,.9,.1]) {
             const y = Math.max(rect.top,0) + (Math.min(rect.bottom,innerHeight)-Math.max(rect.top,0))*fraction;
@@ -85,8 +87,9 @@ try {
             }
           }
           return null;
-        });
-        assert.ok(point, "PlaceCard has no unobstructed pointer target");
+        }, null, {timeout:7000});
+        const point = await pointHandle.jsonValue();
+        await pointHandle.dispose();
         await flip.click({position:point});
         assert.equal(await flip.evaluate(el => el.classList.contains("is-flipped")), true);
         await page.locator("#pcQuizExpandBtn").click();

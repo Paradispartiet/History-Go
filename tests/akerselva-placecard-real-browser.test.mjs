@@ -94,17 +94,61 @@ try {
         };
         return {
           front: {src:front.currentSrc,fit:getComputedStyle(front).objectFit,
-            width:front.naturalWidth,height:front.naturalHeight, box:bounds(front)},
+            width:front.naturalWidth,height:front.naturalHeight, box:bounds(front), frame:bounds(front.parentElement)},
           hero: {src:hero.currentSrc,fit:getComputedStyle(hero).objectFit,
-            width:hero.naturalWidth,height:hero.naturalHeight,box:bounds(hero)}
+            width:hero.naturalWidth,height:hero.naturalHeight,box:bounds(hero), frame:bounds(hero.parentElement)}
         };
       });
-      // The shared PlaceCard contract fills the two photo frames, following
-      // place-image-framing.css and its browser audit (d4f00ccb, 18 Nov).
-      // Source-file orientation, identity and independent hero/front images
-      // remain checked below; documentary popups have their own contain policy.
-      for (const [role, photo] of Object.entries(media)) {
-        assert.equal(photo.fit, 'cover', tag + ': ' + role + ' follows the current full-bleed contract');
+      const framingDiagnostics = await page.evaluate(() => {
+        const targets = ['pcFrontImage', 'pcHeaderImage'];
+        const matchedRules = (element) => {
+          const matches = [];
+          function visit(rules, origin) {
+            for (const rule of rules) {
+              if (rule.selectorText && rule.style?.getPropertyValue('object-fit')) {
+                try {
+                  if (element.matches(rule.selectorText)) {
+                    matches.push({
+                      origin,
+                      selector: rule.selectorText.slice(0, 220),
+                      value: rule.style.getPropertyValue('object-fit'),
+                      priority: rule.style.getPropertyPriority('object-fit')
+                    });
+                  }
+                } catch {}
+              }
+              if (rule.cssRules) visit(rule.cssRules, origin);
+            }
+          }
+          for (const sheet of document.styleSheets) {
+            try { visit(sheet.cssRules, sheet.href || 'inline'); } catch {}
+          }
+          return matches.slice(-24);
+        };
+        return {
+          currentPlaceId: document.getElementById('placeCard')?.dataset.currentPlaceId,
+          bodyClass: document.body.className,
+          styles: targets.map(id => {
+            const el = document.getElementById(id);
+            return {
+              id,
+              style: el?.getAttribute('style'),
+              fit: el ? getComputedStyle(el).objectFit : '(missing)',
+              rules: el ? matchedRules(el) : []
+            };
+          })
+        };
+      });
+      assert.equal(media.front.fit, 'cover',
+        tag + ': portrait photo must fill the card without letterbox gutters; CSS diagnostic ' + JSON.stringify(framingDiagnostics));
+      assert.equal(media.hero.fit, 'cover',
+        tag + ': landscape hero must fill the frame without letterbox gutters; CSS diagnostic ' + JSON.stringify(framingDiagnostics));
+      for (const surface of ['front', 'hero']) {
+        const {box, frame} = media[surface];
+        assert.ok(Math.abs(box.width - frame.width) <= 1,
+          tag + ': ' + surface + ' image must reach both edges of the frame');
+        assert.ok(Math.abs(box.height - frame.height) <= 1,
+          tag + ': ' + surface + ' image must occupy the frame height without gutters: ' + JSON.stringify({box, frame}));
       }
       assert.ok(media.front.height > media.front.width, tag + ': front photo is natively portrait');
       assert.ok(media.hero.width > media.hero.height, tag + ': header photo is landscape');

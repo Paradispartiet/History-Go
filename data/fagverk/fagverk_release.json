@@ -9,9 +9,9 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "3.17.15",
-    "updated_at": "2026-10-28",
-    "content_sha256": "3e882f55d7d140247c5ee30a94f9512d9361a0a34f6938f96e7732636af0c0b8"
+    "version": "3.17.16",
+    "updated_at": "2026-11-16",
+    "content_sha256": "57378962d16ed91f8af31d677befb95a7ac4072c9a90c204b496cd71190b03ee"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "f3686870bf0bbb4ce265faef9c44c61f69001542806b6c0a7be457793b43f365"
+    "content_sha256": "54ec31ce982404076c4091195cbfef11d79483e3b47be6f61535f6e9e7980953"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 546,
+    "package_file_count": 561,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1410,
+    "referenced_file_count": 1425,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2848,9 +2848,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 152,
+      "package_file_count": 164,
       "required_package_file_count": 4,
-      "optional_package_file_count": 148,
+      "optional_package_file_count": 160,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -3069,6 +3069,30 @@
           "content_sha256": "8901dc02eac9d11dfb8e571fadc1ae04e708bc0324f16840d5be52bac1c6abe4"
         },
         {
+          "path": "data/quiz/historie/beierbrua_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.beierbrua.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "6bc6007e7ccc7139be42c1cd3de20dad5033d9d47698606f4b8973f19c2b1026"
+        },
+        {
+          "path": "data/quiz/historie/bjoelsenfossen_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.bjoelsenfossen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "e292049fa4fd8a86c55a89461d0ca4b3e858da896177b71e9bc734d91078ff7d"
+        },
+        {
           "path": "data/quiz/historie/botsfengselet_sets.json",
           "required": false,
           "fields": [
@@ -3139,6 +3163,18 @@
           ],
           "exists": true,
           "content_sha256": "03540dadaa3f2a4ab0c7a57a1371000281bd45c71002a569548f0fb8dcc89dea"
+        },
+        {
+          "path": "data/quiz/historie/frysjadammen_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frysjadammen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "9ced6353db4a779d16cad649d79399af7c7b819bf90bd27ded6fc199d8874c69"
         },
         {
           "path": "data/quiz/historie/gamle_aker_kirke_sets.json",
@@ -3429,6 +3465,18 @@
           "content_sha256": "0748de44f180abf3325c26a590dc91741059e64b42bf8305af62cfa57db0d2c9"
         },
         {
+          "path": "data/quiz/historie/seilduksfabrikken_nydalen_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.seilduksfabrikken_nydalen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "00c1d128e0bbdac336d75d09d4c8e0e965f2b7661ae64f4319e8cce00cbd63d1"
+        },
+        {
           "path": "data/quiz/historie/stattholdergarden_sets.json",
           "required": false,
           "fields": [
@@ -3609,6 +3657,30 @@
           "content_sha256": "7e4534501749efad8b0b33acd5ad43fc15ddce388234a841006c12a1de1fc8e9"
         },
         {
+          "path": "data/quiz/production_briefs/historie/beierbrua.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.beierbrua.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "d09d0b1dbe77d20348bfdcc625b25d6c6aa9b9a71331deb177567306f46eff8b"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/bjoelsenfossen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.bjoelsenfossen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "d66f0f0960640f7494c345714896acccf939db0e9a8bddba9298b3de23079fdf"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/botsfengselet.json",
           "required": false,
           "fields": [
@@ -3679,6 +3751,18 @@
           ],
           "exists": true,
           "content_sha256": "8845c1a6d0c8d14e879783a7a50e8e2997735de72899c0549aea8ee7a923c1ee"
+        },
+        {
+          "path": "data/quiz/production_briefs/historie/frysjadammen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frysjadammen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "e1cc03e12c6d0c05fea6c1cd97b829d4666e72f9551f561b2b30499a4d326b13"
         },
         {
           "path": "data/quiz/production_briefs/historie/gamle_aker_kirke.json",
@@ -3969,6 +4053,18 @@
           "content_sha256": "ed10814e822651ca9d3f74280cc312bf77bae32fd2b1e6468b790d5cfb468d06"
         },
         {
+          "path": "data/quiz/production_briefs/historie/seilduksfabrikken_nydalen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.seilduksfabrikken_nydalen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "44302dbc53ec509b7a7f125a12797f977477f1dd8b51566a26eb7a0e2fadfe4f"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/stattholdergarden.json",
           "required": false,
           "fields": [
@@ -4149,6 +4245,30 @@
           "content_sha256": "f23c5fad82f5c83bc12cffdda9ffa6a5e7266c89619f0f7bbc0d23e63fae1679"
         },
         {
+          "path": "data/quiz/production_context/historie/beierbrua.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.beierbrua.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "e008fc5fa6dad607144da94409512165d95b1a120a810dafc4411773e60b94e8"
+        },
+        {
+          "path": "data/quiz/production_context/historie/bjoelsenfossen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.bjoelsenfossen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "9b6bfec308b3bcce729c46a201c87ee50085bd3529159c1ae1b6d4c19c40b9df"
+        },
+        {
           "path": "data/quiz/production_context/historie/botsfengselet.json",
           "required": false,
           "fields": [
@@ -4219,6 +4339,18 @@
           ],
           "exists": true,
           "content_sha256": "c5f3e7a16d6a5a475ebb5aa89cf97db46f723a79aa7f7073a0f4991420fa37a6"
+        },
+        {
+          "path": "data/quiz/production_context/historie/frysjadammen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frysjadammen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "73c63adb47e81fecd2627b66d3af63e44ce6472879677c1edf77318d21d6cb86"
         },
         {
           "path": "data/quiz/production_context/historie/gamle_aker_kirke.json",
@@ -4509,6 +4641,18 @@
           "content_sha256": "d25c6f78bb2400354998e56ef5bd24d895faf399f4d5668072a8bd312dbbefd5"
         },
         {
+          "path": "data/quiz/production_context/historie/seilduksfabrikken_nydalen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.seilduksfabrikken_nydalen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "5f12e39eb50685e32f27190e6e8bcbf4774bdb16f68a5343bc175fc216684437"
+        },
+        {
           "path": "data/quiz/production_context/historie/stattholdergarden.json",
           "required": false,
           "fields": [
@@ -4677,20 +4821,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "9d75d64cfffcd68bccab9bdb840a60d7acb9d356ed80eb022402705c3ae5de14",
+      "package_content_sha256": "9b272ed93b1c612a3b3ba26e173907cf70dca5688f2c6959f5e561b249c11b0b",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 244,
+      "referenced_file_count": 256,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "2deedcbfb16d579f58195c93676b4c0131e4c1b4e67cffe2c9253d35ac5da22c",
-      "content_sha256": "6f979ee9bc2c25f989f1b9144802a17890f8d8a2ebb6c95c9eae38fce8dd6e6f",
+      "structure_sha256": "22498ff38f329d56f9c41f5b0e7794abf703ddfa58d53f3afb5fd5a121586bdf",
+      "content_sha256": "f86a4f39504e6646f3bde74aba72d6bfc05211327793ccd8548205bab62960d5",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -5804,9 +5948,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 73,
+      "package_file_count": 76,
       "required_package_file_count": 4,
-      "optional_package_file_count": 69,
+      "optional_package_file_count": 72,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -6037,6 +6181,18 @@
           "content_sha256": "bd40f7e7c5542978be3d3b143920dbc4d39d228fe81190711f5b31426b09331a"
         },
         {
+          "path": "data/quiz/naeringsliv/frysja_33_brekke_kraftstasjon_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frysja_33_brekke_kraftstasjon.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "936acf43538f354e35bb1ee3ff3ea27c6619c6b424c43c186645479c9a6be2f6"
+        },
+        {
           "path": "data/quiz/naeringsliv/grand_hotel_sets.json",
           "required": false,
           "fields": [
@@ -6251,6 +6407,18 @@
           ],
           "exists": true,
           "content_sha256": "508689dbcc81664bf499782674c3e5657a9bc932a671a57fee6c042ab11ec3d5"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/frysja_33_brekke_kraftstasjon.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frysja_33_brekke_kraftstasjon.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "e37fb7b146f6206cdacf8bf8e97eb150de116c1708df08ce87199b1556d6332d"
         },
         {
           "path": "data/quiz/production_briefs/naeringsliv/grand_hotel.json",
@@ -6469,6 +6637,18 @@
           "content_sha256": "5a38c8d62bccaa6573492ca048d5643c7858664647440267b3edaf8fcc0cea75"
         },
         {
+          "path": "data/quiz/production_context/naeringsliv/frysja_33_brekke_kraftstasjon.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.frysja_33_brekke_kraftstasjon.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "a1bace41016b348bd28b895ea5b6239d9338ad66c4dbc6c3605db5ed39e4af50"
+        },
+        {
           "path": "data/quiz/production_context/naeringsliv/grand_hotel.json",
           "required": false,
           "fields": [
@@ -6685,20 +6865,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "0fadde7bd3d12bccdcfbd015cb3002ec5bdd5d5b349d846fb1edb3b85ed4b4f4",
+      "package_content_sha256": "c06547f969eafb8c44e93eab273631d2a2e8cf42c733f0fd38a0d43acea5a64a",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 145,
+      "referenced_file_count": 148,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "2662de2738b9e36407f419685d62c4b9b28db9b503ffaedbf21da8b83983ca1e",
-      "content_sha256": "dd60da1f6bd4b7637ff5e42ee1d0ea487e02a5d5b0ebd9aeb96994e2c2f69e31",
+      "structure_sha256": "78ffdaf84a17e64ff24c3b3fde07ddc9a00900fec2cea61acee966ebe7a851f2",
+      "content_sha256": "dee411d88affa295111f29d99507ca73e1bf1122aa1be53ada50d0c573f3109d",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -9273,5 +9453,5 @@
       ]
     }
   },
-  "release_sha256": "25cc201d9cc9800f7237dd5bd988d3b10a627b705d3ebe4cd2570eb6a09726d5"
+  "release_sha256": "7103b6b4b1bfc9c9a610880507ee95e7fc987db61a4245a557d08aef1ff46610"
 }

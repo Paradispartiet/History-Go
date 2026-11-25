@@ -1,0 +1,1308 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "beierbrua",
+  "profile": "normal_4x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1761,
+    "selection_sha256": "7ce0f221df0aa29a8ae76921e67037b88a106901ee4719d8ae8c9ac938c44986",
+    "category_id": "historie",
+    "target_id": "beierbrua"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/beierbrua.json",
+      "bytes": 64669,
+      "sha256": "220f2746776c06c64c42fa871736b183866e89e5228665e5a5def88bc78f9d14"
+    },
+    "target": {
+      "path": "data/places/natur/oslo/places_oslo_natur_akerselvarute/beierbrua.json",
+      "bytes": 17668,
+      "sha256": "44a4643495dee1a3395bd8b0ed9a2fd2dec2a56f8a6cb79714f124a87a020e58"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 944,
+      "selection_sha256": "8143b7f19c4236f117a5acc93069c22da9051792fcc1b0319fbea8be9a15d6aa"
+    },
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 1,
+        "selection_bytes": 344,
+        "selection_sha256": "4d8c9b0f166ad6b10859720ff013315bd8bb4085efc5f8ac7ef8b2c416349cbe"
+      }
+    ],
+    "stories": [
+      {
+        "path": "data/stories/stories_beierbrua.json",
+        "matches": 1,
+        "selection_bytes": 2557,
+        "selection_sha256": "91ef39b6b6d3a8b4d905cb65f4763a5636d33a989c281e9562da15884223f2ef"
+      }
+    ]
+  },
+  "planned_quiz_file": "data/quiz/historie/beierbrua_sets.json",
+  "source_registry": {
+    "B": {
+      "url": "https://oslobyleksikon.no/side/Beierbrua",
+      "source_type": "historical_reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-25",
+      "review_note": "Kilde gjennomgått i produksjonsrapporten for Beierbrua."
+    },
+    "L": {
+      "url": "https://lokalhistoriewiki.no/wiki/Beierbrua",
+      "source_type": "historical_reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-25",
+      "review_note": "Kilde gjennomgått i produksjonsrapporten for Beierbrua."
+    },
+    "S": {
+      "url": "https://snl.no/Beierbrua",
+      "source_type": "historical_reference",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-11-25",
+      "review_note": "Kilde gjennomgått i produksjonsrapporten for Beierbrua."
+    }
+  },
+  "source_review_status": "reviewed",
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/historie/beierbrua_sets.json",
+      "data/quiz/manifest.json",
+      "reports/place-production/oslo-akerselva-sagene-grunerlokka-v1-20261116.md"
+    ],
+    "active_before": {
+      "set_count": 6,
+      "question_count": 42,
+      "linked_knowledge": 42,
+      "editorial_review_required": 0
+    },
+    "knowledge_migration": "7 retained; 35 preserved Knowledge-only; 21 newly numbered",
+    "legacy_id_knowledge_ledger": [
+      {
+        "ordinal": 1,
+        "legacy_id": "beierbrua_s1_q1",
+        "legacy_quiz_id": "historie_beierbrua_set_1_q1",
+        "legacy_primary_knowledge_unit_id": "ku_historie_beierbrua_er_et_lesepunk_36fe3cf133",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_beierbrua_er_et_lesepunk_36fe3cf133"
+        ],
+        "current_question": "Hva gjør Beierbrua til mer enn bare en overgang over elva?",
+        "current_answer": "Den viser hvordan bro, elv, ferdsel og industrihistoriske lag møtes",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 2,
+        "legacy_id": "beierbrua_s1_q2",
+        "legacy_quiz_id": "historie_beierbrua_set_1_q2",
+        "legacy_primary_knowledge_unit_id": "ku_historie_en_bro_er_bade_infrastru_b4d00f6c13",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_en_bro_er_bade_infrastru_b4d00f6c13",
+          "ku_historie_den_gj_r_elverommet_lesb_784cb86591"
+        ],
+        "current_question": "Hva bør spilleren se etter først ved Beierbrua?",
+        "current_answer": "Hvordan broen styrer blikk, bevegelse og kontakt med elva",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 3,
+        "legacy_id": "beierbrua_s1_q3",
+        "legacy_quiz_id": "historie_beierbrua_set_1_q3",
+        "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_ruta_handler_i_9d84fde5f0",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_akerselva_ruta_handler_i_9d84fde5f0"
+        ],
+        "current_question": "Hvorfor passer Beierbrua i Akerselva-ruta?",
+        "current_answer": "Den gjør elva til en korridor man kan krysse, følge og forstå",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 4,
+        "legacy_id": "beierbrua_s1_q4",
+        "legacy_quiz_id": "historie_beierbrua_set_1_q4",
+        "legacy_primary_knowledge_unit_id": "ku_historie_beierbrua_er_sterk_fordi_271dba8792",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_beierbrua_er_sterk_fordi_271dba8792"
+        ],
+        "current_question": "Hva er den beste korte forklaringen på Beierbrua som History Go-sted?",
+        "current_answer": "Et brosted der Akerselva, ferdsel og industrihistorisk byrom møtes",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 5,
+        "legacy_id": "beierbrua_s1_q5",
+        "legacy_quiz_id": "historie_beierbrua_set_1_q5",
+        "legacy_primary_knowledge_unit_id": "ku_historie_broer_er_konkrete_spor_e_464e1d2712",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_broer_er_konkrete_spor_e_464e1d2712"
+        ],
+        "current_question": "Hva kan en bro over Akerselva lære oss?",
+        "current_answer": "Hvordan byen lager forbindelser over og langs vannet",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 6,
+        "legacy_id": "beierbrua_s1_q6",
+        "legacy_quiz_id": "historie_beierbrua_set_1_q6",
+        "legacy_primary_knowledge_unit_id": "ku_historie_etter_vulkan_og_kuba_par_6af001788f",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_etter_vulkan_og_kuba_par_6af001788f"
+        ],
+        "current_question": "Hva binder Beierbrua til Kuba-parken og Vulkan i læringsruta?",
+        "current_answer": "Alle viser Akerselva som byrom med ferdsel, natur og historiske lag",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 7,
+        "legacy_id": "beierbrua_s1_q7",
+        "legacy_quiz_id": "historie_beierbrua_set_1_q7",
+        "legacy_primary_knowledge_unit_id": "ku_historie_en_god_stedsquiz_starter_16148e74c7",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_en_god_stedsquiz_starter_16148e74c7"
+        ],
+        "current_question": "Hva er et godt første observasjonsspørsmål på Beierbrua?",
+        "current_answer": "Hvordan endrer broen måten du ser og bruker elva på?",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 8,
+        "legacy_id": "beierbrua_s2_q1",
+        "legacy_quiz_id": "historie_beierbrua_set_2_q1",
+        "legacy_primary_knowledge_unit_id": "ku_historie_brosteder_er_ofte_sma_m__420807b735",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_brosteder_er_ofte_sma_m__420807b735"
+        ],
+        "current_question": "Hva slags stedsliv kan leses ved Beierbrua?",
+        "current_answer": "Kryssing, stopp, utsikt og ferdsel langs Akerselva",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 9,
+        "legacy_id": "beierbrua_s2_q2",
+        "legacy_quiz_id": "historie_beierbrua_set_2_q2",
+        "legacy_primary_knowledge_unit_id": "ku_historie_fysiske_detaljer_gj_r_in_a9544c922c",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_fysiske_detaljer_gj_r_in_a9544c922c"
+        ],
+        "current_question": "Hva kan rekkverk, broflate og utsikt fortelle?",
+        "current_answer": "Hvordan stedet styrer kropp, blikk og kontakt med vannet",
+        "knowledge_link_status": "linked",
+        "disposition": "retain"
+      },
+      {
+        "ordinal": 10,
+        "legacy_id": "beierbrua_s2_q3",
+        "legacy_quiz_id": "historie_beierbrua_set_2_q3",
+        "legacy_primary_knowledge_unit_id": "ku_historie_langs_en_industrielv_er__fd4a8529b3",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_langs_en_industrielv_er__fd4a8529b3"
+        ],
+        "current_question": "Hva gjør et brosted viktig i industrihistoriske elverom?",
+        "current_answer": "Det kobler arbeidssoner, ferdsel og landskap på tvers av vannet",
+        "knowledge_link_status": "linked",
+        "disposition": "retain"
+      },
+      {
+        "ordinal": 11,
+        "legacy_id": "beierbrua_s2_q4",
+        "legacy_quiz_id": "historie_beierbrua_set_2_q4",
+        "legacy_primary_knowledge_unit_id": "ku_historie_nar_kildene_ikke_er_sjek_76de70633d",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_nar_kildene_ikke_er_sjek_76de70633d"
+        ],
+        "current_question": "Hva bør vi unngå å påstå uten egen kilde?",
+        "current_answer": "Eksakte årstall, personnavn og tekniske brodetaljer",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 12,
+        "legacy_id": "beierbrua_s2_q5",
+        "legacy_quiz_id": "historie_beierbrua_set_2_q5",
+        "legacy_primary_knowledge_unit_id": "ku_historie_tilgjengelighet_handler__883fc4c451",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_tilgjengelighet_handler__883fc4c451",
+          "ku_historie_broer_er_viktige_kobling_43297b3f55"
+        ],
+        "current_question": "Hva viser Beierbrua om offentlig tilgjengelighet?",
+        "current_answer": "Broen gjør elverommet mer koblet og tilgjengelig for ferdsel",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 13,
+        "legacy_id": "beierbrua_s2_q6",
+        "legacy_quiz_id": "historie_beierbrua_set_2_q6",
+        "legacy_primary_knowledge_unit_id": "ku_historie_pa_en_bro_kan_spilleren__60fe60190f",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_pa_en_bro_kan_spilleren__60fe60190f"
+        ],
+        "current_question": "Hva kan elvelyd og utsikt bidra med her?",
+        "current_answer": "De gjør infrastruktur og landskap sanselig samtidig",
+        "knowledge_link_status": "linked",
+        "disposition": "retain"
+      },
+      {
+        "ordinal": 14,
+        "legacy_id": "beierbrua_s2_q7",
+        "legacy_quiz_id": "historie_beierbrua_set_2_q7",
+        "legacy_primary_knowledge_unit_id": "ku_historie_beierbrua_er_et_lite_men_4b875772f9",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_beierbrua_er_et_lite_men_4b875772f9"
+        ],
+        "current_question": "Hva gir Beierbrua sin History Go-stemning?",
+        "current_answer": "Kryssingen mellom elv, bro, byliv og historiske arbeidssoner",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 15,
+        "legacy_id": "beierbrua_s3_q1",
+        "legacy_quiz_id": "historie_beierbrua_set_3_q1",
+        "legacy_primary_knowledge_unit_id": "ku_historie_i_byhistorie_er_broer_vi_d965bf6412",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_i_byhistorie_er_broer_vi_d965bf6412"
+        ],
+        "current_question": "Hva er en bro i byhistorisk lesning?",
+        "current_answer": "En forbindelse som organiserer ferdsel og binder steder sammen",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 16,
+        "legacy_id": "beierbrua_s3_q2",
+        "legacy_quiz_id": "historie_beierbrua_set_3_q2",
+        "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_korridoren_bli_bb7df590f0",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_akerselva_korridoren_bli_bb7df590f0"
+        ],
+        "current_question": "Hva er en elvekorridor?",
+        "current_answer": "Et sammenhengende elverom som binder natur, ferdsel og byhistorie sammen",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 17,
+        "legacy_id": "beierbrua_s3_q3",
+        "legacy_quiz_id": "historie_beierbrua_set_3_q3",
+        "legacy_primary_knowledge_unit_id": "ku_historie_beierbrua_viser_tilgjeng_9998d8610e",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_beierbrua_viser_tilgjeng_9998d8610e"
+        ],
+        "current_question": "Hva betyr tilgjengelighet i et byrom?",
+        "current_answer": "Hvor lett steder kan nås, krysses og brukes",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 18,
+        "legacy_id": "beierbrua_s3_q4",
+        "legacy_quiz_id": "historie_beierbrua_set_3_q4",
+        "legacy_primary_knowledge_unit_id": "ku_historie_broer_er_en_enkel_og_tyd_aee4e3d373",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_broer_er_en_enkel_og_tyd_aee4e3d373"
+        ],
+        "current_question": "Hva betyr infrastruktur?",
+        "current_answer": "Systemer og forbindelser som gjør transport, arbeid og hverdagsliv mulig",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 19,
+        "legacy_id": "beierbrua_s3_q5",
+        "legacy_quiz_id": "historie_beierbrua_set_3_q5",
+        "legacy_primary_knowledge_unit_id": "ku_historie_et_brosted_kan_v_re_offe_0d7a4e14b1",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_et_brosted_kan_v_re_offe_0d7a4e14b1"
+        ],
+        "current_question": "Hva er et offentlig rom?",
+        "current_answer": "Et rom mange kan bruke til ferdsel, stopp og møte",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 20,
+        "legacy_id": "beierbrua_s3_q6",
+        "legacy_quiz_id": "historie_beierbrua_set_3_q6",
+        "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_kan_leses_som__0219e07308",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_akerselva_kan_leses_som__0219e07308"
+        ],
+        "current_question": "Hva betyr industrilandskap langs en elv?",
+        "current_answer": "Et område der vann, arbeid, bygninger og transport historisk henger sammen",
+        "knowledge_link_status": "linked",
+        "disposition": "retain"
+      },
+      {
+        "ordinal": 21,
+        "legacy_id": "beierbrua_s3_q7",
+        "legacy_quiz_id": "historie_beierbrua_set_3_q7",
+        "legacy_primary_knowledge_unit_id": "ku_historie_beierbrua_trener_stedles_6855d13ac3",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_beierbrua_trener_stedles_6855d13ac3"
+        ],
+        "current_question": "Hva betyr stedlesning?",
+        "current_answer": "Å bruke observasjoner på stedet til å forstå større sammenhenger",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 22,
+        "legacy_id": "beierbrua_s4_q1",
+        "legacy_quiz_id": "historie_beierbrua_set_4_q1",
+        "legacy_primary_knowledge_unit_id": "ku_historie_avansert_stedlesning_han_8f8ecbec59",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_avansert_stedlesning_han_8f8ecbec59"
+        ],
+        "current_question": "Hva er en avansert observasjon på Beierbrua?",
+        "current_answer": "Å se hvordan kryssing, utsikt, elv og bystruktur virker sammen",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 23,
+        "legacy_id": "beierbrua_s4_q2",
+        "legacy_quiz_id": "historie_beierbrua_set_4_q2",
+        "legacy_primary_knowledge_unit_id": "ku_historie_uten_kilde_b_r_quizzen_i_7bb88f8007",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_uten_kilde_b_r_quizzen_i_7bb88f8007"
+        ],
+        "current_question": "Hva bør holdes ute av en trygg Beierbrua-quiz foreløpig?",
+        "current_answer": "Eksakt brokronologi, tekniske detaljer og usikre personkoblinger",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 24,
+        "legacy_id": "beierbrua_s4_q3",
+        "legacy_quiz_id": "historie_beierbrua_set_4_q3",
+        "legacy_primary_knowledge_unit_id": "ku_historie_broen_er_et_godt_utsikts_94dc8ae1b0",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_broen_er_et_godt_utsikts_94dc8ae1b0"
+        ],
+        "current_question": "Hvordan kan spilleren lese byen fra broen?",
+        "current_answer": "Ved å se forbindelser mellom elvas sider, stier, bygg og mennesker",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 25,
+        "legacy_id": "beierbrua_s4_q4",
+        "legacy_quiz_id": "historie_beierbrua_set_4_q4",
+        "legacy_primary_knowledge_unit_id": "ku_historie_ruten_kan_bevege_seg_fra_44855bfd0e",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_ruten_kan_bevege_seg_fra_44855bfd0e"
+        ],
+        "current_question": "Hva gjør Beierbrua til et godt neste stopp etter Kuba-parken?",
+        "current_answer": "Kuba viser park og opphold; Beierbrua viser kryssing og kobling over elva",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 26,
+        "legacy_id": "beierbrua_s4_q5",
+        "legacy_quiz_id": "historie_beierbrua_set_4_q5",
+        "legacy_primary_knowledge_unit_id": "ku_historie_infrastruktur_viser_valg_4cc8b7b94e",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_infrastruktur_viser_valg_4cc8b7b94e"
+        ],
+        "current_question": "Hva kan en bro fortelle om makt og planlegging uten å nevne personer?",
+        "current_answer": "At byen prioriterer bestemte forbindelser, ruter og tilgjengelighet",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 27,
+        "legacy_id": "beierbrua_s4_q6",
+        "legacy_quiz_id": "historie_beierbrua_set_4_q6",
+        "legacy_primary_knowledge_unit_id": "ku_historie_elver_kan_dele_byen_men__74e6909be8",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_elver_kan_dele_byen_men__74e6909be8"
+        ],
+        "current_question": "Hva kan broens plassering si om Akerselva som struktur?",
+        "current_answer": "Elva er både barriere og forbindelse, avhengig av kryssinger",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 28,
+        "legacy_id": "beierbrua_s4_q7",
+        "legacy_quiz_id": "historie_beierbrua_set_4_q7",
+        "legacy_primary_knowledge_unit_id": "ku_historie_stedsbasert_quiz_skal_gj_d67e18502c",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_stedsbasert_quiz_skal_gj_d67e18502c"
+        ],
+        "current_question": "Hva bør en god Beierbrua-quiz trene spilleren i?",
+        "current_answer": "Å lese bro, elv, ferdsel og historiske lag sammen",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 29,
+        "legacy_id": "beierbrua_s5_q1",
+        "legacy_quiz_id": "historie_beierbrua_set_5_q1",
+        "legacy_primary_knowledge_unit_id": "ku_historie_beierbrua_viser_hvordan__1b46a82921",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_beierbrua_viser_hvordan__1b46a82921"
+        ],
+        "current_question": "Hva er den dypere læringen i Beierbrua som sted?",
+        "current_answer": "Infrastruktur gjør landskap sosialt og historisk brukbart",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 30,
+        "legacy_id": "beierbrua_s5_q2",
+        "legacy_quiz_id": "historie_beierbrua_set_5_q2",
+        "legacy_primary_knowledge_unit_id": "ku_historie_i_et_arbeids_og_industri_d498d55384",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_i_et_arbeids_og_industri_d498d55384"
+        ],
+        "current_question": "Hvorfor er broer viktige i industrielle elvelandskap?",
+        "current_answer": "De kobler arbeidssoner, transport og byrom på tvers av vannet",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 31,
+        "legacy_id": "beierbrua_s5_q3",
+        "legacy_quiz_id": "historie_beierbrua_set_5_q3",
+        "legacy_primary_knowledge_unit_id": "ku_historie_beierbrua_gj_r_denne_dob_06bf1e0e9a",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_beierbrua_gj_r_denne_dob_06bf1e0e9a"
+        ],
+        "current_question": "Hva er forskjellen på elv som barriere og elv som korridor?",
+        "current_answer": "Som barriere deler den; som korridor binder den sammen gjennom ruter og broer",
+        "knowledge_link_status": "linked",
+        "disposition": "retain"
+      },
+      {
+        "ordinal": 32,
+        "legacy_id": "beierbrua_s5_q4",
+        "legacy_quiz_id": "historie_beierbrua_set_5_q4",
+        "legacy_primary_knowledge_unit_id": "ku_historie_byens_forbindelser_viser_8a994c4b72",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_byens_forbindelser_viser_8a994c4b72"
+        ],
+        "current_question": "Hva kan tilgjengelighet fortelle om byens prioriteringer?",
+        "current_answer": "Hvilke forbindelser og steder som gjøres lette å bruke",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 33,
+        "legacy_id": "beierbrua_s5_q5",
+        "legacy_quiz_id": "historie_beierbrua_set_5_q5",
+        "legacy_primary_knowledge_unit_id": "ku_historie_noen_steder_l_rer_best_g_3ec10fdc33",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_noen_steder_l_rer_best_g_3ec10fdc33"
+        ],
+        "current_question": "Hvorfor er Beierbrua god History Go-læring uten mange årstall?",
+        "current_answer": "Fordi stedet selv viser kobling, ferdsel og elverom fysisk",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 34,
+        "legacy_id": "beierbrua_s5_q6",
+        "legacy_quiz_id": "historie_beierbrua_set_5_q6",
+        "legacy_primary_knowledge_unit_id": "ku_historie_kuba_parken_og_beierbrua_37dd55779e",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_kuba_parken_og_beierbrua_37dd55779e"
+        ],
+        "current_question": "Hva kan en sammenligning mellom Beierbrua og Kuba-parken lære?",
+        "current_answer": "At samme elvekorridor kan romme både oppholdssted og forbindelsespunkt",
+        "knowledge_link_status": "linked",
+        "disposition": "retain"
+      },
+      {
+        "ordinal": 35,
+        "legacy_id": "beierbrua_s5_q7",
+        "legacy_quiz_id": "historie_beierbrua_set_5_q7",
+        "legacy_primary_knowledge_unit_id": "ku_historie_trygg_quizdata_bygger_pa_81d985e038",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_trygg_quizdata_bygger_pa_81d985e038"
+        ],
+        "current_question": "Hva er viktigst i en trygg Beierbrua-quiz?",
+        "current_answer": "Å bruke observerbare trekk og unngå usikre detaljpåstander",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 36,
+        "legacy_id": "beierbrua_s6_q1",
+        "legacy_quiz_id": "historie_beierbrua_set_6_q1",
+        "legacy_primary_knowledge_unit_id": "ku_historie_broer_er_infrastruktur_f_dd7b2edc49",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_broer_er_infrastruktur_f_dd7b2edc49"
+        ],
+        "current_question": "Hvilket begrep beskriver en bro som byhistorisk struktur?",
+        "current_answer": "Infrastruktur",
+        "knowledge_link_status": "linked",
+        "disposition": "retain"
+      },
+      {
+        "ordinal": 37,
+        "legacy_id": "beierbrua_s6_q2",
+        "legacy_quiz_id": "historie_beierbrua_set_6_q2",
+        "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_fungerer_som_k_0106f9787f",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_akerselva_fungerer_som_k_0106f9787f"
+        ],
+        "current_question": "Hvilket begrep beskriver Akerselva som sammenhengende byrom?",
+        "current_answer": "Elvekorridor",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 38,
+        "legacy_id": "beierbrua_s6_q3",
+        "legacy_quiz_id": "historie_beierbrua_set_6_q3",
+        "legacy_primary_knowledge_unit_id": "ku_historie_beierbrua_gj_r_tilgjenge_df1463e133",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_beierbrua_gj_r_tilgjenge_df1463e133"
+        ],
+        "current_question": "Hva betyr tilgjengelighet i byrom?",
+        "current_answer": "Hvor lett steder kan nås, krysses og brukes",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 39,
+        "legacy_id": "beierbrua_s6_q4",
+        "legacy_quiz_id": "historie_beierbrua_set_6_q4",
+        "legacy_primary_knowledge_unit_id": "ku_historie_broer_og_elverom_kan_v_r_d4f67a360e",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_broer_og_elverom_kan_v_r_d4f67a360e"
+        ],
+        "current_question": "Hva betyr offentlig rom?",
+        "current_answer": "Et rom mange kan bruke til ferdsel, stopp og møte",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 40,
+        "legacy_id": "beierbrua_s6_q5",
+        "legacy_quiz_id": "historie_beierbrua_set_6_q5",
+        "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_kan_leses_som__86b745904c",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_akerselva_kan_leses_som__86b745904c"
+        ],
+        "current_question": "Hva er et industrilandskap?",
+        "current_answer": "Et område der arbeid, vann, transport og bygninger historisk henger sammen",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 41,
+        "legacy_id": "beierbrua_s6_q6",
+        "legacy_quiz_id": "historie_beierbrua_set_6_q6",
+        "legacy_primary_knowledge_unit_id": "ku_historie_beierbrua_trener_stedles_881e1b44f9",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_beierbrua_trener_stedles_881e1b44f9"
+        ],
+        "current_question": "Hva er stedlesning?",
+        "current_answer": "Å bruke observasjoner på stedet til å forstå større sammenhenger",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      },
+      {
+        "ordinal": 42,
+        "legacy_id": "beierbrua_s6_q7",
+        "legacy_quiz_id": "historie_beierbrua_set_6_q7",
+        "legacy_primary_knowledge_unit_id": "ku_historie_beierbrua_er_tydeligst_n_99c9ddfb20",
+        "legacy_knowledge_unit_ids": [
+          "ku_historie_beierbrua_er_tydeligst_n_99c9ddfb20"
+        ],
+        "current_question": "Hvilket begrepspar forklarer Beierbrua best?",
+        "current_answer": "Bro og elvekorridor",
+        "knowledge_link_status": "linked",
+        "disposition": "archive_as_knowledge_only"
+      }
+    ],
+    "decisions": [
+      "Viderefør sju spørsmål med opprinnelig spørsmåls-ID, quiz-ID og Knowledge-ID.",
+      "Arkiver de øvrige 35 spørsmålene med opprinnelige ID-er.",
+      "Bruk nye ID-er for 21 spørsmål."
+    ]
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "28 stedsspesifikke, kildebelagte spørsmål i fire ulike læringsspor uten repetitiv sekssettsfyll.",
+    "status": "active_in_PR_pending_release_QA",
+    "opening_policy": "first_2_sets_7_normal_questions_no_theory"
+  },
+  "held_back_candidates": [
+    "Ikke fastslå Anders Beyers eierskapsdato ut fra motstridende oppslagsverk."
+  ],
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_industri_produksjon_energi",
+        "title": "Industriell produksjon, energi og infrastruktur",
+        "score": 100
+      },
+      {
+        "id": "em_his_kildekritikk_arkiv_spor",
+        "title": "Kildekritikk, arkiv og spor",
+        "score": 100
+      },
+      {
+        "id": "em_his_kulturminner_bevaring",
+        "title": "Kulturminner, utvelgelse og bevaring",
+        "score": 100
+      },
+      {
+        "id": "em_his_spor_materialitet",
+        "title": "Spor og materialitet",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_arbeidsmiljo_risiko_helse",
+        "title": "Arbeidsmiljø, risiko og helse",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_industriby_arbeiderliv",
+        "title": "Industriby, produksjon og arbeiderliv",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_kildekritikk",
+        "title": "Kildekritikk, opphav og formål",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_kulturminneutvelgelse_verdi",
+        "title": "Kulturminneutvelgelse og verdi",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_spor_materialitet",
+        "title": "Materielle spor og sted som kilde",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_industri_produksjon_energi",
+      "em_his_spor_materialitet",
+      "em_his_kulturminner_bevaring",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ]
+  },
+  "claim_bank": [
+    {
+      "claim_id": "claim_beierbrua_quiz_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Brua krysser Akerselva mellom Sagveien og Sandakerveien.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Brua ga en direkte forbindelse mellom boligområdene og arbeidsplassene.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Hjula Væverier lå ved brua. Graahs spinneri lå også like ved i Sagveien.",
+      "source_ids": [
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Braatens fortellinger gjorde brua kjent under dette navnet.",
+      "source_ids": [
+        "B",
+        "S"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Den smale trebrua ble erstattet av en kjørebru.",
+      "source_ids": [
+        "B",
+        "S"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Etter brannen i 1974 ble brua gjenoppbygd og senere restaurert med utgangspunkt i 1837-utseendet. Den brukes i dag som gangbru.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Jacobsen laget skulpturgruppen til minne om fabrikkjentene. Durban laget Braaten-bysten.",
+      "source_ids": [
+        "S"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Kryssingen gjorde det mulig å gå mellom arbeiderstrøk og fabrikker.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bruas dekke og rekkverk avgrenser selve passasjen.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Utsynet gir direkte observasjon av vannet. Historiske arbeidsforhold krever andre kilder.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Nedre Vøyenfallene, fabrikkene ved Sagveien og brua viser hvordan vann, arbeid og ferdsel preget samme område.",
+      "source_ids": [
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_industri_produksjon_energi",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Brua gir en kryssing mellom breddene, mens ruta følger elveløpet mellom flere steder.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Som infrastruktur gir brua en fysisk forbindelse mellom Sagveien og Sandakerveien.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Brua gir ferdsel på tvers. Parken gir rom for opphold langs elva.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Brua er oppkalt etter Anders Beyer.",
+      "source_ids": [
+        "B",
+        "L",
+        "S"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Brua bandt sammen områder på hver side av elva og fikk sin litterære tilknytning gjennom Braaten.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Bysten av forfatteren er laget av Arne Durban.",
+      "source_ids": [
+        "L",
+        "S"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Skulpturen er et minne om fabrikkjentene som forbindes med brua og industrimiljøet.",
+      "source_ids": [
+        "B",
+        "S"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Lokalhistoriewiki omtaler Graahs spinneri og Hjula som arbeidsplasser ved brua.",
+      "source_ids": [
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Lokalhistoriewiki plasserer huset på østsiden.",
+      "source_ids": [
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fortellingene forklarer bruas litterære tilknytning. Ansettelsesforhold og byggearbeider krever andre kilder.",
+      "source_ids": [
+        "B",
+        "S"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo byleksikon daterer den offentlige overtakelsen til 1864.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Brua brant i 1974 og ble senere gjenoppbygd.",
+      "source_ids": [
+        "B",
+        "L",
+        "S"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Restaureringen førte bruas utseende tilbake mot 1837-formen.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Lokalhistoriewiki daterer bildet til omtrent 1925–1930 og viser brua som kjørebru.",
+      "source_ids": [
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Kildene beskriver gjenoppbygging og restaurering. Byggedokumentasjon kan vise hvilke deler som ble skiftet.",
+      "source_ids": [
+        "B",
+        "L"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Oslo byleksikon oppgir 1671, mens Store norske leksikon viser til 1700-tallet.",
+      "source_ids": [
+        "B",
+        "S"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    },
+    {
+      "claim_id": "claim_beierbrua_quiz_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Eldre foto viser kjørebrua, og kildene beskriver restaureringen og dagens gangbruk.",
+      "source_ids": [
+        "B",
+        "L",
+        "S"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "review_status": "reviewed",
+      "use_decision": "usable_with_stated_limitations"
+    }
+  ],
+  "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_oskar_braaten_beierbrua_litteraert_sted",
+      "source_file": "data/relations.json",
+      "summary": "Oskar Braatens fortellinger knytter Beierbrua direkte til litterære skildringer av fabrikkarbeidernes liv på Sagene."
+    },
+    {
+      "type": "story",
+      "id": "st_beierbrua_fabrikkjentenes_bro",
+      "source_file": "data/stories/stories_beierbrua.json",
+      "summary": "Beierbrua ble en daglig forbindelse mellom arbeiderstrøk og tekstilfabrikker, og gjennom Oskar Braatens fortellinger fikk den navnet «fabrikkjentenes bro»."
+    }
+  ],
+  "set_plan": [
+    {
+      "set_id": "historie_beierbrua_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_beierbrua_quiz_01",
+        "claim_beierbrua_quiz_02",
+        "claim_beierbrua_quiz_03",
+        "claim_beierbrua_quiz_04",
+        "claim_beierbrua_quiz_05",
+        "claim_beierbrua_quiz_06",
+        "claim_beierbrua_quiz_07"
+      ]
+    },
+    {
+      "set_id": "historie_beierbrua_set_2",
+      "order": 2,
+      "phase": "middle",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_beierbrua_quiz_08",
+        "claim_beierbrua_quiz_09",
+        "claim_beierbrua_quiz_10",
+        "claim_beierbrua_quiz_11",
+        "claim_beierbrua_quiz_12",
+        "claim_beierbrua_quiz_13",
+        "claim_beierbrua_quiz_14"
+      ]
+    },
+    {
+      "set_id": "historie_beierbrua_set_3",
+      "order": 3,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_beierbrua_quiz_15",
+        "claim_beierbrua_quiz_16",
+        "claim_beierbrua_quiz_17",
+        "claim_beierbrua_quiz_18",
+        "claim_beierbrua_quiz_19",
+        "claim_beierbrua_quiz_20",
+        "claim_beierbrua_quiz_21"
+      ]
+    },
+    {
+      "set_id": "historie_beierbrua_set_4",
+      "order": 4,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_beierbrua_quiz_22",
+        "claim_beierbrua_quiz_23",
+        "claim_beierbrua_quiz_24",
+        "claim_beierbrua_quiz_25",
+        "claim_beierbrua_quiz_26",
+        "claim_beierbrua_quiz_27",
+        "claim_beierbrua_quiz_28"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 28,
+    "counts": {
+      "fact": 14,
+      "context": 7,
+      "concept_theory": 7
+    },
+    "ratios": {
+      "fact": 0.5,
+      "context": 0.25,
+      "concept_theory": 0.25
+    }
+  }
+}

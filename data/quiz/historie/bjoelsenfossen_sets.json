@@ -1,7 +1,7 @@
 {
   "targetId": "bjoelsenfossen",
   "categoryId": "historie",
-  "generator_version": "chatgpt_history_go_manual_v1",
+  "generator_version": "history_go_sourced_4x7_20261121",
   "generated_from": [
     "data/places/natur/oslo/places_oslo_natur_akerselvarute/bjoelsenfossen.json",
     "data/leksikon/places/oslo/historie/leksikon_oslo_historie_batch2.json",
@@ -22,6 +22,8 @@
       "set_id": "historie_bjoelsenfossen_set_1",
       "level": 1,
       "order": 1,
+      "phase": "opening",
+      "title": "Fossen, dammen og vannet",
       "xp": 50,
       "mode": "place_intro_story",
       "questions": [
@@ -32,160 +34,199 @@
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva gjør Bjølsenfossen til et særlig kraftpunkt i Akerselva?",
+          "question": "Hva skiller Bjølsenfossen fra de andre fossene i Akerselva?",
           "options": [
-            "Den er elvas høyeste foss, med to fall på til sammen over 16 meter",
-            "Den ligger ved elvas utløp i fjorden",
-            "Den er en kunstig fontene"
+            "Den har størst samlet fallhøyde",
+            "Den ligger øverst i elva",
+            "Den ligger nærmest fjorden"
           ],
-          "answer": "Den er elvas høyeste foss, med to fall på til sammen over 16 meter",
+          "answer": "Den har størst samlet fallhøyde",
           "answerIndex": 0,
           "knowledge": "Bjølsenfossen er Akerselvas høyeste foss og består av to fall med samlet høyde over 16 meter.",
+          "explanation": "De to fallene utgjør rundt 16 meter til sammen.",
           "difficulty": 1,
-          "question_type": "scene",
-          "question_layer": "intro_story",
-          "tags": [
-            "bjoelsenfossen",
-            "akerselva",
-            "vannkraft"
+          "question_type": "fact",
+          "question_layer": "opening",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
+            "f",
+            "a"
+          ],
+          "source_urls": [
             "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
             "https://www.akerselvasvenner.no/2016/01/01/2396/"
           ],
-          "claim_basis": "external_sources",
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_f",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "De to fallene utgjør rundt 16 meter til sammen."
+            },
+            {
+              "source_id": "src_bjoelsen_a",
+              "source_type": "historical_reference",
+              "url": "https://www.akerselvasvenner.no/2016/01/01/2396/",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "De to fallene utgjør rundt 16 meter til sammen."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_01",
+          "claim_basis": "De to fallene utgjør rundt 16 meter til sammen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
           "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_er_akersel_f02d302bf5",
           "knowledge_unit_ids": [
             "ku_historie_bj_lsenfossen_er_akersel_f02d302bf5"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
-                "score": 3
-              },
-              {
-                "emne_id": "em_his_miljo_klima_energi_og_energiregimer",
-                "score": 3
-              },
-              {
-                "emne_id": "em_his_miljo_klima_klima_og_historisk_endring",
-                "score": 3
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
+              "https://www.akerselvasvenner.no/2016/01/01/2396/"
             ]
           }
         },
         {
-          "id": "bjoelsenfossen_s1_q2",
-          "quiz_id": "historie_bjoelsenfossen_set_1_q2",
+          "id": "bjoelsenfossen_v1_s1_q2",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_1_q2",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva bør spilleren se etter først ved Bjølsenfossen?",
+          "question": "Hvilken bru ligger like nord for Bjølsenfossen?",
           "options": [
-            "Fall, lyd, vannbevegelse og spor etter industrielt elverom",
-            "Bare butikkvinduer",
-            "Kun biltrafikk"
+            "Treschows bru",
+            "Bentsebrua",
+            "Beierbrua"
           ],
-          "answer": "Fall, lyd, vannbevegelse og spor etter industrielt elverom",
+          "answer": "Treschows bru",
           "answerIndex": 0,
-          "knowledge": "Fossen bør leses gjennom sansning og funksjon: vannets bevegelse forklarer hvorfor stedet ble viktig.",
+          "knowledge": "Bjølsenfallet ligger sør for Treschows bru.",
+          "explanation": "Bjølsenfallet ligger sør for Treschows bru.",
           "difficulty": 1,
-          "question_type": "visuell_hook",
-          "question_layer": "intro_story",
-          "tags": [
-            "observasjon",
-            "foss"
+          "question_type": "fact",
+          "question_layer": "opening",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "f"
           ],
-          "claim_basis": "safe_place_data",
-          "primary_knowledge_unit_id": "ku_historie_fossen_b_r_leses_gjennom_a54b568fc4",
-          "knowledge_unit_ids": [
-            "ku_historie_fossen_b_r_leses_gjennom_a54b568fc4"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_f",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Bjølsenfallet ligger sør for Treschows bru."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_02",
+          "claim_basis": "Bjølsenfallet ligger sør for Treschows bru.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s1_q2_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s1_q2_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_miljo_klima_naturforvaltning_og_miljobevegelse",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_gjenoppbygging_minne",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
-                "score": 7
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet"
             ]
           }
         },
         {
-          "id": "bjoelsenfossen_s1_q3",
-          "quiz_id": "historie_bjoelsenfossen_set_1_q3",
+          "id": "bjoelsenfossen_v1_s1_q3",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_1_q3",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hvorfor passer Bjølsenfossen i Akerselva-ruta?",
+          "question": "Hva brukte Christiania Bjølsendammen til i 1860-årene?",
           "options": [
-            "Den viser et konkret punkt der naturkraft blir byhistorie",
-            "Den bryter all sammenheng med ruta",
-            "Den handler bare om moderne shopping"
+            "Vanninntak for byen",
+            "Omlasting av tømmer til havn",
+            "Opplagsplass for kornlektere"
           ],
-          "answer": "Den viser et konkret punkt der naturkraft blir byhistorie",
+          "answer": "Vanninntak for byen",
           "answerIndex": 0,
-          "knowledge": "Akerselva-ruta trenger kraftpunkter som viser hvorfor industrien samlet seg langs elva.",
+          "knowledge": "Byen hadde vanninntak i dammen fra 1860 til 1867.",
+          "explanation": "Byen hadde vanninntak i dammen fra 1860 til 1867.",
           "difficulty": 1,
-          "question_type": "rutekobling",
-          "question_layer": "intro_story",
-          "tags": [
-            "rute",
-            "industrihistorie"
+          "question_type": "fact",
+          "question_layer": "opening",
+          "emne_id": "em_his_styring_krise_kontinuitet",
+          "emne_ids": [
+            "em_his_styring_krise_kontinuitet"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "f"
           ],
-          "claim_basis": "safe_place_data",
-          "primary_knowledge_unit_id": "ku_historie_akerselva_ruta_trenger_k_c8dea10c7b",
-          "knowledge_unit_ids": [
-            "ku_historie_akerselva_ruta_trenger_k_c8dea10c7b"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_f",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Byen hadde vanninntak i dammen fra 1860 til 1867."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_03",
+          "claim_basis": "Byen hadde vanninntak i dammen fra 1860 til 1867.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s1_q3_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s1_q3_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_militaere_forbindelser",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
-                "score": 3
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet"
             ]
           }
         },
@@ -196,214 +237,274 @@
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hvilke tre historiske funksjoner har vannpunktet hatt?",
+          "question": "Hvilke tre oppgaver har vannet ved Bjølsenfossen hatt?",
           "options": [
-            "Sagbruk, byens vanninntak og møllekraft",
-            "Flyplass, gruve og havn",
-            "Kun rekreasjon"
+            "Sagdrift, vannforsyning og møllekraft",
+            "Sagdrift, kanaltrafikk og tømmerfløting",
+            "Vannforsyning, papirproduksjon og skipsbygging"
           ],
-          "answer": "Sagbruk, byens vanninntak og møllekraft",
+          "answer": "Sagdrift, vannforsyning og møllekraft",
           "answerIndex": 0,
           "knowledge": "Bjølsenfossen og Bjølsendammen viser tre brukslag: sagdrift, kommunal vannforsyning og kraft til mølleindustri.",
+          "explanation": "Sagene og møllene utnyttet fallet, mens byen tok vann fra dammen.",
           "difficulty": 1,
-          "question_type": "saertrekk",
-          "question_layer": "intro_story",
-          "tags": [
-            "vannkraftpunkt"
+          "question_type": "fact",
+          "question_layer": "opening",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
-            "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
-            "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
-            "https://www.akerselvasvenner.no/2016/01/01/2396/"
+            "f",
+            "a",
+            "b"
           ],
-          "claim_basis": "external_sources",
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
+            "https://www.akerselvasvenner.no/2016/01/01/2396/",
+            "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
+          ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_f",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Sagene og møllene utnyttet fallet, mens byen tok vann fra dammen."
+            },
+            {
+              "source_id": "src_bjoelsen_a",
+              "source_type": "historical_reference",
+              "url": "https://www.akerselvasvenner.no/2016/01/01/2396/",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Sagene og møllene utnyttet fallet, mens byen tok vann fra dammen."
+            },
+            {
+              "source_id": "src_bjoelsen_b",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Sagene og møllene utnyttet fallet, mens byen tok vann fra dammen."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_04",
+          "claim_basis": "Sagene og møllene utnyttet fallet, mens byen tok vann fra dammen.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
           "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_og_bj_lsen_ed3e714378",
           "knowledge_unit_ids": [
             "ku_historie_bj_lsenfossen_og_bj_lsen_ed3e714378"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_lang_varighet_strukturer",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_miljo_klima_klima_og_historisk_endring",
-                "score": 4
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
+              "https://www.akerselvasvenner.no/2016/01/01/2396/",
+              "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
             ]
           }
         },
         {
-          "id": "bjoelsenfossen_s1_q5",
-          "quiz_id": "historie_bjoelsenfossen_set_1_q5",
+          "id": "bjoelsenfossen_v1_s1_q5",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_1_q5",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva kan lyden fra fossen lære spilleren?",
+          "question": "På hvilken side av elva lå den gamle Bjølsen Mølle?",
           "options": [
-            "At vannkraft kan oppleves fysisk, ikke bare forstås som teori",
-            "At fossen ikke finnes",
-            "At lyd er irrelevant i stedslæring"
+            "På vestbredden",
+            "På østbredden",
+            "På begge bredder fra starten"
           ],
-          "answer": "At vannkraft kan oppleves fysisk, ikke bare forstås som teori",
+          "answer": "På vestbredden",
           "answerIndex": 0,
-          "knowledge": "Lyd og vannbevegelse gjør industrihistorien sanselig: kraften kan høres og sees.",
+          "knowledge": "Virksomheten ble flyttet østover på 1890-tallet.",
+          "explanation": "Virksomheten ble flyttet østover på 1890-tallet.",
           "difficulty": 1,
-          "question_type": "sansning",
-          "question_layer": "intro_story",
-          "tags": [
-            "sansning",
-            "vann"
+          "question_type": "fact",
+          "question_layer": "opening",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "f"
           ],
-          "claim_basis": "safe_place_data",
-          "primary_knowledge_unit_id": "ku_historie_lyd_og_vannbevegelse_gj__1de8f52103",
-          "knowledge_unit_ids": [
-            "ku_historie_lyd_og_vannbevegelse_gj__1de8f52103"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_f",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Virksomheten ble flyttet østover på 1890-tallet."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_05",
+          "claim_basis": "Virksomheten ble flyttet østover på 1890-tallet.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s1_q5_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s1_q5_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_miljo_klima_naturforvaltning_og_miljobevegelse",
-                "score": 6
-              },
-              {
-                "emne_id": "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
-                "score": 5
-              },
-              {
-                "emne_id": "em_his_miljo_klima_skog_vann_og_naturressurser",
-                "score": 5
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet"
             ]
           }
         },
         {
-          "id": "bjoelsenfossen_s1_q6",
-          "quiz_id": "historie_bjoelsenfossen_set_1_q6",
+          "id": "bjoelsenfossen_v1_s1_q6",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_1_q6",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva binder Bjølsenfossen til Nydalsdammen?",
+          "question": "Hvilken bru ved dammen har mekanismer for å regulere fossen?",
           "options": [
-            "Begge viser hvordan vannet formes og brukes, men på ulike måter",
-            "Begge er kongelige parker",
-            "Begge handler bare om sport"
+            "Valsemøllebrua",
+            "Treschows bru",
+            "Bentsebrua"
           ],
-          "answer": "Begge viser hvordan vannet formes og brukes, men på ulike måter",
+          "answer": "Valsemøllebrua",
           "answerIndex": 0,
-          "knowledge": "Nydalsdammen viser regulert vann; Bjølsenfossen viser fall og kraft. Sammen gir de vannets ulike roller langs elva.",
+          "knowledge": "Reguleringsmekanismene er del av Valsemøllebrua.",
+          "explanation": "Reguleringsmekanismene er del av Valsemøllebrua.",
           "difficulty": 1,
-          "question_type": "rutekobling",
-          "question_layer": "intro_story",
-          "tags": [
-            "nydalsdammen",
-            "rute"
+          "question_type": "fact",
+          "question_layer": "opening",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen",
-            "History Go quiz: nydalsdammen"
+            "b"
           ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_historie_nydalsdammen_viser_regul_073f862462",
-          "knowledge_unit_ids": [
-            "ku_historie_nydalsdammen_viser_regul_073f862462",
-            "ku_historie_sammen_gir_de_vannets_ul_e5b71294fa"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_b",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Reguleringsmekanismene er del av Valsemøllebrua."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_06",
+          "claim_basis": "Reguleringsmekanismene er del av Valsemøllebrua.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s1_q6_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s1_q6_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
-                "score": 3
-              },
-              {
-                "emne_id": "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
-                "score": 3
-              },
-              {
-                "emne_id": "em_his_miljo_klima_energi_og_energiregimer",
-                "score": 3
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
             ]
           }
         },
         {
-          "id": "bjoelsenfossen_s1_q7",
-          "quiz_id": "historie_bjoelsenfossen_set_1_q7",
+          "id": "bjoelsenfossen_v1_s1_q7",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_1_q7",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva er et godt første observasjonsspørsmål her?",
+          "question": "Hva styrer reguleringsmekanismene ved Valsemøllebrua?",
           "options": [
-            "Hvordan gjør vannets fall dette stedet egnet for kraft og industri?",
-            "Hvorfor finnes det ingen elv her?",
-            "Hvilket arrangement skjer i kveld?"
+            "Hvor mye vann som passerer fossen",
+            "Hvor mye korn som mates inn i mølla",
+            "Hvor raskt kornet tømmes fra siloen"
           ],
-          "answer": "Hvordan gjør vannets fall dette stedet egnet for kraft og industri?",
+          "answer": "Hvor mye vann som passerer fossen",
           "answerIndex": 0,
-          "knowledge": "Spørsmålet kobler direkte observasjon til historisk forståelse.",
+          "knowledge": "Mekanismene regulerer vannføringen.",
+          "explanation": "Mekanismene regulerer vannføringen.",
           "difficulty": 1,
-          "question_type": "observasjon",
-          "question_layer": "intro_story",
-          "tags": [
-            "stedlesning"
+          "question_type": "fact",
+          "question_layer": "opening",
+          "emne_id": "em_his_styring_krise_kontinuitet",
+          "emne_ids": [
+            "em_his_styring_krise_kontinuitet"
           ],
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "b"
           ],
-          "claim_basis": "generator_rule",
-          "primary_knowledge_unit_id": "ku_historie_sp_rsmalet_kobler_direkt_87b200f658",
-          "knowledge_unit_ids": [
-            "ku_historie_sp_rsmalet_kobler_direkt_87b200f658"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_b",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Mekanismene regulerer vannføringen."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_07",
+          "claim_basis": "Mekanismene regulerer vannføringen.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s1_q7_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s1_q7_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_revolusjon_imperieopplosning_fredsoppgjor",
-                "score": 6
-              },
-              {
-                "emne_id": "em_his_samtid_ettertid_fortelling",
-                "score": 6
-              },
-              {
-                "emne_id": "em_his_1814_statsdannelse_union_selvstendighet_og_1905",
-                "score": 5
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
             ]
           }
         }
@@ -413,6 +514,8 @@
       "set_id": "historie_bjoelsenfossen_set_2",
       "level": 2,
       "order": 2,
+      "phase": "middle",
+      "title": "Arbeid, mølla og elverommet",
       "xp": 60,
       "mode": "place_life_people_events",
       "questions": [
@@ -423,7 +526,7 @@
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hvem etablerte Bjølsen Valsemølle i 1884?",
+          "question": "Hvem etablerte firmaet Bjølsen Valsemølle?",
           "options": [
             "Gustav Martinsen og Ole Amundsen",
             "Gerhard Treschow og Ole Bentsen",
@@ -432,92 +535,128 @@
           "answer": "Gustav Martinsen og Ole Amundsen",
           "answerIndex": 0,
           "knowledge": "Firmaet Bjølsen Valsemølle ble etablert i 1884 av Gustav Martinsen og Ole Amundsen.",
+          "explanation": "Amundsen eide Bjølsen Mølle da han startet firmaet sammen med Martinsen i 1884.",
           "difficulty": 1,
-          "question_type": "bruk",
-          "question_layer": "place_life",
-          "tags": [
-            "arbeid",
-            "produksjon"
+          "question_type": "fact",
+          "question_layer": "middle",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
+            "m",
+            "s"
+          ],
+          "source_urls": [
             "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
             "https://snl.no/Bj%C3%B8lsen_Valsem%C3%B8lle"
           ],
-          "claim_basis": "external_sources",
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_m",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Amundsen eide Bjølsen Mølle da han startet firmaet sammen med Martinsen i 1884."
+            },
+            {
+              "source_id": "src_bjoelsen_s",
+              "source_type": "historical_reference",
+              "url": "https://snl.no/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Amundsen eide Bjølsen Mølle da han startet firmaet sammen med Martinsen i 1884."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_08",
+          "claim_basis": "Amundsen eide Bjølsen Mølle da han startet firmaet sammen med Martinsen i 1884.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
           "primary_knowledge_unit_id": "ku_historie_firmaet_bj_lsen_valsem_l_e4604ba94e",
           "knowledge_unit_ids": [
             "ku_historie_firmaet_bj_lsen_valsem_l_e4604ba94e"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_industriby_1900",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_arbeid_nettverk_naring",
-                "score": 5
-              },
-              {
-                "emne_id": "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
-                "score": 5
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "https://snl.no/Bj%C3%B8lsen_Valsem%C3%B8lle"
             ]
           }
         },
         {
-          "id": "bjoelsenfossen_s2_q2",
-          "quiz_id": "historie_bjoelsenfossen_set_2_q2",
+          "id": "bjoelsenfossen_v1_s2_q2",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_2_q2",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva kan fallhøyden i elva fortelle?",
+          "question": "Hva er den gamle Valsemøllebrua bygd av?",
           "options": [
-            "Hvorfor enkelte punkter ble mer attraktive for kraftutnyttelse",
-            "At elva var lik overalt",
-            "At terreng ikke påvirker byhistorie"
+            "Tre",
+            "Støpejern",
+            "Armert betong"
           ],
-          "answer": "Hvorfor enkelte punkter ble mer attraktive for kraftutnyttelse",
+          "answer": "Tre",
           "answerIndex": 0,
-          "knowledge": "Industrien langs elva hang sammen med naturgitte forskjeller: fall, strøm og tilgjengelighet.",
+          "knowledge": "Byleksikonet beskriver en smal trebru på fabrikkområdet.",
+          "explanation": "Byleksikonet beskriver en smal trebru på fabrikkområdet.",
           "difficulty": 1,
-          "question_type": "fysisk_trekk",
-          "question_layer": "place_life",
-          "tags": [
-            "fallhøyde",
-            "vannkraft"
+          "question_type": "fact",
+          "question_layer": "middle",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "b"
           ],
-          "claim_basis": "safe_place_data",
-          "emne_ids": [
-            "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "natur",
-              "vann"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_industrien_langs_elva_ha_e872de1f3f",
-          "knowledge_unit_ids": [
-            "ku_historie_industrien_langs_elva_ha_e872de1f3f"
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_b",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Byleksikonet beskriver en smal trebru på fabrikkområdet."
+            }
           ],
+          "claim_id": "claim_bjoelsenfossen_quiz_09",
+          "claim_basis": "Byleksikonet beskriver en smal trebru på fabrikkområdet.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s2_q2_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s2_q2_20261121"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_link_evidence": {
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
+            ]
+          }
         },
         {
           "id": "bjoelsenfossen_s2_q3",
@@ -526,99 +665,126 @@
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva er riktig om tilgangen til selve fosseområdet?",
+          "question": "Hvorfor kan du vanligvis ikke gå helt fram til Bjølsenfossen?",
           "options": [
-            "Store deler ligger innenfor et aktivt industriområde, så porter og sperringer må respekteres",
-            "Hele området er alltid fritt tilgjengelig",
-            "Fossen kan bare ses fra båt"
+            "Fossen ligger inne på et industriområde",
+            "Elva kan bare krysses med båt",
+            "En tunnel stenger den offentlige stien"
           ],
-          "answer": "Store deler ligger innenfor et aktivt industriområde, så porter og sperringer må respekteres",
+          "answer": "Fossen ligger inne på et industriområde",
           "answerIndex": 0,
           "knowledge": "Fossen og Valsemøllebrua ligger tett knyttet til et aktivt fabrikk- og siloområde med begrenset adgang.",
+          "explanation": "Kommunen utreder tryggere tilgang til området.",
           "difficulty": 1,
-          "question_type": "kildekritikk",
-          "question_layer": "place_life",
-          "tags": [
-            "holdback"
+          "question_type": "fact",
+          "question_layer": "middle",
+          "emne_id": "em_his_styring_krise_kontinuitet",
+          "emne_ids": [
+            "em_his_styring_krise_kontinuitet"
           ],
           "source": [
-            "https://www.akerselvasvenner.no/2016/01/01/2396/",
-            "https://www.akerselvasvenner.no/2016/01/01/valsemollebrua/"
+            "k"
           ],
-          "claim_basis": "external_sources",
+          "source_urls": [
+            "https://www.oslo.kommune.no/slik-bygger-vi-oslo/bjolsenfossen-hvordan-gjore-omradet-rundt-fossen-tilgjengelig-forprosjekt-med-omregulering/"
+          ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_k",
+              "source_type": "historical_reference",
+              "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/bjolsenfossen-hvordan-gjore-omradet-rundt-fossen-tilgjengelig-forprosjekt-med-omregulering/",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Kommunen utreder tryggere tilgang til området."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_10",
+          "claim_basis": "Kommunen utreder tryggere tilgang til området.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
           "primary_knowledge_unit_id": "ku_historie_fossen_og_valsem_llebrua_82decdee56",
           "knowledge_unit_ids": [
             "ku_historie_fossen_og_valsem_llebrua_82decdee56"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_kildekritikk_arkiv_spor",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_byhistorie_stedsendring_gentrifisering_ombruk_og_bevaring",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_fabrikk_arbeidsorganisering",
-                "score": 7
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://www.oslo.kommune.no/slik-bygger-vi-oslo/bjolsenfossen-hvordan-gjore-omradet-rundt-fossen-tilgjengelig-forprosjekt-med-omregulering/"
             ]
           }
         },
         {
-          "id": "bjoelsenfossen_s2_q4",
-          "quiz_id": "historie_bjoelsenfossen_set_2_q4",
+          "id": "bjoelsenfossen_v1_s2_q4",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_2_q4",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva kan dagens elverom fortelle om eldre bruk?",
+          "question": "Hvilke deler av det gamle kraftanlegget er bevart på vestbredden?",
           "options": [
-            "At synlige naturtrekk kan forklare hvorfor produksjon lå her",
-            "At alle historiske spor må være skiltet",
-            "At vannet ikke har historisk betydning"
+            "Turbinrøret og turbinen",
+            "En dampkjele og en skorstein",
+            "Et vannhjul og et sagblad"
           ],
-          "answer": "At synlige naturtrekk kan forklare hvorfor produksjon lå her",
+          "answer": "Turbinrøret og turbinen",
           "answerIndex": 0,
-          "knowledge": "Spilleren kan forstå eldre industri ved å lese landskapet selv: foss, strøm, høydeforskjell og rom.",
+          "knowledge": "De bevarte delene viser hvordan vann ble ledet inn til kraftanlegget.",
+          "explanation": "De bevarte delene viser hvordan vann ble ledet inn til kraftanlegget.",
           "difficulty": 1,
-          "question_type": "stedskobling",
-          "question_layer": "place_life",
-          "tags": [
-            "historiske_lag"
+          "question_type": "fact",
+          "question_layer": "middle",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "b"
           ],
-          "claim_basis": "safe_place_data",
-          "emne_ids": [
-            "em_his_historiske_lag_i_byrom"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.86,
-            "score": 11,
-            "matched": [
-              "sted",
-              "historiske lag"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_spilleren_kan_forsta_eld_36d3f8087c",
-          "knowledge_unit_ids": [
-            "ku_historie_spilleren_kan_forsta_eld_36d3f8087c"
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_b",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "De bevarte delene viser hvordan vann ble ledet inn til kraftanlegget."
+            }
           ],
+          "claim_id": "claim_bjoelsenfossen_quiz_11",
+          "claim_basis": "De bevarte delene viser hvordan vann ble ledet inn til kraftanlegget.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s2_q4_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s2_q4_20261121"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_link_evidence": {
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
+            ]
+          }
         },
         {
           "id": "bjoelsenfossen_s2_q5",
@@ -627,155 +793,210 @@
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva skiller Bjølsenfossen fra mange andre gamle industristeder langs Akerselva?",
+          "question": "Hvilken produksjon på Bjølsen viderefører den gamle møllevirksomheten?",
           "options": [
-            "Mølle- og matproduksjonen fortsetter fortsatt på stedet",
-            "Alle industribygningene er revet",
-            "Stedet har aldri hatt produksjon"
+            "Produksjon av matmel og melblandinger",
+            "Foredling av trevirke",
+            "Produksjon av tekstiler"
           ],
-          "answer": "Mølle- og matproduksjonen fortsetter fortsatt på stedet",
+          "answer": "Produksjon av matmel og melblandinger",
           "answerIndex": 0,
           "knowledge": "Bjølsen-anlegget er en av de siste aktive industrivirksomhetene langs Akerselva og viderefører den lange mølletradisjonen.",
+          "explanation": "Lantmännen oppgir fortsatt mølleproduksjon i Oslo.",
           "difficulty": 1,
-          "question_type": "samfunn",
-          "question_layer": "place_life",
-          "tags": [
-            "arbeiderhistorie",
-            "klassehistorie"
+          "question_type": "fact",
+          "question_layer": "middle",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
+            "m",
+            "r"
+          ],
+          "source_urls": [
             "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
-            "https://snl.no/Bj%C3%B8lsen_Valsem%C3%B8lle",
             "https://www.regal.no/om-oss/moller-i-norge/"
           ],
-          "claim_basis": "external_sources",
-          "emne_ids": [
-            "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn"
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_m",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Lantmännen oppgir fortsatt mølleproduksjon i Oslo."
+            },
+            {
+              "source_id": "src_bjoelsen_r",
+              "source_type": "historical_reference",
+              "url": "https://www.regal.no/om-oss/moller-i-norge/",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Lantmännen oppgir fortsatt mølleproduksjon i Oslo."
+            }
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.88,
-            "score": 13,
-            "matched": [
-              "sted",
-              "samfunn",
-              "industri",
-              "arbeid"
-            ]
-          },
+          "claim_id": "claim_bjoelsenfossen_quiz_12",
+          "claim_basis": "Lantmännen oppgir fortsatt mølleproduksjon i Oslo.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
           "primary_knowledge_unit_id": "ku_historie_bj_lsen_anlegget_er_en_a_80345245ef",
           "knowledge_unit_ids": [
             "ku_historie_bj_lsen_anlegget_er_en_a_80345245ef"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s2_q6",
-          "quiz_id": "historie_bjoelsenfossen_set_2_q6",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "place",
-          "question": "Hvorfor bør usikre personnavn holdes ute her?",
-          "options": [
-            "Fordi stedets hovedlæring kan bygges på sikre fysiske og historiske trekk",
-            "Fordi personer aldri betyr noe",
-            "Fordi fossen ikke har historie"
-          ],
-          "answer": "Fordi stedets hovedlæring kan bygges på sikre fysiske og historiske trekk",
-          "answerIndex": 0,
-          "knowledge": "For dette stedet er vannkraft, industri og arbeid trygge hovedspor uten å gjette enkeltpersoner.",
-          "difficulty": 1,
-          "question_type": "kildekritikk",
-          "question_layer": "place_life",
-          "tags": [
-            "personrelasjoner"
-          ],
-          "source": [
-            "manual_production_notes"
-          ],
-          "claim_basis": "holdback_rule",
-          "primary_knowledge_unit_id": "ku_historie_for_dette_stedet_er_vann_96b71f7f87",
-          "knowledge_unit_ids": [
-            "ku_historie_for_dette_stedet_er_vann_96b71f7f87"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_kildekritikk_arkiv_spor",
-                "score": 14
-              },
-              {
-                "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
-                "score": 12
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
-                "score": 12
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "https://www.regal.no/om-oss/moller-i-norge/"
             ]
           }
         },
         {
-          "id": "bjoelsenfossen_s2_q7",
-          "quiz_id": "historie_bjoelsenfossen_set_2_q7",
+          "id": "bjoelsenfossen_v1_s2_q6",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_2_q6",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva gir Bjølsenfossen sin History Go-stemning?",
+          "question": "Hvilken sag brukte fossen som kraftkilde på 1600-tallet?",
           "options": [
-            "Møtet mellom fosselyd, vannkraft, industri og arbeiderby",
-            "At stedet mangler elv",
-            "At historien bare finnes i bøker"
+            "Sandaker sag",
+            "Bjølsen sag",
+            "Bentse Brug"
           ],
-          "answer": "Møtet mellom fosselyd, vannkraft, industri og arbeiderby",
+          "answer": "Sandaker sag",
           "answerIndex": 0,
-          "knowledge": "Stedets styrke er at stor byhistorie kan sanses i et konkret elvepunkt.",
+          "knowledge": "Sandaker sag var i drift før Treschow anla Bjølsen sag.",
+          "explanation": "Sandaker sag var i drift før Treschow anla Bjølsen sag.",
           "difficulty": 1,
-          "question_type": "bruk_stemning",
-          "question_layer": "place_life",
-          "tags": [
-            "sansning",
-            "arbeiderby"
+          "question_type": "fact",
+          "question_layer": "middle",
+          "emne_id": "em_his_styring_krise_kontinuitet",
+          "emne_ids": [
+            "em_his_styring_krise_kontinuitet"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "a"
           ],
-          "claim_basis": "safe_place_data",
-          "primary_knowledge_unit_id": "ku_historie_stedets_styrke_er_at_sto_f6adc72597",
-          "knowledge_unit_ids": [
-            "ku_historie_stedets_styrke_er_at_sto_f6adc72597"
+          "source_urls": [
+            "https://www.akerselvasvenner.no/2016/01/01/2396/"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_a",
+              "source_type": "historical_reference",
+              "url": "https://www.akerselvasvenner.no/2016/01/01/2396/",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Sandaker sag var i drift før Treschow anla Bjølsen sag."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_13",
+          "claim_basis": "Sandaker sag var i drift før Treschow anla Bjølsen sag.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s2_q6_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s2_q6_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_arbeid_nettverk_naring",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
-                "score": 8
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://www.akerselvasvenner.no/2016/01/01/2396/"
+            ]
+          }
+        },
+        {
+          "id": "bjoelsenfossen_v1_s2_q7",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "bjoelsenfossen",
+          "targetId": "bjoelsenfossen",
+          "question_scope": "place",
+          "question": "Hvem anla Bjølsen sag?",
+          "options": [
+            "Gerhard Treschow",
+            "Gustav Martinsen",
+            "Ole Amundsen"
+          ],
+          "answer": "Gerhard Treschow",
+          "answerIndex": 0,
+          "knowledge": "Treschow anla saga i 1701; Martinsen og Amundsen hører til den senere valsemølla.",
+          "explanation": "Treschow anla saga i 1701. Martinsen og Amundsen hører til den senere valsemølla.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ],
+          "source": [
+            "a",
+            "m"
+          ],
+          "source_urls": [
+            "https://www.akerselvasvenner.no/2016/01/01/2396/",
+            "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
+          ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_a",
+              "source_type": "historical_reference",
+              "url": "https://www.akerselvasvenner.no/2016/01/01/2396/",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Treschow anla saga i 1701. Martinsen og Amundsen hører til den senere valsemølla."
+            },
+            {
+              "source_id": "src_bjoelsen_m",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Treschow anla saga i 1701. Martinsen og Amundsen hører til den senere valsemølla."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_14",
+          "claim_basis": "Treschow anla saga i 1701. Martinsen og Amundsen hører til den senere valsemølla.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s2_q7_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s2_q7_20261121"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_link_evidence": {
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://www.akerselvasvenner.no/2016/01/01/2396/",
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
             ]
           }
         }
@@ -785,360 +1006,456 @@
       "set_id": "historie_bjoelsenfossen_set_3",
       "level": 3,
       "order": 3,
+      "phase": "bridge",
+      "title": "Valsemøllas utvikling",
       "xp": 70,
-      "mode": "emne_based_foundation",
+      "mode": "industrial_history",
       "questions": [
         {
-          "id": "bjoelsenfossen_s3_q1",
-          "quiz_id": "historie_bjoelsenfossen_set_3_q1",
+          "id": "bjoelsenfossen_v1_s3_q1",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_3_q1",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva betyr vannkraft i byhistorie?",
+          "question_scope": "place",
+          "question": "Hva slags virksomhet var Bjølsen Valsemølle før firmaet overtok sin første mølle?",
           "options": [
-            "Energi fra vannets bevegelse som kan drive arbeid og produksjon",
-            "En type gatekunst",
-            "Vann uten funksjon"
+            "Mel- og kornhandel med leiemaling",
+            "Sagbruk med egen trelasthandel",
+            "Veveri med innleid fargeri"
           ],
-          "answer": "Energi fra vannets bevegelse som kan drive arbeid og produksjon",
+          "answer": "Mel- og kornhandel med leiemaling",
           "answerIndex": 0,
-          "knowledge": "Bjølsenfossen gjør vannkraft konkret fordi fossen viser energien i elva fysisk.",
+          "knowledge": "Firmaet fikk korn malt ved Bjølsen Mølle før det overtok anlegget.",
+          "explanation": "Firmaet fikk korn malt ved Bjølsen Mølle før det overtok anlegget.",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "vannkraft"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_energi_og_energiregimer"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.8200000000000001,
-            "score": 7,
-            "matched": [
-              "energi",
-              "vann"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_gj_r_vannk_bfec8755b9",
-          "knowledge_unit_ids": [
-            "ku_historie_bj_lsenfossen_gj_r_vannk_bfec8755b9"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s3_q2",
-          "quiz_id": "historie_bjoelsenfossen_set_3_q2",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva er et industrilandskap?",
-          "options": [
-            "Et område der arbeid, energi, bygninger og transport historisk henger sammen",
-            "En ren villmark uten mennesker",
-            "Et sted uten produksjon"
-          ],
-          "answer": "Et område der arbeid, energi, bygninger og transport historisk henger sammen",
-          "answerIndex": 0,
-          "knowledge": "Akerselva er et industrilandskap når foss, fabrikk, arbeid og byvekst leses sammen.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "industrilandskap"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_akerselva_er_et_industri_f82bc3b308",
-          "knowledge_unit_ids": [
-            "ku_historie_akerselva_er_et_industri_f82bc3b308"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
-                "score": 6
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
-                "score": 6
-              },
-              {
-                "emne_id": "em_his_arbeid_nettverk_naring",
-                "score": 5
-              }
-            ]
-          }
-        },
-        {
-          "id": "bjoelsenfossen_s3_q3",
-          "quiz_id": "historie_bjoelsenfossen_set_3_q3",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva betyr industriarv?",
-          "options": [
-            "Spor og fortellinger etter tidligere industri, arbeid og produksjon",
-            "Et ord for urørt natur",
-            "En dagsaktuell reklamekampanje"
-          ],
-          "answer": "Spor og fortellinger etter tidligere industri, arbeid og produksjon",
-          "answerIndex": 0,
-          "knowledge": "Bjølsenfossen peker mot industriarv fordi vannkraften forklarer tidligere produksjon langs elva.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "industriarv"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_peker_mot__03f96cf833",
-          "knowledge_unit_ids": [
-            "ku_historie_bj_lsenfossen_peker_mot__03f96cf833"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_avindustrialisering_ombruk_industriarv",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_industri_produksjon_energi",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_vitenskap_stat_industri_og_ekskludering",
-                "score": 7
-              }
-            ]
-          }
-        },
-        {
-          "id": "bjoelsenfossen_s3_q4",
-          "quiz_id": "historie_bjoelsenfossen_set_3_q4",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva betyr lokal energi i før-elektrisk eller tidlig industriell sammenheng?",
-          "options": [
-            "At produksjon ofte måtte ligge nær energikilden",
-            "At energi alltid kom fra langt unna",
-            "At sted aldri betydde noe"
-          ],
-          "answer": "At produksjon ofte måtte ligge nær energikilden",
-          "answerIndex": 0,
-          "knowledge": "Fossefall gjorde enkelte steder langs Akerselva mer attraktive for produksjon.",
-          "difficulty": 2,
-          "question_type": "begrep",
-          "question_layer": "foundation",
-          "tags": [
-            "lokal_energi"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_his_industri_produksjon_energi",
           "emne_ids": [
             "em_his_industri_produksjon_energi"
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.9299999999999999,
-            "score": 18,
-            "matched": [
-              "tid",
-              "sted",
-              "industriell",
-              "produksjon",
-              "energi"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_fossefall_gjorde_enkelte_45517a1866",
-          "knowledge_unit_ids": [
-            "ku_historie_fossefall_gjorde_enkelte_45517a1866"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s3_q5",
-          "quiz_id": "historie_bjoelsenfossen_set_3_q5",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva er arbeiderhistorie?",
-          "options": [
-            "Historie om arbeid, levekår, produksjon og sosiale miljøer",
-            "Bare kongerekker",
-            "Bare naturfag"
-          ],
-          "answer": "Historie om arbeid, levekår, produksjon og sosiale miljøer",
-          "answerIndex": 0,
-          "knowledge": "Akerselva-industrien handler også om menneskene og bydelene som vokste fram rundt arbeidet.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "arbeiderhistorie"
-          ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "m"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_akerselva_industrien_han_71f546c125",
-          "knowledge_unit_ids": [
-            "ku_historie_akerselva_industrien_han_71f546c125"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_m",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Firmaet fikk korn malt ved Bjølsen Mølle før det overtok anlegget."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_15",
+          "claim_basis": "Firmaet fikk korn malt ved Bjølsen Mølle før det overtok anlegget.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s3_q1_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s3_q1_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_industriby_1900",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_arbeid_nettverk_naring",
-                "score": 6
-              },
-              {
-                "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
-                "score": 6
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
             ]
           }
         },
         {
-          "id": "bjoelsenfossen_s3_q6",
-          "quiz_id": "historie_bjoelsenfossen_set_3_q6",
+          "id": "bjoelsenfossen_v1_s3_q2",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_3_q2",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva betyr byomforming langs elva?",
+          "question_scope": "place",
+          "question": "Hvilket anlegg kjøpte firmaet for å etablere seg på østsiden av Akerselva?",
           "options": [
-            "At tidligere produksjonsområder kan få nye funksjoner og ny bybruk",
-            "At elverom aldri endres",
-            "At alle historiske spor må fjernes"
+            "Sandaker Mølle",
+            "Glads Mølle",
+            "Nedre Foss Mølle"
           ],
-          "answer": "At tidligere produksjonsområder kan få nye funksjoner og ny bybruk",
+          "answer": "Sandaker Mølle",
           "answerIndex": 0,
-          "knowledge": "Bjølsenfossen kan leses både som eldre kraftpunkt og del av dagens elverom.",
+          "knowledge": "Sandaker Mølle omfattet ei rugmølle og ei byggmølle.",
+          "explanation": "Sandaker Mølle omfattet ei rugmølle og ei byggmølle.",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "byomforming"
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "m"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_kan_leses__55499470f6",
-          "knowledge_unit_ids": [
-            "ku_historie_bj_lsenfossen_kan_leses__55499470f6"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_m",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Sandaker Mølle omfattet ei rugmølle og ei byggmølle."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_16",
+          "claim_basis": "Sandaker Mølle omfattet ei rugmølle og ei byggmølle.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s3_q2_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s3_q2_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_middelalder_kirke_jord_eiendom_og_patronasje",
-                "score": 4
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
             ]
           }
         },
         {
-          "id": "bjoelsenfossen_s3_q7",
-          "quiz_id": "historie_bjoelsenfossen_set_3_q7",
+          "id": "bjoelsenfossen_v1_s3_q3",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_3_q3",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva betyr stedlesning?",
+          "question_scope": "place",
+          "question": "Hvorfor overtok møllefirmaet Christiania mekaniske Væveri?",
           "options": [
-            "Å bruke observasjoner på stedet til å forstå større sammenhenger",
-            "Å svare uten å se seg rundt",
-            "Å pugge løsrevne navn"
+            "For å sikre seg flere fallrettigheter",
+            "For å gjøre melpakkhuset om til veveri",
+            "For å få lagerplass til importert trelast"
           ],
-          "answer": "Å bruke observasjoner på stedet til å forstå større sammenhenger",
+          "answer": "For å sikre seg flere fallrettigheter",
           "answerIndex": 0,
-          "knowledge": "Bjølsenfossen trener stedlesning fordi fossen gjør vannkraft, arbeid og byhistorie observerbart.",
+          "knowledge": "Oppkjøpet ga firmaet råderett over mer av vannkraften i Bjølsenfossens to fall.",
+          "explanation": "Oppkjøpet ga firmaet råderett over mer av vannkraften i Bjølsenfossens to fall.",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "stedlesning"
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
           ],
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "m"
           ],
-          "claim_basis": "generator_rule",
-          "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_trener_ste_2594a31389",
-          "knowledge_unit_ids": [
-            "ku_historie_bj_lsenfossen_trener_ste_2594a31389"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_m",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Oppkjøpet ga firmaet råderett over mer av vannkraften i Bjølsenfossens to fall."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_17",
+          "claim_basis": "Oppkjøpet ga firmaet råderett over mer av vannkraften i Bjølsenfossens to fall.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s3_q3_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s3_q3_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_arbeid_nettverk_naring",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_kjonn_familie_kvinnebevegelse_likestilling_og_skeiv_historie",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_kjonn_familie_maskuliniteter_femininiteter_og_arbeid",
-                "score": 8
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
+            ]
+          }
+        },
+        {
+          "id": "bjoelsenfossen_v1_s3_q4",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "bjoelsenfossen",
+          "targetId": "bjoelsenfossen",
+          "question_scope": "place",
+          "question": "Hva ble firmaets første nybygg på østsiden brukt til?",
+          "options": [
+            "Pakking av mel",
+            "Lagring av tømmer",
+            "Reparasjon av turbiner"
+          ],
+          "answer": "Pakking av mel",
+          "answerIndex": 0,
+          "knowledge": "Det første nybygget på østbredden var et pakkhus for mel.",
+          "explanation": "Det første nybygget på østbredden var et pakkhus for mel.",
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ],
+          "source": [
+            "m"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
+          ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_m",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Det første nybygget på østbredden var et pakkhus for mel."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_18",
+          "claim_basis": "Det første nybygget på østbredden var et pakkhus for mel.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s3_q4_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s3_q4_20261121"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_link_evidence": {
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
+            ]
+          }
+        },
+        {
+          "id": "bjoelsenfossen_v1_s3_q5",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "bjoelsenfossen",
+          "targetId": "bjoelsenfossen",
+          "question_scope": "place",
+          "question": "Hvilket kornslag ble malt i den nye mølla som erstattet rugmølla på østsiden?",
+          "options": [
+            "Rug",
+            "Bygg",
+            "Havre"
+          ],
+          "answer": "Rug",
+          "answerIndex": 0,
+          "knowledge": "Firmaet bygde en ny rugmølle med renseri og silo.",
+          "explanation": "Firmaet bygde en ny rugmølle med renseri og silo.",
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ],
+          "source": [
+            "m"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
+          ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_m",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Firmaet bygde en ny rugmølle med renseri og silo."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_19",
+          "claim_basis": "Firmaet bygde en ny rugmølle med renseri og silo.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s3_q5_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s3_q5_20261121"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_link_evidence": {
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle"
+            ]
+          }
+        },
+        {
+          "id": "bjoelsenfossen_v1_s3_q6",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "bjoelsenfossen",
+          "targetId": "bjoelsenfossen",
+          "question_scope": "place",
+          "question": "Hvilken maskin endret måten korn ble malt på ved Bjølsen Valsemølle?",
+          "options": [
+            "Valsestolen",
+            "Kornrenseren",
+            "Sekkevekta"
+          ],
+          "answer": "Valsestolen",
+          "answerIndex": 0,
+          "knowledge": "Stålvalser ble tatt i bruk til maling av korn.",
+          "explanation": "Stålvalser ble tatt i bruk til maling av korn.",
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_his_industri_produksjon_energi",
+          "emne_ids": [
+            "em_his_industri_produksjon_energi"
+          ],
+          "source": [
+            "s"
+          ],
+          "source_urls": [
+            "https://snl.no/Bj%C3%B8lsen_Valsem%C3%B8lle"
+          ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_s",
+              "source_type": "historical_reference",
+              "url": "https://snl.no/Bj%C3%B8lsen_Valsem%C3%B8lle",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Stålvalser ble tatt i bruk til maling av korn."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_20",
+          "claim_basis": "Stålvalser ble tatt i bruk til maling av korn.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s3_q6_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s3_q6_20261121"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_link_evidence": {
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://snl.no/Bj%C3%B8lsen_Valsem%C3%B8lle"
+            ]
+          }
+        },
+        {
+          "id": "bjoelsenfossen_v1_s3_q7",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "bjoelsenfossen",
+          "targetId": "bjoelsenfossen",
+          "question_scope": "place",
+          "question": "Hva ble de store siloene ved Bjølsen Valsemølle brukt til å lagre?",
+          "options": [
+            "Korn",
+            "Ferdigpakkede melsekker",
+            "Reservedeler til turbinene"
+          ],
+          "answer": "Korn",
+          "answerIndex": 0,
+          "knowledge": "Byleksikonet identifiserer de bevarte siloene som kornsiloer.",
+          "explanation": "Byleksikonet identifiserer de bevarte siloene som kornsiloer.",
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "emne_id": "em_his_spor_materialitet",
+          "emne_ids": [
+            "em_his_spor_materialitet"
+          ],
+          "source": [
+            "b"
+          ],
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
+          ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_b",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Byleksikonet identifiserer de bevarte siloene som kornsiloer."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_21",
+          "claim_basis": "Byleksikonet identifiserer de bevarte siloene som kornsiloer.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s3_q7_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s3_q7_20261121"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_link_evidence": {
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
             ]
           }
         }
@@ -1148,1002 +1465,1162 @@
       "set_id": "historie_bjoelsenfossen_set_4",
       "level": 4,
       "order": 4,
+      "phase": "final",
+      "title": "Arkiv, kart og kilder",
       "xp": 80,
-      "mode": "place_concrete_advanced",
+      "mode": "source_criticism",
       "questions": [
         {
-          "id": "bjoelsenfossen_s4_q1",
-          "quiz_id": "historie_bjoelsenfossen_set_4_q1",
+          "id": "bjoelsenfossen_v1_s4_q1",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_4_q1",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva er en avansert observasjon ved Bjølsenfossen?",
+          "question": "Hva kan et arkivfoto av brua og fossen fastslå mest direkte?",
           "options": [
-            "Å se hvordan fall, lyd, elverom og industrilag virker sammen",
-            "Å bare se etter ett skilt",
-            "Å ignorere vannet"
+            "Hvor brua lå i forhold til det synlige fossefallet da bildet ble tatt",
+            "Hvor stor vannføringen var den dagen",
+            "Hvem som eide fallrettighetene da bildet ble tatt"
           ],
-          "answer": "Å se hvordan fall, lyd, elverom og industrilag virker sammen",
+          "answer": "Hvor brua lå i forhold til det synlige fossefallet da bildet ble tatt",
           "answerIndex": 0,
-          "knowledge": "Avansert stedlesning kobler sansning, naturkraft og byhistorisk funksjon.",
-          "difficulty": 2,
-          "question_type": "analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "stedlesning"
+          "knowledge": "Fotografiet dokumenterer motivet og plasseringen i bildet; Mengde og eierskap krever andre kilder.",
+          "explanation": "Fotografiet dokumenterer motivet og plasseringen i bildet. Mengde og eierskap krever andre kilder.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "u"
           ],
-          "claim_basis": "safe_place_data",
-          "primary_knowledge_unit_id": "ku_historie_avansert_stedlesning_kob_abca2e73e7",
-          "knowledge_unit_ids": [
-            "ku_historie_avansert_stedlesning_kob_abca2e73e7"
+          "source_urls": [
+            "https://commons.wikimedia.org/wiki/File:Valsem%C3%B8llebrua_over_Bj%C3%B8lsenfossen_-_Oslo_Museum_-_OMu.A15631.jpg"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_u",
+              "source_type": "historical_reference",
+              "url": "https://commons.wikimedia.org/wiki/File:Valsem%C3%B8llebrua_over_Bj%C3%B8lsenfossen_-_Oslo_Museum_-_OMu.A15631.jpg",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Fotografiet dokumenterer motivet og plasseringen i bildet. Mengde og eierskap krever andre kilder."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_22",
+          "claim_basis": "Fotografiet dokumenterer motivet og plasseringen i bildet. Mengde og eierskap krever andre kilder.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s4_q1_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s4_q1_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_ruiner_rester_ombruk",
-                "score": 9
-              },
-              {
-                "emne_id": "em_his_spor_materialitet",
-                "score": 9
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://commons.wikimedia.org/wiki/File:Valsem%C3%B8llebrua_over_Bj%C3%B8lsenfossen_-_Oslo_Museum_-_OMu.A15631.jpg"
             ]
-          }
+          },
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ]
         },
         {
-          "id": "bjoelsenfossen_s4_q2",
-          "quiz_id": "historie_bjoelsenfossen_set_4_q2",
+          "id": "bjoelsenfossen_v1_s4_q2",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_4_q2",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva bør holdes ute av en trygg quiz her foreløpig?",
+          "question": "Hvilket kildesett kan best kontrollere hvor brua ligger og hva reguleringsmekanismene brukes til?",
           "options": [
-            "Presise tekniske detaljer, usikre fabrikkdata og personrelasjoner uten kilde",
-            "Begrepet vannkraft",
-            "Observasjon av fosselyd"
+            "Bykartet sammen med byleksikonets oppslag om Valsemøllebrua",
+            "To utsnitt av samme arkivfoto",
+            "En adresseoversikt sammen med en gammel møllelogo"
           ],
-          "answer": "Presise tekniske detaljer, usikre fabrikkdata og personrelasjoner uten kilde",
+          "answer": "Bykartet sammen med byleksikonets oppslag om Valsemøllebrua",
           "answerIndex": 0,
-          "knowledge": "Trygg quizdata bør bygge på sikre stedstrekk: foss, vannkraft, industrihistorie og arbeid.",
-          "difficulty": 2,
-          "question_type": "kildekritikk",
-          "question_layer": "advanced_place",
-          "tags": [
-            "holdback"
+          "knowledge": "Kartet plasserer brua; Oppslaget beskriver mekanismene.",
+          "explanation": "Kartet plasserer brua. Oppslaget beskriver mekanismene.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "manual_production_notes"
+            "b"
           ],
-          "claim_basis": "holdback_rule",
-          "primary_knowledge_unit_id": "ku_historie_trygg_quizdata_b_r_bygge_1b9350c02b",
-          "knowledge_unit_ids": [
-            "ku_historie_trygg_quizdata_b_r_bygge_1b9350c02b"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_b",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Kartet plasserer brua. Oppslaget beskriver mekanismene."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_23",
+          "claim_basis": "Kartet plasserer brua. Oppslaget beskriver mekanismene.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s4_q2_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s4_q2_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_global_kolonial_slaveri_ravarer_og_globale_verdikjeder",
-                "score": 12
-              },
-              {
-                "emne_id": "em_his_vitenskap_teknologi_teknologi_infrastruktur_og_samfunn",
-                "score": 12
-              },
-              {
-                "emne_id": "em_his_arbeid_nettverk_naring",
-                "score": 11
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
             ]
-          }
+          },
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ]
         },
         {
-          "id": "bjoelsenfossen_s4_q3",
-          "quiz_id": "historie_bjoelsenfossen_set_4_q3",
+          "id": "bjoelsenfossen_v1_s4_q3",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_4_q3",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hvordan kan spilleren lese energi i landskapet?",
+          "question": "Hvilke opplysninger bør du sjekke før du bruker fotoene til å si at brua har endret seg?",
           "options": [
-            "Ved å se og høre hvor vannet faller og samler kraft",
-            "Ved å late som terreng ikke finnes",
-            "Ved å ignorere elva"
+            "Når bildene ble tatt og hvilken vei kameraene pekte",
+            "Filstørrelsen og antall piksler",
+            "Hvilken nettside som først viste bildene"
           ],
-          "answer": "Ved å se og høre hvor vannet faller og samler kraft",
+          "answer": "Når bildene ble tatt og hvilken vei kameraene pekte",
           "answerIndex": 0,
-          "knowledge": "Fossen gjør energi konkret: høydeforskjell og vannbevegelse kan observeres direkte.",
-          "difficulty": 2,
-          "question_type": "stedskonkret",
-          "question_layer": "advanced_place",
-          "tags": [
-            "energi",
-            "foss"
+          "knowledge": "Ulik synsvinkel og datering kan forklare at samme anlegg ser forskjellig ut.",
+          "explanation": "Ulik synsvinkel og datering kan forklare at samme anlegg ser forskjellig ut.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "u",
+            "i"
           ],
-          "claim_basis": "safe_place_data",
-          "emne_ids": [
-            "em_his_miljo_klima_energi_og_energiregimer"
+          "source_urls": [
+            "https://commons.wikimedia.org/wiki/File:Valsem%C3%B8llebrua_over_Bj%C3%B8lsenfossen_-_Oslo_Museum_-_OMu.A15631.jpg",
+            "https://oslobyleksikon.no/side/Fil:Valsem%C3%B8llebrua.jpg"
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.89,
-            "score": 14,
-            "matched": [
-              "sted",
-              "energi",
-              "landskap",
-              "vann"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_fossen_gj_r_energi_konkr_c1a4fe77cf",
-          "knowledge_unit_ids": [
-            "ku_historie_fossen_gj_r_energi_konkr_c1a4fe77cf"
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_u",
+              "source_type": "historical_reference",
+              "url": "https://commons.wikimedia.org/wiki/File:Valsem%C3%B8llebrua_over_Bj%C3%B8lsenfossen_-_Oslo_Museum_-_OMu.A15631.jpg",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Ulik synsvinkel og datering kan forklare at samme anlegg ser forskjellig ut."
+            },
+            {
+              "source_id": "src_bjoelsen_i",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Fil:Valsem%C3%B8llebrua.jpg",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Ulik synsvinkel og datering kan forklare at samme anlegg ser forskjellig ut."
+            }
           ],
+          "claim_id": "claim_bjoelsenfossen_quiz_24",
+          "claim_basis": "Ulik synsvinkel og datering kan forklare at samme anlegg ser forskjellig ut.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s4_q3_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s4_q3_20261121"
+          ],
+          "knowledge_link_status": "linked",
+          "knowledge_link_evidence": {
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://commons.wikimedia.org/wiki/File:Valsem%C3%B8llebrua_over_Bj%C3%B8lsenfossen_-_Oslo_Museum_-_OMu.A15631.jpg",
+              "https://oslobyleksikon.no/side/Fil:Valsem%C3%B8llebrua.jpg"
+            ]
+          },
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ]
         },
         {
-          "id": "bjoelsenfossen_s4_q4",
-          "quiz_id": "historie_bjoelsenfossen_set_4_q4",
+          "id": "bjoelsenfossen_v1_s4_q4",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_4_q4",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva gjør Bjølsenfossen til et godt stopp etter Nydalsdammen?",
+          "question": "Hvilken kilde ville best kunne vise hvor mye vann som passerte fossen på en bestemt dag?",
           "options": [
-            "Nydalsdammen viser regulert vann; Bjølsenfossen viser fall og kraft",
-            "Stedene har ingen sammenheng",
-            "Begge er fjelltopper"
+            "En datert vannføringsmåling for fossefallet",
+            "En renovasjonsplan for brua",
+            "Et arkivfoto med nøyaktig opptaksdato"
           ],
-          "answer": "Nydalsdammen viser regulert vann; Bjølsenfossen viser fall og kraft",
+          "answer": "En datert vannføringsmåling for fossefallet",
           "answerIndex": 0,
-          "knowledge": "Ruten blir bedre når ulike vannformer settes opp mot hverandre.",
-          "difficulty": 2,
-          "question_type": "rutekobling",
-          "question_layer": "advanced_place",
-          "tags": [
-            "nydalsdammen",
-            "rute"
+          "knowledge": "Byleksikonet dokumenterer at vannføringen reguleres; En datert måling trengs for å tallfeste den.",
+          "explanation": "Byleksikonet dokumenterer at vannføringen reguleres. En datert måling trengs for å tallfeste den.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "History Go quiz: nydalsdammen",
-            "History Go place data: bjoelsenfossen"
+            "b"
           ],
-          "claim_basis": "safe_internal_data",
-          "primary_knowledge_unit_id": "ku_historie_ruten_blir_bedre_nar_uli_f5a78bd736",
-          "knowledge_unit_ids": [
-            "ku_historie_ruten_blir_bedre_nar_uli_f5a78bd736"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_b",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Byleksikonet dokumenterer at vannføringen reguleres. En datert måling trengs for å tallfeste den."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_25",
+          "claim_basis": "Byleksikonet dokumenterer at vannføringen reguleres. En datert måling trengs for å tallfeste den.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s4_q4_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s4_q4_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_gjenoppbygging_minne",
-                "score": 4
-              },
-              {
-                "emne_id": "em_his_katastrofer_brudd_skyld_ansvar_gransking_og_rett",
-                "score": 3
-              },
-              {
-                "emne_id": "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
-                "score": 3
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
             ]
-          }
+          },
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ]
         },
         {
-          "id": "bjoelsenfossen_s4_q5",
-          "quiz_id": "historie_bjoelsenfossen_set_4_q5",
+          "id": "bjoelsenfossen_v1_s4_q5",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_4_q5",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva kan fossen fortelle om forholdet mellom natur og klassehistorie?",
+          "question": "Hvilken rekkefølge viser hvordan vannets energi ble overført i møllas kraftanlegg?",
           "options": [
-            "Naturkraft skapte produksjon, arbeidsplasser og sosiale miljøer",
-            "Natur og samfunn har ingen sammenheng",
-            "Fosser er bare dekor"
+            "Vann i turbinrøret, turbin i rotasjon, mekanisk kraft",
+            "Vann i turbinrøret, mekanisk kraft, turbin i rotasjon",
+            "Turbin i rotasjon, vann i turbinrøret, mekanisk kraft"
           ],
-          "answer": "Naturkraft skapte produksjon, arbeidsplasser og sosiale miljøer",
+          "answer": "Vann i turbinrøret, turbin i rotasjon, mekanisk kraft",
           "answerIndex": 0,
-          "knowledge": "Akerselva-industrien var både naturutnyttelse og sosial historie.",
-          "difficulty": 2,
-          "question_type": "kritisk_analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "klassehistorie",
-            "arbeid"
+          "knowledge": "Røret ledet vann til turbinen; Turbinen tok opp energi fra vannet og begynte å rotere.",
+          "explanation": "Røret ledet vann til turbinen. Turbinen tok opp energi fra vannet og begynte å rotere.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "b"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_akerselva_industrien_var_43c0162cb7",
-          "knowledge_unit_ids": [
-            "ku_historie_akerselva_industrien_var_43c0162cb7"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_b",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Røret ledet vann til turbinen. Turbinen tok opp energi fra vannet og begynte å rotere."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_26",
+          "claim_basis": "Røret ledet vann til turbinen. Turbinen tok opp energi fra vannet og begynte å rotere.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s4_q5_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s4_q5_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_kjonn_familie_omsorg_sosial_reproduksjon_og_ulonnet_arbeid",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_miljo_klima_dyr_og_menneske_natur_relasjoner",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_embetsstat_forvaltning",
-                "score": 6
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
             ]
-          }
+          },
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ]
         },
         {
-          "id": "bjoelsenfossen_s4_q6",
-          "quiz_id": "historie_bjoelsenfossen_set_4_q6",
+          "id": "bjoelsenfossen_v1_s4_q6",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_4_q6",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva kan dagens roligere grøntdrag rundt et kraftpunkt vise?",
+          "question": "Hva må du undersøke før du kan si at det bevarte turbinanlegget driver mølla i dag?",
           "options": [
-            "At et sted kan skifte bruk uten å miste historiske lag",
-            "At historie alltid forsvinner helt",
-            "At natur og industri aldri møtes"
+            "Om anlegget fortsatt er i drift",
+            "Om røret og turbinen har samme farge i arkivfotoet",
+            "Om brua er eldre enn kornsiloene"
           ],
-          "answer": "At et sted kan skifte bruk uten å miste historiske lag",
+          "answer": "Om anlegget fortsatt er i drift",
           "answerIndex": 0,
-          "knowledge": "Byomforming langs Akerselva handler ofte om å leve med rester og spor etter tidligere industri.",
-          "difficulty": 2,
-          "question_type": "analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "byomforming"
+          "knowledge": "Byleksikonet oppgir at delene er bevart, og at de ikke lenger er i bruk.",
+          "explanation": "Byleksikonet oppgir at delene er bevart, og at de ikke lenger er i bruk.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "History Go place data: bjoelsenfossen"
+            "b"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_historie_byomforming_langs_akerse_c5ddeeff0c",
-          "knowledge_unit_ids": [
-            "ku_historie_byomforming_langs_akerse_c5ddeeff0c"
+          "source_urls": [
+            "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_b",
+              "source_type": "historical_reference",
+              "url": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Byleksikonet oppgir at delene er bevart, og at de ikke lenger er i bruk."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_27",
+          "claim_basis": "Byleksikonet oppgir at delene er bevart, og at de ikke lenger er i bruk.",
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s4_q6_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s4_q6_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_his_ruiner_rester_ombruk",
-                "score": 8
-              },
-              {
-                "emne_id": "em_his_gjenoppbygging_minne",
-                "score": 7
-              },
-              {
-                "emne_id": "em_his_industriby_1900",
-                "score": 7
-              }
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua"
             ]
-          }
+          },
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ]
         },
         {
-          "id": "bjoelsenfossen_s4_q7",
-          "quiz_id": "historie_bjoelsenfossen_set_4_q7",
+          "id": "bjoelsenfossen_v1_s4_q7",
+          "quiz_id": "historie_bjoelsenfossen_v1_set_4_q7",
           "categoryId": "historie",
           "placeId": "bjoelsenfossen",
           "targetId": "bjoelsenfossen",
           "question_scope": "place",
-          "question": "Hva bør en god Bjølsenfossen-quiz trene spilleren i?",
+          "question": "Hvorfor kan kommunens forprosjekt brukes som kilde til planer om adkomst, men ikke som bevis på at adkomsten er åpnet?",
           "options": [
-            "Å lese vannfall, kraft, industri og arbeid sammen",
-            "Å overse stedet",
-            "Å svare uten observasjon"
+            "Forprosjektet utreder muligheter før en eventuell beslutning",
+            "Forprosjektet beskriver bare eldre industrihistorie",
+            "Forprosjektet dokumenterer at fabrikken har flyttet"
           ],
-          "answer": "Å lese vannfall, kraft, industri og arbeid sammen",
+          "answer": "Forprosjektet utreder muligheter før en eventuell beslutning",
           "answerIndex": 0,
-          "knowledge": "Quizzen skal gjøre spilleren bedre til å forstå stedet de står ved.",
-          "difficulty": 2,
-          "question_type": "meta",
-          "question_layer": "advanced_place",
-          "tags": [
-            "stedbasert_læring"
+          "knowledge": "Kommunen omtaler utredning av trygg adkomst og uavklarte tiltak.",
+          "explanation": "Kommunen omtaler utredning av trygg adkomst og uavklarte tiltak.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor"
           ],
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "k"
           ],
-          "claim_basis": "generator_rule",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
+          "source_urls": [
+            "https://www.oslo.kommune.no/slik-bygger-vi-oslo/bjolsenfossen-hvordan-gjore-omradet-rundt-fossen-tilgjengelig-forprosjekt-med-omregulering/"
           ],
+          "source_origin": "external",
+          "sources": [
+            {
+              "source_id": "src_bjoelsen_k",
+              "source_type": "historical_reference",
+              "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/bjolsenfossen-hvordan-gjore-omradet-rundt-fossen-tilgjengelig-forprosjekt-med-omregulering/",
+              "review_status": "reviewed",
+              "reviewed_at": "2026-11-21",
+              "claim_basis": "Kommunen omtaler utredning av trygg adkomst og uavklarte tiltak."
+            }
+          ],
+          "claim_id": "claim_bjoelsenfossen_quiz_28",
+          "claim_basis": "Kommunen omtaler utredning av trygg adkomst og uavklarte tiltak.",
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "tags": [
+            "bjoelsenfossen",
+            "reviewed_20261121"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_bjoelsenfossen_v1_s4_q7_20261121",
+          "knowledge_unit_ids": [
+            "ku_historie_bjoelsenfossen_v1_s4_q7_20261121"
+          ],
+          "knowledge_link_status": "linked",
           "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "sted",
-              "l ring"
+            "method": "explicit",
+            "confidence": 1,
+            "reviewedAt": "2026-11-21",
+            "sourceUrls": [
+              "https://www.oslo.kommune.no/slik-bygger-vi-oslo/bjolsenfossen-hvordan-gjore-omradet-rundt-fossen-tilgjengelig-forprosjekt-med-omregulering/"
             ]
           },
-          "primary_knowledge_unit_id": "ku_historie_quizzen_skal_gj_re_spill_52de3ffd23",
-          "knowledge_unit_ids": [
-            "ku_historie_quizzen_skal_gj_re_spill_52de3ffd23"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "historie_bjoelsenfossen_set_5",
-      "level": 5,
-      "order": 5,
-      "xp": 90,
-      "mode": "emne_based_advanced",
-      "questions": [
-        {
-          "id": "bjoelsenfossen_s5_q1",
-          "quiz_id": "historie_bjoelsenfossen_set_5_q1",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva er den dypere læringen i Bjølsenfossen?",
-          "options": [
-            "At naturens kraft kan bli byens produksjon, arbeid og sosiale historie",
-            "At vannfall bare er natur uten samfunn",
-            "At industri aldri påvirket byen"
-          ],
-          "answer": "At naturens kraft kan bli byens produksjon, arbeid og sosiale historie",
-          "answerIndex": 0,
-          "knowledge": "Bjølsenfossen viser overgangen fra landskap til energi, og fra energi til byhistorie.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "vannkraft",
-            "industrihistorie"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
+          "method_id": "met_kildekritikk",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "knut_kjeldstadli",
+          "work": "Fortida er ikke hva den en gang var",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "knut_kjeldstadli",
+            "work": "Fortida er ikke hva den en gang var",
+            "why_it_helps": "Kjeldstadlis kildekritikk knytter kildeverdien til spørsmålet vi stiller. Forprosjektet dokumenterer hva kommunen utredet. Å fastslå om adkomsten ble åpnet, krever dokumentasjon på gjennomføringen."
           },
-          "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_viser_over_b7ed6d91be",
-          "knowledge_unit_ids": [
-            "ku_historie_bj_lsenfossen_viser_over_b7ed6d91be"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s5_q2",
-          "quiz_id": "historie_bjoelsenfossen_set_5_q2",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hvorfor er lokale kraftpunkter viktige i industrihistorien?",
-          "options": [
-            "Fordi produksjon ofte måtte plasseres nær energien før moderne energinett",
-            "Fordi sted aldri betydde noe",
-            "Fordi vannkraft ikke kunne brukes"
-          ],
-          "answer": "Fordi produksjon ofte måtte plasseres nær energien før moderne energinett",
-          "answerIndex": 0,
-          "knowledge": "Fossefall langs Akerselva forklarer hvorfor bestemte steder fikk industriell betydning.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "lokal_energi"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_fossefall_langs_akerselv_da0c56825c",
-          "knowledge_unit_ids": [
-            "ku_historie_fossefall_langs_akerselv_da0c56825c"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s5_q3",
-          "quiz_id": "historie_bjoelsenfossen_set_5_q3",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva er forskjellen på Nydalsdammen og Bjølsenfossen som læringssteder?",
-          "options": [
-            "Nydalsdammen viser regulert vann; Bjølsenfossen viser fallkraft",
-            "Det finnes ingen forskjell",
-            "Begge mangler vann"
-          ],
-          "answer": "Nydalsdammen viser regulert vann; Bjølsenfossen viser fallkraft",
-          "answerIndex": 0,
-          "knowledge": "Sammen viser de hvordan samme elv kan styres, holdes tilbake og falle med kraft.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "sammenligning",
-            "nydalsdammen"
-          ],
-          "source": [
-            "History Go quiz: nydalsdammen",
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "sted",
-              "l ring"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_sammen_viser_de_hvordan__1cfd79e03a",
-          "knowledge_unit_ids": [
-            "ku_historie_sammen_viser_de_hvordan__1cfd79e03a"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s5_q4",
-          "quiz_id": "historie_bjoelsenfossen_set_5_q4",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva kan være en konflikt i gamle industrilandskap som blir grøntdrag?",
-          "options": [
-            "Balansen mellom bevaring, tilgjengelighet, naturhensyn og ny bruk",
-            "At ingen bruker dem",
-            "At historiske spor aldri finnes"
-          ],
-          "answer": "Balansen mellom bevaring, tilgjengelighet, naturhensyn og ny bruk",
-          "answerIndex": 0,
-          "knowledge": "Akerselva-steder må ofte håndtere både historisk arv, natur og dagens bruk.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "forvaltning",
-            "industriarv"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_akerselva_steder_ma_ofte_19acb88b68",
-          "knowledge_unit_ids": [
-            "ku_historie_akerselva_steder_ma_ofte_19acb88b68"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s5_q5",
-          "quiz_id": "historie_bjoelsenfossen_set_5_q5",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva er viktig for trygg quizdata her?",
-          "options": [
-            "Bruke observerbare trekk og sikre hovedlinjer, ikke usikre detaljpåstander",
-            "Gjette på tekniske spesifikasjoner",
-            "Lage tilfeldige personrelasjoner"
-          ],
-          "answer": "Bruke observerbare trekk og sikre hovedlinjer, ikke usikre detaljpåstander",
-          "answerIndex": 0,
-          "knowledge": "Foss, vannkraft, industri og arbeid er sikre nok som hovedlæring; detaljer krever egne kilder.",
-          "difficulty": 3,
-          "question_type": "kildekritikk",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "kildekritikk"
-          ],
-          "source": [
-            "manual_production_notes"
-          ],
-          "claim_basis": "holdback_rule",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_foss_vannkraft_industri__ef6801ebcd",
-          "knowledge_unit_ids": [
-            "ku_historie_foss_vannkraft_industri__ef6801ebcd"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s5_q6",
-          "quiz_id": "historie_bjoelsenfossen_set_5_q6",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hvordan kan Akerselva fungere som læringsstruktur her?",
-          "options": [
-            "Elva binder kraftpunkter, parker og industrilag til én sammenhengende rute",
-            "Elva gjør steder isolerte",
-            "Elva er bare bakgrunn"
-          ],
-          "answer": "Elva binder kraftpunkter, parker og industrilag til én sammenhengende rute",
-          "answerIndex": 0,
-          "knowledge": "Bjølsenfossen gir ruta et tydelig kraft- og arbeidspunkt mellom roligere vannrom og parkdrag.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "stedslæring",
-            "elvekorridor"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_gir_ruta_e_0a92a7d3f9",
-          "knowledge_unit_ids": [
-            "ku_historie_bj_lsenfossen_gir_ruta_e_0a92a7d3f9"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s5_q7",
-          "quiz_id": "historie_bjoelsenfossen_set_5_q7",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "emne",
-          "question": "Hva gjør Bjølsenfossen god for History Go-læring?",
-          "options": [
-            "Den lar spilleren forstå vannkraft, industri og arbeid gjennom direkte observasjon",
-            "Den krever at man ignorerer stedet",
-            "Den handler bare om løsrevne årstall"
-          ],
-          "answer": "Den lar spilleren forstå vannkraft, industri og arbeid gjennom direkte observasjon",
-          "answerIndex": 0,
-          "knowledge": "Stedet gjør et abstrakt begrep som vannkraft konkret og sanselig.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "stedbasert_læring"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "emne_ids": [
-            "em_his_katastrofer_brudd_sarbarhet_ulikhet_og_eksponering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "sted",
-              "l ring"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_stedet_gj_r_et_abstrakt__a27d36fb74",
-          "knowledge_unit_ids": [
-            "ku_historie_stedet_gj_r_et_abstrakt__a27d36fb74"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "historie_bjoelsenfossen_set_6",
-      "level": 6,
-      "order": 6,
-      "xp": 100,
-      "mode": "concept_based",
-      "questions": [
-        {
-          "id": "bjoelsenfossen_s6_q1",
-          "quiz_id": "historie_bjoelsenfossen_set_6_q1",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "concept",
-          "question": "Hvilket begrep beskriver energi fra vannets bevegelse?",
-          "options": [
-            "Vannkraft",
-            "Byhage",
-            "Privat reklame"
-          ],
-          "answer": "Vannkraft",
-          "answerIndex": 0,
-          "knowledge": "Vannkraft er nøkkelbegrepet for Bjølsenfossen.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "vannkraft"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_energi_og_energiregimer"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.83,
-            "score": 8,
-            "matched": [
-              "energi",
-              "vann"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_historie_vannkraft_er_n_kkelbegre_41e9ee0a23",
-          "knowledge_unit_ids": [
-            "ku_historie_vannkraft_er_n_kkelbegre_41e9ee0a23"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s6_q2",
-          "quiz_id": "historie_bjoelsenfossen_set_6_q2",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "concept",
-          "question": "Hva er et industrilandskap?",
-          "options": [
-            "Et område der arbeid, energi, bygninger og transport historisk henger sammen",
-            "En urørt fjellvidde",
-            "Et sted uten mennesker"
-          ],
-          "answer": "Et område der arbeid, energi, bygninger og transport historisk henger sammen",
-          "answerIndex": 0,
-          "knowledge": "Akerselva kan leses som industrilandskap når vannkraft og arbeid knyttes til bestemte steder.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "industrilandskap"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_energi_og_energiregimer"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_akerselva_kan_leses_som__0ffb50394d",
-          "knowledge_unit_ids": [
-            "ku_historie_akerselva_kan_leses_som__0ffb50394d"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s6_q3",
-          "quiz_id": "historie_bjoelsenfossen_set_6_q3",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "concept",
-          "question": "Hva betyr industriarv?",
-          "options": [
-            "Spor og fortellinger etter tidligere industri, arbeid og produksjon",
-            "Et ord for urørt natur",
-            "En dagsaktuell kampanje"
-          ],
-          "answer": "Spor og fortellinger etter tidligere industri, arbeid og produksjon",
-          "answerIndex": 0,
-          "knowledge": "Bjølsenfossen peker mot industriarv fordi vannkraften var grunnlag for produksjon langs elva.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "industriarv"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_energi_og_energiregimer"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_peker_mot__6beb524867",
-          "knowledge_unit_ids": [
-            "ku_historie_bj_lsenfossen_peker_mot__6beb524867"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s6_q4",
-          "quiz_id": "historie_bjoelsenfossen_set_6_q4",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "concept",
-          "question": "Hva betyr lokal energi i industrihistorie?",
-          "options": [
-            "At produksjon ofte ble lagt der energikilden fantes",
-            "At energi alltid kom utenfra",
-            "At sted ikke betydde noe"
-          ],
-          "answer": "At produksjon ofte ble lagt der energikilden fantes",
-          "answerIndex": 0,
-          "knowledge": "Fossefall langs Akerselva gjorde bestemte steder viktige.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "lokal_energi"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_energi_og_energiregimer"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_fossefall_langs_akerselv_984a76260b",
-          "knowledge_unit_ids": [
-            "ku_historie_fossefall_langs_akerselv_984a76260b"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s6_q5",
-          "quiz_id": "historie_bjoelsenfossen_set_6_q5",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "concept",
-          "question": "Hva er arbeiderhistorie?",
-          "options": [
-            "Historie om arbeid, levekår, produksjon og sosiale miljøer",
-            "Bare kongerekker",
-            "Bare natur uten mennesker"
-          ],
-          "answer": "Historie om arbeid, levekår, produksjon og sosiale miljøer",
-          "answerIndex": 0,
-          "knowledge": "Industrien langs Akerselva må også forstås som sosial historie.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "arbeiderhistorie"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_energi_og_energiregimer"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_industrien_langs_akersel_e5b5059a37",
-          "knowledge_unit_ids": [
-            "ku_historie_industrien_langs_akersel_e5b5059a37"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s6_q6",
-          "quiz_id": "historie_bjoelsenfossen_set_6_q6",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "concept",
-          "question": "Hva betyr stedlesning?",
-          "options": [
-            "Å bruke observasjoner på stedet til å forstå større sammenhenger",
-            "Å ignorere stedet",
-            "Å bare pugge navn"
-          ],
-          "answer": "Å bruke observasjoner på stedet til å forstå større sammenhenger",
-          "answerIndex": 0,
-          "knowledge": "Bjølsenfossen gjør stedlesning tydelig fordi vannfall og historisk funksjon kan kobles direkte.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "stedlesning"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "emne_ids": [
-            "em_his_miljo_klima_energi_og_energiregimer"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_gj_r_stedl_c023437cb4",
-          "knowledge_unit_ids": [
-            "ku_historie_bj_lsenfossen_gj_r_stedl_c023437cb4"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "bjoelsenfossen_s6_q7",
-          "quiz_id": "historie_bjoelsenfossen_set_6_q7",
-          "categoryId": "historie",
-          "placeId": "bjoelsenfossen",
-          "targetId": "bjoelsenfossen",
-          "question_scope": "concept",
-          "question": "Hvilket begrepspar forklarer Bjølsenfossen best?",
-          "options": [
-            "Vannkraft og industriarv",
-            "Kongebolig og slagmark",
-            "Flyplass og høyfjell"
-          ],
-          "answer": "Vannkraft og industriarv",
-          "answerIndex": 0,
-          "knowledge": "Bjølsenfossen blir tydeligst når naturkraft leses sammen med industrihistoriske lag.",
-          "difficulty": 3,
-          "question_type": "concept_pair",
-          "question_layer": "concept",
-          "tags": [
-            "vannkraft",
-            "industriarv"
-          ],
-          "source": [
-            "History Go place data: bjoelsenfossen"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_his_miljo_klima_energi_og_energiregimer"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_blir_tydel_1f72a0be25",
-          "knowledge_unit_ids": [
-            "ku_historie_bj_lsenfossen_blir_tydel_1f72a0be25"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ]
         }
       ]
     }
-  ]
+  ],
+  "title": "Bjølsenfossen – industri og kildebruk",
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/bjoelsenfossen.json",
+    "context_artifact": "data/quiz/production_context/historie/bjoelsenfossen.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_byhistorie_stedsendring",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_industri_produksjon_energi",
+      "em_his_spor_materialitet",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_styring_krise_kontinuitet",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_sporlesning",
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "knut_kjeldstadli"
+    ],
+    "works": [
+      "Fortida er ikke hva den en gang var"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/historie/bjoelsenfossen_sets.json",
+        "data/quiz/manifest.json",
+        "reports/place-production/oslo-akerselva-sagene-grunerlokka-v1-20261116.md"
+      ],
+      "active_before": {
+        "set_count": 6,
+        "question_count": 42,
+        "linked_knowledge": 21,
+        "editorial_review_required": 21
+      },
+      "knowledge_migration": "5 retained; 37 preserved Knowledge-only; 23 newly numbered",
+      "legacy_id_knowledge_ledger": [
+        {
+          "ordinal": 1,
+          "legacy_id": "bjoelsenfossen_s1_q1",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_1_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_er_akersel_f02d302bf5",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_er_akersel_f02d302bf5"
+          ],
+          "current_question": "Hva gjør Bjølsenfossen til et særlig kraftpunkt i Akerselva?",
+          "current_answer": "Den er elvas høyeste foss, med to fall på til sammen over 16 meter",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "retain"
+        },
+        {
+          "ordinal": 2,
+          "legacy_id": "bjoelsenfossen_s1_q2",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_1_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_fossen_b_r_leses_gjennom_a54b568fc4",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_fossen_b_r_leses_gjennom_a54b568fc4"
+          ],
+          "current_question": "Hva bør spilleren se etter først ved Bjølsenfossen?",
+          "current_answer": "Fall, lyd, vannbevegelse og spor etter industrielt elverom",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 3,
+          "legacy_id": "bjoelsenfossen_s1_q3",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_1_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_ruta_trenger_k_c8dea10c7b",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_akerselva_ruta_trenger_k_c8dea10c7b"
+          ],
+          "current_question": "Hvorfor passer Bjølsenfossen i Akerselva-ruta?",
+          "current_answer": "Den viser et konkret punkt der naturkraft blir byhistorie",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 4,
+          "legacy_id": "bjoelsenfossen_s1_q4",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_1_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_og_bj_lsen_ed3e714378",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_og_bj_lsen_ed3e714378"
+          ],
+          "current_question": "Hvilke tre historiske funksjoner har vannpunktet hatt?",
+          "current_answer": "Sagbruk, byens vanninntak og møllekraft",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "retain"
+        },
+        {
+          "ordinal": 5,
+          "legacy_id": "bjoelsenfossen_s1_q5",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_1_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_lyd_og_vannbevegelse_gj__1de8f52103",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_lyd_og_vannbevegelse_gj__1de8f52103"
+          ],
+          "current_question": "Hva kan lyden fra fossen lære spilleren?",
+          "current_answer": "At vannkraft kan oppleves fysisk, ikke bare forstås som teori",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 6,
+          "legacy_id": "bjoelsenfossen_s1_q6",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_1_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_nydalsdammen_viser_regul_073f862462",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_nydalsdammen_viser_regul_073f862462",
+            "ku_historie_sammen_gir_de_vannets_ul_e5b71294fa"
+          ],
+          "current_question": "Hva binder Bjølsenfossen til Nydalsdammen?",
+          "current_answer": "Begge viser hvordan vannet formes og brukes, men på ulike måter",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 7,
+          "legacy_id": "bjoelsenfossen_s1_q7",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_1_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_sp_rsmalet_kobler_direkt_87b200f658",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_sp_rsmalet_kobler_direkt_87b200f658"
+          ],
+          "current_question": "Hva er et godt første observasjonsspørsmål her?",
+          "current_answer": "Hvordan gjør vannets fall dette stedet egnet for kraft og industri?",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 8,
+          "legacy_id": "bjoelsenfossen_s2_q1",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_2_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_firmaet_bj_lsen_valsem_l_e4604ba94e",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_firmaet_bj_lsen_valsem_l_e4604ba94e"
+          ],
+          "current_question": "Hvem etablerte Bjølsen Valsemølle i 1884?",
+          "current_answer": "Gustav Martinsen og Ole Amundsen",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "retain"
+        },
+        {
+          "ordinal": 9,
+          "legacy_id": "bjoelsenfossen_s2_q2",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_2_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_industrien_langs_elva_ha_e872de1f3f",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_industrien_langs_elva_ha_e872de1f3f"
+          ],
+          "current_question": "Hva kan fallhøyden i elva fortelle?",
+          "current_answer": "Hvorfor enkelte punkter ble mer attraktive for kraftutnyttelse",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 10,
+          "legacy_id": "bjoelsenfossen_s2_q3",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_2_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_fossen_og_valsem_llebrua_82decdee56",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_fossen_og_valsem_llebrua_82decdee56"
+          ],
+          "current_question": "Hva er riktig om tilgangen til selve fosseområdet?",
+          "current_answer": "Store deler ligger innenfor et aktivt industriområde, så porter og sperringer må respekteres",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "retain"
+        },
+        {
+          "ordinal": 11,
+          "legacy_id": "bjoelsenfossen_s2_q4",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_2_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_spilleren_kan_forsta_eld_36d3f8087c",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_spilleren_kan_forsta_eld_36d3f8087c"
+          ],
+          "current_question": "Hva kan dagens elverom fortelle om eldre bruk?",
+          "current_answer": "At synlige naturtrekk kan forklare hvorfor produksjon lå her",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 12,
+          "legacy_id": "bjoelsenfossen_s2_q5",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_2_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsen_anlegget_er_en_a_80345245ef",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsen_anlegget_er_en_a_80345245ef"
+          ],
+          "current_question": "Hva skiller Bjølsenfossen fra mange andre gamle industristeder langs Akerselva?",
+          "current_answer": "Mølle- og matproduksjonen fortsetter fortsatt på stedet",
+          "knowledge_link_status": "linked",
+          "disposition": "retain"
+        },
+        {
+          "ordinal": 13,
+          "legacy_id": "bjoelsenfossen_s2_q6",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_2_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_for_dette_stedet_er_vann_96b71f7f87",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_for_dette_stedet_er_vann_96b71f7f87"
+          ],
+          "current_question": "Hvorfor bør usikre personnavn holdes ute her?",
+          "current_answer": "Fordi stedets hovedlæring kan bygges på sikre fysiske og historiske trekk",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 14,
+          "legacy_id": "bjoelsenfossen_s2_q7",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_2_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_stedets_styrke_er_at_sto_f6adc72597",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_stedets_styrke_er_at_sto_f6adc72597"
+          ],
+          "current_question": "Hva gir Bjølsenfossen sin History Go-stemning?",
+          "current_answer": "Møtet mellom fosselyd, vannkraft, industri og arbeiderby",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 15,
+          "legacy_id": "bjoelsenfossen_s3_q1",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_3_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_gj_r_vannk_bfec8755b9",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_gj_r_vannk_bfec8755b9"
+          ],
+          "current_question": "Hva betyr vannkraft i byhistorie?",
+          "current_answer": "Energi fra vannets bevegelse som kan drive arbeid og produksjon",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 16,
+          "legacy_id": "bjoelsenfossen_s3_q2",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_3_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_er_et_industri_f82bc3b308",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_akerselva_er_et_industri_f82bc3b308"
+          ],
+          "current_question": "Hva er et industrilandskap?",
+          "current_answer": "Et område der arbeid, energi, bygninger og transport historisk henger sammen",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 17,
+          "legacy_id": "bjoelsenfossen_s3_q3",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_3_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_peker_mot__03f96cf833",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_peker_mot__03f96cf833"
+          ],
+          "current_question": "Hva betyr industriarv?",
+          "current_answer": "Spor og fortellinger etter tidligere industri, arbeid og produksjon",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 18,
+          "legacy_id": "bjoelsenfossen_s3_q4",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_3_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_fossefall_gjorde_enkelte_45517a1866",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_fossefall_gjorde_enkelte_45517a1866"
+          ],
+          "current_question": "Hva betyr lokal energi i før-elektrisk eller tidlig industriell sammenheng?",
+          "current_answer": "At produksjon ofte måtte ligge nær energikilden",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 19,
+          "legacy_id": "bjoelsenfossen_s3_q5",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_3_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_industrien_han_71f546c125",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_akerselva_industrien_han_71f546c125"
+          ],
+          "current_question": "Hva er arbeiderhistorie?",
+          "current_answer": "Historie om arbeid, levekår, produksjon og sosiale miljøer",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 20,
+          "legacy_id": "bjoelsenfossen_s3_q6",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_3_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_kan_leses__55499470f6",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_kan_leses__55499470f6"
+          ],
+          "current_question": "Hva betyr byomforming langs elva?",
+          "current_answer": "At tidligere produksjonsområder kan få nye funksjoner og ny bybruk",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 21,
+          "legacy_id": "bjoelsenfossen_s3_q7",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_3_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_trener_ste_2594a31389",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_trener_ste_2594a31389"
+          ],
+          "current_question": "Hva betyr stedlesning?",
+          "current_answer": "Å bruke observasjoner på stedet til å forstå større sammenhenger",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 22,
+          "legacy_id": "bjoelsenfossen_s4_q1",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_4_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_avansert_stedlesning_kob_abca2e73e7",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_avansert_stedlesning_kob_abca2e73e7"
+          ],
+          "current_question": "Hva er en avansert observasjon ved Bjølsenfossen?",
+          "current_answer": "Å se hvordan fall, lyd, elverom og industrilag virker sammen",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 23,
+          "legacy_id": "bjoelsenfossen_s4_q2",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_4_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_trygg_quizdata_b_r_bygge_1b9350c02b",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_trygg_quizdata_b_r_bygge_1b9350c02b"
+          ],
+          "current_question": "Hva bør holdes ute av en trygg quiz her foreløpig?",
+          "current_answer": "Presise tekniske detaljer, usikre fabrikkdata og personrelasjoner uten kilde",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 24,
+          "legacy_id": "bjoelsenfossen_s4_q3",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_4_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_fossen_gj_r_energi_konkr_c1a4fe77cf",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_fossen_gj_r_energi_konkr_c1a4fe77cf"
+          ],
+          "current_question": "Hvordan kan spilleren lese energi i landskapet?",
+          "current_answer": "Ved å se og høre hvor vannet faller og samler kraft",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 25,
+          "legacy_id": "bjoelsenfossen_s4_q4",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_4_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_ruten_blir_bedre_nar_uli_f5a78bd736",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_ruten_blir_bedre_nar_uli_f5a78bd736"
+          ],
+          "current_question": "Hva gjør Bjølsenfossen til et godt stopp etter Nydalsdammen?",
+          "current_answer": "Nydalsdammen viser regulert vann; Bjølsenfossen viser fall og kraft",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 26,
+          "legacy_id": "bjoelsenfossen_s4_q5",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_4_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_industrien_var_43c0162cb7",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_akerselva_industrien_var_43c0162cb7"
+          ],
+          "current_question": "Hva kan fossen fortelle om forholdet mellom natur og klassehistorie?",
+          "current_answer": "Naturkraft skapte produksjon, arbeidsplasser og sosiale miljøer",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 27,
+          "legacy_id": "bjoelsenfossen_s4_q6",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_4_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_byomforming_langs_akerse_c5ddeeff0c",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_byomforming_langs_akerse_c5ddeeff0c"
+          ],
+          "current_question": "Hva kan dagens roligere grøntdrag rundt et kraftpunkt vise?",
+          "current_answer": "At et sted kan skifte bruk uten å miste historiske lag",
+          "knowledge_link_status": "editorial_review_required",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 28,
+          "legacy_id": "bjoelsenfossen_s4_q7",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_4_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_quizzen_skal_gj_re_spill_52de3ffd23",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_quizzen_skal_gj_re_spill_52de3ffd23"
+          ],
+          "current_question": "Hva bør en god Bjølsenfossen-quiz trene spilleren i?",
+          "current_answer": "Å lese vannfall, kraft, industri og arbeid sammen",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 29,
+          "legacy_id": "bjoelsenfossen_s5_q1",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_5_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_viser_over_b7ed6d91be",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_viser_over_b7ed6d91be"
+          ],
+          "current_question": "Hva er den dypere læringen i Bjølsenfossen?",
+          "current_answer": "At naturens kraft kan bli byens produksjon, arbeid og sosiale historie",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 30,
+          "legacy_id": "bjoelsenfossen_s5_q2",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_5_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_fossefall_langs_akerselv_da0c56825c",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_fossefall_langs_akerselv_da0c56825c"
+          ],
+          "current_question": "Hvorfor er lokale kraftpunkter viktige i industrihistorien?",
+          "current_answer": "Fordi produksjon ofte måtte plasseres nær energien før moderne energinett",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 31,
+          "legacy_id": "bjoelsenfossen_s5_q3",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_5_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_sammen_viser_de_hvordan__1cfd79e03a",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_sammen_viser_de_hvordan__1cfd79e03a"
+          ],
+          "current_question": "Hva er forskjellen på Nydalsdammen og Bjølsenfossen som læringssteder?",
+          "current_answer": "Nydalsdammen viser regulert vann; Bjølsenfossen viser fallkraft",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 32,
+          "legacy_id": "bjoelsenfossen_s5_q4",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_5_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_steder_ma_ofte_19acb88b68",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_akerselva_steder_ma_ofte_19acb88b68"
+          ],
+          "current_question": "Hva kan være en konflikt i gamle industrilandskap som blir grøntdrag?",
+          "current_answer": "Balansen mellom bevaring, tilgjengelighet, naturhensyn og ny bruk",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 33,
+          "legacy_id": "bjoelsenfossen_s5_q5",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_5_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_foss_vannkraft_industri__ef6801ebcd",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_foss_vannkraft_industri__ef6801ebcd"
+          ],
+          "current_question": "Hva er viktig for trygg quizdata her?",
+          "current_answer": "Bruke observerbare trekk og sikre hovedlinjer, ikke usikre detaljpåstander",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 34,
+          "legacy_id": "bjoelsenfossen_s5_q6",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_5_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_gir_ruta_e_0a92a7d3f9",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_gir_ruta_e_0a92a7d3f9"
+          ],
+          "current_question": "Hvordan kan Akerselva fungere som læringsstruktur her?",
+          "current_answer": "Elva binder kraftpunkter, parker og industrilag til én sammenhengende rute",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 35,
+          "legacy_id": "bjoelsenfossen_s5_q7",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_5_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_stedet_gj_r_et_abstrakt__a27d36fb74",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_stedet_gj_r_et_abstrakt__a27d36fb74"
+          ],
+          "current_question": "Hva gjør Bjølsenfossen god for History Go-læring?",
+          "current_answer": "Den lar spilleren forstå vannkraft, industri og arbeid gjennom direkte observasjon",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 36,
+          "legacy_id": "bjoelsenfossen_s6_q1",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_6_q1",
+          "legacy_primary_knowledge_unit_id": "ku_historie_vannkraft_er_n_kkelbegre_41e9ee0a23",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_vannkraft_er_n_kkelbegre_41e9ee0a23"
+          ],
+          "current_question": "Hvilket begrep beskriver energi fra vannets bevegelse?",
+          "current_answer": "Vannkraft",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 37,
+          "legacy_id": "bjoelsenfossen_s6_q2",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_6_q2",
+          "legacy_primary_knowledge_unit_id": "ku_historie_akerselva_kan_leses_som__0ffb50394d",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_akerselva_kan_leses_som__0ffb50394d"
+          ],
+          "current_question": "Hva er et industrilandskap?",
+          "current_answer": "Et område der arbeid, energi, bygninger og transport historisk henger sammen",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 38,
+          "legacy_id": "bjoelsenfossen_s6_q3",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_6_q3",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_peker_mot__6beb524867",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_peker_mot__6beb524867"
+          ],
+          "current_question": "Hva betyr industriarv?",
+          "current_answer": "Spor og fortellinger etter tidligere industri, arbeid og produksjon",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 39,
+          "legacy_id": "bjoelsenfossen_s6_q4",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_6_q4",
+          "legacy_primary_knowledge_unit_id": "ku_historie_fossefall_langs_akerselv_984a76260b",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_fossefall_langs_akerselv_984a76260b"
+          ],
+          "current_question": "Hva betyr lokal energi i industrihistorie?",
+          "current_answer": "At produksjon ofte ble lagt der energikilden fantes",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 40,
+          "legacy_id": "bjoelsenfossen_s6_q5",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_6_q5",
+          "legacy_primary_knowledge_unit_id": "ku_historie_industrien_langs_akersel_e5b5059a37",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_industrien_langs_akersel_e5b5059a37"
+          ],
+          "current_question": "Hva er arbeiderhistorie?",
+          "current_answer": "Historie om arbeid, levekår, produksjon og sosiale miljøer",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 41,
+          "legacy_id": "bjoelsenfossen_s6_q6",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_6_q6",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_gj_r_stedl_c023437cb4",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_gj_r_stedl_c023437cb4"
+          ],
+          "current_question": "Hva betyr stedlesning?",
+          "current_answer": "Å bruke observasjoner på stedet til å forstå større sammenhenger",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        },
+        {
+          "ordinal": 42,
+          "legacy_id": "bjoelsenfossen_s6_q7",
+          "legacy_quiz_id": "historie_bjoelsenfossen_set_6_q7",
+          "legacy_primary_knowledge_unit_id": "ku_historie_bj_lsenfossen_blir_tydel_1f72a0be25",
+          "legacy_knowledge_unit_ids": [
+            "ku_historie_bj_lsenfossen_blir_tydel_1f72a0be25"
+          ],
+          "current_question": "Hvilket begrepspar forklarer Bjølsenfossen best?",
+          "current_answer": "Vannkraft og industriarv",
+          "knowledge_link_status": "linked",
+          "disposition": "archive_as_knowledge_only"
+        }
+      ],
+      "decisions": [
+        "Behold fem historiske spørsmål med opprinnelige quiz- og Knowledge-ID-er.",
+        "Bevar de 37 øvrige spørsmålene med opprinnelige ID-er i Knowledge-arkivet.",
+        "Gi de 23 nye spørsmålene nye quiz- og Knowledge-ID-er. Behold ett aktivt mål med fire sett à sju spørsmål."
+      ]
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "28 stedsspesifikke, kildebelagte spørsmål i fire ulike læringsspor uten repetitiv sekssettsfyll.",
+      "status": "active_in_PR_pending_release_QA",
+      "opening_policy": "first_2_sets_7_normal_questions_no_theory"
+    },
+    "held_back_candidates": [
+      "Ikke påstå fri adgang.",
+      "Foto er ikke vannføringsmåling.",
+      "Ikke påstå historisk turbin i drift."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "bridge",
+    "release_gate": "source_review_accepted_real_app_and_CI_pending"
+  },
+  "sources": {
+    "f": "https://oslobyleksikon.no/side/Bj%C3%B8lsenfallet",
+    "b": "https://oslobyleksikon.no/side/Valsem%C3%B8llebrua",
+    "m": "https://oslobyleksikon.no/side/Bj%C3%B8lsen_Valsem%C3%B8lle",
+    "s": "https://snl.no/Bj%C3%B8lsen_Valsem%C3%B8lle",
+    "a": "https://www.akerselvasvenner.no/2016/01/01/2396/",
+    "r": "https://www.regal.no/om-oss/moller-i-norge/",
+    "u": "https://commons.wikimedia.org/wiki/File:Valsem%C3%B8llebrua_over_Bj%C3%B8lsenfossen_-_Oslo_Museum_-_OMu.A15631.jpg",
+    "i": "https://oslobyleksikon.no/side/Fil:Valsem%C3%B8llebrua.jpg",
+    "k": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/bjolsenfossen-hvordan-gjore-omradet-rundt-fossen-tilgjengelig-forprosjekt-med-omregulering/"
+  }
 }

@@ -41,3 +41,8 @@ The canonical `data/brands/brands_by_place.json` and `data/brands/brands_master.
 ### Gate
 
 Run the scoped `node --test tests/myralokka-placecard-collections-v2.test.mjs` and relevant required CI only. The known missing nature-map place `trikk_17_18` is unrelated. Editorial review of 21 quiz questions is a separate quality issue, not misrepresented as complete by this PR.
+
+
+## Oppdatert status 16. november 2026
+
+Dette er en etterfølgende statusoppdatering; tallene fra 1. november ovenfor er historisk datagrunnlag, ikke dagens tall. Myraløkka har nå 42/42 aktive Knowledge-koblinger og 42 eksplisitt gjennomgåtte emnevalg, med kanonisk test i [Action #43910111477](https://github.com/Paradispartiet/History-Go/actions/runs/43910111477). To tidligere historiske Myragården-spørsmål er bevart i ikke-spillbar Knowledge-kilde med samme progresjons-ID-er. QuizCard beholder ti kildebelagte spørsmål. Fagverk er kuratert, og PlaceCard-/QuizCard-/nettlesertesten (mobil, iPad WebKit og desktop) bestod i [Action #43910110983](https://github.com/Paradispartiet/History-Go/actions/runs/43910110983). De to kildekontrollerte arkitektene Arne Eide og Christian Morgenstierne er nå sekundærkoblet gjennom boligrekken ved parken, mens deres hovedsted Folketeateret beholdes. **V1-status er fremdeles kandidat** til samlet PR-/publiseringskontroll er bestått.

@@ -1,0 +1,283 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "frysja_33_brekke_kraftstasjon",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv_oslo_kultureiendommer_batch_13/frysja_33_brekke_kraftstasjon.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Den bevarte kraftstasjonsbygningen til det tidligere Brekke Bruk ved Brekkefossen, nå aktivitetshuset Frysja 33.",
+    "anchorType": "production_site",
+    "placeObjectDistinction": "Den konkrete kraftstasjonen er ikke hele Brekke Bruk, resten av Frysja industriområde eller kommunens besøksadresse for omkringliggende bygninger.",
+    "temporalScope": {
+      "start": "1892",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Bygningen ble reist som kraftstasjon i 1892; i etterkrigstiden ble sagbruksvirksomheten avviklet og bygningen senere tatt i bruk til kulturformål."
+    },
+    "sourceIds": [
+      "source_frysja33_oslo_kommune",
+      "source_frysja33_nve",
+      "source_frysja33_historielag"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_felt_arbeid_verdiskaping",
+      "siteSpecificRationale": "Kraftstasjonen forsynte sagbruket med energi; sagbruksarbeid og senere ombruk til atelierer og aktivitetshus viser to forskjellige former for verdiskaping.",
+      "caseIds": [
+        "case_frysja33_sagbruk_og_ny_bruk"
+      ]
+    },
+    {
+      "emneId": "em_naering_geografi_infrastruktur",
+      "siteSpecificRationale": "Akerselvas vannkraft og tømmertransport, senere jernbanefrakt fra Kjelsås, viser hvordan produksjonssted og transport var tett knyttet sammen.",
+      "caseIds": [
+        "case_frysja33_sagbruk_og_ny_bruk"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_frysja33_oslo_kommune",
+      "url": "https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/frysja-33/",
+      "sourceLocation": "Frysja 33, historie og kommunal kultureiendom: Brekke Bruk, tømmertransport, kraft, om lag 90 ansatte på 1930-tallet og ny aktivitetshusbruk siden 1978.",
+      "sourceType": "official",
+      "verifiedAt": "2026-11-16",
+      "temporalCoverage": "current",
+      "provenance": "Oslo kommunes oppdaterte side for Frysja 33 som nåværende kultureiendom, med tilbakeblikk på sagbrukets virksomhet og bygningens gjenbruk.",
+      "limitations": "Kommunal stedsformidling oppgir sagbruksnedleggelse 1965; lokalhistorisk framstilling oppgir 1962. Fullstendige bedriftsregnskap og lønnsserier er ikke inkludert. Kilden klassifiseres som current for dens verifiserbare opplysninger om nåværende aktivitetshus, ikke som samtidskilde fra sagbrukstiden."
+    },
+    {
+      "id": "source_frysja33_nve",
+      "url": "https://publikasjoner.nve.no/rapport/2013/rapport2013_52.pdf",
+      "sourceLocation": "Kulturminner i norsk kraftproduksjon, omtalen av Brekke kraftstasjon på s. 71: byggeår 1892 og teknisk bygningsarkitektur.",
+      "sourceType": "technical_documentation",
+      "verifiedAt": "2026-11-16",
+      "temporalCoverage": "historical",
+      "provenance": "NVE-kulturminnerapport, faglig teknologihistorisk dokumentasjon av utvalgte norske kraftstasjoner.",
+      "limitations": "Dokumenterer kraftstasjonens bygg og tekniske karakter, ikke omsetning, antall ansatte i sagbruket eller dagens bruksavtaler."
+    },
+    {
+      "id": "source_frysja33_historielag",
+      "url": "https://gknhistorie.no/Tillegg/Brekke%20kraftstasjon.html",
+      "sourceLocation": "Brekke kraftstasjon, lokalhistorisk artikkel om nedleggelse, lagerbruk, kunstnere og keramikerne som overtok 1969.",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-11-16",
+      "temporalCoverage": "mixed",
+      "provenance": "Lokalhistorisk stedsgjennomgang som beskriver overgangen fra sagbrukets industrilokale til kulturbruk.",
+      "limitations": "Nedleggelsesår avviker fra Oslo kommunes 1965. Oppgir heller ikke regnskapsmessige eller målte miljøeffekter."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_frysja33_sagbruk_og_ny_bruk",
+      "claim": "Brekke kraftstasjon viser hvordan energi og transport var innsatsfaktorer i sagbruket, før en bevarte industribygning fikk ny bruk som kultur- og aktivitetshus.",
+      "unitOfAnalysis": {
+        "unit": "Kraftstasjonsbygningen ved Brekke Bruk",
+        "boundary": "Den bevarte kraftstasjonen ved Brekkefossen; tidligere sagbruk analyseres som virksomheten den forsynte med kraft, ikke som identisk med bygningen.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1892",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Bygningen ble reist som kraftstasjon i 1892; i etterkrigstiden ble sagbruksvirksomheten avviklet og bygningen senere tatt i bruk til kulturformål."
+        },
+        "sourceIds": [
+          "source_frysja33_oslo_kommune",
+          "source_frysja33_nve",
+          "source_frysja33_historielag"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Brekke Bruk – sagbrukseier og ledelse",
+          "roleOrInterest": "Organiserte sagbruksproduksjon, energiforsyning fra kraftstasjonen og salg og transport av trelast.",
+          "economicPosition": "Kontrollerte driften og investeringsbeslutningene i sagbrukets produksjonsanlegg.",
+          "sourceIds": [
+            "source_frysja33_oslo_kommune",
+            "source_frysja33_nve"
+          ]
+        },
+        {
+          "name": "Sagbruksarbeiderne ved Brekke Bruk",
+          "roleOrInterest": "Utførte arbeidet med tømmer og trelast. Oslo kommunes historikk oppgir omkring 90 ansatte på 1930-tallet.",
+          "economicPosition": "Arbeidet i produksjonen uten samme myndighet over eiendoms- og investeringsbeslutninger.",
+          "sourceIds": [
+            "source_frysja33_oslo_kommune"
+          ]
+        },
+        {
+          "name": "Kunstnere, keramikere og Frysja 33",
+          "roleOrInterest": "Tok det tidligere industribygget i bruk til keramikk og aktiviteter etter sagbruksperioden.",
+          "economicPosition": "Kulturbrukere som overtok og videreførte bygningens bruksverdi i en ny virksomhetsform.",
+          "sourceIds": [
+            "source_frysja33_oslo_kommune",
+            "source_frysja33_historielag"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Akerselvas vannkraft, tømmer levert ved Brekkefossen og sagbruksutstyr i produksjonsanlegget.",
+            "sourceIds": [
+              "source_frysja33_oslo_kommune",
+              "source_frysja33_nve"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Sagbruket bearbeidet tømmer til trelast, mens kraftstasjonen leverte energi til den industridrevne produksjonen.",
+          "sourceIds": [
+            "source_frysja33_oslo_kommune",
+            "source_frysja33_nve"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Ferdig trelast som kunne transporteres videre, etter Gjøvikbanens åpning også med jernbane fra Kjelsås.",
+            "sourceIds": [
+              "source_frysja33_oslo_kommune"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Bygningen dokumenterer et konkret kraftledd i trelastproduksjonen; senere verdi knyttes til kulturbruk og aktivitet, uten grunnlag for en direkte kroner-sammenligning.",
+          "sourceIds": [
+            "source_frysja33_oslo_kommune",
+            "source_frysja33_nve",
+            "source_frysja33_historielag"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "mixed",
+        "indicatorOrObservation": "Oslo kommunes omtrentlige ansattall på 1930-tallet: om lag 90 personer ved sagbruket.",
+        "unit": "ansatte (omtrentlig historisk antall)",
+        "period": "1930-tallet",
+        "comparability": "Oppgir størrelsesorden i én historisk periode; kan ikke sammenholdes direkte med antall brukere eller arbeidsplasser i aktivitetshuset.",
+        "dataLimitations": "Ingen sammenlignbare lønns-, produktivitets- eller årsregnskap er dokumentert. Antallet gjelder hele saga, ikke ansatte i selve kraftstasjonsbygningen.",
+        "sourceIds": [
+          "source_frysja33_oslo_kommune"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Sagbrukets eiere og ledelse kontrollerte investeringene, kraftbruken og produksjonen. Senere ble bygningen brukt til lager og kulturvirksomhet.",
+        "laborPosition": "Sagbruksarbeiderne utførte den løpende produksjonen, mens senere brukere og keramikere har annen virksomhet og annen arbeidsorganisering.",
+        "beneficiaries": [
+          "Sagbrukets eiere og kunder som mottok den produserte trelasten.",
+          "Lønnsarbeidere i saga og senere kulturbrukere av den bevarte bygningen."
+        ],
+        "costRiskBearers": [
+          "Sagbrukets eiere bar kapital- og etterspørselsrisiko i trelastproduksjonen.",
+          "Arbeidsstyrken kunne berøres ved nedleggelse; individuelle utfall er ikke dokumentert i disse kildene."
+        ],
+        "sourceIds": [
+          "source_frysja33_oslo_kommune",
+          "source_frysja33_nve",
+          "source_frysja33_historielag"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Sagbruket var avhengig av råstoff, kraft, transport og marked for trelast; kildene gir ingen isolert årsaksforklaring på den endelige nedleggelsen.",
+          "sourceIds": [
+            "source_frysja33_oslo_kommune",
+            "source_frysja33_historielag"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Tilgjengelige kilder gir ikke dokumenterte stedsspesifikke målinger som begrunner en kvantitativ miljø- eller helsevirkning av kraftstasjonen."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Kommunens sammenfattende virksomhetshistorie sammenholdes med NVEs tekniske dokumentasjon av kraftstasjonsbygningen og historielagets beskrivelse av ny bruk.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Vannkraft og transport var nødvendige ledd i dokumentert sagbruksdrift, men materialet dokumenterer ikke hvor mye en bestemt jernbane- eller kraftinvestering påvirket overskuddet.",
+        "alternativeExplanations": [
+          "Endrede markeder for trelast, teknologi, råstofftilgang eller eiendomsdisponering kan også ha vært relevante for virksomhetens omstilling."
+        ],
+        "uncertainty": "Sagbruksnedleggelsen dateres til både 1962 og 1965 i ulike kilder, og bygging av kraftstasjonen må ikke forveksles med etableringen av det eldre Brekke Bruk.",
+        "sourceIds": [
+          "source_frysja33_oslo_kommune",
+          "source_frysja33_nve",
+          "source_frysja33_historielag"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "mixed",
+    "statement": "Den tidligere kraftstasjonen brukes som Frysja 33, et kultur- og aktivitetshus, ikke som aktiv elektrisk kraftproduksjon for saga.",
+    "originalEconomicRoleRelationship": "Den opprinnelige rollen var kraftstasjon for trelastindustrien; dagens bruksverdi er knyttet til lokaler for samvær, aktiviteter og kultur.",
+    "checkedAt": "2026-11-16",
+    "sourceIds": [
+      "source_frysja33_oslo_kommune",
+      "source_frysja33_historielag"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "Det foreligger quizkandidater, men verken canonical fullquiz, QuizCard eller to-setts produksjon er integrert; gate G åpnes først ved faktisk quizleveranse."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Byggeår 1892 og ny kulturbruk fra 1969 er gjennomgått mot 4.2-claims; generert epokeindeks er foreløpig usynkronisert og Story-forløp er ikke aktivert."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity",
+        "sources"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Ingen fullquiz og QuizCard er levert i denne Næringsliv-produksjonspakken."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Ingen ny publisert kronologi eller Story; epokeindeksen krever fortsatt regenerering."
+    }
+  },
+  "review": {
+    "reviewer": "History Go – kildekontrollert Næringsliv-stedsgjennomgang",
+    "reviewedAt": "2026-11-16",
+    "notes": "Omfatter stedlig identitet, input/aktivitet/output, 1930-tallets omtrentlig ansatte, aktørmakt, alternative forklaringer, klarere skille mellom 1892-kraftstasjon og hele Brekke Bruk, og kildeavvik i nedleggelsesår. PASS A–F gjelder Næringslivs-dokumentasjon, ikke bilde, quiz, Knowledge eller V1."
+  }
+}

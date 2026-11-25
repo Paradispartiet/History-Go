@@ -98,9 +98,11 @@ try{
        const x=document.querySelector(sel);
        if(!x)return null;
        const st=getComputedStyle(x),rect=x.getBoundingClientRect();
+       const frame=x.parentElement?.getBoundingClientRect();
        return{source:x.getAttribute("src")||"",decoded:x.complete&&x.naturalWidth>0,
         naturalWidth:x.naturalWidth,naturalHeight:x.naturalHeight,fit:st.objectFit,
-        position:st.objectPosition,width:Math.round(rect.width),height:Math.round(rect.height)};
+        position:st.objectPosition,width:rect.width,height:rect.height,
+        frameWidth:frame?.width||0,frameHeight:frame?.height||0};
       };
       const title=document.querySelector("#pcTitle")?.getBoundingClientRect();
       const hero=document.querySelector("#pcHeaderHero")?.getBoundingClientRect();
@@ -141,6 +143,11 @@ try{
        problems.push(label+" has no valid authored focus point");
       else if(image?.position!==expected)
        problems.push(label+" ignores authored focus "+expected+" (actual: "+image?.position+")");
+      if(!image?.decoded||image.width<=0||image.height<=0||
+         image.frameWidth<=0||image.frameHeight<=0||
+         Math.abs(image.width-image.frameWidth)>1||
+         Math.abs(image.height-image.frameHeight)>1)
+       problems.push(label+" image does not fill its visible frame");
       // A full-bleed crop must not discard a majority of the source area.
       // This is a real geometry check, not an object-fit-only assertion.
       if(image?.decoded&&image?.height>0&&image?.width>0){
