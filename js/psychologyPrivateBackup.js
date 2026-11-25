@@ -261,7 +261,15 @@
       throw failure("archive_not_empty");
     }
     const data = await decryptBackup(fileText, password);
+    // Decryption is asynchronous. The user may have created a note or a map
+    // while it was running, possibly in another tab. Check again immediately
+    // before writing so an archive that became non-empty is not overwritten.
+    if (storage.getItem(NOTE_KEY) !== null || storage.getItem(MAP_KEY) !== null) {
+      throw failure("archive_not_empty");
+    }
     // Only write after authentication, integrity verification and schema validation.
+    // localStorage does not provide a cross-tab transaction; this check
+    // narrows the race window but does not promise atomic multi-tab writes.
     let wrote = false;
     try {
       storage.setItem(NOTE_KEY, JSON.stringify(data.workbench));
