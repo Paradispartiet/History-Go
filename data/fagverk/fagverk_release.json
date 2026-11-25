@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "732975f27451815618e9957ed63ce13f7d18a516196c1cfdc6d59e2128b7473f"
+    "content_sha256": "54ec31ce982404076c4091195cbfef11d79483e3b47be6f61535f6e9e7980953"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 558,
+    "package_file_count": 561,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1422,
+    "referenced_file_count": 1425,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2848,9 +2848,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 161,
+      "package_file_count": 164,
       "required_package_file_count": 4,
-      "optional_package_file_count": 157,
+      "optional_package_file_count": 160,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -3067,6 +3067,18 @@
           ],
           "exists": true,
           "content_sha256": "8901dc02eac9d11dfb8e571fadc1ae04e708bc0324f16840d5be52bac1c6abe4"
+        },
+        {
+          "path": "data/quiz/historie/beierbrua_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.beierbrua.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "6bc6007e7ccc7139be42c1cd3de20dad5033d9d47698606f4b8973f19c2b1026"
         },
         {
           "path": "data/quiz/historie/bjoelsenfossen_sets.json",
@@ -3645,6 +3657,18 @@
           "content_sha256": "7e4534501749efad8b0b33acd5ad43fc15ddce388234a841006c12a1de1fc8e9"
         },
         {
+          "path": "data/quiz/production_briefs/historie/beierbrua.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.beierbrua.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "d09d0b1dbe77d20348bfdcc625b25d6c6aa9b9a71331deb177567306f46eff8b"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/bjoelsenfossen.json",
           "required": false,
           "fields": [
@@ -4221,6 +4245,18 @@
           "content_sha256": "f23c5fad82f5c83bc12cffdda9ffa6a5e7266c89619f0f7bbc0d23e63fae1679"
         },
         {
+          "path": "data/quiz/production_context/historie/beierbrua.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.beierbrua.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "e008fc5fa6dad607144da94409512165d95b1a120a810dafc4411773e60b94e8"
+        },
+        {
           "path": "data/quiz/production_context/historie/bjoelsenfossen.json",
           "required": false,
           "fields": [
@@ -4785,20 +4821,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "f25661125ccc4391bdc3c1b64a91119ccd038147baf323f9c234c9f62cd7b47e",
+      "package_content_sha256": "9b272ed93b1c612a3b3ba26e173907cf70dca5688f2c6959f5e561b249c11b0b",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 253,
+      "referenced_file_count": 256,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "f01dc2cc1e2475a5122d8efa900d08e29f7d91c1e209e956dcf2801725a01d5f",
-      "content_sha256": "e3d4f131b55ef3d3360c6549fbd2cddce147cd4eba1c4ef91820cce915d43139",
+      "structure_sha256": "22498ff38f329d56f9c41f5b0e7794abf703ddfa58d53f3afb5fd5a121586bdf",
+      "content_sha256": "f86a4f39504e6646f3bde74aba72d6bfc05211327793ccd8548205bab62960d5",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -9417,5 +9453,5 @@
       ]
     }
   },
-  "release_sha256": "4782c0c495abda55ab142e480b9acda2bd743d029b1841e52c069a2c0d36cf2b"
+  "release_sha256": "6e625d6b95f8a50476923c56da48c00cf0ee329c935d3844a8bcddc3908bb2cf"
 }
