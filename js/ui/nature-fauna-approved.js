@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_honningbie:Object.freeze({
+   scientificName:"Apis mellifera",
+   src:"bilder/natur/fauna/godkjent/49_honningbie_v1.webp",
+   gitBlobSha:"b96980829e614f3c5f9a410ce7cf31c9e89df4ac",
+   reviewedAt:"2026-11-25",
+   stage:"worker_hairy_thorax_banded_abdomen_veined_wings_pollen_basket_on_white_clover",
+   evidence:"data/natur/fauna/illustration-quality-honningbie-20261125.json"
+  }),
   emne_fauna_ekorn:Object.freeze({
    scientificName:"Sciurus vulgaris",
    src:"bilder/natur/fauna/godkjent/48_ekorn_v1.webp",
