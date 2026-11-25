@@ -1,0 +1,32 @@
+name: Sagene festivitetshus quiz synchronization
+on:
+  push:
+    branches: [work/oslo-akerselva-v1-bolk-20261116]
+    paths: ['.github/workflows/sagene-festivitetshus-quiz-sync.yml']
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: npm run knowledge:canonical:write
+      - run: npm run knowledge:canonical:check
+      - run: node scripts/audit-quiz-manifest-v2.mjs
+      - run: node scripts/audit-quiz-production-context.mjs > /tmp/sagene-context.json
+      - run: node scripts/audit-quiz-progression.mjs > /tmp/sagene-progression.json
+      - run: node scripts/audit-quiz-theory-binding.mjs > /tmp/sagene-theory.json
+      - name: Save regenerated Knowledge data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/knowledge/knowledge_units.generated.json data/knowledge/knowledge_emne_review_queue.generated.json reports/knowledge-id-backfill.json data/quiz/historie/sagene_festivitetshus_sets.json
+          git rm '.github/workflows/sagene-festivitetshus-quiz-sync.yml'
+          git diff --cached --check
+          git commit -m 'Regenerate Knowledge for Sagene festivitetshus quiz'
+          git push origin "HEAD:refs/heads/${GITHUB_REF_NAME}"
