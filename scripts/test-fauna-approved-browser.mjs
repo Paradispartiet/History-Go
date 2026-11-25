@@ -1862,17 +1862,54 @@ try {
    await context.close();
   }
 
+  // Åkerhumle #51: ginger thorax and mixed abdominal hairs on a purple flower; black contain, modal and failed-WebP fallback.
+  for(const brokenCarderBee of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenCarderBee)await context.route("**/bilder/natur/fauna/godkjent/51_aakerhumle_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Åkerhumle");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Åkerhumle,/i}).first();
+   await card.waitFor();
+   if(brokenCarderBee){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Åkerhumle: no photo substitution on WebP load failure");
+   }else{
+    const bee=card.locator("img");
+    await bee.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await bee.getAttribute("src")).endsWith("51_aakerhumle_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await bee.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"aakerhumle-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   if(brokenCarderBee){
+    await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   }else{
+    const bee=page.locator("#natureDialog .ne-dialog-image");
+    await bee.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await bee.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Åkerhumle detail fits viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"aakerhumle-detail-"+width+".png")});
+   }
+   await context.close();
+  }
+
   // Unapproved fauna must retain a separate legacy SVG fallback.
   const context=await browser.newContext({viewport:{width,height:900}});
   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
-  await page.locator("#natureSearch").fill("Åkerhumle");
-  const unapproved=page.locator("#natureGrid").getByRole("button",{name:/^Åkerhumle,/i}).first();
+  await page.locator("#natureSearch").fill("Steinhumle");
+  const unapproved=page.locator("#natureGrid").getByRole("button",{name:/^Steinhumle,/i}).first();
   await unapproved.waitFor();
-  assert((await unapproved.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Unapproved Åkerhumle retains original SVG");
+  assert((await unapproved.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Unapproved Steinhumle retains original SVG");
   await context.close();
-  console.log("Finn Fauna 50 approved originals "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
+  console.log("Finn Fauna 51 approved originals "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
