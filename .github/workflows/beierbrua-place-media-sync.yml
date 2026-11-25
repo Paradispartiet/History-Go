@@ -1,0 +1,88 @@
+name: Beierbrua photo import
+on:
+  push:
+    branches: [work/oslo-akerselva-v1-bolk-20261116]
+    paths: ['.github/workflows/beierbrua-place-media-sync.yml']
+permissions:
+  contents: write
+jobs:
+  media:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Import credited originals and regenerate place data
+        run: |
+          curl --retry 3 -fsSL https://upload.wikimedia.org/wikipedia/commons/9/9e/Beierbrua_01.JPG -o /tmp/beier-01.jpg
+          curl --retry 3 -fsSL https://upload.wikimedia.org/wikipedia/commons/b/bc/Beierbrua_02.JPG -o /tmp/beier-02.jpg
+          python -m pip install Pillow
+          python <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          from PIL import Image
+          path = Path('data/places/natur/oslo/places_oslo_natur_akerselvarute/beierbrua.json')
+          place = json.loads(path.read_text())
+          entries = [
+              ('image','01','9/9e','landscape',(1600,1200),None,'5937e688ad29a10a2cb2da061c70b32bf37be11850e58bc8b6252b8673cfe1d0','Brua sett fra elvebredden med industribebyggelsen bak.'),
+              ('frontImage','02','b/bc','front',(768,1024),(728,0,1880,1536),'55647d8d5787a46e9fbf461f8e7097f8810f14dceac2f60d2fdd512f7ef57990','Gangdekket og rekkverket på Beierbrua.'),
+          ]
+          for field, number, origin, suffix, size, crop, sha, note in entries:
+              source = Path(f'/tmp/beier-{number}.jpg')
+              assert hashlib.sha256(source.read_bytes()).hexdigest() == sha
+              with Image.open(source) as original:
+                  assert original.size == (2048,1536)
+                  frame = original.crop(crop) if crop else original.copy()
+                  frame.thumbnail(size, Image.Resampling.LANCZOS)
+                  assert frame.size == size
+                  output = f'bilder/places/beierbrua_{suffix}.webp'
+                  frame.save(output, quality=85)
+              place[field] = output
+              place[field+'Meta'] = {
+                  'source':'wikimedia_commons', 'sourcePage':f'https://commons.wikimedia.org/wiki/File:Beierbrua_{number}.JPG',
+                  'originalUrl':f'https://upload.wikimedia.org/wikipedia/commons/{origin}/Beierbrua_{number}.JPG',
+                  'fileTitle':f'Beierbrua {number}.JPG', 'author':'Ole Anders Flatmo', 'credit':'Ole Anders Flatmo / Wikimedia Commons',
+                  'licenseShortName':'CC BY-SA 3.0', 'licenseUrl':'https://creativecommons.org/licenses/by-sa/3.0/',
+                  'originalWidth':2048, 'originalHeight':1536, 'outputWidth':size[0], 'outputHeight':size[1],
+                  'verifiedAt':'2026-11-25', 'scopeNote':note, 'orientation':'portrait' if crop else 'landscape',
+                  'transformation':'Beskåret til stående 3:4, nedskalert og konvertert til WebP.' if crop else 'Nedskalert og konvertert til WebP uten beskjæring.',
+                  'sourceSha256':sha
+              }
+          path.write_text(json.dumps(place,ensure_ascii=False,indent=2)+'\n')
+          PY
+          node scripts/check-distinct-place-photos.mjs --place data/places/natur/oslo/places_oslo_natur_akerselvarute/beierbrua.json --require-both
+          npm run places:index:build
+          npm run places:index:check
+          npm run place-open:build
+          npm run place-open:check
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/beier-image-audit.json
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const audit = JSON.parse(fs.readFileSync('/tmp/beier-image-audit.json'));
+          const file = 'data/places/place_image_backlog_summary.json';
+          const summary = JSON.parse(fs.readFileSync(file));
+          const {local,remote,optional,missing,invalid} = audit.summary;
+          if (summary.totalPlaces !== audit.totalPlaces || invalid) throw Error('Unexpected image audit totals');
+          Object.assign(summary, {
+            generatedAt:'2026-11-25', generatedFromCommit:'Bildeaudit med Beierbrua', note:'Bildeoversikten inkluderer Beierbrua.',
+            summary:{validLocal:local,validRemote:remote,optionalMissing:optional,missing,invalidLocalPath:invalid,remaining:missing+invalid},
+            byCategory:Object.fromEntries(Object.entries(audit.byCategory).map(([key,row])=>[key,{total:row.total,valid:row.local+row.remote,optional:row.optional,missing:row.missing,invalid:row.invalid}]))
+          });
+          fs.writeFileSync(file,JSON.stringify(summary,null,2)+'\n');
+          JS
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Save the verified photos and data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/beierbrua_{landscape,front}.webp data/places/natur/oslo/places_oslo_natur_akerselvarute/beierbrua.json data/places/{places_index,place_image_backlog_summary}.json data/runtime/place-open/beierbrua.json data/fagverk/fagverk_release.json
+          git rm '.github/workflows/beierbrua-place-media-sync.yml'
+          git diff --cached --check
+          git commit -m 'Add two verified photographs to Beierbrua PlaceCard'
+          git push origin "HEAD:refs/heads/${GITHUB_REF_NAME}"
