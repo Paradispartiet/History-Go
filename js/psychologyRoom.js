@@ -1047,7 +1047,7 @@
         </form>
         <section class="psychology-room-note-section" aria-labelledby="psychologyRoomAhaShareHeading">
           <h4 id="psychologyRoomAhaShareHeading">Kopier en selvvalgt innsikt</h4>
-          <p class="psychology-room-privacy">Ingen privat tekst sendes til AHA. En separat AHA-adresse er foreløpig ikke verifisert, så automatisk overføring er deaktivert. Du kan fortsatt kopiere din egen korte tekst eller lage en kryptert sikkerhetskopi fra Min oversikt.</p>
+          <p class="psychology-room-privacy">Ingen privat tekst sendes til AHA, og automatisk overføring er deaktivert, også når du er innlogget på AHA. Du kan fortsatt kopiere din egen korte tekst eller lage en kryptert sikkerhetskopi fra Min oversikt.</p>
           <form id="psychologyRoomAhaShareForm" class="psychology-room-form">
             <label class="psychology-room-textarea-label">
               <span>Min valgte tekst (ikke hele refleksjonsnotatet)</span>
@@ -2192,7 +2192,13 @@
       '<p class="psychology-room-privacy">Kryptering skjer på denne enheten. ' +
       'Passordet sendes ikke til AHA eller History GO. AHA-kontoen lagrer eller ' +
       'synkroniserer ikke denne filen automatisk. Mister du passordet, kan ikke filen åpnes. ' +
-      'Notatene som allerede ligger i nettleseren, er fortsatt ukrypterte.</p></section>';
+      'Notatene som allerede ligger i nettleseren, er fortsatt ukrypterte.</p>' +
+      '<div class="psychology-room-insight" id="psychologyAccountVaultPilot">' +
+      '<h4>Kryptert kontohvelv i AHA – begrenset pilot</h4>' +
+      '<p>Ordinær kontolagring er ikke åpnet. Bare godkjente pilotkontoer kan laste opp, og da kun syntetiske testfiler. Ikke bruk ekte private refleksjoner.</p>' +
+      '<p>Åpne AHA separat. Ingen fil, tekst eller passord følger med lenken. Du velger selv filen i AHA.</p>' +
+      '<a href="https://aha-echo-net.vercel.app/psykologi-vault.html" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Åpne kontohvelvets testpilot (ny fane)</a>' +
+      '</div></section>';
   }
 
   function bindPrivateBackup() {
