@@ -89,7 +89,78 @@ jobs:
               'potential_runtime_or_review_sample':[r for r in g['external_references'] if r['classification']=='potential_runtime_or_review'][:12]}
               for p,g in groups.items()},indent=2))
           PY
+      - name: Narrow report candidates by subgroup and literal consumers
+        run: |
+          python3 - <<'PY'
+          import json, re, subprocess
+          from pathlib import Path
+          from urllib.parse import unquote
+          from collections import defaultdict
+          files = [p for p in subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+                   if p and Path(p).is_file() and not Path(p).is_symlink()]
+          groups = {}
+          for p in files:
+              if not p.startswith('reports/') or p.startswith('reports/coordinate-branch-runner/'):
+                  continue
+              parts = p.split('/')
+              key = '/'.join(parts[:2]) + '/' if len(parts)>2 else p
+              row = groups.setdefault(key, {'files':0,'bytes':0,'references':[]})
+              row['files'] += 1
+              row['bytes'] += Path(p).stat().st_size
+          suffixes = {'.html','.htm','.js','.mjs','.cjs','.css','.json','.webmanifest',
+                      '.xml','.md','.svg','.ts','.tsx','.jsx','.txt','.yaml','.yml','.map','.py'}
+          # Match literal first path segment, including URL-encoded or escaped slashes.
+          pattern = re.compile(r'(?<![\w.-])reports/([^/\s\x22\x27\x60?#<>\\]+)(/?)')
+          generic = []
+          for p in files:
+              if p == '.github/workflows/pages-reference-inventory.yml' or Path(p).suffix.lower() not in suffixes:
+                  continue
+              raw = unquote(Path(p).read_text(encoding='utf-8',errors='replace')).replace('\\/','/')
+              seen = set()
+              for m in pattern.finditer(raw):
+                  token = m.group(1)
+                  keys = ['reports/'+token+'/', 'reports/'+token]
+                  hit = next((key for key in keys if key in groups), None)
+                  if hit is None:
+                      if not p.startswith(('reports/','scripts/','tools/','tests/','.github/')):
+                          seen.add(None)
+                      continue
+                  if p == hit or (hit.endswith('/') and p.startswith(hit)):
+                      continue
+                  seen.add(hit)
+              if 'reports/' in raw and not any(pattern.finditer(raw)):
+                  seen.add(None)
+              if None in seen:
+                  generic.append(p)
+              kind = ('development' if p.startswith(('scripts/','tools/','tests/','.github/'))
+                      else 'report_or_documentation' if p.startswith(('reports/','docs/','README/')) or p.endswith('.md')
+                      else 'potential_runtime_or_review')
+              for hit in seen-{None}:
+                  groups[hit]['references'].append({'path':p,'classification':kind})
+          for row in groups.values():
+              row['potential_runtime_or_review_count'] = sum(r['classification']=='potential_runtime_or_review' for r in row['references'])
+          ranked = sorted(groups.items(),key=lambda x:-x[1]['bytes'])
+          shortlist = [(key,row) for key,row in ranked if not row['potential_runtime_or_review_count']]
+          result = {'source_commit':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),
+                    'scope':'source-only; no automatic exclusions; dynamic/relative references still require review',
+                    'unresolved_generic_reference_files': sorted(set(generic)),
+                    'groups':groups,
+                    'shortlist_source_bytes':sum(row['bytes'] for _,row in shortlist)}
+          Path('pages-report-subgroups.json').write_text(json.dumps(result,indent=2))
+          def summarize(rows):
+              return [{'path':key,'files':row['files'],'bytes':row['bytes'],
+                       'potential_runtime_or_review_count':row['potential_runtime_or_review_count'],
+                       'reference_count':len(row['references']),
+                       'runtime_sample':[r['path'] for r in row['references'] if r['classification']=='potential_runtime_or_review'][:5]}
+                      for key,row in rows[:20]]
+          print(json.dumps({'groups':len(groups),'shortlist_count':len(shortlist),
+             'shortlist_source_bytes':result['shortlist_source_bytes'],
+             'unresolved_generic_reference_files_count':len(set(generic)),
+             'largest_groups':summarize(ranked),'largest_shortlist_groups':summarize(shortlist)},indent=2))
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: pages-reference-inventory
-          path: pages-reference-inventory.json
+          path: |
+            pages-reference-inventory.json
+            pages-report-subgroups.json
