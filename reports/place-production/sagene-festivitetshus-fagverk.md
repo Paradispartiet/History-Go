@@ -31,4 +31,20 @@ Oskar Braaten brukte navnet «Afrika» i sine skildringer av Sagene-miljøet. Os
 
 Kommunen oppgir 1908 for salget til Indremisjonen og 1917 for etableringen av kirkefunksjonen. Korpsets historikk bruker også 1907 og 1916. Opplysningene kan vise til forskjellige hendelser, som kjøp, utleie og faktisk bruk, men kildene gir ikke nok til å fordele dem sikkert. Bruk funksjonsrekkefølgen i quizutkastet og hold de omstridte årstallene utenfor fasiten inntil en primærkilde er kontrollert.
 
-Status er redaksjonelt utkast. Stedsdata, appkobling, bilder og quiz må ferdigstilles i arbeidsgrenen.
+Fagverk, hovedbilde og frontbilde er koblet til appdataene på utkastgrenen. Quiz og nettlesertest gjenstår.
+
+## Quizutkast – sett 1
+
+Sju spørsmål om bygningen og skiftene i bruk. K = Oslo kommune, B = Oslo byleksikon, J = Sagene janitsjarkorps. Lenker står i artikkelen over.
+
+| Spørsmål | Alternativer A / B / C | Fasit | Forklaring |
+|---|---|---|---|
+| Hvilken del av anlegget i Holsts gate 1–3 rommet festivitetshuset? | Forbygningen i nummer 1 / Bakbygningen i nummer 3 / Leiegården i nummer 2 | B | Nummer 3 er bakbygningen der forsamlings- og teaterlokalet lå. (B) |
+| Hvilken virksomhet leide forsamlingslokalet før indremisjonen overtok? | Sagene lærerskole / Ungdommens Mediesenter / Nordre Teater | C | Nordre Teater leide lokalet fra 1898. (K) |
+| Hvilket navn fikk huset da Indremisjonen tok det i bruk som forsamlingslokale? | Emmaus / Lilleborg / Nordre Folketeater | A | Emmaus var navnet på Indremisjonens lokale i huset. (K, B) |
+| Hva ble satt inn på galleriet da huset fikk kirkefunksjon? | Billettluke / Orgel / Lyskastere | B | Orgelet viser hvordan det eksisterende forsamlingsrommet ble tilpasset gudstjenester. (K) |
+| Hvilken menighet brukte huset som kirke fram til 1966? | Sagene menighet / Paulus menighet / Lilleborg menighet | C | Lilleborg menighet brukte kirkerommet fram til kirkefunksjonen flyttet. (K, B) |
+| Hva ble huset brukt til igjen etter at kirkefunksjonen flyttet? | Forsamlingslokale / Fast kinosal / Kommunalt arkiv | A | Huset fikk igjen en forsamlingsfunksjon. Kommunen oppgir at Torshovkorpset og Sagene Janitsjar bruker det i dag. (K) |
+| Hvilken forfatter knyttes til navnet «Afrika» i litterære skildringer av Sagene? | Johan Falkberget / Oskar Braaten / Kristofer Uppdal | B | Kildene knytter navnet til Braatens skildringer, selv om de forklarer navnets opphav ulikt. (K, J) |
+
+Den aktive quizmanifesten har ingen oppføring for `sagene_festivitetshus` på `f5953821`. Spørsmålene er redaksjonelt utkast før innlegging og testing i appen.
