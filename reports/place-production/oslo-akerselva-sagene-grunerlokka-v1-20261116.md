@@ -773,3 +773,7 @@ Alle fire sett er skrevet. De to siste settene tester konkrete historiske opplys
 Historie-fullquizen har fire sett à sju spørsmål, og QuizCard henter ti av dem. Sju tidligere spørsmål viderefører opprinnelige ID-er, og 35 ligger i Knowledge-arkivet. [Knowledge-kontrollen](https://github.com/Paradispartiet/History-Go/actions/runs/45568051483) og [nettleserløpet for Beierbrua](https://github.com/Paradispartiet/History-Go/actions/runs/45585168447) bestod. Nettleserløpet åpnet QuizCard og spilte ett helt sett i mobil Chromium, iPad-format WebKit og desktop Chromium.
 
 Den samordnede bildeoversikten og stedsindeksen bestod i [kjøringen for samordning med main](https://github.com/Paradispartiet/History-Go/actions/runs/45586383191). Den samlede PR-en står som utkast.
+
+### Kontroller etter ny samordning med main (25.11.2026)
+
+Alle 55 GitHub-kjøringer bestod på `10b58ae6`. Etter at `main` flyttet seg ble den genererte bildeoversikten samordnet på nytt. [Bildeoversikten, stedsindeksen og Fagverk-manifestet](https://github.com/Paradispartiet/History-Go/actions/runs/45597983757) bestod etter samordningen. Arbeidsgrenen er fortsatt et utkast.
