@@ -1,0 +1,62 @@
+name: R2 media pilot
+on:
+  pull_request:
+    paths:
+      - 'scripts/r2-media-pilot.py'
+      - '.github/workflows/r2-media-pilot.yml'
+  workflow_dispatch:
+    inputs:
+      upload:
+        description: 'Upload and verify the approved Music badge pilot (main only)'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: r2-media-pilot-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inventory active Music badges without external writes
+        run: |
+          python3 scripts/r2-media-pilot.py --report "$RUNNER_TEMP/r2-media-inventory.json"
+          python3 - "$RUNNER_TEMP/r2-media-inventory.json" <<'PY'
+          import json, sys
+          from pathlib import Path
+          report = json.loads(Path(sys.argv[1]).read_text())
+          assert report["mode"] == "inventory"
+          assert len(report["images"]) == 10
+          assert report["total_bytes"] > 0
+          assert all(len(x["sha256"]) == 64 and x["sha256"] in x["key"] and x["bytes"] > 0 for x in report["images"])
+          assert all("verified_url" not in x for x in report["images"])
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r2-media-inventory
+          path: ${{ runner.temp }}/r2-media-inventory.json
+  mirror:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.upload
+    needs: inventory
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: r2-media
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mirror exact bytes and verify public copies
+        env:
+          R2_ENDPOINT: ${{ vars.R2_ENDPOINT }}
+          R2_BUCKET: ${{ vars.R2_BUCKET }}
+          R2_PUBLIC_BASE: ${{ vars.R2_PUBLIC_BASE }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_EC2_METADATA_DISABLED: 'true'
+        run: python3 scripts/r2-media-pilot.py --upload --report "$RUNNER_TEMP/r2-media-verified.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r2-media-verified
+          path: ${{ runner.temp }}/r2-media-verified.json
