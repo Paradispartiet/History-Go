@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_dvergspett:Object.freeze({
+   scientificName:"Dryobates minor",
+   src:"bilder/natur/fauna/godkjent/43_dvergspett_v1.webp",
+   gitBlobSha:"6aa86d927215a864ce0d32ddbec31337b48f8062",
+   reviewedAt:"2026-11-25",
+   stage:"adult_male_red_crown_black_white_barred_wings_streaked_pale_underparts_no_red_vent_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-dvergspett-20261125.json"
+  }),
   emne_fauna_hvitryggspett:Object.freeze({
    scientificName:"Dendrocopos leucotos",
    src:"bilder/natur/fauna/godkjent/42_hvitryggspett_v1.webp",
