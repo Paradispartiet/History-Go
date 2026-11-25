@@ -777,3 +777,7 @@ Den samordnede bildeoversikten og stedsindeksen bestod i [kjøringen for samordn
 ### Kontroller etter ny samordning med main (25.11.2026)
 
 Alle 55 GitHub-kjøringer bestod på `10b58ae6`. Etter at `main` flyttet seg ble den genererte bildeoversikten samordnet på nytt. [Bildeoversikten, stedsindeksen og Fagverk-manifestet](https://github.com/Paradispartiet/History-Go/actions/runs/45597983757) bestod etter samordningen. Arbeidsgrenen er fortsatt et utkast.
+
+### CI og bildeoversikt etter siste samordning (25.11.2026)
+
+Alle 55 kjøringer bestod på `d3438835`. Etter nye stedsbilder på `main` ble den genererte bildeoversikten samordnet. [Bildeoversikten, stedsindeksen og Fagverk-manifestet](https://github.com/Paradispartiet/History-Go/actions/runs/45624441456) bestod på den samordnede grenen. GitHub merket den brede CI-runden fra samordningscommitten `action_required`, og API-et avviste omkjøring av datakontrollen.
