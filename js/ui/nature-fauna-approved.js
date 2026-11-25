@@ -2,6 +2,46 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_gulsanger:Object.freeze({
+   scientificName:"Hippolais icterina",
+   src:"bilder/natur/fauna/godkjent/39_gulsanger_v1.webp",
+   gitBlobSha:"e78100653356fdcfd3f6a5dbcef5ac094ec0b31c",
+   reviewedAt:"2026-11-25",
+   stage:"adult_olive_green_back_lemon_yellow_underparts_pale_supercilium_pale_wing_panel_grey_legs_on_leafy_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-gulsanger-20261125.json"
+  }),
+  emne_fauna_svarthvit_fluesnapper:Object.freeze({
+   scientificName:"Ficedula hypoleuca",
+   src:"bilder/natur/fauna/godkjent/38_svarthvit_fluesnapper_v1.webp",
+   gitBlobSha:"90b25e78ef79b3e9e7f8a04624fb4122c2ede371",
+   reviewedAt:"2026-11-25",
+   stage:"adult_male_black_white_breeding_small_white_forehead_spot_large_white_wing_patch_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-svarthvit-fluesnapper-20261125.json"
+  }),
+  emne_fauna_lovsanger:Object.freeze({
+   scientificName:"Phylloscopus trochilus",
+   src:"bilder/natur/fauna/godkjent/37_lovsanger_v1.webp",
+   gitBlobSha:"a8cfb708899e9cb77476c378a6395c38d0c1c0ed",
+   reviewedAt:"2026-11-25",
+   stage:"adult_olive_brown_cream_yellow_supercilium_long_wings_pale_legs_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-lovsanger-20261125.json"
+  }),
+  emne_fauna_sjoorre:Object.freeze({
+   scientificName:"Melanitta fusca",
+   src:"bilder/natur/fauna/godkjent/36_sjoorre_v1.webp",
+   gitBlobSha:"e88b63fdaf4d9635982597568cd424f314fe607d",
+   reviewedAt:"2026-11-25",
+   stage:"adult_male_velvet_black_plumage_pale_eye_white_crescent_yellow_orange_black_bill_white_speculum_floating",
+   evidence:"data/natur/fauna/illustration-quality-sjoorre-20261125.json"
+  }),
+  emne_fauna_kvinand:Object.freeze({
+   scientificName:"Bucephala clangula",
+   src:"bilder/natur/fauna/godkjent/35_kvinand_v1.webp",
+   gitBlobSha:"d043e1ee98cdfd91dd686b89be0dd5ca8037f6f1",
+   reviewedAt:"2026-11-24",
+   stage:"adult_male_iridescent_green_black_head_yellow_eye_white_cheek_spot_black_white_wings_floating",
+   evidence:"data/natur/fauna/illustration-quality-kvinand-20261124.json"
+  }),
   emne_fauna_tjeld:Object.freeze({
    scientificName:"Haematopus ostralegus",
    src:"bilder/natur/fauna/godkjent/34_tjeld_v1.webp",
