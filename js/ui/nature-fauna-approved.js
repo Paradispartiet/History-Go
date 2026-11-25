@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_kattugle:Object.freeze({
+   scientificName:"Strix aluco",
+   src:"bilder/natur/fauna/godkjent/44_kattugle_v1.webp",
+   gitBlobSha:"c2b0f8cc47cb87ab19920a5ddfee167f16f68024",
+   reviewedAt:"2026-11-25",
+   stage:"adult_rufous_brown_round_head_no_ear_tufts_dark_eyes_facial_disc_streaked_underparts_perched",
+   evidence:"data/natur/fauna/illustration-quality-kattugle-20261125.json"
+  }),
   emne_fauna_dvergspett:Object.freeze({
    scientificName:"Dryobates minor",
    src:"bilder/natur/fauna/godkjent/43_dvergspett_v1.webp",
