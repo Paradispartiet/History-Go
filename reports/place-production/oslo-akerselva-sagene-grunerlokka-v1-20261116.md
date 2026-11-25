@@ -678,3 +678,64 @@ Beierbrua er neste sted i denne produksjonsrunden. Stedsdata ligger under Akerse
 | Hvem laget «Skulder ved skulder» ved brua? | Ellen Jacobsen / Arne Durban / Asbjørg Borgfelt | A | Jacobsen laget skulpturgruppen til minne om fabrikkjentene. Durban laget Braaten-bysten. (S) |
 
 Første sett er et redaksjonelt utkast. Gjenstående arbeid omfatter ID-kartlegging, flere sett og deretter Fagverk, spillbar quiz og QuizCard med målrettet verifisering.
+
+### Beierbrua – sett 2 og ID-kartlegging (25.11.2026)
+
+Sett 2 handler om hva brua viser om ferdsel, industri og elverom. B og L viser til Oslo byleksikon og Lokalhistoriewiki i kildelisten over. Spørsmål om observasjon tar utgangspunkt i synlige trekk og rutens funksjon.
+
+| Spørsmål | Alternativer A / B / C | Fasit | Forklaring |
+|---|---|---|---|
+| Hvorfor var Beierbrua viktig for tekstilindustrien rundt Nedre Vøyenfallene? | Den knyttet arbeidsplasser og boliger sammen på tvers av elva / Den førte vann inn i fabrikkene / Den fungerte som lagerplass for ferdige tekstiler | A | Kryssingen gjorde det mulig å gå mellom arbeiderstrøk og fabrikker. (B, L) |
+| Hvilken detalj viser tydeligst hvor gående ledes over elva? | Elvas bredde / Brudekket og rekkverket / Vannets hastighet | B | Bruas dekke og rekkverk avgrenser selve passasjen. |
+| Hva kan du observere direkte mens du står på Beierbrua? | Hvor mange som arbeidet på Hjula / Hvor lenge fabrikkarbeiderne gikk til jobb / Hvordan vannet beveger seg under brua | C | Utsynet gir direkte observasjon av vannet. Historiske arbeidsforhold krever andre kilder. |
+| Hvilken sammenheng gjør området ved Beierbrua til et industrilandskap? | Elveløpet, de tidligere fabrikkene og forbindelsen mellom arbeid og bolig / Elveløpet og moderne turstier alene / Brudekket og skulpturen alene | A | Nedre Vøyenfallene, fabrikkene ved Sagveien og brua viser hvordan vann, arbeid og ferdsel preget samme område. (L) |
+| Hvordan kan Akerselva være både barriere og korridor ved Beierbrua? | Fossen fører gående på tvers mens brua leder vannet langs elva / Elva skiller breddene, mens ruta langs elva binder steder sammen / Elva binder bare steder på vestsiden sammen | B | Brua gir en kryssing mellom breddene, mens ruta følger elveløpet mellom flere steder. |
+| Hvilket begrep beskriver Beierbrua når vi ser på hvordan den knytter gater sammen? | Industriproduksjon / Elveregulering / Infrastruktur | C | Som infrastruktur gir brua en fysisk forbindelse mellom Sagveien og Sandakerveien. (B, L) |
+| Hva viser en sammenligning av Beierbrua og Kuba-parken om Akerselva-ruta? | Ruta omfatter både kryssingssteder og steder der folk kan oppholde seg / Begge steder ble bygd for varetransport over elva / Begge steder har samme funksjon i ferdselsnettet | A | Brua gir ferdsel på tvers. Parken gir rom for opphold langs elva. |
+
+Alle 42 eksisterende spørsmåls-, quiz- og Knowledge-ID-er er kartlagt. Syv eksisterende spørsmål har en kandidat i sett 2 med samme faglige påstand. Første sett inneholder sju nye stedshistoriske spørsmål og skal få nye ID-er. De 35 øvrige er arkivkandidater. Vurder dem på nytt mot de siste settene før migrering. Behold de opprinnelige Knowledge-tekstene og ID-ene for spørsmål som videreføres, og bevar utgåtte spørsmål med opprinnelige ID-er i Knowledge-arkivet.
+
+| Spørsmåls-ID | Quiz-ID | Primær Knowledge-ID | Foreløpig behandling |
+|---|---|---|---|
+| `beierbrua_s1_q1` | `historie_beierbrua_set_1_q1` | `ku_historie_beierbrua_er_et_lesepunk_36fe3cf133` | Arkivkandidat |
+| `beierbrua_s1_q2` | `historie_beierbrua_set_1_q2` | `ku_historie_en_bro_er_bade_infrastru_b4d00f6c13` | Arkivkandidat |
+| `beierbrua_s1_q3` | `historie_beierbrua_set_1_q3` | `ku_historie_akerselva_ruta_handler_i_9d84fde5f0` | Arkivkandidat |
+| `beierbrua_s1_q4` | `historie_beierbrua_set_1_q4` | `ku_historie_beierbrua_er_sterk_fordi_271dba8792` | Arkivkandidat |
+| `beierbrua_s1_q5` | `historie_beierbrua_set_1_q5` | `ku_historie_broer_er_konkrete_spor_e_464e1d2712` | Arkivkandidat |
+| `beierbrua_s1_q6` | `historie_beierbrua_set_1_q6` | `ku_historie_etter_vulkan_og_kuba_par_6af001788f` | Arkivkandidat |
+| `beierbrua_s1_q7` | `historie_beierbrua_set_1_q7` | `ku_historie_en_god_stedsquiz_starter_16148e74c7` | Arkivkandidat |
+| `beierbrua_s2_q1` | `historie_beierbrua_set_2_q1` | `ku_historie_brosteder_er_ofte_sma_m__420807b735` | Arkivkandidat |
+| `beierbrua_s2_q2` | `historie_beierbrua_set_2_q2` | `ku_historie_fysiske_detaljer_gj_r_in_a9544c922c` | Behold kandidat til 2.2 |
+| `beierbrua_s2_q3` | `historie_beierbrua_set_2_q3` | `ku_historie_langs_en_industrielv_er__fd4a8529b3` | Behold kandidat til 2.1 |
+| `beierbrua_s2_q4` | `historie_beierbrua_set_2_q4` | `ku_historie_nar_kildene_ikke_er_sjek_76de70633d` | Arkivkandidat |
+| `beierbrua_s2_q5` | `historie_beierbrua_set_2_q5` | `ku_historie_tilgjengelighet_handler__883fc4c451` | Arkivkandidat |
+| `beierbrua_s2_q6` | `historie_beierbrua_set_2_q6` | `ku_historie_pa_en_bro_kan_spilleren__60fe60190f` | Behold kandidat til 2.3 |
+| `beierbrua_s2_q7` | `historie_beierbrua_set_2_q7` | `ku_historie_beierbrua_er_et_lite_men_4b875772f9` | Arkivkandidat |
+| `beierbrua_s3_q1` | `historie_beierbrua_set_3_q1` | `ku_historie_i_byhistorie_er_broer_vi_d965bf6412` | Arkivkandidat |
+| `beierbrua_s3_q2` | `historie_beierbrua_set_3_q2` | `ku_historie_akerselva_korridoren_bli_bb7df590f0` | Arkivkandidat |
+| `beierbrua_s3_q3` | `historie_beierbrua_set_3_q3` | `ku_historie_beierbrua_viser_tilgjeng_9998d8610e` | Arkivkandidat |
+| `beierbrua_s3_q4` | `historie_beierbrua_set_3_q4` | `ku_historie_broer_er_en_enkel_og_tyd_aee4e3d373` | Arkivkandidat |
+| `beierbrua_s3_q5` | `historie_beierbrua_set_3_q5` | `ku_historie_et_brosted_kan_v_re_offe_0d7a4e14b1` | Arkivkandidat |
+| `beierbrua_s3_q6` | `historie_beierbrua_set_3_q6` | `ku_historie_akerselva_kan_leses_som__0219e07308` | Behold kandidat til 2.4 |
+| `beierbrua_s3_q7` | `historie_beierbrua_set_3_q7` | `ku_historie_beierbrua_trener_stedles_6855d13ac3` | Arkivkandidat |
+| `beierbrua_s4_q1` | `historie_beierbrua_set_4_q1` | `ku_historie_avansert_stedlesning_han_8f8ecbec59` | Arkivkandidat |
+| `beierbrua_s4_q2` | `historie_beierbrua_set_4_q2` | `ku_historie_uten_kilde_b_r_quizzen_i_7bb88f8007` | Arkivkandidat |
+| `beierbrua_s4_q3` | `historie_beierbrua_set_4_q3` | `ku_historie_broen_er_et_godt_utsikts_94dc8ae1b0` | Arkivkandidat |
+| `beierbrua_s4_q4` | `historie_beierbrua_set_4_q4` | `ku_historie_ruten_kan_bevege_seg_fra_44855bfd0e` | Arkivkandidat |
+| `beierbrua_s4_q5` | `historie_beierbrua_set_4_q5` | `ku_historie_infrastruktur_viser_valg_4cc8b7b94e` | Arkivkandidat |
+| `beierbrua_s4_q6` | `historie_beierbrua_set_4_q6` | `ku_historie_elver_kan_dele_byen_men__74e6909be8` | Arkivkandidat |
+| `beierbrua_s4_q7` | `historie_beierbrua_set_4_q7` | `ku_historie_stedsbasert_quiz_skal_gj_d67e18502c` | Arkivkandidat |
+| `beierbrua_s5_q1` | `historie_beierbrua_set_5_q1` | `ku_historie_beierbrua_viser_hvordan__1b46a82921` | Arkivkandidat |
+| `beierbrua_s5_q2` | `historie_beierbrua_set_5_q2` | `ku_historie_i_et_arbeids_og_industri_d498d55384` | Arkivkandidat |
+| `beierbrua_s5_q3` | `historie_beierbrua_set_5_q3` | `ku_historie_beierbrua_gj_r_denne_dob_06bf1e0e9a` | Behold kandidat til 2.5 |
+| `beierbrua_s5_q4` | `historie_beierbrua_set_5_q4` | `ku_historie_byens_forbindelser_viser_8a994c4b72` | Arkivkandidat |
+| `beierbrua_s5_q5` | `historie_beierbrua_set_5_q5` | `ku_historie_noen_steder_l_rer_best_g_3ec10fdc33` | Arkivkandidat |
+| `beierbrua_s5_q6` | `historie_beierbrua_set_5_q6` | `ku_historie_kuba_parken_og_beierbrua_37dd55779e` | Behold kandidat til 2.7 |
+| `beierbrua_s5_q7` | `historie_beierbrua_set_5_q7` | `ku_historie_trygg_quizdata_bygger_pa_81d985e038` | Arkivkandidat |
+| `beierbrua_s6_q1` | `historie_beierbrua_set_6_q1` | `ku_historie_broer_er_infrastruktur_f_dd7b2edc49` | Behold kandidat til 2.6 |
+| `beierbrua_s6_q2` | `historie_beierbrua_set_6_q2` | `ku_historie_akerselva_fungerer_som_k_0106f9787f` | Arkivkandidat |
+| `beierbrua_s6_q3` | `historie_beierbrua_set_6_q3` | `ku_historie_beierbrua_gj_r_tilgjenge_df1463e133` | Arkivkandidat |
+| `beierbrua_s6_q4` | `historie_beierbrua_set_6_q4` | `ku_historie_broer_og_elverom_kan_v_r_d4f67a360e` | Arkivkandidat |
+| `beierbrua_s6_q5` | `historie_beierbrua_set_6_q5` | `ku_historie_akerselva_kan_leses_som__86b745904c` | Arkivkandidat |
+| `beierbrua_s6_q6` | `historie_beierbrua_set_6_q6` | `ku_historie_beierbrua_trener_stedles_881e1b44f9` | Arkivkandidat |
+| `beierbrua_s6_q7` | `historie_beierbrua_set_6_q7` | `ku_historie_beierbrua_er_tydeligst_n_99c9ddfb20` | Arkivkandidat |
