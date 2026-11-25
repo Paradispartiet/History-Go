@@ -1,0 +1,88 @@
+name: Sagene festivitetshus photo import
+on:
+  push:
+    branches: [work/oslo-akerselva-v1-bolk-20261116]
+    paths: ['.github/workflows/sagene-festivitetshus-place-media-sync.yml']
+permissions:
+  contents: write
+jobs:
+  media:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Import credited originals and regenerate place data
+        run: |
+          curl --retry 3 -fsSL https://lokalhistoriewiki.no/images/Holsts_gate_3i.jpg -o /tmp/beier-01.jpg
+          curl --retry 3 -fsSL https://lokalhistoriewiki.no/images/Holsts_gate_3.jpg -o /tmp/beier-02.jpg
+          python -m pip install Pillow
+          python <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          from PIL import Image
+          path = Path('data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_05/sagene_festivitetshus.json')
+          place = json.loads(path.read_text())
+          entries = [
+              ('image','01','Holsts_gate_3i','landscape',(1024,683),(1024,683),None,'96708f7893c6ebb54045c25992f6f36cec68c5bf25ea8074e44c530ac43ee21b','Fasaden med gavl, vinduer og inngang.','Oslo byantikvar (kildekreditering, fotograf ikke oppgitt)'),
+              ('frontImage','02','Holsts_gate_3','front',(2731,2103),(768,1024),(1100,0,2675,2100),'0caee7911321420747f038dbcb41a7459468e7c04fd12ed0d010b9af73b64390','Inngangssiden med trapp og vindusrekke.','Jan-Tore Egge'),
+          ]
+          for field, number, origin, suffix, original_size, size, crop, sha, note, author in entries:
+              source = Path(f'/tmp/beier-{number}.jpg')
+              assert hashlib.sha256(source.read_bytes()).hexdigest() == sha
+              with Image.open(source) as original:
+                  assert original.size == original_size
+                  frame = original.crop(crop) if crop else original.copy()
+                  frame.thumbnail(size, Image.Resampling.LANCZOS)
+                  assert frame.size == size
+                  output = f'bilder/places/sagene_festivitetshus_{suffix}.webp'
+                  frame.save(output, quality=85)
+              place[field] = output
+              place[field+'Meta'] = {
+                  'source':'lokalhistoriewiki', 'sourcePage':f'https://lokalhistoriewiki.no/wiki/Fil:{origin}.jpg',
+                  'originalUrl':f'https://lokalhistoriewiki.no/images/{origin}.jpg',
+                  'fileTitle':f'{origin}.jpg', 'author':author, 'credit':f'{author} / Lokalhistoriewiki',
+                  'licenseShortName':'CC BY-SA 4.0', 'licenseUrl':'https://creativecommons.org/licenses/by-sa/4.0/',
+                  'originalWidth':original_size[0], 'originalHeight':original_size[1], 'outputWidth':size[0], 'outputHeight':size[1],
+                  'verifiedAt':'2026-11-25', 'scopeNote':note, 'orientation':'portrait' if crop else 'landscape',
+                  'transformation':'Beskåret til stående 3:4, nedskalert og konvertert til WebP.' if crop else 'Nedskalert og konvertert til WebP uten beskjæring.',
+                  'sourceSha256':sha
+              }
+          path.write_text(json.dumps(place,ensure_ascii=False,indent=2)+'\n')
+          PY
+          node scripts/check-distinct-place-photos.mjs --place data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_05/sagene_festivitetshus.json --require-both
+          npm run places:index:build
+          npm run places:index:check
+          npm run place-open:build
+          npm run place-open:check
+          node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=all --report=/tmp/beier-image-audit.json
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const audit = JSON.parse(fs.readFileSync('/tmp/beier-image-audit.json'));
+          const file = 'data/places/place_image_backlog_summary.json';
+          const summary = JSON.parse(fs.readFileSync(file));
+          const {local,remote,optional,missing,invalid} = audit.summary;
+          if (summary.totalPlaces !== audit.totalPlaces || invalid) throw Error('Unexpected image audit totals');
+          Object.assign(summary, {
+            generatedAt:'2026-11-25', generatedFromCommit:'Bildeaudit med Sagene festivitetshus', note:'Bildeoversikten inkluderer Sagene festivitetshus.',
+            summary:{validLocal:local,validRemote:remote,optionalMissing:optional,missing,invalidLocalPath:invalid,remaining:missing+invalid},
+            byCategory:Object.fromEntries(Object.entries(audit.byCategory).map(([key,row])=>[key,{total:row.total,valid:row.local+row.remote,optional:row.optional,missing:row.missing,invalid:row.invalid}]))
+          });
+          fs.writeFileSync(file,JSON.stringify(summary,null,2)+'\n');
+          JS
+          node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
+      - name: Save the verified photos and data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/sagene_festivitetshus_{landscape,front}.webp data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_05/sagene_festivitetshus.json data/places/{places_index,place_image_backlog_summary}.json data/runtime/place-open/sagene_festivitetshus.json data/fagverk/fagverk_release.json
+          git rm '.github/workflows/sagene-festivitetshus-place-media-sync.yml'
+          git diff --cached --check
+          git commit -m 'Add two verified photographs to Sagene festivitetshus PlaceCard'
+          git push origin "HEAD:refs/heads/${GITHUB_REF_NAME}"
