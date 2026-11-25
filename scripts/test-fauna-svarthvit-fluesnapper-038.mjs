@@ -24,7 +24,7 @@ assert.equal(bytes.toString("ascii",12,16),"VP8X");assert((bytes[20]&16)!==0,"We
 assert.deepEqual([bytes.readUIntLE(24,3)+1,bytes.readUIntLE(27,3)+1],[1024,1536]);
 const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);
 const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,38);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
+assert(reg.count>=38,"38 and later originals are registered");assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);
 const prior={ "emne_fauna_lovsanger":"a8cfb708899e9cb77476c378a6395c38d0c1c0ed",
  "emne_fauna_sjoorre":"e88b63fdaf4d9635982597568cd424f314fe607d",
  "emne_fauna_kvinand":"d043e1ee98cdfd91dd686b89be0dd5ca8037f6f1",
@@ -64,8 +64,8 @@ const prior={ "emne_fauna_lovsanger":"a8cfb708899e9cb77476c378a6395c38d0c1c0ed",
  "emne_fauna_graaspurv":"468b3c17af9a0b90aebe7ce1cdd6866f9224687f"};
 assert.equal(Object.keys(prior).length,37);
 for(const [oldId,h] of Object.entries(prior))assert.equal(reg.get(oldId)?.gitBlobSha,h,oldId+" previous original must remain byte-identical");
-assert.equal(reg.get("emne_fauna_gulsanger"),null,"Gulsanger retains SVG fallback");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-38"));
+assert.equal(reg.get("emne_fauna_gulsanger")?.gitBlobSha,"e78100653356fdcfd3f6a5dbcef5ac094ec0b31c","Later Gulsanger #39 must remain byte-identical");
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-39"));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-svarthvit-fluesnapper-038.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Svarthvit fluesnapper")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Gulsanger")'));

@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_gulsanger:Object.freeze({
+   scientificName:"Hippolais icterina",
+   src:"bilder/natur/fauna/godkjent/39_gulsanger_v1.webp",
+   gitBlobSha:"e78100653356fdcfd3f6a5dbcef5ac094ec0b31c",
+   reviewedAt:"2026-11-25",
+   stage:"adult_olive_green_back_lemon_yellow_underparts_pale_supercilium_pale_wing_panel_grey_legs_on_leafy_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-gulsanger-20261125.json"
+  }),
   emne_fauna_svarthvit_fluesnapper:Object.freeze({
    scientificName:"Ficedula hypoleuca",
    src:"bilder/natur/fauna/godkjent/38_svarthvit_fluesnapper_v1.webp",
