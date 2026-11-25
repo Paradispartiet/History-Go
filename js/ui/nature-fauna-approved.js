@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_jernspurv:Object.freeze({
+   scientificName:"Prunella modularis",
+   src:"bilder/natur/fauna/godkjent/41_jernspurv_v1.webp",
+   gitBlobSha:"09aec68b4055d7c4aa6a60d97a6a1f9ae09c2d58",
+   reviewedAt:"2026-11-25",
+   stage:"adult_grey_head_neck_breast_brown_streaked_back_thin_dark_bill_pink_legs_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-jernspurv-20261125.json"
+  }),
   emne_fauna_rodvingetrost:Object.freeze({
    scientificName:"Turdus iliacus",
    src:"bilder/natur/fauna/godkjent/40_rodvingetrost_v1.webp",
