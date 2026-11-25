@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_svarthvit_fluesnapper:Object.freeze({
+   scientificName:"Ficedula hypoleuca",
+   src:"bilder/natur/fauna/godkjent/38_svarthvit_fluesnapper_v1.webp",
+   gitBlobSha:"90b25e78ef79b3e9e7f8a04624fb4122c2ede371",
+   reviewedAt:"2026-11-25",
+   stage:"adult_male_black_white_breeding_small_white_forehead_spot_large_white_wing_patch_lichen_branch",
+   evidence:"data/natur/fauna/illustration-quality-svarthvit-fluesnapper-20261125.json"
+  }),
   emne_fauna_lovsanger:Object.freeze({
    scientificName:"Phylloscopus trochilus",
    src:"bilder/natur/fauna/godkjent/37_lovsanger_v1.webp",
