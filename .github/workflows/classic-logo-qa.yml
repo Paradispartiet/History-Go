@@ -1,0 +1,113 @@
+name: History Go classic logo QA
+on:
+  pull_request:
+    paths:
+      - 'bilder/logo_historygo.PNG'
+      - '.github/workflows/classic-logo-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: classic-logo-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  logo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Check exact approved logo and existing navigation references
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs/promises';
+          import {createHash} from 'node:crypto';
+          import sharp from 'sharp';
+          const logo='bilder/logo_historygo.PNG';
+          const b=await fs.readFile(logo);
+          assert.equal(createHash('sha256').update(b).digest('hex'),'de83657d06049db1a0630ceee34cb61b51c9f4a9472b94dd0812ce8414fb2fbc','Exact approved PNG required');
+          assert.equal(b.length,2455320);
+          const m=await sharp(b).metadata();
+          assert.equal(m.width,1254);
+          assert.equal(m.height,1254);
+          assert.equal(m.format,'png');
+          assert.equal(m.hasAlpha,true);
+          const {data,info}=await sharp(b).ensureAlpha().raw().toBuffer({resolveWithObject:true});
+          for(const [x,y] of [[0,0],[1253,0],[0,1253],[1253,1253]]) assert.equal(data[(y*info.width+x)*info.channels+3],0);
+          for(const p of ['index.html','js/ui/universal-header-nav.js']) assert.ok((await fs.readFile(p,'utf8')).includes(logo),p);
+          console.log('Exact approved logo, transparency and existing navigation references verified.');
+          JS
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Check actual home and subpage logos on mobile and desktop
+        shell: bash
+        run: |
+          mkdir -p artifacts/classic-logo-qa
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/classic-logo-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill "$SERVER" 2>/dev/null || true' EXIT
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {chromium} from 'playwright';
+          import {createHash} from 'node:crypto';
+          const base='http://127.0.0.1:8765';
+          const expected='de83657d06049db1a0630ceee34cb61b51c9f4a9472b94dd0812ce8414fb2fbc';
+          for(let attempt=0;attempt<30;attempt++){
+            try{if((await fetch(base+'/index.html')).ok)break;}catch{}
+            await new Promise(r=>setTimeout(r,500));
+          }
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+          try{
+            for(const [name,viewport] of [['mobile',{width:390,height:844}],['desktop',{width:1440,height:960}]]){
+              const context=await browser.newContext({viewport,locale:'nb-NO',isMobile:name==='mobile',hasTouch:name==='mobile'});
+              await context.addInitScript(()=>{
+                localStorage.setItem('hg_onboarding_shown_v1','1');
+                localStorage.setItem('HG_TEST_MODE','1');
+              });
+              const page=await context.newPage();
+              try{
+                for(const [section,url,selector] of [['home','/index.html?hgTest=1#/map','#hgHomeLogo img'],['subpage','/sprakatlas.html?hgTest=1','[data-hg-nav-home] img']]){
+                  await page.goto(base+url,{waitUntil:'domcontentloaded',timeout:90000});
+                  const logo=page.locator(selector);
+                  await logo.waitFor({state:'attached',timeout:45000});
+                  await logo.evaluate(img=>img.decode());
+                  const detail=await logo.evaluate(img=>({url:img.currentSrc||img.src,width:img.naturalWidth,height:img.naturalHeight}));
+                  assert.equal(detail.url,base+'/bilder/logo_historygo.PNG');
+                  assert.equal(detail.width,1254);
+                  assert.equal(detail.height,1254);
+                  const response=await context.request.get(detail.url);
+                  assert.ok(response.ok());
+                  assert.equal(createHash('sha256').update(await response.body()).digest('hex'),expected);
+                  if(section==='subpage'){
+                    const link=page.locator('[data-hg-nav-home]');
+                    assert.equal(await link.getAttribute('href'),base+'/index.html#/map');
+                    await link.waitFor({state:'visible',timeout:45000});
+                    await logo.screenshot({path:'artifacts/classic-logo-qa/'+name+'-subpage-logo.png'});
+                    await page.screenshot({path:'artifacts/classic-logo-qa/'+name+'-subpage.png'});
+                    await link.click({timeout:15000});
+                    await page.waitForURL(base+'/index.html#/map',{timeout:45000});
+                  } else {
+                    await logo.waitFor({state:'visible',timeout:45000});
+                    await logo.screenshot({path:'artifacts/classic-logo-qa/'+name+'-home-logo.png'});
+                    await page.screenshot({path:'artifacts/classic-logo-qa/'+name+'-home.png'});
+                  }
+                  console.log('PASS',name,section,JSON.stringify(detail));
+                }
+              }catch(error){
+                await page.screenshot({path:'artifacts/classic-logo-qa/'+name+'-failure.png'}).catch(()=>{});
+                throw error;
+              }finally{await context.close();}
+            }
+          }finally{await browser.close();}
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: classic-logo-browser-qa
+          path: artifacts/classic-logo-qa/
+          if-no-files-found: warn
