@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_fossekall:Object.freeze({
+   scientificName:"Cinclus cinclus",
+   src:"bilder/natur/fauna/godkjent/46_fossekall_v1.webp",
+   gitBlobSha:"bb8eb8f2b59a02d469f0531195f29651198d3a8b",
+   reviewedAt:"2026-11-25",
+   stage:"adult_white_throat_breast_brown_head_dark_slate_brown_wings_short_tail_on_mossy_river_stone",
+   evidence:"data/natur/fauna/illustration-quality-fossekall-20261125.json"
+  }),
   emne_fauna_munk:Object.freeze({
    scientificName:"Sylvia atricapilla",
    src:"bilder/natur/fauna/godkjent/45_munk_v1.webp",
