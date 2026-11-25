@@ -69,6 +69,7 @@ jobs:
       - run: node scripts/test-fauna-gulsanger-039.mjs
       - run: node scripts/test-fauna-rodvingetrost-040.mjs
       - run: node scripts/test-fauna-jernspurv-041.mjs
+      - run: node scripts/test-fauna-hvitryggspett-042.mjs
       - run: node scripts/test-nature-illustrations.mjs
   approved-fauna-browser:
     runs-on: ubuntu-latest
@@ -81,3 +82,4 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: node scripts/test-fauna-approved-browser.mjs
+

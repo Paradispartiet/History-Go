@@ -72,8 +72,9 @@ const previous={
 assert.equal(Object.keys(previous).length,35);
 for(const [oldId,hash] of Object.entries(previous))assert.equal(reg.get(oldId)?.gitBlobSha,hash,oldId+" original SHA must remain unchanged");
 assert.equal(reg.get("emne_fauna_lovsanger")?.gitBlobSha,"a8cfb708899e9cb77476c378a6395c38d0c1c0ed","Løvsanger #37 original must remain byte-identical");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-41"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-42"));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-sjoorre-036.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Sjøorre")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Løvsanger")'));
 console.log("Finn Fauna #36 Sjøorre: WebP, alpha, SHA-256, blob SHA, runtime ID, 35 prior hashes and next SVG fallback OK.");
+

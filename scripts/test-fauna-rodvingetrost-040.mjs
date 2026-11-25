@@ -69,10 +69,11 @@ const prior={
 assert.equal(Object.keys(prior).length,39);
 for(const [oldId,h] of Object.entries(prior))assert.equal(reg.get(oldId)?.gitBlobSha,h,oldId+" previous original must remain byte-identical");
 assert.equal(reg.get("emne_fauna_jernspurv")?.gitBlobSha,"09aec68b4055d7c4aa6a60d97a6a1f9ae09c2d58","Jernspurv #41 original");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-41"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261125-42"));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-rodvingetrost-040.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Rødvingetrost")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Jernspurv")'));
 console.log("Finn Fauna #40 Rødvingetrost WebP, alpha, taxonomy and 39 previous original SHA OK.");
 
 for(const [oldId,h] of Object.entries(prior)){const b=fs.readFileSync(new URL(reg.get(oldId).src,root));assert.equal(crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+b.length),Buffer.from([0]),b])).digest("hex"),h,oldId+" binary unchanged");}
+
