@@ -1,13 +1,14 @@
 name: Beierbrua Knowledge synchronization
 on:
-  pull_request:
+  push:
+    branches:
+      - work/oslo-akerselva-v1-bolk-20261116
     paths:
       - '.github/workflows/beierbrua-knowledge-sync.yml'
 permissions:
   contents: write
 jobs:
   regenerate:
-    if: github.event.pull_request.number == 7342 && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -15,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
