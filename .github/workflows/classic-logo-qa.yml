@@ -1,0 +1,44 @@
+name: History Go classic logo QA
+on:
+  pull_request:
+    paths:
+      - 'bilder/logo_historygo.PNG'
+      - '.github/workflows/classic-logo-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: classic-logo-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  logo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Check exact approved logo and existing navigation references
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs/promises';
+          import {createHash} from 'node:crypto';
+          import sharp from 'sharp';
+          const logo='bilder/logo_historygo.PNG';
+          const b=await fs.readFile(logo);
+          assert.equal(createHash('sha256').update(b).digest('hex'),'de83657d06049db1a0630ceee34cb61b51c9f4a9472b94dd0812ce8414fb2fbc','Exact approved PNG required');
+          assert.equal(b.length,2455320);
+          const m=await sharp(b).metadata();
+          assert.equal(m.width,1254);
+          assert.equal(m.height,1254);
+          assert.equal(m.format,'png');
+          assert.equal(m.hasAlpha,true);
+          const {data,info}=await sharp(b).ensureAlpha().raw().toBuffer({resolveWithObject:true});
+          for(const [x,y] of [[0,0],[1253,0],[0,1253],[1253,1253]]) assert.equal(data[(y*info.width+x)*info.channels+3],0);
+          for(const p of ['index.html','js/ui/universal-header-nav.js']) assert.ok((await fs.readFile(p,'utf8')).includes(logo),p);
+          console.log('Exact approved logo, transparency and existing navigation references verified.');
+          JS
