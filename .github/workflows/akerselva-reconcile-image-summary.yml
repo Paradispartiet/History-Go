@@ -22,6 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: npm ci --no-audit --no-fund
       - name: Merge the verified main revision and rebuild the image summary
         run: |
           git config user.name 'github-actions[bot]'
@@ -57,8 +58,9 @@ jobs:
           fs.writeFileSync(file, JSON.stringify(summary, null, 2) + '\n');
           JS
           node scripts/audit-place-images.mjs --mode=all --verify-summary="$SUMMARY"
-          node scripts/build-places-index.mjs --check
-          git add "$SUMMARY"
+          npm run places:index:build
+          npm run places:index:check
+          git add "$SUMMARY" data/places/places_index.json
           git rm '.github/workflows/akerselva-reconcile-image-summary.yml'
           git diff --cached --check
           git commit -m 'Merge main and regenerate the Akerselva image backlog summary'
