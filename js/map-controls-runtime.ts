@@ -63,6 +63,11 @@ type RuntimeWindow = Window & typeof globalThis & {
   LayerManager?: { setMode?: (mode: "explore" | "map") => unknown };
   exitMapMode?: () => unknown;
   HGMapCategoryFilter?: MapCategoryFilterApi;
+  HGFysenMap?: {
+    isEnabled: () => boolean;
+    setEnabled: (enabled: boolean) => Promise<boolean>;
+    decorateOptions: (options: HTMLElement, trigger: HTMLButtonElement, logos: HTMLElement, label: HTMLElement) => void;
+  };
 };
 const win = window as RuntimeWindow;
 const FILTER_KEY = "hg_map_category_filters_v2";
@@ -205,6 +210,7 @@ function sanitizeActiveCategories(): void {
 }
 function filteredPlaces(places: MapPlace[]): MapPlace[] {
   const list = Array.isArray(places) ? places : [];
+  if (win.HGFysenMap && win.HGFysenMap.isEnabled()) return [];
   sanitizeActiveCategories();
   if (!activeCategories.size) return list;
   const matches = list.filter((place) => activeCategories.has(placeCategory(place)));
@@ -357,6 +363,7 @@ function renderCategoryUi(): void {
   }).join("");
   const wasOpen = trigger.getAttribute("aria-expanded") === "true" && !options.hidden;
   options.innerHTML = allOption + categoryOptions;
+  if (win.HGFysenMap) win.HGFysenMap.decorateOptions(options, trigger, logos, label);
   trigger.setAttribute("aria-expanded", String(wasOpen));
   options.hidden = !wasOpen;
 }
@@ -393,6 +400,7 @@ function applyCurrentFilter(): void {
   }));
 }
 function setFilter(categoryIds: string | string[]): void {
+  if (win.HGFysenMap) void win.HGFysenMap.setEnabled(false);
   if (categoryIds === ALL || (Array.isArray(categoryIds) && categoryIds.includes(ALL))) {
     activeCategories = new Set<string>();
   } else {
@@ -401,6 +409,7 @@ function setFilter(categoryIds: string | string[]): void {
   applyCurrentFilter();
 }
 function toggleFilter(categoryId: string): void {
+  if (win.HGFysenMap) void win.HGFysenMap.setEnabled(false);
   const id = runtimeCategoryId(categoryId);
   if (!id || id === ALL) {
     activeCategories = new Set<string>();
@@ -412,6 +421,7 @@ function toggleFilter(categoryId: string): void {
   applyCurrentFilter();
 }
 function showAll(): void {
+  if (win.HGFysenMap) void win.HGFysenMap.setEnabled(false);
   activeCategories = new Set<string>();
   applyCurrentFilter();
 }
@@ -515,6 +525,7 @@ function init(): void {
     }
   }, 150);
   win.addEventListener("hg:appReady", refresh);
+  win.addEventListener("hg:fysen-map-change", applyCurrentFilter);
   document.addEventListener("click", (event) => {
     const path = event.composedPath();
     if (path.some((item) => item instanceof Element && item.classList.contains("hg-map-category-filter"))) {

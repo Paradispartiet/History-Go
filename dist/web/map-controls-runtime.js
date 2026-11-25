@@ -130,6 +130,7 @@
   }
   function filteredPlaces(places) {
     const list = Array.isArray(places) ? places : [];
+    if (win.HGFysenMap && win.HGFysenMap.isEnabled()) return [];
     sanitizeActiveCategories();
     if (!activeCategories.size) return list;
     const matches = list.filter((place) => activeCategories.has(placeCategory(place)));
@@ -251,6 +252,7 @@
     }).join("");
     const wasOpen = trigger.getAttribute("aria-expanded") === "true" && !options.hidden;
     options.innerHTML = allOption + categoryOptions;
+    if (win.HGFysenMap) win.HGFysenMap.decorateOptions(options, trigger, logos, label);
     trigger.setAttribute("aria-expanded", String(wasOpen));
     options.hidden = !wasOpen;
   }
@@ -287,6 +289,7 @@
     }));
   }
   function setFilter(categoryIds) {
+    if (win.HGFysenMap) void win.HGFysenMap.setEnabled(false);
     if (categoryIds === ALL || Array.isArray(categoryIds) && categoryIds.includes(ALL)) {
       activeCategories = /* @__PURE__ */ new Set();
     } else {
@@ -295,6 +298,7 @@
     applyCurrentFilter();
   }
   function toggleFilter(categoryId) {
+    if (win.HGFysenMap) void win.HGFysenMap.setEnabled(false);
     const id = runtimeCategoryId(categoryId);
     if (!id || id === ALL) {
       activeCategories = /* @__PURE__ */ new Set();
@@ -306,6 +310,7 @@
     applyCurrentFilter();
   }
   function showAll() {
+    if (win.HGFysenMap) void win.HGFysenMap.setEnabled(false);
     activeCategories = /* @__PURE__ */ new Set();
     applyCurrentFilter();
   }
@@ -409,6 +414,7 @@
       }
     }, 150);
     win.addEventListener("hg:appReady", refresh);
+    win.addEventListener("hg:fysen-map-change", applyCurrentFilter);
     document.addEventListener("click", (event) => {
       const path = event.composedPath();
       if (path.some((item) => item instanceof Element && item.classList.contains("hg-map-category-filter"))) {

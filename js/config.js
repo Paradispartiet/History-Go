@@ -171,7 +171,7 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     ensureMapControlsHost();
     if (document.querySelector('script[data-hg-map-controls-runtime="1"]')) return;
     const script = document.createElement("script");
-    script.src = "dist/web/map-controls-runtime.js";
+    script.src = "dist/web/map-controls-runtime.js?v=20261125-fysen-map1";
     script.async = false;
     script.dataset.hgMapControlsRuntime = "1";
     document.head.appendChild(script);

@@ -1,0 +1,43 @@
+name: Fysen map layer checks
+
+on:
+  pull_request:
+    paths:
+      - 'js/ui/fysen-map-layer.ts'
+      - 'js/map-controls-runtime.ts'
+      - 'dist/web/fysen-map-layer.js'
+      - 'dist/web/map-controls-runtime.js'
+      - 'tests/fysen-map-layer.test.mjs'
+      - '.github/workflows/fysen-map-layer-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  map-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build:web
+      - run: node --test tests/fysen-map-layer.test.mjs
+      - name: Verify generated map runtime parity
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff -- dist/web/map-controls-runtime.js dist/web/fysen-map-layer.js
+          if ! git ls-files --error-unmatch dist/web/fysen-map-layer.js >/dev/null 2>&1; then
+            echo 'Generated Fysen runtime (must be committed):'
+            cat dist/web/fysen-map-layer.js
+            exit 1
+          fi
+          git diff --exit-code -- dist/web/map-controls-runtime.js dist/web/fysen-map-layer.js
