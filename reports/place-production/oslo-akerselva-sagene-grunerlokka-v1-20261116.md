@@ -781,3 +781,7 @@ Alle 55 GitHub-kjøringer bestod på `10b58ae6`. Etter at `main` flyttet seg ble
 ### CI og bildeoversikt etter siste samordning (25.11.2026)
 
 Alle 55 kjøringer bestod på `d3438835`. Etter nye stedsbilder på `main` ble den genererte bildeoversikten samordnet. [Bildeoversikten, stedsindeksen og Fagverk-manifestet](https://github.com/Paradispartiet/History-Go/actions/runs/45624441456) bestod på den samordnede grenen. GitHub merket den brede CI-runden fra samordningscommitten `action_required`, og API-et avviste omkjøring av datakontrollen.
+
+### Verifikasjon etter samordning på d245134e
+
+Den brede CI-runden på `fa574dea` bestod med 55 kjøringer. Etter samordningen på `d245134e` bestod [bildeoversikt, stedsindeks og Fagverk-manifest](https://github.com/Paradispartiet/History-Go/actions/runs/45642325990). Bildeoversikten har 1 081 manglende bilder i hele katalogen og ingen ugyldige lokale bildestier. Denne rapportoppdateringen utløser ny ordinær CI for den samordnede grenen. Resultatet er teknisk verifikasjon av arbeidsgrenen. V1-status vurderes per sted.
