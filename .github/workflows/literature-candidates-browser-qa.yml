@@ -6,6 +6,9 @@ on:
       - 'bilder/merker/litteratur/**'
       - 'data/badges/litteratur_eight_visual_candidates_20261124.json'
       - '.github/workflows/literature-candidates-browser-qa.yml'
+concurrency:
+  group: literature-candidates-browser-qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -38,6 +41,7 @@ jobs:
           assert.equal(new Set(manifest.candidates.map(c=>c.id)).size,8);
           const images=[];
           const report=[];
+          const alphaIssues=[];
           for(const c of manifest.candidates){
             for(const kind of ['original','webp']){
               const a=c[kind];
@@ -52,8 +56,16 @@ jobs:
               const {data,info}=await sharp(b).ensureAlpha().raw().toBuffer({resolveWithObject:true});
               const alpha=(x,y)=>data[(y*info.width+x)*info.channels+info.channels-1];
               const corners=[[0,0],[info.width-1,0],[0,info.height-1],[info.width-1,info.height-1]].map(([x,y])=>alpha(x,y));
-              assert.ok(corners.every(v=>v===0),a.path+' transparent corners');
-              report.push({id:c.id,kind,bytes:b.length,sha256:a.sha256,width:m.width,height:m.height,corners});
+              if(corners.some(v=>v!==0)) alphaIssues.push({path:a.path,corners});
+              const cornerRegions=[];
+              const span=Math.floor(info.width*0.08);
+              for(const [x0,y0] of [[0,0],[info.width-span,0],[0,info.height-span],[info.width-span,info.height-span]]){
+                let nonzero=0,max=0;
+                for(let y=y0;y<y0+span;y++) for(let x=x0;x<x0+span;x++){const v=alpha(x,y);if(v>0) nonzero++;max=Math.max(max,v);}
+                cornerRegions.push({nonzero,max,pixels:span*span});
+              }
+              report.push({id:c.id,kind,bytes:b.length,sha256:a.sha256,width:m.width,height:m.height,corners,cornerRegions});
+              console.log('VERIFIED',a.path,JSON.stringify({corners,cornerRegions}));
               if(kind==='webp') images.push({label:c.label,src:'data:image/webp;base64,'+b.toString('base64')});
             }
           }
@@ -88,7 +100,9 @@ jobs:
               }
             }
           } finally {await browser.close();}
-          console.log('PASS: 16 exact assets; 4 isolated candidate gallery render checks.');
+          console.log('PASS: 16 exact asset hashes, dimensions, formats and alpha channels; 4 isolated gallery render checks.');
+          console.log('CORNER ISSUES',JSON.stringify(alphaIssues));
+          assert.equal(alphaIssues.length,0,'Nontransparent corner pixels: '+JSON.stringify(alphaIssues));
           JS
       - uses: actions/upload-artifact@v4
         if: always()
