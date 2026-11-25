@@ -3,14 +3,14 @@
   "date": "2026-11-25",
   "speciesNumber": 37,
   "baselineApproved": 36,
-  "kind": "unpublished_candidate_verified_git_blob",
-  "publicationStatus": "candidate_asset_only_not_active",
+  "kind": "verified_binary_integrated_awaiting_ci_merge_pages",
+  "publicationStatus": "integrated_not_published",
   "requiredReleaseGates": [
-    "Human visual approval: accurate species distinctions, black and white presentation",
-    "Promote same Git blob into approved image path without any modifications",
-    "Update approved registry, quality manifest, HTML version, historical fallback tests and browser regression",
-    "Four green Fauna/Flora illustration and browser jobs on final PR head",
-    "Merge and GitHub Pages completed/success on merge SHA"
+    "WebP binary verified by exact SHA-256 and Git blob SHA",
+    "Human visual review on black and white backgrounds",
+    "Approved registry, dedicated test and browser regression",
+    "Four Fauna/Flora jobs green on final PR head",
+    "Merge and GitHub Pages completed/success on actual merge SHA"
   ],
   "items": [
     {
@@ -19,7 +19,7 @@
       "scientificName": "Phylloscopus trochilus",
       "family": "Phylloscopidae",
       "existingQuizIds": [],
-      "src": "bilder/natur/fauna/kandidater/37_lovsanger_v1.webp",
+      "src": "bilder/natur/fauna/godkjent/37_lovsanger_v1.webp",
       "intendedApprovedSrc": "bilder/natur/fauna/godkjent/37_lovsanger_v1.webp",
       "originalBinaryVerified": true,
       "dimensions": [
@@ -29,8 +29,8 @@
       "sizeBytes": 184910,
       "gitBlobSha": "a8cfb708899e9cb77476c378a6395c38d0c1c0ed",
       "sha256": "db7101e922b8e8611811014ca9aa64e63b50b4dcd8f264489ed4de26d64b88df",
-      "approvedForPublication": false,
-      "reviewStatus": "candidate",
+      "approvedForPublication": true,
+      "reviewStatus": "approved_for_release",
       "visualChecks": {
         "blackBackgroundPreviewCreated": true,
         "whiteBackgroundPreviewCreated": true,
@@ -47,7 +47,8 @@
         "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/animals/birds/willow-warbler",
         "https://birds-europe.linnaeus.naturalis.nl/linnaeus_ng/app/views/species/taxon.php?id=130923"
       ],
-      "notes": "Candidate only. No published registry, HTML cache or active fauna original files changed. No quiz added or altered."
+      "notes": "Byte-identical original promoted from candidate path; 36 previous Git blob hashes remain preserved; not published until Pages success on merge SHA.",
+      "qualityManifest": "data/natur/fauna/illustration-quality-lovsanger-20261125.json"
     }
   ]
 }
