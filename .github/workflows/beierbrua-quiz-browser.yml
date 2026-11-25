@@ -1,0 +1,24 @@
+name: Beierbrua quiz browser acceptance
+on:
+  push:
+    branches:
+      - work/oslo-akerselva-v1-bolk-20261116
+    paths:
+      - '.github/workflows/beierbrua-quiz-browser.yml'
+      - 'tests/beierbrua-quiz-browser.mjs'
+      - 'data/quiz/historie/beierbrua_sets.json'
+      - 'data/quizcards/historie/beierbrua_quizcard_v1.json'
+permissions:
+  contents: read
+jobs:
+  quiz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium webkit
+      - run: node tests/beierbrua-quiz-browser.mjs
