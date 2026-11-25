@@ -739,3 +739,31 @@ Alle 42 eksisterende spørsmåls-, quiz- og Knowledge-ID-er er kartlagt. Syv eks
 | `beierbrua_s6_q5` | `historie_beierbrua_set_6_q5` | `ku_historie_akerselva_kan_leses_som__86b745904c` | Arkivkandidat |
 | `beierbrua_s6_q6` | `historie_beierbrua_set_6_q6` | `ku_historie_beierbrua_trener_stedles_881e1b44f9` | Arkivkandidat |
 | `beierbrua_s6_q7` | `historie_beierbrua_set_6_q7` | `ku_historie_beierbrua_er_tydeligst_n_99c9ddfb20` | Arkivkandidat |
+
+### Beierbrua – sett 3 og 4 og migreringsgrunnlag
+
+#### Sett 3 – Fabrikkjentene og minnet om arbeidet
+
+| Spørsmål | Alternativer A / B / C | Fasit | Forklaring |
+|---|---|---|---|
+| Hvem har Beierbrua navn etter? | Anders Beyer / Halvor Schou / Knud Graah | A | Brua er oppkalt etter Anders Beyer. (B, L, S) |
+| Hva viser navnet «fabrikkjentenes bro» til? | At brua var forbeholdt ansatte / Arbeiderferdselen mellom boligstrøk og tekstilfabrikker, slik den er kjent gjennom Braatens fortellinger / At arbeiderne bygde brua på dugnad | B | Brua bandt sammen områder på hver side av elva og fikk sin litterære tilknytning gjennom Braaten. (B, L) |
+| Hvem forestiller bysten ved Beierbrua? | Halvor Schou / Knud Graah / Oskar Braaten | C | Bysten av forfatteren er laget av Arne Durban. (L, S) |
+| Hva minnes med skulpturgruppen «Skulder ved skulder»? | Fabrikkjentene / Bruas eierskifte / Gjenoppbyggingen etter brannen | A | Skulpturen er et minne om fabrikkjentene som forbindes med brua og industrimiljøet. (B, S) |
+| Hvilket annet tekstilanlegg lå like ved Hjula Væverier i Sagveien? | Nydalens Compagnie / Graahs spinneri / Christiania Seildugsfabrik | B | Lokalhistoriewiki omtaler Graahs spinneri og Hjula som arbeidsplasser ved brua. (L) |
+| Hvilken side av elva ligger Hønse-Lovisas hus på ved Beierbrua? | Vestsiden / En holme i elva / Østsiden | C | Lokalhistoriewiki plasserer huset på østsiden. (L) |
+| Hva kan Braatens fortellinger bidra med når du undersøker Beierbrua? | En litterær skildring av stedet som kan leses sammen med historiske kilder / En fullstendig oversikt over ansatte ved Hjula / En teknisk beskrivelse av restaureringen | A | Fortellingene forklarer bruas litterære tilknytning. Ansettelsesforhold og byggearbeider krever andre kilder. (B, S) |
+
+#### Sett 4 – Brua i endring og historiske kilder
+
+| Spørsmål | Alternativer A / B / C | Fasit | Forklaring |
+|---|---|---|---|
+| Hvem overtok Beierbrua etter at den var nybygd som kjørebru? | En lokal tekstilfabrikk / Det offentlige / Et jernbaneselskap | B | Oslo byleksikon daterer den offentlige overtakelsen til 1864. (B, L) |
+| Hva utløste gjenoppbyggingen av Beierbrua på 1900-tallet? | Omlegging av trikketrasé / Utvidelse av fabrikkene / Brannskade | C | Brua brant i 1974 og ble senere gjenoppbygd. (B, L, S) |
+| Hvilket utseende var utgangspunkt for restaureringen i 1985? | Kjørebruas utseende fra 1837 / Utformingen til en moderne betongbru / Et forslag til jernbanebru | A | Restaureringen førte bruas utseende tilbake mot 1837-formen. (B, L) |
+| Hva kan det historiske fotografiet til Inger Munch brukes til å undersøke? | Den opprinnelige bruas form på 1600-tallet / Hvordan Beierbrua framstod som kjørebru i mellomkrigstiden / Hvordan skulpturgruppen ble montert | B | Lokalhistoriewiki daterer bildet til omtrent 1925–1930 og viser brua som kjørebru. (L) |
+| Hva trenger du for å undersøke hvilke deler av brua som ble erstattet etter brannen? | Et nyere fotografi alene / Et kart som viser bruas plassering / Dokumentasjon fra gjenoppbyggingen og restaureringen | C | Kildene beskriver gjenoppbygging og restaurering. Byggedokumentasjon kan vise hvilke deler som ble skiftet. (B, L) |
+| Hva må du gjøre for å fastslå nøyaktig når Anders Beyer eide brua? | Undersøke eldre dokumentasjon fordi oppslagsverkene daterer eierskapet ulikt / Bruke byggeåret for dagens kjørebru som eierskapsdato / Datere eierskapet ut fra navnet på brua | A | Oslo byleksikon oppgir 1671, mens Store norske leksikon viser til 1700-tallet. (B, S) |
+| Hvordan kan du undersøke endringen fra kjørebru til gangbru? | Sammenligne navnene på fabrikkene / Sammenholde eldre foto og historiske kilder med dagens bruk / Se på vannstanden under brua | B | Eldre foto viser kjørebrua, og kildene beskriver restaureringen og dagens gangbruk. (B, L, S) |
+
+Alle fire sett er skrevet. De to siste settene tester konkrete historiske opplysninger og kildebruk som de tidligere spørsmålene ikke tester. Migreringsplanen blir derfor sju eksisterende spørsmål med opprinnelig spørsmåls-, quiz- og Knowledge-ID i sett 2, 21 spørsmål med nye ID-er og 35 gamle spørsmål bevart i Knowledge-arkivet med opprinnelige ID-er. QuizCard velges fra den migrerte fullquizen. Denne endringen gjelder produksjonsrapporten.
