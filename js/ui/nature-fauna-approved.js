@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_sjoorre:Object.freeze({
+   scientificName:"Melanitta fusca",
+   src:"bilder/natur/fauna/godkjent/36_sjoorre_v1.webp",
+   gitBlobSha:"e88b63fdaf4d9635982597568cd424f314fe607d",
+   reviewedAt:"2026-11-25",
+   stage:"adult_male_velvet_black_plumage_pale_eye_white_crescent_yellow_orange_black_bill_white_speculum_floating",
+   evidence:"data/natur/fauna/illustration-quality-sjoorre-20261125.json"
+  }),
   emne_fauna_kvinand:Object.freeze({
    scientificName:"Bucephala clangula",
    src:"bilder/natur/fauna/godkjent/35_kvinand_v1.webp",

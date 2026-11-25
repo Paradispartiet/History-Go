@@ -19,10 +19,11 @@ const m=JSON.parse(read("data/natur/fauna/illustration-quality-kvinand-20261124.
 assert.equal(m.items[0].src,item.expectedRepoSrc);
 const sandbox={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),sandbox);
 const reg=sandbox.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,35);
+assert(reg.count>=35,"At least the 35 previously approved originals must remain in the registry");
 assert.equal(reg.get(id)?.gitBlobSha,item.expectedGitBlobSha);
 assert.equal(reg.get("emne_fauna_tjeld")?.gitBlobSha,"c5bc1284a129192d52ed8e756834bac3dbbba9b6");
 assert.equal(reg.get("emne_fauna_hvitkinngaas")?.gitBlobSha,"700c304c91f3cf64a109d5ae37081913746b6542");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261124-35"));
+assert(/nature-fauna-approved\.js\?v=\d{8}-\d{2}/.test(read("finn-fauna.html")));
+assert.equal(reg.get("emne_fauna_sjoorre")?.gitBlobSha,"e88b63fdaf4d9635982597568cd424f314fe607d","Later Sjøorre retains approved original");
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Sjøorre")'));
 console.log("Finn Fauna #35 Kvinand candidate: exact binary committed, 34 prior originals preserved, not yet published.");
