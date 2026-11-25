@@ -2,7 +2,7 @@
   "categoryId": "litteratur",
   "categoryLabel": "Litteratur & poesi",
   "date": "2026-11-24",
-  "state": "candidate_manifest_only_pending_binary_transfer_and_visual_approval",
+  "state": "candidate_assets_transferred_pending_visual_approval_and_qa",
   "design": {
     "borderColor": "#F5B4C8",
     "secondaryColor": "#FFF4E3",
@@ -12,7 +12,7 @@
   },
   "candidateCount": 8,
   "assetFilesExpected": 16,
-  "assetsUploadedToGithub": false,
+  "assetsUploadedToGithub": true,
   "activeBadgesModified": false,
   "visualApprovalReceived": false,
   "activationRule": "Do not alter data/badges/litteratur.json, merge or deploy until all 16 exact image files exist in the PR, pass image/badge QA and the user explicitly approves all eight visuals.",
@@ -199,6 +199,14 @@
     "Correct pale-pink palette vs music category strong pink",
     "Poesi had generated checkerboard background cleaned with alpha reconstruction; visually review on dark/light backgrounds",
     "Long top label Forfattere og litteratursteder must be inspected at 64 px",
-    "Manifest describes intended Git paths; files are not yet committed to this PR"
-  ]
+    "All 16 candidate asset paths are committed; no active badge mappings have changed."
+  ],
+  "integrityEvidence": {
+    "transferCommit": "e1e1add3b48baf1788232fe0c2ed39786bc4a03b",
+    "method": "GitHub Actions transfer workflow checks byte counts and SHA-256 for all 16 assets before committing Poesi; workflow-generated commit present.",
+    "independentWebpRecheck": "8/8 SHA-256 and byte counts match manifest at transfer commit.",
+    "independentPngRecheck": "Not completed: connector does not return large PNG binary content.",
+    "visualQa": "Pending",
+    "browserQa": "Pending; latest PR workflows reported action_required."
+  }
 }
