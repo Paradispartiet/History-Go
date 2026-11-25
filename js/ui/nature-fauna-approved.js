@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_aerfugl:Object.freeze({
+   scientificName:"Somateria mollissima",
+   src:"bilder/natur/fauna/godkjent/47_aerfugl_v1.webp",
+   gitBlobSha:"3b75c618cce8d5a7258e7ca6510e146a3f184fef",
+   reviewedAt:"2026-11-25",
+   stage:"adult_male_breeding_black_white_plumage_green_nape_pinkish_breast_wedge_bill_webbed_feet_on_coastal_rock",
+   evidence:"data/natur/fauna/illustration-quality-aerfugl-20261125.json"
+  }),
   emne_fauna_fossekall:Object.freeze({
    scientificName:"Cinclus cinclus",
    src:"bilder/natur/fauna/godkjent/46_fossekall_v1.webp",
