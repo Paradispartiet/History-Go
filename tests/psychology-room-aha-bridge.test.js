@@ -12,17 +12,22 @@ assert.match(room, /Ingen privat tekst sendes til AHA/);
 assert.match(room, /automatisk overføring er deaktivert/);
 assert.match(room, /Ingen overføring til AHA/);
 
-// The former endpoint was neither verified nor owned by the connected
-// Vercel team. Never open it and never postMessage private reflection text.
-assert.doesNotMatch(room, /aha-echo-net\.vercel\.app|aha-echonet\.vercel\.app/);
+// The exact separate AHA origin is now verified by the synthetic hosted
+// pilot (#1099). Only a static, no-referrer link is allowed; no data bridge.
+const pilotUrl = "https://aha-echo-net.vercel.app/psykologi-vault.html";
+assert.equal(room.split(pilotUrl).length - 1, 1);
+assert.match(room, /href="https:\/\/aha-echo-net\.vercel\.app\/psykologi-vault\.html" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"/);
+assert.doesNotMatch(room.replace(pilotUrl, ""), /aha-echo-net\.vercel\.app|aha-echonet\.vercel\.app/);
+assert.match(room, /kun syntetiske testfiler/);
+assert.match(room, /Ingen fil, tekst eller passord følger med lenken/);
 assert.doesNotMatch(room, /ahaShareTarget|ahaTrustedOrigins|ahaShareConsent/);
 assert.doesNotMatch(room, /window\.open\(ahaShareTarget|destination\.postMessage/);
 assert.doesNotMatch(room, /name="aha_share_confirm"|Åpne AHA med valgt tekst/);
 
 // Keep existing local backup and Psychology Room entry intact.
-assert.match(entry, /20261120-psychology-backup-v1/);
+assert.match(entry, /20261125-vault-pilot-v1/);
 assert.ok(fs.readFileSync("index.html", "utf8").includes(
-  "js/ui/psychology-room-entry.js?v=20261120-psychology-backup-v1"));
+  "js/ui/psychology-room-entry.js?v=20261125-vault-pilot-v1"));
 assert.match(entry, /get\("room"\) === "psychology"/);
 assert.doesNotMatch(room, /localStorage\.setItem\(["']aha_psychology_/);
-console.log("psychology-room-aha-bridge.test.js: unverified remote share blocked, manual copy available PASS");
+console.log("psychology-room-aha-bridge.test.js: private remote share blocked, manual pilot link available PASS");
