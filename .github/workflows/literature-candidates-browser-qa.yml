@@ -1,0 +1,98 @@
+name: Literature candidates - isolated browser QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'bilder/merker/litteratur/**'
+      - 'data/badges/litteratur_eight_visual_candidates_20261124.json'
+      - '.github/workflows/literature-candidates-browser-qa.yml'
+permissions:
+  contents: read
+jobs:
+  candidate-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Verify exact files and render candidate gallery
+        shell: bash
+        run: |
+          git diff --exit-code "$(git merge-base HEAD origin/main)" HEAD -- data/badges/litteratur.json bilder/merker/litteratur-brodert-v4.webp
+          mkdir -p /tmp/literature-qa
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFile,writeFile} from 'node:fs/promises';
+          import {createHash} from 'node:crypto';
+          import sharp from 'sharp';
+          import {chromium} from 'playwright';
+          const manifest=JSON.parse(await readFile('data/badges/litteratur_eight_visual_candidates_20261124.json','utf8'));
+          assert.equal(manifest.candidates.length,8);
+          assert.equal(new Set(manifest.candidates.map(c=>c.id)).size,8);
+          const images=[];
+          const report=[];
+          for(const c of manifest.candidates){
+            for(const kind of ['original','webp']){
+              const a=c[kind];
+              const b=await readFile(a.path);
+              assert.equal(b.length,a.bytes,a.path);
+              assert.equal(createHash('sha256').update(b).digest('hex'),a.sha256,a.path);
+              const m=await sharp(b).metadata();
+              assert.equal(m.width,a.width,a.path);
+              assert.equal(m.height,a.height,a.path);
+              assert.equal(m.format,kind==='original'?'png':'webp',a.path);
+              assert.equal(m.hasAlpha,true,a.path);
+              const {data,info}=await sharp(b).ensureAlpha().raw().toBuffer({resolveWithObject:true});
+              const alpha=(x,y)=>data[(y*info.width+x)*info.channels+info.channels-1];
+              const corners=[[0,0],[info.width-1,0],[0,info.height-1],[info.width-1,info.height-1]].map(([x,y])=>alpha(x,y));
+              assert.ok(corners.every(v=>v===0),a.path+' transparent corners');
+              report.push({id:c.id,kind,bytes:b.length,sha256:a.sha256,width:m.width,height:m.height,corners});
+              if(kind==='webp') images.push({label:c.label,src:'data:image/webp;base64,'+b.toString('base64')});
+            }
+          }
+          await writeFile('/tmp/literature-qa/integrity.json',JSON.stringify(report,null,2));
+          const browser=await chromium.launch({headless:true});
+          try {
+            for(const [device,viewport] of [['mobile',{width:390,height:844}],['desktop',{width:1280,height:900}]]){
+              for(const [theme,bg,fg] of [['light','#ffffff','#181818'],['dark','#171717','#ffffff']]){
+                const page=await browser.newPage({viewport,deviceScaleFactor:1});
+                await page.setContent('<!doctype html><html lang="nb"><meta name="viewport" content="width=device-width, initial-scale=1"><style>*{box-sizing:border-box}body{margin:0;padding:12px;font:15px system-ui;background:'+bg+';color:'+fg+'}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}article{min-width:0;border:1px solid #8886;padding:12px;border-radius:8px}h2{font-size:16px;overflow-wrap:anywhere}img{display:block;object-fit:contain;max-width:100%;height:auto}aside{display:flex;gap:16px;align-items:center;flex-wrap:wrap}figure{margin:0}figcaption{font-size:12px}</style><h1>Litteratur &amp; poesi – kandidater</h1><main></main>');
+                await page.evaluate(items=>{
+                  for(const item of items){
+                    const article=document.createElement('article');
+                    const h=document.createElement('h2');h.textContent=item.label;article.append(h);
+                    const aside=document.createElement('aside');
+                    for(const size of [256,128,64]){
+                      const figure=document.createElement('figure');
+                      const img=document.createElement('img');img.src=item.src;img.alt=item.label;img.width=size;img.height=size;img.dataset.size=size;
+                      const cap=document.createElement('figcaption');cap.textContent=size+' px';
+                      figure.append(img,cap);aside.append(figure);
+                    }
+                    article.append(aside);document.querySelector('main').append(article);
+                  }
+                },images);
+                await page.locator('img').evaluateAll(async imgs=>Promise.all(imgs.map(i=>i.decode())));
+                const stats=await page.evaluate(()=>({count:document.querySelectorAll('img').length,overflow:document.documentElement.scrollWidth>innerWidth,images:[...document.images].map(i=>({natural:i.naturalWidth,width:i.getBoundingClientRect().width,height:i.getBoundingClientRect().height,size:Number(i.dataset.size)}))}));
+                assert.equal(stats.count,24);
+                assert.equal(stats.overflow,false);
+                for(const i of stats.images){assert.equal(i.natural,1024);assert.equal(i.width,i.size);assert.equal(i.height,i.size);}
+                await page.screenshot({path:'/tmp/literature-qa/'+device+'-'+theme+'.png',fullPage:true});
+                await page.close();
+              }
+            }
+          } finally {await browser.close();}
+          console.log('PASS: 16 exact assets; 4 isolated candidate gallery render checks.');
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: literature-candidate-qa
+          path: /tmp/literature-qa/
+          if-no-files-found: warn
