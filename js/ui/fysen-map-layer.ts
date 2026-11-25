@@ -26,7 +26,7 @@ type FysenPopup = {
   setDOMContent: (node: HTMLElement) => FysenPopup;
   addTo: (map: FysenMap) => FysenPopup;
 };
-type FysenWindow = Window & {
+type FysenWindow = Omit<Window, "HGMap" | "maplibregl"> & {
   HGMap?: { getMap?: () => FysenMap | null };
   showToast?: (message: string) => unknown;
   maplibregl?: { Popup: new (options: { closeButton: boolean; maxWidth: string }) => FysenPopup };
