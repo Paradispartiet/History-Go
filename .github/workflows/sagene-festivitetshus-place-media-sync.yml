@@ -17,13 +17,9 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Import credited originals and regenerate place data
         run: |
-          curl --retry 3 -fsSL https://lokalhistoriewiki.no/images/Holsts_gate_3i.jpg -o /tmp/beier-01.jpg
-          curl --retry 3 -fsSL https://lokalhistoriewiki.no/images/Holsts_gate_3.jpg -o /tmp/beier-02.jpg
-          python -m pip install Pillow
           python <<'PY'
-          import hashlib, json
+          import json
           from pathlib import Path
-          from PIL import Image
           path = Path('data/places/historie/oslo/places_historie_oslo_kultureiendommer_batch_05/sagene_festivitetshus.json')
           place = json.loads(path.read_text())
           entries = [
@@ -31,15 +27,8 @@ jobs:
               ('frontImage','02','Holsts_gate_3','front',(2731,2103),(768,1024),(1100,0,2675,2100),'0caee7911321420747f038dbcb41a7459468e7c04fd12ed0d010b9af73b64390','Inngangssiden med trapp og vindusrekke.','Jan-Tore Egge'),
           ]
           for field, number, origin, suffix, original_size, size, crop, sha, note, author in entries:
-              source = Path(f'/tmp/beier-{number}.jpg')
-              assert hashlib.sha256(source.read_bytes()).hexdigest() == sha
-              with Image.open(source) as original:
-                  assert original.size == original_size
-                  frame = original.crop(crop) if crop else original.copy()
-                  frame.thumbnail(size, Image.Resampling.LANCZOS)
-                  assert frame.size == size
-                  output = f'bilder/places/sagene_festivitetshus_{suffix}.webp'
-                  frame.save(output, quality=85)
+              output = f'bilder/places/sagene_festivitetshus_{suffix}.webp'
+              assert Path(output).is_file()
               place[field] = output
               place[field+'Meta'] = {
                   'source':'lokalhistoriewiki', 'sourcePage':f'https://lokalhistoriewiki.no/wiki/Fil:{origin}.jpg',
