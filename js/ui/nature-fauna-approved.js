@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_munk:Object.freeze({
+   scientificName:"Sylvia atricapilla",
+   src:"bilder/natur/fauna/godkjent/45_munk_v1.webp",
+   gitBlobSha:"4d5b3d2ef13a225dcecc23edd7237c656ce68253",
+   reviewedAt:"2026-11-25",
+   stage:"adult_male_black_cap_grey_face_pale_grey_underparts_grey_brown_upperparts_slender_bill_perched",
+   evidence:"data/natur/fauna/illustration-quality-munk-20261125.json"
+  }),
   emne_fauna_kattugle:Object.freeze({
    scientificName:"Strix aluco",
    src:"bilder/natur/fauna/godkjent/44_kattugle_v1.webp",
