@@ -1047,7 +1047,7 @@
         </form>
         <section class="psychology-room-note-section" aria-labelledby="psychologyRoomAhaShareHeading">
           <h4 id="psychologyRoomAhaShareHeading">Kopier en selvvalgt innsikt</h4>
-          <p class="psychology-room-privacy">Ingen privat tekst sendes til AHA. Automatisk overføring er deaktivert, også når du er innlogget på AHA. Du kan fortsatt kopiere din egen korte tekst eller lage en kryptert sikkerhetskopi fra Min oversikt.</p>
+          <p class="psychology-room-privacy">Ingen privat tekst sendes til AHA, og automatisk overføring er deaktivert, også når du er innlogget på AHA. Du kan fortsatt kopiere din egen korte tekst eller lage en kryptert sikkerhetskopi fra Min oversikt.</p>
           <form id="psychologyRoomAhaShareForm" class="psychology-room-form">
             <label class="psychology-room-textarea-label">
               <span>Min valgte tekst (ikke hele refleksjonsnotatet)</span>
