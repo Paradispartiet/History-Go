@@ -1,0 +1,53 @@
+name: Exact Poesi original transfer
+on:
+  push:
+    branches:
+      - badges/litteratur-poesi-exact-transfer-20261125
+permissions:
+  contents: write
+concurrency:
+  group: exact-poesi-transfer-20261125
+  cancel-in-progress: false
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reconstruct exact original and verify candidate set
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .transfer/poesi/poesi__png__part*.txt | base64 --decode > "$RUNNER_TEMP/poesi.png"
+          echo 'cd8e43d263d3dc626c43539e689b5919fe70dd65a9ca44de4b45201931709606  '"$RUNNER_TEMP/poesi.png" | sha256sum --check
+          git fetch origin refs/heads/badges/litteratur-eight-candidates-intake-20261124
+          git switch --detach FETCH_HEAD
+          dest=bilder/merker/litteratur/originaler/poesi-original-1254.png
+          if test -e "$dest"; then
+            cmp "$RUNNER_TEMP/poesi.png" "$dest"
+          else
+            cp "$RUNNER_TEMP/poesi.png" "$dest"
+          fi
+          python - <<'PY'
+          import hashlib, json, pathlib, struct
+          m=json.loads(pathlib.Path('data/badges/litteratur_eight_visual_candidates_20261124.json').read_text())
+          for c in m['candidates']:
+              for kind in ('original','webp'):
+                  a=c[kind]
+                  b=pathlib.Path(a['path']).read_bytes()
+                  assert len(b)==a['bytes'], a['path']
+                  assert hashlib.sha256(b).hexdigest()==a['sha256'], a['path']
+                  if kind=='original':
+                      assert b[:8]==b'\x89PNG\r\n\x1a\n' and struct.unpack('>II',b[16:24])==(1254,1254), a['path']
+                  print('PASS',a['path'])
+          PY
+          if git diff --quiet -- "$dest" && git ls-files --error-unmatch "$dest" >/dev/null 2>&1; then
+            echo 'Exact original is already committed; no push needed.'
+            exit 0
+          fi
+          git add -- "$dest"
+          test "$(git diff --cached --name-only)" = "$dest"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Stage exact Poesi PNG original after all 16 SHA-256 checks'
+          git push origin HEAD:refs/heads/badges/litteratur-eight-candidates-intake-20261124
