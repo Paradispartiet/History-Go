@@ -47,6 +47,7 @@ const SOURCE_MAPPED_ENTRIES = [
 // old URLs valid while the surrounding loader remains legacy JavaScript.
 const STARTUP_ENTRIES = [
   { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" },
+  { in: "js/ui/fysen-map-layer.ts", out: "fysen-map-layer" },
   { in: "js/civicationSceneInteraction.ts", out: "civicationSceneInteraction" },
   { in: "js/core/categories.ts", out: "categories" },
   { in: "js/core/layerManager.ts", out: "layerManager" },

@@ -1,10 +1,12 @@
 {
-  "schema": "history-go-fauna-single-species-candidate-v1",
+  "schema": "history-go-fauna-single-species-review-v1",
   "date": "2026-11-25",
+  "series": "Finn Fauna – individuelt godkjente originalillustrasjoner",
   "speciesNumber": 50,
   "baselineApproved": 49,
-  "kind": "candidate_pending_binary_transfer",
-  "publicationRule": "Stacked on Honningbie #7545; preserve 49 previous originals and existing quiz; verify binary, registry, cache and four QA jobs before merge; verify Pages deployment.",
+  "approvedCountAfterRelease": 50,
+  "kind": "approved_original_verified_git_blob",
+  "publicationRule": "Preserve all 49 previous original binaries and existing quiz; require four successful Fauna/Flora jobs on final PR head, merge and successful Pages deployment before counting 50 published.",
   "items": [
     {
       "name": "Jordhumle – dronning på rødkløver",
@@ -12,23 +14,35 @@
       "scientificName": "Bombus terrestris",
       "family": "Apidae",
       "existingQuizId": "quiz_fauna_jordhumle",
+      "quizNote": "Existing quiz ID preserved.",
       "src": "bilder/natur/fauna/godkjent/50_jordhumle_v1.webp",
-      "reviewStatus": "candidate",
-      "approvedForPublication": false,
-      "originalBinaryVerifiedInGitHub": false,
+      "reviewStatus": "approved",
+      "approvedForPublication": true,
+      "originalBinaryVerified": true,
       "dimensions": [
         1024,
         1536
       ],
       "sizeBytes": 512454,
       "sha256": "fea7eac553f6f0363de206cb40630da5049d4b4249d55236755acde95473e685",
-      "expectedGitBlobSha": "b940c2faa365ae0aa1af22e43c890c3f06519357",
+      "gitBlobSha": "b940c2faa365ae0aa1af22e43c890c3f06519357",
       "visualChecks": {
         "blackBackgroundReviewed": true,
         "whiteBackgroundReviewed": true,
-        "trueAlphaWebP": true
+        "trueAlphaWebP": true,
+        "fullImageReviewed": true,
+        "entireAnimalVisible": true,
+        "blackFur": true,
+        "twoYellowBands": true,
+        "buffTail": true,
+        "veinedWings": true
       },
-      "notes": "AI-generated natural-history illustration; queen with two yellow bands and buff tail. No claim of definitive identification from illustration alone. Original file and base64 roundtrip locally verified; binary transfer pending."
+      "sourceReferences": [
+        "https://www.bumblebeeconservation.org/learn-about-bumblebees/species-guide/",
+        "https://www.bumblebeeconservation.org/"
+      ],
+      "observations": "AI-generert naturhistorisk illustrasjon av dronning med svart pels, to gule bånd og kremgul bakkroppsspiss på rødkløver. Kontrollert på svart og hvitt; original Git-blob verifisert.",
+      "limitations": "Illustrasjon, ikke feltfoto. Sideperspektivet skjuler deler av bein og vinger. Kan ikke alene skille jordhumle fra alle nærstående arter; arbeidere og hanner er ikke vist."
     }
   ]
 }
