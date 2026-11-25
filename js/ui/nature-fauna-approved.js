@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_aakerhumle:Object.freeze({
+   scientificName:"Bombus pascuorum",
+   src:"bilder/natur/fauna/godkjent/51_aakerhumle_v1.webp",
+   gitBlobSha:"7b34b77d690f2445df25b4061364fae3ee93be43",
+   reviewedAt:"2026-11-25",
+   stage:"ginger_thorax_mixed_black_and_tawny_abdominal_hairs_veined_wings_on_purple_flower",
+   evidence:"data/natur/fauna/illustration-quality-aakerhumle-20261125.json"
+  }),
   emne_fauna_jordhumle:Object.freeze({
    scientificName:"Bombus terrestris",
    src:"bilder/natur/fauna/godkjent/50_jordhumle_v1.webp",
