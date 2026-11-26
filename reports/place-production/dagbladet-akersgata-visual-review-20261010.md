@@ -1,6 +1,6 @@
 # Dagbladet — manuell visuell review, 10. oktober 2026
 
-Evidens: [Actions 38065847520](https://github.com/Paradispartiet/History-Go/actions/runs/38065847520), kildebranch før review-notater `c424eae2407840bb28aa3c8caf919847ac629975`. Chromium på Linux med emulerte viewporter; ikke native Safari/fysisk iPad. Alle tolv JPG-filer under `reports/visual-qa/dagbladet-akersgata/20261010/` er åpnet og manuelt kontrollert. `visual-audit.json` er den uendrede maskinrapporten fra kjøringen.
+Evidens: [Actions 38065847520](https://github.com/Paradispartiet/History-Go/actions/runs/38065847520), kildebranch før review-notater `c424eae2407840bb28aa3c8caf919847ac629975`. Chromium på Linux med emulerte viewporter; ikke native Safari/fysisk iPad. Alle tolv JPG-filer under [`reports/visual-qa/dagbladet-akersgata/20261010/`](https://github.com/Paradispartiet/History-Go/tree/332123a5f363d0d69688fa9f514596808710a2bb/reports/visual-qa/dagbladet-akersgata/20261010) er åpnet og manuelt kontrollert. `visual-audit.json` er den uendrede maskinrapporten fra kjøringen.
 
 Automatiske funn: null JavaScript-sidefeil, alle undersøkte bilder laster, de to aktive samlingene åpner, QuizCard flipper og utvider seg innenfor PlaceCard, og lenken åpner stedets kuraterte Fagverk. Runtime-payloaden inneholder én canonical fortelling. Disse sjekkene består på alle tre viewporter der testskriptet utfører dem.
 
