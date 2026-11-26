@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.17.16",
     "updated_at": "2026-11-16",
-    "content_sha256": "57378962d16ed91f8af31d677befb95a7ac4072c9a90c204b496cd71190b03ee"
+    "content_sha256": "306a4f382cebcef823c37189a8560ee486a0f32ca6e785340c90f9bc9db09d88"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "54ec31ce982404076c4091195cbfef11d79483e3b47be6f61535f6e9e7980953"
+    "content_sha256": "50f32751ad560f70ecec9102de15bdd2849cdf9e6c5f527478633f1f7004c927"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 191,
     "module_file_count": 497,
-    "package_file_count": 561,
+    "package_file_count": 564,
     "chapter_referenced_file_count": 935,
-    "referenced_file_count": 1425,
+    "referenced_file_count": 1428,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2848,9 +2848,9 @@
         "version"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 164,
+      "package_file_count": 167,
       "required_package_file_count": 4,
-      "optional_package_file_count": 160,
+      "optional_package_file_count": 163,
       "package_files": [
         {
           "path": "data/fag/historie/case_requirements_historie_canonical_v1.json",
@@ -3453,6 +3453,18 @@
           "content_sha256": "d7c5988286a38aec9f5a7e3432f31ce018b29e00511bd45995bd67f4e6d0d9a9"
         },
         {
+          "path": "data/quiz/historie/sagene_festivitetshus_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.sagene_festivitetshus.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "4ce4fdd9f2626e61ba947b58a8d071d3968bb222b6c6a51198f721dac1247e27"
+        },
+        {
           "path": "data/quiz/historie/sagene_skole_sets.json",
           "required": false,
           "fields": [
@@ -4041,6 +4053,18 @@
           "content_sha256": "7d552df173bedb3a2a62e49efa066448f32849933a7063b2434098f0b910c18b"
         },
         {
+          "path": "data/quiz/production_briefs/historie/sagene_festivitetshus.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.sagene_festivitetshus.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "760df47bb56098a4e6a383075480a0787556ec1b00a520fe0f0bc2a319377a16"
+        },
+        {
           "path": "data/quiz/production_briefs/historie/sagene_skole.json",
           "required": false,
           "fields": [
@@ -4254,7 +4278,7 @@
             "quizProduction.targets.beierbrua.context_artifact"
           ],
           "exists": true,
-          "content_sha256": "e008fc5fa6dad607144da94409512165d95b1a120a810dafc4411773e60b94e8"
+          "content_sha256": "107be298c481c033bf2c7f9fb382722b6804693226db11dd51166f69c70228b7"
         },
         {
           "path": "data/quiz/production_context/historie/bjoelsenfossen.json",
@@ -4629,6 +4653,18 @@
           "content_sha256": "02ced56e005758f2ac5d60ee92a3ffecd21569f141f47e1f5b59ce6b6a91187b"
         },
         {
+          "path": "data/quiz/production_context/historie/sagene_festivitetshus.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.sagene_festivitetshus.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "21c757dd55afe22e58769f3965037f8b1267fbe91140209ce2771efab7bd092b"
+        },
+        {
           "path": "data/quiz/production_context/historie/sagene_skole.json",
           "required": false,
           "fields": [
@@ -4821,20 +4857,20 @@
           "content_sha256": "40c2c68b75d6be84e0ce52faeaf382dddec4d1a87789ac772af2452323591e5c"
         }
       ],
-      "package_content_sha256": "9b272ed93b1c612a3b3ba26e173907cf70dca5688f2c6959f5e561b249c11b0b",
+      "package_content_sha256": "fa5fe5afb58c7bf4b780239760f6443b7eee6712be1efebaaeb1db640b48eabd",
       "chapter_count": 23,
       "module_file_count": 69,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 92,
       "chapter_content_sha256": "bedfd019dc2fa60ba92a540bf6b9f2504e0f6b1680350762a5fe074e82153148",
-      "referenced_file_count": 256,
+      "referenced_file_count": 259,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "22498ff38f329d56f9c41f5b0e7794abf703ddfa58d53f3afb5fd5a121586bdf",
-      "content_sha256": "f86a4f39504e6646f3bde74aba72d6bfc05211327793ccd8548205bab62960d5",
+      "structure_sha256": "a33a443cc25fe3cbcf3e751226d6c3b399f852d46e8f20917cab406414a42fd3",
+      "content_sha256": "508fdef649963e10f3a66c6ace826fd3b2ad93626f7197617b78520db6a01297",
       "chapters": [
         {
           "chapter_id": "historisk_tid_periodisering",
@@ -9453,5 +9489,5 @@
       ]
     }
   },
-  "release_sha256": "7103b6b4b1bfc9c9a610880507ee95e7fc987db61a4245a557d08aef1ff46610"
+  "release_sha256": "bdd9c4be2a1336f6d6ced24ee1d39f5bedf35def86da223542db6ab871f441e4"
 }
