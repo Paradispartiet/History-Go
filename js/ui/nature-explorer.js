@@ -28,8 +28,8 @@ function media(a){
   const art=approvedFloraIllustrations?.get(id)?.src;
   return art ? {src:art,type:"illustration"} : null;
  }
- const verified=approvedFaunaIllustrations?.get(id)?.src;
- if(verified)return {src:verified,type:"illustration",approved:true};
+ const verified=approvedFaunaIllustrations?.get(id);
+ if(verified)return {src:verified.src,type:"illustration",approved:true,exampleLabel:verified.exampleLabel};
  const art=drawings?.resolve(id);
  if(art)return {src:art,type:"illustration"};
  const src=a.image || a.imageCard || a.img;
@@ -43,7 +43,7 @@ function illustrated(a){
 }
 function fallback(parent,source){parent.replaceChildren(node("span","ne-image-fallback",kind==="flora"||source?.approved?"Illustrasjon utilgjengelig":icon));}
 function appendImage(parent,source,alt){
- const img=node("img");img.alt=alt;img.loading="lazy";
+ const img=node("img");img.alt=source.exampleLabel?alt+" – "+source.exampleLabel:alt;img.loading="lazy";
  if((kind==="flora"&&source.type==="illustration")||source.approved){
   img.classList.add("ne-transparent-art");
   parent.classList.add("ne-art-transparent-stage");
@@ -74,6 +74,7 @@ function openArt(a){
    wrap.appendChild(node("p","ne-image-credit",kind==="flora"?"Individuelt kvalitetsgodkjent botanisk illustrasjon":imageInfo.approved?"Individuelt kvalitetsgodkjent faunaillustrasjon":"Forenklet originalillustrasjon · ikke et artsbestemmelsesfoto"));
   }
   details.appendChild(wrap);
+  if(imageInfo.exampleLabel)details.appendChild(node("p","ne-image-credit",imageInfo.exampleLabel));
  }else if(kind==="flora"){
   details.appendChild(node("p","ne-no-photo","Illustrasjon under arbeid. Artsinformasjonen er tilgjengelig."));
  }
@@ -101,6 +102,7 @@ function card(a,have){
  b.appendChild(image);
  const body=node("div","ne-card-body");body.appendChild(node("span","ne-card-title",name(a)));
  if(latin(a))body.appendChild(node("span","ne-latin",latin(a)));
+ if(imageInfo?.exampleLabel)body.appendChild(node("span","ne-latin",imageInfo.exampleLabel));
  body.appendChild(node("span","ne-status"+(have?" collected":""),have?"✓ Samlet":"Ikke samlet"));
  b.appendChild(body);b.addEventListener("click",()=>openArt(a));return b;
 }
@@ -110,7 +112,7 @@ function render(){
  const matches=all.filter(a=>{
   if(activeFilter==="collected"&&!unlocked.has(String(a.id)))return false;
   if(activeFilter==="illustrated"&&!illustrated(a))return false;
-  return !term||[name(a),latin(a),...list(a.aliases),a.taxonomy?.familie,...list(a.kjennetegn),...list(a.habitat?.biotop),...list(a.observasjonstips),...list(a.bykontekst?.typiske_steder)].join(" ").toLocaleLowerCase("nb").includes(term);
+  return !term||[name(a),latin(a),approvedFaunaIllustrations?.get(String(a.id))?.exampleLabel,...list(a.aliases),a.taxonomy?.familie,...list(a.kjennetegn),...list(a.habitat?.biotop),...list(a.observasjonstips),...list(a.bykontekst?.typiske_steder)].join(" ").toLocaleLowerCase("nb").includes(term);
  });
  const held=all.filter(a=>unlocked.has(String(a.id))).length;
  stats.textContent=all.length+" oppføringer · "+held+" samlet · "+all.filter(illustrated).length+" med illustrasjon";

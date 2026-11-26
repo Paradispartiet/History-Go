@@ -2,6 +2,17 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_murerbie:Object.freeze({
+   scientificName:"Osmia spp.",
+   depictedScientificName:"Osmia bicornis",
+   depictedName:"Hornmurerbie",
+   exampleLabel:"Bildet viser hornmurerbie (Osmia bicornis), én av flere murerbiearter.",
+   src:"bilder/natur/fauna/godkjent/58_murerbie_v1.webp",
+   gitBlobSha:"a63a65a32c4d80a2a81fdf823a9bf9e2124ccbf2",
+   reviewedAt:"2026-11-26",
+   stage:"female_red_mason_bee_example_facial_horns_ventral_scopa_isolated_black_background",
+   evidence:"data/natur/fauna/illustration-quality-murerbie-20261126.json"
+  }),
   emne_fauna_trehumle:Object.freeze({
    scientificName:"Bombus hypnorum",
    src:"bilder/natur/fauna/godkjent/57_trehumle_v1.webp",
