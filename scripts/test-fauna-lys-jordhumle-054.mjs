@@ -19,7 +19,7 @@ assert.equal(bytes.toString("ascii",0,4),"RIFF");assert.equal(bytes.toString("as
 assert.equal(bytes.toString("ascii",12,16),"VP8L");assert.equal(bytes[20],0x2f);
 const bits=bytes.readUInt32LE(21);assert.deepEqual([(bits&0x3fff)+1,((bits>>>14)&0x3fff)+1],[1024,1536]);
 const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,54);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,species.latin);
+assert(reg.count>=54);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,species.latin);
 const prior=[
  {
   "id": "emne_fauna_hagehumle",
@@ -290,8 +290,8 @@ const prior=[
 assert.equal(prior.length,53);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);
 assert.equal(blobHash(fs.readFileSync(new URL(old.src,root))),old.sha,old.id+" binary changed");}
-assert.equal(reg.get("emne_fauna_markhumle"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261126-54"));
+assert.equal(reg.get("emne_fauna_enghumle"),null);
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261126-55"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Lys jordhumle")'));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-lys-jordhumle-054.mjs"));
 console.log("Finn Fauna #54 Lys jordhumle: lossless WebP, dimensions, hashes, aggregate taxonomy, quiz and all 53 previous binaries OK.");
