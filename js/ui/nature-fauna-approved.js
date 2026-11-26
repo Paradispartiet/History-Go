@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_markhumle:Object.freeze({
+   scientificName:"Bombus pratorum",
+   src:"bilder/natur/fauna/godkjent/55_markhumle_v1.webp",
+   gitBlobSha:"49128d5ec6ec6bc05696dd8a671f20b0ca4b2c84",
+   reviewedAt:"2026-11-26",
+   stage:"female_two_yellow_bands_small_orange_red_tail_isolated_no_flower_black_background",
+   evidence:"data/natur/fauna/illustration-quality-markhumle-20261126.json"
+  }),
   emne_fauna_lys_jordhumle:Object.freeze({
    scientificName:"Bombus lucorum-komplekset",
    src:"bilder/natur/fauna/godkjent/54_lys_jordhumle_v1.webp",
