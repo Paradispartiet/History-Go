@@ -289,7 +289,9 @@ test("kartet henter nye JS- og CSS-ressurser etter Badge-oppdatering", () => {
   // Startmodulen kan få en nyere cacheversjon når andre funksjoner publiseres etter Badge-oppdateringen.
   const appVersion = html.match(/js\/app\.js\?v=(20\d{6})-[a-z0-9-]+/);
   assert.ok(appVersion && Number(appVersion[1]) >= 20261028, "startmodulen må få en oppdatert cacheversjon");
-  assert.ok(html.includes("css/map.css?v=20261028-badges-readable-close5"), "kartstilen må få ny cacheversjon");
+  const mapStyleVersion = html.match(/css\/map\.css\?v=(20\d{6})-[a-z0-9-]+/);
+  assert.ok(mapStyleVersion && Number(mapStyleVersion[1]) >= 20261028,
+    "kartstilen må få en cacheversjon fra eller etter badge-oppdateringen");
 });
 
 
