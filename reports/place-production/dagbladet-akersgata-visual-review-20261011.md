@@ -1,6 +1,6 @@
 # Dagbladet – ny visuell review, 11. oktober 2026
 
-Evidens: [Actions 38139378858](https://github.com/Paradispartiet/History-Go/actions/runs/38139378858). Faktisk kildecommit `7fbebfbf695b501869306de8416ffa43b7b7d267`; skjermbilder og uendret maskinrapport er lagret i commit `89ecb964060e423c05fc4fe839a6693bf274b451`, under `reports/visual-qa/dagbladet-akersgata/20261011/`. Chromium på Linux med emulerte viewporter; ikke native Safari eller fysisk iPad.
+Evidens: [Actions 38139378858](https://github.com/Paradispartiet/History-Go/actions/runs/38139378858). Faktisk kildecommit `7fbebfbf695b501869306de8416ffa43b7b7d267`; skjermbilder og uendret maskinrapport er lagret i commit `89ecb964060e423c05fc4fe839a6693bf274b451`, under [`reports/visual-qa/dagbladet-akersgata/20261011/`](https://github.com/Paradispartiet/History-Go/tree/332123a5f363d0d69688fa9f514596808710a2bb/reports/visual-qa/dagbladet-akersgata/20261011). Chromium på Linux med emulerte viewporter; ikke native Safari eller fysisk iPad.
 
 Alle 14 nye JPG-filer er åpnet og manuelt gjennomgått. Den tidligere reviewen fra 10. oktober beholdes som historisk evidens; avgjørelsene nedenfor erstatter dens åpne visningsavvik.
 

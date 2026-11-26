@@ -51,7 +51,7 @@ Lokalt består `place:verify`, fem målrettede integrasjonstester, Dagbladets 4.
 
 Nye genererte Knowledge-data inkluderer også den allerede mergede VG-quizens tidligere uoppdaterte enheter. Dette er deterministisk regenerering fra aktive canonical spørsmål, ikke ny VG-redaksjonell produksjon. Runtime-splittfiler kan forskyves ved nye tekster; uendret innhold i andre profiler er bevart.
 
-Browser-evidens er samlet på 390 × 844, 768 × 1024 og 1440 × 1000 i Chromium i Actions 38065847520. Tolv faktiske skjermbilder ligger under `reports/visual-qa/dagbladet-akersgata/20261010/`. Alle er manuelt gjennomgått. Dette er ikke native Safari eller fysisk iPad. Runtime-testen består, men den manuelle gjennomgangen finner feil i tittellinjebryting, logovisning og duplisert fortelling; se egen visuell review. Full visuell sluttgodkjenning og `complete` er ikke gitt: Utgivelser er fortsatt BLOCKED og UI-avvik gjenstår.
+Browser-evidens er samlet på 390 × 844, 768 × 1024 og 1440 × 1000 i Chromium i Actions 38065847520. Tolv faktiske skjermbilder ligger under [`reports/visual-qa/dagbladet-akersgata/20261010/`](https://github.com/Paradispartiet/History-Go/tree/332123a5f363d0d69688fa9f514596808710a2bb/reports/visual-qa/dagbladet-akersgata/20261010). Alle er manuelt gjennomgått. Dette er ikke native Safari eller fysisk iPad. Runtime-testen består, men den manuelle gjennomgangen finner feil i tittellinjebryting, logovisning og duplisert fortelling; se egen visuell review. Full visuell sluttgodkjenning og `complete` er ikke gitt: Utgivelser er fortsatt BLOCKED og UI-avvik gjenstår.
 
 
 ## Seksdelt kvalitetsvurdering

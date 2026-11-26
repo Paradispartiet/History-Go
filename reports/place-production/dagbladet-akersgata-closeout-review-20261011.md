@@ -27,7 +27,7 @@ Papiravisen er samlingens representative hovedutgivelse. Nettutgaven, bilagene o
 
 `npm run build:web` består. Dagbladet-integrasjon, samlingsrenderer, samlingslayout og Unified Place har **31 beståtte tester**. Stories, Place-open og Lesespor-race har **11 beståtte tester**, inkludert den faktiske feilrekkefølgen der Place-open fyller Stories før bakgrunnsaggregatet. Publikasjonstesten kontrollerer separat bildedato/stedsperiode, faktisk bildefil og oppløste claim-ID-er. Negativ testen beholder at en kvalifisert BLOCKED-samling blokkerer også etter en hypotetisk UI-godkjenning.
 
-Faktisk app-kjøring: [Actions 38155614695](https://github.com/Paradispartiet/History-Go/actions/runs/38155614695), kildecommit `a5d5605f976a68b0018230920e8da6c046abeef9`. Botcommit `fda6512611cb9b6e58543e57112a8f36d68e3858` lagrer bare skjermbilder og maskinrapport i `reports/visual-qa/dagbladet-akersgata/20261011-closeout/`. **Alle 18 JPG-filer er åpnet og visuelt gjennomgått**, ikke bare et utvalg. Linux Chromium med emulerte viewporter; native Safari eller fysisk iPad hevdes ikke.
+Faktisk app-kjøring: [Actions 38155614695](https://github.com/Paradispartiet/History-Go/actions/runs/38155614695), kildecommit `a5d5605f976a68b0018230920e8da6c046abeef9`. Botcommit `fda6512611cb9b6e58543e57112a8f36d68e3858` lagrer bare skjermbilder og maskinrapport i [`reports/visual-qa/dagbladet-akersgata/20261011-closeout/`](https://github.com/Paradispartiet/History-Go/tree/332123a5f363d0d69688fa9f514596808710a2bb/reports/visual-qa/dagbladet-akersgata/20261011-closeout). **Alle 18 JPG-filer er åpnet og visuelt gjennomgått**, ikke bare et utvalg. Linux Chromium med emulerte viewporter; native Safari eller fysisk iPad hevdes ikke.
 
 | Kontroll | Faktisk evidens og resultat |
 | --- | --- |

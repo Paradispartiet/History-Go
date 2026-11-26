@@ -8,8 +8,8 @@
 ## Verifiserbar evidens
 
 - [Automatisert QA og arkiverte bilder, GitHub Actions #38059386396](https://github.com/Paradispartiet/History-Go/actions/runs/38059386396).
-- Maskinlesbar detaljrapport: `reports/visual-qa/vg-huset/20261010/visual-audit.json`.
-- Permanente skjermbilder i `reports/visual-qa/vg-huset/20261010/`:
+- Maskinlesbar detaljrapport: [`reports/visual-qa/vg-huset/20261010/visual-audit.json`](https://github.com/Paradispartiet/History-Go/blob/332123a5f363d0d69688fa9f514596808710a2bb/reports/visual-qa/vg-huset/20261010/visual-audit.json).
+- Permanente skjermbilder i [`reports/visual-qa/vg-huset/20261010/`](https://github.com/Paradispartiet/History-Go/tree/332123a5f363d0d69688fa9f514596808710a2bb/reports/visual-qa/vg-huset/20261010):
   - `mobile-placecard-top.jpg` og `mobile-placecard-lower.jpg`
   - `ipad-placecard-top.jpg` og `ipad-placecard-lower.jpg`
   - `desktop-placecard-top.jpg` og `desktop-placecard-lower.jpg`
