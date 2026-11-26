@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_lys_jordhumle:Object.freeze({
+   scientificName:"Bombus lucorum-komplekset",
+   src:"bilder/natur/fauna/godkjent/54_lys_jordhumle_v1.webp",
+   gitBlobSha:"360a3c6dc42c00896485f593502e308fc83ce20c",
+   reviewedAt:"2026-11-26",
+   stage:"female_two_lemon_yellow_bands_pure_white_tail_short_face_on_purple_thistle_black_background",
+   evidence:"data/natur/fauna/illustration-quality-lys-jordhumle-20261126.json"
+  }),
   emne_fauna_hagehumle:Object.freeze({
    scientificName:"Bombus hortorum",
    src:"bilder/natur/fauna/godkjent/53_hagehumle_v1.webp",

@@ -65,7 +65,7 @@ const prior={ "emne_fauna_lovsanger":"a8cfb708899e9cb77476c378a6395c38d0c1c0ed",
 assert.equal(Object.keys(prior).length,37);
 for(const [oldId,h] of Object.entries(prior))assert.equal(reg.get(oldId)?.gitBlobSha,h,oldId+" previous original must remain byte-identical");
 assert.equal(reg.get("emne_fauna_gulsanger")?.gitBlobSha,"e78100653356fdcfd3f6a5dbcef5ac094ec0b31c","Later Gulsanger #39 must remain byte-identical");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261126-53"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261126-54"));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-svarthvit-fluesnapper-038.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Svarthvit fluesnapper")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Gulsanger")'));
