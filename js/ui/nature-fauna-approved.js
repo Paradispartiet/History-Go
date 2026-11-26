@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_hagehumle:Object.freeze({
+   scientificName:"Bombus hortorum",
+   src:"bilder/natur/fauna/godkjent/53_hagehumle_v1.webp",
+   gitBlobSha:"d969c6df5282dc2d40d4249cda47ca742e89fdc5",
+   reviewedAt:"2026-11-26",
+   stage:"three_yellow_bands_white_tail_long_face_and_tongue_on_purple_tubular_flower",
+   evidence:"data/natur/fauna/illustration-quality-hagehumle-20261126.json"
+  }),
   emne_fauna_steinhumle:Object.freeze({
    scientificName:"Bombus lapidarius",
    src:"bilder/natur/fauna/godkjent/52_steinhumle_v1.webp",
