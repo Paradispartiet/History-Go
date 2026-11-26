@@ -11,7 +11,7 @@ assert.equal(a.catalogId,id);assert.equal(a.scientificName,"Bombus sylvarum");as
 const b=binary(a.src);assert.equal(b.length,624042);assert.equal(blob(b),"abeb7ac603325a3b41b18df8416ae62c39c49981");
 assert.equal(crypto.createHash("sha256").update(b).digest("hex"),"b77ce17866c8fb402010f7d9100b52a70c3e1ca3bd8c8fb664fed0fc1a740abb");
 const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,56);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);assert.equal(reg.get(id)?.scientificName,a.scientificName);
+assert(reg.count>=56);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);assert.equal(reg.get(id)?.scientificName,a.scientificName);
 const canonical=JSON.parse(read("data/natur/fauna/insekter_humler_og_veps.json")).find(x=>x.id===id);
 const runtime=JSON.parse(read("data/runtime/nature-all.json"));const rows=runtime.groups.fauna.flatMap(p=>JSON.parse(read(p)));
 assert.deepEqual(rows.find(x=>x.id===id),canonical);assert.equal(canonical.latin,"Bombus sylvarum");assert.equal(canonical.taxonomy.latin_navn,"Bombus sylvarum");assert.deepEqual(canonical.quiz_ids,["quiz_fauna_enghumle"]);
@@ -293,6 +293,6 @@ const prior=[
 assert.equal(prior.length,55);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);assert.equal(blob(binary(old.src)),old.sha,old.id+" original changed");}
 assert.equal(reg.get("emne_fauna_murveps"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261126-56"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261126-57"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Enghumle")'));
 console.log("Enghumle #56: exact original, taxonomy/source-runtime parity, quiz reference, and all 55 previous binaries OK");
