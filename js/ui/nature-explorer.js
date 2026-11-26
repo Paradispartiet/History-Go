@@ -28,8 +28,8 @@ function media(a){
   const art=approvedFloraIllustrations?.get(id)?.src;
   return art ? {src:art,type:"illustration"} : null;
  }
- const verified=approvedFaunaIllustrations?.get(id);
- if(verified)return {src:verified.src,type:"illustration",approved:true,exampleLabel:verified.exampleLabel};
+ const verified=approvedFaunaIllustrations?.get(id)?.src;
+ if(verified)return {src:verified,type:"illustration",approved:true,exampleLabel:approvedFaunaIllustrations?.get(id)?.exampleLabel};
  const art=drawings?.resolve(id);
  if(art)return {src:art,type:"illustration"};
  const src=a.image || a.imageCard || a.img;

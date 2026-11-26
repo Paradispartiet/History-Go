@@ -2132,6 +2132,9 @@ try {
    await page.locator("#natureSearch").fill("Murerbie");
    const card=page.locator("#natureGrid").getByRole("button",{name:/^Murerbie,/i}).first();
    await card.waitFor();
+   await page.locator("#natureSearch").fill("Hornmurerbie");
+   await card.waitFor();
+   assert.equal(await page.locator("#natureGrid .ne-card").count(),1);
    assert(await card.getByText("Bildet viser hornmurerbie (Osmia bicornis), én av flere murerbiearter.").isVisible());
    if(brokenMasonBee){
     await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
