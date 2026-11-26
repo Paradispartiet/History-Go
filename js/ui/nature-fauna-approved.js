@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_enghumle:Object.freeze({
+   scientificName:"Bombus sylvarum",
+   src:"bilder/natur/fauna/godkjent/56_enghumle_v1.webp",
+   gitBlobSha:"abeb7ac603325a3b41b18df8416ae62c39c49981",
+   reviewedAt:"2026-11-26",
+   stage:"pale_form_dark_thoracic_band_banded_abdomen_orange_red_tail_isolated_black_background",
+   evidence:"data/natur/fauna/illustration-quality-enghumle-20261126.json"
+  }),
   emne_fauna_markhumle:Object.freeze({
    scientificName:"Bombus pratorum",
    src:"bilder/natur/fauna/godkjent/55_markhumle_v1.webp",
