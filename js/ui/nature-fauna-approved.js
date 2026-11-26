@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_trehumle:Object.freeze({
+   scientificName:"Bombus hypnorum",
+   src:"bilder/natur/fauna/godkjent/57_trehumle_v1.webp",
+   gitBlobSha:"5112097150a1e2e0c211deac374c337713276718",
+   reviewedAt:"2026-11-26",
+   stage:"ginger_brown_thorax_black_abdomen_white_tail_isolated_black_background",
+   evidence:"data/natur/fauna/illustration-quality-trehumle-20261126.json"
+  }),
   emne_fauna_enghumle:Object.freeze({
    scientificName:"Bombus sylvarum",
    src:"bilder/natur/fauna/godkjent/56_enghumle_v1.webp",
