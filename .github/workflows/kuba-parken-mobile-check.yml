@@ -1,0 +1,18 @@
+name: Kuba-parken mobile photo check
+on:
+  push:
+    branches: [qa/kuba-parken-mobile-20261126]
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium webkit
+      - run: node .github/kuba-browser-check.mjs
