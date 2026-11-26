@@ -1,0 +1,30 @@
+name: Kuba-parken quiz integration
+on:
+  push:
+    branches: [work/oslo-akerselva-v1-bolk-20261116]
+    paths: ['.github/workflows/kuba-quiz-sync.yml']
+permissions:
+  contents: write
+jobs:
+  quiz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+      - run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --check
+      - run: npx playwright install --with-deps chromium webkit
+      - run: node .github/kuba-quiz-check.mjs
+      - name: Save generated Knowledge data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/knowledge/knowledge_units.generated.json data/knowledge/knowledge_emne_review_queue.generated.json reports/knowledge-id-backfill.json
+          git rm .github/workflows/kuba-quiz-sync.yml .github/kuba-quiz-check.mjs
+          git diff --cached --check
+          git commit -m 'Regenerate Knowledge for the verified Kuba-parken quiz'
+          git push origin "HEAD:refs/heads/${GITHUB_REF_NAME}"
