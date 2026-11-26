@@ -58,15 +58,19 @@ Korrekthet/evidens 5/5: leverandørkilder og faktiske tester skilt fra antakelse
 
 [Oppgave #7550](https://github.com/Paradispartiet/History-Go/issues/7550) · [Filregister (TSV)](R2_MEDIA_INVENTORY.tsv)
 
-Registeret dekker alle Git-filer under `bilder/` ved commit `c5704fcfac8bf5150a1f5579a376a57278698cab`. GitHub leverte det komplette katalogtreet `b745e219a911cd8fa6bcba0c2b25bdbbcc257c4e` uten avkorting.
+Registeret dekker alle Git-filer under `bilder/` ved commit `40434413dff74eeeabd037ca2ace1e144d302f40`. GitHub leverte det komplette katalogtreet `7f9a95c80ec1ba3c7a91a2e1bf5fc16950dc247c` uten avkorting.
 
 | Filgruppe | Filer | Byte |
 | --- | ---: | ---: |
-| Bildeendelse (AVIF, GIF, JPG, PNG, SVG, WebP) | 2 159 | 1 013 072 507 |
+| Bildeendelse (AVIF, GIF, JPG, PNG, SVG, WebP) | 2 170 | 1 017 056 529 |
 | Øvrige filer | 23 | 29 669 |
-| Totalt | 2 182 | 1 013 102 176 |
+| Totalt | 2 193 | 1 017 086 198 |
 
 Hver rad viser filsti, filgruppe, byte og Git-blob-ID. Filgruppen er basert på endelse. De øvrige filene er blant annet dokumentasjon og JSON-metadata. Registeret beskriver innholdet i Git på den oppgitte commiten og gir grunnlag for å spore endringer. Det gir ingen godkjenning for flytting eller publisering. Aktiv bruk, lisens og kilde må avklares per fil før den tas med i en opplastingsgruppe.
+
+### Oppdatering fra komplett main-tre 26. november 2026
+
+Sammenlignet med forrige register: 11 nye stier, 0 endrede filer og 0 fjernede stier. Alle 2 193 rader er kontrollert mot unik filsti, byteantall og Git-blob-ID. De ti eksisterende SHA-256-verdiene og kandidatnøklene er beholdt bare fordi blob-ID og byteantall fortsatt samsvarer; øvrige SHA-256-felt er tomme. Ingen nye objekter er merket verifisert i R2. Filendelse er inventarklassifisering, ikke MIME-, lisens- eller runtime-godkjenning.
 
 ## Musikkpilot
 
