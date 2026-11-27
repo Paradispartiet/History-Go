@@ -144,6 +144,7 @@ declare global {
     };
     HGNearbyPlacesList?: {
       render?: () => void;
+      setSearch?: (query: string) => number;
     };
     renderNearbyPlaces?: () => void;
     HGNearbyPeopleList?: {
