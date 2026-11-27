@@ -1,0 +1,99 @@
+name: Pages package size audit
+on:
+  pull_request:
+    paths:
+      - '_config.yml'
+      - '.github/workflows/pages-package-size-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages-package-size-audit-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare baseline with original Jekyll exclusions
+        run: |
+          cp _config.yml "$RUNNER_TEMP/pages-candidate.yml"
+          printf 'exclude:\n  - reports/coordinate-branch-runner\n  - tests\n' > _config.yml
+      - name: Build baseline
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: .
+          destination: ./_site-baseline
+      - name: Restore candidate configuration
+        run: cp "$RUNNER_TEMP/pages-candidate.yml" _config.yml
+      - name: Build candidate
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: .
+          destination: ./_site
+      - name: Prove exact retained-file parity and measure compressed packages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json, subprocess
+          baseline = Path('_site-baseline')
+          candidate = Path('_site')
+          exclusions = ['bilder/merker/'+c+'/originaler/' for c in ('by','kunst','musikk','litteratur')]
+          def inventory(root):
+              return {p.relative_to(root).as_posix(): p for p in root.rglob('*') if p.is_file()}
+          def digest(p):
+              with p.open('rb') as f:
+                  return hashlib.file_digest(f,'sha256').hexdigest()
+          a,b = inventory(baseline),inventory(candidate)
+          expected = {p for p in a if any(p.startswith(c) for c in exclusions)}
+          removed = set(a)-set(b)
+          added = set(b)-set(a)
+          changed = [p for p in sorted(set(a)&set(b)) if digest(a[p]) != digest(b[p])]
+          assert expected, 'No archived masters found in baseline'
+          assert removed == expected, (sorted(removed-expected),sorted(expected-removed))
+          assert not added, sorted(added)
+          assert not changed, changed[:100]
+          for p in expected:
+              assert Path(p).is_file() and digest(Path(p)) == digest(a[p]), p
+          assert 'bilder/logo_historygo.PNG' in b
+          assert digest(b['bilder/logo_historygo.PNG']) == digest(a['bilder/logo_historygo.PNG'])
+          active = set()
+          def walk(v):
+              if isinstance(v,dict):
+                  for x in v.values(): walk(x)
+              elif isinstance(v,list):
+                  for x in v: walk(x)
+              elif isinstance(v,str) and v.startswith('bilder/'):
+                  active.add(v.split('?')[0].split('#')[0])
+          index = json.loads((candidate/'data/badges/index.json').read_text())
+          for p in index['files']:
+              walk(json.loads((candidate/p).read_text()))
+          assert active
+          assert not any(any(p.startswith(c) for c in exclusions) for p in active)
+          assert all(p in b for p in active if p in a)
+          result = {'removed_files':len(removed),'removed_bytes':sum(a[p].stat().st_size for p in removed),'retained_files':len(b),'changed_retained_files':len(changed),'active_badge_image_paths':len(active),'preexisting_missing_badge_image_paths':sorted(active-set(a)),'masters_preserved_in_git':True,'logo_preserved':True}
+          result['baseline_published_bytes']=sum(p.stat().st_size for p in a.values())
+          result['candidate_published_bytes']=sum(p.stat().st_size for p in b.values())
+          result['published_size_at_or_below_1gb']=result['candidate_published_bytes'] <= 1_000_000_000
+          result['published_size_limit_bytes']=1_000_000_000
+          for name,root in [('baseline',baseline),('candidate',candidate)]:
+              tar = subprocess.Popen(['tar','-C',str(root),'-cf','-','.'],stdout=subprocess.PIPE)
+              out = Path(name+'.tar.gz')
+              with out.open('wb') as f:
+                  subprocess.run(['gzip','-6','-n'],stdin=tar.stdout,stdout=f,check=True)
+              tar.stdout.close()
+              assert tar.wait()==0
+              result[name+'_compressed_bytes']=out.stat().st_size
+              out.unlink()
+          result['compressed_savings_bytes']=result['baseline_compressed_bytes']-result['candidate_compressed_bytes']
+          Path('pages-package-parity.json').write_text(json.dumps(result,indent=2))
+          print(json.dumps(result,indent=2))
+          assert result['compressed_savings_bytes']>0
+          PY
+      - name: Upload parity report only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-package-parity
+          path: pages-package-parity.json
