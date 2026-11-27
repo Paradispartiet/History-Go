@@ -1,7 +1,7 @@
 (() => {
   // js/ui/nearbyPlacesList.ts
   var win = window;
-  var PAGE_SIZE = 24;
+  var PAGE_SIZE = 48;
   var search = "";
   var page = 0;
   var resultCount = 0;

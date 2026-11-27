@@ -34,7 +34,7 @@ type RuntimeWindow = Window & typeof globalThis & {
 };
 
 const win = window as RuntimeWindow;
-const PAGE_SIZE = 24;
+const PAGE_SIZE = 48;
 let search = "";
 let page = 0;
 let resultCount = 0;
