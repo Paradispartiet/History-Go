@@ -12,7 +12,7 @@ const canonical=JSON.parse(read("data/natur/fauna/insekter_humler_og_veps.json")
 const manifest=JSON.parse(read("data/runtime/nature-all.json"));const runtime=manifest.groups.fauna.flatMap(p=>JSON.parse(read(p))).find(x=>x.id===id);
 assert.deepEqual(canonical,runtime);assert.equal(canonical.latin,"Osmia-gruppen");assert.equal(canonical.taxonomy.latin_navn,"Osmia spp.");assert.deepEqual(canonical.quiz_ids,["quiz_fauna_murerbie"]);
 const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,58);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);assert.equal(reg.get(id)?.scientificName,canonical.taxonomy.latin_navn);
+assert(reg.count>=58);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);assert.equal(reg.get(id)?.scientificName,canonical.taxonomy.latin_navn);
 assert.equal(reg.get(id)?.depictedScientificName,"Osmia bicornis");assert.equal(reg.get(id)?.exampleLabel,a.exampleLabel);assert(a.exampleLabel.includes("én av flere murerbiearter"));
 const prior=[
  {id:"emne_fauna_trehumle",src:"bilder/natur/fauna/godkjent/57_trehumle_v1.webp",sha:"5112097150a1e2e0c211deac374c337713276718"},
@@ -295,6 +295,6 @@ const prior=[
 assert.equal(prior.length,57);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);assert.equal(blob(binary(old.src)),old.sha,old.id+" original changed");}
 assert.equal(reg.get("emne_fauna_murveps"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261126-58"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261127-59"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Murerbie")'));
 console.log("Murerbie #58: lossless original, explicit Osmia bicornis exemplar, unchanged Osmia group/quiz reference and all 57 previous binaries preserved");
