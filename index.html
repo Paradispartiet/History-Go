@@ -51,7 +51,7 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/search.css">
   <link rel="stylesheet" href="css/nearby.css?v=20261009-nearby-map-frame1">
-  <link rel="stylesheet" href="css/nearby-explore-guide.css?v=20261106-1">
+  <link rel="stylesheet" href="css/nearby-explore-guide.css?v=20261127-mobile1">
   <link rel="stylesheet" href="css/miniProfile.css">
   <link rel="stylesheet" href="css/profile.css">
   <link rel="stylesheet" href="css/merits.css">
@@ -334,6 +334,10 @@
           <output id="nearbySearchCount" aria-live="polite"></output>
         </div>
       </div>
+      <div id="nearbyPlacePager" hidden>
+        <button type="button" data-page-step="-1" aria-controls="nearbyList">Forrige</button>
+        <button type="button" data-page-step="1" aria-controls="nearbyList">Neste</button>
+      </div>
       <div id="nearbyGuidePanel" class="nearby-guide-panel" role="region" aria-label="Utforsk-veiviseren" hidden>
         <p class="nearby-guide-heading">Hva har du lyst til å finne?</p>
         <div class="nearby-guide-actions">
@@ -492,8 +496,8 @@
 
   <script defer src="js/ui/place-card-sticky-header.js?v=20261116-continuous-scroll1"></script>
   <script defer src="js/ui/place-card-round-gallery.js?v=20261103-editorial1"></script>
-  <script defer src="js/ui/nearby-explore-guide.js?v=20261106-1"></script>
+  <script defer src="js/ui/nearby-explore-guide.js?v=20261127-mobile1"></script>
   <script defer src="dist/web/fysen-map-layer.js?v=20261125-1"></script>
-  <script type="module" src="./js/app.js?v=20261114-badge-rim-class1"></script>
+  <script type="module" src="./js/app.js?v=20261127-explore-mobile1"></script>
 </body>
 </html>

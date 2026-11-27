@@ -49,6 +49,7 @@
       // A search belongs to its category; do not hide another tab's cards.
       if (activeMode !== lastMode) {
         input.value = "";
+        window.HGNearbyPlacesList?.setSearch?.("");
         lastMode = activeMode;
       }
       const list = document.getElementById(LIST_IDS[activeMode] || "nearbyList");
@@ -58,31 +59,40 @@
       input.setAttribute("aria-label", "Søk i " + noun);
 
       if (!list) return;
-      const cards = Array.from(list.children).filter((node) =>
-        node instanceof HTMLElement && !node.classList.contains("hg-empty-guide")
-      );
-      let visible = 0;
-      cards.forEach((card) => {
-        if (!(card instanceof HTMLElement)) return;
-        const image = card.querySelector("img.nearby-thumb");
-        if (image && !image.getAttribute("src")) {
-          image.closest(".nearby-thumbWrap")?.classList.add("hg-image-missing");
-        }
-        const searchable = normalize(
-          card.textContent + " " + (image?.getAttribute("alt") || "")
-        );
-        const matches = !query || searchable.includes(query);
-        card.hidden = !matches;
-        if (matches) visible++;
-      });
+      const setPlaceSearch = window.HGNearbyPlacesList?.setSearch;
+      const pager = document.getElementById("nearbyPlacePager");
+      if (pager && activeMode !== "nearby") pager.hidden = true;
 
-      if (cards.length) {
-        count.textContent = query
-          ? (visible ? visible + " av " + cards.length + " treff" : "Ingen treff – prøv et annet søk")
-          : cards.length + " " + noun;
+      if (activeMode === "nearby" && setPlaceSearch) {
+        const total = setPlaceSearch(query);
+        count.textContent = query ? total + " treff" : total + " " + noun;
       } else {
-        // An empty list can be an intentional loading/empty-state surface.
-        count.textContent = "";
+        const cards = Array.from(list.children).filter((node) =>
+          node instanceof HTMLElement && !node.classList.contains("hg-empty-guide")
+        );
+        let visible = 0;
+        cards.forEach((card) => {
+          if (!(card instanceof HTMLElement)) return;
+          const image = card.querySelector("img.nearby-thumb");
+          if (image && !image.getAttribute("src")) {
+            image.closest(".nearby-thumbWrap")?.classList.add("hg-image-missing");
+          }
+          const searchable = normalize(
+            card.textContent + " " + (image?.getAttribute("alt") || "")
+          );
+          const matches = !query || searchable.includes(query);
+          card.hidden = !matches;
+          if (matches) visible++;
+        });
+
+        if (cards.length) {
+          count.textContent = query
+            ? (visible ? visible + " av " + cards.length + " treff" : "Ingen treff – prøv et annet søk")
+            : cards.length + " " + noun;
+        } else {
+          // An empty list can be an intentional loading/empty-state surface.
+          count.textContent = "";
+        }
       }
 
       const filters = window.HGNearbyFilters;

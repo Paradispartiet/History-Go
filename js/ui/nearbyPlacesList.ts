@@ -11,6 +11,7 @@ import type { NearbyFiltersApi } from "./nearbyFilters";
 
 export type NearbyPlacesListApi = {
   render: () => void;
+  setSearch: (query: string) => number;
 };
 
 type I18nRuntime = {
@@ -21,22 +22,22 @@ type RouterRuntime = {
   navigate?: (hash: string) => unknown;
 };
 
-type PlaceOpenRuntime = {
-  preload?: (place: NearbyListPlace) => Promise<unknown>;
-};
-
 type RuntimeWindow = Window & typeof globalThis & {
   HGNearbyPlacesList?: NearbyPlacesListApi;
   HGNearbyPlaceSelector?: NearbyPlaceSelectorApi;
   HGNearbyFilters?: NearbyFiltersApi;
   HG_I18N?: I18nRuntime;
   HGAppRouter?: RouterRuntime;
-  HGPlaceOpen?: PlaceOpenRuntime;
+  HGPlaceOpen?: { preload?: (place: NearbyListPlace) => Promise<unknown> };
   visited?: Record<string, unknown>;
   renderNearbyPlaces?: () => void;
 };
 
 const win = window as RuntimeWindow;
+const PAGE_SIZE = 24;
+let search = "";
+let page = 0;
+let resultCount = 0;
 
 function tUI(key: string, fallback = ""): string {
   try {
@@ -146,9 +147,10 @@ function createPlaceItem(
   place: NearbyListPlace,
   selection: NearbyPlaceSelection,
   visited: Record<string, unknown>
-): HTMLDivElement {
+): HTMLButtonElement {
   const image = place.image || place.cardImage || place.popupImage || "";
-  const item = document.createElement("div");
+  const item = document.createElement("button");
+  item.type = "button";
   item.className = "nearby-item";
 
   if (selection.freshPlaceId && String(place.id || "").trim() === selection.freshPlaceId) {
@@ -157,52 +159,72 @@ function createPlaceItem(
 
   const parts = buildMetaParts(place, selection, visited);
   item.innerHTML = `
-    <div class="nearby-thumbWrap">
-      <img class="nearby-thumb" src="${image}" alt="${place.name || ""}" loading="lazy" decoding="async">
+    <span class="nearby-thumbWrap${image ? "" : " hg-image-missing"}">
+      ${image ? `<img class="nearby-thumb" src="${escapeHTML(image)}" alt="" loading="lazy" decoding="async">` : ""}
       <img class="nearby-badge"
-           src="bilder/merker/${place.category || ""}.PNG"
+           src="bilder/merker/${escapeHTML(place.category)}.PNG"
+           loading="lazy" decoding="async"
            alt="">
-    </div>
-
-    <div class="nearby-content">
-      <div class="nearby-title">${place.name || ""}</div>
-      <div class="nearby-meta">
-        ${parts.join(" · ")}
-      </div>
-    </div>
+    </span>
+    <span class="nearby-content">
+      <span class="nearby-title">${escapeHTML(place.name)}</span>
+      <span class="nearby-meta">${escapeHTML(parts.join(" · "))}</span>
+    </span>
   `;
 
-  const prefetch = () => { void win.HGPlaceOpen?.preload?.(place); };
-  item.addEventListener("pointerenter", prefetch, { once: true });
-  item.addEventListener("touchstart", prefetch, { passive: true, once: true });
   item.addEventListener("click", () => {
-    prefetch();
+    void win.HGPlaceOpen?.preload?.(place);
     routeToPlace(place.id);
   });
   return item;
 }
 
+function matchesSearch(place: NearbyListPlace, selection: NearbyPlaceSelection, visited: Record<string, unknown>): boolean {
+  const text = [place.name, ...buildMetaParts(place, selection, visited)].join(" ");
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("nb").includes(search);
+}
+
 function render(): void {
   const listEl = document.getElementById("nearbyList");
+  const pager = document.getElementById("nearbyPlacePager");
+  const previous = document.querySelector<HTMLButtonElement>("#nearbyPlacePager [data-page-step='-1']");
+  const next = document.querySelector<HTMLButtonElement>("#nearbyPlacePager [data-page-step='1']");
   if (!listEl) return;
 
   const selection = win.HGNearbyPlaceSelector?.select?.();
-  if (!selection) {
-    console.warn("[Nearby] HGNearbyPlaceSelector is not available");
-    return;
+  if (!selection) return;
+
+  const { filterMode, sortMode, badgeFilter, favoritesOnly } = selection;
+  const filterSignature = JSON.stringify([filterMode, sortMode, badgeFilter, favoritesOnly]);
+  if (listEl.dataset.filterSignature !== filterSignature) {
+    page = 0;
+    listEl.scrollTop = 0;
+    listEl.dataset.filterSignature = filterSignature;
   }
 
-  const renderSignature = createRenderSignature(selection);
+  const visited = win.visited || {};
+  const matches = search
+    ? selection.items.filter((place) => matchesSearch(place, selection, visited))
+    : selection.items;
+  resultCount = matches.length;
+  const lastPage = Math.max(0, Math.ceil(resultCount / PAGE_SIZE) - 1);
+  page = Math.min(page, lastPage);
+  const items = matches.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+  if (pager) pager.hidden = listEl.hidden || lastPage === 0;
+  if (previous) previous.disabled = page === 0;
+  if (next) next.disabled = page === lastPage;
+
+  const renderSignature = JSON.stringify([
+    search, page, resultCount, createRenderSignature({ ...selection, items }),
+    items.map((place) => Boolean(visited[place.id]))
+  ]);
   if (listEl.dataset.renderSignature === renderSignature) return;
   listEl.dataset.renderSignature = renderSignature;
-  listEl.innerHTML = "";
 
-  // Første mobiltrykk har ingen hover. Varm derfor de synlige topptreffene idet
-  // listen rendres, slik at stedspakken ligger i minnet før brukeren trykker.
-  selection.items.slice(0, 8).forEach((place) => { void win.HGPlaceOpen?.preload?.(place); });
-
-  if (!selection.items.length) {
-    if (selection.favoritesOnly) {
+  if (!items.length) {
+    if (search) {
+      listEl.innerHTML = '<div class="hg-empty-guide">Ingen treff – prøv et annet søk.</div>';
+    } else if (selection.favoritesOnly) {
       renderFavoritesEmpty(listEl);
     } else {
       renderBadgeFilterEmpty(listEl, selection.badgeFilter);
@@ -210,12 +232,36 @@ function render(): void {
     return;
   }
 
-  const visited = win.visited || {};
-  for (const place of selection.items) {
-    listEl.appendChild(createPlaceItem(place, selection, visited));
-  }
+  const fragment = document.createDocumentFragment();
+  for (const place of items) fragment.appendChild(createPlaceItem(place, selection, visited));
+  listEl.replaceChildren(fragment);
 }
 
-const api: NearbyPlacesListApi = { render };
+function setSearch(query: string): number {
+  if (query === search) {
+    const list = document.getElementById("nearbyList");
+    const pager = document.getElementById("nearbyPlacePager");
+    if (list && pager) pager.hidden = list.hidden || resultCount <= PAGE_SIZE;
+    return resultCount;
+  }
+
+  search = query;
+  page = 0;
+  render();
+  const list = document.getElementById("nearbyList");
+  if (list) list.scrollTop = 0;
+  return resultCount;
+}
+
+document.querySelectorAll<HTMLButtonElement>("#nearbyPlacePager [data-page-step]").forEach((button) => {
+  button.addEventListener("click", () => {
+    page += Number(button.dataset.pageStep);
+    render();
+    const list = document.getElementById("nearbyList");
+    if (list) list.scrollTop = 0;
+  });
+});
+
+const api: NearbyPlacesListApi = { render, setSearch };
 win.HGNearbyPlacesList = api;
 win.renderNearbyPlaces = render;
