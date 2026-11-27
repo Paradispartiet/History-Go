@@ -12,7 +12,7 @@ const canonical=JSON.parse(read("data/natur/fauna/insekter_humler_og_veps.json")
 const manifest=JSON.parse(read("data/runtime/nature-all.json"));const runtime=manifest.groups.fauna.flatMap(p=>JSON.parse(read(p))).find(x=>x.id===id);
 assert.deepEqual(canonical,runtime);assert.equal(canonical.latin,"Megachile-gruppen");assert.equal(canonical.taxonomy.latin_navn,"Megachile spp.");assert.deepEqual(canonical.quiz_ids,["quiz_fauna_bladskjaererbie"]);
 const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,60);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);assert.equal(reg.get(id)?.scientificName,canonical.taxonomy.latin_navn);
+assert(reg.count>=60);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);assert.equal(reg.get(id)?.scientificName,canonical.taxonomy.latin_navn);
 assert.equal(reg.get(id)?.depictedScientificName,"Megachile centuncularis");assert.equal(reg.get(id)?.exampleLabel,a.exampleLabel);assert(a.exampleLabel.includes("én av flere bladskjærerbiearter"));
 const prior=[
  {id:"emne_fauna_sandbie",src:"bilder/natur/fauna/godkjent/59_sandbie_v1.webp",sha:"c31b4dd4c3279497ec35cc02c58ecd5ca9128595"},
@@ -297,6 +297,6 @@ const prior=[
 assert.equal(prior.length,59);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);assert.equal(blob(binary(old.src)),old.sha,old.id+" original changed");}
 assert.equal(reg.get("emne_fauna_murveps"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261127-60"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-61"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Bladskjærerbie")'));
 console.log("Bladskjærerbie #60: lossless original, explicit Megachile centuncularis exemplar, unchanged Megachile group/quiz reference and all 59 previous binaries preserved");

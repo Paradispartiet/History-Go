@@ -2,6 +2,17 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_metallbie:Object.freeze({
+   scientificName:"Halictus spp. / Lasioglossum spp.",
+   depictedScientificName:"Lasioglossum morio",
+   depictedName:"Metalljordbie",
+   exampleLabel:"Bildet viser metalljordbie (Lasioglossum morio), én av flere arter av jordbier og båndbier.",
+   src:"bilder/natur/fauna/godkjent/61_metallbie_v1.webp",
+   gitBlobSha:"7f5c0c320fb56694d0410b327c4b356fda3ae7c5",
+   reviewedAt:"2026-11-28",
+   stage:"female_metallic_sweat_bee_example_subtle_bronze_green_head_thorax_dark_abdomen_black_background",
+   evidence:"data/natur/fauna/illustration-quality-metallbie-20261128.json"
+  }),
   emne_fauna_bladskjaererbie:Object.freeze({
    scientificName:"Megachile spp.",
    depictedScientificName:"Megachile centuncularis",
