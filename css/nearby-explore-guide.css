@@ -98,3 +98,35 @@
     font-size:12px;
   }
 }
+
+#nearbyPlacePager:not([hidden]){
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+}
+#nearbyPlacePager button{
+  min-height:36px;
+  padding:4px 14px;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:999px;
+  background:#212124;
+  color:#fff;
+  font:inherit;
+  cursor:pointer;
+}
+#nearbyPlacePager button:disabled{
+  opacity:.45;
+  cursor:default;
+}
+#nearbyList button.nearby-item{
+  padding:0;
+  text-align:left;
+  font:inherit;
+  touch-action:manipulation;
+}
+body.hg-app.hg-phone #nearbyListContainer.is-drawer-open{
+  /* LayerManager assigns the closed drawer's z-index inline. While open,
+     Explore needs to receive taps even if a place card is still open. */
+  z-index:calc(var(--hg-z-placecard) + 1) !important;
+  background:#0a0a0c;
+}

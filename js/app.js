@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadMap", () => loadScriptOnce("js/map.js?v=20261110-favorite-map1"));
     await safeRun("loadAhaMusicBridge", () => loadScriptOnce("js/integrations/aha-music.js"));
     await safeRun("loadNearbyPlaceSelector", () => loadScriptOnce("dist/web/nearbyPlaceSelector.js"));
-    await safeRun("loadNearbyPlacesList", () => loadScriptOnce("dist/web/nearbyPlacesList.js"));
+    await safeRun("loadNearbyPlacesList", () => loadScriptOnce("dist/web/nearbyPlacesList.js?v=20261127-mobile1"));
     await safeRun("loadNearbyPeopleList", () => loadScriptOnce("dist/web/nearbyPeopleList.js"));
     await safeRun("loadLists", () => loadScriptOnce("js/ui/lists.js"));
     await safeRun("loadEventsRuntime", () => loadScriptOnce("js/events/events_loader.js?v=20260912-live-surfaces2"));
