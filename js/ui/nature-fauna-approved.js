@@ -2,6 +2,17 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_bladskjaererbie:Object.freeze({
+   scientificName:"Megachile spp.",
+   depictedScientificName:"Megachile centuncularis",
+   depictedName:"Rosebladskjærerbie",
+   exampleLabel:"Bildet viser rosebladskjærerbie (Megachile centuncularis), én av flere bladskjærerbiearter.",
+   src:"bilder/natur/fauna/godkjent/60_bladskjaererbie_v1.webp",
+   gitBlobSha:"0dc4638b300eb0d2a1c77b4eb1295c9ce22f4f95",
+   reviewedAt:"2026-11-27",
+   stage:"female_leafcutter_example_pale_abdominal_hair_bands_orange_ventral_scopa_black_background",
+   evidence:"data/natur/fauna/illustration-quality-bladskjaererbie-20261127.json"
+  }),
   emne_fauna_sandbie:Object.freeze({
    scientificName:"Andrena spp.",
    depictedScientificName:"Andrena fulva",
