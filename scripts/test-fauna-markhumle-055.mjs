@@ -296,7 +296,7 @@ assert.equal(prior.length,54);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);
 assert.equal(blobHash(fs.readFileSync(new URL(old.src,root))),old.sha,old.id+" binary changed");}
 assert.equal(reg.get("emne_fauna_murveps"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261127-60"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-61"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Markhumle")'));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-markhumle-055.mjs"));
 console.log("Finn Fauna #55 Markhumle: lossless WebP, dimensions, hashes, species taxonomy, quiz and all 54 previous binaries OK.");
