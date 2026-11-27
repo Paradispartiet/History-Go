@@ -2,6 +2,17 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_sandbie:Object.freeze({
+   scientificName:"Andrena spp.",
+   depictedScientificName:"Andrena fulva",
+   depictedName:"Flammesandbie",
+   exampleLabel:"Bildet viser flammesandbie (Andrena fulva), én av flere sandbiearter.",
+   src:"bilder/natur/fauna/godkjent/59_sandbie_v1.webp",
+   gitBlobSha:"c31b4dd4c3279497ec35cc02c58ecd5ca9128595",
+   reviewedAt:"2026-11-27",
+   stage:"female_tawny_mining_bee_example_red_dorsal_hair_black_head_sides_legs_isolated_black_background",
+   evidence:"data/natur/fauna/illustration-quality-sandbie-20261127.json"
+  }),
   emne_fauna_murerbie:Object.freeze({
    scientificName:"Osmia spp.",
    depictedScientificName:"Osmia bicornis",

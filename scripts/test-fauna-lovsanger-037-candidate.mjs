@@ -28,6 +28,6 @@ assert(approved.count>=37,"All 36 prior originals plus Løvsanger must remain re
 assert.equal(approved.get(id)?.gitBlobSha,"a8cfb708899e9cb77476c378a6395c38d0c1c0ed","Approved Løvsanger original must be byte-identical");
 assert.equal(approved.get("emne_fauna_sjoorre")?.gitBlobSha,"e88b63fdaf4d9635982597568cd424f314fe607d");
 assert.equal(approved.get("emne_fauna_kvinand")?.gitBlobSha,"d043e1ee98cdfd91dd686b89be0dd5ca8037f6f1");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261126-58"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261127-59"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Løvsanger")'));
 console.log("Finn Fauna #37 Løvsanger candidate PASS – exact WebP and current 36 approvals preserved; not publication.");
