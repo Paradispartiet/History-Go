@@ -43,7 +43,9 @@ test("Fysen map is opt-in, restores after style changes, and removes only its ow
   assert.equal(req.url, "https://raw.githubusercontent.com/Paradispartiet/fysen/fysen-public-restaurant-map/restaurants.json");
   assert.equal(req.options.credentials, "omit");
   assert.equal(req.options.referrerPolicy, "no-referrer");
-  assert.equal(f.sources.get("hg-fysen-restaurants").cluster, true);
+  assert.equal(f.sources.get("hg-fysen-restaurants").cluster, false);
+  assert.equal(f.layers.has("hg-fysen-clusters"), false);
+  assert.equal(f.layers.has("hg-fysen-cluster-count"), false);
   assert.equal(f.sources.get("hg-fysen-restaurants").data.features.length, 2);
   assert.equal(f.layers.has("hg-fysen-points"), true);
   f.sources.clear();
@@ -93,4 +95,19 @@ test("map picker integration preserves canonical places and explicit Fysen opt-i
   assert.match(controls, /win\.HGFysenMap\.decorateOptions\(options, trigger, logos, label\)/);
   assert.match(controls, /hg:fysen-map-change/);
   assert.match(html, /dist\/web\/fysen-map-layer\.js/);
+});
+
+test("only approved shared logo paths are resolved to the catalog source commit", () => {
+  const f = fixture();
+  const parsed = f.api.parseCatalog({ ...good, restaurants: [
+    { ...good.restaurants[0], logoPath: "/restaurants/egon-byporten/logo.svg" },
+    { ...good.restaurants[1], logoPath: "https://example.com/logo.png" }
+  ] });
+  assert.equal(parsed.features[0].properties.logoUrl,
+    "https://raw.githubusercontent.com/Paradispartiet/fysen/" + good.sourceCommit + "/apps/web/public/restaurants/egon-byporten/logo.svg");
+  assert.equal(parsed.features[1].properties.logoKey, undefined);
+});
+
+test("restaurant popup links to the exact public Fysen card", () => {
+  assert.match(runtime, /link\.href = APP_URL \+ "kart\?restaurant=" \+ encodeURIComponent\(properties\.slug \|\| ""\)/);
 });

@@ -2,7 +2,7 @@
 type MapFeature = {
   type?: string;
   geometry: { type: string; coordinates: [number, number] };
-  properties: { slug?: string; name?: string; address?: string; cluster?: boolean; point_count?: number };
+  properties: { slug?: string; name?: string; address?: string; logoKey?: string; logoUrl?: string; };
 };
 type MapCatalog = { type: "FeatureCollection"; features: MapFeature[] };
 type MapEvent = { point?: unknown };
@@ -10,6 +10,8 @@ type FysenMap = {
   getStyle: () => unknown;
   getLayer: (id: string) => unknown;
   getSource: (id: string) => unknown;
+  hasImage: (id: string) => boolean;
+  addImage: (id: string, image: ImageData, options: { pixelRatio: number }) => unknown;
   addSource: (id: string, source: Record<string, unknown>) => unknown;
   addLayer: (layer: Record<string, unknown>) => unknown;
   removeLayer: (id: string) => unknown;
@@ -17,8 +19,7 @@ type FysenMap = {
   on: (event: string, handler: (event: MapEvent) => void) => unknown;
   off: (event: string, handler: (event: MapEvent) => void) => unknown;
   queryRenderedFeatures: (point: unknown, options: { layers: string[] }) => MapFeature[];
-  easeTo: (options: { center: [number, number]; zoom: number }) => unknown;
-  getZoom: () => number;
+
 };
 type FysenPopup = {
   remove: () => unknown;
@@ -37,11 +38,10 @@ const win = window as unknown as FysenWindow;
 const DATA_URL = "https://raw.githubusercontent.com/Paradispartiet/fysen/fysen-public-restaurant-map/restaurants.json";
 const APP_URL = "https://fysen.vercel.app/";
 const SOURCE = "hg-fysen-restaurants";
-const CLUSTERS = "hg-fysen-clusters";
-const COUNTS = "hg-fysen-cluster-count";
 const POINTS = "hg-fysen-points";
 const LABELS = "hg-fysen-labels";
-const layers = [LABELS, POINTS, COUNTS, CLUSTERS];
+const LOGOS = "hg-fysen-logos";
+const layers = [LABELS, LOGOS, POINTS];
 let enabled = false;
 let loading = false;
 let generation = 0;
@@ -49,6 +49,8 @@ let request: AbortController | null = null;
 let catalog: MapCatalog | null = null;
 let boundMap: FysenMap | null = null;
 let popup: FysenPopup | null = null;
+const logoCache = new Map<string, Promise<ImageData | null>>();
+const pendingLogos = new Set<string>();
 
 function validText(value: unknown, limit: number): value is string {
   return typeof value === "string" && value.trim().length > 0 && value.length <= limit;
@@ -72,10 +74,11 @@ function parseCatalog(raw: unknown): MapCatalog {
       throw new Error("Invalid Fysen restaurant");
     }
     seen.add(row.slug);
+    const logoPath = typeof row.logoPath === "string" && /^\/restaurants\/[a-z0-9-]+\/logo\.(svg|png|webp)$/u.test(row.logoPath) ? row.logoPath : null;
     return {
       type: "Feature",
       geometry: { type: "Point", coordinates: [row.longitude, row.latitude] },
-      properties: { slug: row.slug, name: row.name, address: row.address }
+      properties: { slug: row.slug, name: row.name, address: row.address, ...logoPath ? { logoKey: "hg-fysen-logo:" + logoPath, logoUrl: "https://raw.githubusercontent.com/Paradispartiet/fysen/" + data.sourceCommit + "/apps/web/public" + logoPath } : {} }
     };
   });
   return { type: "FeatureCollection", features };
@@ -90,28 +93,75 @@ function clearLayers(map: FysenMap | null) {
   for (const id of layers) if (map.getLayer(id)) map.removeLayer(id);
   if (map.getSource(SOURCE)) map.removeSource(SOURCE);
 }
+async function loadLogo(url: string): Promise<ImageData | null> {
+  try {
+    const response = await fetch(url, { credentials: "omit", referrerPolicy: "no-referrer", mode: "cors", redirect: "error" });
+    if (!response.ok) return null;
+    const type = url.endsWith(".svg") ? "image/svg+xml" : url.endsWith(".png") ? "image/png" : "image/webp";
+    const objectUrl = URL.createObjectURL(new Blob([await response.arrayBuffer()], { type }));
+    try {
+      const img = new Image();
+      img.src = objectUrl;
+      await img.decode();
+      const canvas = document.createElement("canvas");
+      canvas.width = canvas.height = 48;
+      const ctx = canvas.getContext("2d");
+      if (!ctx || !img.naturalWidth || !img.naturalHeight) return null;
+      ctx.beginPath();
+      ctx.arc(24, 24, 23, 0, Math.PI * 2);
+      ctx.fillStyle = "#fff";
+      ctx.fill();
+      ctx.clip();
+      const scale = Math.min(38 / img.naturalWidth, 38 / img.naturalHeight);
+      const w = img.naturalWidth * scale;
+      const h = img.naturalHeight * scale;
+      ctx.drawImage(img, (48 - w) / 2, (48 - h) / 2, w, h);
+      return ctx.getImageData(0, 0, 48, 48);
+    } finally {
+      URL.revokeObjectURL(objectUrl);
+    }
+  } catch {
+    return null;
+  }
+}
+function syncLogoImages(map: FysenMap) {
+  if (!catalog) return;
+  for (const feature of catalog.features) {
+    const { logoKey, logoUrl } = feature.properties;
+    if (!logoKey || !logoUrl || map.hasImage(logoKey) || pendingLogos.has(logoKey)) continue;
+    if (!logoCache.has(logoUrl)) logoCache.set(logoUrl, loadLogo(logoUrl));
+    const promise = logoCache.get(logoUrl);
+    if (!promise) continue;
+    pendingLogos.add(logoKey);
+    void promise.then(image => {
+      if (image && enabled && boundMap === map && map.getSource(SOURCE) && !map.hasImage(logoKey)) {
+        map.addImage(logoKey, image, { pixelRatio: 2 });
+      }
+    }).catch(() => {}).finally(() => {
+      pendingLogos.delete(logoKey);
+    });
+  }
+}
 function syncLayers() {
   const map = boundMap;
   if (!map || !enabled || !catalog || !map.getStyle?.()) return;
   try {
     if (!map.getSource(SOURCE)) {
-      map.addSource(SOURCE, { type: "geojson", data: catalog, cluster: true, clusterRadius: 48, clusterMaxZoom: 14 });
+      map.addSource(SOURCE, { type: "geojson", data: catalog, cluster: false });
     }
-    if (!map.getLayer(CLUSTERS)) map.addLayer({
-      id: CLUSTERS, type: "circle", source: SOURCE, filter: ["has", "point_count"],
-      paint: { "circle-color": "#277447", "circle-radius": ["step", ["get", "point_count"], 17, 25, 21, 100, 25], "circle-stroke-color": "#fff", "circle-stroke-width": 2 }
-    });
-    if (!map.getLayer(COUNTS)) map.addLayer({
-      id: COUNTS, type: "symbol", source: SOURCE, filter: ["has", "point_count"],
-      layout: { "text-field": ["to-string", ["get", "point_count"]], "text-size": 12 },
-      paint: { "text-color": "#fff", "text-halo-color": "#225e3b", "text-halo-width": 1 }
-    });
     if (!map.getLayer(POINTS)) map.addLayer({
-      id: POINTS, type: "circle", source: SOURCE, filter: ["!", ["has", "point_count"]],
+      id: POINTS, type: "circle", source: SOURCE,
       paint: { "circle-color": "#3e985d", "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 5, 16, 10], "circle-stroke-color": "#fff", "circle-stroke-width": 2 }
     });
+    if (catalog.features.some(feature => feature.properties.logoKey)) {
+      syncLogoImages(map);
+      if (!map.getLayer(LOGOS)) map.addLayer({
+        id: LOGOS, type: "symbol", source: SOURCE, filter: ["has", "logoKey"],
+        layout: { "icon-image": ["get", "logoKey"], "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.6, 16, 1], "icon-allow-overlap": true, "icon-ignore-placement": true }
+      });
+    }
     if (!map.getLayer(LABELS)) map.addLayer({
-      id: LABELS, type: "symbol", source: SOURCE, minzoom: 15, filter: ["!", ["has", "point_count"]],
+      id: LABELS, type: "symbol", source: SOURCE, minzoom: 15,
       layout: { "text-field": ["get", "name"], "text-size": 12, "text-anchor": "top", "text-offset": [0, 1.15], "text-max-width": 12 },
       paint: { "text-color": "#173825", "text-halo-color": "#fff", "text-halo-width": 1.5 }
     });
@@ -133,7 +183,7 @@ function openRestaurant(feature: MapFeature) {
   const note = document.createElement("small");
   note.textContent = "Registrert i Fysen. Åpningstid og dagens meny er ikke bekreftet.";
   const link = document.createElement("a");
-  link.href = APP_URL;
+  link.href = APP_URL + "kart?restaurant=" + encodeURIComponent(properties.slug || "");
   link.target = "_blank";
   link.rel = "noopener noreferrer";
   link.textContent = "Åpne Fysen ↗";
@@ -143,14 +193,11 @@ function openRestaurant(feature: MapFeature) {
 }
 function handleClick(event: MapEvent) {
   if (!enabled || !boundMap) return;
-  const activeLayers = [POINTS, CLUSTERS].filter(id => boundMap.getLayer(id));
+  const activeLayers = [LOGOS, POINTS].filter(id => boundMap.getLayer(id));
   if (!activeLayers.length) return;
   const feature = boundMap.queryRenderedFeatures(event.point, { layers: activeLayers })[0];
   if (!feature) return;
-  if (feature.properties?.cluster) {
-    removePopup();
-    boundMap.easeTo({ center: feature.geometry.coordinates, zoom: Math.min(18, boundMap.getZoom() + 2) });
-  } else openRestaurant(feature);
+  openRestaurant(feature);
 }
 function bindMap(map: FysenMap) {
   if (boundMap === map) return;
