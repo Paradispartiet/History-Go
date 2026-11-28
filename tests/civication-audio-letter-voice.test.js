@@ -324,3 +324,22 @@ test("pause disables narration and hands-free without choosing", () => {
   s.api.openHandsFreeAfterSpeech(s.panel, s.api.voiceSceneKey(s.panel));
   assert.equal(s.started(), 1);
 });
+
+
+test("dedicated player keeps primary controls and microphone status distinct", () => {
+  const begin = source.indexOf("  function audioControlsHtml()");
+  const end = source.indexOf("  /** @param {HTMLElement} panel @param {string} [message] */", begin);
+  const render = vm.runInNewContext("(function() {" + source.slice(begin, end) + "; return audioControlsHtml; })()", {
+    audioSupported: () => true, voiceConstructor: () => true, atmosphereConstructor: () => true,
+    audioEnabled: true, voiceSession: {}, handsFreeEnabled: true, voiceMessage: "Lytter",
+    AUDIO_RATES: [0.95], audioRateIndex: 0, audioCastEnabled: true, atmosphereEnabled: false,
+    atmosphereLevel: 1, escapeHtml: value => value
+  });
+  const html = render();
+  assert.match(html, /<section class="civi-audio-player"/);
+  assert.match(html, /data-lifestory-player-state>Mikrofon på/);
+  assert.match(html, /data-lifestory-voice aria-pressed="true"/);
+  assert.ok(html.indexOf("civi-audio-primary") < html.indexOf("civi-audio-settings"));
+  assert.ok(html.includes("data-lifestory-voice-status"));
+  assert.match(html, /opptil 12 sekunder/);
+});
