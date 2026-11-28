@@ -183,7 +183,7 @@ function openRestaurant(feature: MapFeature) {
   const note = document.createElement("small");
   note.textContent = "Registrert i Fysen. Åpningstid og dagens meny er ikke bekreftet.";
   const link = document.createElement("a");
-  link.href = APP_URL;
+  link.href = APP_URL + "kart?restaurant=" + encodeURIComponent(properties.slug || "");
   link.target = "_blank";
   link.rel = "noopener noreferrer";
   link.textContent = "Åpne Fysen ↗";
