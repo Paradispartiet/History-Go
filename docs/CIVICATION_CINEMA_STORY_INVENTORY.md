@@ -92,3 +92,37 @@ Alle 50 stream-filer i [Narrative-manifestet](../data/Civication/narratives/mani
 Samlet rått manusgrunnlag: 701 grunnscener + 559 fortsettelsesscener + 631 Narrative-storylets = **1 891 oppføringer**, med **3 891 valg**. Dette er ikke en deduplisert filmliste. Samme rolle eller person kan opptre på tvers av kilder, og enkelte situasjoner kan overlappe. Storylets skal beholde sine egne kanoniske ID-er og vilkår; medieregisteret skal kunne koble flere kilde-ID-er til samme film bare når den redaksjonelle gjennomgangen fastslår samsvar. Ingen omskriving av spillmotor eller kildemanus er gjort.
 
 Gjenstår: øvrige jobbmail-manifester og life-mail-pakker, rolleverdener, fullstendig karakter- og kulissekartlegging, konkret scenevis produksjonsregister og pilotproduksjon. Se [kilderegisteret](CIVICATION_CINEMA_SOURCE_REGISTER.json).
+
+## Trinn 4 – rolleverdener og første jobbmail-kartlegging (2026-11-28)
+
+[Rolleverdensindeksen](../data/Civication/roleWorlds/index.json) inneholder **244** registrerte verdener, fordelt på **85 karrierer og 159 livsposisjoner** i 22 kategorier. Hele indeksen med rolle-ID, kategori, type og kildepath er lagt inn i [kilderegisteret](CIVICATION_CINEMA_SOURCE_REGISTER.json). Dette er indeksdekning, ikke individuell godkjenning av alle 244 filer eller et antall filmmanus.
+
+De seks første rolleverdensfilene er lest og miljø-/karakterarketypene hentet ut:
+
+| Verden | Miljøbeskrivelser | Personarketyper | Primærtråder |
+| --- | ---: | ---: | ---: |
+| Ekspeditør | 5 | 6 | 5 |
+| Renholder | 6 | 7 | 6 |
+| By-rådgiver | 6 | 8 | 6 |
+| Frilansmusiker | 6 | 6 | 14 |
+| Sideprosjektbygger | 8 | 6 | 14 |
+| Gangster | 8 | 6 | 15 |
+| Sum rå beskrivelser | 39 | 39 | 60 |
+
+**Kontinuitetsproblem:** Life Story Arealplanlegger har Eirik som plansjef, mens By-rådgiverens rolleverdensfil beskriver Elin som plansjef. Det er ikke grunnlag for automatisk å slå disse sammen. Ekspeditørens jobbmail har dessuten flere avsendere og personer enn Life Story-scenenes avsenderfelt. Cast skal identifiseres per faktisk kilde og historietråd før noen visuell modell godkjennes. Miljøbeskrivelser er ikke nødvendigvis unike fysiske kulisser.
+
+### Mailkilder
+
+| Lest katalog | Mailoppføringer | Valg |
+| --- | ---: | ---: |
+| Life-mail: Arbeidsledig | 5 | 10 |
+| Life-mail: Alkohol og sosial slitasje | 3 | 6 |
+| Life-mail: Subkultur / kantliv | 3 | 6 |
+| Næringsliv, eldre Civic-katalog | 19 | 45 |
+| Ekspeditør, jobbmailfamilier | 31 | 75 |
+| Renholder, jobbmailfamilier | 24 | 74 |
+| Sum rå oppføringer | 85 | 216 |
+
+Alle tre life-mail-pakker fra manifestet er lest. Jobbmail er foreløpig et utvalg: faktisk runtime `civicationDailyMailBuilder.js` peker til `mailPlans` og `mailFamilies` per kategori og role_scope, ikke bare de eldre jobbmails. Ett eldre manifest peker på `naer_arbeider_pack.json` som returnerte 404. Globalt jobbmailmanifest ble ikke funnet på den undersøkte stien. Ikke tell referansene som innhold, ikke erklær full jobbmaildekning. Disse 85 oppføringene holdes separat fra de tidligere 1 891 på grunn av mulig overlapp og ulike kildeformater.
+
+Neste: bygg en kanonisk rolle-for-rolle-kobling mellom Life Story, Narrative, rolleverdener og aktive mailFamilies/mailPlans. Start med de seks leste verdener, registrer konkrete scene-ID-er, bekreft person-/stedskontinuitet, og velg pilot fra en faktisk forfattet scene. Ingen ny hovedkarakter, ingen endring i spillmotor, ingen filmer produsert ennå.
