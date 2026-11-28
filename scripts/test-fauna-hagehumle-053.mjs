@@ -82,8 +82,8 @@ const prior={
 };
 assert.equal(Object.keys(prior).length,52);
 for(const [oldId,h] of Object.entries(prior))assert.equal(reg.get(oldId)?.gitBlobSha,h,oldId+" previous original must remain byte-identical");
-assert.equal(reg.get("emne_fauna_graveveps"),null,"Graveveps retains SVG fallback");
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-65"));
+assert.equal(reg.get("emne_fauna_sandveps"),null,"Sandveps retains SVG fallback");
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-66"));
 assert(read(".github/workflows/fauna-illustrations.yml").includes("scripts/test-fauna-hagehumle-053.mjs"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Hagehumle")'));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Hagehumle")'));

@@ -292,6 +292,6 @@ const prior=[
 
 assert.equal(prior.length,56);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);assert.equal(blob(binary(old.src)),old.sha,old.id+" original changed");}
-assert.equal(reg.get("emne_fauna_graveveps"),null);assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-65"));
+assert.equal(reg.get("emne_fauna_sandveps"),null);assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-66"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Trehumle")'));
 console.log("Trehumle #57: lossless original, dimensions, hashes, canonical/runtime species and quiz reference; all 56 previous binaries preserved");
