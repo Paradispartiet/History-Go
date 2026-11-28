@@ -182,3 +182,27 @@ test("inbox delegates actual responses to the existing mail engine", () => {
   assert.match(inbox, /CivicationAudio\?\.syncInboxAudio/);
   assert.match(inbox, /CivicationMailEngine\.answerMail\(mailId, choiceId\)/);
 });
+
+test("voice cast prefers Norwegian voices, uses stable assignments and falls back safely", () => {
+  const begin = source.indexOf("  function chooseStoryVoice(");
+  const end = source.indexOf("  /** @param {HTMLElement} panel @param {HTMLElement} target */", begin);
+  assert.ok(begin > 0 && end > begin);
+  const pick = vm.runInNewContext("(function() {" + source.slice(begin, end) + "; return chooseStoryVoice; })()");
+  const voices = [
+    {lang:"en-US",voiceURI:"English",localService:true},
+    {lang:"nb-NO",voiceURI:"A",localService:true},
+    {lang:"nb-NO",voiceURI:"B",localService:true},
+    {lang:"nn-NO",voiceURI:"C",localService:true}
+  ];
+  assert.equal(pick(voices, "").voiceURI, "A");
+  const chosen = pick(voices, "kollega-1");
+  assert.notEqual(chosen.voiceURI, "A");
+  assert.equal(pick([...voices].reverse(), "kollega-1").voiceURI, chosen.voiceURI);
+  assert.equal(pick([voices[1]], "kollega-1").voiceURI, "A");
+  assert.equal(pick([voices[0]], "kollega-1"), null);
+});
+test("rate preference is applied to speech without changing game choices", () => {
+  assert.match(source, /const AUDIO_RATES = \[0\.75, 0\.95, 1\.15, 1\.35\]/);
+  assert.match(source, /utterance\.rate = AUDIO_RATES\[audioRateIndex\]/);
+  assert.match(source, /utterance\.voice = voice/);
+});
