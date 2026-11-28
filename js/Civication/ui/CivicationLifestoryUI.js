@@ -1107,6 +1107,7 @@
     }
     if (rate) audioRateIndex = (audioRateIndex + 1) % AUDIO_RATES.length;
     if (cast) audioCastEnabled = !audioCastEnabled;
+    if (rate || cast || level) saveAudioPreferences();
     updateAudioControls(panel);
     // Never open a microphone or start playback just by changing settings.
     // A running narration uses the new preference at its next segment.
@@ -1121,6 +1122,43 @@
   /** @type {AudioContext|null} */ let atmosphereContext = null;
   /** @type {AudioBufferSourceNode|null} */ let atmosphereSource = null;
   /** @type {GainNode|null} */ let atmosphereGain = null;
+
+  // Device-local presentation preferences only. Never persist a microphone
+  // session, story text, a transcript, an enabled playback flag or game state.
+  const AUDIO_PREFS_KEY = "civication.audio.preferences.v1";
+
+  /** @param {string|null} raw */
+  function parseAudioPreferences(raw) {
+    try {
+      const value = JSON.parse(raw || "null");
+      if (!value || value.version !== 1) return null;
+      return {
+        rate: Number.isInteger(value.rate) && value.rate >= 0 && value.rate < AUDIO_RATES.length ? value.rate : 1,
+        cast: typeof value.cast === "boolean" ? value.cast : true,
+        level: Number.isInteger(value.level) && value.level >= 0 && value.level < ATMOSPHERE_LEVELS.length ? value.level : 1
+      };
+    } catch { return null; }
+  }
+
+  function restoreAudioPreferences() {
+    try {
+      const prefs = parseAudioPreferences(window.localStorage?.getItem(AUDIO_PREFS_KEY) || null);
+      if (!prefs) return;
+      audioRateIndex = prefs.rate;
+      audioCastEnabled = prefs.cast;
+      atmosphereLevel = prefs.level;
+    } catch { /* storage disabled: default settings remain usable */ }
+  }
+
+  function saveAudioPreferences() {
+    try {
+      window.localStorage?.setItem(AUDIO_PREFS_KEY, JSON.stringify({
+        version: 1, rate: audioRateIndex, cast: audioCastEnabled, level: atmosphereLevel
+      }));
+    } catch { /* settings remain effective for this session */ }
+  }
+
+  restoreAudioPreferences();
 
   function atmosphereConstructor() {
     const browser = /** @type {any} */ (window);
