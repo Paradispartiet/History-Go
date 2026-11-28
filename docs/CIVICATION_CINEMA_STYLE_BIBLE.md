@@ -10,6 +10,12 @@ Civication skal kunne oppleves som en sammenhengende interaktiv animasjonsserie.
 
 Civication Classic, Audio og Cinema er tre presentasjoner av samme liv, ikke tre separate spill. Spilleren kan bytte modus uten tap av progresjon. Den eksisterende Runner, kalenderen, innboksen, økonomien, relasjonene og lagringen beholder autoritet. Film eller lyd kan aldri tildele et valg, opptjening eller dagskifte automatisk. Spilleren svarer med samme eksisterende svarboks, eventuelt ved å si bare A, B, C osv. Håndfri er et eksplisitt, frivillig valg.
 
+### Fortellingene bestemmer rollebesetningen
+
+Presisering vedtatt 28. november 2026: Det er hver eksisterende rolle, Life Story, jobb og livsposisjonsfortelling som skal filmatiseres, ikke en ny historie om én universell hovedkarakter. Hvert forløp får sin kildeforankrede rollebesetning, sine steder og sitt dramatiske uttrykk innenfor den samme visuelle stilen. Spillerens ansikt kan holdes utenfor bildet når historien tilsier det; dette er en produksjonsmulighet, ikke et krav. Felles karakterer og kulisser gjenbrukes bare der kildeinnholdet fastslår kontinuitet.
+
+[Fortellingsinventar, trinn 1](CIVICATION_CINEMA_STORY_INVENTORY.md): 16 manifestpakker med 701 forfattede scener og 1 563 valg. Øvrige jobbnarrativer, fortsettelser og dynamiske hendelser kartlegges separat før total produksjonsmengde kan fastslås.
+
 ## 2. Visuell identitet – bindende produksjonsregler
 
 | Område | Standard |
