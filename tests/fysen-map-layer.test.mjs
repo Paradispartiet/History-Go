@@ -96,3 +96,14 @@ test("map picker integration preserves canonical places and explicit Fysen opt-i
   assert.match(controls, /hg:fysen-map-change/);
   assert.match(html, /dist\/web\/fysen-map-layer\.js/);
 });
+
+test("only approved shared logo paths are resolved to the catalog source commit", () => {
+  const f = fixture();
+  const parsed = f.api.parseCatalog({ ...good, restaurants: [
+    { ...good.restaurants[0], logoPath: "/restaurants/egon-byporten/logo.svg" },
+    { ...good.restaurants[1], logoPath: "https://example.com/logo.png" }
+  ] });
+  assert.equal(parsed.features[0].properties.logoUrl,
+    "https://raw.githubusercontent.com/Paradispartiet/fysen/" + good.sourceCommit + "/apps/web/public/restaurants/egon-byporten/logo.svg");
+  assert.equal(parsed.features[1].properties.logoKey, undefined);
+});
