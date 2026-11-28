@@ -143,3 +143,42 @@ test("a changing day action cannot be selected by a stale recognition result", (
   s.answer(rec, "A");
   assert.deepEqual(s.clicks, []);
 });
+
+test("inbox audio labels only existing canonical actions, not document work", () => {
+  const start = source.indexOf("  function syncInboxAudio(");
+  const end = source.indexOf("  /** @param {HTMLElement} panel @param {HTMLElement} target */", start);
+  assert.ok(start > 0 && end > start);
+  const buttons = ["Svar ja", "Svar nei"].map(textContent => {
+    const attrs = new Map();
+    return {textContent, getAttribute: name => attrs.get(name) ?? null,
+      setAttribute: (name, value) => attrs.set(name, value), hasAttribute: name => attrs.has(name)};
+  });
+  let selectorUsed = "";
+  let controls = false;
+  const panel = {
+    querySelector(selector) {
+      if (selector === ".civi-next-action-card") return {};
+      if (selector === "[data-lifestory-audio-controls]") return controls ? {} : null;
+      return null;
+    },
+    insertAdjacentHTML() { controls = true; },
+    querySelectorAll(selector) { selectorUsed = selector; return buttons; }
+  };
+  const context = {audioSupported: () => true, voiceConstructor: () => true,
+    audioControlsHtml: () => "controls", audioChoiceLetter: i => "ABC"[i],
+    inboxAudioPanel: null, audioOwner: null, audioEnabled: false};
+  const sync = vm.runInNewContext("(function() {" + source.slice(start, end) + "; return syncInboxAudio; })()", context);
+  sync(panel);
+  sync(panel);
+  assert.deepEqual(buttons.map(b => b.textContent), ["A. Svar ja", "B. Svar nei"]);
+  assert.equal(buttons[1].getAttribute("data-lifestory-letter"), "B");
+  assert.match(selectorUsed, /data-civi-next-action-answer/);
+  assert.doesNotMatch(selectorUsed, /data-civi-next-action-task/);
+});
+
+test("inbox delegates actual responses to the existing mail engine", () => {
+  const inbox = fs.readFileSync(path.join(__dirname, "../js/Civication/ui/CivicationNextActionUI.js"), "utf8");
+  assert.match(inbox, /CivicationAudio\?\.handleInboxAudioClick/);
+  assert.match(inbox, /CivicationAudio\?\.syncInboxAudio/);
+  assert.match(inbox, /CivicationMailEngine\.answerMail\(mailId, choiceId\)/);
+});
