@@ -296,6 +296,6 @@ const prior=[
 assert.equal(prior.length,58);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);assert.equal(blob(binary(old.src)),old.sha,old.id+" original changed");}
 assert.equal(reg.get("emne_fauna_murveps"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-61"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-62"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Sandbie")'));
 console.log("Sandbie #59: lossless original, explicit Andrena fulva exemplar, unchanged Andrena group/quiz reference and all 58 previous binaries preserved");
