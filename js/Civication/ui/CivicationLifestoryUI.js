@@ -836,6 +836,7 @@
   let handsFreeEnabled = false;
   /** @type {HTMLElement|null} */ let inboxAudioPanel = null;
   /** @type {HTMLElement|null} */ let audioOwner = null;
+  /** @type {{panel: HTMLElement, generation: number, expires: number}|null} */ let pendingInboxAudio = null;
 
   function voiceConstructor() {
     const browser = /** @type {any} */ (window);
@@ -1327,6 +1328,12 @@
     if (!audioSupported() && !voiceConstructor()) return;
     if (!panel.querySelector?.(".civi-next-action-card")) {
       if (audioOwner === panel) { stopVoiceInput(); stopStoryAudio(); audioKey = ""; }
+      // An explicit inbox opening from Min dag may precede async mail loading.
+      // Only retain that handoff briefly; do not restart audio after another
+      // playback interaction, an explicit close, or a hidden destination.
+      if (takeOver && audioEnabled && !audioOwner && !voiceSession) {
+        pendingInboxAudio = { panel, generation: audioGeneration, expires: Date.now() + 15000 };
+      }
       return;
     }
     if (!panel.querySelector("[data-lifestory-audio-controls]")) {
@@ -1348,7 +1355,11 @@
       button.textContent = letter + ". " + text;
     });
     inboxAudioPanel = panel;
-    if (takeOver && audioEnabled && voiceSurfaceActive(panel)) {
+    const pending = pendingInboxAudio?.panel === panel ? pendingInboxAudio : null;
+    if (pending) pendingInboxAudio = null;
+    const delayedHandoff = !!pending && pending.generation === audioGeneration &&
+      pending.expires >= Date.now() && !audioOwner && !voiceSession;
+    if ((takeOver || delayedHandoff) && audioEnabled && voiceSurfaceActive(panel)) {
       stopVoiceInput(); stopStoryAudio(); audioKey = ""; audioOwner = panel;
     }
     if (audioOwner === panel) syncAudioActions(panel);
@@ -1383,6 +1394,7 @@
   }
 
   function closeInboxAudio() {
+    pendingInboxAudio = null;
     if (audioOwner !== inboxAudioPanel || !audioOwner) return;
     handsFreeEnabled = false; audioEnabled = false; audioKey = "";
     stopVoiceInput(); stopStoryAudio(); updateAudioControls(audioOwner);
@@ -1403,11 +1415,13 @@
   }
   /** @type {any} */ (window).CivicationAudio = { syncInboxAudio, handleInboxAudioClick, closeInboxAudio };
   window.addEventListener("pagehide", () => {
+    pendingInboxAudio = null;
     handsFreeEnabled = false; audioEnabled = false; audioKey = "";
     stopVoiceInput(); stopStoryAudio();
   });
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState !== "hidden") return;
+    pendingInboxAudio = null;
     handsFreeEnabled = false;
     stopVoiceInput();
     audioEnabled = false;

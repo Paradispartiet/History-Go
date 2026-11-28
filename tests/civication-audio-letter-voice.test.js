@@ -166,7 +166,7 @@ test("inbox audio labels only existing canonical actions, not document work", ()
   };
   const context = {audioSupported: () => true, voiceConstructor: () => true,
     audioControlsHtml: () => "controls", audioChoiceLetter: i => "ABC"[i],
-    inboxAudioPanel: null, audioOwner: null, audioEnabled: false};
+    inboxAudioPanel: null, audioOwner: null, audioEnabled: false, pendingInboxAudio: null};
   const sync = vm.runInNewContext("(function() {" + source.slice(start, end) + "; return syncInboxAudio; })()", context);
   sync(panel);
   sync(panel);
@@ -226,4 +226,45 @@ test("environment sound is opt-in and stops before listening", () => {
   const voiceCode = source.slice(begin, end);
   assert.ok(voiceCode.indexOf("stopStoryAudio();") < voiceCode.indexOf("recognition.start();"));
   assert.match(source, /if \(index >= segments.length\) \{\s*stopAtmosphere\(\)/);
+});
+
+
+test("explicit inbox handoff survives delayed mail loading but not cancellation or a new audio session", () => {
+  const start = source.indexOf("  function syncInboxAudio(");
+  const end = source.indexOf("  // Popup dismissal", start);
+  const code = source.slice(start, end);
+  for (const variant of ["normal", "close", "new-session", "hidden", "expired", "no-opt-in"]) {
+    let ready = false;
+    let visible = true;
+    let played = 0;
+    let now = 100;
+    const panel = {
+      querySelector(selector) {
+        if (selector === ".civi-next-action-card") return ready ? {} : null;
+        if (selector === "[data-lifestory-audio-controls]") return {};
+        return null;
+      },
+      querySelectorAll() { return []; }
+    };
+    const context = {
+      audioSupported: () => true, voiceConstructor: () => true,
+      inboxAudioPanel: null, audioOwner: null, pendingInboxAudio: null,
+      audioEnabled: variant !== "no-opt-in", voiceSession: null, audioGeneration: 5,
+      audioKey: "", handsFreeEnabled: true,
+      Date: { now: () => now }, voiceSurfaceActive: () => visible,
+      stopVoiceInput() {}, stopStoryAudio() { context.audioGeneration++; },
+      updateAudioControls() {}, syncAudioActions() { played++; }
+    };
+    const api = vm.runInNewContext("(function() {" + code + "; return {syncInboxAudio, closeInboxAudio}; })()", context);
+    api.syncInboxAudio(panel, true);
+    assert.equal(played, 0);
+    if (variant === "close") api.closeInboxAudio();
+    if (variant === "new-session") context.audioGeneration++;
+    if (variant === "hidden") visible = false;
+    if (variant === "expired") now += 16000;
+    ready = true;
+    api.syncInboxAudio(panel);
+    assert.equal(played, variant === "normal" ? 1 : 0, variant);
+    assert.equal(context.pendingInboxAudio, null, variant);
+  }
 });
