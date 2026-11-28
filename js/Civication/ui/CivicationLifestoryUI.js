@@ -1054,13 +1054,120 @@
   function handleAudioPreferences(panel, target) {
     const rate = target.closest("[data-lifestory-audio-rate]");
     const cast = target.closest("[data-lifestory-audio-cast]");
-    if (!rate && !cast) return false;
+    const atmosphere = target.closest("[data-lifestory-atmosphere]");
+    const level = target.closest("[data-lifestory-atmosphere-level]");
+    if (!rate && !cast && !atmosphere && !level) return false;
+    if (atmosphere) {
+      atmosphereEnabled = !atmosphereEnabled;
+      if (atmosphereEnabled) {
+        unlockAtmosphere();
+        if (audioUtterance && audioOwner === panel) startAtmosphere(panel);
+      } else stopAtmosphere();
+    }
+    if (level) {
+      atmosphereLevel = (atmosphereLevel + 1) % ATMOSPHERE_LEVELS.length;
+      if (atmosphereGain) atmosphereGain.gain.value = ATMOSPHERE_LEVELS[atmosphereLevel];
+    }
     if (rate) audioRateIndex = (audioRateIndex + 1) % AUDIO_RATES.length;
     if (cast) audioCastEnabled = !audioCastEnabled;
     updateAudioControls(panel);
     // Never open a microphone or start playback just by changing settings.
     // A running narration uses the new preference at its next segment.
     return true;
+  }
+
+  // Lightweight procedural sound beds, no external assets or service.
+  // Only play during narration; silence before microphone activation.
+  let atmosphereEnabled = false;
+  let atmosphereLevel = 1;
+  const ATMOSPHERE_LEVELS = [0.018, 0.032, 0.05];
+  /** @type {AudioContext|null} */ let atmosphereContext = null;
+  /** @type {AudioBufferSourceNode|null} */ let atmosphereSource = null;
+  /** @type {GainNode|null} */ let atmosphereGain = null;
+
+  function atmosphereConstructor() {
+    const browser = /** @type {any} */ (window);
+    return browser.AudioContext || browser.webkitAudioContext;
+  }
+
+  /** @param {string} phase @param {string} location */
+  function atmosphereProfile(phase, location) {
+    const place = String(location || "").toLowerCase();
+    const time = String(phase || "").toLowerCase();
+    if (/(kafe|kafé|cafe|restaurant)/.test(place)) return {name:"Kafé", cutoff:680, type:"bandpass"};
+    if (/(kontor|office|arbeid|jobb)/.test(place)) return {name:"Arbeidsmiljø", cutoff:290, type:"lowpass"};
+    if (/(gate|trafikk|sentrum|street|byrom)/.test(place)) return {name:"Bymiljø", cutoff:420, type:"lowpass"};
+    if (/(park|skog|natur|garden)/.test(place)) return {name:"Natur", cutoff:1250, type:"lowpass"};
+    if (/(natt|night|sleep|recovery)/.test(time)) return {name:"Natt", cutoff:180, type:"lowpass"};
+    if (/(kveld|evening|day_end)/.test(time)) return {name:"Kveld", cutoff:320, type:"lowpass"};
+    if (/(morgen|morning|day_start)/.test(time)) return {name:"Morgen", cutoff:900, type:"lowpass"};
+    return {name:"Dag", cutoff:530, type:"lowpass"};
+  }
+
+  function stopAtmosphere() {
+    if (atmosphereSource) {
+      try { atmosphereSource.stop(); atmosphereSource.disconnect(); } catch { /* already stopped */ }
+    }
+    if (atmosphereGain) { try { atmosphereGain.disconnect(); } catch {} }
+    atmosphereSource = null;
+    atmosphereGain = null;
+  }
+
+  // Called only from an explicit player gesture, not on page load.
+  function unlockAtmosphere() {
+    if (!atmosphereEnabled || !atmosphereConstructor()) return;
+    try {
+      if (!atmosphereContext) atmosphereContext = new (atmosphereConstructor())();
+      const ctx = atmosphereContext;
+      if (ctx && ctx.state === "suspended") ctx.resume().catch(() => {});
+    } catch { /* narration remains available */ }
+  }
+
+  /** @param {HTMLElement} panel */
+  function startAtmosphere(panel) {
+    stopAtmosphere();
+    if (!atmosphereEnabled || !audioEnabled || voiceSession ||
+        !atmosphereContext || atmosphereContext.state !== "running" || !voiceSurfaceActive(panel)) return;
+    try {
+      const ctx = atmosphereContext;
+      const scene = panel.querySelector(".civi-lifestory-scene");
+      const profile = atmosphereProfile(String(state?.fase || ""), scene?.getAttribute("data-lifestory-location") || "");
+      const buffer = ctx.createBuffer(1, ctx.sampleRate * 4, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      // Smoothed noise: a restrained impression of a room or outside air,
+      // not recordings of actual people, traffic, birds or weather.
+      let sample = 0;
+      for (let i = 0; i < data.length; i++) {
+        sample = 0.94 * sample + 0.06 * (Math.random() * 2 - 1);
+        const edge = Math.min(1, i / 512, (data.length - 1 - i) / 512);
+        data[i] = sample * edge;
+      }
+      const source = ctx.createBufferSource();
+      source.buffer = buffer;
+      source.loop = true;
+      const filter = ctx.createBiquadFilter();
+      filter.type = /** @type {BiquadFilterType} */ (profile.type);
+      filter.frequency.value = profile.cutoff;
+      const gain = ctx.createGain();
+      gain.gain.value = ATMOSPHERE_LEVELS[atmosphereLevel];
+      source.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      atmosphereSource = source;
+      atmosphereGain = gain;
+      source.start();
+    } catch { stopAtmosphere(); }
+  }
+
+  /** @param {HTMLElement} panel */
+  function updateAtmosphereControls(panel) {
+    const toggle = panel.querySelector("[data-lifestory-atmosphere]");
+    const level = panel.querySelector("[data-lifestory-atmosphere-level]");
+    if (toggle) {
+      toggle.setAttribute("aria-pressed", String(atmosphereEnabled));
+      toggle.textContent = atmosphereEnabled ? "Miljølyd: på" : "Miljølyd: av";
+    }
+    if (level) level.textContent = "Miljøvolum: " + ["Lav", "Middels", "Høy"][atmosphereLevel];
   }
 
   function audioControlsHtml() {
@@ -1073,7 +1180,11 @@
       + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-rate>Lesehastighet: '
         + String(AUDIO_RATES[audioRateIndex]).replace(".", ",") + '×</button>'
       + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-cast aria-pressed="'
-        + String(audioCastEnabled) + '">' + (audioCastEnabled ? "Ulike stemmer: på" : "Ulike stemmer: av") + '</button>' : "")
+        + String(audioCastEnabled) + '">' + (audioCastEnabled ? "Ulike stemmer: på" : "Ulike stemmer: av") + '</button>'
+      + (atmosphereConstructor() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-atmosphere aria-pressed="'
+        + String(atmosphereEnabled) + '">' + (atmosphereEnabled ? "Miljølyd: på" : "Miljølyd: av") + '</button>'
+        + '<button type="button" class="civi-lifestory-choice" data-lifestory-atmosphere-level>Miljøvolum: '
+        + ["Lav", "Middels", "Høy"][atmosphereLevel] + '</button>' : "") : "")
       + '<small data-lifestory-audio-status role="status"></small>'
       + (voiceConstructor() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-voice aria-pressed="'
         + String(!!voiceSession) + '">' + (voiceSession ? "■ Avbryt mikrofon" : "🎙 Svar med stemmen") + '</button>'
@@ -1095,6 +1206,7 @@
     }
     if (repeat) /** @type {HTMLElement} */ (repeat).hidden = !audioEnabled;
     if (status) status.textContent = message;
+    updateAtmosphereControls(panel);
     const rate = panel.querySelector("[data-lifestory-audio-rate]");
     const cast = panel.querySelector("[data-lifestory-audio-cast]");
     if (rate) rate.textContent = "Lesehastighet: " + String(AUDIO_RATES[audioRateIndex]).replace(".", ",") + "×";
@@ -1105,6 +1217,7 @@
   }
 
   function stopStoryAudio() {
+    stopAtmosphere();
     audioGeneration += 1;
     if (audioUtterance && audioSupported()) window.speechSynthesis.cancel();
     audioUtterance = null;
@@ -1145,6 +1258,7 @@
     if (!force && key === audioKey) return;
     audioKey = key;
     stopStoryAudio();
+    startAtmosphere(panel);
     const generation = audioGeneration;
     const spokenSceneKey = voiceSceneKey(panel);
     const sender = scene?.getAttribute("data-lifestory-speaker") || "";
@@ -1175,6 +1289,7 @@
         return;
       }
       if (index >= segments.length) {
+        stopAtmosphere();
         audioUtterance = null;
         updateAudioControls(panel, "Opplesningen er ferdig.");
         openHandsFreeAfterSpeech(panel, spokenSceneKey);
@@ -1189,6 +1304,7 @@
       utterance.onend = next;
       utterance.onerror = () => {
         if (generation !== audioGeneration) return;
+        stopAtmosphere();
         audioUtterance = null;
         handsFreeEnabled = false;
         updateVoiceControls(panel);
@@ -1330,6 +1446,7 @@
     }).join("");
     return ""
       + "<article class=\"civi-lifestory-scene\" aria-label=\"Nå-scene\" data-lifestory-speaker=\"" + escapeHtml(scene.avsender || "") + "\""
+      + " data-lifestory-location=\"" + escapeHtml(scene.stedId || "") + "\""
       + " data-lifestory-spoken-message=\"" + String(!!scene.avsender && /^(melding|sms|mail|e-post|telefon|dialog|samtale|brev)$/i.test(String(scene.visningstype || ""))) + "\">"
       + "<div class=\"civi-lifestory-kicker\"><span>NÅ</span><span>" + escapeHtml(viewPhaseName(scene.fase)) + "</span><span>" + escapeHtml(scene.visningstype) + "</span>" + (scene.avsender ? "<span>Fra " + escapeHtml(personNavn(scene.avsender)) + "</span>" : "") + "</div>"
       + "<h3>" + escapeHtml(scene.tittel) + "</h3>"
