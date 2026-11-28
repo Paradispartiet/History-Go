@@ -1,0 +1,4805 @@
+{
+  "schema_version": 1,
+  "source_branch": "civication/cinema-visual-milestone-20261128",
+  "sources": [
+    "data/Civication/lifestory/roles/arbeidsledig/role.json",
+    "data/Civication/narratives/manifest.json",
+    "data/Civication/lifeMails/life_manifest.json",
+    "data/Civication/jobbmails/naeringsliv/naer_manifest.json"
+  ],
+  "scope": "45 continuation and 50 narrative files counted; all 244 role-world references indexed, individual worlds not yet inspected comprehensively; life-mail and selected job-mail catalogs counted separately; counts are raw source entries and may overlap.",
+  "continuations": [
+    {
+      "id": "musikk_med_mira",
+      "title": "Fortsett med medmusikeren",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+      "after_day": 7,
+      "parents": [],
+      "thread": "musikken_og_mira",
+      "scenes": 24,
+      "choices": 51,
+      "location_ids": [
+        "hjem",
+        "ovingsrom"
+      ],
+      "sender_ids": [
+        "mira"
+      ]
+    },
+    {
+      "id": "sideprosjekt_med_lea",
+      "title": "Fortsett med prosjektbyggeren som Sideprosjektbygger",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+      "after_day": 7,
+      "parents": [],
+      "thread": "prosjektet_og_lea",
+      "scenes": 14,
+      "choices": 28,
+      "location_ids": [
+        "hjem",
+        "prosjektbord"
+      ],
+      "sender_ids": [
+        "lea"
+      ]
+    },
+    {
+      "id": "frilans_med_lea",
+      "title": "Fortsett med prosjektbyggeren som Frilanser",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/frilans_med_lea.json",
+      "after_day": 7,
+      "parents": [],
+      "thread": "prosjektet_og_lea",
+      "scenes": 13,
+      "choices": 25,
+      "location_ids": [
+        "hjem",
+        "prosjektbord"
+      ],
+      "sender_ids": [
+        "lea"
+      ]
+    },
+    {
+      "id": "grunder_med_lea",
+      "title": "Fortsett med prosjektbyggeren som Gründerdrømmer",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "path": "data/Civication/lifestory/continuations/grunder_med_lea.json",
+      "after_day": 7,
+      "parents": [],
+      "thread": "prosjektet_og_lea",
+      "scenes": 9,
+      "choices": 18,
+      "location_ids": [
+        "hjem",
+        "prosjektbord"
+      ],
+      "sender_ids": [
+        "lea"
+      ]
+    },
+    {
+      "id": "sideprosjekt_neste_steg",
+      "title": "Neste kapittel som Sideprosjektbygger",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_neste_steg.json",
+      "after_day": 10,
+      "parents": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "thread": null,
+      "scenes": 27,
+      "choices": 53,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": [
+        "lea"
+      ]
+    },
+    {
+      "id": "frilans_neste_steg",
+      "title": "Neste kapittel som Frilanser",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/frilans_neste_steg.json",
+      "after_day": 10,
+      "parents": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "thread": null,
+      "scenes": 14,
+      "choices": 25,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": [
+        "lea"
+      ]
+    },
+    {
+      "id": "grunder_neste_steg",
+      "title": "Neste kapittel som Gründerdrømmer",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "path": "data/Civication/lifestory/continuations/grunder_neste_steg.json",
+      "after_day": 10,
+      "parents": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "thread": null,
+      "scenes": 8,
+      "choices": 15,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": [
+        "lea"
+      ]
+    },
+    {
+      "id": "musikk_foresporselen",
+      "title": "Fortsett med spilleforespørselen",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_foresporselen.json",
+      "after_day": 10,
+      "parents": [
+        "musikk_med_mira"
+      ],
+      "thread": null,
+      "scenes": 10,
+      "choices": 22,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": [
+        "booker"
+      ]
+    },
+    {
+      "id": "miljo_med_arvid",
+      "title": "Fortsett med miljøkontakten",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
+      "after_day": 7,
+      "parents": [],
+      "thread": "miljoet_og_amir",
+      "scenes": 15,
+      "choices": 30,
+      "location_ids": [
+        "hjem",
+        "pub"
+      ],
+      "sender_ids": [
+        "amir",
+        "bekjent"
+      ]
+    },
+    {
+      "id": "miljo_navnet_ditt",
+      "title": "Fortsett med navnet ditt på invitasjonen",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_navnet_ditt.json",
+      "after_day": 10,
+      "parents": [
+        "miljo_med_arvid"
+      ],
+      "thread": null,
+      "scenes": 23,
+      "choices": 47,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": [
+        "amir"
+      ]
+    },
+    {
+      "id": "musikk_etter_foresporselen",
+      "title": "Mira: Etter forespørselen",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_etter_foresporselen.json",
+      "after_day": 13,
+      "parents": [
+        "musikk_foresporselen"
+      ],
+      "thread": null,
+      "scenes": 11,
+      "choices": 21,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "sideprosjekt_etter_neste_steg",
+      "title": "Lea: Prosjektet som tåler et nei",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_etter_neste_steg.json",
+      "after_day": 13,
+      "parents": [
+        "sideprosjekt_neste_steg"
+      ],
+      "thread": null,
+      "scenes": 23,
+      "choices": 45,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": [
+        "lea"
+      ]
+    },
+    {
+      "id": "frilans_etter_neste_steg",
+      "title": "Lea: Utkastet og grensen",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/frilans_etter_neste_steg.json",
+      "after_day": 13,
+      "parents": [
+        "frilans_neste_steg"
+      ],
+      "thread": null,
+      "scenes": 11,
+      "choices": 20,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "grunder_etter_neste_steg",
+      "title": "Lea: Én mening er ikke et marked",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "path": "data/Civication/lifestory/continuations/grunder_etter_neste_steg.json",
+      "after_day": 13,
+      "parents": [
+        "grunder_neste_steg"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "miljo_etter_invitasjonen",
+      "title": "Arvid: Et navn er ikke en avtale",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_etter_invitasjonen.json",
+      "after_day": 13,
+      "parents": [
+        "miljo_navnet_ditt"
+      ],
+      "thread": null,
+      "scenes": 12,
+      "choices": 23,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "sideprosjekt_kryss_med_mira",
+      "title": "Lea: Programmet etter Miras valg",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_kryss_med_mira.json",
+      "after_day": 16,
+      "parents": [
+        "musikk_etter_foresporselen"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "miljo_kryss_med_lea",
+      "title": "Arvid: Invitasjonen etter Leas prosjekt",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_kryss_med_lea.json",
+      "after_day": 16,
+      "parents": [
+        "sideprosjekt_etter_neste_steg"
+      ],
+      "thread": null,
+      "scenes": 8,
+      "choices": 15,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "musikk_kryss_med_arvid",
+      "title": "Mira: Invitasjonen etter Arvids valg",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_kryss_med_arvid.json",
+      "after_day": 16,
+      "parents": [
+        "miljo_etter_invitasjonen"
+      ],
+      "thread": null,
+      "scenes": 8,
+      "choices": 15,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "miljo_kryss_med_frilans",
+      "title": "Arvid: Leas frilansnotat på plakaten",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_kryss_med_frilans.json",
+      "after_day": 16,
+      "parents": [
+        "frilans_etter_neste_steg"
+      ],
+      "thread": null,
+      "scenes": 8,
+      "choices": 15,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "musikk_kryss_med_grunder",
+      "title": "Mira: Lyden i Leas idé",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_kryss_med_grunder.json",
+      "after_day": 16,
+      "parents": [
+        "grunder_etter_neste_steg"
+      ],
+      "thread": null,
+      "scenes": 8,
+      "choices": 15,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "miljo_etter_leas_program",
+      "title": "Arvid: Papiret ved inngangen",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_etter_leas_program.json",
+      "after_day": 19,
+      "parents": [
+        "sideprosjekt_kryss_med_mira"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "musikk_etter_arvids_tekst",
+      "title": "Mira: Hvem skrev at jeg skulle komme?",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_etter_arvids_tekst.json",
+      "after_day": 19,
+      "parents": [
+        "miljo_kryss_med_lea"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "frilans_etter_miras_navn",
+      "title": "Lea: Ansvar for andres navn",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/frilans_etter_miras_navn.json",
+      "after_day": 19,
+      "parents": [
+        "musikk_kryss_med_arvid"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "frilans_etter_arvids_kreditering",
+      "title": "Lea: Hvem bærer krediteringen?",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/frilans_etter_arvids_kreditering.json",
+      "after_day": 19,
+      "parents": [
+        "miljo_kryss_med_frilans"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "miljo_etter_miras_lyd",
+      "title": "Arvid: Filen som ikke var bestilt",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_etter_miras_lyd.json",
+      "after_day": 19,
+      "parents": [
+        "musikk_kryss_med_grunder"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "lea_etter_arvids_ansvar",
+      "title": "Lea: Tillit koster tid",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/lea_etter_arvids_ansvar.json",
+      "after_day": 22,
+      "parents": [
+        "miljo_etter_leas_program"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "mira_etter_samtalen_med_lea",
+      "title": "Mira: Det som ikke ble sagt",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/mira_etter_samtalen_med_lea.json",
+      "after_day": 22,
+      "parents": [
+        "musikk_etter_arvids_tekst"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "arvid_etter_leas_notat",
+      "title": "Arvid: Hvem eier historien?",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/arvid_etter_leas_notat.json",
+      "after_day": 22,
+      "parents": [
+        "frilans_etter_miras_navn"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "arvid_etter_leas_grense",
+      "title": "Arvid: Et vennskap etter et nei",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/arvid_etter_leas_grense.json",
+      "after_day": 22,
+      "parents": [
+        "frilans_etter_arvids_kreditering"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "mira_etter_lydfilens_rykte",
+      "title": "Mira: Når musikken ikke føles trygg",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/mira_etter_lydfilens_rykte.json",
+      "after_day": 22,
+      "parents": [
+        "miljo_etter_miras_lyd"
+      ],
+      "thread": null,
+      "scenes": 9,
+      "choices": 17,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "arvid_etter_leas_tillit",
+      "title": "Arvid: En samling uten redningsperson",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/arvid_etter_leas_tillit.json",
+      "after_day": 25,
+      "parents": [
+        "lea_etter_arvids_ansvar"
+      ],
+      "thread": null,
+      "scenes": 11,
+      "choices": 21,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "lea_etter_miras_vennskap",
+      "title": "Lea: Ideen trenger ikke en musiker",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/lea_etter_miras_vennskap.json",
+      "after_day": 25,
+      "parents": [
+        "mira_etter_samtalen_med_lea"
+      ],
+      "thread": null,
+      "scenes": 11,
+      "choices": 21,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "lea_etter_arvids_fortelling",
+      "title": "Lea: En historie hun selv kan stå for",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_etter_arvids_fortelling.json",
+      "after_day": 25,
+      "parents": [
+        "arvid_etter_leas_notat"
+      ],
+      "thread": null,
+      "scenes": 11,
+      "choices": 21,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "lea_etter_arvids_avstand",
+      "title": "Lea: Å være gjest uten å være ansvarlig",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_etter_arvids_avstand.json",
+      "after_day": 25,
+      "parents": [
+        "arvid_etter_leas_grense"
+      ],
+      "thread": null,
+      "scenes": 11,
+      "choices": 21,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "mira_etter_nye_takter",
+      "title": "Mira: Musikken etter stillheten",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/mira_etter_nye_takter.json",
+      "after_day": 25,
+      "parents": [
+        "mira_etter_lydfilens_rykte"
+      ],
+      "thread": null,
+      "scenes": 11,
+      "choices": 21,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "arvid_og_det_aapne_lokalet",
+      "title": "Arvid: Hvem åpner døren?",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/arvid_og_det_aapne_lokalet.json",
+      "after_day": 28,
+      "parents": [
+        "arvid_etter_leas_tillit"
+      ],
+      "thread": null,
+      "scenes": 15,
+      "choices": 29,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "lea_og_sporsmaalene_som_gjenstaar",
+      "title": "Lea: Spørsmålet som ikke passer i presentasjonen",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/lea_og_sporsmaalene_som_gjenstaar.json",
+      "after_day": 28,
+      "parents": [
+        "lea_etter_miras_vennskap"
+      ],
+      "thread": null,
+      "scenes": 15,
+      "choices": 29,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "lea_og_kildene_i_skrivearbeidet",
+      "title": "Lea: En setning må kunne etterprøves",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_og_kildene_i_skrivearbeidet.json",
+      "after_day": 28,
+      "parents": [
+        "lea_etter_arvids_fortelling"
+      ],
+      "thread": null,
+      "scenes": 15,
+      "choices": 29,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "lea_og_fellesskapet_uten_plikt",
+      "title": "Lea: Det finnes flere dører",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_og_fellesskapet_uten_plikt.json",
+      "after_day": 28,
+      "parents": [
+        "lea_etter_arvids_avstand"
+      ],
+      "thread": null,
+      "scenes": 15,
+      "choices": 29,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "mira_og_musikken_i_hverdagen",
+      "title": "Mira: Stykket som trenger tid",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/mira_og_musikken_i_hverdagen.json",
+      "after_day": 28,
+      "parents": [
+        "mira_etter_nye_takter"
+      ],
+      "thread": null,
+      "scenes": 15,
+      "choices": 29,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "arvid_og_nokkelen_til_lokalet",
+      "title": "Arvid: Nøkkelen ingen kan love bort",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/arvid_og_nokkelen_til_lokalet.json",
+      "after_day": 31,
+      "parents": [
+        "arvid_og_det_aapne_lokalet"
+      ],
+      "thread": null,
+      "scenes": 15,
+      "choices": 29,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "lea_og_den_foerste_hypotesen",
+      "title": "Lea: Når en god idé møter et dårlig svar",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/lea_og_den_foerste_hypotesen.json",
+      "after_day": 31,
+      "parents": [
+        "lea_og_sporsmaalene_som_gjenstaar"
+      ],
+      "thread": null,
+      "scenes": 15,
+      "choices": 29,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "lea_og_foresporselen_om_honorar",
+      "title": "Lea: En pris på arbeidet",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_og_foresporselen_om_honorar.json",
+      "after_day": 31,
+      "parents": [
+        "lea_og_kildene_i_skrivearbeidet"
+      ],
+      "thread": null,
+      "scenes": 15,
+      "choices": 29,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "lea_og_elins_vanskelige_uke",
+      "title": "Lea: Vennskapet får en vanskelig uke",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_og_elins_vanskelige_uke.json",
+      "after_day": 31,
+      "parents": [
+        "lea_og_fellesskapet_uten_plikt"
+      ],
+      "thread": null,
+      "scenes": 15,
+      "choices": 29,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    },
+    {
+      "id": "mira_og_invitasjonen_fra_musikeren",
+      "title": "Mira: Den første tonen sammen",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/mira_og_invitasjonen_fra_musikeren.json",
+      "after_day": 31,
+      "parents": [
+        "mira_og_musikken_i_hverdagen"
+      ],
+      "thread": null,
+      "scenes": 15,
+      "choices": 29,
+      "location_ids": [
+        "hjem"
+      ],
+      "sender_ids": []
+    }
+  ],
+  "role_bridges": [
+    {
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Frilansmusiker",
+      "world": "data/Civication/roleWorlds/musikk/musikk_frilansmusiker.json",
+      "narrative": "data/Civication/narratives/leisure/musikk_frilansmusiker.json"
+    },
+    {
+      "role_scope": "subkultur_gangster",
+      "title": "Gangster",
+      "world": "data/Civication/roleWorlds/subkultur/subkultur_gangster.json",
+      "narrative": "data/Civication/narratives/leisure/subkultur_gangster.json"
+    },
+    {
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "title": "Sideprosjektbygger",
+      "world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_sideprosjektbygger.json",
+      "narrative": "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json"
+    },
+    {
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Frilanser",
+      "world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_frilanser.json",
+      "narrative": "data/Civication/narratives/leisure/naeringsliv_frilanser.json"
+    },
+    {
+      "role_scope": "naeringsliv_grunderdrommer",
+      "title": "Gründerdrømmer",
+      "world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_grunderdrommer.json",
+      "narrative": "data/Civication/narratives/leisure/naeringsliv_grunderdrommer.json"
+    },
+    {
+      "role_scope": "litteratur_skrivebordspoet",
+      "title": "Skrivebordspoet",
+      "world": "data/Civication/roleWorlds/litteratur/litteratur_skrivebordspoet.json",
+      "narrative": "data/Civication/narratives/leisure/skrivebordspoet.json"
+    },
+    {
+      "role_scope": "kunst_ateliermenneske",
+      "title": "Ateliermenneske",
+      "world": "data/Civication/roleWorlds/kunst/kunst_ateliermenneske.json",
+      "narrative": "data/Civication/narratives/leisure/kunst_ateliermenneske.json"
+    },
+    {
+      "role_scope": "scenekunst_improentusiast",
+      "title": "Improentusiast",
+      "world": "data/Civication/roleWorlds/scenekunst/scenekunst_improentusiast.json",
+      "narrative": "data/Civication/narratives/leisure/scenekunst_improentusiast.json"
+    },
+    {
+      "role_scope": "sport_klubbmenneske",
+      "title": "Klubbmenneske",
+      "world": "data/Civication/roleWorlds/sport/sport_klubbmenneske.json",
+      "narrative": "data/Civication/narratives/leisure/sport_klubbmenneske.json"
+    },
+    {
+      "role_scope": "politikk_grasrotbygger",
+      "title": "Grasrotbygger",
+      "world": "data/Civication/roleWorlds/politikk/politikk_grasrotbygger.json",
+      "narrative": "data/Civication/narratives/leisure/politikk_grasrotbygger.json"
+    },
+    {
+      "role_scope": "politikk_organisasjonsmenneske",
+      "title": "Organisasjonsmenneske",
+      "world": "data/Civication/roleWorlds/politikk/politikk_organisasjonsmenneske.json",
+      "narrative": "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json"
+    },
+    {
+      "role_scope": "by_byvandrer",
+      "title": "Byvandrer",
+      "world": "data/Civication/roleWorlds/by/by_byvandrer.json",
+      "narrative": "data/Civication/narratives/leisure/by_byvandrer.json"
+    },
+    {
+      "role_scope": "by_flanor",
+      "title": "Flanør",
+      "world": "data/Civication/roleWorlds/by/by_flanor.json",
+      "narrative": "data/Civication/narratives/leisure/by_flanor.json"
+    },
+    {
+      "role_scope": "historie_lokalhistoriker",
+      "title": "Lokalhistoriker",
+      "world": "data/Civication/roleWorlds/historie/historie_lokalhistoriker.json",
+      "narrative": "data/Civication/narratives/leisure/historie_lokalhistoriker.json"
+    },
+    {
+      "role_scope": "natur_fuglekikker",
+      "title": "Fuglekikker",
+      "world": "data/Civication/roleWorlds/natur/natur_fuglekikker.json",
+      "narrative": "data/Civication/narratives/leisure/natur_fuglekikker.json"
+    },
+    {
+      "role_scope": "natur_sanker",
+      "title": "Sanker",
+      "world": "data/Civication/roleWorlds/natur/natur_sanker.json",
+      "narrative": "data/Civication/narratives/leisure/natur_sanker.json"
+    },
+    {
+      "role_scope": "vitenskap_folkeforsker",
+      "title": "Folkeforsker",
+      "world": "data/Civication/roleWorlds/vitenskap/vitenskap_folkeforsker.json",
+      "narrative": "data/Civication/narratives/leisure/vitenskap_folkeforsker.json"
+    },
+    {
+      "role_scope": "vitenskap_maker",
+      "title": "Maker",
+      "world": "data/Civication/roleWorlds/vitenskap/vitenskap_maker.json",
+      "narrative": "data/Civication/narratives/leisure/vitenskap_maker.json"
+    },
+    {
+      "role_scope": "film_tv_filmklubbmenneske",
+      "title": "Filmklubbmenneske",
+      "world": "data/Civication/roleWorlds/film_tv/film_tv_filmklubbmenneske.json",
+      "narrative": "data/Civication/narratives/leisure/filmklubbmenneske.json"
+    },
+    {
+      "role_scope": "litteratur_bokklubbmenneske",
+      "title": "Bokklubbmenneske",
+      "world": "data/Civication/roleWorlds/litteratur/litteratur_bokklubbmenneske.json",
+      "narrative": "data/Civication/narratives/leisure/litteratur_bokklubbmenneske.json"
+    },
+    {
+      "role_scope": "musikk_konsertgjenger",
+      "title": "Konsertgjenger",
+      "world": "data/Civication/roleWorlds/musikk/musikk_konsertgjenger.json",
+      "narrative": "data/Civication/narratives/leisure/musikk_konsertgjenger.json"
+    }
+  ],
+  "narrative_streams": [
+    {
+      "id": "fagarbeider_work_stream",
+      "path": "data/Civication/narratives/work/naeringsliv/fagarbeider.json",
+      "title": "Fagarbeider i skift",
+      "type": "work",
+      "storylets": 6,
+      "choices": 12,
+      "senders": [
+        "Skiftleder Egil",
+        "Nattoperatør Mina",
+        "Kvalitetskoordinator Liv",
+        "Lærling Jonas",
+        "Innkjøp",
+        "Kollega Therese"
+      ],
+      "sha": "74e6dbc12cdff1d00521aac384125010b59d3e55"
+    },
+    {
+      "id": "football_supporter_stream",
+      "path": "data/Civication/narratives/leisure/football_supporter.json",
+      "title": "Fotballsupporter etter jobb",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Venn fra tribunen",
+        "Supportergruppa",
+        "Groundhopper-Simen",
+        "Supporterchatten dagen derpå",
+        "Tribunegjengen",
+        "En ny person på feltet",
+        "En venn som holder med rivalen",
+        "Tifo- og dugnadsgjengen",
+        "En nær person hjemme",
+        "Supporterchatten",
+        "Borteturgruppa",
+        "En eldre tribunevenn"
+      ],
+      "sha": "15c5b16b355f7d830e31889105fce0d06d0411b7"
+    },
+    {
+      "id": "alcohol_pressure_stream",
+      "path": "data/Civication/narratives/conflict/alcohol_pressure.json",
+      "title": "Alkoholpress i nettverket",
+      "type": "conflict",
+      "storylets": 5,
+      "choices": 10,
+      "senders": [
+        "Kollega Therese",
+        "Skiftmakker Rune",
+        "Egen notis",
+        "Skiftleder Egil",
+        "Pauserommet"
+      ],
+      "sha": "3f20eff4ee24c80731de9a2ea3a597d3336978b7"
+    },
+    {
+      "id": "working_class_shift_life",
+      "path": "data/Civication/narratives/class_cases/working_class_shift_life.json",
+      "title": "Skiftliv i arbeiderklassen",
+      "type": "class_case",
+      "storylets": 6,
+      "choices": 12,
+      "senders": [
+        "Kollega i kantina",
+        "Nabo på skift",
+        "Hjemmefronten",
+        "Garderobeprat",
+        "Skiftchatten",
+        "Kollega Rune"
+      ],
+      "sha": "a7a7331981b4f1b6a91f1270aa51807d935a04df"
+    },
+    {
+      "id": "nabolagskjenner_stream",
+      "path": "data/Civication/narratives/leisure/nabolagskjenner.json",
+      "title": "Nabolagskjenner i byen",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En kjent person fra området",
+        "Nabo i forbifarten",
+        "En lokal bekjent",
+        "En lokal initiativtaker",
+        "Nabolagschatten",
+        "En eldre nabo",
+        "En som nylig har flyttet til området",
+        "Butikkeieren på hjørnet",
+        "Lokalt plassprosjekt",
+        "Arrangøren i bakgården",
+        "Nabo i oppgangen",
+        "Person med rullator",
+        "En gammel kjenning"
+      ],
+      "sha": "ab9155030838a342ff32567dbf6162e3dad514d2"
+    },
+    {
+      "id": "filmklubbmenneske_stream",
+      "path": "data/Civication/narratives/leisure/filmklubbmenneske.json",
+      "title": "Filmklubbmenneske rundt visningen",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Programgruppa",
+        "Den som holder orden på visningen",
+        "Kveldens innleder",
+        "En annen frivillig",
+        "En ny i klubben",
+        "Samtalelederen",
+        "Kassereren i klubben",
+        "Et medlem som gjerne vil komme",
+        "Kontaktpersonen på visningsstedet",
+        "Den som redigerer programarket",
+        "Et medlem i programgruppa",
+        "Et medlem med stramt budsjett",
+        "Filmklubben",
+        "Programgruppa etter siste visning"
+      ],
+      "sha": "fc97d74a0670a8a783c2e73544ffbe51b5d2713b"
+    },
+    {
+      "id": "sofafilosof_stream",
+      "path": "data/Civication/narratives/leisure/sofafilosof.json",
+      "title": "Sofafilosof i samtalen",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En venn ved bordet",
+        "En nær venn",
+        "En gammel venn",
+        "En ny i vennegjengen",
+        "Den som fortsatt er våken",
+        "Gruppchatten",
+        "En deltaker i samtalen",
+        "Lesegjengen",
+        "En førstegangsbesøkende",
+        "Et lite kultursted",
+        "Din egen meldingstråd",
+        "En venn i sorg",
+        "En offentlig kommentarfelttråd",
+        "Vennegjengen etter nok en lang kveld"
+      ],
+      "sha": "d1787de66cbc84129e6e18e2269bc213f1ba8ed3"
+    },
+    {
+      "id": "historievandrer_stream",
+      "path": "data/Civication/narratives/leisure/historievandrer.json",
+      "title": "Historievandrer i byen",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En gammel fasade",
+        "To naboer",
+        "En beboer",
+        "Et digitalt bildearkiv",
+        "Et minnesmerke",
+        "En venn på tur",
+        "En beboer i første etasje",
+        "En tomt med nye bygg",
+        "Et barn på tur",
+        "En lokal arrangør",
+        "En bekjent",
+        "Et lokalt møte",
+        "Et gammelt kart",
+        "Den siste vandringen"
+      ],
+      "sha": "d5806f8ee2a11d38fe5eefc0ed44a0d8f60cf3a4"
+    },
+    {
+      "id": "gallerivanker_stream",
+      "path": "data/Civication/narratives/leisure/gallerivanker.json",
+      "title": "Gallerivanker i kunstrommet",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Et lite galleri",
+        "En bekjent på vernissage",
+        "En gallerivert",
+        "En veggtekst",
+        "En venn",
+        "Kunstneren på åpningen",
+        "Et lite galleri etter åpning",
+        "En førstegangsbesøkende",
+        "En annen besøkende",
+        "En nær venn",
+        "Gruppa på vei videre",
+        "En katalogtekst",
+        "Den siste åpningen"
+      ],
+      "sha": "c9c22249c0f5250f42343eea832308434f3e8a1f"
+    },
+    {
+      "id": "skrivebordspoet_stream",
+      "path": "data/Civication/narratives/leisure/skrivebordspoet.json",
+      "title": "Skrivebordspoet ved siden av hverdagen",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Den lukkede notatboken",
+        "Et tomt dokument",
+        "En nær venn",
+        "En skrivegruppe",
+        "En gammel diktsamling",
+        "En tekst lagt ut på nett",
+        "En standardisert e-post",
+        "En åpen mikrofon",
+        "En bekjent",
+        "En litteraturarrangør",
+        "Litteraturarrangøren",
+        "En liten skrivegruppe",
+        "Et gammelt utkast",
+        "Det siste utkastet"
+      ],
+      "sha": "f243c6feb59b376d15035219ab8f9d201b97b24e"
+    },
+    {
+      "id": "medievaktbikkje_stream",
+      "path": "data/Civication/narratives/leisure/medievaktbikkje.json",
+      "title": "Medievaktbikkje i offentligheten",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "To ulike overskrifter",
+        "En uke med nyhetssaker",
+        "En berørt person",
+        "En publisert pressemelding",
+        "En dramatisk prosent",
+        "Et sterkt illustrasjonsfoto",
+        "En rettelsesmerknad",
+        "En sak med anonym kilde",
+        "En venn i diskusjon",
+        "Et lite redaksjonelt prosjekt",
+        "Oppdragsgiveren",
+        "En raskt delt påstand",
+        "Et kommentarfelt",
+        "Din egen medielogg"
+      ],
+      "sha": "86da269a64df50da26deb86fd878152c9a2ddde3"
+    },
+    {
+      "id": "musikk_scenehenger_stream",
+      "path": "data/Civication/narratives/leisure/musikk_scenehenger.json",
+      "title": "Scenehenger i musikkscenen",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En bekjent ved døra",
+        "Et tommere konsertlokale",
+        "En venn med kamera",
+        "En tom scene før dørene åpner",
+        "Et nytt lokalt band",
+        "En sen samtale utenfor lokalet",
+        "En artist du kjenner",
+        "En melding etter stengetid",
+        "En samtale ved baren",
+        "Et lokalt konsertsted",
+        "Crewlederen",
+        "En stresset artist",
+        "Et ungt band",
+        "En roligere kveld mellom konserter"
+      ],
+      "sha": "af9fde20cca84d2d13ae09f46591f4c493824f12"
+    },
+    {
+      "id": "natur_artsjeger_stream",
+      "path": "data/Civication/narratives/leisure/natur_artsjeger.json",
+      "title": "Artsjeger i naturen",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En artsvenn",
+        "Et nytt punkt på kartet",
+        "En erfaren feltobservatør",
+        "Et teleobjektiv",
+        "En melding i gruppa",
+        "Et varsel om kommentar",
+        "Et gjerde ved skogkanten",
+        "En ivrig artsjeger",
+        "En turkamerat",
+        "Lokalt naturprosjekt",
+        "Prosjektkontakten",
+        "Kveldens registreringskart",
+        "Et urolig møte i veikanten",
+        "Feltboka etter mange turer"
+      ],
+      "sha": "0fa6e4b021071231dafd6dfd9d3ccc3c3f3825fb"
+    },
+    {
+      "id": "by_flanor_stream",
+      "path": "data/Civication/narratives/leisure/by_flanor.json",
+      "title": "Flanør i byen",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Din egen impuls",
+        "En ledig benk",
+        "Regnet",
+        "Kartappen",
+        "Et godt motiv",
+        "En dyr kafé",
+        "En pen gate",
+        "En fremmed ved et gatehjørne",
+        "En venn på jobb",
+        "Et ukjent strøk",
+        "En menneskestrøm",
+        "Din egen observasjon",
+        "Den samme gata",
+        "Sesongslutt"
+      ],
+      "sha": "4bf0c3da7cf33c2474627731466390c1f2d5f222"
+    },
+    {
+      "id": "scenekunst_scenehenger_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_scenehenger.json",
+      "title": "Scenehenger i scenekunsten",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En venn uten billett",
+        "En bekjent i ensemblet",
+        "Din egen kamerarull",
+        "En stresset frivillig",
+        "En utøver du kjenner",
+        "En frivilligkoordinator",
+        "Lokal scene",
+        "En travel tekniker",
+        "En annen Scenehenger",
+        "Foajeen",
+        "En nær venn",
+        "En regissørbekjent",
+        "Etterfesten",
+        "Din egen notatbok"
+      ],
+      "sha": "6bdd350683168121b49f918e52ade200ed6adc55"
+    },
+    {
+      "id": "kunst_kuratorpraksis_stream",
+      "path": "data/Civication/narratives/leisure/kunst_kuratorpraksis.json",
+      "title": "Kuratorpraksis — research, utvalg og begrunnet programarbeid",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Deg selv",
+        "En kunstner",
+        "En kollega",
+        "En samarbeidspartner",
+        "En publikumsvert",
+        "En kommunikasjonsansvarlig",
+        "En venn i kunstfeltet",
+        "En erfaren kurator"
+      ],
+      "sha": "351612c9e20e768570021092cb670d9d74957e9b"
+    },
+    {
+      "id": "musikk_artist_stream",
+      "path": "data/Civication/narratives/leisure/musikk_artist.json",
+      "title": "Artist — prosjektidentitet, kunstnerisk retning og offentlig representasjon",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Deg selv",
+        "En medskaper",
+        "En bestiller",
+        "Prosjektarket",
+        "Kommunikasjonspartneren",
+        "Fotografen",
+        "En følger",
+        "En arrangør",
+        "En samarbeidspartner"
+      ],
+      "sha": "25e3da4ea8be8ad680bf6272c548ba47dbf01053"
+    },
+    {
+      "id": "musikk_frilansmusiker_stream",
+      "path": "data/Civication/narratives/leisure/musikk_frilansmusiker.json",
+      "title": "Frilansmusiker — booking, honorar og spillejobbøkonomi",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En booker",
+        "Prosjektlederen",
+        "Arrangøren",
+        "Reiseplanen",
+        "Deg selv",
+        "Økonomikontakten",
+        "Kalenderen",
+        "En musikerkollega",
+        "En arrangør",
+        "En fast booker",
+        "Bookeren"
+      ],
+      "sha": "4f3f5458048efe5477d3001eb6daa5623f31b3e3"
+    },
+    {
+      "id": "naeringsliv_bedriftseier_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json",
+      "title": "Bedriftseier — eierskap, kapital og styringsgrenser",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Regnskapsrådgiveren",
+        "Deg selv",
+        "Medeieren",
+        "Daglig leder",
+        "Styrelederen",
+        "Eiermøtet",
+        "Bankkontakten",
+        "En ansatt",
+        "En potensiell kjøper",
+        "Økonomiansvarlig",
+        "Et familiemedlem"
+      ],
+      "sha": "5daca0dc34186ff0c02bd346b65ab8297ec2d73f"
+    },
+    {
+      "id": "naeringsliv_grunder_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_grunder.json",
+      "title": "Gründer — etablering, kunder og entreprenøriell praksis",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En kunde",
+        "Medgründeren",
+        "Virksomhetskontoen",
+        "Deg selv",
+        "En leverandør",
+        "En mulig medarbeider",
+        "Salgsoversikten",
+        "Bruksdataene",
+        "Regnskapsrådgiveren",
+        "En finansieringskontakt"
+      ],
+      "sha": "265b133001a4febeca91a4fa0a5195cd625e4740"
+    },
+    {
+      "id": "naeringsliv_industrieier_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_industrieier.json",
+      "title": "Industrieier — produksjonsmidler, kapitalbinding og industrielt eierskap",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Fabrikksjefen",
+        "Teknisk rådgiver",
+        "Energirådgiveren",
+        "Innkjøpssjefen",
+        "Kommunekontakten",
+        "Bankkontakten",
+        "Miljørådgiveren",
+        "Konsernøkonomien",
+        "Transaksjonsrådgiveren",
+        "Eiermøtet"
+      ],
+      "sha": "c4d6b3072b1fae2557c1ce5f09cba98b85d1362c"
+    },
+    {
+      "id": "naeringsliv_investor_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_investor.json",
+      "title": "Investor — kapitalallokering, eierrettigheter og porteføljerisiko",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Analytikeren",
+        "Porteføljerådgiveren",
+        "Revisoren",
+        "Bankkontakten",
+        "Medinvestoren",
+        "Transaksjonsadvokaten"
+      ],
+      "sha": "82115170909919f0f78a0207f239cc3b64f11c55"
+    },
+    {
+      "id": "scenekunst_dramaturg_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_dramaturg.json",
+      "title": "Dramaturg — verklesning, prøveevidens, kildegrense og delt mandat",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Dramatikeren",
+        "Utøveren",
+        "Meddramaturgen",
+        "Kildepartneren",
+        "Produksjonslederen",
+        "Regiteamet",
+        "Kommunikasjonsredaktøren",
+        "Nærpersonen"
+      ],
+      "sha": "6638d8f355a7c5586391639944d53ff53f2d6972"
+    },
+    {
+      "id": "scenekunst_koreograf_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_koreograf.json",
+      "title": "Koreograf — kroppslig komposisjon, medskaping, samtykke og sporbar overføring",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Utøveren",
+        "Medskapende utøver",
+        "Prøvepartneren",
+        "Ny utøver",
+        "Lydpartneren",
+        "Teknisk partner",
+        "Produksjonslederen",
+        "Dokumentasjonspartneren",
+        "Kommunikasjonsansvarlig",
+        "Nærpersonen",
+        "Koreografkollegaen"
+      ],
+      "sha": "b2610ede4f64725b08dc48ff24e82381471b702e"
+    },
+    {
+      "id": "scenekunst_regissor_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_regissor.json",
+      "title": "Regissør — prøvbar scenisk ledelse, utøveragency, samarbeid og mandatgrense",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Dramaturgen",
+        "Utøveren",
+        "Teknisk partner",
+        "Dramatikeren",
+        "Designpartneren",
+        "Medregissøren",
+        "Produksjonslederen",
+        "Kommunikasjonsansvarlig",
+        "Nærpersonen",
+        "Regissørkollegaen"
+      ],
+      "sha": "59d37dff504e35af3b9ba697870c5b61ca4e6299"
+    },
+    {
+      "id": "scenekunst_scenekunstkurator_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_scenekunstkurator.json",
+      "title": "Scenekunstkurator — sporbar programlogikk, kunstnerautonomi, utvalg og mandatgrense",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Kuratorfaglig kollega",
+        "Den uavhengige kunstneren",
+        "Teknisk produsent",
+        "Kunstneren",
+        "Lokal arrangør",
+        "Publikumsrådgiver",
+        "Institusjonsleder",
+        "Tilgjengelighetsrådgiver",
+        "Kommunikasjonsansvarlig",
+        "Nærpersonen"
+      ],
+      "sha": "03007d333c7817eeb6e6d42695eb6d3c281491e8"
+    },
+    {
+      "id": "scenekunst_skuespiller_danser_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_skuespiller_danser.json",
+      "title": "Skuespiller / danser — profesjonell utøverpraksis, arbeidsvilkår, ensemble og rollegrense",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Castingansvarlig",
+        "Produksjonsleder",
+        "Regissøren",
+        "Koreografen",
+        "Scenemakkeren",
+        "Agenten",
+        "Intimitetsansvarlig",
+        "Nærpersonen"
+      ],
+      "sha": "f624e12deef4217adf86c585f4109a63d63b190e"
+    },
+    {
+      "id": "subkultur_gangster_stream",
+      "path": "data/Civication/narratives/leisure/subkultur_gangster.json",
+      "title": "Gangster",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En gammel kjenning",
+        "En venn fra miljøet",
+        "En ny person i miljøet",
+        "En nær venn",
+        "Kveldens arrangør",
+        "En bekjent",
+        "To personer i konflikt",
+        "En arrangørbekjent",
+        "En nabo",
+        "En perifer bekjent",
+        "En yngre bekjent",
+        "En venn ved døren",
+        "Miljøchatten",
+        "En nær person"
+      ],
+      "sha": "96b31a3a59cceff1566ac2f2c92bbdb99647da81"
+    },
+    {
+      "id": "naeringsliv_sideprosjektbygger_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json",
+      "title": "Sideprosjektbygger — bygging ved siden av hovedlivet",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Deg selv",
+        "En kollega",
+        "En tidlig bruker",
+        "En venn",
+        "En bekjent",
+        "En betalende bruker",
+        "En nær person",
+        "En erfaren sideprosjektbygger"
+      ],
+      "sha": "ede2a5f35d9c100b328d25e4b33239d53de6f994"
+    },
+    {
+      "id": "naeringsliv_frilanser_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_frilanser.json",
+      "title": "Frilanser",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En kunde i nettverket",
+        "Prisforhandlingen",
+        "Kunden",
+        "Kalenderen",
+        "Betalingen",
+        "En fast kunde",
+        "En annen frilanser",
+        "Et nytt miljø",
+        "Kalenderkollisjonen",
+        "Arbeidshverdagen",
+        "Etter leveransen",
+        "En venn",
+        "En mulig kunde",
+        "To uker senere"
+      ],
+      "sha": "76ac9d20bea5efa446cb05d1e9103ec60c2a7678"
+    },
+    {
+      "id": "naeringsliv_grunderdrommer_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_grunderdrommer.json",
+      "title": "Gründerdrømmer",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Notatboka",
+        "Vennen",
+        "Nettverkskvelden",
+        "Kafébordet",
+        "Regnearket",
+        "Skrivebordet",
+        "Nettleseren",
+        "Bekjenten",
+        "Podkasten",
+        "Skjemaet",
+        "Bankappen",
+        "Hjemmet",
+        "Dokumentet"
+      ],
+      "sha": "2c1fc01b81b01187d90f34954b945017ec31177f"
+    },
+    {
+      "id": "kunst_ateliermenneske_stream",
+      "path": "data/Civication/narratives/leisure/kunst_ateliermenneske.json",
+      "title": "Ateliermenneske",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Det delte atelieret",
+        "Materialhyllen",
+        "Arbeidsbordet",
+        "Nabobordet",
+        "Fellesvasken",
+        "Verkstedsonen",
+        "Atelierdøra",
+        "Åpent atelier",
+        "Ateliermøtet",
+        "Dokumentasjonsveggen",
+        "Samarbeidsbordet",
+        "Kaffebordet",
+        "Sorteringshjørnet",
+        "Det siste kveldsskiftet"
+      ],
+      "sha": "cf16090a3da7e6db54229217145a164a9c031194"
+    },
+    {
+      "id": "scenekunst_improentusiast",
+      "path": "data/Civication/narratives/leisure/scenekunst_improentusiast.json",
+      "title": "Improentusiast — spontanitet, fellesskap og scenenerver",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Spillepartneren",
+        "Workshopvennen",
+        "Nybegynneren",
+        "Lagkameraten",
+        "Publikummeren",
+        "Fasilitatoren"
+      ],
+      "sha": "7e6497bb2a5d15b5c1916e930e5cea35130431ac"
+    },
+    {
+      "id": "sport_klubbmenneske_stream",
+      "path": "data/Civication/narratives/leisure/sport_klubbmenneske.json",
+      "title": "Klubbmenneske",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Dugnadsansvarlig",
+        "Klubbhusansvarlig",
+        "Materialforvalter",
+        "Kioskansvarlig",
+        "Et nytt klubbmedlem",
+        "Vaktmester",
+        "Cupkoordinator",
+        "En trener",
+        "En forelder",
+        "En lokal næringsdrivende",
+        "Idrettsklubben",
+        "To lagledere",
+        "Klubbchatten",
+        "En gammel klubbvenn"
+      ],
+      "sha": "32d908bca618deb82c8ecd05e7f8abffe73e3147"
+    },
+    {
+      "id": "politikk_grasrotbygger_stream",
+      "path": "data/Civication/narratives/leisure/politikk_grasrotbygger.json",
+      "title": "Grasrotbygger",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Nabolagsrommet",
+        "Gruppechatten",
+        "Møterommet",
+        "Kaffebordet",
+        "Arbeidsgruppa",
+        "Dokumentet",
+        "Telefonen",
+        "Innboksen",
+        "Møtereferatet",
+        "Fellesmøtet",
+        "Regnearket",
+        "Etter møtet",
+        "Møtekalenderen",
+        "Etter sesongen"
+      ],
+      "sha": "3a191e4588c3ff9a9b57b23c81085c7d1a754718"
+    },
+    {
+      "id": "politikk_organisasjonsmenneske",
+      "path": "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json",
+      "title": "Organisasjonsmenneske — struktur, medlemskap og rollegrenser",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Styresekretæren",
+        "Medlemsansvarlig",
+        "Prosjektansvarlig",
+        "Nytt medlem",
+        "Kassereren",
+        "Erfaren frivillig",
+        "Kommunikasjonsansvarlig",
+        "Ekstern samarbeidspartner"
+      ],
+      "sha": "d95c29df79fa4d38e95b43436ad4f8cc8d04adbe"
+    },
+    {
+      "id": "by_byvandrer_stream",
+      "path": "data/Civication/narratives/leisure/by_byvandrer.json",
+      "title": "Byvandrer",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En venn",
+        "En gårdspassasje",
+        "Anleggsområdet",
+        "En medvandrer",
+        "Telefonkartet",
+        "Kveldsruten",
+        "Været",
+        "Kryssingen",
+        "En besøkende",
+        "Et kjøpesenter",
+        "Et arrangement",
+        "En lokal beboer",
+        "En gammel rute",
+        "To uker senere"
+      ],
+      "sha": "ff3e2c193d9626818d2f5719cc3b28916970a352"
+    },
+    {
+      "id": "historie_lokalhistoriker_stream",
+      "path": "data/Civication/narratives/leisure/historie_lokalhistoriker.json",
+      "title": "Lokalhistoriker",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Kjøkkenbordet",
+        "Gatehjørnet",
+        "Kartbordet",
+        "Fotoalbumet",
+        "Stua",
+        "Historielaget",
+        "Nabolagsrunden",
+        "Kafébordet",
+        "Kommunearkivet",
+        "Kirkegården",
+        "Foreningslokalet",
+        "Folkemøtet",
+        "Notatboka",
+        "Nabolaget"
+      ],
+      "sha": "5f4adfc25ce045904653de1d51ed9f662f4920f3"
+    },
+    {
+      "id": "natur_fuglekikker_stream",
+      "path": "data/Civication/narratives/leisure/natur_fuglekikker.json",
+      "title": "Fuglekikker",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "En turkamerat",
+        "Fuglechatten",
+        "Stien",
+        "Utsiktspunktet",
+        "Artsappen",
+        "Våtmarka",
+        "Meldingsfeltet",
+        "Fuglegruppa",
+        "Skogkanten",
+        "Fellesturen",
+        "Kartet",
+        "Veikanten",
+        "Notatboka",
+        "Etter sesongen"
+      ],
+      "sha": "6a3a7041071a627de6a053041ddcdbce3aa24ccb"
+    },
+    {
+      "id": "natur_sanker_stream",
+      "path": "data/Civication/narratives/leisure/natur_sanker.json",
+      "title": "Sanker",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Skogkanten",
+        "Kurven",
+        "Gruppechatten",
+        "Telefonen",
+        "Veikanten",
+        "Naturstien",
+        "Fellesturen",
+        "En lokal grunneier",
+        "Skogbunnen",
+        "Middagsbordet",
+        "Kjøkkenet",
+        "Turfølget",
+        "Markedstanken",
+        "Etter sesongen"
+      ],
+      "sha": "66ab2167e21a0f8d598002e4b16e0d4e8dbb9ebe"
+    },
+    {
+      "id": "vitenskap_folkeforsker",
+      "path": "data/Civication/narratives/leisure/vitenskap_folkeforsker.json",
+      "title": "Folkeforsker — observasjon og datakvalitet uten institusjonell forskermyndighet",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Registreringsvennen",
+        "Feltvennen",
+        "Datavennen",
+        "Utstyrsvennen",
+        "Artsvennen",
+        "Analysevennen",
+        "Fagpersonen"
+      ],
+      "sha": "4776be61ddb049ce1d246e483dac5681ca2f34e0"
+    },
+    {
+      "id": "vitenskap_maker_stream",
+      "path": "data/Civication/narratives/leisure/vitenskap_maker.json",
+      "title": "Maker",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Verkstedsverten",
+        "En bekjent med en idé",
+        "Verkstedschatten",
+        "Prosjektloggen",
+        "En maker-venn",
+        "Delehylla",
+        "En ny besøkende",
+        "Makergruppen",
+        "Maker-nettverket",
+        "En erfaren verkstedbruker",
+        "En nær venn",
+        "En fast verkstedvenn"
+      ],
+      "sha": "ca1f29ce3a48fed2ba51baccde61b3daba72963c"
+    },
+    {
+      "id": "litteratur_bokklubbmenneske_stream",
+      "path": "data/Civication/narratives/leisure/litteratur_bokklubbmenneske.json",
+      "title": "Bokklubbmenneske",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Bokklubbchatten",
+        "Runden rundt bordet",
+        "Samtalen",
+        "En gjenkjennelse",
+        "Gruppetråden",
+        "Kjøkkenbordet",
+        "Neste måneds tittel",
+        "To helt forskjellige lesninger",
+        "Et navn i nettverket",
+        "En ny deltaker",
+        "Spørsmålet i runden",
+        "Tre avbud på rad",
+        "En forespørsel",
+        "Den neste boka"
+      ],
+      "sha": "f11ac66bacaa08cbfaf42a238cad33e991128d86"
+    },
+    {
+      "id": "musikk_konsertgjenger_stream",
+      "path": "data/Civication/narratives/leisure/musikk_konsertgjenger.json",
+      "title": "Konsertgjenger",
+      "type": "leisure",
+      "storylets": 14,
+      "choices": 28,
+      "senders": [
+        "Billettappen",
+        "Fortauet",
+        "Publikum",
+        "Hovedsettet",
+        "Tidligsettet",
+        "Salen",
+        "Refrenget",
+        "Foajeen",
+        "Inngangen",
+        "Ute etterpå",
+        "På vei hjem",
+        "Programmet",
+        "Baren",
+        "Billettmappen"
+      ],
+      "sha": "946b7cccef447d68b95309b266e60a2632c4bc6f"
+    },
+    {
+      "id": "stein_role_change_work_stream",
+      "path": "data/Civication/narratives/work/naeringsliv/stein_role_change.json",
+      "title": "Stein og den ledige avdelingen",
+      "type": "work",
+      "storylets": 4,
+      "choices": 8,
+      "senders": [
+        "Stein Mæland",
+        "Administrasjonen"
+      ],
+      "sha": "bbaa5a1da9e6afa68b1f18321892f8f68434e970"
+    },
+    {
+      "id": "frode_role_change_work_stream",
+      "path": "data/Civication/narratives/work/naeringsliv/frode_role_change.json",
+      "title": "Frode og B-skiftets ansvar",
+      "type": "work",
+      "storylets": 4,
+      "choices": 8,
+      "senders": [
+        "Frode Aas",
+        "Administrasjonen"
+      ],
+      "sha": "41e88e88344101c64402bf375b1b43bd2c585e1d"
+    },
+    {
+      "id": "inger_role_change_work_stream",
+      "path": "data/Civication/narratives/work/naeringsliv/inger_role_change.json",
+      "title": "Inger og den nye organisasjonen",
+      "type": "work",
+      "storylets": 4,
+      "choices": 8,
+      "senders": [
+        "Inger Holm",
+        "Administrasjonen"
+      ],
+      "sha": "cde3b7ecdb9aaaf3743cf12af1536f97367caebf"
+    },
+    {
+      "id": "stein_hele_livet_stream",
+      "path": "data/Civication/narratives/leisure/stein_hele_livet.json",
+      "title": "Stein: Kampen etter arbeidstid",
+      "type": "leisure",
+      "storylets": 9,
+      "choices": 14,
+      "senders": [
+        "Stein Mæland"
+      ],
+      "sha": "eb42e2c84a01b2142591a8bd8ac4044fb31dcb2d"
+    },
+    {
+      "id": "frode_hele_livet_stream",
+      "path": "data/Civication/narratives/leisure/frode_hele_livet.json",
+      "title": "Frode: Brorens konsert",
+      "type": "leisure",
+      "storylets": 9,
+      "choices": 13,
+      "senders": [
+        "Frode Aas"
+      ],
+      "sha": "581d2723bc90ae710531e624cd26ff33669393c8"
+    },
+    {
+      "id": "inger_hele_livet_stream",
+      "path": "data/Civication/narratives/leisure/inger_hele_livet.json",
+      "title": "Inger: En referanse og et jobbtilbud",
+      "type": "leisure",
+      "storylets": 10,
+      "choices": 13,
+      "senders": [
+        "Inger Holm"
+      ],
+      "sha": "b17b8b685e344ff0ebe1217c9df56f92f2489c50"
+    }
+  ],
+  "life_mail_packs": [
+    {
+      "id": "arbeidsledig",
+      "label": "Arbeidsledig",
+      "path": "data/Civication/lifeMails/arbeidsledig/arbeidsledig_life.json",
+      "priority": 100,
+      "when": {
+        "no_active_job": true
+      }
+    },
+    {
+      "id": "alkohol_risk",
+      "label": "Alkohol og sosial slitasje",
+      "path": "data/Civication/lifeMails/alkohol/alkohol_risk_life.json",
+      "priority": 120,
+      "when": {
+        "tags_any": [
+          "alcohol_risk",
+          "alkohol_risk",
+          "ruspress"
+        ]
+      }
+    },
+    {
+      "id": "subkultur_skurk",
+      "label": "Subkultur / kantliv",
+      "path": "data/Civication/lifeMails/subkultur/subkultur_skurk_life.json",
+      "priority": 115,
+      "when": {
+        "tags_any": [
+          "subkultur_skurk",
+          "skurk",
+          "subculture_edge"
+        ]
+      }
+    }
+  ],
+  "job_mail_example": {
+    "category": "naeringsliv",
+    "packs": [
+      "data/Civication/jobbmails/naeringsliv/naer_arbeider_pack.json",
+      "data/Civication/jobbmails/naeringsliv/naer_fagarbeider_pack.json",
+      "data/Civication/jobbmails/naeringsliv/naer_mellomleder_pack.json",
+      "data/Civication/jobbmails/naeringsliv/naer_quests_pack.json",
+      "data/Civication/jobbmails/naeringsliv/naer_story_pack.json",
+      "data/Civication/jobbmails/naeringsliv/naer_system_pack.json"
+    ]
+  },
+  "totals": {
+    "continuation_references": 45,
+    "by_role": {
+      "musikk_frilansmusiker": 11,
+      "naeringsliv_sideprosjektbygger": 8,
+      "naeringsliv_frilanser": 11,
+      "naeringsliv_grunderdrommer": 3,
+      "subkultur_gangster": 12
+    },
+    "role_bridges": 21,
+    "narrative_streams": 50,
+    "narrative_by_folder": {
+      "work": 4,
+      "leisure": 44,
+      "conflict": 1,
+      "class_cases": 1
+    },
+    "life_mail_packs": 3,
+    "naeringsliv_job_mail_packs": 6,
+    "continuation_scenes": 559,
+    "continuation_choices": 1082,
+    "continuation_by_role": {
+      "musikk_frilansmusiker": {
+        "chapters": 11,
+        "scenes": 129,
+        "choices": 254
+      },
+      "naeringsliv_sideprosjektbygger": {
+        "chapters": 8,
+        "scenes": 123,
+        "choices": 239
+      },
+      "naeringsliv_frilanser": {
+        "chapters": 11,
+        "scenes": 138,
+        "choices": 262
+      },
+      "naeringsliv_grunderdrommer": {
+        "chapters": 3,
+        "scenes": 26,
+        "choices": 50
+      },
+      "subkultur_gangster": {
+        "chapters": 12,
+        "scenes": 143,
+        "choices": 277
+      }
+    },
+    "base_and_continuation_scene_entries": 1260,
+    "base_and_continuation_choice_entries": 2645,
+    "narrative_storylets": 631,
+    "narrative_choices": 1246,
+    "narrative_counts_by_folder": {
+      "work": {
+        "packs": 4,
+        "storylets": 18,
+        "choices": 36
+      },
+      "leisure": {
+        "packs": 44,
+        "storylets": 602,
+        "choices": 1188
+      },
+      "conflict": {
+        "packs": 1,
+        "storylets": 5,
+        "choices": 10
+      },
+      "class_cases": {
+        "packs": 1,
+        "storylets": 6,
+        "choices": 12
+      }
+    },
+    "role_worlds": 244,
+    "career_role_worlds": 85,
+    "life_position_role_worlds": 159,
+    "life_mail_entries": 11,
+    "life_mail_choices": 22,
+    "life_mail_verified_packs": 3
+  },
+  "role_world_index": {
+    "path": "data/Civication/roleWorlds/index.json",
+    "sha": "e42507177a1217bea9a5c754266a8aaacc2ccbcf",
+    "roles": [
+      {
+        "category": "naeringsliv",
+        "role_scope": "ekspeditor",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/ekspeditor.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "renholder",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/renholder.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "by",
+        "role_scope": "by_radgiver_plan",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/by/by_radgiver_plan.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "controller",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/controller.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_utover",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/sport/sport_utover.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "media",
+        "role_scope": "media_redaksjon",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/media/media_redaksjon.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "kurator_film_tv",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/film_tv/kurator_film_tv.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "manusmedarbeider",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/film_tv/manusmedarbeider.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "produksjonsassistent",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/film_tv/produksjonsassistent.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "programleder",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/film_tv/programleder.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "avdelingsleder",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/avdelingsleder.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "finansanalytiker",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/finansanalytiker.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "finansdirektor",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/finansdirektor.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "okonomi_og_finanssjef",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/okonomi_og_finanssjef.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "regissor",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/film_tv/regissor.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "serieskaper",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/film_tv/serieskaper.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "redaksjonsmedarbeider",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/litteratur/redaksjonsmedarbeider.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "media",
+        "role_scope": "media_redaksjonell_ledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/media/media_redaksjonell_ledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_arrangementsdrift",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_arrangementsdrift.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "fagansvarlig",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/psykologi/fagansvarlig.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "forsker_psykologi",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/psykologi/forsker_psykologi.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "professor_psykologi",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/psykologi/professor_psykologi.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "psykolog",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/psykologi/psykolog.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "psykologi_miljoarbeid",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/psykologi/psykologi_miljoarbeid.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_sportsledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/sport/sport_sportsledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "by",
+        "role_scope": "by_arkitekt",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/by/by_arkitekt.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "by",
+        "role_scope": "by_assistent",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/by/by_assistent.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "by",
+        "role_scope": "by_prosjektleder",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/by/by_prosjektleder.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "by",
+        "role_scope": "by_saksbehandler",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/by/by_saksbehandler.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_forskning_og_formidling",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_forskning_og_formidling.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_undervisning_og_akademia",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_undervisning_og_akademia.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "redaktor_bok",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/litteratur/redaktor_bok.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_forskning",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/religion/religion_forskning.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_trener",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/sport/sport_trener.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "administrasjonsmedarbeider",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/administrasjonsmedarbeider.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "fagarbeider",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/fagarbeider.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "formann",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/formann.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "lager_og_driftsmedarbeider",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/lager_og_driftsmedarbeider.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "mellomleder",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/naeringsliv/mellomleder.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_kunstnerisk_ledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/kunst/kunst_kunstnerisk_ledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_utstillingsproduksjon",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/kunst/kunst_utstillingsproduksjon.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "klinikkleder",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/psykologi/klinikkleder.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "psykologi_arbeids_og_karriereveiledning",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/psykologi/psykologi_arbeids_og_karriereveiledning.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "spesialistpsykolog",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/psykologi/spesialistpsykolog.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_dramaturgi_og_utvikling",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_dramaturgi_og_utvikling.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_institusjonsledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_institusjonsledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_program_og_kuratering",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_program_og_kuratering.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_regi_og_koreografi",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_regi_og_koreografi.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_scene_og_produksjon",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_scene_og_produksjon.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_utoving_og_ensemble",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_utoving_og_ensemble.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_kulturarena_ledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_kulturarena_ledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_produksjon_og_prosjekt",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_produksjon_og_prosjekt.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_produksjonsledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_produksjonsledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_program_og_koordinering",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_program_og_koordinering.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_fagledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/historie/historie_fagledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_forskning_og_akademia",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/historie/historie_forskning_og_akademia.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_forvaltning_og_radgivning",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/historie/historie_forvaltning_og_radgivning.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_institusjonsledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/historie/historie_institusjonsledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_museum_og_samling",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/historie/historie_museum_og_samling.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_konservering_og_samling",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/kunst/kunst_konservering_og_samling.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_kuratering_og_program",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/kunst/kunst_kuratering_og_program.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_museumsledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/kunst/kunst_museumsledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_publikum_og_formidling",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/kunst/kunst_publikum_og_formidling.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_biologi_og_forskning",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/natur/natur_biologi_og_forskning.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_felt_og_formidling",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/natur/natur_felt_og_formidling.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_forvaltning_og_radgivning",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/natur/natur_forvaltning_og_radgivning.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_miljoledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/natur/natur_miljoledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_politisk_myndighet",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/natur/natur_politisk_myndighet.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_kommunal_ledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/politikk/politikk_kommunal_ledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_organisasjonsarbeid",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/politikk/politikk_organisasjonsarbeid.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_parlamentarisk_arbeid",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/politikk/politikk_parlamentarisk_arbeid.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_politisk_radgivning",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/politikk/politikk_politisk_radgivning.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_regjeringsledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/politikk/politikk_regjeringsledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_fagledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/religion/religion_fagledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_formidling_og_kulturarv",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/religion/religion_formidling_og_kulturarv.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_utredning_og_radgivning",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/religion/religion_utredning_og_radgivning.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_assistent_og_laboratorium",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_assistent_og_laboratorium.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_doktorlop_og_postdoktor",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_doktorlop_og_postdoktor.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_forskning",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_forskning.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_forskningsledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_forskningsledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_institusjonsledelse",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_institusjonsledelse.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_undervisning_og_forskning",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_undervisning_og_forskning.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_scene_og_produksjon",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/musikk/musikk_scene_og_produksjon.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_utoving_og_ensemble",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/musikk/musikk_utoving_og_ensemble.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_arkiv_og_dokumentasjon",
+        "subject_type": "career",
+        "path": "data/Civication/roleWorlds/historie/historie_arkiv_og_dokumentasjon.json",
+        "status": "role_world_complete",
+        "label": null
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_supporter",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/sport/sport_supporter.json",
+        "status": "role_world_complete",
+        "label": "Supporter"
+      },
+      {
+        "category": "by",
+        "role_scope": "by_nabolagskjenner",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/by/by_nabolagskjenner.json",
+        "status": "role_world_complete",
+        "label": "Nabolagskjenner"
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "film_tv_filmklubbmenneske",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/film_tv/film_tv_filmklubbmenneske.json",
+        "status": "role_world_complete",
+        "label": "Filmklubbmenneske"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_sofafilosof",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_sofafilosof.json",
+        "status": "role_world_complete",
+        "label": "Sofafilosof"
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_historievandrer",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/historie/historie_historievandrer.json",
+        "status": "role_world_complete",
+        "label": "Historievandrer"
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_doktorgradsstudent_historie",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/historie/historie_doktorgradsstudent_historie.json",
+        "status": "role_world_complete",
+        "label": "Doktorgradsstudent"
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_student_historie",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/historie/historie_student_historie.json",
+        "status": "role_world_complete",
+        "label": "Student"
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_masterstuden_historie",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/historie/historie_masterstuden_historie.json",
+        "status": "role_world_complete",
+        "label": "Masterstuden"
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_gallerivanker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/kunst/kunst_gallerivanker.json",
+        "status": "role_world_complete",
+        "label": "Gallerivanker"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_skrivebordspoet",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_skrivebordspoet.json",
+        "status": "role_world_complete",
+        "label": "Skrivebordspoet"
+      },
+      {
+        "category": "media",
+        "role_scope": "media_medievaktbikkje",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/media/media_medievaktbikkje.json",
+        "status": "role_world_complete",
+        "label": "Medievaktbikkje"
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_scenehenger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/musikk/musikk_scenehenger.json",
+        "status": "role_world_complete",
+        "label": "Scenehenger"
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_artsjeger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/natur/natur_artsjeger.json",
+        "status": "role_world_complete",
+        "label": "Artsjeger"
+      },
+      {
+        "category": "by",
+        "role_scope": "by_flanor",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/by/by_flanor.json",
+        "status": "role_world_complete",
+        "label": "Flanør"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_scenehenger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_scenehenger.json",
+        "status": "role_world_complete",
+        "label": "Scenehenger"
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_klubbmenneske",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/sport/sport_klubbmenneske.json",
+        "status": "role_world_complete",
+        "label": "Klubbmenneske"
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_maker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_maker.json",
+        "status": "role_world_complete",
+        "label": "Maker"
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_crew",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_crew.json",
+        "status": "role_world_complete",
+        "label": "Crew"
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_dandy",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_dandy.json",
+        "status": "role_world_complete",
+        "label": "Dandy"
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_deltaker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_deltaker.json",
+        "status": "role_world_complete",
+        "label": "Deltaker"
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_gatesmart",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_gatesmart.json",
+        "status": "role_world_complete",
+        "label": "Gatesmart"
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_hakkekylling",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_hakkekylling.json",
+        "status": "role_world_complete",
+        "label": "Hakkekylling"
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_observor",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_observor.json",
+        "status": "role_world_complete",
+        "label": "Observør"
+      },
+      {
+        "category": "subkultur",
+        "role_scope": "subkultur_gangster",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/subkultur/subkultur_gangster.json",
+        "status": "role_world_complete",
+        "label": "Gangster"
+      },
+      {
+        "category": "liv_alternativ",
+        "role_scope": "liv_alternativ_bohem",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/liv_alternativ/liv_alternativ_bohem.json",
+        "status": "role_world_complete",
+        "label": "Bohem"
+      },
+      {
+        "category": "liv_alternativ",
+        "role_scope": "liv_alternativ_nomade",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/liv_alternativ/liv_alternativ_nomade.json",
+        "status": "role_world_complete",
+        "label": "Nomade"
+      },
+      {
+        "category": "liv_bosituasjon",
+        "role_scope": "liv_bosituasjon_boms",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/liv_bosituasjon/liv_bosituasjon_boms.json",
+        "status": "role_world_complete",
+        "label": "Boms"
+      },
+      {
+        "category": "liv_bosituasjon",
+        "role_scope": "liv_bosituasjon_uteligger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/liv_bosituasjon/liv_bosituasjon_uteligger.json",
+        "status": "role_world_complete",
+        "label": "Uteligger"
+      },
+      {
+        "category": "liv_lovsbane",
+        "role_scope": "liv_lovsbane_kriminell",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/liv_lovsbane/liv_lovsbane_kriminell.json",
+        "status": "role_world_complete",
+        "label": "Kriminell"
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "naeringsliv_frilanser",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_frilanser.json",
+        "status": "role_world_complete",
+        "label": "Frilanser"
+      },
+      {
+        "category": "by",
+        "role_scope": "by_byvandrer",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/by/by_byvandrer.json",
+        "status": "role_world_complete",
+        "label": "Byvandrer"
+      },
+      {
+        "category": "by",
+        "role_scope": "by_urbanist",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/by/by_urbanist.json",
+        "status": "role_world_complete",
+        "label": "Urbanist"
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "film_tv_festivalgjenger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/film_tv/film_tv_festivalgjenger.json",
+        "status": "role_world_complete",
+        "label": "Festivalgjenger"
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "film_tv_filmfantast",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/film_tv/film_tv_filmfantast.json",
+        "status": "role_world_complete",
+        "label": "Filmfantast"
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "film_tv_filminteressert",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/film_tv/film_tv_filminteressert.json",
+        "status": "role_world_complete",
+        "label": "Filminteressert"
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "film_tv_filmnerd",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/film_tv/film_tv_filmnerd.json",
+        "status": "role_world_complete",
+        "label": "Filmnerd"
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "film_tv_kinogjenger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/film_tv/film_tv_kinogjenger.json",
+        "status": "role_world_complete",
+        "label": "Kinogjenger"
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "film_tv_kjenner",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/film_tv/film_tv_kjenner.json",
+        "status": "role_world_complete",
+        "label": "Kjenner"
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "film_tv_seer",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/film_tv/film_tv_seer.json",
+        "status": "role_world_complete",
+        "label": "Seer"
+      },
+      {
+        "category": "film_tv",
+        "role_scope": "film_tv_seriesluker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/film_tv/film_tv_seriesluker.json",
+        "status": "role_world_complete",
+        "label": "Seriesluker"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_lesesirkelmenneske",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_lesesirkelmenneske.json",
+        "status": "role_world_complete",
+        "label": "Lesesirkelmenneske"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_livsgrubler",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_livsgrubler.json",
+        "status": "role_world_complete",
+        "label": "Livsgrubler"
+      },
+      {
+        "category": "helse",
+        "role_scope": "helse_evidensleser",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/helse/helse_evidensleser.json",
+        "status": "role_world_complete",
+        "label": "Evidensleser"
+      },
+      {
+        "category": "helse",
+        "role_scope": "helse_folkehelseblikk",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/helse/helse_folkehelseblikk.json",
+        "status": "role_world_complete",
+        "label": "Folkehelseblikk"
+      },
+      {
+        "category": "helse",
+        "role_scope": "helse_helseutforsker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/helse/helse_helseutforsker.json",
+        "status": "role_world_complete",
+        "label": "Helseutforsker"
+      },
+      {
+        "category": "helse",
+        "role_scope": "helse_omsorgsetiker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/helse/helse_omsorgsetiker.json",
+        "status": "role_world_complete",
+        "label": "Omsorgsetiker"
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_arkivrotte",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/historie/historie_arkivrotte.json",
+        "status": "role_world_complete",
+        "label": "Arkivrotte"
+      },
+      {
+        "category": "historie",
+        "role_scope": "historie_lokalhistoriker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/historie/historie_lokalhistoriker.json",
+        "status": "role_world_complete",
+        "label": "Lokalhistoriker"
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_ateliermenneske",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/kunst/kunst_ateliermenneske.json",
+        "status": "role_world_complete",
+        "label": "Ateliermenneske"
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_gatekunstjeger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/kunst/kunst_gatekunstjeger.json",
+        "status": "role_world_complete",
+        "label": "Gatekunstjeger"
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_vernissagegjenger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/kunst/kunst_vernissagegjenger.json",
+        "status": "role_world_complete",
+        "label": "Vernissagegjenger"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_biblioteksvanker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_biblioteksvanker.json",
+        "status": "role_world_complete",
+        "label": "Biblioteksvanker"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_bokklubbmenneske",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_bokklubbmenneske.json",
+        "status": "role_world_complete",
+        "label": "Bokklubbmenneske"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_bokorm",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_bokorm.json",
+        "status": "role_world_complete",
+        "label": "Bokorm"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_smaforlagsnerd",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_smaforlagsnerd.json",
+        "status": "role_world_complete",
+        "label": "Småforlagsnerd"
+      },
+      {
+        "category": "media",
+        "role_scope": "media_kommentarfeltveteran",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/media/media_kommentarfeltveteran.json",
+        "status": "role_world_complete",
+        "label": "Kommentarfeltveteran"
+      },
+      {
+        "category": "media",
+        "role_scope": "media_nyhetsjunkie",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/media/media_nyhetsjunkie.json",
+        "status": "role_world_complete",
+        "label": "Nyhetsjunkie"
+      },
+      {
+        "category": "media",
+        "role_scope": "media_podkastsluker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/media/media_podkastsluker.json",
+        "status": "role_world_complete",
+        "label": "Podkastsluker"
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_konsertgjenger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/musikk/musikk_konsertgjenger.json",
+        "status": "role_world_complete",
+        "label": "Konsertgjenger"
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_musikknerd",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/musikk/musikk_musikknerd.json",
+        "status": "role_world_complete",
+        "label": "Musikknerd"
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_plategraver",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/musikk/musikk_plategraver.json",
+        "status": "role_world_complete",
+        "label": "Plategraver"
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "naeringsliv_grunderdrommer",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_grunderdrommer.json",
+        "status": "role_world_complete",
+        "label": "Gründerdrømmer"
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "naeringsliv_pendler",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_pendler.json",
+        "status": "role_world_complete",
+        "label": "Pendler"
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "naeringsliv_smasparer",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_smasparer.json",
+        "status": "role_world_complete",
+        "label": "Småsparer"
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "naeringsliv_sideprosjektbygger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_sideprosjektbygger.json",
+        "status": "role_world_complete",
+        "label": "Sideprosjektbygger"
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "naeringsliv_bedriftseier",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_bedriftseier.json",
+        "status": "role_world_complete",
+        "label": "Bedriftseier"
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "naeringsliv_grunder",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_grunder.json",
+        "status": "role_world_complete",
+        "label": "Gründer"
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_fuglekikker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/natur/natur_fuglekikker.json",
+        "status": "role_world_complete",
+        "label": "Fuglekikker"
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_sanker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/natur/natur_sanker.json",
+        "status": "role_world_complete",
+        "label": "Sanker"
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_turgaer",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/natur/natur_turgaer.json",
+        "status": "role_world_complete",
+        "label": "Turgåer"
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_grasrotbygger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/politikk/politikk_grasrotbygger.json",
+        "status": "role_world_complete",
+        "label": "Grasrotbygger"
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_kampanjemenneske",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/politikk/politikk_kampanjemenneske.json",
+        "status": "role_world_complete",
+        "label": "Kampanjemenneske"
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_motesliter",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/politikk/politikk_motesliter.json",
+        "status": "role_world_complete",
+        "label": "Møtesliter"
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_organisasjonsmenneske",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/politikk/politikk_organisasjonsmenneske.json",
+        "status": "role_world_complete",
+        "label": "Organisasjonsmenneske"
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "psykologi_monsterjeger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/psykologi/psykologi_monsterjeger.json",
+        "status": "role_world_complete",
+        "label": "Mønsterjeger"
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "psykologi_psykologientusiast",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/psykologi/psykologi_psykologientusiast.json",
+        "status": "role_world_complete",
+        "label": "Psykologientusiast"
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "psykologi_relasjonsbygger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/psykologi/psykologi_relasjonsbygger.json",
+        "status": "role_world_complete",
+        "label": "Relasjonsbygger"
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "psykologi_selvgransker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/psykologi/psykologi_selvgransker.json",
+        "status": "role_world_complete",
+        "label": "Selvgransker"
+      },
+      {
+        "category": "psykologi",
+        "role_scope": "psykologi_vaneeksperimentor",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/psykologi/psykologi_vaneeksperimentor.json",
+        "status": "role_world_complete",
+        "label": "Vaneeksperimentør"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_dialogbygger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_dialogbygger.json",
+        "status": "role_world_complete",
+        "label": "Dialogbygger"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_livssynsutforsker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_livssynsutforsker.json",
+        "status": "role_world_complete",
+        "label": "Livssynsutforsker"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_pilegrim",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_pilegrim.json",
+        "status": "role_world_complete",
+        "label": "Pilegrim"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_trosstedsvandrer",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_trosstedsvandrer.json",
+        "status": "role_world_complete",
+        "label": "Trosstedsvandrer"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_improentusiast",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_improentusiast.json",
+        "status": "role_world_complete",
+        "label": "Improentusiast"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_premieregjenger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_premieregjenger.json",
+        "status": "role_world_complete",
+        "label": "Premieregjenger"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_teatergjenganger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_teatergjenganger.json",
+        "status": "role_world_complete",
+        "label": "Teatergjenganger"
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_sondagsutover",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/sport/sport_sondagsutover.json",
+        "status": "role_world_complete",
+        "label": "Søndagsutøver"
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_tribunesliter",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/sport/sport_tribunesliter.json",
+        "status": "role_world_complete",
+        "label": "Tribunesliter"
+      },
+      {
+        "category": "utdanning",
+        "role_scope": "utdanning_didaktisk_tenker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/utdanning/utdanning_didaktisk_tenker.json",
+        "status": "role_world_complete",
+        "label": "Didaktisk tenker"
+      },
+      {
+        "category": "utdanning",
+        "role_scope": "utdanning_klasseromsobservator",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/utdanning/utdanning_klasseromsobservator.json",
+        "status": "role_world_complete",
+        "label": "Klasseromsobservatør"
+      },
+      {
+        "category": "utdanning",
+        "role_scope": "utdanning_laeringsutforsker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/utdanning/utdanning_laeringsutforsker.json",
+        "status": "role_world_complete",
+        "label": "Læringsutforsker"
+      },
+      {
+        "category": "utdanning",
+        "role_scope": "utdanning_utdanningskritiker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/utdanning/utdanning_utdanningskritiker.json",
+        "status": "role_world_complete",
+        "label": "Utdanningskritiker"
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_folkeforsker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_folkeforsker.json",
+        "status": "role_world_complete",
+        "label": "Folkeforsker"
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_labnerd",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_labnerd.json",
+        "status": "role_world_complete",
+        "label": "Labnerd"
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_stjernekikker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_stjernekikker.json",
+        "status": "role_world_complete",
+        "label": "Stjernekikker"
+      },
+      {
+        "category": "vitenskap",
+        "role_scope": "vitenskap_teknologibygger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/vitenskap/vitenskap_teknologibygger.json",
+        "status": "role_world_complete",
+        "label": "Teknologibygger"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_argumentbygger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_argumentbygger.json",
+        "status": "role_world_complete",
+        "label": "Argumentbygger"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_etiker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_etiker.json",
+        "status": "role_world_complete",
+        "label": "Etiker"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_fagfilosof",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_fagfilosof.json",
+        "status": "role_world_complete",
+        "label": "Fagfilosof"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_filosofistudent",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_filosofistudent.json",
+        "status": "role_world_complete",
+        "label": "Filosofistudent"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_filosofisk_veileder",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_filosofisk_veileder.json",
+        "status": "role_world_complete",
+        "label": "Filosofisk veileder"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_logiker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_logiker.json",
+        "status": "role_world_complete",
+        "label": "Logiker"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_nysgjerrig",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_nysgjerrig.json",
+        "status": "role_world_complete",
+        "label": "Nysgjerrig"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_samtalepartner",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_samtalepartner.json",
+        "status": "role_world_complete",
+        "label": "Samtalepartner"
+      },
+      {
+        "category": "filosofi",
+        "role_scope": "filosofi_sporrer",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/filosofi/filosofi_sporrer.json",
+        "status": "role_world_complete",
+        "label": "Spørrer"
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_gallerist",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/kunst/kunst_gallerist.json",
+        "status": "role_world_complete",
+        "label": "Gallerist"
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_kunstsamler",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/kunst/kunst_kunstsamler.json",
+        "status": "role_world_complete",
+        "label": "Kunstsamler"
+      },
+      {
+        "category": "kunst",
+        "role_scope": "kunst_kuratorpraksis",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/kunst/kunst_kuratorpraksis.json",
+        "status": "role_world_complete",
+        "label": "Kurator"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_aktiv_leser",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_aktiv_leser.json",
+        "status": "role_world_complete",
+        "label": "Aktiv leser"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_anmelder",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_anmelder.json",
+        "status": "role_world_complete",
+        "label": "Anmelder"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_dramatiker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_dramatiker.json",
+        "status": "role_world_complete",
+        "label": "Dramatiker"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_essayist",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_essayist.json",
+        "status": "role_world_complete",
+        "label": "Essayist"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_forfatter",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_forfatter.json",
+        "status": "role_world_complete",
+        "label": "Forfatter"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_leser",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_leser.json",
+        "status": "role_world_complete",
+        "label": "Leser"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_litteraturinteressert",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_litteraturinteressert.json",
+        "status": "role_world_complete",
+        "label": "Litteraturinteressert"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_litteraturkritiker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_litteraturkritiker.json",
+        "status": "role_world_complete",
+        "label": "Litteraturkritiker"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_poet",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_poet.json",
+        "status": "role_world_complete",
+        "label": "Poet"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_skald",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_skald.json",
+        "status": "role_world_complete",
+        "label": "Skald"
+      },
+      {
+        "category": "litteratur",
+        "role_scope": "litteratur_skribent",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/litteratur/litteratur_skribent.json",
+        "status": "role_world_complete",
+        "label": "Skribent"
+      },
+      {
+        "category": "media",
+        "role_scope": "media_bidragsyter",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/media/media_bidragsyter.json",
+        "status": "role_world_complete",
+        "label": "Bidragsyter"
+      },
+      {
+        "category": "media",
+        "role_scope": "media_folger",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/media/media_folger.json",
+        "status": "role_world_complete",
+        "label": "Følger"
+      },
+      {
+        "category": "media",
+        "role_scope": "media_frilansjournalist",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/media/media_frilansjournalist.json",
+        "status": "role_world_complete",
+        "label": "Frilansjournalist"
+      },
+      {
+        "category": "media",
+        "role_scope": "media_kommentator_felt",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/media/media_kommentator_felt.json",
+        "status": "role_world_complete",
+        "label": "Kommentator (felt)"
+      },
+      {
+        "category": "media",
+        "role_scope": "media_leser",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/media/media_leser.json",
+        "status": "role_world_complete",
+        "label": "Leser"
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_plateartist",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/musikk/musikk_plateartist.json",
+        "status": "role_world_complete",
+        "label": "Plateartist"
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_publikum_deltaker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/musikk/musikk_publikum_deltaker.json",
+        "status": "role_world_complete",
+        "label": "Publikum / deltaker"
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_solist",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/musikk/musikk_solist.json",
+        "status": "role_world_complete",
+        "label": "Solist"
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_utovende_musiker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/musikk/musikk_utovende_musiker.json",
+        "status": "role_world_complete",
+        "label": "Utøvende musiker"
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_artist",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/musikk/musikk_artist.json",
+        "status": "role_world_complete",
+        "label": "Artist"
+      },
+      {
+        "category": "musikk",
+        "role_scope": "musikk_frilansmusiker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/musikk/musikk_frilansmusiker.json",
+        "status": "role_world_complete",
+        "label": "Frilansmusiker"
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_artsobservator",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/natur/natur_artsobservator.json",
+        "status": "role_world_complete",
+        "label": "Artsobservatør"
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_feltobservator",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/natur/natur_feltobservator.json",
+        "status": "role_world_complete",
+        "label": "Feltobservatør"
+      },
+      {
+        "category": "natur",
+        "role_scope": "natur_naturinteressert",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/natur/natur_naturinteressert.json",
+        "status": "role_world_complete",
+        "label": "Naturinteressert"
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_aktivisme_praksis",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/politikk/politikk_aktivisme_praksis.json",
+        "status": "role_world_complete",
+        "label": "Aktivist"
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_demokratianalyse",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/politikk/politikk_demokratianalyse.json",
+        "status": "role_world_complete",
+        "label": "Demokratianalytiker"
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_samfunnsdeltakelse",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/politikk/politikk_samfunnsdeltakelse.json",
+        "status": "role_world_complete",
+        "label": "Samfunnsengasjert borger"
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_statsvitenskapelig_ekspertise",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/politikk/politikk_statsvitenskapelig_ekspertise.json",
+        "status": "role_world_complete",
+        "label": "Statsvitenskapelig ekspert"
+      },
+      {
+        "category": "politikk",
+        "role_scope": "politikk_tillitsvalgt",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/politikk/politikk_tillitsvalgt.json",
+        "status": "role_world_complete",
+        "label": "Tillitsvalgt"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_besokende",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_besokende.json",
+        "status": "role_world_complete",
+        "label": "Besøkende"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_feltarbeider",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_feltarbeider.json",
+        "status": "role_world_complete",
+        "label": "Feltarbeider"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_nysgjerrig",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_nysgjerrig.json",
+        "status": "role_world_complete",
+        "label": "Nysgjerrig"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_ritualkjenner",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_ritualkjenner.json",
+        "status": "role_world_complete",
+        "label": "Ritualkjenner"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_symboltolker",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_symboltolker.json",
+        "status": "role_world_complete",
+        "label": "Symboltolker"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_tradisjonskjenner",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_tradisjonskjenner.json",
+        "status": "role_world_complete",
+        "label": "Tradisjonskjenner"
+      },
+      {
+        "category": "religion",
+        "role_scope": "religion_troslivskjenner",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/religion/religion_troslivskjenner.json",
+        "status": "role_world_complete",
+        "label": "Troslivskjenner"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_publikum",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_publikum.json",
+        "status": "role_world_complete",
+        "label": "Publikum"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_utover",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_utover.json",
+        "status": "role_world_complete",
+        "label": "Utøver"
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_aktiv_utover",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/sport/sport_aktiv_utover.json",
+        "status": "role_world_complete",
+        "label": "Aktiv utøver"
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_klubbspiller",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/sport/sport_klubbspiller.json",
+        "status": "role_world_complete",
+        "label": "Klubbspiller"
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_konkurranseutover",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/sport/sport_konkurranseutover.json",
+        "status": "role_world_complete",
+        "label": "Konkurranseutøver"
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_mosjonist",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/sport/sport_mosjonist.json",
+        "status": "role_world_complete",
+        "label": "Mosjonist"
+      },
+      {
+        "category": "sport",
+        "role_scope": "sport_profesjonell_utover",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/sport/sport_profesjonell_utover.json",
+        "status": "role_world_complete",
+        "label": "Profesjonell utøver"
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "naeringsliv_industrieier",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_industrieier.json",
+        "status": "role_world_complete",
+        "label": "Industrieier"
+      },
+      {
+        "category": "naeringsliv",
+        "role_scope": "naeringsliv_investor",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_investor.json",
+        "status": "role_world_complete",
+        "label": "Investor"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_dramaturg",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_dramaturg.json",
+        "status": "role_world_complete",
+        "label": "Dramaturg"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_koreograf",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_koreograf.json",
+        "status": "role_world_complete",
+        "label": "Koreograf"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_regissor",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_regissor.json",
+        "status": "role_world_complete",
+        "label": "Regissør"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_scenekunstkurator",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_scenekunstkurator.json",
+        "status": "role_world_complete",
+        "label": "Scenekunstkurator"
+      },
+      {
+        "category": "scenekunst",
+        "role_scope": "scenekunst_skuespiller_danser",
+        "subject_type": "life_position",
+        "path": "data/Civication/roleWorlds/scenekunst/scenekunst_skuespiller_danser.json",
+        "status": "role_world_complete",
+        "label": "Skuespiller / danser"
+      }
+    ],
+    "counts_by_category": {
+      "naeringsliv": {
+        "career": 12,
+        "life_position": 9
+      },
+      "by": {
+        "career": 5,
+        "life_position": 4
+      },
+      "sport": {
+        "career": 3,
+        "life_position": 9
+      },
+      "media": {
+        "career": 2,
+        "life_position": 9
+      },
+      "film_tv": {
+        "career": 6,
+        "life_position": 9
+      },
+      "litteratur": {
+        "career": 2,
+        "life_position": 16
+      },
+      "subkultur": {
+        "career": 5,
+        "life_position": 7
+      },
+      "psykologi": {
+        "career": 8,
+        "life_position": 5
+      },
+      "filosofi": {
+        "career": 2,
+        "life_position": 12
+      },
+      "religion": {
+        "career": 4,
+        "life_position": 11
+      },
+      "kunst": {
+        "career": 6,
+        "life_position": 7
+      },
+      "scenekunst": {
+        "career": 6,
+        "life_position": 11
+      },
+      "historie": {
+        "career": 6,
+        "life_position": 6
+      },
+      "natur": {
+        "career": 5,
+        "life_position": 7
+      },
+      "politikk": {
+        "career": 5,
+        "life_position": 9
+      },
+      "vitenskap": {
+        "career": 6,
+        "life_position": 5
+      },
+      "musikk": {
+        "career": 2,
+        "life_position": 10
+      },
+      "liv_alternativ": {
+        "career": 0,
+        "life_position": 2
+      },
+      "liv_bosituasjon": {
+        "career": 0,
+        "life_position": 2
+      },
+      "liv_lovsbane": {
+        "career": 0,
+        "life_position": 1
+      },
+      "helse": {
+        "career": 0,
+        "life_position": 4
+      },
+      "utdanning": {
+        "career": 0,
+        "life_position": 4
+      }
+    }
+  },
+  "mail_catalog_samples": [
+    {
+      "id": "arbeidsledig",
+      "path": "data/Civication/lifeMails/arbeidsledig/arbeidsledig_life.json",
+      "kind": "life_mail",
+      "sha": "28cafcb4b0e1179ceb428638458345b9e9e470f4",
+      "mails": 5,
+      "choices": 10,
+      "families": 3,
+      "senders": [
+        "nav_veileder",
+        "nav_meldekort",
+        "arbeidsgiver_auto",
+        "bemanning_konsulent",
+        "egen_kalender"
+      ]
+    },
+    {
+      "id": "alkohol_risk",
+      "path": "data/Civication/lifeMails/alkohol/alkohol_risk_life.json",
+      "kind": "life_mail",
+      "sha": "8ca8683bf6b9282e2b0151e074a23c8998475442",
+      "mails": 3,
+      "choices": 6,
+      "families": 2,
+      "senders": [
+        "marius_venn",
+        "fastlegekontor",
+        "kortvarsling"
+      ]
+    },
+    {
+      "id": "subkultur_skurk",
+      "path": "data/Civication/lifeMails/subkultur/subkultur_skurk_life.json",
+      "kind": "life_mail",
+      "sha": "b49a8b671a0edf348ddaa76f18695033c8f4136b",
+      "mails": 3,
+      "choices": 6,
+      "families": 2,
+      "senders": [
+        "ukjent_nummer",
+        "crew_chat",
+        "nabolag_rykte"
+      ]
+    },
+    {
+      "id": "naeringsliv_legacy",
+      "path": "data/Civication/jobbmails/naeringsliv/naeringslivCivic.json",
+      "kind": "legacy_job_mail",
+      "sha": "a664dfd32afe2d1c674b90c7c65fd024c52af11b",
+      "mails": 19,
+      "choices": 45,
+      "families": null,
+      "senders": []
+    },
+    {
+      "id": "ekspeditor_job",
+      "path": "data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json",
+      "kind": "job_family",
+      "sha": "99c56c5189a2db431e4f7c6de3812311eff2c240",
+      "mails": 31,
+      "choices": 75,
+      "families": 9,
+      "senders": [
+        "marit_butikkleder",
+        "ole_skiftleder",
+        "sara_kollega"
+      ]
+    },
+    {
+      "id": "renholder_job",
+      "path": "data/Civication/mailFamilies/naeringsliv/job/renholder_job.json",
+      "kind": "job_family",
+      "sha": "2cb552d7357cd9bd2654990db616b63149a5d8b4",
+      "mails": 24,
+      "choices": 74,
+      "families": 5,
+      "senders": [
+        "system",
+        "driftsleder_renhold",
+        "hms_koordinator",
+        "kari_driftsleder",
+        "amina_erfaren_renholder",
+        "leo_ny_vikar",
+        "sindre_kontoransatt",
+        "elin_leder",
+        "mira_elev",
+        "ole_verneombud",
+        "tove_kantine_drift",
+        "jan_vaktmester",
+        "grete_skadet_kollega"
+      ]
+    }
+  ],
+  "role_world_samples": [
+    {
+      "role_scope": "ekspeditor",
+      "path": "data/Civication/roleWorlds/naeringsliv/ekspeditor.json",
+      "sha": "59a5b9e6f5cc0108c566ca19651439164e187dd0",
+      "title": "Ekspeditør — bak disken",
+      "social_environments": [
+        "butikkgulvet og kassen som offentlig arbeidsflate",
+        "lager og bakrom som kollegialt og mindre synlig arbeidsrom",
+        "lunsj og stengearbeid som uformelt statusrom",
+        "hjem, familie og vennskap der arbeidsrollen lekker inn",
+        "Storgata-handelsmiljøet som lokal ramme for forbruk, kundemakt og arbeid"
+      ],
+      "recurring_people_archetypes": [
+        {
+          "id": "lene_butikksjef",
+          "social_function": "førstelinjeleder og portvakt til mer ansvar",
+          "class_position": "lønnsarbeidende leder med ansvar både oppover og nedover",
+          "status": "høyest lokal formell status i spillerens hverdag",
+          "power_over_player": "kan fordele vakter, ansvar, tillit og eksponering for krevende oppgaver",
+          "wants": "stabil drift, færre reparasjoner og en medarbeider som kan bruke skjønn uten å skape nye problemer",
+          "conceals": "hvor mye usynlig reparasjonsarbeid, bemanningspress og resultatkrav hun selv bærer",
+          "speech_style": "kort, observerende og konkret; roser sjelden uten samtidig å flytte ansvar",
+          "teaches_player": "forskjellen mellom formell myndighet, faktisk ansvar og tillit som må opparbeides"
+        },
+        {
+          "id": "amir_erfaren_kollega",
+          "social_function": "uformell mentor og bærer av taus kunnskap",
+          "class_position": "erfaren lønnsarbeider på gulvet uten lederstatus",
+          "status": "høy uformell status blant kolleger",
+          "power_over_player": "kan dele eller holde tilbake praktiske snarveier, støtte og sosial legitimitet",
+          "wants": "at gulvet fungerer uten unødvendig drama og at nye kolleger lærer det som faktisk virker",
+          "conceals": "egen slitasje og en gryende kynisme over hvor lite av kompetansen som formelt anerkjennes",
+          "speech_style": "tørr, knapp og presis; forklarer helst gjennom eksempler i situasjonen",
+          "teaches_player": "taus kunnskap, kollegial solidaritet og forskjellen mellom regeltekst og godt håndverk"
+        },
+        {
+          "id": "vikaren_ny",
+          "social_function": "ny og prekær kollega som gjør arbeidskulturen synlig",
+          "class_position": "midlertidig og mer utsatt lønnsarbeider",
+          "status": "lav formell og uformell status",
+          "power_over_player": "kan gjøre spilleren til mentor, flaskehals eller den som reproduserer dårlige vaner",
+          "wants": "å passe inn, forstå tempoet og unngå synlige feil",
+          "conceals": "usikkerhet om videre jobb og frykt for å stille spørsmål som avslører manglende erfaring",
+          "speech_style": "forsiktig, konkret og bekreftelsessøkende før tryggheten øker",
+          "teaches_player": "hvordan status, opplæring og arbeidskultur produseres mellom kolleger"
+        },
+        {
+          "id": "stamkunden",
+          "social_function": "tilbakevendende kunde som husker, sammenligner og gir servicearbeidet sosial hukommelse",
+          "class_position": "forbruker med kjøpekraft men uten formell arbeidsplassmyndighet",
+          "status": "høy situasjonell status fordi hun kan klage, forlate butikken eller gi omdømme",
+          "power_over_player": "kan gjøre tidligere feil og gode møter relevante igjen",
+          "wants": "å bli gjenkjent, tatt på alvor og slippe å forklare samme problem på nytt",
+          "conceals": "usikkerhet og avhengighet bak den sikre kundeposisjonen",
+          "speech_style": "direkte og kjent; bruker tidligere møter som referanse",
+          "teaches_player": "forbrukermakt, relasjonelt minne og hvorfor tillit ikke nullstilles ved neste transaksjon"
+        },
+        {
+          "id": "jonas_venn",
+          "social_function": "privat likemann som motsetter seg at vennskap behandles som service",
+          "class_position": "jevnaldrende uten formell makt over spilleren",
+          "status": "privat nærhet heller enn arbeidsstatus",
+          "power_over_player": "kan trekke seg unna når service-masken erstatter gjensidighet",
+          "wants": "tilstedeværelse, humor og et svar fra personen snarere enn arbeidstakeren",
+          "conceals": "bekymring for at spilleren er mer sliten og fjern enn hen selv innrømmer",
+          "speech_style": "uformell, ertende og mer direkte når arbeidsstemmen dukker opp",
+          "teaches_player": "grensen mellom emosjonelt arbeid og faktisk nærhet"
+        },
+        {
+          "id": "familien",
+          "social_function": "privat omsorgs- og forventningsrom",
+          "class_position": "familienettverk med delte praktiske og økonomiske hensyn",
+          "status": "emosjonelt viktig, men uten arbeidsplassmyndighet",
+          "power_over_player": "kan gjøre fravær, slitenhet, inntekt og framtidsvalg merkbare utenfor jobben",
+          "wants": "at spilleren er til stede og finner en bærekraftig retning",
+          "conceals": "egne bekymringer for økonomi, status og hvor lenge spilleren skal holde ut",
+          "speech_style": "varm og praktisk, men med spørsmål som treffer hardere enn en medarbeidersamtale",
+          "teaches_player": "familieplikt, tidskostnad og hvordan arbeidsstatus får privat betydning"
+        }
+      ],
+      "primary_thread_count": 5,
+      "private_aftermath_count": 5
+    },
+    {
+      "role_scope": "renholder",
+      "path": "data/Civication/roleWorlds/naeringsliv/renholder.json",
+      "sha": "3b4e28228dd062a3aed44f15c7e006162bc9caae",
+      "title": "Renholder — før noen merker at du var der",
+      "social_environments": [
+        "inngangsparti og fellesareal der synlig finish møter faktisk hygiene",
+        "toalett- og møteromssoner der tid, smittepunkter og brukerbehov kolliderer",
+        "renholdsrom og driftskontor der fag, kjemi, avvik og prioritering blir synlig",
+        "garderobe og pauserom der kropp, kollegial kunnskap og slitasje kan snakkes om",
+        "bygg i aktiv bruk der kontoransatte, elever, ledere og drift avbryter planlagt renhold",
+        "hjem og vennskap der renholdsblikk, kontroll og kroppslig tretthet kan følge med etter skiftet"
+      ],
+      "recurring_people_archetypes": [
+        {
+          "id": "kari_driftsleder",
+          "social_function": "førstelinjeleder som oversetter bestillerkrav, bemanning og klager til daglig renholdsplan",
+          "class_position": "lønnsarbeidende driftsleder med ansvar oppover for leveranse og nedover for kapasitet",
+          "status": "høy formell status i spillerens arbeidshverdag",
+          "power_over_player": "fordeler soner og tidsvinduer, vurderer tillit og kan gjøre kapasitetsproblemer til individuell prestasjon eller organisatorisk avvik",
+          "wants": "at bygget fungerer, klager håndteres og standarden kan forsvares uten driftsstans",
+          "conceals": "hvor ofte bemanning og tidsbudsjett er satt før det faktiske renholdsbehovet er kjent",
+          "speech_style": "kort, praktisk og løsningsorientert; spør etter svar som kan brukes oppover",
+          "teaches_player": "hvordan faglig kvalitet må oversettes til sporbare prioriteringer for å få organisatorisk tyngde"
+        },
+        {
+          "id": "amina_erfaren_renholder",
+          "social_function": "uformell mentor og bærer av taus renholdskunnskap",
+          "class_position": "erfaren renholder uten formell ledermyndighet",
+          "status": "høy uformell status i teamet gjennom håndverk og situasjonsforståelse",
+          "power_over_player": "kan dele metode, tempo, snarveier og sosial legitimitet, men kan ikke endre bemanningen alene",
+          "wants": "at nye kolleger lærer hva som faktisk gjør et rom trygt uten å ødelegge kroppen for å rekke planen",
+          "conceals": "egen slitasje og hvor mange uformelle reparasjoner som aldri registreres som arbeid",
+          "speech_style": "konkret, tørr og erfaringsbasert; forklarer gjerne gjennom det hun ser i rommet",
+          "teaches_player": "taus kunnskap, prioritering og forskjellen mellom å jobbe fort og å vite hva som kan vente"
+        },
+        {
+          "id": "leo_ny_vikar",
+          "social_function": "prekær ny kollega som gjør opplæring, status og arbeidskultur synlig",
+          "class_position": "midlertidig arbeidstaker med lavt handlingsrom",
+          "status": "lav formell og uformell status",
+          "power_over_player": "kan gjøre spilleren til mentor eller til den som viderefører farlige tempo- og taushetsnormer",
+          "wants": "å beholde vakter, passe inn og unngå å bli kjent som den som sinker teamet",
+          "conceals": "usikkerhet om kjemi, ergonomi og når det faktisk er lov å stoppe en oppgave",
+          "speech_style": "forsiktig og bekreftelsessøkende, men mer direkte når tryggheten øker",
+          "teaches_player": "hvordan prekære vilkår kan gjøre HMS og faglige spørsmål vanskeligere å si høyt"
+        },
+        {
+          "id": "ole_verneombud",
+          "social_function": "institusjonell kanal for HMS, avvik og mønstre som ikke skal bæres privat",
+          "class_position": "arbeidstakerrepresentant med særskilt HMS-mandat",
+          "status": "formell sideautoritet i sikkerhets- og arbeidsmiljøspørsmål",
+          "power_over_player": "kan gjøre enkelthendelser til dokumenterte mønstre og løfte risiko ut av den enkeltes ansvar",
+          "wants": "at farer, slitasje og gjentakende driftsproblemer meldes før noen blir skadet",
+          "conceals": "frustrasjon over hvor mange forhold som først blir synlige etter at noen har tålt dem lenge",
+          "speech_style": "rolig, presis og spørrende; ber om hendelsesforløp fremfor skyld",
+          "teaches_player": "sporbarhet, kollektiv HMS og hvorfor avvik er organisatorisk hukommelse"
+        },
+        {
+          "id": "sindre_kontoransatt",
+          "social_function": "daglig bruker av rommet som normalt bare ser resultatet av renholdet",
+          "class_position": "kontorarbeider med høyere situasjonell status i byggets dagbruk enn renholderen",
+          "status": "ordinær bruker, men med klage- og omdømmemakt",
+          "power_over_player": "kan avbryte soner, klage, hjelpe eller gjøre usynlig arbeid synlig gjennom egen atferd",
+          "wants": "rene og tilgjengelige rom uten å måtte planlegge dagen rundt renholdet",
+          "conceals": "hvor lite han vet om tidsvinduer, utstyrsavstand og hygieniske prioriteringer",
+          "speech_style": "uformell og resultatfokusert; blir mer nysgjerrig når prosessen blir synlig",
+          "teaches_player": "brukermakt, sosial usynlighet og hvordan respekt kan bygges når praksisen forklares"
+        },
+        {
+          "id": "grete_skadet_kollega",
+          "social_function": "framtidsspeil for kroppslig slitasje og taus ekstraarbeidskultur",
+          "class_position": "erfaren lønnsarbeider med redusert arbeidsevne etter belastning",
+          "status": "faglig erfaren, men kroppslig mer utsatt i produksjonslogikken",
+          "power_over_player": "kan legitimere grenser og HMS eller normalisere at smerte er noe man bare jobber gjennom",
+          "wants": "å beholde verdighet og tilhørighet uten å bli redusert til skaden",
+          "conceals": "frykt for å miste vakter, tempo eller anerkjennelse når kroppen ikke lenger kan absorbere alt",
+          "speech_style": "nøktern og lite sentimental; bruker egen erfaring når hun mener spilleren er i ferd med å gjenta den",
+          "teaches_player": "at ergonomi, pause og belastning er arbeidskvalitet og ikke privat svakhet"
+        },
+        {
+          "id": "sara_privat",
+          "social_function": "privat nær relasjon som nekter at hjem og vennskap blir neste renholdssone",
+          "class_position": "privat likemann uten arbeidsplassmyndighet",
+          "status": "emosjonell nærhet uten profesjonell rang",
+          "power_over_player": "kan sette grenser for kontrollspråk og vise hvordan arbeidsblikket påvirker samliv og hvile",
+          "wants": "at spilleren er til stede som person og kan være hjemme uten å inspisere, ordne eller fortsette skiftet",
+          "conceals": "bekymring for hvor mye uro og tretthet spilleren normaliserer",
+          "speech_style": "varm, direkte og tidvis ertende; blir alvorlig når arbeidsrollen overtar hjemmet",
+          "teaches_player": "forskjellen mellom faglig oppmerksomhet, omsorg og kontroll"
+        }
+      ],
+      "primary_thread_count": 6,
+      "private_aftermath_count": 5
+    },
+    {
+      "role_scope": "by_radgiver_plan",
+      "path": "data/Civication/roleWorlds/by/by_radgiver_plan.json",
+      "sha": "9f5c25df0f933cee3f24cb56c7a8dd29011474b7",
+      "title": "By-rådgiver — linjen som flytter byen",
+      "social_environments": [
+        "Lillebekk-sakens digitale plankart, bestemmelser og saksmappe der små formuleringer kan flytte reell risiko og verdi",
+        "befaring, skolevei og grøntdrag der faktisk bruk, overvann og hverdagsliv kan motsi det formelle kartgrunnlaget",
+        "interne planmøter der saksflyt, juridisk presisjon, kapasitet og faglig integritet må prioriteres under tidspress",
+        "utbyggerdialog og medvirkning der ressurser, tilgang, lokal kunnskap og forventninger møter hverandre asymmetrisk",
+        "politisk saksforberedelse der komplekse faglige premisser må bli korte og lesbare uten at administrasjonen skjult velger for politikerne",
+        "hjem, vennskap og familie der fagspråk, status og kontrollbehov kan følge med etter at saken er lukket"
+      ],
+      "recurring_people_archetypes": [
+        {
+          "id": "elin_plansjef",
+          "social_function": "linjeleder som oversetter politiske frister, saksmengde og faglige krav til prioritering i planavdelingen",
+          "class_position": "kommunal mellomleder med administrativt ansvar oppover og personal-/leveranseansvar nedover",
+          "status": "høy formell status i spillerens arbeidshverdag",
+          "power_over_player": "fordeler saker, setter tidsfrister, vurderer selvstendighet og kan beskytte eller eksponere spillerens faglige handlingsrom",
+          "wants": "at Lillebekk-saken blir politisk behandlingsklar uten at avdelingen mister kontroll på lovlighet, framdrift eller tillit",
+          "conceals": "hvor ofte hun selv må forenkle uenighet oppover for å holde saksflyten og hvor sårbar hun er for politisk kritikk av forsinkelser",
+          "speech_style": "kort, presis og prosessorientert; spør hva som faktisk må avklares før neste frist",
+          "teaches_player": "forskjellen mellom lojalitet til leder, lojalitet til fag og ansvar for å gjøre reell usikkerhet synlig"
+        },
+        {
+          "id": "ivar_utbygger",
+          "social_function": "forslagsstillerrepresentant som trenger forutsigbarhet, avklaringer og investerbar framdrift",
+          "class_position": "privat profesjonell aktør med økonomiske ressurser, spesialiststøtte og høy tilgang til administrasjonen",
+          "status": "ingen formell myndighet over spilleren, men betydelig situasjonell og økonomisk påvirkningskraft",
+          "power_over_player": "kan eskalere til ledelse og politikk, sitere uformelle signaler og gjøre administrativ uklarhet kostbar",
+          "wants": "tidlige og stabile signaler om høyde, volum, parkering og rekkefølge slik at prosjektet kan finansieres og prosjekteres",
+          "conceals": "hvor mye et tilsynelatende lite signal brukes internt som premiss for økonomiske beslutninger før planen er vedtatt",
+          "speech_style": "vennlig, rask og løsningsorientert; gjør ofte usikkerhet om til spørsmål som inviterer til ja eller nei",
+          "teaches_player": "hvordan uformell forutsigbarhet kan bli forventning og hvorfor skriftlig spor er del av faglig integritet"
+        },
+        {
+          "id": "hanne_beboer",
+          "social_function": "berørt beboer og lokal kunnskapsbærer som ser hverdagsbruk kartgrunnlaget ikke alltid viser",
+          "class_position": "innbygger uten institusjonell planmakt, men med medvirkningsrett, lokalkunnskap og mulig politisk gjennomslag",
+          "status": "lav formell status i planprosessen, men høy evidensverdi når hun dokumenterer faktisk bruk",
+          "power_over_player": "kan tilføre avgjørende kunnskap, mobilisere andre og gjøre oversette forhold politisk synlige",
+          "wants": "at skolevei, støy, skygge og hverdagsbruk blir behandlet som faktiske premisser og ikke bare som motstand mot utvikling",
+          "conceals": "egen mistillit til om administrasjonen virkelig leser innspill og hvor raskt frustrasjon kan bli en offentlig konflikt",
+          "speech_style": "detaljert, konkret og tidvis sint; blander sterke meninger med observasjoner som kan være planfaglig avgjørende",
+          "teaches_player": "å skille form fra evidens og bruke medvirkning som kunnskapskilde uten å gjøre alle ønsker til vedtak"
+        },
+        {
+          "id": "signe_byokolog",
+          "social_function": "intern fagperson som gjør grønnstruktur, overvann og økologiske funksjoner lesbare i arealvalgene",
+          "class_position": "kommunal spesialist uten beslutningsmyndighet over plansaken, men med høy faglig legitimitet",
+          "status": "sideordnet faglig autoritet",
+          "power_over_player": "kan dokumentere at restareal har funksjoner som gjør en enkel fortettingslogikk faglig uforsvarlig",
+          "wants": "at grøntdragets natur-, oppholds- og overvannsfunksjon blir vurdert før arealet reduseres eller kompenseres bort",
+          "conceals": "frustrasjon over at natur- og klimatema ofte kommer sent når prosjektets geometri allerede er sosialt og økonomisk låst",
+          "speech_style": "rolig, konkret og stedsspesifikk; peker på funksjon framfor symbolsk grønnfarge",
+          "teaches_player": "at grønnstruktur kan være teknisk og sosial infrastruktur samtidig og må inn i beslutningsgrunnlaget tidlig"
+        },
+        {
+          "id": "nora_planjuss",
+          "social_function": "planjurist som skiller lovkrav, planfaglig skjønn, administrativ anbefaling og politisk beslutning",
+          "class_position": "kommunal spesialist med juridisk autoritet, men uten politisk vedtaksmyndighet",
+          "status": "høy faglig sideautoritet i spørsmål om hjemmel, prosess og etterprøvbarhet",
+          "power_over_player": "kan stoppe formuleringer som ikke holder juridisk og gjøre uklare løfter til eksplisitt risiko",
+          "wants": "at bestemmelser, rekkefølgekrav og saksframstilling tåler innsyn, klage og senere gjennomføring",
+          "conceals": "hvor ofte hun ser problemer som kunne vært unngått dersom juridisk presisjon var invitert inn tidligere",
+          "speech_style": "nøktern, ordnær og lite imponert av gode intensjoner uten presis virkning",
+          "teaches_player": "at presise grenser ikke er byråkratisk pynt, men vern mot at makt utøves gjennom uklare forventninger"
+        },
+        {
+          "id": "maja_utvalgssekretaer",
+          "social_function": "bindeledd mot politisk behandling som trenger et kort, sammenlignbart og etterprøvbart beslutningsgrunnlag",
+          "class_position": "administrativ nøkkelrolle tett på den politiske beslutningsarenaen",
+          "status": "høy prosessuell status uten å eie det politiske valget",
+          "power_over_player": "kan avvise ulesbare saksframlegg, presse fram tydelige alternativer og påvirke hva politikerne faktisk rekker å forstå",
+          "wants": "at utvalget ser hva som er premiss, usikkerhet og reelt politisk valg før møtet",
+          "conceals": "hvor mye dårlig struktur i administrasjonens tekst kan styre debatten gjennom hva som blir lett eller vanskelig å få øye på",
+          "speech_style": "kort, redigerende og konsekvensorientert; spør hva utvalget faktisk skal velge mellom",
+          "teaches_player": "politisk lesbarhet uten å skjule usikkerhet eller gjøre faglige vurderinger om til politiske vedtak"
+        },
+        {
+          "id": "venn",
+          "social_function": "Jonas, privat venn som merker når sakslogikk og profesjonelt språk følger spilleren ut av kontoret",
+          "class_position": "privat likemann uten arbeidsplassmyndighet",
+          "status": "emosjonell nærhet uten profesjonell rang",
+          "power_over_player": "kan utfordre rollemaske, statusbehov og tendensen til å behandle samtaler som avklaringsmøter",
+          "wants": "at spilleren kan være til stede som venn og snakke om byen uten å gjøre hvert gatehjørne til en plansak",
+          "conceals": "bekymring for at jobben gir spilleren både identitet og et behov for å ha rett også privat",
+          "speech_style": "uformell, ertende og direkte; merker raskt når vanlig samtale blir saksframlegg",
+          "teaches_player": "at faglig blikk kan være verdifullt uten å få eie hele privatlivet eller alle samtaler om byen"
+        },
+        {
+          "id": "familie",
+          "social_function": "søsteren som kobler planleggingens abstrakte språk til bolig, økonomi, hverdagsliv og hvem byen oppleves å være for",
+          "class_position": "privat nær relasjon og ordinær bybruker uten institusjonell planmakt",
+          "status": "emosjonell nærhet og sosial korrektivkraft",
+          "power_over_player": "kan gjøre profesjonelle formuleringer personlige og minne spilleren på at planpremisser treffer faktiske liv",
+          "wants": "et søskenforhold der spilleren kan forklare uten å undervise og lytte uten å gjøre familiens erfaring til datagrunnlag",
+          "conceals": "at hun både er stolt av spillerens rolle og skeptisk til hvor mye status og fagspråk endrer måten de snakker sammen på",
+          "speech_style": "hverdagslig, konkret og personlig; avbryter abstrakte ord med spørsmål om hvem, hvor og hva det faktisk betyr",
+          "teaches_player": "hvordan byråkratisk makt, status og faglig identitet leses utenfra av mennesker som lever med resultatene"
+        }
+      ],
+      "primary_thread_count": 6,
+      "private_aftermath_count": 5
+    },
+    {
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/roleWorlds/musikk/musikk_frilansmusiker.json",
+      "sha": "74d4d085866ab19bccec2575810b6e5993b400dd",
+      "title": "Frilansmusiker",
+      "social_environments": [
+        "bookingdialoger der dato, varighet, honorar og praktiske krav må avklares før kalenderen låses",
+        "prøver og produksjonsforberedelser der usynlig tidsbruk kan vokse etter at den opprinnelige rammen er satt",
+        "reise- og logistikkdager der en kort framføring kan beslaglegge betydelig tid og egne ressurser",
+        "administrativt etterarbeid der faktura, referanser og betalingsfrister avgjør om arbeidet faktisk blir betalt",
+        "kollegiale vikarløp og kalenderkollisjoner der pålitelighet må balanseres mot begrenset kapasitet",
+        "gjentatte kundeforhold der regelmessige spillejobber kan ligne stabilt arbeid uten automatisk å bli en ansettelse"
+      ],
+      "recurring_people_archetypes": [
+        {
+          "id": "bookeren",
+          "social_function": "gjør honorar, datohold, tidsvindu og bookingvilkår konkrete uten å bli arbeidsgiver",
+          "class_position": "arrangørkontakt eller mellomledd som kjøper en avgrenset musikalsk leveranse",
+          "status": "kan forhandle og bekrefte den konkrete bookingen, men oppretter ikke automatisk fast arbeid",
+          "power_over_player": "kan tilby eller trekke konkrete datoer og påvirke hvor mye usikkerhet Frilansmusikeren må bære",
+          "wants": "en pålitelig leveranse til en pris og tidsramme som passer arrangementet",
+          "conceals": "at fleksibilitet ofte har større verdi for kjøperen enn for musikeren som holder kalenderen av",
+          "speech_style": "dato-, pris- og leveranseorientert",
+          "teaches_player": "å skille forespørsel, bekreftet booking og faktisk ansettelse"
+        },
+        {
+          "id": "prosjektlederen",
+          "social_function": "gjør prøvetid, endret omfang og praktiske tillegg synlige",
+          "class_position": "prosjektansvarlig for en avgrenset produksjon eller framføring",
+          "status": "kan koordinere avtalt arbeid, men ikke ensidig utvide leveransen uten konsekvens",
+          "power_over_player": "kan legge til prøver, flytte tider og skape press gjennom produksjonens samlede behov",
+          "wants": "at alle ledd er på plass når prosjektet skal gjennomføres",
+          "conceals": "at små tillegg for hver deltaker kan bli betydelig merarbeid når de summeres",
+          "speech_style": "løsningsorientert, tidsstyrt og praktisk",
+          "teaches_player": "å gjøre merarbeid synlig før det blir normalisert"
+        },
+        {
+          "id": "arrangoren",
+          "social_function": "gjør avlysning, tekniske forventninger og gratisforespørsler konkrete",
+          "class_position": "aktør som eier eller gjennomfører arrangementet der musikken skal leveres",
+          "status": "har arrangementsansvar, men ikke automatisk rett til musikerens utstyr, hele dag eller gratisarbeid",
+          "power_over_player": "kan endre arrangementets rammer og påvirke om framtidige datoer blir tilbudt",
+          "wants": "en gjennomførbar kveld med minst mulig friksjon og kostnad",
+          "conceals": "at egen arrangementsrisiko lett kan skyves nedover til enkeltutøvere",
+          "speech_style": "praktisk, hastverksdrevet og opptatt av at programmet fungerer",
+          "teaches_player": "å skille samarbeid fra ensidig overføring av arrangementsrisiko"
+        },
+        {
+          "id": "okonomikontakten",
+          "social_function": "gjør faktura, betalingsfrist og dokumentert oppfølging konkrete",
+          "class_position": "administrativ kontakt hos kjøper eller arrangør",
+          "status": "forvalter betalingsløpet, men definerer ikke den musikalske leveransen",
+          "power_over_player": "kan forsinke eller avklare utbetaling gjennom interne rutiner og dokumentkrav",
+          "wants": "korrekt dokumentasjon som kan behandles uten ekstra runder",
+          "conceals": "at interne forsinkelser fortsatt har reell kostnad for den som venter på honoraret",
+          "speech_style": "referanse-, frist- og dokumentorientert",
+          "teaches_player": "å behandle betalingsoppfølging som dokumenterbar administrasjon"
+        },
+        {
+          "id": "musikerkollegaen",
+          "social_function": "gjør vikarbruk, kalenderkonflikt og kollegial overlevering konkrete",
+          "class_position": "annen selvstendig musiker som kan ta eller formidle en booking",
+          "status": "har egen praksis og egne vilkår; er ikke en underordnet ressurs som kan flyttes uten samtykke",
+          "power_over_player": "kan redde en vanskelig booking, men også avslå uklare eller dårlig overleverte rammer",
+          "wants": "klar informasjon om honorar, tid, sted og musikalsk forventning før et ja",
+          "conceals": "at kollegial velvilje kan skjule hvor mye risiko som overtas på kort varsel",
+          "speech_style": "direkte, erfaringsbasert og tidskonkret",
+          "teaches_player": "å gjøre vikarløsninger til transparente handoffs, ikke private nødgrep"
+        },
+        {
+          "id": "den_faste_bookeren",
+          "social_function": "gjør gjentatte bookinger og grensen mot ansettelse synlig",
+          "class_position": "tilbakevendende kjøper av musikkarbeid over tid",
+          "status": "kan gi regelmessighet uten å bli arbeidsgiver bare fordi mønsteret gjentar seg",
+          "power_over_player": "kan bli en stor del av kalenderen og dermed få uformell makt over tilgjengelighet og pris",
+          "wants": "forutsigbar tilgang til en musiker som allerede kjenner formatet",
+          "conceals": "at gjentakelse kan skape forventninger om lojalitet eller tilgjengelighet som aldri er avtalt",
+          "speech_style": "fortrolig, kort og preget av tidligere samarbeid",
+          "teaches_player": "å skille stabil bookinghistorikk fra rettigheter og plikter i et arbeidsforhold"
+        }
+      ],
+      "primary_thread_count": 14,
+      "private_aftermath_count": 5
+    },
+    {
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_sideprosjektbygger.json",
+      "sha": "471a9ae53749fe0fb568494b4f1c5e74cb69bb7b",
+      "title": "Sideprosjektbygger",
+      "social_environments": [
+        "den faste fritidsøkten der prosjektet må få plass uten at resten av livet blir resttid",
+        "den første lille versjonen der funksjonslisten utfordrer evnen til å lære før alt er bygget",
+        "grensen mot hovedjobben der privat prosjekt og arbeidsgivers utstyr eller lisenser må holdes adskilt",
+        "møtet med den første personen som faktisk vil betale og dermed skaper forventninger om support og retning",
+        "vennen som ønsker en spesialvariant og gjør én konkret bruker lett å forveksle med hele etterspørselen",
+        "den travle perioden der prosjektet står stille uten at pausen nødvendigvis betyr nederlag",
+        "privatøkonomien der små abonnementer og tjenester blir gjentatte kostnader før inntekten er stabil",
+        "hjemmet og nære relasjoner der prosjektet kan lekke inn i all samtale og all ledig oppmerksomhet"
+      ],
+      "recurring_people_archetypes": [
+        {
+          "id": "erfaren_sideprosjektbygger",
+          "social_function": "normaliserer liten skala, langsom læring og muligheten for at et prosjekt aldri blir hovedarbeid",
+          "class_position": "person med erfaring fra flere små egne prosjekter ved siden av annet arbeid",
+          "status": "moderat symbolsk autoritet basert på erfaring, ikke formell myndighet",
+          "power_over_player": "kan gjøre bestemte vekstfortellinger mer eller mindre attraktive",
+          "wants": "at spilleren skal lære hva prosjektet faktisk tåler før store livsendringer",
+          "conceals": "at egne vellykkede prosjekter kan gjøre tilfeldighet og kapasitet mindre synlig i ettertid",
+          "speech_style": "konkret, avdramatiserende og opptatt av kapasitet",
+          "teaches_player": "at et lite prosjekt ikke er en mislykket stor virksomhet"
+        },
+        {
+          "id": "tidlig_bruker",
+          "social_function": "gir konkret bruksinformasjon uten å representere hele markedet",
+          "class_position": "person med et reelt problem prosjektet delvis løser",
+          "status": "lav formell makt, høy læringsverdi",
+          "power_over_player": "kan påvirke retning gjennom tydelige ønsker og tidlig entusiasme",
+          "wants": "at løsningen skal fungere bedre for eget behov",
+          "conceals": "at eget behov ikke nødvendigvis er representativt",
+          "speech_style": "praktisk, konkret og fokusert på bruk",
+          "teaches_player": "at én bruker er data, ikke hele strategien"
+        },
+        {
+          "id": "betalende_bruker",
+          "social_function": "gjør forskjellen mellom frivillig testing og faktisk forventning til leveranse synlig",
+          "class_position": "liten kunde- eller abonnentrolle uten arbeidsgivermakt",
+          "status": "økonomisk relevant, men avgrenset",
+          "power_over_player": "kan forvente det som faktisk ble lovet mot betaling",
+          "wants": "forutsigbar funksjon og tydelig respons",
+          "conceals": "at betaling lett kan tolkes som rett til ubegrenset tilgjengelighet",
+          "speech_style": "direkte, forventningsorientert og konkret om feil",
+          "teaches_player": "at små inntekter også krever tydelig scope og supportgrense"
+        },
+        {
+          "id": "kollega",
+          "social_function": "representerer grensen mot hovedjobb, arbeidstid og arbeidsgivers ressurser",
+          "class_position": "likemann i separat hovedarbeidsrolle",
+          "status": "ordinær arbeidsplassstatus",
+          "power_over_player": "kan legge merke til uklare ressurs- og tidsgrenser",
+          "wants": "at privat prosjekt ikke skaper problemer i felles arbeid",
+          "conceals": "at nysgjerrighet på prosjektet kan blandes med arbeidsplassens normer",
+          "speech_style": "hverdagslig, konkret og rollebevisst",
+          "teaches_player": "at sideprosjektet må tåle en tydelig grense mot hovedjobben"
+        },
+        {
+          "id": "naer_person",
+          "social_function": "viser hva prosjektets tidsbruk gjør med privat oppmerksomhet og relasjon",
+          "class_position": "partner, familie eller nær venn uten prosjektrolle",
+          "status": "høy privat betydning",
+          "power_over_player": "kan gjøre kostnaden ved konstant prosjektmodus tydelig",
+          "wants": "at prosjektet skal få eksistere uten å spise all felles tid",
+          "conceals": "at støtte kan bli vanskelig å uttrykke når prosjektet stadig er til stede",
+          "speech_style": "personlig, konkret og lite imponert av vekstretorikk",
+          "teaches_player": "at privat kapasitet er en faktisk prosjektbegrensning"
+        },
+        {
+          "id": "venn_med_spesialbehov",
+          "social_function": "tester grensen mellom sosial nærhet, brukerfeedback og betalt spesialleveranse",
+          "class_position": "privat relasjon med konkret brukssituasjon",
+          "status": "høy relasjonell, lav formell autoritet",
+          "power_over_player": "kan gjøre et enkelt behov vanskelig å avslå uten skyld",
+          "wants": "en versjon som passer eget problem bedre",
+          "conceals": "at vennskap kan gjøre kostnaden ved ønsket mindre synlig",
+          "speech_style": "uformell, entusiastisk og løsningsorientert",
+          "teaches_player": "at nærhet ikke gjør ett behov representativt"
+        }
+      ],
+      "primary_thread_count": 14,
+      "private_aftermath_count": 5
+    },
+    {
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/roleWorlds/subkultur/subkultur_gangster.json",
+      "sha": "ecd1d71f6030776b5dd8105ede1840ff6a8744e1",
+      "title": "Gangster",
+      "social_environments": [
+        "den lille undergrunnskvelden der gjesteliste, stil, praktisk arbeid og sosial rang møtes",
+        "miljøchatten der rykter, lojalitet og hendelser får et nytt liv etter at kvelden er over",
+        "den private samlingen der små tjenester kan bli sosial gjeld uten at noen har skrevet ned avtalen",
+        "gata utenfor arrangementet der status og publikum kan gjøre en konflikt større eller hjelpe den å kjølne",
+        "hjemmet og nabolaget der natteliv, besøk og symboler må sameksistere med mennesker utenfor miljøet",
+        "samtalen med en venn som vil ut og dermed tester om tilhørigheten faktisk er frivillig",
+        "den lovlige flyer- og riggjobben som gir liten sideinntekt uten å bli kriminell økonomi eller uformell myndighet",
+        "møtet med en yngre deltaker som viser at spillerens image også lærer andre hva miljøet belønner"
+      ],
+      "recurring_people_archetypes": [
+        {
+          "id": "gammel_kjenning",
+          "social_function": "bærer historien om gjensidige tjenester og gjør lojalitet til en levende sosial konto",
+          "class_position": "likemann med lang fartstid i miljøet og mange tette bånd",
+          "status": "høy relasjonell status gjennom nettverk og hukommelse",
+          "power_over_player": "kan styrke eller svekke spillerens rykte gjennom hvem som oppfattes som lojal",
+          "wants": "at relasjoner skal kjennes gjensidige og at folk stiller opp når det gjelder",
+          "conceals": "at egne forventninger noen ganger går lenger enn det som faktisk ble avtalt",
+          "speech_style": "fortrolig, indirekte og full av referanser til det man har gjort for hverandre",
+          "teaches_player": "at lojalitet uten eksplisitte grenser lett blir sosial gjeld"
+        },
+        {
+          "id": "arrangor_i_undergrunnen",
+          "social_function": "eier rammen rundt lovlige småarrangementer og skiller praktisk hjelp fra adgangs- eller sikkerhetsmyndighet",
+          "class_position": "liten arrangør med begrensede ressurser og lokalt nettverk",
+          "status": "moderat formell autoritet under arrangementet",
+          "power_over_player": "kan tilby små oppdrag, sette gjesteliste og avgrense oppgaver",
+          "wants": "at kvelden gjennomføres uten kaos og uten at venner gjør småroller til privat makt",
+          "conceals": "at ressursknapphet gjør det fristende å lene seg for tungt på lojale bekjente",
+          "speech_style": "rask, praktisk og tydelig når noe faktisk er avtalt",
+          "teaches_player": "at nettverk ikke erstatter rolle- og ansvarsgrenser"
+        },
+        {
+          "id": "venn_som_vil_ut",
+          "social_function": "gjør kostnaden ved sosial binding og retten til å forlate miljøet konkret",
+          "class_position": "nær venn med lavere status og færre trygge forbindelser",
+          "status": "høy privat betydning men sårbar posisjon i gruppen",
+          "power_over_player": "kan utfordre om spillerens lojalitet gjelder personen eller miljøets forventninger",
+          "wants": "å kunne trekke seg tilbake uten ydmykelse, rykter eller sosial gjeld",
+          "conceals": "at beslutningen om å gå også innebærer sorg over tap av identitet og fellesskap",
+          "speech_style": "lavmælt, direkte og mer personlig enn miljøets vanlige statusprat",
+          "teaches_player": "at frivillig exit er en prøve på om fellesskapet faktisk er frivillig"
+        },
+        {
+          "id": "statusbygger",
+          "social_function": "representerer fristelsen til å gjøre rykte, antydninger og konflikter til sosial kapital",
+          "class_position": "synlig deltaker med høy investering i image og rang",
+          "status": "høy symbolsk status men ustabil tillit",
+          "power_over_player": "kan gjøre spillerens valg til tegn på mot, svakhet eller tilhørighet",
+          "wants": "at miljøet skal oppfatte hardhet og tilgang som bevis på betydning",
+          "conceals": "at statusen avhenger av at andre fortsetter å tro på fortellingen",
+          "speech_style": "selvsikker, ertende og rask til å rangere handlinger",
+          "teaches_player": "at status som må bevises gjennom stadig sterkere signaler blir en felle"
+        },
+        {
+          "id": "yngre_bekjent",
+          "social_function": "viser hvordan spillerens image kan bli modell for andre",
+          "class_position": "yngre eller nyere deltaker med lite egen status",
+          "status": "lav intern status og høy observasjonsavhengighet",
+          "power_over_player": "gjør konsekvensen av selvpresentasjon synlig ved å kopiere det som belønnes",
+          "wants": "å finne en vei til respekt og tilhørighet",
+          "conceals": "at usikkerhet gjør skarpe statusregler attraktive fordi de virker enkle",
+          "speech_style": "nysgjerrig, beundrende og opptatt av konkrete tegn på respekt",
+          "teaches_player": "at sosial kapital også er pedagogikk"
+        },
+        {
+          "id": "naer_person_utenfor_miljoet",
+          "social_function": "viser hvordan gangsteridentiteten leses av folk som ikke deler miljøets interne koder",
+          "class_position": "partner, familie, nabo eller nær venn uten intern subkulturstatus",
+          "status": "høy privat betydning men ingen miljømakt",
+          "power_over_player": "kan sette grenser for tid, hjem, rykte og hvor mye konflikt som får lekke inn i privatlivet",
+          "wants": "at spilleren skal ha et fellesskap uten at alle andre relasjoner må leve med samme lojalitetsregler",
+          "conceals": "at vedkommende både kan være fascinert og urolig av spillerens status",
+          "speech_style": "hverdagslig, konkret og lite imponert av miljøets interne symboler",
+          "teaches_player": "at identitetens kostnader blir tydelige når de må forklares utenfor gruppen"
+        }
+      ],
+      "primary_thread_count": 15,
+      "private_aftermath_count": 5
+    }
+  ]
+}

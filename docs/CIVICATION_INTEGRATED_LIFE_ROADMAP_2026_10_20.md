@@ -2,6 +2,16 @@
 
 Opprettet: 2026-10-20. Eier: Civication. Status: **aktiv plan; ikke godkjent som ferdig spillerreise**.
 
+## Strategisk milepæl M-CINEMA-01 – 28. november 2026
+
+**Vedtatt kunstnerisk retning: Civication Cinema – nordisk miniatyrrealisme.** Med *Anomalisa* (2015) som hovedreferanse for taktil stop-motion og hverdagsrealisme skal alle fortellingsscener på sikt kunne få egne små filmer i én gjenkjennelig miniatyrverden. Civication skal ha originale karakterer og kulisser, ikke kopiere referansefilmen.
+
+Classic, Audio og Cinema er tre presentasjoner av samme spill. Kanonisk scene-ID, valg, kalender, innboks, økonomi, relasjoner og lagring er uendret. Spilleren kan trykke svar eller si bare A, B, C osv. Manglende mediefiler må aldri blokkere fremdrift.
+
+[Styrende stilmanual og produksjonsplan](CIVICATION_CINEMA_STYLE_BIBLE.md) fastsetter karakter-/kulisseregister, visuell kontinuitet, mediekontrakt, fallback og pilotens akseptanseport. Før masseproduksjon skal karakterdesign, kulisser og konkrete pilotbilder godkjennes.
+
+Status: kunstnerisk retning vedtatt; filmproduksjon og Cinema-integrasjon gjenstår. [Audio-utkast #7574](https://github.com/Paradispartiet/History-Go/pull/7574) er separat og ikke erklært publisert eller ferdigtestet. Eksisterende C6–C11 og 21-dagers akseptansekrav endres ikke av denne milepælen.
+
 ## Verifisert samkjøring – 15. november 2026
 
 Prioritet: én vanlig spillerreise med Min dag, innboks, kalender og økonomi før flere roller eller mer kartdekor. Jobb er frivillig; privatlivet kan fortsette uten jobb eller livsposisjon.
