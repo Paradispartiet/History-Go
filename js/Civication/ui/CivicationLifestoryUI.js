@@ -834,6 +834,8 @@
   let voiceMessage = "";
   // Session-only, explicit opt-in. Never open a microphone on page load.
   let handsFreeEnabled = false;
+  /** @type {HTMLElement|null} */ let inboxAudioPanel = null;
+  /** @type {HTMLElement|null} */ let audioOwner = null;
 
   function voiceConstructor() {
     const browser = /** @type {any} */ (window);
@@ -916,13 +918,15 @@
     return JSON.stringify([state?.rolle, state?.dag, state?.fase, voiceChoices(panel).map(button =>
       [button.getAttribute("data-lifestory-scene"), button.getAttribute("data-lifestory-choice"),
         button.getAttribute("data-lifestory-letter"), button.hasAttribute("disabled"),
-        button.getAttribute("data-lifestory-continue"), button.textContent])]);
+        button.getAttribute("data-lifestory-continue"), button.getAttribute("data-mail-id"),
+        button.getAttribute("data-choice-id"), button.textContent])]);
   }
 
   /** @param {HTMLElement} panel */
   function voiceSurfaceActive(panel) {
     return panel.isConnected && panel.getClientRects().length > 0 &&
-      document.visibilityState !== "hidden" && !document.body.classList.contains("civi-mapmode");
+      document.visibilityState !== "hidden" && !document.body.classList.contains("civi-mapmode") &&
+      !panel.closest?.('[hidden], [aria-hidden="true"]');
   }
 
   /** @param {string} [message] */
@@ -932,7 +936,7 @@
     if (voiceTimeout !== null) { window.clearTimeout(voiceTimeout); voiceTimeout = null; }
     if (session) { try { session.recognition.abort(); } catch { /* already ended */ } }
     voiceMessage = message;
-    const panel = getPanel();
+    const panel = audioOwner || getPanel();
     if (panel) updateVoiceControls(/** @type {HTMLElement} */ (panel));
   }
 
@@ -970,6 +974,7 @@
     }
     const Recognition = voiceConstructor();
     if (!Recognition || !voiceSurfaceActive(panel) || !voiceChoices(panel).length) return;
+    audioOwner = panel;
     stopStoryAudio();
     updateAudioControls(panel, "Opplesningen er stanset mens du snakker.");
     let recognition;
@@ -1065,7 +1070,8 @@
 
   /** @param {HTMLElement} panel @param {boolean} [force] */
   function readStoryAudio(panel, force = false) {
-    if (!audioEnabled || !audioSupported() || voiceSession) return;
+    if (!audioEnabled || !audioSupported() || voiceSession || (audioOwner && audioOwner !== panel)) return;
+    audioOwner = panel;
     if (!voiceSurfaceActive(panel)) {
       handsFreeEnabled = false;
       stopVoiceInput();
@@ -1075,11 +1081,14 @@
     }
     const scene = panel.querySelector(".civi-lifestory-scene");
     const summary = panel.querySelector(".civi-lifestory-summary");
-    const surface = scene || summary || panel.querySelector("[data-lifestory-paused]");
+    const mail = panel.querySelector(".civi-next-action-card");
+    const surface = scene || summary || mail || panel.querySelector("[data-lifestory-paused]");
     const consequence = panel.querySelector(".civi-lifestory-konsekvens > p")?.textContent?.trim() || "";
     const buttons = voiceChoices(panel);
     const title = surface?.querySelector("h3")?.textContent?.trim() || "";
-    const story = surface?.querySelector("p")?.textContent?.trim() || "";
+    const story = mail ? Array.from(mail.querySelectorAll(".civi-next-action-body p, .civi-next-action-sub"))
+      .map(element => element.textContent?.trim() || "").filter(Boolean).join(" ")
+      : surface?.querySelector("p")?.textContent?.trim() || "";
     const recap = summary ? Array.from(summary.querySelectorAll(
       ".civi-lifestory-ending h3, .civi-lifestory-ending p, .civi-lifestory-stamp, " +
       ".civi-lifestory-next-chapter p, .civi-lifestory-actions > p, [data-lifestory-day-blocker]"
@@ -1088,7 +1097,7 @@
       + (button.querySelector("span")?.textContent?.trim() || button.textContent?.trim() || "")
       + (button.hasAttribute("disabled") ? ". Ikke tilgjengelig. " + (button.querySelector(".civi-lifestory-skill-hint")?.textContent || button.getAttribute("title") || "") : ""));
     const key = JSON.stringify([state?.rolle, state?.dag, state?.fase,
-      voiceSceneKey(panel), consequence, title, story, recap, choices]);
+      voiceSceneKey(panel), mail?.getAttribute("data-mail-id"), consequence, title, story, recap, choices]);
     if (!force && key === audioKey) return;
     audioKey = key;
     stopStoryAudio();
@@ -1136,6 +1145,75 @@
     next();
   }
 
+  // The inbox remains the sole owner of mail actions. This adapter only
+  // labels ordinary answer buttons and reads the current rendered message.
+  /** @param {HTMLElement} panel @param {boolean} [takeOver] */
+  function syncInboxAudio(panel, takeOver = false) {
+    if (!audioSupported() && !voiceConstructor()) return;
+    if (!panel.querySelector?.(".civi-next-action-card")) {
+      if (audioOwner === panel) { stopVoiceInput(); stopStoryAudio(); audioKey = ""; }
+      return;
+    }
+    if (!panel.querySelector("[data-lifestory-audio-controls]")) {
+      panel.insertAdjacentHTML("afterbegin", audioControlsHtml());
+    }
+    const buttons = Array.from(panel.querySelectorAll(
+      ".civi-next-action-choices button[data-civi-next-action-answer], " +
+      ".civi-next-action-choices button[data-civi-next-action-open-queued], " +
+      ".civi-next-action-choices button[data-civi-next-action-acknowledge], " +
+      ".civi-next-action-choices button[data-civi-next-action-advance]"
+    ));
+    buttons.forEach((button, index) => {
+      const letter = audioChoiceLetter(index);
+      if (!letter) return;
+      const text = button.getAttribute("data-lifestory-audio-label") || button.textContent?.trim() || "";
+      button.setAttribute("data-lifestory-audio-label", text);
+      button.setAttribute("data-lifestory-audio-action", "");
+      button.setAttribute("data-lifestory-letter", letter);
+      button.textContent = letter + ". " + text;
+    });
+    inboxAudioPanel = panel;
+    if (takeOver && audioEnabled && voiceSurfaceActive(panel)) {
+      stopVoiceInput(); stopStoryAudio(); audioKey = ""; audioOwner = panel;
+    }
+    if (audioOwner === panel) syncAudioActions(panel);
+    else {
+      const mic = panel.querySelector("[data-lifestory-voice]");
+      if (mic) /** @type {HTMLButtonElement} */ (mic).disabled = !buttons.some(button => !button.hasAttribute("disabled"));
+    }
+  }
+
+  /** @param {HTMLElement} panel @param {HTMLElement} target */
+  function handleInboxAudioClick(panel, target) {
+    const command = target.closest("[data-lifestory-voice], [data-lifestory-audio-toggle], [data-lifestory-audio-repeat], [data-lifestory-handsfree]");
+    if (!command) {
+      if (target.closest("[data-civi-next-action-answer], [data-civi-next-action-open-queued], [data-civi-next-action-acknowledge], [data-civi-next-action-advance]") && audioOwner === panel) {
+        stopVoiceInput(); stopStoryAudio();
+      }
+      return false;
+    }
+    if (audioOwner !== panel) { stopVoiceInput(); stopStoryAudio(); audioKey = ""; audioOwner = panel; }
+    if (command.hasAttribute("data-lifestory-voice")) startVoiceInput(panel);
+    else if (command.hasAttribute("data-lifestory-handsfree")) {
+      handsFreeEnabled = !handsFreeEnabled; stopVoiceInput();
+      if (handsFreeEnabled) { audioEnabled = true; readStoryAudio(panel, true); }
+    } else if (command.hasAttribute("data-lifestory-audio-toggle")) {
+      handsFreeEnabled = false; stopVoiceInput(); audioEnabled = !audioEnabled;
+      audioKey = "";
+      if (audioEnabled) readStoryAudio(panel, true);
+      else { stopStoryAudio(); updateAudioControls(panel); }
+    } else { stopVoiceInput(); readStoryAudio(panel, true); }
+    return true;
+  }
+
+  function closeInboxAudio() {
+    if (audioOwner !== inboxAudioPanel || !audioOwner) return;
+    handsFreeEnabled = false; audioEnabled = false; audioKey = "";
+    stopVoiceInput(); stopStoryAudio(); updateAudioControls(audioOwner);
+    audioOwner = null;
+  }
+
+  /** @type {any} */ (window).CivicationAudio = { syncInboxAudio, handleInboxAudioClick, closeInboxAudio };
   window.addEventListener("pagehide", () => {
     handsFreeEnabled = false; audioEnabled = false; audioKey = "";
     stopVoiceInput(); stopStoryAudio();
@@ -1816,7 +1894,7 @@
     // unanswerable inbox projection and expose this role\x27s current scene.
     window.CivicationWaveAInboxBridge?.sync?.();
     restoreChoiceFocus(panel, String(state.rolle), focusedChoice);
-    syncAudioActions(panel);
+    if (!audioOwner || audioOwner === panel) syncAudioActions(panel);
   }
 
   // A choice replaces its own button with a consequence/new scene. On phones,
@@ -1871,11 +1949,15 @@
     panel.addEventListener("click", (event) => {
       const target = /** @type {HTMLElement} */ (event.target);
       if (target.closest("[data-lifestory-voice]")) {
+        if (audioOwner && audioOwner !== panel) { stopVoiceInput(); stopStoryAudio(); audioKey = ""; }
+        audioOwner = /** @type {HTMLElement} */ (panel);
         startVoiceInput(/** @type {HTMLElement} */ (panel));
         return;
       }
       if (target.closest("[data-lifestory-handsfree]")) {
         if (!audioSupported() || !voiceConstructor()) return;
+        if (audioOwner && audioOwner !== panel) { stopVoiceInput(); stopStoryAudio(); audioKey = ""; }
+        audioOwner = /** @type {HTMLElement} */ (panel);
         handsFreeEnabled = !handsFreeEnabled;
         stopVoiceInput();
         if (handsFreeEnabled) {
@@ -1885,6 +1967,8 @@
         return;
       }
       if (target.closest("[data-lifestory-audio-toggle]")) {
+        if (audioOwner && audioOwner !== panel) { stopVoiceInput(); stopStoryAudio(); audioKey = ""; }
+        audioOwner = /** @type {HTMLElement} */ (panel);
         handsFreeEnabled = false;
         stopVoiceInput();
         audioEnabled = !audioEnabled && audioSupported();
@@ -1894,6 +1978,8 @@
         return;
       }
       if (target.closest("[data-lifestory-audio-repeat]")) {
+        if (audioOwner && audioOwner !== panel) { stopVoiceInput(); stopStoryAudio(); audioKey = ""; }
+        audioOwner = /** @type {HTMLElement} */ (panel);
         stopVoiceInput();
         readStoryAudio(/** @type {HTMLElement} */ (panel), true);
         return;
@@ -1928,8 +2014,8 @@
       }
       if (target.closest("[data-lifestory-next-action]")) {
         if (typeof stopVoiceInput === "function") {
-          handsFreeEnabled = false; audioEnabled = false; audioKey = "";
-          stopVoiceInput(); stopStoryAudio(); updateAudioControls(/** @type {HTMLElement} */ (panel));
+          stopVoiceInput(); stopStoryAudio(); audioKey = ""; audioOwner = null;
+          updateAudioControls(/** @type {HTMLElement} */ (panel));
         }
         window.CivicationNextActionUI?.open?.();
         return;
