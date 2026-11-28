@@ -5,7 +5,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const source = fs.readFileSync(path.join(__dirname, "../js/Civication/ui/CivicationLifestoryUI.js"), "utf8");
 const start = source.indexOf("  /** @type {any} */ let voiceSession = null;");
-const end = source.indexOf("  function audioControlsHtml()", start);
+const end = source.indexOf("  function audioControlsHtml(", start);
 assert.ok(start > 0 && end > start);
 
 function setup({ dayActions = false, navigation = [] } = {}) {
@@ -327,7 +327,7 @@ test("pause disables narration and hands-free without choosing", () => {
 
 
 test("dedicated player keeps primary controls and microphone status distinct", () => {
-  const begin = source.indexOf("  function audioControlsHtml()");
+  const begin = source.indexOf("  function audioControlsHtml(");
   const end = source.indexOf("  /** @param {HTMLElement} panel @param {string} [message] */", begin);
   const render = vm.runInNewContext("(function() {" + source.slice(begin, end) + "; return audioControlsHtml; })()", {
     audioSupported: () => true, voiceConstructor: () => true, atmosphereConstructor: () => true,
@@ -342,4 +342,26 @@ test("dedicated player keeps primary controls and microphone status distinct", (
   assert.ok(html.indexOf("civi-audio-primary") < html.indexOf("civi-audio-settings"));
   assert.ok(html.includes("data-lifestory-voice-status"));
   assert.match(html, /opptil 12 sekunder/);
+});
+
+
+test("listening focus is reversible, view-only and retains a visible exit", () => {
+  const start = source.indexOf("  function toggleListeningFocus(");
+  const end = source.indexOf("  /** @param {HTMLElement} panel @param {string} [message] */", start);
+  assert.ok(start > 0 && end > start);
+  const toggle = vm.runInNewContext("(function() {" + source.slice(start, end) + "; return toggleListeningFocus; })()");
+  const attributes = new Map();
+  const button = {textContent:"Lyttemodus", setAttribute(name,value){ attributes.set(name,value); }};
+  const panel = {querySelector: () => button, getAttribute: name => attributes.get(name), setAttribute: (name,value) => attributes.set(name,value)};
+  toggle(panel);
+  assert.equal(attributes.get("data-lifestory-listening"),"true");
+  assert.equal(attributes.get("aria-pressed"),"true");
+  assert.equal(button.textContent,"Vis hele Min dag");
+  toggle(panel);
+  assert.equal(attributes.get("data-lifestory-listening"),"false");
+  assert.equal(button.textContent,"Lyttemodus");
+  assert.match(source,/audioControlsHtml\(true, panel\.getAttribute\?\.\("data-lifestory-listening"\) === "true"\)/);
+  const css = fs.readFileSync(path.join(__dirname,"../css/civi.css"),"utf8");
+  assert.match(css,/\[data-lifestory-listening="true"\] > \.civi-lifestory-panels,/);
+  assert.doesNotMatch(css,/\[data-lifestory-listening="true"\][^{}]*\.civi-lifestory-choice[^{}]*\{[^}]*display:\s*none/);
 });

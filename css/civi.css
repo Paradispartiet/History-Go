@@ -1570,3 +1570,25 @@ body.civi-mapmode .civi-panels{
 .civi-audio-status { display: grid; gap: 4px; }
 .civi-audio-status small:empty { display: none; }
 .civi-audio-note, .civi-audio-status small { color: var(--ink2); line-height: 1.45; }
+
+
+/* Listening focus is reversible and applies only to Min dag, never the shell.
+   Leave all current choices, consequences, warnings and navigation intact. */
+[data-lifestory-listening="true"] > .civi-lifestory-panels,
+[data-lifestory-listening="true"] > .civi-lifestory-status-details {
+  display: none;
+}
+[data-lifestory-listening="true"] > .civi-lifestory-scene,
+[data-lifestory-listening="true"] > .civi-lifestory-summary {
+  padding: clamp(16px, 3vw, 26px);
+}
+[data-lifestory-listening="true"] > .civi-lifestory-scene > p,
+[data-lifestory-listening="true"] > .civi-lifestory-summary > p {
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+[data-lifestory-listening="true"] > .civi-lifestory-scene .civi-lifestory-choice {
+  min-height: 56px;
+}
+.civi-audio-focus-toggle { text-align: center; min-height: 44px; }
+.civi-audio-focus-toggle[aria-pressed="true"] { font-weight: 700; }
