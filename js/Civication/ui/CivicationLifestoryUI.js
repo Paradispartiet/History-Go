@@ -818,6 +818,111 @@
    * @param {any} scene
    * @returns {string}
    */
+  // Optional presentation layer: never advances the Runner or chooses on behalf
+  // of the player. Session-only by design; a reload never starts speaking.
+  let audioEnabled = false;
+  let audioKey = "";
+  let audioGeneration = 0;
+  /** @type {SpeechSynthesisUtterance|null} */
+  let audioUtterance = null;
+
+  function audioSupported() {
+    return typeof window.speechSynthesis?.speak === "function" &&
+      typeof window.SpeechSynthesisUtterance === "function";
+  }
+
+  function audioControlsHtml() {
+    if (!audioSupported()) return "";
+    return '<div class="civi-lifestory-choices" data-lifestory-audio-controls aria-label="Lydbok">'
+      + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-toggle aria-pressed="'
+      + String(audioEnabled) + '">' + (audioEnabled ? "⏸ Stopp lydbok" : "🎧 Lytt til Min dag") + '</button>'
+      + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-repeat'
+      + (audioEnabled ? "" : " hidden") + '>Les på nytt</button>'
+      + '<small data-lifestory-audio-status role="status"></small></div>';
+  }
+
+  /** @param {HTMLElement} panel @param {string} [message] */
+  function updateAudioControls(panel, message = "") {
+    const toggle = panel.querySelector("[data-lifestory-audio-toggle]");
+    const repeat = panel.querySelector("[data-lifestory-audio-repeat]");
+    const status = panel.querySelector("[data-lifestory-audio-status]");
+    if (toggle) {
+      toggle.setAttribute("aria-pressed", String(audioEnabled));
+      toggle.textContent = audioEnabled ? "⏸ Stopp lydbok" : "🎧 Lytt til Min dag";
+    }
+    if (repeat) /** @type {HTMLElement} */ (repeat).hidden = !audioEnabled;
+    if (status) status.textContent = message;
+  }
+
+  function stopStoryAudio() {
+    audioGeneration += 1;
+    if (audioUtterance && audioSupported()) window.speechSynthesis.cancel();
+    audioUtterance = null;
+  }
+
+  /** @param {HTMLElement} panel @param {boolean} [force] */
+  function readStoryAudio(panel, force = false) {
+    if (!audioEnabled || !audioSupported()) return;
+    if (document.visibilityState === "hidden" || document.body.classList.contains("civi-mapmode")) {
+      stopStoryAudio();
+      audioKey = "";
+      return;
+    }
+    const scene = panel.querySelector(".civi-lifestory-scene");
+    const consequence = panel.querySelector(".civi-lifestory-konsekvens > p")?.textContent?.trim() || "";
+    const buttons = Array.from(scene?.querySelectorAll("[data-lifestory-choice]") || []);
+    const title = scene?.querySelector("h3")?.textContent?.trim() || "";
+    const story = scene?.querySelector("p")?.textContent?.trim() || "";
+    const choices = buttons.map((button, index) => "Alternativ " + (index + 1) + ". "
+      + (button.querySelector("span")?.textContent?.trim() || "")
+      + (button.hasAttribute("disabled") ? ". Ikke tilgjengelig. " + (button.querySelector(".civi-lifestory-skill-hint")?.textContent || "") : ""));
+    const key = JSON.stringify([state?.rolle, state?.dag, state?.fase,
+      buttons[0]?.getAttribute("data-lifestory-scene"), consequence, title, story, choices]);
+    if (!force && key === audioKey) return;
+    audioKey = key;
+    stopStoryAudio();
+    const generation = audioGeneration;
+    const segments = [consequence ? "Konsekvens. " + consequence : "",
+      title, story, ...choices, scene && buttons.length
+        ? "Velg et tilgjengelig svar på skjermen."
+        : "Fortsett med handlingene som vises på skjermen."].filter(Boolean);
+    let index = 0;
+    function next() {
+      if (generation !== audioGeneration || !audioEnabled) return;
+      if (index >= segments.length) {
+        audioUtterance = null;
+        updateAudioControls(panel, "Opplesningen er ferdig.");
+        return;
+      }
+      const utterance = new window.SpeechSynthesisUtterance(segments[index++]);
+      utterance.lang = "nb-NO";
+      utterance.rate = 0.95;
+      utterance.onend = next;
+      utterance.onerror = () => {
+        if (generation !== audioGeneration) return;
+        audioUtterance = null;
+        audioEnabled = false;
+        audioKey = "";
+        updateAudioControls(panel, "Opplesning utilgjengelig. Prøv igjen eller bruk svarboksene.");
+      };
+      audioUtterance = utterance;
+      try { window.speechSynthesis.speak(utterance); }
+      catch { audioEnabled = false; audioKey = ""; stopStoryAudio(); updateAudioControls(panel, "Kunne ikke starte opplesning."); }
+    }
+    updateAudioControls(panel, "Leser opp …");
+    next();
+  }
+
+  window.addEventListener("pagehide", stopStoryAudio);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "hidden") return;
+    audioEnabled = false;
+    audioKey = "";
+    stopStoryAudio();
+    const panel = getPanel();
+    if (panel) updateAudioControls(panel);
+  });
+
   function renderSceneHtml(scene) {
     const thread = content.threads.find((t) => t.id === scene.threadId);
     const ts = state.threadState[scene.threadId];
@@ -1435,6 +1540,9 @@
     const focusedChoice = choiceActionDepth === 0 ? rememberChoiceFocus(panel, String(state.rolle)) : null;
 
     if (shellStoryUnavailable()) {
+      audioEnabled = false;
+      audioKey = "";
+      stopStoryAudio();
       panel.innerHTML = renderShellStoryHtml();
       window.CivicationWaveAInboxBridge?.sync?.();
       return;
@@ -1458,7 +1566,7 @@
         + ' har ennå ingen egen jobbfortelling her. Dine private historier og relasjoner fortsetter; '
         + 'arbeidsoppgaver og meldinger finner du i innboksen.</p></section>'
       : "";
-    panel.innerHTML = personalBanner + renderKonsekvensHtml()
+    panel.innerHTML = audioControlsHtml() + personalBanner + renderKonsekvensHtml()
       + (paused
         ? '<section data-lifestory-paused><h3>Historien er satt på pause</h3><p>Velg ' + escapeHtml(continuationRole) + ' som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
         : (view.dagFerdig ? summaryHtml : (view.scene ? renderSceneHtml(view.scene) : renderEmptyPhaseHtml())))
@@ -1475,6 +1583,7 @@
     // unanswerable inbox projection and expose this role\x27s current scene.
     window.CivicationWaveAInboxBridge?.sync?.();
     restoreChoiceFocus(panel, String(state.rolle), focusedChoice);
+    readStoryAudio(panel);
   }
 
   // A choice replaces its own button with a consequence/new scene. On phones,
@@ -1528,6 +1637,17 @@
     /** @type {any} */ (panel)._lifestoryBound = true;
     panel.addEventListener("click", (event) => {
       const target = /** @type {HTMLElement} */ (event.target);
+      if (target.closest("[data-lifestory-audio-toggle]")) {
+        audioEnabled = !audioEnabled && audioSupported();
+        audioKey = "";
+        if (audioEnabled) readStoryAudio(/** @type {HTMLElement} */ (panel), true);
+        else { stopStoryAudio(); updateAudioControls(/** @type {HTMLElement} */ (panel)); }
+        return;
+      }
+      if (target.closest("[data-lifestory-audio-repeat]")) {
+        readStoryAudio(/** @type {HTMLElement} */ (panel), true);
+        return;
+      }
       const choiceBtn = target.closest("[data-lifestory-choice]");
       if (choiceBtn) {
         const sceneId = choiceBtn.getAttribute("data-lifestory-scene") || "";
@@ -1535,6 +1655,12 @@
         const scene = content?.scenes?.find((item) => item.id === sceneId);
         const choice = scene?.valg?.find((item) => item.id === choiceId);
         const staysInMinDag = !choice?.handling;
+        if (!staysInMinDag && audioEnabled) {
+          audioEnabled = false;
+          audioKey = "";
+          stopStoryAudio();
+          updateAudioControls(/** @type {HTMLElement} */ (panel));
+        }
         const accepted = onChoose(sceneId, choiceId);
         if (accepted && staysInMinDag && !document.body.classList.contains("civi-mapmode")) {
           revealChoiceOutcome(panel, event.detail === 0);
