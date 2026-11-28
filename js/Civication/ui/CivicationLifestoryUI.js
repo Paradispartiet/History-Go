@@ -963,7 +963,16 @@
   }
 
   /** @param {HTMLElement} panel */
+  function updatePlayerState(panel) {
+    const label = panel.querySelector("[data-lifestory-player-state]");
+    if (label) label.textContent = voiceSession ? "Mikrofon på" : audioEnabled ? "Lydmodus på" : "Avslått";
+    const player = panel.querySelector("[data-lifestory-audio-controls]");
+    if (player) player.setAttribute("data-listening", String(!!voiceSession));
+  }
+
+  /** @param {HTMLElement} panel */
   function updateVoiceControls(panel) {
+    updatePlayerState(panel);
     const button = panel.querySelector("[data-lifestory-voice]");
     const status = panel.querySelector("[data-lifestory-voice-status]");
     if (button) {
@@ -1200,12 +1209,20 @@
 
   function audioControlsHtml() {
     if (!audioSupported() && !voiceConstructor()) return "";
-    return '<div class="civi-lifestory-choices" data-lifestory-audio-controls aria-label="Lydbok">'
+    return '<section class="civi-audio-player" data-lifestory-audio-controls aria-label="Lydbokspiller">'
+      + '<div class="civi-audio-heading"><strong>Lydbok</strong><span data-lifestory-player-state>'
+      + (voiceSession ? "Mikrofon på" : audioEnabled ? "Lydmodus på" : "Avslått") + '</span></div>'
+      + '<div class="civi-audio-primary">'
       + (audioSupported() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-toggle aria-pressed="'
       + String(audioEnabled) + '">' + (audioEnabled ? "⏸ Stopp lydbok" : "🎧 Lytt til Min dag") + '</button>'
       + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-repeat'
-      + (audioEnabled ? "" : " hidden") + '>Les på nytt</button>'
-      + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-rate>Lesehastighet: '
+      + (audioEnabled ? "" : " hidden") + '>Les på nytt</button>' : "")
+      + (voiceConstructor() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-voice aria-pressed="'
+      + String(!!voiceSession) + '">' + (voiceSession ? "■ Avbryt mikrofon" : "🎙 Svar med stemmen") + '</button>' : "")
+      + '</div><div class="civi-audio-status"><small data-lifestory-audio-status role="status"></small>'
+      + (voiceConstructor() ? '<small data-lifestory-voice-status role="status">' + escapeHtml(voiceMessage) + '</small>' : "")
+      + '</div><div class="civi-audio-settings" aria-label="Lydinnstillinger">'
+      + (audioSupported() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-rate>Lesehastighet: '
         + String(AUDIO_RATES[audioRateIndex]).replace(".", ",") + '×</button>'
       + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-cast aria-pressed="'
         + String(audioCastEnabled) + '">' + (audioCastEnabled ? "Ulike stemmer: på" : "Ulike stemmer: av") + '</button>'
@@ -1213,18 +1230,16 @@
         + String(atmosphereEnabled) + '">' + (atmosphereEnabled ? "Miljølyd: på" : "Miljølyd: av") + '</button>'
         + '<button type="button" class="civi-lifestory-choice" data-lifestory-atmosphere-level>Miljøvolum: '
         + ["Lav", "Middels", "Høy"][atmosphereLevel] + '</button>' : "") : "")
-      + '<small data-lifestory-audio-status role="status"></small>'
-      + (voiceConstructor() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-voice aria-pressed="'
-        + String(!!voiceSession) + '">' + (voiceSession ? "■ Avbryt mikrofon" : "🎙 Svar med stemmen") + '</button>'
-        + (audioSupported() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-handsfree aria-pressed="'
-          + String(handsFreeEnabled) + '">' + (handsFreeEnabled ? "Håndfri: på" : "Håndfri: av") + '</button>' : "")
-        + '<small>Med håndfri på åpnes mikrofonen automatisk etter opplesningen, i opptil 12 sekunder. Ellers åpnes den bare ved trykk. Nettleseren kan behandle tale via en nettjeneste.</small>'
-        + '<small data-lifestory-voice-status role="status">' + escapeHtml(voiceMessage) + '</small>' : "")
-      + '</div>';
+      + (voiceConstructor() && audioSupported() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-handsfree aria-pressed="'
+        + String(handsFreeEnabled) + '">' + (handsFreeEnabled ? "Håndfri: på" : "Håndfri: av") + '</button>' : "")
+      + '</div>'
+      + (voiceConstructor() ? '<small class="civi-audio-note">Si bokstaven, eller trykk på svarboksen. Mikrofonen åpnes ved trykk, eller i opptil 12 sekunder etter opplesning når håndfri er på. Nettleseren kan behandle tale via en nettjeneste.</small>' : "")
+      + '</section>';
   }
 
   /** @param {HTMLElement} panel @param {string} [message] */
   function updateAudioControls(panel, message = "") {
+    updatePlayerState(panel);
     const toggle = panel.querySelector("[data-lifestory-audio-toggle]");
     const repeat = panel.querySelector("[data-lifestory-audio-repeat]");
     const status = panel.querySelector("[data-lifestory-audio-status]");
