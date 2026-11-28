@@ -391,3 +391,75 @@ test("audio preferences restore only bounded presentation settings", () => {
   api.saveAudioPreferences();
   assert.deepEqual(stored,[["civication.audio.preferences.v1",{version:1,rate:3,cast:false,level:2}]]);
 });
+
+test("narration spaces character speech and choices and cancels a pending pause", () => {
+  const begin = source.indexOf("  function stopStoryAudio()");
+  const end = source.indexOf("  // The inbox remains", begin);
+  assert.ok(begin > 0 && end > begin);
+  const spoken = [];
+  const timers = new Map();
+  let timerId = 0;
+  let handsFreeStarts = 0;
+  const scene = {
+    querySelector: selector => ({textContent: selector === "h3" ? "På kontoret" : "Kan du komme inn?"}),
+    getAttribute: name => name === "data-lifestory-speaker" ? "kollega" : "true"
+  };
+  const panel = {querySelector: selector => selector === ".civi-lifestory-scene" ? scene : null};
+  const buttons = ["A. Ja", "B. Nei"].map(textContent => ({
+    textContent, querySelector: () => null, hasAttribute: () => false
+  }));
+  const context = {
+    window: {
+      SpeechSynthesisUtterance: class { constructor(text) { this.text = text; } },
+      speechSynthesis: {speak: utterance => spoken.push(utterance), cancel() {}},
+      setTimeout(callback, delay) { timers.set(++timerId, {callback, delay}); return timerId; },
+      clearTimeout: id => timers.delete(id)
+    },
+    state: null, audioOwner: null, audioGeneration: 0, audioPauseTimer: 0,
+    audioUtterance: null, audioKey: "", audioEnabled: true, voiceSession: null,
+    handsFreeEnabled: true, audioCastEnabled: true, audioRateIndex: 0, AUDIO_RATES: [0.95],
+    audioSupported: () => true, voiceSurfaceActive: () => true, voiceConstructor: () => true,
+    voiceChoices: () => buttons, voiceSceneKey: () => "scene-1", voiceNavigationButton: () => null,
+    chooseStoryVoice: (_, speaker) => ({lang: "nb-NO", name: speaker || "forteller"}),
+    startAtmosphere() {}, stopAtmosphere() {}, updateAudioControls() {},
+    openHandsFreeAfterSpeech() { handsFreeStarts++; }
+  };
+  const api = vm.runInNewContext("(function() {" + source.slice(begin, end) +
+    "; return {readStoryAudio, stopStoryAudio}; })()", context);
+  function advance(expectedDelay) {
+    const count = spoken.length;
+    spoken.at(-1).onend();
+    assert.equal(spoken.length, count);
+    assert.equal(timers.size, 1);
+    const [id, {callback, delay}] = timers.entries().next().value;
+    assert.equal(delay, expectedDelay);
+    timers.delete(id);
+    callback();
+  }
+
+  api.readStoryAudio(panel);
+  assert.equal(spoken.at(-1).voice.name, "forteller");
+  advance(520);
+  assert.equal(spoken.at(-1).voice.name, "kollega");
+  advance(600);
+  assert.equal(spoken.at(-1).voice.name, "forteller");
+  assert.equal(spoken.at(-1).text, "Alternativer.");
+  advance(380);
+  assert.equal(spoken.at(-1).text, "Alternativ A. Ja");
+  advance(380);
+  assert.equal(spoken.at(-1).text, "Alternativ B. Nei");
+  assert.equal(handsFreeStarts, 0);
+  advance(420);
+  spoken.at(-1).onend();
+  assert.equal(handsFreeStarts, 1);
+
+  api.readStoryAudio(panel, true);
+  spoken.at(-1).onend();
+  const pending = timers.values().next().value;
+  const count = spoken.length;
+  api.stopStoryAudio();
+  assert.equal(timers.size, 0);
+  pending.callback();
+  assert.equal(spoken.length, count);
+  assert.equal(handsFreeStarts, 1);
+});

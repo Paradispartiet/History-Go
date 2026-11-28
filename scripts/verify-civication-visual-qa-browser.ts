@@ -64,7 +64,7 @@ export async function verifyChoiceRefreshFocus(page: any, outputDir?: string) {
 export async function verifySummaryInboxFocus(page: any) {
   for (let step = 0; step < 30; step++) {
     if (await page.locator('#civiLifestoryPanel .civi-lifestory-summary').count()) break;
-    const choice = page.locator('#civiLifestoryPanel .civi-lifestory-choice:not(:disabled):not([data-lifestory-navigates])').first();
+    const choice = page.locator('#civiLifestoryPanel [data-lifestory-choice]:not(:disabled):not([data-lifestory-navigates])').first();
     assert.ok(await choice.count(), 'the first day remains playable through local decisions');
     await choice.focus();
     await choice.press('Enter');
@@ -262,24 +262,24 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     // In the initial mobile viewport the last decision may be below the fold.
     // Verify it is reachable through normal scrolling and that every button
     // remains a sufficiently large, readable touch target (do not auto-choose).
-    const choiceSelector = '#civiLifestoryPanel .civi-lifestory-choice';
+    const choiceSelector = '#civiLifestoryPanel [data-lifestory-choice]';
     const choiceButtons = page.locator(choiceSelector);
     const choiceCount = await choiceButtons.count();
     assert.ok(choiceCount > 0, 'Min dag exposes at least one decision');
-    const choiceLayout = await page.evaluate(() => {
+    const choiceLayout = await page.evaluate((selector: string) => {
       const doc = (globalThis as any).document;
-      const buttons = Array.from(doc.querySelectorAll('#civiLifestoryPanel .civi-lifestory-choice')) as any[];
+      const buttons = Array.from(doc.querySelectorAll(selector)) as any[];
       return buttons.map(button => {
         const rect = button.getBoundingClientRect();
         const style = (globalThis as any).getComputedStyle(button);
         return { width: rect.width, height: rect.height, left: rect.left, right: rect.right,
           enabled: !button.disabled, color: style.color, label: button.textContent?.trim() || '' };
       });
-    });
+    }, choiceSelector);
     assert.equal(choiceLayout.length, choiceCount);
     assert.ok(choiceLayout.some((c: any) => c.enabled), 'at least one Min dag choice is available');
     assert.ok(choiceLayout.every((c: any) => c.width >= 100 && c.height >= 44
-      && c.left >= -1 && c.right <= 391), 'all choices fit the phone width and meet touch size');
+      && c.left >= -1 && c.right <= 391), 'all choices fit the phone width and meet touch size: ' + JSON.stringify(choiceLayout));
     const lastChoice = choiceButtons.last();
     await lastChoice.scrollIntoViewIfNeeded();
     assert.ok(await lastChoice.isVisible(), 'the final Min dag choice is reachable by scrolling');
@@ -413,7 +413,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
       decisionPage.on('pageerror', (error: Error) => pageErrors.push(error.message));
       await decisionPage.goto(origin + '/Civication.html', { waitUntil: 'load', timeout: 90000 });
       const localChoice = decisionPage.locator(
-        '#civiLifestoryPanel .civi-lifestory-choice:not(:disabled):not([data-lifestory-navigates])'
+        '#civiLifestoryPanel [data-lifestory-choice]:not(:disabled):not([data-lifestory-navigates])'
       ).first();
       await localChoice.waitFor({ state: 'visible', timeout: 90000 });
       await localChoice.focus();
@@ -432,7 +432,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
           focusInsideResult: outcome.contains(doc.activeElement),
           resultTop: Math.round(rect.top),
           viewportHeight: (globalThis as any).innerHeight,
-          selectedButtonGone: !doc.querySelector('#civiLifestoryPanel .civi-lifestory-choice:focus')
+          selectedButtonGone: !doc.querySelector('#civiLifestoryPanel [data-lifestory-choice]:focus')
         };
       });
       assert.ok(afterChoice.focusInsideResult,
