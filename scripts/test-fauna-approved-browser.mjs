@@ -2406,17 +2406,59 @@ try {
    await context.close();
   }
 
+  // Murveps #65: explicitly labelled Ancistrocerus parietinus example; black contain, modal and failed-WebP fallback.
+  for(const brokenMasonWasp of [false,true]){
+   const context=await browser.newContext({viewport:{width,height:900}});
+   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
+   if(brokenMasonWasp)await context.route("**/bilder/natur/fauna/godkjent/65_murveps_v1.webp",r=>r.abort("failed"));
+   const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
+   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
+   await page.locator("#natureSearch").fill("Murveps");
+   const card=page.locator("#natureGrid").getByRole("button",{name:/^Murveps,/i}).first();
+   await card.waitFor();
+   await page.locator("#natureSearch").fill("Veggmurerveps");
+   await card.waitFor();
+   assert(await card.getByText("Bildet viser veggmurerveps (Ancistrocerus parietinus), én av flere murervepsarter.").isVisible());
+   if(brokenMasonWasp){
+    await card.locator(".ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+    assert.equal(await card.locator("img").count(),0,"Murveps: no photo substitution on WebP load failure");
+   }else{
+    const bee=card.locator("img");
+    await bee.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert((await bee.getAttribute("alt")).includes("Ancistrocerus parietinus"));
+    assert((await bee.getAttribute("src")).endsWith("65_murveps_v1.webp"));
+    assert.equal(await card.locator(".ne-photo").evaluate(el=>getComputedStyle(el).backgroundColor),"rgb(0, 0, 0)");
+    assert.equal(await bee.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    await card.screenshot({path:path.join(artifacts,"murveps-card-"+width+".png")});
+   }
+   await card.click();await page.locator("#natureDialog").waitFor({state:"visible"});
+   assert(await page.locator("#natureDialog").getByText("Bildet viser veggmurerveps (Ancistrocerus parietinus), én av flere murervepsarter.").isVisible());
+   if(brokenMasonWasp){
+    await page.locator("#natureDialog .ne-image-fallback").getByText("Illustrasjon utilgjengelig").waitFor({timeout:15000});
+   }else{
+    const bee=page.locator("#natureDialog .ne-dialog-image");
+    await bee.evaluate(el=>el.complete&&el.naturalWidth>0?Promise.resolve():new Promise((resolve,reject)=>{el.onload=resolve;el.onerror=reject;}));
+    assert.equal(await bee.evaluate(el=>getComputedStyle(el).objectFit),"contain");
+    assert(await page.getByText("Individuelt kvalitetsgodkjent faunaillustrasjon").isVisible());
+    const bounds=await page.locator("#natureDialog").boundingBox();
+    assert(bounds&&bounds.width<=width,"Murveps detail fits viewport");
+    await page.locator("#natureDialog").screenshot({path:path.join(artifacts,"murveps-detail-"+width+".png")});
+   }
+   await context.close();
+  }
+
   // Unapproved fauna must retain a separate legacy SVG fallback.
   const context=await browser.newContext({viewport:{width,height:900}});
   await context.route("**/js/aha.js",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   await context.route("**/js/auth/require-login.js*",r=>r.fulfill({contentType:"application/javascript",body:'document.documentElement.classList.add("hg-auth-verified");'}));
   const page=await context.newPage();await page.goto("http://127.0.0.1:"+port+"/finn-fauna.html",{waitUntil:"domcontentloaded"});
   await page.locator("#natureGrid .ne-card").first().waitFor({timeout:20000});
-  await page.locator("#natureSearch").fill("Murveps");
-  const unapproved=page.locator("#natureGrid").getByRole("button",{name:/^Murveps,/i}).first();
+  await page.locator("#natureSearch").fill("Graveveps");
+  const unapproved=page.locator("#natureGrid").getByRole("button",{name:/^Graveveps,/i}).first();
   await unapproved.waitFor();
-  assert((await unapproved.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Unapproved Murveps retains original SVG");
+  assert((await unapproved.locator("img").getAttribute("src")).startsWith("data:image/svg+xml"),"Unapproved Graveveps retains original SVG");
   await context.close();
-  console.log("Finn Fauna 64 approved originals "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
+  console.log("Finn Fauna 65 approved originals "+width+"px: WebP, black contain, fallback, dialog and legacy SVG OK");
  }
 } finally {if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}

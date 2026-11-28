@@ -2,6 +2,17 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_murveps:Object.freeze({
+   scientificName:"Ancistrocerus-gruppen",
+   depictedScientificName:"Ancistrocerus parietinus",
+   depictedName:"Veggmurerveps",
+   exampleLabel:"Bildet viser veggmurerveps (Ancistrocerus parietinus), én av flere murervepsarter.",
+   src:"bilder/natur/fauna/godkjent/65_murveps_v1.webp",
+   gitBlobSha:"8d74116d5f831831c233d4e50e035f5f876f0eaa",
+   reviewedAt:"2026-11-28",
+   stage:"female_wall_mason_wasp_example_dark_face_yellow_abdominal_bands_isolated_black_background",
+   evidence:"data/natur/fauna/illustration-quality-murveps-20261128.json"
+  }),
   emne_fauna_roedveps:Object.freeze({
    scientificName:"Vespula rufa",
    src:"bilder/natur/fauna/godkjent/64_roedveps_v1.webp",
