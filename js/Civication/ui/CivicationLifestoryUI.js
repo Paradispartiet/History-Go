@@ -1207,11 +1207,14 @@
     if (level) level.textContent = "Miljøvolum: " + ["Lav", "Middels", "Høy"][atmosphereLevel];
   }
 
-  function audioControlsHtml() {
+  /** @param {boolean} [offerFocus] @param {boolean} [focused] */
+  function audioControlsHtml(offerFocus = false, focused = false) {
     if (!audioSupported() && !voiceConstructor()) return "";
     return '<section class="civi-audio-player" data-lifestory-audio-controls aria-label="Lydbokspiller">'
       + '<div class="civi-audio-heading"><strong>Lydbok</strong><span data-lifestory-player-state>'
       + (voiceSession ? "Mikrofon på" : audioEnabled ? "Lydmodus på" : "Avslått") + '</span></div>'
+      + (offerFocus ? '<button type="button" class="civi-lifestory-choice civi-audio-focus-toggle" data-lifestory-listening-focus aria-pressed="'
+        + String(focused) + '">' + (focused ? "Vis hele Min dag" : "Lyttemodus") + '</button>' : "")
       + '<div class="civi-audio-primary">'
       + (audioSupported() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-toggle aria-pressed="'
       + String(audioEnabled) + '">' + (audioEnabled ? "⏸ Stopp lydbok" : "🎧 Lytt til Min dag") + '</button>'
@@ -1235,6 +1238,18 @@
       + '</div>'
       + (voiceConstructor() ? '<small class="civi-audio-note">Si bokstaven, eller trykk på svarboksen. Mikrofonen åpnes ved trykk, eller i opptil 12 sekunder etter opplesning når håndfri er på. Nettleseren kan behandle tale via en nettjeneste.</small>' : "")
       + '</section>';
+  }
+
+  // View-only preference on the existing Min dag surface. No game state,
+  // microphone permission, playback or calendar action is changed.
+  /** @param {HTMLElement} panel */
+  function toggleListeningFocus(panel) {
+    const button = panel.querySelector("[data-lifestory-listening-focus]");
+    if (!button) return;
+    const focused = panel.getAttribute("data-lifestory-listening") !== "true";
+    panel.setAttribute("data-lifestory-listening", String(focused));
+    button.setAttribute("aria-pressed", String(focused));
+    button.textContent = focused ? "Vis hele Min dag" : "Lyttemodus";
   }
 
   /** @param {HTMLElement} panel @param {string} [message] */
@@ -2126,6 +2141,7 @@
         stopStoryAudio();
         stopVoiceInput();
       }
+      panel.removeAttribute?.("data-lifestory-listening");
       panel.innerHTML = renderShellStoryHtml();
       window.CivicationWaveAInboxBridge?.sync?.();
       return;
@@ -2149,7 +2165,7 @@
         + ' har ennå ingen egen jobbfortelling her. Dine private historier og relasjoner fortsetter; '
         + 'arbeidsoppgaver og meldinger finner du i innboksen.</p></section>'
       : "";
-    panel.innerHTML = audioControlsHtml() + personalBanner + renderKonsekvensHtml()
+    panel.innerHTML = audioControlsHtml(true, panel.getAttribute?.("data-lifestory-listening") === "true") + personalBanner + renderKonsekvensHtml()
       + (paused
         ? '<section data-lifestory-paused><h3>Historien er satt på pause</h3><p>Velg ' + escapeHtml(continuationRole) + ' som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
         : (view.dagFerdig ? summaryHtml : (view.scene ? renderSceneHtml(view.scene) : renderEmptyPhaseHtml())))
@@ -2220,6 +2236,10 @@
     /** @type {any} */ (panel)._lifestoryBound = true;
     panel.addEventListener("click", (event) => {
       const target = /** @type {HTMLElement} */ (event.target);
+      if (target.closest("[data-lifestory-listening-focus]")) {
+        toggleListeningFocus(/** @type {HTMLElement} */ (panel));
+        return;
+      }
       if (typeof handleAudioPreferences === "function" && handleAudioPreferences(/** @type {HTMLElement} */ (panel), target)) return;
       if (target.closest("[data-lifestory-voice]")) {
         if (audioOwner && audioOwner !== panel) { stopVoiceInput(); stopStoryAudio(); audioKey = ""; }
