@@ -76,3 +76,19 @@ Status: første manifestinventar ferdig; full katalog, karakter-/kulissedesign, 
 | **Grunnpakker + fortsettelser** | | **1 260** | **2 645** |
 
 Tallene gjelder rå forfattede scene-/valgoppføringer i de leste filene, ikke unike filmklipp eller alle mulige spillerforløp. Eksplisitte sted-ID-er i fortsettelsesfilene omfatter hjem, øvingsrom, prosjektbord og pub; feltet er ikke nødvendigvis den faktiske dramatiske kulissen. Karakterer og steder må også leses ut av situasjonsteksten. Neste trinn: opptelling av de 50 narrative stream-filene og øvrige jobbmail-manifester, kartlegging av kildeoverlapp og rollebesetning.
+
+## Trinn 3 – Narrative (2026-11-28)
+
+Alle 50 stream-filer i [Narrative-manifestet](../data/Civication/narratives/manifest.json) er lest som JSON, kontrollert mot manifest-ID og telt ut fra storylets og choices. Kilderegisteret inneholder tittel, type, avsendere, blob-SHA og antall for hver fil.
+
+| Kildemappe | Pakker | Storylets | Valg |
+| --- | ---: | ---: | ---: |
+| leisure | 44 | 602 | 1 188 |
+| work | 4 | 18 | 36 |
+| conflict | 1 | 5 | 10 |
+| class_cases | 1 | 6 | 12 |
+| **Narrative totalt** | **50** | **631** | **1 246** |
+
+Samlet rått manusgrunnlag: 701 grunnscener + 559 fortsettelsesscener + 631 Narrative-storylets = **1 891 oppføringer**, med **3 891 valg**. Dette er ikke en deduplisert filmliste. Samme rolle eller person kan opptre på tvers av kilder, og enkelte situasjoner kan overlappe. Storylets skal beholde sine egne kanoniske ID-er og vilkår; medieregisteret skal kunne koble flere kilde-ID-er til samme film bare når den redaksjonelle gjennomgangen fastslår samsvar. Ingen omskriving av spillmotor eller kildemanus er gjort.
+
+Gjenstår: øvrige jobbmail-manifester og life-mail-pakker, rolleverdener, fullstendig karakter- og kulissekartlegging, konkret scenevis produksjonsregister og pilotproduksjon. Se [kilderegisteret](CIVICATION_CINEMA_SOURCE_REGISTER.json).
