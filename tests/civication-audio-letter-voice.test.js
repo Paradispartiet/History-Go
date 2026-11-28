@@ -5,7 +5,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const source = fs.readFileSync(path.join(__dirname, "../js/Civication/ui/CivicationLifestoryUI.js"), "utf8");
 const start = source.indexOf("  /** @type {any} */ let voiceSession = null;");
-const end = source.indexOf("  function audioControlsHtml()", start);
+const end = source.indexOf("  function audioControlsHtml(", start);
 assert.ok(start > 0 && end > start);
 
 function setup({ dayActions = false, navigation = [] } = {}) {
@@ -327,7 +327,7 @@ test("pause disables narration and hands-free without choosing", () => {
 
 
 test("dedicated player keeps primary controls and microphone status distinct", () => {
-  const begin = source.indexOf("  function audioControlsHtml()");
+  const begin = source.indexOf("  function audioControlsHtml(");
   const end = source.indexOf("  /** @param {HTMLElement} panel @param {string} [message] */", begin);
   const render = vm.runInNewContext("(function() {" + source.slice(begin, end) + "; return audioControlsHtml; })()", {
     audioSupported: () => true, voiceConstructor: () => true, atmosphereConstructor: () => true,
