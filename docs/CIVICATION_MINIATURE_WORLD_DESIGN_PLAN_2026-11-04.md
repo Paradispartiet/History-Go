@@ -6,6 +6,14 @@ Dato: 2026-11-04. Status: påbegynt i egen GitHub-gren, ikke produksjonspubliser
 
 Kartet skal være den visuelle grunnmuren i Civication: et stilrent, detaljrikt miniatyr-Oslo med små tegn på hverdagsliv. Kart, «Min dag», Karriere, Personlig, Fritid, Kommers og Kultur skal dele samme visuelle språk. Dette er en visuell videreutvikling av eksisterende spill, **ikke** en omskriving av spillmekanikk eller stedskatalog.
 
+## Utvidet visuell identitet – milepæl M-CINEMA-01 (28. november 2026)
+
+Civication Cinema viderefører kartets miniatyrverden fra byoversikt til menneskelig nærbilde. Kunstnerisk retning: **nordisk miniatyrrealisme**, med *Anomalisa* (2015) som referanse for håndlagde dukker, taktile kulisser, diskret stop-motion og realistisk hverdagsdramatikk. Originale karakterer og kulisser utvikles for Civication.
+
+Kart og filmer deler fargepalett, materialfølelse, steder og kanonisk døgnrytme. Kartets enkle figurer og lette geometri beholdes; filmens mer detaljerte dukker og kulisser er separate medier, ikke tunge videobakgrunner i kartet. Eksisterende kartnavigasjon og spillmekanikk endres ikke.
+
+Den nye [Civication Cinema-stilmanualen](CIVICATION_CINEMA_STYLE_BIBLE.md) er styrende for filmproduksjonen og fastsetter krav til karakterkontinuitet, kulisser, kamera, lys og lyd. Godkjent visuell pilot og faste biblioteker kommer før produksjon i stor skala. Beslutningen er dokumentert; filmene er ikke produsert ennå.
+
 ## Kode som allerede finnes
 
 - Civication.html og js/Civication/civicationShellLoader.js: laster skallet og det rike kartet.
