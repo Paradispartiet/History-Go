@@ -9,6 +9,7 @@ from pathlib import Path, PurePosixPath
 import re
 import subprocess
 from urllib.parse import quote, urlsplit
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -65,10 +66,21 @@ def upload(root, rows):
                         "public,max-age=31536000,immutable", "--only-show-errors",
                         "--no-progress"], check=True)
         url = public + "/" + quote(row["key"], safe="/")
-        with urlopen(Request(url, headers={"Accept-Encoding": "identity"}), timeout=60) as res:
-            if res.status != 200 or res.geturl() != url or res.headers.get_content_type() != row["content_type"]:
-                raise ValueError(f"Unexpected public response for {row['path']}")
-            raw = res.read(row["bytes"] + 1)
+        request = Request(url, headers={
+            "Accept-Encoding": "identity",
+            "User-Agent": "HistoryGo-R2-Media-Pilot/1.0",
+        })
+        try:
+            with urlopen(request, timeout=60) as res:
+                if res.status != 200 or res.geturl() != url or res.headers.get_content_type() != row["content_type"]:
+                    raise ValueError(f"Unexpected public response for {row['path']}")
+                raw = res.read(row["bytes"] + 1)
+        except HTTPError as exc:
+            # Log only bounded, non-secret diagnostics; never accept an error as a verified image.
+            ray = exc.headers.get("CF-Ray", "unavailable") if exc.headers else "unavailable"
+            raise RuntimeError(
+                f"Public read failed for {row['path']}: HTTP {exc.code}; CF-Ray={ray}"
+            ) from exc
         if len(raw) != row["bytes"] or hashlib.sha256(raw).hexdigest() != row["sha256"]:
             raise ValueError(f"Public bytes differ for {row['path']}")
         row["verified_url"] = url
