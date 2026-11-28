@@ -7,7 +7,7 @@
     "data/Civication/lifeMails/life_manifest.json",
     "data/Civication/jobbmails/naeringsliv/naer_manifest.json"
   ],
-  "scope": "All 45 declared continuation files read and counted; remaining narrative, role-world and mail records are declared references only. Raw authored entries, not deduplicated playable stories.",
+  "scope": "All 45 continuation files and 50 narrative stream files read and counted. Remaining role-world and mail records are declared references only. Counts are raw authored entries, not deduplicated playable stories.",
   "continuations": [
     {
       "id": "musikk_med_mira",
@@ -1966,11 +1966,27 @@
     },
     {
       "id": "frode_hele_livet_stream",
-      "path": "data/Civication/narratives/leisure/frode_hele_livet.json"
+      "path": "data/Civication/narratives/leisure/frode_hele_livet.json",
+      "title": "Frode: Brorens konsert",
+      "type": "leisure",
+      "storylets": 9,
+      "choices": 13,
+      "senders": [
+        "Frode Aas"
+      ],
+      "sha": "581d2723bc90ae710531e624cd26ff33669393c8"
     },
     {
       "id": "inger_hele_livet_stream",
-      "path": "data/Civication/narratives/leisure/inger_hele_livet.json"
+      "path": "data/Civication/narratives/leisure/inger_hele_livet.json",
+      "title": "Inger: En referanse og et jobbtilbud",
+      "type": "leisure",
+      "storylets": 10,
+      "choices": 13,
+      "senders": [
+        "Inger Holm"
+      ],
+      "sha": "b17b8b685e344ff0ebe1217c9df56f92f2489c50"
     }
   ],
   "life_mail_packs": [
@@ -2070,6 +2086,30 @@
       }
     },
     "base_and_continuation_scene_entries": 1260,
-    "base_and_continuation_choice_entries": 2645
+    "base_and_continuation_choice_entries": 2645,
+    "narrative_storylets": 631,
+    "narrative_choices": 1246,
+    "narrative_counts_by_folder": {
+      "work": {
+        "packs": 4,
+        "storylets": 18,
+        "choices": 36
+      },
+      "leisure": {
+        "packs": 44,
+        "storylets": 602,
+        "choices": 1188
+      },
+      "conflict": {
+        "packs": 1,
+        "storylets": 5,
+        "choices": 10
+      },
+      "class_cases": {
+        "packs": 1,
+        "storylets": 6,
+        "choices": 12
+      }
+    }
   }
 }
