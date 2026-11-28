@@ -857,6 +857,9 @@
     const phrase = raw.toLocaleLowerCase("nb-NO").trim().replace(/[.!?,]+$/g, "").replace(/\s+/g, " ");
     if (/^(gjenta|gjenta alternativene|les på nytt)$/.test(phrase)) return { kind: "repeat" };
     if (/^(stopp|avbryt|pause)$/.test(phrase)) return { kind: "stop" };
+    if (/^(fortsett|fortsett dagen)$/.test(phrase)) return { kind: "advance" };
+    if (/^(neste dag|start neste dag)$/.test(phrase)) return { kind: "nextDay" };
+    if (/^(åpne innboksen|innboksen)$/.test(phrase)) return { kind: "inbox" };
     const token = phrase.replace(/^(?:alternativ|valg|bokstav) /, "");
     // Norwegian recognizers sometimes transcribe the name of a letter
     // as a word. Accept only exact letter names, never arbitrary sentences.
@@ -875,6 +878,21 @@
     const sceneChoices = Array.from(panel.querySelectorAll(".civi-lifestory-scene [data-lifestory-choice]"));
     if (sceneChoices.length) return sceneChoices;
     return Array.from(panel.querySelectorAll("[data-lifestory-audio-action][data-lifestory-letter]"));
+  }
+
+  // Spoken navigation is an alias for a unique, existing labeled action.
+  // A next-day attribute is also used for private life and week settlement;
+  // require its exact label so "neste dag" cannot trigger either by mistake.
+  /** @param {HTMLElement} panel @param {string} kind */
+  function voiceNavigationButton(panel, kind) {
+    const target = kind === "advance" ? ["data-lifestory-advance", "Fortsett dagen"]
+      : kind === "nextDay" ? ["data-lifestory-next-day", "Start neste dag"]
+      : kind === "inbox" ? ["data-lifestory-next-action", "Åpne innboksen"] : null;
+    if (!target) return null;
+    const matches = voiceChoices(panel).filter(button => button.hasAttribute(target[0]) &&
+      button.getAttribute("data-lifestory-audio-label") === target[1] &&
+      !button.hasAttribute("disabled") && button.getAttribute("aria-disabled") !== "true");
+    return matches.length === 1 ? matches[0] : null;
   }
 
   // Label only existing, canonical continuation/inbox actions. A voice
@@ -921,6 +939,8 @@
       [button.getAttribute("data-lifestory-scene"), button.getAttribute("data-lifestory-choice"),
         button.getAttribute("data-lifestory-letter"), button.hasAttribute("disabled"),
         button.getAttribute("data-lifestory-continue"), button.getAttribute("data-mail-id"),
+        button.hasAttribute("data-lifestory-advance"), button.hasAttribute("data-lifestory-next-day"),
+        button.hasAttribute("data-lifestory-next-action"), button.getAttribute("aria-disabled"),
         button.getAttribute("data-choice-id"), button.textContent])]);
   }
 
@@ -988,7 +1008,7 @@
     recognition.maxAlternatives = 3;
     const session = { recognition, key: voiceSceneKey(panel) };
     voiceSession = session;
-    voiceMessage = "Lytter … si bare A, B, C eller bokstaven du velger.";
+    voiceMessage = "Lytter … si bare bokstaven, «gjenta» eller «pause».";
     updateVoiceControls(panel);
     recognition.onresult = (/** @type {any} */ event) => {
       if (voiceSession !== session) return;
@@ -1009,14 +1029,20 @@
       }
       if (command.kind === "stop") {
         handsFreeEnabled = false;
-        stopVoiceInput("Mikrofonen og håndfrimodus er avslått.");
+        audioEnabled = false;
+        audioKey = "";
+        stopVoiceInput("Lydboken er satt på pause. Start den igjen med lydknappen.");
+        stopStoryAudio();
+        updateAudioControls(panel, "Lydboken er satt på pause.");
         return;
       }
-      const button = voiceChoices(panel).find(item => item.getAttribute("data-lifestory-letter") === command.letter);
+      const button = command.kind === "choice"
+        ? voiceChoices(panel).find(item => item.getAttribute("data-lifestory-letter") === command.letter)
+        : voiceNavigationButton(panel, command.kind);
       if (!button || button.hasAttribute("disabled") || button.getAttribute("aria-disabled") === "true") {
         stopVoiceInput("Dette valget er ikke tilgjengelig."); return;
       }
-      stopVoiceInput("Du sa " + command.letter + ".");
+      stopVoiceInput(command.kind === "choice" ? "Du sa " + command.letter + "." : "Navigasjonskommando mottatt.");
       // Same delegated click as a touch or keyboard choice; no alternate game engine.
       /** @type {HTMLElement} */ (button).click();
     };
@@ -1282,6 +1308,8 @@
       : null;
     const markerSegment = marker && (force || marker.key !== narratedDayPhaseKey)
       ? {text: marker.text, speaker: ""} : null;
+    const navigationHints = [["advance", "fortsett"], ["nextDay", "neste dag"], ["inbox", "åpne innboksen"]]
+      .filter(([kind]) => voiceNavigationButton(panel, kind)).map(([, label]) => label);
     const segments = [
       {text: consequence ? "Konsekvens. " + consequence : "", speaker: ""},
       ...(markerSegment ? [markerSegment] : []),
@@ -1289,6 +1317,7 @@
       {text: story, speaker: mail ? "innboks" : isMessage ? sender : ""},
       ...recap.map(text => ({text, speaker:""})),
       ...choices.map(text => ({text, speaker:""})),
+      {text: voiceConstructor() && navigationHints.length ? "Du kan også si " + navigationHints.join(" eller ") + "." : "", speaker: ""},
       {text: buttons.some(button => !button.hasAttribute("disabled"))
         ? (handsFreeEnabled ? "Si bare bokstaven, eller trykk på svaret."
           : voiceConstructor() ? "Trykk på mikrofonen og si bare bokstaven, eller trykk på svaret." : "Velg et tilgjengelig svar på skjermen.")

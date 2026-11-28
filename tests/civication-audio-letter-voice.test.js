@@ -8,14 +8,15 @@ const start = source.indexOf("  /** @type {any} */ let voiceSession = null;");
 const end = source.indexOf("  function audioControlsHtml()", start);
 assert.ok(start > 0 && end > start);
 
-function setup({ dayActions = false } = {}) {
+function setup({ dayActions = false, navigation = [] } = {}) {
   const clicks = [];
   const buttons = ["A", "B", "C"].map(letter => ({
     disabled: letter === "C",
     textContent: letter + ". Choice",
-    hasAttribute(name) { return name === "disabled" && this.disabled; },
+    hasAttribute(name) { return (name === "disabled" && this.disabled) || navigation.some(n => n.letter === letter && n.attribute === name); },
     getAttribute(name) {
       if (name === "data-lifestory-letter") return letter;
+      if (name === "data-lifestory-audio-label") return navigation.find(n => n.letter === letter)?.label || null;
       if (name === "data-lifestory-scene") return dayActions ? null : "scene-1";
       if (name === "data-lifestory-choice") return dayActions ? null : letter;
       return null;
@@ -38,7 +39,7 @@ function setup({ dayActions = false } = {}) {
     window: { SpeechRecognition: Recognition, setTimeout: () => 1, clearTimeout() {} },
     document: { visibilityState: "visible", body: { classList: { contains: () => false } } },
     state, getPanel: () => panel, stopStoryAudio() {}, updateAudioControls() {},
-    audioEnabled: true, readStoryAudio() { repeated++; }
+    audioEnabled: true, audioKey: "active", readStoryAudio() { repeated++; }
   };
   const api = vm.runInNewContext("(function() {" + source.slice(start, end) +
     "; return {parseVoiceCommand, audioChoiceLetter, startVoiceInput, openHandsFreeAfterSpeech, voiceSceneKey, setHandsFree: value => { handsFreeEnabled = value; }}; })()", context);
@@ -48,7 +49,7 @@ function setup({ dayActions = false } = {}) {
     result.isFinal = true;
     rec.onresult({results: [result], resultIndex: 0});
   }
-  return { api, listen, answer, clicks, state, panel, repeated: () => repeated, aborted: () => aborted, started: () => started };
+  return { api, listen, answer, clicks, state, panel, repeated: () => repeated, aborted: () => aborted, started: () => started, audioEnabled: () => context.audioEnabled };
 }
 
 test("single letters and exact Norwegian letter names work", () => {
@@ -286,4 +287,40 @@ test("spoken calendar markers follow the actual day, authored phase and role", (
   assert.equal(marker(7, "", "worker", false), null);
   assert.match(source, /force \|\| marker\.key !== narratedDayPhaseKey/);
   assert.match(source, /if \(marker && segment === markerSegment\) narratedDayPhaseKey = marker\.key/);
+});
+
+
+test("navigation commands click only unique matching enabled existing actions", () => {
+  const navigation = [
+    {letter:"A", attribute:"data-lifestory-advance", label:"Fortsett dagen"},
+    {letter:"B", attribute:"data-lifestory-next-day", label:"Start neste dag"},
+    {letter:"C", attribute:"data-lifestory-next-action", label:"Åpne innboksen"}
+  ];
+  for (const [words, expected] of [["fortsett",["A"]],["neste dag",["B"]],["åpne innboksen",[]]]) {
+    const s = setup({dayActions:true,navigation});
+    s.answer(s.listen(), words);
+    assert.deepEqual(s.clicks, expected);
+  }
+  const other = setup({dayActions:true,navigation:[{letter:"B",attribute:"data-lifestory-next-day",label:"Fortsett privatlivet"}]});
+  other.answer(other.listen(), "neste dag");
+  assert.deepEqual(other.clicks, []);
+  const ambiguous = setup({dayActions:true,navigation});
+  ambiguous.answer(ambiguous.listen(), "fortsett", "neste dag");
+  assert.deepEqual(ambiguous.clicks, []);
+  const duplicate = setup({dayActions:true,navigation:[{letter:"A",attribute:"data-lifestory-advance",label:"Fortsett dagen"},{letter:"B",attribute:"data-lifestory-advance",label:"Fortsett dagen"}]});
+  duplicate.answer(duplicate.listen(),"fortsett");
+  assert.deepEqual(duplicate.clicks, []);
+  const scene = setup();
+  scene.answer(scene.listen(),"fortsett");
+  assert.deepEqual(scene.clicks, []);
+});
+
+test("pause disables narration and hands-free without choosing", () => {
+  const s = setup();
+  s.api.setHandsFree(true);
+  s.answer(s.listen(), "pause");
+  assert.equal(s.audioEnabled(), false);
+  assert.deepEqual(s.clicks, []);
+  s.api.openHandsFreeAfterSpeech(s.panel, s.api.voiceSceneKey(s.panel));
+  assert.equal(s.started(), 1);
 });
