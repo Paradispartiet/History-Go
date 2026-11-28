@@ -60,3 +60,19 @@ Først kartlegges kanonisk scene-ID, tråd, fase, forfattet tekst, avsender, rol
 - Velg en konkret eksisterende scene fra en av de dokumenterte historiene som visuell pilot; ikke konstruer en ny universell hovedperson.
 
 Status: første manifestinventar ferdig; full katalog, karakter-/kulissedesign, storyboard og filmproduksjon gjenstår.
+
+## Trinn 2 – fortsettelser og øvrige kilderegistre (2026-11-28)
+
+[Maskinlesbart kilderegister](CIVICATION_CINEMA_SOURCE_REGISTER.json) inneholder alle 45 fortsettelsesreferanser fra Arbeidsledig-rollens symposium, med opptelling fra hver faktisk JSON-fil, 21 rollebroer, 50 narrative streams, tre life-mail-pakker og seks næringslivsjobbmail-pakker. De siste registrene er foreløpig kun referanseinventar; ikke tell disse som ferdige, distinkte scener.
+
+| Fortsettelsesspor | Kapitler | Scener | Valg |
+| --- | ---: | ---: | ---: |
+| Frilansmusiker / Mira | 11 | 129 | 254 |
+| Sideprosjektbygger / Lea | 8 | 123 | 239 |
+| Frilanser / Lea | 11 | 138 | 262 |
+| Gründerdrømmer / Lea | 3 | 26 | 50 |
+| Miljøkontakten / Arvid | 12 | 143 | 277 |
+| **Fortsettelser totalt** | **45** | **559** | **1 082** |
+| **Grunnpakker + fortsettelser** | | **1 260** | **2 645** |
+
+Tallene gjelder rå forfattede scene-/valgoppføringer i de leste filene, ikke unike filmklipp eller alle mulige spillerforløp. Eksplisitte sted-ID-er i fortsettelsesfilene omfatter hjem, øvingsrom, prosjektbord og pub; feltet er ikke nødvendigvis den faktiske dramatiske kulissen. Karakterer og steder må også leses ut av situasjonsteksten. Neste trinn: opptelling av de 50 narrative stream-filene og øvrige jobbmail-manifester, kartlegging av kildeoverlapp og rollebesetning.
