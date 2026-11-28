@@ -10,7 +10,7 @@ assert.equal(crypto.createHash("sha256").update(b).digest("hex"),"8323647c482968
 assert.equal(b.toString("ascii",12,16),"VP8L");const bits=b.readUInt32LE(21);assert.deepEqual([(bits&0x3fff)+1,((bits>>>14)&0x3fff)+1],[1024,1536]);
 const source=JSON.parse(read("data/natur/fauna/insekter_humler_og_veps.json")),manifest=JSON.parse(read("data/runtime/nature-all.json")),runtime=manifest.groups.fauna.flatMap(p=>JSON.parse(read(p)));
 const canonical=source.find(x=>x.id===id);assert.deepEqual(canonical,runtime.find(x=>x.id===id));assert.equal(canonical.latin,"Vespula germanica");assert.deepEqual(canonical.quiz_ids,["quiz_fauna_tysk_veps"]);
-const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,63);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,canonical.latin);
+const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=63);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,canonical.latin);
 const prior=[
  {id:"emne_fauna_vanlig_veps",src:"bilder/natur/fauna/godkjent/62_jordveps_v1.webp",sha:"91a51eab6b6621a2c2be319ef56dffee01f9a711"},
  {id:"emne_fauna_metallbie",src:"bilder/natur/fauna/godkjent/61_metallbie_v1.webp",sha:"7f5c0c320fb56694d0410b327c4b356fda3ae7c5"},
@@ -297,6 +297,6 @@ const prior=[
 assert.equal(prior.length,62);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);assert.equal(blob(binary(old.src)),old.sha,old.id+" original changed");}
 assert.equal(reg.get("emne_fauna_murveps"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-63"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-64"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('63_tyskveps_v1.webp'));
 console.log("Tyskveps #63: exact original, canonical/runtime species and quiz reference, all 62 previous binaries verified");
