@@ -2,7 +2,7 @@
 type MapFeature = {
   type?: string;
   geometry: { type: string; coordinates: [number, number] };
-  properties: { slug?: string; name?: string; address?: string; cluster?: boolean; point_count?: number };
+  properties: { slug?: string; name?: string; address?: string;  };
 };
 type MapCatalog = { type: "FeatureCollection"; features: MapFeature[] };
 type MapEvent = { point?: unknown };
@@ -17,8 +17,7 @@ type FysenMap = {
   on: (event: string, handler: (event: MapEvent) => void) => unknown;
   off: (event: string, handler: (event: MapEvent) => void) => unknown;
   queryRenderedFeatures: (point: unknown, options: { layers: string[] }) => MapFeature[];
-  easeTo: (options: { center: [number, number]; zoom: number }) => unknown;
-  getZoom: () => number;
+
 };
 type FysenPopup = {
   remove: () => unknown;
@@ -37,11 +36,9 @@ const win = window as unknown as FysenWindow;
 const DATA_URL = "https://raw.githubusercontent.com/Paradispartiet/fysen/fysen-public-restaurant-map/restaurants.json";
 const APP_URL = "https://fysen.vercel.app/";
 const SOURCE = "hg-fysen-restaurants";
-const CLUSTERS = "hg-fysen-clusters";
-const COUNTS = "hg-fysen-cluster-count";
 const POINTS = "hg-fysen-points";
 const LABELS = "hg-fysen-labels";
-const layers = [LABELS, POINTS, COUNTS, CLUSTERS];
+const layers = [LABELS, POINTS];
 let enabled = false;
 let loading = false;
 let generation = 0;
@@ -95,23 +92,14 @@ function syncLayers() {
   if (!map || !enabled || !catalog || !map.getStyle?.()) return;
   try {
     if (!map.getSource(SOURCE)) {
-      map.addSource(SOURCE, { type: "geojson", data: catalog, cluster: true, clusterRadius: 48, clusterMaxZoom: 14 });
+      map.addSource(SOURCE, { type: "geojson", data: catalog, cluster: false });
     }
-    if (!map.getLayer(CLUSTERS)) map.addLayer({
-      id: CLUSTERS, type: "circle", source: SOURCE, filter: ["has", "point_count"],
-      paint: { "circle-color": "#277447", "circle-radius": ["step", ["get", "point_count"], 17, 25, 21, 100, 25], "circle-stroke-color": "#fff", "circle-stroke-width": 2 }
-    });
-    if (!map.getLayer(COUNTS)) map.addLayer({
-      id: COUNTS, type: "symbol", source: SOURCE, filter: ["has", "point_count"],
-      layout: { "text-field": ["to-string", ["get", "point_count"]], "text-size": 12 },
-      paint: { "text-color": "#fff", "text-halo-color": "#225e3b", "text-halo-width": 1 }
-    });
     if (!map.getLayer(POINTS)) map.addLayer({
-      id: POINTS, type: "circle", source: SOURCE, filter: ["!", ["has", "point_count"]],
+      id: POINTS, type: "circle", source: SOURCE,
       paint: { "circle-color": "#3e985d", "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 5, 16, 10], "circle-stroke-color": "#fff", "circle-stroke-width": 2 }
     });
     if (!map.getLayer(LABELS)) map.addLayer({
-      id: LABELS, type: "symbol", source: SOURCE, minzoom: 15, filter: ["!", ["has", "point_count"]],
+      id: LABELS, type: "symbol", source: SOURCE, minzoom: 15,
       layout: { "text-field": ["get", "name"], "text-size": 12, "text-anchor": "top", "text-offset": [0, 1.15], "text-max-width": 12 },
       paint: { "text-color": "#173825", "text-halo-color": "#fff", "text-halo-width": 1.5 }
     });
@@ -143,14 +131,11 @@ function openRestaurant(feature: MapFeature) {
 }
 function handleClick(event: MapEvent) {
   if (!enabled || !boundMap) return;
-  const activeLayers = [POINTS, CLUSTERS].filter(id => boundMap.getLayer(id));
+  const activeLayers = [POINTS].filter(id => boundMap.getLayer(id));
   if (!activeLayers.length) return;
   const feature = boundMap.queryRenderedFeatures(event.point, { layers: activeLayers })[0];
   if (!feature) return;
-  if (feature.properties?.cluster) {
-    removePopup();
-    boundMap.easeTo({ center: feature.geometry.coordinates, zoom: Math.min(18, boundMap.getZoom() + 2) });
-  } else openRestaurant(feature);
+  openRestaurant(feature);
 }
 function bindMap(map: FysenMap) {
   if (boundMap === map) return;
