@@ -10,7 +10,7 @@ assert.equal(crypto.createHash("sha256").update(b).digest("hex"),"e16b995ae666b7
 assert.equal(b.toString("ascii",12,16),"VP8L");const bits=b.readUInt32LE(21);assert.deepEqual([(bits&0x3fff)+1,((bits>>>14)&0x3fff)+1],[1024,1536]);
 const source=JSON.parse(read("data/natur/fauna/insekter_humler_og_veps.json")),manifest=JSON.parse(read("data/runtime/nature-all.json")),runtime=manifest.groups.fauna.flatMap(p=>JSON.parse(read(p)));
 const canonical=source.find(x=>x.id===id);assert.deepEqual(canonical,runtime.find(x=>x.id===id));assert.equal(canonical.latin,"Ancistrocerus-gruppen");assert.deepEqual(canonical.quiz_ids,["quiz_fauna_murveps"]);
-const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,65);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,canonical.latin);
+const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=65);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,canonical.latin);
 assert.equal(reg.get(id)?.depictedScientificName,"Ancistrocerus parietinus");assert.equal(reg.get(id)?.exampleLabel,a.exampleLabel);assert(a.exampleLabel.includes("én av flere murervepsarter"));
 const prior=[
  {id:"emne_fauna_roedveps",src:"bilder/natur/fauna/godkjent/64_roedveps_v1.webp",sha:"92c2ebb46f5f3095e96cd66e9e20acc7459f6653"},
@@ -299,7 +299,7 @@ const prior=[
 
 assert.equal(prior.length,64);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);assert.equal(blob(binary(old.src)),old.sha,old.id+" original changed");}
-assert.equal(reg.get("emne_fauna_graveveps"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-65"));
+assert.equal(reg.get("emne_fauna_sandveps"),null);
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-66"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('65_murveps_v1.webp'));
 console.log("Murveps #65: exact original, canonical/runtime species and quiz reference, all 64 previous binaries verified");

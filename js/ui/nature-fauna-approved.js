@@ -2,6 +2,17 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_graveveps:Object.freeze({
+   scientificName:"Sphecidae-typen",
+   depictedScientificName:"Ammophila sabulosa",
+   depictedName:"Nattflylarvegraver",
+   exampleLabel:"Bildet viser nattflylarvegraver (Ammophila sabulosa), én av flere gravevepsarter.",
+   src:"bilder/natur/fauna/godkjent/66_graveveps_v1.webp",
+   gitBlobSha:"1cb335e6ea12d03146a9f764ff9d5787a2b65d7a",
+   reviewedAt:"2026-11-28",
+   stage:"female_ammophila_example_long_thread_waist_red_black_abdomen_isolated_black_background",
+   evidence:"data/natur/fauna/illustration-quality-graveveps-20261128.json"
+  }),
   emne_fauna_murveps:Object.freeze({
    scientificName:"Ancistrocerus-gruppen",
    depictedScientificName:"Ancistrocerus parietinus",
