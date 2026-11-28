@@ -10,7 +10,7 @@ assert.equal(crypto.createHash("sha256").update(b).digest("hex"),"91cef6977f1c76
 assert.equal(b.toString("ascii",12,16),"VP8L");const bits=b.readUInt32LE(21);assert.deepEqual([(bits&0x3fff)+1,((bits>>>14)&0x3fff)+1],[1024,1536]);
 const source=JSON.parse(read("data/natur/fauna/insekter_humler_og_veps.json")),manifest=JSON.parse(read("data/runtime/nature-all.json")),runtime=manifest.groups.fauna.flatMap(p=>JSON.parse(read(p)));
 const canonical=source.find(x=>x.id===id);assert.deepEqual(canonical,runtime.find(x=>x.id===id));assert.equal(canonical.latin,"Vespula rufa");assert.deepEqual(canonical.quiz_ids,["quiz_fauna_roedveps"]);
-const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,64);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,canonical.latin);
+const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=64);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,canonical.latin);
 const prior=[
  {id:"emne_fauna_tysk_veps",src:"bilder/natur/fauna/godkjent/63_tyskveps_v1.webp",sha:"b272a9a79904c162facc627c15e2425283277d57"},
  {id:"emne_fauna_vanlig_veps",src:"bilder/natur/fauna/godkjent/62_jordveps_v1.webp",sha:"91a51eab6b6621a2c2be319ef56dffee01f9a711"},
@@ -297,7 +297,7 @@ const prior=[
 
 assert.equal(prior.length,63);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);assert.equal(blob(binary(old.src)),old.sha,old.id+" original changed");}
-assert.equal(reg.get("emne_fauna_murveps"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-64"));
+assert.equal(reg.get("emne_fauna_graveveps"),null);
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-65"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('64_roedveps_v1.webp'));
 console.log("Rødveps #64: exact original, canonical/runtime species and quiz reference, all 63 previous binaries verified");
