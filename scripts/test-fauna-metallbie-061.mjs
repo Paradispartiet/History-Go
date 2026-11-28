@@ -12,7 +12,7 @@ const canonical=JSON.parse(read("data/natur/fauna/insekter_humler_og_veps.json")
 const manifest=JSON.parse(read("data/runtime/nature-all.json"));const runtime=manifest.groups.fauna.flatMap(p=>JSON.parse(read(p))).find(x=>x.id===id);
 assert.deepEqual(canonical,runtime);assert.equal(canonical.latin,"Halictus / Lasioglossum-gruppen");assert.equal(canonical.taxonomy.latin_navn,"Halictus spp. / Lasioglossum spp.");assert.deepEqual(canonical.quiz_ids,["quiz_fauna_metallbie"]);
 const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;
-assert.equal(reg.count,61);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);assert.equal(reg.get(id)?.scientificName,canonical.taxonomy.latin_navn);
+assert(reg.count>=61);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.gitBlobSha,a.gitBlobSha);assert.equal(reg.get(id)?.scientificName,canonical.taxonomy.latin_navn);
 assert.equal(reg.get(id)?.depictedScientificName,"Lasioglossum morio");assert.equal(reg.get(id)?.exampleLabel,a.exampleLabel);assert(a.exampleLabel.includes("én av flere arter av jordbier og båndbier"));
 assert.equal(canonical.taxonomy.norsk_navn,"Jordbier og båndbier");assert(!canonical.title.includes("Buksebie"));
 const prior=[
@@ -299,6 +299,6 @@ const prior=[
 assert.equal(prior.length,60);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);assert.equal(blob(binary(old.src)),old.sha,old.id+" original changed");}
 assert.equal(reg.get("emne_fauna_murveps"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-61"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-62"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Metalljordbie")'));
 console.log("Metalljordbie #61: lossless original, explicit Lasioglossum morio exemplar, unchanged Halictus/Lasioglossum group/quiz reference and all 60 previous binaries preserved");

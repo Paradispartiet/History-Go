@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_vanlig_veps:Object.freeze({
+   scientificName:"Vespula vulgaris",
+   src:"bilder/natur/fauna/godkjent/62_jordveps_v1.webp",
+   gitBlobSha:"91a51eab6b6621a2c2be319ef56dffee01f9a711",
+   reviewedAt:"2026-11-28",
+   stage:"female_worker_yellow_black_anchor_face_short_cheeks_isolated_black_background",
+   evidence:"data/natur/fauna/illustration-quality-jordveps-20261128.json"
+  }),
   emne_fauna_metallbie:Object.freeze({
    scientificName:"Halictus spp. / Lasioglossum spp.",
    depictedScientificName:"Lasioglossum morio",
