@@ -365,3 +365,29 @@ test("listening focus is reversible, view-only and retains a visible exit", () =
   assert.match(css,/\[data-lifestory-listening="true"\] > \.civi-lifestory-panels,/);
   assert.doesNotMatch(css,/\[data-lifestory-listening="true"\][^{}]*\.civi-lifestory-choice[^{}]*\{[^}]*display:\s*none/);
 });
+
+
+test("audio preferences restore only bounded presentation settings", () => {
+  const start = source.indexOf("  const AUDIO_PREFS_KEY = ");
+  const end = source.indexOf("  function atmosphereConstructor()", start);
+  assert.ok(start > 0 && end > start);
+  const stored = [];
+  const context = { AUDIO_RATES: [0.75,0.95,1.15,1.35], ATMOSPHERE_LEVELS:[0.018,0.032,0.05],
+    audioRateIndex:1,audioCastEnabled:true,atmosphereLevel:1, audioEnabled:false,handsFreeEnabled:false,
+    window: {localStorage:{getItem:()=>JSON.stringify({version:1,rate:3,cast:false,level:2,audioEnabled:true,handsFreeEnabled:true}),setItem:(key,value)=>stored.push([key,JSON.parse(value)])}}
+  };
+  const api = vm.runInNewContext("(function() {" + source.slice(start,end) + "; return {parseAudioPreferences,saveAudioPreferences}; })()", context);
+  assert.equal(context.audioRateIndex,3);
+  assert.equal(context.audioCastEnabled,false);
+  assert.equal(context.atmosphereLevel,2);
+  assert.equal(context.audioEnabled,false);
+  assert.equal(context.handsFreeEnabled,false);
+  assert.equal(api.parseAudioPreferences("not json"),null);
+  assert.equal(api.parseAudioPreferences('{"version":2}'),null);
+  const defaults = api.parseAudioPreferences('{"version":1,"rate":-1,"cast":"false","level":99}');
+  assert.equal(defaults.rate,1);
+  assert.equal(defaults.cast,true);
+  assert.equal(defaults.level,1);
+  api.saveAudioPreferences();
+  assert.deepEqual(stored,[["civication.audio.preferences.v1",{version:1,rate:3,cast:false,level:2}]]);
+});
