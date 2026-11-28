@@ -1074,9 +1074,11 @@
     audioOwner = panel;
     if (!voiceSurfaceActive(panel)) {
       handsFreeEnabled = false;
+      audioEnabled = false;
       stopVoiceInput();
       stopStoryAudio();
       audioKey = "";
+      audioOwner = null;
       return;
     }
     const scene = panel.querySelector(".civi-lifestory-scene");
@@ -1113,9 +1115,11 @@
       if (generation !== audioGeneration || !audioEnabled) return;
       if (!voiceSurfaceActive(panel)) {
         handsFreeEnabled = false;
+        audioEnabled = false;
         stopVoiceInput();
         stopStoryAudio();
         audioKey = "";
+        audioOwner = null;
         return;
       }
       if (index >= segments.length) {
@@ -1213,6 +1217,18 @@
     audioOwner = null;
   }
 
+  // Popup dismissal may be managed by MiniSections rather than NextAction.close.
+  // Observe only visibility attributes, never transcript or message text.
+  if (typeof window.MutationObserver === "function" && document.body) {
+    const observer = new window.MutationObserver(() => {
+      if (!audioOwner || (!audioEnabled && !voiceSession) || voiceSurfaceActive(audioOwner)) return;
+      handsFreeEnabled = false; audioEnabled = false; audioKey = "";
+      stopVoiceInput(); stopStoryAudio(); updateAudioControls(audioOwner);
+      audioOwner = null;
+    });
+    observer.observe(document.body, { subtree: true, attributes: true,
+      attributeFilter: ["hidden", "aria-hidden", "class", "style"] });
+  }
   /** @type {any} */ (window).CivicationAudio = { syncInboxAudio, handleInboxAudioClick, closeInboxAudio };
   window.addEventListener("pagehide", () => {
     handsFreeEnabled = false; audioEnabled = false; audioKey = "";
@@ -1849,11 +1865,13 @@
     const focusedChoice = choiceActionDepth === 0 ? rememberChoiceFocus(panel, String(state.rolle)) : null;
 
     if (shellStoryUnavailable()) {
-      handsFreeEnabled = false;
-      audioEnabled = false;
-      audioKey = "";
-      stopStoryAudio();
-      stopVoiceInput();
+      if (!audioOwner || audioOwner === panel) {
+        handsFreeEnabled = false;
+        audioEnabled = false;
+        audioKey = "";
+        stopStoryAudio();
+        stopVoiceInput();
+      }
       panel.innerHTML = renderShellStoryHtml();
       window.CivicationWaveAInboxBridge?.sync?.();
       return;
