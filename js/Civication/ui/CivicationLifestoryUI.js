@@ -830,6 +830,8 @@
   /** @type {any} */ let voiceSession = null;
   /** @type {number|null} */ let voiceTimeout = null;
   let voiceMessage = "";
+  // Session-only, explicit opt-in. Never open a microphone on page load.
+  let handsFreeEnabled = false;
 
   function voiceConstructor() {
     const browser = /** @type {any} */ (window);
@@ -899,11 +901,29 @@
       button.textContent = voiceSession ? "■ Avbryt mikrofon" : "🎙 Svar med stemmen";
     }
     if (status) status.textContent = voiceMessage;
+    const handsFree = panel.querySelector("[data-lifestory-handsfree]");
+    if (handsFree) {
+      handsFree.setAttribute("aria-pressed", String(handsFreeEnabled));
+      handsFree.textContent = handsFreeEnabled ? "Håndfri: på" : "Håndfri: av";
+    }
+  }
+
+  /** @param {HTMLElement} panel @param {string} expectedKey */
+  function openHandsFreeAfterSpeech(panel, expectedKey) {
+    if (!handsFreeEnabled || !audioEnabled || voiceSession ||
+        !voiceSurfaceActive(panel) || voiceSceneKey(panel) !== expectedKey ||
+        !voiceChoices(panel).some(button => !button.hasAttribute("disabled") &&
+          !!button.getAttribute("data-lifestory-letter"))) return;
+    startVoiceInput(panel);
   }
 
   /** @param {HTMLElement} panel */
   function startVoiceInput(panel) {
-    if (voiceSession) { stopVoiceInput("Mikrofonen er avslått."); return; }
+    if (voiceSession) {
+      handsFreeEnabled = false;
+      stopVoiceInput("Mikrofonen og håndfrimodus er avslått.");
+      return;
+    }
     const Recognition = voiceConstructor();
     if (!Recognition || !voiceSurfaceActive(panel) || !voiceChoices(panel).length) return;
     stopStoryAudio();
@@ -936,7 +956,11 @@
         if (audioEnabled) readStoryAudio(panel, true);
         return;
       }
-      if (command.kind === "stop") { stopVoiceInput("Mikrofonen er avslått."); return; }
+      if (command.kind === "stop") {
+        handsFreeEnabled = false;
+        stopVoiceInput("Mikrofonen og håndfrimodus er avslått.");
+        return;
+      }
       const button = voiceChoices(panel).find(item => item.getAttribute("data-lifestory-letter") === command.letter);
       if (!button || button.hasAttribute("disabled") || button.getAttribute("aria-disabled") === "true") {
         stopVoiceInput("Dette valget er ikke tilgjengelig."); return;
@@ -969,7 +993,9 @@
       + '<small data-lifestory-audio-status role="status"></small>'
       + (voiceConstructor() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-voice aria-pressed="'
         + String(!!voiceSession) + '">' + (voiceSession ? "■ Avbryt mikrofon" : "🎙 Svar med stemmen") + '</button>'
-        + '<small>Mikrofonen aktiveres bare når du trykker. Nettleseren kan behandle tale via en nettjeneste.</small>'
+        + (audioSupported() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-handsfree aria-pressed="'
+          + String(handsFreeEnabled) + '">' + (handsFreeEnabled ? "Håndfri: på" : "Håndfri: av") + '</button>' : "")
+        + '<small>Med håndfri på åpnes mikrofonen automatisk etter opplesningen, i opptil 12 sekunder. Ellers åpnes den bare ved trykk. Nettleseren kan behandle tale via en nettjeneste.</small>'
         + '<small data-lifestory-voice-status role="status">' + escapeHtml(voiceMessage) + '</small>' : "")
       + '</div>';
   }
@@ -996,7 +1022,9 @@
   /** @param {HTMLElement} panel @param {boolean} [force] */
   function readStoryAudio(panel, force = false) {
     if (!audioEnabled || !audioSupported() || voiceSession) return;
-    if (document.visibilityState === "hidden" || document.body.classList.contains("civi-mapmode")) {
+    if (!voiceSurfaceActive(panel)) {
+      handsFreeEnabled = false;
+      stopVoiceInput();
       stopStoryAudio();
       audioKey = "";
       return;
@@ -1015,16 +1043,26 @@
     audioKey = key;
     stopStoryAudio();
     const generation = audioGeneration;
+    const spokenSceneKey = voiceSceneKey(panel);
     const segments = [consequence ? "Konsekvens. " + consequence : "",
       title, story, ...choices, scene && buttons.length
-        ? (voiceConstructor() ? "Trykk på mikrofonen og si bare bokstaven, eller trykk på svaret." : "Velg et tilgjengelig svar på skjermen.")
+        ? (handsFreeEnabled ? "Si bare bokstaven, eller trykk på svaret."
+          : voiceConstructor() ? "Trykk på mikrofonen og si bare bokstaven, eller trykk på svaret." : "Velg et tilgjengelig svar på skjermen.")
         : "Fortsett med handlingene som vises på skjermen."].filter(Boolean);
     let index = 0;
     function next() {
       if (generation !== audioGeneration || !audioEnabled) return;
+      if (!voiceSurfaceActive(panel)) {
+        handsFreeEnabled = false;
+        stopVoiceInput();
+        stopStoryAudio();
+        audioKey = "";
+        return;
+      }
       if (index >= segments.length) {
         audioUtterance = null;
         updateAudioControls(panel, "Opplesningen er ferdig.");
+        openHandsFreeAfterSpeech(panel, spokenSceneKey);
         return;
       }
       const utterance = new window.SpeechSynthesisUtterance(segments[index++]);
@@ -1034,21 +1072,27 @@
       utterance.onerror = () => {
         if (generation !== audioGeneration) return;
         audioUtterance = null;
+        handsFreeEnabled = false;
+        updateVoiceControls(panel);
         audioEnabled = false;
         audioKey = "";
         updateAudioControls(panel, "Opplesning utilgjengelig. Prøv igjen eller bruk svarboksene.");
       };
       audioUtterance = utterance;
       try { window.speechSynthesis.speak(utterance); }
-      catch { audioEnabled = false; audioKey = ""; stopStoryAudio(); updateAudioControls(panel, "Kunne ikke starte opplesning."); }
+      catch { handsFreeEnabled = false; updateVoiceControls(panel); audioEnabled = false; audioKey = ""; stopStoryAudio(); updateAudioControls(panel, "Kunne ikke starte opplesning."); }
     }
     updateAudioControls(panel, "Leser opp …");
     next();
   }
 
-  window.addEventListener("pagehide", () => { stopVoiceInput(); stopStoryAudio(); });
+  window.addEventListener("pagehide", () => {
+    handsFreeEnabled = false; audioEnabled = false; audioKey = "";
+    stopVoiceInput(); stopStoryAudio();
+  });
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState !== "hidden") return;
+    handsFreeEnabled = false;
     stopVoiceInput();
     audioEnabled = false;
     audioKey = "";
@@ -1677,6 +1721,7 @@
     const focusedChoice = choiceActionDepth === 0 ? rememberChoiceFocus(panel, String(state.rolle)) : null;
 
     if (shellStoryUnavailable()) {
+      handsFreeEnabled = false;
       audioEnabled = false;
       audioKey = "";
       stopStoryAudio();
@@ -1783,7 +1828,18 @@
         startVoiceInput(/** @type {HTMLElement} */ (panel));
         return;
       }
+      if (target.closest("[data-lifestory-handsfree]")) {
+        if (!audioSupported() || !voiceConstructor()) return;
+        handsFreeEnabled = !handsFreeEnabled;
+        stopVoiceInput();
+        if (handsFreeEnabled) {
+          audioEnabled = true;
+          readStoryAudio(/** @type {HTMLElement} */ (panel), true);
+        }
+        return;
+      }
       if (target.closest("[data-lifestory-audio-toggle]")) {
+        handsFreeEnabled = false;
         stopVoiceInput();
         audioEnabled = !audioEnabled && audioSupported();
         audioKey = "";
@@ -1805,9 +1861,11 @@
         const staysInMinDag = !choice?.handling;
         if (typeof stopVoiceInput === "function" && voiceSession) stopVoiceInput();
         if (!staysInMinDag && typeof audioEnabled !== "undefined" && audioEnabled) {
+          handsFreeEnabled = false;
           audioEnabled = false;
           audioKey = "";
           stopStoryAudio();
+          updateVoiceControls(/** @type {HTMLElement} */ (panel));
           updateAudioControls(/** @type {HTMLElement} */ (panel));
         }
         const accepted = onChoose(sceneId, choiceId);
