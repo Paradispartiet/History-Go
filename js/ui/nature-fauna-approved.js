@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_roedveps:Object.freeze({
+   scientificName:"Vespula rufa",
+   src:"bilder/natur/fauna/godkjent/64_roedveps_v1.webp",
+   gitBlobSha:"92c2ebb46f5f3095e96cd66e9e20acc7459f6653",
+   reviewedAt:"2026-11-28",
+   stage:"female_worker_red_first_two_abdominal_segments_anchor_face_isolated_black_background",
+   evidence:"data/natur/fauna/illustration-quality-roedveps-20261128.json"
+  }),
   emne_fauna_tysk_veps:Object.freeze({
    scientificName:"Vespula germanica",
    src:"bilder/natur/fauna/godkjent/63_tyskveps_v1.webp",
