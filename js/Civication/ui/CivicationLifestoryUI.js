@@ -1032,13 +1032,48 @@
     } catch { stopVoiceInput("Kunne ikke starte mikrofonen. Bruk svarboksene."); }
   }
 
+  // Browser voices differ by device. Prefer Norwegian voices, never
+  // infer a real person's voice, age or gender from a name.
+  const AUDIO_RATES = [0.75, 0.95, 1.15, 1.35];
+  let audioRateIndex = 1;
+  let audioCastEnabled = true;
+
+  /** @param {SpeechSynthesisVoice[]} voices @param {string} speaker */
+  function chooseStoryVoice(voices, speaker) {
+    const norwegian = voices.filter(voice => /^(nb|nn|no)(-|_|$)/i.test(voice.lang))
+      .sort((a, b) => Number(b.localService) - Number(a.localService)
+        || a.voiceURI.localeCompare(b.voiceURI));
+    if (!norwegian.length) return null;
+    if (!speaker || norwegian.length === 1) return norwegian[0];
+    let hash = 0;
+    for (const character of speaker) hash = (Math.imul(hash, 31) + character.codePointAt(0)) >>> 0;
+    return norwegian[1 + hash % (norwegian.length - 1)];
+  }
+
+  /** @param {HTMLElement} panel @param {HTMLElement} target */
+  function handleAudioPreferences(panel, target) {
+    const rate = target.closest("[data-lifestory-audio-rate]");
+    const cast = target.closest("[data-lifestory-audio-cast]");
+    if (!rate && !cast) return false;
+    if (rate) audioRateIndex = (audioRateIndex + 1) % AUDIO_RATES.length;
+    if (cast) audioCastEnabled = !audioCastEnabled;
+    updateAudioControls(panel);
+    // Never open a microphone or start playback just by changing settings.
+    // A running narration uses the new preference at its next segment.
+    return true;
+  }
+
   function audioControlsHtml() {
     if (!audioSupported() && !voiceConstructor()) return "";
     return '<div class="civi-lifestory-choices" data-lifestory-audio-controls aria-label="Lydbok">'
       + (audioSupported() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-toggle aria-pressed="'
       + String(audioEnabled) + '">' + (audioEnabled ? "⏸ Stopp lydbok" : "🎧 Lytt til Min dag") + '</button>'
       + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-repeat'
-      + (audioEnabled ? "" : " hidden") + '>Les på nytt</button>' : "")
+      + (audioEnabled ? "" : " hidden") + '>Les på nytt</button>'
+      + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-rate>Lesehastighet: '
+        + String(AUDIO_RATES[audioRateIndex]).replace(".", ",") + '×</button>'
+      + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-cast aria-pressed="'
+        + String(audioCastEnabled) + '">' + (audioCastEnabled ? "Ulike stemmer: på" : "Ulike stemmer: av") + '</button>' : "")
       + '<small data-lifestory-audio-status role="status"></small>'
       + (voiceConstructor() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-voice aria-pressed="'
         + String(!!voiceSession) + '">' + (voiceSession ? "■ Avbryt mikrofon" : "🎙 Svar med stemmen") + '</button>'
@@ -1060,6 +1095,13 @@
     }
     if (repeat) /** @type {HTMLElement} */ (repeat).hidden = !audioEnabled;
     if (status) status.textContent = message;
+    const rate = panel.querySelector("[data-lifestory-audio-rate]");
+    const cast = panel.querySelector("[data-lifestory-audio-cast]");
+    if (rate) rate.textContent = "Lesehastighet: " + String(AUDIO_RATES[audioRateIndex]).replace(".", ",") + "×";
+    if (cast) {
+      cast.setAttribute("aria-pressed", String(audioCastEnabled));
+      cast.textContent = audioCastEnabled ? "Ulike stemmer: på" : "Ulike stemmer: av";
+    }
   }
 
   function stopStoryAudio() {
@@ -1105,11 +1147,21 @@
     stopStoryAudio();
     const generation = audioGeneration;
     const spokenSceneKey = voiceSceneKey(panel);
-    const segments = [consequence ? "Konsekvens. " + consequence : "",
-      title, story, ...recap, ...choices, buttons.some(button => !button.hasAttribute("disabled"))
+    const sender = scene?.getAttribute("data-lifestory-speaker") || "";
+    // Only authored messages with a sender get a character voice. The
+    // narrator reads scene descriptions and choices; no invented dialogue.
+    const isMessage = scene?.getAttribute("data-lifestory-spoken-message") === "true";
+    const segments = [
+      {text: consequence ? "Konsekvens. " + consequence : "", speaker: ""},
+      {text: title, speaker: ""},
+      {text: story, speaker: mail ? "innboks" : isMessage ? sender : ""},
+      ...recap.map(text => ({text, speaker:""})),
+      ...choices.map(text => ({text, speaker:""})),
+      {text: buttons.some(button => !button.hasAttribute("disabled"))
         ? (handsFreeEnabled ? "Si bare bokstaven, eller trykk på svaret."
           : voiceConstructor() ? "Trykk på mikrofonen og si bare bokstaven, eller trykk på svaret." : "Velg et tilgjengelig svar på skjermen.")
-        : "Fortsett med handlingene som vises på skjermen."].filter(Boolean);
+        : "Fortsett med handlingene som vises på skjermen.", speaker: ""}
+    ].filter(segment => segment.text);
     let index = 0;
     function next() {
       if (generation !== audioGeneration || !audioEnabled) return;
@@ -1128,9 +1180,12 @@
         openHandsFreeAfterSpeech(panel, spokenSceneKey);
         return;
       }
-      const utterance = new window.SpeechSynthesisUtterance(segments[index++]);
-      utterance.lang = "nb-NO";
-      utterance.rate = 0.95;
+      const segment = segments[index++];
+      const utterance = new window.SpeechSynthesisUtterance(segment.text);
+      const voice = chooseStoryVoice(window.speechSynthesis.getVoices?.() || [], audioCastEnabled ? segment.speaker : "");
+      if (voice) utterance.voice = voice;
+      utterance.lang = voice?.lang || "nb-NO";
+      utterance.rate = AUDIO_RATES[audioRateIndex];
       utterance.onend = next;
       utterance.onerror = () => {
         if (generation !== audioGeneration) return;
@@ -1189,6 +1244,7 @@
 
   /** @param {HTMLElement} panel @param {HTMLElement} target */
   function handleInboxAudioClick(panel, target) {
+    if (handleAudioPreferences(panel, target)) return true;
     const command = target.closest("[data-lifestory-voice], [data-lifestory-audio-toggle], [data-lifestory-audio-repeat], [data-lifestory-handsfree]");
     if (!command) {
       if (target.closest("[data-civi-next-action-answer], [data-civi-next-action-open-queued], [data-civi-next-action-acknowledge], [data-civi-next-action-advance]") && audioOwner === panel) {
@@ -1273,7 +1329,8 @@
         + "</button>";
     }).join("");
     return ""
-      + "<article class=\"civi-lifestory-scene\" aria-label=\"Nå-scene\">"
+      + "<article class=\"civi-lifestory-scene\" aria-label=\"Nå-scene\" data-lifestory-speaker=\"" + escapeHtml(scene.avsender || "") + "\""
+      + " data-lifestory-spoken-message=\"" + String(!!scene.avsender && /^(melding|sms|mail|e-post|telefon|dialog|samtale|brev)$/i.test(String(scene.visningstype || ""))) + "\">"
       + "<div class=\"civi-lifestory-kicker\"><span>NÅ</span><span>" + escapeHtml(viewPhaseName(scene.fase)) + "</span><span>" + escapeHtml(scene.visningstype) + "</span>" + (scene.avsender ? "<span>Fra " + escapeHtml(personNavn(scene.avsender)) + "</span>" : "") + "</div>"
       + "<h3>" + escapeHtml(scene.tittel) + "</h3>"
       + "<p>" + escapeHtml(scene.tekst) + "</p>"
@@ -1966,6 +2023,7 @@
     /** @type {any} */ (panel)._lifestoryBound = true;
     panel.addEventListener("click", (event) => {
       const target = /** @type {HTMLElement} */ (event.target);
+      if (typeof handleAudioPreferences === "function" && handleAudioPreferences(/** @type {HTMLElement} */ (panel), target)) return;
       if (target.closest("[data-lifestory-voice]")) {
         if (audioOwner && audioOwner !== panel) { stopVoiceInput(); stopStoryAudio(); audioKey = ""; }
         audioOwner = /** @type {HTMLElement} */ (panel);
