@@ -268,3 +268,22 @@ test("explicit inbox handoff survives delayed mail loading but not cancellation 
     assert.equal(context.pendingInboxAudio, null, variant);
   }
 });
+
+
+test("spoken calendar markers follow the actual day, authored phase and role", () => {
+  const start = source.indexOf("  function audioDayPhase(");
+  const end = source.indexOf("  /** @param {HTMLElement} panel @param {boolean} [force] */", start);
+  assert.ok(start > 0 && end > start);
+  const marker = vm.runInNewContext("(function() {" + source.slice(start, end) + "; return audioDayPhase; })()");
+  const morning = marker(7, "Morgen", "worker", false);
+  assert.equal(morning.text, "Dag 7. Morgen.");
+  assert.equal(marker(7, "Morgen", "worker", false).key, morning.key);
+  assert.notEqual(marker(7, "Dag", "worker", false).key, morning.key);
+  assert.notEqual(marker(8, "Morgen", "worker", false).key, morning.key);
+  assert.notEqual(marker(7, "Morgen", "student", false).key, morning.key);
+  assert.equal(marker(7, "Kveld", "worker", true).text, "Dag 7. Dagens oppsummering.");
+  assert.equal(marker(0, "Morgen", "worker", false), null);
+  assert.equal(marker(7, "", "worker", false), null);
+  assert.match(source, /force \|\| marker\.key !== narratedDayPhaseKey/);
+  assert.match(source, /if \(marker && segment === markerSegment\) narratedDayPhaseKey = marker\.key/);
+});
