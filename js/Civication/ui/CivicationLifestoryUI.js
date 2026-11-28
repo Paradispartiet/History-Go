@@ -836,16 +836,30 @@
     return browser.SpeechRecognition || browser.webkitSpeechRecognition;
   }
 
+  // Keep the same letter on the screen, in the spoken prompt and in
+  // recognition. Disabled choices retain their original position.
+  const AUDIO_CHOICE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
+  /** @param {number} index */
+  function audioChoiceLetter(index) {
+    return AUDIO_CHOICE_LETTERS[index] || "";
+  }
+
   /** @param {string} raw */
   function parseVoiceCommand(raw) {
-    const phrase = raw.toLocaleLowerCase("nb-NO").trim().replace(/[.!?]+$/g, "").replace(/\s+/g, " ");
+    const phrase = raw.toLocaleLowerCase("nb-NO").trim().replace(/[.!?,]+$/g, "").replace(/\s+/g, " ");
     if (/^(gjenta|gjenta alternativene|les på nytt)$/.test(phrase)) return { kind: "repeat" };
     if (/^(stopp|avbryt|pause)$/.test(phrase)) return { kind: "stop" };
-    const match = /^(?:alternativ|valg|nummer) (\d{1,2}|en|én|ett|to|tre|fire|fem|seks|sju|syv|åtte|ni|ti)$/.exec(phrase);
-    if (!match) return null;
-    const words = /** @type {Record<string,number>} */ ({en:1, "én":1, ett:1, to:2, tre:3, fire:4, fem:5, seks:6, sju:7, syv:7, "åtte":8, ni:9, ti:10});
-    const number = words[match[1]] || Number(match[1]);
-    return number > 0 ? {kind:"choice", number} : null;
+    const token = phrase.replace(/^(?:alternativ|valg|bokstav) /, "");
+    // Norwegian recognizers sometimes transcribe the name of a letter
+    // as a word. Accept only exact letter names, never arbitrary sentences.
+    const names = /** @type {Record<string,string>} */ ({
+      be:"B", se:"C", de:"D", eff:"F", ge:"G", "hå":"H", "jå":"J", "je":"J",
+      "kå":"K", ell:"L", em:"M", enn:"N", pe:"P", ku:"Q", err:"R", ess:"S",
+      te:"T", ve:"V", dobbeltve:"W", eks:"X", sett:"Z"
+    });
+    const upper = token.toLocaleUpperCase("nb-NO");
+    const letter = upper.length === 1 && AUDIO_CHOICE_LETTERS.includes(upper) ? upper : names[token];
+    return typeof letter === "string" && letter.length === 1 ? {kind:"choice", letter} : null;
   }
 
   /** @param {HTMLElement} panel */
@@ -903,7 +917,7 @@
     recognition.maxAlternatives = 3;
     const session = { recognition, key: voiceSceneKey(panel) };
     voiceSession = session;
-    voiceMessage = "Lytter … si for eksempel «alternativ to».";
+    voiceMessage = "Lytter … si bare A, B, C eller bokstaven du velger.";
     updateVoiceControls(panel);
     recognition.onresult = (/** @type {any} */ event) => {
       if (voiceSession !== session) return;
@@ -915,7 +929,7 @@
       const commands = Array.from(result, (/** @type {any} */ item) => parseVoiceCommand(String(item.transcript || "")));
       const command = commands[0];
       if (!command || commands.some(other => JSON.stringify(other) !== JSON.stringify(command))) {
-        stopVoiceInput("Uklart svar. Si «alternativ» og nummeret, eller bruk svarboksene."); return;
+        stopVoiceInput("Uklart svar. Si bare bokstaven, for eksempel B, eller trykk svarboksen."); return;
       }
       if (command.kind === "repeat") {
         stopVoiceInput();
@@ -923,11 +937,11 @@
         return;
       }
       if (command.kind === "stop") { stopVoiceInput("Mikrofonen er avslått."); return; }
-      const button = voiceChoices(panel)[(command.number || 0) - 1];
+      const button = voiceChoices(panel).find(item => item.getAttribute("data-lifestory-letter") === command.letter);
       if (!button || button.hasAttribute("disabled") || button.getAttribute("aria-disabled") === "true") {
         stopVoiceInput("Dette valget er ikke tilgjengelig."); return;
       }
-      stopVoiceInput("Alternativ " + command.number + " registrert.");
+      stopVoiceInput("Du sa " + command.letter + ".");
       // Same delegated click as a touch or keyboard choice; no alternate game engine.
       /** @type {HTMLElement} */ (button).click();
     };
@@ -992,7 +1006,7 @@
     const buttons = Array.from(scene?.querySelectorAll("[data-lifestory-choice]") || []);
     const title = scene?.querySelector("h3")?.textContent?.trim() || "";
     const story = scene?.querySelector("p")?.textContent?.trim() || "";
-    const choices = buttons.map((button, index) => "Alternativ " + (index + 1) + ". "
+    const choices = buttons.map(button => "Alternativ "
       + (button.querySelector("span")?.textContent?.trim() || "")
       + (button.hasAttribute("disabled") ? ". Ikke tilgjengelig. " + (button.querySelector(".civi-lifestory-skill-hint")?.textContent || "") : ""));
     const key = JSON.stringify([state?.rolle, state?.dag, state?.fase,
@@ -1003,7 +1017,7 @@
     const generation = audioGeneration;
     const segments = [consequence ? "Konsekvens. " + consequence : "",
       title, story, ...choices, scene && buttons.length
-        ? "Velg et tilgjengelig svar på skjermen."
+        ? (voiceConstructor() ? "Trykk på mikrofonen og si bare bokstaven, eller trykk på svaret." : "Velg et tilgjengelig svar på skjermen.")
         : "Fortsett med handlingene som vises på skjermen."].filter(Boolean);
     let index = 0;
     function next() {
@@ -1049,7 +1063,8 @@
     const ts = state.threadState[scene.threadId];
     const representative = state.personRepresentanter?.[scene.avsender];
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
-    const valgHtml = (scene.valg || []).map((valg) => {
+    const valgHtml = (scene.valg || []).map((valg, index) => {
+      const letter = audioChoiceLetter(index);
       const required = valg.skills_requirement;
       const status = Runner.getChoiceAvailability(valg);
       const detail = !required ? "" : status.available
@@ -1058,9 +1073,10 @@
           + (status.measured ? status.score + " / 100" : "ikke målt Skills");
       return "<button class=\"civi-lifestory-choice\" type=\"button\" data-lifestory-scene=\"" + escapeHtml(scene.id) + "\""
         + " data-lifestory-choice=\"" + escapeHtml(valg.id) + "\""
+        + " data-lifestory-letter=\"" + escapeHtml(letter) + "\""
         + (valg.handling ? " data-lifestory-navigates=\"true\"" : "")
         + (status.available ? "" : " disabled aria-disabled=\"true\"") + ">"
-        + "<span>" + escapeHtml(valg.tekst) + "</span>"
+        + "<span>" + (letter ? escapeHtml(letter) + ". " : "") + escapeHtml(valg.tekst) + "</span>"
         + (valg.tone ? " <small>" + escapeHtml(valg.tone) + "</small>" : "")
         + (required ? " <small class=\"civi-lifestory-skill-hint\">" + escapeHtml(detail) + "</small>" : "")
         + (/** @type {any} */ (valg).handling ? " <small class=\"civi-lifestory-action-hint\">→ "
