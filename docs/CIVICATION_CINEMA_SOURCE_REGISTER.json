@@ -7,7 +7,7 @@
     "data/Civication/lifeMails/life_manifest.json",
     "data/Civication/jobbmails/naeringsliv/naer_manifest.json"
   ],
-  "scope": "All 45 continuation files and 50 narrative stream files read and counted. Remaining role-world and mail records are declared references only. Counts are raw authored entries, not deduplicated playable stories.",
+  "scope": "45 continuation and 50 narrative files counted; all 244 role-world references indexed, individual worlds not yet inspected comprehensively; life-mail and selected job-mail catalogs counted separately; counts are raw source entries and may overlap.",
   "continuations": [
     {
       "id": "musikk_med_mira",
@@ -2113,7 +2113,10 @@
     },
     "role_worlds": 244,
     "career_role_worlds": 85,
-    "life_position_role_worlds": 159
+    "life_position_role_worlds": 159,
+    "life_mail_entries": 11,
+    "life_mail_choices": 22,
+    "life_mail_verified_packs": 3
   },
   "role_world_index": {
     "path": "data/Civication/roleWorlds/index.json",
@@ -4162,5 +4165,99 @@
         "life_position": 4
       }
     }
-  }
+  },
+  "mail_catalog_samples": [
+    {
+      "id": "arbeidsledig",
+      "path": "data/Civication/lifeMails/arbeidsledig/arbeidsledig_life.json",
+      "kind": "life_mail",
+      "sha": "28cafcb4b0e1179ceb428638458345b9e9e470f4",
+      "mails": 5,
+      "choices": 10,
+      "families": 3,
+      "senders": [
+        "nav_veileder",
+        "nav_meldekort",
+        "arbeidsgiver_auto",
+        "bemanning_konsulent",
+        "egen_kalender"
+      ]
+    },
+    {
+      "id": "alkohol_risk",
+      "path": "data/Civication/lifeMails/alkohol/alkohol_risk_life.json",
+      "kind": "life_mail",
+      "sha": "8ca8683bf6b9282e2b0151e074a23c8998475442",
+      "mails": 3,
+      "choices": 6,
+      "families": 2,
+      "senders": [
+        "marius_venn",
+        "fastlegekontor",
+        "kortvarsling"
+      ]
+    },
+    {
+      "id": "subkultur_skurk",
+      "path": "data/Civication/lifeMails/subkultur/subkultur_skurk_life.json",
+      "kind": "life_mail",
+      "sha": "b49a8b671a0edf348ddaa76f18695033c8f4136b",
+      "mails": 3,
+      "choices": 6,
+      "families": 2,
+      "senders": [
+        "ukjent_nummer",
+        "crew_chat",
+        "nabolag_rykte"
+      ]
+    },
+    {
+      "id": "naeringsliv_legacy",
+      "path": "data/Civication/jobbmails/naeringsliv/naeringslivCivic.json",
+      "kind": "legacy_job_mail",
+      "sha": "a664dfd32afe2d1c674b90c7c65fd024c52af11b",
+      "mails": 19,
+      "choices": 45,
+      "families": null,
+      "senders": []
+    },
+    {
+      "id": "ekspeditor_job",
+      "path": "data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json",
+      "kind": "job_family",
+      "sha": "99c56c5189a2db431e4f7c6de3812311eff2c240",
+      "mails": 31,
+      "choices": 75,
+      "families": 9,
+      "senders": [
+        "marit_butikkleder",
+        "ole_skiftleder",
+        "sara_kollega"
+      ]
+    },
+    {
+      "id": "renholder_job",
+      "path": "data/Civication/mailFamilies/naeringsliv/job/renholder_job.json",
+      "kind": "job_family",
+      "sha": "2cb552d7357cd9bd2654990db616b63149a5d8b4",
+      "mails": 24,
+      "choices": 74,
+      "families": 5,
+      "senders": [
+        "system",
+        "driftsleder_renhold",
+        "hms_koordinator",
+        "kari_driftsleder",
+        "amina_erfaren_renholder",
+        "leo_ny_vikar",
+        "sindre_kontoransatt",
+        "elin_leder",
+        "mira_elev",
+        "ole_verneombud",
+        "tove_kantine_drift",
+        "jan_vaktmester",
+        "grete_skadet_kollega"
+      ]
+    }
+  ]
 }
