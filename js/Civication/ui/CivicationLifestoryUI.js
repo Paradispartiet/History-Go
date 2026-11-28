@@ -822,6 +822,7 @@
   let audioKey = "";
   let narratedDayPhaseKey = "";
   let audioGeneration = 0;
+  let audioPauseTimer = 0;
   /** @type {SpeechSynthesisUtterance|null} */
   let audioUtterance = null;
 
@@ -1315,6 +1316,8 @@
   function stopStoryAudio() {
     stopAtmosphere();
     audioGeneration += 1;
+    window.clearTimeout(audioPauseTimer);
+    audioPauseTimer = 0;
     if (audioUtterance && audioSupported()) window.speechSynthesis.cancel();
     audioUtterance = null;
   }
@@ -1375,21 +1378,22 @@
         viewPhaseName(state.fase), String(state.rolle || ""), !!summary)
       : null;
     const markerSegment = marker && (force || marker.key !== narratedDayPhaseKey)
-      ? {text: marker.text, speaker: ""} : null;
+      ? {text: marker.text, speaker: "", pauseBefore: 460} : null;
     const navigationHints = [["advance", "fortsett"], ["nextDay", "neste dag"], ["inbox", "åpne innboksen"]]
       .filter(([kind]) => voiceNavigationButton(panel, kind)).map(([, label]) => label);
     const segments = [
       {text: consequence ? "Konsekvens. " + consequence : "", speaker: ""},
       ...(markerSegment ? [markerSegment] : []),
-      {text: title, speaker: ""},
-      {text: story, speaker: mail ? "innboks" : isMessage ? sender : ""},
-      ...recap.map(text => ({text, speaker:""})),
-      ...choices.map(text => ({text, speaker:""})),
+      {text: title, speaker: "", pauseBefore: 420},
+      {text: story, speaker: mail ? "innboks" : isMessage ? sender : "", pauseBefore: 360},
+      ...recap.map(text => ({text, speaker: "", pauseBefore: 300})),
+      {text: choices.length ? "Alternativer." : "", speaker: "", pauseBefore: 600},
+      ...choices.map(text => ({text, speaker: "", pauseBefore: 380})),
       {text: voiceConstructor() && navigationHints.length ? "Du kan også si " + navigationHints.join(" eller ") + "." : "", speaker: ""},
       {text: buttons.some(button => !button.hasAttribute("disabled"))
         ? (handsFreeEnabled ? "Si bare bokstaven, eller trykk på svaret."
           : voiceConstructor() ? "Trykk på mikrofonen og si bare bokstaven, eller trykk på svaret." : "Velg et tilgjengelig svar på skjermen.")
-        : "Fortsett med handlingene som vises på skjermen.", speaker: ""}
+        : "Fortsett med handlingene som vises på skjermen.", speaker: "", pauseBefore: 420}
     ].filter(segment => segment.text);
     let index = 0;
     function next() {
@@ -1420,7 +1424,16 @@
         // Only a completed, current utterance counts as an announced phase.
         if (generation !== audioGeneration || !audioEnabled) return;
         if (marker && segment === markerSegment) narratedDayPhaseKey = marker.key;
-        next();
+        const following = segments[index];
+        if (!following) {
+          next();
+          return;
+        }
+        const pause = following.speaker !== segment.speaker ? Math.max(520, following.pauseBefore ?? 0) : following.pauseBefore ?? 240;
+        audioPauseTimer = window.setTimeout(() => {
+          audioPauseTimer = 0;
+          next();
+        }, pause);
       };
       utterance.onerror = () => {
         if (generation !== audioGeneration) return;
