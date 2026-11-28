@@ -239,7 +239,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
         headerFits: !!h && !!l && !!a && a.right <= h.right + 2 && l.right <= a.left + 2,
         artSize: a ? { width: a.width, height: a.height } : null,
         sceneVisible: !!scene && (globalThis as any).getComputedStyle(scene).display !== 'none',
-        choiceCount: doc.querySelectorAll(selector).length
+        choiceCount: doc.querySelectorAll('#civiLifestoryPanel [data-lifestory-choice]').length
       };
     });
     assert.match(minDag.phase, /^Fase: \S/, 'Min dag shows the real game phase');
@@ -268,7 +268,7 @@ export default async function verifyCivicationVisualQa(browser: any, origin: str
     assert.ok(choiceCount > 0, 'Min dag exposes at least one decision');
     const choiceLayout = await page.evaluate((selector: string) => {
       const doc = (globalThis as any).document;
-      const buttons = Array.from(doc.querySelectorAll('#civiLifestoryPanel [data-lifestory-choice]')) as any[];
+      const buttons = Array.from(doc.querySelectorAll(selector)) as any[];
       return buttons.map(button => {
         const rect = button.getBoundingClientRect();
         const style = (globalThis as any).getComputedStyle(button);
