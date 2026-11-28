@@ -27,9 +27,10 @@ function setup() {
   let recognition;
   let repeated = 0;
   let aborted = 0;
+  let started = 0;
   class Recognition {
     constructor() { recognition = this; }
-    start() {}
+    start() { started++; }
     abort() { aborted++; }
   }
   const state = { rolle: "worker", dag: 1, fase: "morgen" };
@@ -40,14 +41,14 @@ function setup() {
     audioEnabled: true, readStoryAudio() { repeated++; }
   };
   const api = vm.runInNewContext("(function() {" + source.slice(start, end) +
-    "; return {parseVoiceCommand, audioChoiceLetter, startVoiceInput}; })()", context);
+    "; return {parseVoiceCommand, audioChoiceLetter, startVoiceInput, openHandsFreeAfterSpeech, voiceSceneKey, setHandsFree: value => { handsFreeEnabled = value; }}; })()", context);
   function listen() { api.startVoiceInput(panel); return recognition; }
   function answer(rec, ...words) {
     const result = words.map(transcript => ({transcript}));
     result.isFinal = true;
     rec.onresult({results: [result], resultIndex: 0});
   }
-  return { api, listen, answer, clicks, state, panel, repeated: () => repeated, aborted: () => aborted };
+  return { api, listen, answer, clicks, state, panel, repeated: () => repeated, aborted: () => aborted, started: () => started };
 }
 
 test("single letters and exact Norwegian letter names work", () => {
@@ -92,4 +93,37 @@ test("letter attribute and visible label share the same position", () => {
   assert.match(source, /const letter = audioChoiceLetter\(index\)/);
   assert.match(source, /data-lifestory-letter=/);
   assert.match(source, /escapeHtml\(letter\) \+ "\. "/);
+});
+
+test("automatic microphone opens only after explicit hands-free opt-in and matching scene", () => {
+  const s = setup();
+  const key = s.api.voiceSceneKey(s.panel);
+  s.api.openHandsFreeAfterSpeech(s.panel, key);
+  assert.equal(s.started(), 0);
+  s.api.setHandsFree(true);
+  s.api.openHandsFreeAfterSpeech(s.panel, key);
+  assert.equal(s.started(), 1);
+  // An existing listening session cannot be restarted by a second completion.
+  s.api.openHandsFreeAfterSpeech(s.panel, key);
+  assert.equal(s.started(), 1);
+  assert.equal(s.aborted(), 0);
+  // Manual press while listening stops and disables hands-free.
+  s.api.startVoiceInput(s.panel);
+  assert.equal(s.aborted(), 1);
+  s.api.openHandsFreeAfterSpeech(s.panel, key);
+  assert.equal(s.started(), 1);
+  assert.equal(s.aborted(), 1);
+});
+
+test("hands-free rejects an outdated scene or hidden surface", () => {
+  const s = setup();
+  s.api.setHandsFree(true);
+  const key = s.api.voiceSceneKey(s.panel);
+  s.state.dag++;
+  s.api.openHandsFreeAfterSpeech(s.panel, key);
+  s.panel.isConnected = false;
+  s.api.openHandsFreeAfterSpeech(s.panel, s.api.voiceSceneKey(s.panel));
+  assert.equal(s.started(), 0);
+  assert.equal(s.aborted(), 0);
+  assert.deepEqual(s.clicks, []);
 });
