@@ -6,7 +6,8 @@
   var SOURCE = "hg-fysen-restaurants";
   var POINTS = "hg-fysen-points";
   var LABELS = "hg-fysen-labels";
-  var layers = [LABELS, POINTS];
+  var LOGOS = "hg-fysen-logos";
+  var layers = [LABELS, LOGOS, POINTS];
   var enabled = false;
   var loading = false;
   var generation = 0;
@@ -14,6 +15,8 @@
   var catalog = null;
   var boundMap = null;
   var popup = null;
+  var logoCache = /* @__PURE__ */ new Map();
+  var pendingLogos = /* @__PURE__ */ new Set();
   function validText(value, limit) {
     return typeof value === "string" && value.trim().length > 0 && value.length <= limit;
   }
@@ -29,10 +32,11 @@
         throw new Error("Invalid Fysen restaurant");
       }
       seen.add(row.slug);
+      const logoPath = typeof row.logoPath === "string" && /^\/restaurants\/[a-z0-9-]+\/logo\.(svg|png|webp)$/u.test(row.logoPath) ? row.logoPath : null;
       return {
         type: "Feature",
         geometry: { type: "Point", coordinates: [row.longitude, row.latitude] },
-        properties: { slug: row.slug, name: row.name, address: row.address }
+        properties: { slug: row.slug, name: row.name, address: row.address, ...logoPath ? { logoKey: "hg-fysen-logo:" + logoPath, logoUrl: "https://raw.githubusercontent.com/Paradispartiet/fysen/" + data.sourceCommit + "/apps/web/public" + logoPath } : {} }
       };
     });
     return { type: "FeatureCollection", features };
@@ -53,6 +57,56 @@
     for (const id of layers) if (map.getLayer(id)) map.removeLayer(id);
     if (map.getSource(SOURCE)) map.removeSource(SOURCE);
   }
+  async function loadLogo(url) {
+    try {
+      const response = await fetch(url, { credentials: "omit", referrerPolicy: "no-referrer", mode: "cors", redirect: "error" });
+      if (!response.ok) return null;
+      const type = url.endsWith(".svg") ? "image/svg+xml" : url.endsWith(".png") ? "image/png" : "image/webp";
+      const objectUrl = URL.createObjectURL(new Blob([await response.arrayBuffer()], { type }));
+      try {
+        const img = new Image();
+        img.src = objectUrl;
+        await img.decode();
+        const canvas = document.createElement("canvas");
+        canvas.width = canvas.height = 48;
+        const ctx = canvas.getContext("2d");
+        if (!ctx || !img.naturalWidth || !img.naturalHeight) return null;
+        ctx.beginPath();
+        ctx.arc(24, 24, 23, 0, Math.PI * 2);
+        ctx.fillStyle = "#fff";
+        ctx.fill();
+        ctx.clip();
+        const scale = Math.min(38 / img.naturalWidth, 38 / img.naturalHeight);
+        const w = img.naturalWidth * scale;
+        const h = img.naturalHeight * scale;
+        ctx.drawImage(img, (48 - w) / 2, (48 - h) / 2, w, h);
+        return ctx.getImageData(0, 0, 48, 48);
+      } finally {
+        URL.revokeObjectURL(objectUrl);
+      }
+    } catch {
+      return null;
+    }
+  }
+  function syncLogoImages(map) {
+    if (!catalog) return;
+    for (const feature of catalog.features) {
+      const { logoKey, logoUrl } = feature.properties;
+      if (!logoKey || !logoUrl || map.hasImage(logoKey) || pendingLogos.has(logoKey)) continue;
+      if (!logoCache.has(logoUrl)) logoCache.set(logoUrl, loadLogo(logoUrl));
+      const promise = logoCache.get(logoUrl);
+      if (!promise) continue;
+      pendingLogos.add(logoKey);
+      void promise.then((image) => {
+        if (image && enabled && boundMap === map && map.getSource(SOURCE) && !map.hasImage(logoKey)) {
+          map.addImage(logoKey, image, { pixelRatio: 2 });
+        }
+      }).catch(() => {
+      }).finally(() => {
+        pendingLogos.delete(logoKey);
+      });
+    }
+  }
   function syncLayers() {
     var _a;
     const map = boundMap;
@@ -67,6 +121,16 @@
         source: SOURCE,
         paint: { "circle-color": "#3e985d", "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 5, 16, 10], "circle-stroke-color": "#fff", "circle-stroke-width": 2 }
       });
+      if (catalog.features.some((feature) => feature.properties.logoKey)) {
+        syncLogoImages(map);
+        if (!map.getLayer(LOGOS)) map.addLayer({
+          id: LOGOS,
+          type: "symbol",
+          source: SOURCE,
+          filter: ["has", "logoKey"],
+          layout: { "icon-image": ["get", "logoKey"], "icon-size": ["interpolate", ["linear"], ["zoom"], 10, 0.6, 16, 1], "icon-allow-overlap": true, "icon-ignore-placement": true }
+        });
+      }
       if (!map.getLayer(LABELS)) map.addLayer({
         id: LABELS,
         type: "symbol",
@@ -102,7 +166,7 @@
   }
   function handleClick(event) {
     if (!enabled || !boundMap) return;
-    const activeLayers = [POINTS].filter((id) => boundMap.getLayer(id));
+    const activeLayers = [LOGOS, POINTS].filter((id) => boundMap.getLayer(id));
     if (!activeLayers.length) return;
     const feature = boundMap.queryRenderedFeatures(event.point, { layers: activeLayers })[0];
     if (!feature) return;
