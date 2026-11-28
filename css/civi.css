@@ -1526,3 +1526,47 @@ body.civi-mapmode .civi-panels{
 @media(prefers-reduced-motion:reduce){
   #civiLifestoryPanel .civi-lifestory-choice{transition:none;}
 }
+
+
+/* Civication Audio: the story and inbox share a responsive player. */
+.civi-audio-player {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  margin: 0 0 12px;
+  border: 1px solid var(--line2);
+  border-radius: 16px;
+  background: var(--card2);
+  color: var(--ink);
+}
+.civi-audio-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.civi-audio-heading strong { font-size: 1.1rem; }
+.civi-audio-heading span { font-size: .85rem; color: var(--ink2); }
+.civi-audio-player[data-listening="true"] .civi-audio-heading span {
+  font-weight: 700;
+  color: inherit;
+}
+.civi-audio-primary, .civi-audio-settings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+  gap: 8px;
+}
+.civi-audio-primary button {
+  min-height: 56px;
+  text-align: center;
+  font-weight: 700;
+}
+.civi-audio-settings button { min-height: 44px; font-size: .85rem; }
+.civi-audio-player button[hidden] { display: none; }
+.civi-audio-status { display: grid; gap: 4px; }
+.civi-audio-status small:empty { display: none; }
+.civi-audio-note, .civi-audio-status small { color: var(--ink2); line-height: 1.45; }
