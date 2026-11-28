@@ -126,3 +126,23 @@ De seks første rolleverdensfilene er lest og miljø-/karakterarketypene hentet 
 Alle tre life-mail-pakker fra manifestet er lest. Jobbmail er foreløpig et utvalg: faktisk runtime `civicationDailyMailBuilder.js` peker til `mailPlans` og `mailFamilies` per kategori og role_scope, ikke bare de eldre jobbmails. Ett eldre manifest peker på `naer_arbeider_pack.json` som returnerte 404. Globalt jobbmailmanifest ble ikke funnet på den undersøkte stien. Ikke tell referansene som innhold, ikke erklær full jobbmaildekning. Disse 85 oppføringene holdes separat fra de tidligere 1 891 på grunn av mulig overlapp og ulike kildeformater.
 
 Neste: bygg en kanonisk rolle-for-rolle-kobling mellom Life Story, Narrative, rolleverdener og aktive mailFamilies/mailPlans. Start med de seks leste verdener, registrer konkrete scene-ID-er, bekreft person-/stedskontinuitet, og velg pilot fra en faktisk forfattet scene. Ingen ny hovedkarakter, ingen endring i spillmotor, ingen filmer produsert ennå.
+
+## Trinn 5 – første karakterregister (2026-11-28)
+
+Alle 15 rolledefinisjoner i Life Story-manifestet er lest. 110 eksisterende personoppføringer er lagret i to registre med kilde-ID, navn, original personbeskrivelse, kildefil og blob-SHA. De seks tidligere undersøkte rolleverdener har i tillegg 39 personarketyper og 39 miljøbeskrivelser i et eget register.
+
+| Register | Kilder | Personoppføringer |
+| --- | ---: | ---: |
+| [Life Story – øvrige roller](CIVICATION_CINEMA_CAST_LIFESTORY_CORE.json) | 7 | 60 |
+| [Life Story – psykologi](CIVICATION_CINEMA_CAST_LIFESTORY_PSYCHOLOGY.json) | 8 | 50 |
+| [Rolleverdener – pilot](CIVICATION_CINEMA_CAST_ROLEWORLDS_PILOT.json) | 6 | 39 arketyper |
+
+Dette er 149 kildeforankrede oppføringer, **ikke** 149 unike ferdigdesignede karakterer. Navn og ID kan gjenbrukes i forskjellige historier. Karakter-ID er derfor navnerom + rolle + kilde-ID. En eventuell felles filmkarakter krever eksplisitt dokumentert identitet og kontinuitet.
+
+Konkrete kontinuitetsregler:
+- Arbeidsledig-rollens `amir` heter **Arvid, miljøkontakt** i persondefinisjonen. Ikke gi ham navnet Amir basert på ID, og ikke slå ham sammen med ekspeditørens Amir.
+- Eirik i Arealplanlegger og Elin i By-rådgiver beholdes separat; de er forskjellige kilder med forskjellige navn.
+- Jonas og søsteren er tilbakevendende private personoppføringer i flere pakker; kandidat for gjenbruk, men ikke automatisk identitetssammenslåing.
+- Lea, Mira og Arvid skal beholde de dokumenterte relasjonene i fortsettelsene. Navnelikhet med andre roller gir ikke automatisk kontinuitet.
+
+Alle visuelle modeller står som `unassigned`; ingen alder, ansikt, hudtone, klær eller stemme er fastsatt uten kilde eller egen kunstnerisk godkjenning. Kildebeskrivelser er ikke bilder eller modeller. Neste steg: koble de faktiske scenene og trådene til registeret, kontrollere tilbakevendende figurer og velge en konkret, original scene for karakter- og kulissepilot.
