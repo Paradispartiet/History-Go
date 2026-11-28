@@ -820,6 +820,7 @@
   // of the player. Session-only by design; a reload never starts speaking.
   let audioEnabled = false;
   let audioKey = "";
+  let narratedDayPhaseKey = "";
   let audioGeneration = 0;
   /** @type {SpeechSynthesisUtterance|null} */
   let audioUtterance = null;
@@ -1224,6 +1225,15 @@
     audioUtterance = null;
   }
 
+  // The spoken chapter marker follows the existing calendar and authored
+  // phase. It never creates a new phase or changes a game state.
+  /** @param {number} day @param {string} phase @param {string} role @param {boolean} summary */
+  function audioDayPhase(day, phase, role, summary) {
+    if (!Number.isInteger(day) || day < 1 || !phase) return null;
+    const label = summary ? "Dagens oppsummering" : phase;
+    return { key: JSON.stringify([role, day, label]), text: "Dag " + day + ". " + label + "." };
+  }
+
   /** @param {HTMLElement} panel @param {boolean} [force] */
   function readStoryAudio(panel, force = false) {
     if (!audioEnabled || !audioSupported() || voiceSession || (audioOwner && audioOwner !== panel)) return;
@@ -1266,8 +1276,15 @@
     // Only authored messages with a sender get a character voice. The
     // narrator reads scene descriptions and choices; no invented dialogue.
     const isMessage = scene?.getAttribute("data-lifestory-spoken-message") === "true";
+    const marker = !mail && (scene || summary) && state?.fase
+      ? audioDayPhase(Number(getShellDay() ?? state.livsdag ?? state.dag),
+        viewPhaseName(state.fase), String(state.rolle || ""), !!summary)
+      : null;
+    const markerSegment = marker && (force || marker.key !== narratedDayPhaseKey)
+      ? {text: marker.text, speaker: ""} : null;
     const segments = [
       {text: consequence ? "Konsekvens. " + consequence : "", speaker: ""},
+      ...(markerSegment ? [markerSegment] : []),
       {text: title, speaker: ""},
       {text: story, speaker: mail ? "innboks" : isMessage ? sender : ""},
       ...recap.map(text => ({text, speaker:""})),
@@ -1302,7 +1319,12 @@
       if (voice) utterance.voice = voice;
       utterance.lang = voice?.lang || "nb-NO";
       utterance.rate = AUDIO_RATES[audioRateIndex];
-      utterance.onend = next;
+      utterance.onend = () => {
+        // Only a completed, current utterance counts as an announced phase.
+        if (generation !== audioGeneration || !audioEnabled) return;
+        if (marker && segment === markerSegment) narratedDayPhaseKey = marker.key;
+        next();
+      };
       utterance.onerror = () => {
         if (generation !== audioGeneration) return;
         stopAtmosphere();
