@@ -755,6 +755,9 @@
       modal.hidden = !active && !lastNoActionDebug;
       modal.setAttribute("aria-hidden", String(modal.hidden));
     }
+    if (!answerInFlight && !dayAdvanceInFlight && !queuedDeliveryInFlight) {
+      /** @type {any} */ (window).CivicationAudio?.syncInboxAudio?.(bodyEl);
+    }
     return true;
   }
 
@@ -792,6 +795,7 @@
     else if (bodyEl) { lastRenderedMarkup = null; bodyEl.innerHTML = "<p class=\"civi-next-action-empty muted\">Finner neste handling…</p>"; }
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
+    if (bodyEl) /** @type {any} */ (window).CivicationAudio?.syncInboxAudio?.(bodyEl, true);
     prepareNextActionSurface()
       .then(function () { render(); })
       .catch(function (error) {
@@ -803,6 +807,7 @@
 
   function close() {
     if (!modalEl) return false;
+    /** @type {any} */ (window).CivicationAudio?.closeInboxAudio?.();
     if (modalEl.classList.contains("civi-inbox-active-action")) {
       // Do not close the whole inbox after answering the last mail.
       render();
@@ -1073,6 +1078,7 @@
           pendingRefresh = false;
           render();
         }
+        if (bodyEl) /** @type {any} */ (window).CivicationAudio?.syncInboxAudio?.(bodyEl);
         if (window.DEBUG) {
           debug.finalRenderCount = debug.renderCount;
           debug.finalDispatchCount = debug.dispatchCount;
@@ -1146,6 +1152,10 @@
     modal.addEventListener("click", function (event) {
       const target = event.target;
       if (!target || typeof target.closest !== "function") return;
+      if (bodyEl && /** @type {any} */ (window).CivicationAudio?.handleInboxAudioClick?.(bodyEl, target)) {
+        event.preventDefault();
+        return;
+      }
 
       const closeEl = target.closest("[data-civi-next-action-close]");
       if (closeEl && modal.contains(closeEl)) {
