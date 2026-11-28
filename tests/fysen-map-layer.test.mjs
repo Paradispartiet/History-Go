@@ -107,3 +107,7 @@ test("only approved shared logo paths are resolved to the catalog source commit"
     "https://raw.githubusercontent.com/Paradispartiet/fysen/" + good.sourceCommit + "/apps/web/public/restaurants/egon-byporten/logo.svg");
   assert.equal(parsed.features[1].properties.logoKey, undefined);
 });
+
+test("restaurant popup links to the exact public Fysen card", () => {
+  assert.match(runtime, /link\.href = APP_URL \+ "kart\?restaurant=" \+ encodeURIComponent\(properties\.slug \|\| ""\)/);
+});
