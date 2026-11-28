@@ -206,3 +206,24 @@ test("rate preference is applied to speech without changing game choices", () =>
   assert.match(source, /utterance\.rate = AUDIO_RATES\[audioRateIndex\]/);
   assert.match(source, /utterance\.voice = voice/);
 });
+
+test("ambience uses known scene or calendar context, not invented weather", () => {
+  const begin = source.indexOf("  function atmosphereProfile(");
+  const end = source.indexOf("  function stopAtmosphere()", begin);
+  assert.ok(begin > 0 && end > begin);
+  const profile = vm.runInNewContext("(function() {" + source.slice(begin, end) + "; return atmosphereProfile; })()");
+  assert.equal(profile("morgen", "").name, "Morgen");
+  assert.equal(profile("natt", "").name, "Natt");
+  assert.equal(profile("dag", "kafe").name, "Kafé");
+  assert.equal(profile("dag", "kontor").name, "Arbeidsmiljø");
+  assert.equal(profile("dag", "ukjent").name, "Dag");
+});
+test("environment sound is opt-in and stops before listening", () => {
+  assert.match(source, /let atmosphereEnabled = false/);
+  assert.match(source, /function stopStoryAudio\(\) \{\s*stopAtmosphere\(\)/);
+  const begin = source.indexOf("  function startVoiceInput(");
+  const end = source.indexOf("  const AUDIO_RATES", begin);
+  const voiceCode = source.slice(begin, end);
+  assert.ok(voiceCode.indexOf("stopStoryAudio();") < voiceCode.indexOf("recognition.start();"));
+  assert.match(source, /if \(index >= segments.length\) \{\s*stopAtmosphere\(\)/);
+});
