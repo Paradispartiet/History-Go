@@ -8,7 +8,7 @@ const start = source.indexOf("  /** @type {any} */ let voiceSession = null;");
 const end = source.indexOf("  function audioControlsHtml()", start);
 assert.ok(start > 0 && end > start);
 
-function setup() {
+function setup({ dayActions = false } = {}) {
   const clicks = [];
   const buttons = ["A", "B", "C"].map(letter => ({
     disabled: letter === "C",
@@ -16,14 +16,14 @@ function setup() {
     hasAttribute(name) { return name === "disabled" && this.disabled; },
     getAttribute(name) {
       if (name === "data-lifestory-letter") return letter;
-      if (name === "data-lifestory-scene") return "scene-1";
-      if (name === "data-lifestory-choice") return letter;
+      if (name === "data-lifestory-scene") return dayActions ? null : "scene-1";
+      if (name === "data-lifestory-choice") return dayActions ? null : letter;
       return null;
     },
     click() { clicks.push(letter); }
   }));
   const panel = { isConnected: true, getClientRects: () => [1],
-    querySelectorAll: () => buttons, querySelector: () => null };
+    querySelectorAll: selector => dayActions && selector.includes(".civi-lifestory-scene") ? [] : buttons, querySelector: () => null };
   let recognition;
   let repeated = 0;
   let aborted = 0;
@@ -125,5 +125,21 @@ test("hands-free rejects an outdated scene or hidden surface", () => {
   s.api.openHandsFreeAfterSpeech(s.panel, s.api.voiceSceneKey(s.panel));
   assert.equal(s.started(), 0);
   assert.equal(s.aborted(), 0);
+  assert.deepEqual(s.clicks, []);
+});
+
+test("day action uses existing enabled button and refuses blocked day rollover", () => {
+  const s = setup({dayActions: true});
+  s.answer(s.listen(), "B");
+  assert.deepEqual(s.clicks, ["B"]);
+  s.answer(s.listen(), "C");
+  assert.deepEqual(s.clicks, ["B"]);
+});
+
+test("a changing day action cannot be selected by a stale recognition result", () => {
+  const s = setup({dayActions: true});
+  const rec = s.listen();
+  s.panel.querySelectorAll = selector => [];
+  s.answer(rec, "A");
   assert.deepEqual(s.clicks, []);
 });
