@@ -814,10 +814,6 @@
       ? '<p class="muted" role="status" data-lifestory-capacity-warning>' + escapeHtml(capacity) + '</p>' : "");
   }
 
-  /**
-   * @param {any} scene
-   * @returns {string}
-   */
   // Optional presentation layer: never advances the Runner or chooses on behalf
   // of the player. Session-only by design; a reload never starts speaking.
   let audioEnabled = false;
@@ -831,14 +827,137 @@
       typeof window.SpeechSynthesisUtterance === "function";
   }
 
+  /** @type {any} */ let voiceSession = null;
+  /** @type {number|null} */ let voiceTimeout = null;
+  let voiceMessage = "";
+
+  function voiceConstructor() {
+    const browser = /** @type {any} */ (window);
+    return browser.SpeechRecognition || browser.webkitSpeechRecognition;
+  }
+
+  /** @param {string} raw */
+  function parseVoiceCommand(raw) {
+    const phrase = raw.toLocaleLowerCase("nb-NO").trim().replace(/[.!?]+$/g, "").replace(/\s+/g, " ");
+    if (/^(gjenta|gjenta alternativene|les på nytt)$/.test(phrase)) return { kind: "repeat" };
+    if (/^(stopp|avbryt|pause)$/.test(phrase)) return { kind: "stop" };
+    const match = /^(?:alternativ|valg|nummer) (\d{1,2}|en|én|ett|to|tre|fire|fem|seks|sju|syv|åtte|ni|ti)$/.exec(phrase);
+    if (!match) return null;
+    const words = /** @type {Record<string,number>} */ ({en:1, "én":1, ett:1, to:2, tre:3, fire:4, fem:5, seks:6, sju:7, syv:7, "åtte":8, ni:9, ti:10});
+    const number = words[match[1]] || Number(match[1]);
+    return number > 0 ? {kind:"choice", number} : null;
+  }
+
+  /** @param {HTMLElement} panel */
+  function voiceChoices(panel) {
+    return Array.from(panel.querySelectorAll(".civi-lifestory-scene [data-lifestory-choice]"));
+  }
+
+  /** @param {HTMLElement} panel */
+  function voiceSceneKey(panel) {
+    return JSON.stringify([state?.rolle, state?.dag, state?.fase, voiceChoices(panel).map(button =>
+      [button.getAttribute("data-lifestory-scene"), button.getAttribute("data-lifestory-choice"), button.hasAttribute("disabled"), button.textContent])]);
+  }
+
+  /** @param {HTMLElement} panel */
+  function voiceSurfaceActive(panel) {
+    return panel.isConnected && panel.getClientRects().length > 0 &&
+      document.visibilityState !== "hidden" && !document.body.classList.contains("civi-mapmode");
+  }
+
+  /** @param {string} [message] */
+  function stopVoiceInput(message = "") {
+    const session = voiceSession;
+    voiceSession = null;
+    if (voiceTimeout !== null) { window.clearTimeout(voiceTimeout); voiceTimeout = null; }
+    if (session) { try { session.recognition.abort(); } catch { /* already ended */ } }
+    voiceMessage = message;
+    const panel = getPanel();
+    if (panel) updateVoiceControls(/** @type {HTMLElement} */ (panel));
+  }
+
+  /** @param {HTMLElement} panel */
+  function updateVoiceControls(panel) {
+    const button = panel.querySelector("[data-lifestory-voice]");
+    const status = panel.querySelector("[data-lifestory-voice-status]");
+    if (button) {
+      button.setAttribute("aria-pressed", String(!!voiceSession));
+      button.textContent = voiceSession ? "■ Avbryt mikrofon" : "🎙 Svar med stemmen";
+    }
+    if (status) status.textContent = voiceMessage;
+  }
+
+  /** @param {HTMLElement} panel */
+  function startVoiceInput(panel) {
+    if (voiceSession) { stopVoiceInput("Mikrofonen er avslått."); return; }
+    const Recognition = voiceConstructor();
+    if (!Recognition || !voiceSurfaceActive(panel) || !voiceChoices(panel).length) return;
+    stopStoryAudio();
+    updateAudioControls(panel, "Opplesningen er stanset mens du snakker.");
+    let recognition;
+    try { recognition = new Recognition(); }
+    catch { stopVoiceInput("Mikrofonen er ikke tilgjengelig. Bruk svarboksene."); return; }
+    recognition.lang = "nb-NO";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 3;
+    const session = { recognition, key: voiceSceneKey(panel) };
+    voiceSession = session;
+    voiceMessage = "Lytter … si for eksempel «alternativ to».";
+    updateVoiceControls(panel);
+    recognition.onresult = (/** @type {any} */ event) => {
+      if (voiceSession !== session) return;
+      const result = event.results?.[event.resultIndex ?? 0];
+      if (!result?.isFinal) return;
+      if (!voiceSurfaceActive(panel) || voiceSceneKey(panel) !== session.key) {
+        stopVoiceInput("Situasjonen har endret seg. Prøv igjen."); return;
+      }
+      const commands = Array.from(result, (/** @type {any} */ item) => parseVoiceCommand(String(item.transcript || "")));
+      const command = commands[0];
+      if (!command || commands.some(other => JSON.stringify(other) !== JSON.stringify(command))) {
+        stopVoiceInput("Uklart svar. Si «alternativ» og nummeret, eller bruk svarboksene."); return;
+      }
+      if (command.kind === "repeat") {
+        stopVoiceInput();
+        if (audioEnabled) readStoryAudio(panel, true);
+        return;
+      }
+      if (command.kind === "stop") { stopVoiceInput("Mikrofonen er avslått."); return; }
+      const button = voiceChoices(panel)[(command.number || 0) - 1];
+      if (!button || button.hasAttribute("disabled") || button.getAttribute("aria-disabled") === "true") {
+        stopVoiceInput("Dette valget er ikke tilgjengelig."); return;
+      }
+      stopVoiceInput("Alternativ " + command.number + " registrert.");
+      // Same delegated click as a touch or keyboard choice; no alternate game engine.
+      /** @type {HTMLElement} */ (button).click();
+    };
+    recognition.onerror = () => {
+      if (voiceSession === session) stopVoiceInput("Mikrofonen kunne ikke brukes. Prøv igjen eller trykk et svar.");
+    };
+    recognition.onend = () => {
+      if (voiceSession === session) stopVoiceInput("Ingen tydelig kommando. Prøv igjen.");
+    };
+    try {
+      recognition.start();
+      if (voiceSession === session) voiceTimeout = window.setTimeout(() => {
+        if (voiceSession === session) stopVoiceInput("Lyttetiden er ute. Prøv igjen.");
+      }, 12000);
+    } catch { stopVoiceInput("Kunne ikke starte mikrofonen. Bruk svarboksene."); }
+  }
+
   function audioControlsHtml() {
-    if (!audioSupported()) return "";
+    if (!audioSupported() && !voiceConstructor()) return "";
     return '<div class="civi-lifestory-choices" data-lifestory-audio-controls aria-label="Lydbok">'
-      + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-toggle aria-pressed="'
+      + (audioSupported() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-toggle aria-pressed="'
       + String(audioEnabled) + '">' + (audioEnabled ? "⏸ Stopp lydbok" : "🎧 Lytt til Min dag") + '</button>'
       + '<button type="button" class="civi-lifestory-choice" data-lifestory-audio-repeat'
-      + (audioEnabled ? "" : " hidden") + '>Les på nytt</button>'
-      + '<small data-lifestory-audio-status role="status"></small></div>';
+      + (audioEnabled ? "" : " hidden") + '>Les på nytt</button>' : "")
+      + '<small data-lifestory-audio-status role="status"></small>'
+      + (voiceConstructor() ? '<button type="button" class="civi-lifestory-choice" data-lifestory-voice aria-pressed="'
+        + String(!!voiceSession) + '">' + (voiceSession ? "■ Avbryt mikrofon" : "🎙 Svar med stemmen") + '</button>'
+        + '<small>Mikrofonen aktiveres bare når du trykker. Nettleseren kan behandle tale via en nettjeneste.</small>'
+        + '<small data-lifestory-voice-status role="status">' + escapeHtml(voiceMessage) + '</small>' : "")
+      + '</div>';
   }
 
   /** @param {HTMLElement} panel @param {string} [message] */
@@ -862,7 +981,7 @@
 
   /** @param {HTMLElement} panel @param {boolean} [force] */
   function readStoryAudio(panel, force = false) {
-    if (!audioEnabled || !audioSupported()) return;
+    if (!audioEnabled || !audioSupported() || voiceSession) return;
     if (document.visibilityState === "hidden" || document.body.classList.contains("civi-mapmode")) {
       stopStoryAudio();
       audioKey = "";
@@ -913,9 +1032,10 @@
     next();
   }
 
-  window.addEventListener("pagehide", stopStoryAudio);
+  window.addEventListener("pagehide", () => { stopVoiceInput(); stopStoryAudio(); });
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState !== "hidden") return;
+    stopVoiceInput();
     audioEnabled = false;
     audioKey = "";
     stopStoryAudio();
@@ -923,6 +1043,7 @@
     if (panel) updateAudioControls(panel);
   });
 
+  /** @param {any} scene @returns {string} */
   function renderSceneHtml(scene) {
     const thread = content.threads.find((t) => t.id === scene.threadId);
     const ts = state.threadState[scene.threadId];
@@ -1543,6 +1664,7 @@
       audioEnabled = false;
       audioKey = "";
       stopStoryAudio();
+      stopVoiceInput();
       panel.innerHTML = renderShellStoryHtml();
       window.CivicationWaveAInboxBridge?.sync?.();
       return;
@@ -1583,6 +1705,10 @@
     // unanswerable inbox projection and expose this role\x27s current scene.
     window.CivicationWaveAInboxBridge?.sync?.();
     restoreChoiceFocus(panel, String(state.rolle), focusedChoice);
+    if (voiceSession && (!voiceSurfaceActive(/** @type {HTMLElement} */ (panel)) ||
+        voiceSceneKey(/** @type {HTMLElement} */ (panel)) !== voiceSession.key)) stopVoiceInput("Situasjonen har endret seg.");
+    const mic = panel.querySelector("[data-lifestory-voice]");
+    if (mic) /** @type {HTMLButtonElement} */ (mic).disabled = !voiceChoices(/** @type {HTMLElement} */ (panel)).length;
     readStoryAudio(panel);
   }
 
@@ -1637,7 +1763,12 @@
     /** @type {any} */ (panel)._lifestoryBound = true;
     panel.addEventListener("click", (event) => {
       const target = /** @type {HTMLElement} */ (event.target);
+      if (target.closest("[data-lifestory-voice]")) {
+        startVoiceInput(/** @type {HTMLElement} */ (panel));
+        return;
+      }
       if (target.closest("[data-lifestory-audio-toggle]")) {
+        stopVoiceInput();
         audioEnabled = !audioEnabled && audioSupported();
         audioKey = "";
         if (audioEnabled) readStoryAudio(/** @type {HTMLElement} */ (panel), true);
@@ -1645,6 +1776,7 @@
         return;
       }
       if (target.closest("[data-lifestory-audio-repeat]")) {
+        stopVoiceInput();
         readStoryAudio(/** @type {HTMLElement} */ (panel), true);
         return;
       }
@@ -1655,7 +1787,8 @@
         const scene = content?.scenes?.find((item) => item.id === sceneId);
         const choice = scene?.valg?.find((item) => item.id === choiceId);
         const staysInMinDag = !choice?.handling;
-        if (!staysInMinDag && audioEnabled) {
+        if (typeof stopVoiceInput === "function" && voiceSession) stopVoiceInput();
+        if (!staysInMinDag && typeof audioEnabled !== "undefined" && audioEnabled) {
           audioEnabled = false;
           audioKey = "";
           stopStoryAudio();
