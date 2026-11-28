@@ -12,7 +12,7 @@ const source=JSON.parse(read("data/natur/fauna/insekter_humler_og_veps.json"));c
 for(const key of [id,"emne_fauna_jordveps"]){assert.deepEqual(source.find(x=>x.id===key),runtime.find(x=>x.id===key));}
 const canonical=source.find(x=>x.id===id);assert.equal(canonical.latin,"Vespula vulgaris");assert.equal(canonical.taxonomy.norsk_navn,"Jordveps");assert.deepEqual(canonical.quiz_ids,["quiz_fauna_vanlig_veps"]);assert(canonical.aliases.includes("Vanlig veps"));
 const group=source.find(x=>x.id==="emne_fauna_jordveps");assert.equal(group.latin,"Vespula-gruppen");assert.equal(group.taxonomy.norsk_navn,"Vespula-veps");assert.deepEqual(group.quiz_ids,["quiz_fauna_jordveps"]);
-const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;assert.equal(reg.count,62);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,canonical.latin);
+const ctx={window:{}};vm.runInNewContext(read("js/ui/nature-fauna-approved.js"),ctx);const reg=ctx.window.HG_NATURE_FAUNA_APPROVED;assert(reg.count>=62);assert.equal(reg.get(id)?.src,a.src);assert.equal(reg.get(id)?.scientificName,canonical.latin);
 const prior=[
  {id:"emne_fauna_metallbie",src:"bilder/natur/fauna/godkjent/61_metallbie_v1.webp",sha:"7f5c0c320fb56694d0410b327c4b356fda3ae7c5"},
  {id:"emne_fauna_bladskjaererbie",src:"bilder/natur/fauna/godkjent/60_bladskjaererbie_v1.webp",sha:"0dc4638b300eb0d2a1c77b4eb1295c9ce22f4f95"},
@@ -298,6 +298,6 @@ const prior=[
 assert.equal(prior.length,61);
 for(const old of prior){assert.equal(reg.get(old.id)?.src,old.src);assert.equal(reg.get(old.id)?.gitBlobSha,old.sha);assert.equal(blob(binary(old.src)),old.sha,old.id+" original changed");}
 assert.equal(reg.get("emne_fauna_murveps"),null);assert.equal(reg.get("emne_fauna_jordveps"),null);
-assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-62"));
+assert(read("finn-fauna.html").includes("nature-fauna-approved.js?v=20261128-63"));
 assert(read("scripts/test-fauna-approved-browser.mjs").includes('fill("Vanlig veps")'));
 console.log("Jordveps #62: exact original, taxonomy, distinct Vespula group, preserved quiz references and all 61 previous binaries verified");

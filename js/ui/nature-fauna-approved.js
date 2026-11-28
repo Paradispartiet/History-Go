@@ -2,6 +2,14 @@
 (function () {
  "use strict";
  const images=Object.freeze({
+  emne_fauna_tysk_veps:Object.freeze({
+   scientificName:"Vespula germanica",
+   src:"bilder/natur/fauna/godkjent/63_tyskveps_v1.webp",
+   gitBlobSha:"b272a9a79904c162facc627c15e2425283277d57",
+   reviewedAt:"2026-11-28",
+   stage:"female_worker_three_separate_face_marks_yellow_black_isolated_black_background",
+   evidence:"data/natur/fauna/illustration-quality-tyskveps-20261128.json"
+  }),
   emne_fauna_vanlig_veps:Object.freeze({
    scientificName:"Vespula vulgaris",
    src:"bilder/natur/fauna/godkjent/62_jordveps_v1.webp",
