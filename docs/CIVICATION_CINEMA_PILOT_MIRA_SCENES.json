@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "pilot_id": "mira_music_first_week",
+  "scope": "Four existing scenes, not a linear sequence. Storyboards proposed, no media generated, no new game logic. Runner alone selects scenes and applies choices.",
+  "scenes": [
+    {
+      "scene_key": "lifestory:arbeidsledig:d3_mira_telefon",
+      "source_path": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+      "source_blob_sha": "0a424336901e46c8b137cb8d7910977c5dfe28e4",
+      "scene_id": "d3_mira_telefon",
+      "thread_id": "musikken_og_mira",
+      "day": 3,
+      "phase": "ettermiddag",
+      "canonical_location": "hjem",
+      "conditions": null,
+      "title": "Mira spør hva du faktisk spiller",
+      "source_text": "Mira ringer presis. I bakgrunnen hører du et keyboard før hun skrur ned lyden. «Låta heter Siste buss», sier hun. «Jonas trodde du kunne like den.» Dere snakker om den vanskelige overgangen før refrenget. Mira foreslår å prøve sammen i øvingsrommet i morgen klokka 14. Du har lyst, men vil høre ordentlig hva hun ser for seg.",
+      "character_keys": [
+        "lifestory:arbeidsledig:mira"
+      ],
+      "player_camera": "subjective_or_hands_only_proposal",
+      "set_ids": [
+        "arbeidsledig:hjem",
+        "arbeidsledig:ovingsrom"
+      ],
+      "planned_duration_seconds": 22,
+      "shots": [
+        {
+          "shot": 1,
+          "set_id": "arbeidsledig:hjem",
+          "seconds": 4,
+          "description": "Nærbilde av telefonen ved et bord, spillerens hånd tar imot samtalen."
+        },
+        {
+          "shot": 2,
+          "set_id": "arbeidsledig:ovingsrom",
+          "seconds": 7,
+          "description": "Mira ved keyboardet, skrur ned lyden og forteller om låta."
+        },
+        {
+          "shot": 3,
+          "set_id": "arbeidsledig:ovingsrom",
+          "seconds": 7,
+          "description": "Rolig nærbilde mens hun snakker om overgangen og foreslår en prøve."
+        },
+        {
+          "shot": 4,
+          "set_id": "arbeidsledig:hjem",
+          "seconds": 4,
+          "description": "Spillerens hånd i ro ved telefonen; naturlig pause før valget."
+        }
+      ],
+      "choices": [
+        {
+          "letter": "A",
+          "choice_id": "avtal_prove",
+          "text": "Avtal å møtes i morgen og prøve én låt",
+          "consequence": "Dere avtaler å møtes klokka 14 i øvingsrommet. Det er en prøve, ikke et betalt oppdrag."
+        },
+        {
+          "letter": "B",
+          "choice_id": "lytte_forst",
+          "text": "Be Mira sende lydfilen før dere setter dato",
+          "consequence": "Mira sender et opptak. Dere har ikke avtalt noen prøve; du kan lytte før dere snakker videre."
+        }
+      ],
+      "media_status": "storyboard_proposed",
+      "media": null
+    },
+    {
+      "scene_key": "lifestory:arbeidsledig:d4_mira_proven",
+      "source_path": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+      "source_blob_sha": "0a424336901e46c8b137cb8d7910977c5dfe28e4",
+      "scene_id": "d4_mira_proven",
+      "thread_id": "musikken_og_mira",
+      "day": 4,
+      "phase": "ettermiddag",
+      "canonical_location": "ovingsrom",
+      "conditions": {
+        "flagg": {
+          "mira_prove_avtalt": true
+        }
+      },
+      "title": "Én låt, som avtalt",
+      "source_text": "Klokka er 14. Mira har satt fram et ekstra stativ i øvingsrommet. Dere prøver Siste buss, stanser på samme overgang og prøver igjen. Etterpå sier Mira at en booker trenger et kort sett om to dager. «Skal jeg gi ham nummeret ditt?»",
+      "character_keys": [
+        "lifestory:arbeidsledig:mira"
+      ],
+      "player_camera": "subjective_or_hands_only_proposal",
+      "set_ids": [
+        "arbeidsledig:ovingsrom"
+      ],
+      "planned_duration_seconds": 24,
+      "shots": [
+        {
+          "shot": 1,
+          "set_id": "arbeidsledig:ovingsrom",
+          "seconds": 5,
+          "description": "Spillerens blikk inn i rommet, det ekstra stativet står klart."
+        },
+        {
+          "shot": 2,
+          "set_id": "arbeidsledig:ovingsrom",
+          "seconds": 7,
+          "description": "Miras hender ved keyboardet; de stanser ved overgangen."
+        },
+        {
+          "shot": 3,
+          "set_id": "arbeidsledig:ovingsrom",
+          "seconds": 6,
+          "description": "Samme utsnitt og et nytt forsøk; et kort blikk mot medspilleren."
+        },
+        {
+          "shot": 4,
+          "set_id": "arbeidsledig:ovingsrom",
+          "seconds": 6,
+          "description": "Mira nevner bookeren og spør om nummeret. Hold på ansiktet før valg."
+        }
+      ],
+      "choices": [
+        {
+          "letter": "A",
+          "choice_id": "send_nummer",
+          "text": "La bookeren kontakte deg om omfang og honorar",
+          "consequence": "Prøven er gjennomført. Mira gir bookeren nummeret ditt; dette er fortsatt en forespørsel."
+        },
+        {
+          "letter": "B",
+          "choice_id": "bare_prove",
+          "text": "La det bli med prøven denne uka",
+          "consequence": "Prøven er gjennomført, men du takker nei til bookerkontakt. Mira spør heller om dere kan spille sammen en annen gang."
+        }
+      ],
+      "media_status": "storyboard_proposed",
+      "media": null
+    },
+    {
+      "scene_key": "lifestory:arbeidsledig:d4_mira_lyttingen",
+      "source_path": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+      "source_blob_sha": "0a424336901e46c8b137cb8d7910977c5dfe28e4",
+      "scene_id": "d4_mira_lyttingen",
+      "thread_id": "musikken_og_mira",
+      "day": 4,
+      "phase": "ettermiddag",
+      "canonical_location": "hjem",
+      "conditions": {
+        "flagg": {
+          "mira_vil_lytte": true
+        }
+      },
+      "title": "Opptaket og det du trenger å øve på",
+      "source_text": "Opptaket Mira sendte i går, stopper akkurat der refrenget skulle løftet seg. Du hører overgangen tre ganger og får lyst til å gripe instrumentet selv. Så skriver hun: «Vil du prøve sammen om to dager klokka to, eller trenger du mer tid?» Hun har latt valget være ditt.",
+      "character_keys": [
+        "lifestory:arbeidsledig:mira"
+      ],
+      "player_camera": "subjective_or_hands_only_proposal",
+      "set_ids": [
+        "arbeidsledig:hjem"
+      ],
+      "planned_duration_seconds": 20,
+      "shots": [
+        {
+          "shot": 1,
+          "set_id": "arbeidsledig:hjem",
+          "seconds": 5,
+          "description": "Telefon og notater på bordet; opptaket høres."
+        },
+        {
+          "shot": 2,
+          "set_id": "arbeidsledig:hjem",
+          "seconds": 6,
+          "description": "Hånden går tilbake til samme punkt i opptaket; tre korte gjentakelser."
+        },
+        {
+          "shot": 3,
+          "set_id": "arbeidsledig:hjem",
+          "seconds": 5,
+          "description": "Ny melding fra Mira; ord leses av stemmen, ikke brent inn i bildet."
+        },
+        {
+          "shot": 4,
+          "set_id": "arbeidsledig:hjem",
+          "seconds": 4,
+          "description": "Rolig ventende bilde før valget."
+        }
+      ],
+      "choices": [
+        {
+          "letter": "A",
+          "choice_id": "prove_dag6",
+          "text": "Avtal prøven om to dager klokka 14",
+          "consequence": "Dere avtaler en prøve i øvingsrommet. Ingen arrangør eller spillejobb er koblet inn."
+        },
+        {
+          "letter": "B",
+          "choice_id": "vent",
+          "text": "Si at du vil øve hjemme før dere gjør flere avtaler",
+          "consequence": "Du sier at du trenger litt tid med låta. Mira forventer deg ikke i øvingsrommet om to dager."
+        }
+      ],
+      "media_status": "storyboard_proposed",
+      "media": null
+    },
+    {
+      "scene_key": "lifestory:arbeidsledig:d6_sen_prove",
+      "source_path": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+      "source_blob_sha": "0a424336901e46c8b137cb8d7910977c5dfe28e4",
+      "scene_id": "d6_sen_prove",
+      "thread_id": "musikken_og_mira",
+      "day": 6,
+      "phase": "ettermiddag",
+      "canonical_location": "ovingsrom",
+      "conditions": {
+        "flagg": {
+          "mira_prove_dag6": true
+        }
+      },
+      "title": "Prøven dere faktisk avtalte",
+      "source_text": "Klokka er 14 i øvingsrommet. Mira spiller starten på Siste buss, den du lyttet til hjemme før dere avtalte å møtes. Denne gangen kan dere stanse i overgangen sammen. Det er ingen konsert etterpå.",
+      "character_keys": [
+        "lifestory:arbeidsledig:mira"
+      ],
+      "player_camera": "subjective_or_hands_only_proposal",
+      "set_ids": [
+        "arbeidsledig:ovingsrom"
+      ],
+      "planned_duration_seconds": 20,
+      "shots": [
+        {
+          "shot": 1,
+          "set_id": "arbeidsledig:ovingsrom",
+          "seconds": 4,
+          "description": "Samme rom, stativ og keyboard som i den alternative dag-4-prøven."
+        },
+        {
+          "shot": 2,
+          "set_id": "arbeidsledig:ovingsrom",
+          "seconds": 7,
+          "description": "Mira spiller åpningen; kamera ligger nær tangentene."
+        },
+        {
+          "shot": 3,
+          "set_id": "arbeidsledig:ovingsrom",
+          "seconds": 5,
+          "description": "Musikken stopper i overgangen, med en liten gest mot medspilleren."
+        },
+        {
+          "shot": 4,
+          "set_id": "arbeidsledig:ovingsrom",
+          "seconds": 4,
+          "description": "Åpen pause før spilleren bestemmer om prøven skal fortsette."
+        }
+      ],
+      "choices": [
+        {
+          "letter": "A",
+          "choice_id": "prove",
+          "text": "Spill gjennom låta sammen",
+          "consequence": "Prøven er gjennomført på i dag. Mira vil holde kontakten, men dere avtaler ingen betalt spillejobb."
+        },
+        {
+          "letter": "B",
+          "choice_id": "kort_prove",
+          "text": "Gjør prøven kort og si hva du trenger å øve på",
+          "consequence": "Du møter som avtalt, men avgrenser prøven og er tydelig om hva du trenger mer tid til."
+        }
+      ],
+      "media_status": "storyboard_proposed",
+      "media": null
+    }
+  ]
+}
