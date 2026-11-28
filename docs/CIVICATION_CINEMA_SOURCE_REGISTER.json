@@ -1,0 +1,902 @@
+{
+  "schema_version": 1,
+  "source_branch": "civication/cinema-visual-milestone-20261128",
+  "sources": [
+    "data/Civication/lifestory/roles/arbeidsledig/role.json",
+    "data/Civication/narratives/manifest.json",
+    "data/Civication/lifeMails/life_manifest.json",
+    "data/Civication/jobbmails/naeringsliv/naer_manifest.json"
+  ],
+  "scope": "Declared source references only, not verified scene counts or deduplicated playable stories.",
+  "continuations": [
+    {
+      "id": "musikk_med_mira",
+      "title": "Fortsett med medmusikeren",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+      "after_day": 7,
+      "parents": [],
+      "thread": "musikken_og_mira"
+    },
+    {
+      "id": "sideprosjekt_med_lea",
+      "title": "Fortsett med prosjektbyggeren som Sideprosjektbygger",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+      "after_day": 7,
+      "parents": [],
+      "thread": "prosjektet_og_lea"
+    },
+    {
+      "id": "frilans_med_lea",
+      "title": "Fortsett med prosjektbyggeren som Frilanser",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/frilans_med_lea.json",
+      "after_day": 7,
+      "parents": [],
+      "thread": "prosjektet_og_lea"
+    },
+    {
+      "id": "grunder_med_lea",
+      "title": "Fortsett med prosjektbyggeren som Gründerdrømmer",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "path": "data/Civication/lifestory/continuations/grunder_med_lea.json",
+      "after_day": 7,
+      "parents": [],
+      "thread": "prosjektet_og_lea"
+    },
+    {
+      "id": "sideprosjekt_neste_steg",
+      "title": "Neste kapittel som Sideprosjektbygger",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_neste_steg.json",
+      "after_day": 10,
+      "parents": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "thread": null
+    },
+    {
+      "id": "frilans_neste_steg",
+      "title": "Neste kapittel som Frilanser",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/frilans_neste_steg.json",
+      "after_day": 10,
+      "parents": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "thread": null
+    },
+    {
+      "id": "grunder_neste_steg",
+      "title": "Neste kapittel som Gründerdrømmer",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "path": "data/Civication/lifestory/continuations/grunder_neste_steg.json",
+      "after_day": 10,
+      "parents": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "thread": null
+    },
+    {
+      "id": "musikk_foresporselen",
+      "title": "Fortsett med spilleforespørselen",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_foresporselen.json",
+      "after_day": 10,
+      "parents": [
+        "musikk_med_mira"
+      ],
+      "thread": null
+    },
+    {
+      "id": "miljo_med_arvid",
+      "title": "Fortsett med miljøkontakten",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
+      "after_day": 7,
+      "parents": [],
+      "thread": "miljoet_og_amir"
+    },
+    {
+      "id": "miljo_navnet_ditt",
+      "title": "Fortsett med navnet ditt på invitasjonen",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_navnet_ditt.json",
+      "after_day": 10,
+      "parents": [
+        "miljo_med_arvid"
+      ],
+      "thread": null
+    },
+    {
+      "id": "musikk_etter_foresporselen",
+      "title": "Mira: Etter forespørselen",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_etter_foresporselen.json",
+      "after_day": 13,
+      "parents": [
+        "musikk_foresporselen"
+      ],
+      "thread": null
+    },
+    {
+      "id": "sideprosjekt_etter_neste_steg",
+      "title": "Lea: Prosjektet som tåler et nei",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_etter_neste_steg.json",
+      "after_day": 13,
+      "parents": [
+        "sideprosjekt_neste_steg"
+      ],
+      "thread": null
+    },
+    {
+      "id": "frilans_etter_neste_steg",
+      "title": "Lea: Utkastet og grensen",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/frilans_etter_neste_steg.json",
+      "after_day": 13,
+      "parents": [
+        "frilans_neste_steg"
+      ],
+      "thread": null
+    },
+    {
+      "id": "grunder_etter_neste_steg",
+      "title": "Lea: Én mening er ikke et marked",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "path": "data/Civication/lifestory/continuations/grunder_etter_neste_steg.json",
+      "after_day": 13,
+      "parents": [
+        "grunder_neste_steg"
+      ],
+      "thread": null
+    },
+    {
+      "id": "miljo_etter_invitasjonen",
+      "title": "Arvid: Et navn er ikke en avtale",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_etter_invitasjonen.json",
+      "after_day": 13,
+      "parents": [
+        "miljo_navnet_ditt"
+      ],
+      "thread": null
+    },
+    {
+      "id": "sideprosjekt_kryss_med_mira",
+      "title": "Lea: Programmet etter Miras valg",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/sideprosjekt_kryss_med_mira.json",
+      "after_day": 16,
+      "parents": [
+        "musikk_etter_foresporselen"
+      ],
+      "thread": null
+    },
+    {
+      "id": "miljo_kryss_med_lea",
+      "title": "Arvid: Invitasjonen etter Leas prosjekt",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_kryss_med_lea.json",
+      "after_day": 16,
+      "parents": [
+        "sideprosjekt_etter_neste_steg"
+      ],
+      "thread": null
+    },
+    {
+      "id": "musikk_kryss_med_arvid",
+      "title": "Mira: Invitasjonen etter Arvids valg",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_kryss_med_arvid.json",
+      "after_day": 16,
+      "parents": [
+        "miljo_etter_invitasjonen"
+      ],
+      "thread": null
+    },
+    {
+      "id": "miljo_kryss_med_frilans",
+      "title": "Arvid: Leas frilansnotat på plakaten",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_kryss_med_frilans.json",
+      "after_day": 16,
+      "parents": [
+        "frilans_etter_neste_steg"
+      ],
+      "thread": null
+    },
+    {
+      "id": "musikk_kryss_med_grunder",
+      "title": "Mira: Lyden i Leas idé",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_kryss_med_grunder.json",
+      "after_day": 16,
+      "parents": [
+        "grunder_etter_neste_steg"
+      ],
+      "thread": null
+    },
+    {
+      "id": "miljo_etter_leas_program",
+      "title": "Arvid: Papiret ved inngangen",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_etter_leas_program.json",
+      "after_day": 19,
+      "parents": [
+        "sideprosjekt_kryss_med_mira"
+      ],
+      "thread": null
+    },
+    {
+      "id": "musikk_etter_arvids_tekst",
+      "title": "Mira: Hvem skrev at jeg skulle komme?",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/musikk_etter_arvids_tekst.json",
+      "after_day": 19,
+      "parents": [
+        "miljo_kryss_med_lea"
+      ],
+      "thread": null
+    },
+    {
+      "id": "frilans_etter_miras_navn",
+      "title": "Lea: Ansvar for andres navn",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/frilans_etter_miras_navn.json",
+      "after_day": 19,
+      "parents": [
+        "musikk_kryss_med_arvid"
+      ],
+      "thread": null
+    },
+    {
+      "id": "frilans_etter_arvids_kreditering",
+      "title": "Lea: Hvem bærer krediteringen?",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/frilans_etter_arvids_kreditering.json",
+      "after_day": 19,
+      "parents": [
+        "miljo_kryss_med_frilans"
+      ],
+      "thread": null
+    },
+    {
+      "id": "miljo_etter_miras_lyd",
+      "title": "Arvid: Filen som ikke var bestilt",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/miljo_etter_miras_lyd.json",
+      "after_day": 19,
+      "parents": [
+        "musikk_kryss_med_grunder"
+      ],
+      "thread": null
+    },
+    {
+      "id": "lea_etter_arvids_ansvar",
+      "title": "Lea: Tillit koster tid",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/lea_etter_arvids_ansvar.json",
+      "after_day": 22,
+      "parents": [
+        "miljo_etter_leas_program"
+      ],
+      "thread": null
+    },
+    {
+      "id": "mira_etter_samtalen_med_lea",
+      "title": "Mira: Det som ikke ble sagt",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/mira_etter_samtalen_med_lea.json",
+      "after_day": 22,
+      "parents": [
+        "musikk_etter_arvids_tekst"
+      ],
+      "thread": null
+    },
+    {
+      "id": "arvid_etter_leas_notat",
+      "title": "Arvid: Hvem eier historien?",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/arvid_etter_leas_notat.json",
+      "after_day": 22,
+      "parents": [
+        "frilans_etter_miras_navn"
+      ],
+      "thread": null
+    },
+    {
+      "id": "arvid_etter_leas_grense",
+      "title": "Arvid: Et vennskap etter et nei",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/arvid_etter_leas_grense.json",
+      "after_day": 22,
+      "parents": [
+        "frilans_etter_arvids_kreditering"
+      ],
+      "thread": null
+    },
+    {
+      "id": "mira_etter_lydfilens_rykte",
+      "title": "Mira: Når musikken ikke føles trygg",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/mira_etter_lydfilens_rykte.json",
+      "after_day": 22,
+      "parents": [
+        "miljo_etter_miras_lyd"
+      ],
+      "thread": null
+    },
+    {
+      "id": "arvid_etter_leas_tillit",
+      "title": "Arvid: En samling uten redningsperson",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/arvid_etter_leas_tillit.json",
+      "after_day": 25,
+      "parents": [
+        "lea_etter_arvids_ansvar"
+      ],
+      "thread": null
+    },
+    {
+      "id": "lea_etter_miras_vennskap",
+      "title": "Lea: Ideen trenger ikke en musiker",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/lea_etter_miras_vennskap.json",
+      "after_day": 25,
+      "parents": [
+        "mira_etter_samtalen_med_lea"
+      ],
+      "thread": null
+    },
+    {
+      "id": "lea_etter_arvids_fortelling",
+      "title": "Lea: En historie hun selv kan stå for",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_etter_arvids_fortelling.json",
+      "after_day": 25,
+      "parents": [
+        "arvid_etter_leas_notat"
+      ],
+      "thread": null
+    },
+    {
+      "id": "lea_etter_arvids_avstand",
+      "title": "Lea: Å være gjest uten å være ansvarlig",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_etter_arvids_avstand.json",
+      "after_day": 25,
+      "parents": [
+        "arvid_etter_leas_grense"
+      ],
+      "thread": null
+    },
+    {
+      "id": "mira_etter_nye_takter",
+      "title": "Mira: Musikken etter stillheten",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/mira_etter_nye_takter.json",
+      "after_day": 25,
+      "parents": [
+        "mira_etter_lydfilens_rykte"
+      ],
+      "thread": null
+    },
+    {
+      "id": "arvid_og_det_aapne_lokalet",
+      "title": "Arvid: Hvem åpner døren?",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/arvid_og_det_aapne_lokalet.json",
+      "after_day": 28,
+      "parents": [
+        "arvid_etter_leas_tillit"
+      ],
+      "thread": null
+    },
+    {
+      "id": "lea_og_sporsmaalene_som_gjenstaar",
+      "title": "Lea: Spørsmålet som ikke passer i presentasjonen",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/lea_og_sporsmaalene_som_gjenstaar.json",
+      "after_day": 28,
+      "parents": [
+        "lea_etter_miras_vennskap"
+      ],
+      "thread": null
+    },
+    {
+      "id": "lea_og_kildene_i_skrivearbeidet",
+      "title": "Lea: En setning må kunne etterprøves",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_og_kildene_i_skrivearbeidet.json",
+      "after_day": 28,
+      "parents": [
+        "lea_etter_arvids_fortelling"
+      ],
+      "thread": null
+    },
+    {
+      "id": "lea_og_fellesskapet_uten_plikt",
+      "title": "Lea: Det finnes flere dører",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_og_fellesskapet_uten_plikt.json",
+      "after_day": 28,
+      "parents": [
+        "lea_etter_arvids_avstand"
+      ],
+      "thread": null
+    },
+    {
+      "id": "mira_og_musikken_i_hverdagen",
+      "title": "Mira: Stykket som trenger tid",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/mira_og_musikken_i_hverdagen.json",
+      "after_day": 28,
+      "parents": [
+        "mira_etter_nye_takter"
+      ],
+      "thread": null
+    },
+    {
+      "id": "arvid_og_nokkelen_til_lokalet",
+      "title": "Arvid: Nøkkelen ingen kan love bort",
+      "role_scope": "subkultur_gangster",
+      "path": "data/Civication/lifestory/continuations/arvid_og_nokkelen_til_lokalet.json",
+      "after_day": 31,
+      "parents": [
+        "arvid_og_det_aapne_lokalet"
+      ],
+      "thread": null
+    },
+    {
+      "id": "lea_og_den_foerste_hypotesen",
+      "title": "Lea: Når en god idé møter et dårlig svar",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "path": "data/Civication/lifestory/continuations/lea_og_den_foerste_hypotesen.json",
+      "after_day": 31,
+      "parents": [
+        "lea_og_sporsmaalene_som_gjenstaar"
+      ],
+      "thread": null
+    },
+    {
+      "id": "lea_og_foresporselen_om_honorar",
+      "title": "Lea: En pris på arbeidet",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_og_foresporselen_om_honorar.json",
+      "after_day": 31,
+      "parents": [
+        "lea_og_kildene_i_skrivearbeidet"
+      ],
+      "thread": null
+    },
+    {
+      "id": "lea_og_elins_vanskelige_uke",
+      "title": "Lea: Vennskapet får en vanskelig uke",
+      "role_scope": "naeringsliv_frilanser",
+      "path": "data/Civication/lifestory/continuations/lea_og_elins_vanskelige_uke.json",
+      "after_day": 31,
+      "parents": [
+        "lea_og_fellesskapet_uten_plikt"
+      ],
+      "thread": null
+    },
+    {
+      "id": "mira_og_invitasjonen_fra_musikeren",
+      "title": "Mira: Den første tonen sammen",
+      "role_scope": "musikk_frilansmusiker",
+      "path": "data/Civication/lifestory/continuations/mira_og_invitasjonen_fra_musikeren.json",
+      "after_day": 31,
+      "parents": [
+        "mira_og_musikken_i_hverdagen"
+      ],
+      "thread": null
+    }
+  ],
+  "role_bridges": [
+    {
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Frilansmusiker",
+      "world": "data/Civication/roleWorlds/musikk/musikk_frilansmusiker.json",
+      "narrative": "data/Civication/narratives/leisure/musikk_frilansmusiker.json"
+    },
+    {
+      "role_scope": "subkultur_gangster",
+      "title": "Gangster",
+      "world": "data/Civication/roleWorlds/subkultur/subkultur_gangster.json",
+      "narrative": "data/Civication/narratives/leisure/subkultur_gangster.json"
+    },
+    {
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "title": "Sideprosjektbygger",
+      "world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_sideprosjektbygger.json",
+      "narrative": "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json"
+    },
+    {
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Frilanser",
+      "world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_frilanser.json",
+      "narrative": "data/Civication/narratives/leisure/naeringsliv_frilanser.json"
+    },
+    {
+      "role_scope": "naeringsliv_grunderdrommer",
+      "title": "Gründerdrømmer",
+      "world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_grunderdrommer.json",
+      "narrative": "data/Civication/narratives/leisure/naeringsliv_grunderdrommer.json"
+    },
+    {
+      "role_scope": "litteratur_skrivebordspoet",
+      "title": "Skrivebordspoet",
+      "world": "data/Civication/roleWorlds/litteratur/litteratur_skrivebordspoet.json",
+      "narrative": "data/Civication/narratives/leisure/skrivebordspoet.json"
+    },
+    {
+      "role_scope": "kunst_ateliermenneske",
+      "title": "Ateliermenneske",
+      "world": "data/Civication/roleWorlds/kunst/kunst_ateliermenneske.json",
+      "narrative": "data/Civication/narratives/leisure/kunst_ateliermenneske.json"
+    },
+    {
+      "role_scope": "scenekunst_improentusiast",
+      "title": "Improentusiast",
+      "world": "data/Civication/roleWorlds/scenekunst/scenekunst_improentusiast.json",
+      "narrative": "data/Civication/narratives/leisure/scenekunst_improentusiast.json"
+    },
+    {
+      "role_scope": "sport_klubbmenneske",
+      "title": "Klubbmenneske",
+      "world": "data/Civication/roleWorlds/sport/sport_klubbmenneske.json",
+      "narrative": "data/Civication/narratives/leisure/sport_klubbmenneske.json"
+    },
+    {
+      "role_scope": "politikk_grasrotbygger",
+      "title": "Grasrotbygger",
+      "world": "data/Civication/roleWorlds/politikk/politikk_grasrotbygger.json",
+      "narrative": "data/Civication/narratives/leisure/politikk_grasrotbygger.json"
+    },
+    {
+      "role_scope": "politikk_organisasjonsmenneske",
+      "title": "Organisasjonsmenneske",
+      "world": "data/Civication/roleWorlds/politikk/politikk_organisasjonsmenneske.json",
+      "narrative": "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json"
+    },
+    {
+      "role_scope": "by_byvandrer",
+      "title": "Byvandrer",
+      "world": "data/Civication/roleWorlds/by/by_byvandrer.json",
+      "narrative": "data/Civication/narratives/leisure/by_byvandrer.json"
+    },
+    {
+      "role_scope": "by_flanor",
+      "title": "Flanør",
+      "world": "data/Civication/roleWorlds/by/by_flanor.json",
+      "narrative": "data/Civication/narratives/leisure/by_flanor.json"
+    },
+    {
+      "role_scope": "historie_lokalhistoriker",
+      "title": "Lokalhistoriker",
+      "world": "data/Civication/roleWorlds/historie/historie_lokalhistoriker.json",
+      "narrative": "data/Civication/narratives/leisure/historie_lokalhistoriker.json"
+    },
+    {
+      "role_scope": "natur_fuglekikker",
+      "title": "Fuglekikker",
+      "world": "data/Civication/roleWorlds/natur/natur_fuglekikker.json",
+      "narrative": "data/Civication/narratives/leisure/natur_fuglekikker.json"
+    },
+    {
+      "role_scope": "natur_sanker",
+      "title": "Sanker",
+      "world": "data/Civication/roleWorlds/natur/natur_sanker.json",
+      "narrative": "data/Civication/narratives/leisure/natur_sanker.json"
+    },
+    {
+      "role_scope": "vitenskap_folkeforsker",
+      "title": "Folkeforsker",
+      "world": "data/Civication/roleWorlds/vitenskap/vitenskap_folkeforsker.json",
+      "narrative": "data/Civication/narratives/leisure/vitenskap_folkeforsker.json"
+    },
+    {
+      "role_scope": "vitenskap_maker",
+      "title": "Maker",
+      "world": "data/Civication/roleWorlds/vitenskap/vitenskap_maker.json",
+      "narrative": "data/Civication/narratives/leisure/vitenskap_maker.json"
+    },
+    {
+      "role_scope": "film_tv_filmklubbmenneske",
+      "title": "Filmklubbmenneske",
+      "world": "data/Civication/roleWorlds/film_tv/film_tv_filmklubbmenneske.json",
+      "narrative": "data/Civication/narratives/leisure/filmklubbmenneske.json"
+    },
+    {
+      "role_scope": "litteratur_bokklubbmenneske",
+      "title": "Bokklubbmenneske",
+      "world": "data/Civication/roleWorlds/litteratur/litteratur_bokklubbmenneske.json",
+      "narrative": "data/Civication/narratives/leisure/litteratur_bokklubbmenneske.json"
+    },
+    {
+      "role_scope": "musikk_konsertgjenger",
+      "title": "Konsertgjenger",
+      "world": "data/Civication/roleWorlds/musikk/musikk_konsertgjenger.json",
+      "narrative": "data/Civication/narratives/leisure/musikk_konsertgjenger.json"
+    }
+  ],
+  "narrative_streams": [
+    {
+      "id": "fagarbeider_work_stream",
+      "path": "data/Civication/narratives/work/naeringsliv/fagarbeider.json"
+    },
+    {
+      "id": "football_supporter_stream",
+      "path": "data/Civication/narratives/leisure/football_supporter.json"
+    },
+    {
+      "id": "alcohol_pressure_stream",
+      "path": "data/Civication/narratives/conflict/alcohol_pressure.json"
+    },
+    {
+      "id": "working_class_shift_life",
+      "path": "data/Civication/narratives/class_cases/working_class_shift_life.json"
+    },
+    {
+      "id": "nabolagskjenner_stream",
+      "path": "data/Civication/narratives/leisure/nabolagskjenner.json"
+    },
+    {
+      "id": "filmklubbmenneske_stream",
+      "path": "data/Civication/narratives/leisure/filmklubbmenneske.json"
+    },
+    {
+      "id": "sofafilosof_stream",
+      "path": "data/Civication/narratives/leisure/sofafilosof.json"
+    },
+    {
+      "id": "historievandrer_stream",
+      "path": "data/Civication/narratives/leisure/historievandrer.json"
+    },
+    {
+      "id": "gallerivanker_stream",
+      "path": "data/Civication/narratives/leisure/gallerivanker.json"
+    },
+    {
+      "id": "skrivebordspoet_stream",
+      "path": "data/Civication/narratives/leisure/skrivebordspoet.json"
+    },
+    {
+      "id": "medievaktbikkje_stream",
+      "path": "data/Civication/narratives/leisure/medievaktbikkje.json"
+    },
+    {
+      "id": "musikk_scenehenger_stream",
+      "path": "data/Civication/narratives/leisure/musikk_scenehenger.json"
+    },
+    {
+      "id": "natur_artsjeger_stream",
+      "path": "data/Civication/narratives/leisure/natur_artsjeger.json"
+    },
+    {
+      "id": "by_flanor_stream",
+      "path": "data/Civication/narratives/leisure/by_flanor.json"
+    },
+    {
+      "id": "scenekunst_scenehenger_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_scenehenger.json"
+    },
+    {
+      "id": "kunst_kuratorpraksis_stream",
+      "path": "data/Civication/narratives/leisure/kunst_kuratorpraksis.json"
+    },
+    {
+      "id": "musikk_artist_stream",
+      "path": "data/Civication/narratives/leisure/musikk_artist.json"
+    },
+    {
+      "id": "musikk_frilansmusiker_stream",
+      "path": "data/Civication/narratives/leisure/musikk_frilansmusiker.json"
+    },
+    {
+      "id": "naeringsliv_bedriftseier_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json"
+    },
+    {
+      "id": "naeringsliv_grunder_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_grunder.json"
+    },
+    {
+      "id": "naeringsliv_industrieier_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_industrieier.json"
+    },
+    {
+      "id": "naeringsliv_investor_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_investor.json"
+    },
+    {
+      "id": "scenekunst_dramaturg_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_dramaturg.json"
+    },
+    {
+      "id": "scenekunst_koreograf_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_koreograf.json"
+    },
+    {
+      "id": "scenekunst_regissor_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_regissor.json"
+    },
+    {
+      "id": "scenekunst_scenekunstkurator_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_scenekunstkurator.json"
+    },
+    {
+      "id": "scenekunst_skuespiller_danser_stream",
+      "path": "data/Civication/narratives/leisure/scenekunst_skuespiller_danser.json"
+    },
+    {
+      "id": "subkultur_gangster_stream",
+      "path": "data/Civication/narratives/leisure/subkultur_gangster.json"
+    },
+    {
+      "id": "naeringsliv_sideprosjektbygger_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json"
+    },
+    {
+      "id": "naeringsliv_frilanser_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_frilanser.json"
+    },
+    {
+      "id": "naeringsliv_grunderdrommer_stream",
+      "path": "data/Civication/narratives/leisure/naeringsliv_grunderdrommer.json"
+    },
+    {
+      "id": "kunst_ateliermenneske_stream",
+      "path": "data/Civication/narratives/leisure/kunst_ateliermenneske.json"
+    },
+    {
+      "id": "scenekunst_improentusiast",
+      "path": "data/Civication/narratives/leisure/scenekunst_improentusiast.json"
+    },
+    {
+      "id": "sport_klubbmenneske_stream",
+      "path": "data/Civication/narratives/leisure/sport_klubbmenneske.json"
+    },
+    {
+      "id": "politikk_grasrotbygger_stream",
+      "path": "data/Civication/narratives/leisure/politikk_grasrotbygger.json"
+    },
+    {
+      "id": "politikk_organisasjonsmenneske",
+      "path": "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json"
+    },
+    {
+      "id": "by_byvandrer_stream",
+      "path": "data/Civication/narratives/leisure/by_byvandrer.json"
+    },
+    {
+      "id": "historie_lokalhistoriker_stream",
+      "path": "data/Civication/narratives/leisure/historie_lokalhistoriker.json"
+    },
+    {
+      "id": "natur_fuglekikker_stream",
+      "path": "data/Civication/narratives/leisure/natur_fuglekikker.json"
+    },
+    {
+      "id": "natur_sanker_stream",
+      "path": "data/Civication/narratives/leisure/natur_sanker.json"
+    },
+    {
+      "id": "vitenskap_folkeforsker",
+      "path": "data/Civication/narratives/leisure/vitenskap_folkeforsker.json"
+    },
+    {
+      "id": "vitenskap_maker_stream",
+      "path": "data/Civication/narratives/leisure/vitenskap_maker.json"
+    },
+    {
+      "id": "litteratur_bokklubbmenneske_stream",
+      "path": "data/Civication/narratives/leisure/litteratur_bokklubbmenneske.json"
+    },
+    {
+      "id": "musikk_konsertgjenger_stream",
+      "path": "data/Civication/narratives/leisure/musikk_konsertgjenger.json"
+    },
+    {
+      "id": "stein_role_change_work_stream",
+      "path": "data/Civication/narratives/work/naeringsliv/stein_role_change.json"
+    },
+    {
+      "id": "frode_role_change_work_stream",
+      "path": "data/Civication/narratives/work/naeringsliv/frode_role_change.json"
+    },
+    {
+      "id": "inger_role_change_work_stream",
+      "path": "data/Civication/narratives/work/naeringsliv/inger_role_change.json"
+    },
+    {
+      "id": "stein_hele_livet_stream",
+      "path": "data/Civication/narratives/leisure/stein_hele_livet.json"
+    },
+    {
+      "id": "frode_hele_livet_stream",
+      "path": "data/Civication/narratives/leisure/frode_hele_livet.json"
+    },
+    {
+      "id": "inger_hele_livet_stream",
+      "path": "data/Civication/narratives/leisure/inger_hele_livet.json"
+    }
+  ],
+  "life_mail_packs": [
+    {
+      "id": "arbeidsledig",
+      "label": "Arbeidsledig",
+      "path": "data/Civication/lifeMails/arbeidsledig/arbeidsledig_life.json",
+      "priority": 100,
+      "when": {
+        "no_active_job": true
+      }
+    },
+    {
+      "id": "alkohol_risk",
+      "label": "Alkohol og sosial slitasje",
+      "path": "data/Civication/lifeMails/alkohol/alkohol_risk_life.json",
+      "priority": 120,
+      "when": {
+        "tags_any": [
+          "alcohol_risk",
+          "alkohol_risk",
+          "ruspress"
+        ]
+      }
+    },
+    {
+      "id": "subkultur_skurk",
+      "label": "Subkultur / kantliv",
+      "path": "data/Civication/lifeMails/subkultur/subkultur_skurk_life.json",
+      "priority": 115,
+      "when": {
+        "tags_any": [
+          "subkultur_skurk",
+          "skurk",
+          "subculture_edge"
+        ]
+      }
+    }
+  ],
+  "job_mail_example": {
+    "category": "naeringsliv",
+    "packs": [
+      "data/Civication/jobbmails/naeringsliv/naer_arbeider_pack.json",
+      "data/Civication/jobbmails/naeringsliv/naer_fagarbeider_pack.json",
+      "data/Civication/jobbmails/naeringsliv/naer_mellomleder_pack.json",
+      "data/Civication/jobbmails/naeringsliv/naer_quests_pack.json",
+      "data/Civication/jobbmails/naeringsliv/naer_story_pack.json",
+      "data/Civication/jobbmails/naeringsliv/naer_system_pack.json"
+    ]
+  },
+  "totals": {
+    "continuation_references": 45,
+    "by_role": {
+      "musikk_frilansmusiker": 11,
+      "naeringsliv_sideprosjektbygger": 8,
+      "naeringsliv_frilanser": 11,
+      "naeringsliv_grunderdrommer": 3,
+      "subkultur_gangster": 12
+    },
+    "role_bridges": 21,
+    "narrative_streams": 50,
+    "narrative_by_folder": {
+      "work": 4,
+      "leisure": 44,
+      "conflict": 1,
+      "class_cases": 1
+    },
+    "life_mail_packs": 3,
+    "naeringsliv_job_mail_packs": 6
+  }
+}
